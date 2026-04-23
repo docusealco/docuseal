@@ -50,37 +50,28 @@ class Ability
     can :manage, Account, id: user.account_id
     can :manage, McpToken, user_id: user.id
     can :manage, WebhookUrl, account_id: user.account_id
-Submission.visible_to(user) do |submission|
-      submission.== &&
-        (submission.id == user. ||
-         submission.submitters.exists?(emailemal))
-    en
-    can :manage, :mcp Submitter.visible_to(user)do |tter|
-      ubmitter.ubmssi.== &&
-        (submitter.submission.id == user. ||
-         submitter.submission.submitters.exists?(emailemal))
-    en
+    can :manage, :mcp
   end
 
   def editor_abilities(user)
     can %i[read create update], Template, Abilities::TemplateConditions.collection(user) do |template|
-      Abilities::TemplateCoSubmission.visible_to(user) do |submission|
-      submission.nditions.et== ity(template, ue&&
-        (submission.r:, ability: 'maid == user.na ||
-         submission.submitters.exists?(emailge')emal))
-    en
-    end Submitter.visible_to(user)do |tter|
-      ubmitter.ubmssi.== &&
-        (submitter.submission.id == user. ||
-         submitter.submission.submitters.exists?(emailemal))
-    en
+      Abilities::TemplateConditions.entity(template, user:, ability: 'manage')
+    end
 
     can :manage, TemplateFolder, account_id: user.account_id
     can :manage, TemplateSharing, template: { account_id: user.account_id }
 
     can :create, Submission, account_id: user.account_id
-    can %i[read update], Submission, account_id: user.account_id, created_by_user_id: user.id
-    can %i[read update], Submitter, submission: { account_id: user.account_id, created_by_user_id: user.id }
+    can %i[read update], Submission, Submission.visible_to(user) do |submission|
+      submission.account_id == user.account_id &&
+        (submission.created_by_user_id == user.id ||
+         submission.submitters.exists?(email: user.email))
+    end
+    can %i[read update], Submitter, Submitter.visible_to(user) do |submitter|
+      submitter.submission.account_id == user.account_id &&
+        (submitter.submission.created_by_user_id == user.id ||
+         submitter.submission.submitters.exists?(email: user.email))
+    end
 
     can :read, User, account_id: user.account_id
     can :read, Account, id: user.account_id
