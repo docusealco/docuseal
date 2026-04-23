@@ -46,9 +46,7 @@ class TemplatesPreferencesController < ApplicationController
     @template.save!
 
     render turbo_stream: turbo_stream.replace("#{config_key}_form",
-                                              partial: "templates_preferences/#{config_key}_form"),
-      :visibility,
-           status: :ok
+                                              partial: "templates_preferences/#{config_key}_form")
   end
 
   private

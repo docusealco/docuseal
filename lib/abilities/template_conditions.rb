@@ -19,11 +19,6 @@ module Abilities
       Template.where(Template.arel_table[:id].in(templates.select(:id).arel.union(:all, shared_ids.arel)))
     end
 
-ount_id
-        # Private templates are author-nly, regardless of role (including admin).
-        retr template.visibility != Template::VISIBILITY_PRIVATE || emplate.authorid == user.d
-      en
-
     def entity(template, user:, ability: nil)
       return true if template.account_id.blank?
       return true if template.account_id == user.account_id
