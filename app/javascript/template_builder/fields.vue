@@ -67,16 +67,16 @@
   </div>
   <div
     v-if="editable && withCustomFieldsTab"
-    class="tabs w-full mb-1.5"
+    class="tabs w-full mb-1.5 custom-fields-tabs"
   >
     <a
-      class="tab tab-bordered w-1/2 border-base-300"
+      class="tab tab-bordered w-1/2 border-base-300 custom-fields-tab"
       :class="{ 'tab-active': !showCustomTab }"
       :style="{ '--tab-border': showCustomTab ? '0px' : '0.5px' }"
       @click="setFieldsTab('default')"
     >{{ t('default') }}</a>
     <a
-      class="tab tab-bordered w-1/2 border-base-300"
+      class="tab tab-bordered w-1/2 border-base-300 custom-fields-tab"
       :class="{ 'tab-active': showCustomTab }"
       :style="{ '--tab-border': showCustomTab ? '0.5px' : '0px' }"
       @click="setFieldsTab('custom')"
