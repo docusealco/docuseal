@@ -1,0 +1,40 @@
+<% brand_name_value, brand_name_locked = current_account.config_value(AccountConfig::BRAND_NAME_KEY)
+   brand_font_value, brand_font_locked = current_account.config_value(AccountConfig::BRAND_NAME_FONT_KEY) %>
+<div class="my-4">
+  <%= form_for AccountConfig.new, url: settings_personalization_path, method: :post, html: { autocomplete: 'off', class: 'space-y-4' } do |f| %>
+    <%= f.hidden_field :key, value: AccountConfig::BRAND_NAME_KEY %>
+    <div class="form-control">
+      <label class="label">
+        <span class="label-text font-medium"><%= t('brand_name') %></span>
+        <% if brand_name_locked %>
+          <span class="label-text-alt text-base-content/60" title="<%= t('locked_by_env') %>"><%= t('locked_by_env') %></span>
+        <% end %>
+      </label>
+      <%= f.text_field :value, value: brand_name_value, placeholder: 'DocuSeal', disabled: brand_name_locked, class: 'base-input', dir: 'auto' %>
+    </div>
+    <div class="form-control pt-2">
+      <%= f.button button_title(title: t('save'), disabled_with: t('saving')), class: 'base-button', disabled: brand_name_locked %>
+    </div>
+  <% end %>
+
+  <%= form_for AccountConfig.new, url: settings_personalization_path, method: :post, html: { autocomplete: 'off', class: 'space-y-4 mt-4' } do |f| %>
+    <%= f.hidden_field :key, value: AccountConfig::BRAND_NAME_FONT_KEY %>
+    <div class="form-control">
+      <label class="label">
+        <span class="label-text font-medium"><%= t('brand_name_font') %></span>
+        <% if brand_font_locked %>
+          <span class="label-text-alt text-base-content/60" title="<%= t('locked_by_env') %>"><%= t('locked_by_env') %></span>
+        <% end %>
+      </label>
+      <%= select_tag 'account_config[value]',
+                    options_for_select(
+                      [[t('default'), '']] + AccountConfig::BRAND_NAME_FONTS.map { |f| [f, f] },
+                      brand_font_value
+                    ),
+                    class: 'base-input', disabled: brand_font_locked %>
+    </div>
+    <div class="form-control pt-2">
+      <%= f.button button_title(title: t('save'), disabled_with: t('saving')), class: 'base-button', disabled: brand_font_locked %>
+    </div>
+  <% end %>
+</div>

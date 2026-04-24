@@ -9,7 +9,7 @@
     <% locked = ENV.fetch(env_var_name, nil).present? %>
     <% current = current_account.ui_visible?(key, default: true) %>
     <%= form_for(AccountConfig.new,
-                 url: settings_personalization_index_path,
+                 url: settings_personalization_path,
                  method: :post,
                  html: { class: 'flex items-center justify-between py-1' }) do |f| %>
       <%= f.hidden_field :key, value: key %>
@@ -17,11 +17,7 @@
       <label class="flex items-center space-x-3 flex-grow"
              <%= "title=\"#{t('locked_by_env')}\"".html_safe if locked %>>
         <submit-form data-on="change" class="flex">
-          <input type="checkbox"
-                 class="toggle toggle-sm"
-                 <%= 'checked' if current %>
-                 <%= 'disabled' if locked %>
-                 onchange="this.form.submit()">
+          <%= check_box_tag nil, '1', current, class: 'toggle toggle-sm', disabled: locked, onchange: 'this.form.submit()' %>
         </submit-form>
         <span class="text-base"><%= label %></span>
         <% if locked %>

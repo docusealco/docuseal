@@ -322,6 +322,8 @@ en: &en
   verification_code_sms: Verification Code SMS
   completed_notification_email: Completed notification email
   company_logo: Company Logo
+  brand_name: Brand Name
+  brand_name_font: Brand Name Font
   submission_form: Submission Form
   completed_form_message: Completed Form Message
   completed_form_redirect_button: Completed Form Redirect Button
@@ -338,6 +340,7 @@ en: &en
   attach_audit_log_pdf: Attach audit log PDF
   attach_documents: Attach documents
   settings_have_been_saved: Settings have been saved.
+  invalid_font_selection: Invalid font selection.
   display_your_company_name_and_logo_when_signing_documents: Display your company name and logo when signing documents.
   profile: Profile
   signature: Signature
@@ -1380,6 +1383,8 @@ es: &es
   verification_code_sms: SMS de código de verificación
   completed_notification_email: Correo de notificación de formulario completado
   company_logo: Logotipo de la empresa
+  brand_name: Nombre de marca
+  brand_name_font: Fuente del nombre de marca
   submission_form: Formulario de envío
   completed_form_message: Mensaje de formulario completado
   completed_form_redirect_button: Botón de redirección de formulario completado
@@ -2432,6 +2437,8 @@ it: &it
   verification_code_sms: SMS con codice di verifica
   completed_notification_email: Email di notifica di completamento
   company_logo: Logo aziendale
+  brand_name: Nome del marchio
+  brand_name_font: Font del nome del marchio
   submission_form: Modulo di invio
   completed_form_message: Messaggio di completamento del modulo
   completed_form_redirect_button: Pulsante di reindirizzamento dopo il completamento del modulo
@@ -3488,6 +3495,8 @@ fr: &fr
   verification_code_sms: SMS de code de vérification
   completed_notification_email: E‑mail de notification de finalisation
   company_logo: Logo de l’entreprise
+  brand_name: Nom de la marque
+  brand_name_font: Police du nom de la marque
   submission_form: Formulaire de soumission
   completed_form_message: Message de formulaire complété
   completed_form_redirect_button: Bouton de redirection après finalisation
@@ -4537,6 +4546,8 @@ pt: &pt
   verification_code_sms: SMS com código de verificação
   completed_notification_email: E-mail de notificação de submissão concluída
   company_logo: Logotipo da empresa
+  brand_name: Nome da marca
+  brand_name_font: Fonte do nome da marca
   submission_form: Formulário de submissão
   completed_form_message: Mensagem de formulário concluído
   completed_form_redirect_button: Botão de redirecionamento do formulário concluído
@@ -5589,6 +5600,8 @@ de: &de
   verification_code_sms: SMS mit Verifizierungscode
   completed_notification_email: E-Mail-Benachrichtigung bei Abschluss
   company_logo: Firmenlogo
+  brand_name: Markenname
+  brand_name_font: Schriftart des Markennamens
   submission_form: Einreichungsformular
   completed_form_message: Nachricht zum abgeschlossenen Formular
   completed_form_redirect_button: Weiterleitungsschaltfläche nach Formularabschluss
@@ -7046,6 +7059,8 @@ nl: &nl
   verification_code_sms: Verificatiecode-SMS
   completed_notification_email: E-mailmelding voltooid
   company_logo: Bedrijfslogo
+  brand_name: Merknaam
+  brand_name_font: Lettertype van de merknaam
   submission_form: Indieningsformulier
   completed_form_message: Bericht voltooid formulier
   completed_form_redirect_button: Knop voor doorverwijzing na voltooid formulier

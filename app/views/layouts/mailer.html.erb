@@ -6,8 +6,21 @@
     <style></style>
   </head>
   <body dir="<%= TextUtils.rtl?(yield) ? 'rtl' : 'auto' %>">
+    <% mailer_account = @current_account || @submitter&.account || @submission&.account
+       if mailer_account
+         mailer_brand_name, _mbn_locked = mailer_account.config_value(AccountConfig::BRAND_NAME_KEY)
+         mailer_brand_font, _mbf_locked = mailer_account.config_value(AccountConfig::BRAND_NAME_FONT_KEY)
+       end
+       mailer_brand_name = mailer_brand_name.presence
+       mailer_brand_font = mailer_brand_font.presence %>
+    <% mailer_font_css = AccountConfig.brand_font_css(mailer_brand_font) %>
+    <% if mailer_brand_name %>
+      <div style="margin-bottom: 16px; font-size: 20px; font-weight: bold;<%= " font-family: #{mailer_font_css};" if mailer_font_css %>">
+        <%= mailer_brand_name %>
+      </div>
+    <% end %>
     <%= yield %>
-    <% footer_account = @current_account || (@submitter&.account) || (@submission&.account) %>
+    <% footer_account = mailer_account %>
     <% if footer_account %>
       <% footer_value, _locked = footer_account.config_value(AccountConfig::EMAIL_FOOTER_MESSAGE_KEY) %>
       <% if footer_value.present? %>

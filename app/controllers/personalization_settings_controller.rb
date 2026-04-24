@@ -11,6 +11,8 @@ class PersonalizationSettingsController < ApplicationController
     AccountConfig::SHOW_CONSOLE_LINK_KEY,
     AccountConfig::SHOW_API_LINK_KEY,
     AccountConfig::SHOW_TEST_MODE_KEY,
+    AccountConfig::BRAND_NAME_KEY,
+    AccountConfig::BRAND_NAME_FONT_KEY,
     *(Docuseal.multitenant? ? [] : [AccountConfig::POLICY_LINKS_KEY])
   ].freeze
 
@@ -23,6 +25,13 @@ class PersonalizationSettingsController < ApplicationController
   end
 
   def create
+    if @account_config.key == AccountConfig::BRAND_NAME_FONT_KEY &&
+       @account_config.value.present? &&
+       AccountConfig::BRAND_NAME_FONTS.exclude?(@account_config.value)
+      return redirect_back(fallback_location: settings_personalization_path,
+                           alert: I18n.t('invalid_font_selection'))
+    end
+
     if @account_config.value.is_a?(Hash)
       @account_config.value = @account_config.value.reject do |_, v|
         v.blank? && v != false

@@ -1,2 +1,14 @@
 <%= render 'shared/logo' %>
-<span>DocuSeal</span>
+<% title_account = defined?(current_account) && current_account
+   if title_account
+     brand_name, _bn_locked = title_account.config_value(AccountConfig::BRAND_NAME_KEY)
+     brand_font, _bf_locked = title_account.config_value(AccountConfig::BRAND_NAME_FONT_KEY)
+   end
+   brand_name = brand_name.presence || 'DocuSeal'
+   brand_font = brand_font.presence %>
+<% brand_font_css = AccountConfig.brand_font_css(brand_font) %>
+<% if brand_font_css %>
+  <span style="font-family: <%= brand_font_css %>;"><%= brand_name %></span>
+<% else %>
+  <span><%= brand_name %></span>
+<% end %>
