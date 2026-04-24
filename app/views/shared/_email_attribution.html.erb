@@ -1,3 +1,4 @@
+<% email_attr_account = @current_account || @submitter&.account || @submission&.account %>
 <p>
   ---
 </p>
@@ -8,3 +9,8 @@
     <%= t('sent_using_product_name_free_document_signing_html', product_url: "#{Docuseal::PRODUCT_EMAIL_URL}/start", product_name: Docuseal.product_name) %>
   <% end %>
 </p>
+<% if Docuseal.personalized?(email_attr_account) %>
+  <p style="font-size: 11px; color: #9ca3af;">
+    <%= t('powered_by') %> <a href="<%= Docuseal::PRODUCT_URL %>" style="color: #9ca3af;"><%= Docuseal.product_name %></a>
+  </p>
+<% end %>

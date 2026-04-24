@@ -32,6 +32,11 @@
     <div class="max-w-6xl mx-auto px-4 md:px-2 mb-8">
       <%= yield %>
     </div>
+    <% if defined?(current_account) && Docuseal.personalized?(current_account) %>
+      <footer class="text-center text-xs text-base-content/50 pb-4">
+        <%= t('powered_by') %> <a href="<%= Docuseal::PRODUCT_URL %>" class="underline"><%= Docuseal.product_name %></a>
+      </footer>
+    <% end %>
     <%= render 'shared/body_scripts' %>
   </body>
 </html>

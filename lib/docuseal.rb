@@ -120,6 +120,14 @@ module Docuseal
     ENV.fetch('CUSTOM_LOGO_URL', nil)
   end
 
+  def personalized?(account)
+    return false unless account
+
+    account.logo.attached? ||
+      custom_logo_url.present? ||
+      account.config_value(AccountConfig::BRAND_NAME_KEY).first.present?
+  end
+
   def product_name
     PRODUCT_NAME
   end
