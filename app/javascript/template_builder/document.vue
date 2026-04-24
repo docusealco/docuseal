@@ -150,6 +150,11 @@ export default {
       required: false,
       default: false
     },
+    pagePreviewFormat: {
+      type: String,
+      required: false,
+      default: '.jpg'
+    },
     withFieldsDetection: {
       type: Boolean,
       required: false,
@@ -180,7 +185,7 @@ export default {
         return this.previewImagesIndex[i] || reactive({
           metadata: { ...lazyloadMetadata },
           id: Math.random().toString(),
-          url: this.basePreviewUrl + `/preview/${this.document.signed_key || this.document.signed_uuid || this.document.uuid}/${i}.jpg`
+          url: this.basePreviewUrl + `/preview/${this.document.signed_key || this.document.signed_uuid || this.document.uuid}/${i}${this.pagePreviewFormat}`
         })
       })
     },

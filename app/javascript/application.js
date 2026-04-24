@@ -181,6 +181,7 @@ safeRegisterElement('template-builder', class extends HTMLElement {
       withConditions: this.dataset.withConditions === 'true',
       withDynamicDocuments: this.dataset.withDynamicDocuments === 'true',
       withGoogleDrive: this.dataset.withGoogleDrive === 'true',
+      pagePreviewFormat: this.dataset.pagePreviewFormat || '.jpg',
       withReplaceAndCloneUpload: true,
       withDownload: true,
       currencies: (this.dataset.currencies || '').split(',').filter(Boolean),

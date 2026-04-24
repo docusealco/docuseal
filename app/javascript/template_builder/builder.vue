@@ -383,6 +383,7 @@
                 :input-mode="inputMode"
                 :conditional-field-index="conditionalFieldIndex"
                 :formula-values-index="formulaValuesIndex"
+                :page-preview-format="pagePreviewFormat"
                 :default-fields="[...defaultRequiredFields, ...defaultFields]"
                 :allow-draw="!onlyDefinedFields || drawField || drawCustomField"
                 :with-signature-id="withSignatureId"
@@ -838,6 +839,11 @@ export default {
       type: Array,
       required: false,
       default: () => []
+    },
+    pagePreviewFormat: {
+      type: String,
+      required: false,
+      default: '.jpg'
     },
     acceptFileTypes: {
       type: String,

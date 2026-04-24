@@ -4,6 +4,7 @@ module Templates
   module ProcessDocument
     DPI = 200
     FORMAT = '.png'
+    PREVIEW_FORMAT = '.jpg'
     ATTACHMENT_NAME = 'preview_images'
 
     BMP_REGEXP = %r{\Aimage/(?:bmp|x-bmp|x-ms-bmp)\z}
@@ -205,7 +206,7 @@ module Templates
     def generate_pdf_preview_from_file(attachment, file_path, page_number)
       doc = Pdfium::Document.open_file(file_path)
 
-      blob = build_and_upload_blob(doc, page_number, '.jpeg')
+      blob = build_and_upload_blob(doc, page_number, PREVIEW_FORMAT)
 
       ApplicationRecord.no_touching do
         ActiveStorage::Attachment.create!(
