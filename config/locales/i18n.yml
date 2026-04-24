@@ -351,6 +351,9 @@ en: &en
   unable_to_save_initials: Unable to save initials.
   initials_has_been_saved: Initials have been saved.
   initials_has_been_removed: Initials have been removed.
+  logo_has_been_saved: Logo has been saved.
+  logo_has_been_removed: Logo has been removed.
+  unable_to_upload_logo: Unable to upload logo.
   change_password: Change Password
   two_factor_authentication: Two-Factor Authentication
   2fa_is_not_configured: 2FA is not configured

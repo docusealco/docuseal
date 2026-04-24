@@ -1,1 +1,28 @@
-<%= render 'logo_placeholder' %>
+<div class="my-4">
+  <% if current_account.logo.attached? %>
+    <div class="flex items-center space-x-4 mb-4">
+      <img src="<%= url_for(current_account.logo) %>" alt="<%= t('company_logo') %>" class="h-16 max-w-xs object-contain" data-logo-preview="true" />
+      <%= button_to t('remove'), settings_account_logo_path, method: :delete,
+            class: 'btn btn-sm btn-outline btn-error',
+            data: { turbo_confirm: t('are_you_sure_') } %>
+    </div>
+  <% elsif Docuseal.custom_logo_url.present? %>
+    <div class="flex items-center space-x-4 mb-4">
+      <img src="<%= Docuseal.custom_logo_url %>" alt="<%= t('company_logo') %>" class="h-16 max-w-xs object-contain" data-logo-preview="true" />
+      <span class="badge badge-info"><%= t('default') %></span>
+    </div>
+  <% end %>
+  <%= form_with url: settings_account_logo_path, method: :post, multipart: true, class: 'flex items-end space-x-4' do |f| %>
+    <div>
+      <label class="label">
+        <span class="label-text font-medium"><%= t('upload_logo') %></span>
+      </label>
+      <%= f.file_field :logo, accept: 'image/png,image/svg+xml,image/jpeg,image/gif',
+            class: 'file-input file-input-bordered w-full max-w-xs',
+            id: 'account_logo_input' %>
+    </div>
+    <button type="submit" class="btn btn-primary">
+      <%= t('upload_logo') %>
+    </button>
+  <% end %>
+</div>

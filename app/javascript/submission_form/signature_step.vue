@@ -378,14 +378,14 @@ import { v4 } from 'uuid'
 const SIGNATURE_FONTS = {
   'Dancing Script': 'DancingScript-Regular.otf',
   'Great Vibes': 'GreatVibes-Regular.ttf',
-  'Pacifico': 'Pacifico-Regular.ttf',
-  'Caveat': 'Caveat-Regular.ttf',
+  Pacifico: 'Pacifico-Regular.ttf',
+  Caveat: 'Caveat-Regular.ttf',
   'Homemade Apple': 'HomemadeApple-Regular.ttf',
   'Mrs Saint Delafield': 'MrsSaintDelafield-Regular.ttf',
   'Shadows Into Light': 'ShadowsIntoLight-Regular.ttf',
   'Alex Brush': 'AlexBrush-Regular.ttf',
-  'Kalam': 'Kalam-Regular.ttf',
-  'Sacramento': 'Sacramento-Regular.ttf',
+  Kalam: 'Kalam-Regular.ttf',
+  Sacramento: 'Sacramento-Regular.ttf',
   'Herr Von Muellerhoff': 'HerrVonMuellerhoff-Regular.ttf'
 }
 

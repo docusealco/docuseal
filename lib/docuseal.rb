@@ -116,6 +116,10 @@ module Docuseal
     end
   end
 
+  def custom_logo_url
+    ENV.fetch('CUSTOM_LOGO_URL', nil)
+  end
+
   def product_name
     PRODUCT_NAME
   end
