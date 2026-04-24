@@ -19,6 +19,11 @@ module DocuSeal
   class Application < Rails::Application
     config.load_defaults 8.1
 
+    # Rails 8.1.3 removed the has_many_inversing= setter on ActiveRecord::Base
+    # (the feature is now permanently enabled), but load_defaults still sets it
+    # via the 7.0 framework defaults, causing NoMethodError at boot.
+    config.active_record.delete(:has_many_inversing) if config.active_record.respond_to?(:delete)
+
     config.autoload_lib(ignore: %w[assets tasks puma])
 
     config.active_storage.routes_prefix = ''
