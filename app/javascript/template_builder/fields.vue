@@ -65,13 +65,33 @@
       @set-draw="$emit('set-draw', $event)"
     />
   </div>
-  <div v-if="!isShowVariables && submitterDefaultFields.length && editable">
-    <hr class="mb-2">
+  <div
+    v-if="editable && withCustomFieldsTab"
+    class="tabs w-full mb-1.5"
+  >
+    <a
+      class="tab tab-bordered w-1/2 border-base-300"
+      :class="{ 'tab-active': !showCustomTab }"
+      :style="{ '--tab-border': showCustomTab ? '0px' : '0.5px' }"
+      @click="setFieldsTab('default')"
+    >{{ t('default') }}</a>
+    <a
+      class="tab tab-bordered w-1/2 border-base-300"
+      :class="{ 'tab-active': showCustomTab }"
+      :style="{ '--tab-border': showCustomTab ? '0.5px' : '0px' }"
+      @click="setFieldsTab('custom')"
+    >{{ t('custom') }}</a>
+  </div>
+  <div v-if="!isShowVariables && submitterDefaultFields.length && editable && (!withCustomFieldsTab || showCustomTab)">
+    <hr
+      v-if="!withCustomFieldsTab"
+      class="mb-1.5"
+    >
     <template v-if="isShowFieldSearch">
       <input
         v-model="defaultFieldsSearch"
         :placeholder="t('search_field')"
-        class="input input-ghost input-xs px-0 text-base mb-2 !outline-0 !rounded bg-transparent w-full"
+        class="input input-ghost input-xs px-0 text-base mb-1.5 !outline-0 !rounded bg-transparent w-full"
       >
       <hr class="mb-2">
     </template>
@@ -218,7 +238,7 @@
     </div>
   </div>
   <div
-    v-if="!isShowVariables && editable && !onlyDefinedFields && (!showCustomTab || (!customFields.length && !newCustomField))"
+    v-if="!isShowVariables && editable && !onlyDefinedFields && (!showCustomTab || (!customFields.length && !newCustomField)) && (!withCustomFieldsTab || !showCustomTab)"
     id="field-types-grid"
     class="grid grid-cols-3 gap-1 pb-2 fields-grid"
   >
@@ -418,6 +438,11 @@ export default {
       required: false,
       default: false
     },
+    withCustomFieldsTab: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     withFieldsSearch: {
       type: Boolean,
       required: false,
@@ -567,7 +592,8 @@ export default {
     },
     submitterDefaultFields () {
       return this.defaultFields.filter((f) => {
-        return !this.submitterFields.find((field) => field.name === f.name) && (!f.role || f.role === this.selectedSubmitter.name)
+        return (this.withCustomFieldsTab ? true : !this.submitterFields.find((field) => field.name === f.name)) &&
+          (!f.role || f.role === this.selectedSubmitter.name)
       })
     },
     filteredSubmitterDefaultFields () {

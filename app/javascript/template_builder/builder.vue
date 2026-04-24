@@ -506,6 +506,7 @@
             :with-custom-fields="withCustomFields"
             :with-fields-search="withFieldsSearch"
             :default-fields="[...defaultRequiredFields, ...defaultFields]"
+            :with-custom-fields-tab="withCustomFieldsTab"
             :template="template"
             :default-required-fields="defaultRequiredFields"
             :detect-custom-fields-index="detectCustomFieldsIndex"
@@ -796,6 +797,11 @@ export default {
       type: Array,
       required: false,
       default: () => []
+    },
+    withCustomFieldsTab: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     withSelectedFieldType: {
       type: Boolean,
