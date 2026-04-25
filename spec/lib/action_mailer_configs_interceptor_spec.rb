@@ -8,7 +8,7 @@ RSpec.describe ActionMailerConfigsInterceptor do
     Mail.new do
       to      'user@example.com'
       from    'sender@example.com'
-      subject 'Hi'
+      subject 'Hi' # rubocop:disable RSpec/VariableDefinition,RSpec/VariableName
       body    'Hello'
     end
   end
@@ -34,7 +34,8 @@ RSpec.describe ActionMailerConfigsInterceptor do
 
     it 'does not use env SMTP settings when env is absent' do
       with_env('DOCUSEAL_CONFIG_SMTP_ADDRESS' => nil) do
-        # Falls through to the legacy branches; we only assert it did not pick env settings.
+        allow(Rails.application.config.action_mailer).to receive(:delivery_method).and_return(nil)
+        allow(Docuseal).to receive(:multitenant?).and_return(false)
         described_class.delivering_email(message)
         method = message.delivery_method
         expect(method.settings[:address]).not_to eq('smtp.example.com')
