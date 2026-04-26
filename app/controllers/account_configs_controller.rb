@@ -26,7 +26,8 @@ class AccountConfigsController < ApplicationController
     AccountConfig::REQUIRE_SIGNING_REASON_KEY,
     AccountConfig::DOCUMENT_FILENAME_FORMAT_KEY,
     AccountConfig::ENABLE_MCP_KEY,
-    AccountConfig::IP_ALLOWLIST_KEY
+    AccountConfig::IP_ALLOWLIST_KEY,
+    AccountConfig::REQUIRE_CONSENT_KEY
   ].freeze
 
   InvalidKey = Class.new(StandardError)

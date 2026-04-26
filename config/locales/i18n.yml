@@ -215,6 +215,8 @@ en: &en
   force_2fa_with_authenticator_app: Force 2FA with Authenticator App
   add_signature_id_to_the_documents: Add signature ID to the documents
   require_signing_reason: Require signing reason
+  require_consent_before_signing: Require consent before signing
+  require_signers_to_explicitly_consent_to_signing_the_document_electronically_before_they_can_submit: Require signers to explicitly consent to signing the document electronically before they can submit
   allow_typed_text_signatures: Allow typed text signatures
   allow_to_resubmit_completed_forms: Allow to resubmit completed forms
   allow_to_decline_documents: Allow to decline documents
@@ -1280,6 +1282,8 @@ es: &es
   force_2fa_with_authenticator_app: Forzar 2FA con la aplicación Authenticator
   add_signature_id_to_the_documents: Agregar ID de firma a los documentos
   require_signing_reason: Requerir motivo de firma
+  require_consent_before_signing: Requerir consentimiento antes de firmar
+  require_signers_to_explicitly_consent_to_signing_the_document_electronically_before_they_can_submit: Requerir que los firmantes consientan explícitamente firmar el documento electrónicamente antes de enviar
   allow_typed_text_signatures: Permitir firmas de texto mecanografiadas
   allow_to_resubmit_completed_forms: Permitir reenviar formularios completados
   allow_to_decline_documents: Permitir rechazar documentos
@@ -2338,6 +2342,8 @@ it: &it
   force_2fa_with_authenticator_app: "Forzare 2FA con l'app Authenticator"
   add_signature_id_to_the_documents: Aggiungere ID firma ai documenti
   require_signing_reason: Richiedere il motivo della firma
+  require_consent_before_signing: Richiedere il consenso prima della firma
+  require_signers_to_explicitly_consent_to_signing_the_document_electronically_before_they_can_submit: Richiedere ai firmatari di acconsentire esplicitamente alla firma elettronica del documento prima dell'invio
   allow_typed_text_signatures: Permettere firme con testo digitato
   allow_to_resubmit_completed_forms: Permettere di reinviare i moduli completati
   allow_to_decline_documents: Permettere di rifiutare i documenti
@@ -3400,6 +3406,8 @@ fr: &fr
   force_2fa_with_authenticator_app: Imposer la 2FA avec une application d’authentification
   add_signature_id_to_the_documents: Ajouter l’ID de signature aux documents
   require_signing_reason: Exiger un motif de signature
+  require_consent_before_signing: Exiger le consentement avant la signature
+  require_signers_to_explicitly_consent_to_signing_the_document_electronically_before_they_can_submit: Exiger des signataires qu'ils consentent explicitement à signer le document électroniquement avant de soumettre
   allow_typed_text_signatures: Autoriser les signatures tapées
   allow_to_resubmit_completed_forms: Autoriser la nouvelle soumission des formulaires complétés
   allow_to_decline_documents: Autoriser le refus de documents
@@ -4455,6 +4463,8 @@ pt: &pt
   force_2fa_with_authenticator_app: Forçar 2FA com aplicativo Authenticator
   add_signature_id_to_the_documents: Adicionar ID de assinatura aos documentos
   require_signing_reason: Requerer motivo para assinatura
+  require_consent_before_signing: Exigir consentimento antes de assinar
+  require_signers_to_explicitly_consent_to_signing_the_document_electronically_before_they_can_submit: Exigir que os signatários consintam explicitamente em assinar o documento eletronicamente antes de enviar
   allow_typed_text_signatures: Permitir assinaturas digitadas
   allow_to_resubmit_completed_forms: Permitir reenviar formulários concluídos
   allow_to_decline_documents: Permitir recusar documentos
@@ -5513,6 +5523,8 @@ de: &de
   force_2fa_with_authenticator_app: 2FA mit Authenticator-App erzwingen
   add_signature_id_to_the_documents: Signatur-ID zu den Dokumenten hinzufügen
   require_signing_reason: Grund für die Signatur erforderlich
+  require_consent_before_signing: Zustimmung vor dem Unterzeichnen erforderlich
+  require_signers_to_explicitly_consent_to_signing_the_document_electronically_before_they_can_submit: Unterzeichner müssen vor dem Absenden ausdrücklich der elektronischen Unterzeichnung des Dokuments zustimmen
   allow_typed_text_signatures: Getippte Unterschriften zulassen
   allow_to_resubmit_completed_forms: Erneutes Einreichen abgeschlossener Formulare zulassen
   allow_to_decline_documents: Ablehnen von Dokumenten erlauben
@@ -6488,6 +6500,8 @@ pl:
   ip_allowlist: Lista dozwolonych adresów IP
   restrict_access_to_your_account_by_ip_address_enter_one_ip_or_cidr_range_per_line: Ogranicz dostęp do konta według adresu IP. Wprowadź jeden adres IP lub zakres CIDR w każdym wierszu.
   access_denied_ip_not_allowed: Odmowa dostępu. Twój adres IP nie znajduje się na liście dozwolonych.
+  require_consent_before_signing: Wymagaj zgody przed podpisaniem
+  require_signers_to_explicitly_consent_to_signing_the_document_electronically_before_they_can_submit: Wymagaj od podpisujących wyraźnej zgody na elektroniczne podpisanie dokumentu przed wysłaniem
 
 uk:
   require_phone_2fa_to_open: Вимагати двофакторну автентифікацію через телефон для відкриття
@@ -6593,6 +6607,8 @@ uk:
   ip_allowlist: Список дозволених IP-адрес
   restrict_access_to_your_account_by_ip_address_enter_one_ip_or_cidr_range_per_line: Обмежте доступ до облікового запису за IP-адресою. Введіть одну IP-адресу або діапазон CIDR на кожному рядку.
   access_denied_ip_not_allowed: Доступ заборонено. Ваша IP-адреса не в списку дозволених.
+  require_consent_before_signing: Вимагати згоду перед підписанням
+  require_signers_to_explicitly_consent_to_signing_the_document_electronically_before_they_can_submit: Вимагати від підписантів явної згоди на електронний підпис документа перед відправленням
 
 cs:
   require_phone_2fa_to_open: Vyžadovat otevření pomocí telefonního 2FA
@@ -6698,6 +6714,8 @@ cs:
   ip_allowlist: Seznam povolených IP adres
   restrict_access_to_your_account_by_ip_address_enter_one_ip_or_cidr_range_per_line: Omezte přístup k účtu podle IP adresy. Zadejte jednu IP adresu nebo rozsah CIDR na každý řádek.
   access_denied_ip_not_allowed: Přístup odepřen. Vaše IP adresa není na seznamu povolených.
+  require_consent_before_signing: Vyžadovat souhlas před podpisem
+  require_signers_to_explicitly_consent_to_signing_the_document_electronically_before_they_can_submit: Vyžadovat od podepisujících výslovný souhlas s elektronickým podpisem dokumentu před odesláním
 
 he:
   require_phone_2fa_to_open: דרוש אימות דו-שלבי באמצעות טלפון לפתיחה
@@ -6803,6 +6821,8 @@ he:
   ip_allowlist: רשימת IP מורשים
   restrict_access_to_your_account_by_ip_address_enter_one_ip_or_cidr_range_per_line: הגבל גישה לחשבון לפי כתובת IP. הזן כתובת IP אחת או טווח CIDR בכל שורה.
   access_denied_ip_not_allowed: הגישה נדחתה. כתובת ה-IP שלך אינה ברשימת המורשים.
+  require_consent_before_signing: דרוש הסכמה לפני החתימה
+  require_signers_to_explicitly_consent_to_signing_the_document_electronically_before_they_can_submit: דרוש מהחותמים להסכים במפורש לחתום על המסמך באופן אלקטרוני לפני השליחה
 
 nl: &nl
   knowledge_based_authentication: Kennisgebaseerde authenticatie
@@ -6992,6 +7012,8 @@ nl: &nl
   force_2fa_with_authenticator_app: 2FA afdwingen met authenticator-app
   add_signature_id_to_the_documents: Handtekening-ID toevoegen aan de documenten
   require_signing_reason: Reden voor ondertekening verplicht stellen
+  require_consent_before_signing: Toestemming vereist voor ondertekening
+  require_signers_to_explicitly_consent_to_signing_the_document_electronically_before_they_can_submit: Ondertekenaars moeten expliciet toestemming geven voor het elektronisch ondertekenen van het document voordat ze kunnen indienen
   allow_typed_text_signatures: Handtekeningen met getypte tekst toestaan
   allow_to_resubmit_completed_forms: Opnieuw indienen van voltooide formulieren toestaan
   allow_to_decline_documents: Weigeren van documenten toestaan
@@ -7963,6 +7985,8 @@ ar:
   ip_allowlist: قائمة عناوين IP المسموح بها
   restrict_access_to_your_account_by_ip_address_enter_one_ip_or_cidr_range_per_line: تقييد الوصول إلى حسابك حسب عنوان IP. أدخل عنوان IP واحد أو نطاق CIDR في كل سطر.
   access_denied_ip_not_allowed: تم رفض الوصول. عنوان IP الخاص بك غير مسموح به.
+  require_consent_before_signing: طلب الموافقة قبل التوقيع
+  require_signers_to_explicitly_consent_to_signing_the_document_electronically_before_they_can_submit: يجب على الموقعين الموافقة صراحة على توقيع المستند إلكترونيًا قبل الإرسال
 
 ko:
   require_phone_2fa_to_open: 휴대폰 2FA를 열 때 요구함
@@ -8068,6 +8092,8 @@ ko:
   ip_allowlist: IP 허용 목록
   restrict_access_to_your_account_by_ip_address_enter_one_ip_or_cidr_range_per_line: IP 주소별로 계정 접근을 제한합니다. 한 줄에 하나의 IP 주소 또는 CIDR 범위를 입력하세요.
   access_denied_ip_not_allowed: 접근이 거부되었습니다. 귀하의 IP 주소가 허용 목록에 없습니다.
+  require_consent_before_signing: 서명 전 동의 필요
+  require_signers_to_explicitly_consent_to_signing_the_document_electronically_before_they_can_submit: 서명자가 제출 전에 전자 서명에 명시적으로 동의해야 합니다
 
 ja:
   require_phone_2fa_to_open: 電話による2段階認証が必要です
@@ -8173,6 +8199,8 @@ ja:
   ip_allowlist: IP許可リスト
   restrict_access_to_your_account_by_ip_address_enter_one_ip_or_cidr_range_per_line: IPアドレスによるアカウントへのアクセスを制限します。1行に1つのIPアドレスまたはCIDR範囲を入力してください。
   access_denied_ip_not_allowed: アクセスが拒否されました。お使いのIPアドレスは許可リストにありません。
+  require_consent_before_signing: 署名前に同意が必要
+  require_signers_to_explicitly_consent_to_signing_the_document_electronically_before_they_can_submit: 署名者は送信前に電子署名に明示的に同意する必要があります
 
 en-US:
   <<: *en

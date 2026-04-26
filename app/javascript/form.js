@@ -42,6 +42,7 @@ safeRegisterElement('submission-form', class extends HTMLElement {
       withConfetti: this.dataset.withConfetti === 'true',
       withFieldLabels: this.dataset.withFieldLabels !== 'false',
       withDisclosure: this.dataset.withDisclosure === 'true',
+      requireConsent: this.dataset.requireConsent === 'true',
       reuseSignature: this.dataset.reuseSignature !== 'false',
       withTypedSignature: this.dataset.withTypedSignature !== 'false',
       authenticityToken: document.querySelector('meta[name="csrf-token"]')?.content,

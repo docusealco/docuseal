@@ -570,12 +570,26 @@
           v-if="(currentField.type !== 'payment' && currentField.type !== 'verification' && currentField.type !== 'kba') || submittedValues[currentField.uuid]"
           :class="currentField.type === 'signature' ? 'mt-2' : 'mt-4 md:mt-6'"
         >
+          <label
+            v-if="requireConsent && isLastStep"
+            class="flex items-start space-x-2 mb-3 cursor-pointer consent-label"
+          >
+            <input
+              type="checkbox"
+              class="base-checkbox mt-0.5 !h-5 !w-5 shrink-0"
+              :checked="consentAccepted"
+              @change="onConsentChange($event)"
+            >
+            <span class="text-xs leading-tight">
+              {{ t('i_consent_to_sign_this_document_electronically') }}
+            </span>
+          </label>
           <button
             id="submit_form_button"
             ref="submitButton"
             type="submit"
             class="base-button w-full flex justify-center submit-form-button"
-            :disabled="isButtonDisabled"
+            :disabled="isButtonDisabled || (requireConsent && isLastStep && !consentAccepted)"
           >
             <span class="flex">
               <IconInnerShadowTop
@@ -857,6 +871,11 @@ export default {
       required: false,
       default: false
     },
+    requireConsent: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     reuseSignature: {
       type: Boolean,
       required: false,
@@ -1024,7 +1043,9 @@ export default {
       isSubmittingComplete: false,
       submittedValues: {},
       recalculateButtonDisabledKey: '',
-      isAccessibilityMode: false
+      isAccessibilityMode: false,
+      consentAccepted: false,
+      consentRecorded: false
     }
   },
   computed: {
@@ -1070,6 +1091,13 @@ export default {
           return f.required && isEmpty(this.values[f.uuid])
         })
       })
+    },
+    isLastStep () {
+      if (this.onlyRequiredFields) {
+        return !this.findNextStep(this.currentStep)
+      } else {
+        return this.stepFields.length === this.currentStep + 1
+      }
     },
     submitButtonText () {
       if (this.alwaysMinimize) {
@@ -1353,6 +1381,19 @@ export default {
   methods: {
     t (key) {
       return this.i18n[key] || i18n[this.selectedLanguage]?.[key] || i18n.en[key] || key
+    },
+    onConsentChange (event) {
+      this.consentAccepted = event.target.checked
+
+      if (this.consentAccepted && !this.consentRecorded && !this.dryRun) {
+        this.consentRecorded = true
+
+        fetch(this.baseUrl + '/api/submitter_consents', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ submitter_slug: this.submitterSlug })
+        })
+      }
     },
     onOrientationChange (event) {
       this.orientation = event.target.type
