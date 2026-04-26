@@ -180,6 +180,23 @@ module Submitters
       else
         SendSubmitterInvitationEmailJob.perform_async('submitter_id' => submitter.id)
       end
+
+      schedule_reminder_emails(submitter, delay_seconds: delay_seconds.to_i + index)
+    end
+  end
+
+  def schedule_reminder_emails(submitter, delay_seconds: 0)
+    config = AccountConfigs.find_for_account(submitter.account, AccountConfig::SUBMITTER_REMINDERS)
+    durations = config&.value.to_h.values_at('first_duration', 'second_duration', 'third_duration').compact_blank
+
+    durations.each_with_index do |duration_key, index|
+      next unless AccountConfigs::REMINDER_DURATIONS.key?(duration_key)
+
+      SendSubmitterReminderEmailJob.perform_in(
+        delay_seconds.seconds + AccountConfigs.duration_for(duration_key),
+        'submitter_id' => submitter.id,
+        'reminder_index' => index + 1
+      )
     end
   end
 

@@ -1,1 +1,18 @@
-<%= render 'logo_placeholder' %>
+<%= form_for current_account, url: settings_personalization_path, method: :post, html: { multipart: true, autocomplete: 'off', class: 'space-y-4' } do |f| %>
+  <% if current_account.logo.attached? %>
+    <div class="flex items-center gap-4">
+      <%= image_tag current_account.logo, class: 'max-h-16 max-w-48 rounded bg-base-200 object-contain p-2' %>
+      <label class="label cursor-pointer gap-2">
+        <%= f.check_box :remove_logo, class: 'base-checkbox' %>
+        <span><%= t('remove') %></span>
+      </label>
+    </div>
+  <% end %>
+  <div class="form-control">
+    <%= f.label :logo, t('company_logo'), class: 'label' %>
+    <%= f.file_field :logo, accept: 'image/png,image/jpeg,image/webp,image/svg+xml', class: 'file-input file-input-bordered w-full' %>
+  </div>
+  <div class="form-control pt-2">
+    <%= f.button button_title(title: t('save'), disabled_with: t('saving')), class: 'base-button' %>
+  </div>
+<% end %>

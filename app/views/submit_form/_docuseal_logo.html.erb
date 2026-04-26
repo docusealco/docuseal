@@ -1,4 +1,9 @@
+<% account = @submitter&.account || current_account %>
 <a href="<%= root_path %>" class="mx-auto text-2xl md:text-3xl font-bold items-center flex space-x-3">
-  <%= render 'shared/logo', class: 'w-9 h-9 md:w-12 md:h-12' %>
-  <span><%= Docuseal.product_name %></span>
+  <% if account&.logo&.attached? %>
+    <%= image_tag account.logo, class: 'max-w-12 max-h-12 object-contain' %>
+  <% else %>
+    <%= render 'shared/logo', class: 'w-9 h-9 md:w-12 md:h-12' %>
+  <% end %>
+  <span><%= account&.name || Docuseal.product_name %></span>
 </a>

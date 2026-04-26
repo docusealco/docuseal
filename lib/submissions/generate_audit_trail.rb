@@ -529,11 +529,21 @@ module Submissions
       !submission.source.in?(%w[embed api])
     end
 
-    def add_logo(column, _submission = nil)
-      column.image(PdfIcons.logo_io, width: 40, height: 40, position: :float)
+    def add_logo(column, submission = nil)
+      account = submission&.account
+      logo_io =
+        if account&.logo&.attached?
+          StringIO.new(account.logo.download)
+        else
+          PdfIcons.logo_io
+        end
 
-      column.formatted_text([{ text: 'DocuSeal',
-                               link: Docuseal::PRODUCT_EMAIL_URL }],
+      column.image(logo_io, width: 40, height: 40, position: :float)
+    rescue StandardError
+      column.image(PdfIcons.logo_io, width: 40, height: 40, position: :float)
+    ensure
+
+      column.formatted_text([{ text: account&.name || Docuseal.product_name }],
                             font_size: 20,
                             font: [FONT_NAME, { variant: :bold }],
                             width: 100,
