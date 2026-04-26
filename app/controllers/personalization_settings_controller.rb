@@ -13,13 +13,23 @@ class PersonalizationSettingsController < ApplicationController
 
   InvalidKey = Class.new(StandardError)
 
-  before_action :load_and_authorize_account_config, only: :create
+  before_action :load_and_authorize_account_config, only: :create, if: -> { params[:account_config].present? }
 
   def show
     authorize!(:read, AccountConfig)
   end
 
   def create
+    if params[:account].present?
+      authorize!(:update, current_account)
+
+      current_account.logo.purge if account_params[:remove_logo] == '1'
+      current_account.logo.attach(account_params[:logo]) if account_params[:logo].present?
+
+      return redirect_back(fallback_location: settings_personalization_path,
+                           notice: I18n.t('settings_have_been_saved'))
+    end
+
     if @account_config.value.is_a?(Hash)
       @account_config.value = @account_config.value.reject do |_, v|
         v.blank? && v != false
@@ -64,5 +74,9 @@ class PersonalizationSettingsController < ApplicationController
     end
 
     attrs
+  end
+
+  def account_params
+    params.require(:account).permit(:logo, :remove_logo)
   end
 end

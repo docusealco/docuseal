@@ -34,4 +34,10 @@ module AccountConfigs
 
     configs
   end
+
+  def duration_for(key)
+    amount, unit = REMINDER_DURATIONS.fetch(key).split
+
+    amount.to_i.public_send(unit)
+  end
 end
