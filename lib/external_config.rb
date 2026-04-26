@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # External configuration loaded from environment variables.
-# Currently exposes SMTP settings; additional external config concerns can be
+# Exposes SMTP and storage settings; additional external config concerns can be
 # added here as needed.
 module ExternalConfig
   CONFIG_DIR = ENV.fetch('DOCUSEAL_CONFIG_DIR', '/etc/docuseal')
@@ -13,6 +13,14 @@ module ExternalConfig
     password: 'DOCUSEAL_CONFIG_SMTP_PASSWORD',
     domain: 'DOCUSEAL_CONFIG_SMTP_DOMAIN',
     from: 'DOCUSEAL_CONFIG_SMTP_FROM'
+  }.freeze
+
+  STORAGE_ENV_KEYS = {
+    bucket: 'S3_ATTACHMENTS_BUCKET',
+    access_key_id: 'AWS_ACCESS_KEY_ID',
+    secret_access_key: 'AWS_SECRET_ACCESS_KEY',
+    region: 'AWS_REGION',
+    endpoint: 'S3_ENDPOINT'
   }.freeze
 
   module_function
@@ -40,5 +48,60 @@ module ExternalConfig
       open_timeout: ENV.fetch('SMTP_OPEN_TIMEOUT', '15').to_i,
       read_timeout: ENV.fetch('SMTP_READ_TIMEOUT', '25').to_i
     }.compact_blank
+  end
+
+  # Storage is considered configured when S3_ATTACHMENTS_BUCKET, GCS_BUCKET, or
+  # AZURE_CONTAINER is provided via ENV.
+  def storage_configured?
+    ENV.fetch('S3_ATTACHMENTS_BUCKET', nil).present? ||
+      ENV.fetch('GCS_BUCKET', nil).present? ||
+      ENV.fetch('AZURE_CONTAINER', nil).present?
+  end
+
+  # Returns the externally-configured storage service name.
+  def storage_service
+    if ENV.fetch('S3_ATTACHMENTS_BUCKET', nil).present?
+      'aws_s3'
+    elsif ENV.fetch('GCS_BUCKET', nil).present?
+      'google'
+    elsif ENV.fetch('AZURE_CONTAINER', nil).present?
+      'azure'
+    end
+  end
+
+  # Returns a display-friendly hash of the current storage configuration
+  # sourced from ENV vars.
+  def storage_settings
+    return {} unless storage_configured?
+
+    service = storage_service
+    configs = storage_configs_for(service)
+
+    return {} if configs.nil?
+
+    { 'service' => service, 'configs' => configs.compact_blank }
+  end
+
+  def storage_configs_for(service)
+    case service
+    when 'aws_s3'
+      {
+        'access_key_id' => ENV.fetch(STORAGE_ENV_KEYS[:access_key_id], nil),
+        'secret_access_key' => ENV.fetch(STORAGE_ENV_KEYS[:secret_access_key], nil),
+        'region' => ENV.fetch(STORAGE_ENV_KEYS[:region], 'us-east-1'),
+        'bucket' => ENV.fetch(STORAGE_ENV_KEYS[:bucket], nil),
+        'endpoint' => ENV.fetch(STORAGE_ENV_KEYS[:endpoint], nil)
+      }
+    when 'google'
+      {
+        'bucket' => ENV.fetch('GCS_BUCKET', nil),
+        'project' => ENV.fetch('GCS_PROJECT', nil)
+      }
+    when 'azure'
+      {
+        'storage_account_name' => ENV.fetch('AZURE_STORAGE_ACCOUNT_NAME', nil),
+        'container' => ENV.fetch('AZURE_CONTAINER', nil)
+      }
+    end
   end
 end

@@ -8,6 +8,11 @@ class StorageSettingsController < ApplicationController
   def index; end
 
   def create
+    if ExternalConfig.storage_configured?
+      return redirect_to settings_storage_index_path,
+                         alert: I18n.t('storage_is_configured_via_environment_variables')
+    end
+
     if @encrypted_config.update(storage_configs)
       LoadActiveStorageConfigs.reload
 

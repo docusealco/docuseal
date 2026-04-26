@@ -4,6 +4,7 @@ en: &en
   show_api_link: Show API Link
   show_test_mode: Show Test Mode
   locked_by_env: Locked by environment variable
+  storage_is_configured_via_environment_variables: Storage is configured via environment variables. These settings are read-only.
   visibility: Visibility
   visibility_private: "Private (only you)"
   visibility_public: "Public (all account users)"

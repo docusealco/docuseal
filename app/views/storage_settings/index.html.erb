@@ -4,9 +4,24 @@
     <h1 class="text-4xl font-bold mb-4">
       <%= t('storage') %>
     </h1>
-    <% value = @encrypted_config.value || { 'service' => 'disk' } %>
-    <% configs = value['configs'] || {} %>
+    <% external_storage = ExternalConfig.storage_configured? %>
+    <% if external_storage %>
+      <div class="alert alert-info mb-4" role="status">
+        <%= t('storage_is_configured_via_environment_variables') %>
+      </div>
+      <% ext = ExternalConfig.storage_settings %>
+      <% value = ext %>
+      <% configs = ext['configs'] || {} %>
+    <% else %>
+      <% value = @encrypted_config.value || { 'service' => 'disk' } %>
+      <% configs = value['configs'] || {} %>
+    <% end %>
     <%= form_for @encrypted_config, url: settings_storage_index_path, method: :post, html: { autocomplete: 'off', class: 'w-full' } do |f| %>
+      <% if external_storage %>
+      <fieldset disabled>
+      <% else %>
+      <fieldset>
+      <% end %>
       <% options = [%w[Disk disk], %w[AWS aws_s3], %w[GCP google], %w[Azure azure]] %>
       <toggle-visible data-element-ids="<%= options.map(&:last).to_json %>" class="block relative">
         <ul class="items-center w-full text-sm font-medium text-gray-900 space-y-2 sm:space-y-0 sm:flex sm:space-x-2">
@@ -33,6 +48,7 @@
       <div class="form-control">
         <%= f.button button_title(title: t('save'), disabled_with: t('saving')), class: 'base-button' %>
       </div>
+      </fieldset>
     <% end %>
   </div>
   <div class="w-0 md:w-52"></div>

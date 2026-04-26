@@ -46,4 +46,75 @@ RSpec.describe ExternalConfig do
       end
     end
   end
+
+  describe '.storage_configured?' do
+    it 'returns true when S3_ATTACHMENTS_BUCKET is set' do
+      with_env('S3_ATTACHMENTS_BUCKET' => 'my-bucket') do
+        expect(described_class.storage_configured?).to be(true)
+      end
+    end
+
+    it 'returns true when GCS_BUCKET is set' do
+      with_env('S3_ATTACHMENTS_BUCKET' => nil, 'GCS_BUCKET' => 'my-gcs-bucket') do
+        expect(described_class.storage_configured?).to be(true)
+      end
+    end
+
+    it 'returns true when AZURE_CONTAINER is set' do
+      with_env('S3_ATTACHMENTS_BUCKET' => nil, 'GCS_BUCKET' => nil, 'AZURE_CONTAINER' => 'my-container') do
+        expect(described_class.storage_configured?).to be(true)
+      end
+    end
+
+    it 'returns false when no storage env var is set' do
+      with_env('S3_ATTACHMENTS_BUCKET' => nil, 'GCS_BUCKET' => nil, 'AZURE_CONTAINER' => nil) do
+        expect(described_class.storage_configured?).to be(false)
+      end
+    end
+  end
+
+  describe '.storage_service' do
+    it 'returns aws_s3 when S3_ATTACHMENTS_BUCKET is set' do
+      with_env('S3_ATTACHMENTS_BUCKET' => 'my-bucket') do
+        expect(described_class.storage_service).to eq('aws_s3')
+      end
+    end
+
+    it 'returns google when GCS_BUCKET is set' do
+      with_env('S3_ATTACHMENTS_BUCKET' => nil, 'GCS_BUCKET' => 'my-gcs-bucket') do
+        expect(described_class.storage_service).to eq('google')
+      end
+    end
+
+    it 'returns azure when AZURE_CONTAINER is set' do
+      with_env('S3_ATTACHMENTS_BUCKET' => nil, 'GCS_BUCKET' => nil, 'AZURE_CONTAINER' => 'my-container') do
+        expect(described_class.storage_service).to eq('azure')
+      end
+    end
+  end
+
+  describe '.storage_settings' do
+    it 'returns empty hash when not configured' do
+      with_env('S3_ATTACHMENTS_BUCKET' => nil, 'GCS_BUCKET' => nil, 'AZURE_CONTAINER' => nil) do
+        expect(described_class.storage_settings).to eq({})
+      end
+    end
+
+    it 'returns AWS S3 config hash from env vars' do
+      envs = {
+        'S3_ATTACHMENTS_BUCKET' => 'my-bucket',
+        'AWS_ACCESS_KEY_ID' => 'AKIAEXAMPLE',
+        'AWS_SECRET_ACCESS_KEY' => 'secret123',
+        'AWS_REGION' => 'ca-central-1',
+        'S3_ENDPOINT' => nil
+      }
+      with_env(envs) do
+        settings = described_class.storage_settings
+        expect(settings['service']).to eq('aws_s3')
+        expect(settings['configs']['bucket']).to eq('my-bucket')
+        expect(settings['configs']['access_key_id']).to eq('AKIAEXAMPLE')
+        expect(settings['configs']['region']).to eq('ca-central-1')
+      end
+    end
+  end
 end
