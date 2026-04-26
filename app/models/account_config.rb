@@ -65,6 +65,7 @@ class AccountConfig < ApplicationRecord
   SHOW_TEST_MODE_KEY = 'show_test_mode'
   BRAND_NAME_KEY = 'brand_name'
   BRAND_NAME_FONT_KEY = 'brand_name_font'
+  IP_ALLOWLIST_KEY = 'ip_allowlist'
 
   BRAND_NAME_FONTS = [
     'Inter',

@@ -13,6 +13,7 @@ module Api
     wrap_parameters false
 
     before_action :authenticate_user!
+    before_action :enforce_ip_allowlist
     check_authorization
 
     rescue_from Params::BaseValidator::InvalidParameterError do |e|
@@ -96,6 +97,32 @@ module Api
 
     def current_account
       current_user&.account
+    end
+
+    def enforce_ip_allowlist
+      return unless current_account
+
+      allowlist_config = AccountConfig.find_by(account: current_account, key: AccountConfig::IP_ALLOWLIST_KEY)
+      return if allowlist_config.blank?
+
+      allowed_ips = Array(allowlist_config.value).map(&:strip).compact_blank
+      return if allowed_ips.empty?
+
+      client_ip = request.remote_ip
+
+      allowed = allowed_ips.any? do |entry|
+        if entry.include?('/')
+          IPAddr.new(entry).include?(client_ip)
+        else
+          IPAddr.new(entry) == IPAddr.new(client_ip)
+        end
+      rescue IPAddr::InvalidAddressError
+        false
+      end
+
+      return if allowed
+
+      render json: { error: 'Access denied: IP not allowed' }, status: :forbidden
     end
 
     def set_noindex_headers

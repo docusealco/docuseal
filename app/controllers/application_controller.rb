@@ -14,6 +14,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!, unless: :devise_controller?
 
   before_action :set_csp, if: -> { request.get? && !request.headers['HTTP_X_TURBO'] }
+  before_action :enforce_ip_allowlist, if: :signed_in?
 
   helper_method :button_title,
                 :current_account,
@@ -125,6 +126,33 @@ class ApplicationController < ActionController::Base
     return if request.domain != 'docuseal.co'
 
     redirect_to request.url.gsub('.co/', '.com/'), allow_other_host: true, status: :moved_permanently
+  end
+
+  def enforce_ip_allowlist
+    return unless current_account
+
+    allowlist_config = AccountConfig.find_by(account: current_account, key: AccountConfig::IP_ALLOWLIST_KEY)
+    return if allowlist_config.blank?
+
+    allowed_ips = Array(allowlist_config.value).map(&:strip).compact_blank
+    return if allowed_ips.empty?
+
+    client_ip = request.remote_ip
+
+    allowed = allowed_ips.any? do |entry|
+      if entry.include?('/')
+        IPAddr.new(entry).include?(client_ip)
+      else
+        IPAddr.new(entry) == IPAddr.new(client_ip)
+      end
+    rescue IPAddr::InvalidAddressError
+      false
+    end
+
+    return if allowed
+
+    sign_out(current_user)
+    redirect_to new_user_session_path, alert: I18n.t('access_denied_ip_not_allowed')
   end
 
   def set_csp

@@ -1,0 +1,26 @@
+<% if can?(:manage, AccountConfig) %>
+  <div class="px-1 mt-8">
+    <h2 class="text-2xl font-bold mb-2">
+      <%= t('security') %>
+    </h2>
+    <% account_config = AccountConfig.find_or_initialize_by(account: current_account, key: AccountConfig::IP_ALLOWLIST_KEY) %>
+    <% if can?(:manage, account_config) %>
+      <%= form_for account_config, url: account_configs_path, method: :post, html: { class: 'py-2.5' } do |f| %>
+        <%= f.hidden_field :key %>
+        <div class="flex flex-col gap-2">
+          <div class="flex items-center space-x-1">
+            <span class="font-semibold"><%= t('ip_allowlist') %></span>
+            <span class="tooltip tooltip-top flex cursor-pointer" data-tip="<%= t('restrict_access_to_your_account_by_ip_address_enter_one_ip_or_cidr_range_per_line') %>">
+              <%= svg_icon('info_circle', class: 'hidden md:inline-block w-4 h-4 shrink-0') %>
+            </span>
+          </div>
+          <% current_ips = Array(account_config.value).join("\n") %>
+          <%= f.text_area :value, value: current_ips, rows: 4, placeholder: "192.168.1.0/24\n10.0.0.1\n2001:db8::/32", class: 'base-input font-mono text-sm', dir: 'ltr' %>
+          <div class="form-control pt-1">
+            <%= f.button button_title(title: t('update'), disabled_with: t('updating')), class: 'base-button w-full md:w-auto' %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

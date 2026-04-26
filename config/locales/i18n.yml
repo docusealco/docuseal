@@ -227,6 +227,10 @@ en: &en
   connect_salesforce_account_to_integrate_with_docuseal: Connect Salesforce account to integrate with DocuSeal
   re_connect_salesforce: Re-connect Salesforce
   connect_salesforce: Connect Salesforce
+  security: Security
+  ip_allowlist: IP Allowlist
+  restrict_access_to_your_account_by_ip_address_enter_one_ip_or_cidr_range_per_line: Restrict access to your account by IP address. Enter one IP or CIDR range per line.
+  access_denied_ip_not_allowed: Access denied. Your IP address is not in the allowlist.
   danger_zone: Danger Zone
   delete_my_account: Delete my account
   you_are_scheduling_your_account_for_deletion_after_deletion_your_data_will_be_permanently_removed_and_cannot_be_recovered_click_ok_if_you_would_like_to_continue: "You are scheduling your account for deletion. After deletion, your data will be permanently removed and cannot be recovered.\n\nClick OK if you would like to continue."
@@ -1288,6 +1292,10 @@ es: &es
   connect_salesforce_account_to_integrate_with_docuseal: Conectar cuenta de Salesforce para integrar con DocuSeal
   re_connect_salesforce: Volver a conectar Salesforce
   connect_salesforce: Conectar Salesforce
+  security: Seguridad
+  ip_allowlist: Lista de IPs permitidas
+  restrict_access_to_your_account_by_ip_address_enter_one_ip_or_cidr_range_per_line: Restrinja el acceso a su cuenta por dirección IP. Ingrese una IP o rango CIDR por línea.
+  access_denied_ip_not_allowed: Acceso denegado. Su dirección IP no está en la lista permitida.
   danger_zone: Zona de peligro
   delete_my_account: Eliminar mi cuenta
   you_are_scheduling_your_account_for_deletion_after_deletion_your_data_will_be_permanently_removed_and_cannot_be_recovered_click_ok_if_you_would_like_to_continue: "Estás programando la eliminación de tu cuenta. Después de la eliminación, tus datos se eliminarán permanentemente y no podrán recuperarse.\n\nHaz clic en OK si deseas continuar."
@@ -2342,6 +2350,10 @@ it: &it
   connect_salesforce_account_to_integrate_with_docuseal: "Connetti l'account Salesforce per integrare con DocuSeal"
   re_connect_salesforce: Riconnetti Salesforce
   connect_salesforce: Connetti Salesforce
+  security: Sicurezza
+  ip_allowlist: Lista IP consentiti
+  restrict_access_to_your_account_by_ip_address_enter_one_ip_or_cidr_range_per_line: Limita l'accesso al tuo account per indirizzo IP. Inserisci un IP o un intervallo CIDR per riga.
+  access_denied_ip_not_allowed: Accesso negato. Il tuo indirizzo IP non è nella lista consentita.
   danger_zone: Zona di pericolo
   delete_my_account: Elimina il mio account
   you_are_scheduling_your_account_for_deletion_after_deletion_your_data_will_be_permanently_removed_and_cannot_be_recovered_click_ok_if_you_would_like_to_continue: "Stai programmando l'eliminazione del tuo account. Dopo l'eliminazione, i tuoi dati saranno rimossi in modo permanente e non potranno essere recuperati.\n\nFai clic su OK se desideri continuare."
@@ -3400,6 +3412,10 @@ fr: &fr
   connect_salesforce_account_to_integrate_with_docuseal: Connectez un compte Salesforce pour l’intégrer à DocuSeal
   re_connect_salesforce: Reconnecter Salesforce
   connect_salesforce: Connecter Salesforce
+  security: Sécurité
+  ip_allowlist: Liste d'adresses IP autorisées
+  restrict_access_to_your_account_by_ip_address_enter_one_ip_or_cidr_range_per_line: Restreignez l'accès à votre compte par adresse IP. Entrez une IP ou une plage CIDR par ligne.
+  access_denied_ip_not_allowed: Accès refusé. Votre adresse IP n'est pas dans la liste autorisée.
   danger_zone: Zone de danger
   delete_my_account: Supprimer mon compte
   you_are_scheduling_your_account_for_deletion_after_deletion_your_data_will_be_permanently_removed_and_cannot_be_recovered_click_ok_if_you_would_like_to_continue: "Vous planifiez la suppression de votre compte. Après suppression, vos données seront définitivement supprimées et ne pourront pas être récupérées.\n\nCliquez sur OK pour continuer."
@@ -4451,6 +4467,10 @@ pt: &pt
   connect_salesforce_account_to_integrate_with_docuseal: Conecte a conta Salesforce para integrar com o DocuSeal
   re_connect_salesforce: Reconectar Salesforce
   connect_salesforce: Conectar Salesforce
+  security: Segurança
+  ip_allowlist: Lista de IPs permitidos
+  restrict_access_to_your_account_by_ip_address_enter_one_ip_or_cidr_range_per_line: Restrinja o acesso à sua conta por endereço IP. Insira um IP ou intervalo CIDR por linha.
+  access_denied_ip_not_allowed: Acesso negado. Seu endereço IP não está na lista permitida.
   danger_zone: Zona de perigo
   delete_my_account: Excluir minha conta
   you_are_scheduling_your_account_for_deletion_after_deletion_your_data_will_be_permanently_removed_and_cannot_be_recovered_click_ok_if_you_would_like_to_continue: "Você está agendando a exclusão da sua conta. Após a exclusão, seus dados serão permanentemente removidos e não poderão ser recuperados.\n\nClique em OK se desejar continuar."
@@ -5505,6 +5525,10 @@ de: &de
   connect_salesforce_account_to_integrate_with_docuseal: Verbinden Sie Ihr Salesforce-Konto, um es mit DocuSeal zu integrieren
   re_connect_salesforce: Salesforce erneut verbinden
   connect_salesforce: Salesforce verbinden
+  security: Sicherheit
+  ip_allowlist: IP-Zugriffsliste
+  restrict_access_to_your_account_by_ip_address_enter_one_ip_or_cidr_range_per_line: Beschränken Sie den Zugriff auf Ihr Konto nach IP-Adresse. Geben Sie eine IP oder einen CIDR-Bereich pro Zeile ein.
+  access_denied_ip_not_allowed: Zugriff verweigert. Ihre IP-Adresse ist nicht in der Zugriffsliste.
   danger_zone: Gefahrenzone
   delete_my_account: Mein Konto löschen
   you_are_scheduling_your_account_for_deletion_after_deletion_your_data_will_be_permanently_removed_and_cannot_be_recovered_click_ok_if_you_would_like_to_continue: "Sie planen die Löschung Ihres Kontos. Nach der Löschung werden Ihre Daten dauerhaft entfernt und können nicht wiederhergestellt werden.\n\nKlicken Sie auf OK, wenn Sie fortfahren möchten."
@@ -6460,6 +6484,10 @@ pl:
   please_contact_the_requester_to_specify_your_email_for_two_factor_authentication: Skontaktuj się z nadawcą, aby podać swój adres e-mail do uwierzytelniania dwuskładnikowego.
   rate_limit_exceeded: Przekroczono limit
   too_many_requests_try_again_later: Zbyt wiele żądań. Spróbuj ponownie później.
+  security: Bezpieczeństwo
+  ip_allowlist: Lista dozwolonych adresów IP
+  restrict_access_to_your_account_by_ip_address_enter_one_ip_or_cidr_range_per_line: Ogranicz dostęp do konta według adresu IP. Wprowadź jeden adres IP lub zakres CIDR w każdym wierszu.
+  access_denied_ip_not_allowed: Odmowa dostępu. Twój adres IP nie znajduje się na liście dozwolonych.
 
 uk:
   require_phone_2fa_to_open: Вимагати двофакторну автентифікацію через телефон для відкриття
@@ -6561,6 +6589,10 @@ uk:
   please_contact_the_requester_to_specify_your_email_for_two_factor_authentication: Будь ласка, зв'яжіться з відправником, щоб вказати вашу електронну пошту для двофакторної автентифікації.
   rate_limit_exceeded: Перевищено ліміт
   too_many_requests_try_again_later: Забагато запитів. Спробуйте пізніше.
+  security: Безпека
+  ip_allowlist: Список дозволених IP-адрес
+  restrict_access_to_your_account_by_ip_address_enter_one_ip_or_cidr_range_per_line: Обмежте доступ до облікового запису за IP-адресою. Введіть одну IP-адресу або діапазон CIDR на кожному рядку.
+  access_denied_ip_not_allowed: Доступ заборонено. Ваша IP-адреса не в списку дозволених.
 
 cs:
   require_phone_2fa_to_open: Vyžadovat otevření pomocí telefonního 2FA
@@ -6662,6 +6694,10 @@ cs:
   please_contact_the_requester_to_specify_your_email_for_two_factor_authentication: Prosím kontaktujte odesílatele a uveďte svůj e-mail pro dvoufaktorové ověření.
   rate_limit_exceeded: Překročena hranice
   too_many_requests_try_again_later: Příliš mnoho požadavků. Zkuste to později.
+  security: Zabezpečení
+  ip_allowlist: Seznam povolených IP adres
+  restrict_access_to_your_account_by_ip_address_enter_one_ip_or_cidr_range_per_line: Omezte přístup k účtu podle IP adresy. Zadejte jednu IP adresu nebo rozsah CIDR na každý řádek.
+  access_denied_ip_not_allowed: Přístup odepřen. Vaše IP adresa není na seznamu povolených.
 
 he:
   require_phone_2fa_to_open: דרוש אימות דו-שלבי באמצעות טלפון לפתיחה
@@ -6763,6 +6799,10 @@ he:
   please_contact_the_requester_to_specify_your_email_for_two_factor_authentication: אנא פנה לשולח וציין את כתובת הדוא"ל שלך לאימות דו-שלבי.
   rate_limit_exceeded: חריגה ממגבלת
   too_many_requests_try_again_later: יותר מדי בקשות. נסה שוב מאוחר יותר.
+  security: אבטחה
+  ip_allowlist: רשימת IP מורשים
+  restrict_access_to_your_account_by_ip_address_enter_one_ip_or_cidr_range_per_line: הגבל גישה לחשבון לפי כתובת IP. הזן כתובת IP אחת או טווח CIDR בכל שורה.
+  access_denied_ip_not_allowed: הגישה נדחתה. כתובת ה-IP שלך אינה ברשימת המורשים.
 
 nl: &nl
   knowledge_based_authentication: Kennisgebaseerde authenticatie
@@ -6964,6 +7004,10 @@ nl: &nl
   connect_salesforce_account_to_integrate_with_docuseal: Verbind een Salesforce-account om te integreren met DocuSeal
   re_connect_salesforce: Salesforce opnieuw verbinden
   connect_salesforce: Salesforce verbinden
+  security: Beveiliging
+  ip_allowlist: IP-toegangslijst
+  restrict_access_to_your_account_by_ip_address_enter_one_ip_or_cidr_range_per_line: Beperk de toegang tot uw account op basis van IP-adres. Voer één IP of CIDR-bereik per regel in.
+  access_denied_ip_not_allowed: Toegang geweigerd. Uw IP-adres staat niet op de toegangslijst.
   danger_zone: Gevaarzone
   delete_my_account: Mijn account verwijderen
   you_are_scheduling_your_account_for_deletion_after_deletion_your_data_will_be_permanently_removed_and_cannot_be_recovered_click_ok_if_you_would_like_to_continue: "U plant uw account voor verwijdering. Na verwijdering worden uw gegevens permanent verwijderd en kunnen ze niet worden hersteld.\n\nKlik op OK als u wilt doorgaan."
@@ -7915,6 +7959,10 @@ ar:
   please_contact_the_requester_to_specify_your_email_for_two_factor_authentication: يرجى الاتصال بالمرسل لتحديد عنوان بريدك الإلكتروني للمصادقة الثنائية.
   rate_limit_exceeded: تم تجاوز الحد المسموح به
   too_many_requests_try_again_later: طلبات كثيرة جدًا. حاول مرة أخرى لاحقًا.
+  security: الأمان
+  ip_allowlist: قائمة عناوين IP المسموح بها
+  restrict_access_to_your_account_by_ip_address_enter_one_ip_or_cidr_range_per_line: تقييد الوصول إلى حسابك حسب عنوان IP. أدخل عنوان IP واحد أو نطاق CIDR في كل سطر.
+  access_denied_ip_not_allowed: تم رفض الوصول. عنوان IP الخاص بك غير مسموح به.
 
 ko:
   require_phone_2fa_to_open: 휴대폰 2FA를 열 때 요구함
@@ -8016,6 +8064,10 @@ ko:
   please_contact_the_requester_to_specify_your_email_for_two_factor_authentication: 2단계 인증을 위해 이메일 주소를 지정하려면 발신자에게 문의하세요.
   rate_limit_exceeded: 속도 제한 초과
   too_many_requests_try_again_later: 요청이 너무 많습니다. 나중에 다시 시도하세요.
+  security: 보안
+  ip_allowlist: IP 허용 목록
+  restrict_access_to_your_account_by_ip_address_enter_one_ip_or_cidr_range_per_line: IP 주소별로 계정 접근을 제한합니다. 한 줄에 하나의 IP 주소 또는 CIDR 범위를 입력하세요.
+  access_denied_ip_not_allowed: 접근이 거부되었습니다. 귀하의 IP 주소가 허용 목록에 없습니다.
 
 ja:
   require_phone_2fa_to_open: 電話による2段階認証が必要です
@@ -8117,6 +8169,10 @@ ja:
   please_contact_the_requester_to_specify_your_email_for_two_factor_authentication: 2段階認証用にメールアドレスを指定するために、送信者にお問い合わせください。
   rate_limit_exceeded: レート制限を超えました
   too_many_requests_try_again_later: リクエストが多すぎます。後でもう一度お試しください。
+  security: セキュリティ
+  ip_allowlist: IP許可リスト
+  restrict_access_to_your_account_by_ip_address_enter_one_ip_or_cidr_range_per_line: IPアドレスによるアカウントへのアクセスを制限します。1行に1つのIPアドレスまたはCIDR範囲を入力してください。
+  access_denied_ip_not_allowed: アクセスが拒否されました。お使いのIPアドレスは許可リストにありません。
 
 en-US:
   <<: *en
