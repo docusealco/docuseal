@@ -20,8 +20,11 @@ ENV NODE_ENV=production
 
 WORKDIR /app
 
+COPY ./Gemfile.lock ./
+
 RUN apk add --no-cache nodejs yarn git build-base && \
-    gem install shakapacker
+    SHAKAPACKER_VERSION="$(ruby -e 'puts File.read("Gemfile.lock")[/^    shakapacker \(([^)]+)\)$/, 1]')" && \
+    gem install shakapacker -v "$SHAKAPACKER_VERSION"
 
 COPY ./package.json ./yarn.lock ./
 
@@ -38,7 +41,9 @@ COPY ./tailwind.application.config.js ./tailwind.application.config.js
 COPY ./app/javascript ./app/javascript
 COPY ./app/views ./app/views
 
-RUN echo "gem 'shakapacker'" > Gemfile && ./bin/shakapacker
+RUN SHAKAPACKER_VERSION="$(ruby -e 'puts File.read("Gemfile.lock")[/^    shakapacker \(([^)]+)\)$/, 1]')" && \
+    printf "source 'https://rubygems.org'\ngem 'shakapacker', '%s'\n" "$SHAKAPACKER_VERSION" > Gemfile && \
+    ./bin/shakapacker
 
 FROM ruby:4.0.1-alpine AS app
 

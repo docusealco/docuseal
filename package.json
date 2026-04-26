@@ -50,7 +50,7 @@
     "rollbar": "^2.26.4",
     "sass": "^1.62.1",
     "sass-loader": "^16.0.6",
-    "shakapacker": "9.5.0",
+    "shakapacker": "9.7.0",
     "signature_pad": "^4.1.5",
     "snarkdown": "^2.0.0",
     "style-loader": "^4.0.0",
