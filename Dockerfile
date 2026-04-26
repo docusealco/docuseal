@@ -42,8 +42,8 @@ COPY ./app/javascript ./app/javascript
 COPY ./app/views ./app/views
 
 RUN SHAKAPACKER_VERSION="$(ruby -e 'puts File.read("Gemfile.lock")[/^    shakapacker \(([^)]+)\)$/, 1]')" && \
-    printf "source 'https://rubygems.org'\ngem 'shakapacker', '%s'\n" "$SHAKAPACKER_VERSION" > Gemfile && \
-    ./bin/shakapacker
+    printf "source 'https://rubygems.org'\ngem 'shakapacker', '%s'\n" "$SHAKAPACKER_VERSION" > shakapacker.Gemfile && \
+    BUNDLE_GEMFILE=/app/shakapacker.Gemfile ./bin/shakapacker
 
 FROM ruby:4.0.1-alpine AS app
 
