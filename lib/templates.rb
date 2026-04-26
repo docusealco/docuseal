@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module Templates
+  COLOR_REGEXP = /\A(#(?:[0-9a-f]{3}|[0-9a-f]{6})|[a-z]+)\z/i
+
   EXPIRATION_DURATIONS = {
     one_day: 1.day,
     two_days: 2.days,
