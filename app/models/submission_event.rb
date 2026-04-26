@@ -66,7 +66,8 @@ class SubmissionEvent < ApplicationRecord
     decline_form: 'decline_form',
     delegate_form: 'delegate_form',
     api_complete_form: 'api_complete_form',
-    consent_given: 'consent_given'
+    consent_given: 'consent_given',
+    id_document_uploaded: 'id_document_uploaded'
   }, scope: false
 
   private

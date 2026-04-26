@@ -68,6 +68,7 @@ class AccountConfig < ApplicationRecord
   IP_ALLOWLIST_KEY = 'ip_allowlist'
   AUTO_ARCHIVE_DAYS_KEY = 'auto_archive_days'
   REQUIRE_CONSENT_KEY = 'require_consent'
+  REQUIRE_ID_VERIFICATION_KEY = 'require_id_verification'
 
   BRAND_NAME_FONTS = [
     'Inter',

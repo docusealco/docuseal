@@ -114,6 +114,23 @@
             </div>
           <% end %>
         <% end %>
+        <% account_config = AccountConfig.find_or_initialize_by(account: current_account, key: AccountConfig::REQUIRE_ID_VERIFICATION_KEY) %>
+        <% if can?(:manage, account_config) %>
+          <%= form_for account_config, url: account_configs_path, method: :post do |f| %>
+            <%= f.hidden_field :key %>
+            <div class="flex items-center justify-between gap-4 py-2.5">
+              <div class="flex items-center space-x-1">
+                <span class="text-left"><%= t('require_id_verification_before_signing') %></span>
+                <span class="tooltip tooltip-top flex cursor-pointer" data-tip="<%= t('require_signers_to_upload_a_government_issued_id_document_to_verify_their_identity_before_they_can_sign') %>">
+                  <%= svg_icon('info_circle', class: 'hidden md:inline-block w-4 h-4 shrink-0') %>
+                </span>
+              </div>
+              <submit-form data-on="change" class="flex">
+                <%= f.check_box :value, class: 'toggle', checked: account_config.value == true %>
+              </submit-form>
+            </div>
+          <% end %>
+        <% end %>
         <% account_config = AccountConfig.find_or_initialize_by(account: current_account, key: AccountConfig::ALLOW_TYPED_SIGNATURE) %>
         <% if can?(:manage, account_config) %>
           <%= form_for account_config, url: account_configs_path, method: :post do |f| %>

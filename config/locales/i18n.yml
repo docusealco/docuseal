@@ -217,6 +217,8 @@ en: &en
   require_signing_reason: Require signing reason
   require_consent_before_signing: Require consent before signing
   require_signers_to_explicitly_consent_to_signing_the_document_electronically_before_they_can_submit: Require signers to explicitly consent to signing the document electronically before they can submit
+  require_id_verification_before_signing: Require ID verification before signing
+  require_signers_to_upload_a_government_issued_id_document_to_verify_their_identity_before_they_can_sign: Require signers to upload a government-issued ID document to verify their identity before they can sign
   allow_typed_text_signatures: Allow typed text signatures
   allow_to_resubmit_completed_forms: Allow to resubmit completed forms
   allow_to_decline_documents: Allow to decline documents
@@ -1288,6 +1290,8 @@ es: &es
   require_signing_reason: Requerir motivo de firma
   require_consent_before_signing: Requerir consentimiento antes de firmar
   require_signers_to_explicitly_consent_to_signing_the_document_electronically_before_they_can_submit: Requerir que los firmantes consientan explícitamente firmar el documento electrónicamente antes de enviar
+  require_id_verification_before_signing: Requerir verificación de identidad antes de firmar
+  require_signers_to_upload_a_government_issued_id_document_to_verify_their_identity_before_they_can_sign: Requerir que los firmantes suban un documento de identidad oficial para verificar su identidad antes de firmar
   allow_typed_text_signatures: Permitir firmas de texto mecanografiadas
   allow_to_resubmit_completed_forms: Permitir reenviar formularios completados
   allow_to_decline_documents: Permitir rechazar documentos
@@ -2352,6 +2356,8 @@ it: &it
   require_signing_reason: Richiedere il motivo della firma
   require_consent_before_signing: Richiedere il consenso prima della firma
   require_signers_to_explicitly_consent_to_signing_the_document_electronically_before_they_can_submit: Richiedere ai firmatari di acconsentire esplicitamente alla firma elettronica del documento prima dell'invio
+  require_id_verification_before_signing: Richiedere la verifica dell'identità prima della firma
+  require_signers_to_upload_a_government_issued_id_document_to_verify_their_identity_before_they_can_sign: Richiedere ai firmatari di caricare un documento d'identità ufficiale per verificare la propria identità prima di firmare
   allow_typed_text_signatures: Permettere firme con testo digitato
   allow_to_resubmit_completed_forms: Permettere di reinviare i moduli completati
   allow_to_decline_documents: Permettere di rifiutare i documenti
@@ -3420,6 +3426,8 @@ fr: &fr
   require_signing_reason: Exiger un motif de signature
   require_consent_before_signing: Exiger le consentement avant la signature
   require_signers_to_explicitly_consent_to_signing_the_document_electronically_before_they_can_submit: Exiger des signataires qu'ils consentent explicitement à signer le document électroniquement avant de soumettre
+  require_id_verification_before_signing: Exiger la vérification d'identité avant la signature
+  require_signers_to_upload_a_government_issued_id_document_to_verify_their_identity_before_they_can_sign: Exiger des signataires qu'ils téléchargent une pièce d'identité officielle pour vérifier leur identité avant de signer
   allow_typed_text_signatures: Autoriser les signatures tapées
   allow_to_resubmit_completed_forms: Autoriser la nouvelle soumission des formulaires complétés
   allow_to_decline_documents: Autoriser le refus de documents
@@ -4481,6 +4489,8 @@ pt: &pt
   require_signing_reason: Requerer motivo para assinatura
   require_consent_before_signing: Exigir consentimento antes de assinar
   require_signers_to_explicitly_consent_to_signing_the_document_electronically_before_they_can_submit: Exigir que os signatários consintam explicitamente em assinar o documento eletronicamente antes de enviar
+  require_id_verification_before_signing: Exigir verificação de identidade antes de assinar
+  require_signers_to_upload_a_government_issued_id_document_to_verify_their_identity_before_they_can_sign: Exigir que os signatários carreguem um documento de identidade oficial para verificar a sua identidade antes de assinar
   allow_typed_text_signatures: Permitir assinaturas digitadas
   allow_to_resubmit_completed_forms: Permitir reenviar formulários concluídos
   allow_to_decline_documents: Permitir recusar documentos
@@ -5545,6 +5555,8 @@ de: &de
   require_signing_reason: Grund für die Signatur erforderlich
   require_consent_before_signing: Zustimmung vor dem Unterzeichnen erforderlich
   require_signers_to_explicitly_consent_to_signing_the_document_electronically_before_they_can_submit: Unterzeichner müssen vor dem Absenden ausdrücklich der elektronischen Unterzeichnung des Dokuments zustimmen
+  require_id_verification_before_signing: Identitätsprüfung vor der Unterzeichnung erforderlich
+  require_signers_to_upload_a_government_issued_id_document_to_verify_their_identity_before_they_can_sign: Unterzeichner müssen einen amtlichen Ausweis hochladen, um ihre Identität vor der Unterzeichnung zu bestätigen
   allow_typed_text_signatures: Getippte Unterschriften zulassen
   allow_to_resubmit_completed_forms: Erneutes Einreichen abgeschlossener Formulare zulassen
   allow_to_decline_documents: Ablehnen von Dokumenten erlauben
@@ -6530,6 +6542,8 @@ pl:
   days: dni
   require_consent_before_signing: Wymagaj zgody przed podpisaniem
   require_signers_to_explicitly_consent_to_signing_the_document_electronically_before_they_can_submit: Wymagaj od podpisujących wyraźnej zgody na elektroniczne podpisanie dokumentu przed wysłaniem
+  require_id_verification_before_signing: Wymagaj weryfikacji tożsamości przed podpisaniem
+  require_signers_to_upload_a_government_issued_id_document_to_verify_their_identity_before_they_can_sign: Wymagaj od podpisujących przesłania dokumentu tożsamości w celu weryfikacji tożsamości przed podpisaniem
 
 uk:
   require_phone_2fa_to_open: Вимагати двофакторну автентифікацію через телефон для відкриття
@@ -6641,6 +6655,8 @@ uk:
   days: днів
   require_consent_before_signing: Вимагати згоду перед підписанням
   require_signers_to_explicitly_consent_to_signing_the_document_electronically_before_they_can_submit: Вимагати від підписантів явної згоди на електронний підпис документа перед відправленням
+  require_id_verification_before_signing: Вимагати перевірку особи перед підписанням
+  require_signers_to_upload_a_government_issued_id_document_to_verify_their_identity_before_they_can_sign: Вимагати від підписантів завантаження посвідчення особи для підтвердження їхньої особи перед підписанням
 
 cs:
   require_phone_2fa_to_open: Vyžadovat otevření pomocí telefonního 2FA
@@ -6752,6 +6768,8 @@ cs:
   days: dní
   require_consent_before_signing: Vyžadovat souhlas před podpisem
   require_signers_to_explicitly_consent_to_signing_the_document_electronically_before_they_can_submit: Vyžadovat od podepisujících výslovný souhlas s elektronickým podpisem dokumentu před odesláním
+  require_id_verification_before_signing: Vyžadovat ověření totožnosti před podpisem
+  require_signers_to_upload_a_government_issued_id_document_to_verify_their_identity_before_they_can_sign: Vyžadovat od podepisujících nahrání úředního dokladu totožnosti pro ověření identity před podpisem
 
 he:
   require_phone_2fa_to_open: דרוש אימות דו-שלבי באמצעות טלפון לפתיחה
@@ -6863,6 +6881,8 @@ he:
   days: ימים
   require_consent_before_signing: דרוש הסכמה לפני החתימה
   require_signers_to_explicitly_consent_to_signing_the_document_electronically_before_they_can_submit: דרוש מהחותמים להסכים במפורש לחתום על המסמך באופן אלקטרוני לפני השליחה
+  require_id_verification_before_signing: דרוש אימות זהות לפני חתימה
+  require_signers_to_upload_a_government_issued_id_document_to_verify_their_identity_before_they_can_sign: דרוש מהחותמים להעלות תעודת זהות רשמית לאימות זהותם לפני החתימה
 
 nl: &nl
   knowledge_based_authentication: Kennisgebaseerde authenticatie
@@ -7054,6 +7074,8 @@ nl: &nl
   require_signing_reason: Reden voor ondertekening verplicht stellen
   require_consent_before_signing: Toestemming vereist voor ondertekening
   require_signers_to_explicitly_consent_to_signing_the_document_electronically_before_they_can_submit: Ondertekenaars moeten expliciet toestemming geven voor het elektronisch ondertekenen van het document voordat ze kunnen indienen
+  require_id_verification_before_signing: Identiteitsverificatie vereist voor ondertekening
+  require_signers_to_upload_a_government_issued_id_document_to_verify_their_identity_before_they_can_sign: Ondertekenaars moeten een officieel identiteitsbewijs uploaden om hun identiteit te verifiëren voordat ze kunnen tekenen
   allow_typed_text_signatures: Handtekeningen met getypte tekst toestaan
   allow_to_resubmit_completed_forms: Opnieuw indienen van voltooide formulieren toestaan
   allow_to_decline_documents: Weigeren van documenten toestaan
@@ -8035,6 +8057,8 @@ ar:
   days: أيام
   require_consent_before_signing: طلب الموافقة قبل التوقيع
   require_signers_to_explicitly_consent_to_signing_the_document_electronically_before_they_can_submit: يجب على الموقعين الموافقة صراحة على توقيع المستند إلكترونيًا قبل الإرسال
+  require_id_verification_before_signing: مطلوب التحقق من الهوية قبل التوقيع
+  require_signers_to_upload_a_government_issued_id_document_to_verify_their_identity_before_they_can_sign: يجب على الموقعين تحميل وثيقة هوية رسمية للتحقق من هويتهم قبل التوقيع
 
 ko:
   require_phone_2fa_to_open: 휴대폰 2FA를 열 때 요구함
@@ -8146,6 +8170,8 @@ ko:
   days: 일
   require_consent_before_signing: 서명 전 동의 필요
   require_signers_to_explicitly_consent_to_signing_the_document_electronically_before_they_can_submit: 서명자가 제출 전에 전자 서명에 명시적으로 동의해야 합니다
+  require_id_verification_before_signing: 서명 전 신분증 확인 필요
+  require_signers_to_upload_a_government_issued_id_document_to_verify_their_identity_before_they_can_sign: 서명자가 서명 전에 본인 확인을 위해 정부 발급 신분증을 업로드해야 합니다
 
 ja:
   require_phone_2fa_to_open: 電話による2段階認証が必要です
@@ -8257,6 +8283,8 @@ ja:
   days: 日
   require_consent_before_signing: 署名前に同意が必要
   require_signers_to_explicitly_consent_to_signing_the_document_electronically_before_they_can_submit: 署名者は送信前に電子署名に明示的に同意する必要があります
+  require_id_verification_before_signing: 署名前に本人確認が必要
+  require_signers_to_upload_a_government_issued_id_document_to_verify_their_identity_before_they_can_sign: 署名者は署名前に本人確認のため公的身分証明書をアップロードする必要があります
 
 en-US:
   <<: *en

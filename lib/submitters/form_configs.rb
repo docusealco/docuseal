@@ -19,6 +19,7 @@ module Submitters
                     AccountConfig::WITH_TIMESTAMP_SECONDS_KEY,
                     AccountConfig::WITH_SIGNATURE_ID_REASON_KEY,
                     AccountConfig::REQUIRE_CONSENT_KEY,
+                    AccountConfig::REQUIRE_ID_VERIFICATION_KEY,
                     *(Docuseal.multitenant? ? [] : [AccountConfig::POLICY_LINKS_KEY])].freeze
 
     module_function
@@ -44,13 +45,14 @@ module Submitters
       with_field_labels = find_safe_value(configs, AccountConfig::WITH_FIELD_LABELS_KEY) != false
       policy_links = find_safe_value(configs, AccountConfig::POLICY_LINKS_KEY)
       require_consent = find_safe_value(configs, AccountConfig::REQUIRE_CONSENT_KEY) == true
+      require_id_verification = find_safe_value(configs, AccountConfig::REQUIRE_ID_VERIFICATION_KEY) == true
 
       attrs = { completed_button:, with_typed_signature:, with_confetti:,
                 reuse_signature:, with_decline:, with_delegate:, with_partial_download:,
                 policy_links:, enforce_signing_order:, completed_message:,
                 require_signing_reason:, prefill_signature:, with_submitter_timezone:,
                 with_signature_id_reason:, with_signature_id:, with_field_labels:, with_timestamp_seconds:,
-                require_consent: }
+                require_consent:, require_id_verification: }
 
       keys.each do |key|
         attrs[key.to_sym] = configs.find { |e| e.key == key.to_s }&.value
