@@ -19,6 +19,7 @@
 #
 class Account < ApplicationRecord
   attribute :uuid, :string, default: -> { SecureRandom.uuid }
+  attribute :remove_logo, :boolean, default: false
 
   has_one_attached :logo
 
