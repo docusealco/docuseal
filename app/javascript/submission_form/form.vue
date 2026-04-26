@@ -99,7 +99,7 @@
       type="submit"
       name="completed"
       value="true"
-      :disabled="isSubmittingComplete"
+      :disabled="isSubmittingComplete || (requireConsent && !consentAccepted)"
     >
       <span class="flex items-center">
         <IconInnerShadowTop
@@ -1646,9 +1646,13 @@ export default {
       return this.$refs.areas.scrollIntoArea(area)
     },
     async submitStep (e) {
-      this.isSubmitting = true
-
       const forceComplete = e?.submitter?.getAttribute('name') === 'completed'
+
+      if (this.requireConsent && !this.consentAccepted && (this.isLastStep || forceComplete)) {
+        return
+      }
+
+      this.isSubmitting = true
 
       if (forceComplete) {
         this.isSubmittingComplete = true
