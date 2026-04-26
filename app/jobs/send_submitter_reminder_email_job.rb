@@ -16,8 +16,10 @@ class SendSubmitterReminderEmailJob
     reminder_index = params['reminder_index'].to_i
 
     return if reminder_index.positive? &&
-              submitter.submission_events.exists?(event_type: 'send_reminder_email',
-                                                   data: { 'reminder_index' => reminder_index })
+              submitter.submission_events.exists?(
+                event_type: 'send_reminder_email',
+                data: { 'reminder_index' => reminder_index }
+              )
 
     mail = SubmitterMailer.invitation_email(submitter)
 

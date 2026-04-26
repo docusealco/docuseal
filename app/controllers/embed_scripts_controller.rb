@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class EmbedScriptsController < ActionController::Metal
-  EMBED_SCRIPT = <<~JAVASCRIPT.freeze
+  EMBED_SCRIPT = <<~JAVASCRIPT
     const buildIframe = (element) => {
       const iframe = document.createElement('iframe');
       const src = element.dataset.src || element.getAttribute('src');

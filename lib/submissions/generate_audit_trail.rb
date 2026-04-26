@@ -542,7 +542,6 @@ module Submissions
     rescue StandardError
       column.image(PdfIcons.logo_io, width: 40, height: 40, position: :float)
     ensure
-
       column.formatted_text([{ text: account&.name || Docuseal.product_name }],
                             font_size: 20,
                             font: [FONT_NAME, { variant: :bold }],
