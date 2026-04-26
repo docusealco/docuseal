@@ -1094,6 +1094,10 @@ en: &en
   time:
     formats:
       detailed: "%B %d, %Y %H:%M:%S"
+  data_retention: Data Retention
+  auto_archive_submissions: Auto-archive submissions
+  automatically_archive_submissions_older_than_the_specified_number_of_days_set_to_0_to_disable: Automatically archive submissions older than the specified number of days. Set to 0 to disable.
+  days: days
 
 es: &es
   knowledge_based_authentication: Autenticación basada en el conocimiento
@@ -2154,6 +2158,10 @@ es: &es
   time:
     formats:
       detailed: "%-d de %B de %Y %H:%M:%S"
+  data_retention: Retención de datos
+  auto_archive_submissions: Archivar envíos automáticamente
+  automatically_archive_submissions_older_than_the_specified_number_of_days_set_to_0_to_disable: Archivar automáticamente los envíos con más del número de días especificado. Establezca 0 para desactivar.
+  days: días
 
 it: &it
   knowledge_based_authentication: Autenticazione basata sulla conoscenza
@@ -3215,6 +3223,10 @@ it: &it
   time:
     formats:
       detailed: "%d %B %Y %H:%M:%S"
+  data_retention: Conservazione dei dati
+  auto_archive_submissions: Archiviazione automatica degli invii
+  automatically_archive_submissions_older_than_the_specified_number_of_days_set_to_0_to_disable: Archivia automaticamente gli invii più vecchi del numero di giorni specificato. Imposta 0 per disattivare.
+  days: giorni
 
 fr: &fr
   user_role_help: "Les administrateurs ont un accès complet. Les éditeurs peuvent créer et modifier des modèles. Les lecteurs peuvent uniquement consulter les modèles auxquels ils ont accès."
@@ -4275,6 +4287,10 @@ fr: &fr
   time:
     formats:
       detailed: "%A %d %B %Y %Hh%Mm%Ss"
+  data_retention: Conservation des données
+  auto_archive_submissions: Archivage automatique des soumissions
+  automatically_archive_submissions_older_than_the_specified_number_of_days_set_to_0_to_disable: Archiver automatiquement les soumissions de plus du nombre de jours spécifié. Mettre 0 pour désactiver.
+  days: jours
 
 pt: &pt
   knowledge_based_authentication: Autenticação baseada em conhecimento
@@ -5335,6 +5351,10 @@ pt: &pt
   time:
     formats:
       detailed: "%A, %d de %B de %Y, %H:%M:%Sh"
+  data_retention: Retenção de dados
+  auto_archive_submissions: Arquivar envios automaticamente
+  automatically_archive_submissions_older_than_the_specified_number_of_days_set_to_0_to_disable: Arquivar automaticamente os envios com mais do número de dias especificado. Defina 0 para desativar.
+  days: dias
 
 de: &de
   knowledge_based_authentication: Wissensbasierte Authentifizierung
@@ -6395,6 +6415,10 @@ de: &de
   time:
     formats:
       detailed: "%A, %d. %B %Y, %H:%M:%S Uhr"
+  data_retention: Datenspeicherung
+  auto_archive_submissions: Einreichungen automatisch archivieren
+  automatically_archive_submissions_older_than_the_specified_number_of_days_set_to_0_to_disable: Einreichungen automatisch archivieren, die älter als die angegebene Anzahl von Tagen sind. Auf 0 setzen, um zu deaktivieren.
+  days: Tage
 
 pl:
   require_phone_2fa_to_open: Wymagaj uwierzytelniania telefonicznego 2FA do otwarcia
@@ -6500,6 +6524,10 @@ pl:
   ip_allowlist: Lista dozwolonych adresów IP
   restrict_access_to_your_account_by_ip_address_enter_one_ip_or_cidr_range_per_line: Ogranicz dostęp do konta według adresu IP. Wprowadź jeden adres IP lub zakres CIDR w każdym wierszu.
   access_denied_ip_not_allowed: Odmowa dostępu. Twój adres IP nie znajduje się na liście dozwolonych.
+  data_retention: Przechowywanie danych
+  auto_archive_submissions: Automatyczne archiwizowanie zgłoszeń
+  automatically_archive_submissions_older_than_the_specified_number_of_days_set_to_0_to_disable: Automatycznie archiwizuj zgłoszenia starsze niż określona liczba dni. Ustaw 0, aby wyłączyć.
+  days: dni
   require_consent_before_signing: Wymagaj zgody przed podpisaniem
   require_signers_to_explicitly_consent_to_signing_the_document_electronically_before_they_can_submit: Wymagaj od podpisujących wyraźnej zgody na elektroniczne podpisanie dokumentu przed wysłaniem
 
@@ -6607,6 +6635,10 @@ uk:
   ip_allowlist: Список дозволених IP-адрес
   restrict_access_to_your_account_by_ip_address_enter_one_ip_or_cidr_range_per_line: Обмежте доступ до облікового запису за IP-адресою. Введіть одну IP-адресу або діапазон CIDR на кожному рядку.
   access_denied_ip_not_allowed: Доступ заборонено. Ваша IP-адреса не в списку дозволених.
+  data_retention: Зберігання даних
+  auto_archive_submissions: Автоматичне архівування подань
+  automatically_archive_submissions_older_than_the_specified_number_of_days_set_to_0_to_disable: Автоматично архівувати подання, старші за вказану кількість днів. Встановіть 0, щоб вимкнути.
+  days: днів
   require_consent_before_signing: Вимагати згоду перед підписанням
   require_signers_to_explicitly_consent_to_signing_the_document_electronically_before_they_can_submit: Вимагати від підписантів явної згоди на електронний підпис документа перед відправленням
 
@@ -6714,6 +6746,10 @@ cs:
   ip_allowlist: Seznam povolených IP adres
   restrict_access_to_your_account_by_ip_address_enter_one_ip_or_cidr_range_per_line: Omezte přístup k účtu podle IP adresy. Zadejte jednu IP adresu nebo rozsah CIDR na každý řádek.
   access_denied_ip_not_allowed: Přístup odepřen. Vaše IP adresa není na seznamu povolených.
+  data_retention: Uchování dat
+  auto_archive_submissions: Automatická archivace odeslaných formulářů
+  automatically_archive_submissions_older_than_the_specified_number_of_days_set_to_0_to_disable: Automaticky archivovat odeslané formuláře starší než zadaný počet dnů. Nastavte 0 pro vypnutí.
+  days: dní
   require_consent_before_signing: Vyžadovat souhlas před podpisem
   require_signers_to_explicitly_consent_to_signing_the_document_electronically_before_they_can_submit: Vyžadovat od podepisujících výslovný souhlas s elektronickým podpisem dokumentu před odesláním
 
@@ -6821,6 +6857,10 @@ he:
   ip_allowlist: רשימת IP מורשים
   restrict_access_to_your_account_by_ip_address_enter_one_ip_or_cidr_range_per_line: הגבל גישה לחשבון לפי כתובת IP. הזן כתובת IP אחת או טווח CIDR בכל שורה.
   access_denied_ip_not_allowed: הגישה נדחתה. כתובת ה-IP שלך אינה ברשימת המורשים.
+  data_retention: שמירת נתונים
+  auto_archive_submissions: ארכיון אוטומטי של הגשות
+  automatically_archive_submissions_older_than_the_specified_number_of_days_set_to_0_to_disable: ארכב אוטומטית הגשות ישנות יותר ממספר הימים שצוין. הגדר 0 כדי להשבית.
+  days: ימים
   require_consent_before_signing: דרוש הסכמה לפני החתימה
   require_signers_to_explicitly_consent_to_signing_the_document_electronically_before_they_can_submit: דרוש מהחותמים להסכים במפורש לחתום על המסמך באופן אלקטרוני לפני השליחה
 
@@ -7030,6 +7070,10 @@ nl: &nl
   ip_allowlist: IP-toegangslijst
   restrict_access_to_your_account_by_ip_address_enter_one_ip_or_cidr_range_per_line: Beperk de toegang tot uw account op basis van IP-adres. Voer één IP of CIDR-bereik per regel in.
   access_denied_ip_not_allowed: Toegang geweigerd. Uw IP-adres staat niet op de toegangslijst.
+  data_retention: Gegevensbewaring
+  auto_archive_submissions: Inzendingen automatisch archiveren
+  automatically_archive_submissions_older_than_the_specified_number_of_days_set_to_0_to_disable: Archiveer automatisch inzendingen ouder dan het opgegeven aantal dagen. Stel in op 0 om uit te schakelen.
+  days: dagen
   danger_zone: Gevaarzone
   delete_my_account: Mijn account verwijderen
   you_are_scheduling_your_account_for_deletion_after_deletion_your_data_will_be_permanently_removed_and_cannot_be_recovered_click_ok_if_you_would_like_to_continue: "U plant uw account voor verwijdering. Na verwijdering worden uw gegevens permanent verwijderd en kunnen ze niet worden hersteld.\n\nKlik op OK als u wilt doorgaan."
@@ -7985,6 +8029,10 @@ ar:
   ip_allowlist: قائمة عناوين IP المسموح بها
   restrict_access_to_your_account_by_ip_address_enter_one_ip_or_cidr_range_per_line: تقييد الوصول إلى حسابك حسب عنوان IP. أدخل عنوان IP واحد أو نطاق CIDR في كل سطر.
   access_denied_ip_not_allowed: تم رفض الوصول. عنوان IP الخاص بك غير مسموح به.
+  data_retention: الاحتفاظ بالبيانات
+  auto_archive_submissions: أرشفة الطلبات تلقائيًا
+  automatically_archive_submissions_older_than_the_specified_number_of_days_set_to_0_to_disable: أرشف تلقائيًا الطلبات الأقدم من عدد الأيام المحدد. اضبط على 0 للتعطيل.
+  days: أيام
   require_consent_before_signing: طلب الموافقة قبل التوقيع
   require_signers_to_explicitly_consent_to_signing_the_document_electronically_before_they_can_submit: يجب على الموقعين الموافقة صراحة على توقيع المستند إلكترونيًا قبل الإرسال
 
@@ -8092,6 +8140,10 @@ ko:
   ip_allowlist: IP 허용 목록
   restrict_access_to_your_account_by_ip_address_enter_one_ip_or_cidr_range_per_line: IP 주소별로 계정 접근을 제한합니다. 한 줄에 하나의 IP 주소 또는 CIDR 범위를 입력하세요.
   access_denied_ip_not_allowed: 접근이 거부되었습니다. 귀하의 IP 주소가 허용 목록에 없습니다.
+  data_retention: 데이터 보존
+  auto_archive_submissions: 제출물 자동 보관
+  automatically_archive_submissions_older_than_the_specified_number_of_days_set_to_0_to_disable: 지정된 일수보다 오래된 제출물을 자동으로 보관합니다. 비활성화하려면 0으로 설정하세요.
+  days: 일
   require_consent_before_signing: 서명 전 동의 필요
   require_signers_to_explicitly_consent_to_signing_the_document_electronically_before_they_can_submit: 서명자가 제출 전에 전자 서명에 명시적으로 동의해야 합니다
 
@@ -8199,6 +8251,10 @@ ja:
   ip_allowlist: IP許可リスト
   restrict_access_to_your_account_by_ip_address_enter_one_ip_or_cidr_range_per_line: IPアドレスによるアカウントへのアクセスを制限します。1行に1つのIPアドレスまたはCIDR範囲を入力してください。
   access_denied_ip_not_allowed: アクセスが拒否されました。お使いのIPアドレスは許可リストにありません。
+  data_retention: データ保持
+  auto_archive_submissions: 提出物の自動アーカイブ
+  automatically_archive_submissions_older_than_the_specified_number_of_days_set_to_0_to_disable: 指定した日数より古い提出物を自動的にアーカイブします。無効にするには0に設定してください。
+  days: 日
   require_consent_before_signing: 署名前に同意が必要
   require_signers_to_explicitly_consent_to_signing_the_document_electronically_before_they_can_submit: 署名者は送信前に電子署名に明示的に同意する必要があります
 

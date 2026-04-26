@@ -27,6 +27,7 @@ class AccountConfigsController < ApplicationController
     AccountConfig::DOCUMENT_FILENAME_FORMAT_KEY,
     AccountConfig::ENABLE_MCP_KEY,
     AccountConfig::IP_ALLOWLIST_KEY,
+    AccountConfig::AUTO_ARCHIVE_DAYS_KEY
     AccountConfig::REQUIRE_CONSENT_KEY
   ].freeze
 
@@ -61,10 +62,12 @@ class AccountConfigsController < ApplicationController
 
   def account_config_params
     params.required(:account_config).permit(:key, :value, { value: {} }, { value: [] }).tap do |attrs|
-      attrs[:value] = attrs[:value] == '1' if attrs[:value].in?(%w[1 0])
-
       if attrs[:key] == AccountConfig::IP_ALLOWLIST_KEY && attrs[:value].is_a?(String)
         attrs[:value] = attrs[:value].split(/[\r\n,]+/).map(&:strip).compact_blank
+      elsif attrs[:key] == AccountConfig::AUTO_ARCHIVE_DAYS_KEY && attrs[:value].is_a?(String)
+        attrs[:value] = attrs[:value].to_i
+      elsif attrs[:value].in?(%w[1 0])
+        attrs[:value] = attrs[:value] == '1'
       end
     end
   end

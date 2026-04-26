@@ -24,3 +24,33 @@
     <% end %>
   </div>
 <% end %>
+
+<% if can?(:manage, AccountConfig) %>
+  <div class="px-1 mt-8">
+    <h2 class="text-2xl font-bold mb-2">
+      <%= t('data_retention') %>
+    </h2>
+    <% account_config = AccountConfig.find_or_initialize_by(account: current_account, key: AccountConfig::AUTO_ARCHIVE_DAYS_KEY) %>
+    <% if can?(:manage, account_config) %>
+      <%= form_for account_config, url: account_configs_path, method: :post, html: { class: 'py-2.5' } do |f| %>
+        <%= f.hidden_field :key %>
+        <div class="flex flex-col gap-2">
+          <div class="flex items-center space-x-1">
+            <span class="font-semibold"><%= t('auto_archive_submissions') %></span>
+            <span class="tooltip tooltip-top flex cursor-pointer" data-tip="<%= t('automatically_archive_submissions_older_than_the_specified_number_of_days_set_to_0_to_disable') %>">
+              <%= svg_icon('info_circle', class: 'hidden md:inline-block w-4 h-4 shrink-0') %>
+            </span>
+          </div>
+          <div class="flex items-center gap-2">
+            <% current_days = account_config.value.to_i %>
+            <%= f.number_field :value, value: current_days.positive? ? current_days : nil, min: 0, step: 1, placeholder: t('disabled'), class: 'base-input w-32 text-sm', dir: 'ltr' %>
+            <span class="text-sm text-base-content"><%= t('days') %></span>
+          </div>
+          <div class="form-control pt-1">
+            <%= f.button button_title(title: t('update'), disabled_with: t('updating')), class: 'base-button w-full md:w-auto' %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
