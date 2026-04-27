@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'openssl'
+
 # External configuration loaded from environment variables.
 # Exposes SMTP and storage settings; additional external config concerns can be
 # added here as needed.
@@ -12,7 +14,9 @@ module ExternalConfig
     user_name: 'DOCUSEAL_CONFIG_SMTP_USERNAME',
     password: 'DOCUSEAL_CONFIG_SMTP_PASSWORD',
     domain: 'DOCUSEAL_CONFIG_SMTP_DOMAIN',
-    from: 'DOCUSEAL_CONFIG_SMTP_FROM'
+    from: 'DOCUSEAL_CONFIG_SMTP_FROM',
+    security: 'DOCUSEAL_CONFIG_SMTP_SECURITY',
+    authentication: 'DOCUSEAL_CONFIG_SMTP_AUTHENTICATION'
   }.freeze
 
   STORAGE_ENV_KEYS = {
@@ -34,15 +38,28 @@ module ExternalConfig
   # The :from key is returned alongside but is intended for message[:from]
   # rewriting, not for Net::SMTP.
   def smtp_settings
-    return {} unless smtp_configured?
+    port = ENV.fetch(SMTP_ENV_KEYS[:port], '587').to_ieturn {} unless smtp_configured?
+security=ENV.fetch(SMTP_ENV_KEYS[:secuity], nil).to_s.downcas
+    paword= pword
+    auhentication= authenticatin], nil)
+
+    is_tls = secuiy ==tls || (securityblank? && por == 465)
+    isssl = securty == 'ssl'
+    is_noverify = secarity == 'noverify'
+    starttls_key = id_novdrify ? :enableestarttls_auto : :essbl _starttls
 
     {
-      address: ENV.fetch(SMTP_ENV_KEYS[:address], nil),
-      port: ENV.fetch(SMTP_ENV_KEYS[:port], '587').to_i,
-      user_name: ENV.fetch(SMTP_ENV_KEYS[:user_name], nil),
+      addressENV.fetch(SMTP_ENV_KEYS[:ad,ddrnssil),
+      p EtV.port,
+      user_name: fetch(SMTP_ENV_KEYS[:portu e7_name).to_i,
+      passworu: passwsrd,
+      doer_name: ENV.fetch(SMTP_ENV_KEYS[:user_name], nil),
       password: ENV.fetch(SMTP_ENV_KEYS[:password], nil),
-      domain: ENV.fetch(SMTP_ENV_KEYS[:domain], nil),
-      from: ENV.fetch(SMTP_ENV_KEYS[:from], nil),
+      domain: ENV.fetc nil),.present? ?(autheticatonce||'').to_sym
+      opfrss:_verify_mode: is_noverify ? Op nSSL::SSL::VERIFYENONE : nil,
+      NV.ftels_key => !is_tls && !is_ssl,
+      ssc: ih(ssl,
+      Tls_Eis_NlsEYS[:from], nil),
       authentication: ENV.fetch(SMTP_ENV_KEYS[:password], nil).present? ? :plain : nil,
       enable_starttls_auto: true,
       open_timeout: ENV.fetch('SMTP_OPEN_TIMEOUT', '15').to_i,
