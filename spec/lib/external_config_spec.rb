@@ -45,6 +45,72 @@ RSpec.describe ExternalConfig do
         expect(settings[:authentication]).to eq(:plain)
       end
     end
+
+    it 'honours DOCUSEAL_CONFIG_SMTP_AUTHENTICATION when password is set' do
+      envs = {
+        'DOCUSEAL_CONFIG_SMTP_ADDRESS' => 'smtp.example.com',
+        'DOCUSEAL_CONFIG_SMTP_PASSWORD' => 'secret',
+        'DOCUSEAL_CONFIG_SMTP_AUTHENTICATION' => 'login'
+      }
+      with_env(envs) do
+        expect(described_class.smtp_settings[:authentication]).to eq(:login)
+      end
+    end
+
+    it 'sets ssl flag when SECURITY=ssl' do
+      envs = {
+        'DOCUSEAL_CONFIG_SMTP_ADDRESS' => 'smtp.example.com',
+        'DOCUSEAL_CONFIG_SMTP_SECURITY' => 'ssl'
+      }
+      with_env(envs) do
+        settings = described_class.smtp_settings
+        expect(settings[:ssl]).to be(true)
+        expect(settings[:tls]).to be_nil.or be(false)
+      end
+    end
+
+    it 'sets tls flag when SECURITY=tls' do
+      envs = {
+        'DOCUSEAL_CONFIG_SMTP_ADDRESS' => 'smtp.example.com',
+        'DOCUSEAL_CONFIG_SMTP_SECURITY' => 'tls'
+      }
+      with_env(envs) do
+        settings = described_class.smtp_settings
+        expect(settings[:tls]).to be(true)
+        expect(settings[:ssl]).to be_nil.or be(false)
+      end
+    end
+
+    it 'enables starttls_auto and skips cert verification when SECURITY=noverify' do
+      envs = {
+        'DOCUSEAL_CONFIG_SMTP_ADDRESS' => 'smtp.example.com',
+        'DOCUSEAL_CONFIG_SMTP_SECURITY' => 'noverify'
+      }
+      with_env(envs) do
+        settings = described_class.smtp_settings
+        expect(settings[:openssl_verify_mode]).to eq(OpenSSL::SSL::VERIFY_NONE)
+        expect(settings[:enable_starttls_auto]).to be(true)
+        expect(settings[:enable_starttls]).to be_nil
+      end
+    end
+
+    it 'defaults to enable_starttls=true with no SECURITY' do
+      with_env('DOCUSEAL_CONFIG_SMTP_ADDRESS' => 'smtp.example.com') do
+        settings = described_class.smtp_settings
+        expect(settings[:enable_starttls]).to be(true)
+        expect(settings[:enable_starttls_auto]).to be_nil
+      end
+    end
+
+    it 'infers tls when port is 465 and SECURITY is blank' do
+      envs = {
+        'DOCUSEAL_CONFIG_SMTP_ADDRESS' => 'smtp.example.com',
+        'DOCUSEAL_CONFIG_SMTP_PORT' => '465'
+      }
+      with_env(envs) do
+        expect(described_class.smtp_settings[:tls]).to be(true)
+      end
+    end
   end
 
   describe '.storage_configured?' do
