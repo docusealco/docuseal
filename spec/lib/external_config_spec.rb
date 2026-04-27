@@ -113,6 +113,44 @@ RSpec.describe ExternalConfig do
     end
   end
 
+  describe '.smtp_display_settings' do
+    it 'returns empty hash when not configured' do
+      with_env('DOCUSEAL_CONFIG_SMTP_ADDRESS' => nil) do
+        expect(described_class.smtp_display_settings).to eq({})
+      end
+    end
+
+    it 'maps env vars to form-shaped string keys' do
+      envs = {
+        'DOCUSEAL_CONFIG_SMTP_ADDRESS' => 'smtp.example.com',
+        'DOCUSEAL_CONFIG_SMTP_PORT' => '2525',
+        'DOCUSEAL_CONFIG_SMTP_USERNAME' => 'user',
+        'DOCUSEAL_CONFIG_SMTP_PASSWORD' => 'secret',
+        'DOCUSEAL_CONFIG_SMTP_DOMAIN' => 'example.com',
+        'DOCUSEAL_CONFIG_SMTP_FROM' => 'noreply@example.com',
+        'DOCUSEAL_CONFIG_SMTP_SECURITY' => 'noverify',
+        'DOCUSEAL_CONFIG_SMTP_AUTHENTICATION' => 'login'
+      }
+      with_env(envs) do
+        settings = described_class.smtp_display_settings
+        expect(settings['host']).to eq('smtp.example.com')
+        expect(settings['port']).to eq('2525')
+        expect(settings['username']).to eq('user')
+        expect(settings['password']).to eq('secret')
+        expect(settings['domain']).to eq('example.com')
+        expect(settings['from_email']).to eq('noreply@example.com')
+        expect(settings['security']).to eq('noverify')
+        expect(settings['authentication']).to eq('login')
+      end
+    end
+
+    it 'defaults security to "none" when blank' do
+      with_env('DOCUSEAL_CONFIG_SMTP_ADDRESS' => 'smtp.example.com') do
+        expect(described_class.smtp_display_settings['security']).to eq('none')
+      end
+    end
+  end
+
   describe '.storage_configured?' do
     it 'returns true when S3_ATTACHMENTS_BUCKET is set' do
       with_env('S3_ATTACHMENTS_BUCKET' => 'my-bucket') do

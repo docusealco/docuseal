@@ -67,6 +67,24 @@ module ExternalConfig
     }.compact_blank
   end
 
+  # Returns a form-friendly hash mirroring the EncryptedConfig SMTP value shape
+  # (host/port/username/password/domain/from_email/security/authentication).
+  # Used by the read-only Email SMTP settings view when configured via ENV.
+  def smtp_display_settings
+    return {} unless smtp_configured?
+
+    {
+      'host' => ENV.fetch(SMTP_ENV_KEYS[:address], nil),
+      'port' => ENV.fetch(SMTP_ENV_KEYS[:port], nil),
+      'username' => ENV.fetch(SMTP_ENV_KEYS[:user_name], nil),
+      'password' => ENV.fetch(SMTP_ENV_KEYS[:password], nil),
+      'domain' => ENV.fetch(SMTP_ENV_KEYS[:domain], nil),
+      'from_email' => ENV.fetch(SMTP_ENV_KEYS[:from], nil),
+      'security' => ENV.fetch(SMTP_ENV_KEYS[:security], nil).to_s.downcase.presence || 'none',
+      'authentication' => ENV.fetch(SMTP_ENV_KEYS[:authentication], 'plain')
+    }.compact_blank
+  end
+
   # Storage is considered configured when S3_ATTACHMENTS_BUCKET, GCS_BUCKET, or
   # AZURE_CONTAINER is provided via ENV.
   def storage_configured?
