@@ -105,7 +105,7 @@
       <% end %>
     </ul>
   </menu-active>
-  <% if Docuseal.multitenant? || cannot?(:manage, :tenants) %>
+  <% if (Docuseal.multitenant? || cannot?(:manage, :tenants)) && current_account.ui_visible?(AccountConfig::SHOW_SUPPORT_LINKS_KEY) %>
     <div id="support_channels" class="mx-4 border-t border-base-300 hidden md:block">
       <div class="text-sm mt-3">
         <%= t('need_help_ask_a_question_') %>

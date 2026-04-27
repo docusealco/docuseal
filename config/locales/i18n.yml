@@ -3,6 +3,7 @@ en: &en
   show_console_link: Show Console Link
   show_api_link: Show API Link
   show_test_mode: Show Test Mode
+  show_support_links: Show Support Links
   locked_by_env: Locked by environment variable
   storage_is_configured_via_environment_variables: Storage is configured via environment variables. These settings are read-only.
   visibility: Visibility

@@ -63,6 +63,7 @@ class AccountConfig < ApplicationRecord
   SHOW_CONSOLE_LINK_KEY = 'show_console_link'
   SHOW_API_LINK_KEY = 'show_api_link'
   SHOW_TEST_MODE_KEY = 'show_test_mode'
+  SHOW_SUPPORT_LINKS_KEY = 'show_support_links'
   BRAND_NAME_KEY = 'brand_name'
   BRAND_NAME_FONT_KEY = 'brand_name_font'
   IP_ALLOWLIST_KEY = 'ip_allowlist'

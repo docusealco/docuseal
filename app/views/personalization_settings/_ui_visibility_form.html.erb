@@ -3,7 +3,8 @@
   <% [
     [AccountConfig::SHOW_CONSOLE_LINK_KEY, t('show_console_link')],
     [AccountConfig::SHOW_API_LINK_KEY, t('show_api_link')],
-    [AccountConfig::SHOW_TEST_MODE_KEY, t('show_test_mode')]
+    [AccountConfig::SHOW_TEST_MODE_KEY, t('show_test_mode')],
+    [AccountConfig::SHOW_SUPPORT_LINKS_KEY, t('show_support_links')]
   ].each do |key, label| %>
     <% env_var_name = "DOCUSEAL_CONFIG_#{key.upcase}" %>
     <% locked = ENV.fetch(env_var_name, nil).present? %>
