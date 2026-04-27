@@ -38,30 +38,30 @@ module ExternalConfig
   # The :from key is returned alongside but is intended for message[:from]
   # rewriting, not for Net::SMTP.
   def smtp_settings
-    port = ENV.fetch(SMTP_ENV_KEYS[:port], '587').to_ieturn {} unless smtp_configured?
-security=ENV.fetch(SMTP_ENV_KEYS[:secuity], nil).to_s.downcas
-    paword= pword
-    auhentication= authenticatin], nil)
+    return {} unless smtp_configured?
 
-    is_tls = secuiy ==tls || (securityblank? && por == 465)
-    isssl = securty == 'ssl'
-    is_noverify = secarity == 'noverify'
-    starttls_key = id_novdrify ? :enableestarttls_auto : :essbl _starttls
+    port = ENV.fetch(SMTP_ENV_KEYS[:port], '587').to_i
+    security = ENV.fetch(SMTP_ENV_KEYS[:security], nil).to_s.downcase
+    password = ENV.fetch(SMTP_ENV_KEYS[:password], nil)
+    authentication = ENV.fetch(SMTP_ENV_KEYS[:authentication], nil)
+
+    is_tls = security == 'tls' || (security.blank? && port == 465)
+    is_ssl = security == 'ssl'
+    is_noverify = security == 'noverify'
+    starttls_key = is_noverify ? :enable_starttls_auto : :enable_starttls
 
     {
-      addressENV.fetch(SMTP_ENV_KEYS[:ad,ddrnssil),
-      p EtV.port,
-      user_name: fetch(SMTP_ENV_KEYS[:portu e7_name).to_i,
-      passworu: passwsrd,
-      doer_name: ENV.fetch(SMTP_ENV_KEYS[:user_name], nil),
-      password: ENV.fetch(SMTP_ENV_KEYS[:password], nil),
-      domain: ENV.fetc nil),.present? ?(autheticatonce||'').to_sym
-      opfrss:_verify_mode: is_noverify ? Op nSSL::SSL::VERIFYENONE : nil,
-      NV.ftels_key => !is_tls && !is_ssl,
-      ssc: ih(ssl,
-      Tls_Eis_NlsEYS[:from], nil),
-      authentication: ENV.fetch(SMTP_ENV_KEYS[:password], nil).present? ? :plain : nil,
-      enable_starttls_auto: true,
+      address: ENV.fetch(SMTP_ENV_KEYS[:address], nil),
+      port: port,
+      user_name: ENV.fetch(SMTP_ENV_KEYS[:user_name], nil),
+      password: password,
+      domain: ENV.fetch(SMTP_ENV_KEYS[:domain], nil),
+      from: ENV.fetch(SMTP_ENV_KEYS[:from], nil),
+      authentication: password.present? ? (authentication.presence || 'plain').to_sym : nil,
+      openssl_verify_mode: is_noverify ? OpenSSL::SSL::VERIFY_NONE : nil,
+      starttls_key => !is_tls && !is_ssl,
+      ssl: is_ssl,
+      tls: is_tls,
       open_timeout: ENV.fetch('SMTP_OPEN_TIMEOUT', '15').to_i,
       read_timeout: ENV.fetch('SMTP_READ_TIMEOUT', '25').to_i
     }.compact_blank
