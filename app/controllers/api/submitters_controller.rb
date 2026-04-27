@@ -203,8 +203,13 @@ module Api
 
       submitter.preferences['send_sms'] = submitter_preferences['send_sms'] if submitter_preferences.key?('send_sms')
       submitter.preferences['reply_to'] = submitter_preferences['reply_to'] if submitter_preferences.key?('reply_to')
+
       if submitter_preferences.key?('require_phone_2fa')
         submitter.preferences['require_phone_2fa'] = submitter_preferences['require_phone_2fa']
+      end
+
+      if submitter_preferences.key?('require_email_2fa')
+        submitter.preferences['require_email_2fa'] = submitter_preferences['require_email_2fa']
       end
 
       if submitter_preferences.key?('go_to_last')
