@@ -410,9 +410,7 @@ module Submissions
         submitter.values = Submitters::SubmitValues.maybe_remove_condition_values(submitter)
       end
 
-      submitter.values = submitter.values.transform_values do |v|
-        v == '{{date}}' ? Time.current.in_time_zone(submitter.submission.account.timezone).to_date.to_s : v
-      end
+      submitter.values = Submitters::SubmitValues.replace_current_date_placeholders(submitter)
 
       submitter
     end

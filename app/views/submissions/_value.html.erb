@@ -73,8 +73,8 @@
   <% elsif field['type'] == 'date' %>
     <autosize-field></autosize-field>
     <div class="flex w-full px-0.5 <%= valign == 'top' ? 'items-start' : (valign == 'bottom' ? 'items-end' : 'items-center') %>">
-      <% value = Time.current.in_time_zone(local_assigns[:timezone]).to_date.to_s if value == '{{date}}' %>
-      <div class="w-full"><%= TimeUtils.format_date_string(value, field.dig('preferences', 'format'), local_assigns[:locale]) %></div>
+      <% tz = local_assigns[:with_submitter_timezone] ? (submitter.timezone.presence || local_assigns[:timezone]) : local_assigns[:timezone] %>
+      <div class="w-full"><%= value == '{{date}}' ? TimeUtils.format_date_preview(field.dig('preferences', 'format'), local_assigns[:locale], tz) : TimeUtils.format_date_string(value, field.dig('preferences', 'format'), local_assigns[:locale], timezone: tz) %></div>
     </div>
   <% elsif field['type'] == 'number' %>
     <autosize-field></autosize-field>

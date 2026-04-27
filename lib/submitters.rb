@@ -13,7 +13,7 @@ module Submitters
   UnableToSendCode = Class.new(StandardError)
   InvalidOtp = Class.new(StandardError)
   MaliciousFileExtension = Class.new(StandardError)
-  ArgumentError = Class.new(StandardError)
+  ParamsError = Class.new(StandardError)
 
   DANGEROUS_EXTENSIONS = Set.new(%w[
     exe com bat cmd scr pif vbs vbe js jse wsf wsh msi msp
@@ -135,7 +135,7 @@ module Submitters
                                                filename: file.original_filename,
                                                content_type: file.content_type)
       else
-        raise ArgumentError, 'file param is missing'
+        raise ParamsError, 'file param is missing'
       end
 
     ActiveStorage::Attachment.create!(

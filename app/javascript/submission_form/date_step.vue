@@ -56,11 +56,17 @@
         class="base-input !text-2xl text-center w-full"
         :required="field.required"
         :aria-describedby="field.description ? field.uuid + '-desc' : undefined"
-        type="date"
-        :name="`values[${field.uuid}]`"
+        :type="inputType"
+        :name="formatType === 'datetime' ? undefined : `values[${field.uuid}]`"
         @keydown.enter="onEnter"
         @focus="$emit('focus')"
         @paste="onPaste"
+      >
+      <input
+        v-if="formatType === 'datetime'"
+        type="hidden"
+        :name="`values[${field.uuid}]`"
+        :value="modelValue"
       >
     </div>
   </div>
@@ -97,14 +103,19 @@ export default {
   },
   emits: ['update:model-value', 'focus', 'submit'],
   computed: {
+    formatType () {
+      const format = this.field.preferences?.format || ''
+
+      if (/[HhAasz]/.test(format)) return 'datetime'
+      if (format && !/[Dd]/.test(format)) return 'month'
+
+      return 'date'
+    },
+    inputType () {
+      return { datetime: 'datetime-local', month: 'month', date: 'date' }[this.formatType]
+    },
     dateNowString () {
-      const today = new Date()
-
-      const yyyy = today.getFullYear()
-      const mm = String(today.getMonth() + 1).padStart(2, '0')
-      const dd = String(today.getDate()).padStart(2, '0')
-
-      return `${yyyy}-${mm}-${dd}`
+      return this.formatDateValue(new Date())
     },
     validationMin () {
       if (this.field.validation?.min) {
@@ -121,6 +132,8 @@ export default {
       }
     },
     withToday () {
+      if (this.formatType === 'datetime') return false
+
       const todayDate = new Date().setHours(0, 0, 0, 0)
 
       if (this.validationMin) {
@@ -137,9 +150,25 @@ export default {
     },
     value: {
       set (value) {
+        if (this.formatType === 'datetime' && value) {
+          const d = new Date(value)
+
+          if (!isNaN(d)) {
+            this.$emit('update:model-value', d.toISOString())
+
+            return
+          }
+        }
+
         this.$emit('update:model-value', value)
       },
       get () {
+        if (this.formatType === 'datetime') {
+          const d = new Date(this.modelValue)
+
+          return isNaN(d) ? '' : this.formatDateValue(d)
+        }
+
         return this.modelValue
       }
     }
@@ -163,20 +192,32 @@ export default {
 
       const parsedDate = new Date(pasteData)
 
-      if (!isNaN(parsedDate)) {
-        const inputEl = this.$refs.input
+      if (isNaN(parsedDate)) return
 
-        inputEl.valueAsDate = new Date(parsedDate.getTime() - parsedDate.getTimezoneOffset() * 60000)
-
-        inputEl.dispatchEvent(new Event('input', { bubbles: true }))
-      }
+      this.setInputValue(parsedDate)
     },
     setCurrentDate () {
+      this.setInputValue(new Date())
+    },
+    setInputValue (date) {
       const inputEl = this.$refs.input
 
-      inputEl.valueAsDate = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000)
+      if (this.formatType === 'date') {
+        inputEl.valueAsDate = new Date(date.getTime() - date.getTimezoneOffset() * 60000)
+      } else {
+        inputEl.value = this.formatDateValue(date)
+      }
 
       inputEl.dispatchEvent(new Event('input', { bubbles: true }))
+    },
+    formatDateValue (date) {
+      const pad = (n) => String(n).padStart(2, '0')
+      const ymd = `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`
+
+      if (this.formatType === 'month') return ymd.slice(0, 7)
+      if (this.formatType === 'datetime') return `${ymd}T${pad(date.getHours())}:${pad(date.getMinutes())}`
+
+      return ymd
     }
   }
 }

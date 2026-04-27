@@ -514,7 +514,7 @@ export default {
     ContextSubmenu,
     ContextModal
   },
-  inject: ['t', 'getFieldTypeIndex', 'template', 'withCustomFields', 'currencies'],
+  inject: ['t', 'getFieldTypeIndex', 'template', 'withCustomFields', 'currencies', 'dateFormats'],
   props: {
     contextMenu: {
       type: Object,
@@ -580,7 +580,7 @@ export default {
     fieldNames: FieldType.computed.fieldNames,
     fieldLabels: FieldType.computed.fieldLabels,
     validationOptions: FieldSettings.computed.validations,
-    dateFormats: FieldSettings.computed.dateFormats,
+    availableDateFormats: FieldSettings.computed.availableDateFormats,
     numberFormats: FieldSettings.computed.numberFormats,
     prefillableFieldTypes: FieldSettings.computed.prefillableFieldTypes,
     verificationMethods: FieldSettings.computed.verificationMethods,
@@ -686,7 +686,7 @@ export default {
     },
     formatOptions () {
       switch (this.field.type) {
-        case 'date': return this.dateFormats.map(f => ({ value: f, label: this.formatDate(new Date(), f) }))
+        case 'date': return this.availableDateFormats.map(f => ({ value: f, label: this.formatDate(new Date(), f) }))
         case 'number': return this.numberFormats.map(f => ({ value: f, label: this.formatNumber(123456789.567, f) }))
         case 'signature': return this.signatureFormats.map(f => ({ value: f, label: this.t(f) }))
         default: return []

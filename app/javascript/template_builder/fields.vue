@@ -65,13 +65,33 @@
       @set-draw="$emit('set-draw', $event)"
     />
   </div>
-  <div v-if="!isShowVariables && submitterDefaultFields.length && editable">
-    <hr class="mb-2">
+  <div
+    v-if="editable && withCustomFieldsTab"
+    class="tabs w-full mb-1.5 custom-fields-tabs"
+  >
+    <a
+      class="tab tab-bordered w-1/2 border-base-300 custom-fields-tab"
+      :class="{ 'tab-active': !showCustomTab }"
+      :style="{ '--tab-border': showCustomTab ? '0px' : '0.5px' }"
+      @click="setFieldsTab('default')"
+    >{{ t('default') }}</a>
+    <a
+      class="tab tab-bordered w-1/2 border-base-300 custom-fields-tab"
+      :class="{ 'tab-active': showCustomTab }"
+      :style="{ '--tab-border': showCustomTab ? '0.5px' : '0px' }"
+      @click="setFieldsTab('custom')"
+    >{{ t('custom') }}</a>
+  </div>
+  <div v-if="!isShowVariables && submitterDefaultFields.length && editable && (!withCustomFieldsTab || showCustomTab)">
+    <hr
+      v-if="!withCustomFieldsTab"
+      class="mb-1.5"
+    >
     <template v-if="isShowFieldSearch">
       <input
         v-model="defaultFieldsSearch"
         :placeholder="t('search_field')"
-        class="input input-ghost input-xs px-0 text-base mb-2 !outline-0 !rounded bg-transparent w-full"
+        class="input input-ghost input-xs px-0 text-base mb-1.5 !outline-0 !rounded bg-transparent w-full"
       >
       <hr class="mb-2">
     </template>
@@ -218,7 +238,7 @@
     </div>
   </div>
   <div
-    v-if="!isShowVariables && editable && !onlyDefinedFields && (!showCustomTab || (!customFields.length && !newCustomField))"
+    v-if="!isShowVariables && editable && !onlyDefinedFields && (!showCustomTab || (!customFields.length && !newCustomField)) && (!withCustomFieldsTab || !showCustomTab)"
     id="field-types-grid"
     class="grid grid-cols-3 gap-1 pb-2 fields-grid"
   >
@@ -418,12 +438,22 @@ export default {
       required: false,
       default: false
     },
+    withCustomFieldsTab: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     withFieldsSearch: {
       type: Boolean,
       required: false,
       default: null
     },
     withFieldsDetection: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    withDetectExistingFields: {
       type: Boolean,
       required: false,
       default: false
@@ -495,6 +525,11 @@ export default {
       type: Object,
       required: true
     },
+    detectCustomFieldsIndex: {
+      type: Object,
+      required: false,
+      default: () => ({})
+    },
     showTourStartForm: {
       type: Boolean,
       required: false,
@@ -557,7 +592,8 @@ export default {
     },
     submitterDefaultFields () {
       return this.defaultFields.filter((f) => {
-        return !this.submitterFields.find((field) => field.name === f.name) && (!f.role || f.role === this.selectedSubmitter.name)
+        return (this.withCustomFieldsTab ? true : !this.submitterFields.find((field) => field.name === f.name)) &&
+          (!f.role || f.role === this.selectedSubmitter.name)
       })
     },
     filteredSubmitterDefaultFields () {
@@ -656,6 +692,78 @@ export default {
         this.customFields.splice(0, this.customFields.length, ...fields)
       })
     },
+    buildExistingFields () {
+      const existing = []
+      const seen = new Set()
+
+      const submittersByUuid = this.template.submitters.reduce((acc, s) => {
+        acc[s.uuid] = s
+
+        return acc
+      }, {})
+
+      const add = (field, role) => {
+        if (!field?.name) return
+
+        const key = field.name.toLowerCase() + ':' + (role || '').toLowerCase()
+
+        if (seen.has(key)) return
+
+        seen.add(key)
+
+        const item = { name: field.name, type: field.type || 'text' }
+
+        if (role) item.role = role
+
+        const optionValues = Array.isArray(field.options)
+          ? field.options.map((o) => (typeof o === 'string' ? o : o?.value)).filter(Boolean)
+          : []
+
+        if (optionValues.length) item.options = optionValues
+
+        existing.push(item)
+      }
+
+      this.template.fields.forEach((f) => add(f, submittersByUuid[f.submitter_uuid]?.name))
+      this.defaultRequiredFields.forEach((f) => add(f, f.role))
+      this.defaultFields.forEach((f) => add(f, f.role))
+      this.customFields.forEach((f) => add(f, f.role))
+
+      return existing
+    },
+    enrichDetectedField (field) {
+      if (!this.withDetectExistingFields || !field.name) return field
+
+      const role = this.template.submitters.find((s) => s.uuid === field.submitter_uuid)?.name
+      const nameKey = field.name.toLowerCase()
+      const indexKey = [field.name, role].filter(Boolean).join(':').toLowerCase()
+
+      const customField = this.detectCustomFieldsIndex[indexKey] || this.detectCustomFieldsIndex[nameKey]
+
+      if (customField) this.applyCustomFieldAttributes(field, customField)
+
+      return field
+    },
+    applyCustomFieldAttributes (field, customField) {
+      const skipKeys = new Set(['uuid', 'areas', 'submitter_uuid', 'conditions', 'prefillable', 'role'])
+
+      Object.entries(customField).forEach(([key, value]) => {
+        if (skipKeys.has(key)) return
+        if (value === null || value === undefined) return
+
+        if (key === 'options') {
+          if (Array.isArray(value) && !Array.isArray(field.options)) {
+            field.options = value.map((o) => (
+              typeof o === 'string' ? { value: o, uuid: v4() } : { ...o, uuid: v4() }
+            ))
+          }
+        } else if (value && typeof value === 'object' && !Array.isArray(value)) {
+          field[key] = JSON.parse(JSON.stringify(value))
+        } else {
+          field[key] = value
+        }
+      })
+    },
     detectFields () {
       const fields = []
 
@@ -665,7 +773,10 @@ export default {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
-        }
+        },
+        ...(this.withDetectExistingFields
+          ? { body: JSON.stringify({ fields: this.buildExistingFields() }) }
+          : {})
       }).then(async (response) => {
         const reader = response.body.getReader()
         const decoder = new TextDecoder('utf-8')
@@ -687,7 +798,7 @@ export default {
 
               if (data.error) {
                 if ((data.fields || fields).length) {
-                  this.template.fields = data.fields || fields
+                  this.template.fields = (data.fields || fields).map((f) => this.enrichDetectedField(f))
 
                   this.save()
                 } else {
@@ -705,7 +816,7 @@ export default {
                   this.$emit('select-submitter', this.template.submitters[0])
                 }
 
-                this.template.fields = data.fields || fields
+                this.template.fields = (data.fields || fields).map((f) => this.enrichDetectedField(f))
 
                 this.save()
 

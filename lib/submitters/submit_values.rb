@@ -86,9 +86,7 @@ module Submitters
         submitter.values = maybe_remove_condition_values(submitter, required_field_uuids_acc:)
       end
 
-      submitter.values = submitter.values.transform_values do |v|
-        v == '{{date}}' ? Time.current.in_time_zone(submitter.account.timezone).to_date.to_s : v
-      end
+      submitter.values = replace_current_date_placeholders(submitter)
 
       required_field_uuids_acc.each do |uuid|
         next if submitter.values[uuid].present?
@@ -194,7 +192,7 @@ module Submitters
 
         next if value.blank?
 
-        acc[field['uuid']] = template_default_value_for_submitter(value, submitter, with_time: true)
+        acc[field['uuid']] = template_default_value_for_submitter(value, submitter, field:, with_time: true)
       end
 
       default_values.compact_blank.merge(submitter.values)
@@ -248,7 +246,20 @@ module Submitters
       0
     end
 
-    def template_default_value_for_submitter(value, submitter, with_time: false)
+    def replace_current_date_placeholders(submitter)
+      submitter.values.each_with_object({}) do |(uuid, v), acc|
+        acc[uuid] =
+          if v == '{{date}}'
+            field = submitter.submission.fields_uuid_index[uuid]
+
+            TimeUtils.current_date_value(field&.dig('preferences', 'format'), submitter.account.timezone)
+          else
+            v
+          end
+      end
+    end
+
+    def template_default_value_for_submitter(value, submitter, with_time: false, field: nil)
       return if value.blank?
       return if submitter.blank?
 
@@ -257,7 +268,8 @@ module Submitters
       replace_default_variables(value,
                                 submitter.attributes.merge('role' => role),
                                 submitter.submission,
-                                with_time:)
+                                with_time:,
+                                field:)
     end
 
     def maybe_remove_condition_values(submitter, required_field_uuids_acc: nil)
@@ -394,7 +406,7 @@ module Submitters
     end
     # rubocop:enable Metrics
 
-    def replace_default_variables(value, attrs, submission, with_time: false)
+    def replace_default_variables(value, attrs, submission, with_time: false, field: nil)
       return value if value.in?([true, false]) || value.is_a?(Numeric) || value.is_a?(Array)
       return if value.blank?
 
@@ -412,7 +424,7 @@ module Submitters
         when 'hour', 'minute', 'day', 'month', 'year'
           with_time ? Time.current.in_time_zone(submission.account.timezone).strftime(STRFTIME_MAP[key]) : e
         when 'date'
-          with_time ? Time.current.in_time_zone(submission.account.timezone).to_date.to_s : e
+          with_time ? TimeUtils.current_date_value(field&.dig('preferences', 'format'), submission.account.timezone) : e
         when 'role', 'email', 'phone', 'name'
           attrs[key] || e
         else
