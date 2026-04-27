@@ -143,8 +143,8 @@
         >
           <input
             type="hidden"
-            name="state"
-            :value="oauthState"
+            name="oauth_data"
+            :value="oauthData"
             autocomplete="off"
           >
           <input
@@ -334,7 +334,7 @@ export default {
     authenticityToken () {
       return document.querySelector('meta[name="csrf-token"]')?.content
     },
-    oauthState () {
+    oauthData () {
       const params = new URLSearchParams('')
 
       params.set('redir', document.location.href)
