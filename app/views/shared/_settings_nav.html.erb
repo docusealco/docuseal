@@ -97,7 +97,7 @@
         <% end %>
         <%= render 'shared/settings_nav_extra2' %>
         <% if (can?(:manage, EncryptedConfig) && current_user == true_user) || (current_user != true_user && current_account.testing?) %>
-          <%= form_for '', url: testing_account_path, method: current_account.testing? ? :delete : :get, html: { class: 'w-full' } do |f| %>
+          <%= form_for '', url: testing_account_path, method: current_account.testing? ? :delete : :post, html: { class: 'w-full' } do |f| %>
             <li>
               <label class="flex items-center text-base hover:bg-base-300 w-full justify-between" for="testing_toggle">
                 <span class="mr-2 w-full">

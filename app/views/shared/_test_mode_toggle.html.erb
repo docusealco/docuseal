@@ -1,5 +1,5 @@
 <% if can?(:manage, EncryptedConfig) || (current_user != true_user && current_account.testing?) %>
-  <%= form_for '', url: testing_account_path, method: current_account.testing? ? :delete : :get, html: { class: 'flex' } do |f| %>
+  <%= form_for '', url: testing_account_path, method: current_account.testing? ? :delete : :post, html: { class: 'flex' } do |f| %>
     <label class="flex items-center justify-between" for="testing_toggle">
       <span class="mr-2 text-lg">
         <%= t('test_mode') %>
