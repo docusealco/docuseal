@@ -15,18 +15,6 @@ module ActionMailerConfigsInterceptor
       return message
     end
 
-    if Rails.env.production? && Rails.application.config.action_mailer.delivery_method
-      from = ENV.fetch('SMTP_FROM').to_s.split(',').sample
-
-      if from.match?(User::FULL_EMAIL_REGEXP)
-        message[:from] = message[:from].to_s.sub(User::EMAIL_REGEXP, from)
-      else
-        message.from = from
-      end
-
-      return message
-    end
-
     unless Docuseal.multitenant?
       email_configs = EncryptedConfig.order(:account_id).find_by(key: EncryptedConfig::EMAIL_SMTP_KEY)
 
@@ -34,9 +22,27 @@ module ActionMailerConfigsInterceptor
         message.delivery_method(:smtp, build_smtp_configs_hash(email_configs))
 
         message.from = %("#{email_configs.account.name.to_s.delete('"')}" <#{email_configs.value['from_email']}>)
-      else
-        message.delivery_method(:test)
+
+        return message
       end
+    end
+
+    if Rails.application.config.action_mailer.delivery_method
+      from = ENV.fetch('SMTP_FROM', '').to_s.split(',').sample
+
+      if from.present?
+        if from.match?(User::FULL_EMAIL_REGEXP)
+          message[:from] = message[:from].to_s.sub(User::EMAIL_REGEXP, from)
+        else
+          message.from = from
+        end
+      end
+
+      return message
+    end
+
+    unless Docuseal.multitenant?
+      message.delivery_method(:test)
     end
 
     message
