@@ -20,9 +20,10 @@
   </head>
   <body>
     <% if params[:modal].present? %>
-      <% url_params = Rails.application.routes.recognize_path(params[:modal], method: :get) %>
+      <% modal_uri = Addressable::URI.parse(params[:modal]) %>
+      <% url_params = Rails.application.routes.recognize_path(modal_uri.path, method: :get) %>
       <% if url_params[:action] == 'new' %>
-        <open-modal src="<%= url_for(url_params) %>"></open-modal>
+        <open-modal src="<%= url_for(**url_params, params: modal_uri.query_values) %>"></open-modal>
       <% end %>
     <% end %>
     <turbo-frame id="modal"></turbo-frame>
