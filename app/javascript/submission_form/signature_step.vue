@@ -586,7 +586,7 @@ export default {
     redrawCanvas (oldWidth, oldHeight) {
       const canvas = this.$refs.canvas
 
-      if (this.pad && !this.isTextSignature && !this.pad.isEmpty() && oldWidth > 0 && oldHeight > 0) {
+      if (this.pad && !this.isTextSignature && !this.pad.isEmpty() && oldWidth > 0 && oldHeight > 0 && canvas.width > 0 && canvas.height > 0) {
         const sx = canvas.width / oldWidth
         const sy = canvas.height / oldHeight
 

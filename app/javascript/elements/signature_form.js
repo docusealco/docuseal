@@ -80,7 +80,7 @@ export default targetable(class extends HTMLElement {
   }
 
   redrawCanvas (oldWidth, oldHeight) {
-    if (this.pad && !this.pad.isEmpty() && oldWidth > 0 && oldHeight > 0) {
+    if (this.pad && !this.pad.isEmpty() && oldWidth > 0 && oldHeight > 0 && this.canvas.width > 0 && this.canvas.height > 0) {
       const sx = this.canvas.width / oldWidth
       const sy = this.canvas.height / oldHeight
 
