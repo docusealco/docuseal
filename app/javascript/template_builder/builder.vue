@@ -1012,6 +1012,13 @@ export default {
     fieldsDragFieldRef: () => ref(),
     customDragFieldRef: () => ref(),
     selectedAreasRef: () => ref([]),
+    attachmentUuidsIndex () {
+      return this.template.schema.reduce((acc, e, index) => {
+        acc[e.attachment_uuid] = index
+
+        return acc
+      }, {})
+    },
     language () {
       return this.locale.split('-')[0].toLowerCase()
     },
@@ -1663,32 +1670,25 @@ export default {
         this.save()
       }
     },
+    compareAreas (a, b) {
+      const aAttIdx = this.attachmentUuidsIndex[a.attachment_uuid]
+      const bAttIdx = this.attachmentUuidsIndex[b.attachment_uuid]
+
+      if (aAttIdx !== bAttIdx) return aAttIdx - bAttIdx
+      if (a.page !== b.page) return a.page - b.page
+
+      const aY = a.y + a.h
+      const bY = b.y + b.h
+
+      if (Math.abs(aY - bY) < 0.01) return a.x - b.x
+      if (a.h < b.h ? a.y >= b.y && aY <= bY : b.y >= a.y && bY <= aY) return a.x - b.x
+
+      return aY - bY
+    },
     findFieldInsertIndex (field) {
       if (!field.areas?.length) return -1
 
       const area = field.areas[0]
-
-      const attachmentUuidsIndex = this.template.schema.reduce((acc, e, index) => {
-        acc[e.attachment_uuid] = index
-
-        return acc
-      }, {})
-
-      const compareAreas = (a, b) => {
-        const aAttIdx = attachmentUuidsIndex[a.attachment_uuid]
-        const bAttIdx = attachmentUuidsIndex[b.attachment_uuid]
-
-        if (aAttIdx !== bAttIdx) return aAttIdx - bAttIdx
-        if (a.page !== b.page) return a.page - b.page
-
-        const aY = a.y + a.h
-        const bY = b.y + b.h
-
-        if (Math.abs(aY - bY) < 0.01) return a.x - b.x
-        if (a.h < b.h ? a.y >= b.y && aY <= bY : b.y >= a.y && bY <= aY) return a.x - b.x
-
-        return aY - bY
-      }
 
       let closestBeforeIndex = -1
       let closestBeforeArea = null
@@ -1698,15 +1698,15 @@ export default {
       this.template.fields.forEach((f, index) => {
         if (f.submitter_uuid === field.submitter_uuid) {
           (f.areas || []).forEach((a) => {
-            const cmp = compareAreas(a, area)
+            const cmp = this.compareAreas(a, area)
 
             if (cmp < 0) {
-              if (!closestBeforeArea || (compareAreas(a, closestBeforeArea) > 0 && closestBeforeIndex < index)) {
+              if (!closestBeforeArea || (this.compareAreas(a, closestBeforeArea) > 0 && closestBeforeIndex < index)) {
                 closestBeforeIndex = index
                 closestBeforeArea = a
               }
             } else {
-              if (!closestAfterArea || (compareAreas(a, closestAfterArea) < 0 && closestAfterIndex > index)) {
+              if (!closestAfterArea || (this.compareAreas(a, closestAfterArea) < 0 && closestAfterIndex > index)) {
                 closestAfterIndex = index
                 closestAfterArea = a
               }
@@ -1729,6 +1729,17 @@ export default {
         this.template.fields.push(field)
       }
     },
+    insertArea (field, area) {
+      field.areas ||= []
+
+      const insertIndex = field.areas.findIndex((a) => this.compareAreas(a, area) > 0)
+
+      if (insertIndex === -1) {
+        field.areas.push(area)
+      } else {
+        field.areas.splice(insertIndex, 0, area)
+      }
+    },
     insertDetectedField (field) {
       if (!this.withDetectExistingFields || !field.name) {
         this.insertField(field)
@@ -1744,7 +1755,7 @@ export default {
 
       if (existingField) {
         existingField.areas = existingField.areas || []
-        existingField.areas.push(...(field.areas || []))
+        field.areas.forEach((area) => this.insertArea(existingField, area))
       } else {
         const customField = this.detectCustomFieldsIndex[indexKey] || this.detectCustomFieldsIndex[nameKey]
 
@@ -2249,7 +2260,7 @@ export default {
 
         fieldUuidIndex[field.uuid] = newField
 
-        newField.areas.push(newArea)
+        this.insertArea(newField, newArea)
         newAreas.push(newArea)
 
         if (['radio', 'multiple'].includes(field.type) && field.options?.length) {
@@ -2362,17 +2373,7 @@ export default {
           area.y -= area.h / 2
         }
 
-        this.drawField.areas ||= []
-
-        const insertBeforeAreaIndex = this.drawField.areas.findIndex((a) => {
-          return a.attachment_uuid === area.attachment_uuid && a.page > area.page
-        })
-
-        if (insertBeforeAreaIndex !== -1) {
-          this.drawField.areas.splice(insertBeforeAreaIndex, 0, area)
-        } else {
-          this.drawField.areas.push(area)
-        }
+        this.insertArea(this.drawField, area)
 
         if (this.template.fields.indexOf(this.drawField) === -1) {
           this.insertField(this.drawField)
@@ -2513,9 +2514,7 @@ export default {
         delete field.height
       }
 
-      field.areas ||= []
-
-      field.areas.push(fieldArea)
+      this.insertArea(field, fieldArea)
 
       if (this.selectedAreasRef.value.length < 2) {
         this.selectedAreasRef.value = [fieldArea]
@@ -2585,7 +2584,7 @@ export default {
             }
           }
 
-          field.areas.push(fieldArea)
+          this.insertArea(field, fieldArea)
         })
       } else {
         const fieldArea = {
