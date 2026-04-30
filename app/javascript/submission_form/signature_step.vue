@@ -544,6 +544,7 @@ export default {
       this.resizeObserver = new ResizeObserver(() => {
         requestAnimationFrame(() => {
           if (!this.$refs.canvas) return
+          if (!this.$refs.canvas.parentNode?.clientWidth) return
 
           const { width, height } = this.$refs.canvas
 

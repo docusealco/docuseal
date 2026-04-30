@@ -14,6 +14,7 @@ export default targetable(class extends HTMLElement {
     this.resizeObserver = new ResizeObserver(() => {
       requestAnimationFrame(() => {
         if (!this.canvas) return
+        if (!this.canvas.parentNode?.clientWidth) return
 
         const { width, height } = this.canvas
 
