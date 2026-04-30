@@ -1,0 +1,66 @@
+# Production — deploy to /opt/zabbu-sign/ on VPS (46.101.144.7).
+#
+# Routing/SSL: handled by the shared nginx-proxy + acme-companion stack at
+# /opt/goldleaf-dms/. We bypass DocuSeal's bundled Caddy entirely.
+#
+# Email: outbound mail goes to the invoice-reminder container on the same
+# `proxy` network, port 25 (no TLS, no auth — it's a local-only relay).
+# That container forwards to Mailgun's REST API. See
+# edms-invoice-reminder-service/README.md → "Internal SMTP relay".
+services:
+  docuseal:
+    image: servedigital/docuseal:latest
+    container_name: docuseal
+    restart: unless-stopped
+    depends_on:
+      docuseal-db:
+        condition: service_healthy
+    env_file: .env
+    environment:
+      - VIRTUAL_HOST=sign.zabbu.co
+      - VIRTUAL_PORT=3000
+      - LETSENCRYPT_HOST=sign.zabbu.co
+      - HOST=sign.zabbu.co
+      - FORCE_SSL=true
+      - DATABASE_URL=postgresql://docuseal:${POSTGRES_PASSWORD}@docuseal-db:5432/docuseal
+      - SMTP_ADDRESS=invoice-reminder
+      - SMTP_PORT=25
+      - SMTP_DOMAIN=zabbu.co
+      - SMTP_ENABLE_STARTTLS=false
+      - SMTP_ENABLE_SSL=false
+      - SMTP_ENABLE_TLS=false
+    volumes:
+      - ./data:/data/docuseal
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/up"]
+      interval: 30s
+      timeout: 10s
+      start_period: 60s
+      retries: 5
+    networks:
+      - proxy
+      - docuseal-internal
+
+  docuseal-db:
+    image: postgres:18
+    container_name: docuseal-db
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=docuseal
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=docuseal
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U docuseal"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - docuseal-internal
+
+networks:
+  proxy:
+    external: true
+  docuseal-internal:
+    internal: true
