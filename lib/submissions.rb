@@ -162,7 +162,7 @@ module Submissions
     return email.downcase.sub(/@gmail?\z/i, '@gmail.com') if email.match?(/@gmail?\z/i)
 
     return email.downcase if email.include?(',') ||
-                             email.match?(/\.(?:gob|om|mm|cm|et|mo|nz|za|ie)\z/) ||
+                             email.match?(/\.(?:gob|om|mm|cm|et|mo|nz|za|ie|ed\.jp)\z/i) ||
                              email.exclude?('.')
 
     fixed_email = EmailTypo.call(email.delete_prefix('<'))
