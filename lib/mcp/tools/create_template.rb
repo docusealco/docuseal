@@ -27,7 +27,7 @@ module Mcp
           readOnlyHint: false,
           destructiveHint: false,
           idempotentHint: false,
-          openWorldHint: false
+          openWorldHint: true
         }
       }.freeze
 
