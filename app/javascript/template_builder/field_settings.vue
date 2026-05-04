@@ -786,16 +786,26 @@ export default {
     },
     copyToAllPages (field) {
       const areaString = JSON.stringify(field.areas[0])
+      const newAreas = []
+      const existingAreasIndex = field.areas.reduce((acc, area) => {
+        acc[`${area.attachment_uuid}-${area.page}`] = area
 
-      this.template.documents.forEach((attachment) => {
+        return acc
+      }, {})
+
+      this.template.schema.forEach((item) => {
+        const attachment = this.template.documents.find((d) => d.uuid === item.attachment_uuid)
+
         const numberOfPages = attachment.metadata?.pdf?.number_of_pages || attachment.preview_images.length
 
         for (let page = 0; page <= numberOfPages - 1; page++) {
-          if (!field.areas.find((area) => area.attachment_uuid === attachment.uuid && area.page === page)) {
-            field.areas.push({ ...JSON.parse(areaString), attachment_uuid: attachment.uuid, page })
-          }
+          const existing = existingAreasIndex[`${attachment.uuid}-${page}`]
+
+          newAreas.push(existing || { ...JSON.parse(areaString), attachment_uuid: attachment.uuid, page })
         }
       })
+
+      field.areas = newAreas
 
       this.$emit('scroll-to', this.field.areas[this.field.areas.length - 1])
 

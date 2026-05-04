@@ -101,13 +101,18 @@ class Submission < ApplicationRecord
     where(Submitter.where(Submitter.arel_table[:submission_id].eq(Submission.arel_table[:id])
      .and(Submitter.arel_table[:declined_at].not_eq(nil))).select(1).arel.exists)
   }
-  scope :expired, -> { pending.where(expire_at: ..Time.current) }
+  scope :expired, lambda {
+    where(expire_at: ..Time.current)
+      .where(Submitter.where(Submitter.arel_table[:submission_id].eq(Submission.arel_table[:id])
+                      .and(Submitter.arel_table[:completed_at].eq(nil))).select(1).arel.exists)
+  }
 
   enum :source, {
     invite: 'invite',
     bulk: 'bulk',
     api: 'api',
     embed: 'embed',
+    mcp: 'mcp',
     link: 'link'
   }, scope: false, prefix: true
 

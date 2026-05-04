@@ -3,7 +3,7 @@
 class TestingAccountsController < ApplicationController
   skip_authorization_check only: :destroy
 
-  def show
+  def create
     authorize!(:manage, current_account)
     authorize!(:manage, current_user)
 

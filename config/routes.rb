@@ -77,7 +77,7 @@ Rails.application.routes.draw do
   resources :console_redirect, only: %i[index]
   resources :upgrade, only: %i[index], controller: 'console_redirect'
   resources :manage, only: %i[index], controller: 'console_redirect'
-  resource :testing_account, only: %i[show destroy]
+  resource :testing_account, only: %i[create destroy]
   resources :testing_api_settings, only: %i[index]
   resources :submitters_autocomplete, only: %i[index]
   resources :submitters_resubmit, only: %i[update]

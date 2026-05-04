@@ -27,7 +27,7 @@ module Mcp
           readOnlyHint: false,
           destructiveHint: false,
           idempotentHint: false,
-          openWorldHint: false
+          openWorldHint: true
         }
       }.freeze
 
@@ -43,6 +43,7 @@ module Mcp
           account:,
           author: current_user,
           folder: account.default_template_folder,
+          source: :mcp,
           name: arguments['name'].to_s.presence || 'New Template',
           fields: [],
           schema: []
