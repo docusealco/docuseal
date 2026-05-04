@@ -5,11 +5,6 @@ class SendTestWebhookRequestJob
 
   sidekiq_options retry: 0
 
-  USER_AGENT = 'DocuSeal.com Webhook'
-
-  HttpsError = Class.new(StandardError)
-  LocalhostError = Class.new(StandardError)
-
   def perform(params = {})
     submitter = Submitter.find_by(id: params['submitter_id'])
 
@@ -26,8 +21,13 @@ class SendTestWebhookRequestJob
         Addressable::URI.parse(webhook_url.url).normalize
       end
 
-      raise HttpsError, 'Only HTTPS is allowed.' if uri.scheme != 'https' || [443, nil].exclude?(uri.port)
-      raise LocalhostError, "Can't send to localhost." if uri.host.in?(SendWebhookRequest::LOCALHOSTS)
+      if uri.scheme != 'https' || [443, nil].exclude?(uri.port)
+        raise SendWebhookRequest::HttpsError, 'Only HTTPS is allowed.'
+      end
+
+      if uri.host.in?(SendWebhookRequest::LOCALHOSTS)
+        raise SendWebhookRequest::LocalhostError, "Can't send to localhost."
+      end
     end
 
     Faraday.post(webhook_url.url,
@@ -37,7 +37,7 @@ class SendTestWebhookRequestJob
                    data: Submitters::SerializeForWebhook.call(submitter)
                  }.to_json,
                  'Content-Type' => 'application/json',
-                 'User-Agent' => USER_AGENT,
+                 'User-Agent' => SendWebhookRequest::USER_AGENT,
                  **webhook_url.secret.to_h)
   end
 end

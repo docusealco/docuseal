@@ -1,40 +1,11 @@
 # frozen_string_literal: true
 
 class SendFormStartedWebhookRequestJob
-  include Sidekiq::Job
+  include WebhookRequestJob
 
-  sidekiq_options queue: :webhooks
-
-  MAX_ATTEMPTS = 10
-
-  def perform(params = {})
-    submitter = Submitter.find_by(id: params['submitter_id'])
-
-    return unless submitter
-
-    webhook_url = WebhookUrl.find_by(id: params['webhook_url_id'])
-
-    return unless webhook_url
-
-    attempt = params['attempt'].to_i
-
-    return if webhook_url.url.blank? || webhook_url.events.exclude?('form.started')
-
-    ActiveStorage::Current.url_options = Docuseal.default_url_options
-
-    resp = SendWebhookRequest.call(webhook_url, event_type: 'form.started',
-                                                event_uuid: params['event_uuid'],
-                                                record: submitter,
-                                                attempt:,
-                                                data: Submitters::SerializeForWebhook.call(submitter))
-
-    if (resp.nil? || resp.status.to_i >= 400) && attempt <= MAX_ATTEMPTS &&
-       (!Docuseal.multitenant? || submitter.account.account_configs.exists?(key: :plan))
-      SendFormStartedWebhookRequestJob.perform_in((2**attempt).minutes, {
-                                                    **params,
-                                                    'attempt' => attempt + 1,
-                                                    'last_status' => resp&.status.to_i
-                                                  })
-    end
-  end
+  webhook_request event_type: 'form.started',
+                  record_class: Submitter,
+                  record_id_param: 'submitter_id',
+                  data: Submitters::SerializeForWebhook,
+                  default_url_options: true
 end

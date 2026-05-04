@@ -1,38 +1,10 @@
 # frozen_string_literal: true
 
 class SendTemplateUpdatedWebhookRequestJob
-  include Sidekiq::Job
+  include WebhookRequestJob
 
-  sidekiq_options queue: :webhooks
-
-  MAX_ATTEMPTS = 10
-
-  def perform(params = {})
-    template = Template.find_by(id: params['template_id'])
-
-    return unless template
-
-    webhook_url = WebhookUrl.find_by(id: params['webhook_url_id'])
-
-    return unless webhook_url
-
-    attempt = params['attempt'].to_i
-
-    return if webhook_url.url.blank? || webhook_url.events.exclude?('template.updated')
-
-    resp = SendWebhookRequest.call(webhook_url, event_type: 'template.updated',
-                                                event_uuid: params['event_uuid'],
-                                                record: template,
-                                                attempt:,
-                                                data: Templates::SerializeForApi.call(template))
-
-    if (resp.nil? || resp.status.to_i >= 400) && attempt <= MAX_ATTEMPTS &&
-       (!Docuseal.multitenant? || template.account.account_configs.exists?(key: :plan))
-      SendTemplateUpdatedWebhookRequestJob.perform_in((2**attempt).minutes, {
-                                                        **params,
-                                                        'attempt' => attempt + 1,
-                                                        'last_status' => resp&.status.to_i
-                                                      })
-    end
-  end
+  webhook_request event_type: 'template.updated',
+                  record_class: Template,
+                  record_id_param: 'template_id',
+                  data: Templates::SerializeForApi
 end

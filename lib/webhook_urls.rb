@@ -1,19 +1,22 @@
 # frozen_string_literal: true
 
 module WebhookUrls
-  EVENT_TYPE_TO_JOB_CLASS = {
-    'form.started' => SendFormStartedWebhookRequestJob,
-    'form.completed' => SendFormCompletedWebhookRequestJob,
-    'form.declined' => SendFormDeclinedWebhookRequestJob,
-    'form.viewed' => SendFormViewedWebhookRequestJob,
-    'submission.created' => SendSubmissionCreatedWebhookRequestJob,
-    'submission.completed' => SendSubmissionCompletedWebhookRequestJob,
-    'submission.expired' => SendSubmissionExpiredWebhookRequestJob,
-    'submission.archived' => SendSubmissionArchivedWebhookRequestJob,
-    'template.created' => SendTemplateCreatedWebhookRequestJob,
-    'template.updated' => SendTemplateUpdatedWebhookRequestJob,
-    'template.archived' => SendTemplateArchivedWebhookRequestJob
-  }.freeze
+  EVENT_JOB_CLASSES = [
+    SendFormStartedWebhookRequestJob,
+    SendFormCompletedWebhookRequestJob,
+    SendFormDeclinedWebhookRequestJob,
+    SendFormViewedWebhookRequestJob,
+    SendSubmissionCreatedWebhookRequestJob,
+    SendSubmissionCompletedWebhookRequestJob,
+    SendSubmissionExpiredWebhookRequestJob,
+    SendSubmissionArchivedWebhookRequestJob,
+    SendTemplateCreatedWebhookRequestJob,
+    SendTemplateUpdatedWebhookRequestJob,
+    SendTemplateArchivedWebhookRequestJob
+  ].freeze
+
+  EVENT_TYPE_TO_JOB_CLASS =
+    EVENT_JOB_CLASSES.index_by { |job_class| job_class.webhook_request_config.fetch(:event_type) }.freeze
 
   EVENT_TYPE_ID_KEYS = {
     'form' => 'submitter_id',
