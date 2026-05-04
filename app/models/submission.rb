@@ -112,6 +112,7 @@ class Submission < ApplicationRecord
     bulk: 'bulk',
     api: 'api',
     embed: 'embed',
+    mcp: 'mcp',
     link: 'link'
   }, scope: false, prefix: true
 

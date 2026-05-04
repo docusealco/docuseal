@@ -43,6 +43,7 @@ module Mcp
           account:,
           author: current_user,
           folder: account.default_template_folder,
+          source: :mcp,
           name: arguments['name'].to_s.presence || 'New Template',
           fields: [],
           schema: []
