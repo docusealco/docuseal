@@ -8,6 +8,6 @@ module JsonWebToken
   end
 
   def decode(token)
-    JWT.decode(token, Rails.application.secret_key_base)[0]
+    JWT.decode(token, Rails.application.secret_key_base, true, algorithms: ['HS256'])[0]
   end
 end
