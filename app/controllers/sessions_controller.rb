@@ -27,8 +27,6 @@ class SessionsController < Devise::SessionsController
   def after_sign_in_path_for(...)
     if params[:redir].present?
       return console_redirect_index_path(redir: params[:redir]) if params[:redir].starts_with?(Docuseal::CONSOLE_URL)
-
-      return params[:redir]
     end
 
     super
