@@ -10,7 +10,7 @@ class TemplatesShareLinkController < ApplicationController
 
     @template.update!(template_params)
 
-    if params[:redir].present?
+    if params[:redir].present? && params[:redir].start_with?('/')
       redirect_to params[:redir]
     else
       head :ok
