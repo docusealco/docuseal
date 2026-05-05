@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     resources :submissions, only: %i[index show create destroy] do
       resources :documents, only: %i[index], controller: 'submission_documents'
       collection do
+        post :pdf, action: :create_from_pdf
         resources :init, only: %i[create], controller: 'submissions'
         resources :emails, only: %i[create], controller: 'submissions', as: :submissions_emails
       end
@@ -68,6 +69,7 @@ Rails.application.routes.draw do
   resource :user_initials, only: %i[edit update destroy]
   resources :submissions_archived, only: %i[index], path: 'submissions/archived'
   resources :submissions, only: %i[index], controller: 'submissions_dashboard'
+  post '/submissions/pdf', to: 'api/submissions#create_from_pdf', defaults: { format: :json }
   resources :submissions, only: %i[show destroy] do
     resources :unarchive, only: %i[create], controller: 'submissions_unarchive'
     resources :events, only: %i[index], controller: 'submission_events'

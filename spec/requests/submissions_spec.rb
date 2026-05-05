@@ -214,6 +214,47 @@ describe 'Submission API' do
     end
   end
 
+  describe 'POST /api/submissions/pdf' do
+    it 'creates a one-off submission from a PDF with explicit fields' do
+      file = Base64.strict_encode64(Rails.root.join('spec/fixtures/sample-document.pdf').binread)
+
+      post '/api/submissions/pdf', headers: { 'x-auth-token': author.access_token.token }, params: {
+        name: 'Custom contract',
+        send_email: false,
+        documents: [
+          {
+            name: 'contract',
+            file: file,
+            fields: [
+              {
+                name: 'Signature',
+                type: 'signature',
+                role: 'Signer',
+                areas: [{ page: 1, x: 0.1, y: 0.2, w: 0.3, h: 0.1 }]
+              }
+            ]
+          }
+        ],
+        submitters: [{ role: 'Signer', email: 'john.doe@example.com' }]
+      }.to_json
+
+      expect(response).to have_http_status(:ok)
+
+      submission = Submission.last
+
+      expect(submission.template_id).to be_nil
+      expect(submission.name).to eq('Custom contract')
+      expect(submission.documents_attachments.size).to eq(1)
+      expect(submission.template_schema.first['name']).to eq('contract')
+      expect(submission.template_fields.first['name']).to eq('Signature')
+      expect(submission.template_fields.first['areas'].first['page']).to eq(0)
+      expect(response.parsed_body['id']).to eq(submission.id)
+      expect(response.parsed_body['schema']).to eq(JSON.parse(submission.template_schema.to_json))
+      expect(response.parsed_body['fields']).to eq(JSON.parse(submission.template_fields.to_json))
+      expect(response.parsed_body['submitters'].first['embed_src']).to be_present
+    end
+  end
+
   describe 'POST /api/submissions/emails' do
     it 'creates a submission using email' do
       post '/api/submissions/emails', headers: { 'x-auth-token': author.access_token.token }, params: {

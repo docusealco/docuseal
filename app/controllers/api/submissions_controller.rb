@@ -87,6 +87,33 @@ module Api
       render json: { error: e.message }, status: :unprocessable_content
     end
 
+    def create_from_pdf
+      authorize!(:create, Submission)
+      authorize!(:create, Template.new(account: current_account, author: current_user))
+
+      params[:send_email] = true unless params.key?(:send_email)
+      params[:send_sms] = false unless params.key?(:send_sms)
+
+      submission = Submissions::CreateFromPdf.call(user: current_user, params: params.to_unsafe_h)
+      submitters = submission.submitters.preload(attachments_attachments: :blob)
+      expires_at = Accounts.link_expires_at(current_account)
+
+      json = Submissions::SerializeForApi.call(submission, submitters, params.merge(include: 'fields'),
+                                               with_documents: false, expires_at: expires_at)
+      json['schema'] = submission.template_schema
+      json['submitters'] = submitters.map do |submitter|
+        Submitters::SerializeForApi.call(submitter, with_documents: false, with_urls: true, params: params,
+                                                    expires_at: expires_at)
+      end
+
+      render json: json
+    rescue Submissions::CreateFromPdf::Error, Submitters::NormalizeValues::BaseError,
+           Submissions::CreateFromSubmitters::BaseError => e
+      Rollbar.warning(e) if defined?(Rollbar)
+
+      render json: { error: e.message }, status: :unprocessable_content
+    end
+
     def destroy
       if params[:permanently].in?(['true', true])
         @submission.destroy!
