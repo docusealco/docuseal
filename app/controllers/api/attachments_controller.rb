@@ -10,7 +10,7 @@ module Api
     def create
       submitter = Submitter.find_by!(slug: params[:submitter_slug])
 
-      unless can_upload?(submitter)
+      unless can_upload?(submitter) && authorized_for_form?(submitter)
         Rollbar.error("Can't upload: #{submitter.id}") if defined?(Rollbar)
 
         return render json: { error: I18n.t('form_has_been_archived') }, status: :unprocessable_content
@@ -44,6 +44,12 @@ module Api
       Rollbar.error(e) if defined?(Rollbar)
 
       render json: { error: e.message }, status: :unprocessable_content
+    end
+
+    private
+
+    def authorized_for_form?(submitter)
+      Submitters::AuthorizedForForm.call(submitter, nil, request)
     end
 
     def can_upload?(submitter)
