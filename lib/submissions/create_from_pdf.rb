@@ -14,47 +14,15 @@ module Submissions
       template = nil
       attrs = params.to_h.with_indifferent_access
 
-      raise Error, 'documents are required' if attrs[:documents].blank?
-      raise Error, 'submitters are required' if attrs[:submitters].blank?
-      raise Error, 'template_ids are not supported by this endpoint yet' if attrs[:template_ids].present?
+      validate_attrs!(attrs)
 
-      template = build_template(user, attrs)
-      documents_attrs = sorted_documents_attrs(attrs[:documents])
-      documents_info = attach_documents(template, documents_attrs, attrs)
-      documents = documents_info.pluck(:attachment)
+      template = build_template_with_documents(user, attrs)
+      submission = create_submission(template, user, attrs)
 
-      template.schema = documents.map.with_index do |document, index|
-        {
-          attachment_uuid: document.uuid,
-          name: documents_attrs[index][:name].presence || document.filename.base
-        }
-      end
-      template.submitters = build_template_submitters(attrs)
-      template.fields = build_fields(template, documents_info)
+      clone_documents_to_submission(template, submission)
+      enqueue_events(submission)
 
-      raise Error, 'PDF does not contain fields' if template.fields.blank?
-
-      template.save!
-
-      submissions = Submissions.create_from_submitters(
-        template: template,
-        user: user,
-        source: :api,
-        with_template: false,
-        submitters_order: attrs[:order] || attrs[:submitters_order] ||
-                          Submissions::DEFAULT_SUBMITTERS_ORDER,
-        submissions_attrs: [submission_attrs(attrs)]
-      )
-
-      submissions.each { |submission| clone_documents_to_submission(template, submission) }
-
-      WebhookUrls.enqueue_events(submissions, 'submission.created')
-      Submissions.send_signature_requests(submissions)
-      SearchEntries.enqueue_reindex(submissions)
-
-      template.update!(archived_at: Time.current)
-
-      submissions.first
+      submission
     rescue Templates::CreateAttachments::PdfEncrypted
       raise Error, 'PDF encrypted'
     rescue DownloadUtils::UnableToDownload => e
@@ -63,6 +31,26 @@ module Submissions
       raise Error, "Invalid PDF: #{e.message}"
     ensure
       archive_template(template) if template&.persisted? && template.archived_at.blank?
+    end
+
+    def validate_attrs!(attrs)
+      raise Error, 'documents are required' if attrs[:documents].blank?
+      raise Error, 'submitters are required' if attrs[:submitters].blank?
+      raise Error, 'template_ids are not supported by this endpoint yet' if attrs[:template_ids].present?
+    end
+
+    def build_template_with_documents(user, attrs)
+      template = build_template(user, attrs)
+      documents_attrs = sorted_documents_attrs(attrs[:documents])
+      documents_info = attach_documents(template, documents_attrs, attrs)
+
+      template.schema = build_schema(documents_info, documents_attrs)
+      template.submitters = build_template_submitters(attrs)
+      template.fields = build_fields(template, documents_info)
+
+      raise Error, 'PDF does not contain fields' if template.fields.blank?
+
+      template.tap(&:save!)
     end
 
     def build_template(user, attrs)
@@ -76,6 +64,36 @@ module Submissions
         schema: [],
         submitters: []
       )
+    end
+
+    def build_schema(documents_info, documents_attrs)
+      documents_info.pluck(:attachment).map.with_index do |document, index|
+        {
+          attachment_uuid: document.uuid,
+          name: documents_attrs[index][:name].presence || document.filename.base
+        }
+      end
+    end
+
+    def create_submission(template, user, attrs)
+      Submissions.create_from_submitters(
+        template: template,
+        user: user,
+        source: :api,
+        with_template: false,
+        submitters_order: submitters_order(attrs),
+        submissions_attrs: [submission_attrs(attrs)]
+      ).first
+    end
+
+    def submitters_order(attrs)
+      attrs[:order] || attrs[:submitters_order] || Submissions::DEFAULT_SUBMITTERS_ORDER
+    end
+
+    def enqueue_events(submission)
+      WebhookUrls.enqueue_events([submission], 'submission.created')
+      Submissions.send_signature_requests([submission])
+      SearchEntries.enqueue_reindex([submission])
     end
 
     def attach_documents(template, documents_attrs, params)
@@ -139,9 +157,10 @@ module Submissions
 
     def build_template_submitters(attrs)
       attrs[:submitters].map.with_index do |submitter_attrs, index|
+        name = submitter_attrs[:role].presence || submitter_attrs[:name].presence || default_submitter_name(index)
+
         {
-          'name' => submitter_attrs[:role].presence || submitter_attrs[:name].presence ||
-                    default_submitter_name(index),
+          'name' => name,
           'uuid' => SecureRandom.uuid,
           'order' => submitter_attrs[:order]
         }.compact

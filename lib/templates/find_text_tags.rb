@@ -49,19 +49,21 @@ module Templates
     end
 
     def group_text_nodes_by_line(text_nodes)
-      text_nodes.each_with_object([]) do |node, lines|
-        line = lines.find { |items| same_line?(items.first, node) }
+      lines = text_nodes.each_with_object([]) do |node, items|
+        line = items.find { |line_items| same_line?(line_items.first, node) }
 
         if line
           line << node
         else
-          lines << [node]
+          items << [node]
         end
-      end.map { |line| line.sort_by(&:x) }
+      end
+
+      lines.map { |line| line.sort_by(&:x) }
     end
 
-    def same_line?(a, b)
-      (a.endy - b.endy).abs < [a.h, b.h].max
+    def same_line?(first_node, second_node)
+      (first_node.endy - second_node.endy).abs < [first_node.h, second_node.h].max
     end
 
     def parse_tag(text)
