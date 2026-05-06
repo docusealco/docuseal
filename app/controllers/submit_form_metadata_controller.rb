@@ -5,19 +5,19 @@ class SubmitFormMetadataController < ApplicationController
   skip_authorization_check
 
   def index
-    submitter = Submitter.find_by!(slug: params[:submit_form_slug])
+    @submitter = Submitter.find_by!(slug: params[:submit_form_slug])
 
-    return head :not_found if submitter.declined_at? ||
-                              submitter.completed_at? ||
-                              submitter.submission.archived_at? ||
-                              submitter.submission.expired? ||
-                              submitter.submission.template&.archived_at? ||
-                              submitter.account.archived_at? ||
-                              !Submitters::AuthorizedForForm.call(submitter, current_user, request)
+    return head :not_found if @submitter.declined_at? ||
+                              @submitter.completed_at? ||
+                              @submitter.submission.archived_at? ||
+                              @submitter.submission.expired? ||
+                              @submitter.submission.template&.archived_at? ||
+                              @submitter.account.archived_at? ||
+                              !Submitters::AuthorizedForForm.call(@submitter, current_user, request)
 
-    submission = submitter.submission
+    submission = @submitter.submission
     values = submission.submitters.reduce({}) { |acc, sub| acc.merge(sub.values) }
-    schema = Submissions.filtered_conditions_schema(submission, values:, include_submitter_uuid: submitter.uuid)
+    schema = Submissions.filtered_conditions_schema(submission, values:, include_submitter_uuid: @submitter.uuid)
 
     documents = schema.filter_map do |item|
       submission.schema_documents.find { |a| a.uuid == item['attachment_uuid'] }
