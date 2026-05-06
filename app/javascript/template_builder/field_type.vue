@@ -164,7 +164,7 @@ export default {
       }
     },
     skipTypes () {
-      return ['heading', 'datenow', 'strikethrough']
+      return ['heading', 'datenow']
     },
     fieldIconsSorted () {
       if (this.fieldTypes.length) {
