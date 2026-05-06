@@ -593,6 +593,12 @@ en: &en
   unable_to_resend_webhook_request: Unable to resend webhook request.
   new_webhook: New Webhook
   delete_webhook: Delete webhook
+  security: Security
+  webhook_security: Webhook Security
+  secret: Secret
+  hmac: HMAC
+  hmac_signing_secret: HMAC Signing Secret
+  hmac_signature_header_hint_html: 'Each request is signed with the %{header} header: &lt;timestamp&gt;.&lt;sha256&gt;.'
   count_submissions_have_been_created: '%{count} submissions have been created.'
   sms_length_cant_be_longer_than_120_bytes: SMS length can't be longer than 120 bytes
   connected_successfully: Connected successfully.
@@ -1637,6 +1643,12 @@ es: &es
   unable_to_resend_webhook_request: No se pudo reenviar la solicitud del webhook.
   new_webhook: Nuevo Webhook
   delete_webhook: Eliminar webhook
+  security: Seguridad
+  webhook_security: Seguridad del Webhook
+  secret: Secreto
+  hmac: HMAC
+  hmac_signing_secret: Secreto de firma HMAC
+  hmac_signature_header_hint_html: 'Cada solicitud se firma con el encabezado %{header}: &lt;timestamp&gt;.&lt;sha256&gt;.'
   count_submissions_have_been_created: '%{count} envíos han sido creados.'
   sms_length_cant_be_longer_than_120_bytes: La longitud del SMS no puede ser mayor a 120 bytes.
   connected_successfully: Conectado con éxito.
@@ -2678,6 +2690,12 @@ it: &it
   unable_to_resend_webhook_request: Impossibile reinviare la richiesta del webhook.
   new_webhook: Nuovo Webhook
   delete_webhook: Elimina webhook
+  security: Sicurezza
+  webhook_security: Sicurezza del Webhook
+  secret: Segreto
+  hmac: HMAC
+  hmac_signing_secret: Segreto di firma HMAC
+  hmac_signature_header_hint_html: 'Ogni richiesta viene firmata con l''intestazione %{header}: &lt;timestamp&gt;.&lt;sha256&gt;.'
   count_submissions_have_been_created: '%{count} invii sono stati creati.'
   sms_length_cant_be_longer_than_120_bytes: "La lunghezza dell'SMS non può superare i 120 byte."
   connected_successfully: Collegamento avvenuto con successo.
@@ -3720,6 +3738,12 @@ fr: &fr
   unable_to_resend_webhook_request: Impossible de renvoyer la requête webhook.
   new_webhook: Nouveau webhook
   delete_webhook: Supprimer le webhook
+  security: Sécurité
+  webhook_security: Sécurité du webhook
+  secret: Secret
+  hmac: HMAC
+  hmac_signing_secret: Secret de signature HMAC
+  hmac_signature_header_hint_html: 'Chaque requête est signée avec l''en-tête %{header} : &lt;timestamp&gt;.&lt;sha256&gt;.'
   count_submissions_have_been_created: "%{count} soumissions ont été créées."
   sms_length_cant_be_longer_than_120_bytes: La longueur du SMS ne peut pas dépasser 120 octets
   connected_successfully: Connecté avec succès.
@@ -4758,6 +4782,12 @@ pt: &pt
   unable_to_resend_webhook_request: Não foi possível reenviar a solicitação do webhook.
   new_webhook: Novo Webhook
   delete_webhook: Excluir webhook
+  security: Segurança
+  webhook_security: Segurança do Webhook
+  secret: Segredo
+  hmac: HMAC
+  hmac_signing_secret: Segredo de assinatura HMAC
+  hmac_signature_header_hint_html: 'Cada requisição é assinada com o cabeçalho %{header}: &lt;timestamp&gt;.&lt;sha256&gt;.'
   count_submissions_have_been_created: '%{count} submissões foram criadas.'
   sms_length_cant_be_longer_than_120_bytes: O comprimento do SMS não pode ultrapassar 120 bytes
   connected_successfully: Conectado com sucesso.
@@ -5799,6 +5829,12 @@ de: &de
   unable_to_resend_webhook_request: Webhook-Anfrage konnte nicht erneut gesendet werden.
   new_webhook: Neuer Webhook
   delete_webhook: Webhook löschen
+  security: Sicherheit
+  webhook_security: Webhook-Sicherheit
+  secret: Geheimnis
+  hmac: HMAC
+  hmac_signing_secret: HMAC-Signaturgeheimnis
+  hmac_signature_header_hint_html: 'Jede Anfrage wird mit dem %{header}-Header signiert: &lt;timestamp&gt;.&lt;sha256&gt;.'
   count_submissions_have_been_created: '%{count} Einreichungen wurden erstellt.'
   sms_length_cant_be_longer_than_120_bytes: Die SMS-Länge darf 120 Bytes nicht überschreiten.
   connected_successfully: Erfolgreich verbunden.
@@ -7245,6 +7281,12 @@ nl: &nl
   unable_to_resend_webhook_request: Kan webhook-verzoek niet opnieuw verzenden.
   new_webhook: Nieuwe webhook
   delete_webhook: Webhook verwijderen
+  security: Beveiliging
+  webhook_security: Webhook-beveiliging
+  secret: Geheim
+  hmac: HMAC
+  hmac_signing_secret: HMAC-ondertekeningsgeheim
+  hmac_signature_header_hint_html: 'Elk verzoek wordt ondertekend met de %{header}-header: &lt;timestamp&gt;.&lt;sha256&gt;.'
   count_submissions_have_been_created: "%{count} inzendingen zijn aangemaakt."
   sms_length_cant_be_longer_than_120_bytes: SMS-lengte mag niet langer zijn dan 120 bytes
   connected_successfully: Succesvol verbonden.

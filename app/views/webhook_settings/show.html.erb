@@ -23,7 +23,7 @@
             <div class="flex items-center space-x-2 md:absolute md:right-0">
               <%= link_to webhook_secret_path(@webhook_url), class: 'btn btn-outline btn-sm bg-white', data: { turbo_frame: 'modal' } do %>
                 <%= svg_icon('lock', class: 'w-4 h-4') %>
-                <span><%= @webhook_url.secret.present? ? t('edit_secret') : t('add_secret') %></span>
+                <span><%= t('security') %></span>
               <% end %>
               <div class="tooltip tooltip-left md:tooltip-top" data-tip="<%= t('delete_webhook') %>">
                 <%= button_to settings_webhook_path(@webhook_url), class: 'btn btn-warning btn-sm', method: :delete, data: { turbo_confirm: t('are_you_sure_') } do %>

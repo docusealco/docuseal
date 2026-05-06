@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_16_100000) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_06_120000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
   enable_extension "pg_catalog.plpgsql"
@@ -545,6 +545,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_16_100000) do
     t.bigint "account_id", null: false
     t.datetime "created_at", null: false
     t.text "events", null: false
+    t.text "hmac_secret", null: false
     t.text "secret", null: false
     t.string "sha1", null: false
     t.datetime "updated_at", null: false

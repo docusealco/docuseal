@@ -83,6 +83,7 @@ Rails.application.routes.draw do
   resources :submitters_resubmit, only: %i[update]
   resources :template_folders_autocomplete, only: %i[index]
   resources :webhook_secret, only: %i[show update]
+  resources :webhook_hmac, only: %i[show]
   resources :webhook_preferences, only: %i[update]
   resource :templates_upload, only: %i[create]
   authenticated do
