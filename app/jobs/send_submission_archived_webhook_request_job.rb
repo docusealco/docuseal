@@ -26,13 +26,12 @@ class SendSubmissionArchivedWebhookRequestJob
                                                 attempt:,
                                                 data: submission.as_json(only: %i[id archived_at]))
 
-    if (resp.nil? || resp.status.to_i >= 400) && attempt <= MAX_ATTEMPTS &&
-       (!Docuseal.multitenant? || submission.account.account_configs.exists?(key: :plan))
-      SendSubmissionArchivedWebhookRequestJob.perform_in((2**attempt).minutes, {
-                                                           **params,
-                                                           'attempt' => attempt + 1,
-                                                           'last_status' => resp&.status.to_i
-                                                         })
-    end
+    return if attempt > MAX_ATTEMPTS || (resp && resp.status.to_i < 400)
+
+    SendSubmissionArchivedWebhookRequestJob.perform_in((2**attempt).minutes, {
+                                                         **params,
+                                                         'attempt' => attempt + 1,
+                                                         'last_status' => resp&.status.to_i
+                                                       })
   end
 end
