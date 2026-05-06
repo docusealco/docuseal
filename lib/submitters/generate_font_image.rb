@@ -11,7 +11,7 @@ module Submitters
     }.freeze
 
     FONT_ALIASES = {
-      'initials' => 'Go Noto Kurrent-Bold Bold',
+      'initials' => 'Dancing Script Regular',
       'signature' => 'Dancing Script Regular'
     }.freeze
 
