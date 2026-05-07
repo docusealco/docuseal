@@ -20,6 +20,6 @@ class SubmitFormValuesController < ApplicationController
     render json: {
       value:,
       attachment: attachment&.as_json(only: %i[uuid created_at], methods: %i[url filename content_type])
-    }, head: :ok
+    }
   end
 end
