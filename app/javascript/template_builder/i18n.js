@@ -215,7 +215,11 @@ const en = {
   align_bottom: 'Align Bottom',
   fields_selected: '{count} Fields Selected',
   field_added: '{count} Field Added',
-  fields_added: '{count} Fields Added'
+  fields_added: '{count} Fields Added',
+  revisions: 'Revisions',
+  apply: 'Apply',
+  no_revisions_yet: 'No revisions yet',
+  viewing_revision_from: 'Viewing revision from {date}'
 }
 
 const es = {
@@ -435,7 +439,11 @@ const es = {
   align_bottom: 'Alinear abajo',
   fields_selected: '{count} Campos Seleccionados',
   field_added: '{count} Campo Añadido',
-  fields_added: '{count} Campos Añadidos'
+  fields_added: '{count} Campos Añadidos',
+  revisions: 'Revisiones',
+  apply: 'Aplicar',
+  no_revisions_yet: 'Aún no hay revisiones',
+  viewing_revision_from: 'Viendo revisión del {date}'
 }
 
 const it = {
@@ -655,7 +663,11 @@ const it = {
   align_bottom: 'Allinea in basso',
   fields_selected: '{count} Campi Selezionati',
   field_added: '{count} Campo Aggiunto',
-  fields_added: '{count} Campi Aggiunti'
+  fields_added: '{count} Campi Aggiunti',
+  revisions: 'Revisioni',
+  apply: 'Applica',
+  no_revisions_yet: 'Nessuna revisione ancora',
+  viewing_revision_from: 'Visualizzazione revisione del {date}'
 }
 
 const pt = {
@@ -875,7 +887,11 @@ const pt = {
   align_bottom: 'Alinhar à parte inferior',
   fields_selected: '{count} Campos Selecionados',
   field_added: '{count} Campo Adicionado',
-  fields_added: '{count} Campos Adicionados'
+  fields_added: '{count} Campos Adicionados',
+  revisions: 'Revisões',
+  apply: 'Aplicar',
+  no_revisions_yet: 'Nenhuma revisão ainda',
+  viewing_revision_from: 'Visualizando revisão de {date}'
 }
 
 const fr = {
@@ -1095,7 +1111,11 @@ const fr = {
   align_bottom: 'Aligner en bas',
   fields_selected: '{count} Champs Sélectionnés',
   field_added: '{count} Champ Ajouté',
-  fields_added: '{count} Champs Ajoutés'
+  fields_added: '{count} Champs Ajoutés',
+  revisions: 'Révisions',
+  apply: 'Appliquer',
+  no_revisions_yet: 'Aucune révision pour le moment',
+  viewing_revision_from: 'Affichage de la révision du {date}'
 }
 
 const de = {
@@ -1315,7 +1335,11 @@ const de = {
   align_bottom: 'Unten ausrichten',
   fields_selected: '{count} Felder Ausgewählt',
   field_added: '{count} Feld Hinzugefügt',
-  fields_added: '{count} Felder Hinzugefügt'
+  fields_added: '{count} Felder Hinzugefügt',
+  revisions: 'Revisionen',
+  apply: 'Anwenden',
+  no_revisions_yet: 'Noch keine Revisionen',
+  viewing_revision_from: 'Ansicht der Revision vom {date}'
 }
 
 const nl = {
@@ -1535,7 +1559,11 @@ const nl = {
   align_bottom: 'Onder uitlijnen',
   fields_selected: '{count} Velden Geselecteerd',
   field_added: '{count} Veld Toegevoegd',
-  fields_added: '{count} Velden Toegevoegd'
+  fields_added: '{count} Velden Toegevoegd',
+  revisions: 'Revisies',
+  apply: 'Toepassen',
+  no_revisions_yet: 'Nog geen revisies',
+  viewing_revision_from: 'Revisie van {date} bekijken'
 }
 
 export { en, es, it, pt, fr, de, nl }

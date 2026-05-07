@@ -77,6 +77,8 @@ class TemplatesController < ApplicationController
 
     WebhookUrls.enqueue_events(@template, 'template.updated')
 
+    TemplateVersions.find_or_create_for(@template, author: current_user) if params[:revision]
+
     head :ok
   end
 
