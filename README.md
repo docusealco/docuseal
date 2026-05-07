@@ -2,9 +2,15 @@
 
 > Fork of [DocuSeal](https://github.com/docusealco/docuseal) with select Pro features "unlocked" (read: vibe-coded) as open source.
 
-This fork adds features that are paywalled in the official DocuSeal Pro offering, making them available for self-hosted deployments under the same AGPL-3.0 license.
+This fork adds features that are not part of the opensource version of DocuSeal, making them available for self-hosted deployments under the same AGPL-3.0 license.
 
-I never had any access to the Pro Version and I have no idea how DocuSeal LLC implemented these features. I don't even think if "white-room" copy is applicable here, but I did not copy or use any copyright protected source code from DocuSeal LLC. These changes here are "designed" by the official API documentation and feature spotlights on the website.
+Disclaimer:
+
+I never had any access to the Pro Version and I have no idea how DocuSeal LLC implemented these features. I don't even think that "white-room copy" would be the right description here.
+I did not review, copy or use any copyright protected source code from DocuSeal LLC. The changes in this repo are "designed" based on the official API documentation and feature spotlights on the website or what I thought this feature should look like.
+The plan of this repo is not to challenge docuseals position, I just needed some features that I though are simple enough to vibe code and play around with. I would not recommend using this fork for production environment and I can't guarantee maintenance - at all.
+If you need a professional, reliable solution, stick with the upstream project or buy a subscription with Docuseal! 
+Support Companies who are providing OpenSource Solutions!
 
 
 ## vibe-coded "Pro" Features
