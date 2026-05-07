@@ -113,6 +113,31 @@
       </span>
     </button>
   </Teleport>
+  <Teleport
+    v-for="ref in (canShowCompleteButton ? [completeButtonRef, completeButtonMobileRef].filter(Boolean) : [])"
+    :key="ref"
+    :to="ref"
+  >
+    <button
+      class="btn btn-sm btn-neutral text-white px-4"
+      form="steps_form"
+      type="submit"
+      name="completed"
+      value="true"
+      :disabled="isSubmittingComplete"
+    >
+      <span class="flex items-center">
+        <IconInnerShadowTop
+          v-if="isSubmittingComplete"
+          class="mr-1 animate-spin w-5 h-5"
+          aria-hidden="true"
+        />
+        <span>
+          {{ t('complete') }}
+        </span>
+      </span>
+    </button>
+  </Teleport>
   <button
     v-if="!isFormVisible"
     id="expand_form_button"
@@ -791,6 +816,26 @@ export default {
       required: false,
       default: null
     },
+    completeButtonRef: {
+      type: Object,
+      required: false,
+      default: null
+    },
+    completeButtonMobileRef: {
+      type: Object,
+      required: false,
+      default: null
+    },
+    declineButtonRef: {
+      type: Object,
+      required: false,
+      default: null
+    },
+    declineButtonMobileRef: {
+      type: Object,
+      required: false,
+      default: null
+    },
     schema: {
       type: Array,
       required: false,
@@ -1056,6 +1101,10 @@ export default {
         })
       })
     },
+    canShowCompleteButton () {
+      return this.completeButtonRef && !this.emptyValueRequiredStep && !this.isCompleted && !this.isInvite &&
+        this.stepFields.some((fields) => fields.some((f) => !isEmpty(this.values[f.uuid])))
+    },
     submitButtonText () {
       if (this.alwaysMinimize) {
         return this.t('submit')
@@ -1236,6 +1285,15 @@ export default {
     currentStepFields (value) {
       if (isEmpty(value) && this.currentStep > 0) {
         this.currentStep -= 1
+      }
+    },
+    canShowCompleteButton: {
+      immediate: true,
+      handler (show) {
+        this.$nextTick(() => {
+          if (this.declineButtonRef) this.declineButtonRef.classList.toggle('hidden', show)
+          if (this.declineButtonMobileRef) this.declineButtonMobileRef.classList.toggle('hidden', show)
+        })
       }
     },
     attachmentConditionsIndex: {

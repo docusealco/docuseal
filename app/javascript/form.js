@@ -52,7 +52,11 @@ safeRegisterElement('submission-form', class extends HTMLElement {
       completedMessage: JSON.parse(this.dataset.completedMessage || '{}'),
       completedRedirectUrl: this.dataset.completedRedirectUrl,
       attachments: reactive(JSON.parse(this.dataset.attachments)),
-      fields: JSON.parse(this.dataset.fields)
+      fields: JSON.parse(this.dataset.fields),
+      completeButtonRef: document.getElementById('complete_button_container'),
+      completeButtonMobileRef: document.getElementById('complete_button_container_mobile'),
+      declineButtonRef: document.getElementById('decline_button')?.closest('modal-button'),
+      declineButtonMobileRef: document.getElementById('decline_button_mobile')?.closest('modal-button')
     })
 
     this.app.mount(this.appElem)
