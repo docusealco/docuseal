@@ -7,10 +7,10 @@ This fork adds features that are not part of the opensource version of DocuSeal,
 Disclaimer:
 
 I never had any access to the Pro Version and I have no idea how DocuSeal LLC implemented these features. I don't even think that "white-room copy" would be the right description here.
-I did not review, copy or use any copyright protected source code from DocuSeal LLC. The changes in this repo are "designed" based on the official API documentation and feature spotlights on the website or what I thought this feature should look like.
-The plan of this repo is not to challenge docuseals position, I just needed some features that I though are simple enough to vibe code and play around with. I would not recommend using this fork for production environment and I can't guarantee maintenance - at all.
+I did not review, copy, or use any copyright-protected source code from DocuSeal LLC. The changes in this repo are "designed" based on the official API documentation and feature spotlights on the website or what I thought these features should look like.
+The plan of this repo is not to challenge Docuseal's position; I just needed some features that I thought were simple enough to vibe code and play around with. I would not recommend using this fork for a production environment, and I can't guarantee maintenance at all.
 If you need a professional, reliable solution, stick with the upstream project or buy a subscription with Docuseal! 
-Support Companies who are providing OpenSource Solutions!
+Support companies that are providing open-source solutions!
 
 
 ## vibe-coded "Pro" Features
