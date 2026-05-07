@@ -1056,6 +1056,12 @@ en: &en
     submission_submitters: Submitters list
     submission_link: Submission link
     documents_link: Documents link
+    sender_name: Sender name
+    sender_first_name: Sender first name
+    sender_email: Sender email
+    submitter_name: Submitter name
+    submitter_first_name: Submitter first name
+    submitter_email: Submitter email
   time:
     formats:
       detailed: "%B %d, %Y %H:%M:%S"
@@ -2097,6 +2103,12 @@ es: &es
     submission_submitters: Lista de firmantes
     submission_link: Enlace del envío
     documents_link: Enlace de los documentos
+    sender_name: Nombre del remitente
+    sender_first_name: Nombre de pila del remitente
+    sender_email: Email del remitente
+    submitter_name: Nombre del firmante
+    submitter_first_name: Nombre de pila del firmante
+    submitter_email: Email del firmante
   time:
     formats:
       detailed: "%-d de %B de %Y %H:%M:%S"
@@ -3139,6 +3151,12 @@ it: &it
     submission_submitters: Lista dei firmatari
     submission_link: Link dell'invio
     documents_link: Link dei documenti
+    sender_name: Nome del mittente
+    sender_first_name: Nome di battesimo del mittente
+    sender_email: Email del mittente
+    submitter_name: Nome del firmatario
+    submitter_first_name: Nome di battesimo del firmatario
+    submitter_email: Email del firmatario
   time:
     formats:
       detailed: "%d %B %Y %H:%M:%S"
@@ -4177,6 +4195,12 @@ fr: &fr
     submission_submitters: Liste des signataires
     submission_link: Lien de la soumission
     documents_link: Lien des documents
+    sender_name: Nom de l'expéditeur
+    sender_first_name: Prénom de l'expéditeur
+    sender_email: Email de l'expéditeur
+    submitter_name: Nom du signataire
+    submitter_first_name: Prénom du signataire
+    submitter_email: Email du signataire
   time:
     formats:
       detailed: "%A %d %B %Y %Hh%Mm%Ss"
@@ -5218,6 +5242,12 @@ pt: &pt
     submission_submitters: Lista de signatários
     submission_link: Link da submissão
     documents_link: Link dos documentos
+    sender_name: Nome do remetente
+    sender_first_name: Primeiro nome do remetente
+    sender_email: Email do remetente
+    submitter_name: Nome do signatário
+    submitter_first_name: Primeiro nome do signatário
+    submitter_email: Email do signatário
   time:
     formats:
       detailed: "%A, %d de %B de %Y, %H:%M:%Sh"
@@ -6259,6 +6289,12 @@ de: &de
     submission_submitters: Liste der Unterzeichner
     submission_link: Link der Einreichung
     documents_link: Link der Dokumente
+    sender_name: Name des Absenders
+    sender_first_name: Vorname des Absenders
+    sender_email: E-Mail des Absenders
+    submitter_name: Name des Unterzeichners
+    submitter_first_name: Vorname des Unterzeichners
+    submitter_email: E-Mail des Unterzeichners
   time:
     formats:
       detailed: "%A, %d. %B %Y, %H:%M:%S Uhr"
@@ -7701,6 +7737,12 @@ nl: &nl
     submission_submitters: Lijst van ondertekenaars
     submission_link: Link van de inzending
     documents_link: Link van de documenten
+    sender_name: Naam van de afzender
+    sender_first_name: Voornaam van de afzender
+    sender_email: E-mail van de afzender
+    submitter_name: Naam van de ondertekenaar
+    submitter_first_name: Voornaam van de ondertekenaar
+    submitter_email: E-mail van de ondertekenaar
   time:
     formats:
       detailed: "%d %B %Y %H:%M:%S"

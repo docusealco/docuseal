@@ -53,7 +53,7 @@
           </div>
         </div>
         <% if local_assigns[:variables]&.any? %>
-          <% variable_labels = { 'account.name' => t('variables.account_name'), 'submitter.link' => t('variables.submitter_link'), 'template.name' => t('variables.template_name'), 'submission.submitters' => t('variables.submission_submitters'), 'submission.link' => t('variables.submission_link'), 'documents.link' => t('variables.documents_link') } %>
+          <% variable_labels = { 'account.name' => t('variables.account_name'), 'submitter.link' => t('variables.submitter_link'), 'template.name' => t('variables.template_name'), 'submission.submitters' => t('variables.submission_submitters'), 'submission.link' => t('variables.submission_link'), 'documents.link' => t('variables.documents_link'), 'sender.name' => t('variables.sender_name'), 'sender.first_name' => t('variables.sender_first_name'), 'sender.email' => t('variables.sender_email'), 'submitter.name' => t('variables.submitter_name'), 'submitter.first_name' => t('variables.submitter_first_name'), 'submitter.email' => t('variables.submitter_email') } %>
           <div class="dropdown dropdown-end ml-auto">
             <label tabindex="0" class="flex items-center gap-1 text-sm px-2 py-1 rounded hover:bg-base-200 cursor-pointer">
               <%= t('add_variable') %>
