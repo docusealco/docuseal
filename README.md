@@ -1,107 +1,79 @@
-<h1 align="center" style="border-bottom: none">
-  <div>
-    <a href="https://www.docuseal.com">
-      <img  alt="DocuSeal" src="https://github.com/user-attachments/assets/38b45682-ffa4-4919-abde-d2d422325c44" width="80" />
-      <br>
-    </a>
-    DocuSeal
-  </div>
-</h1>
-<h3 align="center">
-  Open source document filling and signing
-</h3>
-<p align="center">
-  <a href="https://hub.docker.com/r/docuseal/docuseal">
-    <img alt="Docker releases" src="https://img.shields.io/docker/v/docuseal/docuseal">
-  </a>
-  <a href="https://discord.gg/qygYCDGck9">
-    <img src="https://img.shields.io/discord/1125112641170448454?logo=discord"/>
-  </a>
-  <a href="https://twitter.com/intent/follow?screen_name=docusealco">
-    <img src="https://img.shields.io/twitter/follow/docusealco?style=social" alt="Follow @docusealco" />
-  </a>
-</p>
-<p>
-DocuSeal is an open source platform that provides secure and efficient digital document signing and processing. Create PDF forms to have them filled and signed online on any device with an easy-to-use, mobile-optimized web tool.
-</p>
-<h2 align="center">
-  <a href="https://demo.docuseal.tech">✨ Live Demo</a>
-  <span>|</span>
-  <a href="https://docuseal.com/sign_up">☁️ Try in Cloud</a>
-</h2>
+# DocuSeal like-a-Pro (Community Edition)
 
-[![Demo](https://github.com/docusealco/docuseal/assets/5418788/d8703ea3-361a-423f-8bfe-eff1bd9dbe14)](https://demo.docuseal.tech)
+> Fork of [DocuSeal](https://github.com/docusealco/docuseal) with select Pro features "unlocked" (read: vibe-coded) as open source.
 
-## Features
-- PDF form fields builder (WYSIWYG)
-- 12 field types available (Signature, Date, File, Checkbox etc.)
-- Multiple submitters per document
-- Automated emails via SMTP
-- Files storage on disk or AWS S3, Google Storage, Azure Cloud
-- Automatic PDF eSignature
-- PDF signature verification
-- Users management
-- Mobile-optimized
-- 7 UI languages with signing available in 14 languages
-- API and Webhooks for integrations
-- Easy to deploy in minutes
+This fork adds features that are paywalled in the official DocuSeal Pro offering, making them available for self-hosted deployments under the same AGPL-3.0 license.
 
-## Pro Features
-- Company logo and white-label
-- User roles
-- Automated reminders
-- Invitation and identify verification via SMS
+I never had any access to the Pro Version and I have no idea how DocuSeal LLC implemented these features. I don't even think if "white-room" copy is applicable here, but I did not copy or use any copyright protected source code from DocuSeal LLC. These changes here are "designed" by the official API documentation and feature spotlights on the website.
+
+
+## vibe-coded "Pro" Features
+
+| Feature | Status | Description |
+|---------|--------|-------------|
+| Company logo / white-label | Done | Upload your logo in Settings > Personalization. Displayed in signing forms and emails. |
+| Automated reminders | Done | Configure reminder intervals per-account. Pending signers receive scheduled follow-up emails. |
+| Template creation via API | Done | `POST /api/templates/pdf` and `PUT /api/templates/:id/documents` — create and manage templates programmatically with field coordinates or embedded text tags. |
+| Professional email design | Done | Table-based responsive email layout with company branding, styled CTA buttons, and proper footer. |
+
+See [`docs/API.md`](docs/API.md) for full API reference on the new endpoints.
+
+## What's NOT included
+
+These Pro features remain unavailable in this fork (they require significant UI/infrastructure work):
+
+- SMS invitation and verification
 - Conditional fields and formulas
-- Bulk send with CSV, XLSX spreadsheet import
+- Bulk send with CSV/XLSX import
 - SSO / SAML
-- Template creation with HTML API ([Guide](https://www.docuseal.com/guides/create-pdf-document-fillable-form-with-html-api))
-- Template creation with PDF or DOCX and field tags API ([Guide](https://www.docuseal.com/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form))
-- Embedded signing form ([React](https://github.com/docusealco/docuseal-react), [Vue](https://github.com/docusealco/docuseal-vue), [Angular](https://github.com/docusealco/docuseal-angular) or [JavaScript](https://www.docuseal.com/docs/embedded))
-- Embedded document form builder ([React](https://github.com/docusealco/docuseal-react), [Vue](https://github.com/docusealco/docuseal-vue), [Angular](https://github.com/docusealco/docuseal-angular) or [JavaScript](https://www.docuseal.com/docs/embedded))
-- [Learn more](https://www.docuseal.com/pricing)
+- Template creation with HTML or DOCX API
+- Embedded form builder components
 
 ## Deploy
 
-|Heroku|Railway|
-|:--:|:---:|
-| [<img alt="Deploy on Heroku" src="https://www.herokucdn.com/deploy/button.svg" height="40">](https://heroku.com/deploy?template=https://github.com/docusealco/docuseal-heroku) | [<img alt="Deploy on Railway" src="https://railway.app/button.svg" height="40">](https://railway.com/deploy/IGoDnc?referralCode=ruU7JR)|
-|**DigitalOcean**|**Render**|
-| [<img alt="Deploy on DigitalOcean" src="https://www.deploytodo.com/do-btn-blue.svg" height="40">](https://cloud.digitalocean.com/apps/new?repo=https://github.com/docusealco/docuseal-digitalocean/tree/master&refcode=421d50f53990) | [<img alt="Deploy to Render" src="https://render.com/images/deploy-to-render-button.svg" height="40">](https://render.com/deploy?repo=https://github.com/docusealco/docuseal-render)
-
-#### Docker
+#### Docker Compose (recommended)
 
 ```sh
-docker run --name docuseal -p 3000:3000 -v.:/data docuseal/docuseal
+git clone https://github.com/s256/docuseal-with-some-pro-features.git
+cd docuseal
+docker compose up --build
 ```
 
-By default DocuSeal docker container uses an SQLite database to store data and configurations. Alternatively, it is possible use PostgreSQL or MySQL databases by specifying the `DATABASE_URL` env variable.
+The app will be available at `http://localhost:3000`.
 
-#### Docker Compose
+To run behind a reverse proxy with SSL, uncomment the Caddy service in `docker-compose.yml` and set your domain:
 
-Download docker-compose.yml into your private server:
 ```sh
-curl https://raw.githubusercontent.com/docusealco/docuseal/master/docker-compose.yml > docker-compose.yml
+HOST=your-domain.com docker compose up --build
 ```
 
-Run the app under a custom domain over https using docker compose (make sure your DNS points to the server to automatically issue ssl certs with Caddy):
+#### Docker (standalone)
+
 ```sh
-sudo HOST=your-domain-name.com docker compose up
+docker build -t docuseal .
+docker run --name docuseal -p 3000:3000 -v ./docuseal:/data/docuseal docuseal
 ```
 
-## For Businesses
-### Integrate seamless document signing into your web or mobile apps with DocuSeal
+Uses PostgreSQL by default (see `docker-compose.yml`). For SQLite, use the upstream image or omit `DATABASE_URL`.
 
-At DocuSeal we have expertise and technologies to make documents creation, filling, signing and processing seamlessly integrated with your product. We specialize in working with various industries, including **Banking, Healthcare, Transport, Real Estate, eCommerce, KYC, CRM, and other software products** that require bulk document signing. By leveraging DocuSeal, we can assist in reducing the overall cost of developing and processing electronic documents while ensuring security and compliance with local electronic document laws.
+## Upstream Features
 
-[Book a Meeting](https://www.docuseal.com/contact)
+All features from the base DocuSeal OSS are included:
+
+- PDF form fields builder (WYSIWYG)
+- 12 field types (Signature, Date, File, Checkbox, etc.)
+- Multiple submitters per document
+- Automated emails via SMTP
+- File storage on disk or S3/GCS/Azure
+- Automatic PDF eSignature and verification
+- Users management
+- Mobile-optimized
+- UI in 7 languages, signing in 14 languages
+- API and Webhooks
+- Easy deployment
 
 ## License
 
-Distributed under the AGPLv3 License with Section 7(b) Additional Terms. See [LICENSE](https://github.com/docusealco/docuseal/blob/master/LICENSE) and [LICENSE_ADDITIONAL_TERMS](https://github.com/docusealco/docuseal/blob/master/LICENSE_ADDITIONAL_TERMS) for more information.
-Unless otherwise noted, all files © 2023-2026 DocuSeal LLC.
+Distributed under the AGPLv3 License with Section 7(b) Additional Terms. See [LICENSE](LICENSE) and [LICENSE_ADDITIONAL_TERMS](LICENSE_ADDITIONAL_TERMS) for more information.
 
-## Tools
-
-- [Signature Maker](https://www.docuseal.com/online-signature)
-- [Sign Document Online](https://www.docuseal.com/sign-documents-online)
-- [Fill PDF Online](https://www.docuseal.com/fill-pdf)
+Original work © 2023-2026 DocuSeal LLC. Modifications in this fork are released under the same license.

@@ -38,3 +38,6 @@ yarn-debug.log*
 /ee
 dump.rdb
 *.onnx
+
+pd-data/*
+docuseal/*
