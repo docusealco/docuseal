@@ -39,6 +39,10 @@ Rails.application.routes.draw do
     resources :templates, only: %i[update show index destroy] do
       resources :clone, only: %i[create], controller: 'templates_clone'
       resources :submissions, only: %i[index create]
+      resource :documents, only: %i[update], controller: 'templates_documents'
+    end
+    scope :templates, as: :templates do
+      post 'pdf', to: 'templates_pdf#create', as: :pdf
     end
     resources :tools, only: %i[] do
       post :merge, on: :collection
@@ -192,6 +196,7 @@ Rails.application.routes.draw do
     resources :integration_users, only: %i[index], path: 'users/:status', controller: 'users',
                                   defaults: { status: :integration }
     resource :personalization, only: %i[show create], controller: 'personalization_settings'
+    resource :account_logo, only: %i[create destroy], controller: 'account_logo'
     resources :webhooks, only: %i[index show new create update destroy], controller: 'webhook_settings' do
       post :resend
 
