@@ -3,10 +3,60 @@
   <head>
     <title></title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <style></style>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        line-height: 1.5;
+        color: #1a1a1a;
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+      }
+      p {
+        margin: 0 0 16px 0;
+      }
+      a {
+        color: #1a73e8;
+      }
+    </style>
   </head>
-  <body dir="<%= TextUtils.rtl?(yield) ? 'rtl' : 'auto' %>">
-    <%= yield %>
-    <%= render partial: 'shared/mailer_attribution' %>
+  <body style="margin: 0; padding: 0; background-color: #f4f4f5;">
+    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #f4f4f5;">
+      <tr>
+        <td style="padding: 32px 16px;">
+          <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" style="max-width: 600px; width: 100%; margin: 0 auto; background-color: #ffffff; border-radius: 8px; border: 1px solid #e4e4e7;">
+            <%# Header with logo %>
+            <tr>
+              <td style="padding: 24px 32px; border-bottom: 1px solid #e4e4e7;">
+                <% if @current_account&.logo&.attached? %>
+                  <img src="<%= url_for(@current_account.logo) %>" alt="<%= @current_account.name %>" style="max-height: 48px; max-width: 200px; display: block;">
+                <% else %>
+                  <span style="font-size: 18px; font-weight: 600; color: #1a1a1a;"><%= @current_account&.name || Docuseal.product_name %></span>
+                <% end %>
+              </td>
+            </tr>
+            <%# Content %>
+            <tr>
+              <td dir="<%= TextUtils.rtl?(yield) ? 'rtl' : 'auto' %>" style="padding: 24px 32px; font-size: 15px; line-height: 1.6; color: #1a1a1a;">
+                <%= yield %>
+              </td>
+            </tr>
+            <%# Footer %>
+            <tr>
+              <td style="padding: 16px 32px; border-top: 1px solid #e4e4e7; text-align: center;">
+                <p style="margin: 0; font-size: 12px; line-height: 1.5; color: #71717a;">
+                  <% if @current_account&.testing? %>
+                    <%= t('sent_using_product_name_in_testing_mode_html', product_url: "#{Docuseal::PRODUCT_EMAIL_URL}/start", product_name: Docuseal.product_name) %>
+                  <% else %>
+                    <%= t('sent_using_product_name_free_document_signing_html', product_url: "#{Docuseal::PRODUCT_EMAIL_URL}/start", product_name: Docuseal.product_name) %>
+                  <% end %>
+                </p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
   </body>
 </html>
