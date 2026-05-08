@@ -42,6 +42,7 @@
 class Submitter < ApplicationRecord
   belongs_to :submission
   belongs_to :account
+  belongs_to :team, optional: true
   has_one :template, through: :submission
   has_one :search_entry, as: :record, inverse_of: :record, dependent: :destroy if SearchEntry.table_exists?
   has_many :submitter_versions, dependent: :destroy

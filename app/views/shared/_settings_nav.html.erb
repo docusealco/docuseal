@@ -9,9 +9,11 @@
       <li>
         <%= link_to t('profile'), settings_profile_index_path, class: 'text-base hover:bg-base-300' %>
       </li>
-      <li>
-        <%= link_to t('account'), settings_account_path, class: 'text-base hover:bg-base-300' %>
-      </li>
+      <% if can?(:manage, current_account) %>
+        <li>
+          <%= link_to t('account'), settings_account_path, class: 'text-base hover:bg-base-300' %>
+        </li>
+      <% end %>
       <% unless Docuseal.multitenant? %>
         <% if can?(:read, EncryptedConfig.new(key: EncryptedConfig::EMAIL_SMTP_KEY, account: current_account)) && ENV['SMTP_ADDRESS'].blank? && true_user == current_user %>
           <li>
@@ -44,9 +46,14 @@
           <%= link_to t('personalization'), settings_personalization_path, class: 'text-base hover:bg-base-300' %>
         </li>
       <% end %>
-      <% if can?(:read, User) %>
+      <% if can?(:read, User.new(account: current_account)) %>
         <li>
           <%= link_to t('users'), settings_users_path, class: 'text-base hover:bg-base-300' %>
+        </li>
+      <% end %>
+      <% if can?(:read, Team.new(account: current_account)) %>
+        <li>
+          <%= link_to t('teams'), settings_teams_path, class: 'text-base hover:bg-base-300' %>
         </li>
       <% end %>
       <%= render 'shared/settings_nav_extra' %>

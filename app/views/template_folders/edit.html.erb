@@ -3,8 +3,16 @@
     <div class="form-control my-6">
       <%= f.text_field :name, required: true, placeholder: "#{t('folder_name')}...", class: 'base-input w-full', autofocus: true, dir: 'auto' %>
     </div>
+    <% if can?(:manage, Team.new(account: current_account)) %>
+      <div class="form-control mb-6">
+        <label class="label">
+          <span class="label-text"><%= t('team') %></span>
+        </label>
+        <%= f.select :team_id, current_account.teams.active.order(:name).map { |t| [t.name, t.id] }, { selected: @template_folder.team_id }, class: 'base-select w-full' %>
+      </div>
+    <% end %>
     <div class="form-control">
-      <%= f.button button_title(title: t('rename'), disabled_with: t('saving')), class: 'base-button' %>
+      <%= f.button button_title(title: t('save'), disabled_with: t('saving')), class: 'base-button' %>
     </div>
   <% end %>
 <% end %>

@@ -22,6 +22,7 @@ module Submissions
         submission = template.submissions.new(
           created_by_user: user, source:,
           account_id: user.account_id,
+          team_id: template.team_id,
           preferences: set_submission_preferences,
           name: with_template ? attrs[:name] : (attrs[:name].presence || template.name),
           variables: attrs[:variables] || {},
@@ -375,6 +376,7 @@ module Submissions
           phone: (attrs[:phone] || values[phone_field_uuid]).to_s.gsub(/[^0-9+]/, ''),
           name: attrs[:name],
           account_id: user.account_id,
+          team_id: submission.team_id,
           external_id: attrs[:external_id].presence || attrs[:application_key],
           completed_at: attrs[:completed].present? ? Time.current : nil,
           values: values.except(phone_field_uuid),

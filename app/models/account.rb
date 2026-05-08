@@ -22,6 +22,7 @@ class Account < ApplicationRecord
 
   has_one_attached :logo
 
+  has_many :teams, dependent: :destroy
   has_many :users, dependent: :destroy
   has_many :encrypted_configs, dependent: :destroy
   has_many :account_configs, dependent: :destroy
@@ -70,5 +71,9 @@ class Account < ApplicationRecord
   def default_template_folder
     super || build_default_template_folder(name: TemplateFolder::DEFAULT_NAME,
                                            author_id: users.minimum(:id)).tap(&:save!)
+  end
+
+  def default_team
+    teams.active.order(:id).first || teams.create!(name: 'Default')
   end
 end

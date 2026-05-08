@@ -43,6 +43,7 @@ class TemplatesUploadsController < ApplicationController
   def save_template!(template, url_params)
     template.account = current_account
     template.author = current_user
+    template.team_id ||= current_user.team_id
     template.folder = TemplateFolders.find_or_create_by_name(current_user, params[:folder_name])
     template.name = File.basename((url_params || params)[:files].first.original_filename, '.*')
 

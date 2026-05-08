@@ -30,6 +30,7 @@ class TemplateFolder < ApplicationRecord
 
   belongs_to :author, class_name: 'User'
   belongs_to :account
+  belongs_to :team, optional: true
   belongs_to :parent_folder, class_name: 'TemplateFolder', optional: true
 
   has_many :templates, dependent: :destroy, foreign_key: :folder_id, inverse_of: :folder

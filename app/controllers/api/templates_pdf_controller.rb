@@ -15,7 +15,8 @@ module Api
         author: current_user,
         source: :api,
         name: params[:name].presence || extract_default_name,
-        external_id: params[:external_id]
+        external_id: params[:external_id],
+        team_id: @template.team_id || current_user.team_id
       )
 
       if params[:folder_name].present?

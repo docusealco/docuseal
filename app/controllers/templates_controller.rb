@@ -52,6 +52,7 @@ class TemplatesController < ApplicationController
     @template.author = current_user
     @template.folder = TemplateFolders.find_or_create_by_name(current_user, params[:folder_name])
     @template.account = current_account
+    @template.team_id ||= current_user.team_id
 
     Templates.maybe_assign_access(@template)
 

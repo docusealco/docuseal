@@ -570,6 +570,7 @@ en: &en
   form_has_been_declined: Form has been declined.
   file_is_missing: File is missing
   folder_name_has_been_updated: Folder name has been updated.
+  folder_has_been_moved: Folder has been moved to the selected team.
   unable_to_rename_folder: Unable to rename folder.
   template_has_been_removed: Template has been removed.
   template_has_been_archived: Template has been archived.

@@ -38,6 +38,12 @@
         </div>
       <% end %>
       <%= render 'role_select', f: %>
+      <% if can?(:manage, Team.new(account: current_account)) %>
+        <div class="form-control">
+          <%= f.label :team_id, t('team'), class: 'label' %>
+          <%= f.select :team_id, current_account.teams.active.order(:name).map { |t| [t.name, t.id] }, { selected: f.object.team_id }, class: 'base-select' %>
+        </div>
+      <% end %>
     <% end %>
     <% if local_assigns[:extra_fields_html].present? %>
       <%= local_assigns[:extra_fields_html] %>

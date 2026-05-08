@@ -2,7 +2,7 @@
 
 class ProfileController < ApplicationController
   before_action do
-    authorize!(:manage, current_user)
+    authorize!(:update, current_user)
   end
 
   def index; end

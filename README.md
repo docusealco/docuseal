@@ -21,8 +21,26 @@ Support companies that are providing open-source solutions!
 | Automated reminders | Done | Configure reminder intervals per-account. Pending signers receive scheduled follow-up emails. |
 | Template creation via API | Done | `POST /api/templates/pdf` and `PUT /api/templates/:id/documents` — create and manage templates programmatically with field coordinates or embedded text tags. |
 | Professional email design | Done | Table-based responsive email layout with company branding, styled CTA buttons, and proper footer. |
+| Teams & user roles | Done | Multi-team support with admin/editor roles. Editors see only their team's documents. Admins can move folders between teams. |
 
 See [`docs/API.md`](docs/API.md) for full API reference on the new endpoints.
+
+## Teams & Roles
+
+This fork implements team-based access control with two roles:
+
+| Role | Access |
+|------|--------|
+| **Admin** | Full access to all teams, users, settings, and resources in the account |
+| **Editor** | Full access to templates, submissions, and documents within their team only. Can manage personalization, API keys, and webhooks. Cannot manage users, teams, or account settings. |
+
+**Key features:**
+- Create multiple teams per account (Settings > Teams)
+- Assign users to teams with role selection
+- Editors are scoped to their team — they only see templates, submissions, and folders belonging to their team
+- Admins can move entire folders (with all templates and submissions) to another team via the folder edit modal
+- API tokens respect the user's role and team membership
+- Migrations handle both greenfield installs and existing deployments (auto-creates a "Default" team and backfills)
 
 ## What's NOT included
 

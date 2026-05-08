@@ -43,8 +43,20 @@ class TemplateFoldersController < ApplicationController
   def edit; end
 
   def update
-    if @template_folder != current_account.default_template_folder &&
-       @template_folder.update(template_folder_params)
+    if @template_folder == current_account.default_template_folder
+      redirect_to folder_path(@template_folder), alert: I18n.t('unable_to_rename_folder')
+      return
+    end
+
+    new_team_id = template_folder_params[:team_id]
+    team_changed = new_team_id.present? && new_team_id.to_i != @template_folder.team_id
+
+    if team_changed
+      authorize! :manage, Team.new(account: current_account)
+      target_team = current_account.teams.active.find(new_team_id)
+      move_folder_to_team(@template_folder, target_team)
+      redirect_to folder_path(@template_folder), notice: I18n.t('folder_has_been_moved')
+    elsif @template_folder.update(template_folder_params.except(:team_id))
       redirect_to folder_path(@template_folder), notice: I18n.t('folder_name_has_been_updated')
     else
       redirect_to folder_path(@template_folder), alert: I18n.t('unable_to_rename_folder')
@@ -64,7 +76,19 @@ class TemplateFoldersController < ApplicationController
   end
 
   def template_folder_params
-    params.require(:template_folder).permit(:name)
+    params.require(:template_folder).permit(:name, :team_id)
+  end
+
+  def move_folder_to_team(folder, target_team)
+    template_ids = Template.where(folder_id: folder.id).pluck(:id)
+    submission_ids = Submission.where(template_id: template_ids).pluck(:id)
+
+    ActiveRecord::Base.transaction do
+      folder.update!(team_id: target_team.id)
+      Template.where(id: template_ids).update_all(team_id: target_team.id) if template_ids.any?
+      Submission.where(id: submission_ids).update_all(team_id: target_team.id) if submission_ids.any?
+      Submitter.where(submission_id: submission_ids).update_all(team_id: target_team.id) if submission_ids.any?
+    end
   end
 
   def load_related_submissions

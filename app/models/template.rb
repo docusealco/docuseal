@@ -44,6 +44,7 @@ class Template < ApplicationRecord
   belongs_to :author, class_name: 'User'
   belongs_to :account
   belongs_to :folder, class_name: 'TemplateFolder'
+  belongs_to :team, optional: true
 
   has_one :search_entry, as: :record, inverse_of: :record, dependent: :destroy if SearchEntry.table_exists?
 

@@ -1,0 +1,49 @@
+<div class="flex-wrap space-y-4 md:flex md:flex-nowrap md:space-y-0 md:space-x-10">
+  <%= render 'shared/settings_nav' %>
+  <div class="md:flex-grow">
+    <div class="flex flex-col md:flex-row md:flex-wrap gap-2 md:justify-between md:items-end mb-4 min-h-12">
+      <h1 class="text-4xl font-bold">
+        <%= t('teams') %>
+      </h1>
+      <div class="flex flex-col md:flex-row gap-y-2 gap-x-4 md:items-center">
+        <% if can?(:create, Team.new(account: current_account)) %>
+          <%= link_to new_settings_team_path, class: 'btn btn-primary btn-md gap-2 w-full md:w-fit', data: { turbo_frame: 'modal' } do %>
+            <%= svg_icon('plus', class: 'w-6 h-6') %>
+            <span><%= t('new_team') %></span>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="overflow-x-auto">
+      <table class="table w-full table-lg rounded-b-none overflow-hidden">
+        <thead class="bg-base-200">
+          <tr class="text-neutral uppercase">
+            <th><%= t('name') %></th>
+            <th><%= t('members') %></th>
+            <th class="text-right" width="1px"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @teams.each do |team| %>
+            <tr scope="row">
+              <td><%= team.name %></td>
+              <td><%= team.active_users_count %></td>
+              <td class="flex items-center space-x-2 justify-end">
+                <% if can?(:update, team) %>
+                  <%= link_to edit_settings_team_path(team), class: 'btn btn-outline btn-xs', title: t('edit'), data: { turbo_frame: 'modal' } do %>
+                    <%= t('edit') %>
+                  <% end %>
+                <% end %>
+                <% if can?(:destroy, team) && team.active_users_count == 0 %>
+                  <%= button_to settings_team_path(team), method: :delete, class: 'btn btn-outline btn-error btn-xs', title: t('archive'), data: { turbo_confirm: t('are_you_sure_') } do %>
+                    <%= t('archive') %>
+                  <% end %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

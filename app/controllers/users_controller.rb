@@ -53,6 +53,7 @@ class UsersController < ApplicationController
 
     @user.password = SecureRandom.hex if @user.password.blank?
     @user.role = User::ADMIN_ROLE unless role_valid?(@user.role)
+    @user.team_id = current_user.team_id unless current_account.teams.exists?(id: @user.team_id)
 
     if @user.save
       UserMailer.invitation_email(@user).deliver_later!
@@ -113,7 +114,7 @@ class UsersController < ApplicationController
 
   def user_params
     if params.key?(:user)
-      permitted_params = %i[email first_name last_name password archived_at otp_required_for_login]
+      permitted_params = %i[email first_name last_name password archived_at otp_required_for_login team_id]
 
       permitted_params << :role if role_valid?(params.dig(:user, :role))
 

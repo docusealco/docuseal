@@ -82,12 +82,12 @@ module TemplateFolders
     parent_name, name = name.to_s.split(' / ', 2).map(&:squish)
 
     if name.present?
-      parent_folder = author.account.template_folders.create_with(author:)
+      parent_folder = author.account.template_folders.create_with(author:, team_id: author.team_id)
                             .find_or_create_by(name: parent_name, parent_folder_id: nil)
     else
       name = parent_name
     end
 
-    author.account.template_folders.create_with(author:).find_or_create_by(name:, parent_folder:)
+    author.account.template_folders.create_with(author:, team_id: author.team_id).find_or_create_by(name:, parent_folder:)
   end
 end

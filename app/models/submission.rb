@@ -40,6 +40,7 @@
 class Submission < ApplicationRecord
   belongs_to :template, optional: true
   belongs_to :account
+  belongs_to :team, optional: true
   belongs_to :created_by_user, class_name: 'User', optional: true
 
   has_one :search_entry, as: :record, inverse_of: :record, dependent: :destroy if SearchEntry.table_exists?
