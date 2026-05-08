@@ -39,8 +39,7 @@ module Embed
     private
 
     def form_json_for_template(template)
-      raise ActiveRecord::RecordNotFound if template.archived_at? || template.account.archived_at?
-      raise ActiveRecord::RecordNotFound unless template.shared_link?
+      validate_shared_link_template!(template)
 
       attrs = submitter_params
 
@@ -48,60 +47,35 @@ module Embed
 
       submitter = find_or_initialize_submitter(template, attrs)
 
-      if selected_template_submitter(template).blank? && filter_undefined_submitters(template).size > 1 && submitter.new_record?
-        return { error: I18n.t('this_template_has_multiple_parties_which_prevents_the_use_of_a_sharing_link') }
-      end
+      return shared_link_multiple_parties_error if multiple_parties_shared_link?(template, submitter)
 
-      if submitter.new_record?
-        assign_submission_attributes(submitter, template)
-        Submissions::AssignDefinedSubmitters.call(submitter.submission)
-      else
-        submitter.assign_attributes(ip: request.remote_ip, ua: request.user_agent)
-      end
+      prepare_shared_link_submitter(submitter, template)
+      assign_shared_link_params(submitter)
 
-      submitter.values = values_param.presence || submitter.values
-      submitter.metadata = metadata_param.presence || submitter.metadata
-      submitter.external_id = params[:external_id].presence || submitter.external_id
-
-      if template.preferences['shared_link_2fa'] == true &&
-         !Submitters::AuthorizedForForm.pass_link_2fa?(submitter, nil, request)
+      if shared_link_2fa_required?(template, submitter)
         Submitters.send_shared_link_email_verification_code(submitter, request: request)
 
-        return { template: template_json(template), unverified_email: submitter.email, logo: logo_json(template.account) }
+        return unverified_shared_link_email_json(template, submitter)
       end
 
-      if submitter.errors.blank? && submitter.save
-        enqueue_new_submitter_jobs(submitter) if submitter.previous_changes.key?('id')
-
-        form_json(submitter)
-      else
-        { error: submitter.errors.full_messages.to_sentence }
-      end
+      save_shared_link_submitter(submitter)
     end
 
     def form_json(submitter)
       raise ActiveRecord::RecordNotFound if submitter.account.archived_at?
 
-      return { expired_submitter: submitter_json(submitter), submission: submission_json(submitter.submission, submitter),
-               template: template_json(submitter.template), logo: logo_json(submitter.account) } if submitter.submission.expired?
+      unavailable_payload = unavailable_submitter_json(submitter)
 
-      return { completed_submitter: submitter_json(submitter), submission: submission_json(submitter.submission, submitter),
-               template: template_json(submitter.template), logo: logo_json(submitter.account) } if submitter.completed_at?
+      return unavailable_payload if unavailable_payload
 
-      return { expired_submitter: submitter_json(submitter), submission: submission_json(submitter.submission, submitter),
-               template: template_json(submitter.template), logo: logo_json(submitter.account) } if submitter.declined_at?
+      pending_payload = pending_verification_json(submitter)
 
-      unless Submitters::AuthorizedForForm.pass_email_2fa?(submitter, request)
-        return { submitter_email_2fa: submitter_json(submitter),
-                 submission: submission_json(submitter.submission, submitter),
-                 template: template_json(submitter.template), logo: logo_json(submitter.account) }
-      end
+      return pending_payload if pending_payload
 
-      unless Submitters::AuthorizedForForm.pass_link_2fa?(submitter, nil, request)
-        return { unverified_email: submitter.email, submission: submission_json(submitter.submission, submitter),
-                 template: template_json(submitter.template), logo: logo_json(submitter.account) }
-      end
+      ready_submitter_json(submitter)
+    end
 
+    def ready_submitter_json(submitter)
       submission = submitter.submission
 
       Submissions.preload_with_pages(submission)
@@ -118,14 +92,99 @@ module Embed
       }
     end
 
+    def unavailable_submitter_json(submitter)
+      return submitter_status_json(submitter, :expired_submitter) if submitter.submission.expired?
+      return submitter_status_json(submitter, :completed_submitter) if submitter.completed_at?
+      return submitter_status_json(submitter, :expired_submitter) if submitter.declined_at?
+    end
+
+    def submitter_status_json(submitter, key)
+      {
+        key => submitter_json(submitter),
+        submission: submission_json(submitter.submission, submitter),
+        template: template_json(submitter.template),
+        logo: logo_json(submitter.account)
+      }
+    end
+
+    def pending_verification_json(submitter)
+      unless Submitters::AuthorizedForForm.pass_email_2fa?(submitter, request)
+        return submitter_status_json(submitter, :submitter_email_2fa)
+      end
+
+      return if Submitters::AuthorizedForForm.pass_link_2fa?(submitter, nil, request)
+
+      {
+        unverified_email: submitter.email,
+        submission: submission_json(submitter.submission, submitter),
+        template: template_json(submitter.template),
+        logo: logo_json(submitter.account)
+      }
+    end
+
+    def validate_shared_link_template!(template)
+      raise ActiveRecord::RecordNotFound if template.archived_at? || template.account.archived_at?
+      raise ActiveRecord::RecordNotFound unless template.shared_link?
+    end
+
+    def multiple_parties_shared_link?(template, submitter)
+      selected_template_submitter(template).blank? &&
+        filter_undefined_submitters(template).size > 1 &&
+        submitter.new_record?
+    end
+
+    def shared_link_multiple_parties_error
+      { error: I18n.t('this_template_has_multiple_parties_which_prevents_the_use_of_a_sharing_link') }
+    end
+
+    def prepare_shared_link_submitter(submitter, template)
+      if submitter.new_record?
+        assign_submission_attributes(submitter, template)
+        Submissions::AssignDefinedSubmitters.call(submitter.submission)
+      else
+        submitter.assign_attributes(ip: request.remote_ip, ua: request.user_agent)
+      end
+    end
+
+    def assign_shared_link_params(submitter)
+      submitter.values = values_param.presence || submitter.values
+      submitter.metadata = metadata_param.presence || submitter.metadata
+      submitter.external_id = params[:external_id].presence || submitter.external_id
+    end
+
+    def shared_link_2fa_required?(template, submitter)
+      template.preferences['shared_link_2fa'] == true &&
+        !Submitters::AuthorizedForForm.pass_link_2fa?(submitter, nil, request)
+    end
+
+    def unverified_shared_link_email_json(template, submitter)
+      {
+        template: template_json(template),
+        unverified_email: submitter.email,
+        logo: logo_json(template.account)
+      }
+    end
+
+    def save_shared_link_submitter(submitter)
+      if submitter.errors.blank? && submitter.save
+        enqueue_new_submitter_jobs(submitter) if submitter.previous_changes.key?('id')
+
+        form_json(submitter)
+      else
+        { error: submitter.errors.full_messages.to_sentence }
+      end
+    end
+
     def template_json(template)
       template.as_json(only: %i[id name slug preferences schema submitters archived_at account_id])
     end
 
     def submission_json(submission, submitter = nil)
       submission.as_json(
-        only: %i[id slug name source submitters_order expire_at archived_at created_at updated_at template_id account_id],
-        methods: %i[expired?],
+        only: %i[
+          id slug name source submitters_order expire_at archived_at created_at updated_at template_id account_id
+        ],
+        methods: %i[expired?]
       ).merge(
         'template_schema' => Submissions.filtered_conditions_schema(submission,
                                                                     include_submitter_uuid: submitter&.uuid),

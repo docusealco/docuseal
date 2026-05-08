@@ -14,28 +14,8 @@ module Api
 
       set_embed_cors_headers
 
-      unless can_upload?(submitter)
-        Rollbar.error("Can't upload: #{submitter.id}") if defined?(Rollbar)
-
-        return render json: { error: I18n.t('form_has_been_archived') }, status: :unprocessable_content
-      end
-
-      if params[:type].in?(%w[initials signature])
-        image = Vips::Image.new_from_file(params[:file].path)
-
-        if ImageUtils.blank?(image)
-          Rollbar.error("Empty signature: #{submitter.id}") if defined?(Rollbar)
-
-          return render json: { error: "#{params[:type]} is empty" }, status: :unprocessable_content
-        end
-
-        if ImageUtils.error?(image)
-          Rollbar.error("Error signature: #{submitter.id}") if defined?(Rollbar)
-
-          return render json: { error: "#{params[:type]} error, try to sign on another device" },
-                        status: :unprocessable_content
-        end
-      end
+      return if render_upload_error?(submitter)
+      return if render_signature_error?(submitter)
 
       attachment = Submitters.create_attachment!(submitter, params)
 
@@ -48,6 +28,39 @@ module Api
       Rollbar.error(e) if defined?(Rollbar)
 
       render json: { error: e.message }, status: :unprocessable_content
+    end
+
+    private
+
+    def render_upload_error?(submitter)
+      return false if can_upload?(submitter)
+
+      Rollbar.error("Can't upload: #{submitter.id}") if defined?(Rollbar)
+
+      render json: { error: I18n.t('form_has_been_archived') }, status: :unprocessable_content
+    end
+
+    def render_signature_error?(submitter)
+      return false unless params[:type].in?(%w[initials signature])
+
+      image = Vips::Image.new_from_file(params[:file].path)
+
+      return render_empty_signature_error(submitter) if ImageUtils.blank?(image)
+      return render_invalid_signature_error(submitter) if ImageUtils.error?(image)
+
+      false
+    end
+
+    def render_empty_signature_error(submitter)
+      Rollbar.error("Empty signature: #{submitter.id}") if defined?(Rollbar)
+
+      render json: { error: "#{params[:type]} is empty" }, status: :unprocessable_content
+    end
+
+    def render_invalid_signature_error(submitter)
+      Rollbar.error("Error signature: #{submitter.id}") if defined?(Rollbar)
+
+      render json: { error: "#{params[:type]} error, try to sign on another device" }, status: :unprocessable_content
     end
 
     def can_upload?(submitter)

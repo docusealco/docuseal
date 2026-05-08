@@ -12,13 +12,7 @@ class SubmitFormMetadataController < ApplicationController
 
     set_embed_cors_headers
 
-    return head :not_found if submitter.declined_at? ||
-                              submitter.completed_at? ||
-                              submitter.submission.archived_at? ||
-                              submitter.submission.expired? ||
-                              submitter.submission.template&.archived_at? ||
-                              submitter.account.archived_at? ||
-                              !Submitters::AuthorizedForForm.call(submitter, current_user, request)
+    return head :not_found unless render_metadata?(submitter)
 
     submission = submitter.submission
     values = submission.submitters.reduce({}) { |acc, sub| acc.merge(sub.values) }
@@ -38,5 +32,23 @@ class SubmitFormMetadataController < ApplicationController
     end
 
     render json: { text_runs: text_runs }
+  end
+
+  private
+
+  def render_metadata?(submitter)
+    return false if unavailable_submitter?(submitter)
+    return false unless Submitters::AuthorizedForForm.call(submitter, current_user, request)
+
+    true
+  end
+
+  def unavailable_submitter?(submitter)
+    submitter.declined_at? ||
+      submitter.completed_at? ||
+      submitter.submission.archived_at? ||
+      submitter.submission.expired? ||
+      submitter.submission.template&.archived_at? ||
+      submitter.account.archived_at?
   end
 end

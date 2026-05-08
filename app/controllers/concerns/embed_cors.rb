@@ -38,9 +38,11 @@ module EmbedCors
   end
 
   def configured_embed_origins_for_account(account)
-    normalize_embed_origins(
-      account&.account_configs&.find_by(key: AccountConfig::EMBED_ALLOWED_ORIGINS_KEY)&.value
-    )
+    return [] unless account
+
+    config = account.account_configs.find_by(key: AccountConfig::EMBED_ALLOWED_ORIGINS_KEY)
+
+    normalize_embed_origins(config&.value)
   end
 
   def configured_embed_origins

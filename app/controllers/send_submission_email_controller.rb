@@ -12,22 +12,9 @@ class SendSubmissionEmailController < ApplicationController
   SEND_DURATION = 30.minutes
 
   def create
-    if params[:template_slug]
-      template = Template.find_by!(slug: params[:template_slug])
+    @submitter = find_completed_submitter
 
-      @submitter =
-        Submitter.completed.where(submission: template.submissions).find_by!(email: params[:email].to_s.downcase)
-    elsif params[:submission_slug]
-      submission = Submission.find_by(slug: params[:submission_slug])
-
-      if submission
-        @submitter = Submitter.completed.find_by(submission: submission, email: params[:email].to_s.downcase)
-      end
-
-      return redirect_to submissions_preview_completed_path(params[:submission_slug], status: :error) unless @submitter
-    else
-      @submitter = Submitter.completed.find_by!(slug: params[:submitter_slug])
-    end
+    return redirect_to submissions_preview_completed_path(params[:submission_slug], status: :error) unless @submitter
 
     @embed_cors_account = @submitter.account
     set_embed_cors_headers
@@ -43,6 +30,30 @@ class SendSubmissionEmailController < ApplicationController
   end
 
   private
+
+  def find_completed_submitter
+    if params[:template_slug]
+      template = Template.find_by!(slug: params[:template_slug])
+
+      Submitter.completed.where(submission: template.submissions).find_by!(email: normalized_email_param)
+    elsif params[:submission_slug]
+      find_completed_submitter_for_submission
+    else
+      Submitter.completed.find_by!(slug: params[:submitter_slug])
+    end
+  end
+
+  def find_completed_submitter_for_submission
+    submission = Submission.find_by(slug: params[:submission_slug])
+
+    return unless submission
+
+    Submitter.completed.find_by(submission: submission, email: normalized_email_param)
+  end
+
+  def normalized_email_param
+    params[:email].to_s.downcase
+  end
 
   def can_send?(submitter)
     return false if submitter.account.archived_at?
