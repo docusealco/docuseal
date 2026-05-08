@@ -629,7 +629,7 @@ en: &en
   free: Free
   unlimited_documents_storage: Unlimited documents storage
   users_management: Users management
-  ten_filed_types: 10 field types
+  ten_field_types: 10 field types
   multiple_signers: Multiple signers
   automatic_esignature: Automatic eSignature
   ten_signature_request_emails_per_month: 10 signature request emails per month
@@ -772,7 +772,7 @@ en: &en
   manage_plan: Manage plan
   this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: This submission has multiple signers, which prevents the use of a sharing link as it's unclear which signer is responsible for specific fields. To resolve this, follow this <a href="https://www.docuseal.com/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">guide</a> to define the default signer details.
   welcome_to_docuseal: Welcome to DocuSeal
-  start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: Start a quick tour to learn how to create and send your first document
+  start_a_quick_tour_to_learn_how_to_create_and_send_your_first_document: Start a quick tour to learn how to create and send your first document
   start_tour: Start Tour
   name_a_z: Name A-Z
   recently_used: Recently used
@@ -1679,7 +1679,7 @@ es: &es
   free: Gratis
   unlimited_documents_storage: Almacenamiento ilimitado
   users_management: Gestión de usuarios
-  ten_filed_types: 10 tipos de campos
+  ten_field_types: 10 tipos de campos
   multiple_signers: Múltiples firmantes
   automatic_esignature: Firma electrónica automática
   ten_signature_request_emails_per_month: 10 solicitudes de firma/mes
@@ -1819,7 +1819,7 @@ es: &es
   manage_plan: Gestionar plan
   this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: 'Este envío tiene múltiples firmantes, lo que impide el uso de un enlace para compartir, ya que no está claro qué firmante es responsable de los campos específicos. Para resolver esto, sigue esta <a href="https://www.docuseal.com/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">guía</a> para definir los detalles predeterminados del firmante.'
   welcome_to_docuseal: Bienvenido a DocuSeal
-  start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: Inicia una guía rápida para aprender a crear y enviar tu primer documento.
+  start_a_quick_tour_to_learn_how_to_create_and_send_your_first_document: Inicia una guía rápida para aprender a crear y enviar tu primer documento.
   start_tour: Iniciar guía
   name_a_z: Nombre A-Z
   recently_used: Usado recientemente
@@ -2726,7 +2726,7 @@ it: &it
   free: Gratuito
   unlimited_documents_storage: Archiviazione illimitata di documenti
   users_management: Gestione utenti
-  ten_filed_types: 10 tipi di campi
+  ten_field_types: 10 tipi di campi
   multiple_signers: Firmatari multipli
   automatic_esignature: Firma elettronica automatica
   ten_signature_request_emails_per_month: 10 email di richiesta di firma al mese
@@ -2866,7 +2866,7 @@ it: &it
   manage_plan: Gestisci piano
   this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: "Questa sottomissione ha più firmatari, il che impedisce l'uso di un link di condivisione poiché non è chiaro quale firmatario sia responsabile di specifici campi. Per risolvere questo problema, segui questa <a href=\"https://www.docuseal.com/resources/pre-filling-recipients\" class=\"link font-bold\" rel=\"noopener noreferrer nofollow\" target=\"_blank\">guida</a> per definire i dettagli predefiniti del firmatario."
   welcome_to_docuseal: Benvenuto in DocuSeal
-  start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: Inizia un tour rapido per imparare a creare e inviare il tuo primo documento.
+  start_a_quick_tour_to_learn_how_to_create_and_send_your_first_document: Inizia un tour rapido per imparare a creare e inviare il tuo primo documento.
   start_tour: Inizia il tour
   name_a_z: Nome A-Z
   recently_used: Recentemente usato
@@ -3774,7 +3774,7 @@ fr: &fr
   free: Gratuit
   unlimited_documents_storage: Stockage de documents illimité
   users_management: Gestion des utilisateurs
-  ten_filed_types: 10 types de champs
+  ten_field_types: 10 types de champs
   multiple_signers: Plusieurs signataires
   automatic_esignature: Signature électronique automatique
   ten_signature_request_emails_per_month: 10 e‑mails de demande de signature/mois
@@ -3914,7 +3914,7 @@ fr: &fr
   manage_plan: Gérer la formule
   this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: Cette soumission comporte plusieurs signataires, ce qui empêche l’utilisation d’un lien de partage car il n’est pas clair quel signataire est responsable de quels champs. Pour résoudre cela, suivez ce <a href="https://www.docuseal.com/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">guide</a> pour définir les détails du signataire par défaut.
   welcome_to_docuseal: Bienvenue sur DocuSeal
-  start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: Lancez une visite rapide pour apprendre à créer et envoyer votre premier document
+  start_a_quick_tour_to_learn_how_to_create_and_send_your_first_document: Lancez une visite rapide pour apprendre à créer et envoyer votre premier document
   start_tour: Démarrer la visite
   name_a_z: Nom A‑Z
   recently_used: Récemment utilisés
@@ -4818,7 +4818,7 @@ pt: &pt
   free: Gratuito
   unlimited_documents_storage: Armazenamento ilimitado
   users_management: Gerenciamento de usuários
-  ten_filed_types: 10 tipos de campo
+  ten_field_types: 10 tipos de campo
   multiple_signers: Múltiplos signatários
   automatic_esignature: Assinatura eletrônica automática
   ten_signature_request_emails_per_month: 10 e-mails/mês
@@ -4958,7 +4958,7 @@ pt: &pt
   manage_plan: Gerenciar plano
   this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: 'Este envio tem vários signatários, o que impede o uso de um link de compartilhamento, pois não está claro qual signatário é responsável por quais campos. Para resolver isso, siga este <a href="https://www.docuseal.com/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">guia</a> para definir os detalhes padrão do signatário.'
   welcome_to_docuseal: Bem-vindo ao DocuSeal
-  start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: Comece um tour rápido para aprender a criar e enviar seu primeiro documento.
+  start_a_quick_tour_to_learn_how_to_create_and_send_your_first_document: Comece um tour rápido para aprender a criar e enviar seu primeiro documento.
   start_tour: Iniciar tour
   name_a_z: Nome A-Z
   recently_used: Recentemente usado
@@ -5865,7 +5865,7 @@ de: &de
   free: Kostenlos
   unlimited_documents_storage: Unbegrenzter Dokumentenspeicher
   users_management: Benutzerverwaltung
-  ten_filed_types: 10 Feldtypen
+  ten_field_types: 10 Feldtypen
   multiple_signers: Mehrere Unterzeichner
   automatic_esignature: Automatische E‑Signatur
   ten_signature_request_emails_per_month: 10 E-Mails für Signaturanfragen pro Monat
@@ -6005,7 +6005,7 @@ de: &de
   manage_plan: Plan verwalten
   this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: 'Diese Einreichung hat mehrere Unterzeichner, was die Nutzung eines Freigabelinks verhindert, da unklar ist, welcher Unterzeichner für welche Felder verantwortlich ist. Um dies zu lösen, folgen Sie dieser <a href="https://www.docuseal.com/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">Anleitung</a>, um die Standarddetails des Unterzeichners festzulegen.'
   welcome_to_docuseal: Willkommen bei DocuSeal
-  start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: Starten Sie eine kurze Tour, um zu lernen, wie Sie Ihr erstes Dokument erstellen und versenden.
+  start_a_quick_tour_to_learn_how_to_create_and_send_your_first_document: Starten Sie eine kurze Tour, um zu lernen, wie Sie Ihr erstes Dokument erstellen und versenden.
   start_tour: Starten
   name_a_z: Name A-Z
   recently_used: Kürzlich verwendet
@@ -7317,7 +7317,7 @@ nl: &nl
   free: Gratis
   unlimited_documents_storage: Onbeperkte documentopslag
   users_management: Gebruikersbeheer
-  ten_filed_types: 10 veldtypen
+  ten_field_types: 10 veldtypen
   multiple_signers: Meerdere ondertekenaars
   automatic_esignature: Automatische e-handtekening
   ten_signature_request_emails_per_month: 10 e-mails met verzoeken/maand
@@ -7457,7 +7457,7 @@ nl: &nl
   manage_plan: Abonnement beheren
   this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: Deze inzending heeft meerdere ondertekenaars, waardoor het gebruik van een deellink niet mogelijk is omdat onduidelijk is welke ondertekenaar verantwoordelijk is voor specifieke velden. Volg deze <a href="https://www.docuseal.com/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">handleiding</a> om de standaardgegevens van de ondertekenaar te definiëren.
   welcome_to_docuseal: Welkom bij DocuSeal
-  start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: Start een korte rondleiding om te leren hoe u uw eerste document maakt en verzendt
+  start_a_quick_tour_to_learn_how_to_create_and_send_your_first_document: Start een korte rondleiding om te leren hoe u uw eerste document maakt en verzendt
   start_tour: Rondleiding starten
   name_a_z: Naam A-Z
   recently_used: Onlangs gebruikt
