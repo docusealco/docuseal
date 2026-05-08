@@ -141,18 +141,21 @@ module Submissions
                                                               AccountConfig::WITH_SIGNATURE_ID,
                                                               AccountConfig::WITH_FILE_LINKS_KEY,
                                                               AccountConfig::WITH_TIMESTAMP_SECONDS_KEY,
+                                                              AccountConfig::ROTATE_INCREMENTAL_PDF_KEY,
                                                               AccountConfig::WITH_SUBMITTER_TIMEZONE_KEY,
                                                               AccountConfig::WITH_SIGNATURE_ID_REASON_KEY])
 
       with_signature_id = configs.find { |c| c.key == AccountConfig::WITH_SIGNATURE_ID }&.value == true
       is_flatten = configs.find { |c| c.key == AccountConfig::FLATTEN_RESULT_PDF_KEY }&.value != false
+      is_rotate_incremental = configs.find { |c| c.key == AccountConfig::ROTATE_INCREMENTAL_PDF_KEY }&.value == true
       with_timestamp_seconds = configs.find { |c| c.key == AccountConfig::WITH_TIMESTAMP_SECONDS_KEY }&.value == true
       with_submitter_timezone = configs.find { |c| c.key == AccountConfig::WITH_SUBMITTER_TIMEZONE_KEY }&.value == true
       with_file_links = configs.find { |c| c.key == AccountConfig::WITH_FILE_LINKS_KEY }&.value == true
       with_signature_id_reason =
         configs.find { |c| c.key == AccountConfig::WITH_SIGNATURE_ID_REASON_KEY }&.value != false
 
-      pdfs_index = build_pdfs_index(submitter.submission, submitter:, flatten: is_flatten)
+      pdfs_index = build_pdfs_index(submitter.submission, submitter:, flatten: is_flatten,
+                                                          incremental: is_rotate_incremental)
 
       if with_signature_id || submitter.account.testing?
         pdfs_index.each_value do |pdf|
@@ -649,7 +652,10 @@ module Submissions
             end
           else
             if field['type'] == 'date'
-              value = TimeUtils.format_date_string(value, field.dig('preferences', 'format'), locale)
+              timezone = submitter.account.timezone
+              timezone = submitter.timezone || submitter.account.timezone if with_submitter_timezone
+
+              value = TimeUtils.format_date_string(value, field.dig('preferences', 'format'), locale, timezone:)
             end
 
             value = NumberUtils.format_number(value, field.dig('preferences', 'format')) if field['type'] == 'number'
@@ -802,7 +808,7 @@ module Submissions
       Digest::UUID.uuid_v5(Digest::UUID::OID_NAMESPACE, attachments.map(&:uuid).sort.join(':'))
     end
 
-    def build_pdfs_index(submission, submitter: nil, flatten: true)
+    def build_pdfs_index(submission, submitter: nil, flatten: true, incremental: false)
       latest_submitter = find_last_submitter(submission, submitter:)
 
       documents   = Submissions::EnsureResultGenerated.call(latest_submitter) if latest_submitter
@@ -826,7 +832,7 @@ module Submissions
             HexaPDF::Document.new(io: StringIO.new(attachment.download))
           end
 
-        pdf = maybe_rotate_pdf(pdf)
+        pdf = maybe_rotate_pdf(pdf, incremental:)
 
         maybe_flatten_pdf(pdf) if flatten
 
@@ -845,7 +851,7 @@ module Submissions
       Rollbar.error(e) if defined?(Rollbar)
     end
 
-    def maybe_rotate_pdf(pdf)
+    def maybe_rotate_pdf(pdf, incremental: false)
       return pdf if pdf.pages.size > MAX_PAGE_ROTATE
 
       is_pages_rotated = pdf.pages.root[:Rotate].present? && pdf.pages.root[:Rotate] != 0
@@ -860,7 +866,7 @@ module Submissions
 
       io = StringIO.new
 
-      pdf.write(io, incremental: false, validate: false)
+      pdf.write(io, incremental:, validate: false)
 
       HexaPDF::Document.new(io:)
     rescue StandardError => e

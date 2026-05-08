@@ -228,7 +228,7 @@ export default {
           'https://www.googleapis.com/auth/userinfo.email',
           'https://www.googleapis.com/auth/drive.file'
         ].join(' '),
-        state: new URLSearchParams({
+        oauth_data: new URLSearchParams({
           redir: `/templates/${this.templateId}/edit?google_drive_open=1`
         }).toString()
       }

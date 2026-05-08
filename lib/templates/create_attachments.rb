@@ -38,7 +38,7 @@ module Templates
       [documents, dynamic_documents]
     end
 
-    def handle_pdf_or_image(template, file, document_data = nil, params = {}, extract_fields: false)
+    def handle_pdf_or_image(template, file, document_data = nil, params = {}, extract_fields: false, metadata: {})
       document_data ||= file.read
 
       if file.content_type == PDF_CONTENT_TYPE
@@ -54,6 +54,7 @@ module Templates
         io: StringIO.new(document_data),
         filename: file.original_filename,
         metadata: {
+          **metadata,
           identified: file.content_type == PDF_CONTENT_TYPE,
           analyzed: file.content_type == PDF_CONTENT_TYPE,
           pdf: { annotations: }.compact_blank, sha256:

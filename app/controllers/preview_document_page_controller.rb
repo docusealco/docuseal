@@ -41,7 +41,7 @@ class PreviewDocumentPageController < ActionController::API
   end
 
   def find_or_create_document_tempfile_path(attachment)
-    file_path = "#{Dir.tmpdir}/#{attachment.uuid}"
+    file_path = "#{Dir.tmpdir}/attachment-#{Digest::SHA1.hexdigest("#{attachment.id}-#{attachment.uuid}")}"
 
     File.open(file_path, File::RDWR | File::CREAT, 0o644) do |f|
       f.flock(File::LOCK_EX)

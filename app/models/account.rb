@@ -35,6 +35,7 @@ class Account < ApplicationRecord
   has_many :submitters, dependent: :destroy
   has_many :account_linked_accounts, dependent: :destroy
   has_many :email_events, dependent: :destroy
+  has_many :document_metadata, class_name: 'DocumentMetadata', dependent: :destroy
   has_many :webhook_urls, dependent: :destroy
   has_many :webhook_events, dependent: nil
   has_many :account_accesses, dependent: :destroy

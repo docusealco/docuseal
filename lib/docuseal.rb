@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module Docuseal
-  URL_CACHE = ActiveSupport::Cache::MemoryStore.new
   PRODUCT_URL = 'https://www.docuseal.com'
   PRODUCT_EMAIL_URL = ENV.fetch('PRODUCT_EMAIL_URL', PRODUCT_URL)
   NEWSLETTER_URL = "#{PRODUCT_URL}/newsletters".freeze

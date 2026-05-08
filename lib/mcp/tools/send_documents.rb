@@ -61,7 +61,7 @@ module Mcp
         },
         annotations: {
           readOnlyHint: false,
-          destructiveHint: false,
+          destructiveHint: true,
           idempotentHint: false,
           openWorldHint: true
         }
@@ -96,7 +96,7 @@ module Mcp
         submissions = Submissions.create_from_submitters(
           template:,
           user: current_user,
-          source: :api,
+          source: :mcp,
           submitters_order: 'random',
           submissions_attrs: { submitters: submitters },
           params: { 'send_email' => true, 'submitters' => submitters }

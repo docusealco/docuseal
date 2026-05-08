@@ -15,13 +15,20 @@ class SendSubmissionEmailController < ApplicationController
     @submitter = find_completed_submitter
 
     return redirect_to submissions_preview_completed_path(params[:submission_slug], status: :error) unless @submitter
+    
+      @submitter =
+        Submitter.completed.where(submission: template.submissions).find_by(email: params[:email].to_s.downcase)
+    elsif params[:submission_slug]
+      submission = Submission.find_by(slug: params[:submission_slug])
 
     @embed_cors_account = @submitter.account
     set_embed_cors_headers
 
-    RateLimit.call("send-email-#{@submitter.id}", limit: 2, ttl: 5.minutes)
+    if @submitter
+      RateLimit.call("send-email-#{@submitter.id}", limit: 2, ttl: 5.minutes)
 
-    SubmitterMailer.documents_copy_email(@submitter, sig: true).deliver_later! if can_send?(@submitter)
+      SubmitterMailer.documents_copy_email(@submitter, sig: true).deliver_later! if can_send?(@submitter)
+    end
 
     respond_to do |f|
       f.html { render :success }

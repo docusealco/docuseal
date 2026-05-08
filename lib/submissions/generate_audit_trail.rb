@@ -415,7 +415,8 @@ module Submissions
               composer.formatted_text_box([{ text: value.to_s.titleize }], padding: [0, 0, 10, 0])
             else
               if field['type'] == 'date'
-                value = TimeUtils.format_date_string(value, field.dig('preferences', 'format'), account.locale)
+                value = TimeUtils.format_date_string(value, field.dig('preferences', 'format'), account.locale,
+                                                     timezone:)
               end
 
               value = NumberUtils.format_number(value, field.dig('preferences', 'format')) if field['type'] == 'number'

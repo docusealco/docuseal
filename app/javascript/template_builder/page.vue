@@ -37,6 +37,8 @@
         :ref="setAreaRefs"
         :area="item.area"
         :input-mode="inputMode"
+        :conditional-field-index="conditionalFieldIndex"
+        :formula-values-index="formulaValuesIndex"
         :page-width="width"
         :page-height="height"
         :field="item.field"
@@ -179,6 +181,16 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    conditionalFieldIndex: {
+      type: Object,
+      required: false,
+      default: () => ({})
+    },
+    formulaValuesIndex: {
+      type: Object,
+      required: false,
+      default: () => ({})
     },
     defaultFields: {
       type: Array,

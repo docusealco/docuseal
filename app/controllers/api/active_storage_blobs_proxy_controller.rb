@@ -33,9 +33,15 @@ module Api
       else
         http_cache_forever public: true do
           response.headers['Accept-Ranges'] = 'bytes'
-          response.headers['Content-Length'] = blob.byte_size.to_s
 
-          send_blob_stream blob, disposition: params[:disposition]
+          if request.head?
+            response.headers['Content-Type'] = blob.content_type_for_serving
+            head :ok
+          else
+            send_blob_stream blob, disposition: params[:disposition]
+          end
+
+          response.headers['Content-Length'] = blob.byte_size.to_s
         end
       end
     end
@@ -56,8 +62,6 @@ module Api
 
         return if !require_ttl && !require_auth
       end
-
-      Rollbar.error('Blob unauthorized') if defined?(Rollbar)
 
       raise CanCan::AccessDenied
     end

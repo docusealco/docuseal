@@ -945,6 +945,7 @@ en: &en
     embed: Embedding
     invite: Invite
     link: Link
+    mcp: MCP
   submission_event_names:
     send_email_to_html: '<b>Email sent</b> to %{submitter_name}'
     bounce_email_html: '<b>Email bounced</b> %{submitter_name}'
@@ -1985,6 +1986,7 @@ es: &es
     embed: Integración
     invite: Invitación
     link: Enlace
+    mcp: MCP
   submission_event_names:
     send_email_to_html: '<b>Correo electrónico enviado</b> a %{submitter_name}'
     bounce_email_html: '<b>Correo electrónico rebotado</b> %{submitter_name}'
@@ -3026,6 +3028,7 @@ it: &it
     embed: Incorporamento
     invite: Invito
     link: Link
+    mcp: MCP
   submission_event_names:
     send_email_to_html: '<b>Email inviata</b> a %{submitter_name}'
     bounce_email_html: '<b>Email respinta</b> %{submitter_name}'
@@ -4063,6 +4066,7 @@ fr: &fr
     embed: Embedding
     invite: Invitation
     link: Lien
+    mcp: MCP
   submission_event_names:
     send_email_to_html: "<b>E‑mail envoyé</b> à %{submitter_name}"
     bounce_email_html: "<b>E‑mail rejeté</b> %{submitter_name}"
@@ -5103,6 +5107,7 @@ pt: &pt
     embed: Incorporação
     invite: Convite
     link: Link
+    mcp: MCP
   submission_event_names:
     send_email_to_html: '<b>Email enviado</b> para %{submitter_name}'
     bounce_email_html: '<b>Email não entregue</b> %{submitter_name}'
@@ -6143,6 +6148,7 @@ de: &de
     embed: Einbettung
     invite: Einladung
     link: Link
+    mcp: MCP
   submission_event_names:
     send_email_to_html: '<b>E-Mail gesendet</b> an %{submitter_name}'
     bounce_email_html: '<b>E-Mail unzustellbar</b> %{submitter_name}'
@@ -7584,6 +7590,7 @@ nl: &nl
     embed: Insluiten
     invite: Uitnodiging
     link: Link
+    mcp: MCP
   submission_event_names:
     send_email_to_html: "<b>E-mail verzonden</b> naar %{submitter_name}"
     bounce_email_html: "<b>E-mail gebounced</b> %{submitter_name}"

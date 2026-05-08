@@ -527,7 +527,8 @@ export default {
         try {
           return this.formatDate(
             this.modelValue === '{{date}}' ? new Date() : new Date(this.modelValue),
-            this.field.preferences?.format || (this.locale.endsWith('-US') ? 'MM/DD/YYYY' : 'DD/MM/YYYY')
+            this.field.preferences?.format || (this.locale.endsWith('-US') ? 'MM/DD/YYYY' : 'DD/MM/YYYY'),
+            { withTimePlaceholders: this.modelValue === '{{date}}' }
           )
         } catch {
           return this.modelValue
@@ -646,36 +647,55 @@ export default {
         return number
       }
     },
-    formatDate (date, format) {
-      const monthFormats = {
-        M: 'numeric',
-        MM: '2-digit',
-        MMM: 'short',
-        MMMM: 'long'
-      }
+    formatDate (date, format, { withTimePlaceholders = false } = {}) {
+      const monthFormats = { M: 'numeric', MM: '2-digit', MMM: 'short', MMMM: 'long' }
+      const dayFormats = { D: 'numeric', DD: '2-digit' }
+      const yearFormats = { YYYY: 'numeric', YYY: 'numeric', YY: '2-digit' }
+      const hourFormats = { H: 'numeric', HH: '2-digit', h: 'numeric', hh: '2-digit' }
+      const minuteFormats = { m: 'numeric', mm: '2-digit' }
+      const secondFormats = { s: 'numeric', ss: '2-digit' }
 
-      const dayFormats = {
-        D: 'numeric',
-        DD: '2-digit'
-      }
+      const hasTime = /[HhAasz]/.test(format)
 
-      const yearFormats = {
-        YYYY: 'numeric',
-        YYY: 'numeric',
-        YY: '2-digit'
-      }
-
-      const parts = new Intl.DateTimeFormat([], {
+      const opts = {
         day: dayFormats[format.match(/D+/)],
         month: monthFormats[format.match(/M+/)],
-        year: yearFormats[format.match(/Y+/)],
-        timeZone: 'UTC'
-      }).formatToParts(date)
+        year: yearFormats[format.match(/Y+/)]
+      }
 
-      return format
-        .replace(/D+/, parts.find((p) => p.type === 'day').value)
-        .replace(/M+/, parts.find((p) => p.type === 'month').value)
-        .replace(/Y+/, parts.find((p) => p.type === 'year').value)
+      if (format.match(/H+/)) { opts.hour = hourFormats[format.match(/H+/)[0]]; opts.hour12 = false }
+      if (format.match(/h+/)) { opts.hour = hourFormats[format.match(/h+/)[0]]; opts.hour12 = true }
+      if (/[Aa]/.test(format) && opts.hour12 === undefined) opts.hour12 = true
+      if (format.match(/m+/)) opts.minute = minuteFormats[format.match(/m+/)[0]]
+      if (format.match(/s+/)) opts.second = secondFormats[format.match(/s+/)[0]]
+      if (/z/.test(format)) opts.timeZoneName = 'short'
+      if (!hasTime) opts.timeZone = 'UTC'
+
+      const partTypes = {
+        M: 'month',
+        D: 'day',
+        Y: 'year',
+        H: 'hour',
+        h: 'hour',
+        m: 'minute',
+        s: 'second',
+        z: 'timeZoneName',
+        A: 'dayPeriod',
+        a: 'dayPeriod'
+      }
+
+      const parts = new Intl.DateTimeFormat([], opts).formatToParts(date)
+
+      return format.replace(/MMMM|MMM|MM|M|DD|D|YYYY|YYY|YY|HH|hh|H|h|mm|m|ss|s|A|a|z/g, (token) => {
+        if (withTimePlaceholders && /^(HH|hh|H|h|mm|m|ss|s|A|a)$/.test(token)) return '--'
+
+        const value = parts.find((p) => p.type === partTypes[token[0]])?.value
+
+        if (token === 'A') return (value || '').toUpperCase()
+        if (token === 'a') return (value || '').toLowerCase()
+
+        return value
+      })
     },
     updateMultipleSelectValue (value) {
       if (this.modelValue?.includes(value)) {
