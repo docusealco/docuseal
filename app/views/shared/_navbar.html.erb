@@ -34,27 +34,11 @@
               <span class="mr-1"><%= t('profile') %></span>
             <% end %>
           </li>
-          <% if !Docuseal.demo? && can?(:manage, EncryptedConfig) %>
-            <li>
-              <%= link_to Docuseal.multitenant? ? console_redirect_index_path : Docuseal::CONSOLE_URL, data: { prefetch: false }, class: 'flex items-center' do %>
-                <%= svg_icon('terminal', class: 'w-5 h-5 flex-shrink-0 stroke-2') %>
-                <%= t('console') %>
-              <% end %>
-            </li>
-          <% end %>
           <% if can?(:read, EncryptedConfig.new(key: EncryptedConfig::ESIGN_CERTS_KEY, account: current_account)) %>
             <li>
               <%= link_to settings_esign_path, class: 'flex items-center' do %>
                 <%= svg_icon('zoom_check', class: 'w-5 h-5 flex-shrink-0 stroke-2') %>
                 <span class="mr-1 whitespace-nowrap"><%= t('verify_pdf') %></span>
-              <% end %>
-            </li>
-          <% end %>
-          <% if Docuseal.multitenant? || current_user.role == 'superadmin' %>
-            <li>
-              <%= link_to Docuseal::CHATGPT_URL, target: 'blank', class: 'flex items-center' do %>
-                <%= svg_icon('sparkles', class: 'w-5 h-5 flex-shrink-0 stroke-2') %>
-                <span class="mr-1 whitespace-nowrap"><%= t('ask_ai') %></span>
               <% end %>
             </li>
           <% end %>

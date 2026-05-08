@@ -1,8 +1,8 @@
 <% if signed_in? && current_user != true_user %>
   <%= render 'shared/test_alert' %>
 <% elsif request.path.starts_with?('/settings') %>
-  <%= link_to "#{Docuseal::CLOUD_URL}/sign_up?#{{ redir: "#{Docuseal::CONSOLE_URL}/on_premises" }.to_query}", class: 'hidden md:inline-flex btn btn-warning btn-sm', data: { prefetch: false } do %>
-    <%= t('upgrade') %>
+  <%= link_to "https://www.docuseal.com", class: 'hidden md:inline-flex btn btn-warning btn-sm', target: '_blank', data: { prefetch: false } do %>
+    Go Full Pro
   <% end %>
   <span class="hidden md:inline-flex h-3 border-r border-base-content"></span>
 <% end %>

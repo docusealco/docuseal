@@ -71,20 +71,7 @@
           </li>
         <% end %>
       <% end %>
-      <% if !Docuseal.demo? && can?(:manage, EncryptedConfig) && (current_user != true_user || !current_account.linked_account_account) %>
-        <li>
-          <%= content_for(:pro_link) || link_to(Docuseal.multitenant? ? console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}/plans") : "#{Docuseal::CLOUD_URL}/sign_up?#{{ redir: "#{Docuseal::CONSOLE_URL}/on_premises" }.to_query}", class: 'text-base hover:bg-base-300', data: { turbo: false }) do %>
-            <%= t('plans') %>
-            <span class="badge badge-warning"><%= t('pro') %></span>
-          <% end %>
-        </li>
-      <% end %>
       <% if !Docuseal.demo? && can?(:manage, EncryptedConfig) && (current_user == true_user || current_account.testing?) %>
-        <li>
-          <%= link_to Docuseal.multitenant? ? console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}#{'/test' if current_account.testing?}/api") : "#{Docuseal::CONSOLE_URL}/on_premises", class: 'text-base hover:bg-base-300', data: { turbo: false } do %>
-            <% if Docuseal.multitenant? %> API <% else %> <%= t('console') %> <% end %>
-          <% end %>
-        </li>
         <% if Docuseal.multitenant? %>
           <li>
             <%= link_to console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}#{'/test' if current_account.testing?}/embedding/form"), class: 'text-base hover:bg-base-300', data: { turbo: false } do %>
@@ -94,7 +81,7 @@
         <% end %>
         <% if (!Docuseal.multitenant? || can?(:manage, :saml_sso)) && can?(:read, EncryptedConfig.new(key: 'saml_configs', account: current_account)) && true_user == current_user %>
           <li>
-            <%= link_to 'SSO', settings_sso_index_path, class: 'text-base hover:bg-base-300' %>
+            <span class="text-base opacity-50 pointer-events-none block px-4 py-2">SSO</span>
           </li>
         <% end %>
         <% if !Docuseal.multitenant? && can?(:read, McpToken) && can?(:manage, :mcp) %>
@@ -131,24 +118,9 @@
             <%= svg_icon('brand_github', class: 'w-8 h-8') %>
           </a>
         </div>
-        <div class="tooltip" data-tip="<%= t('discord_community') %>">
-          <a href="<%= Docuseal::DISCORD_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
-            <%= svg_icon('brand_discord', class: 'w-8 h-8') %>
-          </a>
-        </div>
-        <%= capture do %>
-          <div class="tooltip" data-tip="<%= t('ai_assistant') %>">
-            <a href="<%= Docuseal::CHATGPT_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
-              <%= svg_icon('brand_openai', class: 'w-8 h-8') %>
-            </a>
-          </div>
-        <% end %>
       </div>
-      <a href="mailto:<%= Docuseal::SUPPORT_EMAIL %>" target="_blank" class="w-full block mt-4 underline text-center">
-        <%= Docuseal::SUPPORT_EMAIL %>
-      </a>
       <% if Docuseal.version.present? && !Docuseal.multitenant? && can?(:manage, EncryptedConfig) %>
-        <a href="https://github.com/docusealco/docuseal/releases" target="_blank" class="badge badge-outline text-xs block mx-auto mt-4">
+        <a href="https://github.com/snoe/docuseal-like-a-pro/releases" target="_blank" class="badge badge-outline text-xs block mx-auto mt-4">
           v<%= Docuseal.version %>
         </a>
       <% end %>
