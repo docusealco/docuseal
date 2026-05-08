@@ -65,16 +65,17 @@ class SubmissionEvent < ApplicationRecord
     complete_form: 'complete_form',
     decline_form: 'decline_form',
     delegate_form: 'delegate_form',
-    api_complete_form: 'api_complete_form'
+    api_complete_form: 'api_complete_form',
+    void_submission: 'void_submission'
   }, scope: false
 
   private
 
   def set_submission_id
-    self.submission_id = submitter&.submission_id
+    self.submission_id ||= submitter&.submission_id
   end
 
   def set_account_id
-    self.account_id = submitter&.account_id
+    self.account_id ||= submitter&.account_id || submission&.account_id
   end
 end

@@ -32,6 +32,7 @@ class WebhookUrl < ApplicationRecord
     submission.completed
     submission.expired
     submission.archived
+    submission.voided
     template.created
     template.updated
     template.archived

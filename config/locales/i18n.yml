@@ -564,10 +564,28 @@ en: &en
   new_recipients_have_been_added: New recipients have been added.
   submission_has_been_removed: Submission has been removed.
   submission_has_been_archived: Submission has been archived.
+  submission_has_been_voided: Submission has been voided.
+  submission_cannot_be_voided: This submission cannot be voided.
+  voided_submission_cannot_be_unarchived: A voided submission cannot be unarchived.
+  void_reason_is_required: A reason is required to void this submission.
   form_has_been_completed_already: Form has been completed already.
   form_has_been_archived: Form has been archived.
   form_has_been_expired: Form has been expired.
   form_has_been_declined: Form has been declined.
+  form_has_been_voided: Form has been voided.
+  form_has_been_voided_on_html: 'Form has been voided on <span class="font-semibold">%{time}</span>.'
+  voided_by_name: 'Voided by %{name}'
+  void: Void
+  voided: Voided
+  void_submission: Void submission
+  void_submission_confirmation: Voiding stops all signing on this document. The recipients will be notified with the reason you provide. This cannot be undone.
+  enter_reason_for_voiding: Enter a reason for voiding this document
+  cancel: Cancel
+  name_voided_by_sender: '"%{name}" has been voided'
+  name_has_been_voided_with_reason_html: '"%{name}" has been voided by %{sender}.'
+  voided_email_no_action_required: No further action is required from you. If you have any questions, please reply to this email.
+  voided_watermark_pending: Voided document with watermark is being generated…
+  voided_on_time: 'Voided on %{time}'
   file_is_missing: File is missing
   folder_name_has_been_updated: Folder name has been updated.
   unable_to_rename_folder: Unable to rename folder.

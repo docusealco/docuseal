@@ -71,7 +71,9 @@ class Submitter < ApplicationRecord
   after_destroy :anonymize_email_events, if: -> { Docuseal.multitenant? }
 
   def status
-    if declined_at?
+    if submission.voided_at?
+      'voided'
+    elsif declined_at?
       'declined'
     elsif completed_at?
       'completed'
@@ -105,7 +107,7 @@ class Submitter < ApplicationRecord
   end
 
   def status_event_at
-    declined_at || completed_at || opened_at || sent_at || created_at
+    submission.voided_at || declined_at || completed_at || opened_at || sent_at || created_at
   end
 
   def with_signature_fields?

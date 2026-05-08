@@ -17,6 +17,7 @@
 #  template_submitters :text
 #  variables           :text
 #  variables_schema    :text
+#  voided_at           :datetime
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  account_id          :bigint           not null
@@ -28,6 +29,7 @@
 #  index_submissions_on_account_id_and_id                           (account_id,id)
 #  index_submissions_on_account_id_and_template_id_and_id           (account_id,template_id,id) WHERE (archived_at IS NULL)
 #  index_submissions_on_account_id_and_template_id_and_id_archived  (account_id,template_id,id) WHERE (archived_at IS NOT NULL)
+#  index_submissions_on_account_id_and_template_id_and_id_voided    (account_id,template_id,id) WHERE (voided_at IS NOT NULL)
 #  index_submissions_on_created_by_user_id                          (created_by_user_id)
 #  index_submissions_on_slug                                        (slug) UNIQUE
 #  index_submissions_on_template_id                                 (template_id)
@@ -68,6 +70,7 @@ class Submission < ApplicationRecord
 
   has_many_attached :preview_documents
   has_many_attached :documents
+  has_many_attached :voided_documents
 
   has_many :template_accesses, primary_key: :template_id, foreign_key: :template_id, dependent: nil, inverse_of: false
 
@@ -86,12 +89,14 @@ class Submission < ApplicationRecord
   has_many :template_schema_dynamic_document_attachments,
            through: :template_schema_dynamic_document_versions, source: :document_attachment
 
-  scope :active, -> { where(archived_at: nil) }
+  scope :active, -> { where(archived_at: nil, voided_at: nil) }
   scope :archived, -> { where.not(archived_at: nil) }
+  scope :voided, -> { where.not(voided_at: nil) }
   scope :pending, lambda {
-    where(expire_at: nil).or(where(expire_at: Time.current..))
-                         .where(Submitter.where(Submitter.arel_table[:submission_id].eq(Submission.arel_table[:id])
-                                         .and(Submitter.arel_table[:completed_at].eq(nil))).select(1).arel.exists)
+    where(voided_at: nil)
+      .where(expire_at: nil).or(where(voided_at: nil, expire_at: Time.current..))
+      .where(Submitter.where(Submitter.arel_table[:submission_id].eq(Submission.arel_table[:id])
+                      .and(Submitter.arel_table[:completed_at].eq(nil))).select(1).arel.exists)
   }
   scope :completed, lambda {
     where.not(Submitter.where(Submitter.arel_table[:submission_id].eq(Submission.arel_table[:id])
@@ -123,6 +128,29 @@ class Submission < ApplicationRecord
 
   def expired?
     expire_at && expire_at <= Time.current
+  end
+
+  def voided?
+    voided_at.present?
+  end
+
+  def voidable?
+    !voided? && !submitters.all?(&:completed_at?)
+  end
+
+  def void_event
+    submission_events.find_by(event_type: :void_submission)
+  end
+
+  def void_reason
+    void_event&.data&.dig('reason')
+  end
+
+  def voided_by_user
+    return unless voided?
+
+    user_id = void_event&.data&.dig('voided_by_user_id')
+    user_id && User.find_by(id: user_id)
   end
 
   def schema_documents

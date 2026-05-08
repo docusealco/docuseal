@@ -1,0 +1,17 @@
+<%= render 'shared/turbo_modal', title: t('void_submission') do %>
+  <div class="px-1 pt-2 pb-1">
+    <p class="text-sm mb-4 text-base-content/80">
+      <%= t('void_submission_confirmation') %>
+    </p>
+    <%= form_with url: submission_void_index_path(@submission), method: :post, data: { turbo: false } do |f| %>
+      <div class="form-control">
+        <label class="label" for="reason"><%= t('enter_reason_for_voiding') %></label>
+        <%= f.text_area :reason, required: true, class: 'base-input w-full py-2', dir: 'auto', placeholder: t('provide_a_reason'), rows: 5 %>
+      </div>
+      <div class="flex justify-end space-x-2 mt-4">
+        <button type="button" class="btn btn-ghost" data-action="click:turbo-modal#close"><%= t('cancel') %></button>
+        <%= f.button button_title(title: t('void'), disabled_with: t('void')), class: 'btn btn-error' %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
