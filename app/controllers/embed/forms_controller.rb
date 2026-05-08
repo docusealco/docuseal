@@ -95,7 +95,8 @@ module Embed
     def unavailable_submitter_json(submitter)
       return submitter_status_json(submitter, :expired_submitter) if submitter.submission.expired?
       return submitter_status_json(submitter, :completed_submitter) if submitter.completed_at?
-      return submitter_status_json(submitter, :expired_submitter) if submitter.declined_at?
+
+      submitter_status_json(submitter, :expired_submitter) if submitter.declined_at?
     end
 
     def submitter_status_json(submitter, key)
