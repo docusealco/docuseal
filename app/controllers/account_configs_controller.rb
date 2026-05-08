@@ -25,7 +25,8 @@ class AccountConfigsController < ApplicationController
     AccountConfig::COMBINE_PDF_RESULT_KEY,
     AccountConfig::REQUIRE_SIGNING_REASON_KEY,
     AccountConfig::DOCUMENT_FILENAME_FORMAT_KEY,
-    AccountConfig::ENABLE_MCP_KEY
+    AccountConfig::ENABLE_MCP_KEY,
+    AccountConfig::EMBED_ALLOWED_ORIGINS_KEY
   ].freeze
 
   InvalidKey = Class.new(StandardError)
@@ -60,6 +61,22 @@ class AccountConfigsController < ApplicationController
   def account_config_params
     params.required(:account_config).permit(:key, :value, { value: {} }, { value: [] }).tap do |attrs|
       attrs[:value] = attrs[:value] == '1' if attrs[:value].in?(%w[1 0])
+      attrs[:value] = normalize_origins(attrs[:value]) if attrs[:key] == AccountConfig::EMBED_ALLOWED_ORIGINS_KEY
     end
+  end
+
+  def normalize_origins(value)
+    value.to_s.split(/[\s,]+/).filter_map do |origin|
+      uri = Addressable::URI.parse(origin.strip)
+
+      next unless uri.scheme.in?(%w[http https]) && uri.host.present?
+
+      uri.path = nil
+      uri.query = nil
+      uri.fragment = nil
+      uri.to_s.delete_suffix('/')
+    rescue Addressable::URI::InvalidURIError
+      nil
+    end.uniq
   end
 end

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class SubmitFormCompletedDownloadController < ApplicationController
+  include EmbedCors
+
   skip_before_action :authenticate_user!
   skip_authorization_check
 
@@ -18,6 +20,9 @@ class SubmitFormCompletedDownloadController < ApplicationController
       end
 
     @submitter ||= Submitter.find_by!(slug: submitter_slug)
+    @embed_cors_account = @submitter.account
+
+    set_embed_cors_headers
 
     Submissions::EnsureResultGenerated.call(@submitter)
 

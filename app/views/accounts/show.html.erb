@@ -228,6 +228,27 @@
             </div>
           <% end %>
         <% end %>
+        <% account_config = AccountConfig.find_or_initialize_by(account: current_account, key: AccountConfig::EMBED_ALLOWED_ORIGINS_KEY) %>
+        <% if can?(:manage, account_config) %>
+          <%= form_for account_config, url: account_configs_path, method: :post, html: { class: 'py-2.5' } do |f| %>
+            <%= f.hidden_field :key %>
+            <div class="space-y-2">
+              <div class="flex items-center space-x-1">
+                <span class="text-left"><%= t('allowed_embedding_origins') %></span>
+                <span class="tooltip tooltip-top flex cursor-pointer" data-tip="<%= t('allowed_embedding_origins_description') %>">
+                  <%= svg_icon('info_circle', class: 'hidden md:inline-block w-4 h-4 shrink-0') %>
+                </span>
+              </div>
+              <%= text_area_tag 'account_config[value]', Array(account_config.value).join("\n"), class: 'base-input min-h-28', placeholder: "https://app.example.com\nhttp://localhost:5173", dir: 'ltr' %>
+              <div class="flex items-center justify-between gap-3">
+                <p class="text-sm text-gray-500">
+                  <%= t('leave_blank_to_allow_embedding_from_any_origin') %>
+                </p>
+                <%= f.button button_title(title: t('save'), disabled_with: t('saving')), class: 'btn btn-sm btn-neutral text-white px-4' %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
         <% account_config = AccountConfig.find_or_initialize_by(account: current_account, key: AccountConfig::COMBINE_PDF_RESULT_KEY) %>
         <% if can?(:manage, account_config) %>
           <%= form_for account_config, url: account_configs_path, method: :post do |f| %>

@@ -1,13 +1,17 @@
 # frozen_string_literal: true
 
 class SubmitFormController < ApplicationController
+  include EmbedCors
+
   layout 'form'
 
   around_action :with_browser_locale, only: %i[show completed success delegated]
   skip_before_action :authenticate_user!
+  skip_before_action :verify_authenticity_token, only: :update
   skip_authorization_check
 
   before_action :load_submitter, only: %i[show update completed]
+  before_action :set_embed_cors_headers, only: :update
   before_action :maybe_redirect_delegated, only: %i[show completed]
   before_action :maybe_render_locked_page, only: :show
   before_action :maybe_require_link_2fa, only: %i[show]
@@ -134,5 +138,9 @@ class SubmitFormController < ApplicationController
   def build_attachments_index(submission)
     ActiveStorage::Attachment.where(record: submission.submitters, name: :attachments)
                              .preload(:blob).index_by(&:uuid)
+  end
+
+  def embed_cors_account
+    @submitter&.account || super
   end
 end

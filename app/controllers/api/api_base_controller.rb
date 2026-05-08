@@ -2,6 +2,7 @@
 
 module Api
   class ApiBaseController < ActionController::API
+    include EmbedCors
     include ActiveStorage::SetCurrent
     include Pagy::Method
 
@@ -13,6 +14,7 @@ module Api
     wrap_parameters false
 
     before_action :authenticate_user!
+    before_action :set_embed_cors_headers
     check_authorization
 
     rescue_from Params::BaseValidator::InvalidParameterError do |e|

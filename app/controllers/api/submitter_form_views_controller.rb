@@ -7,6 +7,9 @@ module Api
 
     def create
       @submitter = Submitter.find_by!(slug: params[:submitter_slug])
+      @embed_cors_account = @submitter.account
+
+      set_embed_cors_headers
 
       @submitter.opened_at = Time.current
       @submitter.save

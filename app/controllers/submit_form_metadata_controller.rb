@@ -1,11 +1,16 @@
 # frozen_string_literal: true
 
 class SubmitFormMetadataController < ApplicationController
+  include EmbedCors
+
   skip_before_action :authenticate_user!
   skip_authorization_check
 
   def index
     submitter = Submitter.find_by!(slug: params[:submit_form_slug])
+    @embed_cors_account = submitter.account
+
+    set_embed_cors_headers
 
     return head :not_found if submitter.declined_at? ||
                               submitter.completed_at? ||
@@ -17,7 +22,7 @@ class SubmitFormMetadataController < ApplicationController
 
     submission = submitter.submission
     values = submission.submitters.reduce({}) { |acc, sub| acc.merge(sub.values) }
-    schema = Submissions.filtered_conditions_schema(submission, values:, include_submitter_uuid: submitter.uuid)
+    schema = Submissions.filtered_conditions_schema(submission, values: values, include_submitter_uuid: submitter.uuid)
 
     documents = schema.filter_map do |item|
       submission.schema_documents.find { |a| a.uuid == item['attachment_uuid'] }
@@ -32,6 +37,6 @@ class SubmitFormMetadataController < ApplicationController
       ]
     end
 
-    render json: { text_runs: }
+    render json: { text_runs: text_runs }
   end
 end

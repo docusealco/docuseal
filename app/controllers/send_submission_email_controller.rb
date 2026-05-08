@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class SendSubmissionEmailController < ApplicationController
+  include EmbedCors
+
   layout 'form'
 
   skip_before_action :authenticate_user!
@@ -26,6 +28,9 @@ class SendSubmissionEmailController < ApplicationController
     else
       @submitter = Submitter.completed.find_by!(slug: params[:submitter_slug])
     end
+
+    @embed_cors_account = @submitter.account
+    set_embed_cors_headers
 
     RateLimit.call("send-email-#{@submitter.id}", limit: 2, ttl: 5.minutes)
 

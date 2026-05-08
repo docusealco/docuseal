@@ -214,6 +214,14 @@ Rails.application.routes.draw do
 
   match '/mcp', to: 'mcp#call', via: %i[get post]
 
+  post '/embed/forms', to: 'embed/forms#create'
+  match '/embed/forms', to: 'embed/forms#preflight', via: :options
+  match '/s/:slug', to: 'cors_preflight#show', via: :options
+  match '/s/:slug/*path', to: 'cors_preflight#show', via: :options
+  match '/submitters/:submitter_id/download', to: 'cors_preflight#show', via: :options
+  match '/send_submission_email', to: 'cors_preflight#show', via: :options
+  match '/api/*path', to: 'cors_preflight#show', via: :options
+
   get '/js/:filename', to: 'embed_scripts#show', as: :embed_script
 
   ActiveSupport.run_load_hooks(:routes, self)

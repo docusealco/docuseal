@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class SubmitFormDownloadController < ApplicationController
+  include EmbedCors
+
   skip_before_action :authenticate_user!
   skip_authorization_check
 
@@ -8,6 +10,9 @@ class SubmitFormDownloadController < ApplicationController
 
   def index
     @submitter = Submitter.find_by!(slug: params[:submit_form_slug])
+    @embed_cors_account = @submitter.account
+
+    set_embed_cors_headers
 
     return redirect_to submit_form_documents_path(@submitter.slug) if @submitter.completed_at?
 

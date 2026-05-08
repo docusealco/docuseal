@@ -2,6 +2,7 @@
 
 module Api
   class AttachmentsController < ActionController::API
+    include EmbedCors
     include ActionController::Cookies
     include ActiveStorage::SetCurrent
 
@@ -9,6 +10,9 @@ module Api
 
     def create
       submitter = Submitter.find_by!(slug: params[:submitter_slug])
+      @embed_cors_account = submitter.account
+
+      set_embed_cors_headers
 
       unless can_upload?(submitter)
         Rollbar.error("Can't upload: #{submitter.id}") if defined?(Rollbar)
