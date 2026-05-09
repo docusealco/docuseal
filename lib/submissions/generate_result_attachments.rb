@@ -145,7 +145,7 @@ module Submissions
                                                               AccountConfig::WITH_SUBMITTER_TIMEZONE_KEY,
                                                               AccountConfig::WITH_SIGNATURE_ID_REASON_KEY])
 
-      with_signature_id = configs.find { |c| c.key == AccountConfig::WITH_SIGNATURE_ID }&.value == true
+      with_signature_id = configs.find { |c| c.key == AccountConfig::WITH_SIGNATURE_ID }&.value != false
       is_flatten = configs.find { |c| c.key == AccountConfig::FLATTEN_RESULT_PDF_KEY }&.value != false
       is_rotate_incremental = configs.find { |c| c.key == AccountConfig::ROTATE_INCREMENTAL_PDF_KEY }&.value == true
       with_timestamp_seconds = configs.find { |c| c.key == AccountConfig::WITH_TIMESTAMP_SECONDS_KEY }&.value == true
@@ -308,7 +308,7 @@ module Submissions
           end
 
           case field_type
-          when ->(type) { type == 'signature' && (with_signature_id || field.dig('preferences', 'reason_field_uuid')) }
+          when ->(type) { (type == 'signature' || type == 'initials') && with_signature_id }
             attachment = submitter.attachments.find { |a| a.uuid == value }
 
             image =
@@ -321,130 +321,138 @@ module Submissions
                 raise
               end
 
-            reason_value = submitter.values[field.dig('preferences', 'reason_field_uuid')].presence
-
-            reason_string =
-              I18n.with_locale(locale) do
-                timezone = submitter.account.timezone
-                timezone = submitter.timezone || submitter.account.timezone if with_submitter_timezone
-
-                time_format = with_timestamp_seconds ? :detailed : :long
-
-                if with_signature_id_reason || field.dig('preferences', 'reasons').present?
-                  "#{"#{I18n.t('reason')}: " if reason_value}#{reason_value || I18n.t('digitally_signed_by')} " \
-                    "#{submitter.name}#{" <#{submitter.email}>" if submitter.email.present?}\n" \
-                    "#{I18n.l(attachment.created_at.in_time_zone(timezone), format: time_format)} " \
-                    "#{TimeUtils.timezone_abbr(timezone, attachment.created_at)}"
-                else
-                  "#{I18n.l(attachment.created_at.in_time_zone(timezone), format: time_format)} " \
-                    "#{TimeUtils.timezone_abbr(timezone, attachment.created_at)}"
-                end
-              end
-
-            base_font_size = (font_size / 1.8).to_i
-
-            result = nil
+            page_base_size = (([width, height].min / A4_SIZE[0].to_f) * FONT_SIZE).to_i
+            base_font_size = (page_base_size / 1.8).to_i
+            base_font_size = 4 if base_font_size < 4
 
             area_x = area['x'] * width
             area_y = area['y'] * height
             area_w = area['w'] * width
             area_h = area['h'] * height
 
-            if area_h.positive? && (area_w.to_f / area_h) > 4.5
-              half_width = area_w / 2.0
-              scale = [half_width / image.width, area_h / image.height].min
-              image_width = image.width * scale
-              image_height = image.height * scale
-              image_x = area_x + ((half_width - image_width) / 2.0)
-              image_y = height - area_y - image_height
-
-              io = StringIO.new(image.resize([scale * 4, 1].select(&:positive?).min).write_to_buffer('.png'))
-
-              canvas.image(io, at: [image_x, image_y], width: image_width, height: image_height)
-
-              id_string = "ID: #{attachment.uuid}".upcase
-
-              loop do
-                text = HexaPDF::Layout::TextFragment.create(id_string, font:, font_size: base_font_size)
-
-                result = layouter.fit([text], half_width, base_font_size / 0.65)
-
-                break if result.status == :success
-
-                id_string = "#{id_string.delete_suffix('...')[0..-2]}..."
-
-                break if id_string.length < 8
+            timezone = with_submitter_timezone ? (submitter.timezone || submitter.account.timezone) : submitter.account.timezone
+            time_format = with_timestamp_seconds ? :detailed : :long
+            caption_string =
+              I18n.with_locale(locale) do
+                if field_type == 'initials'
+                  date_str = I18n.l(attachment.created_at.in_time_zone(timezone).to_date, format: :long)
+                  with_signature_id_reason ? "#{submitter.name} · #{date_str}" : date_str
+                else
+                  timestamp_str = "#{I18n.l(attachment.created_at.in_time_zone(timezone), format: time_format)} " \
+                                  "#{TimeUtils.timezone_abbr(timezone, attachment.created_at)}"
+                  with_signature_id_reason ? "#{submitter.name} · #{timestamp_str}" : timestamp_str
+                end
               end
-
-              string = [id_string, reason_string].join("\n")
-
-              loop do
-                text = HexaPDF::Layout::TextFragment.create(string, font:, font_size: base_font_size)
-
-                result = layouter.fit([text], half_width, area_h)
-
-                break if result.status == :success
-
-                base_font_size *= 0.9
-
-                break if base_font_size < 2
+            doc_id_full = Digest::MD5.hexdigest(submitter.submission.slug).upcase
+            header_string =
+              if field_type == 'signature'
+                "#{I18n.with_locale(locale) { I18n.t('digitally_signed_by') }}:"
+              else
+                "#{I18n.with_locale(locale) { I18n.t('initials') }}:"
               end
+            id_string = "#{doc_id_full[0, 16]}..."
 
-              text = HexaPDF::Layout::TextFragment.create(string, font:, font_size: base_font_size)
+            amber_border = HexaPDF::Content::ColorSpace::DeviceRGB.new.color(0.71, 0.45, 0.05)
+            slate_text = HexaPDF::Content::ColorSpace::DeviceRGB.new.color(0.16, 0.16, 0.20)
+            muted_text = HexaPDF::Content::ColorSpace::DeviceRGB.new.color(0.42, 0.45, 0.50)
 
-              text_x = area_x + half_width
-              text_y = height - area_y
+            bracket_r = [area_h * 0.18, base_font_size * 1.2, 7].max
+            inner_left = area_x + bracket_r + 4
+            inner_right = area_x + area_w - 1
+            content_w = inner_right - inner_left
 
-              layouter.fit([text], half_width, area_h).draw(canvas, text_x + TEXT_LEFT_MARGIN, text_y)
-            else
-              reason_text = HexaPDF::Layout::TextFragment.create(reason_string,
-                                                                 font:,
-                                                                 font_size: base_font_size)
+            header_h = base_font_size * 1.4
+            header_gap = base_font_size * 0.2
+            line_h = base_font_size * 1.25
+            min_image_h = base_font_size * 2.5
 
-              id_string = "ID: #{attachment.uuid}".upcase
+            # Signature: header + image + caption (name · timestamp) + ID. Initials: header + image only.
+            footer_lines = field_type == 'signature' ? 2 : 0
+            while footer_lines > 0 && (area_h - header_h - header_gap - (line_h * footer_lines)) < min_image_h
+              footer_lines -= 1
+            end
+            footer_h = line_h * footer_lines
 
-              loop do
-                text = HexaPDF::Layout::TextFragment.create(id_string,
-                                                            font:,
-                                                            font_size: base_font_size)
+            available_image_h = area_h - header_h - header_gap - footer_h
+            available_image_h = min_image_h if available_image_h < min_image_h
 
-                result = layouter.fit([text], area_w, base_font_size / 0.65)
+            box_y_top = height - area_y
+            box_y_bottom = (height - area_y) - area_h
 
-                break if result.status == :success
+            size_factor = field_type == 'initials' ? 0.55 : 0.85
+            inner_image_w = (content_w - 2) * size_factor
+            inner_image_h = available_image_h * size_factor
+            scale = [[inner_image_w / image.width, inner_image_h / image.height].min, 0.0001].max
+            image_w_drawn = image.width * scale
+            image_h_drawn = image.height * scale
 
-                id_string = "#{id_string.delete_suffix('...')[0..-2]}..."
+            tail_h = field_type == 'initials' ? base_font_size * 0.6 : 0
+            content_h = header_h + header_gap + image_h_drawn + footer_h + tail_h
+            content_h = [content_h, area_h].min
+            bracket_y_top = box_y_top
+            bracket_y_bottom = box_y_top - content_h
 
-                break if id_string.length < 8
-              end
+            image_y_top = box_y_top - header_h - header_gap
+            image_y_bottom = image_y_top - image_h_drawn
+            image_x_left = inner_left + ((content_w - image_w_drawn) / 2.0)
 
-              reason_result = layouter.fit([reason_text], area_w, height)
-              text_height = result.lines.sum(&:height) + reason_result.lines.sum(&:height)
+            canvas.save_graphics_state do
+              canvas.fill_color(255, 255, 255)
+                    .rectangle(area_x, box_y_bottom, area_w, area_h)
+                    .fill
+            end
 
-              image_height = area_h - text_height
-              image_height = area_h / 2 if image_height < area_h / 2
+            header_font = pdf.fonts.add('Helvetica', variant: :bold)
+            label_font = pdf.fonts.add('Helvetica')
+            header_text = HexaPDF::Layout::TextFragment.create(header_string, font: header_font,
+                                                                              font_size: base_font_size,
+                                                                              fill_color: slate_text)
+            HexaPDF::Layout::TextLayouter.new(font: header_font, font_size: base_font_size, text_align: :left)
+                                         .fit([header_text], content_w, header_h)
+                                         .draw(canvas, inner_left, box_y_top - 1)
 
-              scale = [area_w / image.width, image_height / image.height].min
+            io = StringIO.new(image.resize([scale * 4, 1].select(&:positive?).min).write_to_buffer('.png'))
+            image_x_left_aligned = inner_left
+            canvas.image(io,
+                         at: [image_x_left_aligned, image_y_bottom],
+                         width: image_w_drawn,
+                         height: image_h_drawn)
 
-              io = StringIO.new(image.resize([scale * 4, 1].select(&:positive?).min).write_to_buffer('.png'))
+            canvas.save_graphics_state do
+              canvas.stroke_color(amber_border).line_width(0.9).line_cap_style(:round).line_join_style(:round)
+              k = bracket_r * 0.5523
+              top_stub_end_x = inner_left - 1
+              top_stub_len = top_stub_end_x - (area_x + bracket_r)
+              bottom_stub_end_x = (area_x + bracket_r) + (top_stub_len * 1.12)
+              canvas.move_to(top_stub_end_x, bracket_y_top)
+                    .line_to(area_x + bracket_r, bracket_y_top)
+                    .curve_to(area_x, bracket_y_top - bracket_r,
+                              p1: [area_x + bracket_r - k, bracket_y_top],
+                              p2: [area_x, bracket_y_top - bracket_r + k])
+                    .line_to(area_x, bracket_y_bottom + bracket_r)
+                    .curve_to(area_x + bracket_r, bracket_y_bottom,
+                              p1: [area_x, bracket_y_bottom + bracket_r - k],
+                              p2: [area_x + bracket_r - k, bracket_y_bottom])
+                    .line_to(bottom_stub_end_x, bracket_y_bottom)
+                    .stroke
+            end
 
-              layouter.fit([text], area_w, base_font_size / 0.65)
-                      .draw(canvas, area_x + TEXT_LEFT_MARGIN,
-                            height - area_y - TEXT_TOP_MARGIN - image_height)
+            if footer_lines >= 1
+              caption_text = HexaPDF::Layout::TextFragment.create(caption_string, font: label_font,
+                                                                                  font_size: base_font_size,
+                                                                                  fill_color: slate_text)
+              HexaPDF::Layout::TextLayouter.new(font: label_font, font_size: base_font_size, text_align: :left)
+                                           .fit([caption_text], content_w, line_h)
+                                           .draw(canvas, inner_left, image_y_bottom)
+            end
 
-              layouter.fit([reason_text], area_w, reason_result.lines.sum(&:height))
-                      .draw(canvas, area_x + TEXT_LEFT_MARGIN,
-                            height - area_y - TEXT_TOP_MARGIN -
-                            result.lines.sum(&:height) - image_height)
-
-              canvas.image(
-                io,
-                at: [
-                  area_x + (area_w / 2) - ((image.width * scale) / 2),
-                  height - area_y - (image.height * scale / 2) - (image_height / 2)
-                ],
-                width: image.width * scale,
-                height: image.height * scale
-              )
+            if footer_lines >= 2
+              id_font_size = [base_font_size * 0.85, 4].max
+              id_text = HexaPDF::Layout::TextFragment.create(id_string, font: label_font, font_size: id_font_size,
+                                                                        fill_color: muted_text)
+              HexaPDF::Layout::TextLayouter.new(font: label_font, font_size: id_font_size, text_align: :left)
+                                           .fit([id_text], content_w, line_h)
+                                           .draw(canvas, inner_left, image_y_bottom - line_h)
             end
           when 'image', 'signature', 'initials', 'stamp', 'kba'
             attachment = submitter.attachments.find { |a| a.uuid == value }

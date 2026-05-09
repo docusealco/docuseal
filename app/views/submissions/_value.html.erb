@@ -8,33 +8,56 @@
 <field-value dir="auto" aria-hidden="true" class="flex absolute <%= 'font-courier' if font == 'Courier' %> <%= 'font-times' if font == 'Times' %> <%= 'font-bold' if font_type == 'bold' || font_type == 'bold_italic' %> <%= 'italic' if font_type == 'italic' || font_type == 'bold_italic' %> <%= align == 'right' ? 'text-right' : (align == 'center' ? 'text-center' : '') %>" style="<%= "color: #{color}; " if color.present? && color.match?(Templates::COLOR_REGEXP) %><%= "background: #{bg_color}; " if bg_color.present? && bg_color.match?(Templates::COLOR_REGEXP) %>width: <%= area['w'].to_f * 100 %>%; height: <%= area['h'].to_f * 100 %>%; left: <%= area['x'].to_f * 100 %>%; top: <%= area['y'].to_f * 100 %>%; font-size: <%= fs = "clamp(1pt, #{font_size_px / 10}vw, #{font_size_px}px)" %>; line-height: calc(<%= fs %> * 1.3); font-size: <%= fs = "#{font_size_px / 10}cqmin" %>; line-height: calc(<%= fs %> * 1.3)">
   <% if field['type'] == 'signature' %>
     <% is_narrow = area['h'].to_f.positive? && ((area['w'].to_f * local_assigns[:page_width]) / (area['h'].to_f * local_assigns[:page_height])) > 4.5 %>
-    <div class="flex justify-between w-full h-full gap-1 <%= is_narrow && (local_assigns[:with_signature_id] || field.dig('preferences', 'reason_field_uuid').present?) ? 'flex-row' : 'flex-col' %>">
-      <div class="flex overflow-hidden <%= is_narrow && (local_assigns[:with_signature_id] || field.dig('preferences', 'reason_field_uuid').present?) ? 'w-1/2' : 'flex-grow' %>" style="min-height: 50%">
-        <img class="object-contain mx-auto" src="<%= attachments_index[value].url %>" alt="<%= field['name'].presence || field['title'].presence || field['type'] %>">
+    <% sig_attachment = attachments_index[value] %>
+    <% reason_value = submitter.values[field.dig('preferences', 'reason_field_uuid')].presence %>
+    <% sig_timezone = local_assigns[:with_submitter_timezone] ? (submitter.timezone || local_assigns[:timezone]) : local_assigns[:timezone] %>
+    <% sig_time_format = local_assigns[:with_timestamp_seconds] ? :detailed : :long %>
+    <div class="flex w-full h-full gap-1 <%= is_narrow && (local_assigns[:with_signature_id] || reason_value) ? 'flex-row' : 'flex-col' %>">
+      <% if local_assigns[:with_signature_id] && !is_narrow && sig_attachment %>
+        <div class="bg-amber-400 text-amber-950 uppercase tracking-wider truncate px-1 leading-tight text-[0.8vw] lg:text-[0.55rem] flex-shrink-0" style="border-bottom: 1px solid rgba(120, 53, 15, 0.25);">
+          <%= t('digitally_signed_by') %> &middot; ID <%= sig_attachment.uuid.to_s.first(8).upcase %>
+        </div>
+      <% end %>
+      <div class="flex overflow-hidden border border-base-content/20 bg-base-100/60 <%= is_narrow && (local_assigns[:with_signature_id] || reason_value) ? 'w-1/2' : 'flex-grow' %>" style="min-height: 50%">
+        <img class="object-contain mx-auto" src="<%= sig_attachment.url %>" alt="<%= field['name'].presence || field['title'].presence || field['type'] %>">
       </div>
-      <% if (local_assigns[:with_signature_id] || field.dig('preferences', 'reason_field_uuid').present?) && attachment = attachments_index[value] %>
-        <div class="text-[1vw] lg:text-[0.55rem] lg:leading-[0.65rem] <%= is_narrow ? 'w-1/2' : 'w-full' %>">
-          <div class="truncate uppercase">
-            ID: <%= attachment.uuid %>
-          </div>
+      <% if (local_assigns[:with_signature_id] || reason_value) && sig_attachment %>
+        <div class="text-[1vw] lg:text-[0.55rem] lg:leading-[0.7rem] px-0.5 <%= is_narrow ? 'w-1/2' : 'w-full' %>">
+          <% if is_narrow && local_assigns[:with_signature_id] %>
+            <div class="truncate uppercase opacity-70">ID: <%= sig_attachment.uuid.to_s.first(8).upcase %></div>
+          <% end %>
           <% if local_assigns[:with_signature_id_reason] != false %>
-            <div>
-              <% reason_value = submitter.values[field.dig('preferences', 'reason_field_uuid')].presence %>
-              <% if reason_value %><%= t('reason') %>: <% end %><%= reason_value || t('digitally_signed_by') %> <%= submitter.name %>
-              <% if submitter.email %>
-                &lt;<%= submitter.email %>&gt;
-              <% end %>
+            <div class="truncate">
+              <span class="font-semibold"><%= submitter.name %></span><% if submitter.email %> &lt;<%= submitter.email %>&gt;<% end %>
+              <span class="opacity-60"> &middot; </span><%= l(sig_attachment.created_at.in_time_zone(sig_timezone), format: sig_time_format, locale: local_assigns[:locale]) %> <%= TimeUtils.timezone_abbr(sig_timezone, sig_attachment.created_at) %>
+            </div>
+          <% else %>
+            <div class="truncate opacity-60">
+              <%= l(sig_attachment.created_at.in_time_zone(sig_timezone), format: sig_time_format, locale: local_assigns[:locale]) %> <%= TimeUtils.timezone_abbr(sig_timezone, sig_attachment.created_at) %>
             </div>
           <% end %>
-          <div>
-            <% timezone = local_assigns[:with_submitter_timezone] ? (submitter.timezone || local_assigns[:timezone]) : local_assigns[:timezone] %>
-            <% time_format = local_assigns[:with_timestamp_seconds] ? :detailed : :long %>
-            <%= l(attachment.created_at.in_time_zone(timezone), format: time_format, locale: local_assigns[:locale]) %> <%= TimeUtils.timezone_abbr(timezone, attachment.created_at) %>
-          </div>
         </div>
       <% end %>
     </div>
-  <% elsif field['type'].in?(['image', 'initials', 'stamp', 'kba']) && attachments_index[value].image? %>
+  <% elsif field['type'] == 'initials' && (initials_attachment = attachments_index[value]) && initials_attachment.image? %>
+    <% initials_timezone = local_assigns[:with_submitter_timezone] ? (submitter.timezone || local_assigns[:timezone]) : local_assigns[:timezone] %>
+    <div class="flex flex-col w-full h-full overflow-hidden">
+      <% if local_assigns[:with_signature_id] %>
+        <div class="bg-amber-400 text-amber-950 uppercase tracking-wider truncate px-1 leading-tight text-[0.8vw] lg:text-[0.5rem] flex-shrink-0" style="border-bottom: 1px solid rgba(120, 53, 15, 0.25);">
+          ID <%= initials_attachment.uuid.to_s.first(8).upcase %>
+        </div>
+      <% end %>
+      <div class="flex-grow flex overflow-hidden border border-base-content/20 bg-base-100/60" style="min-height: 50%">
+        <img class="object-contain mx-auto" src="<%= initials_attachment.url %>" loading="lazy" alt="<%= field['name'].presence || field['title'].presence || field['type'] %>">
+      </div>
+      <% if local_assigns[:with_signature_id] && local_assigns[:with_signature_id_reason] != false %>
+        <div class="truncate text-[1vw] lg:text-[0.5rem] lg:leading-[0.65rem] px-0.5 flex-shrink-0">
+          <span class="font-semibold"><%= submitter.name %></span>
+          <span class="opacity-60"> &middot; </span><%= l(initials_attachment.created_at.in_time_zone(initials_timezone), format: :long, locale: local_assigns[:locale]) %>
+        </div>
+      <% end %>
+    </div>
+  <% elsif field['type'].in?(['image', 'stamp', 'kba']) && attachments_index[value].image? %>
     <img class="object-contain mx-auto" src="<%= attachments_index[value].url %>" loading="lazy" alt="<%= field['name'].presence || field['title'].presence || field['type'] %>">
   <% elsif field['type'].in?(['file', 'payment', 'image']) %>
     <autosize-field></autosize-field>
