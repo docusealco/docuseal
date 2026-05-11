@@ -1,0 +1,45 @@
+# i18n-tasks configuration
+# Run: bundle exec i18n-tasks missing
+# Docs: https://github.com/glebm/i18n-tasks
+
+base_locale: en
+
+locales: [en, es, it, fr, pt, de, nl]
+
+data:
+  read:
+    - config/locales/%{locale}.yml
+    - config/locales/i18n.yml
+
+search:
+  paths:
+    - app/
+    - lib/
+
+ignore_missing:
+  # Dynamic keys built from model attributes
+  - 'submission_sources.*'
+  - '*_field'
+  # User roles resolved dynamically: t(user.role)
+  - 'admin'
+  - 'editor'
+  - 'integration'
+  # Language codes: t("language_#{code}")
+  - 'language_*'
+
+ignore_unused:
+  # Keys used in mailer templates and defaults
+  - 'submitter_invitation_*'
+  - 'submitter_reminder_*'
+  - 'reminder_you_are_invited_*'
+  - 'you_are_invited_*'
+  # Keys used via dynamic lookup
+  - 'submission_sources.*'
+  - '*_field'
+  - 'language_*'
+  # Devise keys
+  - 'devise.*'
+  # Doorkeeper keys
+  - 'doorkeeper.*'
+  # Variables section (used in email templates)
+  - 'variables.*'

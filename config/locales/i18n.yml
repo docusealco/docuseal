@@ -606,6 +606,14 @@ en: &en
   user_has_been_updated: User has been updated.
   unable_to_remove_user: Unable to remove user.
   user_has_been_removed: User has been removed.
+  team_has_been_created: Team has been created.
+  team_has_been_updated: Team has been updated.
+  team_has_been_archived: Team has been archived.
+  edit_team: Edit Team
+  members: Members
+  submitter: Submitter
+  team: Team
+  template: Template
   invalid_pdf: Invalid PDF
   webhook_secret_has_been_saved: Webhook Secret has been saved.
   webhook_url_has_been_saved: Webhook URL has been saved.
@@ -1373,6 +1381,14 @@ es: &es
   first_reminder_in: Primer recordatorio en
   second_reminder_in: Segundo recordatorio en
   third_reminder_in: Tercer recordatorio en
+  next_reminder_in_time: "Próximo recordatorio: en %{time}"
+  reminder_overdue: Recordatorio atrasado
+  pending_reminders: Recordatorios pendientes
+  last_sent: Último envío
+  next_due: Próximo envío
+  in_time: "en %{time}"
+  overdue: Atrasado
+  reminder_skipped: Recordatorio omitido
   learn_more: Aprende más
   unable_to_save: No se pudo guardar.
   invalid_timeserver: Servidor de tiempo inválido
@@ -1642,6 +1658,7 @@ es: &es
   form_has_been_declined: El formulario ha sido rechazado.
   file_is_missing: Falta el archivo
   folder_name_has_been_updated: El nombre de la carpeta ha sido actualizado.
+  folder_has_been_moved: La carpeta ha sido movida al equipo seleccionado.
   unable_to_rename_folder: No se pudo renombrar la carpeta.
   template_has_been_removed: La plantilla ha sido eliminada.
   template_has_been_archived: La plantilla ha sido archivada.
@@ -1656,6 +1673,14 @@ es: &es
   user_has_been_updated: El usuario ha sido actualizado.
   unable_to_remove_user: No se pudo eliminar el usuario.
   user_has_been_removed: El usuario ha sido eliminado.
+  team_has_been_created: El equipo ha sido creado.
+  team_has_been_updated: El equipo ha sido actualizado.
+  team_has_been_archived: El equipo ha sido archivado.
+  edit_team: Editar equipo
+  members: Miembros
+  submitter: Firmante
+  team: Equipo
+  template: Plantilla
   invalid_pdf: PDF inválido
   webhook_secret_has_been_saved: El secreto del Webhook ha sido guardado.
   webhook_url_has_been_saved: La URL del Webhook ha sido guardada.
@@ -2420,6 +2445,14 @@ it: &it
   first_reminder_in: Primo promemoria in
   second_reminder_in: Secondo promemoria in
   third_reminder_in: Terzo promemoria in
+  next_reminder_in_time: "Prossimo promemoria: tra %{time}"
+  reminder_overdue: Promemoria scaduto
+  pending_reminders: Promemoria in attesa
+  last_sent: Ultimo invio
+  next_due: Prossimo invio
+  in_time: "tra %{time}"
+  overdue: Scaduto
+  reminder_skipped: Promemoria saltato
   learn_more: Scopri di più
   unable_to_save: Impossibile salvare.
   invalid_timeserver: Server di timestamp non valido
@@ -2689,6 +2722,7 @@ it: &it
   form_has_been_declined: Il modulo è stato rifiutato.
   file_is_missing: File mancante
   folder_name_has_been_updated: Il nome della cartella è stato aggiornato.
+  folder_has_been_moved: La cartella è stata spostata nel team selezionato.
   unable_to_rename_folder: Impossibile rinominare la cartella.
   template_has_been_removed: Il modello è stato rimosso.
   template_has_been_archived: Il modello è stato archiviato.
@@ -2703,6 +2737,14 @@ it: &it
   user_has_been_updated: "L'utente è stato aggiornato."
   unable_to_remove_user: "Impossibile rimuovere l'utente."
   user_has_been_removed: "L'utente è stato rimosso."
+  team_has_been_created: Il team è stato creato.
+  team_has_been_updated: Il team è stato aggiornato.
+  team_has_been_archived: Il team è stato archiviato.
+  edit_team: Modifica team
+  members: Membri
+  submitter: Firmatario
+  team: Team
+  template: Modello
   invalid_pdf: PDF non valido
   webhook_secret_has_been_saved: Il segreto del Webhook è stato salvato.
   webhook_url_has_been_saved: "L'URL del Webhook è stato salvato."
@@ -3468,6 +3510,14 @@ fr: &fr
   first_reminder_in: Premier rappel dans
   second_reminder_in: Deuxième rappel dans
   third_reminder_in: Troisième rappel dans
+  next_reminder_in_time: "Prochain rappel : dans %{time}"
+  reminder_overdue: Rappel en retard
+  pending_reminders: Rappels en attente
+  last_sent: Dernier envoi
+  next_due: Prochain envoi
+  in_time: "dans %{time}"
+  overdue: En retard
+  reminder_skipped: Rappel ignoré
   learn_more: En savoir plus
   unable_to_save: Impossible d’enregistrer.
   invalid_timeserver: Serveur d’horodatage invalide
@@ -3737,6 +3787,7 @@ fr: &fr
   form_has_been_declined: Le formulaire a été refusé.
   file_is_missing: Fichier manquant
   folder_name_has_been_updated: Le nom du dossier a été mis à jour.
+  folder_has_been_moved: Le dossier a été déplacé vers l'équipe sélectionnée.
   unable_to_rename_folder: Impossible de renommer le dossier.
   template_has_been_removed: Le modèle a été supprimé.
   template_has_been_archived: Le modèle a été archivé.
@@ -3751,6 +3802,14 @@ fr: &fr
   user_has_been_invited: L’utilisateur a été invité.
   unable_to_update_user: Impossible de mettre à jour l’utilisateur.
   user_has_been_removed: L’utilisateur a été supprimé.
+  team_has_been_created: "L’équipe a été créée."
+  team_has_been_updated: "L’équipe a été mise à jour."
+  team_has_been_archived: "L’équipe a été archivée."
+  edit_team: Modifier l’équipe
+  members: Membres
+  submitter: Signataire
+  team: Équipe
+  template: Modèle
   invalid_pdf: PDF invalide
   webhook_secret_has_been_saved: Le secret du webhook a été enregistré.
   webhook_url_has_been_saved: L’URL du webhook a été enregistrée.
@@ -4512,6 +4571,14 @@ pt: &pt
   first_reminder_in: Primeiro lembrete em
   second_reminder_in: Segundo lembrete em
   third_reminder_in: Terceiro lembrete em
+  next_reminder_in_time: "Próximo lembrete: em %{time}"
+  reminder_overdue: Lembrete atrasado
+  pending_reminders: Lembretes pendentes
+  last_sent: Último envio
+  next_due: Próximo envio
+  in_time: "em %{time}"
+  overdue: Atrasado
+  reminder_skipped: Lembrete ignorado
   learn_more: Saiba mais
   unable_to_save: Não foi possível salvar.
   invalid_timeserver: Servidor de carimbo de tempo inválido
@@ -4781,6 +4848,7 @@ pt: &pt
   form_has_been_declined: O formulário foi recusado.
   file_is_missing: O arquivo está ausente
   folder_name_has_been_updated: O nome da pasta foi atualizado.
+  folder_has_been_moved: A pasta foi movida para a equipe selecionada.
   unable_to_rename_folder: Não foi possível renomear a pasta.
   template_has_been_removed: O modelo foi removido.
   template_has_been_archived: O modelo foi arquivado.
@@ -4795,6 +4863,14 @@ pt: &pt
   user_has_been_invited: O usuário foi convidado.
   unable_to_update_user: Não foi possível atualizar o usuário.
   user_has_been_removed: O usuário foi removido.
+  team_has_been_created: A equipe foi criada.
+  team_has_been_updated: A equipe foi atualizada.
+  team_has_been_archived: A equipe foi arquivada.
+  edit_team: Editar equipe
+  members: Membros
+  submitter: Signatário
+  team: Equipe
+  template: Modelo
   invalid_pdf: PDF inválido
   webhook_secret_has_been_saved: O segredo do Webhook foi salvo.
   webhook_url_has_been_saved: A URL do Webhook foi salva.
@@ -5559,6 +5635,14 @@ de: &de
   first_reminder_in: Erste Erinnerung in
   second_reminder_in: Zweite Erinnerung in
   third_reminder_in: Dritte Erinnerung in
+  next_reminder_in_time: "Nächste Erinnerung: in %{time}"
+  reminder_overdue: Erinnerung überfällig
+  pending_reminders: Ausstehende Erinnerungen
+  last_sent: Zuletzt gesendet
+  next_due: Nächster Versand
+  in_time: "in %{time}"
+  overdue: Überfällig
+  reminder_skipped: Erinnerung übersprungen
   learn_more: Mehr erfahren
   unable_to_save: Speichern nicht möglich.
   invalid_timeserver: Ungültiger Zeitstempelserver
@@ -5828,6 +5912,7 @@ de: &de
   form_has_been_declined: Das Formular wurde abgelehnt.
   file_is_missing: Datei fehlt
   folder_name_has_been_updated: Der Ordnername wurde aktualisiert.
+  folder_has_been_moved: Ordner wurde ins ausgewählte Team verschoben.
   unable_to_rename_folder: Der Ordner konnte nicht umbenannt werden.
   template_has_been_removed: Die Vorlage wurde entfernt.
   template_has_been_archived: Die Vorlage wurde archiviert.
@@ -5842,6 +5927,14 @@ de: &de
   user_has_been_updated: Der Benutzer wurde aktualisiert.
   unable_to_remove_user: Der Benutzer konnte nicht entfernt werden.
   user_has_been_removed: Der Benutzer wurde entfernt.
+  team_has_been_created: Team wurde erstellt.
+  team_has_been_updated: Team wurde aktualisiert.
+  team_has_been_archived: Team wurde archiviert.
+  edit_team: Team bearbeiten
+  members: Mitglieder
+  submitter: Unterzeichner
+  team: Team
+  template: Vorlage
   invalid_pdf: Ungültiges PDF
   webhook_secret_has_been_saved: Das Webhook-Geheimnis wurde gespeichert.
   webhook_url_has_been_saved: Die Webhook-URL wurde gespeichert.
@@ -7011,6 +7104,14 @@ nl: &nl
   first_reminder_in: Eerste herinnering over
   second_reminder_in: Tweede herinnering over
   third_reminder_in: Derde herinnering over
+  next_reminder_in_time: "Volgende herinnering: over %{time}"
+  reminder_overdue: Herinnering achterstallig
+  pending_reminders: Openstaande herinneringen
+  last_sent: Laatst verzonden
+  next_due: Volgende verzending
+  in_time: "over %{time}"
+  overdue: Achterstallig
+  reminder_skipped: Herinnering overgeslagen
   learn_more: Meer informatie
   unable_to_save: Kan niet opslaan.
   invalid_timeserver: Ongeldige tijdserver
@@ -7280,6 +7381,7 @@ nl: &nl
   form_has_been_declined: Formulier is geweigerd.
   file_is_missing: Bestand ontbreekt
   folder_name_has_been_updated: Mapnaam is bijgewerkt.
+  folder_has_been_moved: Map is verplaatst naar het geselecteerde team.
   unable_to_rename_folder: Kan map niet hernoemen.
   template_has_been_removed: Sjabloon is verwijderd.
   template_has_been_archived: Sjabloon is gearchiveerd.
@@ -7294,6 +7396,14 @@ nl: &nl
   user_has_been_updated: Gebruiker is bijgewerkt.
   unable_to_remove_user: Kan gebruiker niet verwijderen.
   user_has_been_removed: Gebruiker is verwijderd.
+  team_has_been_created: Team is aangemaakt.
+  team_has_been_updated: Team is bijgewerkt.
+  team_has_been_archived: Team is gearchiveerd.
+  edit_team: Team bewerken
+  members: Leden
+  submitter: Ondertekenaar
+  team: Team
+  template: Sjabloon
   invalid_pdf: Ongeldige PDF
   webhook_secret_has_been_saved: Webhook-geheim is opgeslagen.
   webhook_url_has_been_saved: Webhook-URL is opgeslagen.

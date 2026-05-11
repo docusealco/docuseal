@@ -68,6 +68,7 @@ group :development do
   gem 'annotaterb'
   gem 'brakeman', require: false
   gem 'foreman', require: false
+  gem 'i18n-tasks', '~> 1.0'
   gem 'letter_opener_web'
   gem 'web-console'
 end
