@@ -67,13 +67,13 @@ jobs:
           cache-to: type=gha,mode=max
 
       - name: Install cosign
-        uses: sigstore/cosign-installer@3454372be43e8dd44c6a73b22b8f0b4c0d0c4f8e # v3.8.2
+        uses: sigstore/cosign-installer@d58896d6a1865668819e1d91763c7751a165e159 # v3.9.2
 
       - name: Sign image with cosign
         run: cosign sign --yes ghcr.io/${{ github.repository }}@${{ steps.build.outputs.digest }}
 
       - name: Generate SBOM
-        uses: anchore/sbom-action@fc73183ea2a8c7b2c8e54ba5b67b0c8b67e89ef5 # v0.18.0
+        uses: anchore/sbom-action@f325610c9f50a54015d37c8d16cb3b0e2c8f4de0 # v0.18.0
         with:
           image: ghcr.io/${{ github.repository }}@${{ steps.build.outputs.digest }}
 
