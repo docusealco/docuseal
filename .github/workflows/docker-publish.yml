@@ -1,0 +1,85 @@
+name: Build and Publish Docker Image
+
+on:
+  push:
+    tags:
+      - "*.*.*-fork*"
+
+permissions: {}
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+      attestations: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@29109295f81e9208d7d86ff1c6c12d2833863392 # v3.6.0
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@b5ca514318bd6ebac0fb2aedd5d36ec1b5c232a2 # v3.10.0
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@74a5d142397b4f367a81961eba4e8cd7edddf772 # v3.4.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract Docker metadata
+        id: meta
+        uses: docker/metadata-action@902fa8ec7d6ecbf8d84d538b9b233a880e428804 # v5.7.0
+        with:
+          images: ghcr.io/${{ github.repository }}
+          tags: |
+            type=match,pattern=(.*),group=1
+            type=raw,value=latest,enable=${{ !contains(github.ref, '-alpha') && !contains(github.ref, '-beta') && !contains(github.ref, '-rc') }}
+            type=sha,prefix=sha-
+          labels: |
+            org.opencontainers.image.title=DocuSeal (Fork)
+            org.opencontainers.image.description=DocuSeal with Teams, Reminders, and White-label features
+            org.opencontainers.image.vendor=s256
+            org.opencontainers.image.source=https://github.com/s256/docuseal-with-some-pro-features
+
+      - name: Create .version file
+        env:
+          VERSION: ${{ github.ref_name }}
+        run: echo "$VERSION" > .version
+
+      - name: Build and push Docker image
+        id: build
+        uses: docker/build-push-action@14487ce63c7a62a4a324b0bfb37086795e31c6c1 # v6.16.0
+        with:
+          context: .
+          push: true
+          platforms: linux/amd64,linux/arm64
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Install cosign
+        uses: sigstore/cosign-installer@3454372be43e8dd44c6a73b22b8f0b4c0d0c4f8e # v3.8.2
+
+      - name: Sign image with cosign
+        run: cosign sign --yes ghcr.io/${{ github.repository }}@${{ steps.build.outputs.digest }}
+
+      - name: Generate SBOM
+        uses: anchore/sbom-action@fc73183ea2a8c7b2c8e54ba5b67b0c8b67e89ef5 # v0.18.0
+        with:
+          image: ghcr.io/${{ github.repository }}@${{ steps.build.outputs.digest }}
+
+      - name: Attest build provenance
+        uses: actions/attest-build-provenance@db473fddc028af60658334401dc6fa3ffd8669fd # v2.3.0
+        with:
+          subject-name: ghcr.io/${{ github.repository }}
+          subject-digest: ${{ steps.build.outputs.digest }}
+          push-to-registry: true
