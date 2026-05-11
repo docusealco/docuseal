@@ -36,6 +36,15 @@ RSpec.describe 'Dashboard Page' do
       expect(page).to have_link('Create', href: new_template_path)
     end
 
+    it 'shows submission count for templates' do
+      create(:submission, template: templates[0])
+
+      visit root_path
+
+      expect(page).to have_content('0')
+      expect(page).to have_content('1')
+    end
+
     it 'initializes the template creation process' do
       click_link 'Create'
 

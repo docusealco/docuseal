@@ -24,6 +24,11 @@
             <%= svg_icon('folder', class: 'w-4 h-4 flex-shrink-0') %>
             <span class="truncate"><%= template.folder.full_name %></span>
           </span>
+        <% else %>
+          <span class="flex items-center space-x-1 w-1/2 justify-end">
+            <%= svg_icon('file_text', class: 'w-4 h-4') %>
+            <span><%= template.submissions_count %></span>
+          </span>
         <% end %>
       </p>
     </div>

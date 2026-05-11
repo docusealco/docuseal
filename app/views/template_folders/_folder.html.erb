@@ -3,10 +3,18 @@
   <% if !is_long %>
     <%= svg_icon('folder', class: 'w-6 h-6') %>
   <% end %>
-  <div class="text-lg font-semibold mt-1" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: <%= is_long ? 2 : 1 %>;">
-    <% if is_long %>
-      <%= svg_icon('folder', class: 'w-6 h-6 inline') %>
+  <div class="text-lg font-semibold mt-1 flex items-center justify-between" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: <%= is_long ? 2 : 1 %>;">
+    <div>
+      <% if is_long %>
+        <%= svg_icon('folder', class: 'w-6 h-6 inline') %>
+      <% end %>
+      <%= folder.name %>
+    </div>
+    <% if folder.submissions_count > 0 %>
+      <span class="text-xs text-base-content/60 flex items-center space-x-1">
+        <%= svg_icon('file_text', class: 'w-3 h-3') %>
+        <span><%= folder.submissions_count %></span>
+      </span>
     <% end %>
-    <%= folder.name %>
   </div>
 </a>

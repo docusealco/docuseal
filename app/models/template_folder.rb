@@ -51,4 +51,11 @@ class TemplateFolder < ApplicationRecord
   def default?
     name == DEFAULT_NAME
   end
+
+  def submissions_count
+    @submissions_count ||=
+      Rails.cache.fetch("#{cache_key_with_version}/submissions_count", expires_in: 5.minutes) do
+        active_templates.sum(:submissions_count) + subfolders.sum(&:submissions_count)
+      end
+  end
 end
