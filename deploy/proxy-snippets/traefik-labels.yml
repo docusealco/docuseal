@@ -1,0 +1,17 @@
+# If KVM1's existing reverse proxy is Traefik, ADD these labels to the `app`
+# service in docker-compose.behind-proxy.yml (and remove the `ports:` mapping
+# so the app stays on the docker network only).
+#
+# Adjust `traefik-public` to match the existing Traefik network name.
+
+labels:
+  - "traefik.enable=true"
+  - "traefik.docker.network=traefik-public"
+  - "traefik.http.routers.docuseal.rule=Host(`e-sign.360dmmc.com`)"
+  - "traefik.http.routers.docuseal.entrypoints=websecure"
+  - "traefik.http.routers.docuseal.tls.certresolver=letsencrypt"
+  - "traefik.http.services.docuseal.loadbalancer.server.port=3000"
+
+networks:
+  - traefik-public
+  - default

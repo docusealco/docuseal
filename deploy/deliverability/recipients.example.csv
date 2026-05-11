@@ -1,0 +1,7 @@
+email,name,provider
+test1@gmail.com,Gmail Test 1,gmail
+test2@gmail.com,Gmail Test 2,gmail
+test1@outlook.com,Outlook Test 1,outlook
+test2@hotmail.com,Hotmail Test 1,outlook
+test1@yahoo.com,Yahoo Test 1,yahoo
+test2@yahoo.com,Yahoo Test 2,yahoo

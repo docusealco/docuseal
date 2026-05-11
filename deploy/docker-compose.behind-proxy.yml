@@ -1,0 +1,34 @@
+services:
+  app:
+    restart: unless-stopped
+    environment:
+      - FORCE_SSL=${HOST}
+      - DATABASE_URL=${DATABASE_URL}
+      - SECRET_KEY_BASE=${SECRET_KEY_BASE}
+      - SMTP_ADDRESS=${SMTP_ADDRESS}
+      - SMTP_PORT=${SMTP_PORT}
+      - SMTP_DOMAIN=${SMTP_DOMAIN}
+      - SMTP_USERNAME=${SMTP_USERNAME}
+      - SMTP_PASSWORD=${SMTP_PASSWORD}
+      - SMTP_AUTHENTICATION=${SMTP_AUTHENTICATION}
+      - SMTP_ENABLE_STARTTLS=${SMTP_ENABLE_STARTTLS}
+    volumes:
+      - /opt/docuseal/data:/data/docuseal
+    ports: !override
+      - 127.0.0.1:3000:3000
+    deploy:
+      resources:
+        limits:
+          memory: 2g
+
+  postgres:
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - /opt/docuseal/pg_data:/var/lib/postgresql/18/docker
+
+  caddy:
+    profiles: ["disabled"]

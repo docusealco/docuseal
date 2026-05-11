@@ -1,0 +1,11 @@
+# Drop into the existing Caddyfile.
+
+e-sign.360dmmc.com {
+    reverse_proxy 127.0.0.1:3000 {
+        header_up X-Forwarded-Proto https
+        header_up Host {host}
+    }
+    request_body {
+        max_size 50MB
+    }
+}
