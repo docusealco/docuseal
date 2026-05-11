@@ -285,6 +285,7 @@ en: &en
   confirm_password: Confirm new password
   save_password_and_sign_in: Save password and Sign in
   use_an_authenticator_mobile_app_like_google_authenticator_or_1password_to_scan_the_qr_code_below: Use an authenticator mobile app like Google Authenticator or 1Password to scan the QR code below.
+  or_enter_this_key_manually: Or enter this key manually
   remove_2fa: Remove 2FA
   setup_2fa: Setup 2FA
   2fa_has_been_configured: 2FA has been configured.
