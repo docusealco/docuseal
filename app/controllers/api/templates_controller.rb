@@ -71,6 +71,8 @@ module Api
       WebhookUrls.enqueue_events(@template, 'template.updated')
       WebhookUrls.enqueue_events(@template, 'template.archived') if archived == true
 
+      TemplateVersions.find_or_create_for(@template, author: current_user) if params[:revision].present?
+
       render json: @template.as_json(only: %i[id updated_at])
     end
 
