@@ -1840,6 +1840,7 @@ export default {
         this.revisions = await resp.json()
 
         this.isRevisionsModalOpen = true
+      }).finally(() => {
         this.loadRevisionsPromise = null
       })
     },
