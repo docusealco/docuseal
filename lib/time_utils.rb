@@ -92,9 +92,9 @@ module TimeUtils
   end
 
   def format_date_preview(format, locale, timezone)
-    return '' if format.blank?
+    format = format.upcase if format && !format_with_time?(format)
+    format = format.presence || (locale.to_s.ends_with?('US') ? DEFAULT_DATE_FORMAT_US : DEFAULT_DATE_FORMAT)
 
-    format = format.upcase unless format_with_time?(format)
     preview_pattern = format.gsub(TOKEN_REGEX) { |token| TIME_FORMATS.key?(token) ? '--' : ALL_FORMATS[token] }
 
     I18n.l(Time.current.in_time_zone(timezone.presence || Time.zone.name), format: preview_pattern, locale:)
@@ -122,7 +122,7 @@ module TimeUtils
 
   def format_date_string(string, format, locale, timezone: nil)
     format = format.upcase if format && !format_with_time?(format)
-    format ||= locale.to_s.ends_with?('US') ? DEFAULT_DATE_FORMAT_US : DEFAULT_DATE_FORMAT
+    format = format.presence || (locale.to_s.ends_with?('US') ? DEFAULT_DATE_FORMAT_US : DEFAULT_DATE_FORMAT)
 
     date =
       if format_with_time?(format)

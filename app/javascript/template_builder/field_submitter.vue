@@ -147,7 +147,7 @@
       >
         <a
           href="#"
-          class="flex px-2 group justify-between items-center"
+          class="flex px-2 text-sm group justify-between items-center"
           :class="{ 'active': submitter === selectedSubmitter, 'py-0.5': submitters.length > 8 }"
           @click.prevent="selectSubmitter(submitter)"
         >
@@ -198,7 +198,7 @@
       >
         <a
           href="#"
-          class="flex px-2"
+          class="flex px-2 text-sm"
           @click.prevent="addSubmitter"
         >
           <IconUserPlus

@@ -875,6 +875,50 @@ module Submissions
       pdf
     end
 
+    def maybe_rotate_pdfium(io)
+      pdf = HexaPDF::Document.new(io:)
+
+      return pdf if pdf.pages.size > MAX_PAGE_ROTATE
+
+      root_rotate = pdf.pages.root[:Rotate].to_i
+
+      rotated_indexes = pdf.pages.each_with_index.filter_map do |page, idx|
+        page_rotate = page[:Rotate]
+
+        effective = page_rotate.nil? ? root_rotate : page_rotate.to_i
+
+        idx if effective != 0
+      end
+
+      return pdf if rotated_indexes.blank?
+
+      has_widgets = pdf.acro_form && pdf.acro_form[:Fields].present?
+
+      io.rewind
+      out_io = StringIO.new
+
+      Pdfium::Document.open_bytes(io.string) do |doc|
+        rotated_indexes.each do |idx|
+          page = doc.get_page(idx)
+          page.flatten if has_widgets
+          page.rotate
+        end
+
+        doc.save(out_io)
+      end
+
+      pdf = HexaPDF::Document.new(io: out_io.tap(&:rewind))
+      pdf.pages.root[:Rotate] = 0
+
+      pdf
+    rescue StandardError => e
+      Rollbar.error(e) if defined?(Rollbar)
+
+      io.rewind
+
+      HexaPDF::Document.new(io:)
+    end
+
     def on_missing_glyph(character, font_wrapper)
       Rails.logger.info("Missing glyph: #{character}") if character.present? && defined?(Rollbar)
 

@@ -49,7 +49,7 @@ RSpec.describe 'Webhook Settings' do
     expect(page).to have_field('webhook_url[url]', type: 'url', with: webhook_url.url)
     expect(page).to have_button('Save')
     expect(page).to have_button('Delete')
-    expect(page).to have_link('Add Secret')
+    expect(page).to have_link('Security')
 
     WebhookUrl::EVENTS.each do |event|
       expect(page).to have_field(event, type: 'checkbox', checked: webhook_url.events.include?(event))
@@ -123,7 +123,7 @@ RSpec.describe 'Webhook Settings' do
 
     expect(webhook_url.secret).to eq({})
 
-    click_link 'Add Secret'
+    click_link 'Security'
 
     within '#modal' do
       fill_in 'Key', with: 'X-Signature'
@@ -136,7 +136,7 @@ RSpec.describe 'Webhook Settings' do
       expect(webhook_url.secret).to eq({ 'X-Signature' => 'secret-value' })
     end
 
-    expect(page).to have_link('Edit Secret')
+    expect(page).to have_link('Security')
     expect(page).to have_content('Webhook Secret has been saved.')
   end
 
@@ -145,7 +145,7 @@ RSpec.describe 'Webhook Settings' do
 
     visit settings_webhooks_path
 
-    click_link 'Edit Secret'
+    click_link 'Security'
 
     within '#modal' do
       fill_in 'Key', with: ''
@@ -158,8 +158,24 @@ RSpec.describe 'Webhook Settings' do
       expect(webhook_url.secret).to eq({})
     end
 
-    expect(page).to have_link('Add Secret')
+    expect(page).to have_link('Security')
     expect(page).to have_content('Webhook Secret has been saved.')
+  end
+
+  it 'shows the HMAC signing secret on the HMAC tab' do
+    webhook_url = create(:webhook_url, account:)
+
+    visit settings_webhooks_path
+
+    click_link 'Security'
+
+    within '#modal' do
+      click_link 'HMAC'
+
+      expect(page).to have_field('hmac_secret')
+    end
+
+    expect(webhook_url.reload.hmac_secret).to start_with('whsec_')
   end
 
   context 'when testing the webhook' do

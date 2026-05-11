@@ -192,6 +192,71 @@ class Pdfium
   attach_function :FPDFDOC_ExitFormFillEnvironment, [:FPDF_FORMHANDLE], :void
   attach_function :FPDF_FFLDraw, %i[FPDF_FORMHANDLE FPDF_BITMAP FPDF_PAGE int int int int int int], :void
 
+  attach_function :FPDFPage_Flatten, %i[FPDF_PAGE int], :int
+
+  FLAT_NORMALDISPLAY = 0
+  FLAT_PRINT = 1
+
+  FLATTEN_FAIL = 0
+  FLATTEN_SUCCESS = 1
+  FLATTEN_NOTHINGTODO = 2
+
+  # rubocop:disable Naming/ClassAndModuleCamelCase
+  class FS_MATRIX < FFI::Struct
+    layout :a, :float,
+           :b, :float,
+           :c, :float,
+           :d, :float,
+           :e, :float,
+           :f, :float
+  end
+  # rubocop:enable Naming/ClassAndModuleCamelCase
+
+  attach_function :FPDFPage_GetRotation, [:FPDF_PAGE], :int
+  attach_function :FPDFPage_SetRotation, %i[FPDF_PAGE int], :void
+  attach_function :FPDFPage_TransFormWithClip, %i[FPDF_PAGE pointer pointer], :int
+  attach_function :FPDFPage_TransformAnnots, %i[FPDF_PAGE double double double double double double], :void
+  attach_function :FPDFPage_GenerateContent, [:FPDF_PAGE], :int
+  attach_function :FPDFPage_GetMediaBox, %i[FPDF_PAGE pointer pointer pointer pointer], :int
+  attach_function :FPDFPage_SetMediaBox, %i[FPDF_PAGE float float float float], :void
+  attach_function :FPDFPage_GetCropBox, %i[FPDF_PAGE pointer pointer pointer pointer], :int
+  attach_function :FPDFPage_SetCropBox, %i[FPDF_PAGE float float float float], :void
+  attach_function :FPDFPage_GetBleedBox, %i[FPDF_PAGE pointer pointer pointer pointer], :int
+  attach_function :FPDFPage_SetBleedBox, %i[FPDF_PAGE float float float float], :void
+  attach_function :FPDFPage_GetTrimBox, %i[FPDF_PAGE pointer pointer pointer pointer], :int
+  attach_function :FPDFPage_SetTrimBox, %i[FPDF_PAGE float float float float], :void
+  attach_function :FPDFPage_GetArtBox, %i[FPDF_PAGE pointer pointer pointer pointer], :int
+  attach_function :FPDFPage_SetArtBox, %i[FPDF_PAGE float float float float], :void
+
+  PAGE_BOX_ACCESSORS = [
+    %i[FPDFPage_GetMediaBox FPDFPage_SetMediaBox],
+    %i[FPDFPage_GetCropBox FPDFPage_SetCropBox],
+    %i[FPDFPage_GetBleedBox FPDFPage_SetBleedBox],
+    %i[FPDFPage_GetTrimBox FPDFPage_SetTrimBox],
+    %i[FPDFPage_GetArtBox FPDFPage_SetArtBox]
+  ].freeze
+
+  # rubocop:disable Naming/ClassAndModuleCamelCase
+  class FPDF_FILEWRITE < FFI::Struct
+    layout :version, :int,
+           :WriteBlock, :pointer
+  end
+  # rubocop:enable Naming/ClassAndModuleCamelCase
+
+  attach_function :FPDF_SaveAsCopy, %i[FPDF_DOCUMENT pointer ulong], :int
+
+  FPDF_INCREMENTAL = 1
+  FPDF_NO_INCREMENTAL = 2
+  FPDF_REMOVE_SECURITY = 3
+
+  attach_function :FPDF_CreateNewDocument, [], :FPDF_DOCUMENT
+
+  begin
+    attach_function :FPDF_ImportPages, %i[FPDF_DOCUMENT FPDF_DOCUMENT string int], :int
+  rescue FFI::NotFoundError
+    define_singleton_method(:FPDF_ImportPages) { |*| raise PdfiumError, 'FPDF_ImportPages is not available' } # rubocop:disable Naming/MethodName
+  end
+
   FPDF_ERR_SUCCESS = 0
   FPDF_ERR_UNKNOWN = 1
   FPDF_ERR_FILE = 2
@@ -257,6 +322,38 @@ class Pdfium
       @page_count ||= Pdfium.FPDF_GetPageCount(@document_ptr)
     end
 
+    def import_pages(src_doc)
+      ensure_not_closed!
+
+      result = Pdfium.FPDF_ImportPages(@document_ptr, src_doc.document_ptr, nil, page_count)
+
+      raise PdfiumError, 'Failed to import pages' if result.zero?
+
+      @page_count = nil
+
+      result
+    end
+
+    def self.create
+      doc_ptr = Pdfium.FPDF_CreateNewDocument()
+
+      if doc_ptr.null?
+        Pdfium.check_last_error('Failed to create new document')
+
+        raise PdfiumError, 'Failed to create new document'
+      end
+
+      doc = new(doc_ptr)
+
+      return doc unless block_given?
+
+      begin
+        yield doc
+      ensure
+        doc.close
+      end
+    end
+
     def self.open_file(file_path, password = nil)
       doc_ptr = Pdfium.FPDF_LoadDocument(file_path, password)
 
@@ -316,6 +413,30 @@ class Pdfium
       end
 
       @pages[page_index] ||= Page.new(self, page_index)
+    end
+
+    def save(io, flags: Pdfium::FPDF_NO_INCREMENTAL)
+      ensure_not_closed!
+
+      file_write_mem = FFI::MemoryPointer.new(FPDF_FILEWRITE.size)
+
+      file_write_struct = FPDF_FILEWRITE.new(file_write_mem)
+      file_write_struct[:version] = 1
+      file_write_struct[:WriteBlock] = FFI::Function.new(:int, %i[pointer pointer ulong]) do |_, data, size|
+        io.write(data.read_bytes(size))
+
+        1
+      end
+
+      result = Pdfium.FPDF_SaveAsCopy(@document_ptr, file_write_mem, flags)
+
+      if result.zero?
+        Pdfium.check_last_error('Failed to save document')
+
+        raise PdfiumError, 'Failed to save document'
+      end
+
+      io
     end
 
     def close
@@ -678,6 +799,88 @@ class Pdfium
       end
 
       @line_nodes = @line_nodes.sort { |a, b| a.endy == b.endy ? a.x <=> b.x : a.endy <=> b.endy }
+    end
+
+    def rotate
+      ensure_not_closed!
+
+      rotation = Pdfium.FPDFPage_GetRotation(page_ptr)
+
+      return false if rotation.zero?
+
+      l_ptr = FFI::MemoryPointer.new(:float)
+      b_ptr = FFI::MemoryPointer.new(:float)
+      r_ptr = FFI::MemoryPointer.new(:float)
+      t_ptr = FFI::MemoryPointer.new(:float)
+
+      has_crop = !Pdfium.FPDFPage_GetCropBox(page_ptr, l_ptr, b_ptr, r_ptr, t_ptr).zero?
+      Pdfium.FPDFPage_GetMediaBox(page_ptr, l_ptr, b_ptr, r_ptr, t_ptr) unless has_crop
+
+      pl = l_ptr.read_float
+      pb = b_ptr.read_float
+      pr = r_ptr.read_float
+      pt = t_ptr.read_float
+
+      a, b, c, d, e, f =
+        case rotation
+        when 1 then [0, -1, 1, 0, -pb, pr]
+        when 2 then [-1, 0, 0, -1, pr, pt]
+        when 3 then [0, 1, -1, 0, pt, -pl]
+        end
+
+      Pdfium::PAGE_BOX_ACCESSORS.each do |getter, setter|
+        next if Pdfium.public_send(getter, page_ptr, l_ptr, b_ptr, r_ptr, t_ptr).zero?
+
+        bl = l_ptr.read_float
+        bb = b_ptr.read_float
+        br = r_ptr.read_float
+        bt = t_ptr.read_float
+
+        c1x, c1y, c2x, c2y =
+          case rotation
+          when 1 then [br, bb, bl, bt]
+          when 2 then [br, bt, bl, bb]
+          when 3 then [bl, bt, br, bb]
+          end
+
+        new_llx = (a * c1x) + (c * c1y) + e
+        new_lly = (b * c1x) + (d * c1y) + f
+        new_urx = (a * c2x) + (c * c2y) + e
+        new_ury = (b * c2x) + (d * c2y) + f
+
+        Pdfium.public_send(setter, page_ptr, new_llx, new_lly, new_urx, new_ury)
+      end
+
+      Pdfium.FPDFPage_TransformAnnots(page_ptr, a, b, c, d, e, f)
+
+      matrix_ptr = FFI::MemoryPointer.new(FS_MATRIX.size)
+      matrix_struct = FS_MATRIX.new(matrix_ptr)
+      matrix_struct[:a] = a
+      matrix_struct[:b] = b
+      matrix_struct[:c] = c
+      matrix_struct[:d] = d
+      matrix_struct[:e] = e
+      matrix_struct[:f] = f
+
+      Pdfium.FPDFPage_TransFormWithClip(page_ptr, matrix_ptr, FFI::Pointer::NULL)
+      Pdfium.FPDFPage_SetRotation(page_ptr, 0)
+      Pdfium.FPDFPage_GenerateContent(page_ptr)
+
+      true
+    end
+
+    def flatten(flag = Pdfium::FLAT_NORMALDISPLAY)
+      ensure_not_closed!
+
+      result = Pdfium.FPDFPage_Flatten(page_ptr, flag)
+
+      if result == Pdfium::FLATTEN_FAIL
+        Pdfium.check_last_error("Failed to flatten page #{page_index}")
+
+        raise PdfiumError, "Failed to flatten page #{page_index}"
+      end
+
+      result
     end
 
     def close

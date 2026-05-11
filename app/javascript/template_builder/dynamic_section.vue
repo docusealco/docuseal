@@ -281,6 +281,9 @@ export default {
     }
   },
   methods: {
+    reloadContent () {
+      this.editor.commands.setContent(this.section.innerHTML, { emitUpdate: false })
+    },
     findAreaNodePos (areaUuid) {
       const el = this.editor.view.dom.querySelector(`[data-area-uuid="${areaUuid}"]`)
 

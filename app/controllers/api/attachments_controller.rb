@@ -8,10 +8,10 @@ module Api
     COOKIE_STORE_LIMIT = 10
 
     def create
-      submitter = Submitter.find_by!(slug: params[:submitter_slug])
+      @submitter = Submitter.find_by!(slug: params[:submitter_slug])
 
-      unless can_upload?(submitter)
-        Rollbar.error("Can't upload: #{submitter.id}") if defined?(Rollbar)
+      unless can_upload?(@submitter)
+        Rollbar.error("Can't upload: #{@submitter.id}") if defined?(Rollbar)
 
         return render json: { error: I18n.t('form_has_been_archived') }, status: :unprocessable_content
       end
@@ -20,23 +20,23 @@ module Api
         image = Vips::Image.new_from_file(params[:file].path)
 
         if ImageUtils.blank?(image)
-          Rollbar.error("Empty signature: #{submitter.id}") if defined?(Rollbar)
+          Rollbar.error("Empty signature: #{@submitter.id}") if defined?(Rollbar)
 
           return render json: { error: "#{params[:type]} is empty" }, status: :unprocessable_content
         end
 
         if ImageUtils.error?(image)
-          Rollbar.error("Error signature: #{submitter.id}") if defined?(Rollbar)
+          Rollbar.error("Error signature: #{@submitter.id}") if defined?(Rollbar)
 
           return render json: { error: "#{params[:type]} error, try to sign on another device" },
                         status: :unprocessable_content
         end
       end
 
-      attachment = Submitters.create_attachment!(submitter, params)
+      attachment = Submitters.create_attachment!(@submitter, params)
 
-      if params[:remember_signature] == 'true' && submitter.email.present?
-        cookies.encrypted[:signature_uuids] = build_new_cookie_signatures_json(submitter, attachment)
+      if params[:remember_signature] == 'true' && @submitter.email.present?
+        cookies.encrypted[:signature_uuids] = build_new_cookie_signatures_json(@submitter, attachment)
       end
 
       render json: attachment.as_json(only: %i[uuid created_at], methods: %i[url filename content_type])

@@ -4,14 +4,15 @@
 #
 # Table name: webhook_urls
 #
-#  id         :bigint           not null, primary key
-#  events     :text             not null
-#  secret     :text             not null
-#  sha1       :string           not null
-#  url        :text             not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  account_id :bigint           not null
+#  id          :bigint           not null, primary key
+#  events      :text             not null
+#  hmac_secret :text             not null
+#  secret      :text             not null
+#  sha1        :string           not null
+#  url         :text             not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  account_id  :bigint           not null
 #
 # Indexes
 #
@@ -47,10 +48,15 @@ class WebhookUrl < ApplicationRecord
   serialize :secret, coder: JSON
 
   before_validation :set_sha1
+  before_validation :set_hmac_secret
 
-  encrypts :url, :secret
+  encrypts :url, :secret, :hmac_secret
 
   def set_sha1
     self.sha1 = Digest::SHA1.hexdigest(url)
+  end
+
+  def set_hmac_secret
+    self.hmac_secret ||= WebhookUrls::Signatures.generate_secret
   end
 end

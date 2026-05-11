@@ -1,0 +1,20 @@
+<%= render 'shared/turbo_modal', title: t('webhook_security') do %>
+  <div class="text-center mb-4">
+    <div class="inline-flex justify-center">
+      <%= link_to t('secret'), webhook_secret_path(@webhook_url), class: 'block bg-base-200 md:min-w-[112px] text-sm font-semibold whitespace-nowrap py-1.5 px-4 rounded-l-3xl', data: { turbo_frame: 'modal' } %>
+      <%= link_to t('hmac'), webhook_hmac_path(@webhook_url), class: 'block bg-base-300 md:min-w-[112px] text-sm font-semibold whitespace-nowrap py-1.5 px-4 rounded-r-3xl', data: { turbo_frame: 'modal' } %>
+    </div>
+  </div>
+  <div class="form-control">
+    <label class="label" for="hmac_secret"><%= t('hmac_signing_secret') %></label>
+    <% token = @webhook_url.hmac_secret %>
+    <% obscured = "#{token[0, 10]}#{'*' * [token.length - 10, 0].max}" %>
+    <div class="flex gap-2">
+      <masked-input class="block w-full" data-token="<%= token %>">
+        <input id="hmac_secret" type="text" value="<%= obscured %>" class="base-input font-mono w-full" autocomplete="off" readonly>
+      </masked-input>
+      <%= render 'shared/clipboard_copy', icon: 'copy', text: token, class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: t('copy'), copied_title: t('copied') %>
+    </div>
+    <p class="text-sm mt-2 opacity-70"><%= t('hmac_signature_header_hint_html', header: '<code>X-Docuseal-Signature</code>'.html_safe) %></p>
+  </div>
+<% end %>

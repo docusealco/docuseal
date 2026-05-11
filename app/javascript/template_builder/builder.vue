@@ -52,6 +52,30 @@
       </div>
     </div>
     <div
+      v-if="beforeRevisionSnapshot"
+      class="top-1.5 sticky h-0 z-20 max-w-2xl mx-auto"
+    >
+      <div class="alert border-base-content/30 py-2 px-2.5">
+        <IconInfoCircle class="stroke-info shrink-0 w-6 h-6" />
+        <span>{{ t('viewing_revision_from').replace('{date}', formatRevisionTime(beforeRevisionSnapshot.revision.created_at)) }}</span>
+        <div>
+          <button
+            class="btn btn-sm"
+            @click.prevent="cancelRevision"
+          >
+            {{ t('cancel') }}
+          </button>
+          <button
+            v-if="editable"
+            class="btn btn-sm btn-neutral text-white"
+            @click.prevent="applyRevision"
+          >
+            {{ t('apply') }}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
       v-if="$slots.buttons || withTitle"
       id="title_container"
       class="flex justify-between py-1.5 items-center pr-4 top-0 z-10 title-container"
@@ -212,6 +236,18 @@
                     <IconAdjustments class="w-6 h-6 flex-shrink-0" />
                     <span class="whitespace-nowrap">{{ t('preferences') }}</span>
                   </a>
+                </li>
+                <li v-if="withRevisionsMenu">
+                  <button
+                    class="flex space-x-2"
+                    @click.prevent="openRevisionsModal"
+                    @mouseenter="preloadRevisions"
+                  >
+                    <span class="w-6 h-6 flex-shrink-0 flex items-center justify-center">
+                      <IconHistory class="w-5 h-5" />
+                    </span>
+                    <span class="whitespace-nowrap">{{ t('revisions') }}</span>
+                  </button>
                 </li>
                 <li v-if="withDownload">
                   <button
@@ -600,7 +636,16 @@
     <div
       id="docuseal_modal_container"
       class="modal-container"
-    />
+    >
+      <RevisionsModal
+        v-if="isRevisionsModalOpen"
+        :template="template"
+        :revisions="revisions"
+        :locale="locale"
+        @close="isRevisionsModalOpen = false"
+        @apply="onRevisionApply"
+      />
+    </div>
   </div>
 </template>
 
@@ -618,7 +663,8 @@ import DocumentPreview from './preview'
 import DocumentControls from './controls'
 import MobileFields from './mobile_fields'
 import FieldSubmitter from './field_submitter'
-import { IconPlus, IconUsersPlus, IconDeviceFloppy, IconChevronDown, IconEye, IconWritingSign, IconInnerShadowTop, IconInfoCircle, IconAdjustments, IconDownload } from '@tabler/icons-vue'
+import RevisionsModal from './revisions_modal'
+import { IconPlus, IconUsersPlus, IconDeviceFloppy, IconChevronDown, IconEye, IconWritingSign, IconInnerShadowTop, IconInfoCircle, IconAdjustments, IconDownload, IconHistory } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
 import { ref, computed, toRaw, defineAsyncComponent } from 'vue'
 import * as i18n from './i18n'
@@ -658,7 +704,9 @@ export default {
     IconDownload,
     IconAdjustments,
     IconEye,
-    IconDeviceFloppy
+    IconHistory,
+    IconDeviceFloppy,
+    RevisionsModal
   },
   provide () {
     return {
@@ -980,6 +1028,16 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    withRevisions: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    withRevisionsMenu: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   data () {
@@ -1002,7 +1060,10 @@ export default {
       drawOption: null,
       dragField: null,
       isDragFile: false,
-      isMathLoaded: false
+      isMathLoaded: false,
+      isRevisionsModalOpen: false,
+      revisions: [],
+      beforeRevisionSnapshot: null
     }
   },
   computed: {
@@ -1766,6 +1827,73 @@ export default {
     },
     closeDropdown () {
       document.activeElement.blur()
+    },
+    preloadRevisions () {
+      this.loadRevisionsPromise ||= this.baseFetch(`/templates/${this.template.id}/versions`)
+    },
+    openRevisionsModal () {
+      this.closeDropdown()
+
+      this.loadRevisionsPromise ||= this.baseFetch(`/templates/${this.template.id}/versions`)
+
+      this.loadRevisionsPromise.then(async (resp) => {
+        this.revisions = await resp.json()
+
+        this.isRevisionsModalOpen = true
+      }).finally(() => {
+        this.loadRevisionsPromise = null
+      })
+    },
+    onRevisionApply (revision) {
+      this.beforeRevisionSnapshot = {
+        template: JSON.parse(JSON.stringify(this.template)),
+        dynamicDocuments: JSON.parse(JSON.stringify(this.dynamicDocuments)),
+        revision
+      }
+
+      const { dynamic_documents: nextDynamicDocs = [], ...nextTemplate } = revision.data
+
+      Object.assign(this.template, nextTemplate)
+
+      this.dynamicDocuments.splice(0, this.dynamicDocuments.length, ...nextDynamicDocs)
+
+      this.$nextTick(() => this.reloadDynamicDocumentContent())
+
+      this.isRevisionsModalOpen = false
+    },
+    cancelRevision () {
+      Object.assign(this.template, this.beforeRevisionSnapshot.template)
+
+      this.dynamicDocuments.splice(0, this.dynamicDocuments.length, ...this.beforeRevisionSnapshot.dynamicDocuments)
+
+      this.beforeRevisionSnapshot = null
+
+      this.$nextTick(() => this.reloadDynamicDocumentContent())
+    },
+    applyRevision () {
+      this.beforeRevisionSnapshot = null
+
+      const dynamicDocumentRefs = this.documentRefs.filter((ref) => ref.isDynamic)
+
+      dynamicDocumentRefs.forEach((ref) => ref.update())
+
+      this.rebuildVariablesSchema({ disable: false })
+
+      return Promise.all([this.save({ force: true }), ...dynamicDocumentRefs.map((ref) => ref.saveBody())])
+    },
+    reloadDynamicDocumentContent () {
+      this.documentRefs.forEach((ref) => {
+        if (ref.isDynamic) ref.reloadContent()
+      })
+    },
+    formatRevisionTime (string) {
+      return new Date(string).toLocaleString(this.locale || undefined, {
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: '2-digit'
+      })
     },
     t (key) {
       return this.i18n[key] || i18n[this.language]?.[key] || i18n.en[key] || key
@@ -3013,7 +3141,7 @@ export default {
 
           const dynamicDocumentSaves = dynamicDocumentRefs.map((ref) => ref.saveBody())
 
-          Promise.all([this.save(), ...dynamicDocumentSaves]).then(() => {
+          Promise.all([this.save({ force: true, revision: this.withRevisions }), ...dynamicDocumentSaves]).then(() => {
             window.Turbo.visit(`/templates/${this.template.id}`)
           }).finally(() => {
             this.isSaving = false
@@ -3244,8 +3372,12 @@ export default {
         }
       })
     },
-    save ({ force } = { force: false }) {
+    save ({ force = false, revision = false } = {}) {
       this.pendingFieldAttachmentUuids = []
+
+      if (this.beforeRevisionSnapshot) {
+        this.beforeRevisionSnapshot = null
+      }
 
       if (this.onChange) {
         this.onChange(this.template)
@@ -3272,7 +3404,8 @@ export default {
             submitters: this.template.submitters,
             fields: this.template.fields,
             variables_schema: this.template.variables_schema
-          }
+          },
+          ...(revision ? { revision: true } : {})
         }),
         headers: { 'Content-Type': 'application/json' }
       }).then(() => {

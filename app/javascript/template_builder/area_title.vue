@@ -3,7 +3,7 @@
     v-if="field?.type && (isSelected || isNameFocus) && !isInMultiSelection"
     class="absolute bg-white rounded-t border overflow-visible whitespace-nowrap flex z-10 field-area-controls"
     style="top: -25px; height: 25px"
-    @mousedown.stop
+    @mousedown.stop="$emit('click-title')"
     @pointerdown.stop
   >
     <FieldSubmitter
@@ -279,7 +279,7 @@ export default {
       default: false
     }
   },
-  emits: ['remove', 'scroll-to', 'add-custom-field', 'change'],
+  emits: ['remove', 'scroll-to', 'add-custom-field', 'change', 'click-title'],
   data () {
     return {
       isShowFormulaModal: false,
