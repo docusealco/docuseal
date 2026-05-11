@@ -10,6 +10,7 @@ module WebhookUrls
     'submission.completed' => SendSubmissionCompletedWebhookRequestJob,
     'submission.expired' => SendSubmissionExpiredWebhookRequestJob,
     'submission.archived' => SendSubmissionArchivedWebhookRequestJob,
+    'submission.voided' => SendSubmissionVoidedWebhookRequestJob,
     'template.created' => SendTemplateCreatedWebhookRequestJob,
     'template.updated' => SendTemplateUpdatedWebhookRequestJob,
     'template.archived' => SendTemplateArchivedWebhookRequestJob

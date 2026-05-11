@@ -3,7 +3,7 @@
 module Submissions
   module SerializeForApi
     SERIALIZE_PARAMS = {
-      only: %i[id name slug source submitters_order expire_at created_at updated_at archived_at],
+      only: %i[id name slug source submitters_order expire_at created_at updated_at archived_at voided_at],
       include: {
         submitters: { only: %i[id] },
         template: { only: %i[id name external_id created_at updated_at],
@@ -37,7 +37,19 @@ module Submissions
         json['fields'] = submission.template_fields || submission.template&.fields
       end
 
-      if submitters.all?(&:completed_at?)
+      if submission.voided_at?
+        if with_documents
+          voided_attachments = submission.voided_documents.attachments.to_a
+          json['documents'] = voided_attachments.map do |att|
+            { name: att.filename.base, url: ActiveStorage::Blob.proxy_url(att.blob, expires_at:) }
+          end
+        end
+        json['audit_log_url'] = nil
+        json['combined_document_url'] = nil
+        json['status'] = 'voided'
+        json['completed_at'] = nil
+        json['void_reason'] = submission.void_reason
+      elsif submitters.all?(&:completed_at?)
         last_submitter = submitters.max_by(&:completed_at)
 
         if with_documents

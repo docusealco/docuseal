@@ -58,6 +58,10 @@ class SubmitFormController < ApplicationController
       return render json: { error: I18n.t('form_has_been_completed_already') }, status: :unprocessable_content
     end
 
+    if @submitter.submission.voided_at?
+      return render json: { error: I18n.t('form_has_been_voided') }, status: :unprocessable_content
+    end
+
     if @submitter.submission.template&.archived_at? || @submitter.submission.archived_at?
       return render json: { error: I18n.t('form_has_been_archived') }, status: :unprocessable_content
     end
@@ -109,6 +113,7 @@ class SubmitFormController < ApplicationController
   end
 
   def maybe_render_locked_page
+    return render :voided if @submitter.submission.voided_at?
     return render :archived if @submitter.submission.template&.archived_at? ||
                                @submitter.submission.archived_at? ||
                                @submitter.account.archived_at?

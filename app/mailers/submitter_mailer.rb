@@ -102,6 +102,28 @@ class SubmitterMailer < ApplicationMailer
     end
   end
 
+  def voided_email(submitter, user)
+    @current_account = submitter.submission.account
+    @submitter = submitter
+    @submission = submitter.submission
+    @user = user
+    @reason = @submission.void_reason
+
+    reply_to = build_submitter_reply_to(@submitter)
+
+    assign_message_metadata('submitter_voided', @submitter)
+
+    maybe_set_custom_domain(@submitter)
+
+    I18n.with_locale(@current_account.locale) do
+      mail(from: from_address_for_submitter(submitter),
+           to: @submitter.friendly_name,
+           reply_to:,
+           subject: I18n.t(:name_voided_by_sender,
+                           name: (@submission.name || @submission.template.name).truncate(40)))
+    end
+  end
+
   def documents_copy_email(submitter, to: nil, sig: false)
     @current_account = submitter.submission.account
     @submitter = submitter

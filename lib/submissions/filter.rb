@@ -51,6 +51,8 @@ module Submissions
         submissions.declined
       when 'expired'
         submissions.expired
+      when 'voided'
+        submissions.voided
       when 'sent'
         submissions.joins(:submitters)
                    .where(submitters: { opened_at: nil, completed_at: nil, declined_at: nil })

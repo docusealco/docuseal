@@ -1,0 +1,28 @@
+<div class="max-w-md mx-auto px-2 mt-12 mb-4">
+  <div class="space-y-6 mx-auto">
+    <div class="space-y-6">
+      <div class="flex items-center justify-center">
+        <%= render 'start_form/banner' %>
+      </div>
+      <div class="flex items-center bg-base-200 rounded-xl p-4 mb-4">
+        <div class="flex items-center">
+          <div class="mr-3">
+            <%= svg_icon('x_circle', class: 'w-10 h-10') %>
+          </div>
+          <div dir="auto">
+            <p class="text-lg font-bold mb-1"><%= @submitter.submission.name || @submitter.submission.template.name %></p>
+            <p class="text-sm"><%= t('form_has_been_voided_on_html', time: l(@submitter.submission.voided_at, format: :long)) %></p>
+            <% if (voided_by = @submitter.submission.voided_by_user) %>
+              <p class="text-xs mt-1 opacity-70"><%= t('voided_by_name', name: voided_by.full_name.presence || voided_by.email) %></p>
+            <% end %>
+            <% if (reason = @submitter.submission.void_reason).present? %>
+              <p class="text-sm mt-2"><%= t('reason') %>:</p>
+              <p class="text-sm whitespace-pre-wrap"><%= reason %></p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render 'shared/attribution', link_path: '/start', account: @submitter.account %>

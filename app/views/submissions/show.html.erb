@@ -9,6 +9,44 @@
 <% with_timestamp_seconds = configs.find { |e| e.key == AccountConfig::WITH_TIMESTAMP_SECONDS_KEY }&.value == true %>
 <% with_signature_id_reason = configs.find { |e| e.key == AccountConfig::WITH_SIGNATURE_ID_REASON_KEY }&.value != false %>
 <main style="max-width: 1600px" class="mx-auto pl-4">
+  <% if @submission.voided_at? %>
+    <div class="mr-4 mt-2 mb-2 rounded-xl border border-error bg-error/10 px-4 py-3">
+      <div class="flex items-start space-x-3">
+        <%= svg_icon('x_circle', class: 'w-6 h-6 text-error flex-shrink-0 mt-0.5') %>
+        <div class="flex-1">
+          <div class="font-semibold text-error uppercase tracking-wide text-sm">
+            <%= t('voided') %>
+          </div>
+          <div class="text-sm mt-0.5">
+            <%= t('form_has_been_voided_on_html', time: l(@submission.voided_at.in_time_zone(@submission.account.timezone), format: :long, locale: @submission.account.locale)).html_safe %>
+            <% if (voided_by = @submission.voided_by_user) %>
+              &mdash; <%= t('voided_by_name', name: voided_by.full_name.presence || voided_by.email) %>
+            <% end %>
+          </div>
+          <% if (reason = @submission.void_reason).present? %>
+            <div class="text-sm mt-1">
+              <span class="font-semibold"><%= t('reason') %>:</span>
+              <span class="whitespace-pre-wrap"><%= reason %></span>
+            </div>
+          <% end %>
+          <% if @submission.voided_documents.attached? %>
+            <div class="mt-2 flex flex-wrap gap-2">
+              <% @submission.voided_documents.attachments.each do |att| %>
+                <a href="<%= ActiveStorage::Blob.proxy_path(att.blob, expires_at: 4.hours.from_now) %>" class="inline-flex items-center gap-1 text-sm font-medium underline" target="_blank">
+                  <%= svg_icon('download', class: 'w-4 h-4') %>
+                  <%= att.filename.base %>
+                </a>
+              <% end %>
+            </div>
+          <% else %>
+            <div class="mt-2 text-xs opacity-70">
+              <%= t('voided_watermark_pending') %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
   <div class="flex justify-between py-1.5 items-center pr-4 sticky top-0 md:relative z-10 bg-base-100">
     <a href="<%= signed_in? && @submission.account_id == current_account&.id && @submission.template ? template_path(@submission.template) : '/' %>" class="flex items-center space-x-3 py-1">
       <span><%= render 'submissions/logo' %></span>
@@ -16,8 +54,14 @@
     </a>
     <div class="space-x-3 flex items-center">
       <% is_all_completed = @submission.submitters.to_a.all?(&:completed_at?) %>
-      <% if signed_in? && can?(:create, @submission) && @submission.archived_at? && !is_all_completed %>
+      <% if signed_in? && can?(:create, @submission) && @submission.archived_at? && !@submission.voided_at? && !is_all_completed %>
         <%= button_to button_title(title: t('unarchive'), disabled_with: t('unarchive')[0..-2], icon: svg_icon('rotate', class: 'w-6 h-6')), submission_unarchive_index_path(@submission), class: 'btn btn-primary btn-ghost text-base hidden md:flex' %>
+      <% end %>
+      <% if signed_in? && can?(:destroy, @submission) && @submission.voidable? %>
+        <%= link_to new_submission_void_path(@submission), class: 'white-button !text-error', data: { turbo_frame: :modal } do %>
+          <%= svg_icon('x_circle', class: 'w-6 h-6') %>
+          <span class="hidden md:inline"><%= t('void') %></span>
+        <% end %>
       <% end %>
       <% if @submission.audit_trail.present? %>
         <a href="<%= ActiveStorage::Blob.proxy_path(@submission.audit_trail.blob, expires_at: 4.hours.from_now) %>" class="white-button" target="_blank">
@@ -68,7 +112,7 @@
             <% end %>
           </div>
         <% end %>
-      <% elsif @submission.submitters.to_a.size == 1 && !@submission.expired? && !@submission.submitters.to_a.first.declined_at? && !@submission.archived_at? && !@submission.template&.archived_at? %>
+      <% elsif @submission.submitters.to_a.size == 1 && !@submission.expired? && !@submission.submitters.to_a.first.declined_at? && !@submission.archived_at? && !@submission.voided_at? && !@submission.template&.archived_at? %>
         <%= render 'shared/clipboard_copy', text: submit_form_url(slug: @submission.submitters.to_a.first.slug, host: form_link_host), class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: t('copy_share_link'), copied_title: t('copied_to_clipboard') %>
       <% end %>
     </div>
@@ -159,7 +203,7 @@
                   <%= (@submission.template_submitters || @submission.template.submitters).find { |e| e['uuid'] == submitter&.uuid }&.dig('name') || "#{(index + 1).ordinalize} Submitter" %>
                 </span>
               </div>
-              <% if signed_in? && can?(:update, @submission) && submitter && !submitter.completed_at? && !submitter.declined_at? && !@submission.archived_at? && !@submission.template&.archived_at? && !@submission.expired? && !submitter.start_form_submission_events.any? %>
+              <% if signed_in? && can?(:update, @submission) && submitter && !submitter.completed_at? && !submitter.declined_at? && !@submission.archived_at? && !@submission.voided_at? && !@submission.template&.archived_at? && !@submission.expired? && !submitter.start_form_submission_events.any? %>
                 <span class="tooltip tooltip-left" data-tip="<%= t('edit') %>">
                   <%= link_to edit_submitter_path(submitter), class: 'shrink-0 inline md:hidden md:group-hover:inline', data: { turbo_frame: 'modal' } do %>
                     <%= svg_icon('pencil', class: 'w-5 h-5') %>
@@ -198,7 +242,9 @@
                 <%= svg_icon('writing', class: 'w-5 h-5') %>
               <% end %>
               <span>
-                <% if submitter&.declined_at? %>
+                <% if @submission.voided_at? %>
+                  <%= t('voided_on_time', time: l(@submission.voided_at.in_time_zone(@submission.account.timezone), format: :short, locale: @submission.account.locale)) %>
+                <% elsif submitter&.declined_at? %>
                   <%= t('declined_on_time', time: l(submitter.declined_at.in_time_zone(@submission.account.timezone), format: :short, locale: @submission.account.locale)) %>
                 <% elsif submitter %>
                   <% if submitter.completed_at? %>
@@ -225,15 +271,15 @@
                 </span>
               </div>
             <% end %>
-            <% if signed_in? && submitter && submitter.email && !submitter.completed_at && !@submission.archived_at? && !@submission.template&.archived_at? && can?(:update, @submission) && Accounts.can_send_emails?(current_account) && !@submission.expired? && !submitter.declined_at? %>
+            <% if signed_in? && submitter && submitter.email && !submitter.completed_at && !@submission.archived_at? && !@submission.voided_at? && !@submission.template&.archived_at? && can?(:update, @submission) && Accounts.can_send_emails?(current_account) && !@submission.expired? && !submitter.declined_at? %>
               <div class="mt-2 mb-1">
                 <%= button_to button_title(title: submitter.sent_at? ? t('re_send_email') : t('send_email'), disabled_with: t('sending')), submitter_send_email_index_path(submitter), class: 'btn btn-sm btn-primary w-full' %>
               </div>
             <% end %>
-            <% if signed_in? && submitter && submitter.phone && !submitter.completed_at && !@submission.archived_at? && !@submission.template&.archived_at? && can?(:update, @submission) && !@submission.expired? && !submitter.declined_at? %>
+            <% if signed_in? && submitter && submitter.phone && !submitter.completed_at && !@submission.archived_at? && !@submission.voided_at? && !@submission.template&.archived_at? && can?(:update, @submission) && !@submission.expired? && !submitter.declined_at? %>
               <%= render 'submissions/send_sms_button', submitter: %>
             <% end %>
-            <% if signed_in? && submitter && !submitter.completed_at? && !@submission.archived_at? && !@submission.template&.archived_at? && can?(:create, @submission) && !@submission.expired? && !submitter.declined_at? %>
+            <% if signed_in? && submitter && !submitter.completed_at? && !@submission.archived_at? && !@submission.voided_at? && !@submission.template&.archived_at? && can?(:create, @submission) && !@submission.expired? && !submitter.declined_at? %>
               <div class="mt-2 mb-1">
                 <a class="btn btn-sm btn-primary w-full" target="_blank" href="<%= submit_form_path(slug: submitter.slug) %>">
                   <%= t('sign_in_person') %>

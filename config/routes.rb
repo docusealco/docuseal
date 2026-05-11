@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     resources :submitters, only: %i[index show update]
     resources :submissions, only: %i[index show create destroy] do
       resources :documents, only: %i[index], controller: 'submission_documents'
+      resources :void, only: %i[create], controller: 'submissions_void'
       collection do
         resources :init, only: %i[create], controller: 'submissions'
         resources :emails, only: %i[create], controller: 'submissions', as: :submissions_emails
@@ -70,6 +71,7 @@ Rails.application.routes.draw do
   resources :submissions, only: %i[index], controller: 'submissions_dashboard'
   resources :submissions, only: %i[show destroy] do
     resources :unarchive, only: %i[create], controller: 'submissions_unarchive'
+    resources :void, only: %i[new create], controller: 'submissions_void'
     resources :events, only: %i[index], controller: 'submission_events'
     resources :download, only: %i[index], controller: 'submissions_download'
   end

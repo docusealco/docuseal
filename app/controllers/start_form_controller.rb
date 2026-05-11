@@ -128,7 +128,8 @@ class StartFormController < ApplicationController
     submitter ||=
       Submitter
       .where(submission: template.submissions.where(expire_at: Time.current..)
-                                 .or(template.submissions.where(expire_at: nil)).where(archived_at: nil))
+                                 .or(template.submissions.where(expire_at: nil))
+                                 .where(archived_at: nil, voided_at: nil))
       .order(id: :desc)
       .where(declined_at: nil)
       .where(external_id: nil)
