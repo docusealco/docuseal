@@ -50,6 +50,7 @@
       @remove="$emit('remove')"
       @scroll-to="$emit('scroll-to', $event)"
       @add-custom-field="$emit('add-custom-field')"
+      @click-title="$emit('click-title')"
     />
     <div
       ref="touchValueTarget"
@@ -317,7 +318,7 @@ export default {
       default: false
     }
   },
-  emits: ['start-resize', 'stop-resize', 'start-drag', 'stop-drag', 'remove', 'scroll-to', 'add-custom-field'],
+  emits: ['start-resize', 'stop-resize', 'start-drag', 'stop-drag', 'remove', 'scroll-to', 'add-custom-field', 'click-title'],
   data () {
     return {
       isContenteditable: false,

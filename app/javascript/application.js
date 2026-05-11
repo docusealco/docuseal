@@ -170,6 +170,8 @@ safeRegisterElement('template-builder', class extends HTMLElement {
       withLogo: this.dataset.withLogo !== 'false',
       withFieldsDetection: this.dataset.withFieldsDetection === 'true',
       withDetectExistingFields: this.dataset.withDetectExistingFields === 'true',
+      withRevisions: true,
+      withRevisionsMenu: this.dataset.withRevisionsMenu === 'true',
       editable: this.dataset.editable !== 'false',
       authenticityToken: document.querySelector('meta[name="csrf-token"]')?.content,
       withCustomFields: true,

@@ -200,7 +200,7 @@ const en = {
   learn_more: 'Learn more',
   and: 'and',
   or: 'or',
-  start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: 'Start a quick tour to learn how to create and send your first document',
+  start_a_quick_tour_to_learn_how_to_create_and_send_your_first_document: 'Start a quick tour to learn how to create and send your first document',
   start_tour: 'Start Tour',
   or_add_from: 'Or add from',
   sync: 'Sync',
@@ -215,7 +215,11 @@ const en = {
   align_bottom: 'Align Bottom',
   fields_selected: '{count} Fields Selected',
   field_added: '{count} Field Added',
-  fields_added: '{count} Fields Added'
+  fields_added: '{count} Fields Added',
+  revisions: 'Revisions',
+  apply: 'Apply',
+  no_revisions_yet: 'No revisions yet',
+  viewing_revision_from: 'Viewing revision from {date}'
 }
 
 const es = {
@@ -239,7 +243,7 @@ const es = {
   min: 'Mín',
   max: 'Máx',
   date_signed: 'Fecha actual',
-  fuente: 'Fuente',
+  font: 'Fuente',
   party: 'Parte',
   method: 'Método',
   reorder_fields: 'Reordenar campos',
@@ -298,7 +302,7 @@ const es = {
   set_signing_date: 'Establecer fecha de firma',
   are_you_sure_: '¿Estás seguro?',
   sign_yourself: 'Firma tú mismo',
-  checked: 'Seleccionado',
+  checked: 'Marcado',
   current_date: 'Fecha actual',
   send: 'Enviar',
   remove: 'Eliminar',
@@ -336,16 +340,16 @@ const es = {
   eighth_party: 'Octava Parte',
   ninth_party: 'Novena Parte',
   tenth_party: 'Décima Parte',
-  eleventh_party: 'Undécimo Partido',
-  twelfth_party: 'Duodécimo Partido',
-  thirteenth_party: 'Decimotercer Partido',
-  fourteenth_party: 'Catorceavo Partido',
-  fifteenth_party: 'Quinceavo Partido',
-  sixteenth_party: 'Dieciséisavo Partido',
-  seventeenth_party: 'Diecisieteavo Partido',
-  eighteenth_party: 'Dieciochoavo Partido',
-  nineteenth_party: 'Decimonovena Fiesta',
-  twentieth_party: 'Vigésima Fiesta',
+  eleventh_party: 'Undécima Parte',
+  twelfth_party: 'Duodécima Parte',
+  thirteenth_party: 'Decimotercera Parte',
+  fourteenth_party: 'Decimocuarta Parte',
+  fifteenth_party: 'Decimoquinta Parte',
+  sixteenth_party: 'Decimosexta Parte',
+  seventeenth_party: 'Decimoséptima Parte',
+  eighteenth_party: 'Decimoctava Parte',
+  nineteenth_party: 'Decimonovena Parte',
+  twentieth_party: 'Vigésima Parte',
   draw: 'Dibujar',
   add: 'Agregar',
   text: 'Texto',
@@ -420,7 +424,7 @@ const es = {
   learn_more: 'Aprende más',
   and: 'y',
   or: 'o',
-  start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: 'Inicia una guía rápida para aprender a crear y enviar tu primer documento.',
+  start_a_quick_tour_to_learn_how_to_create_and_send_your_first_document: 'Inicia una guía rápida para aprender a crear y enviar tu primer documento.',
   start_tour: 'Iniciar guía',
   or_add_from: 'O agregar desde',
   sync: 'Sincronizar',
@@ -435,7 +439,11 @@ const es = {
   align_bottom: 'Alinear abajo',
   fields_selected: '{count} Campos Seleccionados',
   field_added: '{count} Campo Añadido',
-  fields_added: '{count} Campos Añadidos'
+  fields_added: '{count} Campos Añadidos',
+  revisions: 'Revisiones',
+  apply: 'Aplicar',
+  no_revisions_yet: 'Aún no hay revisiones',
+  viewing_revision_from: 'Viendo revisión del {date}'
 }
 
 const it = {
@@ -458,15 +466,15 @@ const it = {
   length: 'Lunghezza',
   min: 'Min',
   max: 'Max',
-  date_signed: 'Data attuale',
+  date_signed: 'Data corrente',
   font: 'Carattere',
   party: 'Parte',
   method: 'Metodo',
   reorder_fields: 'Riordina i campi',
   verify_id: 'Verifica ID',
   obtain_qualified_electronic_signature_with_the_trusted_provider_click_to_learn_more: 'Ottieni una firma elettronica qualificata (QeS) con il fornitore di fiducia. Clicca per saperne di più.',
-  ricorrente: 'Ricorrente',
-  una_volta: 'Una volta',
+  recurrent: 'Ricorrente',
+  one_off: 'Una tantum',
   editable: 'Modificabile',
   search_field: 'Campo di ricerca',
   field_not_found: 'Campo non trovato',
@@ -525,7 +533,7 @@ const it = {
   drawn: 'Disegnato',
   drawn_or_typed: 'Disegnato o Digitato',
   drawn_or_upload: 'Disegnato o Caricato',
-  upload: 'Caricare',
+  upload: 'Carica',
   formula: 'Formula',
   typed: 'Digitato',
   draw_field_on_the_document: 'Disegnare un campo sul documento',
@@ -640,7 +648,7 @@ const it = {
   learn_more: 'Scopri di più',
   and: 'e',
   or: 'o',
-  start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: 'Inizia un tour rapido per imparare a creare e inviare il tuo primo documento.',
+  start_a_quick_tour_to_learn_how_to_create_and_send_your_first_document: 'Inizia un tour rapido per imparare a creare e inviare il tuo primo documento.',
   start_tour: 'Inizia il tour',
   or_add_from: 'O aggiungi da',
   sync: 'Sincronizza',
@@ -655,7 +663,11 @@ const it = {
   align_bottom: 'Allinea in basso',
   fields_selected: '{count} Campi Selezionati',
   field_added: '{count} Campo Aggiunto',
-  fields_added: '{count} Campi Aggiunti'
+  fields_added: '{count} Campi Aggiunti',
+  revisions: 'Revisioni',
+  apply: 'Applica',
+  no_revisions_yet: 'Nessuna revisione ancora',
+  viewing_revision_from: 'Visualizzazione revisione del {date}'
 }
 
 const pt = {
@@ -679,13 +691,13 @@ const pt = {
   min: 'Mín',
   max: 'Máx',
   date_signed: 'Data atual',
-  fonte: 'Fonte',
+  font: 'Fonte',
   party: 'Parte',
   method: 'Método',
   reorder_fields: 'Reorganizar campos',
   verify_id: 'Verificar ID',
   obtain_qualified_electronic_signature_with_the_trusted_provider_click_to_learn_more: 'Obtenha a assinatura eletrônica qualificada (QeS) com o provedor confiável. Clique para saber mais.',
-  recurrent: 'Recurrente',
+  recurrent: 'Recorrente',
   one_off: 'Único',
   editable: 'Editável',
   search_field: 'Campo de busca',
@@ -752,7 +764,7 @@ const pt = {
   processing_: 'Processando...',
   add_pdf_documents_or_images: 'Adicionar documentos PDF ou imagens',
   add_documents_or_images: 'Adicionar documentos ou imagens',
-  add_a_new_document: 'Ajouter un nouveau document',
+  add_a_new_document: 'Adicionar um novo documento',
   replace_existing_document: 'Substituir documento existente',
   clone_and_replace_documents: 'Clonar e substituir documentos',
   required: 'Obrigatório',
@@ -860,7 +872,7 @@ const pt = {
   learn_more: 'Saiba mais',
   and: 'e',
   or: 'ou',
-  start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: 'Comece um tour rápido para aprender a criar e enviar seu primeiro documento.',
+  start_a_quick_tour_to_learn_how_to_create_and_send_your_first_document: 'Comece um tour rápido para aprender a criar e enviar seu primeiro documento.',
   start_tour: 'Iniciar tour',
   or_add_from: 'Ou adicionar de',
   sync: 'Sincronizar',
@@ -875,7 +887,11 @@ const pt = {
   align_bottom: 'Alinhar à parte inferior',
   fields_selected: '{count} Campos Selecionados',
   field_added: '{count} Campo Adicionado',
-  fields_added: '{count} Campos Adicionados'
+  fields_added: '{count} Campos Adicionados',
+  revisions: 'Revisões',
+  apply: 'Aplicar',
+  no_revisions_yet: 'Nenhuma revisão ainda',
+  viewing_revision_from: 'Visualizando revisão de {date}'
 }
 
 const fr = {
@@ -900,7 +916,7 @@ const fr = {
   max: 'Max',
   font: 'Police',
   party: 'Partie',
-  date_signed: 'Date de signature',
+  date_signed: 'Date du jour',
   method: 'Méthode',
   reorder_fields: 'Réorganiser les champs',
   verify_id: "Vérifier l'ID",
@@ -1080,7 +1096,7 @@ const fr = {
   learn_more: 'En savoir plus',
   and: 'et',
   or: 'ou',
-  start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: 'Commencez une visite rapide pour apprendre à créer et à envoyer votre premier document',
+  start_a_quick_tour_to_learn_how_to_create_and_send_your_first_document: 'Commencez une visite rapide pour apprendre à créer et à envoyer votre premier document',
   start_tour: 'Démarrer',
   or_add_from: 'Ou ajouter depuis',
   sync: 'Synchroniser',
@@ -1095,7 +1111,11 @@ const fr = {
   align_bottom: 'Aligner en bas',
   fields_selected: '{count} Champs Sélectionnés',
   field_added: '{count} Champ Ajouté',
-  fields_added: '{count} Champs Ajoutés'
+  fields_added: '{count} Champs Ajoutés',
+  revisions: 'Révisions',
+  apply: 'Appliquer',
+  no_revisions_yet: 'Aucune révision pour le moment',
+  viewing_revision_from: 'Affichage de la révision du {date}'
 }
 
 const de = {
@@ -1120,7 +1140,7 @@ const de = {
   max: 'Max.',
   font: 'Schriftart',
   party: 'Partei',
-  date_signed: 'Unterzeichnungsdatum',
+  date_signed: 'Aktuelles Datum',
   method: 'Methode',
   reorder_fields: 'Felder neu anordnen',
   verify_id: 'ID überprüfen',
@@ -1300,7 +1320,7 @@ const de = {
   learn_more: 'Mehr erfahren',
   and: 'und',
   or: 'oder',
-  start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: 'Starten Sie eine Kurztour, um zu lernen, wie Sie Ihr erstes Dokument erstellen und versenden.',
+  start_a_quick_tour_to_learn_how_to_create_and_send_your_first_document: 'Starten Sie eine Kurztour, um zu lernen, wie Sie Ihr erstes Dokument erstellen und versenden.',
   start_tour: 'Tour starten',
   or_add_from: 'Oder hinzufügen aus',
   sync: 'Synchronisieren',
@@ -1315,7 +1335,11 @@ const de = {
   align_bottom: 'Unten ausrichten',
   fields_selected: '{count} Felder Ausgewählt',
   field_added: '{count} Feld Hinzugefügt',
-  fields_added: '{count} Felder Hinzugefügt'
+  fields_added: '{count} Felder Hinzugefügt',
+  revisions: 'Revisionen',
+  apply: 'Anwenden',
+  no_revisions_yet: 'Noch keine Revisionen',
+  viewing_revision_from: 'Ansicht der Revision vom {date}'
 }
 
 const nl = {
@@ -1340,7 +1364,7 @@ const nl = {
   max: 'Max',
   font: 'Lettertype',
   party: 'Partij',
-  date_signed: 'Datum ondertekend',
+  date_signed: 'Huidige datum',
   method: 'Methode',
   reorder_fields: 'Velden herschikken',
   verify_id: 'ID verifiëren',
@@ -1520,7 +1544,7 @@ const nl = {
   learn_more: 'Meer informatie',
   and: 'en',
   or: 'of',
-  start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: 'Start een korte rondleiding om te leren hoe u uw eerste document maakt en verzendt',
+  start_a_quick_tour_to_learn_how_to_create_and_send_your_first_document: 'Start een korte rondleiding om te leren hoe u uw eerste document maakt en verzendt',
   start_tour: 'Rondleiding starten',
   or_add_from: 'Of toevoegen van',
   sync: 'Synchroniseren',
@@ -1535,7 +1559,11 @@ const nl = {
   align_bottom: 'Onder uitlijnen',
   fields_selected: '{count} Velden Geselecteerd',
   field_added: '{count} Veld Toegevoegd',
-  fields_added: '{count} Velden Toegevoegd'
+  fields_added: '{count} Velden Toegevoegd',
+  revisions: 'Revisies',
+  apply: 'Toepassen',
+  no_revisions_yet: 'Nog geen revisies',
+  viewing_revision_from: 'Revisie van {date} bekijken'
 }
 
 export { en, es, it, pt, fr, de, nl }

@@ -15,11 +15,7 @@ module SendWebhookRequest
 
   # rubocop:disable Metrics/AbcSize
   def call(webhook_url, event_uuid:, event_type:, record:, data:, attempt: 0)
-    uri = begin
-      URI(webhook_url.url)
-    rescue URI::Error
-      Addressable::URI.parse(webhook_url.url).normalize
-    end
+    uri = parse_uri(webhook_url.url)
 
     if Docuseal.multitenant?
       raise HttpsError, 'Only HTTPS is allowed.' if (uri.scheme != 'https' || [443, nil].exclude?(uri.port)) &&
@@ -43,6 +39,8 @@ module SendWebhookRequest
         data: data
       }.to_json
 
+      req.headers['X-Docuseal-Signature'] = WebhookUrls::Signatures.sign(webhook_url.hmac_secret, body: req.body)
+
       req.options.read_timeout = 15
       req.options.open_timeout = 8
     end
@@ -54,6 +52,12 @@ module SendWebhookRequest
     handle_error(webhook_event, attempt:, error_message: e.message&.truncate(100))
   end
   # rubocop:enable Metrics/AbcSize
+
+  def parse_uri(url)
+    URI(url)
+  rescue URI::Error
+    Addressable::URI.parse(url).normalize
+  end
 
   def create_webhook_event(webhook_url, event_uuid:, event_type:, record:)
     return if event_uuid.blank?

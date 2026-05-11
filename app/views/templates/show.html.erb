@@ -75,7 +75,7 @@
 <% end %>
 <% if @submissions.present? %>
   <div class="space-y-4">
-    <%= render partial: 'submission', collection: @submissions, locals: { template: @template } %>
+    <%= render partial: 'submission', collection: @submissions, locals: { template: @template, archived: @template.archived_at? } %>
   </div>
 <% else %>
   <div class="card bg-base-200">

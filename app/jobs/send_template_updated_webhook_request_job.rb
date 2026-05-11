@@ -26,13 +26,12 @@ class SendTemplateUpdatedWebhookRequestJob
                                                 attempt:,
                                                 data: Templates::SerializeForApi.call(template))
 
-    if (resp.nil? || resp.status.to_i >= 400) && attempt <= MAX_ATTEMPTS &&
-       (!Docuseal.multitenant? || template.account.account_configs.exists?(key: :plan))
-      SendTemplateUpdatedWebhookRequestJob.perform_in((2**attempt).minutes, {
-                                                        **params,
-                                                        'attempt' => attempt + 1,
-                                                        'last_status' => resp&.status.to_i
-                                                      })
-    end
+    return if attempt > MAX_ATTEMPTS || (resp && resp.status.to_i < 400)
+
+    SendTemplateUpdatedWebhookRequestJob.perform_in((2**attempt).minutes, {
+                                                      **params,
+                                                      'attempt' => attempt + 1,
+                                                      'last_status' => resp&.status.to_i
+                                                    })
   end
 end

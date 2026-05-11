@@ -383,7 +383,7 @@
     class="rounded py-2 px-4 w-full border border-dashed border-base-300"
   >
     <div class="text-center text-sm">
-      {{ t('start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document') }}
+      {{ t('start_a_quick_tour_to_learn_how_to_create_and_send_your_first_document') }}
     </div>
     <div class="flex justify-center">
       <label

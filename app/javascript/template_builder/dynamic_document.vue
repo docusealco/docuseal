@@ -183,6 +183,9 @@ export default {
         this.sectionRefs.push(ref)
       }
     },
+    reloadContent () {
+      this.sectionRefs.forEach((ref) => ref.reloadContent())
+    },
     onBeforeUnload (event) {
       if (this.saveTimer) {
         event.preventDefault()
