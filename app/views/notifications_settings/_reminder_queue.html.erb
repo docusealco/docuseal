@@ -1,0 +1,56 @@
+<% if @pending_reminders.present? %>
+  <div class="mt-8">
+    <h3 class="text-2xl font-bold mb-4">
+      <%= t('pending_reminders') %>
+    </h3>
+    <div class="overflow-x-auto">
+      <table class="table table-sm">
+        <thead>
+          <tr>
+            <th><%= t('submitter') %></th>
+            <th><%= t('template') %></th>
+            <th><%= t('last_sent') %></th>
+            <th><%= t('next_due') %></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @pending_reminders.each do |entry| %>
+            <%= turbo_frame_tag "reminder_row_#{entry[:submitter].id}" do %>
+              <tr>
+                <td><%= entry[:submitter].name.presence || entry[:submitter].email %></td>
+                <td><%= entry[:submitter].template&.name %></td>
+                <td>
+                  <% if entry[:last_sent_at] %>
+                    <span class="tooltip tooltip-bottom" data-tip="<%= l(entry[:last_sent_at].in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) %> <%= current_account.timezone %>">
+                      <%= time_ago_in_words(entry[:last_sent_at]) %> <%= t('ago') %>
+                    </span>
+                  <% else %>
+                    —
+                  <% end %>
+                </td>
+                <td>
+                  <% if entry[:next_at] > Time.current %>
+                    <span class="tooltip tooltip-bottom" data-tip="<%= l(entry[:next_at].in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) %> <%= current_account.timezone %>">
+                      <%= t('in_time', time: distance_of_time_in_words(Time.current, entry[:next_at])) %>
+                    </span>
+                  <% else %>
+                    <span class="tooltip tooltip-bottom" data-tip="<%= l(entry[:next_at].in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) %> <%= current_account.timezone %>">
+                      <%= t('overdue') %>
+                    </span>
+                  <% end %>
+                </td>
+                <td>
+                  <%= button_to t('skip'), settings_submitter_reminder_path(entry[:submitter]),
+                      method: :delete,
+                      class: 'btn btn-xs btn-outline',
+                      data: { turbo_frame: "reminder_row_#{entry[:submitter].id}" } %>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<% end %>

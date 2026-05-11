@@ -116,6 +116,18 @@ en: &en
 
     Thanks,
     {account.name}
+  reminder_you_are_invited_to_sign_a_document: 'Reminder: You have a document awaiting your signature'
+  submitter_reminder_email_sign_body: |
+    Hi there,
+
+    This is a friendly reminder that you have been invited to sign the "{template.name}".
+
+    [Review and Sign]({submitter.link})
+
+    Please contact us by replying to this email if you have any questions.
+
+    Thanks,
+    {account.name}
   submitter_completed_email_body: |
     Hi,
 
@@ -301,6 +313,15 @@ en: &en
   first_reminder_in: First reminder in
   second_reminder_in: Second reminder in
   third_reminder_in: Third reminder in
+  next_reminder_in_time: "Next reminder: in %{time}"
+  reminder_overdue: Reminder overdue
+  pending_reminders: Pending Reminders
+  last_sent: Last Sent
+  next_due: Next Due
+  in_time: "in %{time}"
+  overdue: Overdue
+  ago: ago
+  reminder_skipped: Reminder skipped
   learn_more: Learn More
   unable_to_save: Unable to save.
   invalid_timeserver: Invalid Timeserver

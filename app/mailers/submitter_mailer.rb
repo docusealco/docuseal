@@ -45,6 +45,40 @@ class SubmitterMailer < ApplicationMailer
     end
   end
 
+  def reminder_email(submitter)
+    @current_account = submitter.submission.account
+    @submitter = submitter
+
+    @body = @submitter.template&.preferences&.dig('invitation_reminder_email_body').presence
+
+    @email_config = AccountConfigs.find_for_account(@current_account, AccountConfig::SUBMITTER_INVITATION_REMINDER_EMAIL_KEY)
+    @body ||= fetch_config_email_body(@email_config, @submitter)
+
+    @subject = @submitter.template&.preferences&.dig('invitation_reminder_email_subject').presence
+
+    assign_message_metadata('submitter_reminder', @submitter)
+
+    reply_to = build_submitter_reply_to(@submitter, email_config: @email_config)
+
+    maybe_set_custom_domain(@submitter)
+
+    I18n.with_locale(@current_account.locale) do
+      subject = if @email_config || @subject
+                  ReplaceEmailVariables.call(@subject || @email_config.value['subject'], submitter:)
+                else
+                  I18n.t(:reminder_you_are_invited_to_sign_a_document)
+                end
+
+      mail(
+        to: @submitter.friendly_name,
+        from: from_address_for_submitter(submitter),
+        subject:,
+        reply_to:,
+        template_name: 'invitation_email'
+      )
+    end
+  end
+
   def completed_email(submitter, user, to: nil)
     @current_account = submitter.submission.account
     @submitter = submitter

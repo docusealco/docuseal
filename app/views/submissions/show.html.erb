@@ -148,6 +148,7 @@
       <% colors = %w[bg-red-500 bg-sky-500 bg-emerald-500 bg-yellow-300 bg-purple-600 bg-pink-500 bg-cyan-500 bg-orange-500 bg-lime-500 bg-indigo-500] %>
       <% submitter_fields_index = (@submission.template_fields || @submission.template.fields).group_by { |f| f['submitter_uuid'] } %>
       <% submitter_field_counters = Hash.new { 0 } %>
+      <% reminder_config_for_page = signed_in? ? AccountConfig.find_by(account_id: @submission.account_id, key: AccountConfig::SUBMITTER_REMINDERS) : nil %>
       <% (@submission.template_submitters || @submission.template.submitters).each_with_index do |item, index| %>
         <% submitter = @submission.submitters.find { |e| e.uuid == item['uuid'] } %>
         <div class="sticky -top-1 bg-base-100 pt-1 -mt-1">
@@ -217,6 +218,21 @@
                 <% end %>
               </span>
             </div>
+            <% if signed_in? && submitter && !submitter.completed_at? && !submitter.declined_at? && submitter.sent_at? %>
+              <% next_at = SubmitterReminders.next_reminder_at(submitter, reminder_config_for_page) if reminder_config_for_page %>
+              <% if next_at %>
+                <div class="flex items-center space-x-1 mt-1">
+                  <%= svg_icon('clock', class: 'w-5 h-5') %>
+                  <span class="text-sm opacity-70 tooltip tooltip-bottom" data-tip="<%= l(next_at.in_time_zone(@submission.account.timezone), format: :short, locale: @submission.account.locale) %> <%= @submission.account.timezone %>">
+                    <% if next_at > Time.current %>
+                      <%= t('next_reminder_in_time', time: distance_of_time_in_words(Time.current, next_at)) %>
+                    <% else %>
+                      <%= t('reminder_overdue') %>
+                    <% end %>
+                  </span>
+                </div>
+              <% end %>
+            <% end %>
             <% if submitter&.declined_at? %>
               <div class="flex items-center space-x-1 mt-1">
                 <span>

@@ -1,0 +1,34 @@
+<div id="<%= AccountConfig::SUBMITTER_INVITATION_REMINDER_EMAIL_KEY %>_form">
+  <% configs = AccountConfigs.find_or_initialize_for_key(current_account, AccountConfig::SUBMITTER_INVITATION_REMINDER_EMAIL_KEY).value %>
+  <% template_email_preferences_values = @template.preferences.values_at('invitation_reminder_email_subject', 'invitation_reminder_email_body').compact_blank.presence %>
+  <% is_custom_template_email = template_email_preferences_values.present? %>
+  <% if is_custom_template_email %>
+    <%= button_to nil, template_preferences_path(@template), id: 'submitter_invitation_reminder_email_reset_link', method: :delete, class: 'hidden', params: { config_key: AccountConfig::SUBMITTER_INVITATION_REMINDER_EMAIL_KEY }, data: { turbo_confirm: t('are_you_sure_') }, form: { data: { close_on_submit: false } } %>
+  <% end %>
+  <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mt-1', id: 'submitter_invitation_reminder_email_template_form' }, data: { close_on_submit: false } do |f| %>
+    <toggle-on-submit data-element-id="email_saved_alert_reminder"></toggle-on-submit>
+    <%= f.fields_for :preferences, Struct.new(:invitation_reminder_email_subject, :invitation_reminder_email_body).new(@template.preferences['invitation_reminder_email_subject'].presence || configs['subject'], @template.preferences['invitation_reminder_email_body'].presence || configs['body']) do |ff| %>
+      <div class="form-control">
+        <div class="flex justify-between">
+          <%= ff.label :invitation_reminder_email_subject, t('email_subject'), class: 'label' %>
+          <% if is_custom_template_email %>
+            <label for="submitter_invitation_reminder_email_reset_link" class="label underline">
+              <%= t('reset_default') %>
+            </label>
+          <% end %>
+        </div>
+        <%= ff.text_field :invitation_reminder_email_subject, required: true, class: 'base-input', dir: 'auto' %>
+      </div>
+      <div class="form-control">
+        <%= ff.label :invitation_reminder_email_body, t('email_body'), class: 'label' %>
+        <%= render 'personalization_settings/markdown_editor', name: ff.field_name(:invitation_reminder_email_body), value: ff.object.invitation_reminder_email_body, variables: AccountConfig::EMAIL_VARIABLES[AccountConfig::SUBMITTER_INVITATION_REMINDER_EMAIL_KEY] %>
+      </div>
+    <% end %>
+  <% end %>
+  <div class="form-control pt-2">
+    <%= button_tag button_title(title: t('save'), disabled_with: t('saving')), form: 'submitter_invitation_reminder_email_template_form', class: 'base-button' %>
+    <div class="flex justify-center">
+      <span id="email_saved_alert_reminder" class="text-sm invisible font-normal mt-0.5"><%= t('changes_have_been_saved') %></span>
+    </div>
+  </div>
+</div>

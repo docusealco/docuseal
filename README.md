@@ -18,7 +18,7 @@ Support companies that are providing open-source solutions!
 | Feature | Status | Description |
 |---------|--------|-------------|
 | Company logo / white-label | Done | Upload your logo in Settings > Personalization. Displayed in signing forms and emails. |
-| Automated reminders | Done | Configure reminder intervals per-account. Pending signers receive scheduled follow-up emails. |
+| Automated reminders | Done | Scheduled follow-up emails with customizable templates, reminder queue visibility, and skip controls. |
 | Template creation via API | Done | `POST /api/templates/pdf` and `PUT /api/templates/:id/documents` — create and manage templates programmatically with field coordinates or embedded text tags. |
 | Professional email design | Done | Table-based responsive email layout with company branding, styled CTA buttons, and proper footer. |
 | Teams & user roles | Done | Multi-team support with admin/editor roles. Editors see only their team's documents. Admins can move folders between teams. |
@@ -41,6 +41,24 @@ This fork implements team-based access control with two roles:
 - Admins can move entire folders (with all templates and submissions) to another team via the folder edit modal
 - API tokens respect the user's role and team membership
 - Migrations handle both greenfield installs and existing deployments (auto-creates a "Default" team and backfills)
+
+## Automated Reminders
+
+Reminder emails are sent to pending signers on a configurable schedule.
+
+**Configuration:**
+- Set reminder interval (e.g., every 2 days) in Settings > Notifications
+- Customize reminder email subject and body at account level (Settings > Personalization) or per-template
+- Supports the same template variables as invitation emails (submitter name, template name, link, etc.)
+
+**Visibility & Controls:**
+- Submission page shows the next scheduled reminder time per submitter (with timezone tooltip)
+- Settings > Notifications includes a pending reminders queue table showing all upcoming reminders
+- Skip button lets you advance past a pending reminder without sending it (fires a `skip_reminder_email` event)
+
+**Reliability:**
+- Deduplication guard prevents the same reminder from being sent twice within 1 minute
+- Job scheduling handles container restarts gracefully (clears stale scheduled jobs before re-registering)
 
 ## What's NOT included
 

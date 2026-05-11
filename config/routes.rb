@@ -189,6 +189,7 @@ Rails.application.routes.draw do
     resources :email, only: %i[index create], controller: 'email_smtp_settings'
     resources :sso, only: %i[index], controller: 'sso_settings'
     resources :notifications, only: %i[index create], controller: 'notifications_settings'
+    resources :submitter_reminders, only: [:destroy], controller: 'submitter_reminders'
     resource :esign, only: %i[show create new update destroy], controller: 'esign_settings'
     resources :teams, only: %i[index new create edit update destroy]
     resources :users, only: %i[index]

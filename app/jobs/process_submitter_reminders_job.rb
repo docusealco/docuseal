@@ -10,10 +10,20 @@ class ProcessSubmitterRemindersJob
       process_account_reminders(config)
     end
 
-    ProcessSubmitterRemindersJob.perform_in(1.hour)
+    reschedule!
   end
 
   private
+
+  def reschedule!
+    require 'sidekiq/api'
+
+    Sidekiq::ScheduledSet.new
+      .select { |j| j.klass == 'ProcessSubmitterRemindersJob' }
+      .each(&:delete)
+
+    ProcessSubmitterRemindersJob.perform_in(1.hour)
+  end
 
   def process_account_reminders(config)
     durations = parse_durations(config.value)
@@ -35,7 +45,7 @@ class ProcessSubmitterRemindersJob
   end
 
   def send_reminder_if_due(submitter, durations)
-    reminder_count = submitter.submission_events.where(event_type: 'send_reminder_email').count
+    reminder_count = submitter.submission_events.where(event_type: %w[send_reminder_email skip_reminder_email]).count
 
     duration = case reminder_count
                when 0 then durations[:first]
@@ -50,7 +60,7 @@ class ProcessSubmitterRemindersJob
                   submitter.sent_at
                 else
                   submitter.submission_events
-                    .where(event_type: 'send_reminder_email')
+                    .where(event_type: %w[send_reminder_email skip_reminder_email])
                     .order(:created_at)
                     .last&.created_at || submitter.sent_at
                 end

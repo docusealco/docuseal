@@ -77,8 +77,8 @@ class AccountConfig < ApplicationRecord
     },
     SUBMITTER_INVITATION_REMINDER_EMAIL_KEY => lambda {
       {
-        'subject' => I18n.t(:you_are_invited_to_sign_a_document),
-        'body' => I18n.t(:submitter_invitation_email_sign_body)
+        'subject' => I18n.t(:reminder_you_are_invited_to_sign_a_document),
+        'body' => I18n.t(:submitter_reminder_email_sign_body)
       }
     },
     SUBMITTER_COMPLETED_EMAIL_KEY => lambda {
