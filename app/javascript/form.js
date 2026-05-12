@@ -53,10 +53,8 @@ safeRegisterElement('submission-form', class extends HTMLElement {
       completedRedirectUrl: this.dataset.completedRedirectUrl,
       attachments: reactive(JSON.parse(this.dataset.attachments)),
       fields: JSON.parse(this.dataset.fields),
-      completeButtonRef: document.getElementById('complete_button_container'),
-      completeButtonMobileRef: document.getElementById('complete_button_container_mobile'),
-      declineButtonRef: document.getElementById('decline_button')?.closest('modal-button'),
-      declineButtonMobileRef: document.getElementById('decline_button_mobile')?.closest('modal-button')
+      completeButtonContainer: document.getElementById('complete_button_container'),
+      completeButtonScrollContainer: document.getElementById('complete_button_container_scroll')
     })
 
     this.app.mount(this.appElem)

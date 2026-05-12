@@ -1286,17 +1286,19 @@ RSpec.describe 'Signing Form' do
       submission.update(template_fields: template.fields)
     end
 
-    it 'shows header complete button and hides decline after filling required fields' do
+    it 'shows header complete button and hides download after filling required fields' do
       visit submit_form_path(slug: submitter.slug)
 
       expect(page).to have_button('Decline')
+      expect(page).to have_css('download-button[aria-label="Download"]', visible: true)
       expect(page).not_to have_css('#complete_button_container button')
 
       fill_in 'First Name', with: 'John Doe'
       click_button 'next'
 
       expect(page).to have_css('#complete_button_container button')
-      expect(page).not_to have_button('Decline')
+      expect(page).to have_button('Decline')
+      expect(page).to have_css('download-button[aria-label="Download"]', visible: :hidden)
     end
 
     it 'completes the form via header complete button skipping optional fields' do

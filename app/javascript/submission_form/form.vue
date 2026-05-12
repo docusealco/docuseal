@@ -114,12 +114,12 @@
     </button>
   </Teleport>
   <Teleport
-    v-for="ref in (canShowCompleteButton ? [completeButtonRef, completeButtonMobileRef].filter(Boolean) : [])"
+    v-for="ref in (showCompleteButton ? [completeButtonContainer, completeButtonScrollContainer].filter(Boolean) : [])"
     :key="ref"
     :to="ref"
   >
     <button
-      class="btn btn-sm btn-neutral text-white px-4"
+      class="complete-button btn btn-sm btn-neutral text-white px-4"
       form="steps_form"
       type="submit"
       name="completed"
@@ -816,22 +816,12 @@ export default {
       required: false,
       default: null
     },
-    completeButtonRef: {
+    completeButtonContainer: {
       type: Object,
       required: false,
       default: null
     },
-    completeButtonMobileRef: {
-      type: Object,
-      required: false,
-      default: null
-    },
-    declineButtonRef: {
-      type: Object,
-      required: false,
-      default: null
-    },
-    declineButtonMobileRef: {
+    completeButtonScrollContainer: {
       type: Object,
       required: false,
       default: null
@@ -1053,6 +1043,7 @@ export default {
       isSubmitting: false,
       isSubmittingComplete: false,
       submittedValues: {},
+      isFormStarted: false,
       recalculateButtonDisabledKey: '',
       isAccessibilityMode: false
     }
@@ -1101,9 +1092,9 @@ export default {
         })
       })
     },
-    canShowCompleteButton () {
-      return this.completeButtonRef && !this.emptyValueRequiredStep && !this.isCompleted && !this.isInvite &&
-        this.stepFields.some((fields) => fields.some((f) => !isEmpty(this.values[f.uuid])))
+    showCompleteButton () {
+      return this.completeButtonContainer && !this.isCompleted && !this.isInvite && this.isFormStarted &&
+        !this.stepFields.find((fields) => fields.some((f) => f.required && isEmpty(this.submittedValues[f.uuid])))
     },
     submitButtonText () {
       if (this.alwaysMinimize) {
@@ -1285,15 +1276,6 @@ export default {
     currentStepFields (value) {
       if (isEmpty(value) && this.currentStep > 0) {
         this.currentStep -= 1
-      }
-    },
-    canShowCompleteButton: {
-      immediate: true,
-      handler (show) {
-        this.$nextTick(() => {
-          if (this.declineButtonRef) this.declineButtonRef.classList.toggle('hidden', show)
-          if (this.declineButtonMobileRef) this.declineButtonMobileRef.classList.toggle('hidden', show)
-        })
       }
     },
     attachmentConditionsIndex: {
@@ -1715,6 +1697,8 @@ export default {
             return Promise.reject(new Error(data.error))
           }
 
+          this.isFormStarted = true
+
           const nextStep = (isLastStep && emptyRequiredField) || (forceComplete ? null : this.findNextStep(submitStepIndex))
 
           if (nextStep) {
@@ -1751,6 +1735,7 @@ export default {
     },
     async performComplete (resp) {
       this.isCompleted = true
+      this.isFormVisible = true
 
       if (resp?.text) {
         const respData = await resp.text()
