@@ -212,6 +212,20 @@ Rails.application.routes.draw do
     end
   end
 
+  use_doorkeeper do
+    skip_controllers :applications
+  end
+
+  # Claude.ai web connector strips paths — expose root aliases for endpoints it
+  # will try to hit regardless of discovery metadata.
+  get  '/authorize', to: redirect { |_p, req| "/oauth/authorize?#{req.query_string}" }
+  post '/token',     to: 'oauth/token_proxy#create'
+  post '/register',  to: 'oauth/register#create'
+
+  # Discovery metadata (RFC 8414 + RFC 9728). Must be at these exact paths.
+  get '/.well-known/oauth-authorization-server', to: 'well_known#authorization_server'
+  get '/.well-known/oauth-protected-resource',   to: 'well_known#protected_resource'
+
   match '/mcp', to: 'mcp#call', via: %i[get post]
 
   get '/js/:filename', to: 'embed_scripts#show', as: :embed_script

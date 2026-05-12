@@ -63,6 +63,10 @@ class User < ApplicationRecord
   has_one :access_token, dependent: :destroy
   has_many :access_tokens, dependent: :destroy
   has_many :mcp_tokens, dependent: :destroy
+  has_many :oauth_access_grants, class_name: 'Doorkeeper::AccessGrant',
+                                 foreign_key: :resource_owner_id, dependent: :delete_all
+  has_many :oauth_access_tokens, class_name: 'Doorkeeper::AccessToken',
+                                 foreign_key: :resource_owner_id, dependent: :delete_all
   has_many :templates, dependent: :destroy, foreign_key: :author_id, inverse_of: :author
   has_many :template_folders, dependent: :destroy, foreign_key: :author_id, inverse_of: :author
   has_many :user_configs, dependent: :destroy
