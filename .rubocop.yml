@@ -116,6 +116,10 @@ Rails/StrongParametersExpect:
 Rails/RedirectBackOrTo:
   Enabled: false
 
+Rails/Exit:
+  Exclude:
+    - spec/**/*
+
 Rails/UnknownEnv:
   Environments:
     - development
