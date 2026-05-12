@@ -29,3 +29,6 @@
 /docuseal
 .DS_Store
 .env
+/pg_data
+/.claude
+/.git

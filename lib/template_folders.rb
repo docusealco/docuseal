@@ -88,6 +88,8 @@ module TemplateFolders
       name = parent_name
     end
 
-    author.account.template_folders.create_with(author:, team_id: author.team_id).find_or_create_by(name:, parent_folder:)
+    author.account.template_folders
+          .create_with(author:, team_id: author.team_id)
+          .find_or_create_by(name:, parent_folder:)
   end
 end

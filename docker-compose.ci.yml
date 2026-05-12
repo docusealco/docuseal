@@ -4,24 +4,12 @@ services:
       context: .
       dockerfile: Dockerfile.ci
     command: sh -c "bundle exec rubocop && bundle exec erb_lint ./app && yarn eslint 'app/javascript/**/*.js'"
-    volumes:
-      - .:/app:ro
-      - bundle_cache:/usr/local/bundle
-      - node_cache:/app/node_modules
-    tmpfs:
-      - /tmp
 
   brakeman:
     build:
       context: .
       dockerfile: Dockerfile.ci
     command: bundle exec brakeman -q --exit-on-warn
-    volumes:
-      - .:/app:ro
-      - bundle_cache:/usr/local/bundle
-      - node_cache:/app/node_modules
-    tmpfs:
-      - /tmp
 
   rspec:
     build:
@@ -35,12 +23,6 @@ services:
       RAILS_ENV: test
       NODE_ENV: test
       DATABASE_URL: postgres://postgres:postgres@postgres:5432/docuseal_test
-    volumes:
-      - .:/app
-      - bundle_cache:/usr/local/bundle
-      - node_cache:/app/node_modules
-    tmpfs:
-      - /tmp
 
   postgres:
     image: postgres:18
@@ -56,6 +38,3 @@ services:
     tmpfs:
       - /var/lib/postgresql/data
 
-volumes:
-  bundle_cache:
-  node_cache:
