@@ -41,7 +41,7 @@ class TeamsController < ApplicationController
     @teams = current_account.teams.active
                              .left_joins(:users)
                              .where(users: { archived_at: nil })
-                             .or(current_account.teams.active.left_joins(:users).where(users: { id: nil }))
+                             .or(current_account.teams.active.where.missing(:users))
                              .select('teams.*, COUNT(users.id) AS active_users_count')
                              .group('teams.id')
                              .order(:name)

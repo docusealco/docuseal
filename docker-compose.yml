@@ -3,9 +3,7 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: ghcr.io/s256/docuseal-with-some-pro-features:latest
     ports:
       - 3000:3000
     volumes:

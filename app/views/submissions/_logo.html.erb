@@ -1,5 +1,5 @@
 <% if @submission&.account&.logo&.attached? %>
-  <img src="<%= url_for(@submission.account.logo) %>" class="max-h-10 max-w-[160px]" />
+  <img src="<%= url_for(@submission.account.logo) %>" class="max-h-10 max-w-[160px]">
 <% else %>
   <%= render 'shared/logo', width: 40, height: 40 %>
 <% end %>

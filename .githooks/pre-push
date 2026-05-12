@@ -1,0 +1,14 @@
+#!/bin/sh
+# Pre-push hook: runs linting via Docker before pushing to GitHub.
+# Ensures Rubocop, ERBLint, and ESLint pass locally.
+# Skip with: git push --no-verify
+#
+# Enable this hook: git config core.hooksPath .githooks
+set -e
+
+echo "🔍 Running lint checks before push..."
+
+docker compose -f docker-compose.ci.yml build lint --quiet 2>/dev/null
+docker compose -f docker-compose.ci.yml run --rm --no-deps lint
+
+echo "✅ All lint checks passed."

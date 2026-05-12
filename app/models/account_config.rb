@@ -62,10 +62,22 @@ class AccountConfig < ApplicationRecord
   ENABLE_MCP_KEY = 'enable_mcp'
 
   EMAIL_VARIABLES = {
-    SUBMITTER_INVITATION_EMAIL_KEY => %w[template.name submitter.link account.name sender.name sender.first_name sender.email submitter.name submitter.first_name submitter.email].freeze,
-    SUBMITTER_COMPLETED_EMAIL_KEY => %w[template.name submission.submitters submission.link sender.name sender.first_name sender.email submitter.name submitter.first_name submitter.email].freeze,
-    SUBMITTER_INVITATION_REMINDER_EMAIL_KEY => %w[template.name submitter.link account.name sender.name sender.first_name sender.email submitter.name submitter.first_name submitter.email].freeze,
-    SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY => %w[template.name documents.link account.name sender.name sender.first_name sender.email submitter.name submitter.first_name submitter.email].freeze
+    SUBMITTER_INVITATION_EMAIL_KEY => %w[
+      template.name submitter.link account.name sender.name
+      sender.first_name sender.email submitter.name submitter.first_name submitter.email
+    ].freeze,
+    SUBMITTER_COMPLETED_EMAIL_KEY => %w[
+      template.name submission.submitters submission.link sender.name
+      sender.first_name sender.email submitter.name submitter.first_name submitter.email
+    ].freeze,
+    SUBMITTER_INVITATION_REMINDER_EMAIL_KEY => %w[
+      template.name submitter.link account.name sender.name
+      sender.first_name sender.email submitter.name submitter.first_name submitter.email
+    ].freeze,
+    SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY => %w[
+      template.name documents.link account.name sender.name
+      sender.first_name sender.email submitter.name submitter.first_name submitter.email
+    ].freeze
   }.freeze
 
   DEFAULT_VALUES = {

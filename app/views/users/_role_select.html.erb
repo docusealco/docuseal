@@ -1,4 +1,4 @@
 <div class="form-control">
   <%= f.label :role, class: 'label' %>
-  <%= f.select :role, [['Admin', 'admin'], ['Editor', 'editor']], { selected: f.object.role }, class: 'base-select' %>
+  <%= f.select :role, [%w[Admin admin], %w[Editor editor]], { selected: f.object.role }, class: 'base-select' %>
 </div>

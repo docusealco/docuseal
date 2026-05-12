@@ -6,9 +6,7 @@ class AccountLogoController < ApplicationController
   def create
     file = params[:file]
 
-    if file.blank?
-      return redirect_to settings_personalization_path, alert: I18n.t('unable_to_save')
-    end
+    return redirect_to settings_personalization_path, alert: I18n.t('unable_to_save') if file.blank?
 
     current_account.logo.attach(file)
 

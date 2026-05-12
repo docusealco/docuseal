@@ -4,8 +4,8 @@
 <% if submitter_url_pattern && rendered_html.include?(submitter_url_pattern) %>
   <% button_label = I18n.t(submitter.with_signature_fields? ? :review_and_sign : :review_and_submit) %>
   <% rendered_html = rendered_html.gsub(%r{<a href="([^"]*#{Regexp.escape(submitter_url_pattern)}[^"]*)">[^<]*</a>}i) do
-    url = Regexp.last_match(1)
-    render(partial: 'shared/email_button', locals: { url: url, label: button_label })
-  end %>
+       url = Regexp.last_match(1)
+       render(partial: 'shared/email_button', locals: { url: url, label: button_label })
+     end %>
 <% end %>
 <%= rendered_html.html_safe %>

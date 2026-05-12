@@ -42,9 +42,9 @@
                 </td>
                 <td>
                   <%= button_to t('skip'), settings_submitter_reminder_path(entry[:submitter]),
-                      method: :delete,
-                      class: 'btn btn-xs btn-outline',
-                      data: { turbo_frame: "reminder_row_#{entry[:submitter].id}" } %>
+                                method: :delete,
+                                class: 'btn btn-xs btn-outline',
+                                data: { turbo_frame: "reminder_row_#{entry[:submitter].id}" } %>
                 </td>
               </tr>
             <% end %>

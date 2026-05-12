@@ -1,7 +1,7 @@
 <% if current_account.logo.attached? %>
   <div class="mb-4">
     <div class="flex items-center space-x-4">
-      <img src="<%= url_for(current_account.logo) %>" class="max-h-16 max-w-xs rounded" />
+      <img src="<%= url_for(current_account.logo) %>" class="max-h-16 max-w-xs rounded">
       <%= button_to t('remove'), settings_account_logo_path, method: :delete, class: 'btn btn-sm btn-error btn-outline', data: { turbo_confirm: t('are_you_sure_') } %>
     </div>
   </div>

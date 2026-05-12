@@ -3,6 +3,7 @@
 module SubmitterReminders
   module_function
 
+  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
   def next_reminder_at(submitter, reminder_config)
     return nil unless reminder_config&.value.is_a?(Hash)
     return nil if submitter.completed_at? || submitter.declined_at?
@@ -35,6 +36,7 @@ module SubmitterReminders
 
     base_time + duration
   end
+  # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
   def parse_durations(value)
     return {} unless value.is_a?(Hash)
@@ -46,7 +48,7 @@ module SubmitterReminders
     result
   end
 
-  def duration_to_seconds(key)
+  def duration_to_seconds(key) # rubocop:disable Metrics/CyclomaticComplexity
     case key
     when 'one_hour' then 1.hour
     when 'two_hours' then 2.hours

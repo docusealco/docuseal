@@ -1,0 +1,12 @@
+#!/bin/sh
+# Run all linters via Docker (same as CI pipeline).
+# Usage: bin/lint
+set -e
+
+echo "Building CI image (cached)..."
+docker compose -f docker-compose.ci.yml build lint --quiet
+
+echo "Running Rubocop + ERBLint + ESLint..."
+docker compose -f docker-compose.ci.yml run --rm --no-deps lint
+
+echo "✅ All checks passed."

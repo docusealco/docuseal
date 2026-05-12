@@ -47,7 +47,7 @@ module Api
     end
 
     def replace_document(doc_params)
-      position = doc_params[:position]&.to_i || 0
+      position = doc_params[:position].to_i
 
       file = Api::DecodeDocumentFile.call(doc_params[:file], name: doc_params[:name])
       documents, = Templates::CreateAttachments.call(@template, { files: [file] }, extract_fields: true)
@@ -59,7 +59,8 @@ module Api
       new_schema = { 'attachment_uuid' => document.uuid, 'name' => document.filename.base }
 
       if old_schema
-        new_doc_has_fields = @template.fields.any? { |f| f['areas']&.any? { |a| a['attachment_uuid'] == document.uuid } }
+        new_doc_has_fields =
+          @template.fields.any? { |f| f['areas']&.any? { |a| a['attachment_uuid'] == document.uuid } }
 
         unless new_doc_has_fields
           @template.fields.each do |field|

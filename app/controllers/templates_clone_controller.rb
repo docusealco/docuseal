@@ -9,7 +9,7 @@ class TemplatesCloneController < ApplicationController
     @template = Template.new(name: "#{@base_template.name} (#{I18n.t('clone')})")
   end
 
-  def create
+  def create # rubocop:disable Metrics/AbcSize
     ActiveRecord::Associations::Preloader.new(
       records: [@base_template],
       associations: [{ schema_documents: :preview_images_attachments }]

@@ -12,6 +12,6 @@ class CreateTeams < ActiveRecord::Migration[8.0]
     end
 
     add_index :teams, :uuid, unique: true
-    add_index :teams, %i[account_id name], unique: true, where: "archived_at IS NULL"
+    add_index :teams, %i[account_id name], unique: true, where: 'archived_at IS NULL'
   end
 end

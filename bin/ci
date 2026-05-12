@@ -1,0 +1,31 @@
+#!/bin/sh
+# Run the full CI suite locally via Docker (mirrors GitHub Actions).
+# Usage: bin/ci [service]
+#   bin/ci         — run lint + brakeman + rspec
+#   bin/ci lint    — run only linters
+#   bin/ci rspec   — run only tests
+#   bin/ci brakeman — run only security scanner
+set -e
+
+SERVICE="${1:-}"
+
+echo "Building CI image (cached)..."
+docker compose -f docker-compose.ci.yml build --quiet
+
+if [ -z "$SERVICE" ]; then
+  echo "━━━ Lint ━━━"
+  docker compose -f docker-compose.ci.yml run --rm --no-deps lint
+  echo ""
+  echo "━━━ Brakeman ━━━"
+  docker compose -f docker-compose.ci.yml run --rm --no-deps brakeman
+  echo ""
+  echo "━━━ RSpec ━━━"
+  docker compose -f docker-compose.ci.yml run --rm rspec
+else
+  docker compose -f docker-compose.ci.yml run --rm "$SERVICE"
+fi
+
+docker compose -f docker-compose.ci.yml down --volumes --remove-orphans 2>/dev/null
+
+echo ""
+echo "✅ CI passed."

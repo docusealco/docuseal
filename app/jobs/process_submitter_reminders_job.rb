@@ -81,7 +81,7 @@ class ProcessSubmitterRemindersJob
     result
   end
 
-  def duration_to_seconds(key)
+  def duration_to_seconds(key) # rubocop:disable Metrics/CyclomaticComplexity
     case key
     when 'one_hour' then 1.hour
     when 'two_hours' then 2.hours

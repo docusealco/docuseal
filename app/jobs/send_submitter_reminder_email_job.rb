@@ -15,7 +15,7 @@ class SendSubmitterReminderEmailJob
     return unless submitter.email.to_s.include?('@')
     return unless Accounts.can_send_emails?(submitter.account)
     return if submitter.submission_events.where(event_type: 'send_reminder_email')
-                       .where('created_at > ?', 1.minute.ago).exists?
+                       .exists?(['created_at > ?', 1.minute.ago])
 
     mail = SubmitterMailer.reminder_email(submitter)
 
