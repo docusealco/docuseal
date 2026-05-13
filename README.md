@@ -73,30 +73,68 @@ These Pro features remain unavailable in this fork (they require significant UI/
 
 ## Deploy
 
+Pre-built images are published to GitHub Container Registry on every release tag.
+
+```
+ghcr.io/s256/docuseal-with-some-pro-features:latest
+ghcr.io/s256/docuseal-with-some-pro-features:2.5.3-fork.2
+```
+
+Images are signed with [cosign](https://github.com/sigstore/cosign) and include an SBOM and build provenance attestation.
+
 #### Docker Compose (recommended)
 
 ```sh
-git clone https://github.com/s256/docuseal-with-some-pro-features.git
-cd docuseal
-docker compose up --build
+curl -O https://raw.githubusercontent.com/s256/docuseal-with-some-pro-features/master/docker-compose.yml
+docker compose up
 ```
 
-The app will be available at `http://localhost:3000`.
+This starts the app with PostgreSQL. Available at `http://localhost:3000`.
 
-To run behind a reverse proxy with SSL, uncomment the Caddy service in `docker-compose.yml` and set your domain:
+Data is persisted in `./docuseal` (uploads, active storage) and `./pg_data` (database).
+
+#### With SSL (reverse proxy)
+
+Uncomment the Caddy service in `docker-compose.yml` and set your domain:
 
 ```sh
-HOST=your-domain.com docker compose up --build
+HOST=your-domain.com docker compose up
 ```
+
+Caddy auto-provisions TLS certificates via Let's Encrypt.
 
 #### Docker (standalone)
 
 ```sh
-docker build -t docuseal .
-docker run --name docuseal -p 3000:3000 -v ./docuseal:/data/docuseal docuseal
+docker run --name docuseal \
+  -p 3000:3000 \
+  -v ./docuseal:/data/docuseal \
+  -e DATABASE_URL=postgresql://user:pass@host:5432/docuseal \
+  ghcr.io/s256/docuseal-with-some-pro-features:latest
 ```
 
-Uses PostgreSQL by default (see `docker-compose.yml`). For SQLite, use the upstream image or omit `DATABASE_URL`.
+Without `DATABASE_URL`, the app falls back to SQLite (stored in `/data/docuseal`).
+
+#### Build from source
+
+```sh
+git clone https://github.com/s256/docuseal-with-some-pro-features.git
+cd docuseal-with-some-pro-features
+docker build -t docuseal .
+docker compose up  # edit docker-compose.yml to use `build: .` instead of `image:`
+```
+
+#### Environment variables
+
+| Variable | Description |
+|----------|-------------|
+| `DATABASE_URL` | PostgreSQL connection string. Omit for SQLite. |
+| `SECRET_KEY_BASE` | Rails secret key (auto-generated if not set). |
+| `APP_URL` | Public-facing URL for links in emails. |
+| `FORCE_SSL` | Set to your domain to enforce HTTPS redirects. |
+| `SMTP_ADDRESS`, `SMTP_PORT`, `SMTP_USERNAME`, `SMTP_PASSWORD` | SMTP for outgoing emails (invitations, reminders). |
+
+See the [environment reference](https://www.docuseal.com/docs/hosting#docker) in the upstream docs for the full list.
 
 ## Upstream Features
 
