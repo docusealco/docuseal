@@ -22,7 +22,6 @@
             <%= @submitter.submission.name || @submitter.submission.template.name %>
           </h1>
           <div class="flex items-center gap-2 group" style="margin-left: 20px; flex-shrink: 0">
-            <% decline_modal_id = nil %>
             <% if @form_configs[:with_decline] %>
               <modal-button data-target="<%= decline_modal_id = SecureRandom.uuid %>" class="hidden group-has-[.complete-button]:flex">
                 <button type="button" class="btn btn-sm md:!px-5 px-2" aria-label="<%= t(:decline) %>">
@@ -117,14 +116,16 @@
               </modal-button>
             <% end %>
           <% end %>
-          <download-button role="button" tabindex="0" data-src="<%= submit_form_download_index_path(@submitter.slug) %>" class="btn btn-neutral text-white btn-sm px-2 hidden peer-empty:flex" aria-label="<%= t('download') %>">
-            <span data-target="download-button.defaultButton">
-              <%= svg_icon('download', class: 'w-5 h-5') %>
-            </span>
-            <span class="hidden" data-target="download-button.loadingButton">
-              <%= svg_icon('loader', class: 'w-5 h-5 animate-spin') %>
-            </span>
-          </download-button>
+          <% if @form_configs[:with_partial_download] %>
+            <download-button role="button" tabindex="0" data-src="<%= submit_form_download_index_path(@submitter.slug) %>" class="btn btn-neutral text-white btn-sm px-2 hidden peer-empty:flex" aria-label="<%= t('download') %>">
+              <span data-target="download-button.defaultButton">
+                <%= svg_icon('download', class: 'w-5 h-5') %>
+              </span>
+              <span class="hidden" data-target="download-button.loadingButton">
+                <%= svg_icon('loader', class: 'w-5 h-5 animate-spin') %>
+              </span>
+            </download-button>
+          <% end %>
         </scroll-buttons>
       <% end %>
       <% schema.each do |item| %>
