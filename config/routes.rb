@@ -72,6 +72,7 @@ Rails.application.routes.draw do
     resources :unarchive, only: %i[create], controller: 'submissions_unarchive'
     resources :events, only: %i[index], controller: 'submission_events'
     resources :download, only: %i[index], controller: 'submissions_download'
+    resources :resend_email, only: %i[create], controller: 'submissions_resend_email'
   end
   resources :submitters, only: %i[edit update]
   resources :console_redirect, only: %i[index]
