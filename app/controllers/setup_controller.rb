@@ -20,6 +20,8 @@ class SetupController < ApplicationController
     @user = @account.users.new(user_params)
     @encrypted_config = EncryptedConfig.new(encrypted_config_params)
 
+    @user.team = @account.teams.new(name: 'Default')
+
     unless URI.parse(encrypted_config_params[:value].to_s).class.in?([URI::HTTP, URI::HTTPS])
       @encrypted_config.errors.add(:value, I18n.t('should_be_a_valid_url'))
 
@@ -27,8 +29,6 @@ class SetupController < ApplicationController
     end
 
     return render :index, status: :unprocessable_content unless @account.valid?
-
-    @user.team = @account.teams.new(name: 'Default')
 
     if @user.save
       encrypted_configs = [

@@ -12,7 +12,16 @@ RUN apk add --no-cache \
     yaml-dev \
     nodejs \
     yarn \
-    vips-dev
+    vips-dev \
+    chromium \
+    chromium-chromedriver \
+    && wget -O pdfium-linux.tgz "https://github.com/bblanchon/pdfium-binaries/releases/latest/download/pdfium-linux-musl-x64.tgz" \
+    && mkdir -p /pdfium && tar -xzf pdfium-linux.tgz -C /pdfium \
+    && cp /pdfium/lib/libpdfium.so /usr/lib/ \
+    && rm -rf pdfium-linux.tgz /pdfium
+
+ENV CHROME_BIN=/usr/bin/chromium-browser
+ENV CHROMIUM_FLAGS="--no-sandbox --headless --disable-gpu"
 
 COPY Gemfile Gemfile.lock ./
 RUN bundle install --jobs 4 --retry 3

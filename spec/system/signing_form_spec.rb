@@ -1153,9 +1153,10 @@ RSpec.describe 'Signing Form' do
       click_on 'next'
       draw_canvas
 
-      expect do
-        click_on 'Sign and Complete'
-      end.to change(ProcessSubmitterCompletionJob.jobs, :size).by(1)
+      click_on 'Sign and Complete'
+
+      expect(page).to have_content('Document has been signed!')
+      expect(ProcessSubmitterCompletionJob.jobs.size).to eq(1)
     end
   end
 

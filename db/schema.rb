@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_06_121640) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_08_100002) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
   enable_extension "pg_catalog.plpgsql"
@@ -357,6 +357,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_06_121640) do
     t.string "slug", null: false
     t.string "source", null: false
     t.string "submitters_order", null: false
+    t.bigint "team_id"
     t.text "template_fields"
     t.bigint "template_id"
     t.text "template_schema"
@@ -369,6 +370,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_06_121640) do
     t.index ["account_id", "template_id", "id"], name: "index_submissions_on_account_id_and_template_id_and_id_archived", where: "(archived_at IS NOT NULL)"
     t.index ["created_by_user_id"], name: "index_submissions_on_created_by_user_id"
     t.index ["slug"], name: "index_submissions_on_slug", unique: true
+    t.index ["team_id"], name: "index_submissions_on_team_id"
     t.index ["template_id"], name: "index_submissions_on_template_id"
   end
 
@@ -400,6 +402,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_06_121640) do
     t.datetime "sent_at"
     t.string "slug", null: false
     t.bigint "submission_id", null: false
+    t.bigint "team_id"
     t.string "timezone"
     t.string "ua"
     t.datetime "updated_at", null: false
@@ -411,6 +414,19 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_06_121640) do
     t.index ["external_id"], name: "index_submitters_on_external_id"
     t.index ["slug"], name: "index_submitters_on_slug", unique: true
     t.index ["submission_id"], name: "index_submitters_on_submission_id"
+    t.index ["team_id"], name: "index_submitters_on_team_id"
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.datetime "archived_at"
+    t.datetime "created_at", null: false
+    t.string "name", null: false
+    t.datetime "updated_at", null: false
+    t.string "uuid", null: false
+    t.index ["account_id", "name"], name: "index_teams_on_account_id_and_name", unique: true, where: "(archived_at IS NULL)"
+    t.index ["account_id"], name: "index_teams_on_account_id"
+    t.index ["uuid"], name: "index_teams_on_uuid", unique: true
   end
 
   create_table "template_accesses", force: :cascade do |t|
@@ -428,10 +444,12 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_06_121640) do
     t.datetime "created_at", null: false
     t.string "name", null: false
     t.bigint "parent_folder_id"
+    t.bigint "team_id"
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_template_folders_on_account_id"
     t.index ["author_id"], name: "index_template_folders_on_author_id"
     t.index ["parent_folder_id"], name: "index_template_folders_on_parent_folder_id"
+    t.index ["team_id"], name: "index_template_folders_on_team_id"
   end
 
   create_table "template_sharings", force: :cascade do |t|
@@ -472,6 +490,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_06_121640) do
     t.string "slug", null: false
     t.text "source", null: false
     t.text "submitters", null: false
+    t.bigint "team_id"
     t.datetime "updated_at", null: false
     t.text "variables_schema"
     t.index ["account_id", "folder_id", "id"], name: "index_templates_on_account_id_and_folder_id_and_id", where: "(archived_at IS NULL)"
@@ -481,6 +500,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_06_121640) do
     t.index ["external_id"], name: "index_templates_on_external_id"
     t.index ["folder_id"], name: "index_templates_on_folder_id"
     t.index ["slug"], name: "index_templates_on_slug", unique: true
+    t.index ["team_id"], name: "index_templates_on_team_id"
   end
 
   create_table "user_configs", force: :cascade do |t|
@@ -518,6 +538,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_06_121640) do
     t.string "reset_password_token"
     t.string "role", null: false
     t.integer "sign_in_count", default: 0, null: false
+    t.bigint "team_id", null: false
     t.string "unconfirmed_email"
     t.string "unlock_token"
     t.datetime "updated_at", null: false
@@ -525,6 +546,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_06_121640) do
     t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["team_id"], name: "index_users_on_team_id"
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
     t.index ["uuid"], name: "index_users_on_uuid", unique: true
   end
@@ -591,12 +613,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_06_121640) do
   add_foreign_key "submission_events", "accounts"
   add_foreign_key "submission_events", "submissions"
   add_foreign_key "submission_events", "submitters"
+  add_foreign_key "submissions", "teams"
   add_foreign_key "submissions", "templates"
   add_foreign_key "submissions", "users", column: "created_by_user_id"
   add_foreign_key "submitter_versions", "submitters"
   add_foreign_key "submitters", "submissions"
+  add_foreign_key "submitters", "teams"
+  add_foreign_key "teams", "accounts"
   add_foreign_key "template_accesses", "templates"
   add_foreign_key "template_folders", "accounts"
+  add_foreign_key "template_folders", "teams"
   add_foreign_key "template_folders", "template_folders", column: "parent_folder_id"
   add_foreign_key "template_folders", "users", column: "author_id"
   add_foreign_key "template_sharings", "templates"
@@ -604,9 +630,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_06_121640) do
   add_foreign_key "template_versions", "templates"
   add_foreign_key "template_versions", "users", column: "author_id"
   add_foreign_key "templates", "accounts"
+  add_foreign_key "templates", "teams"
   add_foreign_key "templates", "template_folders", column: "folder_id"
   add_foreign_key "templates", "users", column: "author_id"
   add_foreign_key "user_configs", "users"
   add_foreign_key "users", "accounts"
+  add_foreign_key "users", "teams"
   add_foreign_key "webhook_urls", "accounts"
 end

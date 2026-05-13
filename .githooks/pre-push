@@ -1,14 +1,27 @@
 #!/bin/sh
-# Pre-push hook: runs linting via Docker before pushing to GitHub.
-# Ensures Rubocop, ERBLint, and ESLint pass locally.
+# Pre-push hook: runs the FULL CI suite via Docker before pushing to GitHub.
+# Mirrors GitHub Actions exactly: Rubocop, ERBLint, ESLint, Brakeman, RSpec.
 # Skip with: git push --no-verify
 #
 # Enable this hook: git config core.hooksPath .githooks
 set -e
 
-echo "🔍 Running lint checks before push..."
+echo "🔍 Running full CI suite before push..."
 
-docker compose -f docker-compose.ci.yml build lint --quiet 2>/dev/null
+docker compose -f docker-compose.ci.yml build --quiet 2>/dev/null
+
+echo "━━━ Lint (Rubocop + ERBLint + ESLint) ━━━"
 docker compose -f docker-compose.ci.yml run --rm --no-deps lint
 
-echo "✅ All lint checks passed."
+echo ""
+echo "━━━ Brakeman (Security) ━━━"
+docker compose -f docker-compose.ci.yml run --rm --no-deps brakeman
+
+echo ""
+echo "━━━ RSpec ━━━"
+docker compose -f docker-compose.ci.yml run --rm rspec
+
+docker compose -f docker-compose.ci.yml down --volumes 2>/dev/null
+
+echo ""
+echo "✅ Full CI suite passed. Push allowed."
