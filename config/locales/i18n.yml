@@ -4333,7 +4333,7 @@ pt: &pt
 
     Obrigado,
     {account.name}
-  view: Visualizar
+  view: Ver
   email: Email
   form_expired_at_html: 'O formulário expirou em <span class="font-semibold">%{time}</span>'
   verification_code_code: 'Código de verificação: %{code}'
