@@ -2512,6 +2512,11 @@ export default {
 
         this.selectedAreasRef.value = [area]
 
+        area.x = Math.min(Math.max(area.x, 0), 1)
+        area.y = Math.min(Math.max(area.y, 0), 1)
+        area.w = Math.min(Math.max(area.w, 0), 1)
+        area.h = Math.min(Math.max(area.h, 0), 1)
+
         this.save()
       } else {
         const documentRef = this.documentRefs.find((e) => e.document.uuid === area.attachment_uuid)
