@@ -25,6 +25,10 @@ module NumberUtils
       ApplicationController.helpers.number_to_currency(number, locale:, precision: 2, unit: CURRENCY_SYMBOLS[format])
     elsif locale
       ApplicationController.helpers.number_with_delimiter(number, locale:)
+    elsif format == 'percent'
+      "#{number}%"
+    elsif format == 'percent_space'
+      "#{number.to_s.tr('.', ',')} %"
     else
       number
     end
