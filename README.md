@@ -60,6 +60,25 @@ Reminder emails are sent to pending signers on a configurable schedule.
 - Deduplication guard prevents the same reminder from being sent twice within 1 minute
 - Job scheduling handles container restarts gracefully (clears stale scheduled jobs before re-registering)
 
+## Paperless-ngx Integration
+
+Automatically upload completed, fully-signed documents to a [paperless-ngx](https://docs.paperless-ngx.com/) instance for archival and full-text search.
+
+**How it works:**
+- When all parties have signed a submission, the combined result PDF and audit trail are uploaded to paperless-ngx via its REST API.
+- If the combined PDF feature is not enabled, individual per-submitter result PDFs are uploaded instead.
+- Documents are titled `"Template Name - Signer 1, Signer 2"` with the signing completion date.
+- Uploads run as a background job with exponential retry (up to 10 attempts) — they never block the signing flow.
+
+**Configuration (env vars only — no GUI):**
+
+| Variable | Description |
+|----------|-------------|
+| `PAPERLESS_NGX_URL` | Base URL of your paperless-ngx instance (e.g., `http://paperless:8000`) |
+| `PAPERLESS_NGX_TOKEN` | API token for authentication ([how to get one](https://docs.paperless-ngx.com/api/#authorization)) |
+
+The feature is inactive unless both variables are set.
+
 ## What's NOT included
 
 These Pro features remain unavailable in this fork (they require significant UI/infrastructure work):

@@ -1,0 +1,59 @@
+services:
+  rspec:
+    build:
+      context: .
+      dockerfile: Dockerfile.ci
+    command: sh -c "bundle exec rake db:create db:migrate && bundle exec rake assets:precompile && bundle exec rspec spec/integration"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      paperless-ngx:
+        condition: service_healthy
+    environment:
+      RAILS_ENV: test
+      NODE_ENV: test
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/docuseal_test
+      PAPERLESS_NGX_URL: http://paperless-ngx:8000
+      PAPERLESS_NGX_TOKEN: ""
+
+  postgres:
+    image: postgres:18
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: docuseal_test
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    tmpfs:
+      - /var/lib/postgresql
+
+  paperless-redis:
+    image: docker.io/library/redis:8
+    tmpfs:
+      - /data
+
+  paperless-ngx:
+    image: ghcr.io/paperless-ngx/paperless-ngx:latest
+    depends_on:
+      - paperless-redis
+    ports:
+      - "8000:8000"
+    environment:
+      PAPERLESS_REDIS: redis://paperless-redis:6379
+      PAPERLESS_SECRET_KEY: test-secret-for-e2e-testing
+      PAPERLESS_ADMIN_USER: admin
+      PAPERLESS_ADMIN_PASSWORD: admin
+      PAPERLESS_ADMIN_MAIL: admin@test.local
+      PAPERLESS_TIME_ZONE: UTC
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000"]
+      interval: 10s
+      timeout: 10s
+      retries: 10
+      start_period: 30s
+    tmpfs:
+      - /usr/src/paperless/data
+      - /usr/src/paperless/media

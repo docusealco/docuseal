@@ -4,6 +4,7 @@ queues:
   - [sms, 2]
   - [images, 1]
   - [mailers, 1]
+  - [integrations, 1]
   - [recurrent, 1]
   - [rollbar, 1]
 
