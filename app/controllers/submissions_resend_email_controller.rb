@@ -5,6 +5,7 @@ class SubmissionsResendEmailController < ApplicationController
 
   before_action do
     authorize!(:manage, :resend_all)
+    authorize!(:update, @submission)
   end
 
   def create
