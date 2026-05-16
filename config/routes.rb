@@ -14,12 +14,21 @@ Rails.application.routes.draw do
   get 'up' => 'rails/health#show'
   get 'manifest' => 'pwa#manifest'
 
-  devise_for :users, path: '/', only: %i[sessions passwords omniauth_callbacks],
-                     controllers: {
-                       sessions: 'sessions',
-                       passwords: 'passwords',
-                       omniauth_callbacks: 'users/omniauth_callbacks'
-                     }
+  # Mirror the User model's conditional :omniauthable inclusion. ENV is the
+  # one source of truth available at routes-load time (Wabosign-the-module
+  # may not be autoloadable yet) — keep this check in sync with
+  # config/initializers/devise.rb and app/models/user.rb.
+  # Devise raises if controllers[:omniauth_callbacks] is set but User isn't
+  # omniauthable, so the controllers hash must omit that key too.
+  google_sso_enabled = ENV['GOOGLE_CLIENT_ID'].present? && ENV['GOOGLE_CLIENT_SECRET'].present?
+  devise_actions = %i[sessions passwords]
+  devise_controllers = { sessions: 'sessions', passwords: 'passwords' }
+  if google_sso_enabled
+    devise_actions << :omniauth_callbacks
+    devise_controllers[:omniauth_callbacks] = 'users/omniauth_callbacks'
+  end
+
+  devise_for :users, path: '/', only: devise_actions, controllers: devise_controllers
 
   devise_scope :user do
     resource :invitation, only: %i[update] do
