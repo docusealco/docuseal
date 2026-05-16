@@ -30,7 +30,7 @@ WaboSign is a fork of [DocuSeal](https://github.com/docusealco/docuseal) under A
 - Mobile-optimized signing flow
 - 14 UI languages
 - API + Webhooks for integrations
-- SMS invitations / verification
+- SMS invitations via [BulkVS](SMS.md)
 - Bulk send via CSV / XLSX import
 - Google Workspace SSO ([setup guide](GOOGLE_SSO.md))
 - Conditional fields and formulas
