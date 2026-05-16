@@ -70,8 +70,12 @@ class User < ApplicationRecord
   has_many :email_messages, dependent: :destroy, foreign_key: :author_id, inverse_of: :author
 
   devise_modules = %i[two_factor_authenticatable recoverable rememberable validatable trackable lockable]
-  devise_modules << :omniauthable if Wabosign.google_sso_enabled?
-  devise(*devise_modules, omniauth_providers: [:google_oauth2])
+  devise_opts = {}
+  if Wabosign.google_sso_enabled?
+    devise_modules << :omniauthable
+    devise_opts[:omniauth_providers] = [:google_oauth2]
+  end
+  devise(*devise_modules, **devise_opts)
 
   attribute :role, :string, default: ADMIN_ROLE
   attribute :uuid, :string, default: -> { SecureRandom.uuid }
