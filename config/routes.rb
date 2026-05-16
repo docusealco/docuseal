@@ -178,13 +178,18 @@ Rails.application.routes.draw do
     resources :download, only: %i[index], controller: 'submitters_download', constraints: { submitter_id: /\d+/ }
     resources :download, only: %i[index], controller: 'submit_form_completed_download'
     resources :send_email, only: %i[create], controller: 'submitters_send_email'
+    resources :send_sms, only: %i[create], controller: 'submitters_send_sms'
   end
 
   scope '/settings', as: :settings do
     unless Wabosign.multitenant?
       resources :storage, only: %i[index create], controller: 'storage_settings'
       resources :search_entries_reindex, only: %i[create]
-      resources :sms, only: %i[index], controller: 'sms_settings'
+      resources :sms, only: %i[index create], controller: 'sms_settings' do
+        collection do
+          post :test_message
+        end
+      end
       resources :mcp, only: %i[index new create destroy], controller: 'mcp_settings'
     end
     if Wabosign.demo? || !Wabosign.multitenant?

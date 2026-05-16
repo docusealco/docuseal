@@ -1,7 +1,24 @@
 <div class="mt-2 mb-1">
-  <div class="tooltip w-full" data-tip="SMS provider integration not configured">
-    <button type="button" class="btn btn-sm btn-primary text-gray-400 w-full" disabled>
-      <%= submitter.sent_at? ? t('re_send_sms') : t('send_sms') %>
-    </button>
-  </div>
+  <% if Sms.enabled_for?(current_account) %>
+    <% if submitter.phone.present? %>
+      <%= button_to submitter_send_sms_path(submitter_id: submitter.id),
+                    method: :post,
+                    class: 'btn btn-sm btn-primary w-full',
+                    data: { turbo_confirm: submitter.sent_at? ? t('are_you_sure_') : nil } do %>
+        <%= submitter.sent_at? ? t('re_send_sms') : t('send_sms') %>
+      <% end %>
+    <% else %>
+      <div class="tooltip w-full" data-tip="Submitter has no phone number">
+        <button type="button" class="btn btn-sm btn-primary text-gray-400 w-full" disabled>
+          <%= t('send_sms') %>
+        </button>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="tooltip w-full" data-tip="SMS provider is not configured (see /settings/sms)">
+      <button type="button" class="btn btn-sm btn-primary text-gray-400 w-full" disabled>
+        <%= submitter.sent_at? ? t('re_send_sms') : t('send_sms') %>
+      </button>
+    </div>
+  <% end %>
 </div>

@@ -2,7 +2,87 @@
   <%= render 'shared/settings_nav' %>
   <div class="flex-grow max-w-xl mx-auto">
     <h1 class="text-4xl font-bold mb-4">SMS</h1>
-    <%= render 'placeholder' %>
+
+    <% value = @encrypted_config.value || {} %>
+    <% sms_live = Sms.enabled_for?(current_account) %>
+
+    <% if sms_live %>
+      <div class="alert alert-success mb-4">
+        <%= svg_icon('discount_check_filled', class: 'w-6 h-6') %>
+        <div>
+          <p class="font-bold">SMS is enabled</p>
+          <p class="text-gray-700">
+            Provider: <code><%= value['provider'].to_s.upcase %></code>.
+            From: <code><%= value['from_number'] %></code>.
+          </p>
+        </div>
+      </div>
+    <% else %>
+      <div class="alert mb-4">
+        <%= svg_icon('info_circle', class: 'w-6 h-6') %>
+        <div>
+          <p class="font-bold">SMS provider is not configured</p>
+          <p class="text-gray-700">
+            WaboSign currently supports <a href="https://www.bulkvs.com/" target="_blank" rel="noopener" class="link">BulkVS</a>. Paste the Basic Auth header value from the BulkVS portal below.
+          </p>
+        </div>
+      </div>
+    <% end %>
+
+    <%= form_for @encrypted_config, url: settings_sms_path, method: :post, html: { autocomplete: 'off', class: 'space-y-4' } do |f| %>
+      <%= f.fields_for :value do |ff| %>
+        <div class="form-control">
+          <label class="label cursor-pointer" for="encrypted_config_value_enabled">
+            <span class="label-text font-medium">Enable SMS</span>
+            <%= ff.check_box :enabled, { class: 'toggle', checked: value['enabled'] == true }, '1', '0' %>
+          </label>
+        </div>
+        <div class="form-control">
+          <%= ff.label :provider, 'Provider', class: 'label' %>
+          <%= ff.select :provider, [['BulkVS', 'bulkvs']], { selected: value['provider'] || 'bulkvs' }, class: 'base-select' %>
+        </div>
+        <div class="form-control">
+          <%= ff.label :basic_auth_token, 'BulkVS Basic Auth Token', class: 'label' %>
+          <%= ff.password_field :basic_auth_token, class: 'base-input', placeholder: value['basic_auth_token'].present? ? '*************' : 'Paste from BulkVS portal' %>
+          <% if value['basic_auth_token'].present? %>
+            <span class="label-text-alt mt-1 opacity-70">Leave blank to keep the saved token.</span>
+          <% else %>
+            <span class="label-text-alt mt-1 opacity-70">In the BulkVS portal, open the API tab and copy the pre-encoded Basic Auth header value (do not include "Basic ").</span>
+          <% end %>
+        </div>
+        <div class="form-control">
+          <%= ff.label :from_number, 'From Number', class: 'label' %>
+          <%= ff.text_field :from_number, value: value['from_number'], class: 'base-input', placeholder: '15551234567' %>
+          <span class="label-text-alt mt-1 opacity-70">E.164 format (digits only, country code first; e.g. <code>15551234567</code>).</span>
+        </div>
+        <div class="form-control">
+          <%= ff.label :delivery_webhook_url, 'Delivery Status Webhook (optional)', class: 'label' %>
+          <%= ff.url_field :delivery_webhook_url, value: value['delivery_webhook_url'], class: 'base-input', placeholder: 'https://your-app.example/webhooks/sms' %>
+          <span class="label-text-alt mt-1 opacity-70">If set, BulkVS will POST delivery-status events here for each message.</span>
+        </div>
+      <% end %>
+      <div class="form-control pt-2">
+        <%= f.button button_title(title: t('save'), disabled_with: t('saving')), class: 'base-button' %>
+      </div>
+    <% end %>
+
+    <% if sms_live %>
+      <div class="card bg-base-200 mt-8">
+        <div class="card-body p-6 space-y-3">
+          <p class="text-xl font-semibold">Send a test SMS</p>
+          <%= form_with url: test_message_settings_sms_path, method: :post, html: { autocomplete: 'off', class: 'space-y-3' } do |f| %>
+            <div class="form-control">
+              <label for="test_phone" class="label">Phone number</label>
+              <input type="tel" name="phone" id="test_phone" class="base-input" placeholder="15551234567" required pattern="^\+?[0-9\s\-]+$">
+              <span class="label-text-alt mt-1 opacity-70">A short test message is sent to this number using your saved config.</span>
+            </div>
+            <div class="form-control">
+              <button type="submit" class="base-button">Send test</button>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
   </div>
   <div class="w-0 md:w-52"></div>
 </div>

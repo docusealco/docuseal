@@ -1,0 +1,31 @@
+<div class="collapse collapse-plus bg-base-200 overflow-visible">
+  <input type="checkbox">
+  <div class="collapse-title text-xl font-medium capitalize">
+    <div>
+      Signature request SMS
+    </div>
+  </div>
+  <div class="collapse-content">
+    <% config = AccountConfigs.find_or_initialize_for_key(current_account, AccountConfig::SUBMITTER_INVITATION_SMS_KEY) %>
+    <% default_body = I18n.t('submitter_invitation_sms_body_sign',
+                             default: '{account.name} has invited you to sign a document: {submitter.link}') %>
+    <%= form_for config, url: settings_personalization_path, method: :post, html: { autocomplete: 'off', class: 'space-y-4' } do |f| %>
+      <%= f.hidden_field :key %>
+      <div class="form-control">
+        <%= f.label :value, 'Message body', class: 'label' %>
+        <%= f.text_area :value,
+                        value: f.object.value.is_a?(String) ? f.object.value : default_body,
+                        rows: 4,
+                        class: 'base-input font-mono text-sm',
+                        dir: 'auto' %>
+        <span class="label-text-alt mt-1 opacity-70">
+          Available variables: <code>{account.name}</code>, <code>{submitter.link}</code>, <code>{submitter.name}</code>, <code>{submitter.first_name}</code>, <code>{submission.name}</code>, <code>{sender.name}</code>.
+          Keep it short &mdash; carriers split messages over 160 characters into multiple billable segments.
+        </span>
+      </div>
+      <div class="form-control pt-2">
+        <%= f.button button_title(title: t('save'), disabled_with: t('saving')), class: 'base-button' %>
+      </div>
+    <% end %>
+  </div>
+</div>

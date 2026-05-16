@@ -22,6 +22,7 @@
 #
 class AccountConfig < ApplicationRecord
   SUBMITTER_INVITATION_EMAIL_KEY = 'submitter_invitation_email'
+  SUBMITTER_INVITATION_SMS_KEY = 'submitter_invitation_sms'
   SUBMITTER_INVITATION_REMINDER_EMAIL_KEY = 'submitter_invitation_reminder_email'
   SUBMITTER_COMPLETED_EMAIL_KEY = 'submitter_completed_email'
   SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY = 'submitter_documents_copy_email'
