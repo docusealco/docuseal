@@ -69,13 +69,14 @@ class User < ApplicationRecord
   has_many :encrypted_configs, dependent: :destroy, class_name: 'EncryptedUserConfig'
   has_many :email_messages, dependent: :destroy, foreign_key: :author_id, inverse_of: :author
 
-  devise_modules = %i[two_factor_authenticatable recoverable rememberable validatable trackable lockable]
-  devise_opts = {}
-  if Wabosign.google_sso_enabled?
-    devise_modules << :omniauthable
-    devise_opts[:omniauth_providers] = [:google_oauth2]
-  end
-  devise(*devise_modules, **devise_opts)
+  # :omniauthable is included unconditionally so the Devise routes are
+  # always declared. Whether the strategy actually works (and whether the
+  # Google button is shown on the sign-in page) is gated by
+  # Wabosign.google_sso_enabled? at runtime — driven by ENV and/or the
+  # `google_sso_configs` EncryptedConfig record.
+  devise :two_factor_authenticatable, :recoverable, :rememberable,
+         :validatable, :trackable, :lockable, :omniauthable,
+         omniauth_providers: [:google_oauth2]
 
   attribute :role, :string, default: ADMIN_ROLE
   attribute :uuid, :string, default: -> { SecureRandom.uuid }
@@ -164,10 +165,17 @@ class User < ApplicationRecord
   end
 
   def self.default_sso_account
+    # ENV override always wins.
     if Wabosign::GOOGLE_DEFAULT_ACCOUNT_ID.present?
-      Account.find_by(id: Wabosign::GOOGLE_DEFAULT_ACCOUNT_ID)
-    else
-      Account.order(:created_at).first
+      return Account.find_by(id: Wabosign::GOOGLE_DEFAULT_ACCOUNT_ID)
     end
+
+    # If an admin saved the Google SSO config via the UI, JIT-provision into
+    # that same account so admins land in the right tenant.
+    if (db_config = EncryptedConfig.find_by(key: EncryptedConfig::GOOGLE_SSO_KEY))
+      return db_config.account if db_config.account && db_config.account.archived_at.nil?
+    end
+
+    Account.order(:created_at).first
   end
 end

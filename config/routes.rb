@@ -14,21 +14,15 @@ Rails.application.routes.draw do
   get 'up' => 'rails/health#show'
   get 'manifest' => 'pwa#manifest'
 
-  # Mirror the User model's conditional :omniauthable inclusion. ENV is the
-  # one source of truth available at routes-load time (Wabosign-the-module
-  # may not be autoloadable yet) — keep this check in sync with
-  # config/initializers/devise.rb and app/models/user.rb.
-  # Devise raises if controllers[:omniauth_callbacks] is set but User isn't
-  # omniauthable, so the controllers hash must omit that key too.
-  google_sso_enabled = ENV['GOOGLE_CLIENT_ID'].present? && ENV['GOOGLE_CLIENT_SECRET'].present?
-  devise_actions = %i[sessions passwords]
-  devise_controllers = { sessions: 'sessions', passwords: 'passwords' }
-  if google_sso_enabled
-    devise_actions << :omniauth_callbacks
-    devise_controllers[:omniauth_callbacks] = 'users/omniauth_callbacks'
-  end
-
-  devise_for :users, path: '/', only: devise_actions, controllers: devise_controllers
+  # User is always :omniauthable (see app/models/user.rb); the strategy is
+  # registered with a setup proc in config/initializers/devise.rb that pulls
+  # live credentials from ENV or the database at request time.
+  devise_for :users, path: '/', only: %i[sessions passwords omniauth_callbacks],
+                     controllers: {
+                       sessions: 'sessions',
+                       passwords: 'passwords',
+                       omniauth_callbacks: 'users/omniauth_callbacks'
+                     }
 
   devise_scope :user do
     resource :invitation, only: %i[update] do
@@ -198,7 +192,7 @@ Rails.application.routes.draw do
       resource :reveal_access_token, only: %i[show create], controller: 'reveal_access_token'
     end
     resources :email, only: %i[index create], controller: 'email_smtp_settings'
-    resources :sso, only: %i[index], controller: 'sso_settings'
+    resources :sso, only: %i[index create], controller: 'sso_settings'
     resources :notifications, only: %i[index create], controller: 'notifications_settings'
     resource :esign, only: %i[show create new update destroy], controller: 'esign_settings'
     resources :users, only: %i[index]

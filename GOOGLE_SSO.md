@@ -37,18 +37,35 @@ Create the OAuth client at <https://console.cloud.google.com/apis/credentials> �
 
 ## Configuration
 
-Set these environment variables on the WaboSign process (in `wabosign.env`, the docker-compose `environment:` block, or your hosting provider's secret store):
+Two ways to configure, in priority order:
+
+### 1. Environment variables (priority — recommended for production)
+
+Set these on the WaboSign process (in `wabosign.env`, the docker-compose `environment:` block, or your hosting provider's secret store):
 
 | Variable | Required | Example | Notes |
 |---|---|---|---|
 | `GOOGLE_CLIENT_ID` | yes | `1234.apps.googleusercontent.com` | From the Google Cloud OAuth client. |
 | `GOOGLE_CLIENT_SECRET` | yes | `GOCSPX-…` | From the Google Cloud OAuth client. |
-| `GOOGLE_ALLOWED_DOMAINS` | recommended | `wabo.cc,partner.example` | Comma-separated. Only Google accounts whose `hd` claim is in this list can sign in. Empty = any Google account allowed (a warning is logged at boot). |
-| `GOOGLE_DEFAULT_ACCOUNT_ID` | no | `1` | The WaboSign `Account` JIT-provisioned users are attached to. Defaults to the oldest account. Useful only if you run multiple `Account` records on one deployment. |
+| `GOOGLE_ALLOWED_DOMAINS` | recommended | `wabo.cc,partner.example` | Comma-separated. Only Google accounts whose `hd` claim is in this list can sign in. Empty = any Google account allowed. |
+| `GOOGLE_DEFAULT_ACCOUNT_ID` | no | `1` | The WaboSign `Account` JIT-provisioned users are attached to. Defaults to the oldest account (or the account that owns the UI-saved config, if no env override). Useful only if you run multiple `Account` records on one deployment. |
 
-After changing any of these, **restart the WaboSign process** — Devise's OmniAuth strategy is registered at boot.
+ENV-driven values take effect at the next request — no restart needed. ENV always wins over the UI form below.
 
-The Devise integration is conditional: if either `GOOGLE_CLIENT_ID` or `GOOGLE_CLIENT_SECRET` is missing, the `:omniauthable` Devise module is not loaded and the Google button is hidden. This means development environments without creds keep working unchanged.
+### 2. Web UI (fallback — for ENV-free deployments)
+
+Sign in as an admin, go to **Settings → Google SSO** (`/settings/sso`), and fill in:
+
+- **Enable Google SSO** — toggle. Required for the button to appear on the sign-in page.
+- **Client ID** — from your Google Cloud OAuth client.
+- **Client Secret** — same. Stored encrypted via Rails `encrypts :value` on `EncryptedConfig`. Leave the field blank when editing later to keep the saved secret unchanged.
+- **Allowed Workspace Domains** — comma-separated. Same semantics as `GOOGLE_ALLOWED_DOMAINS`.
+
+The UI-saved config is read on every sign-in via an OmniAuth `setup` proc, so changes take effect on the next click of "Sign in with Google" — no restart needed. The Client Secret is stored encrypted in the `encrypted_configs` table under the `google_sso_configs` key.
+
+The OAuth redirect URI to register in [Google Cloud Console](https://console.cloud.google.com/apis/credentials) is shown on the settings page; it follows the pattern `https://<your-host>/auth/google_oauth2/callback`.
+
+If ENV is also set, the settings page shows a banner indicating that ENV takes precedence; the form is still editable, but the saved values are unused until you unset the env vars (and restart).
 
 ---
 

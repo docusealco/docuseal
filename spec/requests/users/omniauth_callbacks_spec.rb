@@ -12,9 +12,12 @@ RSpec.describe 'Google OAuth2 callback', type: :request do
     OmniAuth.config.test_mode = true
     OmniAuth.config.logger = Rails.logger
 
-    stub_const('Wabosign::GOOGLE_CLIENT_ID', 'test-client-id')
-    stub_const('Wabosign::GOOGLE_CLIENT_SECRET', 'test-client-secret')
-    stub_const('Wabosign::GOOGLE_ALLOWED_DOMAINS', ['wabo.cc'].freeze)
+    allow(Wabosign).to receive(:google_sso_credentials).and_return(
+      client_id: 'test-client-id',
+      client_secret: 'test-client-secret',
+      allowed_domains: ['wabo.cc'],
+      source: :env
+    )
     stub_const('Wabosign::GOOGLE_DEFAULT_ACCOUNT_ID', nil)
   end
 

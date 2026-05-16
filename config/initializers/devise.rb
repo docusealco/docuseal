@@ -334,24 +334,22 @@ Devise.setup do |config|
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
 
-  # NB: Wabosign-the-module relies on Rails.root, which isn't available yet
-  # when this initializer runs. Read ENV directly here so the omniauth strategy
-  # can be registered at boot. Controllers/models access the same values via
-  # Wabosign::GOOGLE_* once Rails is fully initialized.
-  google_client_id = ENV.fetch('GOOGLE_CLIENT_ID', nil)
-  google_client_secret = ENV.fetch('GOOGLE_CLIENT_SECRET', nil)
-  if google_client_id.present? && google_client_secret.present?
-    config.omniauth :google_oauth2,
-                    google_client_id,
-                    google_client_secret,
-                    {
-                      scope: 'email,profile',
-                      prompt: 'select_account',
-                      access_type: 'online',
-                      hd: ENV.fetch('GOOGLE_ALLOWED_DOMAINS', '')
-                              .split(',').map(&:strip).reject(&:empty?).presence
-                    }
-  end
+  # The :google_oauth2 strategy is always registered so its routes exist at
+  # boot. Credentials are resolved per-request by the setup proc, which
+  # consults Wabosign.google_sso_credentials (ENV takes priority, falling
+  # back to the `google_sso_configs` EncryptedConfig record). This lets
+  # admins manage Google SSO from /settings/sso without restarting the app.
+  config.omniauth :google_oauth2, '', '',
+                  setup: lambda { |env|
+                    strategy = env['omniauth.strategy']
+                    creds = Wabosign.google_sso_credentials
+                    strategy.options[:client_id] = creds[:client_id].to_s
+                    strategy.options[:client_secret] = creds[:client_secret].to_s
+                    strategy.options[:scope] = 'email,profile'
+                    strategy.options[:prompt] = 'select_account'
+                    strategy.options[:access_type] = 'online'
+                    strategy.options[:hd] = creds[:allowed_domains].presence
+                  }
 
   ActiveSupport.run_load_hooks(:devise_config, config)
 end

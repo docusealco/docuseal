@@ -14,10 +14,6 @@ module Wabosign
   SUPPORT_EMAIL = 'wabosign@wabo.cc'
   HOST = ENV.fetch('HOST', 'localhost')
   AATL_CERT_NAME = 'wabosign_aatl'
-  GOOGLE_CLIENT_ID = ENV.fetch('GOOGLE_CLIENT_ID', nil)
-  GOOGLE_CLIENT_SECRET = ENV.fetch('GOOGLE_CLIENT_SECRET', nil)
-  GOOGLE_ALLOWED_DOMAINS = ENV.fetch('GOOGLE_ALLOWED_DOMAINS', '')
-                              .split(',').map(&:strip).reject(&:empty?).freeze
   GOOGLE_DEFAULT_ACCOUNT_ID = ENV.fetch('GOOGLE_DEFAULT_ACCOUNT_ID', nil)
   CONSOLE_URL = if Rails.env.development?
                   'http://console.localhost.io:3001'
@@ -127,21 +123,57 @@ module Wabosign
     @default_url_options = nil
   end
 
+  # Returns the live Google SSO credentials, merging ENV (priority) with the
+  # `google_sso_configs` EncryptedConfig (UI fallback). Called at request
+  # time by the Devise OmniAuth setup proc and the sign-in page partial.
+  #
+  # Shape: { client_id:, client_secret:, allowed_domains:, source: :env|:db|:none }
+  def google_sso_credentials
+    env_id = ENV.fetch('GOOGLE_CLIENT_ID', nil)
+    env_secret = ENV.fetch('GOOGLE_CLIENT_SECRET', nil)
+    if env_id.present? && env_secret.present?
+      return {
+        client_id: env_id,
+        client_secret: env_secret,
+        allowed_domains: ENV.fetch('GOOGLE_ALLOWED_DOMAINS', '')
+                            .split(',').map(&:strip).reject(&:empty?),
+        source: :env
+      }
+    end
+
+    db_value = google_sso_db_value
+    if db_value.is_a?(Hash) && db_value['enabled'] &&
+       db_value['client_id'].to_s.present? && db_value['client_secret'].to_s.present?
+      return {
+        client_id: db_value['client_id'].to_s,
+        client_secret: db_value['client_secret'].to_s,
+        allowed_domains: Array(db_value['allowed_domains']).map(&:to_s).map(&:strip).reject(&:empty?),
+        source: :db
+      }
+    end
+
+    { client_id: nil, client_secret: nil, allowed_domains: [], source: :none }
+  end
+
+  def google_sso_db_value
+    return nil unless defined?(EncryptedConfig) && EncryptedConfig.table_exists?
+
+    EncryptedConfig.find_by(key: EncryptedConfig::GOOGLE_SSO_KEY)&.value
+  rescue ActiveRecord::StatementInvalid, ActiveRecord::ConnectionNotEstablished
+    nil
+  end
+
   def google_sso_enabled?
-    GOOGLE_CLIENT_ID.present? && GOOGLE_CLIENT_SECRET.present?
+    creds = google_sso_credentials
+    creds[:client_id].present? && creds[:client_secret].present?
   end
 
   def google_domain_allowed?(hd)
     return false if hd.blank?
-    return true if GOOGLE_ALLOWED_DOMAINS.empty?
 
-    GOOGLE_ALLOWED_DOMAINS.include?(hd)
+    domains = google_sso_credentials[:allowed_domains]
+    return true if domains.empty?
+
+    domains.include?(hd)
   end
-end
-
-if Wabosign.google_sso_enabled? && Wabosign::GOOGLE_ALLOWED_DOMAINS.empty?
-  Rails.logger.warn(
-    '[Wabosign] Google SSO is enabled but GOOGLE_ALLOWED_DOMAINS is empty — ' \
-    'any Google account will be permitted to sign in.'
-  )
 end
