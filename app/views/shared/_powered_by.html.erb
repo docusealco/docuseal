@@ -9,5 +9,10 @@
   <% else %>
     <%= t('powered_by') %>
   <% end %>
-  <a href="<%= Docuseal::PRODUCT_URL %><%= local_assigns[:link_path] %>" class="underline"><%= Docuseal.product_name %></a> - <%= t('open_source_documents_software') %>
+  <a href="<%= Wabosign::PRODUCT_URL %><%= local_assigns[:link_path] %>" class="underline"><%= Wabosign.product_name %></a> - <%= t('open_source_documents_software') %>
+</div>
+<div class="text-center px-2 text-xs opacity-70 mt-1">
+  <%= t('based_on') %>
+  <a href="<%= Wabosign::UPSTREAM_URL %>" class="underline" target="_blank" rel="noopener"><%= Wabosign::UPSTREAM_NAME %></a>
+  (AGPLv3)
 </div>

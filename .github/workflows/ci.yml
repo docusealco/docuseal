@@ -119,7 +119,7 @@ jobs:
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: docuseal_test
+          POSTGRES_DB: wabosign_test
         ports: ["5432:5432"]
         options: >-
           --health-cmd pg_isready
@@ -171,7 +171,7 @@ jobs:
           RAILS_ENV: test
           NODE_ENV: test
           COVERAGE: true
-          DATABASE_URL: postgres://postgres:postgres@localhost:5432/docuseal_test
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/wabosign_test
         run: |
           bundle exec rake db:create
           bundle exec rake db:migrate

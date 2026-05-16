@@ -1,34 +1,12 @@
 # frozen_string_literal: true
 
 class ErrorsController < ActionController::Base
-  ENTERPRISE_FEATURE_MESSAGE =
-    'This feature is available in Pro Edition: https://www.docuseal.com/pricing'
-
-  ENTERPRISE_PATHS = [
-    '/submissions/html',
-    '/api/submissions/html',
-    '/templates/html',
-    '/api/templates/html',
-    '/submissions/pdf',
-    '/api/submissions/pdf',
-    '/templates/pdf',
-    '/api/templates/pdf',
-    '/templates/doc',
-    '/api/templates/doc',
-    '/templates/docx',
-    '/api/templates/docx'
-  ].freeze
-
   SAFE_ERROR_MESSAGE_CLASSES = [
     ActionDispatch::Http::Parameters::ParseError,
     JSON::ParserError
   ].freeze
 
   def show
-    if request.original_fullpath.in?(ENTERPRISE_PATHS) && error_status_code == 404
-      return render json: { status: 404, message: ENTERPRISE_FEATURE_MESSAGE }, status: :not_found
-    end
-
     respond_to do |f|
       f.json do
         set_cors_headers

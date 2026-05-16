@@ -19,7 +19,7 @@
       </div>
     </div>
     <div>
-      <% if (Docuseal.multitenant? || Accounts.can_send_emails?(@submitter.account)) && @submitter.email.present? %>
+      <% if (Wabosign.multitenant? || Accounts.can_send_emails?(@submitter.account)) && @submitter.email.present? %>
         <toggle-submit>
           <%= button_to button_title(title: t('send_copy_to_email'), disabled_with: t('sending'), icon: svg_icon('mail_forward', class: 'w-6 h-6')), send_submission_email_index_path, params: { submitter_slug: @submitter.slug }, class: 'white-button w-full' %>
         </toggle-submit>

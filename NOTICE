@@ -1,0 +1,39 @@
+WaboSign
+Copyright (c) 2026 the WaboSign authors
+
+This product includes software originally developed as DocuSeal:
+
+    DocuSeal
+    Copyright (c) 2023-2026 DocuSeal LLC
+    https://github.com/docusealco/docuseal
+
+DocuSeal is licensed under the GNU Affero General Public License v3.0 with
+§7(b) Additional Terms (see LICENSE and LICENSE_ADDITIONAL_TERMS). WaboSign
+is a fork of DocuSeal and is distributed under the same terms.
+
+Modifications made for the WaboSign fork include (non-exhaustive):
+
+  - Product rebrand (name, logo, favicons, mailer "from", URLs, i18n strings)
+  - Removal of multitenant-/Pro-edition feature gates so the open-source
+    edition exposes all shipped capabilities out of the box
+  - Internal Ruby module renamed from `Docuseal` to `Wabosign`
+  - AATL certificate identifier renamed `docuseal_aatl` → `wabosign_aatl`
+  - Removal of upsell links and Pro-edition placeholder UIs
+
+The following external interfaces retain the upstream "docuseal" naming for
+SDK compatibility with the existing DocuSeal embedding ecosystem and must
+not be renamed without coordinating with downstream consumers:
+
+  - `<docuseal-form>` and `<docuseal-builder>` custom HTML elements
+  - `@docuseal/react`, `@docuseal/vue`, `@docuseal/angular` npm packages
+    referenced in the embedding code samples
+
+The Dockerfile pulls a pre-trained PDF field-detection ONNX model
+(`model_704_int8.onnx`) from
+https://github.com/docusealco/fields-detection/releases . That model is
+published under the upstream DocuSeal organisation's release artefacts; we
+consume it as a binary dependency rather than redistributing.
+
+The original DocuSeal copyright notice on third-party JavaScript ports
+(e.g. app/javascript/submission_form/calculator.js) is retained per
+standard open-source attribution practice.

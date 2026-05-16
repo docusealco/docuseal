@@ -7,7 +7,7 @@ module RateLimit
 
   module_function
 
-  def call(key, limit:, ttl:, enabled: Docuseal.multitenant?)
+  def call(key, limit:, ttl:, enabled: Wabosign.multitenant?)
     return true unless enabled
 
     value = STORE.increment(key, 1, expires_in: ttl)

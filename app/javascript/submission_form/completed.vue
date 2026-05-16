@@ -77,17 +77,17 @@
       <a
         v-if="isDemo"
         target="_blank"
-        href="https://github.com/docusealco/docuseal"
+        :href="githubUrl"
         class="white-button flex items-center space-x-1 w-full"
       >
         <IconBrandGithub />
         <span>
-          Star on Github
+          {{ t('view_on_github') }}
         </span>
       </a>
       <a
         v-if="isDemo"
-        href="https://docuseal.com/sign_up"
+        :href="productUrl"
         class="white-button flex items-center space-x-1 w-full"
       >
         <IconLogin />
@@ -98,14 +98,20 @@
     </div>
     <div
       v-if="attribution"
-      class="text-center mt-4"
+      class="text-center mt-4 text-sm"
     >
       {{ t('powered_by') }}
       <a
-        href="https://www.docuseal.com/start"
+        :href="productUrl"
         target="_blank"
         class="underline"
-      >DocuSeal</a> - {{ t('open_source_documents_software') }}
+      >{{ productName }}</a>
+      &mdash; {{ t('based_on') }}
+      <a
+        href="https://github.com/docusealco/docuseal"
+        target="_blank"
+        class="underline"
+      >DocuSeal</a> (AGPLv3)
     </div>
   </div>
 </template>
@@ -141,6 +147,21 @@ export default {
       type: Boolean,
       required: false,
       default: true
+    },
+    productName: {
+      type: String,
+      required: false,
+      default: 'WaboSign'
+    },
+    productUrl: {
+      type: String,
+      required: false,
+      default: 'https://sign.wabo.cc'
+    },
+    githubUrl: {
+      type: String,
+      required: false,
+      default: 'https://github.com/wabolabs/wabosign'
     },
     hasSignatureFields: {
       type: Boolean,

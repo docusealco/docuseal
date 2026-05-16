@@ -9,7 +9,7 @@ class TimestampServerController < ApplicationController
   TimestampError = Class.new(StandardError)
 
   def create
-    return head :not_found if Docuseal.multitenant?
+    return head :not_found if Wabosign.multitenant?
 
     test_timeserver_url(@encrypted_config.value) if @encrypted_config.value.present?
 

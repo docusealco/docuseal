@@ -85,7 +85,7 @@ export default {
     },
     hasClipboardData () {
       try {
-        const clipboard = localStorage.getItem('docuseal_clipboard')
+        const clipboard = localStorage.getItem('wabosign_clipboard')
 
         if (clipboard) {
           const data = JSON.parse(clipboard)

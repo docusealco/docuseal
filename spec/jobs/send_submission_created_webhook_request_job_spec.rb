@@ -33,7 +33,7 @@ RSpec.describe SendSubmissionCreatedWebhookRequestJob do
         },
         headers: {
           'Content-Type' => 'application/json',
-          'User-Agent' => 'DocuSeal.com Webhook'
+          'User-Agent' => 'WaboSign Webhook'
         }
       ).once
     end
@@ -51,7 +51,7 @@ RSpec.describe SendSubmissionCreatedWebhookRequestJob do
         },
         headers: {
           'Content-Type' => 'application/json',
-          'User-Agent' => 'DocuSeal.com Webhook',
+          'User-Agent' => 'WaboSign Webhook',
           'X-Secret-Header' => 'secret_value'
         }
       ).once
@@ -62,7 +62,7 @@ RSpec.describe SendSubmissionCreatedWebhookRequestJob do
       captured_signature = nil
       stub_request(:post, webhook_url.url).with do |req|
         captured_body = req.body
-        captured_signature = req.headers['X-Docuseal-Signature']
+        captured_signature = req.headers['X-Wabosign-Signature']
       end.to_return(status: 200)
 
       described_class.new.perform('submission_id' => submission.id, 'webhook_url_id' => webhook_url.id,

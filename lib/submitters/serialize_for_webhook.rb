@@ -33,7 +33,7 @@ module Submitters
                       'values' => values,
                       'documents' => documents,
                       'audit_log_url' => submitter.submission.audit_log_url(expires_at:),
-                      'submission_url' => r.submissions_preview_url(submission.slug, **Docuseal.default_url_options),
+                      'submission_url' => r.submissions_preview_url(submission.slug, **Wabosign.default_url_options),
                       'template' => submission.template.as_json(
                         only: %i[id name external_id created_at updated_at], methods: %i[folder_name]
                       ),
@@ -42,7 +42,7 @@ module Submitters
                         'audit_log_url' => submission.audit_log_url(expires_at:),
                         'combined_document_url' => submission.combined_document_url(expires_at:),
                         'status' => build_submission_status(submission),
-                        'url' => r.submissions_preview_url(submission.slug, **Docuseal.default_url_options),
+                        'url' => r.submissions_preview_url(submission.slug, **Wabosign.default_url_options),
                         'variables' => (submission.variables || {}).as_json,
                         'created_at' => submission.created_at.as_json
                       })

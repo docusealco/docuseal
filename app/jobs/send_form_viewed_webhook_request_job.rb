@@ -20,7 +20,7 @@ class SendFormViewedWebhookRequestJob
 
     return if webhook_url.url.blank? || webhook_url.events.exclude?('form.viewed')
 
-    ActiveStorage::Current.url_options = Docuseal.default_url_options
+    ActiveStorage::Current.url_options = Wabosign.default_url_options
 
     resp = SendWebhookRequest.call(webhook_url, event_type: 'form.viewed',
                                                 event_uuid: params['event_uuid'],

@@ -90,7 +90,7 @@ module Mcp
                 id: template.id,
                 name: template.name,
                 edit_url: Rails.application.routes.url_helpers.edit_template_url(template,
-                                                                                 **Docuseal.default_url_options)
+                                                                                 **Wabosign.default_url_options)
               }.to_json
             }
           ]

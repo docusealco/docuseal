@@ -18,16 +18,6 @@
         >&times;</a>
       </div>
       <div>
-        <div
-          v-if="!withConditions"
-          class="bg-base-300 rounded-xl py-2 px-3 text-center"
-        >
-          <a
-            href="https://www.docuseal.com/pricing"
-            target="_blank"
-            class="link"
-          >{{ t('available_in_pro') }}</a>
-        </div>
         <form @submit.prevent="validateSaveAndClose">
           <div class="my-4">
             <div

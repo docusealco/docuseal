@@ -1,6 +1,6 @@
 <% has_archived = can?(:manage, :countless) || current_account.templates.where.not(archived_at: nil).exists? %>
 <% show_dropzone = params[:q].blank? && @pagy.pages == 1 && ((@template_folders.size < 10 && @templates.size.zero?) || (@template_folders.size < 7 && @templates.size < 4) || (@template_folders.size < 4 && @templates.size < 7)) %>
-<% if Docuseal.demo? %><%= render 'shared/demo_alert' %><% end %>
+<% if Wabosign.demo? %><%= render 'shared/demo_alert' %><% end %>
 <dashboard-dropzone>
   <%= form_for '', url: '', id: form_id = SecureRandom.uuid, method: :post, class: 'hidden', data: { target: 'dashboard-dropzone.form' }, html: { enctype: 'multipart/form-data' } do %>
     <input name="form_id" value="<%= form_id %>">
@@ -65,7 +65,7 @@
             <% if user_config.new_record? && !params.key?(:tour) %>
               <div id="app_tour_manager" class="h-36 rounded-2xl pt-3 px-7 w-full border border-dashed border-base-300">
                 <div class="text-xl text-center font-semibold text-base-content">
-                  <%= t('welcome_to_docuseal') %>
+                  <%= t('welcome_to_wabosign') %>
                 </div>
                 <div class="my-2 text-center text-xs text-base-content/70">
                   <%= t('start_a_quick_tour_to_learn_how_to_create_and_send_your_first_document') %>

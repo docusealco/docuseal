@@ -194,13 +194,6 @@
             </span>
           </button>
         </form>
-        <a
-          v-if="!isConnected"
-          class="block link text-center mt-1"
-          href="https://www.docuseal.com/blog/accept-payments-and-request-signatures-with-ease"
-          target="_blank"
-          data-turbo="false"
-        >{{ t('learn_more') }}</a>
       </div>
       <li
         class="field-settings-formula mb-1"

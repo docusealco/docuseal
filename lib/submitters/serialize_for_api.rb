@@ -46,7 +46,7 @@ module Submitters
 
       if with_urls
         additional_attrs['embed_src'] =
-          Rails.application.routes.url_helpers.submit_form_url(slug: submitter.slug, **Docuseal.default_url_options)
+          Rails.application.routes.url_helpers.submit_form_url(slug: submitter.slug, **Wabosign.default_url_options)
       end
 
       submitter.as_json(SERIALIZE_PARAMS).merge(additional_attrs)

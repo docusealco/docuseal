@@ -24,7 +24,7 @@
         </span>
       <% end %>
     </div>
-    <% if user.new_record? && !Docuseal.multitenant? %>
+    <% if user.new_record? && !Wabosign.multitenant? %>
       <div class="form-control">
         <%= f.label :password, t('password'), class: 'label' %>
         <%= f.password_field :password, class: 'base-input' %>

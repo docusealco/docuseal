@@ -20,7 +20,7 @@ jobs:
       id: meta
       uses: docker/metadata-action@v4
       with:
-        images: docuseal/docuseal
+        images: wabolabs/wabosign
         tags: type=semver,pattern={{version}}
 
     - name: Set up QEMU

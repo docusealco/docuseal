@@ -2,22 +2,22 @@
   "openapi": "3.0.0",
   "servers": [
     {
-      "url": "https://api.docuseal.com",
-      "description": "Global Server"
+      "url": "https://sign.wabo.cc/api",
+      "description": "Production"
     },
     {
-      "url": "https://api.docuseal.eu",
+      "url": "https://sign.wabo.cc/api",
       "description": "EU Server"
     }
   ],
   "info": {
     "version": "1.0.0",
-    "title": "DocuSeal API",
-    "description": "DocuSeal API specs",
+    "title": "WaboSign API",
+    "description": "WaboSign API specs (forked from DocuSeal, AGPLv3)",
     "contact": {
-      "name": "DocuSeal",
-      "email": "admin@docuseal.com",
-      "url": "https://www.docuseal.com"
+      "name": "WaboSign",
+      "email": "wabosign@wabo.cc",
+      "url": "https://sign.wabo.cc"
     }
   },
   "components": {

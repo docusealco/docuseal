@@ -1,5 +1,5 @@
 <%= render 'shared/turbo_modal_large', title: t('preferences') do %>
-  <% show_api = Docuseal.multitenant? || current_account.testing? || !current_account.linked_account_account %>
+  <% show_api = Wabosign.multitenant? || current_account.testing? || !current_account.linked_account_account %>
   <% show_recipients = @template.submitters.to_a.length > 1 %>
   <% options = [[t('general'), 'general']] %>
   <% options << [t('recipients'), 'recipients'] if show_recipients %>
@@ -168,7 +168,6 @@
           <% end %>
         </div>
       </div>
-      <%= render 'templates_code_modal/placeholder' %>
       <%= render 'templates/embedding', template: @template %>
       <% if can?(:manage, TemplateSharing.new(template: @template)) %>
         <%= form_for '', url: template_sharings_testing_index_path, method: :post, html: { class: 'mt-1' }, data: { close_on_submit: false } do |f| %>

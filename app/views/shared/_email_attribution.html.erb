@@ -3,8 +3,13 @@
 </p>
 <p>
   <% if @current_account&.testing? %>
-    <%= t('sent_using_product_name_in_testing_mode_html', product_url: "#{Docuseal::PRODUCT_EMAIL_URL}/start", product_name: Docuseal.product_name) %>
+    <%= t('sent_using_product_name_in_testing_mode_html', product_url: "#{Wabosign::PRODUCT_EMAIL_URL}/start", product_name: Wabosign.product_name) %>
   <% else %>
-    <%= t('sent_using_product_name_free_document_signing_html', product_url: "#{Docuseal::PRODUCT_EMAIL_URL}/start", product_name: Docuseal.product_name) %>
+    <%= t('sent_using_product_name_free_document_signing_html', product_url: "#{Wabosign::PRODUCT_EMAIL_URL}/start", product_name: Wabosign.product_name) %>
   <% end %>
+</p>
+<p style="font-size: 11px; opacity: 0.7;">
+  <%= t('based_on') %>
+  <a href="<%= Wabosign::UPSTREAM_URL %>"><%= Wabosign::UPSTREAM_NAME %></a>
+  (AGPLv3)
 </p>

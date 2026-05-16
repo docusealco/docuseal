@@ -411,7 +411,7 @@ describe 'Submission API' do
         metadata: {},
         preferences: { send_email: true, send_sms: false },
         role: submitter.template.submitters.find { |s| s['uuid'] == submitter.uuid }['name'],
-        embed_src: "#{Docuseal::DEFAULT_APP_URL}/s/#{submitter.slug}",
+        embed_src: "#{Wabosign::DEFAULT_APP_URL}/s/#{submitter.slug}",
         values: Submitters::SerializeForWebhook.build_values_array(submitter)
       }
     end

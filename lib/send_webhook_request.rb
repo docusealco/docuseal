@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module SendWebhookRequest
-  USER_AGENT = 'DocuSeal.com Webhook'
+  USER_AGENT = 'WaboSign Webhook'
 
   LOCALHOSTS = DownloadUtils::LOCALHOSTS
 
@@ -17,7 +17,7 @@ module SendWebhookRequest
   def call(webhook_url, event_uuid:, event_type:, record:, data:, attempt: 0)
     uri = parse_uri(webhook_url.url)
 
-    if Docuseal.multitenant?
+    if Wabosign.multitenant?
       raise HttpsError, 'Only HTTPS is allowed.' if (uri.scheme != 'https' || [443, nil].exclude?(uri.port)) &&
                                                     !AccountConfig.exists?(key: :allow_http,
                                                                            account_id: webhook_url.account_id)
@@ -39,7 +39,7 @@ module SendWebhookRequest
         data: data
       }.to_json
 
-      req.headers['X-Docuseal-Signature'] = WebhookUrls::Signatures.sign(webhook_url.hmac_secret, body: req.body)
+      req.headers['X-Wabosign-Signature'] = WebhookUrls::Signatures.sign(webhook_url.hmac_secret, body: req.body)
 
       req.options.read_timeout = 15
       req.options.open_timeout = 8

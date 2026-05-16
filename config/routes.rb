@@ -3,7 +3,7 @@
 Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 
-  if !Docuseal.multitenant? && defined?(Sidekiq::Web)
+  if !Wabosign.multitenant? && defined?(Sidekiq::Web)
     authenticated :user, ->(u) { u.sidekiq? } do
       mount Sidekiq::Web => '/jobs'
     end
@@ -56,7 +56,7 @@ Rails.application.routes.draw do
   resources :account_custom_fields, only: %i[create]
   resources :user_configs, only: %i[create]
   resources :encrypted_user_configs, only: %i[destroy]
-  resources :timestamp_server, only: %i[create] unless Docuseal.multitenant?
+  resources :timestamp_server, only: %i[create]
   resources :dashboard, only: %i[index]
   resources :setup, only: %i[index create]
   resource :newsletter, only: %i[show update]
@@ -99,7 +99,7 @@ Rails.application.routes.draw do
     resource :debug, only: %i[show], controller: 'templates_debug' if Rails.env.development?
     resources :documents, only: %i[index create], controller: 'template_documents'
     resources :clone_and_replace, only: %i[create], controller: 'templates_clone_and_replace'
-    resources :detect_fields, only: %i[create], controller: 'templates_detect_fields' unless Docuseal.multitenant?
+    resources :detect_fields, only: %i[create], controller: 'templates_detect_fields'
     resources :restore, only: %i[create], controller: 'templates_restore'
     resources :archived, only: %i[index], controller: 'templates_archived_submissions'
     resources :submissions, only: %i[new create]
@@ -121,7 +121,7 @@ Rails.application.routes.draw do
   resource :blobs_proxy, only: %i[show], path: '/blobs_proxy/:signed_uuid/*filename',
                          controller: 'api/active_storage_blobs_proxy'
 
-  if Docuseal.multitenant?
+  if Wabosign.multitenant?
     resource :blobs_proxy_legacy, only: %i[show],
                                   path: '/blobs/proxy/:signed_id/*filename',
                                   controller: 'api/active_storage_blobs_proxy_legacy',
@@ -174,13 +174,13 @@ Rails.application.routes.draw do
   end
 
   scope '/settings', as: :settings do
-    unless Docuseal.multitenant?
+    unless Wabosign.multitenant?
       resources :storage, only: %i[index create], controller: 'storage_settings'
       resources :search_entries_reindex, only: %i[create]
       resources :sms, only: %i[index], controller: 'sms_settings'
       resources :mcp, only: %i[index new create destroy], controller: 'mcp_settings'
     end
-    if Docuseal.demo? || !Docuseal.multitenant?
+    if Wabosign.demo? || !Wabosign.multitenant?
       resources :api, only: %i[index create], controller: 'api_settings'
       resource :reveal_access_token, only: %i[show create], controller: 'reveal_access_token'
     end
