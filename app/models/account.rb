@@ -18,7 +18,12 @@
 #  index_accounts_on_uuid  (uuid) UNIQUE
 #
 class Account < ApplicationRecord
+  LOGO_CONTENT_TYPES = %w[image/png image/jpeg image/svg+xml].freeze
+  LOGO_MAX_BYTES = 2.megabytes
+
   attribute :uuid, :string, default: -> { SecureRandom.uuid }
+
+  has_one_attached :logo
 
   has_many :users, dependent: :destroy
   has_many :encrypted_configs, dependent: :destroy

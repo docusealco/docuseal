@@ -530,8 +530,9 @@ module Submissions
       !submission.source.in?(%w[embed api])
     end
 
-    def add_logo(column, _submission = nil)
-      column.image(PdfIcons.logo_io, width: 40, height: 40, position: :float)
+    def add_logo(column, submission = nil)
+      column.image(PdfIcons.account_logo_io(submission&.account),
+                   width: 40, height: 40, position: :float)
 
       column.formatted_text([{ text: Wabosign.product_name,
                                link: Wabosign::PRODUCT_EMAIL_URL }],

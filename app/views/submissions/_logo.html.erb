@@ -1,1 +1,1 @@
-<%= render 'shared/logo', width: 40, height: 40 %>
+<%= render 'shared/account_logo', account: local_assigns[:account] || @submission&.account || @submitter&.account, width: 40, height: 40 %>
