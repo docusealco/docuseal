@@ -14,6 +14,11 @@ module Wabosign
   SUPPORT_EMAIL = 'wabosign@wabo.cc'
   HOST = ENV.fetch('HOST', 'localhost')
   AATL_CERT_NAME = 'wabosign_aatl'
+  GOOGLE_CLIENT_ID = ENV.fetch('GOOGLE_CLIENT_ID', nil)
+  GOOGLE_CLIENT_SECRET = ENV.fetch('GOOGLE_CLIENT_SECRET', nil)
+  GOOGLE_ALLOWED_DOMAINS = ENV.fetch('GOOGLE_ALLOWED_DOMAINS', '')
+                              .split(',').map(&:strip).reject(&:empty?).freeze
+  GOOGLE_DEFAULT_ACCOUNT_ID = ENV.fetch('GOOGLE_DEFAULT_ACCOUNT_ID', nil)
   CONSOLE_URL = if Rails.env.development?
                   'http://console.localhost.io:3001'
                 elsif ENV['MULTITENANT'] == 'true'
@@ -121,4 +126,22 @@ module Wabosign
   def refresh_default_url_options!
     @default_url_options = nil
   end
+
+  def google_sso_enabled?
+    GOOGLE_CLIENT_ID.present? && GOOGLE_CLIENT_SECRET.present?
+  end
+
+  def google_domain_allowed?(hd)
+    return false if hd.blank?
+    return true if GOOGLE_ALLOWED_DOMAINS.empty?
+
+    GOOGLE_ALLOWED_DOMAINS.include?(hd)
+  end
+end
+
+if Wabosign.google_sso_enabled? && Wabosign::GOOGLE_ALLOWED_DOMAINS.empty?
+  Rails.logger.warn(
+    '[Wabosign] Google SSO is enabled but GOOGLE_ALLOWED_DOMAINS is empty — ' \
+    'any Google account will be permitted to sign in.'
+  )
 end

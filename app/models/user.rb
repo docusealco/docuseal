@@ -69,7 +69,9 @@ class User < ApplicationRecord
   has_many :encrypted_configs, dependent: :destroy, class_name: 'EncryptedUserConfig'
   has_many :email_messages, dependent: :destroy, foreign_key: :author_id, inverse_of: :author
 
-  devise :two_factor_authenticatable, :recoverable, :rememberable, :validatable, :trackable, :lockable
+  devise_modules = %i[two_factor_authenticatable recoverable rememberable validatable trackable lockable]
+  devise_modules << :omniauthable if Wabosign.google_sso_enabled?
+  devise(*devise_modules, omniauth_providers: [:google_oauth2])
 
   attribute :role, :string, default: ADMIN_ROLE
   attribute :uuid, :string, default: -> { SecureRandom.uuid }
@@ -119,6 +121,49 @@ class User < ApplicationRecord
       %("#{full_name.delete('"')}" <#{email}>)
     else
       email
+    end
+  end
+
+  def signed_in_via_sso?
+    provider == 'google_oauth2' && uid.present?
+  end
+
+  def self.from_google_omniauth(auth)
+    hd = auth.extra&.raw_info&.respond_to?(:hd) ? auth.extra.raw_info.hd : auth.extra&.raw_info&.dig('hd')
+    return nil unless Wabosign.google_domain_allowed?(hd)
+
+    email = auth.info.email.to_s.downcase
+    return nil if email.blank?
+
+    user = find_by('lower(email) = ?', email)
+    if user
+      return nil if user.provider.present? && user.uid != auth.uid
+
+      user.update!(provider: 'google_oauth2', uid: auth.uid) if user.provider.blank?
+      return user
+    end
+
+    account = default_sso_account
+    return nil if account.nil?
+
+    create!(
+      account: account,
+      email: email,
+      first_name: auth.info.first_name,
+      last_name: auth.info.last_name,
+      role: ADMIN_ROLE,
+      password: SecureRandom.hex(32),
+      provider: 'google_oauth2',
+      uid: auth.uid,
+      confirmed_at: Time.current
+    )
+  end
+
+  def self.default_sso_account
+    if Wabosign::GOOGLE_DEFAULT_ACCOUNT_ID.present?
+      Account.find_by(id: Wabosign::GOOGLE_DEFAULT_ACCOUNT_ID)
+    else
+      Account.order(:created_at).first
     end
   end
 end

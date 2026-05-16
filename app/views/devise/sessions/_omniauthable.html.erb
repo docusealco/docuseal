@@ -1,0 +1,12 @@
+<% if Wabosign.google_sso_enabled? %>
+  <div class="divider my-4 text-sm opacity-60"><%= t('or') %></div>
+  <div class="form-control">
+    <%= button_to user_google_oauth2_omniauth_authorize_path,
+                  method: :post,
+                  data: { turbo: false },
+                  class: 'base-button !bg-white !text-base-content border border-base-300 flex items-center justify-center gap-2' do %>
+      <img src="/google_g.svg" alt="" width="20" height="20" class="w-5 h-5">
+      <span><%= t('sign_in_with_google') %></span>
+    <% end %>
+  </div>
+<% end %>

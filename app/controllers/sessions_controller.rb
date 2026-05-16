@@ -22,6 +22,11 @@ class SessionsController < Devise::SessionsController
     super
   end
 
+  def destroy
+    session.delete(:bypass_otp_for_sso)
+    super
+  end
+
   private
 
   def after_sign_in_path_for(...)

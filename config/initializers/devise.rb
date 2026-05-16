@@ -334,6 +334,18 @@ Devise.setup do |config|
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
 
+  if Wabosign.google_sso_enabled?
+    config.omniauth :google_oauth2,
+                    Wabosign::GOOGLE_CLIENT_ID,
+                    Wabosign::GOOGLE_CLIENT_SECRET,
+                    {
+                      scope: 'email,profile',
+                      prompt: 'select_account',
+                      access_type: 'online',
+                      hd: Wabosign::GOOGLE_ALLOWED_DOMAINS.presence
+                    }
+  end
+
   ActiveSupport.run_load_hooks(:devise_config, config)
 end
 # rubocop:enable Metrics/BlockLength

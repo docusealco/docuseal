@@ -1,11 +1,30 @@
-<div class="alert">
-  <%= svg_icon('info_circle', class: 'w-6 h-6') %>
-  <div>
-    <p class="font-bold">
-      <%= t('single_sign_on_with_saml_2_0') %>
-    </p>
-    <p class="text-gray-700">
-      SAML 2.0 SSO requires a SAML library integration (e.g. ruby-saml) that is not bundled with this open-source edition. Encrypted config is stored under the saml_configs key on the account.
-    </p>
+<% if Wabosign.google_sso_enabled? %>
+  <div class="alert alert-success">
+    <%= svg_icon('discount_check_filled', class: 'w-6 h-6') %>
+    <div>
+      <p class="font-bold">Google SSO is enabled</p>
+      <p class="text-gray-700">
+        Configured via environment variables.
+        <% if Wabosign::GOOGLE_ALLOWED_DOMAINS.any? %>
+          Allowed Workspace domain<%= 's' if Wabosign::GOOGLE_ALLOWED_DOMAINS.size > 1 %>:
+          <code><%= Wabosign::GOOGLE_ALLOWED_DOMAINS.join(', ') %></code>.
+        <% else %>
+          <strong>Warning:</strong> no domain allowlist set &mdash; any Google account may sign in. Set <code>GOOGLE_ALLOWED_DOMAINS</code> to restrict.
+        <% end %>
+      </p>
+    </div>
   </div>
-</div>
+<% else %>
+  <div class="alert">
+    <%= svg_icon('info_circle', class: 'w-6 h-6') %>
+    <div>
+      <p class="font-bold">Google SSO is not configured</p>
+      <p class="text-gray-700">
+        Set <code>GOOGLE_CLIENT_ID</code>, <code>GOOGLE_CLIENT_SECRET</code>, and <code>GOOGLE_ALLOWED_DOMAINS</code> (comma-separated) and restart the app. The OAuth redirect URI to register in Google Cloud Console is <code><%= "#{root_url}users/auth/google_oauth2/callback" rescue '/users/auth/google_oauth2/callback' %></code>.
+      </p>
+      <p class="text-gray-700 mt-2">
+        SAML 2.0 SSO is not bundled with this open-source edition. To enable it, add <code>ruby-saml</code> and <code>devise-saml-authenticatable</code> and wire the ACS/SLO/metadata routes; encrypted config is stored under the <code>saml_configs</code> key on the account.
+      </p>
+    </div>
+  </div>
+<% end %>

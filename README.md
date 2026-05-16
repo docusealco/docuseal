@@ -32,7 +32,7 @@ WaboSign is a fork of [DocuSeal](https://github.com/docusealco/docuseal) under A
 - API + Webhooks for integrations
 - SMS invitations / verification
 - Bulk send via CSV / XLSX import
-- SAML / SSO
+- Google Workspace SSO ([setup guide](GOOGLE_SSO.md))
 - Conditional fields and formulas
 - Custom branding (logo, colors, reply-to)
 - Easy Docker deployment
@@ -52,6 +52,10 @@ sudo HOST=sign.example.com docker compose up
 ```
 
 Make sure your DNS points at the server so Caddy can issue an SSL cert automatically.
+
+## Authentication
+
+WaboSign ships with email + password (Devise) and TOTP two-factor auth out of the box. Google Workspace SSO can be enabled by setting three environment variables — see [GOOGLE_SSO.md](GOOGLE_SSO.md) for the full operator guide.
 
 ## License
 
