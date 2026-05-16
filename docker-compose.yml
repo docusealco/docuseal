@@ -3,7 +3,7 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-    image: wabolabs/wabosign:latest
+    image: ghcr.io/wabolabs/wabosign:latest
     ports:
       - 3000:3000
     volumes:

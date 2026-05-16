@@ -41,7 +41,7 @@ Scope: ~183 files modified. Decisions were made in a planning conversation befor
 - New migration [db/migrate/20260515183000_rename_docuseal_aatl_cert.rb](db/migrate/20260515183000_rename_docuseal_aatl_cert.rb) updates the AATL cert `name` field inside encrypted JSON value blobs from `docuseal_aatl` → `wabosign_aatl`
 - `AATL_CERT_NAME` constant updated accordingly
 - [Dockerfile](Dockerfile): user, group, home directory, and workdir renamed `docuseal` → `wabosign`
-- [docker-compose.yml](docker-compose.yml): image, volume, and Postgres DB name → `wabolabs/wabosign` / `wabosign`
+- [docker-compose.yml](docker-compose.yml): image, volume, and Postgres DB name → `ghcr.io/wabolabs/wabosign` / `wabosign`
 - [config/database.yml](config/database.yml): dev/test DB names → `wabosign_dev` / `wabosign_test`
 - [.github/workflows/ci.yml](.github/workflows/ci.yml) and [.github/workflows/docker.yml](.github/workflows/docker.yml): image name and test DB renamed
 - `docuseal.env` config file path → `wabosign.env` in [config/dotenv.rb](config/dotenv.rb)

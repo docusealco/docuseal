@@ -9,6 +9,9 @@ jobs:
   build:
     runs-on: ubuntu-24.04-arm
     timeout-minutes: 30
+    permissions:
+      contents: read
+      packages: write
 
     steps:
     - name: Checkout code
@@ -20,8 +23,10 @@ jobs:
       id: meta
       uses: docker/metadata-action@v4
       with:
-        images: wabolabs/wabosign
-        tags: type=semver,pattern={{version}}
+        images: ghcr.io/wabolabs/wabosign
+        tags: |
+          type=semver,pattern={{version}}
+          type=raw,value=latest
 
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v3
@@ -32,11 +37,12 @@ jobs:
     - name: Create .version file
       run: echo ${{ github.ref_name }} > .version
 
-    - name: Login to Docker Hub
+    - name: Login to GitHub Container Registry
       uses: docker/login-action@v3
       with:
-        username: ${{ secrets.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_TOKEN }}
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Build and push Docker image
       uses: docker/build-push-action@v6

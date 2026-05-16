@@ -40,7 +40,7 @@ WaboSign is a fork of [DocuSeal](https://github.com/docusealco/docuseal) under A
 ## Docker
 
 ```sh
-docker run --name wabosign -p 3000:3000 -v .:/data wabolabs/wabosign
+docker run --name wabosign -p 3000:3000 -v .:/data ghcr.io/wabolabs/wabosign:latest
 ```
 
 By default the container uses SQLite for data. Point at PostgreSQL or MySQL by setting `DATABASE_URL`.
