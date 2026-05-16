@@ -6,8 +6,6 @@ class SubmissionsController < ApplicationController
 
   load_and_authorize_resource :submission, only: %i[show destroy]
 
-  prepend_before_action :maybe_redirect_com, only: %i[show]
-
   before_action only: :create do
     authorize!(:create, Submission)
   end

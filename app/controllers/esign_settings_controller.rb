@@ -11,8 +11,6 @@ class EsignSettingsController < ApplicationController
     end
   end
 
-  prepend_before_action :maybe_redirect_com, only: %i[show]
-
   before_action :load_encrypted_config
   authorize_resource :encrypted_config, parent: false, only: %i[new create]
   authorize_resource :encrypted_config, only: %i[update destroy show]
