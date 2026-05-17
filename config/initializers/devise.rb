@@ -334,6 +334,7 @@ Devise.setup do |config|
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
 
+  require Rails.root.join('lib', 'docuseal').to_s
   if Docuseal.clerk_oidc_enabled?
     config.omniauth_path_prefix = '/users/auth'
     config.omniauth :openid_connect, {
