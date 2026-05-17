@@ -1,14 +1,12 @@
 # Reporting a Vulnerability
 
-If you come across any security concern or vulnarability, please report the information via email to security@docuseal.com instead of opening a GitHub issue. We will promptly respond and will collaborate with you to validate the issue, and resolve it ASAP.
+If you discover a security concern or vulnerability in WaboSign, please report it privately by email to **wabosign@wabo.cc** rather than opening a public GitHub issue. We will acknowledge receipt, work with you to validate the report, and ship a fix.
 
-**We have a bug bounty program to reward security researchers.**
-
-Out of scope vulnerabilities:
+## Out of scope
 
 - CSRF
 - DNSSEC, CAA, CSP headers
 - DNS or email security related
-- Rate Limiting
+- Rate limiting
 
-Note: We reserve the right to classify any reported vulnerability as out of scope for the bug bounty program.
+We reserve the right to classify any reported issue as out of scope.

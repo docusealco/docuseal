@@ -66,7 +66,6 @@ Rails.application.routes.draw do
   resources :timestamp_server, only: %i[create]
   resources :dashboard, only: %i[index]
   resources :setup, only: %i[index create]
-  resources :enquiries, only: %i[create]
   resources :users, only: %i[new create edit update destroy] do
     resource :send_reset_password, only: %i[update], controller: 'users_send_reset_password'
   end
@@ -80,9 +79,6 @@ Rails.application.routes.draw do
     resources :download, only: %i[index], controller: 'submissions_download'
   end
   resources :submitters, only: %i[edit update]
-  resources :console_redirect, only: %i[index]
-  resources :upgrade, only: %i[index], controller: 'console_redirect'
-  resources :manage, only: %i[index], controller: 'console_redirect'
   resource :testing_account, only: %i[create destroy]
   resources :testing_api_settings, only: %i[index]
   resources :submitters_autocomplete, only: %i[index]

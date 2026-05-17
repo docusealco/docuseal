@@ -3,7 +3,7 @@
 ### Example Code
 
 ```javascript
-<script src="https://docuseal.com/js/builder.js"></script>
+<script src="https://sign.wabo.cc/js/builder.js"></script>
 
 <docuseal-builder
   data-token="<%= JWT.encode({

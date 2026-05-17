@@ -40,8 +40,10 @@ WaboSign is a fork of [DocuSeal](https://github.com/docusealco/docuseal) under A
 ## Docker
 
 ```sh
-docker run --name wabosign -p 3000:3000 -v .:/data ghcr.io/wabolabs/wabosign:latest
+docker run --name wabosign -p 3000:3000 -v .:/data ghcr.io/wabolabs/wabosign:1.0.0
 ```
+
+`:latest` always tracks the most recent release; pin a `MAJOR.MINOR.PATCH` tag for reproducible deployments.
 
 By default the container uses SQLite for data. Point at PostgreSQL or MySQL by setting `DATABASE_URL`.
 
@@ -56,6 +58,13 @@ Make sure your DNS points at the server so Caddy can issue an SSL cert automatic
 ## Authentication
 
 WaboSign ships with email + password (Devise) and TOTP two-factor auth out of the box. Google Workspace SSO can be enabled by setting three environment variables — see [GOOGLE_SSO.md](GOOGLE_SSO.md) for the full operator guide.
+
+## Releases
+
+- **Current release:** 1.0.0 — see [CHANGELOG.md](CHANGELOG.md).
+- **Container image:** `ghcr.io/wabolabs/wabosign:1.0.0` (or `:latest`).
+- **Versioning:** `MAJOR.MINOR.PATCH` per [semver.org](https://semver.org).
+- **Tagging triggers a build:** pushing a `MAJOR.MINOR.PATCH` git tag runs [`.github/workflows/docker.yml`](.github/workflows/docker.yml), which builds `linux/amd64` + `linux/arm64` and pushes to GHCR.
 
 ## License
 

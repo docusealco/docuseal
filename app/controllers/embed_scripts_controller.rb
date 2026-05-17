@@ -6,13 +6,8 @@ class EmbedScriptsController < ActionController::Metal
       connectedCallback() {
         this.innerHTML = `
           <div style="text-align: center; padding: 20px; font-family: Arial, sans-serif;">
-            <h2>Upgrade to Pro</h2>
-            <p>Unlock embedded components by upgrading to Pro</p>
-            <div style="margin-top: 40px;">
-              <a href="#{Wabosign::CONSOLE_URL}/on_premises" target="_blank" style="padding: 15px 25px; background-color: #222; color: white; text-decoration: none; border-radius: 5px; font-size: 16px; cursor: pointer;">
-                Learn More
-              </a>
-            </div>
+            <h2>Embedded components not loaded</h2>
+            <p>The embed assets could not be served from this WaboSign instance. Check that the host is reachable and that the embed script is being served from the same origin.</p>
           </div>
         `;
       }

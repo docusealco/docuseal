@@ -3,7 +3,6 @@
 module Wabosign
   PRODUCT_URL = ENV.fetch('PRODUCT_URL', 'https://sign.wabo.cc')
   PRODUCT_EMAIL_URL = ENV.fetch('PRODUCT_EMAIL_URL', PRODUCT_URL)
-  ENQUIRIES_URL = "#{PRODUCT_URL}/enquiries".freeze
   PRODUCT_NAME = 'WaboSign'
   # AGPLv3 §7(b) upstream attribution — must remain visible in interactive UIs.
   UPSTREAM_NAME = 'DocuSeal'
@@ -14,25 +13,6 @@ module Wabosign
   HOST = ENV.fetch('HOST', 'localhost')
   AATL_CERT_NAME = 'wabosign_aatl'
   GOOGLE_DEFAULT_ACCOUNT_ID = ENV.fetch('GOOGLE_DEFAULT_ACCOUNT_ID', nil)
-  CONSOLE_URL = if Rails.env.development?
-                  'http://console.localhost.io:3001'
-                elsif ENV['MULTITENANT'] == 'true'
-                  "https://console.#{HOST}"
-                else
-                  "https://console.#{HOST}"
-                end
-  CLOUD_URL = if Rails.env.development?
-                'http://localhost:3000'
-              else
-                PRODUCT_URL
-              end
-  CDN_URL = if Rails.env.development?
-              'http://localhost:3000'
-            elsif ENV['MULTITENANT'] == 'true'
-              "https://cdn.#{HOST}"
-            else
-              "https://cdn.#{HOST}"
-            end
 
   CERTS = JSON.parse(ENV.fetch('CERTS', '{}'))
   TIMESERVER_URL = ENV.fetch('TIMESERVER_URL', nil)

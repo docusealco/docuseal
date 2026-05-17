@@ -9,7 +9,7 @@ During the form filling and signing process, 3 types of events may occur and are
 
  It's important to note that each of these events contain information available at the time of dispatch, so some data may be missing or incomplete depending on the specific event. Failed webhook requests (4xx, 5xx) are automatically retried multiple times within 48 hours (every 2^attempt minutes) for all production accounts.  
 **Related Guides**  
-[Download Signed Documents](https://www.docuseal.com/guides/download-signed-documents)
+[Download Signed Documents](https://sign.wabo.cc/guides/download-signed-documents)
 
 ```json
 {
@@ -130,7 +130,7 @@ During the form filling and signing process, 3 types of events may occur and are
           },
           "combined_document_url": {
             "type": "string",
-            "description": "The URL of the combined documents with audit log. Combined documents can be enabled via <a href=\"https://docuseal.com/settings/account\" target=\"_blank\" class=\"link\">/settings/accounts</a>."
+            "description": "The URL of the combined documents with audit log. Combined documents can be enabled via <a href=\"https://sign.wabo.cc/settings/account\" target=\"_blank\" class=\"link\">/settings/accounts</a>."
           },
           "status": {
             "type": "string",

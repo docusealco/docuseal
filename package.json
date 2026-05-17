@@ -1,6 +1,11 @@
 {
-  "name": "docuseal",
+  "name": "wabosign",
   "private": true,
+  "license": "AGPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wabolabs/wabosign.git"
+  },
   "dependencies": {
     "@babel/core": "7.21.8",
     "@babel/plugin-transform-runtime": "7.21.4",
