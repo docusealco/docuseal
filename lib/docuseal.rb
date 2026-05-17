@@ -37,6 +37,13 @@ module Docuseal
 
   CERTS = JSON.parse(ENV.fetch('CERTS', '{}'))
   TIMESERVER_URL = ENV.fetch('TIMESERVER_URL', nil)
+
+  CLERK_DISCOVERY_URL = ENV.fetch('CLERK_DISCOVERY_URL', nil)
+  CLERK_CLIENT_ID = ENV.fetch('CLERK_CLIENT_ID', nil)
+  CLERK_CLIENT_SECRET = ENV.fetch('CLERK_CLIENT_SECRET', nil)
+  CLERK_ALLOWED_EMAIL_DOMAINS = ENV.fetch('CLERK_ALLOWED_EMAIL_DOMAINS', '')
+                                   .split(',').map { |d| d.strip.downcase }.compact_blank.freeze
+
   VERSION_FILE_PATH = Rails.root.join('.version')
   VERSION_FILE2_PATH = Rails.public_path.join('version')
 
@@ -58,6 +65,17 @@ module Docuseal
 
   def multitenant?
     ENV['MULTITENANT'] == 'true'
+  end
+
+  def clerk_oidc_enabled?
+    CLERK_DISCOVERY_URL.present? && CLERK_CLIENT_ID.present? && CLERK_CLIENT_SECRET.present?
+  end
+
+  def clerk_email_allowed?(email)
+    return true if CLERK_ALLOWED_EMAIL_DOMAINS.empty?
+
+    domain = email.to_s.split('@').last.to_s.downcase
+    CLERK_ALLOWED_EMAIL_DOMAINS.include?(domain)
   end
 
   def advanced_formats?

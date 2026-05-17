@@ -69,7 +69,12 @@ class User < ApplicationRecord
   has_many :encrypted_configs, dependent: :destroy, class_name: 'EncryptedUserConfig'
   has_many :email_messages, dependent: :destroy, foreign_key: :author_id, inverse_of: :author
 
-  devise :two_factor_authenticatable, :recoverable, :rememberable, :validatable, :trackable, :lockable
+  if Docuseal.clerk_oidc_enabled?
+    devise :two_factor_authenticatable, :recoverable, :rememberable, :validatable, :trackable, :lockable,
+           :omniauthable, omniauth_providers: [:clerk_oidc]
+  else
+    devise :two_factor_authenticatable, :recoverable, :rememberable, :validatable, :trackable, :lockable
+  end
 
   attribute :role, :string, default: ADMIN_ROLE
   attribute :uuid, :string, default: -> { SecureRandom.uuid }
@@ -120,5 +125,28 @@ class User < ApplicationRecord
     else
       email
     end
+  end
+
+  def self.from_clerk_oidc(auth)
+    email = auth.info.email.to_s.downcase
+    return nil if email.blank?
+    return nil unless Docuseal.clerk_email_allowed?(email)
+
+    account = Account.first
+    return nil if account.blank?
+
+    user = active.find_by(email:)
+    return user if user
+
+    first, *rest = auth.info.name.to_s.split(' ', 2)
+
+    create!(
+      account:,
+      email:,
+      first_name: auth.info.first_name.presence || first,
+      last_name: auth.info.last_name.presence || rest.join(' '),
+      role: ADMIN_ROLE,
+      password: Devise.friendly_token(40)
+    )
   end
 end

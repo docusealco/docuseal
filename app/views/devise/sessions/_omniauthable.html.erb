@@ -1,0 +1,8 @@
+<% if Docuseal.clerk_oidc_enabled? %>
+  <div class="divider text-base-content/40 text-sm my-6"><%= t(:or, default: 'or') %></div>
+  <%= button_to user_clerk_oidc_omniauth_authorize_path,
+                data: { turbo: false },
+                class: 'base-button base-button-outline w-full flex items-center justify-center gap-2' do %>
+    <span><%= t(:sign_in_with_clerk, default: 'Sign in with Clerk') %></span>
+  <% end %>
+<% end %>
