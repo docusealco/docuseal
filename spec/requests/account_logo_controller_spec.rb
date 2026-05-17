@@ -18,7 +18,7 @@ RSpec.describe 'Account logo', type: :request do
 
   describe 'POST /settings/account_logo' do
     it 'accepts a PNG upload and attaches it to the current account' do
-      png_bytes = File.binread(Rails.root.join('public/favicon-32x32.png'))
+      png_bytes = Rails.public_path.join('favicon-32x32.png').binread
 
       expect do
         post settings_account_logo_path, params: { logo: upload(content_type: 'image/png', bytes: png_bytes) }
@@ -31,7 +31,8 @@ RSpec.describe 'Account logo', type: :request do
     it 'rejects an unsupported content type' do
       pdf_bytes = '%PDF-1.4 dummy'
 
-      post settings_account_logo_path, params: { logo: upload(content_type: 'application/pdf', bytes: pdf_bytes, filename: 'logo.pdf') }
+      post settings_account_logo_path,
+           params: { logo: upload(content_type: 'application/pdf', bytes: pdf_bytes, filename: 'logo.pdf') }
 
       expect(account.reload.logo.attached?).to be(false)
       expect(flash[:alert]).to include('PNG, JPEG, or SVG')
@@ -49,7 +50,8 @@ RSpec.describe 'Account logo', type: :request do
     it 'sanitises malicious SVG content before storing' do
       malicious = '<svg xmlns="http://www.w3.org/2000/svg"><script>alert(1)</script><rect onload="hax()" /></svg>'
 
-      post settings_account_logo_path, params: { logo: upload(content_type: 'image/svg+xml', bytes: malicious, filename: 'logo.svg') }
+      post settings_account_logo_path,
+           params: { logo: upload(content_type: 'image/svg+xml', bytes: malicious, filename: 'logo.svg') }
 
       expect(account.reload.logo.attached?).to be(true)
       stored = account.logo.download
@@ -62,7 +64,7 @@ RSpec.describe 'Account logo', type: :request do
 
   describe 'DELETE /settings/account_logo' do
     it 'purges the attachment' do
-      png_bytes = File.binread(Rails.root.join('public/favicon-32x32.png'))
+      png_bytes = Rails.public_path.join('favicon-32x32.png').binread
       account.logo.attach(io: StringIO.new(png_bytes), filename: 'logo.png', content_type: 'image/png')
       expect(account.reload.logo.attached?).to be(true)
 

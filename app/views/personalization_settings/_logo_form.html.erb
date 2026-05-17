@@ -8,8 +8,8 @@
         <span class="text-sm opacity-70"><%= current_account.logo.filename %></span>
       </div>
       <%= button_to 'Remove', settings_account_logo_path, method: :delete,
-                    class: 'btn btn-sm btn-outline btn-error',
-                    data: { turbo_confirm: 'Remove the uploaded logo?' } %>
+                                                          class: 'btn btn-sm btn-outline btn-error',
+                                                          data: { turbo_confirm: 'Remove the uploaded logo?' } %>
     </div>
   <% end %>
 

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class EmbedScriptsController < ActionController::Metal
-  DUMMY_SCRIPT = <<~JAVASCRIPT.freeze
+  DUMMY_SCRIPT = <<~JAVASCRIPT
     const DummyBuilder = class extends HTMLElement {
       connectedCallback() {
         this.innerHTML = `

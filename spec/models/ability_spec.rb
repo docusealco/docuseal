@@ -50,7 +50,7 @@ RSpec.describe Ability do
     let(:user) { create(:user, account: account, role: User::ADMIN_ROLE) }
     let(:ability) { described_class.new(user) }
 
-    include_examples 'personal-resource grants'
+    it_behaves_like 'personal-resource grants'
 
     it 'manages templates, folders, sharings, submissions, submitters in own account' do
       expect(ability).to be_able_to(:read,    template_for(account))
@@ -85,7 +85,7 @@ RSpec.describe Ability do
     let(:user) { create(:user, account: account, role: User::EDITOR_ROLE) }
     let(:ability) { described_class.new(user) }
 
-    include_examples 'personal-resource grants'
+    it_behaves_like 'personal-resource grants'
 
     it 'manages templates, folders, sharings, submissions, submitters in own account' do
       expect(ability).to be_able_to(:read,    template_for(account))
@@ -118,7 +118,7 @@ RSpec.describe Ability do
     let(:user) { create(:user, account: account, role: User::VIEWER_ROLE) }
     let(:ability) { described_class.new(user) }
 
-    include_examples 'personal-resource grants'
+    it_behaves_like 'personal-resource grants'
 
     it 'reads templates, folders, sharings, submissions, submitters in own account' do
       expect(ability).to be_able_to(:read, template_for(account))

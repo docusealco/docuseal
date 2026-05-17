@@ -37,10 +37,10 @@ RSpec.describe 'Role-based authorization', type: :request do
   end
 
   describe 'admin-only settings' do
-    include_examples 'an admin-only settings route', :settings_users_path
-    include_examples 'an admin-only settings route', :settings_sso_index_path
-    include_examples 'an admin-only settings route', :settings_webhooks_path
-    include_examples 'an admin-only settings route', :settings_esign_path
+    it_behaves_like 'an admin-only settings route', :settings_users_path
+    it_behaves_like 'an admin-only settings route', :settings_sso_index_path
+    it_behaves_like 'an admin-only settings route', :settings_webhooks_path
+    it_behaves_like 'an admin-only settings route', :settings_esign_path
 
     # Personalization's GET reads `AccountConfig`, which Editor/Viewer can do
     # (so UI chrome renders correctly). Writes are gated by :create AccountConfig,

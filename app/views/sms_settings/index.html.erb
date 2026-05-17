@@ -39,7 +39,7 @@
         </div>
         <div class="form-control">
           <%= ff.label :provider, 'Provider', class: 'label' %>
-          <%= ff.select :provider, [['BulkVS', 'bulkvs']], { selected: value['provider'] || 'bulkvs' }, class: 'base-select' %>
+          <%= ff.select :provider, [%w[BulkVS bulkvs]], { selected: value['provider'] || 'bulkvs' }, class: 'base-select' %>
         </div>
         <div class="form-control">
           <%= ff.label :basic_auth_token, 'BulkVS Basic Auth Token', class: 'label' %>
@@ -73,7 +73,7 @@
           <%= form_with url: test_message_settings_sms_path, method: :post, html: { autocomplete: 'off', class: 'space-y-3' } do |f| %>
             <div class="form-control">
               <label for="test_phone" class="label">Phone number</label>
-              <input type="tel" name="phone" id="test_phone" class="base-input" placeholder="15551234567" required pattern="^\+?[0-9\s\-]+$">
+              <input type="tel" name="phone" id="test_phone" class="base-input" placeholder="15551234567" required pattern="^\+?[0-9\s\-]+$" autocomplete="off">
               <span class="label-text-alt mt-1 opacity-70">A short test message is sent to this number using your saved config.</span>
             </div>
             <div class="form-control">

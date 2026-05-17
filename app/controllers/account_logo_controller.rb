@@ -7,8 +7,12 @@ class AccountLogoController < ApplicationController
     file = params[:logo]
 
     return reject('Choose a file to upload.') if file.blank? || !file.respond_to?(:content_type)
-    return reject('Logo must be a PNG, JPEG, or SVG image.') unless Account::LOGO_CONTENT_TYPES.include?(file.content_type)
-    return reject("Logo must be under #{Account::LOGO_MAX_BYTES / 1.megabyte} MB.") if file.size > Account::LOGO_MAX_BYTES
+    unless Account::LOGO_CONTENT_TYPES.include?(file.content_type)
+      return reject('Logo must be a PNG, JPEG, or SVG image.')
+    end
+    if file.size > Account::LOGO_MAX_BYTES
+      return reject("Logo must be under #{Account::LOGO_MAX_BYTES / 1.megabyte} MB.")
+    end
 
     safe = AccountLogo.sanitize_upload(file)
     current_account.logo.attach(io: safe.io, filename: safe.filename, content_type: safe.content_type)

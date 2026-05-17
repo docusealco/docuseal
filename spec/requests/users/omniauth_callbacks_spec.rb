@@ -4,11 +4,12 @@ require 'rails_helper'
 
 RSpec.describe 'Google OAuth2 callback', type: :request do
   let!(:account) { create(:account) }
-  # ApplicationController redirects to /setup when no users exist; create a
-  # placeholder admin so that branch doesn't fire during these specs.
-  let!(:placeholder_admin) { create(:user, account: account, email: 'admin@wabo.cc') }
 
   before do
+    # ApplicationController redirects to /setup when no users exist; create a
+    # placeholder admin so that branch doesn't fire during these specs.
+    create(:user, account: account, email: 'admin@wabo.cc')
+
     OmniAuth.config.test_mode = true
     OmniAuth.config.logger = Rails.logger
 
@@ -26,12 +27,12 @@ RSpec.describe 'Google OAuth2 callback', type: :request do
     OmniAuth.config.mock_auth[:google_oauth2] = nil
   end
 
-  def stub_google_auth(email:, uid: '1234567890', hd: 'wabo.cc', first_name: 'Test', last_name: 'User')
+  def stub_google_auth(email:, uid: '1234567890', hosted_domain: 'wabo.cc', first_name: 'Test', last_name: 'User')
     OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new(
       provider: 'google_oauth2',
       uid: uid,
       info: { email: email, first_name: first_name, last_name: last_name },
-      extra: { raw_info: OmniAuth::AuthHash.new(hd: hd) }
+      extra: { raw_info: OmniAuth::AuthHash.new(hd: hosted_domain) }
     )
   end
 
@@ -70,7 +71,7 @@ RSpec.describe 'Google OAuth2 callback', type: :request do
 
   describe 'disallowed Workspace domain' do
     it 'redirects back to sign-in with a flash' do
-      stub_google_auth(email: 'outsider@evil.com', hd: 'evil.com')
+      stub_google_auth(email: 'outsider@evil.com', hosted_domain: 'evil.com')
 
       expect do
         post user_google_oauth2_omniauth_callback_path
@@ -100,7 +101,7 @@ RSpec.describe 'Google OAuth2 callback', type: :request do
   end
 
   describe '2FA bypass' do
-    let!(:user) do
+    before do
       create(:user, account: account, email: '2fa@wabo.cc').tap do |u|
         u.update_columns(otp_required_for_login: true, otp_secret: User.generate_otp_secret)
       end

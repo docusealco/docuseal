@@ -140,8 +140,9 @@ class User < ApplicationRecord
   end
 
   def self.from_google_omniauth(auth)
-    hd = auth.extra&.raw_info&.respond_to?(:hd) ? auth.extra.raw_info.hd : auth.extra&.raw_info&.dig('hd')
-    return nil unless Wabosign.google_domain_allowed?(hd)
+    raw_info = auth.extra&.raw_info
+    hosted_domain = raw_info.respond_to?(:hd) ? raw_info.hd : raw_info&.dig('hd')
+    return nil unless Wabosign.google_domain_allowed?(hosted_domain)
 
     email = auth.info.email.to_s.downcase
     return nil if email.blank?
@@ -172,15 +173,12 @@ class User < ApplicationRecord
 
   def self.default_sso_account
     # ENV override always wins.
-    if Wabosign::GOOGLE_DEFAULT_ACCOUNT_ID.present?
-      return Account.find_by(id: Wabosign::GOOGLE_DEFAULT_ACCOUNT_ID)
-    end
+    return Account.find_by(id: Wabosign::GOOGLE_DEFAULT_ACCOUNT_ID) if Wabosign::GOOGLE_DEFAULT_ACCOUNT_ID.present?
 
     # If an admin saved the Google SSO config via the UI, JIT-provision into
     # that same account so admins land in the right tenant.
-    if (db_config = EncryptedConfig.find_by(key: EncryptedConfig::GOOGLE_SSO_KEY))
-      return db_config.account if db_config.account && db_config.account.archived_at.nil?
-    end
+    db_config = EncryptedConfig.find_by(key: EncryptedConfig::GOOGLE_SSO_KEY)
+    return db_config.account if db_config&.account && db_config.account.archived_at.nil?
 
     Account.order(:created_at).first
   end

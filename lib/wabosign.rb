@@ -126,7 +126,7 @@ module Wabosign
       return {
         client_id: db_value['client_id'].to_s,
         client_secret: db_value['client_secret'].to_s,
-        allowed_domains: Array(db_value['allowed_domains']).map(&:to_s).map(&:strip).reject(&:empty?),
+        allowed_domains: Array(db_value['allowed_domains']).filter_map { |d| d.to_s.strip.presence },
         source: :db
       }
     end
@@ -147,12 +147,12 @@ module Wabosign
     creds[:client_id].present? && creds[:client_secret].present?
   end
 
-  def google_domain_allowed?(hd)
-    return false if hd.blank?
+  def google_domain_allowed?(hosted_domain)
+    return false if hosted_domain.blank?
 
     domains = google_sso_credentials[:allowed_domains]
     return true if domains.empty?
 
-    domains.include?(hd)
+    domains.include?(hosted_domain)
   end
 end

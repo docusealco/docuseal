@@ -57,9 +57,13 @@ RSpec.describe AccountLogo do
 
   describe '.sanitize_upload' do
     it 'returns the original tempfile for PNG uploads' do
-      png_bytes = File.binread(Rails.root.join('public/favicon-32x32.png'))
+      png_bytes = Rails.public_path.join('favicon-32x32.png').binread
       file = ActionDispatch::Http::UploadedFile.new(
-        tempfile: Tempfile.new(['logo', '.png']).tap { |t| t.binmode; t.write(png_bytes); t.rewind },
+        tempfile: Tempfile.new(['logo', '.png']).tap do |t|
+          t.binmode
+          t.write(png_bytes)
+          t.rewind
+        end,
         filename: 'logo.png', type: 'image/png'
       )
 
@@ -72,7 +76,10 @@ RSpec.describe AccountLogo do
     it 'sanitises SVG content and returns a StringIO with cleaned bytes' do
       svg = '<svg xmlns="http://www.w3.org/2000/svg"><script>alert(1)</script><rect/></svg>'
       file = ActionDispatch::Http::UploadedFile.new(
-        tempfile: Tempfile.new(['logo', '.svg']).tap { |t| t.write(svg); t.rewind },
+        tempfile: Tempfile.new(['logo', '.svg']).tap do |t|
+          t.write(svg)
+          t.rewind
+        end,
         filename: 'logo.svg', type: 'image/svg+xml'
       )
 

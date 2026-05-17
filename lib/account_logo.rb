@@ -51,12 +51,10 @@ module AccountLogo
           next
         end
 
-        if EXTERNAL_REF_ATTRS.include?(downcased) || downcased.end_with?(':href')
-          value = attr.value.to_s.strip
-          unless value.start_with?('#') || value.start_with?('data:')
-            node.remove_attribute(name)
-          end
-        end
+        next unless EXTERNAL_REF_ATTRS.include?(downcased) || downcased.end_with?(':href')
+
+        value = attr.value.to_s.strip
+        node.remove_attribute(name) unless value.start_with?('#', 'data:')
       end
     end
 
