@@ -24,6 +24,10 @@ Metrics/BlockLength:
 Style/Documentation:
   Enabled: false
 
+Rails/Exit:
+  Exclude:
+    - spec/rails_helper.rb
+
 Lint/MissingSuper:
   Enabled: false
 

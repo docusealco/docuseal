@@ -4,11 +4,10 @@
       class:   CSS class string forwarded to <img>/<svg>
       width:   pixel width (default 37)
       height:  pixel height (default 37) %>
-acc = local_assigns[:account]
-  klass = local_assigns[:class]
-  w = local_assigns.fetch(:width, '37')
-  h = local_assigns.fetch(:height, '37')
-%>
+<% acc = local_assigns[:account]
+   klass = local_assigns[:class]
+   w = local_assigns.fetch(:width, '37')
+   h = local_assigns.fetch(:height, '37') %>
 <% if acc&.logo&.attached? %>
   <%= image_tag rails_blob_path(acc.logo, disposition: 'inline'),
                 class: klass,
