@@ -48,7 +48,9 @@
 #
 class User < ApplicationRecord
   ROLES = [
-    ADMIN_ROLE = 'admin'
+    ADMIN_ROLE  = 'admin',
+    EDITOR_ROLE = 'editor',
+    VIEWER_ROLE = 'viewer'
   ].freeze
 
   EMAIL_REGEXP = /[^@;,<>\s]+@[^@;,<>\s]+/
@@ -128,6 +130,10 @@ class User < ApplicationRecord
       email
     end
   end
+
+  def admin?  = role == ADMIN_ROLE
+  def editor? = role == EDITOR_ROLE
+  def viewer? = role == VIEWER_ROLE
 
   def signed_in_via_sso?
     provider == 'google_oauth2' && uid.present?
