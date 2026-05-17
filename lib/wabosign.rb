@@ -3,7 +3,6 @@
 module Wabosign
   PRODUCT_URL = ENV.fetch('PRODUCT_URL', 'https://sign.wabo.cc')
   PRODUCT_EMAIL_URL = ENV.fetch('PRODUCT_EMAIL_URL', PRODUCT_URL)
-  NEWSLETTER_URL = "#{PRODUCT_URL}/newsletters".freeze
   ENQUIRIES_URL = "#{PRODUCT_URL}/enquiries".freeze
   PRODUCT_NAME = 'WaboSign'
   # AGPLv3 §7(b) upstream attribution — must remain visible in interactive UIs.
