@@ -34,6 +34,15 @@ module DocuSeal
     config.content_security_policy_nonce_generator = ->(_) { SecureRandom.base64(16) }
     config.content_security_policy_nonce_directives = %w[script-src]
 
+    # When configured as an embed target, drop the default
+    # `X-Frame-Options: SAMEORIGIN` header so CSP `frame-ancestors`
+    # (set per-request in `ApplicationController#set_csp`) governs framing.
+    # Modern browsers prefer `frame-ancestors`, but X-Frame-Options still
+    # blocks if present alongside it.
+    if ENV['EMBED_ALLOWED_ORIGIN'].present?
+      config.action_dispatch.default_headers.delete('X-Frame-Options')
+    end
+
     config.action_view.frozen_string_literal = true
 
     config.middleware.insert_before ActionDispatch::Static, Rack::Deflater

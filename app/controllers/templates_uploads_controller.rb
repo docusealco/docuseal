@@ -45,6 +45,10 @@ class TemplatesUploadsController < ApplicationController
     template.author = current_user
     template.folder = TemplateFolders.find_or_create_by_name(current_user, params[:folder_name])
     template.name = File.basename((url_params || params)[:files].first.original_filename, '.*')
+    # Persist the embedder-supplied external_id so the host app can later
+    # query `/api/templates?external_id=...` to reconcile its own record
+    # with this template (used by the consent-template fallback link path).
+    template.external_id = params[:external_id] if params[:external_id].present?
 
     Templates.maybe_assign_access(template)
 
@@ -56,7 +60,10 @@ class TemplatesUploadsController < ApplicationController
   def create_file_params_from_url
     tempfile = Tempfile.new
     tempfile.binmode
-    tempfile.write(DownloadUtils.call(params[:url], validate: true).body)
+    # Validation rejects http, non-443 ports, and any localhost — which is
+    # exactly what the embedding EHR sends in dev (https://localhost:3000
+    # Active Storage URL). Skip the SSRF guard locally; keep it on in prod.
+    tempfile.write(DownloadUtils.call(params[:url], validate: !Rails.env.local?).body)
     tempfile.rewind
 
     filename = URI.decode_www_form_component(params[:filename]) if params[:filename].present?

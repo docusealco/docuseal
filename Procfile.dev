@@ -1,2 +1,2 @@
-web: PORT=${PORT:-3000} bundle exec rails s -p ${PORT:-3000}
+web: PORT=${PORT:-3000} bundle exec puma -C config/puma.rb
 webpacker: bundle exec ./bin/shakapacker-dev-server

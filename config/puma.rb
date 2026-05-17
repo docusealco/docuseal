@@ -17,9 +17,19 @@ threads min_threads_count, max_threads_count
 #
 worker_timeout 3600 if ENV.fetch('RAILS_ENV', 'development') == 'development'
 
-# Specifies the `port` that Puma will listen on to receive requests; default is 3000.
-#
-port ENV.fetch('PORT', 3000)
+# Local HTTPS via mkcert. Enable by pointing `LOCAL_HTTPS_CERT` / `LOCAL_HTTPS_KEY`
+# at PEM files (see ../bin/docuseal-dev which wires them to ../.certs/lvh.me*).
+# Embedding app (Vite) is served HTTPS, so an HTTP DocuSeal iframe is blocked
+# as mixed content — running DocuSeal over TLS lets the parent iframe load it.
+ssl_cert = ENV['LOCAL_HTTPS_CERT'].to_s
+ssl_key  = ENV['LOCAL_HTTPS_KEY'].to_s
+if !ssl_cert.empty? && !ssl_key.empty? && File.exist?(ssl_cert) && File.exist?(ssl_key)
+  bind "ssl://0.0.0.0:#{ENV.fetch('PORT', 3000)}?cert=#{ssl_cert}&key=#{ssl_key}"
+else
+  # Specifies the `port` that Puma will listen on to receive requests; default is 3000.
+  #
+  port ENV.fetch('PORT', 3000)
+end
 
 # Specifies the `environment` that Puma will run in.
 #
