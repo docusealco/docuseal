@@ -2,9 +2,12 @@
 
 class ApplicationController < ActionController::Base
   BROWSER_LOCALE_REGEXP = /\A\w{2}(?:-\w{2})?/
+  ACCOUNT_PORTAL_SIGN_IN_URL = 'https://accounts.bloombilt.com/sign-in'
 
   include ActiveStorage::SetCurrent
   include Pagy::Method
+  include Clerk::Authenticatable
+  include ClerkDeviseBridge
 
   check_authorization unless: :devise_controller?
 
@@ -43,6 +46,19 @@ class ApplicationController < ActionController::Base
 
   def default_url_options
     Docuseal.default_url_options
+  end
+
+  # Override Devise's authenticate_user! to redirect unauthed users to the
+  # Clerk Account Portal at accounts.bloombilt.com instead of the local Devise
+  # sign-in page. ClerkDeviseBridge has already attempted to sign them in via
+  # the apex __session cookie by this point; if user_signed_in? is still false
+  # we hand off to Clerk. Devise's password form at /users/sign_in stays
+  # reachable directly as emergency access.
+  def authenticate_user!(_opts = {})
+    return if user_signed_in?
+
+    redirect_to "#{ACCOUNT_PORTAL_SIGN_IN_URL}?redirect_url=#{CGI.escape(request.original_url)}",
+                allow_other_host: true
   end
 
   def impersonate_user(user)

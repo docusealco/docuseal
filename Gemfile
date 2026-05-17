@@ -11,6 +11,7 @@ gem 'aws-sdk-secretsmanager', require: false
 gem 'azure-blob', require: false
 gem 'bootsnap', require: false
 gem 'cancancan'
+gem 'clerk-sdk-ruby', require: 'clerk'
 gem 'csv', require: false
 gem 'csv-safe', require: false
 gem 'devise'

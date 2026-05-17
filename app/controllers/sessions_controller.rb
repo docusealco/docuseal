@@ -38,6 +38,15 @@ class SessionsController < Devise::SessionsController
     devise_parameter_sanitizer.permit(:sign_in, keys: [:otp_attempt])
   end
 
+  # Sign-out lands the user on the Clerk Account Portal so a fresh sign-in
+  # establishes the apex __session cookie shared across all Bloombilt apps.
+  # Replaces Devise's default respond_to_on_destroy, which renders the local
+  # password sign-in page that the Clerk migration deliberately leaves
+  # unlinked from the UI.
+  def respond_to_on_destroy
+    redirect_to ApplicationController::ACCOUNT_PORTAL_SIGN_IN_URL, allow_other_host: true
+  end
+
   def set_flash_message(key, kind, options = {})
     return if key == :alert && kind == 'already_authenticated'
 
