@@ -19,6 +19,12 @@ module Api
 
       return head :not_found unless blob
 
+      if Submitters::DANGEROUS_EXTENSIONS.include?(blob.filename.extension.to_s.downcase)
+        Rollbar.error('Dangerous extension') if defined?(Rollbar)
+
+        return head :unprocessable_content
+      end
+
       is_permitted = blob.attachments.any? do |a|
         (current_user && a.record.account.id == current_user.account_id) ||
           a.record.account.account_configs.any? { |e| e.key == 'legacy_blob_proxy' } ||
