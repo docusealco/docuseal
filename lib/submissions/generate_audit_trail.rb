@@ -374,7 +374,13 @@ module Submissions
               scale = [600.0 / image.width, 600.0 / image.height].min
 
               resized_image = image.resize([scale, 1].min)
-              io = StringIO.new(resized_image.write_to_buffer('.png'))
+
+              io =
+                if field['type'] == 'image' && !resized_image.has_alpha?
+                  StringIO.new(resized_image.colourspace(:srgb).write_to_buffer('.jpg', strip: true))
+                else
+                  StringIO.new(resized_image.write_to_buffer('.png'))
+                end
 
               width = field['type'] == 'initials' ? 50 : 200
               height = resized_image.height * (width.to_f / resized_image.width)

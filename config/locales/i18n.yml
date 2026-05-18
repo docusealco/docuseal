@@ -658,6 +658,9 @@ en: &en
   create_a_new_template_document_form_or_submit_the_existing_one_html: <a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Create a new template</a> document form or <a href="%{start_form_link}" target="_blank" class="inline underline font-medium">submit the existing one</a>
   send_email_copy_with_completed_documents_to_a_specified_bcc_address: Send email copy with completed documents to a specified BCC address.
   re_send_email: Re-send Email
+  re_send_emails: Re-send Emails
+  are_you_sure_you_want_to_re_send_email_to_n_recipients: Are you sure you want to re-send the invitation email to %{count} recipients?
+  emails_have_been_sent_to_n_recipients: Emails have been sent to %{count} recipients.
   send_email: Send Email
   copy_share_link: Copy Share Link
   copied_to_clipboard: Copied to Clipboard
@@ -1464,7 +1467,7 @@ es: &es
   type_emails_here: Escribe correos electrónicos aquí
   or_embed_on_your_website: O integra en tu sitio web
   phone: Teléfono
-  send_emails: Enviar correos electrónicos
+  send_emails: Enviar emails
   edit_message: Editar mensaje
   smtp_not_configured: SMTP no configurado
   configure_smtp_settings_in_order_to_send_emails_: 'Configura los ajustes de SMTP para enviar correos electrónicos:'
@@ -1707,8 +1710,11 @@ es: &es
   sign_in_person: Firma en persona
   create_a_new_template_document_form_or_submit_the_existing_one_html: <a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Crear una nueva plantilla</a> de documento o <a href="%{start_form_link}" target="_blank" class="inline underline font-medium">enviar el existente</a>
   send_email_copy_with_completed_documents_to_a_specified_bcc_address: Enviar una copia del correo electrónico con los documentos completados a una dirección BCC especificada.
-  re_send_email: Reenviar correo electrónico
-  send_email: Enviar correo electrónico
+  re_send_email: Reenviar email
+  re_send_emails: Reenviar emails
+  are_you_sure_you_want_to_re_send_email_to_n_recipients: ¿Estás seguro de que quieres reenviar el email de invitación a %{count} destinatarios?
+  emails_have_been_sent_to_n_recipients: Los emails han sido enviados a %{count} destinatarios.
+  send_email: Enviar email
   copy_share_link: Copiar enlace de compartir
   copied_to_clipboard: Copiado al portapapeles
   link: Enlace
@@ -2754,7 +2760,10 @@ it: &it
   sign_in_person: Firma di persona
   create_a_new_template_document_form_or_submit_the_existing_one_html: <a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Crea un nuovo modello</a> di documento o <a href="%{start_form_link}" target="_blank" class="inline underline font-medium">invia quello esistente</a>
   send_email_copy_with_completed_documents_to_a_specified_bcc_address: Invia una copia dell'email con i documenti completati a un indirizzo BCC specificato.
-  re_send_email: Invia di nuovo l'email
+  re_send_email: Reinvia email
+  re_send_emails: Reinvia le email
+  are_you_sure_you_want_to_re_send_email_to_n_recipients: Sei sicuro di voler inviare di nuovo l'email di invito a %{count} destinatari?
+  emails_have_been_sent_to_n_recipients: Le email sono state inviate a %{count} destinatari.
   send_email: Invia email
   copy_share_link: Copia link di condivisione
   copied_to_clipboard: Copiato negli appunti
@@ -3802,6 +3811,9 @@ fr: &fr
   create_a_new_template_document_form_or_submit_the_existing_one_html: <a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Créez un nouveau modèle</a> de document ou <a href="%{start_form_link}" target="_blank" class="inline underline font-medium">soumettez l’existant</a>
   send_email_copy_with_completed_documents_to_a_specified_bcc_address: Envoyer une copie e‑mail avec les documents complétés à une adresse Cci spécifiée.
   re_send_email: Renvoyer l’e‑mail
+  re_send_emails: Renvoyer e‑mails
+  are_you_sure_you_want_to_re_send_email_to_n_recipients: Êtes‑vous sûr de vouloir renvoyer l’e‑mail d’invitation à %{count} destinataires ?
+  emails_have_been_sent_to_n_recipients: Les e‑mails ont été envoyés à %{count} destinataires.
   send_email: Envoyer l’e‑mail
   copy_share_link: Copier le lien de partage
   copied_to_clipboard: Copié dans le presse‑papiers
@@ -4321,7 +4333,7 @@ pt: &pt
 
     Obrigado,
     {account.name}
-  view: Visualizar
+  view: Ver
   email: Email
   form_expired_at_html: 'O formulário expirou em <span class="font-semibold">%{time}</span>'
   verification_code_code: 'Código de verificação: %{code}'
@@ -4846,6 +4858,9 @@ pt: &pt
   create_a_new_template_document_form_or_submit_the_existing_one_html: '<a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Criar um novo modelo</a> de documento ou <a href="%{start_form_link}" target="_blank" class="inline underline font-medium">submeter o existente</a>'
   send_email_copy_with_completed_documents_to_a_specified_bcc_address: Envie uma cópia do e-mail com documentos concluídos para um endereço BCC especificado.
   re_send_email: Reenviar e-mail
+  re_send_emails: Reenviar e-mails
+  are_you_sure_you_want_to_re_send_email_to_n_recipients: Tem certeza de que deseja reenviar o e-mail de convite para %{count} destinatários?
+  emails_have_been_sent_to_n_recipients: Os e-mails foram enviados para %{count} destinatários.
   send_email: Enviar e-mail
   copy_share_link: Copiar link de compartilhamento
   copied_to_clipboard: Copiado para a área de transferência
@@ -5893,6 +5908,9 @@ de: &de
   create_a_new_template_document_form_or_submit_the_existing_one_html: <a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Neue Vorlage erstellen</a> oder <a href="%{start_form_link}" target="_blank" class="inline underline font-medium">bestehende einreichen</a>
   send_email_copy_with_completed_documents_to_a_specified_bcc_address: Senden Sie eine E-Mail-Kopie mit abgeschlossenen Dokumenten an eine angegebene BCC-Adresse.
   re_send_email: E-Mail erneut senden
+  re_send_emails: E-Mails senden
+  are_you_sure_you_want_to_re_send_email_to_n_recipients: Sind Sie sicher, dass Sie die Einladungs-E-Mail erneut an %{count} Empfänger senden möchten?
+  emails_have_been_sent_to_n_recipients: Die E-Mails wurden an %{count} Empfänger gesendet.
   send_email: E-Mail senden
   copy_share_link: Freigabelink kopieren
   copied_to_clipboard: In die Zwischenablage kopiert
@@ -7345,6 +7363,9 @@ nl: &nl
   create_a_new_template_document_form_or_submit_the_existing_one_html: <a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Maak een nieuw sjabloon</a> voor een documentformulier of <a href="%{start_form_link}" target="_blank" class="inline underline font-medium">dien het bestaande in</a>
   send_email_copy_with_completed_documents_to_a_specified_bcc_address: Stuur een e-mailkopie met voltooide documenten naar een opgegeven BCC-adres.
   re_send_email: E-mail opnieuw verzenden
+  re_send_emails: E-mails verzenden
+  are_you_sure_you_want_to_re_send_email_to_n_recipients: Weet je zeker dat je de uitnodigings-e-mail opnieuw wilt verzenden naar %{count} ontvangers?
+  emails_have_been_sent_to_n_recipients: De e-mails zijn verzonden naar %{count} ontvangers.
   send_email: E-mail verzenden
   copy_share_link: Deellink kopiëren
   copied_to_clipboard: Gekopieerd naar klembord

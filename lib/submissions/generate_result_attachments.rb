@@ -462,7 +462,14 @@ module Submissions
             scale = [(area['w'] * width) / image.width,
                      (area['h'] * height) / image.height].min
 
-            io = StringIO.new(image.resize([scale * 4, 1].select(&:positive?).min).write_to_buffer('.png'))
+            resized_image = image.resize([scale * 4, 1].select(&:positive?).min)
+
+            io =
+              if field_type == 'image' && !resized_image.has_alpha?
+                StringIO.new(resized_image.colourspace(:srgb).write_to_buffer('.jpg', strip: true))
+              else
+                StringIO.new(resized_image.write_to_buffer('.png'))
+              end
 
             canvas.image(
               io,
