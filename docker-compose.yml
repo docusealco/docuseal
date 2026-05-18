@@ -3,7 +3,9 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-    image: docuseal/docuseal:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - 3000:3000
     volumes:
@@ -11,11 +13,10 @@ services:
     environment:
       - FORCE_SSL=${HOST}
       - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/docuseal
-
   postgres:
     image: postgres:18
     volumes:
-      - './pg_data:/var/lib/postgresql/18/docker'
+      - "./pg_data:/var/lib/postgresql/18/docker"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
@@ -25,7 +26,6 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
-
   caddy:
     image: caddy:latest
     command: caddy reverse-proxy --from $HOST --to app:3000
