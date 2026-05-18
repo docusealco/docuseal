@@ -9,6 +9,7 @@ module Api
 
     before_action :set_cors_headers
     before_action :set_noindex_headers
+    before_action :set_security_headers
 
     def show
       blob_uuid, purp, exp = ApplicationRecord.signed_id_verifier.verified(params[:signed_uuid])

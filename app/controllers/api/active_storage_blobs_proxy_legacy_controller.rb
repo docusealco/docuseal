@@ -9,6 +9,7 @@ module Api
 
     before_action :set_cors_headers
     before_action :set_noindex_headers
+    before_action :set_security_headers
 
     # rubocop:disable Metrics
     def show
