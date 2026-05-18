@@ -73,11 +73,18 @@
     >
     <div
       v-else-if="field.type === 'signature' && signature"
-      class="flex justify-between h-full gap-1 overflow-hidden w-full"
+      class="flex h-full gap-1 overflow-hidden w-full relative"
       :class="isNarrow && (isShowSignatureId || field.preferences?.reason_field_uuid) ? 'flex-row' : 'flex-col'"
     >
       <div
-        class="flex overflow-hidden"
+        v-if="isShowSignatureId && !isNarrow"
+        class="bg-amber-400 text-amber-950 uppercase tracking-wider truncate px-1 leading-tight text-[0.8vw] lg:text-[0.55rem] flex-shrink-0"
+        style="border-bottom: 1px solid rgba(120, 53, 15, 0.25);"
+      >
+        {{ t('digitally_signed_by') }} &middot; ID {{ String(signature.uuid).slice(0, 8).toUpperCase() }}
+      </div>
+      <div
+        class="flex overflow-hidden border border-base-content/20 bg-base-100/60"
         :class="isNarrow && (isShowSignatureId || field.preferences?.reason_field_uuid) ? 'w-1/2' : 'flex-grow'"
         style="min-height: 50%"
       >
@@ -88,28 +95,49 @@
       </div>
       <div
         v-if="isShowSignatureId || field.preferences?.reason_field_uuid"
-        class="text-[1vw] lg:text-[0.55rem] lg:leading-[0.65rem]"
+        class="text-[1vw] lg:text-[0.55rem] lg:leading-[0.7rem] px-0.5"
         :class="isNarrow ? 'w-1/2' : 'w-full'"
       >
-        <div class="truncate uppercase">
-          ID: {{ signature.uuid }}
+        <div
+          v-if="isNarrow && isShowSignatureId"
+          class="truncate uppercase opacity-70"
+        >
+          ID: {{ String(signature.uuid).slice(0, 8).toUpperCase() }}
         </div>
-        <div>
-          <span v-if="values[field.preferences?.reason_field_uuid]">{{ t('reason') }}: </span>{{ values[field.preferences?.reason_field_uuid] || t('digitally_signed_by') }} {{ submitter.name }}
-          <template v-if="submitter.email">
-            &lt;{{ submitter.email }}&gt;
-          </template>
-        </div>
-        <div>
-          {{ new Date(signature.created_at).toLocaleString(undefined, { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', timeZoneName: 'short' }) }}
+        <div class="truncate">
+          <span class="font-semibold">{{ submitter.name }}</span><template v-if="submitter.email"> &lt;{{ submitter.email }}&gt;</template>
+          <span class="opacity-60"> &middot; </span>{{ new Date(signature.created_at).toLocaleString(undefined, { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', timeZoneName: 'short' }) }}
         </div>
       </div>
     </div>
-    <img
+    <div
       v-else-if="field.type === 'initials' && initials"
-      class="object-contain mx-auto"
-      :src="initials.url"
+      class="flex flex-col h-full overflow-hidden w-full"
     >
+      <div
+        v-if="isShowSignatureId"
+        class="bg-amber-400 text-amber-950 uppercase tracking-wider truncate px-1 leading-tight text-[0.8vw] lg:text-[0.5rem] flex-shrink-0"
+        style="border-bottom: 1px solid rgba(120, 53, 15, 0.25);"
+      >
+        ID {{ String(initials.uuid).slice(0, 8).toUpperCase() }}
+      </div>
+      <div
+        class="flex-grow flex overflow-hidden border border-base-content/20 bg-base-100/60"
+        style="min-height: 50%"
+      >
+        <img
+          class="object-contain mx-auto"
+          :src="initials.url"
+        >
+      </div>
+      <div
+        v-if="isShowSignatureId"
+        class="truncate text-[1vw] lg:text-[0.5rem] lg:leading-[0.65rem] px-0.5 flex-shrink-0"
+      >
+        <span class="font-semibold">{{ submitter.name }}</span>
+        <span class="opacity-60"> &middot; </span>{{ new Date(initials.created_at).toLocaleString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }) }}
+      </div>
+    </div>
     <div
       v-else-if="(field.type === 'file' || field.type === 'payment') && attachments.length"
       class="px-0.5 flex flex-col justify-center"
