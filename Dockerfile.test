@@ -1,0 +1,67 @@
+# syntax=docker/dockerfile:1.7
+# Test-only image: runs the full Rails/RSpec suite with every native lib the
+# app loads at boot (libvips, libpdfium, onnxruntime, chromium for cuprite).
+# Source code is mounted at runtime via docker-compose.test.yml — only the
+# Gemfile is baked in so `bundle install` caches between runs.
+
+FROM ruby:4.0.2-alpine AS pdfium
+
+WORKDIR /download
+
+RUN apk --no-cache add wget && \
+    wget -O pdfium-linux.tgz "https://github.com/bblanchon/pdfium-binaries/releases/latest/download/pdfium-linux-musl-$(uname -m | sed 's/x86_64/x64/;s/aarch64/arm64/').tgz" && \
+    mkdir -p /pdfium-linux && \
+    tar -xzf pdfium-linux.tgz -C /pdfium-linux
+
+FROM ruby:4.0.2-alpine
+
+ENV RAILS_ENV=test \
+    BUNDLE_WITHOUT="" \
+    LANG=C.UTF-8 \
+    TZ=UTC
+
+WORKDIR /app
+
+# System deps:
+#   - libpq / libpq-dev  → pg gem
+#   - vips + vips-heif   → image processing (ruby-vips FFI)
+#   - onnxruntime        → field detection at boot
+#   - fontconfig + ttf-* → PDF rendering
+#   - build-base/git/yaml-dev → native gem compilation
+#
+# Capybara/cuprite system specs need chromium — add `chromium
+# chromium-chromedriver` to this apk line if running `spec/system/*`.
+RUN apk add --no-cache \
+    build-base \
+    git \
+    bash \
+    curl \
+    yaml-dev \
+    libpq \
+    libpq-dev \
+    vips \
+    vips-dev \
+    vips-heif \
+    redis \
+    fontconfig \
+    ttf-dejavu \
+    onnxruntime \
+    nodejs \
+    yarn \
+    tzdata
+
+# libpdfium is not in Alpine packages — copy the prebuilt binary.
+COPY --from=pdfium /pdfium-linux/lib/libpdfium.so /usr/lib/libpdfium.so
+
+# Bundle deps. Copy only Gemfile/Gemfile.lock so this layer is cached while
+# source code changes beneath it.
+COPY Gemfile Gemfile.lock ./
+RUN bundle config set --local without "" && \
+    bundle install --jobs 4 --retry 3
+
+# Link onnxruntime.so into the onnxruntime gem's vendor dir (mirrors the
+# production Dockerfile) so the gem finds it at runtime.
+RUN ln -sf /usr/lib/libonnxruntime.so.1 \
+    "$(ruby -e "print Dir[Gem::Specification.find_by_name('onnxruntime').gem_dir + '/vendor/*.so'].first")"
+
+CMD ["bundle", "exec", "rspec"]

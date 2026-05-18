@@ -29,7 +29,11 @@ class McpController < ActionController::API
   private
 
   def authenticate_user!
-    render json: { error: 'Not authenticated' }, status: :unauthorized unless current_user
+    return if current_user
+
+    response.headers['WWW-Authenticate'] =
+      %(Bearer resource_metadata="#{request.base_url}/.well-known/oauth-protected-resource", error="invalid_token")
+    render json: { error: 'Not authenticated' }, status: :unauthorized
   end
 
   def verify_mcp_enabled!
@@ -43,16 +47,28 @@ class McpController < ActionController::API
   end
 
   def current_user
-    @current_user ||= user_from_api_key
+    @current_user ||= user_from_oauth_token || user_from_mcp_token
   end
 
-  def user_from_api_key
-    token = request.headers['Authorization'].to_s[/\ABearer\s+(.+)\z/, 1]
+  def user_from_oauth_token
+    return if bearer_token.blank?
 
-    return if token.blank?
+    access_token = Doorkeeper::AccessToken.by_token(bearer_token)
+    return if access_token.nil? || access_token.revoked? || access_token.expired?
+    return unless access_token.scopes.exists?('mcp')
 
-    sha256 = Digest::SHA256.hexdigest(token)
+    User.active.find_by(id: access_token.resource_owner_id)
+  end
+
+  def user_from_mcp_token
+    return if bearer_token.blank?
+
+    sha256 = Digest::SHA256.hexdigest(bearer_token)
 
     User.joins(:mcp_tokens).active.find_by(mcp_tokens: { sha256:, archived_at: nil })
+  end
+
+  def bearer_token
+    @bearer_token ||= request.headers['Authorization'].to_s[/\ABearer\s+(.+)\z/, 1]
   end
 end

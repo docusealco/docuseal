@@ -176,6 +176,8 @@ GEM
     digest-crc (0.7.0)
       rake (>= 12.0.0, < 14.0.0)
     docile (1.4.1)
+    doorkeeper (5.9.0)
+      railties (>= 5)
     dotenv (3.2.0)
     drb (2.2.3)
     email_typo (0.2.3)
@@ -614,6 +616,7 @@ DEPENDENCIES
   debug
   devise
   devise-two-factor
+  doorkeeper (~> 5.9)
   dotenv
   email_typo
   erb_lint
@@ -662,7 +665,7 @@ DEPENDENCIES
   webmock
 
 RUBY VERSION
-  ruby 4.0.1
+  ruby 4.0.2
 
 BUNDLED WITH
   4.0.3

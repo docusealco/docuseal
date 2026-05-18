@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-ruby '4.0.1'
+ruby '4.0.2'
 
 gem 'addressable'
 gem 'arabic-letter-connector', require: false
@@ -15,6 +15,7 @@ gem 'csv', require: false
 gem 'csv-safe', require: false
 gem 'devise'
 gem 'devise-two-factor'
+gem 'doorkeeper', '~> 5.9'
 gem 'dotenv', require: false
 gem 'email_typo'
 gem 'faraday'
