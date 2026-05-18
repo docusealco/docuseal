@@ -98,6 +98,29 @@ module Wabosign
     PRODUCT_NAME
   end
 
+  # Returns the account's custom brand name (if set), the deployment's
+  # default-account brand (for anonymous surfaces like the landing page,
+  # PWA manifest, or og:title), or PRODUCT_NAME as the ultimate fallback.
+  # Never overrides Wabosign::UPSTREAM_NAME — the AGPL §7(b) DocuSeal
+  # credit in _powered_by, _email_attribution, and completed.vue stays
+  # untouched.
+  def branded_product_name(account = nil)
+    account&.brand_name.presence ||
+      default_brand_account&.brand_name.presence ||
+      PRODUCT_NAME
+  end
+
+  # The deployment-wide fallback account whose brand name is used for
+  # anonymous surfaces (no current_account in scope). Single-tenant
+  # installs have exactly one account; multi-tenant picks the oldest.
+  # Not memoized: the underlying query is fast and memoization would
+  # need cache invalidation on every personalization save.
+  def default_brand_account
+    Account.where(archived_at: nil).order(:created_at).first
+  rescue ActiveRecord::StatementInvalid, ActiveRecord::ConnectionNotEstablished
+    nil
+  end
+
   def refresh_default_url_options!
     @default_url_options = nil
   end

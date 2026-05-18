@@ -15,7 +15,7 @@ module Submissions
 
       io = StringIO.new
 
-      pdf.trailer.info[:Creator] = "#{Wabosign.product_name} (#{Wabosign::PRODUCT_URL})"
+      pdf.trailer.info[:Creator] = "#{Wabosign.branded_product_name(account)} (#{Wabosign::PRODUCT_URL})"
 
       if Wabosign.pdf_format == 'pdf/a-3b'
         pdf.task(:pdfa, level: '3b')

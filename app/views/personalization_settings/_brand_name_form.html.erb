@@ -1,0 +1,18 @@
+<%= form_with url: settings_personalization_path, method: :post,
+              html: { class: 'space-y-3', autocomplete: 'off' } do %>
+  <input type="hidden" name="account_config[key]" value="<%= AccountConfig::BRAND_NAME_KEY %>">
+  <div class="form-control">
+    <label class="label" for="brand_name">
+      <span class="label-text">Replace "<%= Wabosign::PRODUCT_NAME %>" in the UI, emails, audit-trail PDFs, and authenticator-app issuer with your own product name. Leave blank to fall back to the default.</span>
+    </label>
+    <input type="text" name="account_config[value]" id="brand_name"
+           value="<%= current_account.brand_name %>"
+           maxlength="60" placeholder="e.g. Acme Sign"
+           autocomplete="off"
+           class="base-input">
+  </div>
+  <button type="submit" class="base-button">Save</button>
+<% end %>
+<p class="text-sm opacity-70 mt-2">
+  The <a href="<%= Wabosign::UPSTREAM_URL %>" class="link" target="_blank" rel="noopener"><%= Wabosign::UPSTREAM_NAME %></a> upstream attribution required by AGPL §7(b) stays visible in the footer, post-signing screen, and email footers regardless of this setting.
+</p>

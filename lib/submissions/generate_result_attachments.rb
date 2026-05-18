@@ -37,7 +37,11 @@ module Submissions
       bold_italic: FONT_BOLD_NAME
     }.freeze
 
-    SIGN_REASON = "Signed with #{Wabosign.product_name}".freeze
+    # PDF signature "reason" template. Per-account branded — the actual
+    # template is computed by `sign_reason_template(account)` below; this
+    # constant is the format placeholder. Historically the format kwarg
+    # `name:` was unused.
+    SIGN_REASON_FORMAT = 'Signed with %<brand>s'
 
     RTL_REGEXP = TextUtils::RTL_REGEXP
 
@@ -728,7 +732,7 @@ module Submissions
     def build_pdf_attachment(pdf:, submitter:, pkcs:, tsa_url:, uuid:, name:)
       io = StringIO.new
 
-      pdf.trailer.info[:Creator] = info_creator
+      pdf.trailer.info[:Creator] = info_creator(submitter&.account)
 
       if Wabosign.pdf_format == 'pdf/a-3b'
         pdf.task(:pdfa, level: '3b')
@@ -970,14 +974,14 @@ module Submissions
       HexaPDF::Document.new(io:)
     end
 
-    def sign_reason(name)
-      format(SIGN_REASON, name:)
+    def sign_reason(_name, account: nil)
+      format(SIGN_REASON_FORMAT, brand: Wabosign.branded_product_name(account))
     end
 
     def single_sign_reason(submitter)
-      signers = submitter.submission.submitters.sort_by(&:completed_at).map { |s| s.email || s.name || s.phone }
+      submitter.submission.submitters.sort_by(&:completed_at).map { |s| s.email || s.name || s.phone }
 
-      format(SIGN_REASON, name: signers.reverse.join(', '))
+      format(SIGN_REASON_FORMAT, brand: Wabosign.branded_product_name(submitter&.account))
     end
 
     def fetch_sign_reason(submitter)
@@ -992,7 +996,7 @@ module Submissions
                        .first_or_initialize(value: 'single')
         end
 
-      return sign_reason(reason_name) if config.value == 'multiple'
+      return sign_reason(reason_name, account: submitter.account) if config.value == 'multiple'
 
       if !submitter.submission.submitters.exists?(completed_at: nil) &&
          submitter.completed_at == submitter.submission.submitters.maximum(:completed_at)
@@ -1002,8 +1006,8 @@ module Submissions
       nil
     end
 
-    def info_creator
-      "#{Wabosign.product_name} (#{Wabosign::PRODUCT_URL})"
+    def info_creator(account = nil)
+      "#{Wabosign.branded_product_name(account)} (#{Wabosign::PRODUCT_URL})"
     end
 
     def detached_signature?(_submitter)

@@ -1,7 +1,7 @@
 <div class="max-w-xl mx-auto px-2">
   <h1 class="flex text-4xl font-bold items-center justify-center my-8 space-x-2">
     <%= svg_icon('waving_hand', class: 'h-10 w-10') %>
-    <span><%= t('welcome_to_product_name', product_name: Wabosign.product_name) %></span>
+    <span><%= t('welcome_to_product_name', product_name: Wabosign.branded_product_name(current_account)) %></span>
   </h1>
   <%= form_for(resource, as: resource_name, url: invitation_path, html: { method: :put, class: 'space-y-6' }) do |f| %>
     <div class="space-y-2">

@@ -43,11 +43,11 @@ module Submissions
 
         io = StringIO.new
 
-        document.trailer.info[:Creator] = "#{Wabosign.product_name} (#{Wabosign::PRODUCT_URL})"
+        document.trailer.info[:Creator] = "#{Wabosign.branded_product_name(account)} (#{Wabosign::PRODUCT_URL})"
 
         if pkcs
           sign_params = {
-            reason: sign_reason,
+            reason: sign_reason(account),
             **Submissions::GenerateResultAttachments.build_signing_params(last_submitter, pkcs, tsa_url)
           }
 
@@ -510,8 +510,8 @@ module Submissions
       composer.document
     end
 
-    def sign_reason
-      "Signed with #{Wabosign.product_name}"
+    def sign_reason(account = nil)
+      "Signed with #{Wabosign.branded_product_name(account)}"
     end
 
     def select_attachments(submitter)
@@ -534,7 +534,7 @@ module Submissions
       column.image(PdfIcons.account_logo_io(submission&.account),
                    width: 40, height: 40, position: :float)
 
-      column.formatted_text([{ text: Wabosign.product_name,
+      column.formatted_text([{ text: Wabosign.branded_product_name(submission&.account),
                                link: Wabosign::PRODUCT_EMAIL_URL }],
                             font_size: 20,
                             font: [FONT_NAME, { variant: :bold }],

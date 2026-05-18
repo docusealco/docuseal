@@ -929,7 +929,7 @@ en: &en
   mcp_token_has_been_removed: MCP token has been removed.
   enable_mcp_server: Enable MCP server
   all_existing_mcp_connections_will_be_stopped_immediately_when_this_setting_is_disabled: All existing MCP connections will be stopped immediately when this setting is disabled.
-  connect_to_wabosign_mcp: Connect to WaboSign MCP
+  connect_to_product_name_mcp: Connect to %{product_name} MCP
   add_the_following_to_your_mcp_client_configuration: Add the following to your MCP client configuration
   works_with_claude_desktop_cursor_windsurf_vs_code_and_any_mcp_compatible_client: Works with Claude Desktop, Cursor, Windsurf, VS Code, and any MCP-compatible client.
   your_email_address_has_been_changed: Your email address has been changed
@@ -1977,7 +1977,7 @@ es: &es
   mcp_token_has_been_removed: El token MCP ha sido eliminado.
   enable_mcp_server: Habilitar servidor MCP
   all_existing_mcp_connections_will_be_stopped_immediately_when_this_setting_is_disabled: Todas las conexiones MCP existentes se detendrán inmediatamente cuando se desactive esta configuración.
-  connect_to_wabosign_mcp: Conectar a WaboSign MCP
+  connect_to_product_name_mcp: Conectar a %{product_name} MCP
   add_the_following_to_your_mcp_client_configuration: Agregue lo siguiente a la configuración de su cliente MCP
   works_with_claude_desktop_cursor_windsurf_vs_code_and_any_mcp_compatible_client: Funciona con Claude Desktop, Cursor, Windsurf, VS Code y cualquier cliente compatible con MCP.
   your_email_address_has_been_changed: Tu dirección de correo electrónico ha sido cambiada
@@ -3025,7 +3025,7 @@ it: &it
   mcp_token_has_been_removed: Il token MCP è stato rimosso.
   enable_mcp_server: Abilita server MCP
   all_existing_mcp_connections_will_be_stopped_immediately_when_this_setting_is_disabled: Tutte le connessioni MCP esistenti verranno interrotte immediatamente quando questa impostazione viene disattivata.
-  connect_to_wabosign_mcp: Connetti a WaboSign MCP
+  connect_to_product_name_mcp: Connetti a %{product_name} MCP
   add_the_following_to_your_mcp_client_configuration: Aggiungi quanto segue alla configurazione del tuo client MCP
   works_with_claude_desktop_cursor_windsurf_vs_code_and_any_mcp_compatible_client: Funziona con Claude Desktop, Cursor, Windsurf, VS Code e qualsiasi client compatibile con MCP.
   your_email_address_has_been_changed: Il tuo indirizzo email è stato modificato
@@ -4070,7 +4070,7 @@ fr: &fr
   mcp_token_has_been_removed: Le jeton MCP a été supprimé.
   enable_mcp_server: Activer le serveur MCP
   all_existing_mcp_connections_will_be_stopped_immediately_when_this_setting_is_disabled: Toutes les connexions MCP existantes seront arrêtées immédiatement lorsque ce paramètre est désactivé.
-  connect_to_wabosign_mcp: Se connecter à WaboSign MCP
+  connect_to_product_name_mcp: Se connecter à %{product_name} MCP
   add_the_following_to_your_mcp_client_configuration: Ajoutez ce qui suit à la configuration de votre client MCP
   works_with_claude_desktop_cursor_windsurf_vs_code_and_any_mcp_compatible_client: Fonctionne avec Claude Desktop, Cursor, Windsurf, VS Code et tout client compatible MCP.
   your_email_address_has_been_changed: Votre adresse e-mail a été modifiée
@@ -5118,7 +5118,7 @@ pt: &pt
   mcp_token_has_been_removed: O token MCP foi removido.
   enable_mcp_server: Ativar servidor MCP
   all_existing_mcp_connections_will_be_stopped_immediately_when_this_setting_is_disabled: Todas as conexões MCP existentes serão interrompidas imediatamente quando esta configuração for desativada.
-  connect_to_wabosign_mcp: Conectar ao WaboSign MCP
+  connect_to_product_name_mcp: Conectar ao %{product_name} MCP
   add_the_following_to_your_mcp_client_configuration: Adicione o seguinte à configuração do seu cliente MCP
   works_with_claude_desktop_cursor_windsurf_vs_code_and_any_mcp_compatible_client: Funciona com Claude Desktop, Cursor, Windsurf, VS Code e qualquer cliente compatível com MCP.
   your_email_address_has_been_changed: Seu endereço de e-mail foi alterado
@@ -6166,7 +6166,7 @@ de: &de
   mcp_token_has_been_removed: Das MCP-Token wurde entfernt.
   enable_mcp_server: MCP-Server aktivieren
   all_existing_mcp_connections_will_be_stopped_immediately_when_this_setting_is_disabled: Alle bestehenden MCP-Verbindungen werden sofort gestoppt, wenn diese Einstellung deaktiviert wird.
-  connect_to_wabosign_mcp: Mit WaboSign MCP verbinden
+  connect_to_product_name_mcp: Mit %{product_name} MCP verbinden
   add_the_following_to_your_mcp_client_configuration: Fügen Sie Folgendes zu Ihrer MCP-Client-Konfiguration hinzu
   works_with_claude_desktop_cursor_windsurf_vs_code_and_any_mcp_compatible_client: Funktioniert mit Claude Desktop, Cursor, Windsurf, VS Code und jedem MCP-kompatiblen Client.
   your_email_address_has_been_changed: Ihre E-Mail-Adresse wurde geändert
@@ -7623,7 +7623,7 @@ nl: &nl
   mcp_token_has_been_removed: Het MCP-token is verwijderd.
   enable_mcp_server: MCP-server inschakelen
   all_existing_mcp_connections_will_be_stopped_immediately_when_this_setting_is_disabled: Alle bestaande MCP-verbindingen worden onmiddellijk gestopt wanneer deze instelling wordt uitgeschakeld.
-  connect_to_wabosign_mcp: Verbinden met WaboSign MCP
+  connect_to_product_name_mcp: Verbinden met %{product_name} MCP
   add_the_following_to_your_mcp_client_configuration: Voeg het volgende toe aan uw MCP-clientconfiguratie
   works_with_claude_desktop_cursor_windsurf_vs_code_and_any_mcp_compatible_client: Werkt met Claude Desktop, Cursor, Windsurf, VS Code en elke MCP-compatibele client.
   your_email_address_has_been_changed: Uw e-mailadres is gewijzigd

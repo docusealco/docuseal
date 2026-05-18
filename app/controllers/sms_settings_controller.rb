@@ -29,7 +29,7 @@ class SmsSettingsController < ApplicationController
 
     Sms.send_message(account: current_account,
                      to: to,
-                     text: "Test SMS from #{Wabosign.product_name}.")
+                     text: "Test SMS from #{Wabosign.branded_product_name(current_account)}.")
 
     redirect_to settings_sms_path, notice: "Test SMS dispatched to #{to}."
   rescue Sms::Error => e

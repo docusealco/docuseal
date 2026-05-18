@@ -1,14 +1,15 @@
 <% if Wabosign.demo? || (request.path != '/' && !devise_controller?) %>
   <meta name="robots" content="noindex">
 <% end %>
-<% title = content_for(:html_title) || (signed_in? ? Wabosign.product_name : "#{Wabosign.product_name} | Open Source Document Signing") %>
+<% brand = Wabosign.branded_product_name(signed_in? ? current_account : nil) %>
+<% title = content_for(:html_title) || (signed_in? ? brand : "#{brand} | Open Source Document Signing") %>
 <% description = content_for(:html_description) || 'Open source, self-hosted tool to streamline document filling and signing. Create custom PDF forms to complete and sign with an easy to use online tool.' %>
 <meta name="description" content="<%= description %>">
 <meta property="og:title" content="<%= title %>">
 <meta property="og:description" content="<%= description %>">
 <meta property="og:type" content="website">
 <meta property="og:url" content="<%= root_url %>">
-<meta property="og:site_name" content="<%= Wabosign.product_name %>">
+<meta property="og:site_name" content="<%= brand %>">
 <% if content_for(:disable_image_preview) %>
   <meta property="og:image" content="">
   <meta name="twitter:image" content="">

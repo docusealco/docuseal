@@ -1,4 +1,5 @@
+<% brand = Wabosign.branded_product_name(signed_in? ? current_account : nil) %>
 <title>
-  <%= content_for(:html_title) || (signed_in? ? Wabosign.product_name : "#{Wabosign.product_name} | Open Source Document Signing") %>
+  <%= content_for(:html_title) || (signed_in? ? brand : "#{brand} | Open Source Document Signing") %>
 </title>
 <%= render 'shared/meta' %>

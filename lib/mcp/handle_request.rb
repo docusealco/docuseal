@@ -26,7 +26,7 @@ module Mcp
           result: {
             protocolVersion: '2025-11-25',
             serverInfo: {
-              name: Wabosign.product_name,
+              name: Wabosign.branded_product_name(current_user&.account),
               version: Wabosign.version.to_s
             },
             capabilities: {

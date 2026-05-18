@@ -1,2 +1,2 @@
 <%= t('powered_by') %>
-<a href="<%= Wabosign::PRODUCT_URL %>" target="_blank" rel="noopener"><%= Wabosign.product_name %></a>
+<a href="<%= Wabosign::PRODUCT_URL %>" target="_blank" rel="noopener"><%= Wabosign.branded_product_name(@template&.account) %></a>
