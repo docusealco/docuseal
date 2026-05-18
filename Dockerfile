@@ -2,7 +2,8 @@ FROM ruby:4.0.1-alpine AS download
 
 WORKDIR /fonts
 
-RUN apk --no-cache add wget && \
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories && \
+    apk --no-cache add wget && \
     wget https://github.com/satbyy/go-noto-universal/releases/download/v7.0/GoNotoKurrent-Regular.ttf && \
     wget https://github.com/satbyy/go-noto-universal/releases/download/v7.0/GoNotoKurrent-Bold.ttf && \
     wget https://github.com/impallari/DancingScript/raw/master/fonts/DancingScript-Regular.otf && \
@@ -20,12 +21,16 @@ ENV NODE_ENV=production
 
 WORKDIR /app
 
-RUN apk add --no-cache nodejs yarn git build-base && \
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories && \
+    apk add --no-cache nodejs yarn git build-base && \
+    gem sources --remove https://rubygems.org/ && \
+    gem sources -a https://gems.ruby-china.com/ && \
     gem install shakapacker
 
 COPY ./package.json ./yarn.lock ./
 
-RUN yarn install --network-timeout 1000000
+RUN yarn config set registry https://registry.npmmirror.com && \
+    yarn install --network-timeout 1000000
 
 COPY ./bin/shakapacker ./bin/shakapacker
 COPY ./config/webpack ./config/webpack
@@ -48,7 +53,8 @@ ENV OPENSSL_CONF=/etc/openssl_legacy.cnf
 
 WORKDIR /app
 
-RUN apk add --no-cache libpq vips redis vips-heif onnxruntime
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories && \
+    apk add --no-cache libpq vips redis vips-heif onnxruntime
 
 RUN addgroup -g 2000 docuseal && adduser -u 2000 -G docuseal -s /bin/sh -D -h /home/docuseal docuseal
 
@@ -66,7 +72,10 @@ activate = 1' >> /etc/openssl_legacy.cnf
 
 COPY --chown=docuseal:docuseal ./Gemfile ./Gemfile.lock ./
 
-RUN apk add --no-cache build-base git libpq-dev yaml-dev && bundle install && apk del --no-cache build-base git libpq-dev yaml-dev && rm -rf ~/.bundle /usr/local/bundle/cache && ruby -e "puts Dir['/usr/local/bundle/**/{spec,rdoc,resources/shared,resources/collation,resources/locales,resources/unicode_data/properties}'] + Dir['/usr/local/bundle/gems/*/{test,tests,examples,sample,misc,doc,docs}'] + Dir['/usr/local/bundle/gems/*/ext/**/*.{c,h,o,S}']" | xargs rm -rf && ln -sf /usr/lib/libonnxruntime.so.1 $(ruby -e "print Dir[Gem::Specification.find_by_name('onnxruntime').gem_dir + '/vendor/*.so'].first")
+RUN apk add --no-cache build-base git libpq-dev yaml-dev && \
+    bundle config set --global mirror.https://rubygems.org https://gems.ruby-china.com && \
+    bundle install && \
+    apk del --no-cache build-base git libpq-dev yaml-dev && rm -rf ~/.bundle /usr/local/bundle/cache && ruby -e "puts Dir['/usr/local/bundle/**/{spec,rdoc,resources/shared,resources/collation,resources/locales,resources/unicode_data/properties}'] + Dir['/usr/local/bundle/gems/*/{test,tests,examples,sample,misc,doc,docs}'] + Dir['/usr/local/bundle/gems/*/ext/**/*.{c,h,o,S}']" | xargs rm -rf && ln -sf /usr/lib/libonnxruntime.so.1 $(ruby -e "print Dir[Gem::Specification.find_by_name('onnxruntime').gem_dir + '/vendor/*.so'].first")
 
 COPY --chown=docuseal:docuseal ./bin ./bin
 COPY --chown=docuseal:docuseal ./app ./app

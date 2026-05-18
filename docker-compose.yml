@@ -13,7 +13,7 @@ services:
       - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/docuseal
 
   postgres:
-    image: postgres:18
+    image: postgres:17.5
     volumes:
       - './pg_data:/var/lib/postgresql/18/docker'
     environment:
@@ -27,7 +27,7 @@ services:
       retries: 5
 
   caddy:
-    image: caddy:latest
+    image: caddy:2.10-alpine
     command: caddy reverse-proxy --from $HOST --to app:3000
     ports:
       - 80:80

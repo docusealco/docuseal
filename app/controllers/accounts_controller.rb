@@ -9,7 +9,21 @@ class AccountsController < ApplicationController
     'pt-PT' => 'Português',
     'de-DE' => 'Deutsch',
     'it-IT' => 'Italiano',
-    'nl-NL' => 'Nederlands'
+    'nl-NL' => 'Nederlands',
+    'zh-CN' => '中文 (简体)',
+    'es' => 'Español',
+    'it' => 'Italiano',
+    'de' => 'Deutsch',
+    'fr' => 'Français',
+    'nl' => 'Nederlands',
+    'pl' => 'Polski',
+    'uk' => 'Українська',
+    'cs' => 'Čeština',
+    'pt' => 'Português',
+    'he' => 'עברית',
+    'ar' => 'العربية',
+    'ko' => '한국어',
+    'ja' => '日本語'
   }.freeze
 
   before_action :load_account
