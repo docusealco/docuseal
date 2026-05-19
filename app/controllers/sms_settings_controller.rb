@@ -46,14 +46,18 @@ class SmsSettingsController < ApplicationController
                                             key: EncryptedConfig::SMS_CONFIGS_KEY)
   end
 
+  SECRET_KEYS = %w[basic_auth_token twilio_auth_token voipms_api_password signalwire_api_token].freeze
+
   def build_sms_value
     submitted = params.require(:encrypted_config).permit(value: {})[:value].to_h
     existing = @encrypted_config.value || {}
 
-    # Preserve the saved Basic Auth token when the field is left blank
-    # (the form never echoes it back, so an unedited submit would otherwise
-    # wipe it out).
-    submitted['basic_auth_token'] = existing['basic_auth_token'] if submitted['basic_auth_token'].to_s.empty?
+    # Password fields are rendered without their saved value, so an unedited
+    # submit posts back an empty string. Preserve the saved secret in that case
+    # so users can edit unrelated fields without re-pasting credentials.
+    SECRET_KEYS.each do |key|
+      submitted[key] = existing[key] if submitted[key].to_s.empty?
+    end
 
     submitted['enabled'] = submitted['enabled'].to_s == '1' || submitted['enabled'].to_s == 'true'
     submitted['provider'] = (submitted['provider'].presence || 'bulkvs').to_s

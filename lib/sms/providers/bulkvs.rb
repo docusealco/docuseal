@@ -19,6 +19,10 @@ module Sms
       ENDPOINT = 'https://portal.bulkvs.com/api/v1.0/messageSend'
       TIMEOUT_SECONDS = 15
 
+      def self.configured?(config)
+        config['basic_auth_token'].to_s.present? && config['from_number'].to_s.present?
+      end
+
       def initialize(config)
         @token = config['basic_auth_token'].to_s.strip
         @from = Sms.normalize_phone(config['from_number'])
