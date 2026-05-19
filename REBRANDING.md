@@ -65,3 +65,40 @@ Per AGPL §7(b) and downstream SDK compatibility, the following references remai
 - Webhook spec assertions updated to match new `WaboSign Webhook` user-agent
 
 Full Rails boot requires Ruby 4.0.1, which was not available on the dev machine that performed the rebrand. Recommend running `docker compose up --build` to verify boot end-to-end before publishing.
+
+## Sync workflow
+
+Upstream lives at `docusealco/docuseal`. Each upstream release is brought in by re-running a deterministic rebrand sweep on the upstream tree, then merging into `master`. The strategy details are in [.claude/plans/come-up-with-a-foamy-flask.md](.claude/plans/come-up-with-a-foamy-flask.md); the short version follows.
+
+### Tooling
+
+- [bin/rebrand-sync](bin/rebrand-sync) — Ruby script that performs the DocuSeal → WaboSign rename sweep across the working tree. Idempotent. Honors a deny-list (see §"Intentionally preserved upstream references" above) and sentinel-protects AGPL §7(b) attribution phrases, SDK custom-element names (`docuseal-form`, `docuseal-builder`), `@docuseal/*` npm packages, and the `github.com/docusealco/{fields-detection,pdfium-binaries,turbo}` binary URLs.
+- [bin/rebrand-check](bin/rebrand-check) — fails (exit 1) if any unintended DocuSeal reference survives. Wired into [.github/workflows/ci.yml](.github/workflows/ci.yml) as the `Rebrand check` job.
+- `git config rerere.enabled true && git config rerere.autoupdate true` — once-per-checkout setup; remembers semantic conflict resolutions so the same call is not re-made each release.
+- [.gitattributes](.gitattributes) marks `Gemfile.lock` and `yarn.lock` as `-merge` (regenerate after merge rather than diffing).
+
+### Per-sync steps
+
+```sh
+git fetch upstream --tags
+git checkout -b sync/upstream-<tag> <tag>      # e.g. 3.0.0
+bin/rebrand-sync
+git add -A && git commit -m "Apply WaboSign rebrand sweep to upstream <tag>"
+
+git checkout master
+git merge --no-ff sync/upstream-<tag>
+# Resolve conflicts. Rerere caches recurring resolutions.
+
+bin/rebrand-sync                                # catch upstream-only new files
+bin/rebrand-check                               # CI gate
+
+bundle install
+yarn install
+
+# Verify (see "Verification" in the plan), then:
+git tag wabosign-synced-with-<tag>
+```
+
+### Adding new preserved tokens
+
+When upstream introduces a new SDK identifier, binary URL, or attribution surface that must survive the sweep, edit `PRESERVE` in [bin/rebrand-sync](bin/rebrand-sync) and `ALLOW_PATTERNS` in [bin/rebrand-check](bin/rebrand-check) together. The two must stay in sync — `rebrand-sync` decides what the sweep ignores, `rebrand-check` decides what CI tolerates.

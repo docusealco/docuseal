@@ -3,6 +3,19 @@ name: CI
 on: [push]
 
 jobs:
+  rebrand_check:
+    name: Rebrand check
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 4.0.1
+      - name: Run rebrand-check
+        run: ruby bin/rebrand-check
+
   rubocop:
     name: Rubocop
     runs-on: ubuntu-latest

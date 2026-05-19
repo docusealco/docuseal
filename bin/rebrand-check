@@ -1,0 +1,142 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+#
+# bin/rebrand-check — fails (exit 1) if any unintended "docuseal" /
+# "Docuseal" / "DocuSeal" references survive in the tree.
+#
+# Intended survivors are documented in REBRANDING.md:
+#   - AGPL §7(b) attribution (NOTICE, README, LICENSE_ADDITIONAL_TERMS,
+#     _powered_by, _email_attribution, completed.vue's credit, the
+#     based_on i18n keys, Wabosign::UPSTREAM_NAME / UPSTREAM_URL)
+#   - SDK custom-element names <docuseal-form>, <docuseal-builder>
+#   - npm packages @docuseal/{react,vue,angular,embed}
+#   - upstream binary URLs github.com/docusealco/{fields-detection,
+#     pdfium-binaries,turbo}
+#   - DocuSeal LLC copyright header in calculator.js
+#
+# Any other occurrence is treated as an accidental survivor and printed.
+#
+# Wired into CI via .github/workflows/ci.yml.
+
+require 'find'
+require 'set'
+
+ROOT = File.expand_path('..', __dir__)
+
+DENY_PREFIXES = [
+  '.git/', '.github/', 'node_modules/', 'vendor/bundle/', 'vendor/cache/',
+  'tmp/', 'log/', 'pg_data/', 'public/packs/', 'public/packs-test/',
+  'wabosign/', '.claude/', 'coverage/'
+].freeze
+
+BINARY_EXT = Set.new(%w[
+  .png .jpg .jpeg .gif .ico .svg .pdf .zip .tgz .gz .bz2 .xz
+  .woff .woff2 .ttf .eot .otf
+  .pkcs12 .p12 .pem .crt .cer .key
+  .db .sqlite .sqlite3 .so .dylib .dll .exe .onnx
+]).freeze
+
+# Whole files we ignore — every "docuseal" hit in them is intentional.
+ALLOW_FILES = Set.new([
+  'NOTICE',
+  'LICENSE',
+  'LICENSE_ADDITIONAL_TERMS',
+  'REBRANDING.md',
+  'CHANGELOG.md',
+  'README.md',
+  'GOOGLE_SSO.md',
+  'SMS.md',
+  'app/javascript/submission_form/calculator.js',
+  'app/javascript/submission_form/completed.vue',
+  'app/views/shared/_powered_by.html.erb',
+  'app/views/shared/_email_attribution.html.erb',
+  'bin/rebrand-sync',
+  'bin/rebrand-check',
+  'lib/wabosign.rb',
+  # Migration that finds rows by the legacy docuseal_aatl name.
+  'db/migrate/20260515183000_rename_docuseal_aatl_cert.rb'
+]).freeze
+
+ALLOW_FILE_PREFIXES = ['docs/embedding/'].freeze
+
+# Per-line allowed patterns. If every "docuseal" hit on a line is
+# inside one of these, the line is tolerated.
+ALLOW_PATTERNS = [
+  # SDK custom element tags — bare, attributed, HTML-encoded, quoted
+  %r{<docuseal-(form|builder)\b},
+  %r{</docuseal-(form|builder)>},
+  %r{&lt;/?docuseal-(form|builder)},
+  %r{['"]docuseal-(form|builder)['"]},
+  # SDK class names exported by the npm packages
+  %r{\bDocuseal(Form|Builder)(Component)?\b},
+  # npm package paths
+  %r{@docuseal/(react|vue|angular|embed)},
+  # Upstream binary release URLs
+  %r{docusealco/fields-detection},
+  %r{docusealco/pdfium-binaries},
+  %r{docusealco/turbo},
+  # Programmatic custom-element registration
+  %r{customElements\.define\(['"]docuseal-},
+  # Constants holding the AGPL §7(b) attribution
+  %r{Wabosign::UPSTREAM_(NAME|URL)},
+  # AGPL attribution idioms — preserve the literal "DocuSeal" credit
+  %r{\b(?:fork(?:ed)? of|forked from|based on|derived from)\s+DocuSeal\b},
+  # JS calculator copyright header
+  %r{DocuSeal,?\s+LLC},
+  # i18n key carrying the AGPL credit value
+  %r{based_on:}
+].freeze
+
+def deny_listed?(rel)
+  return true if ALLOW_FILES.include?(rel)
+  return true if ALLOW_FILE_PREFIXES.any? { |p| rel.start_with?(p) }
+  DENY_PREFIXES.any? { |p| rel.start_with?(p) }
+end
+
+def likely_binary?(path)
+  return true if BINARY_EXT.include?(File.extname(path).downcase)
+  head = File.binread(path, 1024)
+  head.include?("\x00")
+rescue StandardError
+  false
+end
+
+HIT_RE = /docuseal/i
+
+def line_is_tolerated?(line)
+  scrubbed = line.dup
+  ALLOW_PATTERNS.each { |re| scrubbed = scrubbed.gsub(re, '') }
+  !scrubbed.match?(HIT_RE)
+end
+
+violations = []
+
+Find.find(ROOT) do |path|
+  rel = path.sub(%r{\A#{Regexp.escape(ROOT)}/}, '')
+  if File.directory?(path)
+    Find.prune if rel != '' && DENY_PREFIXES.any? { |p| "#{rel}/".start_with?(p) }
+    next
+  end
+  next if deny_listed?(rel)
+  next if likely_binary?(path)
+
+  begin
+    File.foreach(path, encoding: 'UTF-8').with_index(1) do |line, lineno|
+      next unless line.match?(HIT_RE)
+      next if line_is_tolerated?(line)
+
+      violations << "#{rel}:#{lineno}: #{line.chomp}"
+    end
+  rescue Encoding::InvalidByteSequenceError, ArgumentError
+    next
+  end
+end
+
+if violations.empty?
+  puts 'rebrand-check: ok'
+  exit 0
+else
+  warn "rebrand-check: #{violations.size} unintended DocuSeal reference(s):"
+  violations.each { |v| warn "  #{v}" }
+  exit 1
+end
