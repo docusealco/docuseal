@@ -94,6 +94,8 @@ img.ProseMirror-separator {
 }
 dynamic-variable {
   background-color: #fef3c7;
+  word-break: break-all;
+  overflow-wrap: anywhere;
 }`)
 
 function collectDomAttrs (dom) {
@@ -136,11 +138,12 @@ function collectSpanDomAttrs (dom) {
   return result
 }
 
-function createBlockNode (name, tag, content) {
+function createBlockNode (name, tag, content, extra = {}) {
   return Node.create({
     name,
     group: 'block',
     content: content || 'block+',
+    ...extra,
     addAttributes () {
       return {
         htmlAttrs: { default: {} }
@@ -194,9 +197,9 @@ const CustomHeading = Node.create({
 })
 
 const SectionNode = createBlockNode('section', 'section')
-const ArticleNode = createBlockNode('article', 'article')
-const HeaderNode = createBlockNode('header', 'header')
-const FooterNode = createBlockNode('footer', 'footer')
+const ArticleNode = createBlockNode('article', 'article', null, { isolating: true })
+const HeaderNode = createBlockNode('header', 'header', null, { isolating: true })
+const FooterNode = createBlockNode('footer', 'footer', null, { isolating: true })
 const DivNode = createBlockNode('div', 'div')
 const BlockquoteNode = createBlockNode('blockquote', 'blockquote')
 const PreNode = createBlockNode('pre', 'pre')
