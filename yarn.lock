@@ -15,6 +15,11 @@
     "@jridgewell/gen-mapping" "^0.3.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
+"@arcab-aster/aster-fonts@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@arcab-aster/aster-fonts/-/aster-fonts-1.0.4.tgz#d01b18e5279be3f8b652d23c20bfa57e08a2bc88"
+  integrity sha512-e40cQWUGtGGz1+qsTfdQiccqjTlz/p5mStl0hwr9ihJHAYQshdLi17v1VUqsVDXTi+v53UWDSWsApPvfmOXndQ==
+
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.18.6", "@babel/code-frame@^7.21.4":
   version "7.21.4"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.21.4.tgz#d0fa9e4413aca81f2b23b9442797bda1826edb39"

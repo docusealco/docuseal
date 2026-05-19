@@ -5,10 +5,10 @@
 @import "tailwindcss/utilities";
 
 a[href],
-input[type='checkbox'],
-input[type='submit'],
-input[type='image'],
-input[type='radio'],
+input[type="checkbox"],
+input[type="submit"],
+input[type="image"],
+input[type="radio"],
 label[for],
 select,
 button {
@@ -19,7 +19,8 @@ button .disabled {
   display: none;
 }
 
-button[disabled] .disabled, button.btn-disabled .disabled {
+button[disabled] .disabled,
+button.btn-disabled .disabled {
   display: initial;
 }
 
@@ -27,7 +28,8 @@ button .enabled {
   display: initial;
 }
 
-button[disabled] .enabled, button.btn-disabled .enabled {
+button[disabled] .enabled,
+button.btn-disabled .enabled {
   display: none;
 }
 
@@ -117,7 +119,8 @@ button[disabled] .enabled, button.btn-disabled .enabled {
 .autocomplete {
   background: white;
   z-index: 1000;
-  font: 16px/25px "-apple-system", BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font: 16px/25px "-apple-system", BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
   overflow: auto;
   box-sizing: border-box;
   @apply border border-base-300 mt-1 rounded-md;
@@ -153,7 +156,8 @@ button[disabled] .enabled, button.btn-disabled .enabled {
 }
 
 .font-courier {
-  font-family: "Courier New", Consolas, "Liberation Mono", monospace, ui-monospace, SFMono-Regular, Menlo, Monaco;
+  font-family: "Courier New", Consolas, "Liberation Mono", monospace,
+    ui-monospace, SFMono-Regular, Menlo, Monaco;
 }
 
 markdown-editor [contenteditable] p {

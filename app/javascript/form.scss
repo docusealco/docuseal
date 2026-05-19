@@ -5,10 +5,10 @@
 @import "tailwindcss/utilities";
 
 a[href],
-input[type='checkbox'],
-input[type='submit'],
-input[type='image'],
-input[type='radio'],
+input[type="checkbox"],
+input[type="submit"],
+input[type="image"],
+input[type="radio"],
 label[for],
 select,
 button {
@@ -19,7 +19,8 @@ button .disabled {
   display: none;
 }
 
-button[disabled] .disabled, button.btn-disabled .disabled {
+button[disabled] .disabled,
+button.btn-disabled .disabled {
   display: initial;
 }
 
@@ -27,7 +28,8 @@ button .enabled {
   display: initial;
 }
 
-button[disabled] .enabled, button.btn-disabled .enabled {
+button[disabled] .enabled,
+button.btn-disabled .enabled {
   display: none;
 }
 
@@ -76,5 +78,6 @@ button[disabled] .enabled, button.btn-disabled .enabled {
 }
 
 .font-courier {
-  font-family: "Courier New", Consolas, "Liberation Mono", monospace, ui-monospace, SFMono-Regular, Menlo, Monaco;
+  font-family: "Courier New", Consolas, "Liberation Mono", monospace,
+    ui-monospace, SFMono-Regular, Menlo, Monaco;
 }

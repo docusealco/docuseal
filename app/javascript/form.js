@@ -1,3 +1,4 @@
+import "@arcab-aster/aster-fonts/index.css"
 import { createApp, reactive } from 'vue'
 
 import Form from './submission_form/form'

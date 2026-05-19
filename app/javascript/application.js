@@ -1,3 +1,4 @@
+import "@arcab-aster/aster-fonts/index.css"
 import '@hotwired/turbo'
 import { encodeMethodIntoRequestBody } from '@hotwired/turbo-rails/app/javascript/turbo/fetch_requests'
 

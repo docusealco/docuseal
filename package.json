@@ -2,6 +2,7 @@
   "name": "docuseal",
   "private": true,
   "dependencies": {
+    "@arcab-aster/aster-fonts": "^1.0.4",
     "@babel/core": "7.21.8",
     "@babel/plugin-transform-runtime": "7.21.4",
     "@babel/preset-env": "7.21.5",
