@@ -12,7 +12,7 @@ module Docuseal
   TWITTER_URL = 'https://twitter.com/docusealco'
   TWITTER_HANDLE = '@docusealco'
   CHATGPT_URL = "#{PRODUCT_URL}/chat".freeze
-  SUPPORT_EMAIL = 'support@docuseal.com'
+  SUPPORT_EMAIL = 'kevin@ar.cab'
   HOST = ENV.fetch('HOST', 'localhost')
   AATL_CERT_NAME = 'docuseal_aatl'
   CONSOLE_URL = if Rails.env.development?

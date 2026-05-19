@@ -850,7 +850,7 @@ en: &en
   use_otp_code_to_access_the_api_key_html: Use <b>%{code}</b> code to access the API key.
   please_reply_to_this_email_if_you_dont_recognize_this_request: Please reply to this email if you don't recognize this request.
   your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: Your user account has been archived. Contact your administrator to restore access to your account.
-  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Your email could not be reached. This may happen if there was a typo in your address or if your mailbox is not available. Please contact support@docuseal.com to log in.
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Your email could not be reached. This may happen if there was a typo in your address or if your mailbox is not available. Please contact kevin@ar.cab to log in.
   efficient_search_with_search_index: Efficient search with search index
   reindex: Reindex
   build_search_index: Build Search Index
@@ -1031,7 +1031,7 @@ en: &en
     settings: 'Settings'
     settings_account_description: 'With comprehensive account settings, you can customize the eSigning experience and invite more users.'
     support: 'Support'
-    support_description: 'You can use our self-service AI assistant or email us at support@docuseal.com if you have any questions.'
+    support_description: 'You can use our self-service AI assistant or email us at kevin@ar.cab if you have any questions.'
     settings_template_description: 'Use this button to access your account settings page.'
   doorkeeper:
     scopes:
@@ -1900,7 +1900,7 @@ es: &es
   use_otp_code_to_access_the_api_key_html: Usa el código <b>%{code}</b> para acceder a la clave API.
   please_reply_to_this_email_if_you_dont_recognize_this_request: Responde a este correo si no reconoces esta solicitud.
   your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: Tu cuenta de usuario ha sido archivada. Contacta a tu administrador para restaurar el acceso a tu cuenta.
-  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: No se pudo acceder a tu correo electrónico. Esto puede ocurrir si hubo un error tipográfico en tu dirección o si tu buzón no está disponible. Por favor, contacta a support@docuseal.com para iniciar sesión.
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: No se pudo acceder a tu correo electrónico. Esto puede ocurrir si hubo un error tipográfico en tu dirección o si tu buzón no está disponible. Por favor, contacta a kevin@ar.cab para iniciar sesión.
   efficient_search_with_search_index: Búsqueda eficiente con índice de búsqueda
   reindex: Reindexar
   build_search_index: Construir índice de búsqueda
@@ -2081,7 +2081,7 @@ es: &es
     settings: 'Configuración'
     settings_account_description: 'Con una configuración completa de la cuenta, puedes personalizar la experiencia de firma y añadir más usuarios.'
     support: 'Soporte'
-    support_description: 'Puedes usar nuestro asistente de IA o escribirnos a support@docuseal.com si tienes preguntas.'
+    support_description: 'Puedes usar nuestro asistente de IA o escribirnos a kevin@ar.cab si tienes preguntas.'
     settings_template_description: 'Usa este botón para acceder a la configuración de tu cuenta.'
   doorkeeper:
     scopes:
@@ -2950,7 +2950,7 @@ it: &it
   use_otp_code_to_access_the_api_key_html: Usa il codice <b>%{code}</b> per accedere alla chiave API.
   please_reply_to_this_email_if_you_dont_recognize_this_request: Rispondi a questa email se non riconosci questa richiesta.
   your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: Il tuo account utente è stato archiviato. Contatta il tuo amministratore per ripristinare l'accesso al tuo account.
-  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Non è stato possibile raggiungere la tua email. Questo può accadere se c'è stato un errore di digitazione nell'indirizzo o se la tua casella di posta non è disponibile. Contatta support@docuseal.com per accedere.
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Non è stato possibile raggiungere la tua email. Questo può accadere se c'è stato un errore di digitazione nell'indirizzo o se la tua casella di posta non è disponibile. Contatta kevin@ar.cab per accedere.
   efficient_search_with_search_index: Ricerca efficiente con indice di ricerca
   reindex: Reindicizza
   build_search_index: Crea indice di ricerca
@@ -3131,7 +3131,7 @@ it: &it
     settings: 'Impostazioni'
     settings_account_description: "Con impostazioni complete dell'account, puoi personalizzare l'esperienza di firma elettronica e invitare altri utenti."
     support: 'Supporto'
-    support_description: 'Puoi usare il nostro assistente AI oppure scriverci a support@docuseal.com se hai domande.'
+    support_description: 'Puoi usare il nostro assistente AI oppure scriverci a kevin@ar.cab se hai domande.'
     settings_template_description: "Usa questo pulsante per accedere alla pagina delle impostazioni dell'account."
   doorkeeper:
     scopes:
@@ -3996,7 +3996,7 @@ fr: &fr
   use_otp_code_to_access_the_api_key_html: Utilisez le code <b>%{code}</b> pour accéder à la clé API.
   please_reply_to_this_email_if_you_dont_recognize_this_request: Veuillez répondre à cet e‑mail si vous ne reconnaissez pas cette demande.
   your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: Votre compte utilisateur a été archivé. Contactez votre administrateur pour rétablir l’accès à votre compte.
-  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Votre e‑mail n’a pas pu être joint. Cela peut se produire en cas de faute de frappe dans votre adresse ou si votre boîte aux lettres n’est pas disponible. Veuillez contacter support@docuseal.com pour vous connecter.
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Votre e‑mail n’a pas pu être joint. Cela peut se produire en cas de faute de frappe dans votre adresse ou si votre boîte aux lettres n’est pas disponible. Veuillez contacter kevin@ar.cab pour vous connecter.
   efficient_search_with_search_index: Recherche efficace avec index de recherche
   reindex: Réindexer
   build_search_index: Construire l’index de recherche
@@ -4178,7 +4178,7 @@ fr: &fr
     settings: Paramètres
     settings_account_description: Des paramètres de compte complets pour personnaliser l’expérience de signature et inviter d’autres utilisateurs.
     support: Support
-    support_description: Utilisez notre assistant IA en libre‑service ou contactez‑nous à support@docuseal.com pour toute question.
+    support_description: Utilisez notre assistant IA en libre‑service ou contactez‑nous à kevin@ar.cab pour toute question.
     settings_template_description: Utilisez ce bouton pour accéder à la page des paramètres de votre compte.
   doorkeeper:
     scopes:
@@ -5047,7 +5047,7 @@ pt: &pt
   use_otp_code_to_access_the_api_key_html: Use o código <b>%{code}</b> para acessar a chave API.
   please_reply_to_this_email_if_you_dont_recognize_this_request: Responda a este e-mail se você não reconhecer esta solicitação.
   your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: Sua conta de usuário foi arquivada. Entre em contato com o administrador para restaurar o acesso à sua conta.
-  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Seu e-mail não pôde ser acessado. Isso pode acontecer se houve um erro de digitação no endereço ou se sua caixa de correio não estiver disponível. Entre em contato com support@docuseal.com para fazer login.
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Seu e-mail não pôde ser acessado. Isso pode acontecer se houve um erro de digitação no endereço ou se sua caixa de correio não estiver disponível. Entre em contato com kevin@ar.cab para fazer login.
   efficient_search_with_search_index: Pesquisa eficiente com índice de busca
   reindex: Reindexar
   build_search_index: Construir índice de busca
@@ -5228,7 +5228,7 @@ pt: &pt
     settings: 'Configurações'
     settings_account_description: 'Com configurações completas de conta, você pode personalizar a experiência de assinatura eletrônica e convidar mais usuários.'
     support: 'Suporte'
-    support_description: 'Você pode usar nosso assistente de IA ou nos escrever para support@docuseal.com se tiver dúvidas.'
+    support_description: 'Você pode usar nosso assistente de IA ou nos escrever para kevin@ar.cab se tiver dúvidas.'
     settings_template_description: 'Use este botão para acessar a página de configurações da sua conta.'
   doorkeeper:
     scopes:
@@ -6097,7 +6097,7 @@ de: &de
   use_otp_code_to_access_the_api_key_html: Verwenden Sie den Code <b>%{code}</b>, um auf den API-Schlüssel zuzugreifen.
   please_reply_to_this_email_if_you_dont_recognize_this_request: Bitte antworten Sie auf diese E-Mail, wenn Sie diese Anfrage nicht erkennen.
   your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: Ihr Benutzerkonto wurde archiviert. Wenden Sie sich an Ihren Administrator, um den Zugriff wiederherzustellen.
-  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Ihre E-Mail konnte nicht erreicht werden. Dies kann passieren, wenn sich ein Tippfehler in Ihrer Adresse befindet oder Ihr Postfach nicht verfügbar ist. Bitte kontaktieren Sie support@docuseal.com, um sich anzumelden.
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Ihre E-Mail konnte nicht erreicht werden. Dies kann passieren, wenn sich ein Tippfehler in Ihrer Adresse befindet oder Ihr Postfach nicht verfügbar ist. Bitte kontaktieren Sie kevin@ar.cab, um sich anzumelden.
   efficient_search_with_search_index: Effiziente Suche mit Suchindex
   reindex: Neu indexieren
   build_search_index: Suchindex erstellen
@@ -6278,7 +6278,7 @@ de: &de
     settings: 'Einstellungen'
     settings_account_description: 'Mit umfangreichen Kontoeinstellungen können Sie das Signiererlebnis anpassen und weitere Benutzer einladen.'
     support: 'Support'
-    support_description: 'Sie können unseren KI-Assistenten nutzen oder uns bei Fragen an support@docuseal.com schreiben.'
+    support_description: 'Sie können unseren KI-Assistenten nutzen oder uns bei Fragen an kevin@ar.cab schreiben.'
     settings_template_description: 'Über diese Schaltfläche gelangen Sie zu den Kontoeinstellungen.'
   doorkeeper:
     scopes:
@@ -6410,7 +6410,7 @@ pl:
   your_verification_code_to_access_the_name: 'Twój kod weryfikacyjny do uzyskania dostępu do "%{name}":'
   please_reply_to_this_email_if_you_didnt_request_this: Odpowiedz na ten e-mail, jeśli nie prosiłeś o to.
   your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: Twoje konto użytkownika zostało zarchiwizowane. Skontaktuj się z administratorem, aby przywrócić dostęp do konta.
-  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Nie udało się uzyskać dostępu do Twojego adresu e-mail. Może to być spowodowane literówką w adresie lub niedostępnością skrzynki. Skontaktuj się z support@docuseal.com, aby się zalogować.
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Nie udało się uzyskać dostępu do Twojego adresu e-mail. Może to być spowodowane literówką w adresie lub niedostępnością skrzynki. Skontaktuj się z kevin@ar.cab, aby się zalogować.
   verification_required_refresh_the_page_and_pass_2fa: Weryfikacja wymagana, odśwież stronę i przejdź uwierzytelnienie dwuskładnikowe.
   the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_email_html: Nadawca zażądał uwierzytelniania dwuskładnikowego za pośrednictwem hasła jednorazowego wysłanego na Twój adres e-mail <b>%{email}</b>.
   please_contact_the_requester_to_specify_your_email_for_two_factor_authentication: Skontaktuj się z nadawcą, aby podać swój adres e-mail do uwierzytelniania dwuskładnikowego.
@@ -6511,7 +6511,7 @@ uk:
   your_verification_code_to_access_the_name: 'Ваш код доступу до "%{name}":'
   please_reply_to_this_email_if_you_didnt_request_this: Відповідайте на цей лист, якщо ви цього не запитували.
   your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: Ваш обліковий запис було архівовано. Зверніться до адміністратора, щоб відновити доступ.
-  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Не вдалося отримати доступ до вашої електронної пошти. Це може статися, якщо була допущена помилка в адресі або ваша скринька недоступна. Зверніться до support@docuseal.com, щоб увійти.
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Не вдалося отримати доступ до вашої електронної пошти. Це може статися, якщо була допущена помилка в адресі або ваша скринька недоступна. Зверніться до kevin@ar.cab, щоб увійти.
   verification_required_refresh_the_page_and_pass_2fa: Необхідна верифікація, оновіть сторінку та пройдіть двофакторну автентифікацію.
   the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_email_html: Відправник запитав двофакторну автентифікацію за допомогою одноразового пароля, надісланого на вашу електронну пошту <b>%{email}</b>.
   please_contact_the_requester_to_specify_your_email_for_two_factor_authentication: Будь ласка, зв'яжіться з відправником, щоб вказати вашу електронну пошту для двофакторної автентифікації.
@@ -6612,7 +6612,7 @@ cs:
   your_verification_code_to_access_the_name: 'Váš ověřovací kód pro přístup k "%{name}":'
   please_reply_to_this_email_if_you_didnt_request_this: Odpovězte na tento e-mail, pokud jste o to nežádali.
   your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: Váš uživatelský účet byl archivován. Kontaktujte svého administrátora pro obnovení přístupu.
-  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Na váš e-mail se nepodařilo doručit zprávu. To se může stát, pokud je v adrese překlep nebo vaše schránka není dostupná. Pro přihlášení kontaktujte support@docuseal.com.
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Na váš e-mail se nepodařilo doručit zprávu. To se může stát, pokud je v adrese překlep nebo vaše schránka není dostupná. Pro přihlášení kontaktujte kevin@ar.cab.
   verification_required_refresh_the_page_and_pass_2fa: Ověření vyžadováno. Aktualizujte stránku a dokončete dvoufaktorové ověření.
   the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_email_html: Odesílatel požádal o dvoufaktorové ověření pomocí jednorázového hesla odeslaného na vaši e-mailovou adresu <b>%{email}</b>.
   please_contact_the_requester_to_specify_your_email_for_two_factor_authentication: Prosím kontaktujte odesílatele a uveďte svůj e-mail pro dvoufaktorové ověření.
@@ -6713,7 +6713,7 @@ he:
   your_verification_code_to_access_the_name: 'קוד האימות שלך לגישה ל-%{name}:'
   please_reply_to_this_email_if_you_didnt_request_this: 'השב למייל זה אם לא ביקשת זאת.'
   your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: החשבון שלך הועבר לארכיון. פנה למנהל המערכת כדי לשחזר את הגישה.
-  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: לא ניתן היה לגשת לדוא"ל שלך. ייתכן שזה קרה עקב שגיאת כתיב בכתובת או אם תיבת הדואר אינה זמינה. אנא פנה ל־support@docuseal.com כדי להתחבר.
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: לא ניתן היה לגשת לדוא"ל שלך. ייתכן שזה קרה עקב שגיאת כתיב בכתובת או אם תיבת הדואר אינה זמינה. אנא פנה ל־kevin@ar.cab כדי להתחבר.
   verification_required_refresh_the_page_and_pass_2fa: נדרש אימות. רענן את הדף והשלם אימות דו-שלבי.
   the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_email_html: השולח ביקש אימות דו-שלבי באמצעות סיסמה חד-פעמית שנשלחה לכתובת הדוא"ל שלך <b>%{email}</b>.
   please_contact_the_requester_to_specify_your_email_for_two_factor_authentication: אנא פנה לשולח וציין את כתובת הדוא"ל שלך לאימות דו-שלבי.
@@ -7548,7 +7548,7 @@ nl: &nl
   use_otp_code_to_access_the_api_key_html: Gebruik de code <b>%{code}</b> om toegang te krijgen tot de API-sleutel.
   please_reply_to_this_email_if_you_dont_recognize_this_request: Reageer op deze e-mail als u dit verzoek niet herkent.
   your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: Uw gebruikersaccount is gearchiveerd. Neem contact op met uw beheerder om de toegang tot uw account te herstellen.
-  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Uw e-mailadres kon niet worden bereikt. Dit kan gebeuren als er een typefout in uw adres zit of als uw mailbox niet beschikbaar is. Neem contact op met support@docuseal.com om in te loggen.
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Uw e-mailadres kon niet worden bereikt. Dit kan gebeuren als er een typefout in uw adres zit of als uw mailbox niet beschikbaar is. Neem contact op met kevin@ar.cab om in te loggen.
   efficient_search_with_search_index: Efficiënt zoeken met zoekindex
   reindex: Opnieuw indexeren
   build_search_index: Zoekindex opbouwen
@@ -7729,7 +7729,7 @@ nl: &nl
     settings: Instellingen
     settings_account_description: Met uitgebreide accountinstellingen kunt u de eSigning-ervaring aanpassen en meer gebruikers uitnodigen.
     support: Ondersteuning
-    support_description: U kunt onze selfservice AI-assistent gebruiken of ons e-mailen op support@docuseal.com als u vragen heeft.
+    support_description: U kunt onze selfservice AI-assistent gebruiken of ons e-mailen op kevin@ar.cab als u vragen heeft.
     settings_template_description: Gebruik deze knop om naar uw accountinstellingenpagina te gaan.
   doorkeeper:
     scopes:
@@ -7861,7 +7861,7 @@ ar:
   your_verification_code_to_access_the_name: 'رمز التحقق الخاص بك للوصول إلى "%{name}":'
   please_reply_to_this_email_if_you_didnt_request_this: 'يرجى الرد على هذا البريد إذا لم تطلب ذلك.'
   your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: تمت أرشفة حسابك. يرجى التواصل مع المسؤول لاستعادة الوصول إلى حسابك.
-  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: تعذّر الوصول إلى بريدك الإلكتروني. قد يحدث هذا في حال وجود خطأ في العنوان أو إذا كان صندوق البريد غير متاح. يرجى التواصل مع support@docuseal.com لتسجيل الدخول.
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: تعذّر الوصول إلى بريدك الإلكتروني. قد يحدث هذا في حال وجود خطأ في العنوان أو إذا كان صندوق البريد غير متاح. يرجى التواصل مع kevin@ar.cab لتسجيل الدخول.
   verification_required_refresh_the_page_and_pass_2fa: مطلوب التحقق. قم بتحديث الصفحة وأكمل المصادقة الثنائية.
   the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_email_html: طلب المرسل المصادقة الثنائية عبر كلمة مرور لمرة واحدة مرسلة إلى عنوان بريدك الإلكتروني <b>%{email}</b>.
   please_contact_the_requester_to_specify_your_email_for_two_factor_authentication: يرجى الاتصال بالمرسل لتحديد عنوان بريدك الإلكتروني للمصادقة الثنائية.
@@ -7962,7 +7962,7 @@ ko:
   your_verification_code_to_access_the_name: '"%{name}"에 액세스하기 위한 인증 코드:'
   please_reply_to_this_email_if_you_didnt_request_this: 요청하지 않았다면 이 이메일에 회신하세요.
   your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: 사용자 계정이 보관되었습니다. 계정 접근을 복원하려면 관리자에게 문의하세요.
-  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: 이메일에 접근할 수 없습니다. 주소에 오타가 있거나 메일박스가 사용 불가능한 경우 발생할 수 있습니다. 로그인하려면 support@docuseal.com에 문의하세요.
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: 이메일에 접근할 수 없습니다. 주소에 오타가 있거나 메일박스가 사용 불가능한 경우 발생할 수 있습니다. 로그인하려면 kevin@ar.cab에 문의하세요.
   verification_required_refresh_the_page_and_pass_2fa: 인증이 필요합니다. 페이지를 새로 고치고 2단계 인증을 완료하세요.
   the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_email_html: 발신자가 <b>%{email}</b> 이메일 주소로 전송된 일회용 비밀번호를 통해 2단계 인증을 요청했습니다.
   please_contact_the_requester_to_specify_your_email_for_two_factor_authentication: 2단계 인증을 위해 이메일 주소를 지정하려면 요청자에게 문의하세요.
@@ -8063,7 +8063,7 @@ ja:
   your_verification_code_to_access_the_name: '"%{name}" へアクセスするための認証コード：'
   please_reply_to_this_email_if_you_didnt_request_this: このリクエストを行っていない場合は、このメールに返信してください。
   your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: あなたのユーザーアカウントはアーカイブされました。アクセスを復元するには管理者に連絡してください。
-  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: メールにアクセスできませんでした。アドレスの入力ミスやメールボックスが利用できない場合に発生することがあります。ログインするには support@docuseal.com に連絡してください。
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: メールにアクセスできませんでした。アドレスの入力ミスやメールボックスが利用できない場合に発生することがあります。ログインするには kevin@ar.cab に連絡してください。
   verification_required_refresh_the_page_and_pass_2fa: 認証が必要です。ページを更新して2段階認証を完了してください。
   the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_email_html: 送信者は、<b>%{email}</b> メールアドレスに送信されたワンタイムパスワードによる2段階認証を要求しました。
   please_contact_the_requester_to_specify_your_email_for_two_factor_authentication: 2段階認証用にメールアドレスを指定するために、送信者にお問い合わせください。
