@@ -28,9 +28,9 @@
     <% end %>
     <turbo-frame id="modal"></turbo-frame>
     <turbo-frame id="drawer"></turbo-frame>
-    <%= render 'shared/navbar' %>
+    <% unless content_for?(:hide_navbar) %><%= render 'shared/navbar' %><% end %>
     <% if flash.present? %><%= render 'shared/flash' %><% end %>
-    <div class="max-w-6xl mx-auto px-4 md:px-2 mb-8">
+    <div class="<%= content_for?(:full_width) ? '' : 'max-w-6xl mx-auto px-4 md:px-2 mb-8' %>">
       <%= yield %>
     </div>
     <%= render 'shared/body_scripts' %>

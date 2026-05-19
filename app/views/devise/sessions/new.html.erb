@@ -1,24 +1,43 @@
 <%= content_for(:canonical_url, new_user_session_url) %>
-<div class="max-w-lg mx-auto px-2">
-  <%= render 'devise/shared/select_server' if Docuseal.multitenant? %>
-  <h1 class="text-4xl font-bold text-center mt-8"><%= t('sign_in') %></h1>
-  <%= form_for(resource, as: resource_name, html: { class: 'space-y-6' }, data: { turbo: params[:redir].blank? }, url: session_path(resource_name)) do |f| %>
-    <%= render 'hidden_fields' %>
-    <div class="space-y-2" dir="auto">
-      <div class="form-control">
-        <%= f.label :email, t(:email), class: 'label' %>
-        <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'base-input' %>
+<% content_for(:hide_navbar, true) %>
+<% content_for(:full_width, true) %>
+<section class="relative min-h-screen overflow-hidden -mx-4 -mt-3 sm:-mx-2" style="background-color: #faf7f5;">
+  <div class="absolute inset-x-0 top-0 z-0 h-[40vh] bg-no-repeat"
+       style="background-image: url('/images/login-top-bg.svg'); background-size: cover;">
+  </div>
+  <div class="relative z-10 flex min-h-screen items-center justify-center pb-[20vh]">
+    <div class="w-full max-w-sm bg-white p-5 text-slate-900 rounded-lg border border-gray-200 shadow-md">
+      <div class="mb-4 flex flex-col gap-2">
+        <h3 class="text-xl font-semibold leading-none tracking-tight">Welcome home, arcaber.</h3>
+        <p class="text-sm font-normal text-slate-500">
+          By continuing, you accept
+          <span class="cursor-pointer underline">arcab Data, Privacy and Safety policies</span> for all
+          <span class="cursor-pointer underline">arcab Products and Services.</span>
+        </p>
       </div>
-      <div class="form-control">
-        <%= f.label :password, t(:password), class: 'label' %>
-        <%= f.password_field :password, autocomplete: 'current-password', class: 'base-input' %>
-      </div>
+      <%= render 'devise/shared/select_server' if Docuseal.multitenant? %>
+      <%= form_for(resource, as: resource_name, html: { class: 'space-y-4' }, data: { turbo: params[:redir].blank? }, url: session_path(resource_name)) do |f| %>
+        <%= render 'hidden_fields' %>
+        <div class="space-y-2" dir="auto">
+          <div class="form-control">
+            <%= f.label :email, t(:email), class: 'label' %>
+            <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'base-input' %>
+          </div>
+          <div class="form-control">
+            <%= f.label :password, t(:password), class: 'label' %>
+            <%= f.password_field :password, autocomplete: 'current-password', class: 'base-input' %>
+          </div>
+        </div>
+        <div class="form-control">
+          <%= f.button button_title(title: t(:sign_in), disabled_with: t(:signing_in)), class: 'base-button' %>
+        </div>
+      <% end %>
+      <%= render 'omniauthable' %>
+      <%= render 'extra_links' %>
+      <%= render 'devise/shared/links' %>
     </div>
-    <div class="form-control">
-      <%= f.button button_title(title: t(:sign_in), disabled_with: t(:signing_in)), class: 'base-button' %>
-    </div>
-  <% end %>
-  <%= render 'omniauthable' %>
-  <%= render 'extra_links' %>
-  <%= render 'devise/shared/links' %>
-</div>
+  </div>
+  <div class="fixed bottom-24 left-1/2 z-10 flex -translate-x-1/2 items-center justify-center">
+    <img src="/images/login-floating-logo.svg" alt="arcab logo" width="120" height="120" />
+  </div>
+</section>
