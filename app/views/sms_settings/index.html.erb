@@ -5,8 +5,7 @@
 
     <% value = @encrypted_config.value || {} %>
     <% sms_live = Sms.enabled_for?(current_account) %>
-    <%
-      provider_labels = {
+    <% provider_labels = {
         'bulkvs' => 'BulkVS',
         'twilio' => 'Twilio',
         'voipms' => 'VoIP.ms',
@@ -185,7 +184,7 @@
   <div class="w-0 md:w-52"></div>
 </div>
 
-<%= javascript_tag nonce: true do %>
+<script nonce="<%= content_security_policy_nonce %>">
   (function () {
     const select = document.getElementById('sms_provider_select')
     if (!select) return
@@ -199,4 +198,4 @@
     select.addEventListener('change', sync)
     sync()
   })()
-<% end %>
+</script>

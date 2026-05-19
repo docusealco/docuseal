@@ -41,7 +41,7 @@ module Sms
       private
 
       def normalize_space_url(raw)
-        raw.to_s.strip.sub(%r{\Ahttps?://}, '').sub(%r{/\z}, '')
+        raw.to_s.strip.sub(%r{\Ahttps?://}, '').delete_suffix('/')
       end
 
       def format_e164(raw)
@@ -70,9 +70,7 @@ module Sms
           { 'raw' => response.body.to_s }
         end
 
-        if response.is_a?(Net::HTTPSuccess) && body['error_code'].nil?
-          return body
-        end
+        return body if response.is_a?(Net::HTTPSuccess) && body['error_code'].nil?
 
         code = body['code'] || body['error_code']
         message = body['message'] || body['error_message'] || body['raw'] || "HTTP #{response.code}"

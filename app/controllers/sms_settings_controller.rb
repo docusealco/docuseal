@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class SmsSettingsController < ApplicationController
+  SECRET_KEYS = %w[basic_auth_token twilio_auth_token voipms_api_password signalwire_api_token].freeze
+
   before_action :load_encrypted_config
   authorize_resource :encrypted_config, only: :index
   authorize_resource :encrypted_config, parent: false, only: %i[create test_message]
@@ -45,8 +47,6 @@ class SmsSettingsController < ApplicationController
       EncryptedConfig.find_or_initialize_by(account: current_account,
                                             key: EncryptedConfig::SMS_CONFIGS_KEY)
   end
-
-  SECRET_KEYS = %w[basic_auth_token twilio_auth_token voipms_api_password signalwire_api_token].freeze
 
   def build_sms_value
     submitted = params.require(:encrypted_config).permit(value: {})[:value].to_h
