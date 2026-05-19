@@ -101,11 +101,7 @@
       class="text-center mt-4"
     >
       {{ t('powered_by') }}
-      <a
-        href="https://sign.arcab.co/start"
-        target="_blank"
-        class="underline"
-      >arcab Sign</a> - {{ t('open_source_documents_software') }}
+      arcab Sign
     </div>
   </div>
 </template>
@@ -302,3 +298,4 @@ export default {
   }
 }
 </script>
+
