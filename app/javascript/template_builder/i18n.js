@@ -679,7 +679,7 @@ const pt = {
   analyzing_: 'Analisando...',
   download: 'Baixar',
   downloading_: 'Baixando...',
-  view: 'Visualizar',
+  view: 'Ver',
   payment_link: 'Link de pagamento',
   strikeout: 'Tachado',
   draw_strikethrough_the_document: 'Desenhe uma linha de tachado no documento',

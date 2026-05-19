@@ -2512,6 +2512,11 @@ export default {
 
         this.selectedAreasRef.value = [area]
 
+        area.x = Math.min(Math.max(area.x, 0), 1)
+        area.y = Math.min(Math.max(area.y, 0), 1)
+        area.w = Math.min(Math.max(area.w, 0), 1)
+        area.h = Math.min(Math.max(area.h, 0), 1)
+
         this.save()
       } else {
         const documentRef = this.documentRefs.find((e) => e.document.uuid === area.attachment_uuid)
@@ -3141,7 +3146,11 @@ export default {
 
           const dynamicDocumentSaves = dynamicDocumentRefs.map((ref) => ref.saveBody())
 
-          Promise.all([this.save({ force: true, revision: this.withRevisions }), ...dynamicDocumentSaves]).then(() => {
+          Promise.all([this.save({ force: true }), ...dynamicDocumentSaves]).then(() => {
+            if (this.withRevisions) {
+              this.captureRevision()
+            }
+
             window.Turbo.visit(`/templates/${this.template.id}`)
           }).finally(() => {
             this.isSaving = false
@@ -3372,7 +3381,7 @@ export default {
         }
       })
     },
-    save ({ force = false, revision = false } = {}) {
+    save ({ force = false } = {}) {
       this.pendingFieldAttachmentUuids = []
 
       if (this.beforeRevisionSnapshot) {
@@ -3404,14 +3413,19 @@ export default {
             submitters: this.template.submitters,
             fields: this.template.fields,
             variables_schema: this.template.variables_schema
-          },
-          ...(revision ? { revision: true } : {})
+          }
         }),
         headers: { 'Content-Type': 'application/json' }
       }).then(() => {
         if (this.onSave) {
           this.onSave(this.template)
         }
+      })
+    },
+    captureRevision () {
+      return this.baseFetch(`/templates/${this.template.id}/versions`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
       })
     },
     onDynamicDocumentUpdate () {

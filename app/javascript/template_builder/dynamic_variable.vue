@@ -248,7 +248,7 @@ export default {
     FieldType,
     IconSettings
   },
-  inject: ['t', 'save', 'backgroundColor', 'dateFormats'],
+  inject: ['t', 'save', 'backgroundColor', 'dateFormats', 'locale'],
   provide () {
     return {
       fieldTypes: ['text', 'number', 'date', 'checkbox', 'radio', 'select']
@@ -308,15 +308,18 @@ export default {
       return { text: 'string', number: 'number', date: 'date', checkbox: 'boolean', radio: 'string', select: 'string' }
     },
     numberFormats () {
-      return [
-        'none',
-        'usd',
-        'eur',
-        'gbp',
-        'comma',
-        'dot',
-        'space'
-      ]
+      const formats = ['none', 'usd', 'eur', 'gbp', 'comma', 'dot', 'space']
+      const spaceLocales = ['fr-FR', 'es-ES', 'pt-PT', 'de-DE', 'it-IT', 'nl-NL']
+
+      formats.push(spaceLocales.includes(this.locale) ? 'percent_space' : 'percent')
+
+      const selectedFormat = this.schema.format
+
+      if (selectedFormat && !formats.includes(selectedFormat)) {
+        formats.push(selectedFormat)
+      }
+
+      return formats
     },
     availableDateFormats () {
       const formats = this.dateFormats.length
@@ -397,6 +400,10 @@ export default {
         return new Intl.NumberFormat('de-DE').format(number)
       } else if (format === 'space') {
         return new Intl.NumberFormat('fr-FR').format(number)
+      } else if (format === 'percent') {
+        return `${number}%`
+      } else if (format === 'percent_space') {
+        return `${String(number).replace('.', ',')} %`
       } else {
         return number
       }

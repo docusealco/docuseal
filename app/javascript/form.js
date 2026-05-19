@@ -52,7 +52,9 @@ safeRegisterElement('submission-form', class extends HTMLElement {
       completedMessage: JSON.parse(this.dataset.completedMessage || '{}'),
       completedRedirectUrl: this.dataset.completedRedirectUrl,
       attachments: reactive(JSON.parse(this.dataset.attachments)),
-      fields: JSON.parse(this.dataset.fields)
+      fields: JSON.parse(this.dataset.fields),
+      completeButtonContainer: document.getElementById('complete_button_container'),
+      completeButtonScrollContainer: document.getElementById('complete_button_container_scroll')
     })
 
     this.app.mount(this.appElem)
