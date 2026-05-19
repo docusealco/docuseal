@@ -39,6 +39,6 @@ class DashboardController < ApplicationController
   def maybe_render_landing
     return if signed_in?
 
-    render 'pages/landing'
+    redirect_to new_user_session_path
   end
 end
