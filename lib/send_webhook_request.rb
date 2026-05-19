@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module SendWebhookRequest
-  USER_AGENT = 'DocuSeal.com Webhook'
+  USER_AGENT = 'arcab Sign Webhook'
 
   LOCALHOSTS = DownloadUtils::LOCALHOSTS
 

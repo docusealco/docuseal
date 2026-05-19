@@ -3,7 +3,7 @@ module.exports = {
   daisyui: {
     themes: [
       {
-        docuseal: {
+        arcab: {
           "color-scheme": "light",
           primary: "#000fff",
           secondary: "#ef9fbc",

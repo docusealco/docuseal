@@ -26,7 +26,7 @@ module Mcp
           result: {
             protocolVersion: '2025-11-25',
             serverInfo: {
-              name: 'DocuSeal',
+              name: 'arcab Sign',
               version: Docuseal.version.to_s
             },
             capabilities: {
