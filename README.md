@@ -30,7 +30,7 @@ WaboSign is a fork of [DocuSeal](https://github.com/docusealco/docuseal) under A
 - Mobile-optimized signing flow
 - 14 UI languages
 - API + Webhooks for integrations
-- SMS invitations via [BulkVS](SMS.md)
+- SMS invitations via [BulkVS, Twilio, VoIP.ms, or SignalWire](SMS.md)
 - Bulk send via CSV / XLSX import
 - Google Workspace SSO ([setup guide](GOOGLE_SSO.md))
 - Conditional fields and formulas
@@ -40,7 +40,7 @@ WaboSign is a fork of [DocuSeal](https://github.com/docusealco/docuseal) under A
 ## Docker
 
 ```sh
-docker run --name wabosign -p 3000:3000 -v .:/data ghcr.io/wabolabs/wabosign:1.0.0
+docker run --name wabosign -p 3000:3000 -v .:/data ghcr.io/wabolabs/wabosign:1.3.0
 ```
 
 `:latest` always tracks the most recent release; pin a `MAJOR.MINOR.PATCH` tag for reproducible deployments.
@@ -61,8 +61,8 @@ WaboSign ships with email + password (Devise) and TOTP two-factor auth out of th
 
 ## Releases
 
-- **Current release:** 1.0.0 — see [CHANGELOG.md](CHANGELOG.md).
-- **Container image:** `ghcr.io/wabolabs/wabosign:1.0.0` (or `:latest`).
+- **Current release:** 1.3.0 — see [CHANGELOG.md](CHANGELOG.md).
+- **Container image:** `ghcr.io/wabolabs/wabosign:1.3.0` (or `:latest`).
 - **Versioning:** `MAJOR.MINOR.PATCH` per [semver.org](https://semver.org).
 - **Tagging triggers a build:** pushing a `MAJOR.MINOR.PATCH` git tag runs [`.github/workflows/docker.yml`](.github/workflows/docker.yml), which builds `linux/amd64` + `linux/arm64` and pushes to GHCR.
 
