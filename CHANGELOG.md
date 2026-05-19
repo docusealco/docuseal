@@ -4,6 +4,28 @@ All notable changes to WaboSign are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] — 2026-05-19
+
+Adds three new SMS providers alongside the existing BulkVS integration.
+
+### Added
+- [Twilio](lib/sms/providers/twilio.rb) — form-encoded POST to the Messages API; Basic Auth with `SID:Token`; treats a `201` response carrying an `error_code` as a failure.
+- [VoIP.ms](lib/sms/providers/voipms.rb) — query-string-auth GET to `sendSMS`; treats `status != "success"` as a failure even on HTTP 200; enforces the API's 160-byte hard cap before dispatch.
+- [SignalWire](lib/sms/providers/signalwire.rb) — Twilio-shaped client targeting the per-account Space URL host; strips `https://` and any trailing `/` from the user-supplied space URL.
+- [/settings/sms](app/views/sms_settings/index.html.erb) — dynamic provider select driven by `Sms::SUPPORTED_PROVIDERS`, per-provider field blocks toggled by a nonce'd inline script (the app's CSP requires nonces on inline JS).
+- [SMS.md](SMS.md) — per-provider "Configuring …" sections, wire-format quick-reference table, updated extension and status-code map sections.
+
+### Changed
+- [lib/sms.rb](lib/sms.rb) dispatches via per-provider classes and delegates the "is this configured" check to each provider — replaces the BulkVS-only hardcoded gate in `enabled_for?`.
+- [app/controllers/sms_settings_controller.rb](app/controllers/sms_settings_controller.rb) extends the preserve-secret-on-blank-edit pattern (used for BulkVS) to all four providers' password/token fields via a `SECRET_KEYS` array.
+- Existing BulkVS configs keep working unchanged — credentials remain in their existing keys; the `provider` key defaults to `bulkvs` when absent.
+
+### Notes
+- Released image: `ghcr.io/wabolabs/wabosign:1.3.0` (also tagged `:latest`).
+- This release is a fast-follow on 1.2.0 — same upstream-sync state, plus the SMS providers.
+
+[1.3.0]: https://github.com/wabolabs/wabosign/releases/tag/1.3.0
+
 ## [1.2.0] — 2026-05-19
 
 Synced with upstream [DocuSeal 3.0.0](https://github.com/docusealco/docuseal/releases/tag/3.0.0) and added scripted-sweep tooling so future upstream merges are reproducible.
