@@ -59,7 +59,7 @@ class Submitter < ApplicationRecord
   has_many_attached :attachments
   has_many_attached :preview_documents
   has_many :template_accesses, through: :submission
-  has_many :email_events, as: :emailable, dependent: (Docuseal.multitenant? ? nil : :destroy)
+  has_many :email_events, as: :emailable, dependent: (Wabosign.multitenant? ? nil : :destroy)
 
   has_many :document_generation_events, dependent: :destroy
   has_many :submission_events, dependent: :destroy
@@ -68,7 +68,7 @@ class Submitter < ApplicationRecord
 
   scope :completed, -> { where.not(completed_at: nil) }
 
-  after_destroy :anonymize_email_events, if: -> { Docuseal.multitenant? }
+  after_destroy :anonymize_email_events, if: -> { Wabosign.multitenant? }
 
   def status
     if declined_at?

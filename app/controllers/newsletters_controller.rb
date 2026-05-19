@@ -6,7 +6,7 @@ class NewslettersController < ApplicationController
   def show; end
 
   def update
-    Faraday.post(Docuseal::NEWSLETTER_URL, newsletter_params.to_json, 'Content-Type' => 'application/json')
+    Faraday.post(Wabosign::NEWSLETTER_URL, newsletter_params.to_json, 'Content-Type' => 'application/json')
   rescue StandardError => e
     Rails.logger.error(e)
   ensure

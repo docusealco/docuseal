@@ -30,7 +30,7 @@ module Submitters
   module_function
 
   def search(current_user, submitters, keyword)
-    if Docuseal.fulltext_search?
+    if Wabosign.fulltext_search?
       fulltext_search(current_user, submitters, keyword)
     else
       plain_search(submitters, keyword)

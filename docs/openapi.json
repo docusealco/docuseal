@@ -2,22 +2,22 @@
   "openapi": "3.0.0",
   "servers": [
     {
-      "url": "https://api.docuseal.com",
+      "url": "https://api.wabosign.com",
       "description": "Global Server"
     },
     {
-      "url": "https://api.docuseal.eu",
+      "url": "https://api.wabosign.eu",
       "description": "EU Server"
     }
   ],
   "info": {
     "version": "1.0.0",
-    "title": "DocuSeal API",
-    "description": "DocuSeal API specs",
+    "title": "WaboSign API",
+    "description": "WaboSign API specs",
     "contact": {
-      "name": "DocuSeal",
-      "email": "admin@docuseal.com",
-      "url": "https://www.docuseal.com"
+      "name": "WaboSign",
+      "email": "admin@wabosign.com",
+      "url": "https://www.wabosign.com"
     }
   },
   "components": {
@@ -572,8 +572,8 @@
                         {
                           "id": 5,
                           "uuid": "d94e615f-76e3-46d5-8f98-36bdacb8664a",
-                          "url": "https://docuseal.com/file/hash/sample-document.pdf",
-                          "preview_image_url": "https://docuseal.com/file/hash/0.jpg",
+                          "url": "https://wabosign.com/file/hash/sample-document.pdf",
+                          "preview_image_url": "https://wabosign.com/file/hash/0.jpg",
                           "filename": "example-document.pdf"
                         }
                       ]
@@ -1018,8 +1018,8 @@
                     {
                       "id": 5,
                       "uuid": "d94e615f-76e3-46d5-8f98-36bdacb8664a",
-                      "url": "https://docuseal.com/file/hash/sample-document.pdf",
-                      "preview_image_url": "https://docuseal.com/file/hash/0.jpg",
+                      "url": "https://wabosign.com/file/hash/sample-document.pdf",
+                      "preview_image_url": "https://wabosign.com/file/hash/0.jpg",
                       "filename": "example-document.pdf"
                     }
                   ]
@@ -1600,7 +1600,7 @@
                       "submitters_order": "random",
                       "slug": "VyL4szTwYoSvXq",
                       "status": "completed",
-                      "audit_log_url": "https://docuseal.com/file/hash/example.pdf",
+                      "audit_log_url": "https://wabosign.com/file/hash/example.pdf",
                       "combined_document_url": null,
                       "expire_at": null,
                       "completed_at": "2023-12-10T15:49:21.895Z",
@@ -1665,7 +1665,7 @@
           "Submissions"
         ],
         "summary": "Create a submission",
-        "description": "This API endpoint allows you to create signature requests (submissions) for a document template and send them to the specified submitters (signers).<br><b>Related Guides</b><br><a href=\"https://www.docuseal.com/guides/send-documents-for-signature-via-api\" class=\"link\">Send documents for signature via API</a><br><a href=\"https://www.docuseal.com/guides/pre-fill-pdf-document-form-fields-with-api\" class=\"link\">Pre-fill PDF document form fields with API</a>",
+        "description": "This API endpoint allows you to create signature requests (submissions) for a document template and send them to the specified submitters (signers).<br><b>Related Guides</b><br><a href=\"https://www.wabosign.com/guides/send-documents-for-signature-via-api\" class=\"link\">Send documents for signature via API</a><br><a href=\"https://www.wabosign.com/guides/pre-fill-pdf-document-form-fields-with-api\" class=\"link\">Pre-fill PDF document form fields with API</a>",
         "operationId": "createSubmission",
         "parameters": [],
         "requestBody": {
@@ -1681,7 +1681,7 @@
                 "properties": {
                   "template_id": {
                     "type": "integer",
-                    "description": "The unique identifier of the template. Document template forms can be created via the Web UI, <a href=\"https://www.docuseal.com/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form\" class=\"link\">PDF and DOCX API</a>, or <a href=\"https://www.docuseal.com/guides/create-pdf-document-fillable-form-with-html-api\" class=\"link\">HTML API</a>.",
+                    "description": "The unique identifier of the template. Document template forms can be created via the Web UI, <a href=\"https://www.wabosign.com/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form\" class=\"link\">PDF and DOCX API</a>, or <a href=\"https://www.wabosign.com/guides/create-pdf-document-fillable-form-with-html-api\" class=\"link\">HTML API</a>.",
                     "example": 1000001
                   },
                   "send_email": {
@@ -2264,7 +2264,7 @@
                       "send_sms": false
                     },
                     "role": "First Party",
-                    "embed_src": "https://docuseal.com/s/pAMimKcyrLjqVt"
+                    "embed_src": "https://wabosign.com/s/pAMimKcyrLjqVt"
                   }
                 ]
               }
@@ -2723,7 +2723,7 @@
                   "source": "link",
                   "submitters_order": "random",
                   "slug": "VyL4szTwYoSvXq",
-                  "audit_log_url": "https://docuseal.com/blobs/proxy/hash/example.pdf",
+                  "audit_log_url": "https://wabosign.com/blobs/proxy/hash/example.pdf",
                   "combined_document_url": null,
                   "completed_at": "2023-12-14T15:49:21.701Z",
                   "expire_at": null,
@@ -2757,7 +2757,7 @@
                       "documents": [
                         {
                           "name": "example",
-                          "url": "https://docuseal.com/blobs/proxy/hash/example.pdf"
+                          "url": "https://wabosign.com/blobs/proxy/hash/example.pdf"
                         }
                       ],
                       "role": "First Party"
@@ -2789,7 +2789,7 @@
                   "documents": [
                     {
                       "name": "example",
-                      "url": "https://docuseal.com/file/hash/example.pdf"
+                      "url": "https://wabosign.com/file/hash/example.pdf"
                     }
                   ],
                   "status": "completed"
@@ -2924,7 +2924,7 @@
                   "documents": [
                     {
                       "name": "example",
-                      "url": "https://docuseal.com/file/hash/example.pdf"
+                      "url": "https://wabosign.com/file/hash/example.pdf"
                     }
                   ]
                 }
@@ -3204,7 +3204,7 @@
                       "send_sms": false
                     },
                     "role": "First Party",
-                    "embed_src": "https://docuseal.com/s/pAMimKcyrLjqVt"
+                    "embed_src": "https://wabosign.com/s/pAMimKcyrLjqVt"
                   },
                   {
                     "id": 2,
@@ -3256,7 +3256,7 @@
           "Submissions"
         ],
         "summary": "Create a submission from PDF",
-        "description": "The API endpoint provides the functionality to create one-off submission request from a PDF. Use <code>{{Field Name;role=Signer1;type=date}}</code> text tags to define fillable fields in the document. See <a href=\"https://www.docuseal.com/examples/fieldtags.pdf\" target=\"_blank\" class=\"link font-bold\">https://www.docuseal.com/examples/fieldtags.pdf</a> for more text tag formats. Or specify the exact pixel coordinates of the document fields using `fields` param.<br><b>Related Guides</b><br><a href=\"https://www.docuseal.com/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form\" class=\"link\">Use embedded text field tags to create a fillable form</a>\n",
+        "description": "The API endpoint provides the functionality to create one-off submission request from a PDF. Use <code>{{Field Name;role=Signer1;type=date}}</code> text tags to define fillable fields in the document. See <a href=\"https://www.wabosign.com/examples/fieldtags.pdf\" target=\"_blank\" class=\"link font-bold\">https://www.wabosign.com/examples/fieldtags.pdf</a> for more text tag formats. Or specify the exact pixel coordinates of the document fields using `fields` param.<br><b>Related Guides</b><br><a href=\"https://www.wabosign.com/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form\" class=\"link\">Use embedded text field tags to create a fillable form</a>\n",
         "operationId": "createSubmissionFromPdf",
         "parameters": [],
         "requestBody": {
@@ -4220,7 +4220,7 @@
                         "completed_redirect_url": "https://example.com/"
                       },
                       "role": "First Party",
-                      "embed_src": "https://docuseal.com/s/pAMimKcyrLjqVt"
+                      "embed_src": "https://wabosign.com/s/pAMimKcyrLjqVt"
                     }
                   ],
                   "source": "api",
@@ -4271,7 +4271,7 @@
           "Submissions"
         ],
         "summary": "Create a submission from DOCX",
-        "description": "The API endpoint provides functionality to create a one-off submission request from a DOCX file with dynamic content variables. Use <code>[[variable_name]]</code> text tags to define dynamic content variables in the document. See <a href=\"https://www.docuseal.com/examples/demo_template.docx\" target=\"_blank\" class=\"link font-bold\">https://www.docuseal.com/examples/demo_template.docx</a> for the specific text variable syntax, including dynamic content tables and list. You can also use the <code>{{signature}}</code> field syntax to define fillable fields, as in a PDF.<br><b>Related Guides</b><br><a href=\"https://www.docuseal.com/guides/use-dynamic-content-variables-in-docx-to-create-personalized-documents\" class=\"link\">Use dynamic content variables in DOCX to create personalized documents</a>",
+        "description": "The API endpoint provides functionality to create a one-off submission request from a DOCX file with dynamic content variables. Use <code>[[variable_name]]</code> text tags to define dynamic content variables in the document. See <a href=\"https://www.wabosign.com/examples/demo_template.docx\" target=\"_blank\" class=\"link font-bold\">https://www.wabosign.com/examples/demo_template.docx</a> for the specific text variable syntax, including dynamic content tables and list. You can also use the <code>{{signature}}</code> field syntax to define fillable fields, as in a PDF.<br><b>Related Guides</b><br><a href=\"https://www.wabosign.com/guides/use-dynamic-content-variables-in-docx-to-create-personalized-documents\" class=\"link\">Use dynamic content variables in DOCX to create personalized documents</a>",
         "operationId": "createSubmissionFromDocx",
         "parameters": [],
         "requestBody": {
@@ -5133,7 +5133,7 @@
                         "completed_redirect_url": "https://example.com/"
                       },
                       "role": "First Party",
-                      "embed_src": "https://docuseal.com/s/pAMimKcyrLjqVt"
+                      "embed_src": "https://wabosign.com/s/pAMimKcyrLjqVt"
                     }
                   ],
                   "source": "api",
@@ -5184,7 +5184,7 @@
           "Submissions"
         ],
         "summary": "Create a submission from HTML",
-        "description": "This API endpoint allows you to create a one-off submission request document using the provided HTML content, with special field tags rendered as a fillable and signable form.<br><b>Related Guides</b><br><a href=\"https://www.docuseal.com/guides/create-pdf-document-fillable-form-with-html-api\" class=\"link\">Create PDF document fillable form with HTML</a>",
+        "description": "This API endpoint allows you to create a one-off submission request document using the provided HTML content, with special field tags rendered as a fillable and signable form.<br><b>Related Guides</b><br><a href=\"https://www.wabosign.com/guides/create-pdf-document-fillable-form-with-html-api\" class=\"link\">Create PDF document fillable form with HTML</a>",
         "operationId": "createSubmissionFromHtml",
         "parameters": [],
         "requestBody": {
@@ -6061,7 +6061,7 @@
                         "completed_redirect_url": "https://example.com/"
                       },
                       "role": "First Party",
-                      "embed_src": "https://docuseal.com/s/pAMimKcyrLjqVt"
+                      "embed_src": "https://wabosign.com/s/pAMimKcyrLjqVt"
                     }
                   ],
                   "source": "api",
@@ -6439,7 +6439,7 @@
                   "documents": [
                     {
                       "name": "sample-document",
-                      "url": "https://docuseal.com/file/hash/sample-document.pdf"
+                      "url": "https://wabosign.com/file/hash/sample-document.pdf"
                     }
                   ],
                   "role": "First Party"
@@ -6459,7 +6459,7 @@
           "Submitters"
         ],
         "summary": "Update a submitter",
-        "description": "The API endpoint allows you to update submitter details, pre-fill or update field values and re-send emails.<br><b>Related Guides</b><br><a href=\"https://www.docuseal.com/guides/pre-fill-pdf-document-form-fields-with-api#automatically_sign_documents_via_api\" class=\"link\">Automatically sign documents via API</a>",
+        "description": "The API endpoint allows you to update submitter details, pre-fill or update field values and re-send emails.<br><b>Related Guides</b><br><a href=\"https://www.wabosign.com/guides/pre-fill-pdf-document-form-fields-with-api#automatically_sign_documents_via_api\" class=\"link\">Automatically sign documents via API</a>",
         "operationId": "updateSubmitter",
         "parameters": [
           {
@@ -6975,7 +6975,7 @@
                   ],
                   "documents": [],
                   "role": "First Party",
-                  "embed_src": "https://docuseal.com/s/pAMimKcyrLjqVt"
+                  "embed_src": "https://wabosign.com/s/pAMimKcyrLjqVt"
                 }
               }
             }
@@ -7401,7 +7401,7 @@
                       "documents": [
                         {
                           "name": "sample-document",
-                          "url": "https://docuseal.com/file/eyJfcmFpbHMiOnsiIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--f9758362acced0f3c86cdffad02800e/sample-document.pdf"
+                          "url": "https://wabosign.com/file/eyJfcmFpbHMiOnsiIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--f9758362acced0f3c86cdffad02800e/sample-document.pdf"
                         }
                       ],
                       "role": "First Party"
@@ -7898,7 +7898,7 @@
                     {
                       "id": 3,
                       "uuid": "09a8bc73-a7a9-4fd9-8173-95752bdf0af5",
-                      "url": "https://docuseal.com/file/hash/Test%20Template.pdf"
+                      "url": "https://wabosign.com/file/hash/Test%20Template.pdf"
                     }
                   ]
                 }
@@ -8358,7 +8358,7 @@
                     {
                       "id": 9,
                       "uuid": "ded62277-9705-4fac-b5dc-58325d4102eb",
-                      "url": "https://docuseal.com/file/hash/sample-document.pdf",
+                      "url": "https://wabosign.com/file/hash/sample-document.pdf",
                       "filename": "sample-document.pdf"
                     }
                   ]
@@ -8380,7 +8380,7 @@
           "Templates"
         ],
         "summary": "Create a template from HTML",
-        "description": "The API endpoint provides the functionality to seamlessly generate a PDF document template by utilizing the provided HTML content while incorporating pre-defined fields.<br><b>Related Guides</b><br><a href=\"https://www.docuseal.com/guides/create-pdf-document-fillable-form-with-html-api\" class=\"link\">Create PDF document fillable form with HTML</a>",
+        "description": "The API endpoint provides the functionality to seamlessly generate a PDF document template by utilizing the provided HTML content while incorporating pre-defined fields.<br><b>Related Guides</b><br><a href=\"https://www.wabosign.com/guides/create-pdf-document-fillable-form-with-html-api\" class=\"link\">Create PDF document fillable form with HTML</a>",
         "operationId": "createTemplateFromHtml",
         "parameters": [],
         "requestBody": {
@@ -8871,7 +8871,7 @@
                     {
                       "id": 3,
                       "uuid": "09a8bc73-a7a9-4fd9-8173-95752bdf0af5",
-                      "url": "https://docuseal.com/file/hash/Test%20Template.pdf"
+                      "url": "https://wabosign.com/file/hash/Test%20Template.pdf"
                     }
                   ]
                 }
@@ -8892,7 +8892,7 @@
           "Templates"
         ],
         "summary": "Create a template from Word DOCX",
-        "description": "The API endpoint provides the functionality to create a fillable document template for existing Microsoft Word document. Use <code>{{Field Name;role=Signer1;type=date}}</code> text tags to define fillable fields in the document. See <a href=\"https://www.docuseal.com/examples/fieldtags.docx\" target=\"_blank\" class=\"link font-bold\" >https://www.docuseal.com/examples/fieldtags.docx</a> for more text tag formats. Or specify the exact pixel coordinates of the document fields using `fields` param.<br><b>Related Guides</b><br><a href=\"https://www.docuseal.com/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form\" class=\"link\">Use embedded text field tags to create a fillable form</a>\n",
+        "description": "The API endpoint provides the functionality to create a fillable document template for existing Microsoft Word document. Use <code>{{Field Name;role=Signer1;type=date}}</code> text tags to define fillable fields in the document. See <a href=\"https://www.wabosign.com/examples/fieldtags.docx\" target=\"_blank\" class=\"link font-bold\" >https://www.wabosign.com/examples/fieldtags.docx</a> for more text tag formats. Or specify the exact pixel coordinates of the document fields using `fields` param.<br><b>Related Guides</b><br><a href=\"https://www.wabosign.com/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form\" class=\"link\">Use embedded text field tags to create a fillable form</a>\n",
         "operationId": "createTemplateFromDocx",
         "parameters": [],
         "requestBody": {
@@ -9595,7 +9595,7 @@
                     {
                       "id": 7,
                       "uuid": "48d2998f-266b-47e4-beb2-250ab7ccebdf",
-                      "url": "https://docuseal.com/hash/DemoPDF.pdf"
+                      "url": "https://wabosign.com/hash/DemoPDF.pdf"
                     }
                   ]
                 }
@@ -9616,7 +9616,7 @@
           "Templates"
         ],
         "summary": "Create a template from PDF",
-        "description": "The API endpoint provides the functionality to create a fillable document template for a PDF file. Use <code>{{Field Name;role=Signer1;type=date}}</code> text tags to define fillable fields in the document. See <a href=\"https://www.docuseal.com/examples/fieldtags.pdf\" target=\"_blank\" class=\"link font-bold\">https://www.docuseal.com/examples/fieldtags.pdf</a> for more text tag formats. Or specify the exact pixel coordinates of the document fields using `fields` param.<br><b>Related Guides</b><br><a href=\"https://www.docuseal.com/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form\" class=\"link\">Use embedded text field tags to create a fillable form</a>\n",
+        "description": "The API endpoint provides the functionality to create a fillable document template for a PDF file. Use <code>{{Field Name;role=Signer1;type=date}}</code> text tags to define fillable fields in the document. See <a href=\"https://www.wabosign.com/examples/fieldtags.pdf\" target=\"_blank\" class=\"link font-bold\">https://www.wabosign.com/examples/fieldtags.pdf</a> for more text tag formats. Or specify the exact pixel coordinates of the document fields using `fields` param.<br><b>Related Guides</b><br><a href=\"https://www.wabosign.com/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form\" class=\"link\">Use embedded text field tags to create a fillable form</a>\n",
         "operationId": "createTemplateFromPdf",
         "parameters": [],
         "requestBody": {
@@ -10337,7 +10337,7 @@
                     {
                       "id": 7,
                       "uuid": "48d2998f-266b-47e4-beb2-250ab7ccebdf",
-                      "url": "https://docuseal.com/file/hash/Demo%20PDF.pdf"
+                      "url": "https://wabosign.com/file/hash/Demo%20PDF.pdf"
                     }
                   ]
                 }
@@ -10816,7 +10816,7 @@
                     {
                       "id": 9,
                       "uuid": "ded62277-9705-4fac-b5dc-58325d4102eb",
-                      "url": "https://docuseal.com/file/hash/sample-document.pdf",
+                      "url": "https://wabosign.com/file/hash/sample-document.pdf",
                       "filename": "sample-document.pdf"
                     }
                   ]

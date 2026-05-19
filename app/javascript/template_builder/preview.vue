@@ -262,7 +262,7 @@ export default {
       return [...this.document.preview_images].sort((a, b) => parseInt(a.filename) - parseInt(b.filename))[0]
     },
     modalContainerEl () {
-      return this.$el.getRootNode().querySelector('#docuseal_modal_container')
+      return this.$el.getRootNode().querySelector('#wabosign_modal_container')
     }
   },
   methods: {

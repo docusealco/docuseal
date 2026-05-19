@@ -277,7 +277,7 @@
         :data-tip="t('unlock_sms_verified_phone_number_field_with_paid_plan_use_text_field_for_phone_numbers_without_verification')"
       >
         <a
-          href="https://www.docuseal.com/pricing"
+          href="https://www.wabosign.com/pricing"
           target="_blank"
           class="opacity-50 flex items-center justify-center border border-dashed border-base-300 w-full rounded relative fields-grid-item"
           :style="{ backgroundColor }"
@@ -303,7 +303,7 @@
         :data-tip="t('obtain_qualified_electronic_signature_with_the_trusted_provider_click_to_learn_more')"
       >
         <a
-          href="https://www.docuseal.com/qualified-electronic-signature"
+          href="https://www.wabosign.com/qualified-electronic-signature"
           target="_blank"
           class="opacity-50 flex items-center justify-center border border-dashed border-base-300 w-full rounded relative fields-grid-item"
           :style="{ backgroundColor }"
@@ -616,7 +616,7 @@ export default {
   },
   mounted () {
     try {
-      this.showCustomTab = localStorage.getItem('docuseal_builder_tab') === 'custom'
+      this.showCustomTab = localStorage.getItem('wabosign_builder_tab') === 'custom'
     } catch (e) {
       console.error(e)
     }
@@ -672,7 +672,7 @@ export default {
     },
     setFieldsTab (type) {
       try {
-        localStorage.setItem('docuseal_builder_tab', type)
+        localStorage.setItem('wabosign_builder_tab', type)
       } catch (e) {
         console.error(e)
       }
@@ -864,7 +864,7 @@ export default {
       hiddenEl.style.opacity = '0'
       hiddenEl.style.position = 'fixed'
 
-      root.querySelector('#docuseal_modal_container').appendChild(hiddenEl)
+      root.querySelector('#wabosign_modal_container').appendChild(hiddenEl)
 
       event.dataTransfer.setDragImage(hiddenEl, 0, 0)
 

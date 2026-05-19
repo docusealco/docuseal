@@ -31,7 +31,7 @@ class SubmittersAutocompleteController < ApplicationController
 
   def search_submitters(submitters, field)
     if field
-      if Docuseal.fulltext_search?
+      if Wabosign.fulltext_search?
         Submitters.fulltext_search_field(current_user, submitters, params[:q], field)
       else
         column = Submitter.arel_table[field.to_sym]

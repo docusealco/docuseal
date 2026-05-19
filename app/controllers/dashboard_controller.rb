@@ -20,9 +20,9 @@ class DashboardController < ApplicationController
   private
 
   def maybe_redirect_product_url
-    return if !Docuseal.multitenant? || signed_in?
+    return if !Wabosign.multitenant? || signed_in?
 
-    redirect_to Docuseal::PRODUCT_URL, allow_other_host: true
+    redirect_to Wabosign::PRODUCT_URL, allow_other_host: true
   end
 
   def maybe_redirect_mfa_setup

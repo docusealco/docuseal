@@ -314,7 +314,7 @@ export default {
       return this.buildDefaultName(this.field)
     },
     modalContainerEl () {
-      return this.$el.getRootNode().querySelector('#docuseal_modal_container')
+      return this.$el.getRootNode().querySelector('#wabosign_modal_container')
     }
   },
   methods: {

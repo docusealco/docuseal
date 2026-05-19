@@ -35,7 +35,7 @@ module DownloadUtils
 
   module_function
 
-  def call(url, validate: Docuseal.multitenant?)
+  def call(url, validate: Wabosign.multitenant?)
     uri = begin
       URI(url)
     rescue URI::Error
@@ -57,7 +57,7 @@ module DownloadUtils
     raise UnableToDownload, "Error loading: #{uri}. Can't download from localhost." if uri.host.in?(LOCALHOSTS)
   end
 
-  def conn(validate: Docuseal.multitenant?)
+  def conn(validate: Wabosign.multitenant?)
     Faraday.new do |faraday|
       faraday.response :follow_redirects, callback: lambda { |_, new_env|
         validate_uri!(new_env[:url]) if validate

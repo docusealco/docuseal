@@ -5,7 +5,7 @@ class SendTestWebhookRequestJob
 
   sidekiq_options retry: 0
 
-  USER_AGENT = 'DocuSeal.com Webhook'
+  USER_AGENT = 'WaboSign.com Webhook'
 
   HttpsError = Class.new(StandardError)
   LocalhostError = Class.new(StandardError)
@@ -19,7 +19,7 @@ class SendTestWebhookRequestJob
 
     return unless webhook_url
 
-    if Docuseal.multitenant?
+    if Wabosign.multitenant?
       uri = begin
         URI(webhook_url.url)
       rescue URI::Error

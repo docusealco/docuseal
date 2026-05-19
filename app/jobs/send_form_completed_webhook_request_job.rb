@@ -22,7 +22,7 @@ class SendFormCompletedWebhookRequestJob
 
     Submissions::EnsureResultGenerated.call(submitter)
 
-    ActiveStorage::Current.url_options = Docuseal.default_url_options
+    ActiveStorage::Current.url_options = Wabosign.default_url_options
 
     resp = SendWebhookRequest.call(webhook_url, event_type: 'form.completed',
                                                 event_uuid: params['event_uuid'],

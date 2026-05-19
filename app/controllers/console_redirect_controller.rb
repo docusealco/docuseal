@@ -6,10 +6,10 @@ class ConsoleRedirectController < ApplicationController
 
   def index
     if request.path == '/upgrade'
-      params[:redir] = Docuseal.multitenant? ? "#{Docuseal::CONSOLE_URL}/plans" : "#{Docuseal::CONSOLE_URL}/on_premises"
+      params[:redir] = Wabosign.multitenant? ? "#{Wabosign::CONSOLE_URL}/plans" : "#{Wabosign::CONSOLE_URL}/on_premises"
     end
 
-    params[:redir] = "#{Docuseal::CONSOLE_URL}/manage" if request.path == '/manage'
+    params[:redir] = "#{Wabosign::CONSOLE_URL}/manage" if request.path == '/manage'
 
     return redirect_to(new_user_session_path({ redir: params[:redir] }.compact)) if true_user.blank?
 
@@ -18,9 +18,9 @@ class ConsoleRedirectController < ApplicationController
                                exp: 1.minute.from_now.to_i)
 
     redir_uri = Addressable::URI.parse(params[:redir])
-    path = redir_uri.path if params[:redir].to_s.starts_with?(Docuseal::CONSOLE_URL)
+    path = redir_uri.path if params[:redir].to_s.starts_with?(Wabosign::CONSOLE_URL)
 
-    redirect_to "#{Docuseal::CONSOLE_URL}#{path}?#{{ **redir_uri&.query_values, 'auth' => auth }.to_query}",
+    redirect_to "#{Wabosign::CONSOLE_URL}#{path}?#{{ **redir_uri&.query_values, 'auth' => auth }.to_query}",
                 allow_other_host: true
   end
 end

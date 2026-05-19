@@ -1,6 +1,6 @@
 <%= content_for(:canonical_url, new_user_session_url) %>
 <div class="max-w-lg mx-auto px-2">
-  <%= render 'devise/shared/select_server' if Docuseal.multitenant? %>
+  <%= render 'devise/shared/select_server' if Wabosign.multitenant? %>
   <h1 class="text-4xl font-bold text-center mt-8"><%= t('sign_in') %></h1>
   <%= form_for(resource, as: resource_name, html: { class: 'space-y-6' }, data: { turbo: params[:redir].blank? }, url: session_path(resource_name)) do |f| %>
     <%= render 'hidden_fields' %>

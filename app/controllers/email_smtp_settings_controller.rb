@@ -9,7 +9,7 @@ class EmailSmtpSettingsController < ApplicationController
 
   def create
     if @encrypted_config.update(email_configs)
-      unless Docuseal.multitenant?
+      unless Wabosign.multitenant?
         SettingsMailer.smtp_successful_setup(@encrypted_config.value['from_email'] || current_user.email).deliver_now!
       end
 

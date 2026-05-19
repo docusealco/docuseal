@@ -2,7 +2,7 @@
 
 class ErrorsController < ActionController::Base
   ENTERPRISE_FEATURE_MESSAGE =
-    'This feature is available in Pro Edition: https://www.docuseal.com/pricing'
+    'This feature is available in Pro Edition: https://www.wabosign.com/pricing'
 
   ENTERPRISE_PATHS = [
     '/submissions/html',

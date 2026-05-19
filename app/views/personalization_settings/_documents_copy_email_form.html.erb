@@ -33,7 +33,7 @@
             </span>
             <%= ff.check_box :attach_audit_log, { checked: ff.object.attach_audit_log != false, class: 'toggle' }, 'true', 'false' %>
           </div>
-          <% unless Docuseal.multitenant? %>
+          <% unless Wabosign.multitenant? %>
             <div class="flex items-center justify-between mx-1">
               <span>
                 <%= t('bcc_recipients') %>
@@ -41,7 +41,7 @@
               <%= ff.check_box :bcc_recipients, { checked: ff.object.bcc_recipients == true, class: 'toggle' }, 'true', 'false' %>
             </div>
           <% end %>
-          <% if !Docuseal.multitenant? || can?(:manage, :personalization_advanced) %>
+          <% if !Wabosign.multitenant? || can?(:manage, :personalization_advanced) %>
             <div class="flex items-center justify-between mx-1">
               <span>
                 <%= t('send_emails_automatically_on_completion') %>

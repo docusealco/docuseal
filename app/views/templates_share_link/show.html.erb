@@ -81,7 +81,7 @@
               </div>
             </div>
           <% end %>
-          <% if Docuseal.multitenant? || Accounts.can_send_emails?(current_account) %>
+          <% if Wabosign.multitenant? || Accounts.can_send_emails?(current_account) %>
             <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mt-4' }, data: { close_on_submit: false } do |f| %>
               <%= f.fields_for :preferences, Struct.new(:shared_link_2fa).new(@template.preferences['shared_link_2fa'] == true) do |ff| %>
                 <label for="template_preferences_shared_link_2fa" class="flex items-center mt-4 h-14 justify-between gap-1 alert bg-base-100 border-base-300">

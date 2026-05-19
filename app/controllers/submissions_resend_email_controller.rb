@@ -11,7 +11,7 @@ class SubmissionsResendEmailController < ApplicationController
   def create
     submitters = @submission.submitters.reject(&:completed_at?).select { |s| s.email.present? && !s.declined_at? }
 
-    if Docuseal.multitenant?
+    if Wabosign.multitenant?
       recent_submitter_ids =
         SubmissionEvent.where(submitter_id: submitters.map(&:id),
                               event_type: 'send_email',

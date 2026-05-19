@@ -64,7 +64,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    return redirect_to settings_users_path, notice: I18n.t('unable_to_update_user') if Docuseal.demo?
+    return redirect_to settings_users_path, notice: I18n.t('unable_to_update_user') if Wabosign.demo?
 
     attrs = user_params.compact_blank
     attrs = attrs.merge(user_params.slice(:archived_at)) if current_ability.can?(:create, @user)
@@ -92,7 +92,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    if Docuseal.demo? || @user.id == current_user.id
+    if Wabosign.demo? || @user.id == current_user.id
       return redirect_to settings_users_path, notice: I18n.t('unable_to_remove_user')
     end
 

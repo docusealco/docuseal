@@ -18,7 +18,7 @@ module Submitters
                     AccountConfig::WITH_SUBMITTER_TIMEZONE_KEY,
                     AccountConfig::WITH_TIMESTAMP_SECONDS_KEY,
                     AccountConfig::WITH_SIGNATURE_ID_REASON_KEY,
-                    *(Docuseal.multitenant? ? [] : [AccountConfig::POLICY_LINKS_KEY])].freeze
+                    *(Wabosign.multitenant? ? [] : [AccountConfig::POLICY_LINKS_KEY])].freeze
 
     module_function
 
