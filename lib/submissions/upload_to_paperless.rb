@@ -26,6 +26,25 @@ module Submissions
       ENV['PAPERLESS_NGX_URL'].present? && ENV['PAPERLESS_NGX_TOKEN'].present?
     end
 
+    def health_check
+      return { configured: false, reachable: false, url: nil, error: nil } unless configured?
+
+      url = ENV['PAPERLESS_NGX_URL'] # rubocop:disable Style/FetchEnvVar
+      response = connection.get('/api/') do |req|
+        req.headers['Authorization'] = "Token #{ENV['PAPERLESS_NGX_TOKEN']}" # rubocop:disable Style/FetchEnvVar
+        req.options.timeout = 3
+        req.options.open_timeout = 3
+      end
+
+      if response.status < 400
+        { configured: true, reachable: true, url: url, error: nil }
+      else
+        { configured: true, reachable: false, url: url, error: "HTTP #{response.status}" }
+      end
+    rescue Faraday::Error => e
+      { configured: true, reachable: false, url: url, error: e.message }
+    end
+
     def documents_to_upload(submission, title)
       documents = []
 

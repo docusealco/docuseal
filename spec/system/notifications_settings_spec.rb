@@ -69,6 +69,59 @@ RSpec.describe 'Notifications Settings' do
     end
   end
 
+  context 'when paperless-ngx is not configured' do
+    before do
+      allow(ENV).to receive(:[]).and_call_original
+      allow(ENV).to receive(:[]).with('PAPERLESS_NGX_URL').and_return(nil)
+      allow(ENV).to receive(:[]).with('PAPERLESS_NGX_TOKEN').and_return(nil)
+    end
+
+    it 'shows not configured status' do
+      visit settings_notifications_path
+
+      expect(page).to have_content('Paperless-ngx')
+      expect(page).to have_content('Not Configured')
+    end
+  end
+
+  context 'when paperless-ngx is configured and reachable' do
+    before do
+      allow(ENV).to receive(:[]).and_call_original
+      allow(ENV).to receive(:[]).with('PAPERLESS_NGX_URL').and_return('http://paperless:8000')
+      allow(ENV).to receive(:[]).with('PAPERLESS_NGX_TOKEN').and_return('test-token')
+
+      stub_request(:get, 'http://paperless:8000/api/')
+        .to_return(status: 200, body: '{}')
+    end
+
+    it 'shows connected status with URL' do
+      visit settings_notifications_path
+
+      expect(page).to have_content('Paperless-ngx')
+      expect(page).to have_content('Connected')
+      expect(page).to have_content('http://paperless:8000')
+    end
+  end
+
+  context 'when paperless-ngx is configured but unreachable' do
+    before do
+      allow(ENV).to receive(:[]).and_call_original
+      allow(ENV).to receive(:[]).with('PAPERLESS_NGX_URL').and_return('http://paperless:8000')
+      allow(ENV).to receive(:[]).with('PAPERLESS_NGX_TOKEN').and_return('test-token')
+
+      stub_request(:get, 'http://paperless:8000/api/')
+        .to_return(status: 500, body: 'Internal Server Error')
+    end
+
+    it 'shows unreachable status with error' do
+      visit settings_notifications_path
+
+      expect(page).to have_content('Paperless-ngx')
+      expect(page).to have_content('Unreachable')
+      expect(page).to have_content('HTTP 500')
+    end
+  end
+
   context 'when changes sign request email reminders settings' do
     it 'updates first reminder duration' do
       visit settings_notifications_path

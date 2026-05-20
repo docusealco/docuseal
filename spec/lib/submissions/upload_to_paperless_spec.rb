@@ -205,4 +205,75 @@ RSpec.describe Submissions::UploadToPaperless do
       end
     end
   end
+
+  describe '.health_check' do
+    context 'when not configured' do
+      before do
+        allow(ENV).to receive(:[]).with('PAPERLESS_NGX_URL').and_return(nil)
+        allow(ENV).to receive(:[]).with('PAPERLESS_NGX_TOKEN').and_return(nil)
+      end
+
+      it 'returns configured false with no error' do
+        result = described_class.health_check
+
+        expect(result).to eq(configured: false, reachable: false, url: nil, error: nil)
+      end
+    end
+
+    context 'when configured and reachable' do
+      before do
+        stub_request(:get, "#{paperless_url}/api/")
+          .with(headers: { 'Authorization' => "Token #{paperless_token}" })
+          .to_return(status: 200, body: '{"version": "2.0"}')
+      end
+
+      it 'returns configured and reachable with the URL' do
+        result = described_class.health_check
+
+        expect(result).to eq(configured: true, reachable: true, url: paperless_url, error: nil)
+      end
+    end
+
+    context 'when configured but server returns error' do
+      before do
+        stub_request(:get, "#{paperless_url}/api/")
+          .to_return(status: 500, body: 'Internal Server Error')
+      end
+
+      it 'returns configured but unreachable with HTTP status error' do
+        result = described_class.health_check
+
+        expect(result).to eq(configured: true, reachable: false, url: paperless_url, error: 'HTTP 500')
+      end
+    end
+
+    context 'when configured but connection times out' do
+      before do
+        stub_request(:get, "#{paperless_url}/api/")
+          .to_timeout
+      end
+
+      it 'returns configured but unreachable with timeout error' do
+        result = described_class.health_check
+
+        expect(result[:configured]).to be true
+        expect(result[:reachable]).to be false
+        expect(result[:url]).to eq(paperless_url)
+        expect(result[:error]).to be_present
+      end
+    end
+
+    context 'when configured but connection refused' do
+      before do
+        stub_request(:get, "#{paperless_url}/api/")
+          .to_raise(Faraday::ConnectionFailed.new('Connection refused'))
+      end
+
+      it 'returns configured but unreachable with connection error' do
+        result = described_class.health_check
+
+        expect(result).to eq(configured: true, reachable: false, url: paperless_url, error: 'Connection refused')
+      end
+    end
+  end
 end

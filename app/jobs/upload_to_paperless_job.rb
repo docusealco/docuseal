@@ -16,7 +16,14 @@ class UploadToPaperlessJob
 
     attempt = params['attempt'].to_i
 
-    Submissions::UploadToPaperless.call(submission)
+    Rails.logger.info("[Paperless-ngx] Uploading documents for submission #{submission.id}")
+
+    results = Submissions::UploadToPaperless.call(submission)
+
+    if results
+      Rails.logger.info("[Paperless-ngx] Upload complete for submission #{submission.id}: " \
+                        "#{results.size} document(s), task IDs: #{results.join(', ')}")
+    end
   rescue Submissions::UploadToPaperless::UploadError, Faraday::Error => e
     return if attempt >= MAX_ATTEMPTS
 
