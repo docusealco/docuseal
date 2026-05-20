@@ -412,7 +412,7 @@ export default {
             reader.readAsDataURL(file)
 
             reader.onloadend = () => {
-              const attachment = { url: reader.result, uuid: Math.random().toString() }
+              const attachment = { url: reader.result, uuid: crypto.randomUUID() }
 
               this.$emit('attached', attachment)
               this.$emit('update:model-value', attachment.uuid)

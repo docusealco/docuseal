@@ -82,7 +82,7 @@ class StartFormController < ApplicationController
 
     @submitter = Submitter.where(submission: @template.submissions)
                           .where.not(completed_at: nil)
-                          .find_by!(required_params.except('name'))
+                          .find_by!(required_params.slice('email', 'phone'))
   end
 
   private
@@ -120,7 +120,7 @@ class StartFormController < ApplicationController
 
     required_params = required_fields.index_with { |key| submitter_params[key] }
 
-    find_params = required_params.except('name')
+    find_params = required_params.slice('email', 'phone')
 
     submitter = Submitter.new if find_params.compact_blank.blank?
 

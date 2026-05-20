@@ -1,6 +1,7 @@
 ---
 name: CI
 on: [push]
+permissions: read-all
 
 jobs:
   rebrand_check:

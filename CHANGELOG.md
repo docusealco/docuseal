@@ -4,6 +4,28 @@ All notable changes to WaboSign are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.1] — 2026-05-20
+
+Security-focused patch addressing the alerts surfaced by the repo's first CodeQL scan (run against the 1.3.0 tag, commit [34250ac3](https://github.com/wabolabs/wabosign/commit/34250ac3)). No functional changes.
+
+### Security
+- [app/views/submissions_filters/_filter_modal.html.erb](app/views/submissions_filters/_filter_modal.html.erb) — reflected XSS (`rb/reflected-xss`): `params[:path]` flowed unsanitised into both the form `action` and the "remove filter" link `href`. Now constrained via a `filter_path` local that defaults to `/` unless the supplied value starts with `/`, blocking `javascript:` and absolute-URL payloads.
+- [app/controllers/start_form_controller.rb](app/controllers/start_form_controller.rb) — column-name injection (`rb/sql-injection`, two sites): `find_by!` / `find_or_initialize_by` were keyed by `required_params.except('name')`, whose keys derive from the template-owner-controlled `link_form_fields` preference. Replaced with `required_params.slice('email', 'phone')` so only the columns actually permitted by `submitter_params` can reach the SQL builder.
+- [app/models/user.rb](app/models/user.rb) — ReDoS (`rb/redos`): the local-part of `FULL_EMAIL_REGEXP` used a nested quantifier (`(?:(?:[a-z0-9_-]+[.+'])*[a-z0-9_-]+)*`) that backtracks exponentially on adversarial input. Rewritten as `[a-z0-9_]+(?:[.'+\-][a-z0-9_]+)*` — same accepted set, linear matching.
+- [app/controllers/mcp_controller.rb](app/controllers/mcp_controller.rb) — polynomial ReDoS (`rb/polynomial-redos`): Bearer-token extraction used `\ABearer\s+(.+)\z`, which CodeQL flags as polynomial on long Authorization headers. Replaced with a `start_with?('Bearer ')` check plus a string slice.
+- [app/javascript/submission_form/dropzone.vue](app/javascript/submission_form/dropzone.vue), [initials_step.vue](app/javascript/submission_form/initials_step.vue), [signature_step.vue](app/javascript/submission_form/signature_step.vue) — insecure randomness (`js/insecure-randomness`): attachment-correlation UUIDs were generated with `Math.random().toString()`. Swapped to `crypto.randomUUID()`. The IDs are UI-only, but the change matches the secure default and clears the alerts.
+- [.github/workflows/ci.yml](.github/workflows/ci.yml) — missing-workflow-permissions (`actions/missing-workflow-permissions`, six jobs): added a single workflow-level `permissions: read-all` block. All six CI jobs are read-only (lint/test/scan); none publish artefacts or post statuses that need write access.
+
+### Notes
+- The following CodeQL alerts on the 1.3.0 commit are false positives in context and are not addressed by this release; they should be dismissed in the GitHub Security tab:
+  - `rb/insecure-mass-assignment` on the five settings controllers (`user_configs`, `storage_settings`, `email_smtp_settings`, `account_configs`, `account_custom_fields`) — every call site uses `params.require(...).permit(...)` strong-parameters before `update!`.
+  - `rb/csrf-protection-disabled` on `users/omniauth_callbacks_controller.rb` (OAuth provider callbacks legitimately can't carry a CSRF token) and `send_submission_email_controller.rb` (intentional public endpoint, rate-limited).
+  - `rb/weak-sensitive-data-hashing` on `preview_document_page_controller.rb`, `config/dotenv.rb`, `lib/puma/plugin/redis_server.rb` — SHA-1 is used only as a non-cryptographic identifier (tempfile path, cache key) and is not protecting sensitive data.
+  - `rb/clear-text-storage-sensitive-data` on `sso_settings_controller.rb` — the target column is on [`EncryptedConfig`](app/models/encrypted_config.rb), which declares `encrypts :value`, so the SSO `client_secret` is stored encrypted at rest.
+- Released image: `ghcr.io/wabolabs/wabosign:1.3.1` (also tagged `:latest`).
+
+[1.3.1]: https://github.com/wabolabs/wabosign/releases/tag/1.3.1
+
 ## [1.3.0] — 2026-05-19
 
 Adds three new SMS providers alongside the existing BulkVS integration.
