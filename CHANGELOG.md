@@ -4,6 +4,20 @@ All notable changes to WaboSign are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.2] — 2026-05-20
+
+CI green-up patch. No functional or security changes.
+
+### Fixed
+- [app/models/user.rb](app/models/user.rb) — `Style/RedundantRegexpEscape` (Rubocop): removed unnecessary `\-` escapes inside the `FULL_EMAIL_REGEXP` character classes (`[.'+\-]` → `[.'+-]`, `[.\-]` → `[.-]`). Semantics unchanged.
+- [config/brakeman.ignore](config/brakeman.ignore) — added fingerprint for the `LinkToHref` XSS warning on `submissions_filters/_filter_modal.html.erb`: Brakeman tracks `params[:path]` taint through the `filter_path` conditional assignment introduced in 1.3.1; the `start_with?('/')` guard is the actual mitigation.
+- [.github/workflows/ci.yml](.github/workflows/ci.yml) — replaced `docusealco/pdfium-binaries` (deleted repo, returns 404) with [`bblanchon/pdfium-binaries`](https://github.com/bblanchon/pdfium-binaries) as the pdfium binary source for the RSpec job. Same tarball layout (`lib/libpdfium.so`), no other changes.
+
+### Notes
+- Released image: `ghcr.io/wabolabs/wabosign:1.3.2` (also tagged `:latest`).
+
+[1.3.2]: https://github.com/wabolabs/wabosign/releases/tag/1.3.2
+
 ## [1.3.1] — 2026-05-20
 
 Security-focused patch addressing the alerts surfaced by the repo's first CodeQL scan (run against the 1.3.0 tag, commit [34250ac3](https://github.com/wabolabs/wabosign/commit/34250ac3)). No functional changes.
