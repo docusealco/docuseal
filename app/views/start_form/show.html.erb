@@ -52,9 +52,7 @@
         <% if link_form_fields.include?('phone') %>
           <div dir="auto" class="form-control !mt-0">
             <%= f.label :phone, t('phone'), class: 'label' %>
-            <custom-validation data-invalid-message="<%= t('use_international_format_1xxx_') %>">
-              <%= f.telephone_field :phone, value: params[:phone] || @submitter.phone, pattern: '^\+[0-9\s\-]+$', required: true, class: 'base-input w-full', placeholder: t(multiple_fields ? 'provide_your_phone_in_international_format' : 'provide_your_phone_in_international_format_to_start') %>
-            </custom-validation>
+            <%= f.telephone_field :phone, value: params[:phone] || @submitter.phone, pattern: '^\+[0-9\s\-]+$', required: true, title: t('use_international_format_1xxx_'), class: 'base-input w-full', placeholder: t(multiple_fields ? 'provide_your_phone_in_international_format' : 'provide_your_phone_in_international_format_to_start') %>
           </div>
         <% end %>
         <toggle-submit dir="auto" class="form-control">

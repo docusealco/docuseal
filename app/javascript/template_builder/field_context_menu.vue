@@ -514,7 +514,7 @@ export default {
     ContextSubmenu,
     ContextModal
   },
-  inject: ['t', 'getFieldTypeIndex', 'template', 'withCustomFields', 'currencies', 'dateFormats'],
+  inject: ['t', 'getFieldTypeIndex', 'template', 'withCustomFields', 'currencies', 'dateFormats', 'locale'],
   props: {
     contextMenu: {
       type: Object,

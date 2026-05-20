@@ -41,12 +41,11 @@
       :class="{ '!pr-11 -mr-10': !field.validation?.pattern }"
       :required="field.required"
       :pattern="field.validation?.pattern"
+      :title="validationMessage"
       :aria-describedby="field.description ? field.uuid + '-desc' : undefined"
       :placeholder="`${t('type_here_')}${field.required ? '' : ` (${t('optional')})`}`"
       type="text"
       :name="`values[${field.uuid}]`"
-      @invalid="validationMessage ? $event.target.setCustomValidity(validationMessage) : ''"
-      @input="validationMessage ? $event.target.setCustomValidity('') : ''"
       @focus="$emit('focus')"
     >
     <textarea
@@ -138,6 +137,17 @@ export default {
         return null
       }
     },
+    patternMessageKeys () {
+      return {
+        '^[0-9]{3}-[0-9]{2}-[0-9]{4}$': 'must_be_valid_ssn',
+        '^[0-9]{2}-[0-9]{7}$': 'must_be_valid_ein',
+        '^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$': 'must_be_valid_email',
+        '^https?://.*': 'must_be_valid_url',
+        '^[0-9]{5}(?:-[0-9]{4})?$': 'must_be_valid_zip',
+        '^[0-9]+$': 'must_contain_numbers_only',
+        '^[a-zA-Z]+$': 'must_contain_letters_only'
+      }
+    },
     validationMessage () {
       if (this.field.validation?.message) {
         return this.field.validation.message
@@ -149,6 +159,10 @@ export default {
             .join('-')
 
         return this.t('must_be_characters_length').replace('{number}', number)
+      } else if (this.field.validation?.pattern) {
+        const key = this.patternMessageKeys[this.field.validation.pattern]
+
+        return key ? this.t(key) : ''
       } else {
         return ''
       }

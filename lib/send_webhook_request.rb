@@ -39,7 +39,9 @@ module SendWebhookRequest
         data: data
       }.to_json
 
-      req.headers['X-Docuseal-Signature'] = WebhookUrls::Signatures.sign(webhook_url.hmac_secret, body: req.body)
+      if req.headers['X-Docuseal-Signature'].blank?
+        req.headers['X-Docuseal-Signature'] = WebhookUrls::Signatures.sign(webhook_url.hmac_secret, body: req.body)
+      end
 
       req.options.read_timeout = 15
       req.options.open_timeout = 8

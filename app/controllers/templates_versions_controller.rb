@@ -14,4 +14,12 @@ class TemplatesVersionsController < ApplicationController
 
     render json: TemplateVersions.serialize(version)
   end
+
+  def create
+    authorize!(:update, @template)
+
+    TemplateVersions.find_or_create_for(@template, author: current_user)
+
+    head :ok
+  end
 end
