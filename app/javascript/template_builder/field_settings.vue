@@ -830,7 +830,7 @@ export default {
       } else if (format === 'percent') {
         return `${number}%`
       } else if (format === 'percent_space') {
-        return `${String(number).replace('.', ',')} %`
+        return `${String(number).replace('.', ',')} %`
       } else {
         return number
       }
