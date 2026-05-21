@@ -11,9 +11,6 @@ module Submissions
                   'Helvetica'
                 end
 
-    ICO_REGEXP = %r{\Aimage/(?:x-icon|vnd\.microsoft\.icon)\z}
-    BMP_REGEXP = %r{\Aimage/(?:bmp|x-bmp|x-ms-bmp)\z}
-
     FONT_BOLD_NAME = if File.exist?(FONT_BOLD_PATH)
                        FONT_BOLD_PATH
                      else
@@ -313,7 +310,9 @@ module Submissions
 
             image =
               begin
-                load_vips_image(attachment, attachments_data_cache).autorot
+                attachments_data_cache[attachment.uuid] ||= attachment.download
+
+                ImageUtils.load_vips(attachments_data_cache[attachment.uuid], content_type: attachment.content_type).autorot
               rescue Vips::Error
                 next unless attachment.content_type.starts_with?('image/')
                 next if attachment.byte_size.zero?
@@ -451,7 +450,9 @@ module Submissions
 
             image =
               begin
-                load_vips_image(attachment, attachments_data_cache).autorot
+                attachments_data_cache[attachment.uuid] ||= attachment.download
+
+                ImageUtils.load_vips(attachments_data_cache[attachment.uuid], content_type: attachment.content_type).autorot
               rescue Vips::Error
                 next unless attachment.content_type.starts_with?('image/')
                 next if attachment.byte_size.zero?
@@ -1019,20 +1020,6 @@ module Submissions
 
     def generate_detached_signature_attachments(_submitter)
       []
-    end
-
-    def load_vips_image(attachment, cache = {})
-      cache[attachment.uuid] ||= attachment.download
-
-      data = cache[attachment.uuid]
-
-      if ICO_REGEXP.match?(attachment.content_type)
-        LoadIco.call(data)
-      elsif BMP_REGEXP.match?(attachment.content_type)
-        LoadBmp.call(data)
-      else
-        Vips::Image.new_from_buffer(data, '')
-      end
     end
 
     def r

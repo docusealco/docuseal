@@ -7,7 +7,6 @@ module Templates
     PREVIEW_FORMAT = '.jpg'
     ATTACHMENT_NAME = 'preview_images'
 
-    BMP_REGEXP = %r{\Aimage/(?:bmp|x-bmp|x-ms-bmp)\z}
     PDF_CONTENT_TYPE = 'application/pdf'
     CONCURRENCY = 2
     Q = 95
@@ -59,14 +58,8 @@ module Templates
     def generate_preview_image(attachment, data)
       ActiveStorage::Attachment.where(name: ATTACHMENT_NAME, record: attachment).destroy_all
 
-      image =
-        if BMP_REGEXP.match?(attachment.content_type)
-          LoadBmp.call(data)
-        else
-          Vips::Image.new_from_buffer(data, '')
-        end
-
-      image = image.autorot.resize(MAX_WIDTH / image.width.to_f)
+      image = ImageUtils.load_vips(data, content_type: attachment.content_type).autorot
+      image = image.resize(MAX_WIDTH / image.width.to_f)
 
       bitdepth = 2**image.stats.to_a[1..3].pluck(2).uniq.size
 

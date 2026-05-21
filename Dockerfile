@@ -94,6 +94,7 @@ WORKDIR /data/docuseal
 ENV HOME=/home/docuseal
 ENV WORKDIR=/data/docuseal
 ENV VIPS_MAX_COORD=17000
+ENV VIPS_BLOCK_UNTRUSTED=1
 
 EXPOSE 3000
 CMD ["/app/bin/bundle", "exec", "puma", "-C", "/app/config/puma.rb", "--dir", "/app"]
