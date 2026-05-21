@@ -21,6 +21,7 @@ import SubmittersAutocomplete from './elements/submitter_autocomplete'
 import FolderAutocomplete from './elements/folder_autocomplete'
 import SignatureForm from './elements/signature_form'
 import SubmitForm from './elements/submit_form'
+import ConvertUpload from './elements/convert_upload'
 import PromptPassword from './elements/prompt_password'
 import EmailsTextarea from './elements/emails_textarea'
 import ToggleSubmit from './elements/toggle_submit'
@@ -111,6 +112,7 @@ safeRegisterElement('submitters-autocomplete', SubmittersAutocomplete)
 safeRegisterElement('folder-autocomplete', FolderAutocomplete)
 safeRegisterElement('signature-form', SignatureForm)
 safeRegisterElement('submit-form', SubmitForm)
+safeRegisterElement('convert-upload', ConvertUpload)
 safeRegisterElement('prompt-password', PromptPassword)
 safeRegisterElement('emails-textarea', EmailsTextarea)
 safeRegisterElement('toggle-cookies', ToggleCookies)
