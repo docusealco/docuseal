@@ -312,7 +312,8 @@ module Submissions
               begin
                 attachments_data_cache[attachment.uuid] ||= attachment.download
 
-                ImageUtils.load_vips(attachments_data_cache[attachment.uuid], content_type: attachment.content_type).autorot
+                ImageUtils.load_vips(attachments_data_cache[attachment.uuid],
+                                     content_type: attachment.content_type).autorot
               rescue Vips::Error
                 next unless attachment.content_type.starts_with?('image/')
                 next if attachment.byte_size.zero?
@@ -452,7 +453,8 @@ module Submissions
               begin
                 attachments_data_cache[attachment.uuid] ||= attachment.download
 
-                ImageUtils.load_vips(attachments_data_cache[attachment.uuid], content_type: attachment.content_type).autorot
+                ImageUtils.load_vips(attachments_data_cache[attachment.uuid],
+                                     content_type: attachment.content_type).autorot
               rescue Vips::Error
                 next unless attachment.content_type.starts_with?('image/')
                 next if attachment.byte_size.zero?
