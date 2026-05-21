@@ -1,4 +1,4 @@
-FROM ruby:4.0.1-alpine AS download
+FROM ruby:4.0.5-alpine AS download
 
 WORKDIR /fonts
 
@@ -13,7 +13,7 @@ RUN apk --no-cache add wget && \
     mkdir -p /pdfium-linux && \
     tar -xzf pdfium-linux.tgz -C /pdfium-linux
 
-FROM ruby:4.0.1-alpine AS webpack
+FROM ruby:4.0.5-alpine AS webpack
 
 ENV RAILS_ENV=production
 ENV NODE_ENV=production
@@ -40,7 +40,7 @@ COPY ./app/views ./app/views
 
 RUN echo "gem 'shakapacker'" > Gemfile && ./bin/shakapacker
 
-FROM ruby:4.0.1-alpine AS app
+FROM ruby:4.0.5-alpine AS app
 
 ENV RAILS_ENV=production
 ENV BUNDLE_WITHOUT="development:test"
