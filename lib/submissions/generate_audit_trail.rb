@@ -363,7 +363,7 @@ module Submissions
 
               image =
                 begin
-                  ImageUtils.load_vips(attachment.download, content_type: attachment.content_type).autorot
+                  ImageUtils.load_vips(attachment.download, content_type: attachment.content_type, autorot: true)
                 rescue Vips::Error
                   next unless attachment.content_type.starts_with?('image/')
                   next if attachment.byte_size.zero?
@@ -379,7 +379,7 @@ module Submissions
                 if field['type'] == 'image' && !resized_image.has_alpha?
                   StringIO.new(resized_image.colourspace(:srgb).write_to_buffer('.jpg', strip: true))
                 else
-                  StringIO.new(resized_image.write_to_buffer('.png'))
+                  StringIO.new(resized_image.write_to_buffer('.png', strip: true))
                 end
 
               width = field['type'] == 'initials' ? 50 : 200

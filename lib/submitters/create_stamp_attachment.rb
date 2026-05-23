@@ -25,7 +25,7 @@ module Submitters
     def build_attachment(submitter, with_logo: true)
       image = generate_stamp_image(submitter, with_logo:)
 
-      image_data = image.write_to_buffer('.png')
+      image_data = image.write_to_buffer('.png', strip: true)
 
       checksum = Digest::MD5.base64digest(image_data)
 

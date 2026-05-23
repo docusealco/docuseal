@@ -58,13 +58,13 @@ module Templates
     def generate_preview_image(attachment, data)
       ActiveStorage::Attachment.where(name: ATTACHMENT_NAME, record: attachment).destroy_all
 
-      image = ImageUtils.load_vips(data, content_type: attachment.content_type).autorot
+      image = ImageUtils.load_vips(data, content_type: attachment.content_type, autorot: true)
       image = image.resize(MAX_WIDTH / image.width.to_f)
 
       bitdepth = 2**image.stats.to_a[1..3].pluck(2).uniq.size
 
       io = StringIO.new(image.write_to_buffer(FORMAT, compression: 6, filter: 0, bitdepth:,
-                                                      palette: true, Q: Q, dither: 0))
+                                                      palette: true, Q: Q, dither: 0, strip: true))
 
       ActiveStorage::Attachment.create!(
         blob: ActiveStorage::Blob.create_and_upload!(

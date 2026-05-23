@@ -313,7 +313,7 @@ module Submissions
                 attachments_data_cache[attachment.uuid] ||= attachment.download
 
                 ImageUtils.load_vips(attachments_data_cache[attachment.uuid],
-                                     content_type: attachment.content_type).autorot
+                                     content_type: attachment.content_type, autorot: true)
               rescue Vips::Error
                 next unless attachment.content_type.starts_with?('image/')
                 next if attachment.byte_size.zero?
@@ -358,7 +358,8 @@ module Submissions
               image_x = area_x + ((half_width - image_width) / 2.0)
               image_y = height - area_y - image_height
 
-              io = StringIO.new(image.resize([scale * 4, 1].select(&:positive?).min).write_to_buffer('.png'))
+              io =
+                StringIO.new(image.resize([scale * 4, 1].select(&:positive?).min).write_to_buffer('.png', strip: true))
 
               canvas.image(io, at: [image_x, image_y], width: image_width, height: image_height)
 
@@ -425,7 +426,8 @@ module Submissions
 
               scale = [area_w / image.width, image_height / image.height].min
 
-              io = StringIO.new(image.resize([scale * 4, 1].select(&:positive?).min).write_to_buffer('.png'))
+              io =
+                StringIO.new(image.resize([scale * 4, 1].select(&:positive?).min).write_to_buffer('.png', strip: true))
 
               layouter.fit([text], area_w, base_font_size / 0.65)
                       .draw(canvas, area_x + TEXT_LEFT_MARGIN,
@@ -454,7 +456,7 @@ module Submissions
                 attachments_data_cache[attachment.uuid] ||= attachment.download
 
                 ImageUtils.load_vips(attachments_data_cache[attachment.uuid],
-                                     content_type: attachment.content_type).autorot
+                                     content_type: attachment.content_type, autorot: true)
               rescue Vips::Error
                 next unless attachment.content_type.starts_with?('image/')
                 next if attachment.byte_size.zero?
@@ -471,7 +473,7 @@ module Submissions
               if field_type == 'image' && !resized_image.has_alpha?
                 StringIO.new(resized_image.colourspace(:srgb).write_to_buffer('.jpg', strip: true))
               else
-                StringIO.new(resized_image.write_to_buffer('.png'))
+                StringIO.new(resized_image.write_to_buffer('.png', strip: true))
               end
 
             canvas.image(

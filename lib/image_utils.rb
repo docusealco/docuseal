@@ -6,7 +6,7 @@ module ImageUtils
 
   module_function
 
-  def load_vips(data, content_type: nil)
+  def load_vips(data, content_type: nil, autorot: false)
     content_type ||= Marcel::MimeType.for(data)
 
     if ICO_REGEXP.match?(content_type)
@@ -14,7 +14,9 @@ module ImageUtils
     elsif BMP_REGEXP.match?(content_type)
       LoadBmp.call(data)
     else
-      Vips::Image.new_from_buffer(data, '')
+      image = Vips::Image.new_from_buffer(data, '')
+
+      autorot ? image.autorot : image
     end
   end
 
