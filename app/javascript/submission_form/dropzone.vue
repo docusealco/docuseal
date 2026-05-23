@@ -184,9 +184,9 @@ export default {
             })
           } else {
             try {
-              if (['image/bmp', 'image/vnd.microsoft.icon', 'image/svg+xml'].includes(file.type)) {
+              if (['image/bmp', 'image/vnd.microsoft.icon', 'image/svg+xml', 'image/gif'].includes(file.type)) {
                 file = await convertImage(file, 'image/png')
-              } else if (['image/heic', 'image/heif', 'image/heic-sequence', 'image/heif-sequence', 'image/avif', 'image/avif-sequence'].includes(file.type)) {
+              } else if (['image/heic', 'image/heif', 'image/heic-sequence', 'image/heif-sequence', 'image/avif', 'image/avif-sequence', 'image/webp'].includes(file.type)) {
                 file = await convertImage(file, 'image/jpeg', 0.9)
               }
             } catch (e) {
