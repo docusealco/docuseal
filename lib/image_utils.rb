@@ -1,7 +1,24 @@
 # frozen_string_literal: true
 
 module ImageUtils
+  ICO_REGEXP = %r{\Aimage/(?:x-icon|vnd\.microsoft\.icon)\z}
+  BMP_REGEXP = %r{\Aimage/(?:bmp|x-bmp|x-ms-bmp)\z}
+
   module_function
+
+  def load_vips(data, content_type: nil, autorot: false)
+    content_type ||= Marcel::MimeType.for(data)
+
+    if ICO_REGEXP.match?(content_type)
+      LoadIco.call(data)
+    elsif BMP_REGEXP.match?(content_type)
+      LoadBmp.call(data)
+    else
+      image = Vips::Image.new_from_buffer(data, '')
+
+      autorot ? image.autorot : image
+    end
+  end
 
   def blank?(image)
     stats = image.stats

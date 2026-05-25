@@ -11,6 +11,12 @@ class UserInitialsController < ApplicationController
 
     return redirect_to settings_profile_index_path, notice: I18n.t('unable_to_save_initials') if file.blank?
 
+    extension = File.extname(file.original_filename).delete_prefix('.').downcase
+
+    if Submitters::DANGEROUS_EXTENSIONS.include?(extension)
+      raise Submitters::MaliciousFileExtension, "File type '.#{extension}' is not allowed."
+    end
+
     blob = ActiveStorage::Blob.create_and_upload!(io: file.open,
                                                   filename: file.original_filename,
                                                   content_type: file.content_type)

@@ -25,7 +25,7 @@ module Submitters
     def build_attachment(submitter, with_logo: true)
       image = generate_stamp_image(submitter, with_logo:)
 
-      image_data = image.write_to_buffer('.png')
+      image_data = image.write_to_buffer('.png', strip: true)
 
       checksum = Digest::MD5.base64digest(image_data)
 
@@ -40,7 +40,7 @@ module Submitters
     def generate_stamp_image(submitter, with_logo: true)
       logo =
         if with_logo
-          Vips::Image.new_from_buffer(load_logo(submitter).read, '')
+          ImageUtils.load_vips(load_logo(submitter).read)
         else
           Vips::Image.new_from_buffer(TRANSPARENT_PIXEL, '').resize(WIDTH)
         end

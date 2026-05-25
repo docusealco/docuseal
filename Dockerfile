@@ -1,4 +1,4 @@
-FROM ruby:4.0.1-alpine AS download
+FROM ruby:4.0.5-alpine AS download
 
 WORKDIR /fonts
 
@@ -13,7 +13,7 @@ RUN apk --no-cache add wget && \
     mkdir -p /pdfium-linux && \
     tar -xzf pdfium-linux.tgz -C /pdfium-linux
 
-FROM ruby:4.0.1-alpine AS webpack
+FROM ruby:4.0.5-alpine AS webpack
 
 ENV RAILS_ENV=production
 ENV NODE_ENV=production
@@ -40,7 +40,7 @@ COPY ./app/views ./app/views
 
 RUN echo "gem 'shakapacker'" > Gemfile && ./bin/shakapacker
 
-FROM ruby:4.0.1-alpine AS app
+FROM ruby:4.0.5-alpine AS app
 
 ENV RAILS_ENV=production
 ENV BUNDLE_WITHOUT="development:test"
@@ -48,7 +48,7 @@ ENV OPENSSL_CONF=/etc/openssl_legacy.cnf
 
 WORKDIR /app
 
-RUN apk add --no-cache libpq vips redis vips-heif onnxruntime
+RUN apk add --no-cache libpq vips redis onnxruntime
 
 RUN addgroup -g 2000 docuseal && adduser -u 2000 -G docuseal -s /bin/sh -D -h /home/docuseal docuseal
 
@@ -94,6 +94,7 @@ WORKDIR /data/docuseal
 ENV HOME=/home/docuseal
 ENV WORKDIR=/data/docuseal
 ENV VIPS_MAX_COORD=17000
+ENV VIPS_BLOCK_UNTRUSTED=1
 
 EXPOSE 3000
 CMD ["/app/bin/bundle", "exec", "puma", "-C", "/app/config/puma.rb", "--dir", "/app"]

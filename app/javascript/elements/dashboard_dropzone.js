@@ -1,4 +1,5 @@
 import { target, targets, targetable } from '@github/catalyst/lib/targetable'
+import { convertImagesInInput } from './convert_upload'
 
 const loadingIconHtml = `<svg xmlns="http://www.w3.org/2000/svg" class="animate-spin" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -150,12 +151,16 @@ export default targetable(class extends HTMLElement {
     if (!this.isLoading) this.hideDraghover()
   }
 
-  uploadFiles (files, url) {
+  async uploadFiles (files, url) {
     this.isLoading = true
 
     this.form.action = url
 
-    this.form.querySelector('[type="file"]').files = files
+    const input = this.form.querySelector('[type="file"]')
+
+    input.files = files
+
+    await convertImagesInInput(input)
 
     this.form.querySelector('[type="submit"]').click()
   }

@@ -16,8 +16,10 @@ module Api
         return render json: { error: I18n.t('form_has_been_archived') }, status: :unprocessable_content
       end
 
+      file = params[:file]
+
       if params[:type].in?(%w[initials signature])
-        image = Vips::Image.new_from_file(params[:file].path)
+        image = ImageUtils.load_vips(file.read, content_type: file.content_type)
 
         if ImageUtils.blank?(image)
           Rollbar.error("Empty signature: #{@submitter.id}") if defined?(Rollbar)
@@ -33,7 +35,7 @@ module Api
         end
       end
 
-      attachment = Submitters.create_attachment!(@submitter, params)
+      attachment = Submitters.create_attachment!(@submitter, file)
 
       if params[:remember_signature] == 'true' && @submitter.email.present?
         cookies.encrypted[:signature_uuids] = build_new_cookie_signatures_json(@submitter, attachment)

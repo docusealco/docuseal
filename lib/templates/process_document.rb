@@ -7,7 +7,6 @@ module Templates
     PREVIEW_FORMAT = '.jpg'
     ATTACHMENT_NAME = 'preview_images'
 
-    BMP_REGEXP = %r{\Aimage/(?:bmp|x-bmp|x-ms-bmp)\z}
     PDF_CONTENT_TYPE = 'application/pdf'
     CONCURRENCY = 2
     Q = 95
@@ -59,19 +58,13 @@ module Templates
     def generate_preview_image(attachment, data)
       ActiveStorage::Attachment.where(name: ATTACHMENT_NAME, record: attachment).destroy_all
 
-      image =
-        if BMP_REGEXP.match?(attachment.content_type)
-          LoadBmp.call(data)
-        else
-          Vips::Image.new_from_buffer(data, '')
-        end
-
-      image = image.autorot.resize(MAX_WIDTH / image.width.to_f)
+      image = ImageUtils.load_vips(data, content_type: attachment.content_type, autorot: true)
+      image = image.resize(MAX_WIDTH / image.width.to_f)
 
       bitdepth = 2**image.stats.to_a[1..3].pluck(2).uniq.size
 
       io = StringIO.new(image.write_to_buffer(FORMAT, compression: 6, filter: 0, bitdepth:,
-                                                      palette: true, Q: Q, dither: 0))
+                                                      palette: true, Q: Q, dither: 0, strip: true))
 
       ActiveStorage::Attachment.create!(
         blob: ActiveStorage::Blob.create_and_upload!(
@@ -110,7 +103,15 @@ module Templates
 
       promises =
         range.map do |page_number|
-          Concurrent::Promise.execute(executor: pool) { build_and_upload_blob(doc, page_number) }
+          doc_page = doc.get_page(page_number)
+
+          bytes, width, height = doc_page.render_to_bitmap(width: MAX_WIDTH)
+
+          image = Vips::Image.new_from_memory(bytes, width, height, 4, :uchar)
+
+          Concurrent::Promise.execute(executor: pool) { build_and_upload_blob(image, page_number) }
+        ensure
+          doc_page&.close
         end
 
       Concurrent::Promise.zip(*promises).value!.each do |blob|
@@ -129,39 +130,27 @@ module Templates
       pool&.kill
     end
 
-    def build_and_upload_blob(doc, page_number, format = FORMAT)
-      doc_page = doc.get_page(page_number)
-
-      data, width, height = doc_page.render_to_bitmap(width: MAX_WIDTH)
-
-      page = Vips::Image.new_from_memory(data, width, height, 4, :uchar)
-
-      page = page.copy(interpretation: :srgb)
+    def build_and_upload_blob(image, page_number, format = FORMAT)
+      image = image.copy(interpretation: :srgb)
 
       data =
         if format == FORMAT
-          bitdepth = 2**page.stats.to_a[1..3].pluck(2).uniq.size
+          bitdepth = 2**image.stats.to_a[1..3].pluck(2).uniq.size
 
-          page.write_to_buffer(format, compression: 6, filter: 0, bitdepth:,
-                                       palette: true, Q: Q, dither: 0)
+          image.write_to_buffer(format, compression: 6, filter: 0, bitdepth:,
+                                        palette: true, Q: Q, dither: 0)
         else
-          page.write_to_buffer(format, interlace: true, Q: JPEG_Q)
+          image.write_to_buffer(format, interlace: true, Q: JPEG_Q)
         end
 
       blob = ActiveStorage::Blob.new(
         filename: "#{page_number}#{format}",
-        metadata: { analyzed: true, identified: true, width: page.width, height: page.height }
+        metadata: { analyzed: true, identified: true, width: image.width, height: image.height }
       )
 
       blob.upload(StringIO.new(data))
 
       blob
-    rescue Vips::Error, Pdfium::PdfiumError => e
-      Rollbar.warning(e) if defined?(Rollbar)
-
-      nil
-    ensure
-      doc_page&.close
     end
 
     def maybe_flatten_form(data, pdf)
@@ -206,7 +195,15 @@ module Templates
     def generate_pdf_preview_from_file(attachment, file_path, page_number)
       doc = Pdfium::Document.open_file(file_path)
 
-      blob = build_and_upload_blob(doc, page_number, PREVIEW_FORMAT)
+      doc_page = doc.get_page(page_number)
+
+      bytes, width, height = doc_page.render_to_bitmap(width: MAX_WIDTH)
+
+      doc_page.close
+
+      image = Vips::Image.new_from_memory(bytes, width, height, 4, :uchar)
+
+      blob = build_and_upload_blob(image, page_number, PREVIEW_FORMAT)
 
       ApplicationRecord.no_touching do
         ActiveStorage::Attachment.create!(
