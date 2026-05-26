@@ -197,10 +197,35 @@ safeRegisterElement('template-builder', class extends HTMLElement {
   }
 
   onSubmit = (e) => {
-    if (e.detail.success && e.detail?.formSubmission?.formElement?.id === 'submitters_form') {
-      e.detail.fetchResponse.response.json().then((data) => {
-        this.component.template.submitters = data.submitters
-      })
+    if (e.detail.success) {
+      if (e.detail?.formSubmission?.formElement?.id === 'submitters_form') {
+        e.detail.fetchResponse.response.json().then((data) => {
+          this.component.template.submitters = data.submitters
+        })
+      }
+
+      if (e.detail?.formSubmission?.formElement?.action?.endsWith('/prefillable_fields')) {
+        e.detail.fetchResponse.response.text().then((data) => {
+          const doc = new DOMParser().parseFromString(data, 'text/html')
+          const fragment = doc.querySelector('turbo-stream template').content
+
+          const prefillableUuidsIndex = {}
+
+          fragment.querySelectorAll('[name="field_uuid"]').forEach((field) => {
+            prefillableUuidsIndex[field.value] = true
+          })
+
+          this.component.template.fields.forEach((field) => {
+            if (prefillableUuidsIndex[field.uuid]) {
+              field.prefillable = true
+              field.readonly = true
+            } else if (field.prefillable) {
+              delete field.prefillable
+              delete field.readonly
+            }
+          })
+        })
+      }
     }
   }
 
