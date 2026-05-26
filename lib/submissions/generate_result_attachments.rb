@@ -759,12 +759,12 @@ module Submissions
 
         begin
           pdf.sign(io, write_options: { validate: false }, **sign_params)
-        rescue HexaPDF::Error, NoMethodError => e
+        rescue HexaPDF::Error, NoMethodError, TypeError => e
           Rollbar.error(e) if defined?(Rollbar)
 
           begin
             pdf.sign(io, write_options: { validate: false, incremental: false }, **sign_params)
-          rescue HexaPDF::Error
+          rescue HexaPDF::Error, TypeError
             pdf.validate(auto_correct: true)
             pdf.sign(io, write_options: { validate: false, incremental: false }, **sign_params)
           end
