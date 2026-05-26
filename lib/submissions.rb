@@ -162,7 +162,7 @@ module Submissions
     return email.downcase.sub(/@gmail?\z/i, '@gmail.com') if email.match?(/@gmail?\z/i)
 
     return email.downcase if email.include?(',') ||
-                             email.match?(/\.(?:gob|om|mm|cm|et|mo|nz|za|ie|ed\.jp)\z/i) ||
+                             email.match?(/\.(?:gob(?:\.\w+)?|om|mm|cm|et|mo|nz|za|ie|ed\.jp)\z/i) ||
                              email.exclude?('.')
 
     fixed_email = EmailTypo.call(email.delete_prefix('<'))
@@ -175,7 +175,9 @@ module Submissions
     return email.downcase if domain == fixed_domain
     return email.downcase if fixed_domain.match?(/\Agmail\.(?!com\z)/i)
 
-    if DidYouMean::Levenshtein.distance(domain, fixed_domain) > 3
+    threshold = fixed_domain.start_with?('hotmail.') ? 2 : 3
+
+    if DidYouMean::Levenshtein.distance(domain, fixed_domain) > threshold
       Rails.logger.info("Skipped email fix #{domain}")
 
       return email.downcase
