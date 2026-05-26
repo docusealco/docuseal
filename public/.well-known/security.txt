@@ -1,0 +1,4 @@
+Contact: mailto:hello@bloombilt.com
+Expires: 2027-05-13T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://sign.bloombilt.com/.well-known/security.txt

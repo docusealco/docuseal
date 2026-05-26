@@ -1,2 +1,3 @@
+# Bloombilt app, not intended for public search indexing.
 User-agent: *
-Allow: /
+Disallow: /
