@@ -43,7 +43,7 @@ module LoadIco
 
     raise ArgumentError, 'Unable to load' unless image_data_bytes && image_data_bytes.bytesize == best_entry[:size]
 
-    return Vips::Image.new_from_buffer(image_data_bytes, '') if image_data_bytes.start_with?(PNG_SIGNATURE)
+    return Vips::Image.pngload_buffer(image_data_bytes) if image_data_bytes.start_with?(PNG_SIGNATURE)
 
     image = load_image_entry(image_data_bytes, best_entry[:width], best_entry[:height])
 
