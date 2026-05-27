@@ -77,7 +77,7 @@ module Templates
                                  split_page: false, aspect_ratio: false, padding: nil, page_number: nil)
       return [[], nil] if page_number && page_number != 0
 
-      image = Vips::Image.new_from_buffer(io.read, '')
+      image = ImageUtils.load_vips(io.read, content_type: attachment.content_type)
 
       fields = inference.call(image, confidence:, nms:, nmm:, split_page:,
                                      temperature:, aspect_ratio:, padding:)

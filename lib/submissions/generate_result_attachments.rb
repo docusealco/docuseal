@@ -11,9 +11,6 @@ module Submissions
                   'Helvetica'
                 end
 
-    ICO_REGEXP = %r{\Aimage/(?:x-icon|vnd\.microsoft\.icon)\z}
-    BMP_REGEXP = %r{\Aimage/(?:bmp|x-bmp|x-ms-bmp)\z}
-
     FONT_BOLD_NAME = if File.exist?(FONT_BOLD_PATH)
                        FONT_BOLD_PATH
                      else
@@ -317,7 +314,10 @@ module Submissions
 
             image =
               begin
-                load_vips_image(attachment, attachments_data_cache).autorot
+                attachments_data_cache[attachment.uuid] ||= attachment.download
+
+                ImageUtils.load_vips(attachments_data_cache[attachment.uuid],
+                                     content_type: attachment.content_type, autorot: true)
               rescue Vips::Error
                 next unless attachment.content_type.starts_with?('image/')
                 next if attachment.byte_size.zero?
@@ -362,7 +362,8 @@ module Submissions
               image_x = area_x + ((half_width - image_width) / 2.0)
               image_y = height - area_y - image_height
 
-              io = StringIO.new(image.resize([scale * 4, 1].select(&:positive?).min).write_to_buffer('.png'))
+              io =
+                StringIO.new(image.resize([scale * 4, 1].select(&:positive?).min).write_to_buffer('.png', strip: true))
 
               canvas.image(io, at: [image_x, image_y], width: image_width, height: image_height)
 
@@ -429,7 +430,8 @@ module Submissions
 
               scale = [area_w / image.width, image_height / image.height].min
 
-              io = StringIO.new(image.resize([scale * 4, 1].select(&:positive?).min).write_to_buffer('.png'))
+              io =
+                StringIO.new(image.resize([scale * 4, 1].select(&:positive?).min).write_to_buffer('.png', strip: true))
 
               layouter.fit([text], area_w, base_font_size / 0.65)
                       .draw(canvas, area_x + TEXT_LEFT_MARGIN,
@@ -455,7 +457,10 @@ module Submissions
 
             image =
               begin
-                load_vips_image(attachment, attachments_data_cache).autorot
+                attachments_data_cache[attachment.uuid] ||= attachment.download
+
+                ImageUtils.load_vips(attachments_data_cache[attachment.uuid],
+                                     content_type: attachment.content_type, autorot: true)
               rescue Vips::Error
                 next unless attachment.content_type.starts_with?('image/')
                 next if attachment.byte_size.zero?
@@ -466,7 +471,14 @@ module Submissions
             scale = [(area['w'] * width) / image.width,
                      (area['h'] * height) / image.height].min
 
-            io = StringIO.new(image.resize([scale * 4, 1].select(&:positive?).min).write_to_buffer('.png'))
+            resized_image = image.resize([scale * 4, 1].select(&:positive?).min)
+
+            io =
+              if field_type == 'image' && !resized_image.has_alpha?
+                StringIO.new(resized_image.colourspace(:srgb).write_to_buffer('.jpg', strip: true))
+              else
+                StringIO.new(resized_image.write_to_buffer('.png', strip: true))
+              end
 
             canvas.image(
               io,
@@ -1016,20 +1028,6 @@ module Submissions
 
     def generate_detached_signature_attachments(_submitter)
       []
-    end
-
-    def load_vips_image(attachment, cache = {})
-      cache[attachment.uuid] ||= attachment.download
-
-      data = cache[attachment.uuid]
-
-      if ICO_REGEXP.match?(attachment.content_type)
-        LoadIco.call(data)
-      elsif BMP_REGEXP.match?(attachment.content_type)
-        LoadBmp.call(data)
-      else
-        Vips::Image.new_from_buffer(data, '')
-      end
     end
 
     def r

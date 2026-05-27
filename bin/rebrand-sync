@@ -191,7 +191,12 @@ Find.find(ROOT) do |path|
     next
   end
 
-  updated = rewrite(original)
+  begin
+    updated = rewrite(original)
+  rescue ArgumentError, Encoding::InvalidByteSequenceError
+    skipped_encoding << rel
+    next
+  end
   next if updated == original
 
   File.write(path, updated)

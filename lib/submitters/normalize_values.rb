@@ -212,8 +212,8 @@ module Submitters
         elsif type.in?(%w[signature initials]) && value.length < 60
           find_or_create_blob_from_text(account, value, type)
         elsif (data = Base64.decode64(value.sub(BASE64_PREFIX_REGEXP, ''))) &&
-              Marcel::MimeType.for(data).exclude?('octet-stream')
-          find_or_create_blob_from_base64(account, data, type)
+              (mime_type = Marcel::MimeType.for(data)).exclude?('octet-stream')
+          find_or_create_blob_from_base64(account, data, type, mime_type:)
         elsif type == 'image' && (value.starts_with?('<html>') || value.starts_with?('<!DOCTYPE'))
           raise InvalidDefaultValue, "Invalid #{type} value" unless purpose == :api
 
@@ -236,15 +236,27 @@ module Submitters
       raise InvalidDefaultValue, "HTML content is not allowed: #{value.first(200)}..."
     end
 
-    def find_or_create_blob_from_base64(account, data, type)
+    def find_or_create_blob_from_base64(account, data, type, mime_type: nil)
       checksum = Digest::MD5.base64digest(data)
 
       blob = find_blob_by_checksum(checksum, account)
 
-      blob || ActiveStorage::Blob.create_and_upload!(
-        io: StringIO.new(data),
-        filename: "#{type}.png"
-      )
+      return blob if blob
+
+      mime_type ||= Marcel::MimeType.for(data)
+
+      detected_extensions = Marcel::TYPE_EXTS[mime_type].to_a.map(&:downcase)
+
+      if detected_extensions.any? { |e| Submitters::DANGEROUS_EXTENSIONS.include?(e) }
+        raise InvalidDefaultValue, "File type '.#{detected_extensions.first}' is not allowed."
+      end
+
+      extension = detected_extensions.first
+      extension = 'png' if extension.blank? && type.in?(%w[signature initials stamp image])
+
+      filename = extension.present? ? "#{type}.#{extension}" : type
+
+      ActiveStorage::Blob.create_and_upload!(io: StringIO.new(data), filename:)
     end
 
     def find_or_create_blob_from_text(account, text, type)
@@ -261,6 +273,13 @@ module Submitters
     end
 
     def find_or_create_blob_from_url(account, url)
+      filename = Addressable::URI.parse(url).path.split('/').last.to_s
+      extension = File.extname(filename).delete_prefix('.').downcase
+
+      if Submitters::DANGEROUS_EXTENSIONS.include?(extension)
+        raise InvalidDefaultValue, "File type '.#{extension}' is not allowed."
+      end
+
       cache_key = [account.id, url].join(':')
       checksum = CHECKSUM_CACHE_STORE.fetch(cache_key)
 
@@ -276,10 +295,7 @@ module Submitters
 
       blob = find_blob_by_checksum(checksum, account)
 
-      blob || ActiveStorage::Blob.create_and_upload!(
-        io: StringIO.new(data),
-        filename: Addressable::URI.parse(url).path.split('/').last
-      )
+      blob || ActiveStorage::Blob.create_and_upload!(io: StringIO.new(data), filename:)
     end
 
     def find_blob_by_checksum(checksum, account)

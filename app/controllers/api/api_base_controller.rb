@@ -102,6 +102,10 @@ module Api
       headers['X-Robots-Tag'] = 'noindex'
     end
 
+    def set_security_headers
+      response.headers['X-Content-Type-Options'] = 'nosniff'
+    end
+
     def set_cors_headers
       headers['Access-Control-Allow-Origin'] = '*'
       headers['Access-Control-Allow-Methods'] = 'POST, GET, PUT, PATCH, DELETE, OPTIONS'
