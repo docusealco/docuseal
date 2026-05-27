@@ -414,7 +414,7 @@ export default {
       })
     },
     modalContainerEl () {
-      return this.$el.getRootNode().querySelector('#docuseal_modal_container')
+      return this.$el.getRootNode().querySelector('#wabosign_modal_container')
     },
     defaultName () {
       return this.buildDefaultName(this.field)
@@ -588,7 +588,7 @@ export default {
       hiddenEl.style.opacity = '0'
       hiddenEl.style.position = 'fixed'
 
-      root.querySelector('#docuseal_modal_container')?.appendChild(hiddenEl)
+      root.querySelector('#wabosign_modal_container')?.appendChild(hiddenEl)
       event.dataTransfer?.setDragImage(hiddenEl, 0, 0)
 
       setTimeout(() => { hiddenEl.remove() }, 1000)

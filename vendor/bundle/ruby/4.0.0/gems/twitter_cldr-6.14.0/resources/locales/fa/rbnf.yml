@@ -1,0 +1,157 @@
+--- 
+:fa: 
+  :rbnf: 
+    :grouping: 
+      - 
+        :ruleset: 
+          - 
+            :rules: 
+              - 
+                :rule: =0.0=;
+                :value: x.x
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 0
+            :type: spellout-numbering-year
+          - 
+            :rules: 
+              - 
+                :rule: =%spellout-cardinal=;
+                :value: 0
+            :type: spellout-numbering
+          - 
+            :rules: 
+              - 
+                :rule: "منفی >>;"
+                :value: "-x"
+              - 
+                :rule: "<< ممیز >>;"
+                :value: x.x
+              - 
+                :rule: صفر;
+                :value: 0
+              - 
+                :rule: یک;
+                :value: 1
+              - 
+                :rule: دو;
+                :value: 2
+              - 
+                :rule: سه;
+                :value: 3
+              - 
+                :rule: چهار;
+                :value: 4
+              - 
+                :rule: پنج;
+                :value: 5
+              - 
+                :rule: شش;
+                :value: 6
+              - 
+                :rule: هفت;
+                :value: 7
+              - 
+                :rule: هشت;
+                :value: 8
+              - 
+                :rule: نه;
+                :value: 9
+              - 
+                :rule: ده;
+                :value: 10
+              - 
+                :rule: یازده;
+                :value: 11
+              - 
+                :rule: دوازده;
+                :value: 12
+              - 
+                :rule: سیزده;
+                :value: 13
+              - 
+                :rule: چهارده;
+                :value: 14
+              - 
+                :rule: پانزده;
+                :value: 15
+              - 
+                :rule: شانزده;
+                :value: 16
+              - 
+                :rule: هفده;
+                :value: 17
+              - 
+                :rule: هجده;
+                :value: 18
+              - 
+                :rule: نوزده;
+                :value: 19
+              - 
+                :rule: "بیست[ و >>];"
+                :value: 20
+              - 
+                :rule: "سی[ و >>];"
+                :value: 30
+              - 
+                :rule: "چهل[ و >>];"
+                :value: 40
+              - 
+                :rule: "پنجاه[ و >>];"
+                :value: 50
+              - 
+                :rule: "شصت[ و >>];"
+                :value: 60
+              - 
+                :rule: "هفتاد[ و >>];"
+                :value: 70
+              - 
+                :rule: "هشتاد[ و >>];"
+                :value: 80
+              - 
+                :rule: "نود[ و >>];"
+                :value: 90
+              - 
+                :rule: "صد[ و >>];"
+                :value: 100
+              - 
+                :rule: "دویست[ و >>];"
+                :value: 200
+              - 
+                :rule: "سیصد[ و >>];"
+                :value: 300
+              - 
+                :rule: "چهارصد[ و >>];"
+                :value: 400
+              - 
+                :rule: "پانصد[ و >>];"
+                :value: 500
+              - 
+                :rule: "ششصد[ و >>];"
+                :value: 600
+              - 
+                :rule: "هفتصد[ و >>];"
+                :value: 700
+              - 
+                :rule: "هشتصد[ و >>];"
+                :value: 800
+              - 
+                :rule: "نهصد[ و >>];"
+                :value: 900
+              - 
+                :rule: "<< هزار[ و >>];"
+                :value: 1000
+              - 
+                :rule: "<< میلیون[ و >>];"
+                :value: 1000000
+              - 
+                :rule: "<< میلیارد[ و >>];"
+                :value: 1000000000
+              - 
+                :rule: "<< هزار میلیارد[ و >>];"
+                :value: 1000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal
+        :type: SpelloutRules

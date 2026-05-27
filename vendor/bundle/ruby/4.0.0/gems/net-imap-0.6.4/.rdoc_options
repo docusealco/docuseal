@@ -1,0 +1,7 @@
+---
+charset: UTF-8
+main_page: README.md
+markup: rdoc
+title: net-imap # rake task override's title to add the version number
+op_dir: doc
+# vim:ft=yaml

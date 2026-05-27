@@ -1,0 +1,1183 @@
+--- 
+:pl: 
+  :rbnf: 
+    :grouping: 
+      - 
+        :ruleset: 
+          - 
+            :rules: 
+              - 
+                :rule: =0.0=;
+                :value: x.x
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 0
+            :type: spellout-numbering-year
+          - 
+            :rules: 
+              - 
+                :rule: =%spellout-cardinal-masculine=;
+                :value: 0
+            :type: spellout-numbering
+          - 
+            :rules: 
+              - 
+                :rule: "minus >>;"
+                :value: "-x"
+              - 
+                :rule: "<%spellout-cardinal-masculine< przecinek >%%spellout-fraction>;"
+                :value: x.x
+              - 
+                :rule: zero;
+                :value: 0
+              - 
+                :rule: jeden;
+                :value: 1
+              - 
+                :rule: dwa;
+                :value: 2
+              - 
+                :rule: trzy;
+                :value: 3
+              - 
+                :rule: cztery;
+                :value: 4
+              - 
+                :rule: pięć;
+                :value: 5
+              - 
+                :rule: sześć;
+                :value: 6
+              - 
+                :rule: siedem;
+                :value: 7
+              - 
+                :rule: osiem;
+                :value: 8
+              - 
+                :rule: dziewięć;
+                :value: 9
+              - 
+                :rule: dziesięć;
+                :value: 10
+              - 
+                :rule: jedenaście;
+                :value: 11
+              - 
+                :rule: dwanaście;
+                :value: 12
+              - 
+                :rule: trzynaście;
+                :value: 13
+              - 
+                :rule: czternaście;
+                :value: 14
+              - 
+                :rule: piętnaście;
+                :value: 15
+              - 
+                :rule: szesnaście;
+                :value: 16
+              - 
+                :rule: siedemnaście;
+                :value: 17
+              - 
+                :rule: osiemnaście;
+                :value: 18
+              - 
+                :rule: dziewiętnaście;
+                :value: 19
+              - 
+                :rule: "<%%spellout-cardinal-tens<[ >>];"
+                :value: 20
+              - 
+                :rule: "sto[ >>];"
+                :value: 100
+              - 
+                :rule: "dwieście[ >>];"
+                :value: 200
+              - 
+                :rule: "<%spellout-cardinal-feminine<sta[ >>];"
+                :value: 300
+              - 
+                :rule: "<%spellout-cardinal-feminine<set[ >>];"
+                :value: 500
+              - 
+                :rule: "tysiąc[ >>];"
+                :value: 1000
+              - 
+                :rule: "<< $(cardinal,few{tysiące}other{tysięcy})$[ >>];"
+                :value: 2000
+              - 
+                :rule: "milion[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<< $(cardinal,few{miliony}other{milionów})$[ >>];"
+                :value: 2000000
+              - 
+                :rule: "miliard[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<< $(cardinal,few{miliardy}other{miliardów})$[ >>];"
+                :value: 2000000000
+              - 
+                :rule: "bilion[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<< $(cardinal,few{biliony}other{bilionów})$[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "biliard[ >>];"
+                :value: 1000000000000000
+              - 
+                :rule: "<< $(cardinal,few{biliardy}other{biliardów})$[ >>];"
+                :value: 2000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-masculine
+          - 
+            :rules: 
+              - 
+                :rule: "minus >>;"
+                :value: "-x"
+              - 
+                :rule: "<%spellout-cardinal-masculine-personal< przecinek >>;"
+                :value: x.x
+              - 
+                :rule: zero;
+                :value: 0
+              - 
+                :rule: jeden;
+                :value: 1
+              - 
+                :rule: dwaj;
+                :value: 2
+              - 
+                :rule: trzej;
+                :value: 3
+              - 
+                :rule: czterej;
+                :value: 4
+              - 
+                :rule: =%spellout-cardinal-masculine-genitive=;
+                :value: 5
+              - 
+                :rule: "tysiąc[ >%%spellout-cardinal-masculine-genitive-ones>];"
+                :value: 1000
+              - 
+                :rule: "<%spellout-cardinal-masculine< $(cardinal,few{tysiące}other{tysięcy})$[ >%%spellout-cardinal-masculine-genitive-ones>];"
+                :value: 2000
+              - 
+                :rule: "milion[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<%spellout-cardinal-masculine< $(cardinal,few{miliony}other{milionów})$[ >>];"
+                :value: 2000000
+              - 
+                :rule: "miliard[ >%%spellout-cardinal-masculine-genitive-ones>];"
+                :value: 1000000000
+              - 
+                :rule: "<%spellout-cardinal-masculine< $(cardinal,few{miliardy}other{miliardów})$[ >>];"
+                :value: 2000000000
+              - 
+                :rule: "bilion[ >%%spellout-cardinal-masculine-genitive-ones>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%spellout-cardinal-masculine< $(cardinal,few{biliony}other{bilionów})$[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "biliard[ >%%spellout-cardinal-masculine-genitive-ones>];"
+                :value: 1000000000000000
+              - 
+                :rule: "<%spellout-cardinal-masculine< $(cardinal,few{biliardy}other{biliardów})$[ >>];"
+                :value: 2000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-masculine-personal
+          - 
+            :rules: 
+              - 
+                :rule: "minus >>;"
+                :value: "-x"
+              - 
+                :rule: "<%spellout-cardinal-feminine< przecinek >%%spellout-fraction>;"
+                :value: x.x
+              - 
+                :rule: zero;
+                :value: 0
+              - 
+                :rule: jedna;
+                :value: 1
+              - 
+                :rule: dwie;
+                :value: 2
+              - 
+                :rule: trzy;
+                :value: 3
+              - 
+                :rule: cztery;
+                :value: 4
+              - 
+                :rule: pięć;
+                :value: 5
+              - 
+                :rule: sześć;
+                :value: 6
+              - 
+                :rule: siedem;
+                :value: 7
+              - 
+                :rule: osiem;
+                :value: 8
+              - 
+                :rule: dziewięć;
+                :value: 9
+              - 
+                :rule: dziesięć;
+                :value: 10
+              - 
+                :rule: jedenaście;
+                :value: 11
+              - 
+                :rule: dwanaście;
+                :value: 12
+              - 
+                :rule: trzynaście;
+                :value: 13
+              - 
+                :rule: czternaście;
+                :value: 14
+              - 
+                :rule: piętnaście;
+                :value: 15
+              - 
+                :rule: szesnaście;
+                :value: 16
+              - 
+                :rule: siedemnaście;
+                :value: 17
+              - 
+                :rule: osiemnaście;
+                :value: 18
+              - 
+                :rule: dziewiętnaście;
+                :value: 19
+              - 
+                :rule: "<%%spellout-cardinal-tens<[ >%%spellout-cardinal-feminine-ones>];"
+                :value: 20
+              - 
+                :rule: "sto[ >%%spellout-cardinal-feminine-ones>];"
+                :value: 100
+              - 
+                :rule: "dwieście[ >%%spellout-cardinal-feminine-ones>];"
+                :value: 200
+              - 
+                :rule: "<%spellout-cardinal-feminine<sta[ >%%spellout-cardinal-feminine-ones>];"
+                :value: 300
+              - 
+                :rule: "<%spellout-cardinal-feminine<set[ >%%spellout-cardinal-feminine-ones>];"
+                :value: 500
+              - 
+                :rule: "tysiąc[ >%%spellout-cardinal-feminine-ones>];"
+                :value: 1000
+              - 
+                :rule: "<%spellout-cardinal-masculine< $(cardinal,few{tysiące}other{tysięcy})$[ >%%spellout-cardinal-feminine-ones>];"
+                :value: 2000
+              - 
+                :rule: "milion[ >%%spellout-cardinal-feminine-ones>];"
+                :value: 1000000
+              - 
+                :rule: "<%spellout-cardinal-masculine< $(cardinal,few{miliony}other{milionów})$[ >%%spellout-cardinal-feminine-ones>];"
+                :value: 2000000
+              - 
+                :rule: "miliard[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<%spellout-cardinal-masculine< $(cardinal,few{miliardy}other{miliardów})$[ >%%spellout-cardinal-feminine-ones>];"
+                :value: 2000000000
+              - 
+                :rule: "bilion[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%spellout-cardinal-masculine< $(cardinal,few{biliony}other{bilionów})$[ >%%spellout-cardinal-feminine-ones>];"
+                :value: 2000000000000
+              - 
+                :rule: "biliard[ >%%spellout-cardinal-masculine-genitive-ones>];"
+                :value: 1000000000000000
+              - 
+                :rule: "<%spellout-cardinal-masculine< $(cardinal,few{biliardy}other{biliardów})$[ >%%spellout-cardinal-feminine-ones>];"
+                :value: 2000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-feminine
+          - 
+            :rules: 
+              - 
+                :rule: "minus >>;"
+                :value: "-x"
+              - 
+                :rule: "<%spellout-cardinal-neuter< przecinek >%%spellout-fraction>;"
+                :value: x.x
+              - 
+                :rule: zero;
+                :value: 0
+              - 
+                :rule: jedno;
+                :value: 1
+              - 
+                :rule: =%spellout-cardinal-masculine=;
+                :value: 2
+            :type: spellout-cardinal-neuter
+          - 
+            :rules: 
+              - 
+                :rule: "minus >>;"
+                :value: "-x"
+              - 
+                :rule: "<%spellout-cardinal-masculine-genitive< przecinek >>;"
+                :value: x.x
+              - 
+                :rule: zera;
+                :value: 0
+              - 
+                :rule: jednego;
+                :value: 1
+              - 
+                :rule: dwóch;
+                :value: 2
+              - 
+                :rule: trzech;
+                :value: 3
+              - 
+                :rule: czterech;
+                :value: 4
+              - 
+                :rule: pięciu;
+                :value: 5
+              - 
+                :rule: sześciu;
+                :value: 6
+              - 
+                :rule: siedmiu;
+                :value: 7
+              - 
+                :rule: ośmiu;
+                :value: 8
+              - 
+                :rule: dziewięciu;
+                :value: 9
+              - 
+                :rule: dziesięciu;
+                :value: 10
+              - 
+                :rule: jedenastu;
+                :value: 11
+              - 
+                :rule: dwunastu;
+                :value: 12
+              - 
+                :rule: trzynastu;
+                :value: 13
+              - 
+                :rule: czternastu;
+                :value: 14
+              - 
+                :rule: piętnastu;
+                :value: 15
+              - 
+                :rule: szesnastu;
+                :value: 16
+              - 
+                :rule: siedemnastu;
+                :value: 17
+              - 
+                :rule: osiemnastu;
+                :value: 18
+              - 
+                :rule: dziewiętnastu;
+                :value: 19
+              - 
+                :rule: "<%%spellout-cardinal-genitive-tens<[ >%%spellout-cardinal-masculine-genitive-ones>];"
+                :value: 20
+              - 
+                :rule: "stu[ >%%spellout-cardinal-masculine-genitive-ones>];"
+                :value: 100
+              - 
+                :rule: "dwustu[ >%%spellout-cardinal-masculine-genitive-ones>];"
+                :value: 200
+              - 
+                :rule: "<%spellout-cardinal-feminine<stu[ >%%spellout-cardinal-masculine-genitive-ones>];"
+                :value: 300
+              - 
+                :rule: "<%spellout-cardinal-feminine-genitive<set[ >%%spellout-cardinal-masculine-genitive-ones>];"
+                :value: 500
+              - 
+                :rule: "tysiąca[ >%%spellout-cardinal-masculine-genitive-ones>];"
+                :value: 1000
+              - 
+                :rule: "<< tysięcy[ >%%spellout-cardinal-masculine-genitive-ones>];"
+                :value: 2000
+              - 
+                :rule: "miliona[ >%%spellout-cardinal-masculine-genitive-ones>];"
+                :value: 1000000
+              - 
+                :rule: "<< milionów[ >%%spellout-cardinal-masculine-genitive-ones>];"
+                :value: 2000000
+              - 
+                :rule: "miliarda[ >%%spellout-cardinal-masculine-genitive-ones>];"
+                :value: 1000000000
+              - 
+                :rule: "<< miliardów[ >%%spellout-cardinal-masculine-genitive-ones>];"
+                :value: 2000000000
+              - 
+                :rule: "biliona[ >%%spellout-cardinal-masculine-genitive-ones>];"
+                :value: 1000000000000
+              - 
+                :rule: "<< bilionów[ >%%spellout-cardinal-masculine-genitive-ones>];"
+                :value: 2000000000000
+              - 
+                :rule: "biliarda[ >%%spellout-cardinal-masculine-genitive-ones>];"
+                :value: 1000000000000000
+              - 
+                :rule: "<< biliardów[ >%%spellout-cardinal-masculine-genitive-ones>];"
+                :value: 2000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-masculine-genitive
+          - 
+            :rules: 
+              - 
+                :rule: "minus >>;"
+                :value: "-x"
+              - 
+                :rule: "<%spellout-cardinal-feminine-genitive< przecinek >>;"
+                :value: x.x
+              - 
+                :rule: zera;
+                :value: 0
+              - 
+                :rule: jednej;
+                :value: 1
+              - 
+                :rule: =%spellout-cardinal-masculine-genitive=;
+                :value: 2
+            :type: spellout-cardinal-feminine-genitive
+          - 
+            :rules: 
+              - 
+                :rule: =%spellout-cardinal-masculine-genitive=;
+                :value: 0
+            :type: spellout-cardinal-neuter-genitive
+          - 
+            :rules: 
+              - 
+                :rule: "minus >>;"
+                :value: "-x"
+              - 
+                :rule: "<%spellout-cardinal-masculine-dative< przecinek >>;"
+                :value: x.x
+              - 
+                :rule: zeru;
+                :value: 0
+              - 
+                :rule: jednemu;
+                :value: 1
+              - 
+                :rule: dwóm;
+                :value: 2
+              - 
+                :rule: trzem;
+                :value: 3
+              - 
+                :rule: czterem;
+                :value: 4
+              - 
+                :rule: pięciu;
+                :value: 5
+              - 
+                :rule: sześciu;
+                :value: 6
+              - 
+                :rule: siedmiu;
+                :value: 7
+              - 
+                :rule: ośmiu;
+                :value: 8
+              - 
+                :rule: dziewięciu;
+                :value: 9
+              - 
+                :rule: dziesięciu;
+                :value: 10
+              - 
+                :rule: jedenastu;
+                :value: 11
+              - 
+                :rule: dwunastu;
+                :value: 12
+              - 
+                :rule: trzynastu;
+                :value: 13
+              - 
+                :rule: czternastu;
+                :value: 14
+              - 
+                :rule: piętnastu;
+                :value: 15
+              - 
+                :rule: szesnastu;
+                :value: 16
+              - 
+                :rule: siedemnastu;
+                :value: 17
+              - 
+                :rule: osiemnastu;
+                :value: 18
+              - 
+                :rule: dziewiętnastu;
+                :value: 19
+              - 
+                :rule: "<%%spellout-cardinal-genitive-tens<[ >%%spellout-cardinal-masculine-dative-ones>];"
+                :value: 20
+              - 
+                :rule: "stu[ >%%spellout-cardinal-masculine-dative-ones>];"
+                :value: 100
+              - 
+                :rule: "dwustu[ >%%spellout-cardinal-masculine-dative-ones>];"
+                :value: 200
+              - 
+                :rule: "<%spellout-cardinal-feminine<stu[ >%%spellout-cardinal-masculine-dative-ones>];"
+                :value: 300
+              - 
+                :rule: "<%spellout-cardinal-feminine-genitive<set[ >%%spellout-cardinal-masculine-dative-ones>];"
+                :value: 500
+              - 
+                :rule: "tysiącowi[ >%%spellout-cardinal-masculine-dative-ones>];"
+                :value: 1000
+              - 
+                :rule: "<< tysiącom[ >%%spellout-cardinal-masculine-dative-ones>];"
+                :value: 2000
+              - 
+                :rule: "milionowi[ >%%spellout-cardinal-masculine-dative-ones>];"
+                :value: 1000000
+              - 
+                :rule: "<< milionom[ >%%spellout-cardinal-masculine-dative-ones>];"
+                :value: 2000000
+              - 
+                :rule: "miliardowi[ >%%spellout-cardinal-masculine-dative-ones>];"
+                :value: 1000000000
+              - 
+                :rule: "<< miliardom[ >%%spellout-cardinal-masculine-dative-ones>];"
+                :value: 2000000000
+              - 
+                :rule: "bilionowi[ >%%spellout-cardinal-masculine-dative-ones>];"
+                :value: 1000000000000
+              - 
+                :rule: "<< bilionom[ >%%spellout-cardinal-masculine-dative-ones>];"
+                :value: 2000000000000
+              - 
+                :rule: "biliardowi[ >%%spellout-cardinal-masculine-dative-ones>];"
+                :value: 1000000000000000
+              - 
+                :rule: "<< biliardom[ >%%spellout-cardinal-masculine-dative-ones>];"
+                :value: 2000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-masculine-dative
+          - 
+            :rules: 
+              - 
+                :rule: "minus >>;"
+                :value: "-x"
+              - 
+                :rule: "<%spellout-cardinal-feminine-dative< przecinek >>;"
+                :value: x.x
+              - 
+                :rule: zeru;
+                :value: 0
+              - 
+                :rule: jednej;
+                :value: 1
+              - 
+                :rule: =%spellout-cardinal-masculine-dative=;
+                :value: 2
+            :type: spellout-cardinal-feminine-dative
+          - 
+            :rules: 
+              - 
+                :rule: =%spellout-cardinal-masculine-dative=;
+                :value: 0
+            :type: spellout-cardinal-neuter-dative
+          - 
+            :rules: 
+              - 
+                :rule: =%spellout-cardinal-masculine=;
+                :value: 0
+            :type: spellout-cardinal-masculine-accusative
+          - 
+            :rules: 
+              - 
+                :rule: "minus >%spellout-cardinal-masculine-accusative-animate>;"
+                :value: "-x"
+              - 
+                :rule: "<%spellout-cardinal-masculine-accusative-animate< przecinek >>;"
+                :value: x.x
+              - 
+                :rule: zero;
+                :value: 0
+              - 
+                :rule: jednego;
+                :value: 1
+              - 
+                :rule: =%spellout-cardinal-masculine=;
+                :value: 2
+            :type: spellout-cardinal-masculine-accusative-animate
+          - 
+            :rules: 
+              - 
+                :rule: "minus >>;"
+                :value: "-x"
+              - 
+                :rule: "<%spellout-cardinal-masculine-accusative-personal< przecinek >>;"
+                :value: x.x
+              - 
+                :rule: =%spellout-cardinal-masculine-genitive=;
+                :value: 0
+              - 
+                :rule: "tysiąc[ >%%spellout-cardinal-masculine-genitive-ones>];"
+                :value: 1000
+              - 
+                :rule: "<%spellout-cardinal-masculine< $(cardinal,few{tysiące}other{tysięcy})$[ >%%spellout-cardinal-masculine-genitive-ones>];"
+                :value: 2000
+              - 
+                :rule: "milion[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<%spellout-cardinal-masculine< $(cardinal,few{miliony}other{milionów})$[ >>];"
+                :value: 2000000
+              - 
+                :rule: "miliard[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<%spellout-cardinal-masculine< $(cardinal,few{miliardy}other{miliardów})$[ >>];"
+                :value: 2000000000
+              - 
+                :rule: "bilion[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%spellout-cardinal-masculine< $(cardinal,few{biliony}other{bilionów})$[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "biliard[ >>];"
+                :value: 1000000000000000
+              - 
+                :rule: "<%spellout-cardinal-masculine< $(cardinal,few{biliardy}other{biliardów})$[ >>];"
+                :value: 2000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-masculine-accusative-personal
+          - 
+            :rules: 
+              - 
+                :rule: "minus >>;"
+                :value: "-x"
+              - 
+                :rule: "<%spellout-cardinal-feminine-accusative< przecinek >>;"
+                :value: x.x
+              - 
+                :rule: zero;
+                :value: 0
+              - 
+                :rule: jedną;
+                :value: 1
+              - 
+                :rule: =%spellout-cardinal-feminine=;
+                :value: 2
+            :type: spellout-cardinal-feminine-accusative
+          - 
+            :rules: 
+              - 
+                :rule: "minus >>;"
+                :value: "-x"
+              - 
+                :rule: "<%spellout-cardinal-neuter-accusative< przecinek >>;"
+                :value: x.x
+              - 
+                :rule: zero;
+                :value: 0
+              - 
+                :rule: jedno;
+                :value: 1
+              - 
+                :rule: =%spellout-cardinal-masculine=;
+                :value: 2
+            :type: spellout-cardinal-neuter-accusative
+          - 
+            :rules: 
+              - 
+                :rule: "minus >>;"
+                :value: "-x"
+              - 
+                :rule: "<%spellout-cardinal-masculine-instrumental< przecinek >>;"
+                :value: x.x
+              - 
+                :rule: zerem;
+                :value: 0
+              - 
+                :rule: jednym;
+                :value: 1
+              - 
+                :rule: dwoma;
+                :value: 2
+              - 
+                :rule: trzema;
+                :value: 3
+              - 
+                :rule: czterema;
+                :value: 4
+              - 
+                :rule: pięcioma;
+                :value: 5
+              - 
+                :rule: sześcioma;
+                :value: 6
+              - 
+                :rule: siedmioma;
+                :value: 7
+              - 
+                :rule: ośmioma;
+                :value: 8
+              - 
+                :rule: dziewięcioma;
+                :value: 9
+              - 
+                :rule: dziesięcioma;
+                :value: 10
+              - 
+                :rule: jedenastoma;
+                :value: 11
+              - 
+                :rule: dwunastoma;
+                :value: 12
+              - 
+                :rule: trzynastoma;
+                :value: 13
+              - 
+                :rule: czternastoma;
+                :value: 14
+              - 
+                :rule: piętnastoma;
+                :value: 15
+              - 
+                :rule: szesnastoma;
+                :value: 16
+              - 
+                :rule: siedemnastoma;
+                :value: 17
+              - 
+                :rule: osiemnastoma;
+                :value: 18
+              - 
+                :rule: dziewiętnastoma;
+                :value: 19
+              - 
+                :rule: "dwudziestoma[ >%%spellout-cardinal-masculine-instrumental-ones>];"
+                :value: 20
+              - 
+                :rule: "trzydziestoma[ >%%spellout-cardinal-masculine-instrumental-ones>];"
+                :value: 30
+              - 
+                :rule: "czterdziestoma[ >%%spellout-cardinal-masculine-instrumental-ones>];"
+                :value: 40
+              - 
+                :rule: "pięćdziesięcioma[ >%%spellout-cardinal-masculine-instrumental-ones>];"
+                :value: 50
+              - 
+                :rule: "sześćdziesięcioma[ >%%spellout-cardinal-masculine-instrumental-ones>];"
+                :value: 60
+              - 
+                :rule: "siedemdziesięcioma[ >%%spellout-cardinal-masculine-instrumental-ones>];"
+                :value: 70
+              - 
+                :rule: "osiemdziesięcioma[ >%%spellout-cardinal-masculine-instrumental-ones>];"
+                :value: 80
+              - 
+                :rule: "dziewięćdziesięcioma[ >%%spellout-cardinal-masculine-instrumental-ones>];"
+                :value: 90
+              - 
+                :rule: "stu[ >%%spellout-cardinal-masculine-instrumental-ones>];"
+                :value: 100
+              - 
+                :rule: "dwustu[ >%%spellout-cardinal-masculine-instrumental-ones>];"
+                :value: 200
+              - 
+                :rule: "<%spellout-cardinal-feminine<stu[ >%%spellout-cardinal-masculine-instrumental-ones>];"
+                :value: 300
+              - 
+                :rule: "<%spellout-cardinal-feminine-genitive<set[ >%%spellout-cardinal-masculine-instrumental-ones>];"
+                :value: 500
+              - 
+                :rule: "tysiącem[ >%%spellout-cardinal-masculine-instrumental-ones>];"
+                :value: 1000
+              - 
+                :rule: "<< tysiącami[ >%%spellout-cardinal-masculine-instrumental-ones>];"
+                :value: 2000
+              - 
+                :rule: "milionem[ >%%spellout-cardinal-masculine-instrumental-ones>];"
+                :value: 1000000
+              - 
+                :rule: "<< milionami[ >%%spellout-cardinal-masculine-instrumental-ones>];"
+                :value: 2000000
+              - 
+                :rule: "miliardem[ >%%spellout-cardinal-masculine-instrumental-ones>];"
+                :value: 1000000000
+              - 
+                :rule: "<< miliardami[ >%%spellout-cardinal-masculine-instrumental-ones>];"
+                :value: 2000000000
+              - 
+                :rule: "bilionem[ >%%spellout-cardinal-masculine-instrumental-ones>];"
+                :value: 1000000000000
+              - 
+                :rule: "<< bilionami[ >%%spellout-cardinal-masculine-instrumental-ones>];"
+                :value: 2000000000000
+              - 
+                :rule: "biliardem[ >%%spellout-cardinal-masculine-instrumental-ones>];"
+                :value: 1000000000000000
+              - 
+                :rule: "<< biliardami[ >%%spellout-cardinal-masculine-instrumental-ones>];"
+                :value: 2000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-masculine-instrumental
+          - 
+            :rules: 
+              - 
+                :rule: "minus >>;"
+                :value: "-x"
+              - 
+                :rule: "<%spellout-cardinal-feminine-instrumental< przecinek >>;"
+                :value: x.x
+              - 
+                :rule: zerem;
+                :value: 0
+              - 
+                :rule: jedną;
+                :value: 1
+              - 
+                :rule: dwiema;
+                :value: 2
+              - 
+                :rule: =%spellout-cardinal-masculine-instrumental=;
+                :value: 3
+            :type: spellout-cardinal-feminine-instrumental
+          - 
+            :rules: 
+              - 
+                :rule: =%spellout-cardinal-masculine-instrumental=;
+                :value: 0
+            :type: spellout-cardinal-neuter-instrumental
+          - 
+            :rules: 
+              - 
+                :rule: "minus >%spellout-cardinal-masculine-locative>;"
+                :value: "-x"
+              - 
+                :rule: "<%spellout-cardinal-masculine-locative< przecinek >>;"
+                :value: x.x
+              - 
+                :rule: zerze;
+                :value: 0
+              - 
+                :rule: jednym;
+                :value: 1
+              - 
+                :rule: dwóch;
+                :value: 2
+              - 
+                :rule: trzech;
+                :value: 3
+              - 
+                :rule: czterech;
+                :value: 4
+              - 
+                :rule: pięciu;
+                :value: 5
+              - 
+                :rule: sześciu;
+                :value: 6
+              - 
+                :rule: siedmiu;
+                :value: 7
+              - 
+                :rule: ośmiu;
+                :value: 8
+              - 
+                :rule: dziewięciu;
+                :value: 9
+              - 
+                :rule: dziesięciu;
+                :value: 10
+              - 
+                :rule: jedenastu;
+                :value: 11
+              - 
+                :rule: dwunastu;
+                :value: 12
+              - 
+                :rule: trzynastu;
+                :value: 13
+              - 
+                :rule: czternastu;
+                :value: 14
+              - 
+                :rule: piętnastu;
+                :value: 15
+              - 
+                :rule: szesnastu;
+                :value: 16
+              - 
+                :rule: siedemnastu;
+                :value: 17
+              - 
+                :rule: osiemnastu;
+                :value: 18
+              - 
+                :rule: dziewiętnastu;
+                :value: 19
+              - 
+                :rule: "<%%spellout-cardinal-genitive-tens<[ >%%spellout-cardinal-masculine-locative-ones>];"
+                :value: 20
+              - 
+                :rule: "stu[ >%%spellout-cardinal-masculine-locative-ones>];"
+                :value: 100
+              - 
+                :rule: "dwustu[ >%%spellout-cardinal-masculine-locative-ones>];"
+                :value: 200
+              - 
+                :rule: "<%spellout-cardinal-feminine<stu[ >%%spellout-cardinal-masculine-locative-ones>];"
+                :value: 300
+              - 
+                :rule: "<%spellout-cardinal-feminine-genitive<set[ >%%spellout-cardinal-masculine-locative-ones>];"
+                :value: 500
+              - 
+                :rule: "tysiącu[ >%%spellout-cardinal-masculine-locative-ones>];"
+                :value: 1000
+              - 
+                :rule: "<< tysiącach[ >%%spellout-cardinal-masculine-locative-ones>];"
+                :value: 2000
+              - 
+                :rule: "milionie[ >%%spellout-cardinal-masculine-locative-ones>];"
+                :value: 1000000
+              - 
+                :rule: "<< milionach[ >%%spellout-cardinal-masculine-locative-ones>];"
+                :value: 2000000
+              - 
+                :rule: "miliardzie[ >%%spellout-cardinal-masculine-locative-ones>];"
+                :value: 1000000000
+              - 
+                :rule: "<< miliardach[ >%%spellout-cardinal-masculine-locative-ones>];"
+                :value: 2000000000
+              - 
+                :rule: "bilionie[ >%%spellout-cardinal-masculine-locative-ones>];"
+                :value: 1000000000000
+              - 
+                :rule: "<< bilionach[ >%%spellout-cardinal-masculine-locative-ones>];"
+                :value: 2000000000000
+              - 
+                :rule: "biliardzie[ >%%spellout-cardinal-masculine-locative-ones>];"
+                :value: 1000000000000000
+              - 
+                :rule: "<< biliardach[ >%%spellout-cardinal-masculine-locative-ones>];"
+                :value: 2000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-masculine-locative
+          - 
+            :rules: 
+              - 
+                :rule: "minus >>;"
+                :value: "-x"
+              - 
+                :rule: "<%spellout-cardinal-feminine-locative< przecinek >>;"
+                :value: x.x
+              - 
+                :rule: zerze;
+                :value: 0
+              - 
+                :rule: jednej;
+                :value: 1
+              - 
+                :rule: =%spellout-cardinal-masculine-locative=;
+                :value: 2
+            :type: spellout-cardinal-feminine-locative
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: jeden;
+                :value: 1
+              - 
+                :rule: =%spellout-cardinal-masculine-genitive=;
+                :value: 2
+            :type: spellout-cardinal-masculine-genitive-ones
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: jeden;
+                :value: 1
+              - 
+                :rule: =%spellout-cardinal-masculine-dative=;
+                :value: 2
+            :type: spellout-cardinal-masculine-dative-ones
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: jeden;
+                :value: 1
+              - 
+                :rule: =%spellout-cardinal-masculine-instrumental=;
+                :value: 2
+            :type: spellout-cardinal-masculine-instrumental-ones
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: jeden;
+                :value: 1
+              - 
+                :rule: =%spellout-cardinal-masculine-locative=;
+                :value: 2
+            :type: spellout-cardinal-masculine-locative-ones
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: jeden;
+                :value: 1
+              - 
+                :rule: =%spellout-cardinal-feminine=;
+                :value: 2
+            :type: spellout-cardinal-feminine-ones
+          - 
+            :rules: 
+              - 
+                :rule: =%spellout-cardinal-masculine-locative=;
+                :value: 0
+            :type: spellout-cardinal-neuter-locative
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: dziesięć;
+                :value: 1
+              - 
+                :rule: dwadzieścia;
+                :value: 2
+              - 
+                :rule: trzydzieści;
+                :value: 3
+              - 
+                :rule: czterdzieści;
+                :value: 4
+              - 
+                :rule: pięćdziesiąt;
+                :value: 5
+              - 
+                :rule: sześćdziesiąt;
+                :value: 6
+              - 
+                :rule: siedemdziesiąt;
+                :value: 7
+              - 
+                :rule: osiemdziesiąt;
+                :value: 8
+              - 
+                :rule: dziewięćdziesiąt;
+                :value: 9
+            :type: spellout-cardinal-tens
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: dziesięciu;
+                :value: 1
+              - 
+                :rule: dwudziestu;
+                :value: 2
+              - 
+                :rule: trzydziestu;
+                :value: 3
+              - 
+                :rule: czterdziestu;
+                :value: 4
+              - 
+                :rule: pięćdziesięciu;
+                :value: 5
+              - 
+                :rule: sześćdziesięciu;
+                :value: 6
+              - 
+                :rule: siedemdziesięciu;
+                :value: 7
+              - 
+                :rule: osiemdziesięciu;
+                :value: 8
+              - 
+                :rule: dziewięćdziesięciu;
+                :value: 9
+            :type: spellout-cardinal-genitive-tens
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: <%spellout-cardinal-masculine<<;
+                :value: 10
+              - 
+                :rule: <%spellout-cardinal-masculine<<;
+                :value: 100
+              - 
+                :rule: <%spellout-cardinal-masculine<<;
+                :value: 1000
+              - 
+                :rule: <%%spellout-fraction-digits<<;
+                :value: 10000
+              - 
+                :rule: <%%spellout-fraction-digits<<;
+                :value: 100000
+              - 
+                :rule: <%%spellout-fraction-digits<<;
+                :value: 1000000
+              - 
+                :rule: <%%spellout-fraction-digits<<;
+                :value: 10000000
+              - 
+                :rule: <%%spellout-fraction-digits<<;
+                :value: 100000000
+              - 
+                :rule: <%%spellout-fraction-digits<<;
+                :value: 1000000000
+              - 
+                :rule: <0<;
+                :value: 10000000000
+            :type: spellout-fraction
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: =%spellout-cardinal-masculine=;
+                :value: 0
+              - 
+                :rule: "<< >>;"
+                :value: 10
+            :type: spellout-fraction-digits
+        :type: SpelloutRules

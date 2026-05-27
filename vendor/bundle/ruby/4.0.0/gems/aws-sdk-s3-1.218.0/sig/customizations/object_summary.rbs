@@ -1,0 +1,35 @@
+module Aws
+  module S3
+    class ObjectSummary
+      alias content_length size
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectSummary.html#copy_from-instance_method
+      def copy_from: (untyped source, ?Hash[Symbol, untyped] options) -> void
+                   | ...
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectSummary.html#copy_to-instance_method
+      def copy_to: (untyped target, ?Hash[Symbol, untyped] options) -> void
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectSummary.html#move_to-instance_method
+      def move_to: (untyped target, ?Hash[Symbol, untyped] options) -> void
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectSummary.html#presigned_post-instance_method
+      def presigned_post: (Hash[Symbol, untyped]) -> untyped
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectSummary.html#presigned_url-instance_method
+      def presigned_url: (Symbol | String method, ?Hash[Symbol, untyped] params) -> String
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectSummary.html#public_url-instance_method
+      def public_url: (?Hash[Symbol, untyped] options) -> String
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectSummary.html#upload_file-instance_method
+      def upload_file: (untyped source, ?Hash[Symbol, untyped] options) ?{ (untyped response) -> void } -> bool
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectSummary.html#upload_stream-instance_method
+      def upload_stream: (?Hash[Symbol, untyped] options) { (IO write_stream) -> void } -> bool
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectSummary.html#download_file-instance_method
+      def download_file: (String destination, ?Hash[Symbol, untyped] options) -> bool
+    end
+  end
+end

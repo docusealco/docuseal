@@ -1,0 +1,1049 @@
+--- 
+:ka: 
+  :units: 
+    :durationUnit: 
+      :hm: "h:mm"
+      :hms: "h:mm:ss"
+      :ms: "m:ss"
+    :unitLength: 
+      :long: 
+        :acceleration-g-force: 
+          :one: "{0} ინერციის ძალა"
+          :other: "{0} ინერციის ძალა"
+        :angle-degree: 
+          :one: "{0} გრადუსი"
+          :other: "{0} გრადუსი"
+        :angle-radian: 
+          :one: "{0} რადიანი"
+          :other: "{0} რადიანი"
+        :angle-revolution: 
+          :one: "{0} ბრუნვა"
+          :other: "{0} ბრუნვა"
+        :area-hectare: 
+          :one: "{0} ჰექტარი"
+          :other: "{0} ჰექტარი"
+        :area-square-centimeter: 
+          :one: "{0} კვადრატული სანტიმეტრი"
+          :other: "{0} კვადრატული სანტიმეტრი"
+        :area-square-foot: 
+          :one: "{0} კვადრატული ფუტი"
+          :other: "{0} კვადრატული ფუტი"
+        :area-square-inch: 
+          :one: "{0} კვადრატული დუიმი"
+          :other: "{0} კვადრატული დუიმი"
+        :area-square-kilometer: 
+          :one: "{0} კვადრატული კილომეტრი"
+          :other: "{0} კვადრატული კილომეტრი"
+        :area-square-meter: 
+          :one: "{0} კვადრატული მეტრი"
+          :other: "{0} კვადრატული მეტრი"
+        :area-square-mile: 
+          :one: "{0} კვადრატული მილი"
+          :other: "{0} კვადრატული მილი"
+        :area-square-yard: 
+          :one: "{0} კვადრატული იარდი"
+          :other: "{0} კვადრატული იარდი"
+        :concentr-item: 
+          :one: "{0} ერთეული"
+          :other: "{0} ერთეული"
+        :concentr-karat: 
+          :one: "{0} კარატი"
+          :other: "{0} კარატი"
+        :concentr-milligram-ofglucose-per-deciliter: 
+          :one: "{0} მილიგრამი დეცილიტრზე"
+          :other: "{0} მილიგრამი დეცილიტრზე"
+        :concentr-millimole-per-liter: 
+          :one: "{0} მილიმოლი ლიტრზე"
+          :other: "{0} მილიმოლი ლიტრზე"
+        :concentr-percent: 
+          :one: "{0} პროცენტი"
+          :other: "{0} პროცენტი"
+        :concentr-permille: 
+          :one: "{0} პრომილე"
+          :other: "{0} პრომილე"
+        :concentr-permillion: 
+          :one: "{0} ნაწილი მილიონზე"
+          :other: "{0} ნაწილი მილიონზე"
+        :concentr-portion-per-1e9: 
+          :one: "{0} ნაწილი მილიარდზე"
+          :other: "{0} ნაწილი მილიარდზე"
+        :consumption-liter-per-100-kilometer: 
+          :one: "{0} ლიტრი 100 კილომეტრში"
+          :other: "{0} ლიტრი 100 კილომეტრში"
+        :consumption-liter-per-kilometer: 
+          :one: "{0} ლიტრი კილომეტრზე"
+          :other: "{0} ლიტრი კილომეტრზე"
+        :consumption-mile-per-gallon: 
+          :one: "{0} მილი გალონზე"
+          :other: "{0} მილი გალონზე"
+        :consumption-mile-per-gallon-imperial: 
+          :one: "{0} იმპ. გალონი მილზე"
+          :other: "{0} იმპ. გალონი მილზე"
+        :digital-gigabit: 
+          :one: "{0} გიგაბიტი"
+          :other: "{0} გიგაბიტი"
+        :digital-gigabyte: 
+          :one: "{0} გიგაბაიტი"
+          :other: "{0} გიგაბაიტი"
+        :digital-kilobit: 
+          :one: "{0} კილობიტი"
+          :other: "{0} კილობიტი"
+        :digital-kilobyte: 
+          :one: "{0} კილობაიტი"
+          :other: "{0} კილობაიტი"
+        :digital-megabit: 
+          :one: "{0} მეგაბიტი"
+          :other: "{0} მეგაბიტი"
+        :digital-megabyte: 
+          :one: "{0} მეგაბაიტი"
+          :other: "{0} მეგაბაიტი"
+        :digital-petabyte: 
+          :one: "{0} პბაიტი"
+          :other: "{0} პეტაბაიტი"
+        :digital-terabit: 
+          :one: "{0} ტერაბიტი"
+          :other: "{0} ტერაბიტი"
+        :digital-terabyte: 
+          :one: "{0} ტერაბაიტი"
+          :other: "{0} ტერაბაიტი"
+        :duration-century: 
+          :one: "{0} საუკუნე"
+          :other: "{0} საუკუნე"
+        :duration-hour: 
+          :one: "{0} საათი"
+          :other: "{0} საათი"
+        :duration-microsecond: 
+          :one: "{0} მიკროწამი"
+          :other: "{0} მიკროწამი"
+        :duration-millisecond: 
+          :one: "{0} მილიწამი"
+          :other: "{0} მილიწამი"
+        :duration-minute: 
+          :one: "{0} წუთი"
+          :other: "{0} წუთი"
+        :duration-nanosecond: 
+          :one: "{0} ნანოწამი"
+          :other: "{0} ნანოწამი"
+        :duration-night: 
+          :one: "{0} ღამე"
+          :other: "{0} ღამე"
+        :duration-quarter: 
+          :one: "{0} კვარტალი"
+          :other: "{0} კვარტალი"
+        :duration-second: 
+          :one: "{0} წამი"
+          :other: "{0} წამი"
+        :duration-week: 
+          :one: "{0} კვირა"
+          :other: "{0} კვირა"
+        :duration-year: 
+          :one: "{0} წელი"
+          :other: "{0} წელი"
+        :electric-milliampere: 
+          :one: "{0} მილიამპერი"
+          :other: "{0} მილიამპერი"
+        :electric-ohm: 
+          :one: "{0} ომი"
+          :other: "{0} ომი"
+        :electric-volt: 
+          :one: "{0} ვოლტი"
+          :other: "{0} ვოლტი"
+        :energy-british-thermal-unit: 
+          :one: "{0} ბრიტანული სითბური ერთეული"
+          :other: "{0} ბრიტანული სითბური ერთეული"
+        :energy-calorie: 
+          :one: "{0} კალორია"
+          :other: "{0} კალორია"
+        :energy-electronvolt: 
+          :one: "{0} ელექტრონვოლტი"
+          :other: "{0} ელექტრონვოლტი"
+        :energy-foodcalorie: 
+          :one: "{0} კალორია"
+          :other: "{0} კალორია"
+        :energy-joule: 
+          :one: "{0} ჯოული"
+          :other: "{0} ჯოული"
+        :energy-kilocalorie: 
+          :one: "{0} კილოკალორია"
+          :other: "{0} კილოკალორია"
+        :energy-kilojoule: 
+          :one: "{0} კილოჯოული"
+          :other: "{0} კილოჯოული"
+        :energy-kilowatt-hour: 
+          :one: "{0} კილოვატ-საათი"
+          :other: "{0} კილოვატ-საათი"
+        :frequency-gigahertz: 
+          :one: "{0} გიგაჰერცი"
+          :other: "{0} გიგაჰერცი"
+        :frequency-hertz: 
+          :one: "{0} ჰერცი"
+          :other: "{0} ჰერცი"
+        :frequency-kilohertz: 
+          :one: "{0} კილოჰერცი"
+          :other: "{0} კილოჰერცი"
+        :frequency-megahertz: 
+          :one: "{0} მეგაჰერცი"
+          :other: "{0} მეგაჰერცი"
+        :graphics-dot: 
+          :one: "{0} წერტილი"
+          :other: "{0} წერტილი"
+        :graphics-dot-per-centimeter: 
+          :one: "{0} წერტილი სანტიმეტრზე"
+          :other: "{0} წერტილი სანტიმეტრზე"
+        :graphics-dot-per-inch: 
+          :one: "{0} წერტილი დუიმზე"
+          :other: "{0} წერტილი დუიმზე"
+        :graphics-megapixel: 
+          :one: "{0} მეგაპიქსელი"
+          :other: "{0} მეგაპიქსელი"
+        :graphics-pixel: 
+          :one: "{0} პიქსელი"
+          :other: "{0} პიქსელი"
+        :graphics-pixel-per-centimeter: 
+          :one: "{0} პიქსელი სანტიმეტრზე"
+          :other: "{0} პიქსელი სანტიმეტრზე"
+        :graphics-pixel-per-inch: 
+          :one: "{0} პიქსელი დუიმზე"
+          :other: "{0} პიქსელი დუიმზე"
+        :length-astronomical-unit: 
+          :one: "{0} ასტრონომიული ერთეული"
+          :other: "{0} ასტრონომიული ერთეული"
+        :length-centimeter: 
+          :one: "{0} სანტიმეტრი"
+          :other: "{0} სანტიმეტრი"
+        :length-decimeter: 
+          :one: "{0} დეციმეტრი"
+          :other: "{0} დეციმეტრი"
+        :length-earth-radius: 
+          :one: "{0} დედამიწის რადიუსი"
+          :other: "{0} დედამიწის რადიუსი"
+        :length-foot: 
+          :one: "{0} ფუტი"
+          :other: "{0} ფუტი"
+        :length-kilometer: 
+          :one: "{0} კილომეტრი"
+          :other: "{0} კილომეტრი"
+        :length-light-year: 
+          :one: "{0} სინათლის წელი"
+          :other: "{0} სინათლის წელი"
+        :length-meter: 
+          :one: "{0} მეტრი"
+          :other: "{0} მეტრი"
+        :length-micrometer: 
+          :one: "{0} მიკრომეტრი"
+          :other: "{0} მიკრომეტრი"
+        :length-mile-scandinavian: 
+          :one: "{0} სკანდინავიური მილი"
+          :other: "{0} სკანდინავიური მილი"
+        :length-millimeter: 
+          :one: "{0} მილიმეტრი"
+          :other: "{0} მილიმეტრი"
+        :length-nanometer: 
+          :one: "{0} ნანომეტრი"
+          :other: "{0} ნანომეტრი"
+        :length-nautical-mile: 
+          :one: "{0} საზღვაო მილი"
+          :other: "{0} საზღვაო მილი"
+        :length-parsec: 
+          :one: "{0} პარსეკი"
+          :other: "{0} პარსეკი"
+        :length-picometer: 
+          :one: "{0} პიკომეტრი"
+          :other: "{0} პიკომეტრი"
+        :length-point: 
+          :one: "{0} პუნქტი"
+          :other: "{0} პუნქტი"
+        :length-solar-radius: 
+          :one: "{0} მზის რადიუსი"
+          :other: "{0} მზის რადიუსი"
+        :light-candela: 
+          :one: "{0} კანდელა"
+          :other: "{0} კანდელა"
+        :light-lumen: 
+          :one: "{0} ლუმენი"
+          :other: "{0} ლუმენი"
+        :light-solar-luminosity: 
+          :one: "{0} მზის სხივიერობა"
+          :other: "{0} მზის სხივიერობა"
+        :mass-carat: 
+          :one: "{0} კარატი"
+          :other: "{0} კარატი"
+        :mass-dalton: 
+          :one: "{0} დალტონი"
+          :other: "{0} დალტონი"
+        :mass-earth-mass: 
+          :one: "{0} დედამიწის მასა"
+          :other: "{0} დედამიწის მასა"
+        :mass-gram: 
+          :one: "{0} გრამი"
+          :other: "{0} გრამი"
+        :mass-kilogram: 
+          :one: "{0} კილოგრამი"
+          :other: "{0} კილოგრამი"
+        :mass-microgram: 
+          :one: მიკროგრამი
+          :other: "{0} მიკროგრამი"
+        :mass-milligram: 
+          :one: "{0} მილიგრამი"
+          :other: "{0} მილიგრამი"
+        :mass-ounce: 
+          :one: "{0} უნცია"
+          :other: "{0} უნცია"
+        :mass-ounce-troy: 
+          :one: "{0} ტრუას უნცია"
+          :other: "{0} ტრუას უნცია"
+        :mass-pound: 
+          :one: "{0} ფუნტი"
+          :other: "{0} ფუნტი"
+        :mass-solar-mass: 
+          :one: "{0} მზის მასა"
+          :other: "{0} მზის მასა"
+        :mass-ton: 
+          :one: "{0} ტონა"
+          :other: "{0} ტ"
+        :mass-tonne: 
+          :one: "{0} მეტრული ტონა"
+          :other: "{0} მეტრული ტონა"
+        :power-gigawatt: 
+          :one: "{0} გიგავატი"
+          :other: "{0} გიგავატი"
+        :power-horsepower: 
+          :one: "{0} ცხენის ძალა"
+          :other: "{0} ცხენის ძალა"
+        :power-kilowatt: 
+          :one: "{0} კილოვატი"
+          :other: "{0} კილოვატი"
+        :power-megawatt: 
+          :one: "{0} მეგავატი"
+          :other: "{0} მეგავატი"
+        :power-milliwatt: 
+          :one: "{0} მილივატი"
+          :other: "{0} მილივატი"
+        :power-watt: 
+          :one: "{0} ვატი"
+          :other: "{0} ვატი"
+        :pressure-atmosphere: 
+          :one: "{0} ატმოსფერო"
+          :other: "{0} ატმოსფერო"
+        :pressure-hectopascal: 
+          :one: "{0} ჰექტოპასკალი"
+          :other: "{0} ჰექტოპასკალი"
+        :pressure-inch-ofhg: 
+          :one: "{0} ვერცხლისწყლის დუიმი"
+          :other: "{0} ვერცხლისწყლის დუიმი"
+        :pressure-kilopascal: 
+          :one: "{0} კილოპასკალი"
+          :other: "{0} კილოპასკალი"
+        :pressure-megapascal: 
+          :one: მეგაპასკალი
+          :other: "{0} მეგაპასკალი"
+        :pressure-millibar: 
+          :one: "{0} მილიბარი"
+          :other: "{0} მილიბარი"
+        :pressure-millimeter-ofhg: 
+          :one: "{0} მილიმეტრი ვერცხლისწყლის სვეტისა"
+          :other: "{0} მილიმეტრი ვერცხლისწყლის სვეტისა"
+        :pressure-pascal: 
+          :one: "{0} პასკალი"
+          :other: "{0} პასკალი"
+        :pressure-pound-force-per-square-inch: 
+          :one: "{0} ფუნტი კვადრატულ დუიმზე"
+          :other: "{0} ფუნტი კვადრატულ დუიმზე"
+        :speed-beaufort: 
+          :one: "ბოფორტი {0}"
+          :other: "ბოფორტი {0}"
+        :speed-kilometer-per-hour: 
+          :one: "{0} კილომეტრი საათში"
+          :other: "{0} კილომეტრი საათში"
+        :speed-knot: 
+          :one: "{0} კვანძი"
+          :other: "{0} კვანძი"
+        :speed-meter-per-second: 
+          :one: "{0} მეტრი წამში"
+          :other: "{0} მეტრი წამში"
+        :speed-mile-per-hour: 
+          :one: "{0} მილი საათში"
+          :other: "{0} მილი საათში"
+        :temperature-celsius: 
+          :one: "{0} გრადუსი ცელსიუსით"
+          :other: "{0} გრადუსი ცელსიუსით"
+        :temperature-fahrenheit: 
+          :one: "{0} გრადუსი ფარენჰეიტით"
+          :other: "{0} გრადუსი ფარენჰეიტით"
+        :temperature-kelvin: 
+          :one: "{0} კელვინი"
+          :other: "{0} კელვინის გრადუსი"
+        :torque-newton-meter: 
+          :one: "{0} ნიუტონ-მეტრი"
+          :other: "{0} ნიუტონ-მეტრი"
+        :volume-acre-foot: 
+          :one: "{0} აკრი-ფუტი"
+          :other: "{0} აკრი-ფუტი"
+        :volume-barrel: 
+          :one: "{0} ბარელი"
+          :other: "{0} ბარელი"
+        :volume-centiliter: 
+          :one: "{0} სანტილიტრი"
+          :other: "{0} სანტილიტრი"
+        :volume-cubic-centimeter: 
+          :one: "{0} კუბური სანტიმენტრი"
+          :other: "{0} კუბური სანტიმენტრი"
+        :volume-cubic-foot: 
+          :one: "{0} კუბური ფუტი"
+          :other: "{0} კუბური ფუტი"
+        :volume-cubic-inch: 
+          :one: "{0} კუბური დუიმი"
+          :other: "{0} კუბური დუიმი"
+        :volume-cubic-kilometer: 
+          :one: "{0} კუბური კილომეტრი"
+          :other: "{0} კუბური კილომეტრი"
+        :volume-cubic-meter: 
+          :one: "{0} კუბური მეტრი"
+          :other: "{0} კუბური მეტრი"
+        :volume-cubic-mile: 
+          :one: "{0} კუბური მილი"
+          :other: "{0} კუბური მილი"
+        :volume-cubic-yard: 
+          :one: "{0} კუბური იარდი"
+          :other: "{0} კუბური იარდი"
+        :volume-cup-metric: 
+          :one: "{0} მეტრული ჭიქა"
+          :other: "{0} მეტრული ჭიქა"
+        :volume-deciliter: 
+          :one: "{0} დეცილიტრი"
+          :other: "{0} დეცილიტრი"
+        :volume-dessert-spoon-imperial: 
+          :one: "{0} ბრიტ. დესერტის კოვზი"
+          :other: "{0} ბრიტ. დესერტის კოვზი"
+        :volume-dram: 
+          :one: "{0} ბრიტანული თხევადი დრაქმა"
+          :other: "{0} ბრიტანული თხევადი დრაქმა"
+        :volume-fluid-ounce: 
+          :one: "{0} თხევადი უნცია"
+          :other: "{0} თხევადი უნცია"
+        :volume-fluid-ounce-imperial: 
+          :one: "{0} ბრიტ. თხევადი უნცია"
+          :other: "{0} ბრიტ. თხევადი უნცია"
+        :volume-gallon-imperial: 
+          :one: "{0} იმპ. გალონი"
+          :other: "{0} იმპ. გალონი"
+        :volume-hectoliter: 
+          :one: "{0} ჰექტოლიტრი"
+          :other: "{0} ჰექტოლიტრი"
+        :volume-liter: 
+          :one: "{0} ლიტრი"
+          :other: "{0} ლიტრი"
+        :volume-megaliter: 
+          :one: "{0} მეგალიტრი"
+          :other: "{0} მეგალიტრი"
+        :volume-milliliter: 
+          :one: "{0} მილილიტრი"
+          :other: "{0} მილილიტრი"
+        :volume-pint-metric: 
+          :one: "{0} მეტრული პინტა"
+          :other: "{0} მეტრული პინტა"
+        :volume-quart-imperial: 
+          :one: "{0} ბრიტანული კვარტი"
+          :other: "{0} ბრიტანული კვარტი"
+        :volume-tablespoon: 
+          :one: "{0} სუფრის კოვზი"
+          :other: "{0} სუფრის კოვზი"
+        :volume-teaspoon: 
+          :one: "{0} ჩაის კოვზი"
+          :other: "{0} ჩაის კოვზი"
+      :narrow: 
+        :angle-arc-minute: 
+          :one: "{0} წთ"
+          :other: "{0} წთ"
+        :angle-arc-second: 
+          :one: "{0} წმ"
+          :other: "{0} წმ"
+        :consumption-liter-per-100-kilometer: 
+          :one: "{0}ლ/100კმ"
+          :other: "{0}ლ/100კმ"
+        :duration-hour: 
+          :one: "{0}სთ"
+          :other: "{0}სთ"
+        :duration-minute: 
+          :one: "{0}წთ"
+          :other: "{0}წთ"
+        :duration-night: 
+          :one: "{0} ღამე"
+          :other: "{0} ღამე"
+        :duration-second: 
+          :one: "{0}წმ"
+          :other: "{0}წმ"
+        :length-inch: 
+          :one: "{0} დმ"
+          :other: "{0} დმ"
+        :length-meter: 
+          :one: "{0}მ"
+          :other: "{0}მ"
+        :mass-gram: 
+          :one: "{0}გ"
+          :other: "{0}გ"
+        :mass-kilogram: 
+          :one: "{0}კგ"
+          :other: "{0}კგ"
+        :mass-microgram: 
+          :one: "{0}მკგ"
+          :other: "{0}მკგ"
+        :mass-milligram: 
+          :one: "{0}მგ"
+          :other: "{0}მგ"
+        :mass-ton: 
+          :one: "{0}ტ"
+          :other: "{0}ტ"
+        :power-horsepower: 
+          :one: "{0}ცხ.ძ."
+          :other: "{0}ცხ.ძ."
+        :pressure-millibar: 
+          :one: "{0} მბრ"
+          :other: "{0} მბრ"
+        :volume-liter: 
+          :one: "{0}ლ"
+          :other: "{0}ლ"
+      :short: 
+        :acceleration-g-force: 
+          :one: "{0} ინ. ძ."
+          :other: "{0} ინ. ძ."
+        :acceleration-meter-per-square-second: 
+          :one: "{0} მ/წმ²"
+          :other: "{0} მ/წმ²"
+        :angle-arc-minute: 
+          :one: "{0} მინუტი"
+          :other: "{0} მინუტი"
+        :angle-arc-second: 
+          :one: "{0} სეკუნდი"
+          :other: "{0} სეკუნდი"
+        :angle-degree: 
+          :other: "{0}°"
+        :angle-radian: 
+          :one: "{0} რად."
+          :other: "{0} რად."
+        :angle-revolution: 
+          :one: "{0} ბრნ."
+          :other: "{0} ბრნ."
+        :area-acre: 
+          :one: "{0} აკრი"
+          :other: "{0} აკრი"
+        :area-dunam: 
+          :one: "{0} დუნამი"
+          :other: "{0} დუნამი"
+        :area-hectare: 
+          :one: "{0} ჰა"
+          :other: "{0} ჰა"
+        :area-square-centimeter: 
+          :one: "{0} სმ²"
+          :other: "{0} სმ²"
+        :area-square-foot: 
+          :one: "{0} ფტ²"
+          :other: "{0} ფტ²"
+        :area-square-inch: 
+          :one: "{0} დუიმი²"
+          :other: "{0} დუიმი²"
+        :area-square-kilometer: 
+          :one: "{0} კმ²"
+          :other: "{0} კმ²"
+        :area-square-meter: 
+          :one: "{0} მ²"
+          :other: "{0} მ²"
+        :area-square-mile: 
+          :one: "{0} მილი²"
+          :other: "{0} მილი²"
+        :area-square-yard: 
+          :one: "{0} იარდი²"
+          :other: "{0} იარდი²"
+        :concentr-item: 
+          :one: "{0} ერთე."
+          :other: "{0} ერთე."
+        :concentr-karat: 
+          :one: "{0} კარ."
+          :other: "{0} კარ."
+        :concentr-milligram-ofglucose-per-deciliter: 
+          :one: "{0} მგ/დლ"
+          :other: "{0} მგ/დლ"
+        :concentr-millimole-per-liter: 
+          :one: "{0} მმოლ/ლ"
+          :other: "{0} მმოლ/ლ"
+        :concentr-mole: 
+          :other: "{0} mol"
+        :concentr-percent: 
+          :other: "{0}%"
+        :concentr-permille: 
+          :other: "{0}‰"
+        :concentr-permillion: 
+          :other: "{0} ppm"
+        :concentr-permyriad: 
+          :other: "{0}‱"
+        :concentr-portion-per-1e9: 
+          :one: "{0} ნ/მ"
+          :other: "{0} ნ/მ"
+        :consumption-liter-per-100-kilometer: 
+          :one: "{0} ლ/100კმ"
+          :other: "{0} ლ/100კმ"
+        :consumption-liter-per-kilometer: 
+          :one: "{0} ლ/კმ"
+          :other: "{0} ლ/კმ"
+        :consumption-mile-per-gallon: 
+          :one: "{0} მილი/გალ."
+          :other: "{0} მილი/გალ."
+        :consumption-mile-per-gallon-imperial: 
+          :one: "{0} მილი/იმპ. გალონზე"
+          :other: "{0} მილი/იმპ. გალონზე"
+        :digital-bit: 
+          :one: "{0} ბიტი"
+          :other: "{0} ბიტი"
+        :digital-byte: 
+          :one: "{0} ბაიტი"
+          :other: "{0} ბაიტი"
+        :digital-gigabit: 
+          :one: "{0} გბიტი"
+          :other: "{0} გბიტი"
+        :digital-gigabyte: 
+          :other: "{0} GB"
+        :digital-kilobit: 
+          :one: "{0} კბიტი"
+          :other: "{0} კბიტი"
+        :digital-kilobyte: 
+          :one: "{0} კბაიტი"
+          :other: "{0} კბაიტი"
+        :digital-megabit: 
+          :one: "{0} მბიტი"
+          :other: "{0} მბიტი"
+        :digital-megabyte: 
+          :other: "{0} MB"
+        :digital-petabyte: 
+          :one: "{0} პბაიტი"
+          :other: "{0} პბაიტი"
+        :digital-terabit: 
+          :one: "{0} ტბიტი"
+          :other: "{0} ტბიტი"
+        :digital-terabyte: 
+          :one: "{0} ტბაიტი"
+          :other: "{0} ტბაიტი"
+        :duration-century: 
+          :one: "{0} ს."
+          :other: "{0} ს."
+        :duration-day: 
+          :one: "{0} დღე"
+          :other: "{0} დღე"
+        :duration-decade: 
+          :one: "{0} დეკადა"
+          :other: "{0} დეკადა"
+        :duration-hour: 
+          :one: "{0} სთ"
+          :other: "{0} სთ"
+        :duration-microsecond: 
+          :one: "{0} მკწმ"
+          :other: "{0} მკწმ"
+        :duration-millisecond: 
+          :one: "{0} მწმ"
+          :other: "{0} მწმ"
+        :duration-minute: 
+          :one: "{0} წთ"
+          :other: "{0} წთ"
+        :duration-month: 
+          :one: "{0} თვე"
+          :other: "{0} თვე"
+        :duration-nanosecond: 
+          :one: "{0} ნწმ"
+          :other: "{0} ნწმ"
+        :duration-night: 
+          :one: "{0} ღამე"
+          :other: "{0} ღამე"
+        :duration-quarter: 
+          :one: "{0} კვარტ"
+          :other: "{0} კვარტ"
+        :duration-second: 
+          :one: "{0} წმ"
+          :other: "{0} წმ"
+        :duration-week: 
+          :one: "{0} კვრ"
+          :other: "{0} კვრ"
+        :duration-year: 
+          :one: "{0} წ"
+          :other: "{0} წ"
+        :electric-ampere: 
+          :one: "{0} ა"
+          :other: "{0} ა"
+        :electric-milliampere: 
+          :one: "{0} მამპ."
+          :other: "{0} მამპ."
+        :electric-ohm: 
+          :one: "{0} ომ"
+          :other: "{0} ომ"
+        :electric-volt: 
+          :one: "{0} ვ"
+          :other: "{0} ვ"
+        :energy-british-thermal-unit: 
+          :one: "{0} ბსე"
+          :other: "{0} ბსე"
+        :energy-calorie: 
+          :one: "{0} კალ"
+          :other: "{0} კალ"
+        :energy-electronvolt: 
+          :one: "{0} ევ"
+          :other: "{0} ევ"
+        :energy-foodcalorie: 
+          :one: "{0} კალ"
+          :other: "{0} კალ"
+        :energy-joule: 
+          :one: "{0} ჯ"
+          :other: "{0} ჯ"
+        :energy-kilocalorie: 
+          :one: "{0} კკალ"
+          :other: "{0} კკალ"
+        :energy-kilojoule: 
+          :one: "{0} კჯ"
+          :other: "{0} კჯ"
+        :energy-kilowatt-hour: 
+          :one: "{0} კვტსთ"
+          :other: "{0} კვტსთ"
+        :energy-therm-us: 
+          :one: "{0} აშშ თერმი"
+          :other: "{0} აშშ თერმი"
+        :force-kilowatt-hour-per-100-kilometer: 
+          :one: "{0} კვტსთ/100კმ"
+          :other: "{0} კვტსთ/100კმ"
+        :force-newton: 
+          :other: "{0} N"
+        :force-pound-force: 
+          :other: "{0} lbf"
+        :frequency-gigahertz: 
+          :one: "{0} გჰც."
+          :other: "{0} გჰც."
+        :frequency-hertz: 
+          :one: "{0} ჰც."
+          :other: "{0} ჰც."
+        :frequency-kilohertz: 
+          :one: "{0} კჰც."
+          :other: "{0} კჰც."
+        :frequency-megahertz: 
+          :one: "{0} მჰც"
+          :other: "{0} მჰც"
+        :graphics-dot: 
+          :one: "{0} წერტ."
+          :other: "{0} წერტ."
+        :graphics-dot-per-centimeter: 
+          :one: "{0} წერტ/სმ-ზე"
+          :other: "{0} წერტ/სმ-ზე"
+        :graphics-dot-per-inch: 
+          :one: "{0} წერტ/დუიმზე"
+          :other: "{0} წერტ/დუიმზე"
+        :graphics-em: 
+          :one: "{0} ემი"
+          :other: "{0} ემი"
+        :graphics-megapixel: 
+          :one: "{0} მპქს"
+          :other: "{0} მპქს"
+        :graphics-pixel: 
+          :one: "{0} პქს"
+          :other: "{0} პქს"
+        :graphics-pixel-per-centimeter: 
+          :one: "{0} პქს/სმ-ზე"
+          :other: "{0} პქს/სმ-ზე"
+        :graphics-pixel-per-inch: 
+          :one: "{0} პიქს/დუიმზე"
+          :other: "{0} პიქს/დუიმზე"
+        :length-astronomical-unit: 
+          :one: "{0} ა.ე."
+          :other: "{0} ა.ე."
+        :length-centimeter: 
+          :one: "{0} სმ"
+          :other: "{0} სმ"
+        :length-decimeter: 
+          :one: "{0} დმ"
+          :other: "{0} დმ"
+        :length-earth-radius: 
+          :one: "{0} ⊕ რადიუსი"
+          :other: "{0} ⊕ რადიუსი"
+        :length-fathom: 
+          :one: "{0} ფატომი"
+          :other: "{0} ფატომი"
+        :length-foot: 
+          :one: "{0} ფტ"
+          :other: "{0} ფტ"
+        :length-furlong: 
+          :one: "{0} ფურლონგი"
+          :other: "{0} ფურლონგი"
+        :length-inch: 
+          :one: "{0} დუიმი"
+          :other: "{0} დუიმი"
+        :length-kilometer: 
+          :one: "{0} კმ"
+          :other: "{0} კმ"
+        :length-light-year: 
+          :one: "{0} სწ"
+          :other: "{0} სწ"
+        :length-meter: 
+          :one: "{0} მ"
+          :other: "{0} მ"
+        :length-micrometer: 
+          :one: "{0} მკმ"
+          :other: "{0} მკმ"
+        :length-mile: 
+          :one: "{0} მილი"
+          :other: "{0} მილი"
+        :length-mile-scandinavian: 
+          :one: "{0} სკანდ. მილი"
+          :other: "{0} სკანდ. მილი"
+        :length-millimeter: 
+          :one: "{0} მმ"
+          :other: "{0} მმ"
+        :length-nanometer: 
+          :one: "{0} ნმ"
+          :other: "{0} ნმ"
+        :length-nautical-mile: 
+          :one: "{0} საზღვ. მილი"
+          :other: "{0} საზღვ. მილი"
+        :length-parsec: 
+          :one: "{0} პს"
+          :other: "{0} პს"
+        :length-picometer: 
+          :one: "{0} პმ"
+          :other: "{0} პმ"
+        :length-point: 
+          :one: "{0} პნქტ."
+          :other: "{0} პქნტ."
+        :length-solar-radius: 
+          :one: "{0} ☉ რადიუსი"
+          :other: "{0} ☉ რადიუსი"
+        :length-yard: 
+          :one: "{0} იარდი"
+          :other: "{0} იარდი"
+        :light-candela: 
+          :one: "{0} კდ"
+          :other: "{0} კდ"
+        :light-lumen: 
+          :one: "{0} ლმ"
+          :other: "{0} ლმ"
+        :light-lux: 
+          :one: "{0} ლუქსი"
+          :other: "{0} ლუქსი"
+        :light-solar-luminosity: 
+          :one: "{0} ☉ სხივიერობა"
+          :other: "{0} ☉ სხივიერობა"
+        :mass-carat: 
+          :one: "{0} კარ."
+          :other: "{0} კარ."
+        :mass-dalton: 
+          :one: "{0} დალტ."
+          :other: "{0} დალტ."
+        :mass-earth-mass: 
+          :other: "{0} M⊕"
+        :mass-grain: 
+          :one: "{0} გრანი"
+          :other: "{0} გრანი"
+        :mass-gram: 
+          :one: "{0} გ"
+          :other: "{0} გ"
+        :mass-kilogram: 
+          :one: "{0} კგ"
+          :other: "{0} კგ"
+        :mass-microgram: 
+          :one: "{0} მკგ"
+          :other: "{0} მკგ"
+        :mass-milligram: 
+          :one: "{0} მგ"
+          :other: "{0} მგ"
+        :mass-ounce: 
+          :one: "{0} უნც"
+          :other: "{0} უნც"
+        :mass-ounce-troy: 
+          :one: "{0} ტრ. უნც."
+          :other: "{0} ტრ. უნც."
+        :mass-pound: 
+          :one: "{0} ფნტ"
+          :other: "{0} ფნტ"
+        :mass-solar-mass: 
+          :other: "{0} M☉"
+        :mass-stone: 
+          :one: "{0} სტოუნი"
+          :other: "{0} სტოუნი"
+        :mass-ton: 
+          :one: "{0} ტ"
+          :other: "{0} ტ"
+        :mass-tonne: 
+          :one: "{0} მტ"
+          :other: "{0} მტ"
+        :power-gigawatt: 
+          :one: "{0} გვტ"
+          :other: "{0} გვტ"
+        :power-horsepower: 
+          :one: "{0} ცხ. ძ."
+          :other: "{0} ცხ. ძ."
+        :power-kilowatt: 
+          :one: "{0} კვტ"
+          :other: "{0} კვტ"
+        :power-megawatt: 
+          :one: "{0} მგვტ"
+          :other: "{0} მგვტ"
+        :power-milliwatt: 
+          :one: "{0} მლვტ"
+          :other: "{0} მლვტ"
+        :power-watt: 
+          :one: "{0} ვტ"
+          :other: "{0} ვტ"
+        :pressure-atmosphere: 
+          :one: "{0} ატმ."
+          :other: "{0} ატმ."
+        :pressure-bar: 
+          :one: "{0} ბარი"
+          :other: "{0} ბარი"
+        :pressure-hectopascal: 
+          :one: "{0} ჰპა"
+          :other: "{0} ჰპა"
+        :pressure-inch-ofhg: 
+          :one: "{0} ვრც. დმ."
+          :other: "{0} ვრც. დმ."
+        :pressure-kilopascal: 
+          :one: "{0} კპა"
+          :other: "{0} კპა"
+        :pressure-megapascal: 
+          :one: "{0} მპა"
+          :other: "{0} მპა"
+        :pressure-millibar: 
+          :one: "{0} მბარი"
+          :other: "{0} მბარი"
+        :pressure-millimeter-ofhg: 
+          :one: "{0} მმ ვწყ. სვ."
+          :other: "{0} მმ ვწყ. სვ."
+        :pressure-pascal: 
+          :one: "{0} პა"
+          :other: "{0} პა"
+        :pressure-pound-force-per-square-inch: 
+          :one: "{0} ფნტ. კვ. დმ."
+          :other: "{0} ფნტ. კვ. დმ."
+        :speed-beaufort: 
+          :other: "B {0}"
+        :speed-kilometer-per-hour: 
+          :one: "{0} კმ/სთ"
+          :other: "{0} კმ/სთ"
+        :speed-knot: 
+          :one: "{0} კვძ."
+          :other: "{0} კვძ."
+        :speed-light-speed: 
+          :other: "{0} light"
+        :speed-meter-per-second: 
+          :one: "{0} მ/წმ"
+          :other: "{0} მ/წმ"
+        :speed-mile-per-hour: 
+          :one: "{0} მილი/სთ"
+          :other: "{0} მილი/სთ"
+        :temperature-celsius: 
+          :other: "{0}°C"
+        :temperature-fahrenheit: 
+          :other: "{0}°F"
+        :temperature-generic: 
+          :other: "{0}°"
+        :temperature-kelvin: 
+          :other: "{0} K"
+        :torque-newton-meter: 
+          :one: "{0} ნიუტ. მ"
+          :other: "{0} ნიუტ. მ"
+        :torque-pound-force-foot: 
+          :one: "{0} ფუნტი-ფუტი"
+          :other: "{0} ფუნტი-ფუტი"
+        :volume-acre-foot: 
+          :one: "{0} აკრ.ფტ."
+          :other: "{0} აკრ.ფტ."
+        :volume-barrel: 
+          :one: "{0} ბარ."
+          :other: "{0} ბარ."
+        :volume-bushel: 
+          :one: "{0} ბუშელი"
+          :other: "{0} ბუშელი"
+        :volume-centiliter: 
+          :one: "{0} სლ"
+          :other: "{0} სლ"
+        :volume-cubic-centimeter: 
+          :one: "{0} სმ³"
+          :other: "{0} სმ³"
+        :volume-cubic-foot: 
+          :one: "{0} ფტ³"
+          :other: "{0} ფტ³"
+        :volume-cubic-inch: 
+          :one: "{0} დუიმი³"
+          :other: "{0} დუიმი³"
+        :volume-cubic-kilometer: 
+          :one: "{0} კმ³"
+          :other: "{0} კმ³"
+        :volume-cubic-meter: 
+          :one: "{0} მ³"
+          :other: "{0} მ³"
+        :volume-cubic-mile: 
+          :one: "{0} მილი³"
+          :other: "{0} მილი³"
+        :volume-cubic-yard: 
+          :one: "{0} იარდი³"
+          :other: "{0} იარდი³"
+        :volume-cup: 
+          :one: "{0} ჭიქა"
+          :other: "{0} ჭიქა"
+        :volume-cup-metric: 
+          :one: "{0} მეტრ. ჭიქა"
+          :other: "{0} მეტრ. ჭიქა"
+        :volume-deciliter: 
+          :one: "{0} დლ"
+          :other: "{0} დლ"
+        :volume-dessert-spoon: 
+          :one: "{0} დესერტის კოვზი"
+          :other: "{0} დესერტის კოვზი"
+        :volume-dessert-spoon-imperial: 
+          :one: "{0} ბრიტ. დეს. კოვზი"
+          :other: "{0} ბრიტ. დეს. კოვზი"
+        :volume-dram: 
+          :one: "{0} ბრიტ. თხევ. დრაქმა"
+          :other: "{0} ბრიტ. თხევ. დრაქმა"
+        :volume-drop: 
+          :one: "{0} წვეთი"
+          :other: "{0} წვეთი"
+        :volume-fluid-ounce: 
+          :one: "{0} თხ. უნცია"
+          :other: "{0} თხ. უნცია"
+        :volume-fluid-ounce-imperial: 
+          :one: "{0} ბრიტ. თხევ. უნც."
+          :other: "{0} ბრიტ. თხევ. უნც."
+        :volume-gallon: 
+          :one: "{0} გალონი"
+          :other: "{0} გალონი"
+        :volume-gallon-imperial: 
+          :one: "{0} იმპ. გალ."
+          :other: "{0} იმპ. გალ."
+        :volume-hectoliter: 
+          :one: "{0} ჰლ"
+          :other: "{0} ჰლ"
+        :volume-jigger: 
+          :one: "{0} ჯიგერი"
+          :other: "{0} ჯიგერი"
+        :volume-liter: 
+          :one: "{0} ლ"
+          :other: "{0} ლ"
+        :volume-megaliter: 
+          :one: "{0} მეგალ."
+          :other: "{0} მეგალ."
+        :volume-milliliter: 
+          :one: "{0} მილილ."
+          :other: "{0} მილილ."
+        :volume-pinch: 
+          :one: "{0} მწიკვი"
+          :other: "{0} მწიკვი"
+        :volume-pint: 
+          :one: "{0} პინტა"
+          :other: "{0} პინტა"
+        :volume-pint-metric: 
+          :one: "{0} მეტრ. პინტა"
+          :other: "{0} მეტრ. პინტა"
+        :volume-quart: 
+          :one: "{0} კვარტა"
+          :other: "{0} კვარტა"
+        :volume-quart-imperial: 
+          :one: "{0} ბრიტ. კვარტი"
+          :other: "{0} ბრიტ. კვარტი"
+        :volume-tablespoon: 
+          :one: "{0} ს. კოვზი"
+          :other: "{0} ს. კოვზი"
+        :volume-teaspoon: 
+          :one: "{0} ჩ. კოვზი"
+          :other: "{0} ჩ. კოვზი"

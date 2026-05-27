@@ -1,0 +1,52 @@
+From ab793829a4ce473f1cc2bbc0e2a6f6753553255d Mon Sep 17 00:00:00 2001
+From: Lars Kanis <lars@greiz-reinsdorf.de>
+Date: Sun, 8 Sep 2024 13:59:05 +0200
+Subject: [PATCH] libpq: Process buffered SSL read bytes to support records
+ >8kB on async API
+
+The async API of libpq doesn't support SSL record sizes >8kB so far.
+This size isn't exceeded by vanilla PostgreSQL, but by other products using
+the postgres wire protocol 3.
+PQconsumeInput() reads all data readable from the socket, so that the read
+condition is cleared.
+But it doesn't process all the data that is pending on the SSL layer.
+Also a subsequent call to PQisBusy() doesn't process it, so that the client
+is triggered to wait for more readable data on the socket.
+But this never arrives, so that the connection blocks infinitely.
+
+To fix this issue call pqReadData() repeatedly until there is no buffered
+SSL data left to be read.
+
+The synchronous libpq API isn't affected, since it supports arbitrary SSL
+record sizes already.
+---
+ src/interfaces/libpq/fe-exec.c | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
+
+diff --git a/src/interfaces/libpq/fe-exec.c b/src/interfaces/libpq/fe-exec.c
+index 0d224a852..637894ee1 100644
+--- a/src/interfaces/libpq/fe-exec.c
++++ b/src/interfaces/libpq/fe-exec.c
+@@ -2006,6 +2006,19 @@ PQconsumeInput(PGconn *conn)
+ 	if (pqReadData(conn) < 0)
+ 		return 0;
+ 
++	#ifdef USE_SSL
++		/*
++		 * Ensure all buffered read bytes in the SSL library are processed,
++		 * which might be not the case, if the SSL record size exceeds 8k.
++		 * Otherwise parseInput can't process the data.
++		 */
++		while (conn->ssl_in_use && pgtls_read_pending(conn))
++		{
++			if (pqReadData(conn) < 0)
++				return 0;
++		}
++	#endif
++
+ 	/* Parsing of the data waits till later. */
+ 	return 1;
+ }
+-- 
+2.43.0
+

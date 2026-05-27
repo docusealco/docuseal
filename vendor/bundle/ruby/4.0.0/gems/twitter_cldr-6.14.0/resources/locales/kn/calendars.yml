@@ -1,0 +1,352 @@
+--- 
+:kn: 
+  :calendars: 
+    :gregorian: 
+      :additional_formats: 
+        :Bh: "h B"
+        :Bhm: "h:mm B"
+        :Bhms: "h:mm:ss B"
+        :E: ccc
+        :EBhm: "E h:mm B"
+        :EBhms: "E h:mm:ss B"
+        :EHm: "E HH:mm"
+        :EHms: "E HH:mm:ss"
+        :Ed: "d E"
+        :Ehm: "E h:mm a"
+        :Ehms: "E h:mm:ss a"
+        :Gy: "G y"
+        :GyMMM: "G y MMM"
+        :GyMMMEd: "G y MMM d, E"
+        :GyMMMd: "G y MMM d"
+        :GyMd: "GGGGG y-MM-dd"
+        :H: HH
+        :Hm: "HH:mm"
+        :Hms: "HH:mm:ss"
+        :Hmsv: "HH:mm:ss v"
+        :Hmv: "HH:mm v"
+        :M: L
+        :MEd: "d/M, E"
+        :MMM: LLL
+        :MMMEd: "E, d MMM"
+        :MMMMW: "'week' W 'of' MMMM"
+        :MMMMd: "d MMMM"
+        :MMMd: "d MMM"
+        :MMdd: dd-MM
+        :Md: d/M
+        :d: d
+        :h: h a
+        :hm: "h:mm a"
+        :hms: "h:mm:ss a"
+        :hmsv: "h:mm:ss a v"
+        :hmv: "h:mm a v"
+        :ms: "mm:ss"
+        ? !ruby/symbol "y"
+        : "y"
+        :yM: M/y
+        :yMEd: "E, M/d/y"
+        :yMM: MM-y
+        :yMMM: "MMM y"
+        :yMMMEd: "E, MMM d, y"
+        :yMMMM: "MMMM y"
+        :yMMMd: "MMM d,y"
+        :yMd: d/M/y
+        :yQQQ: "QQQ y"
+        :yQQQQ: "QQQQ y"
+        :yw: "'week' w 'of' Y"
+      :days: 
+        :format: 
+          :abbreviated: 
+            :fri: ಶುಕ್ರ
+            :mon: ಸೋಮ
+            :sat: ಶನಿ
+            :sun: ಭಾನು
+            :thu: ಗುರು
+            :tue: ಮಂಗಳ
+            :wed: ಬುಧ
+          :narrow: 
+            :fri: ಶು
+            :mon: ಸೋ
+            :sat: ಶ
+            :sun: ಭಾ
+            :thu: ಗು
+            :tue: ಮಂ
+            :wed: ಬು
+          :short: 
+            :fri: ಶುಕ್ರ
+            :mon: ಸೋಮ
+            :sat: ಶನಿ
+            :sun: ಭಾನು
+            :thu: ಗುರು
+            :tue: ಮಂಗಳ
+            :wed: ಬುಧ
+          :wide: 
+            :fri: ಶುಕ್ರವಾರ
+            :mon: ಸೋಮವಾರ
+            :sat: ಶನಿವಾರ
+            :sun: ಭಾನುವಾರ
+            :thu: ಗುರುವಾರ
+            :tue: ಮಂಗಳವಾರ
+            :wed: ಬುಧವಾರ
+        :stand-alone: 
+          :abbreviated: 
+            :fri: ಶುಕ್ರ
+            :mon: ಸೋಮ
+            :sat: ಶನಿ
+            :sun: ಭಾನು
+            :thu: ಗುರು
+            :tue: ಮಂಗಳ
+            :wed: ಬುಧ
+          :narrow: 
+            :fri: ಶು
+            :mon: ಸೋ
+            :sat: ಶ
+            :sun: ಭಾ
+            :thu: ಗು
+            :tue: ಮಂ
+            :wed: ಬು
+          :short: 
+            :fri: ಶುಕ್ರ
+            :mon: ಸೋಮ
+            :sat: ಶನಿ
+            :sun: ಭಾನು
+            :thu: ಗುರು
+            :tue: ಮಂಗಳ
+            :wed: ಬುಧ
+          :wide: 
+            :fri: ಶುಕ್ರವಾರ
+            :mon: ಸೋಮವಾರ
+            :sat: ಶನಿವಾರ
+            :sun: ಭಾನುವಾರ
+            :thu: ಗುರುವಾರ
+            :tue: ಮಂಗಳವಾರ
+            :wed: ಬುಧವಾರ
+      :eras: 
+        :abbr: 
+          0: ಕ್ರಿ.ಪೂ.ಕಾಲ
+          1: "ಪ್ರಸಕ್ತ ಶಕ"
+        :name: 
+          0: "ಕ್ರಿಸ್ತ ಪೂರ್ವ"
+          1: "ಕ್ರಿಸ್ತ ಶಕ"
+        :narrow: 
+          0: BCE
+          1: CE
+      :fields: 
+        :day: ದಿನ
+        :day-narrow: ದಿನ
+        :day-short: ದಿನ
+        :dayOfYear: "ವರ್ಷದ ದಿನ"
+        :dayOfYear-narrow: "ವರ್ಷದ ದಿನ"
+        :dayOfYear-short: "ವರ್ಷದ ದಿನ"
+        :dayperiod: AM/PM
+        :dayperiod-narrow: AM/PM
+        :dayperiod-short: AM/PM
+        :era: ಯುಗ
+        :era-narrow: ಯುಗ
+        :era-short: ಯುಗ
+        :hour: ಗಂಟೆ
+        :hour-narrow: ಗಂಟೆ
+        :hour-short: ಗಂಟೆ
+        :minute: ನಿಮಿಷ
+        :minute-narrow: ನಿಮಿಷ
+        :minute-short: ನಿಮಿಷ
+        :month: ತಿಂಗಳು
+        :month-narrow: ತಿಂ
+        :month-short: ತಿಂ.
+        :quarter: ತ್ರೈಮಾಸಿಕ
+        :quarter-narrow: Quarter
+        :quarter-short: Quarter
+        :second: ಸೆಕೆಂಡ್
+        :second-narrow: ಸೆಕೆಂಡ್
+        :second-short: ಸೆಕೆಂಡ್
+        :week: ವಾರ
+        :week-narrow: ವಾರ
+        :week-short: ವಾರ
+        :weekOfMonth: "ತಿಂಗಳ ವಾರ"
+        :weekOfMonth-narrow: "ತಿಂಗಳ ವಾರ"
+        :weekOfMonth-short: "ತಿಂಗಳ ವಾರ"
+        :weekday: "ವಾರದ ದಿನ"
+        :weekday-narrow: "ವಾರದ ದಿನ"
+        :weekday-short: "ವಾರದ ದಿನ"
+        :weekdayOfMonth: "ತಿಂಗಳ ವಾರದ ದಿನ"
+        :weekdayOfMonth-narrow: "ತಿಂಗಳ ವಾರದ ದಿನ"
+        :weekdayOfMonth-short: "ತಿಂಗಳ ವಾರದ ದಿನ"
+        :year: ವರ್ಷ
+        :year-narrow: Year
+        :year-short: Year
+        :zone: "ಸಮಯ ವಲಯ"
+        :zone-narrow: ವಲಯ
+        :zone-short: ವಲಯ
+      :formats: 
+        :date: 
+          :full: 
+            :pattern: "EEEE, MMMM d, y"
+          :long: 
+            :pattern: "MMMM d, y"
+          :medium: 
+            :pattern: "MMM d, y"
+          :short: 
+            :pattern: d/M/yy
+        :datetime: 
+          :full: 
+            :pattern: "{{date}} ರಂದು {{time}} ಸಮಯಕ್ಕೆ"
+          :long: 
+            :pattern: "{{date}} ರಂದು {{time}} ಸಮಯಕ್ಕೆ"
+          :medium: 
+            :pattern: "{{date}}, {{time}}"
+          :short: 
+            :pattern: "{{date}}, {{time}}"
+        :time: 
+          :full: 
+            :pattern: "hh:mm:ss a zzzz"
+          :long: 
+            :pattern: "hh:mm:ss a z"
+          :medium: 
+            :pattern: "hh:mm:ss a"
+          :short: 
+            :pattern: "hh:mm a"
+      :months: 
+        :format: 
+          :abbreviated: 
+            1: ಜನ
+            10: ಅಕ್ಟೋ
+            11: ನವೆಂ
+            12: ಡಿಸೆಂ
+            2: ಫೆಬ್ರ
+            3: ಮಾರ್ಚ್
+            4: ಏಪ್ರಿ
+            5: ಮೇ
+            6: ಜೂನ್
+            7: ಜುಲೈ
+            8: ಆಗ
+            9: ಸೆಪ್ಟೆಂ
+          :narrow: 
+            1: ಜ
+            10: ಅ
+            11: ನ
+            12: ಡಿ
+            2: ಫೆ
+            3: ಮಾ
+            4: ಏ
+            5: ಮೇ
+            6: ಜೂ
+            7: ಜು
+            8: ಆ
+            9: ಸೆ
+          :wide: 
+            1: ಜನವರಿ
+            10: ಅಕ್ಟೋಬರ್
+            11: ನವೆಂಬರ್
+            12: ಡಿಸೆಂಬರ್
+            2: ಫೆಬ್ರವರಿ
+            3: ಮಾರ್ಚ್
+            4: ಏಪ್ರಿಲ್
+            5: ಮೇ
+            6: ಜೂನ್
+            7: ಜುಲೈ
+            8: ಆಗಸ್ಟ್
+            9: ಸೆಪ್ಟೆಂಬರ್
+        :stand-alone: 
+          :abbreviated: 
+            1: ಜನ
+            10: ಅಕ್ಟೋ
+            11: ನವೆಂ
+            12: ಡಿಸೆಂ
+            2: ಫೆಬ್ರ
+            3: ಮಾರ್ಚ್
+            4: ಏಪ್ರಿ
+            5: ಮೇ
+            6: ಜೂನ್
+            7: ಜುಲೈ
+            8: ಆಗ
+            9: ಸೆಪ್ಟೆಂ
+          :narrow: 
+            1: ಜ
+            10: ಅ
+            11: ನ
+            12: ಡಿ
+            2: ಫೆ
+            3: ಮಾ
+            4: ಏ
+            5: ಮೇ
+            6: ಜೂ
+            7: ಜು
+            8: ಆ
+            9: ಸೆ
+          :wide: 
+            1: ಜನವರಿ
+            10: ಅಕ್ಟೋಬರ್
+            11: ನವೆಂಬರ್
+            12: ಡಿಸೆಂಬರ್
+            2: ಫೆಬ್ರವರಿ
+            3: ಮಾರ್ಚ್
+            4: ಏಪ್ರಿಲ್
+            5: ಮೇ
+            6: ಜೂನ್
+            7: ಜುಲೈ
+            8: ಆಗಸ್ಟ್
+            9: ಸೆಪ್ಟೆಂಬರ್
+      :periods: 
+        :format: 
+          :abbreviated: 
+            :afternoon1: ಮಧ್ಯಾಹ್ನ
+            :am: AM
+            :evening1: ಸಂಜೆ
+            :midnight: "ಮಧ್ಯ ರಾತ್ರಿ"
+            :morning1: ಬೆಳಗ್ಗೆ
+            :night1: ರಾತ್ರಿ
+            :pm: PM
+          :narrow: 
+            :afternoon1: ಮಧ್ಯಾಹ್ನ
+            :am: a
+            :evening1: ಸಂಜೆ
+            :midnight: ಮಧ್ಯರಾತ್ರಿ
+            :morning1: ಬೆಳಗ್ಗೆ
+            :night1: ರಾತ್ರಿ
+            :pm: p
+          :wide: 
+            :am: AM
+            :pm: PM
+        :stand-alone: 
+          :abbreviated: 
+            :am: AM
+            :midnight: ಮಧ್ಯರಾತ್ರಿ
+            :pm: PM
+          :narrow: 
+            :am: AM
+            :pm: PM
+          :wide: 
+            :am: AM
+            :pm: PM
+      :quarters: 
+        :format: 
+          :abbreviated: 
+            1: "ತ್ರೈ 1"
+            2: "ತ್ರೈ 2"
+            3: "ತ್ರೈ 3"
+            4: "ತ್ರೈ 4"
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: "1ನೇ ತ್ರೈಮಾಸಿಕ"
+            2: "2ನೇ ತ್ರೈಮಾಸಿಕ"
+            3: "3ನೇ ತ್ರೈಮಾಸಿಕ"
+            4: "4ನೇ ತ್ರೈಮಾಸಿಕ"
+        :stand-alone: 
+          :abbreviated: 
+            1: "ತ್ರೈ 1"
+            2: "ತ್ರೈ 2"
+            3: "ತ್ರೈ 3"
+            4: "ತ್ರೈ 4"
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: "1ನೇ ತ್ರೈಮಾಸಿಕ"
+            2: "2ನೇ ತ್ರೈಮಾಸಿಕ"
+            3: "3ನೇ ತ್ರೈಮಾಸಿಕ"
+            4: "4ನೇ ತ್ರೈಮಾಸಿಕ"

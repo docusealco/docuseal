@@ -1,0 +1,181 @@
+--- 
+:sq: 
+  :rbnf: 
+    :grouping: 
+      - 
+        :ruleset: 
+          - 
+            :rules: 
+              - 
+                :rule: =0.0=;
+                :value: x.x
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 0
+            :type: spellout-numbering-year
+          - 
+            :rules: 
+              - 
+                :rule: =%spellout-cardinal-masculine=;
+                :value: 0
+            :type: spellout-numbering
+          - 
+            :rules: 
+              - 
+                :rule: "minus >>;"
+                :value: "-x"
+              - 
+                :rule: "<< presje >>;"
+                :value: x.x
+              - 
+                :rule: zero;
+                :value: 0
+              - 
+                :rule: një;
+                :value: 1
+              - 
+                :rule: dy;
+                :value: 2
+              - 
+                :rule: tre;
+                :value: 3
+              - 
+                :rule: katër;
+                :value: 4
+              - 
+                :rule: pesë;
+                :value: 5
+              - 
+                :rule: gjashtë;
+                :value: 6
+              - 
+                :rule: shtatë;
+                :value: 7
+              - 
+                :rule: tetë;
+                :value: 8
+              - 
+                :rule: nëntë;
+                :value: 9
+              - 
+                :rule: dhjetë;
+                :value: 10
+              - 
+                :rule: ">%spellout-cardinal-masculine>mbëdhjetë;"
+                :value: 11
+              - 
+                :rule: "njëzet[ e >>];"
+                :value: 20
+              - 
+                :rule: "tridhjetë[ e >>];"
+                :value: 30
+              - 
+                :rule: "dyzet[ e >>];"
+                :value: 40
+              - 
+                :rule: "<%spellout-cardinal-feminine<dhjetë[ e >>];"
+                :value: 50
+              - 
+                :rule: "<%spellout-cardinal-masculine<qind[ e >>];"
+                :value: 100
+              - 
+                :rule: "<%spellout-cardinal-masculine< mijë[ e >>];"
+                :value: 1000
+              - 
+                :rule: "një milion[ e >>];"
+                :value: 1000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< milionë[ e >>];"
+                :value: 2000000
+              - 
+                :rule: "një miliar[ e >>];"
+                :value: 1000000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< miliarë[ e >>];"
+                :value: 2000000000
+              - 
+                :rule: "një bilion[ e >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< bilionë[ e >>];"
+                :value: 2000000000000
+              - 
+                :rule: "një biliar[ e >>];"
+                :value: 1000000000000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< biliarë[ e >>];"
+                :value: 2000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-masculine
+          - 
+            :rules: 
+              - 
+                :rule: "minus >>;"
+                :value: "-x"
+              - 
+                :rule: "<< presje >>;"
+                :value: x.x
+              - 
+                :rule: zero;
+                :value: 0
+              - 
+                :rule: një;
+                :value: 1
+              - 
+                :rule: dy;
+                :value: 2
+              - 
+                :rule: tri;
+                :value: 3
+              - 
+                :rule: =%spellout-cardinal-masculine=;
+                :value: 4
+              - 
+                :rule: "njëzet[ e >>];"
+                :value: 20
+              - 
+                :rule: "tridhjetë[ e >>];"
+                :value: 30
+              - 
+                :rule: "dyzet[ e >>];"
+                :value: 40
+              - 
+                :rule: "<%spellout-cardinal-feminine<dhjetë[ e >>];"
+                :value: 50
+              - 
+                :rule: "<%spellout-cardinal-masculine<qind[ e >>];"
+                :value: 100
+              - 
+                :rule: "<%spellout-cardinal-masculine< mijë[ e >>];"
+                :value: 1000
+              - 
+                :rule: "një milion[ e >>];"
+                :value: 1000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< milionë[ e >>];"
+                :value: 2000000
+              - 
+                :rule: "një miliar[ e >>];"
+                :value: 1000000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< miliarë[ e >>];"
+                :value: 2000000000
+              - 
+                :rule: "një bilion[ e >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< bilionë[ e >>];"
+                :value: 2000000000000
+              - 
+                :rule: "një biliar[ e >>];"
+                :value: 1000000000000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< biliarë[ e >>];"
+                :value: 2000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-feminine
+        :type: SpelloutRules

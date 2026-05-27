@@ -1,0 +1,376 @@
+--- 
+:id: 
+  :calendars: 
+    :gregorian: 
+      :additional_formats: 
+        :Bh: "h B"
+        :Bhm: "h.mm B"
+        :Bhms: "h.mm.ss B"
+        :E: ccc
+        :EBhm: "E h.mm B"
+        :EBhms: "E h.mm.ss B"
+        :EHm: "E HH.mm"
+        :EHms: "E HH.mm.ss"
+        :Ed: "E, d"
+        :Ehm: "E h.mm a"
+        :Ehms: "E h.mm.ss a"
+        :Gy: "y G"
+        :GyMMM: "MMM y G"
+        :GyMMMEd: "E, d MMM y G"
+        :GyMMMd: "d MMM y G"
+        :GyMd: "d/M/y GGGGG"
+        :H: HH
+        :Hm: HH.mm
+        :Hms: HH.mm.ss
+        :Hmsv: "HH.mm.ss v"
+        :Hmv: "HH.mm v"
+        :M: L
+        :MEd: "E, d/M"
+        :MMM: LLL
+        :MMMEd: "E, d MMM"
+        :MMMMEd: "E, d MMMM"
+        :MMMMW: "'minggu' 'ke'-W MMMM"
+        :MMMMd: "d MMMM"
+        :MMMd: "d MMM"
+        :Md: d/M
+        :d: d
+        :h: h a
+        :hm: h.mm a
+        :hms: h.mm.ss a
+        :hmsv: "h.mm.ss. a v"
+        :hmv: "h.mm a v"
+        :ms: mm.ss
+        ? !ruby/symbol "y"
+        : "y"
+        :yM: M/y
+        :yMEd: "E, d/M/y"
+        :yMMM: "MMM y"
+        :yMMMEd: "E, d MMM y"
+        :yMMMM: "MMMM y"
+        :yMMMd: "d MMM y"
+        :yMd: d/M/y
+        :yQQQ: "QQQ y"
+        :yQQQQ: "QQQQ y"
+        :yw: "'minggu' 'ke'-w Y"
+      :days: 
+        :format: 
+          :abbreviated: 
+            :fri: Jum
+            :mon: Sen
+            :sat: Sab
+            :sun: Min
+            :thu: Kam
+            :tue: Sel
+            :wed: Rab
+          :narrow: 
+            :fri: J
+            :mon: S
+            :sat: S
+            :sun: M
+            :thu: K
+            :tue: S
+            :wed: R
+          :short: 
+            :fri: Jum
+            :mon: Sen
+            :sat: Sab
+            :sun: Min
+            :thu: Kam
+            :tue: Sel
+            :wed: Rab
+          :wide: 
+            :fri: Jumat
+            :mon: Senin
+            :sat: Sabtu
+            :sun: Minggu
+            :thu: Kamis
+            :tue: Selasa
+            :wed: Rabu
+        :stand-alone: 
+          :abbreviated: 
+            :fri: Jum
+            :mon: Sen
+            :sat: Sab
+            :sun: Min
+            :thu: Kam
+            :tue: Sel
+            :wed: Rab
+          :narrow: 
+            :fri: J
+            :mon: S
+            :sat: S
+            :sun: M
+            :thu: K
+            :tue: S
+            :wed: R
+          :short: 
+            :fri: Jum
+            :mon: Sen
+            :sat: Sab
+            :sun: Min
+            :thu: Kam
+            :tue: Sel
+            :wed: Rab
+          :wide: 
+            :fri: Jumat
+            :mon: Senin
+            :sat: Sabtu
+            :sun: Minggu
+            :thu: Kamis
+            :tue: Selasa
+            :wed: Rabu
+      :eras: 
+        :abbr: 
+          0: SEU
+          1: EU
+        :name: 
+          0: "Sebelum Era Umum"
+          1: "Era Umum"
+        :narrow: 
+          0: BCE
+          1: CE
+      :fields: 
+        :day: hari
+        :day-narrow: h
+        :day-short: hr
+        :dayOfYear: "hari dalam setahun"
+        :dayOfYear-narrow: "hari dlm 1 thn"
+        :dayOfYear-short: "hari dlm setahun"
+        :dayperiod: AM/PM
+        :dayperiod-narrow: AM/PM
+        :dayperiod-short: AM/PM
+        :era: era
+        :era-narrow: era
+        :era-short: era
+        :hour: jam
+        :hour-narrow: j
+        :hour-short: Hour
+        :minute: menit
+        :minute-narrow: m
+        :minute-short: mnt.
+        :month: bulan
+        :month-narrow: bln.
+        :month-short: bln.
+        :quarter: kuartal
+        :quarter-narrow: krtl.
+        :quarter-short: krtl.
+        :second: detik
+        :second-narrow: d
+        :second-short: dtk.
+        :week: minggu
+        :week-narrow: mgg.
+        :week-short: mgg.
+        :weekOfMonth: minggu
+        :weekOfMonth-narrow: mgg.
+        :weekOfMonth-short: mgg.
+        :weekday: "hari dalam seminggu"
+        :weekday-narrow: "hari dlm seminggu"
+        :weekday-short: "hari dlm seminggu"
+        :weekdayOfMonth: "hari kerja"
+        :weekdayOfMonth-narrow: "hr kerja"
+        :weekdayOfMonth-short: "hr kerja"
+        :year: tahun
+        :year-narrow: thn.
+        :year-short: thn.
+        :zone: "zona waktu"
+        :zone-narrow: "zona wkt"
+        :zone-short: "zona wkt"
+      :formats: 
+        :date: 
+          :full: 
+            :pattern: "EEEE, dd MMMM y"
+          :long: 
+            :pattern: "d MMMM y"
+          :medium: 
+            :pattern: "d MMM y"
+          :short: 
+            :pattern: dd/MM/yy
+        :datetime: 
+          :full: 
+            :pattern: "{{date}} 'pukul' {{time}}"
+          :long: 
+            :pattern: "{{date}} 'pukul' {{time}}"
+          :medium: 
+            :pattern: "{{date}}, {{time}}"
+          :short: 
+            :pattern: "{{date}}, {{time}}"
+        :time: 
+          :full: 
+            :pattern: "HH.mm.ss zzzz"
+          :long: 
+            :pattern: "HH.mm.ss z"
+          :medium: 
+            :pattern: HH.mm.ss
+          :short: 
+            :pattern: HH.mm
+      :months: 
+        :format: 
+          :abbreviated: 
+            1: Jan
+            10: Okt
+            11: Nov
+            12: Des
+            2: Feb
+            3: Mar
+            4: Apr
+            5: Mei
+            6: Jun
+            7: Jul
+            8: Agu
+            9: Sep
+          :narrow: 
+            1: J
+            10: O
+            11: "N"
+            12: D
+            2: F
+            3: M
+            4: A
+            5: M
+            6: J
+            7: J
+            8: A
+            9: S
+          :wide: 
+            1: Januari
+            10: Oktober
+            11: November
+            12: Desember
+            2: Februari
+            3: Maret
+            4: April
+            5: Mei
+            6: Juni
+            7: Juli
+            8: Agustus
+            9: September
+        :stand-alone: 
+          :abbreviated: 
+            1: Jan
+            10: Okt
+            11: Nov
+            12: Des
+            2: Feb
+            3: Mar
+            4: Apr
+            5: Mei
+            6: Jun
+            7: Jul
+            8: Agu
+            9: Sep
+          :narrow: 
+            1: J
+            10: O
+            11: "N"
+            12: D
+            2: F
+            3: M
+            4: A
+            5: M
+            6: J
+            7: J
+            8: A
+            9: S
+          :wide: 
+            1: Januari
+            10: Oktober
+            11: November
+            12: Desember
+            2: Februari
+            3: Maret
+            4: April
+            5: Mei
+            6: Juni
+            7: Juli
+            8: Agustus
+            9: September
+      :periods: 
+        :format: 
+          :abbreviated: 
+            :afternoon1: siang
+            :am: AM
+            :evening1: sore
+            :midnight: "tengah malam"
+            :morning1: pagi
+            :night1: malam
+            :noon: "tengah hari"
+            :pm: PM
+          :narrow: 
+            :afternoon1: siang
+            :am: AM
+            :evening1: sore
+            :midnight: "tengah malam"
+            :morning1: pagi
+            :night1: malam
+            :noon: "tengah hari"
+            :pm: PM
+          :wide: 
+            :afternoon1: siang
+            :am: AM
+            :evening1: sore
+            :midnight: "tengah malam"
+            :morning1: pagi
+            :night1: malam
+            :noon: "tengah hari"
+            :pm: PM
+        :stand-alone: 
+          :abbreviated: 
+            :afternoon1: siang
+            :am: AM
+            :evening1: sore
+            :midnight: "tengah malam"
+            :morning1: pagi
+            :night1: malam
+            :noon: "tengah hari"
+            :pm: PM
+          :narrow: 
+            :afternoon1: siang
+            :am: AM
+            :evening1: sore
+            :midnight: "tengah malam"
+            :morning1: pagi
+            :night1: malam
+            :noon: "tengah hari"
+            :pm: PM
+          :wide: 
+            :afternoon1: siang
+            :am: AM
+            :evening1: sore
+            :midnight: "tengah malam"
+            :morning1: pagi
+            :night1: malam
+            :noon: "tengah hari"
+            :pm: PM
+      :quarters: 
+        :format: 
+          :abbreviated: 
+            1: K1
+            2: K2
+            3: K3
+            4: K4
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: "Kuartal ke-1"
+            2: "Kuartal ke-2"
+            3: "Kuartal ke-3"
+            4: "Kuartal ke-4"
+        :stand-alone: 
+          :abbreviated: 
+            1: K1
+            2: K2
+            3: K3
+            4: K4
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: "Kuartal ke-1"
+            2: "Kuartal ke-2"
+            3: "Kuartal ke-3"
+            4: "Kuartal ke-4"

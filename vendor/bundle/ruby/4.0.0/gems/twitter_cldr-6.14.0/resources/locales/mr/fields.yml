@@ -1,0 +1,364 @@
+--- 
+:mr: 
+  :fields: 
+    :day: 
+      :display_name: दिवस
+      :relative: 
+        -1: काल
+        0: आज
+        1: उद्या
+      :relative_time: 
+        :future: 
+          :one: "येत्या {0} दिवसामध्ये"
+          :other: "येत्या {0} दिवसांमध्ये"
+        :past: 
+          :one: "{0} दिवसापूर्वी"
+          :other: "{0} दिवसांपूर्वी"
+    :day-narrow: 
+      :display_name: दिवस
+      :relative_time: 
+        :future: 
+          :one: "{0} दिवसामध्ये"
+          :other: "{0} दिवसांमध्ये"
+    :day-short: 
+      :display_name: दि.
+      :relative_time: 
+        :future: 
+          :one: "{0} दिवसामध्ये"
+          :other: "येत्या {0} दिवसांमध्ये"
+    :dayOfYear: 
+      :display_name: "वर्षातील दिवस"
+    :dayperiod: 
+      :display_name: AM/PM
+    :era: 
+      :display_name: युग
+    :fri: 
+      :relative: 
+        -1: "मागील शुक्रवार"
+        0: "हा शुक्रवार"
+        1: "पुढील शुक्रवार"
+      :relative_time: 
+        :future: 
+          :one: "येत्या {0} शुक्रवारी"
+          :other: "येत्या {0} शुक्रवारी"
+        :past: 
+          :one: "{0} शुक्रवारपूर्वी"
+          :other: "{0} शुक्रवारांपूर्वी"
+    :fri-short: 
+      :relative: 
+        -1: "मागील शुक्र."
+        0: "हा शुक्र."
+        1: "पुढील शुक्र."
+    :hour: 
+      :display_name: तास
+      :relative: 
+        0: तासात
+      :relative_time: 
+        :future: 
+          :one: "{0} तासामध्ये"
+          :other: "{0} तासांमध्ये"
+        :past: 
+          :one: "{0} तासापूर्वी"
+          :other: "{0} तासांपूर्वी"
+    :hour-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "येत्या {0} तासामध्ये"
+          :other: "येत्या {0} तासांमध्ये"
+    :hour-short: 
+      :display_name: ता.
+    :minute: 
+      :display_name: मिनिट
+      :relative: 
+        0: "या मिनिटात"
+      :relative_time: 
+        :future: 
+          :one: "{0} मिनिटामध्ये"
+          :other: "{0} मिनिटांमध्ये"
+        :past: 
+          :one: "{0} मिनिटापूर्वी"
+          :other: "{0} मिनिटांपूर्वी"
+    :minute-short: 
+      :display_name: मि.
+      :relative_time: 
+        :future: 
+          :one: "{0} मिनि. मध्ये"
+          :other: "{0} मिनि. मध्ये"
+        :past: 
+          :one: "{0} मिनि. पूर्वी"
+          :other: "{0} मिनि. पूर्वी"
+    :mon: 
+      :relative: 
+        -1: "मागील सोमवार"
+        0: "हा सोमवार"
+        1: "पुढील सोमवार"
+      :relative_time: 
+        :future: 
+          :one: "येत्या {0} सोमवारी"
+          :other: "येत्या {0} सोमवारी"
+        :past: 
+          :one: "{0} सोमवारपूर्वी"
+          :other: "{0} सोमवारांपूर्वी"
+    :mon-narrow: 
+      :relative: 
+        -1: "मागील सो"
+        0: "हा सो"
+        1: "पुढील सो"
+    :mon-short: 
+      :relative: 
+        -1: "मागील सोम."
+        0: "हा सोम."
+        1: "पुढील सोम."
+      :relative_time: 
+        :past: 
+          :one: "{0} सोमवारापूर्वी"
+          :other: "{0} सोमवारांपूर्वी"
+    :month: 
+      :display_name: महिना
+      :relative: 
+        -1: "मागील महिना"
+        0: "हा महिना"
+        1: "पुढील महिना"
+      :relative_time: 
+        :future: 
+          :one: "येत्या {0} महिन्यामध्ये"
+          :other: "येत्या {0} महिन्यांमध्ये"
+        :past: 
+          :one: "{0} महिन्यापूर्वी"
+          :other: "{0} महिन्यांपूर्वी"
+    :month-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "{0} महिन्यामध्ये"
+          :other: "{0} महिन्यांमध्ये"
+    :month-short: 
+      :display_name: म.
+      :relative_time: 
+        :future: 
+          :one: "{0} महिन्यामध्ये"
+          :other: "{0} महिन्यामध्ये"
+    :quarter: 
+      :display_name: तिमाही
+      :relative: 
+        -1: "मागील तिमाही"
+        0: "ही तिमाही"
+        1: "पुढील तिमाही"
+      :relative_time: 
+        :future: 
+          :one: "{0} तिमाहीमध्ये"
+          :other: "{0} तिमाहींमध्ये"
+        :past: 
+          :one: "{0} तिमाहीपूर्वी"
+          :other: "{0} तिमाहींपूर्वी"
+    :quarter-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "{0} तिमाहीमध्ये"
+          :other: "{0} तिमाहींमध्ये"
+    :quarter-short: 
+      :relative_time: 
+        :future: 
+          :one: "येत्या {0} तिमाहीमध्ये"
+          :other: "येत्या {0} तिमाहींमध्ये"
+    :sat: 
+      :relative: 
+        -1: "मागील शनिवार"
+        0: "हा शनिवार"
+        1: "पुढील शनिवार"
+      :relative_time: 
+        :future: 
+          :one: "येत्या {0} शनिवारी"
+          :other: "येत्या {0} शनिवारी"
+        :past: 
+          :one: "{0} शनिवारपूर्वी"
+          :other: "{0} शनिवारांपूर्वी"
+    :sat-short: 
+      :relative: 
+        -1: "मागील शनि."
+        0: "हा शनि."
+        1: "पुढील शनि."
+    :second: 
+      :display_name: सेकंद
+      :relative: 
+        0: आत्ता
+      :relative_time: 
+        :future: 
+          :one: "{0} सेकंदामध्ये"
+          :other: "{0} सेकंदांमध्ये"
+        :past: 
+          :one: "{0} सेकंदापूर्वी"
+          :other: "{0} सेकंदांपूर्वी"
+    :second-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "{0} से. मध्ये"
+          :other: "येत्या {0} से. मध्ये"
+    :second-short: 
+      :display_name: से.
+      :relative_time: 
+        :future: 
+          :one: "{0} से. मध्ये"
+          :other: "{0} से. मध्ये"
+        :past: 
+          :one: "{0} से. पूर्वी"
+          :other: "{0} से. पूर्वी"
+    :sun: 
+      :relative: 
+        -1: "मागील रविवार"
+        0: "हा रविवार"
+        1: "पुढील रविवार"
+      :relative_time: 
+        :future: 
+          :one: "येत्या {0} रविवारी"
+          :other: "येत्या {0} रविवारी"
+        :past: 
+          :one: "{0} रविवारपूर्वी"
+          :other: "{0} रविवारांपूर्वी"
+    :sun-narrow: 
+      :relative: 
+        -1: "मागील र"
+        0: "हा र"
+        1: "पुढील र"
+    :sun-short: 
+      :relative: 
+        -1: "मागील रवि."
+        0: "हा रवि."
+        1: "पुढील रवि."
+    :thu: 
+      :relative: 
+        -1: "मागील गुरुवार"
+        0: "हा गुरुवार"
+        1: "पुढील गुरुवार"
+      :relative_time: 
+        :future: 
+          :one: "येत्या {0} गुरूवारी"
+          :other: "येत्या {0} गुरूवारी"
+        :past: 
+          :one: "{0} गुरूवारपूर्वी"
+          :other: "{0} गुरूवारांपूर्वी"
+    :thu-narrow: 
+      :relative: 
+        -1: "मागील गु"
+        0: "हा गु"
+        1: "पुढील गु"
+    :thu-short: 
+      :relative: 
+        -1: "मागील गुरू."
+        0: "हा गुरू."
+        1: "पुढील गुरू."
+    :tue: 
+      :relative: 
+        -1: "मागील मंगळवार"
+        0: "हा मंगळवार"
+        1: "पुढील मंगळवार"
+      :relative_time: 
+        :future: 
+          :one: "येत्या {0} मंगळवारी"
+          :other: "येत्या {0} मंगळवारी"
+        :past: 
+          :one: "{0} मंगळवारपूर्वी"
+          :other: "{0} मंगळवारांपूर्वी"
+    :tue-narrow: 
+      :relative: 
+        -1: "मागील मं"
+        0: "हा मं"
+        1: "पुढील मं"
+      :relative_time: 
+        :past: 
+          :one: "{0} मंगळवारपूर्वी"
+          :other: "{0} मंगळवारांपूर्वी"
+    :tue-short: 
+      :relative: 
+        -1: "मागील मंगळ."
+        0: "हा मंगळ."
+        1: "पुढील मंगळ."
+      :relative_time: 
+        :past: 
+          :one: "{0} मंगळवारापूर्वी"
+          :other: "{0} मंगळवारांपूर्वी"
+    :wed: 
+      :relative: 
+        -1: "मागील बुधवार"
+        0: "हा बुधवार"
+        1: "पुढील बुधवार"
+      :relative_time: 
+        :future: 
+          :one: "येत्या {0} बुधवारी"
+          :other: "येत्या {0} बुधवारी"
+        :past: 
+          :one: "{0} बुधवारपूर्वी"
+          :other: "{0} बुधवारांपूर्वी"
+    :wed-narrow: 
+      :relative: 
+        -1: "मागील बु"
+        0: "हा बु"
+        1: "पुढील बु"
+      :relative_time: 
+        :future: 
+          :one: "येत्या {0} बुधवारी"
+          :other: "येत्या {0} बुधवारी"
+    :wed-short: 
+      :relative: 
+        -1: "मागील बुध."
+        0: "हा बुध."
+        1: "पुढील बुध."
+      :relative_time: 
+        :future: 
+          :one: "येत्या {0} बुधवार"
+          :other: "येत्या {0} बुधवार"
+    :week: 
+      :display_name: आठवडा
+      :relative: 
+        -1: "मागील आठवडा"
+        0: "हा आठवडा"
+        1: "पुढील आठवडा"
+      :relative_time: 
+        :future: 
+          :one: "{0} आठवड्यामध्ये"
+          :other: "{0} आठवड्यांमध्ये"
+        :past: 
+          :one: "{0} आठवड्यापूर्वी"
+          :other: "{0} आठवड्यांपूर्वी"
+    :week-short: 
+      :display_name: आठ.
+      :relative_time: 
+        :future: 
+          :one: "येत्या {0} आठवड्यामध्ये"
+          :other: "येत्या {0} आठवड्यांमध्ये"
+    :weekOfMonth: 
+      :display_name: "महिन्याचा आठवडा"
+    :weekOfMonth-short: 
+      :display_name: "महिन्याचा आठ."
+    :weekday: 
+      :display_name: "आठवड्याचा दिवस"
+    :weekdayOfMonth: 
+      :display_name: "महिन्यातील साप्ताहिक दिवस"
+    :weekdayOfMonth-short: 
+      :display_name: "महिन्यातील साप्ता. दिवस"
+    :year: 
+      :display_name: वर्ष
+      :relative: 
+        -1: "मागील वर्ष"
+        0: "हे वर्ष"
+        1: "पुढील वर्ष"
+      :relative_time: 
+        :future: 
+          :one: "येत्या {0} वर्षामध्ये"
+          :other: "येत्या {0} वर्षांमध्ये"
+        :past: 
+          :one: "{0} वर्षापूर्वी"
+          :other: "{0} वर्षांपूर्वी"
+    :year-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "येत्या {0} वर्षामध्ये"
+          :other: "येत्या {0} वर्षांमध्ये"
+    :year-short: 
+      :relative_time: 
+        :future: 
+          :one: "{0} वर्षामध्ये"
+          :other: "{0} वर्षांमध्ये"
+    :zone: 
+      :display_name: "वेळ क्षेत्र"
+    :zone-short: 
+      :display_name: क्षेत्र

@@ -1,0 +1,93 @@
+# WARNING ABOUT GENERATED CODE
+#
+# This file is generated. See the contributing guide for more information:
+# https://github.com/aws/aws-sdk-ruby/blob/version-3/CONTRIBUTING.md
+#
+# WARNING ABOUT GENERATED CODE
+
+module Aws
+  module S3
+    # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/BucketWebsite.html
+    class BucketWebsite
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/BucketWebsite.html#initialize-instance_method
+      def initialize: (String bucket_name, Hash[Symbol, untyped] options) -> void
+                    | (bucket_name: String, ?client: Client) -> void
+                    | (Hash[Symbol, untyped] args) -> void
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/BucketWebsite.html#bucket_name-instance_method
+      def bucket_name: () -> String
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/BucketWebsite.html#redirect_all_requests_to-instance_method
+      def redirect_all_requests_to: () -> Types::RedirectAllRequestsTo
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/BucketWebsite.html#index_document-instance_method
+      def index_document: () -> Types::IndexDocument
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/BucketWebsite.html#error_document-instance_method
+      def error_document: () -> Types::ErrorDocument
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/BucketWebsite.html#routing_rules-instance_method
+      def routing_rules: () -> ::Array[Types::RoutingRule]
+
+      def client: () -> Client
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/BucketWebsite.html#load-instance_method
+      def load: () -> self
+      alias reload load
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/BucketWebsite.html#data-instance_method
+      def data: () -> Types::GetBucketWebsiteOutput
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/BucketWebsite.html#data_loaded?-instance_method
+      def data_loaded?: () -> bool
+
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/BucketWebsite.html#delete-instance_method
+      def delete: (
+                    ?expected_bucket_owner: ::String
+                  ) -> ::Aws::EmptyStructure
+                | (?Hash[Symbol, untyped]) -> ::Aws::EmptyStructure
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/BucketWebsite.html#put-instance_method
+      def put: (
+                 ?content_md5: ::String,
+                 ?checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME"),
+                 website_configuration: {
+                   error_document: {
+                     key: ::String
+                   }?,
+                   index_document: {
+                     suffix: ::String
+                   }?,
+                   redirect_all_requests_to: {
+                     host_name: ::String,
+                     protocol: ("http" | "https")?
+                   }?,
+                   routing_rules: Array[
+                     {
+                       condition: {
+                         http_error_code_returned_equals: ::String?,
+                         key_prefix_equals: ::String?
+                       }?,
+                       redirect: {
+                         host_name: ::String?,
+                         http_redirect_code: ::String?,
+                         protocol: ("http" | "https")?,
+                         replace_key_prefix_with: ::String?,
+                         replace_key_with: ::String?
+                       }
+                     },
+                   ]?
+                 },
+                 ?expected_bucket_owner: ::String
+               ) -> ::Aws::EmptyStructure
+             | (?Hash[Symbol, untyped]) -> ::Aws::EmptyStructure
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/BucketWebsite.html#bucket-instance_method
+      def bucket: () -> Bucket
+
+      class Collection < ::Aws::Resources::Collection[BucketWebsite]
+      end
+    end
+  end
+end

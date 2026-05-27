@@ -1,0 +1,12 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - am-t-sat
+    :direction: forward
+    :rules: 
+      - "::sat_Olck-sat_FONIPA ;"
+      - "::am_FONIPA-am ;"
+    :source: sat
+    :target: am
+    :variant: ~

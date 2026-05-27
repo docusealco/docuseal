@@ -1,0 +1,12 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - ar-t-hy-arevmda
+    :direction: forward
+    :rules: 
+      - "::hy_AREVMDA-hy_AREVMDA_FONIPA ;"
+      - "::und_FONIPA-ar ;"
+    :source: hy_AREVMDA
+    :target: ar
+    :variant: ~

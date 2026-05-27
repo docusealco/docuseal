@@ -1,0 +1,1057 @@
+--- 
+:pt-PT: 
+  :formats: 
+    :fallback_formats: 
+      :generic: "{1} ({0})"
+    :gmt_formats: 
+      :generic: "GMT{0}"
+    :gmt_zero_formats: 
+      :generic: GMT
+    :hour_formats: 
+      :generic: "+HH:mm;-HH:mm"
+    :region_formats: 
+      :daylight: "Hora padrão de {0}"
+      :generic: "Hora de {0}"
+      :standard: "Hora padrão de {0}"
+  :metazones: 
+    :Acre: 
+      :long: 
+        :daylight: "Hora de verão do Acre"
+        :generic: "Hora do Acre"
+        :standard: "Hora padrão do Acre"
+    :Afghanistan: 
+      :long: 
+        :standard: "Hora do Afeganistão"
+    :Africa_Central: 
+      :long: 
+        :standard: "Hora da África Central"
+    :Africa_Eastern: 
+      :long: 
+        :standard: "Hora da África Oriental"
+    :Africa_Southern: 
+      :long: 
+        :standard: "Hora da África do Sul"
+    :Africa_Western: 
+      :long: 
+        :daylight: "Hora de verão da África Ocidental"
+        :generic: "Hora da África Ocidental"
+        :standard: "Hora padrão da África Ocidental"
+    :Alaska: 
+      :long: 
+        :daylight: "Hora de verão do Alasca"
+        :generic: "Hora do Alasca"
+        :standard: "Hora padrão do Alasca"
+    :Almaty: 
+      :long: 
+        :daylight: "Hora de verão de Almaty"
+        :generic: "Hora de Almaty"
+        :standard: "Hora padrão de Almaty"
+    :Amazon: 
+      :long: 
+        :daylight: "Hora de verão do Amazonas"
+        :generic: "Hora do Amazonas"
+        :standard: "Hora padrão do Amazonas"
+    :America_Central: 
+      :long: 
+        :daylight: "Hora de verão central norte-americana"
+        :generic: "Hora central norte-americana"
+        :standard: "Hora padrão central norte-americana"
+    :America_Eastern: 
+      :long: 
+        :daylight: "Hora de verão oriental norte-americana"
+        :generic: "Hora oriental norte-americana"
+        :standard: "Hora padrão oriental norte-americana"
+    :America_Mountain: 
+      :long: 
+        :daylight: "Hora de verão de montanha norte-americana"
+        :generic: "Hora de montanha norte-americana"
+        :standard: "Hora padrão de montanha norte-americana"
+    :America_Pacific: 
+      :long: 
+        :daylight: "Hora de verão do Pacífico norte-americana"
+        :generic: "Hora do Pacífico norte-americana"
+        :standard: "Hora padrão do Pacífico norte-americana"
+    :Anadyr: 
+      :long: 
+        :daylight: "Hora de verão de Anadyr"
+        :generic: "Hora de Anadyr"
+        :standard: "Hora padrão de Anadyr"
+    :Apia: 
+      :long: 
+        :daylight: "Hora de verão de Apia"
+        :generic: "Hora de Apia"
+        :standard: "Hora padrão de Apia"
+    :Aqtau: 
+      :long: 
+        :daylight: "Hora de verão de Aqtau"
+        :generic: "Hora de Aqtau"
+        :standard: "Hora padrão de Aqtau"
+    :Aqtobe: 
+      :long: 
+        :daylight: "Hora de verão de Aqtobe"
+        :generic: "Hora de Aqtobe"
+        :standard: "Hora padrão de Aqtobe"
+    :Arabian: 
+      :long: 
+        :daylight: "Hora de verão da Arábia"
+        :generic: "Hora da Arábia"
+        :standard: "Hora padrão da Arábia"
+    :Argentina: 
+      :long: 
+        :daylight: "Hora de verão da Argentina"
+        :generic: "Hora da Argentina"
+        :standard: "Hora padrão da Argentina"
+    :Argentina_Western: 
+      :long: 
+        :daylight: "Hora de verão da Argentina Ocidental"
+        :generic: "Hora da Argentina Ocidental"
+        :standard: "Hora padrão da Argentina Ocidental"
+    :Armenia: 
+      :long: 
+        :daylight: "Hora de verão da Arménia"
+        :generic: "Hora da Arménia"
+        :standard: "Hora padrão da Arménia"
+    :Atlantic: 
+      :long: 
+        :daylight: "Hora de verão do Atlântico"
+        :generic: "Hora do Atlântico"
+        :standard: "Hora padrão do Atlântico"
+    :Australia_Central: 
+      :long: 
+        :daylight: "Hora de verão da Austrália Central"
+        :generic: "Hora da Austrália Central"
+        :standard: "Hora padrão da Austrália Central"
+    :Australia_CentralWestern: 
+      :long: 
+        :daylight: "Hora de verão da Austrália Central Ocidental"
+        :generic: "Hora da Austrália Central Ocidental"
+        :standard: "Hora padrão da Austrália Central Ocidental"
+    :Australia_Eastern: 
+      :long: 
+        :daylight: "Hora de verão da Austrália Oriental"
+        :generic: "Hora da Austrália Oriental"
+        :standard: "Hora padrão da Austrália Oriental"
+    :Australia_Western: 
+      :long: 
+        :daylight: "Hora de verão da Austrália Ocidental"
+        :generic: "Hora da Austrália Ocidental"
+        :standard: "Hora padrão da Austrália Ocidental"
+    :Azerbaijan: 
+      :long: 
+        :daylight: "Hora de verão do Azerbaijão"
+        :generic: "Hora do Azerbaijão"
+        :standard: "Hora padrão do Azerbaijão"
+    :Azores: 
+      :long: 
+        :daylight: "Hora de verão dos Açores"
+        :generic: "Hora dos Açores"
+        :standard: "Hora padrão dos Açores"
+      :short: 
+        :daylight: AZOST
+        :generic: AZOT
+        :standard: AZOT
+    :Bangladesh: 
+      :long: 
+        :daylight: "Hora de verão do Bangladeche"
+        :generic: "Hora do Bangladeche"
+        :standard: "Hora padrão do Bangladeche"
+    :Bhutan: 
+      :long: 
+        :standard: "Hora do Butão"
+    :Bolivia: 
+      :long: 
+        :standard: "Hora da Bolívia"
+    :Brasilia: 
+      :long: 
+        :daylight: "Hora de verão de Brasília"
+        :generic: "Hora de Brasília"
+        :standard: "Hora padrão de Brasília"
+    :Brunei: 
+      :long: 
+        :standard: "Hora do Brunei Darussalam"
+    :Cape_Verde: 
+      :long: 
+        :daylight: "Hora de verão de Cabo Verde"
+        :generic: "Hora de Cabo Verde"
+        :standard: "Hora padrão de Cabo Verde"
+    :Chamorro: 
+      :long: 
+        :standard: "Hora padrão de Chamorro"
+    :Chatham: 
+      :long: 
+        :daylight: "Hora de verão de Chatham"
+        :generic: "Hora de Chatham"
+        :standard: "Hora padrão de Chatham"
+    :Chile: 
+      :long: 
+        :daylight: "Hora de verão do Chile"
+        :generic: "Hora do Chile"
+        :standard: "Hora padrão do Chile"
+    :China: 
+      :long: 
+        :daylight: "Hora de verão da China"
+        :generic: "Hora da China"
+        :standard: "Hora padrão da China"
+    :Christmas: 
+      :long: 
+        :standard: "Hora da Ilha do Natal"
+    :Cocos: 
+      :long: 
+        :standard: "Hora das Ilhas Cocos"
+    :Colombia: 
+      :long: 
+        :daylight: "Hora de verão da Colômbia"
+        :generic: "Hora da Colômbia"
+        :standard: "Hora padrão da Colômbia"
+    :Cook: 
+      :long: 
+        :daylight: "Hora de verão das Ilhas Cook"
+        :generic: "Hora das Ilhas Cook"
+        :standard: "Hora padrão das Ilhas Cook"
+    :Cuba: 
+      :long: 
+        :daylight: "Hora de verão de Cuba"
+        :generic: "Hora de Cuba"
+        :standard: "Hora padrão de Cuba"
+    :Davis: 
+      :long: 
+        :standard: "Hora de Davis"
+    :DumontDUrville: 
+      :long: 
+        :standard: "Hora de Dumont-d’Urville"
+    :East_Timor: 
+      :long: 
+        :standard: "Hora de Timor Leste"
+    :Easter: 
+      :long: 
+        :daylight: "Hora de verão da Ilha da Páscoa"
+        :generic: "Hora da Ilha da Páscoa"
+        :standard: "Hora padrão da Ilha da Páscoa"
+    :Ecuador: 
+      :long: 
+        :standard: "Hora do Equador"
+    :Europe_Central: 
+      :long: 
+        :daylight: "Hora de verão da Europa Central"
+        :generic: "Hora da Europa Central"
+        :standard: "Hora padrão da Europa Central"
+      :short: 
+        :daylight: CEST
+        :generic: CET
+        :standard: CET
+    :Europe_Eastern: 
+      :long: 
+        :daylight: "Hora de verão da Europa Oriental"
+        :generic: "Hora da Europa Oriental"
+        :standard: "Hora padrão da Europa Oriental"
+      :short: 
+        :daylight: EEST
+        :generic: EET
+        :standard: EET
+    :Europe_Further_Eastern: 
+      :long: 
+        :standard: "Hora do Extremo Leste da Europa"
+    :Europe_Western: 
+      :long: 
+        :daylight: "Hora de verão da Europa Ocidental"
+        :generic: "Hora da Europa Ocidental"
+        :standard: "Hora padrão da Europa Ocidental"
+      :short: 
+        :daylight: WEST
+        :generic: WET
+        :standard: WET
+    :Falkland: 
+      :long: 
+        :daylight: "Hora de verão das Ilhas Falkland"
+        :generic: "Hora das Ilhas Falkland"
+        :standard: "Hora padrão das Ilhas Falkland"
+    :Fiji: 
+      :long: 
+        :daylight: "Hora de verão de Fiji"
+        :generic: "Hora de Fiji"
+        :standard: "Hora padrão de Fiji"
+    :French_Guiana: 
+      :long: 
+        :standard: "Hora da Guiana Francesa"
+    :French_Southern: 
+      :long: 
+        :standard: "Hora das Terras Austrais e Antárcticas Francesas"
+    :GMT: 
+      :long: 
+        :standard: "Hora de Greenwich"
+    :Galapagos: 
+      :long: 
+        :standard: "Hora das Galápagos"
+    :Gambier: 
+      :long: 
+        :standard: "Hora de Gambier"
+    :Georgia: 
+      :long: 
+        :daylight: "Hora de verão da Geórgia"
+        :generic: "Hora da Geórgia"
+        :standard: "Hora padrão da Geórgia"
+    :Gilbert_Islands: 
+      :long: 
+        :standard: "Hora das Ilhas Gilbert"
+    :Greenland_Eastern: 
+      :long: 
+        :daylight: "Hora de verão da Gronelândia Oriental"
+        :generic: "Hora da Gronelândia Oriental"
+        :standard: "Hora padrão da Gronelândia Oriental"
+    :Greenland_Western: 
+      :long: 
+        :daylight: "Hora de verão da Gronelândia Ocidental"
+        :generic: "Hora da Gronelândia Ocidental"
+        :standard: "Hora padrão da Gronelândia Ocidental"
+    :Guam: 
+      :long: 
+        :standard: "Hora padrão de Guam"
+    :Gulf: 
+      :long: 
+        :standard: "Hora padrão do Golfo"
+    :Guyana: 
+      :long: 
+        :standard: "Hora da Guiana"
+    :Hawaii_Aleutian: 
+      :long: 
+        :daylight: "Hora de verão do Havai e Aleutas"
+        :generic: "Hora do Havai e Aleutas"
+        :standard: "Hora padrão do Havai e Aleutas"
+    :Hong_Kong: 
+      :long: 
+        :daylight: "Hora de verão de Hong Kong"
+        :generic: "Hora de Hong Kong"
+        :standard: "Hora padrão de Hong Kong"
+    :Hovd: 
+      :long: 
+        :daylight: "Hora de verão de Hovd"
+        :generic: "Hora de Hovd"
+        :standard: "Hora padrão de Hovd"
+    :India: 
+      :long: 
+        :standard: "Hora padrão da Índia"
+    :Indian_Ocean: 
+      :long: 
+        :standard: "Hora do Oceano Índico"
+    :Indochina: 
+      :long: 
+        :standard: "Hora da Indochina"
+    :Indonesia_Central: 
+      :long: 
+        :standard: "Hora da Indonésia Central"
+    :Indonesia_Eastern: 
+      :long: 
+        :standard: "Hora da Indonésia Oriental"
+    :Indonesia_Western: 
+      :long: 
+        :standard: "Hora da Indonésia Ocidental"
+    :Iran: 
+      :long: 
+        :daylight: "Hora de verão do Irão"
+        :generic: "Hora do Irão"
+        :standard: "Hora padrão do Irão"
+    :Irkutsk: 
+      :long: 
+        :daylight: "Hora de verão de Irkutsk"
+        :generic: "Hora de Irkutsk"
+        :standard: "Hora padrão de Irkutsk"
+    :Israel: 
+      :long: 
+        :daylight: "Hora de verão de Israel"
+        :generic: "Hora de Israel"
+        :standard: "Hora padrão de Israel"
+    :Japan: 
+      :long: 
+        :daylight: "Hora de verão do Japão"
+        :generic: "Hora do Japão"
+        :standard: "Hora padrão do Japão"
+    :Kamchatka: 
+      :long: 
+        :daylight: "Hora de verão de Petropavlovsk-Kamchatski"
+        :generic: "Hora de Petropavlovsk-Kamchatski"
+        :standard: "Hora padrão de Petropavlovsk-Kamchatski"
+    :Kazakhstan: 
+      :long: 
+        :standard: "Hora do Cazaquistão"
+    :Kazakhstan_Eastern: 
+      :long: 
+        :standard: "Hora do Cazaquistão Oriental"
+    :Kazakhstan_Western: 
+      :long: 
+        :standard: "Hora do Cazaquistão Ocidental"
+    :Korea: 
+      :long: 
+        :daylight: "Hora de verão da Coreia"
+        :generic: "Hora da Coreia"
+        :standard: "Hora padrão da Coreia"
+    :Kosrae: 
+      :long: 
+        :standard: "Hora de Kosrae"
+    :Krasnoyarsk: 
+      :long: 
+        :daylight: "Hora de verão de Krasnoyarsk"
+        :generic: "Hora de Krasnoyarsk"
+        :standard: "Hora padrão de Krasnoyarsk"
+    :Kyrgystan: 
+      :long: 
+        :standard: "Hora do Quirguistão"
+    :Lanka: 
+      :long: 
+        :standard: "Hora do Sri Lanka"
+    :Line_Islands: 
+      :long: 
+        :standard: "Hora das Ilhas Line"
+    :Lord_Howe: 
+      :long: 
+        :daylight: "Hora de verão de Lord Howe"
+        :generic: "Hora de Lord Howe"
+        :standard: "Hora padrão de Lord Howe"
+    :Macau: 
+      :long: 
+        :daylight: "Hora de verão de Macau"
+        :generic: "Hora de Macau"
+        :standard: "Hora padrão de Macau"
+    :Magadan: 
+      :long: 
+        :daylight: "Hora de verão de Magadan"
+        :generic: "Hora de Magadan"
+        :standard: "Hora padrão de Magadan"
+    :Malaysia: 
+      :long: 
+        :standard: "Hora da Malásia"
+    :Maldives: 
+      :long: 
+        :standard: "Hora das Maldivas"
+    :Marquesas: 
+      :long: 
+        :standard: "Hora das Ilhas Marquesas"
+    :Marshall_Islands: 
+      :long: 
+        :standard: "Hora das Ilhas Marshall"
+    :Mauritius: 
+      :long: 
+        :daylight: "Hora de verão da Maurícia"
+        :generic: "Hora da Maurícia"
+        :standard: "Hora padrão da Maurícia"
+    :Mawson: 
+      :long: 
+        :standard: "Hora de Mawson"
+    :Mexico_Pacific: 
+      :long: 
+        :daylight: "Hora de verão do Pacífico Mexicano"
+        :generic: "Hora do Pacífico Mexicano"
+        :standard: "Hora padrão do Pacífico Mexicano"
+    :Mongolia: 
+      :long: 
+        :daylight: "Hora de verão de Ulan Bator"
+        :generic: "Hora de Ulan Bator"
+        :standard: "Hora padrão de Ulan Bator"
+    :Moscow: 
+      :long: 
+        :daylight: "Hora de verão de Moscovo"
+        :generic: "Hora de Moscovo"
+        :standard: "Hora padrão de Moscovo"
+    :Myanmar: 
+      :long: 
+        :standard: "Hora de Mianmar"
+    :Nauru: 
+      :long: 
+        :standard: "Hora de Nauru"
+    :Nepal: 
+      :long: 
+        :standard: "Hora do Nepal"
+    :New_Caledonia: 
+      :long: 
+        :daylight: "Hora de verão da Nova Caledónia"
+        :generic: "Hora da Nova Caledónia"
+        :standard: "Hora padrão da Nova Caledónia"
+    :New_Zealand: 
+      :long: 
+        :daylight: "Hora de verão da Nova Zelândia"
+        :generic: "Hora da Nova Zelândia"
+        :standard: "Hora padrão da Nova Zelândia"
+    :Newfoundland: 
+      :long: 
+        :daylight: "Hora de verão da Terra Nova"
+        :generic: "Hora da Terra Nova"
+        :standard: "Hora padrão da Terra Nova"
+    :Niue: 
+      :long: 
+        :standard: "Hora de Niuê"
+    :Norfolk: 
+      :long: 
+        :daylight: "Hora de verão da Ilha Norfolk"
+        :generic: "Hora da Ilha Norfolk"
+        :standard: "Hora padrão da Ilha Norfolk"
+    :Noronha: 
+      :long: 
+        :daylight: "Hora de verão de Fernando de Noronha"
+        :generic: "Hora de Fernando de Noronha"
+        :standard: "Hora padrão de Fernando de Noronha"
+    :North_Mariana: 
+      :long: 
+        :standard: "Hora das Ilhas Mariana do Norte"
+    :Novosibirsk: 
+      :long: 
+        :daylight: "Hora de verão de Novosibirsk"
+        :generic: "Hora de Novosibirsk"
+        :standard: "Hora padrão de Novosibirsk"
+    :Omsk: 
+      :long: 
+        :daylight: "Hora de verão de Omsk"
+        :generic: "Hora de Omsk"
+        :standard: "Hora padrão de Omsk"
+    :Pakistan: 
+      :long: 
+        :daylight: "Hora de verão do Paquistão"
+        :generic: "Hora do Paquistão"
+        :standard: "Hora padrão do Paquistão"
+    :Palau: 
+      :long: 
+        :standard: "Hora de Palau"
+    :Papua_New_Guinea: 
+      :long: 
+        :standard: "Hora de Papua Nova Guiné"
+    :Paraguay: 
+      :long: 
+        :daylight: "Hora de verão do Paraguai"
+        :generic: "Hora do Paraguai"
+        :standard: "Hora padrão do Paraguai"
+    :Peru: 
+      :long: 
+        :daylight: "Hora de verão do Peru"
+        :generic: "Hora do Peru"
+        :standard: "Hora padrão do Peru"
+    :Philippines: 
+      :long: 
+        :daylight: "Hora de verão das Filipinas"
+        :generic: "Hora das Filipinas"
+        :standard: "Hora padrão das Filipinas"
+    :Phoenix_Islands: 
+      :long: 
+        :standard: "Hora das Ilhas Fénix"
+    :Pierre_Miquelon: 
+      :long: 
+        :daylight: "Hora de verão de São Pedro e Miquelão"
+        :generic: "Hora de São Pedro e Miquelão"
+        :standard: "Hora padrão de São Pedro e Miquelão"
+    :Pitcairn: 
+      :long: 
+        :standard: "Hora de Pitcairn"
+    :Ponape: 
+      :long: 
+        :standard: "Hora de Ponape"
+    :Pyongyang: 
+      :long: 
+        :standard: "Hora de Pyongyang"
+    :Qyzylorda: 
+      :long: 
+        :daylight: "Hora de verão de Qyzylorda"
+        :generic: "Hora de Qyzylorda"
+        :standard: "Hora padrão de Qyzylorda"
+    :Reunion: 
+      :long: 
+        :standard: "Hora de Reunião"
+    :Rothera: 
+      :long: 
+        :standard: "Hora de Rothera"
+    :Sakhalin: 
+      :long: 
+        :daylight: "Hora de verão de Sacalina"
+        :generic: "Hora de Sacalina"
+        :standard: "Hora padrão de Sacalina"
+    :Samara: 
+      :long: 
+        :daylight: "Hora de verão de Samara"
+        :generic: "Hora de Samara"
+        :standard: "Hora padrão de Samara"
+    :Samoa: 
+      :long: 
+        :daylight: "Hora de verão de Samoa"
+        :generic: "Hora de Samoa"
+        :standard: "Hora padrão de Samoa"
+    :Seychelles: 
+      :long: 
+        :standard: "Hora das Seicheles"
+    :Singapore: 
+      :long: 
+        :standard: "Hora padrão de Singapura"
+    :Solomon: 
+      :long: 
+        :standard: "Hora das Ilhas Salomão"
+    :South_Georgia: 
+      :long: 
+        :standard: "Hora da Geórgia do Sul"
+    :Suriname: 
+      :long: 
+        :standard: "Hora do Suriname"
+    :Syowa: 
+      :long: 
+        :standard: "Hora de Syowa"
+    :Tahiti: 
+      :long: 
+        :standard: "Hora do Taiti"
+    :Taipei: 
+      :long: 
+        :daylight: "Hora de verão de Taipé"
+        :generic: "Hora de Taipé"
+        :standard: "Hora padrão de Taipé"
+    :Tajikistan: 
+      :long: 
+        :standard: "Hora do Tajiquistão"
+    :Tokelau: 
+      :long: 
+        :standard: "Hora de Tokelau"
+    :Tonga: 
+      :long: 
+        :daylight: "Hora de verão de Tonga"
+        :generic: "Hora de Tonga"
+        :standard: "Hora padrão de Tonga"
+    :Truk: 
+      :long: 
+        :standard: "Hora de Chuuk"
+    :Turkmenistan: 
+      :long: 
+        :daylight: "Hora de verão do Turquemenistão"
+        :generic: "Hora do Turquemenistão"
+        :standard: "Hora padrão do Turquemenistão"
+    :Tuvalu: 
+      :long: 
+        :standard: "Hora de Tuvalu"
+    :Uruguay: 
+      :long: 
+        :daylight: "Hora de verão do Uruguai"
+        :generic: "Hora do Uruguai"
+        :standard: "Hora padrão do Uruguai"
+    :Uzbekistan: 
+      :long: 
+        :daylight: "Hora de verão do Uzbequistão"
+        :generic: "Hora do Uzbequistão"
+        :standard: "Hora padrão do Uzbequistão"
+    :Vanuatu: 
+      :long: 
+        :daylight: "Hora de verão do Vanuatu"
+        :generic: "Hora do Vanuatu"
+        :standard: "Hora padrão do Vanuatu"
+    :Venezuela: 
+      :long: 
+        :standard: "Hora da Venezuela"
+    :Vladivostok: 
+      :long: 
+        :daylight: "Hora de verão de Vladivostok"
+        :generic: "Hora de Vladivostok"
+        :standard: "Hora padrão de Vladivostok"
+    :Volgograd: 
+      :long: 
+        :daylight: "Hora de verão de Volgogrado"
+        :generic: "Hora de Volgogrado"
+        :standard: "Hora padrão de Volgogrado"
+    :Vostok: 
+      :long: 
+        :standard: "Hora de Vostok"
+    :Wake: 
+      :long: 
+        :standard: "Hora da Ilha Wake"
+    :Wallis: 
+      :long: 
+        :standard: "Hora de Wallis e Futuna"
+    :Yakutsk: 
+      :long: 
+        :daylight: "Hora de verão de Yakutsk"
+        :generic: "Hora de Yakutsk"
+        :standard: "Hora padrão de Yakutsk"
+    :Yekaterinburg: 
+      :long: 
+        :daylight: "Hora de verão de Ecaterimburgo"
+        :generic: "Hora de Ecaterimburgo"
+        :standard: "Hora padrão de Ecaterimburgo"
+    :Yukon: 
+      :long: 
+        :standard: "Hora do Yukon"
+  :timezones: 
+    :Africa/Accra: 
+      :city: Acra
+    :Africa/Addis_Ababa: 
+      :city: Adis-Abeba
+    :Africa/Algiers: 
+      :city: Argel
+    :Africa/Asmera: 
+      :city: Asmara
+    :Africa/Bamako: 
+      :city: Bamaco
+    :Africa/Conakry: 
+      :city: Conacri
+    :Africa/Dakar: 
+      :city: Dacar
+    :Africa/Djibouti: 
+      :city: Jibuti
+    :Africa/El_Aaiun: 
+      :city: "El Aaiún"
+    :Africa/Johannesburg: 
+      :city: Joanesburgo
+    :Africa/Kampala: 
+      :city: Campala
+    :Africa/Khartoum: 
+      :city: Cartum
+    :Africa/Lome: 
+      :city: Lomé
+    :Africa/Lusaka: 
+      :city: Lusaca
+    :Africa/Mogadishu: 
+      :city: Mogadíscio
+    :Africa/Monrovia: 
+      :city: Monróvia
+    :Africa/Nairobi: 
+      :city: Nairobi
+    :Africa/Ndjamena: 
+      :city: Ndjamena
+    :Africa/Niamey: 
+      :city: Niamei
+    :Africa/Porto-Novo: 
+      :city: Porto-Novo
+    :Africa/Sao_Tome: 
+      :city: "São Tomé"
+    :Africa/Tripoli: 
+      :city: Tripoli
+    :Africa/Tunis: 
+      :city: Tunes
+    :America/Anguilla: 
+      :city: Anguila
+    :America/Antigua: 
+      :city: Antígua
+    :America/Araguaina: 
+      :city: Araguaina
+    :America/Argentina/Tucuman: 
+      :city: Tucumán
+    :America/Asuncion: 
+      :city: Assunção
+    :America/Bahia: 
+      :city: Baía
+    :America/Bahia_Banderas: 
+      :city: "Bahia Banderas"
+    :America/Belem: 
+      :city: Belém
+    :America/Bogota: 
+      :city: Bogotá
+    :America/Cancun: 
+      :city: Cancun
+    :America/Cayenne: 
+      :city: Caiena
+    :America/Cayman: 
+      :city: Caimão
+    :America/Ciudad_Juarez: 
+      :city: "Ciudad Juárez"
+    :America/Coral_Harbour: 
+      :city: Atikokan
+    :America/Cordoba: 
+      :city: Córdoba
+    :America/Cuiaba: 
+      :city: Cuiabá
+    :America/Curacao: 
+      :city: Curaçau
+    :America/Dominica: 
+      :city: Domínica
+    :America/Eirunepe: 
+      :city: Eirunepé
+    :America/El_Salvador: 
+      :city: Salvador
+    :America/Godthab: 
+      :city: Nuuk
+    :America/Grenada: 
+      :city: Granada
+    :America/Guadeloupe: 
+      :city: Guadalupe
+    :America/Guayaquil: 
+      :city: Guaiaquil
+    :America/Guyana: 
+      :city: Guiana
+    :America/Indiana/Knox: 
+      :city: "Knox, Indiana"
+    :America/Indiana/Marengo: 
+      :city: "Marengo, Indiana"
+    :America/Indiana/Petersburg: 
+      :city: "Petersburg, Indiana"
+    :America/Indiana/Tell_City: 
+      :city: "Tell City, Indiana"
+    :America/Indiana/Vevay: 
+      :city: "Vevay, Indiana"
+    :America/Indiana/Vincennes: 
+      :city: "Vincennes, Indiana"
+    :America/Indiana/Winamac: 
+      :city: "Winamac, Indiana"
+    :America/Indianapolis: 
+      :city: Indianápolis
+    :America/Kentucky/Monticello: 
+      :city: "Monticello, Kentucky"
+    :America/Lower_Princes: 
+      :city: "Lower Prince’s Quarter"
+    :America/Maceio: 
+      :city: Maceió
+    :America/Managua: 
+      :city: Manágua
+    :America/Martinique: 
+      :city: Martinica
+    :America/Merida: 
+      :city: Mérida
+    :America/Mexico_City: 
+      :city: "Cidade do México"
+    :America/Montevideo: 
+      :city: Montevideu
+    :America/Montserrat: 
+      :city: Monserrate
+    :America/New_York: 
+      :city: "Nova Iorque"
+    :America/Noronha: 
+      :city: "Fernando de Noronha"
+    :America/North_Dakota/Beulah: 
+      :city: "Beulah, Dakota do Norte"
+    :America/North_Dakota/Center: 
+      :city: "Center, Dakota do Norte"
+    :America/North_Dakota/New_Salem: 
+      :city: "New Salen, Dakota do Norte"
+    :America/Panama: 
+      :city: Panamá
+    :America/Port-au-Prince: 
+      :city: Port-au-Prince
+    :America/Port_of_Spain: 
+      :city: "Porto de Espanha"
+    :America/Puerto_Rico: 
+      :city: "Porto Rico"
+    :America/Santarem: 
+      :city: Santarém
+    :America/Sao_Paulo: 
+      :city: "São Paulo"
+    :America/Scoresbysund: 
+      :city: Ittoqqortoormiit
+    :America/St_Barthelemy: 
+      :city: "São Bartolomeu"
+    :America/St_Johns: 
+      :city: "St. John’s"
+    :America/St_Kitts: 
+      :city: "São Cristóvão"
+    :America/St_Lucia: 
+      :city: "Santa Lúcia"
+    :America/St_Thomas: 
+      :city: "St. Thomas"
+    :America/St_Vincent: 
+      :city: "São Vicente"
+    :Antarctica/DumontDUrville: 
+      :city: "Dumont d’Urville"
+    :Asia/Aden: 
+      :city: Adem
+    :Asia/Amman: 
+      :city: Amã
+    :Asia/Aqtau: 
+      :city: Aqtau
+    :Asia/Aqtobe: 
+      :city: Aqtobe
+    :Asia/Ashgabat: 
+      :city: Asgabate
+    :Asia/Baghdad: 
+      :city: Bagdade
+    :Asia/Bahrain: 
+      :city: Barém
+    :Asia/Bangkok: 
+      :city: Banguecoque
+    :Asia/Beirut: 
+      :city: Beirute
+    :Asia/Calcutta: 
+      :city: Calcutá
+    :Asia/Damascus: 
+      :city: Damasco
+    :Asia/Dhaka: 
+      :city: Daca
+    :Asia/Dushanbe: 
+      :city: Duchambe
+    :Asia/Jakarta: 
+      :city: Jacarta
+    :Asia/Jerusalem: 
+      :city: Jerusalém
+    :Asia/Kabul: 
+      :city: Cabul
+    :Asia/Karachi: 
+      :city: Carachi
+    :Asia/Katmandu: 
+      :city: Catmandu
+    :Asia/Kuwait: 
+      :city: Koweit
+    :Asia/Macau: 
+      :city: Macau
+    :Asia/Makassar: 
+      :city: Macassar
+    :Asia/Muscat: 
+      :city: Mascate
+    :Asia/Nicosia: 
+      :city: Nicósia
+    :Asia/Qatar: 
+      :city: Catar
+    :Asia/Qostanay: 
+      :city: Kostanay
+    :Asia/Rangoon: 
+      :city: Yangon
+    :Asia/Riyadh: 
+      :city: Riade
+    :Asia/Saigon: 
+      :city: "Cidade de Ho Chi Minh"
+    :Asia/Sakhalin: 
+      :city: Sacalina
+    :Asia/Samarkand: 
+      :city: Samarcanda
+    :Asia/Seoul: 
+      :city: Seul
+    :Asia/Shanghai: 
+      :city: Xangai
+    :Asia/Singapore: 
+      :city: Singapura
+    :Asia/Taipei: 
+      :city: Taipé
+    :Asia/Tehran: 
+      :city: Teerão
+    :Asia/Thimphu: 
+      :city: Timphu
+    :Asia/Tokyo: 
+      :city: Tóquio
+    :Asia/Ulaanbaatar: 
+      :city: "Ulan Bator"
+    :Asia/Yekaterinburg: 
+      :city: Ecaterimburgo
+    :Asia/Yerevan: 
+      :city: Erevan
+    :Atlantic/Azores: 
+      :city: Açores
+    :Atlantic/Bermuda: 
+      :city: Bermudas
+    :Atlantic/Canary: 
+      :city: Canárias
+    :Atlantic/Cape_Verde: 
+      :city: "Cabo Verde"
+    :Atlantic/Faeroe: 
+      :city: Faroé
+    :Atlantic/Reykjavik: 
+      :city: Reiquiavique
+    :Atlantic/South_Georgia: 
+      :city: "Geórgia do Sul"
+    :Atlantic/St_Helena: 
+      :city: "Santa Helena"
+    :Australia/Lord_Howe: 
+      :city: "Ilha de Lord Howe"
+    :Etc/UTC: 
+      :long: 
+        :standard: "Hora Coordenada Universal"
+      :short: 
+        :standard: UTC
+    :Etc/Unknown: 
+      :city: "Cidade desconhecida"
+    :Europe/Amsterdam: 
+      :city: Amesterdão
+    :Europe/Astrakhan: 
+      :city: Astracã
+    :Europe/Athens: 
+      :city: Atenas
+    :Europe/Belgrade: 
+      :city: Belgrado
+    :Europe/Berlin: 
+      :city: Berlim
+    :Europe/Brussels: 
+      :city: Bruxelas
+    :Europe/Bucharest: 
+      :city: Bucareste
+    :Europe/Budapest: 
+      :city: Budapeste
+    :Europe/Busingen: 
+      :city: Busingen
+    :Europe/Copenhagen: 
+      :city: Copenhaga
+    :Europe/Dublin: 
+      :long: 
+        :daylight: "Hora de verão da Irlanda"
+    :Europe/Helsinki: 
+      :city: Helsínquia
+    :Europe/Isle_of_Man: 
+      :city: "Ilha de Man"
+    :Europe/Istanbul: 
+      :city: Istambul
+    :Europe/Kaliningrad: 
+      :city: Caliningrado
+    :Europe/Kiev: 
+      :city: Kiev
+    :Europe/Lisbon: 
+      :city: Lisboa
+    :Europe/Ljubljana: 
+      :city: Liubliana
+    :Europe/London: 
+      :city: Londres
+      :long: 
+        :daylight: "Hora de verão Britânica"
+    :Europe/Luxembourg: 
+      :city: Luxemburgo
+    :Europe/Madrid: 
+      :city: Madrid
+    :Europe/Monaco: 
+      :city: Mónaco
+    :Europe/Moscow: 
+      :city: Moscovo
+    :Europe/Prague: 
+      :city: Praga
+    :Europe/Rome: 
+      :city: Roma
+    :Europe/San_Marino: 
+      :city: "São Marinho"
+    :Europe/Sofia: 
+      :city: Sófia
+    :Europe/Stockholm: 
+      :city: Estocolmo
+    :Europe/Tallinn: 
+      :city: Talim
+    :Europe/Tirane: 
+      :city: Tirana
+    :Europe/Ulyanovsk: 
+      :city: Ulianovsk
+    :Europe/Vatican: 
+      :city: Vaticano
+    :Europe/Vienna: 
+      :city: Viena
+    :Europe/Volgograd: 
+      :city: Volgogrado
+    :Europe/Warsaw: 
+      :city: Varsóvia
+    :Europe/Zurich: 
+      :city: Zurique
+    :Indian/Christmas: 
+      :city: "Ilha do Natal"
+    :Indian/Cocos: 
+      :city: "Ilhas Cocos"
+    :Indian/Comoro: 
+      :city: Comores
+    :Indian/Mahe: 
+      :city: Mahe
+    :Indian/Maldives: 
+      :city: Maldivas
+    :Indian/Mauritius: 
+      :city: Maurícia
+    :Indian/Reunion: 
+      :city: Reunião
+    :Pacific/Chatham: 
+      :city: Chatham
+    :Pacific/Easter: 
+      :city: "Ilha da Páscoa"
+    :Pacific/Efate: 
+      :city: Efate
+    :Pacific/Enderbury: 
+      :city: Enderbury
+    :Pacific/Galapagos: 
+      :city: Galápagos
+    :Pacific/Honolulu: 
+      :city: Honolulu
+    :Pacific/Noumea: 
+      :city: Nouméa
+    :Pacific/Pitcairn: 
+      :city: "Ilhas Pitcairn"
+    :Pacific/Ponape: 
+      :city: Pohnpei
+    :Pacific/Tahiti: 
+      :city: Taiti
+    :Pacific/Tarawa: 
+      :city: Tarawa
+    :Pacific/Truk: 
+      :city: Chuuk

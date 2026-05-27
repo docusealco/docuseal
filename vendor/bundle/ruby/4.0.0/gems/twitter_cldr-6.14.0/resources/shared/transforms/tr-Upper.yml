@@ -1,0 +1,12 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - tr-t-d0-upper
+    :direction: forward
+    :rules: 
+      - "i>İ ;"
+      - "::Any-Upper() ;"
+    :source: tr
+    :target: Upper
+    :variant: ~

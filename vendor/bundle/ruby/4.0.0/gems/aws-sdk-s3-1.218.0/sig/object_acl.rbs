@@ -1,0 +1,86 @@
+# WARNING ABOUT GENERATED CODE
+#
+# This file is generated. See the contributing guide for more information:
+# https://github.com/aws/aws-sdk-ruby/blob/version-3/CONTRIBUTING.md
+#
+# WARNING ABOUT GENERATED CODE
+
+module Aws
+  module S3
+    # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectAcl.html
+    class ObjectAcl
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectAcl.html#initialize-instance_method
+      def initialize: (String bucket_name, String object_key, Hash[Symbol, untyped] options) -> void
+                    | (bucket_name: String, object_key: String, ?client: Client) -> void
+                    | (Hash[Symbol, untyped] args) -> void
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectAcl.html#bucket_name-instance_method
+      def bucket_name: () -> String
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectAcl.html#object_key-instance_method
+      def object_key: () -> String
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectAcl.html#owner-instance_method
+      def owner: () -> Types::Owner
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectAcl.html#grants-instance_method
+      def grants: () -> ::Array[Types::Grant]
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectAcl.html#request_charged-instance_method
+      def request_charged: () -> ("requester")
+
+      def client: () -> Client
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectAcl.html#load-instance_method
+      def load: () -> self
+      alias reload load
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectAcl.html#data-instance_method
+      def data: () -> Types::GetObjectAclOutput
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectAcl.html#data_loaded?-instance_method
+      def data_loaded?: () -> bool
+
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectAcl.html#put-instance_method
+      def put: (
+                 ?acl: ("private" | "public-read" | "public-read-write" | "authenticated-read" | "aws-exec-read" | "bucket-owner-read" | "bucket-owner-full-control"),
+                 ?access_control_policy: {
+                   grants: Array[
+                     {
+                       grantee: {
+                         display_name: ::String?,
+                         email_address: ::String?,
+                         id: ::String?,
+                         type: ("CanonicalUser" | "AmazonCustomerByEmail" | "Group"),
+                         uri: ::String?
+                       }?,
+                       permission: ("FULL_CONTROL" | "WRITE" | "WRITE_ACP" | "READ" | "READ_ACP")?
+                     },
+                   ]?,
+                   owner: {
+                     display_name: ::String?,
+                     id: ::String?
+                   }?
+                 },
+                 ?content_md5: ::String,
+                 ?checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME"),
+                 ?grant_full_control: ::String,
+                 ?grant_read: ::String,
+                 ?grant_read_acp: ::String,
+                 ?grant_write: ::String,
+                 ?grant_write_acp: ::String,
+                 ?request_payer: ("requester"),
+                 ?version_id: ::String,
+                 ?expected_bucket_owner: ::String
+               ) -> Types::PutObjectAclOutput
+             | (?Hash[Symbol, untyped]) -> Types::PutObjectAclOutput
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectAcl.html#object-instance_method
+      def object: () -> Object
+
+      class Collection < ::Aws::Resources::Collection[ObjectAcl]
+      end
+    end
+  end
+end

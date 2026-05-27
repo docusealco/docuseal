@@ -1,0 +1,15 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - ur-t-und-beng
+    :direction: forward
+    :rules: 
+      - "::[।-॥ঁ-ঃঅ-ঌএ-ঐও-নপ-রলশ-হ়-ৄে-ৈো-্ৗড়-ঢ়য়-ৣ০-৺ৎ] ;"
+      - "::NFD ;"
+      - "::Bengali-InterIndic ;"
+      - "::InterIndic-ur ;"
+      - "::NFC ;"
+    :source: Beng
+    :target: ur
+    :variant: ~

@@ -1,0 +1,7 @@
+# Template files that should maintain their original quote style
+lib/install/config/**/*.ts
+lib/install/config/**/*.js
+
+# Temporarily ignore workflow files that cannot be modified in PRs due to claude-review validation
+.github/workflows/claude.yml
+.github/workflows/claude-code-review.yml

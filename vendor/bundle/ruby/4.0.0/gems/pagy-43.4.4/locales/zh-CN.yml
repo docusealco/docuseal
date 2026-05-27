@@ -1,0 +1,20 @@
+# See https://ddnexus.github.io/pagy/resources/i18n
+
+zh-CN:
+  pagy:
+    p11n: 'Other'
+    aria_label:
+      nav: "页"
+      previous: "上一页"
+      next: "下一页"
+    previous: "&lt;"
+    next: "&gt;"
+    gap: "&hellip;"
+    item_name: "项"
+    info_tag:
+      no_count: "第 %{page} 页，共 %{pages} 页"
+      no_items: "未找到任何 %{item_name}"
+      single_page: "显示 %{count} 项 %{item_name}"
+      multiple_pages: "共 %{count} 项 %{item_name}，显示第 %{from}-%{to} 项"
+    input_nav_js: "第 %{page_input} 页，共 %{pages} 页"
+    limit_tag_js: "每页显示 %{limit_input} 项 %{item_name}"

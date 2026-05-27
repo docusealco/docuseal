@@ -1,0 +1,16 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - Malayalam-Latin
+      - und-Latn-t-und-mlym
+    :direction: forward
+    :rules: 
+      - "::[ംഃ ൦-൯ അ-ഋ ൠ ഌ ൡ എ-ഐ ഒ-ണ ൺ ത-ന ൻ പ-ര ർ ല ൽ വ-ഹ ള ൾ ഴ റ ാ-ൃ െ-ൈ ൊ-ൌ ൗ ്] ;"
+      - "::NFD ;"
+      - "::Malayalam-InterIndic ;"
+      - "::InterIndic-Latin ;"
+      - "::NFC ;"
+    :source: Mlym
+    :target: Latn
+    :variant: ~

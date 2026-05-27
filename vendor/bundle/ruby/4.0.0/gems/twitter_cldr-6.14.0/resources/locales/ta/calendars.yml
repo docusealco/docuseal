@@ -1,0 +1,395 @@
+--- 
+:ta: 
+  :calendars: 
+    :gregorian: 
+      :additional_formats: 
+        :Bh: "B h"
+        :Bhm: "B h:mm"
+        :Bhms: "B h:mm:ss"
+        :E: ccc
+        :EBhm: "E B h:mm"
+        :EBhms: "E B h:mm:ss"
+        :EHm: "E HH:mm"
+        :EHms: "E HH:mm:ss"
+        :Ed: "d E"
+        :Ehm: "E h:mm a"
+        :Ehms: "E h:mm:ss a"
+        :Gy: "G y"
+        :GyMMM: "G y MMM"
+        :GyMMMEd: "G y MMM d, E"
+        :GyMMMd: "G y MMM d"
+        :GyMd: "d/M/y G"
+        :H: HH
+        :Hm: "HH:mm"
+        :Hms: "HH:mm:ss"
+        :Hmsv: "HH:mm:ss v"
+        :Hmv: "HH:mm v"
+        :M: L
+        :MEd: "dd-MM, E"
+        :MMM: LLL
+        :MMMEd: "MMM d, E"
+        :MMMMW: "MMMM W -ஆம் வாரம்"
+        :MMMMd: "d MMMM"
+        :MMMd: "d MMM"
+        :MMdd: dd-MM
+        :Md: d/M
+        :d: d
+        :h: h a
+        :hm: "h:mm a"
+        :hms: "h:mm:ss a"
+        :hmsv: "h:mm:ss a v"
+        :hmv: "h:mm a v"
+        :ms: "mm:ss"
+        ? !ruby/symbol "y"
+        : "y"
+        :yM: M/y
+        :yMEd: "E, d/M/y"
+        :yMM: MM-y
+        :yMMM: "MMM y"
+        :yMMMEd: "E, d MMM, y"
+        :yMMMM: "MMMM y"
+        :yMMMd: "d MMM, y"
+        :yMd: d/M/y
+        :yQQQ: "QQQ y"
+        :yQQQQ: "QQQQ y"
+        :yw: "Y ஆம் ஆண்டின் w -ஆம் வாரம்"
+      :days: 
+        :format: 
+          :abbreviated: 
+            :fri: வெள்.
+            :mon: திங்.
+            :sat: சனி
+            :sun: ஞாயி.
+            :thu: வியா.
+            :tue: செவ்.
+            :wed: புத.
+          :narrow: 
+            :fri: வெ
+            :mon: தி
+            :sat: ச
+            :sun: ஞா
+            :thu: வி
+            :tue: செ
+            :wed: பு
+          :short: 
+            :fri: வெ
+            :mon: தி
+            :sat: ச
+            :sun: ஞா
+            :thu: வி
+            :tue: செ
+            :wed: பு
+          :wide: 
+            :fri: வெள்ளி
+            :mon: திங்கள்
+            :sat: சனி
+            :sun: ஞாயிறு
+            :thu: வியாழன்
+            :tue: செவ்வாய்
+            :wed: புதன்
+        :stand-alone: 
+          :abbreviated: 
+            :fri: வெள்.
+            :mon: திங்.
+            :sat: சனி
+            :sun: ஞாயி.
+            :thu: வியா.
+            :tue: செவ்.
+            :wed: புத.
+          :narrow: 
+            :fri: வெ
+            :mon: தி
+            :sat: ச
+            :sun: ஞா
+            :thu: வி
+            :tue: செ
+            :wed: பு
+          :short: 
+            :fri: வெ
+            :mon: தி
+            :sat: ச
+            :sun: ஞா
+            :thu: வி
+            :tue: செ
+            :wed: பு
+          :wide: 
+            :fri: வெள்ளி
+            :mon: திங்கள்
+            :sat: சனி
+            :sun: ஞாயிறு
+            :thu: வியாழன்
+            :tue: செவ்வாய்
+            :wed: புதன்
+      :eras: 
+        :abbr: 
+          0: பொ.ச.மு
+          1: பொ.ச
+        :name: 
+          0: "கிறிஸ்துவுக்கு முன்"
+          1: "அன்னோ டோமினி"
+        :narrow: 
+          0: BCE
+          1: CE
+      :fields: 
+        :day: நாள்
+        :day-narrow: நா.
+        :day-short: நாள்
+        :dayOfYear: "வருடத்தின் நாள்"
+        :dayOfYear-narrow: "வருட. நாள்"
+        :dayOfYear-short: "வருட. நாள்"
+        :dayperiod: முற்பகல்/பிற்பகல்
+        :dayperiod-narrow: முற்./பிற்.
+        :dayperiod-short: முற்./பிற்.
+        :era: காலம்
+        :era-narrow: காலம்
+        :era-short: காலம்
+        :hour: மணி
+        :hour-narrow: ம.
+        :hour-short: மணி.
+        :minute: நிமிடம்
+        :minute-narrow: Minute
+        :minute-short: நிமி.
+        :month: மாதம்
+        :month-narrow: மா.
+        :month-short: மாத.
+        :quarter: காலாண்டு
+        :quarter-narrow: கா.
+        :quarter-short: காலா.
+        :second: விநாடி
+        :second-narrow: வி.
+        :second-short: விநா.
+        :week: வாரம்
+        :week-narrow: வா.
+        :week-short: Week
+        :weekOfMonth: "மாதத்தின் வாரம்"
+        :weekOfMonth-narrow: "மாத. வாரம்"
+        :weekOfMonth-short: "மாத. வாரம்"
+        :weekday: "வாரத்தின் நாள்"
+        :weekday-narrow: "வார. நாள்"
+        :weekday-short: "வார. நாள்"
+        :weekdayOfMonth: "மாதத்தின் வாரநாள்"
+        :weekdayOfMonth-narrow: "மாத. வாரநாள்"
+        :weekdayOfMonth-short: "மாத. வாரநாள்"
+        :year: ஆண்டு
+        :year-narrow: ஆ.
+        :year-short: ஆண்டு
+        :zone: "நேர மண்டலம்"
+        :zone-narrow: மண்டலம்
+        :zone-short: மண்டலம்
+      :formats: 
+        :date: 
+          :full: 
+            :pattern: "EEEE, d MMMM, y"
+          :long: 
+            :pattern: "d MMMM, y"
+          :medium: 
+            :pattern: "d MMM, y"
+          :short: 
+            :pattern: d/M/yy
+        :datetime: 
+          :full: 
+            :pattern: "{{date}} அன்று {{time}}"
+          :long: 
+            :pattern: "{{date}} அன்று {{time}}"
+          :medium: 
+            :pattern: "{{date}}, {{time}}"
+          :short: 
+            :pattern: "{{date}}, {{time}}"
+        :time: 
+          :full: 
+            :pattern: "h:mm:ss a zzzz"
+          :long: 
+            :pattern: "h:mm:ss a z"
+          :medium: 
+            :pattern: "h:mm:ss a"
+          :short: 
+            :pattern: "h:mm a"
+      :months: 
+        :format: 
+          :abbreviated: 
+            1: ஜன.
+            10: அக்.
+            11: நவ.
+            12: டிச.
+            2: பிப்.
+            3: மார்.
+            4: ஏப்.
+            5: மே
+            6: ஜூன்
+            7: ஜூலை
+            8: ஆக.
+            9: செப்.
+          :narrow: 
+            1: ஜ
+            10: அ
+            11: ந
+            12: டி
+            2: பி
+            3: மா
+            4: ஏ
+            5: மே
+            6: ஜூ
+            7: ஜூ
+            8: ஆ
+            9: செ
+          :wide: 
+            1: ஜனவரி
+            10: அக்டோபர்
+            11: நவம்பர்
+            12: டிசம்பர்
+            2: பிப்ரவரி
+            3: மார்ச்
+            4: ஏப்ரல்
+            5: மே
+            6: ஜூன்
+            7: ஜூலை
+            8: ஆகஸ்ட்
+            9: செப்டம்பர்
+        :stand-alone: 
+          :abbreviated: 
+            1: ஜன.
+            10: அக்.
+            11: நவ.
+            12: டிச.
+            2: பிப்.
+            3: மார்.
+            4: ஏப்.
+            5: மே
+            6: ஜூன்
+            7: ஜூலை
+            8: ஆக.
+            9: செப்.
+          :narrow: 
+            1: ஜ
+            10: அ
+            11: ந
+            12: டி
+            2: பி
+            3: மா
+            4: ஏ
+            5: மே
+            6: ஜூ
+            7: ஜூ
+            8: ஆ
+            9: செ
+          :wide: 
+            1: ஜனவரி
+            10: அக்டோபர்
+            11: நவம்பர்
+            12: டிசம்பர்
+            2: பிப்ரவரி
+            3: மார்ச்
+            4: ஏப்ரல்
+            5: மே
+            6: ஜூன்
+            7: ஜூலை
+            8: ஆகஸ்ட்
+            9: செப்டம்பர்
+      :periods: 
+        :format: 
+          :abbreviated: 
+            :afternoon1: மதியம்
+            :afternoon2: பிற்பகல்
+            :am: AM
+            :evening1: மாலை
+            :evening2: "அந்தி மாலை"
+            :midnight: நள்ளிரவு
+            :morning1: அதிகாலை
+            :morning2: காலை
+            :night1: இரவு
+            :noon: நண்பகல்
+            :pm: PM
+          :narrow: 
+            :afternoon1: மதி.
+            :afternoon2: பிற்.
+            :am: AM
+            :evening1: மா.
+            :evening2: "அந்தி மா."
+            :midnight: நள்.
+            :morning1: அதி.
+            :morning2: கா.
+            :night1: இர.
+            :noon: நண்.
+            :pm: PM
+          :wide: 
+            :afternoon1: மதியம்
+            :afternoon2: பிற்பகல்
+            :am: AM
+            :evening1: மாலை
+            :evening2: "அந்தி மாலை"
+            :midnight: நள்ளிரவு
+            :morning1: அதிகாலை
+            :morning2: காலை
+            :night1: இரவு
+            :noon: நண்பகல்
+            :pm: PM
+        :stand-alone: 
+          :abbreviated: 
+            :afternoon1: மதியம்
+            :afternoon2: பிற்பகல்
+            :am: AM
+            :evening1: மாலை
+            :evening2: "அந்தி மாலை"
+            :midnight: நள்ளிரவு
+            :morning1: அதிகாலை
+            :morning2: காலை
+            :night1: இரவு
+            :noon: நண்பகல்
+            :pm: PM
+          :narrow: 
+            :afternoon1: மதி.
+            :afternoon2: பிற்.
+            :am: AM
+            :evening1: மா.
+            :evening2: "அந்தி மா."
+            :midnight: நள்.
+            :morning1: அதி.
+            :morning2: கா.
+            :night1: இ.
+            :noon: நண்.
+            :pm: PM
+          :wide: 
+            :afternoon1: மதியம்
+            :afternoon2: பிற்பகல்
+            :am: AM
+            :evening1: மாலை
+            :evening2: "அந்தி மாலை"
+            :midnight: நள்ளிரவு
+            :morning1: அதிகாலை
+            :morning2: காலை
+            :night1: இரவு
+            :noon: நண்பகல்
+            :pm: PM
+      :quarters: 
+        :format: 
+          :abbreviated: 
+            1: கா.1
+            2: கா.2
+            3: கா.3
+            4: கா.4
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: "முதல் காலாண்டு"
+            2: "இரண்டாம் காலாண்டு"
+            3: "மூன்றாம் காலாண்டு"
+            4: "நான்காம் காலாண்டு"
+        :stand-alone: 
+          :abbreviated: 
+            1: கா.1
+            2: கா.2
+            3: கா.3
+            4: கா.4
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: "முதல் காலாண்டு"
+            2: "இரண்டாம் காலாண்டு"
+            3: "மூன்றாம் காலாண்டு"
+            4: "நான்காம் காலாண்டு"

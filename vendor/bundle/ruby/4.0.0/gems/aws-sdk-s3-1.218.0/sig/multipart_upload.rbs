@@ -1,0 +1,120 @@
+# WARNING ABOUT GENERATED CODE
+#
+# This file is generated. See the contributing guide for more information:
+# https://github.com/aws/aws-sdk-ruby/blob/version-3/CONTRIBUTING.md
+#
+# WARNING ABOUT GENERATED CODE
+
+module Aws
+  module S3
+    # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/MultipartUpload.html
+    class MultipartUpload
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/MultipartUpload.html#initialize-instance_method
+      def initialize: (String bucket_name, String object_key, String id, Hash[Symbol, untyped] options) -> void
+                    | (bucket_name: String, object_key: String, id: String, ?client: Client) -> void
+                    | (Hash[Symbol, untyped] args) -> void
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/MultipartUpload.html#bucket_name-instance_method
+      def bucket_name: () -> String
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/MultipartUpload.html#object_key-instance_method
+      def object_key: () -> String
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/MultipartUpload.html#id-instance_method
+      def id: () -> String
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/MultipartUpload.html#upload_id-instance_method
+      def upload_id: () -> ::String
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/MultipartUpload.html#key-instance_method
+      def key: () -> ::String
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/MultipartUpload.html#initiated-instance_method
+      def initiated: () -> ::Time
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/MultipartUpload.html#storage_class-instance_method
+      def storage_class: () -> ("STANDARD" | "REDUCED_REDUNDANCY" | "STANDARD_IA" | "ONEZONE_IA" | "INTELLIGENT_TIERING" | "GLACIER" | "DEEP_ARCHIVE" | "OUTPOSTS" | "GLACIER_IR" | "SNOW" | "EXPRESS_ONEZONE" | "FSX_OPENZFS" | "FSX_ONTAP")
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/MultipartUpload.html#owner-instance_method
+      def owner: () -> Types::Owner
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/MultipartUpload.html#initiator-instance_method
+      def initiator: () -> Types::Initiator
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/MultipartUpload.html#checksum_algorithm-instance_method
+      def checksum_algorithm: () -> ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/MultipartUpload.html#checksum_type-instance_method
+      def checksum_type: () -> ("COMPOSITE" | "FULL_OBJECT")
+
+      def client: () -> Client
+
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/MultipartUpload.html#data-instance_method
+      def data: () -> Types::MultipartUpload
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/MultipartUpload.html#data_loaded?-instance_method
+      def data_loaded?: () -> bool
+
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/MultipartUpload.html#abort-instance_method
+      def abort: (
+                   ?request_payer: ("requester"),
+                   ?expected_bucket_owner: ::String,
+                   ?if_match_initiated_time: ::Time
+                 ) -> Types::AbortMultipartUploadOutput
+               | (?Hash[Symbol, untyped]) -> Types::AbortMultipartUploadOutput
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/MultipartUpload.html#complete-instance_method
+      def complete: (
+                      ?multipart_upload: {
+                        parts: Array[
+                          {
+                            etag: ::String?,
+                            checksum_crc32: ::String?,
+                            checksum_crc32c: ::String?,
+                            checksum_crc64nvme: ::String?,
+                            checksum_sha1: ::String?,
+                            checksum_sha256: ::String?,
+                            part_number: ::Integer?
+                          },
+                        ]?
+                      },
+                      ?checksum_crc32: ::String,
+                      ?checksum_crc32c: ::String,
+                      ?checksum_crc64nvme: ::String,
+                      ?checksum_sha1: ::String,
+                      ?checksum_sha256: ::String,
+                      ?checksum_type: ("COMPOSITE" | "FULL_OBJECT"),
+                      ?mpu_object_size: ::Integer,
+                      ?request_payer: ("requester"),
+                      ?expected_bucket_owner: ::String,
+                      ?if_match: ::String,
+                      ?if_none_match: ::String,
+                      ?sse_customer_algorithm: ::String,
+                      ?sse_customer_key: ::String,
+                      ?sse_customer_key_md5: ::String
+                    ) -> Object
+                  | (?Hash[Symbol, untyped]) -> Object
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/MultipartUpload.html#object-instance_method
+      def object: () -> Object
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/MultipartUpload.html#part-instance_method
+      def part: (String part_number) -> MultipartUploadPart
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/MultipartUpload.html#parts-instance_method
+      def parts: (
+                   ?request_payer: ("requester"),
+                   ?expected_bucket_owner: ::String,
+                   ?sse_customer_algorithm: ::String,
+                   ?sse_customer_key: ::String,
+                   ?sse_customer_key_md5: ::String
+                 ) -> MultipartUploadPart::Collection
+               | (?Hash[Symbol, untyped]) -> MultipartUploadPart::Collection
+
+      class Collection < ::Aws::Resources::Collection[MultipartUpload]
+      end
+    end
+  end
+end

@@ -1,0 +1,39 @@
+AllCops:
+  NewCops: disable
+  SuggestExtensions: false
+  TargetRubyVersion: 2.5
+
+Metrics/ClassLength:
+  Enabled: false
+Metrics/AbcSize:
+  Enabled: false
+Metrics/BlockLength:
+  AllowedMethods: ['describe', 'context', 'shared_examples']
+Metrics/CyclomaticComplexity:
+  Enabled: false
+Layout/LineLength:
+  Enabled: false
+Metrics/MethodLength:
+  Enabled: false
+Metrics/PerceivedComplexity:
+  Enabled: false
+Naming:
+  Enabled: false
+Style/MutableConstant:
+  Enabled: false
+Gemspec/RequiredRubyVersion:
+  Enabled: false
+Gemspec/RequireMFA:
+  Enabled: false
+Lint/RaiseException:
+  Enabled: false
+Lint/StructNewOverride:
+  Enabled: false
+Style/HashEachMethods:
+  Enabled: false
+Style/HashTransformKeys:
+  Enabled: false
+Style/HashTransformValues:
+  Enabled: false
+Style/FetchEnvVar:
+  Enabled: false

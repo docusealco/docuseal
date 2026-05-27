@@ -1,0 +1,16 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - Kannada-Gujarati
+      - und-Gujr-t-und-knda
+    :direction: forward
+    :rules: 
+      - "::[ಂ-ಃಅ-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼ಽಾ-ೄೆ-ೈೊ-್ೕ-ೖೞೠ-ೡ೦-೯] ;"
+      - "::NFD ;"
+      - "::Kannada-InterIndic ;"
+      - "::InterIndic-Gujarati ;"
+      - "::NFC ;"
+    :source: Knda
+    :target: Gujr
+    :variant: ~

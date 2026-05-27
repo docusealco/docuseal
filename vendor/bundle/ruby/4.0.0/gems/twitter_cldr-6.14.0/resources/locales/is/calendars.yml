@@ -1,0 +1,372 @@
+--- 
+:is: 
+  :calendars: 
+    :gregorian: 
+      :additional_formats: 
+        :Bh: "h B"
+        :Bhm: "h:mm B"
+        :Bhms: "h:mm:ss B"
+        :E: ccc
+        :EBhm: "E h:mm B"
+        :EBhms: "E h:mm:ss B"
+        :EHm: "E, HH:mm"
+        :EHms: "E, HH:mm:ss"
+        :Ed: "E d."
+        :Ehm: "E, h:mm a"
+        :Ehms: "E, h:mm:ss a"
+        :Gy: "y G"
+        :GyMMM: "MMM y G"
+        :GyMMMEd: "E, d. MMM y G"
+        :GyMMMd: "d. MMM y G"
+        :GyMd: "d/M/y GGGGG"
+        :H: HH
+        :Hm: "HH:mm"
+        :Hms: "HH:mm:ss"
+        :Hmsv: "v – HH:mm:ss"
+        :Hmv: "v – HH:mm"
+        :M: L
+        :MEd: "E, d.M."
+        :MMM: LLL
+        :MMMEd: "E, d. MMM"
+        :MMMMEd: "E, d. MMMM"
+        :MMMMW: "'viku' W 'í' MMMM"
+        :MMMMd: "d. MMMM"
+        :MMMd: "d. MMM"
+        :Md: d.M.
+        :d: d
+        :h: h a
+        :hm: "h:mm a"
+        :hms: "h:mm:ss a"
+        :hmsv: "h:mm:ss a v"
+        :hmv: "h:mm a v"
+        :ms: "mm:ss"
+        ? !ruby/symbol "y"
+        : "y"
+        :yM: "M. y"
+        :yMEd: "E, d.M.y"
+        :yMMM: "MMM y"
+        :yMMMEd: "E, d. MMM y"
+        :yMMMM: "MMMM y"
+        :yMMMd: "d. MMM y"
+        :yMd: d.M.y
+        :yQQQ: "QQQ y"
+        :yQQQQ: "QQQQ y"
+        :yw: "'viku' w 'af' Y"
+      :days: 
+        :format: 
+          :abbreviated: 
+            :fri: fös.
+            :mon: mán.
+            :sat: lau.
+            :sun: sun.
+            :thu: fim.
+            :tue: þri.
+            :wed: mið.
+          :narrow: 
+            :fri: F
+            :mon: M
+            :sat: L
+            :sun: S
+            :thu: F
+            :tue: Þ
+            :wed: M
+          :short: 
+            :fri: fö.
+            :mon: má.
+            :sat: la.
+            :sun: su.
+            :thu: fi.
+            :tue: þr.
+            :wed: mi.
+          :wide: 
+            :fri: föstudagur
+            :mon: mánudagur
+            :sat: laugardagur
+            :sun: sunnudagur
+            :thu: fimmtudagur
+            :tue: þriðjudagur
+            :wed: miðvikudagur
+        :stand-alone: 
+          :abbreviated: 
+            :fri: fös.
+            :mon: mán.
+            :sat: lau.
+            :sun: sun.
+            :thu: fim.
+            :tue: þri.
+            :wed: mið.
+          :narrow: 
+            :fri: F
+            :mon: M
+            :sat: L
+            :sun: S
+            :thu: F
+            :tue: Þ
+            :wed: M
+          :short: 
+            :fri: fö.
+            :mon: má.
+            :sat: la.
+            :sun: su.
+            :thu: fi.
+            :tue: þr.
+            :wed: mi.
+          :wide: 
+            :fri: föstudagur
+            :mon: mánudagur
+            :sat: laugardagur
+            :sun: sunnudagur
+            :thu: fimmtudagur
+            :tue: þriðjudagur
+            :wed: miðvikudagur
+      :eras: 
+        :abbr: 
+          0: f.l.t.
+          1: l.t.
+        :name: 
+          0: "fyrir kristið tímatal"
+          1: "kristið tímatal"
+        :narrow: 
+          0: f.v.t.
+          1: v.t.
+      :fields: 
+        :day: dagur
+        :day-narrow: dagur
+        :day-short: dagur
+        :dayOfYear: "dagur í ári"
+        :dayOfYear-narrow: "dagur í ári"
+        :dayOfYear-short: "dagur í ári"
+        :dayperiod: f.h./e.h.
+        :dayperiod-narrow: f.h./e.h.
+        :dayperiod-short: f.h./e.h.
+        :era: tímabil
+        :era-narrow: tímabil
+        :era-short: tímabil
+        :hour: klukkustund
+        :hour-narrow: Hour
+        :hour-short: klst.
+        :minute: mínúta
+        :minute-narrow: Minute
+        :minute-short: mín.
+        :month: mánuður
+        :month-narrow: mán.
+        :month-short: mán.
+        :quarter: ársfjórðungur
+        :quarter-narrow: ársfj.
+        :quarter-short: ársfjórð.
+        :second: sekúnda
+        :second-narrow: Second
+        :second-short: sek.
+        :week: vika
+        :week-narrow: v.
+        :week-short: vika
+        :weekOfMonth: "vika í mánuði"
+        :weekOfMonth-narrow: "vika í mánuði"
+        :weekOfMonth-short: "vika í mánuði"
+        :weekday: vikudagur
+        :weekday-narrow: vikud.
+        :weekday-short: vikud.
+        :weekdayOfMonth: "vikudagur í mánuði"
+        :weekdayOfMonth-narrow: "vikud. í mán."
+        :weekdayOfMonth-short: "vikud. í mán."
+        :year: ár
+        :year-narrow: ár
+        :year-short: ár
+        :zone: tímabelti
+        :zone-narrow: tímab.
+        :zone-short: tímab.
+      :formats: 
+        :date: 
+          :full: 
+            :pattern: "EEEE, d. MMMM y"
+          :long: 
+            :pattern: "d. MMMM y"
+          :medium: 
+            :pattern: "d. MMM y"
+          :short: 
+            :pattern: d.M.y
+        :datetime: 
+          :full: 
+            :pattern: "{{date}} 'kl'. {{time}}"
+          :long: 
+            :pattern: "{{date}} 'kl'. {{time}}"
+          :medium: 
+            :pattern: "{{date}}, {{time}}"
+          :short: 
+            :pattern: "{{date}}, {{time}}"
+        :time: 
+          :full: 
+            :pattern: "HH:mm:ss zzzz"
+          :long: 
+            :pattern: "HH:mm:ss z"
+          :medium: 
+            :pattern: "HH:mm:ss"
+          :short: 
+            :pattern: "HH:mm"
+      :months: 
+        :format: 
+          :abbreviated: 
+            1: jan.
+            10: okt.
+            11: nóv.
+            12: des.
+            2: feb.
+            3: mar.
+            4: apr.
+            5: maí
+            6: jún.
+            7: júl.
+            8: ágú.
+            9: sep.
+          :narrow: 
+            1: J
+            10: O
+            11: "N"
+            12: D
+            2: F
+            3: M
+            4: A
+            5: M
+            6: J
+            7: J
+            8: Á
+            9: S
+          :wide: 
+            1: janúar
+            10: október
+            11: nóvember
+            12: desember
+            2: febrúar
+            3: mars
+            4: apríl
+            5: maí
+            6: júní
+            7: júlí
+            8: ágúst
+            9: september
+        :stand-alone: 
+          :abbreviated: 
+            1: jan.
+            10: okt.
+            11: nóv.
+            12: des.
+            2: feb.
+            3: mar.
+            4: apr.
+            5: maí
+            6: jún.
+            7: júl.
+            8: ágú.
+            9: sep.
+          :narrow: 
+            1: J
+            10: O
+            11: "N"
+            12: D
+            2: F
+            3: M
+            4: A
+            5: M
+            6: J
+            7: J
+            8: Á
+            9: S
+          :wide: 
+            1: janúar
+            10: október
+            11: nóvember
+            12: desember
+            2: febrúar
+            3: mars
+            4: apríl
+            5: maí
+            6: júní
+            7: júlí
+            8: ágúst
+            9: september
+      :periods: 
+        :format: 
+          :abbreviated: 
+            :afternoon1: síðdegis
+            :am: f.h.
+            :evening1: "að kvöldi"
+            :midnight: miðnætti
+            :morning1: "að morgni"
+            :night1: "að nóttu"
+            :noon: hádegi
+            :pm: e.h.
+          :narrow: 
+            :afternoon1: sd.
+            :am: f.
+            :evening1: kv.
+            :midnight: mn.
+            :morning1: mrg.
+            :night1: n.
+            :noon: h.
+            :pm: e.
+          :wide: 
+            :afternoon1: síðdegis
+            :am: f.h.
+            :evening1: "að kvöldi"
+            :midnight: miðnætti
+            :morning1: "að morgni"
+            :night1: "að nóttu"
+            :noon: hádegi
+            :pm: e.h.
+        :stand-alone: 
+          :abbreviated: 
+            :afternoon1: síðdegis
+            :am: AM
+            :evening1: kvöld
+            :morning1: morgunn
+            :night1: nótt
+            :pm: PM
+          :narrow: 
+            :afternoon1: sd.
+            :am: AM
+            :evening1: kv.
+            :midnight: mn.
+            :morning1: mrg.
+            :night1: n.
+            :noon: hd.
+            :pm: PM
+          :wide: 
+            :afternoon1: "eftir hádegi"
+            :am: AM
+            :evening1: kvöld
+            :morning1: morgunn
+            :night1: nótt
+            :pm: PM
+      :quarters: 
+        :format: 
+          :abbreviated: 
+            1: F1
+            2: F2
+            3: F3
+            4: F4
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: "1. fjórðungur"
+            2: "2. fjórðungur"
+            3: "3. fjórðungur"
+            4: "4. fjórðungur"
+        :stand-alone: 
+          :abbreviated: 
+            1: F1
+            2: F2
+            3: F3
+            4: F4
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: "1. fjórðungur"
+            2: "2. fjórðungur"
+            3: "3. fjórðungur"
+            4: "4. fjórðungur"

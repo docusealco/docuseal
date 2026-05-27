@@ -1,0 +1,18 @@
+current directory: /app/vendor/bundle/ruby/4.0.0/gems/cgi-0.5.1/ext/cgi/escape
+/usr/local/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /app/vendor/bundle/ruby/4.0.0/gems/cgi-0.5.1/ext/cgi/escape
+make -j4 DESTDIR\= sitearchdir\=./.gem.20260516-47-nnn1ax sitelibdir\=./.gem.20260516-47-nnn1ax clean
+
+current directory: /app/vendor/bundle/ruby/4.0.0/gems/cgi-0.5.1/ext/cgi/escape
+make -j4 DESTDIR\= sitearchdir\=./.gem.20260516-47-nnn1ax sitelibdir\=./.gem.20260516-47-nnn1ax
+compiling escape.c
+linking shared-object cgi/escape.so
+
+current directory: /app/vendor/bundle/ruby/4.0.0/gems/cgi-0.5.1/ext/cgi/escape
+make -j4 DESTDIR\= sitearchdir\=./.gem.20260516-47-nnn1ax sitelibdir\=./.gem.20260516-47-nnn1ax install
+/usr/bin/install -c -m 0755 escape.so ./.gem.20260516-47-nnn1ax/cgi
+
+current directory: /app/vendor/bundle/ruby/4.0.0/gems/cgi-0.5.1/ext/cgi/escape
+make DESTDIR\= sitearchdir\=./.gem.20260516-47-nnn1ax sitelibdir\=./.gem.20260516-47-nnn1ax clean

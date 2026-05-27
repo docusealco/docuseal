@@ -35,7 +35,7 @@
             <%= ff.select :authentication, options_for_select([%w[Plain plain], %w[Login login], %w[CRAM-MD5 cram_md5]], value.fetch('authentication', 'plain')), { prompt: true }, required: true, class: 'base-select' %>
           </div>
         </div>
-        <% if !Docuseal.multitenant? || can?(:manage, :personalization_advanced) %>
+        <% if !Wabosign.multitenant? || can?(:manage, :personalization_advanced) %>
           <div class="form-control">
             <%= ff.label :security_label, 'SMTP Security', class: 'label' %>
             <div class="flex items-center space-x-6">
@@ -50,7 +50,7 @@
         <% end %>
         <div class="form-control">
           <%= ff.label :from_email, t('send_from_email'), class: 'label' %>
-          <%= ff.email_field :from_email, value: value['from_email'], required: !Docuseal.multitenant?, class: 'base-input' %>
+          <%= ff.email_field :from_email, value: value['from_email'], required: !Wabosign.multitenant?, class: 'base-input' %>
         </div>
       <% end %>
       <div class="form-control pt-2">

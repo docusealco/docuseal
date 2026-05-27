@@ -1,0 +1,369 @@
+--- 
+:lt: 
+  :calendars: 
+    :gregorian: 
+      :additional_formats: 
+        :Bh: "h B"
+        :Bhm: "h:mm B"
+        :Bhms: "h:mm:ss B"
+        :E: ccc
+        :EBhm: "h:mm B, E"
+        :EBhms: "h:mm:ss B, E"
+        :EHm: "HH:mm, E"
+        :EHms: "HH:mm:ss, E"
+        :Ed: "d, E"
+        :Ehm: "hh:mm a, E"
+        :Ehms: "hh:mm:ss a, E"
+        :Gy: "y 'm'. G"
+        :GyMMM: "y-MM G"
+        :GyMMMEd: "y-MM-dd G, E"
+        :GyMMMM: "y 'm'. G, LLLL"
+        :GyMMMMEd: "y 'm'. G MMMM d 'd'., E"
+        :GyMMMMd: "y 'm'. G MMMM d 'd'."
+        :GyMMMd: "y-MM-dd G"
+        :GyMd: "y-MM-dd G"
+        :H: HH
+        :Hm: "HH:mm"
+        :Hms: "HH:mm:ss"
+        :Hmsv: "HH:mm:ss; v"
+        :Hmv: "HH:mm; v"
+        :M: MM
+        :MEd: "MM-dd, E"
+        :MMM: MM
+        :MMMEd: "MM-dd, E"
+        :MMMM: LLLL
+        :MMMMEd: "MMMM d 'd'., E"
+        :MMMMW: "MMMM W 'sav'."
+        :MMMMd: "MMMM d 'd'."
+        :MMMd: MM-dd
+        :MMdd: MM-dd
+        :Md: MM-d
+        :d: dd
+        :h: hh a
+        :hm: "hh:mm a"
+        :hms: "hh:mm:ss a"
+        :hmsv: "hh:mm:ss a; v"
+        :hmv: "hh:mm a; v"
+        :ms: "mm:ss"
+        ? !ruby/symbol "y"
+        : "y"
+        :yM: y-MM
+        :yMEd: "y-MM-dd, E"
+        :yMMM: y-MM
+        :yMMMEd: "y-MM-dd, E"
+        :yMMMM: "y 'm'. LLLL"
+        :yMMMMEd: "y 'm'. MMMM d 'd'., E"
+        :yMMMMd: "y 'm'. MMMM d 'd'."
+        :yMMMd: y-MM-dd
+        :yMd: y-MM-dd
+        :yQQQ: "y QQQ"
+        :yQQQQ: "y QQQQ"
+        :yw: "Y w 'sav'."
+      :days: 
+        :format: 
+          :abbreviated: 
+            :fri: pn
+            :mon: pr
+            :sat: št
+            :sun: sk
+            :thu: kt
+            :tue: an
+            :wed: tr
+          :narrow: 
+            :fri: P
+            :mon: P
+            :sat: Š
+            :sun: S
+            :thu: K
+            :tue: A
+            :wed: T
+          :short: 
+            :fri: Pn
+            :mon: Pr
+            :sat: Št
+            :sun: Sk
+            :thu: Kt
+            :tue: An
+            :wed: Tr
+          :wide: 
+            :fri: penktadienis
+            :mon: pirmadienis
+            :sat: šeštadienis
+            :sun: sekmadienis
+            :thu: ketvirtadienis
+            :tue: antradienis
+            :wed: trečiadienis
+        :stand-alone: 
+          :abbreviated: 
+            :fri: pn
+            :mon: pr
+            :sat: št
+            :sun: sk
+            :thu: kt
+            :tue: an
+            :wed: tr
+          :narrow: 
+            :fri: P
+            :mon: P
+            :sat: Š
+            :sun: S
+            :thu: K
+            :tue: A
+            :wed: T
+          :short: 
+            :fri: Pn
+            :mon: Pr
+            :sat: Št
+            :sun: Sk
+            :thu: Kt
+            :tue: An
+            :wed: Tr
+          :wide: 
+            :fri: penktadienis
+            :mon: pirmadienis
+            :sat: šeštadienis
+            :sun: sekmadienis
+            :thu: ketvirtadienis
+            :tue: antradienis
+            :wed: trečiadienis
+      :eras: 
+        :abbr: 
+          0: "pr. m. e."
+          1: "mūsų eroje"
+        :name: 
+          0: "prieš mūsų erą"
+          1: "po Kristaus"
+        :narrow: 
+          0: prme
+          1: pome
+      :fields: 
+        :day: diena
+        :day-narrow: d.
+        :day-short: d.
+        :dayOfYear: "metų diena"
+        :dayOfYear-narrow: "metų diena"
+        :dayOfYear-short: "metų diena"
+        :dayperiod: "iki pietų / po pietų"
+        :dayperiod-narrow: "iki pietų / po pietų"
+        :dayperiod-short: "iki pietų / po pietų"
+        :era: era
+        :era-narrow: era
+        :era-short: era
+        :hour: valanda
+        :hour-narrow: h
+        :hour-short: val.
+        :minute: minutė
+        :minute-narrow: min.
+        :minute-short: min.
+        :month: mėnuo
+        :month-narrow: mėn.
+        :month-short: mėn.
+        :quarter: ketvirtis
+        :quarter-narrow: ketv.
+        :quarter-short: ketv.
+        :second: sekundė
+        :second-narrow: s
+        :second-short: sek.
+        :week: savaitė
+        :week-narrow: sav.
+        :week-short: sav.
+        :weekOfMonth: "mėnesio savaitė"
+        :weekOfMonth-narrow: "mėnesio savaitė"
+        :weekOfMonth-short: "mėnesio savaitė"
+        :weekday: "savaitės diena"
+        :weekday-narrow: "savaitės diena"
+        :weekday-short: "savaitės diena"
+        :weekdayOfMonth: "mėnesio šiokiadienis"
+        :weekdayOfMonth-narrow: "mėnesio šiokiadienis"
+        :weekdayOfMonth-short: "mėnesio šiokiadienis"
+        :year: metai
+        :year-narrow: m.
+        :year-short: m.
+        :zone: "laiko juosta"
+        :zone-narrow: "laiko juosta"
+        :zone-short: "laiko juosta"
+      :formats: 
+        :date: 
+          :full: 
+            :pattern: "y 'm'. MMMM d 'd'., EEEE"
+          :long: 
+            :pattern: "y 'm'. MMMM d 'd'."
+          :medium: 
+            :pattern: y-MM-dd
+          :short: 
+            :pattern: y-MM-dd
+        :datetime: 
+          :full: 
+            :pattern: "{{date}} {{time}}"
+          :long: 
+            :pattern: "{{date}} {{time}}"
+          :medium: 
+            :pattern: "{{date}} {{time}}"
+          :short: 
+            :pattern: "{{date}} {{time}}"
+        :time: 
+          :full: 
+            :pattern: "HH:mm:ss zzzz"
+          :long: 
+            :pattern: "HH:mm:ss z"
+          :medium: 
+            :pattern: "HH:mm:ss"
+          :short: 
+            :pattern: "HH:mm"
+      :months: 
+        :format: 
+          :abbreviated: 
+            1: saus.
+            10: spal.
+            11: lapkr.
+            12: gruod.
+            2: vas.
+            3: kov.
+            4: bal.
+            5: geg.
+            6: birž.
+            7: liep.
+            8: rugp.
+            9: rugs.
+          :narrow: 
+            1: S
+            10: S
+            11: L
+            12: G
+            2: V
+            3: K
+            4: B
+            5: G
+            6: B
+            7: L
+            8: R
+            9: R
+          :wide: 
+            1: sausio
+            10: spalio
+            11: lapkričio
+            12: gruodžio
+            2: vasario
+            3: kovo
+            4: balandžio
+            5: gegužės
+            6: birželio
+            7: liepos
+            8: rugpjūčio
+            9: rugsėjo
+        :stand-alone: 
+          :abbreviated: 
+            1: saus.
+            10: spal.
+            11: lapkr.
+            12: gruod.
+            2: vas.
+            3: kov.
+            4: bal.
+            5: geg.
+            6: birž.
+            7: liep.
+            8: rugp.
+            9: rugs.
+          :narrow: 
+            1: S
+            10: S
+            11: L
+            12: G
+            2: V
+            3: K
+            4: B
+            5: G
+            6: B
+            7: L
+            8: R
+            9: R
+          :wide: 
+            1: sausis
+            10: spalis
+            11: lapkritis
+            12: gruodis
+            2: vasaris
+            3: kovas
+            4: balandis
+            5: gegužė
+            6: birželis
+            7: liepa
+            8: rugpjūtis
+            9: rugsėjis
+      :periods: 
+        :format: 
+          :abbreviated: 
+            :afternoon1: popietė
+            :am: priešpiet
+            :evening1: vakaras
+            :midnight: vidurnaktis
+            :morning1: rytas
+            :night1: naktis
+            :noon: perpiet
+            :pm: popiet
+          :narrow: 
+            :am: pr. p.
+            :pm: pop.
+          :wide: 
+            :afternoon1: popietė
+            :am: priešpiet
+            :evening1: vakaras
+            :midnight: vidurnaktis
+            :morning1: rytas
+            :night1: naktis
+            :noon: perpiet
+            :pm: popiet
+        :stand-alone: 
+          :abbreviated: 
+            :afternoon1: diena
+            :am: AM
+            :evening1: vakaras
+            :morning1: rytas
+            :night1: naktis
+            :noon: vidurdienis
+            :pm: PM
+          :narrow: 
+            :am: pr. p.
+            :pm: pop.
+          :wide: 
+            :afternoon1: diena
+            :am: AM
+            :evening1: vakaras
+            :morning1: rytas
+            :night1: naktis
+            :noon: vidurdienis
+            :pm: PM
+      :quarters: 
+        :format: 
+          :abbreviated: 
+            1: "I k."
+            2: "II k."
+            3: "III k."
+            4: "IV k."
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: "I ketvirtis"
+            2: "II ketvirtis"
+            3: "III ketvirtis"
+            4: "IV ketvirtis"
+        :stand-alone: 
+          :abbreviated: 
+            1: "I ketv."
+            2: "II ketv."
+            3: "III ketv."
+            4: "IV ketv."
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: "I ketvirtis"
+            2: "II ketvirtis"
+            3: "III ketvirtis"
+            4: "IV ketvirtis"

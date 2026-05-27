@@ -1,0 +1,117 @@
+module WEBrick
+  class HTTPResponse
+    @buffer_size: Integer
+
+    @logger: Log
+
+    @chunked: bool
+
+    @bodytempfile: File | Tempfile | nil
+
+    class InvalidHeader < StandardError
+    end
+
+    attr_reader http_version: HTTPVersion
+
+    attr_reader status: Integer
+
+    attr_reader header: Hash[String, String]
+
+    attr_reader cookies: Array[Cookie]
+
+    attr_accessor reason_phrase: String
+
+    interface _CallableBody
+      def call: (_Writer) -> void
+    end
+
+    attr_accessor body: String | _ReaderPartial | _CallableBody
+
+    attr_accessor request_method: String?
+
+    attr_accessor request_uri: URI::Generic?
+
+    attr_accessor request_http_version: HTTPVersion?
+
+    attr_accessor filename: String?
+
+    attr_accessor keep_alive: bool
+
+    attr_reader config: Hash[Symbol, untyped]
+
+    attr_reader sent_size: Integer
+
+    attr_accessor upgrade: String?
+
+    def initialize: (Hash[Symbol, untyped] config) -> void
+
+    def status_line: () -> String
+
+    def status=: (Integer status) -> Integer
+
+    def []: (String field) -> String?
+
+    def []=: (String field, _ToS value) -> _ToS
+
+    def content_length: () -> Integer?
+
+    def content_length=: (Integer len) -> Integer
+
+    def content_type: () -> String?
+
+    def content_type=: (String type) -> String
+
+    def each: () { (String, String) -> void } -> void
+
+    def chunked?: () -> bool
+
+    def chunked=: (boolish val) -> boolish
+
+    def keep_alive?: () -> bool
+
+    def upgrade!: (String protocol) -> void
+
+    def send_response: (_Writer socket) -> void
+
+    def setup_header: () -> void
+
+    def make_body_tempfile: () -> void
+
+    def remove_body_tempfile: () -> void
+
+    def send_header: (_Writer socket) -> void
+
+    def send_body: (_Writer socket) -> void
+
+    def set_redirect: (singleton(WEBrick::HTTPStatus::Redirect) status, URI::Generic | String url) -> bot
+
+    def set_error: (singleton(Exception) ex, ?bool backtrace) -> void
+
+    private
+
+    def check_header: (_ToS header_value) -> String
+
+    def error_body: (bool backtrace, singleton(Exception) ex, String? host, Integer? port) -> void
+
+    def send_body_io: (_Writer socket) -> void
+
+    def send_body_string: (_Writer socket) -> void
+
+    def send_body_proc: (_Writer socket) -> void
+
+    class ChunkedWrapper
+      @socket: _Writer
+
+      @resp: HTTPResponse
+
+      def initialize: (_Writer socket, HTTPResponse resp) -> void
+
+      def write: (_ToS buf) -> Integer
+
+      def <<: (*_ToS buf) -> self
+    end
+
+    # preserved for compatibility with some 3rd-party handlers
+    def _write_data: [T] (T socket, _ToS data) -> T
+  end
+end

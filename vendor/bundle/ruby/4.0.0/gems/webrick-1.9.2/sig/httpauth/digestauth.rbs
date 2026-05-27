@@ -1,0 +1,85 @@
+module WEBrick
+  module HTTPAuth
+    class DigestAuth
+      @config: Hash[Symbol, untyped]
+
+      @domain: Array[String]?
+
+      @use_opaque: bool
+
+      @use_next_nonce: bool
+
+      @check_nc: bool
+
+      @use_auth_info_header: bool
+
+      @nonce_expire_period: Integer
+
+      @nonce_expire_delta: Integer
+
+      @internet_explorer_hack: bool
+
+      @h: singleton(Digest::Base)
+
+      @instance_key: String
+
+      @opaques: Hash[String, OpaqueInfo]
+
+      @last_nonce_expire: Time
+
+      @mutex: Thread::Mutex
+
+      include Authenticator
+
+      AuthScheme: String
+
+      class OpaqueInfo < Struct[untyped]
+        attr_accessor time(): Time
+        attr_accessor nonce(): String?
+        attr_accessor nc(): String
+      end
+
+      attr_reader algorithm: String?
+
+      attr_reader qop: Array[String]
+
+      def self.make_passwd: (String realm, String user, String pass) -> untyped
+
+      def initialize: (Hash[Symbol, untyped] config, ?Hash[Symbol, untyped] default) -> void
+
+      def authenticate: (HTTPRequest req, HTTPResponse res) -> void
+
+      def challenge: (HTTPRequest req, HTTPResponse res, ?bool stale) -> bot
+
+      private
+
+      MustParams: Array[String]
+
+      MustParamsAuth: Array[String]
+
+      def _authenticate: (HTTPRequest req, HTTPResponse res) -> (:nonce_is_stale | bool)
+
+      def split_param_value: (String string) -> Hash[String, String]
+
+      def generate_next_nonce: (HTTPRequest req) -> String
+
+      def check_nonce: (HTTPRequest req, Hash[String, String] auth_req) -> bool
+
+      def generate_opaque: (HTTPRequest req) -> String
+
+      def check_opaque: (OpaqueInfo opaque_struct, untyped req, Hash[String, String] auth_req) -> bool
+
+      def check_uri: (HTTPRequest req, Hash[String, String] auth_req) -> bool
+
+      def hexdigest: (*_ToS? args) -> String
+    end
+
+    class ProxyDigestAuth < DigestAuth
+      include ProxyAuthenticator
+
+      private
+
+      def check_uri: (HTTPRequest req, Hash[String, String] auth_req) -> true
+    end
+  end
+end

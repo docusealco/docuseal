@@ -1,0 +1,1154 @@
+--- 
+:tr: 
+  :currencies: 
+    :ADP: 
+      :name: "Andorra Pezetası"
+      :one: "Andorra Pezetası"
+    :AED: 
+      :name: "Birleşik Arap Emirlikleri dirhemi"
+      :one: "BAE dirhemi"
+      :other: "BAE dirhemi"
+    :AFA: 
+      :name: "Afganistan Afganisi (1927–2002)"
+      :one: "Afganistan Afganisi (1927–2002)"
+    :AFN: 
+      :name: "Afganistan afganisi"
+      :narrow_symbol: ؋
+      :one: "Afganistan afganisi"
+      :symbol: ؋
+    :ALK: 
+      :name: "Arnavutluk Leki (1946–1965)"
+      :one: "Arnavutluk leki (1946–1965)"
+      :other: "Arnavutluk leki (1946–1965)"
+    :ALL: 
+      :name: "Arnavutluk leki"
+      :one: "Arnavutluk leki"
+    :AMD: 
+      :name: "Ermenistan dramı"
+      :narrow_symbol: ֏
+      :one: "Ermenistan dramı"
+      :symbol: ֏
+    :ANG: 
+      :name: "Hollanda Antilleri guldeni"
+      :one: "Hollanda Antilleri guldeni"
+    :AOA: 
+      :name: "Angola kvanzası"
+      :narrow_symbol: Kz
+      :one: "Angola kvanzası"
+      :symbol: Kz
+    :AOK: 
+      :name: "Angola Kvanzası (1977–1990)"
+      :one: "Angola Kvanzası (1977–1990)"
+    :AON: 
+      :name: "Yeni Angola Kvanzası (1990–2000)"
+      :one: "Yeni Angola Kvanzası (1990–2000)"
+    :AOR: 
+      :name: "Angola Kvanzası Reajustado (1995–1999)"
+      :one: "Angola Kvanzası Reajustado (1995–1999)"
+    :ARA: 
+      :name: "Arjantin Australi"
+      :one: "Arjantin Australi"
+    :ARL: 
+      :name: "Arjantin Peso Leyi (1970–1983)"
+      :one: "Arjantin peso leyi (1970–1983)"
+      :other: "Arjantin peso leyi (1970–1983)"
+    :ARM: 
+      :name: "Arjantin Pesosu (1881–1970)"
+      :one: "Arjantin pesosu (1881–1970)"
+      :other: "Arjantin pesosu (1881–1970)"
+    :ARP: 
+      :name: "Arjantin Pezosu (1983–1985)"
+      :one: "Arjantin Pezosu (1983–1985)"
+    :ARS: 
+      :name: "Arjantin pesosu"
+      :narrow_symbol: $
+      :one: "Arjantin pesosu"
+      :symbol: $
+    :ATS: 
+      :name: "Avusturya Şilini"
+      :one: "Avusturya Şilini"
+    :AUD: 
+      :name: "Avustralya doları"
+      :narrow_symbol: $
+      :one: "Avustralya doları"
+      :symbol: AU$
+    :AWG: 
+      :name: "Aruba florini"
+      :one: "Aruba florini"
+    :AZM: 
+      :name: "Azerbaycan Manatı (1993–2006)"
+      :one: "Azerbaycan Manatı (1993–2006)"
+    :AZN: 
+      :name: "Azerbaycan manatı"
+      :narrow_symbol: ₼
+      :one: "Azerbaycan manatı"
+      :symbol: ₼
+    :BAD: 
+      :name: "Bosna Hersek Dinarı"
+      :one: "Bosna Hersek Dinarı"
+    :BAM: 
+      :name: "Konvertibl Bosna Hersek markı"
+      :narrow_symbol: KM
+      :one: "Konvertibl Bosna Hersek markı"
+      :symbol: KM
+    :BAN: 
+      :name: "Yeni Bosna Hersek Dinarı (1994–1997)"
+      :one: "Yeni Bosna Hersek dinarı (1994–1997)"
+      :other: "Yeni Bosna Hersek dinarı (1994–1997)"
+    :BBD: 
+      :name: "Barbados doları"
+      :narrow_symbol: $
+      :one: "Barbados doları"
+      :symbol: $
+    :BDT: 
+      :name: "Bangladeş takası"
+      :narrow_symbol: ৳
+      :one: "Bangladeş takası"
+      :symbol: ৳
+    :BEC: 
+      :name: "Belçika Frangı (konvertibl)"
+      :one: "Belçika Frangı (konvertibl)"
+    :BEF: 
+      :name: "Belçika Frangı"
+      :one: "Belçika Frangı"
+    :BEL: 
+      :name: "Belçika Frangı (finansal)"
+      :one: "Belçika Frangı (finansal)"
+    :BGL: 
+      :name: "Bulgar Levası (Hard)"
+      :one: "Bulgar Levası (Hard)"
+    :BGM: 
+      :name: "Sosyalist Bulgaristan Levası"
+      :one: "Sosyalist Bulgaristan levası"
+      :other: "Sosyalist Bulgaristan levası"
+    :BGN: 
+      :name: "Bulgar levası"
+      :one: "Bulgar levası"
+    :BGO: 
+      :name: "Bulgar Levası (1879–1952)"
+      :one: "Bulgar levası (1879–1952)"
+      :other: "Bulgar levası (1879–1952)"
+    :BHD: 
+      :name: "Bahreyn dinarı"
+      :one: "Bahreyn dinarı"
+    :BIF: 
+      :name: "Burundi frangı"
+      :one: "Burundi frangı"
+    :BMD: 
+      :name: "Bermuda doları"
+      :narrow_symbol: $
+      :one: "Bermuda doları"
+      :symbol: $
+    :BND: 
+      :name: "Brunei doları"
+      :narrow_symbol: $
+      :one: "Brunei doları"
+      :symbol: $
+    :BOB: 
+      :name: "Bolivya bolivyanosu"
+      :narrow_symbol: Bs
+      :one: "Bolivya bolivyanosu"
+      :symbol: Bs
+    :BOL: 
+      :name: "Bolivya Bolivyanosu (1863–1963)"
+      :one: "Bolivya bolivyanosu (1863–1963)"
+      :other: "Bolivya bolivyanosu (1863–1963)"
+    :BOP: 
+      :name: "Bolivya Pezosu"
+      :one: "Bolivya Pezosu"
+    :BOV: 
+      :name: "Bolivya Mvdolu"
+      :one: "Bolivya Mvdolu"
+    :BRB: 
+      :name: "Yeni Brezilya Kruzeirosu (1967–1986)"
+      :one: "Yeni Brezilya Kruzeirosu (1967–1986)"
+    :BRC: 
+      :name: "Brezilya Kruzadosu"
+      :one: "Brezilya Kruzadosu"
+    :BRE: 
+      :name: "Brezilya Kruzeirosu (1990–1993)"
+      :one: "Brezilya Kruzeirosu (1990–1993)"
+    :BRL: 
+      :name: "Brezilya reali"
+      :narrow_symbol: R$
+      :one: "Brezilya reali"
+      :symbol: R$
+    :BRN: 
+      :name: "Yeni Brezilya Kruzadosu"
+      :one: "Yeni Brezilya Kruzadosu"
+    :BRR: 
+      :name: "Brezilya Kruzeirosu"
+      :one: "Brezilya Kruzeirosu"
+    :BRZ: 
+      :name: "Brezilya Kruzeirosu (1942–1967)"
+      :one: "Brezilya kruzeirosu (1942–1967)"
+      :other: "Brezilya kruzeirosu (1942–1967)"
+    :BSD: 
+      :name: "Bahama doları"
+      :narrow_symbol: $
+      :one: "Bahama doları"
+      :symbol: $
+    :BTN: 
+      :name: "Butan ngultrumu"
+      :one: "Butan ngultrumu"
+    :BUK: 
+      :name: "Burma Kyatı"
+      :one: "Burma Kyatı"
+    :BWP: 
+      :name: "Botsvana pulası"
+      :narrow_symbol: P
+      :one: "Botsvana pulası"
+      :symbol: P
+    :BYB: 
+      :name: "Yeni Beyaz Rusya Rublesi (1994–1999)"
+      :one: "Yeni Beyaz Rusya Rublesi (1994–1999)"
+    :BYN: 
+      :name: "Belarus rublesi"
+      :narrow_symbol: р.
+      :one: "Belarus rublesi"
+      :symbol: р.
+    :BYR: 
+      :name: "Beyaz Rusya Rublesi (2000–2016)"
+      :one: "Beyaz Rusya rublesi (2000–2016)"
+      :other: "Beyaz Rusya rublesi (2000–2016)"
+    :BZD: 
+      :name: "Belize doları"
+      :narrow_symbol: $
+      :one: "Belize doları"
+      :symbol: $
+    :CAD: 
+      :name: "Kanada doları"
+      :narrow_symbol: $
+      :one: "Kanada doları"
+      :symbol: CA$
+    :CDF: 
+      :name: "Kongo frangı"
+      :one: "Kongo frangı"
+    :CHE: 
+      :name: "WIR Avrosu"
+      :one: "WIR Avrosu"
+    :CHF: 
+      :name: "İsviçre frangı"
+      :one: "İsviçre frangı"
+    :CHW: 
+      :name: "WIR Frangı"
+      :one: "WIR Frangı"
+    :CLE: 
+      :name: "Şili Esküdosu"
+      :one: "Şili esküdosu"
+      :other: "Şili esküdosu"
+    :CLF: 
+      :name: "Şili Unidades de Fomento"
+      :one: "Şili Unidades de Fomento"
+    :CLP: 
+      :name: "Şili pesosu"
+      :narrow_symbol: $
+      :one: "Şili pesosu"
+      :symbol: $
+    :CNH: 
+      :name: "Çin yuanı (offshore)"
+      :one: "Çin yuanı (offshore)"
+    :CNX: 
+      :name: "Çin Halk Cumhuriyeti Merkez Bankası Doları"
+      :one: "Çin Halk Cumhuriyeti Merkez Bankası doları"
+      :other: "Çin Halk Cumhuriyeti Merkez Bankası doları"
+    :CNY: 
+      :name: "Çin yuanı"
+      :narrow_symbol: ¥
+      :one: "Çin yuanı"
+      :symbol: CN¥
+    :COP: 
+      :name: "Kolombiya pesosu"
+      :narrow_symbol: $
+      :one: "Kolombiya pesosu"
+      :symbol: $
+    :COU: 
+      :name: "Unidad de Valor Real"
+      :one: "Unidad de Valor Real"
+    :CRC: 
+      :name: "Kosta Rika kolonu"
+      :narrow_symbol: ₡
+      :one: "Kosta Rika kolonu"
+      :symbol: ₡
+    :CSD: 
+      :name: "Eski Sırbistan Dinarı"
+      :one: "Eski Sırbistan Dinarı"
+    :CSK: 
+      :name: "Çekoslavak Korunası (Hard)"
+      :one: "Çekoslavak Korunası (Hard)"
+    :CUC: 
+      :name: "Konvertibl Küba pesosu"
+      :narrow_symbol: $
+      :one: "Konvertibl Küba pesosu"
+      :symbol: $
+    :CUP: 
+      :name: "Küba pesosu"
+      :narrow_symbol: $
+      :one: "Küba pesosu"
+      :symbol: $
+    :CVE: 
+      :name: "Cape Verde esküdosu"
+      :one: "Cape Verde esküdosu"
+    :CYP: 
+      :name: "Güney Kıbrıs Lirası"
+      :one: "Güney Kıbrıs Lirası"
+    :CZK: 
+      :name: "Çek korunası"
+      :narrow_symbol: Kč
+      :one: "Çek korunası"
+      :symbol: Kč
+    :DDM: 
+      :name: "Doğu Alman Markı"
+      :one: "Doğu Alman Markı"
+    :DEM: 
+      :name: "Alman Markı"
+      :one: "Alman Markı"
+    :DJF: 
+      :name: "Cibuti frangı"
+      :one: "Cibuti frangı"
+    :DKK: 
+      :name: "Danimarka kronu"
+      :narrow_symbol: kr
+      :one: "Danimarka kronu"
+      :symbol: kr
+    :DOP: 
+      :name: "Dominik pesosu"
+      :narrow_symbol: $
+      :one: "Dominik pesosu"
+      :symbol: $
+    :DZD: 
+      :name: "Cezayir dinarı"
+      :one: "Cezayir dinarı"
+    :ECS: 
+      :name: "Ekvador Sukresi"
+      :one: "Ekvador Sukresi"
+    :ECV: 
+      :name: "Ekvador Unidad de Valor Constante (UVC)"
+      :one: "Ekvador Unidad de Valor Constante (UVC)"
+    :EEK: 
+      :name: "Estonya Krunu"
+      :one: "Estonya Krunu"
+    :EGP: 
+      :name: "Mısır lirası"
+      :narrow_symbol: E£
+      :one: "Mısır lirası"
+      :symbol: E£
+    :ERN: 
+      :name: "Eritre nakfası"
+      :one: "Eritre nakfası"
+    :ESA: 
+      :name: "İspanyol Pezetası (A hesabı)"
+      :one: "İspanyol Pezetası (A hesabı)"
+    :ESB: 
+      :name: "İspanyol Pezetası (konvertibl hesap)"
+      :one: "İspanyol Pezetası (konvertibl hesap)"
+    :ESP: 
+      :name: "İspanyol Pezetası"
+      :narrow_symbol: ₧
+      :one: "İspanyol Pezetası"
+      :symbol: ₧
+    :ETB: 
+      :name: "Etiyopya birri"
+      :one: "Etiyopya birri"
+    :EUR: 
+      :name: Euro
+      :narrow_symbol: €
+      :one: Euro
+      :symbol: €
+    :FIM: 
+      :name: "Fin Markkası"
+      :one: "Fin Markkası"
+    :FJD: 
+      :name: "Fiji doları"
+      :narrow_symbol: $
+      :one: "Fiji doları"
+      :symbol: $
+    :FKP: 
+      :name: "Falkland Adaları lirası"
+      :narrow_symbol: £
+      :one: "Falkland Adaları lirası"
+      :symbol: £
+    :FRF: 
+      :name: "Fransız Frangı"
+      :one: "Fransız Frangı"
+    :GBP: 
+      :name: "İngiliz sterlini"
+      :narrow_symbol: £
+      :one: "İngiliz sterlini"
+      :symbol: £
+    :GEK: 
+      :name: "Gürcistan Kupon Larisi"
+      :one: "Gürcistan Kupon Larisi"
+    :GEL: 
+      :name: "Gürcistan larisi"
+      :narrow_symbol: ₾
+      :one: "Gürcistan larisi"
+      :symbol: ₾
+    :GHC: 
+      :name: "Gana Sedisi (1979–2007)"
+      :one: "Gana Sedisi (1979–2007)"
+    :GHS: 
+      :name: "Gana sedisi"
+      :narrow_symbol: GH₵
+      :one: "Gana sedisi"
+      :symbol: GH₵
+    :GIP: 
+      :name: "Cebelitarık lirası"
+      :narrow_symbol: £
+      :one: "Cebelitarık lirası"
+      :symbol: £
+    :GMD: 
+      :name: "Gambiya dalasisi"
+      :one: "Gambiya dalasisi"
+    :GNF: 
+      :name: "Gine frangı"
+      :narrow_symbol: FG
+      :one: "Gine frangı"
+      :symbol: FG
+    :GNS: 
+      :name: "Gine Sylisi"
+      :one: "Gine Sylisi"
+    :GQE: 
+      :name: "Ekvator Ginesi Ekuelesi"
+      :one: "Ekvator Ginesi Ekuelesi"
+    :GRD: 
+      :name: "Yunan Drahmisi"
+      :one: "Yunan Drahmisi"
+    :GTQ: 
+      :name: "Guatemala quetzalı"
+      :narrow_symbol: Q
+      :one: "Guatemala quetzalı"
+      :symbol: Q
+    :GWE: 
+      :name: "Portekiz Ginesi Esküdosu"
+      :one: "Portekiz Ginesi Esküdosu"
+    :GWP: 
+      :name: "Gine-Bissau Pezosu"
+      :one: "Gine-Bissau Pezosu"
+    :GYD: 
+      :name: "Guyana doları"
+      :narrow_symbol: $
+      :one: "Guyana doları"
+      :symbol: $
+    :HKD: 
+      :name: "Hong Kong doları"
+      :narrow_symbol: $
+      :one: "Hong Kong doları"
+      :symbol: HK$
+    :HNL: 
+      :name: "Honduras lempirası"
+      :narrow_symbol: L
+      :one: "Honduras lempirası"
+      :symbol: L
+    :HRD: 
+      :name: "Hırvatistan Dinarı"
+      :one: "Hırvatistan Dinarı"
+    :HRK: 
+      :name: "Hırvatistan kunası"
+      :narrow_symbol: kn
+      :one: "Hırvatistan kunası"
+      :symbol: kn
+    :HTG: 
+      :name: "Haiti gurdu"
+      :one: "Haiti gurdu"
+    :HUF: 
+      :name: "Macar forinti"
+      :narrow_symbol: Ft
+      :one: "Macar forinti"
+      :symbol: Ft
+    :IDR: 
+      :name: "Endonezya rupisi"
+      :narrow_symbol: Rp
+      :one: "Endonezya rupisi"
+      :symbol: Rp
+    :IEP: 
+      :name: "İrlanda Lirası"
+      :one: "İrlanda Lirası"
+    :ILP: 
+      :name: "İsrail Lirası"
+      :one: "İsrail Lirası"
+    :ILR: 
+      :name: "İsrail Şekeli (1980–1985)"
+      :one: "İsrail şekeli (1980–1985)"
+      :other: "İsrail şekeli (1980–1985)"
+    :ILS: 
+      :name: "Yeni İsrail şekeli"
+      :narrow_symbol: ₪
+      :one: "Yeni İsrail şekeli"
+      :symbol: ₪
+    :INR: 
+      :name: "Hindistan rupisi"
+      :narrow_symbol: ₹
+      :one: "Hindistan rupisi"
+      :symbol: ₹
+    :IQD: 
+      :name: "Irak dinarı"
+      :one: "Irak dinarı"
+    :IRR: 
+      :name: "İran riyali"
+      :one: "İran riyali"
+    :ISJ: 
+      :name: "İzlanda Kronu (1918–1981)"
+      :one: "İzlanda kronu (1918–1981)"
+      :other: "İzlanda kronu (1918–1981)"
+    :ISK: 
+      :name: "İzlanda kronu"
+      :narrow_symbol: kr
+      :one: "İzlanda kronu"
+      :symbol: kr
+    :ITL: 
+      :name: "İtalyan Lireti"
+      :one: "İtalyan Lireti"
+    :JMD: 
+      :name: "Jamaika doları"
+      :narrow_symbol: $
+      :one: "Jamaika doları"
+      :symbol: $
+    :JOD: 
+      :name: "Ürdün dinarı"
+      :one: "Ürdün dinarı"
+    :JPY: 
+      :name: "Japon yeni"
+      :narrow_symbol: ¥
+      :one: "Japon yeni"
+      :symbol: ¥
+    :KES: 
+      :name: "Kenya şilini"
+      :one: "Kenya şilini"
+    :KGS: 
+      :name: "Kırgızistan somu"
+      :narrow_symbol: ⃀
+      :one: "Kırgızistan somu"
+      :symbol: ⃀
+    :KHR: 
+      :name: "Kamboçya rieli"
+      :narrow_symbol: ៛
+      :one: "Kamboçya rieli"
+      :symbol: ៛
+    :KMF: 
+      :name: "Komorlar frangı"
+      :narrow_symbol: CF
+      :one: "Komorlar frangı"
+      :symbol: CF
+    :KPW: 
+      :name: "Kuzey Kore wonu"
+      :narrow_symbol: ₩
+      :one: "Kuzey Kore wonu"
+      :symbol: ₩
+    :KRH: 
+      :name: "Güney Kore Hwanı (1953–1962)"
+      :one: "Güney Kore hwanı (1953–1962)"
+      :other: "Güney Kore hwanı (1953–1962)"
+    :KRO: 
+      :name: "Güney Kore Wonu (1945–1953)"
+      :one: "Güney Kore wonu (1945–1953)"
+      :other: "Güney Kore wonu (1945–1953)"
+    :KRW: 
+      :name: "Güney Kore wonu"
+      :narrow_symbol: ₩
+      :one: "Güney Kore wonu"
+      :symbol: ₩
+    :KWD: 
+      :name: "Kuveyt dinarı"
+      :one: "Kuveyt dinarı"
+    :KYD: 
+      :name: "Cayman Adaları doları"
+      :narrow_symbol: $
+      :one: "Cayman Adaları doları"
+      :symbol: $
+    :KZT: 
+      :name: "Kazakistan tengesi"
+      :narrow_symbol: ₸
+      :one: "Kazakistan tengesi"
+      :symbol: ₸
+    :LAK: 
+      :name: "Laos kipi"
+      :narrow_symbol: ₭
+      :one: "Laos kipi"
+      :symbol: ₭
+    :LBP: 
+      :name: "Lübnan lirası"
+      :narrow_symbol: L£
+      :one: "Lübnan lirası"
+      :symbol: L£
+    :LKR: 
+      :name: "Sri Lanka rupisi"
+      :narrow_symbol: Rs
+      :one: "Sri Lanka rupisi"
+      :symbol: Rs
+    :LRD: 
+      :name: "Liberya doları"
+      :narrow_symbol: $
+      :one: "Liberya doları"
+      :symbol: $
+    :LSL: 
+      :name: "Lesotho lotisi"
+      :one: "Lesotho lotisi"
+    :LTL: 
+      :name: "Litvanya Litası"
+      :narrow_symbol: Lt
+      :one: "Litvanya litası"
+      :other: "Litvanya litası"
+      :symbol: Lt
+    :LTT: 
+      :name: "Litvanya Talonu"
+      :one: "Litvanya Talonu"
+    :LUC: 
+      :name: "Konvertibl Lüksemburg Frangı"
+      :one: "Konvertibl Lüksemburg Frangı"
+    :LUF: 
+      :name: "Lüksemburg Frangı"
+      :one: "Lüksemburg Frangı"
+    :LUL: 
+      :name: "Finansal Lüksemburg Frangı"
+      :one: "Finansal Lüksemburg Frangı"
+    :LVL: 
+      :name: "Letonya Latı"
+      :narrow_symbol: Ls
+      :one: "Letonya latı"
+      :other: "Letonya latı"
+      :symbol: Ls
+    :LVR: 
+      :name: "Letonya Rublesi"
+      :one: "Letonya Rublesi"
+    :LYD: 
+      :name: "Libya dinarı"
+      :one: "Libya dinarı"
+    :MAD: 
+      :name: "Fas dirhemi"
+      :one: "Fas dirhemi"
+    :MAF: 
+      :name: "Fas Frangı"
+      :one: "Fas Frangı"
+    :MCF: 
+      :name: "Monako Frangı"
+      :one: "Monako frangı"
+      :other: "Monako frangı"
+    :MDC: 
+      :name: "Moldova Kuponu"
+      :one: "Moldova kuponu"
+      :other: "Moldova kuponu"
+    :MDL: 
+      :name: "Moldova leyi"
+      :one: "Moldova leyi"
+    :MGA: 
+      :name: "Madagaskar ariarisi"
+      :narrow_symbol: Ar
+      :one: "Madagaskar ariarisi"
+      :symbol: Ar
+    :MGF: 
+      :name: "Madagaskar Frangı"
+      :one: "Madagaskar Frangı"
+    :MKD: 
+      :name: "Makedonya dinarı"
+      :one: "Makedonya dinarı"
+    :MKN: 
+      :name: "Makedonya Dinarı (1992–1993)"
+      :one: "Makedonya dinarı (1992–1993)"
+      :other: "Makedonya dinarı (1992–1993)"
+    :MLF: 
+      :name: "Mali Frangı"
+      :one: "Mali Frangı"
+    :MMK: 
+      :name: "Myanmar kyatı"
+      :narrow_symbol: K
+      :one: "Myanmar kyatı"
+      :symbol: K
+    :MNT: 
+      :name: "Moğolistan tugriki"
+      :narrow_symbol: ₮
+      :one: "Moğolistan tugriki"
+      :symbol: ₮
+    :MOP: 
+      :name: "Makao patakası"
+      :one: "Makao patakası"
+    :MRO: 
+      :name: "Moritanya Ugiyası (1973–2017)"
+      :one: "Moritanya ugiyası (1973–2017)"
+      :other: "Moritanya ugiyası (1973–2017)"
+    :MRU: 
+      :name: "Moritanya ugiyası"
+      :one: "Moritanya ugiyası"
+    :MTL: 
+      :name: "Malta Lirası"
+      :one: "Malta Lirası"
+    :MTP: 
+      :name: "Malta Sterlini"
+      :one: "Malta Sterlini"
+    :MUR: 
+      :name: "Mauritius rupisi"
+      :narrow_symbol: Rs
+      :one: "Mauritius rupisi"
+      :symbol: Rs
+    :MVP: 
+      :name: "Maldiv Rupisi"
+      :one: "Maldiv rupisi"
+      :other: "Maldiv rupisi"
+    :MVR: 
+      :name: "Maldiv rufiyaası"
+      :one: "Maldiv rufiyaası"
+    :MWK: 
+      :name: "Malavi kvaçası"
+      :one: "Malavi kvaçası"
+    :MXN: 
+      :name: "Meksika pesosu"
+      :narrow_symbol: $
+      :one: "Meksika pesosu"
+      :symbol: MX$
+    :MXP: 
+      :name: "Gümüş Meksika Pezosu (1861–1992)"
+      :one: "Gümüş Meksika Pezosu (1861–1992)"
+    :MXV: 
+      :name: "Meksika Unidad de Inversion (UDI)"
+      :one: "Meksika Unidad de Inversion (UDI)"
+    :MYR: 
+      :name: "Malezya ringgiti"
+      :narrow_symbol: RM
+      :one: "Malezya ringgiti"
+      :symbol: RM
+    :MZE: 
+      :name: "Mozambik Esküdosu"
+      :one: "Mozambik Esküdosu"
+    :MZM: 
+      :name: "Eski Mozambik Metikali"
+      :one: "Eski Mozambik Metikali"
+    :MZN: 
+      :name: "Mozambik metikali"
+      :one: "Mozambik metikali"
+    :NAD: 
+      :name: "Namibya doları"
+      :narrow_symbol: $
+      :one: "Namibya doları"
+      :symbol: $
+    :NGN: 
+      :name: "Nijerya nairası"
+      :narrow_symbol: ₦
+      :one: "Nijerya nairası"
+      :symbol: ₦
+    :NIC: 
+      :name: "Nikaragua Kordobası (1988–1991)"
+      :one: "Nikaragua Kordobası (1988–1991)"
+    :NIO: 
+      :name: "Nikaragua kordobası"
+      :narrow_symbol: C$
+      :one: "Nikaragua kordobası"
+      :symbol: C$
+    :NLG: 
+      :name: "Hollanda Florini"
+      :one: "Hollanda Florini"
+    :NOK: 
+      :name: "Norveç kronu"
+      :narrow_symbol: kr
+      :one: "Norveç kronu"
+      :symbol: kr
+    :NPR: 
+      :name: "Nepal rupisi"
+      :narrow_symbol: Rs
+      :one: "Nepal rupisi"
+      :symbol: Rs
+    :NZD: 
+      :name: "Yeni Zelanda doları"
+      :narrow_symbol: $
+      :one: "Yeni Zelanda doları"
+      :symbol: NZ$
+    :OMR: 
+      :name: "Umman riyali"
+      :one: "Umman riyali"
+    :PAB: 
+      :name: "Panama balboası"
+      :one: "Panama balboası"
+    :PEI: 
+      :name: "Peru İnti"
+      :one: "Peru İnti"
+    :PEN: 
+      :name: "Peru solü"
+      :one: "Peru solü"
+    :PES: 
+      :name: "Peru Solü (1863–1965)"
+      :one: "Peru Solü (1863–1965)"
+    :PGK: 
+      :name: "Papua Yeni Gine kinası"
+      :one: "Papua Yeni Gine kinası"
+    :PHP: 
+      :name: "Filipinler pesosu"
+      :narrow_symbol: ₱
+      :one: "Filipinler pesosu"
+      :symbol: PHP
+    :PKR: 
+      :name: "Pakistan rupisi"
+      :narrow_symbol: Rs
+      :one: "Pakistan rupisi"
+      :symbol: Rs
+    :PLN: 
+      :name: "Polonya zlotisi"
+      :narrow_symbol: zł
+      :one: "Polonya zlotisi"
+      :symbol: zł
+    :PLZ: 
+      :name: "Polonya Zlotisi (1950–1995)"
+      :one: "Polonya Zlotisi (1950–1995)"
+    :PTE: 
+      :name: "Portekiz Esküdosu"
+      :one: "Portekiz Esküdosu"
+    :PYG: 
+      :name: "Paraguay guaranisi"
+      :narrow_symbol: ₲
+      :one: "Paraguay guaranisi"
+      :symbol: ₲
+    :QAR: 
+      :name: "Katar riyali"
+      :one: "Katar riyali"
+    :RHD: 
+      :name: "Rodezya Doları"
+      :one: "Rodezya Doları"
+    :ROL: 
+      :name: "Eski Romen Leyi"
+      :one: "Eski Romen Leyi"
+    :RON: 
+      :name: "Romen leyi"
+      :narrow_symbol: L
+      :one: "Romen leyi"
+      :symbol: L
+    :RSD: 
+      :name: "Sırp dinarı"
+      :one: "Sırp dinarı"
+    :RUB: 
+      :name: "Rus rublesi"
+      :narrow_symbol: ₽
+      :one: "Rus rublesi"
+      :symbol: ₽
+    :RUR: 
+      :name: "Rus Rublesi (1991–1998)"
+      :narrow_symbol: р.
+      :one: "Rus Rublesi (1991–1998)"
+      :symbol: р.
+    :RWF: 
+      :name: "Ruanda frangı"
+      :narrow_symbol: RF
+      :one: "Ruanda frangı"
+      :symbol: RF
+    :SAR: 
+      :name: "Suudi Arabistan riyali"
+      :one: "Suudi Arabistan riyali"
+    :SBD: 
+      :name: "Solomon Adaları doları"
+      :narrow_symbol: $
+      :one: "Solomon Adaları doları"
+      :symbol: $
+    :SCR: 
+      :name: "Seyşeller rupisi"
+      :one: "Seyşeller rupisi"
+    :SDD: 
+      :name: "Eski Sudan Dinarı"
+      :one: "Eski Sudan Dinarı"
+    :SDG: 
+      :name: "Sudan lirası"
+      :one: "Sudan lirası"
+    :SDP: 
+      :name: "Eski Sudan Lirası"
+      :one: "Eski Sudan Lirası"
+    :SEK: 
+      :name: "İsveç kronu"
+      :narrow_symbol: kr
+      :one: "İsveç kronu"
+      :symbol: kr
+    :SGD: 
+      :name: "Singapur doları"
+      :narrow_symbol: $
+      :one: "Singapur doları"
+      :symbol: $
+    :SHP: 
+      :name: "Saint Helena lirası"
+      :narrow_symbol: £
+      :one: "Saint Helena lirası"
+      :symbol: £
+    :SIT: 
+      :name: "Slovenya Toları"
+      :one: "Slovenya Toları"
+    :SKK: 
+      :name: "Slovak Korunası"
+      :one: "Slovak Korunası"
+    :SLE: 
+      :name: "Sierra Leone leonesi"
+      :one: "Sierra Leone leonesi"
+    :SLL: 
+      :name: "Sierra Leone leonesi (1964–2022)"
+      :one: "Sierra Leone leonesi (1964–2022)"
+    :SOS: 
+      :name: "Somali şilini"
+      :one: "Somali şilini"
+    :SRD: 
+      :name: "Surinam doları"
+      :narrow_symbol: $
+      :one: "Surinam doları"
+      :symbol: $
+    :SRG: 
+      :name: "Surinam Guldeni"
+      :one: "Surinam Guldeni"
+    :SSP: 
+      :name: "Güney Sudan lirası"
+      :narrow_symbol: £
+      :one: "Güney Sudan lirası"
+      :symbol: £
+    :STD: 
+      :name: "São Tomé ve Príncipe Dobrası (1977–2017)"
+      :one: "São Tomé ve Príncipe dobrası (1977–2017)"
+      :other: "São Tomé ve Príncipe dobrası (1977–2017)"
+    :STN: 
+      :name: "Sao Tome ve Principe dobrası"
+      :narrow_symbol: Db
+      :one: "Sao Tome ve Principe dobrası"
+      :symbol: Db
+    :SUR: 
+      :name: "Sovyet Rublesi"
+      :one: "Sovyet Rublesi"
+    :SVC: 
+      :name: "El Salvador Kolonu"
+      :one: "El Salvador Kolonu"
+    :SYP: 
+      :name: "Suriye lirası"
+      :narrow_symbol: £
+      :one: "Suriye lirası"
+      :symbol: £
+    :SZL: 
+      :name: "Svaziland lilangenisi"
+      :one: "Svaziland lilangenisi"
+    :THB: 
+      :name: "Tayland bahtı"
+      :narrow_symbol: ฿
+      :one: "Tayland bahtı"
+      :symbol: ฿
+    :TJR: 
+      :name: "Tacikistan Rublesi"
+      :one: "Tacikistan Rublesi"
+    :TJS: 
+      :name: "Tacikistan somonisi"
+      :one: "Tacikistan somonisi"
+    :TMM: 
+      :name: "Türkmenistan Manatı (1993–2009)"
+      :one: "Türkmenistan Manatı (1993–2009)"
+    :TMT: 
+      :name: "Türkmenistan manatı"
+      :one: "Türkmenistan manatı"
+    :TND: 
+      :name: "Tunus dinarı"
+      :one: "Tunus dinarı"
+    :TOP: 
+      :name: "Tonga paʻangası"
+      :narrow_symbol: T$
+      :one: "Tonga paʻangası"
+      :symbol: T$
+    :TPE: 
+      :name: "Timor Esküdosu"
+      :one: "Timor Esküdosu"
+    :TRL: 
+      :name: "Eski Türk Lirası"
+      :one: "Eski Türk Lirası"
+    :TRY: 
+      :name: "Türk lirası"
+      :narrow_symbol: ₺
+      :one: "Türk lirası"
+      :symbol: ₺
+    :TTD: 
+      :name: "Trinidad ve Tobago doları"
+      :narrow_symbol: $
+      :one: "Trinidad ve Tobago doları"
+      :symbol: $
+    :TWD: 
+      :name: "Yeni Tayvan doları"
+      :narrow_symbol: NT$
+      :one: "Yeni Tayvan doları"
+      :symbol: NT$
+    :TZS: 
+      :name: "Tanzanya şilini"
+      :one: "Tanzanya şilini"
+    :UAH: 
+      :name: "Ukrayna grivnası"
+      :narrow_symbol: ₴
+      :one: "Ukrayna grivnası"
+      :symbol: ₴
+    :UAK: 
+      :name: "Ukrayna Karbovanetz"
+      :one: "Ukrayna Karbovanetz"
+    :UGS: 
+      :name: "Uganda Şilini (1966–1987)"
+      :one: "Uganda Şilini (1966–1987)"
+    :UGX: 
+      :name: "Uganda şilini"
+      :one: "Uganda şilini"
+    :USD: 
+      :name: "ABD doları"
+      :narrow_symbol: $
+      :one: "ABD doları"
+      :symbol: $
+    :USN: 
+      :name: "ABD Doları (Ertesi gün)"
+      :one: "ABD Doları (Ertesi gün)"
+    :USS: 
+      :name: "ABD Doları (Aynı gün)"
+      :one: "ABD Doları (Aynı gün)"
+    :UYI: 
+      :name: "Uruguay Peso en Unidades Indexadas"
+      :one: "Uruguay Peso en Unidades Indexadas"
+    :UYP: 
+      :name: "Uruguay Pezosu (1975–1993)"
+      :one: "Uruguay Pezosu (1975–1993)"
+    :UYU: 
+      :name: "Uruguay pesosu"
+      :narrow_symbol: $
+      :one: "Uruguay pesosu"
+      :symbol: $
+    :UZS: 
+      :name: "Özbekistan somu"
+      :one: "Özbekistan somu"
+    :VEB: 
+      :name: "Venezuela Bolivarı (1871–2008)"
+      :one: "Venezuela Bolivarı (1871–2008)"
+    :VEF: 
+      :name: "Venezuela Bolivarı (2008–2018)"
+      :narrow_symbol: Bs
+      :one: "Venezuela bolivarı (2008–2018)"
+      :other: "Venezuela bolivarı (2008–2018)"
+      :symbol: Bs
+    :VES: 
+      :name: "Venezuela bolivarı"
+      :one: "Venezuela bolivarı"
+    :VND: 
+      :name: "Vietnam dongu"
+      :narrow_symbol: ₫
+      :one: "Vietnam dongu"
+      :symbol: ₫
+    :VNN: 
+      :name: "Vietnam Dongu (1978–1985)"
+      :one: "Vietnam dongu (1978–1985)"
+      :other: "Vietnam dongu (1978–1985)"
+    :VUV: 
+      :name: "Vanuatu vatusu"
+      :one: "Vanuatu vatusu"
+    :WST: 
+      :name: "Samoa talası"
+      :one: "Samoa talası"
+    :XAF: 
+      :name: "Orta Afrika CFA frangı"
+      :one: "Orta Afrika CFA frangı"
+      :symbol: FCFA
+    :XAG: 
+      :name: Gümüş
+      :one: Gümüş
+    :XAU: 
+      :name: Altın
+      :one: Altın
+    :XBA: 
+      :name: "Birleşik Avrupa Birimi"
+      :one: "Birleşik Avrupa Birimi"
+    :XBB: 
+      :name: "Avrupa Para Birimi (EMU)"
+      :one: "Avrupa Para Birimi (EMU)"
+    :XBC: 
+      :name: "Avrupa Hesap Birimi (XBC)"
+      :one: "Avrupa Hesap Birimi (XBC)"
+    :XBD: 
+      :name: "Avrupa Hesap Birimi (XBD)"
+      :one: "Avrupa Hesap Birimi (XBD)"
+    :XCD: 
+      :name: "Doğu Karayip doları"
+      :narrow_symbol: $
+      :one: "Doğu Karayip doları"
+      :symbol: EC$
+    :XCG: 
+      :symbol: Cg.
+    :XDR: 
+      :name: "Özel Çekme Hakkı (SDR)"
+      :one: "Özel Çekme Hakkı (SDR)"
+    :XEU: 
+      :name: "Avrupa Para Birimi"
+      :one: "Avrupa Para Birimi"
+    :XFO: 
+      :name: "Fransız Altın Frangı"
+      :one: "Fransız Altın Frangı"
+    :XFU: 
+      :name: "Fransız UIC-Frangı"
+      :one: "Fransız UIC-Frangı"
+    :XOF: 
+      :name: "Batı Afrika CFA frangı"
+      :one: "Batı Afrika CFA frangı"
+      :symbol: F CFA
+    :XPD: 
+      :name: Paladyum
+      :one: Paladyum
+    :XPF: 
+      :name: "CFP frangı"
+      :one: "CFP frangı"
+      :symbol: CFPF
+    :XPT: 
+      :name: Platin
+      :one: Platin
+    :XRE: 
+      :name: "RINET Fonları"
+      :one: "RINET Fonları"
+    :XSU: 
+      :name: Sucre
+      :one: Sucre
+    :XTS: 
+      :name: "Test Para Birimi Kodu"
+      :one: "Test Para Birimi Kodu"
+    :XUA: 
+      :name: "ADB Hesap Birimi"
+      :one: "ADB hesap birimi"
+      :other: "ADB hesap birimi"
+    :XXX: 
+      :name: "Bilinmeyen Para Birimi"
+      :one: "(bilinmeyen para birimi)"
+      :other: "(bilinmeyen para birimi)"
+      :symbol: ¤
+    :YDD: 
+      :name: "Yemen Dinarı"
+      :one: "Yemen Dinarı"
+    :YER: 
+      :name: "Yemen riyali"
+      :one: "Yemen riyali"
+    :YUD: 
+      :name: "Yugoslav Dinarı (Hard)"
+      :one: "Yugoslav Dinarı (Hard)"
+    :YUM: 
+      :name: "Yeni Yugoslav Dinarı"
+      :one: "Yeni Yugoslav Dinarı"
+    :YUN: 
+      :name: "Konvertibl Yugoslav Dinarı"
+      :one: "Konvertibl Yugoslav Dinarı"
+    :YUR: 
+      :name: "İyileştirilmiş Yugoslav Dinarı (1992–1993)"
+      :one: "İyileştirilmiş Yugoslav dinarı (1992–1993)"
+      :other: "İyileştirilmiş Yugoslav dinarı (1992–1993)"
+    :ZAL: 
+      :name: "Güney Afrika Randı (finansal)"
+      :one: "Güney Afrika Randı (finansal)"
+    :ZAR: 
+      :name: "Güney Afrika randı"
+      :narrow_symbol: R
+      :one: "Güney Afrika randı"
+      :symbol: R
+    :ZMK: 
+      :name: "Zambiya Kvaçası (1968–2012)"
+      :one: "Zambiya Kvaçası (1968–2012)"
+    :ZMW: 
+      :name: "Zambiya kvaçası"
+      :narrow_symbol: ZK
+      :one: "Zambiya kvaçası"
+      :symbol: ZK
+    :ZRN: 
+      :name: "Yeni Zaire Zairesi"
+      :one: "Yeni Zaire Zairesi"
+    :ZRZ: 
+      :name: "Zaire Zairesi"
+      :one: "Zaire Zairesi"
+    :ZWD: 
+      :name: "Zimbabve Doları"
+      :one: "Zimbabve Doları"
+    :ZWL: 
+      :name: "Zimbabve Doları (2009)"
+      :one: "Zimbabve Doları (2009)"
+    :ZWR: 
+      :name: "Zimbabve Doları (2008)"
+      :one: "Zimbabve doları (2008)"
+      :other: "Zimbabve doları (2008)"

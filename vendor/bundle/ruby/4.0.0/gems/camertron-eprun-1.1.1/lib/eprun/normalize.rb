@@ -1,0 +1,185 @@
+# encoding: utf-8
+
+# Copyright 2010-2013 Ayumu Nojima (野島 歩) and Martin J. Dürst (duerst@it.aoyama.ac.jp)
+# available under the same licence as Ruby itself
+# (see http://www.ruby-lang.org/en/LICENSE.txt)
+
+class Eprun
+  class << self
+
+    # Constant for max hash capacity to avoid DoS attack
+    MAX_HASH_LENGTH = 18000 # enough for all test cases, otherwise tests get slow
+
+    ## Regular Expressions and Hash Constants
+    REGEXP_D = Regexp.compile(REGEXP_D_STRING, Regexp::EXTENDED)
+    REGEXP_C = Regexp.compile(REGEXP_C_STRING, Regexp::EXTENDED)
+    REGEXP_K = Regexp.compile(REGEXP_K_STRING, Regexp::EXTENDED)
+
+    NF_HASH_D = Hash.new do |hash, key|
+      hash.delete hash.first[0] if hash.length > MAX_HASH_LENGTH # prevent DoS attack
+      hash[key] = Eprun.nfd_one(key)
+    end
+
+    NF_HASH_C = Hash.new do |hash, key|
+      hash.delete hash.first[0] if hash.length > MAX_HASH_LENGTH # prevent DoS attack
+      hash[key] = Eprun.nfc_one(key)
+    end
+
+    NF_HASH_K = Hash.new do |hash, key|
+      hash.delete hash.first[0] if hash.length > MAX_HASH_LENGTH # prevent DoS attack
+      hash[key] = Eprun.nfkd_one(key)
+    end
+
+    def nf_hash_d
+      NF_HASH_D
+    end
+
+    def nf_hash_c
+      NF_HASH_C
+    end
+
+    def nf_hash_k
+      NF_HASH_K
+    end
+
+    ## Constants For Hangul
+    SBASE = 0xAC00
+    LBASE = 0x1100
+    VBASE = 0x1161
+    TBASE = 0x11A7
+    LCOUNT = 19
+    VCOUNT = 21
+    TCOUNT = 28
+    NCOUNT = VCOUNT * TCOUNT
+    SCOUNT = LCOUNT * NCOUNT
+
+
+    ## Hangul Algorithm
+    def hangul_decomp_one(target)
+      sIndex = target.ord - SBASE
+      return target if sIndex < 0 || sIndex >= SCOUNT
+      l = LBASE + sIndex / NCOUNT
+      v = VBASE + (sIndex % NCOUNT) / TCOUNT
+      t = TBASE + sIndex % TCOUNT
+      (t == TBASE ? [l, v] : [l, v, t]).pack('U*') + target[1..-1]
+    end
+
+    def hangul_comp_one(string)
+      length = string.length
+      in_range = length > 1 &&
+        0 <= (lead = string[0].ord - LBASE) &&
+        lead  < LCOUNT &&
+        0 <= (vowel = string[1].ord - VBASE) &&
+        vowel < VCOUNT
+
+      if in_range
+        lead_vowel = SBASE + (lead * VCOUNT + vowel) * TCOUNT
+        if length > 2 && 0 <= (trail = string[2].ord - TBASE) && trail < TCOUNT
+          (lead_vowel + trail).chr(Encoding::UTF_8) + string[3..-1]
+        else
+          lead_vowel.chr(Encoding::UTF_8) + string[2..-1]
+        end
+      else
+        string
+      end
+    end
+
+    ## Canonical Ordering
+    def canonical_ordering_one(string)
+      sorting = string.each_char.collect { |c| [c, CLASS_TABLE[c]] }
+      (sorting.length - 2).downto(0) do |i| # bubble sort
+        (0..i).each do |j|
+          later_class = sorting[j + 1].last
+          if 0 < later_class && later_class < sorting[j].last
+            sorting[j], sorting[j + 1] = sorting[j + 1], sorting[j]
+          end
+        end
+      end
+      sorting.collect(&:first).join
+    end
+
+    ## Normalization Forms for Patterns (not whole Strings)
+    def nfd_one(string)
+      string = string.dup
+      (0...string.length).each do |position|
+        if decomposition = DECOMPOSITION_TABLE[string[position]]
+          string[position] = decomposition
+        end
+      end
+      canonical_ordering_one(hangul_decomp_one(string))
+    end
+
+    def nfkd_one(string)
+      string = string.dup
+      position = 0
+      while position < string.length
+        if decomposition = KOMPATIBLE_TABLE[string[position]]
+          string[position] = decomposition
+        else
+          position += 1
+        end
+      end
+      string
+    end
+
+    def nfc_one(string)
+      nfd_string = nfd_one string
+      start = nfd_string[0]
+      last_class = CLASS_TABLE[start] - 1
+      accents = ''
+      nfd_string[1..-1].each_char do |accent|
+        accent_class = CLASS_TABLE[accent]
+        if last_class < accent_class && composite = COMPOSITION_TABLE[start+accent]
+          start = composite
+        else
+          accents += accent
+          last_class = accent_class
+        end
+      end
+      hangul_comp_one(start + accents)
+    end
+
+    def normalize(string, form = :nfc)
+      encoding = string.encoding
+      if encoding == Encoding::UTF_8
+        case form
+          when :nfc then
+            string.gsub(REGEXP_C, NF_HASH_C)
+          when :nfd then
+            string.gsub(REGEXP_D, NF_HASH_D)
+          when :nfkc then
+            string.gsub(REGEXP_K, NF_HASH_K).gsub(REGEXP_C, NF_HASH_C)
+          when :nfkd then
+            string.gsub(REGEXP_K, NF_HASH_K).gsub(REGEXP_D, NF_HASH_D)
+          else
+            raise ArgumentError, "Invalid normalization form #{form}."
+        end
+      else
+        normalize(string.encode(Encoding::UTF_8), form).encode(encoding)
+      end
+    end
+    
+    def normalized?(string, form = :nfc)
+      string = string.encode(Encoding::UTF_8) unless string.encoding == Encoding::UTF_8
+      case form
+        when :nfc then
+          string.scan(REGEXP_C) do |match|
+            return false if NF_HASH_C[match] != match
+          end
+          true
+        when :nfd then
+          string.scan(REGEXP_D) do |match|
+            return false if NF_HASH_D[match] != match
+          end
+          true
+        when :nfkc then
+          normalized?(string, :nfc) && string !~ REGEXP_K
+        when :nfkd then
+          normalized?(string, :nfd) && string !~ REGEXP_K
+        else
+          raise ArgumentError, "Invalid normalization form #{form}."
+      end
+    end
+
+  end
+end

@@ -1,0 +1,267 @@
+--- 
+:cy: 
+  :territories: 
+    :ac: "Ynys Ascension"
+    :ad: Andorra
+    :ae: "Emiradau Arabaidd Unedig"
+    :af: Afghanistan
+    :ag: "Antigua a Barbuda"
+    :ai: Anguilla
+    :al: Albania
+    :am: Armenia
+    :ao: Angola
+    :aq: Antarctica
+    :ar: "Yr Ariannin"
+    :as: "Samoa America"
+    :at: Awstria
+    :au: Awstralia
+    :aw: Aruba
+    :ax: "Ynysoedd Åland"
+    :az: Aserbaijan
+    :ba: "Bosnia a Herzegovina"
+    :bb: Barbados
+    :bd: Bangladesh
+    :be: "Gwlad Belg"
+    :bf: "Burkina Faso"
+    :bg: Bwlgaria
+    :bh: Bahrain
+    :bi: Burundi
+    :bj: Benin
+    :bl: "Saint Barthélemy"
+    :bm: Bermuda
+    :bn: Brunei
+    :bo: Bolifia
+    :bq: "Antilles yr Iseldiroedd"
+    :br: Brasil
+    :bs: "Y Bahamas"
+    :bt: Bhutan
+    :bv: "Ynys Bouvet"
+    :bw: Botswana
+    :by: Belarws
+    :bz: Belize
+    :ca: Canada
+    :cc: "Ynysoedd Cocos (Keeling)"
+    :cd: "Y Congo - Kinshasa"
+    :cf: "Gweriniaeth Canolbarth Affrica"
+    :cg: "Y Congo - Brazzaville"
+    :ch: "Y Swistir"
+    :ci: "Côte d’Ivoire"
+    :ck: "Ynysoedd Cook"
+    :cl: Chile
+    :cm: Camerŵn
+    :cn: Tsieina
+    :co: Colombia
+    :cp: "Ynys Clipperton"
+    :cr: "Costa Rica"
+    :cu: Ciwba
+    :cv: "Cabo Verde"
+    :cw: Curaçao
+    :cx: "Ynys y Nadolig"
+    :cy: Cyprus
+    :cz: Tsiecia
+    :de: "Yr Almaen"
+    :dg: "Diego Garcia"
+    :dj: Djibouti
+    :dk: Denmarc
+    :dm: Dominica
+    :do: "Gweriniaeth Dominica"
+    :dz: Algeria
+    :ea: "Ceuta a Melilla"
+    :ec: Ecuador
+    :ee: Estonia
+    :eg: "Yr Aifft"
+    :eh: "Gorllewin Sahara"
+    :er: Eritrea
+    :es: Sbaen
+    :et: Ethiopia
+    :eu: "Yr Undeb Ewropeaidd"
+    :ez: "Ardal yr Ewro"
+    :fi: "Y Ffindir"
+    :fj: Fiji
+    :fk: "Ynysoedd y Falkland/Malvinas"
+    :fm: Micronesia
+    :fo: "Ynysoedd Ffaro"
+    :fr: Ffrainc
+    :ga: Gabon
+    :gb: "Y Deyrnas Unedig"
+    :gd: Grenada
+    :ge: Georgia
+    :gf: "Guyane Ffrengig"
+    :gg: "Ynys y Garn"
+    :gh: Ghana
+    :gi: Gibraltar
+    :gl: "Yr Ynys Las"
+    :gm: Gambia
+    :gn: Gini
+    :gp: Guadeloupe
+    :gq: "Gini Gyhydeddol"
+    :gr: "Gwlad Groeg"
+    :gs: "De Georgia ac Ynysoedd Sandwich y De"
+    :gt: Guatemala
+    :gu: Guam
+    :gw: Guiné-Bissau
+    :gy: Guyana
+    :hk: "Hong Kong SAR Tsieina"
+    :hm: "Ynys Heard ac Ynysoedd McDonald"
+    :hn: Honduras
+    :hr: Croatia
+    :ht: Haiti
+    :hu: Hwngari
+    :ic: "Yr Ynysoedd Dedwydd"
+    :id: Indonesia
+    :ie: Iwerddon
+    :il: Israel
+    :im: "Ynys Manaw"
+    :in: India
+    :io: "Tiriogaeth Brydeinig Cefnfor India"
+    :iq: Irac
+    :ir: Iran
+    :is: "Gwlad yr Iâ"
+    :it: "Yr Eidal"
+    :je: Jersey
+    :jm: Jamaica
+    :jo: "Gwlad Iorddonen"
+    :jp: Japan
+    :ke: Kenya
+    :kg: Kyrgyzstan
+    :kh: Cambodia
+    :ki: Kiribati
+    :km: Comoros
+    :kn: "Saint Kitts a Nevis"
+    :kp: "Gogledd Corea"
+    :kr: "De Corea"
+    :kw: Kuwait
+    :ky: "Ynysoedd Cayman"
+    :kz: Kazakhstan
+    :la: Laos
+    :lb: Libanus
+    :lc: "Saint Lucia"
+    :li: Liechtenstein
+    :lk: "Sri Lanka"
+    :lr: Liberia
+    :ls: Lesotho
+    :lt: Lithwania
+    :lu: Lwcsembwrg
+    :lv: Latfia
+    :ly: Libya
+    :ma: Moroco
+    :mc: Monaco
+    :md: Moldofa
+    :me: Montenegro
+    :mf: "Saint Martin"
+    :mg: Madagascar
+    :mh: "Ynysoedd Marshall"
+    :mk: "Gogledd Macedonia"
+    :ml: Mali
+    :mm: "Myanmar (Burma)"
+    :mn: Mongolia
+    :mo: "Macau SAR Tsieina"
+    :mp: "Ynysoedd Gogledd Mariana"
+    :mq: Martinique
+    :mr: Mauritania
+    :ms: Montserrat
+    :mt: Malta
+    :mu: Mauritius
+    :mv: "Y Maldives"
+    :mw: Malawi
+    :mx: Mecsico
+    :my: Malaysia
+    :mz: Mozambique
+    :na: Namibia
+    :nc: "Caledonia Newydd"
+    :ne: Niger
+    :nf: "Ynys Norfolk"
+    :ng: Nigeria
+    :ni: Nicaragua
+    :nl: "Yr Iseldiroedd"
+    ? !ruby/symbol "no"
+    : Norwy
+    :np: Nepal
+    :nr: Nauru
+    :nu: Niue
+    :nz: "Seland Newydd"
+    :om: Oman
+    :pa: Panama
+    :pe: Periw
+    :pf: "Polynesia Ffrengig"
+    :pg: "Papua Guinea Newydd"
+    :ph: "Y Philipinau"
+    :pk: Pakistan
+    :pl: "Gwlad Pwyl"
+    :pm: Saint-Pierre-et-Miquelon
+    :pn: "Ynysoedd Pitcairn"
+    :pr: "Puerto Rico"
+    :ps: "Tiriogaethau Palesteinaidd"
+    :pt: Portiwgal
+    :pw: Palau
+    :py: Paraguay
+    :qa: Qatar
+    :qo: "Oceania Bellennig"
+    :re: Réunion
+    :ro: Rwmania
+    :rs: Serbia
+    :ru: Rwsia
+    :rw: Rwanda
+    :sa: "Saudi Arabia"
+    :sb: "Ynysoedd Solomon"
+    :sc: Seychelles
+    :sd: Swdan
+    :se: Sweden
+    :sg: Singapore
+    :sh: "Saint Helena"
+    :si: Slofenia
+    :sj: "Svalbard a Jan Mayen"
+    :sk: Slofacia
+    :sl: "Sierra Leone"
+    :sm: "San Marino"
+    :sn: Senegal
+    :so: Somalia
+    :sr: Suriname
+    :ss: "De Swdan"
+    :st: "São Tomé a Príncipe"
+    :sv: "El Salvador"
+    :sx: "Sint Maarten"
+    :sy: Syria
+    :sz: Eswatini
+    :ta: "Tristan da Cunha"
+    :tc: "Ynysoedd Turks a Caicos"
+    :td: Tsiad
+    :tf: "Tiroedd Deheuol ac Antarctig Ffrainc"
+    :tg: Togo
+    :th: "Gwlad Thai"
+    :tj: Tajicistan
+    :tk: Tokelau
+    :tl: Timor-Leste
+    :tm: Tyrcmenistan
+    :tn: Tiwnisia
+    :to: Tonga
+    :tr: Twrci
+    :tt: "Trinidad a Tobago"
+    :tv: Tuvalu
+    :tw: Taiwan
+    :tz: Tanzania
+    :ua: Wcráin
+    :ug: Uganda
+    :um: "Ynysoedd Pellennig UDA"
+    :un: "Y Cenhedloedd Unedig"
+    :us: "Yr Unol Daleithiau"
+    :uy: Uruguay
+    :uz: Uzbekistan
+    :va: "Y Fatican"
+    :vc: "Saint Vincent a’r Grenadines"
+    :ve: Venezuela
+    :vg: "Ynysoedd Gwyryf Prydain"
+    :vi: "Ynysoedd Gwyryf yr Unol Daleithiau"
+    :vn: Fietnam
+    :vu: Vanuatu
+    :wf: "Wallis a Futuna"
+    :ws: Samoa
+    :xa: "Acenion Ffug"
+    :xb: "Bidi Ffug"
+    :xk: Kosovo
+    :ye: Yemen
+    :yt: Mayotte
+    :za: "De Affrica"
+    :zm: Zambia
+    :zw: Zimbabwe
+    :zz: "Rhanbarth Anhysbys"

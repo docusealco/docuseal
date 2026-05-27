@@ -1,0 +1,36 @@
+module WEBrick
+  module HTTPServlet
+    class HTTPServletError < StandardError
+    end
+
+    class AbstractServlet
+      @server: HTTPServer
+
+      interface _Config
+        def []: (Symbol) -> untyped
+      end
+
+      @config: _Config
+
+      @logger: Log
+
+      @options: untyped # Array[untyped] causes RBS::InstanceVariableTypeError
+
+      def self.get_instance: (HTTPServer server, *untyped options) -> instance
+
+      def initialize: (HTTPServer server, *untyped options) -> void
+
+      def service: (HTTPRequest req, HTTPResponse res) -> void
+
+      def do_GET: (HTTPRequest req, HTTPResponse res) -> bot
+
+      def do_HEAD: (HTTPRequest req, HTTPResponse res) -> bot
+
+      def do_OPTIONS: (HTTPRequest req, HTTPResponse res) -> void
+
+      private
+
+      def redirect_to_directory_uri: (HTTPRequest req, HTTPResponse res) -> void
+    end
+  end
+end

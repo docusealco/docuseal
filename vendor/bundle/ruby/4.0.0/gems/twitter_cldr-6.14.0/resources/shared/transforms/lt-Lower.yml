@@ -1,0 +1,19 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - lt-t-d0-lower
+    :direction: forward
+    :rules: 
+      - "::NFD() ;"
+      - "I } [^[:ccc=Not_Reordered:][:ccc=Above:]]* [:ccc=Above:] > i \\u0307 ;"
+      - "J } [^[:ccc=Not_Reordered:][:ccc=Above:]]* [:ccc=Above:] > j \\u0307 ;"
+      - "I \\u0328 } [^[:ccc=Not_Reordered:][:ccc=Above:]]* [:ccc=Above:] > i \\u0328 \\u0307 ;"
+      - "I \\u0300 > i \\u0307 \\u0300 ;"
+      - "I \\u0301 > i \\u0307 \\u0301 ;"
+      - "I \\u0303 > i \\u0307 \\u0303 ;"
+      - "::Any-Lower() ;"
+      - "::NFC() ;"
+    :source: lt
+    :target: Lower
+    :variant: ~

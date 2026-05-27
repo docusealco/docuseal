@@ -1,0 +1,57 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - und-Latn-t-und-hani-m0-prprname
+    :direction: forward
+    :rules: 
+      - "$startOfHanMarker = \\uFDD1 ;"
+      - "[:^Script=Han:] { ([:Script=Han:]) > $startOfHanMarker $1 ;"
+      - "::Han-Spacedhan() ;"
+      - "令 } \\u0020? 狐 >líng ;"
+      - "万 } \\u0020? 俟 >mò ;"
+      - "澹 } \\u0020? 台 >tán ;"
+      - "$startOfHanMarker{ 长 } \\u0020? 孙 >zhǎng ;"
+      - "$startOfHanMarker{ 秘>bì ;"
+      - "$startOfHanMarker{ 卜>bǔ ;"
+      - "长>cháng ;"
+      - "$startOfHanMarker{ 种>chóng ;"
+      - "$startOfHanMarker{ 重>chóng ;"
+      - "$startOfHanMarker{ 刀>diāo ;"
+      - "干>gān ;"
+      - "葛>gě ;"
+      - "$startOfHanMarker{ 盖>gě ;"
+      - "$startOfHanMarker{ 过>guō ;"
+      - "$startOfHanMarker{ 华>huà ;"
+      - "$startOfHanMarker{ 纪>jǐ ;"
+      - "筠>jūn ;"
+      - "靓>liàng ;"
+      - "$startOfHanMarker{ 牟>mù ;"
+      - "$startOfHanMarker{ 粘>nián ;"
+      - "$startOfHanMarker{ 区>ōu ;"
+      - "$startOfHanMarker{ 繁>pó ;"
+      - "仇>qiú ;"
+      - "$startOfHanMarker{ 任>rén ;"
+      - "$startOfHanMarker{ 单>shàn ;"
+      - "$startOfHanMarker{ 召>shào ;"
+      - "$startOfHanMarker{ 折>shé ;"
+      - "$startOfHanMarker{ 舍>shè ;"
+      - "$startOfHanMarker{ 沈>shěn ;"
+      - "峙>shì ;"
+      - "隗>wěi ;"
+      - "$startOfHanMarker{ 解>xiè ;"
+      - "莘>xīn ;"
+      - "$startOfHanMarker{ 燕>yān ;"
+      - "$startOfHanMarker{ 尉>yù ;"
+      - "$startOfHanMarker{ 乐>yuè ;"
+      - "$startOfHanMarker{ 员>yùn ;"
+      - "$startOfHanMarker{ 查>zhā ;"
+      - "翟>zhái ;"
+      - "曾>zēng ;"
+      - "::Null() ;"
+      - "[^$]{ $startOfHanMarker >\\u0020 ;"
+      - "$startOfHanMarker > ;"
+      - "::Han-Latin() ;"
+    :source: Han
+    :target: Latin
+    :variant: Names

@@ -1,0 +1,1025 @@
+---
+12288:
+- 12288
+- IDEOGRAPHIC SPACE
+- Zs
+- '0'
+- WS
+- "<wide> 0020"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12289:
+- 12289
+- IDEOGRAPHIC COMMA
+- Po
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12290:
+- 12290
+- IDEOGRAPHIC FULL STOP
+- Po
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- IDEOGRAPHIC PERIOD
+- ''
+- ''
+- ''
+- ''
+12291:
+- 12291
+- DITTO MARK
+- Po
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12292:
+- 12292
+- JAPANESE INDUSTRIAL STANDARD SYMBOL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12293:
+- 12293
+- IDEOGRAPHIC ITERATION MARK
+- Lm
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12294:
+- 12294
+- IDEOGRAPHIC CLOSING MARK
+- Lo
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12295:
+- 12295
+- IDEOGRAPHIC NUMBER ZERO
+- Nl
+- '0'
+- L
+- ''
+- ''
+- ''
+- '0'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12296:
+- 12296
+- LEFT ANGLE BRACKET
+- Ps
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- OPENING ANGLE BRACKET
+- ''
+- ''
+- ''
+- ''
+12297:
+- 12297
+- RIGHT ANGLE BRACKET
+- Pe
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- CLOSING ANGLE BRACKET
+- ''
+- ''
+- ''
+- ''
+12298:
+- 12298
+- LEFT DOUBLE ANGLE BRACKET
+- Ps
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- OPENING DOUBLE ANGLE BRACKET
+- ''
+- ''
+- ''
+- ''
+12299:
+- 12299
+- RIGHT DOUBLE ANGLE BRACKET
+- Pe
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- CLOSING DOUBLE ANGLE BRACKET
+- ''
+- ''
+- ''
+- ''
+12300:
+- 12300
+- LEFT CORNER BRACKET
+- Ps
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- OPENING CORNER BRACKET
+- ''
+- ''
+- ''
+- ''
+12301:
+- 12301
+- RIGHT CORNER BRACKET
+- Pe
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- CLOSING CORNER BRACKET
+- ''
+- ''
+- ''
+- ''
+12302:
+- 12302
+- LEFT WHITE CORNER BRACKET
+- Ps
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- OPENING WHITE CORNER BRACKET
+- ''
+- ''
+- ''
+- ''
+12303:
+- 12303
+- RIGHT WHITE CORNER BRACKET
+- Pe
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- CLOSING WHITE CORNER BRACKET
+- ''
+- ''
+- ''
+- ''
+12304:
+- 12304
+- LEFT BLACK LENTICULAR BRACKET
+- Ps
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- OPENING BLACK LENTICULAR BRACKET
+- ''
+- ''
+- ''
+- ''
+12305:
+- 12305
+- RIGHT BLACK LENTICULAR BRACKET
+- Pe
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- CLOSING BLACK LENTICULAR BRACKET
+- ''
+- ''
+- ''
+- ''
+12306:
+- 12306
+- POSTAL MARK
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12307:
+- 12307
+- GETA MARK
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12308:
+- 12308
+- LEFT TORTOISE SHELL BRACKET
+- Ps
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- OPENING TORTOISE SHELL BRACKET
+- ''
+- ''
+- ''
+- ''
+12309:
+- 12309
+- RIGHT TORTOISE SHELL BRACKET
+- Pe
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- CLOSING TORTOISE SHELL BRACKET
+- ''
+- ''
+- ''
+- ''
+12310:
+- 12310
+- LEFT WHITE LENTICULAR BRACKET
+- Ps
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- OPENING WHITE LENTICULAR BRACKET
+- ''
+- ''
+- ''
+- ''
+12311:
+- 12311
+- RIGHT WHITE LENTICULAR BRACKET
+- Pe
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- CLOSING WHITE LENTICULAR BRACKET
+- ''
+- ''
+- ''
+- ''
+12312:
+- 12312
+- LEFT WHITE TORTOISE SHELL BRACKET
+- Ps
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- OPENING WHITE TORTOISE SHELL BRACKET
+- ''
+- ''
+- ''
+- ''
+12313:
+- 12313
+- RIGHT WHITE TORTOISE SHELL BRACKET
+- Pe
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- CLOSING WHITE TORTOISE SHELL BRACKET
+- ''
+- ''
+- ''
+- ''
+12314:
+- 12314
+- LEFT WHITE SQUARE BRACKET
+- Ps
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- OPENING WHITE SQUARE BRACKET
+- ''
+- ''
+- ''
+- ''
+12315:
+- 12315
+- RIGHT WHITE SQUARE BRACKET
+- Pe
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- CLOSING WHITE SQUARE BRACKET
+- ''
+- ''
+- ''
+- ''
+12316:
+- 12316
+- WAVE DASH
+- Pd
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12317:
+- 12317
+- REVERSED DOUBLE PRIME QUOTATION MARK
+- Ps
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12318:
+- 12318
+- DOUBLE PRIME QUOTATION MARK
+- Pe
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12319:
+- 12319
+- LOW DOUBLE PRIME QUOTATION MARK
+- Pe
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12320:
+- 12320
+- POSTAL MARK FACE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12321:
+- 12321
+- HANGZHOU NUMERAL ONE
+- Nl
+- '0'
+- L
+- ''
+- ''
+- ''
+- '1'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12322:
+- 12322
+- HANGZHOU NUMERAL TWO
+- Nl
+- '0'
+- L
+- ''
+- ''
+- ''
+- '2'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12323:
+- 12323
+- HANGZHOU NUMERAL THREE
+- Nl
+- '0'
+- L
+- ''
+- ''
+- ''
+- '3'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12324:
+- 12324
+- HANGZHOU NUMERAL FOUR
+- Nl
+- '0'
+- L
+- ''
+- ''
+- ''
+- '4'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12325:
+- 12325
+- HANGZHOU NUMERAL FIVE
+- Nl
+- '0'
+- L
+- ''
+- ''
+- ''
+- '5'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12326:
+- 12326
+- HANGZHOU NUMERAL SIX
+- Nl
+- '0'
+- L
+- ''
+- ''
+- ''
+- '6'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12327:
+- 12327
+- HANGZHOU NUMERAL SEVEN
+- Nl
+- '0'
+- L
+- ''
+- ''
+- ''
+- '7'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12328:
+- 12328
+- HANGZHOU NUMERAL EIGHT
+- Nl
+- '0'
+- L
+- ''
+- ''
+- ''
+- '8'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12329:
+- 12329
+- HANGZHOU NUMERAL NINE
+- Nl
+- '0'
+- L
+- ''
+- ''
+- ''
+- '9'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12330:
+- 12330
+- IDEOGRAPHIC LEVEL TONE MARK
+- Mn
+- '218'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12331:
+- 12331
+- IDEOGRAPHIC RISING TONE MARK
+- Mn
+- '228'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12332:
+- 12332
+- IDEOGRAPHIC DEPARTING TONE MARK
+- Mn
+- '232'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12333:
+- 12333
+- IDEOGRAPHIC ENTERING TONE MARK
+- Mn
+- '222'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12334:
+- 12334
+- HANGUL SINGLE DOT TONE MARK
+- Mc
+- '224'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12335:
+- 12335
+- HANGUL DOUBLE DOT TONE MARK
+- Mc
+- '224'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12336:
+- 12336
+- WAVY DASH
+- Pd
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12337:
+- 12337
+- VERTICAL KANA REPEAT MARK
+- Lm
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12338:
+- 12338
+- VERTICAL KANA REPEAT WITH VOICED SOUND MARK
+- Lm
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12339:
+- 12339
+- VERTICAL KANA REPEAT MARK UPPER HALF
+- Lm
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12340:
+- 12340
+- VERTICAL KANA REPEAT WITH VOICED SOUND MARK UPPER HALF
+- Lm
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12341:
+- 12341
+- VERTICAL KANA REPEAT MARK LOWER HALF
+- Lm
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12342:
+- 12342
+- CIRCLED POSTAL MARK
+- So
+- '0'
+- 'ON'
+- "<compat> 3012"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12343:
+- 12343
+- IDEOGRAPHIC TELEGRAPH LINE FEED SEPARATOR SYMBOL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12344:
+- 12344
+- HANGZHOU NUMERAL TEN
+- Nl
+- '0'
+- L
+- "<compat> 5341"
+- ''
+- ''
+- '10'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12345:
+- 12345
+- HANGZHOU NUMERAL TWENTY
+- Nl
+- '0'
+- L
+- "<compat> 5344"
+- ''
+- ''
+- '20'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12346:
+- 12346
+- HANGZHOU NUMERAL THIRTY
+- Nl
+- '0'
+- L
+- "<compat> 5345"
+- ''
+- ''
+- '30'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12347:
+- 12347
+- VERTICAL IDEOGRAPHIC ITERATION MARK
+- Lm
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12348:
+- 12348
+- MASU MARK
+- Lo
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12349:
+- 12349
+- PART ALTERNATION MARK
+- Po
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12350:
+- 12350
+- IDEOGRAPHIC VARIATION INDICATOR
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12351:
+- 12351
+- IDEOGRAPHIC HALF FILL SPACE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''

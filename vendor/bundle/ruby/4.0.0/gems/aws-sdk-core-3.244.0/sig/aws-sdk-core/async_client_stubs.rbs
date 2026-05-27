@@ -1,0 +1,21 @@
+module Aws
+  module AsyncClientStubs
+    include ClientStubs
+
+    def send_events: () -> untyped
+
+    class StubsStream
+      def initialize: () -> void
+
+      attr_accessor send_events: untyped
+
+      attr_reader state: Symbol
+
+      def data: (untyped bytes, ?::Hash[untyped, untyped] options) -> untyped
+
+      def closed?: () -> bool
+
+      def close: () -> void
+    end
+  end
+end

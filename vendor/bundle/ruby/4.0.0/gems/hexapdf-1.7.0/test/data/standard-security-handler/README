@@ -1,0 +1,9 @@
+These files have been created by encrypting the minimal.pdf file.
+The used encryption algorithm as well as the key length is encoded
+in the files name.
+
+The prefix shows which if any password was used:
+* nopwd: No password was set.
+* userpwd: An user password of 'uhexapdf' has been set.
+* ownerpwd: An owner password of 'ohexapdf' has been set.
+* bothpwd: Both the above user and owner passwords have been set.

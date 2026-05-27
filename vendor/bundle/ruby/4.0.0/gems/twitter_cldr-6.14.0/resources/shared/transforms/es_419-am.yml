@@ -1,0 +1,13 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - am-t-es-419
+    :direction: forward
+    :rules: 
+      - "::es-es_FONIPA ;"
+      - "::es_FONIPA-es_419_FONIPA ;"
+      - "::am_FONIPA-am ;"
+    :source: es_419
+    :target: am
+    :variant: ~

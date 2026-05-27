@@ -1,0 +1,268 @@
+--- 
+:et: 
+  :territories: 
+    :ac: "Ascensioni saar"
+    :ad: Andorra
+    :ae: "Araabia Ühendemiraadid"
+    :af: Afganistan
+    :ag: "Antigua ja Barbuda"
+    :ai: Anguilla
+    :al: Albaania
+    :am: Armeenia
+    :ao: Angola
+    :aq: Antarktika
+    :ar: Argentina
+    :as: "Ameerika Samoa"
+    :at: Austria
+    :au: Austraalia
+    :aw: Aruba
+    :ax: Ahvenamaa
+    :az: Aserbaidžaan
+    :ba: "Bosnia ja Hertsegoviina"
+    :bb: Barbados
+    :bd: Bangladesh
+    :be: Belgia
+    :bf: "Burkina Faso"
+    :bg: Bulgaaria
+    :bh: Bahrein
+    :bi: Burundi
+    :bj: Benin
+    :bl: Saint-Barthélemy
+    :bm: Bermuda
+    :bn: Brunei
+    :bo: Boliivia
+    :bq: "Kariibi Madalmaad"
+    :br: Brasiilia
+    :bs: Bahama
+    :bt: Bhutan
+    :bv: "Bouvet’ saar"
+    :bw: Botswana
+    :by: Valgevene
+    :bz: Belize
+    :ca: Kanada
+    :cc: Kookossaared
+    :cd: "Kongo DV"
+    :cf: "Kesk-Aafrika Vabariik"
+    :cg: "Kongo Vabariik"
+    :ch: Šveits
+    :ci: Elevandiluurannik
+    :ck: "Cooki saared"
+    :cl: Tšiili
+    :cm: Kamerun
+    :cn: Hiina
+    :co: Colombia
+    :cp: "Clippertoni saar"
+    :cq: Sark
+    :cr: "Costa Rica"
+    :cu: Kuuba
+    :cv: Roheneemesaared
+    :cw: Curaçao
+    :cx: Jõulusaar
+    :cy: Küpros
+    :cz: Tšehhi
+    :de: Saksamaa
+    :dg: "Diego Garcia"
+    :dj: Djibouti
+    :dk: Taani
+    :dm: Dominica
+    :do: "Dominikaani Vabariik"
+    :dz: Alžeeria
+    :ea: "Ceuta ja Melilla"
+    :ec: Ecuador
+    :ee: Eesti
+    :eg: Egiptus
+    :eh: Lääne-Sahara
+    :er: Eritrea
+    :es: Hispaania
+    :et: Etioopia
+    :eu: "Euroopa Liit"
+    :ez: euroala
+    :fi: Soome
+    :fj: Fidži
+    :fk: "Falklandi saared"
+    :fm: Mikroneesia
+    :fo: "Fääri saared"
+    :fr: Prantsusmaa
+    :ga: Gabon
+    :gb: Ühendkuningriik
+    :gd: Grenada
+    :ge: Gruusia
+    :gf: "Prantsuse Guajaana"
+    :gg: Guernsey
+    :gh: Ghana
+    :gi: Gibraltar
+    :gl: Gröönimaa
+    :gm: Gambia
+    :gn: Guinea
+    :gp: Guadeloupe
+    :gq: Ekvatoriaal-Guinea
+    :gr: Kreeka
+    :gs: "Lõuna-Georgia ja Lõuna-Sandwichi saared"
+    :gt: Guatemala
+    :gu: Guam
+    :gw: Guinea-Bissau
+    :gy: Guyana
+    :hk: "Hongkongi erihalduspiirkond"
+    :hm: "Heardi ja McDonaldi saared"
+    :hn: Honduras
+    :hr: Horvaatia
+    :ht: Haiti
+    :hu: Ungari
+    :ic: "Kanaari saared"
+    :id: Indoneesia
+    :ie: Iirimaa
+    :il: Iisrael
+    :im: "Mani saar"
+    :in: India
+    :io: "Briti India ookeani ala"
+    :iq: Iraak
+    :ir: Iraan
+    :is: Island
+    :it: Itaalia
+    :je: Jersey
+    :jm: Jamaica
+    :jo: Jordaania
+    :jp: Jaapan
+    :ke: Keenia
+    :kg: Kõrgõzstan
+    :kh: Kambodža
+    :ki: Kiribati
+    :km: Komoorid
+    :kn: "Saint Kitts ja Nevis"
+    :kp: Põhja-Korea
+    :kr: Lõuna-Korea
+    :kw: Kuveit
+    :ky: Kaimanisaared
+    :kz: Kasahstan
+    :la: Laos
+    :lb: Liibanon
+    :lc: "Saint Lucia"
+    :li: Liechtenstein
+    :lk: "Sri Lanka"
+    :lr: Libeeria
+    :ls: Lesotho
+    :lt: Leedu
+    :lu: Luksemburg
+    :lv: Läti
+    :ly: Liibüa
+    :ma: Maroko
+    :mc: Monaco
+    :md: Moldova
+    :me: Montenegro
+    :mf: Saint-Martin
+    :mg: Madagaskar
+    :mh: "Marshalli Saared"
+    :mk: Põhja-Makedoonia
+    :ml: Mali
+    :mm: "Myanmar (Birma)"
+    :mn: Mongoolia
+    :mo: "Macau erihalduspiirkond"
+    :mp: Põhja-Mariaanid
+    :mq: Martinique
+    :mr: Mauritaania
+    :ms: Montserrat
+    :mt: Malta
+    :mu: Mauritius
+    :mv: Maldiivid
+    :mw: Malawi
+    :mx: Mehhiko
+    :my: Malaisia
+    :mz: Mosambiik
+    :na: Namiibia
+    :nc: Uus-Kaledoonia
+    :ne: Niger
+    :nf: Norfolk
+    :ng: Nigeeria
+    :ni: Nicaragua
+    :nl: Holland
+    ? !ruby/symbol "no"
+    : Norra
+    :np: Nepal
+    :nr: Nauru
+    :nu: Niue
+    :nz: Uus-Meremaa
+    :om: Omaan
+    :pa: Panama
+    :pe: Peruu
+    :pf: "Prantsuse Polüneesia"
+    :pg: "Paapua Uus-Guinea"
+    :ph: Filipiinid
+    :pk: Pakistan
+    :pl: Poola
+    :pm: "Saint-Pierre ja Miquelon"
+    :pn: "Pitcairni saared"
+    :pr: "Puerto Rico"
+    :ps: "Palestiina alad"
+    :pt: Portugal
+    :pw: Belau
+    :py: Paraguay
+    :qa: Katar
+    :qo: "Okeaania hajasaared"
+    :re: Réunion
+    :ro: Rumeenia
+    :rs: Serbia
+    :ru: Venemaa
+    :rw: Rwanda
+    :sa: "Saudi Araabia"
+    :sb: "Saalomoni Saared"
+    :sc: Seišellid
+    :sd: Sudaan
+    :se: Rootsi
+    :sg: Singapur
+    :sh: "Saint Helena"
+    :si: Sloveenia
+    :sj: "Svalbard ja Jan Mayen"
+    :sk: Slovakkia
+    :sl: "Sierra Leone"
+    :sm: "San Marino"
+    :sn: Senegal
+    :so: Somaalia
+    :sr: Suriname
+    :ss: Lõuna-Sudaan
+    :st: "São Tomé ja Príncipe"
+    :sv: "El Salvador"
+    :sx: "Sint Maarten"
+    :sy: Süüria
+    :sz: Svaasimaa
+    :ta: "Tristan da Cunha"
+    :tc: "Turks ja Caicos"
+    :td: Tšaad
+    :tf: "Prantsuse Lõunaalad"
+    :tg: Togo
+    :th: Tai
+    :tj: Tadžikistan
+    :tk: Tokelau
+    :tl: Ida-Timor
+    :tm: Türkmenistan
+    :tn: Tuneesia
+    :to: Tonga
+    :tr: Türgi
+    :tt: "Trinidad ja Tobago"
+    :tv: Tuvalu
+    :tw: Taiwan
+    :tz: Tansaania
+    :ua: Ukraina
+    :ug: Uganda
+    :um: "Ühendriikide hajasaared"
+    :un: "Ühinenud Rahvaste Organisatsioon"
+    :us: "Ameerika Ühendriigid"
+    :uy: Uruguay
+    :uz: Usbekistan
+    :va: Vatikan
+    :vc: "Saint Vincent ja Grenadiinid"
+    :ve: Venezuela
+    :vg: "Briti Neitsisaared"
+    :vi: "USA Neitsisaared"
+    :vn: Vietnam
+    :vu: Vanuatu
+    :wf: "Wallis ja Futuna"
+    :ws: Samoa
+    :xa: pseudo-aktsent
+    :xb: pseudo-Bidi
+    :xk: Kosovo
+    :ye: Jeemen
+    :yt: Mayotte
+    :za: "Lõuna-Aafrika Vabariik"
+    :zm: Sambia
+    :zw: Zimbabwe
+    :zz: "tundmatu piirkond"

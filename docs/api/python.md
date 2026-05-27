@@ -3,12 +3,12 @@
 The API endpoint provides the ability to retrieve a list of available submissions.
 
 ```python
-from docuseal import docuseal
+from wabosign import wabosign
 
-docuseal.key = "API_KEY"
-docuseal.url = "https://api.docuseal.com"
+wabosign.key = "API_KEY"
+wabosign.url = "https://api.wabosign.com"
 
-docuseal.list_submissions({ "limit": 10 })
+wabosign.list_submissions({ "limit": 10 })
 ```
 
 ```json
@@ -121,12 +121,12 @@ docuseal.list_submissions({ "limit": 10 })
 The API endpoint provides the functionality to retrieve information about a submission.
 
 ```python
-from docuseal import docuseal
+from wabosign import wabosign
 
-docuseal.key = "API_KEY"
-docuseal.url = "https://api.docuseal.com"
+wabosign.key = "API_KEY"
+wabosign.url = "https://api.wabosign.com"
 
-docuseal.get_submission(1001)
+wabosign.get_submission(1001)
 ```
 
 ```json
@@ -161,12 +161,12 @@ docuseal.get_submission(1001)
 This endpoint returns a list of partially filled documents for a submission. If the submission has been completed, the final signed documents are returned.
 
 ```python
-from docuseal import docuseal
+from wabosign import wabosign
 
-docuseal.key = "API_KEY"
-docuseal.url = "https://api.docuseal.com"
+wabosign.key = "API_KEY"
+wabosign.url = "https://api.wabosign.com"
 
-docuseal.get_submission_documents(1001)
+wabosign.get_submission_documents(1001)
 ```
 
 ```json
@@ -198,15 +198,15 @@ docuseal.get_submission_documents(1001)
 
 ### Create a submission
 
-This API endpoint allows you to create signature requests (submissions) for a document template and send them to the specified submitters (signers).<br><b>Related Guides</b><br><a href="https://www.docuseal.com/guides/send-documents-for-signature-via-api" class="link">Send documents for signature via API</a><br><a href="https://www.docuseal.com/guides/pre-fill-pdf-document-form-fields-with-api" class="link">Pre-fill PDF document form fields with API</a>
+This API endpoint allows you to create signature requests (submissions) for a document template and send them to the specified submitters (signers).<br><b>Related Guides</b><br><a href="https://www.wabosign.com/guides/send-documents-for-signature-via-api" class="link">Send documents for signature via API</a><br><a href="https://www.wabosign.com/guides/pre-fill-pdf-document-form-fields-with-api" class="link">Pre-fill PDF document form fields with API</a>
 
 ```python
-from docuseal import docuseal
+from wabosign import wabosign
 
-docuseal.key = "API_KEY"
-docuseal.url = "https://api.docuseal.com"
+wabosign.key = "API_KEY"
+wabosign.url = "https://api.wabosign.com"
 
-docuseal.create_submission({
+wabosign.create_submission({
   "template_id": 1000001,
   "send_email": True,
   "submitters": [
@@ -244,7 +244,7 @@ docuseal.create_submission({
           "properties": {
             "template_id": {
               "type": "integer",
-              "description": "The unique identifier of the template. Document template forms can be created via the Web UI, <a href=\"https://www.docuseal.com/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form\" class=\"link\">PDF and DOCX API</a>, or <a href=\"https://www.docuseal.com/guides/create-pdf-document-fillable-form-with-html-api\" class=\"link\">HTML API</a>.",
+              "description": "The unique identifier of the template. Document template forms can be created via the Web UI, <a href=\"https://www.wabosign.com/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form\" class=\"link\">PDF and DOCX API</a>, or <a href=\"https://www.wabosign.com/guides/create-pdf-document-fillable-form-with-html-api\" class=\"link\">HTML API</a>.",
               "example": 1000001
             },
             "send_email": {
@@ -620,16 +620,16 @@ docuseal.create_submission({
 
 ### Create a submission from PDF
 
-The API endpoint provides the functionality to create one-off submission request from a PDF. Use <code>{{Field Name;role=Signer1;type=date}}</code> text tags to define fillable fields in the document. See <a href="https://www.docuseal.com/examples/fieldtags.pdf" target="_blank" class="link font-bold">https://www.docuseal.com/examples/fieldtags.pdf</a> for more text tag formats. Or specify the exact pixel coordinates of the document fields using `fields` param.<br><b>Related Guides</b><br><a href="https://www.docuseal.com/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form" class="link">Use embedded text field tags to create a fillable form</a>
+The API endpoint provides the functionality to create one-off submission request from a PDF. Use <code>{{Field Name;role=Signer1;type=date}}</code> text tags to define fillable fields in the document. See <a href="https://www.wabosign.com/examples/fieldtags.pdf" target="_blank" class="link font-bold">https://www.wabosign.com/examples/fieldtags.pdf</a> for more text tag formats. Or specify the exact pixel coordinates of the document fields using `fields` param.<br><b>Related Guides</b><br><a href="https://www.wabosign.com/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form" class="link">Use embedded text field tags to create a fillable form</a>
 
 
 ```python
-from docuseal import docuseal
+from wabosign import wabosign
 
-docuseal.key = "API_KEY"
-docuseal.url = "https://api.docuseal.com"
+wabosign.key = "API_KEY"
+wabosign.url = "https://api.wabosign.com"
 
-docuseal.create_submission_from_pdf({
+wabosign.create_submission_from_pdf({
   "name": "Test Submission Document",
   "documents": [
     {
@@ -1206,15 +1206,15 @@ docuseal.create_submission_from_pdf({
 
 ### Create a submission from DOCX
 
-The API endpoint provides functionality to create a one-off submission request from a DOCX file with dynamic content variables. Use <code>[[variable_name]]</code> text tags to define dynamic content variables in the document. See <a href="https://www.docuseal.com/examples/demo_template.docx" target="_blank" class="link font-bold">https://www.docuseal.com/examples/demo_template.docx</a> for the specific text variable syntax, including dynamic content tables and list. You can also use the <code>{{signature}}</code> field syntax to define fillable fields, as in a PDF.<br><b>Related Guides</b><br><a href="https://www.docuseal.com/guides/use-dynamic-content-variables-in-docx-to-create-personalized-documents" class="link">Use dynamic content variables in DOCX to create personalized documents</a>
+The API endpoint provides functionality to create a one-off submission request from a DOCX file with dynamic content variables. Use <code>[[variable_name]]</code> text tags to define dynamic content variables in the document. See <a href="https://www.wabosign.com/examples/demo_template.docx" target="_blank" class="link font-bold">https://www.wabosign.com/examples/demo_template.docx</a> for the specific text variable syntax, including dynamic content tables and list. You can also use the <code>{{signature}}</code> field syntax to define fillable fields, as in a PDF.<br><b>Related Guides</b><br><a href="https://www.wabosign.com/guides/use-dynamic-content-variables-in-docx-to-create-personalized-documents" class="link">Use dynamic content variables in DOCX to create personalized documents</a>
 
 ```python
-from docuseal import docuseal
+from wabosign import wabosign
 
-docuseal.key = "API_KEY"
-docuseal.url = "https://api.docuseal.com"
+wabosign.key = "API_KEY"
+wabosign.url = "https://api.wabosign.com"
 
-docuseal.create_submission_from_docx({
+wabosign.create_submission_from_docx({
   "name": "Test Submission Document",
   "variables": {
     "variable_name": "value"
@@ -1678,15 +1678,15 @@ docuseal.create_submission_from_docx({
 
 ### Create a submission from HTML
 
-This API endpoint allows you to create a one-off submission request document using the provided HTML content, with special field tags rendered as a fillable and signable form.<br><b>Related Guides</b><br><a href="https://www.docuseal.com/guides/create-pdf-document-fillable-form-with-html-api" class="link">Create PDF document fillable form with HTML</a>
+This API endpoint allows you to create a one-off submission request document using the provided HTML content, with special field tags rendered as a fillable and signable form.<br><b>Related Guides</b><br><a href="https://www.wabosign.com/guides/create-pdf-document-fillable-form-with-html-api" class="link">Create PDF document fillable form with HTML</a>
 
 ```python
-from docuseal import docuseal
+from wabosign import wabosign
 
-docuseal.key = "API_KEY"
-docuseal.url = "https://api.docuseal.com"
+wabosign.key = "API_KEY"
+wabosign.url = "https://api.wabosign.com"
 
-docuseal.create_submission_from_html({
+wabosign.create_submission_from_html({
   "name": "Test Submission Document",
   "documents": [
     {
@@ -2173,12 +2173,12 @@ and typesetting industry</p>
 The API endpoint allows you to archive a submission.
 
 ```python
-from docuseal import docuseal
+from wabosign import wabosign
 
-docuseal.key = "API_KEY"
-docuseal.url = "https://api.docuseal.com"
+wabosign.key = "API_KEY"
+wabosign.url = "https://api.wabosign.com"
 
-docuseal.archive_submission(1001)
+wabosign.archive_submission(1001)
 ```
 
 ```json
@@ -2213,12 +2213,12 @@ docuseal.archive_submission(1001)
 The API endpoint provides the ability to retrieve a list of submitters.
 
 ```python
-from docuseal import docuseal
+from wabosign import wabosign
 
-docuseal.key = "API_KEY"
-docuseal.url = "https://api.docuseal.com"
+wabosign.key = "API_KEY"
+wabosign.url = "https://api.wabosign.com"
 
-docuseal.list_submissions({ "limit": 10 })
+wabosign.list_submissions({ "limit": 10 })
 ```
 
 ```json
@@ -2329,12 +2329,12 @@ docuseal.list_submissions({ "limit": 10 })
 The API endpoint provides functionality to retrieve information about a submitter, along with the submitter documents and field values.
 
 ```python
-from docuseal import docuseal
+from wabosign import wabosign
 
-docuseal.key = "API_KEY"
-docuseal.url = "https://api.docuseal.com"
+wabosign.key = "API_KEY"
+wabosign.url = "https://api.wabosign.com"
 
-docuseal.get_submitter(500001)
+wabosign.get_submitter(500001)
 ```
 
 ```json
@@ -2366,15 +2366,15 @@ docuseal.get_submitter(500001)
 
 ### Update a submitter
 
-The API endpoint allows you to update submitter details, pre-fill or update field values and re-send emails.<br><b>Related Guides</b><br><a href="https://www.docuseal.com/guides/pre-fill-pdf-document-form-fields-with-api#automatically_sign_documents_via_api" class="link">Automatically sign documents via API</a>
+The API endpoint allows you to update submitter details, pre-fill or update field values and re-send emails.<br><b>Related Guides</b><br><a href="https://www.wabosign.com/guides/pre-fill-pdf-document-form-fields-with-api#automatically_sign_documents_via_api" class="link">Automatically sign documents via API</a>
 
 ```python
-from docuseal import docuseal
+from wabosign import wabosign
 
-docuseal.key = "API_KEY"
-docuseal.url = "https://api.docuseal.com"
+wabosign.key = "API_KEY"
+wabosign.url = "https://api.wabosign.com"
 
-docuseal.update_submitter(500001, {
+wabosign.update_submitter(500001, {
   "email": "john.doe@example.com",
   "fields": [
     {
@@ -2701,12 +2701,12 @@ docuseal.update_submitter(500001, {
 The API endpoint provides the ability to retrieve a list of available document templates.
 
 ```python
-from docuseal import docuseal
+from wabosign import wabosign
 
-docuseal.key = "API_KEY"
-docuseal.url = "https://api.docuseal.com"
+wabosign.key = "API_KEY"
+wabosign.url = "https://api.wabosign.com"
 
-docuseal.list_submissions({ "limit": 10 })
+wabosign.list_submissions({ "limit": 10 })
 ```
 
 ```json
@@ -2804,12 +2804,12 @@ docuseal.list_submissions({ "limit": 10 })
 The API endpoint provides the functionality to retrieve information about a document template.
 
 ```python
-from docuseal import docuseal
+from wabosign import wabosign
 
-docuseal.key = "API_KEY"
-docuseal.url = "https://api.docuseal.com"
+wabosign.key = "API_KEY"
+wabosign.url = "https://api.wabosign.com"
 
-docuseal.get_template(1000001)
+wabosign.get_template(1000001)
 ```
 
 ```json
@@ -2841,16 +2841,16 @@ docuseal.get_template(1000001)
 
 ### Create a template from PDF
 
-The API endpoint provides the functionality to create a fillable document template for a PDF file. Use <code>{{Field Name;role=Signer1;type=date}}</code> text tags to define fillable fields in the document. See <a href="https://www.docuseal.com/examples/fieldtags.pdf" target="_blank" class="link font-bold">https://www.docuseal.com/examples/fieldtags.pdf</a> for more text tag formats. Or specify the exact pixel coordinates of the document fields using `fields` param.<br><b>Related Guides</b><br><a href="https://www.docuseal.com/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form" class="link">Use embedded text field tags to create a fillable form</a>
+The API endpoint provides the functionality to create a fillable document template for a PDF file. Use <code>{{Field Name;role=Signer1;type=date}}</code> text tags to define fillable fields in the document. See <a href="https://www.wabosign.com/examples/fieldtags.pdf" target="_blank" class="link font-bold">https://www.wabosign.com/examples/fieldtags.pdf</a> for more text tag formats. Or specify the exact pixel coordinates of the document fields using `fields` param.<br><b>Related Guides</b><br><a href="https://www.wabosign.com/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form" class="link">Use embedded text field tags to create a fillable form</a>
 
 
 ```python
-from docuseal import docuseal
+from wabosign import wabosign
 
-docuseal.key = "API_KEY"
-docuseal.url = "https://api.docuseal.com"
+wabosign.key = "API_KEY"
+wabosign.url = "https://api.wabosign.com"
 
-docuseal.create_template_from_pdf({
+wabosign.create_template_from_pdf({
   "name": "Test PDF",
   "documents": [
     {
@@ -3211,16 +3211,16 @@ docuseal.create_template_from_pdf({
 
 ### Create a template from Word DOCX
 
-The API endpoint provides the functionality to create a fillable document template for existing Microsoft Word document. Use <code>{{Field Name;role=Signer1;type=date}}</code> text tags to define fillable fields in the document. See <a href="https://www.docuseal.com/examples/fieldtags.docx" target="_blank" class="link font-bold" >https://www.docuseal.com/examples/fieldtags.docx</a> for more text tag formats. Or specify the exact pixel coordinates of the document fields using `fields` param.<br><b>Related Guides</b><br><a href="https://www.docuseal.com/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form" class="link">Use embedded text field tags to create a fillable form</a>
+The API endpoint provides the functionality to create a fillable document template for existing Microsoft Word document. Use <code>{{Field Name;role=Signer1;type=date}}</code> text tags to define fillable fields in the document. See <a href="https://www.wabosign.com/examples/fieldtags.docx" target="_blank" class="link font-bold" >https://www.wabosign.com/examples/fieldtags.docx</a> for more text tag formats. Or specify the exact pixel coordinates of the document fields using `fields` param.<br><b>Related Guides</b><br><a href="https://www.wabosign.com/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form" class="link">Use embedded text field tags to create a fillable form</a>
 
 
 ```python
-from docuseal import docuseal
+from wabosign import wabosign
 
-docuseal.key = "API_KEY"
-docuseal.url = "https://api.docuseal.com"
+wabosign.key = "API_KEY"
+wabosign.url = "https://api.wabosign.com"
 
-docuseal.create_template_from_docx({
+wabosign.create_template_from_docx({
   "name": "Test DOCX",
   "documents": [
     {
@@ -3549,15 +3549,15 @@ docuseal.create_template_from_docx({
 
 ### Create a template from HTML
 
-The API endpoint provides the functionality to seamlessly generate a PDF document template by utilizing the provided HTML content while incorporating pre-defined fields.<br><b>Related Guides</b><br><a href="https://www.docuseal.com/guides/create-pdf-document-fillable-form-with-html-api" class="link">Create PDF document fillable form with HTML</a>
+The API endpoint provides the functionality to seamlessly generate a PDF document template by utilizing the provided HTML content while incorporating pre-defined fields.<br><b>Related Guides</b><br><a href="https://www.wabosign.com/guides/create-pdf-document-fillable-form-with-html-api" class="link">Create PDF document fillable form with HTML</a>
 
 ```python
-from docuseal import docuseal
+from wabosign import wabosign
 
-docuseal.key = "API_KEY"
-docuseal.url = "https://api.docuseal.com"
+wabosign.key = "API_KEY"
+wabosign.url = "https://api.wabosign.com"
 
-docuseal.create_template_from_html({
+wabosign.create_template_from_html({
   "html": """<p>Lorem Ipsum is simply dummy text of the
 <text-field
   name=\"Industry\"
@@ -3680,12 +3680,12 @@ and typesetting industry</p>
 The API endpoint allows you to clone existing template into a new template.
 
 ```python
-from docuseal import docuseal
+from wabosign import wabosign
 
-docuseal.key = "API_KEY"
-docuseal.url = "https://api.docuseal.com"
+wabosign.key = "API_KEY"
+wabosign.url = "https://api.wabosign.com"
 
-docuseal.clone_template(1000001, {
+wabosign.clone_template(1000001, {
   "name": "Cloned Template"
 })
 ```
@@ -3747,12 +3747,12 @@ docuseal.clone_template(1000001, {
 The API endpoint allows you to merge multiple templates with documents and fields into a new combined template.
 
 ```python
-from docuseal import docuseal
+from wabosign import wabosign
 
-docuseal.key = "API_KEY"
-docuseal.url = "https://api.docuseal.com"
+wabosign.key = "API_KEY"
+wabosign.url = "https://api.wabosign.com"
 
-docuseal.merge_templates({
+wabosign.merge_templates({
   "template_ids": [
     321,
     432
@@ -3837,12 +3837,12 @@ docuseal.merge_templates({
 The API endpoint provides the functionality to move a document template to a different folder and update the name of the template.
 
 ```python
-from docuseal import docuseal
+from wabosign import wabosign
 
-docuseal.key = "API_KEY"
-docuseal.url = "https://api.docuseal.com"
+wabosign.key = "API_KEY"
+wabosign.url = "https://api.wabosign.com"
 
-docuseal.update_template(1000001, {
+wabosign.update_template(1000001, {
   "name": "New Document Name",
   "folder_name": "New Folder"
 })
@@ -3917,12 +3917,12 @@ docuseal.update_template(1000001, {
 The API endpoint allows you to add, remove or replace documents in the template with provided PDF/DOCX file or HTML content.
 
 ```python
-from docuseal import docuseal
+from wabosign import wabosign
 
-docuseal.key = "API_KEY"
-docuseal.url = "https://api.docuseal.com"
+wabosign.key = "API_KEY"
+wabosign.url = "https://api.wabosign.com"
 
-docuseal.update_template_documents(1000001, {
+wabosign.update_template_documents(1000001, {
   "documents": [
     {
       "file": "string"
@@ -4018,12 +4018,12 @@ docuseal.update_template_documents(1000001, {
 The API endpoint allows you to archive a document template.
 
 ```python
-from docuseal import docuseal
+from wabosign import wabosign
 
-docuseal.key = "API_KEY"
-docuseal.url = "https://api.docuseal.com"
+wabosign.key = "API_KEY"
+wabosign.url = "https://api.wabosign.com"
 
-docuseal.archive_template(1000001)
+wabosign.archive_template(1000001)
 ```
 
 ```json

@@ -1,0 +1,2161 @@
+---
+880:
+- 880
+- GREEK CAPITAL LETTER HETA
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- '0371'
+- ''
+881:
+- 881
+- GREEK SMALL LETTER HETA
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- '0370'
+- ''
+- '0370'
+882:
+- 882
+- GREEK CAPITAL LETTER ARCHAIC SAMPI
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- '0373'
+- ''
+883:
+- 883
+- GREEK SMALL LETTER ARCHAIC SAMPI
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- '0372'
+- ''
+- '0372'
+884:
+- 884
+- GREEK NUMERAL SIGN
+- Lm
+- '0'
+- 'ON'
+- 02B9
+- ''
+- ''
+- ''
+- N
+- GREEK UPPER NUMERAL SIGN
+- ''
+- ''
+- ''
+- ''
+885:
+- 885
+- GREEK LOWER NUMERAL SIGN
+- Sk
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+886:
+- 886
+- GREEK CAPITAL LETTER PAMPHYLIAN DIGAMMA
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- '0377'
+- ''
+887:
+- 887
+- GREEK SMALL LETTER PAMPHYLIAN DIGAMMA
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- '0376'
+- ''
+- '0376'
+890:
+- 890
+- GREEK YPOGEGRAMMENI
+- Lm
+- '0'
+- L
+- "<compat> 0020 0345"
+- ''
+- ''
+- ''
+- N
+- GREEK SPACING IOTA BELOW
+- ''
+- ''
+- ''
+- ''
+891:
+- 891
+- GREEK SMALL REVERSED LUNATE SIGMA SYMBOL
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 03FD
+- ''
+- 03FD
+892:
+- 892
+- GREEK SMALL DOTTED LUNATE SIGMA SYMBOL
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 03FE
+- ''
+- 03FE
+893:
+- 893
+- GREEK SMALL REVERSED DOTTED LUNATE SIGMA SYMBOL
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 03FF
+- ''
+- 03FF
+894:
+- 894
+- GREEK QUESTION MARK
+- Po
+- '0'
+- 'ON'
+- 003B
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+895:
+- 895
+- GREEK CAPITAL LETTER YOT
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 03F3
+- ''
+900:
+- 900
+- GREEK TONOS
+- Sk
+- '0'
+- 'ON'
+- "<compat> 0020 0301"
+- ''
+- ''
+- ''
+- N
+- GREEK SPACING TONOS
+- ''
+- ''
+- ''
+- ''
+901:
+- 901
+- GREEK DIALYTIKA TONOS
+- Sk
+- '0'
+- 'ON'
+- 00A8 0301
+- ''
+- ''
+- ''
+- N
+- GREEK SPACING DIAERESIS TONOS
+- ''
+- ''
+- ''
+- ''
+902:
+- 902
+- GREEK CAPITAL LETTER ALPHA WITH TONOS
+- Lu
+- '0'
+- L
+- '0391 0301'
+- ''
+- ''
+- ''
+- N
+- GREEK CAPITAL LETTER ALPHA TONOS
+- ''
+- ''
+- 03AC
+- ''
+903:
+- 903
+- GREEK ANO TELEIA
+- Po
+- '0'
+- 'ON'
+- 00B7
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+904:
+- 904
+- GREEK CAPITAL LETTER EPSILON WITH TONOS
+- Lu
+- '0'
+- L
+- '0395 0301'
+- ''
+- ''
+- ''
+- N
+- GREEK CAPITAL LETTER EPSILON TONOS
+- ''
+- ''
+- 03AD
+- ''
+905:
+- 905
+- GREEK CAPITAL LETTER ETA WITH TONOS
+- Lu
+- '0'
+- L
+- '0397 0301'
+- ''
+- ''
+- ''
+- N
+- GREEK CAPITAL LETTER ETA TONOS
+- ''
+- ''
+- 03AE
+- ''
+906:
+- 906
+- GREEK CAPITAL LETTER IOTA WITH TONOS
+- Lu
+- '0'
+- L
+- '0399 0301'
+- ''
+- ''
+- ''
+- N
+- GREEK CAPITAL LETTER IOTA TONOS
+- ''
+- ''
+- 03AF
+- ''
+908:
+- 908
+- GREEK CAPITAL LETTER OMICRON WITH TONOS
+- Lu
+- '0'
+- L
+- '039F 0301'
+- ''
+- ''
+- ''
+- N
+- GREEK CAPITAL LETTER OMICRON TONOS
+- ''
+- ''
+- 03CC
+- ''
+910:
+- 910
+- GREEK CAPITAL LETTER UPSILON WITH TONOS
+- Lu
+- '0'
+- L
+- 03A5 0301
+- ''
+- ''
+- ''
+- N
+- GREEK CAPITAL LETTER UPSILON TONOS
+- ''
+- ''
+- 03CD
+- ''
+911:
+- 911
+- GREEK CAPITAL LETTER OMEGA WITH TONOS
+- Lu
+- '0'
+- L
+- 03A9 0301
+- ''
+- ''
+- ''
+- N
+- GREEK CAPITAL LETTER OMEGA TONOS
+- ''
+- ''
+- 03CE
+- ''
+912:
+- 912
+- GREEK SMALL LETTER IOTA WITH DIALYTIKA AND TONOS
+- Ll
+- '0'
+- L
+- 03CA 0301
+- ''
+- ''
+- ''
+- N
+- GREEK SMALL LETTER IOTA DIAERESIS TONOS
+- ''
+- ''
+- ''
+- ''
+913:
+- 913
+- GREEK CAPITAL LETTER ALPHA
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 03B1
+- ''
+914:
+- 914
+- GREEK CAPITAL LETTER BETA
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 03B2
+- ''
+915:
+- 915
+- GREEK CAPITAL LETTER GAMMA
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 03B3
+- ''
+916:
+- 916
+- GREEK CAPITAL LETTER DELTA
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 03B4
+- ''
+917:
+- 917
+- GREEK CAPITAL LETTER EPSILON
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 03B5
+- ''
+918:
+- 918
+- GREEK CAPITAL LETTER ZETA
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 03B6
+- ''
+919:
+- 919
+- GREEK CAPITAL LETTER ETA
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 03B7
+- ''
+920:
+- 920
+- GREEK CAPITAL LETTER THETA
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 03B8
+- ''
+921:
+- 921
+- GREEK CAPITAL LETTER IOTA
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 03B9
+- ''
+922:
+- 922
+- GREEK CAPITAL LETTER KAPPA
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 03BA
+- ''
+923:
+- 923
+- GREEK CAPITAL LETTER LAMDA
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- GREEK CAPITAL LETTER LAMBDA
+- ''
+- ''
+- 03BB
+- ''
+924:
+- 924
+- GREEK CAPITAL LETTER MU
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 03BC
+- ''
+925:
+- 925
+- GREEK CAPITAL LETTER NU
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 03BD
+- ''
+926:
+- 926
+- GREEK CAPITAL LETTER XI
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 03BE
+- ''
+927:
+- 927
+- GREEK CAPITAL LETTER OMICRON
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 03BF
+- ''
+928:
+- 928
+- GREEK CAPITAL LETTER PI
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 03C0
+- ''
+929:
+- 929
+- GREEK CAPITAL LETTER RHO
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 03C1
+- ''
+931:
+- 931
+- GREEK CAPITAL LETTER SIGMA
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 03C3
+- ''
+932:
+- 932
+- GREEK CAPITAL LETTER TAU
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 03C4
+- ''
+933:
+- 933
+- GREEK CAPITAL LETTER UPSILON
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 03C5
+- ''
+934:
+- 934
+- GREEK CAPITAL LETTER PHI
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 03C6
+- ''
+935:
+- 935
+- GREEK CAPITAL LETTER CHI
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 03C7
+- ''
+936:
+- 936
+- GREEK CAPITAL LETTER PSI
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 03C8
+- ''
+937:
+- 937
+- GREEK CAPITAL LETTER OMEGA
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 03C9
+- ''
+938:
+- 938
+- GREEK CAPITAL LETTER IOTA WITH DIALYTIKA
+- Lu
+- '0'
+- L
+- '0399 0308'
+- ''
+- ''
+- ''
+- N
+- GREEK CAPITAL LETTER IOTA DIAERESIS
+- ''
+- ''
+- 03CA
+- ''
+939:
+- 939
+- GREEK CAPITAL LETTER UPSILON WITH DIALYTIKA
+- Lu
+- '0'
+- L
+- 03A5 0308
+- ''
+- ''
+- ''
+- N
+- GREEK CAPITAL LETTER UPSILON DIAERESIS
+- ''
+- ''
+- 03CB
+- ''
+940:
+- 940
+- GREEK SMALL LETTER ALPHA WITH TONOS
+- Ll
+- '0'
+- L
+- 03B1 0301
+- ''
+- ''
+- ''
+- N
+- GREEK SMALL LETTER ALPHA TONOS
+- ''
+- '0386'
+- ''
+- '0386'
+941:
+- 941
+- GREEK SMALL LETTER EPSILON WITH TONOS
+- Ll
+- '0'
+- L
+- 03B5 0301
+- ''
+- ''
+- ''
+- N
+- GREEK SMALL LETTER EPSILON TONOS
+- ''
+- '0388'
+- ''
+- '0388'
+942:
+- 942
+- GREEK SMALL LETTER ETA WITH TONOS
+- Ll
+- '0'
+- L
+- 03B7 0301
+- ''
+- ''
+- ''
+- N
+- GREEK SMALL LETTER ETA TONOS
+- ''
+- '0389'
+- ''
+- '0389'
+943:
+- 943
+- GREEK SMALL LETTER IOTA WITH TONOS
+- Ll
+- '0'
+- L
+- 03B9 0301
+- ''
+- ''
+- ''
+- N
+- GREEK SMALL LETTER IOTA TONOS
+- ''
+- '038A'
+- ''
+- '038A'
+944:
+- 944
+- GREEK SMALL LETTER UPSILON WITH DIALYTIKA AND TONOS
+- Ll
+- '0'
+- L
+- 03CB 0301
+- ''
+- ''
+- ''
+- N
+- GREEK SMALL LETTER UPSILON DIAERESIS TONOS
+- ''
+- ''
+- ''
+- ''
+945:
+- 945
+- GREEK SMALL LETTER ALPHA
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- '0391'
+- ''
+- '0391'
+946:
+- 946
+- GREEK SMALL LETTER BETA
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- '0392'
+- ''
+- '0392'
+947:
+- 947
+- GREEK SMALL LETTER GAMMA
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- '0393'
+- ''
+- '0393'
+948:
+- 948
+- GREEK SMALL LETTER DELTA
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- '0394'
+- ''
+- '0394'
+949:
+- 949
+- GREEK SMALL LETTER EPSILON
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- '0395'
+- ''
+- '0395'
+950:
+- 950
+- GREEK SMALL LETTER ZETA
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- '0396'
+- ''
+- '0396'
+951:
+- 951
+- GREEK SMALL LETTER ETA
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- '0397'
+- ''
+- '0397'
+952:
+- 952
+- GREEK SMALL LETTER THETA
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- '0398'
+- ''
+- '0398'
+953:
+- 953
+- GREEK SMALL LETTER IOTA
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- '0399'
+- ''
+- '0399'
+954:
+- 954
+- GREEK SMALL LETTER KAPPA
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- '039A'
+- ''
+- '039A'
+955:
+- 955
+- GREEK SMALL LETTER LAMDA
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- GREEK SMALL LETTER LAMBDA
+- ''
+- '039B'
+- ''
+- '039B'
+956:
+- 956
+- GREEK SMALL LETTER MU
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- '039C'
+- ''
+- '039C'
+957:
+- 957
+- GREEK SMALL LETTER NU
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- '039D'
+- ''
+- '039D'
+958:
+- 958
+- GREEK SMALL LETTER XI
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- '039E'
+- ''
+- '039E'
+959:
+- 959
+- GREEK SMALL LETTER OMICRON
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- '039F'
+- ''
+- '039F'
+960:
+- 960
+- GREEK SMALL LETTER PI
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 03A0
+- ''
+- 03A0
+961:
+- 961
+- GREEK SMALL LETTER RHO
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 03A1
+- ''
+- 03A1
+962:
+- 962
+- GREEK SMALL LETTER FINAL SIGMA
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 03A3
+- ''
+- 03A3
+963:
+- 963
+- GREEK SMALL LETTER SIGMA
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 03A3
+- ''
+- 03A3
+964:
+- 964
+- GREEK SMALL LETTER TAU
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 03A4
+- ''
+- 03A4
+965:
+- 965
+- GREEK SMALL LETTER UPSILON
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 03A5
+- ''
+- 03A5
+966:
+- 966
+- GREEK SMALL LETTER PHI
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 03A6
+- ''
+- 03A6
+967:
+- 967
+- GREEK SMALL LETTER CHI
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 03A7
+- ''
+- 03A7
+968:
+- 968
+- GREEK SMALL LETTER PSI
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 03A8
+- ''
+- 03A8
+969:
+- 969
+- GREEK SMALL LETTER OMEGA
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 03A9
+- ''
+- 03A9
+970:
+- 970
+- GREEK SMALL LETTER IOTA WITH DIALYTIKA
+- Ll
+- '0'
+- L
+- 03B9 0308
+- ''
+- ''
+- ''
+- N
+- GREEK SMALL LETTER IOTA DIAERESIS
+- ''
+- 03AA
+- ''
+- 03AA
+971:
+- 971
+- GREEK SMALL LETTER UPSILON WITH DIALYTIKA
+- Ll
+- '0'
+- L
+- 03C5 0308
+- ''
+- ''
+- ''
+- N
+- GREEK SMALL LETTER UPSILON DIAERESIS
+- ''
+- 03AB
+- ''
+- 03AB
+972:
+- 972
+- GREEK SMALL LETTER OMICRON WITH TONOS
+- Ll
+- '0'
+- L
+- 03BF 0301
+- ''
+- ''
+- ''
+- N
+- GREEK SMALL LETTER OMICRON TONOS
+- ''
+- '038C'
+- ''
+- '038C'
+973:
+- 973
+- GREEK SMALL LETTER UPSILON WITH TONOS
+- Ll
+- '0'
+- L
+- 03C5 0301
+- ''
+- ''
+- ''
+- N
+- GREEK SMALL LETTER UPSILON TONOS
+- ''
+- '038E'
+- ''
+- '038E'
+974:
+- 974
+- GREEK SMALL LETTER OMEGA WITH TONOS
+- Ll
+- '0'
+- L
+- 03C9 0301
+- ''
+- ''
+- ''
+- N
+- GREEK SMALL LETTER OMEGA TONOS
+- ''
+- '038F'
+- ''
+- '038F'
+975:
+- 975
+- GREEK CAPITAL KAI SYMBOL
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 03D7
+- ''
+976:
+- 976
+- GREEK BETA SYMBOL
+- Ll
+- '0'
+- L
+- "<compat> 03B2"
+- ''
+- ''
+- ''
+- N
+- GREEK SMALL LETTER CURLED BETA
+- ''
+- '0392'
+- ''
+- '0392'
+977:
+- 977
+- GREEK THETA SYMBOL
+- Ll
+- '0'
+- L
+- "<compat> 03B8"
+- ''
+- ''
+- ''
+- N
+- GREEK SMALL LETTER SCRIPT THETA
+- ''
+- '0398'
+- ''
+- '0398'
+978:
+- 978
+- GREEK UPSILON WITH HOOK SYMBOL
+- Lu
+- '0'
+- L
+- "<compat> 03A5"
+- ''
+- ''
+- ''
+- N
+- GREEK CAPITAL LETTER UPSILON HOOK
+- ''
+- ''
+- ''
+- ''
+979:
+- 979
+- GREEK UPSILON WITH ACUTE AND HOOK SYMBOL
+- Lu
+- '0'
+- L
+- 03D2 0301
+- ''
+- ''
+- ''
+- N
+- GREEK CAPITAL LETTER UPSILON HOOK TONOS
+- ''
+- ''
+- ''
+- ''
+980:
+- 980
+- GREEK UPSILON WITH DIAERESIS AND HOOK SYMBOL
+- Lu
+- '0'
+- L
+- 03D2 0308
+- ''
+- ''
+- ''
+- N
+- GREEK CAPITAL LETTER UPSILON HOOK DIAERESIS
+- ''
+- ''
+- ''
+- ''
+981:
+- 981
+- GREEK PHI SYMBOL
+- Ll
+- '0'
+- L
+- "<compat> 03C6"
+- ''
+- ''
+- ''
+- N
+- GREEK SMALL LETTER SCRIPT PHI
+- ''
+- 03A6
+- ''
+- 03A6
+982:
+- 982
+- GREEK PI SYMBOL
+- Ll
+- '0'
+- L
+- "<compat> 03C0"
+- ''
+- ''
+- ''
+- N
+- GREEK SMALL LETTER OMEGA PI
+- ''
+- 03A0
+- ''
+- 03A0
+983:
+- 983
+- GREEK KAI SYMBOL
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 03CF
+- ''
+- 03CF
+984:
+- 984
+- GREEK LETTER ARCHAIC KOPPA
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 03D9
+- ''
+985:
+- 985
+- GREEK SMALL LETTER ARCHAIC KOPPA
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 03D8
+- ''
+- 03D8
+986:
+- 986
+- GREEK LETTER STIGMA
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- GREEK CAPITAL LETTER STIGMA
+- ''
+- ''
+- 03DB
+- ''
+987:
+- 987
+- GREEK SMALL LETTER STIGMA
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 03DA
+- ''
+- 03DA
+988:
+- 988
+- GREEK LETTER DIGAMMA
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- GREEK CAPITAL LETTER DIGAMMA
+- ''
+- ''
+- 03DD
+- ''
+989:
+- 989
+- GREEK SMALL LETTER DIGAMMA
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 03DC
+- ''
+- 03DC
+990:
+- 990
+- GREEK LETTER KOPPA
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- GREEK CAPITAL LETTER KOPPA
+- ''
+- ''
+- 03DF
+- ''
+991:
+- 991
+- GREEK SMALL LETTER KOPPA
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 03DE
+- ''
+- 03DE
+992:
+- 992
+- GREEK LETTER SAMPI
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- GREEK CAPITAL LETTER SAMPI
+- ''
+- ''
+- 03E1
+- ''
+993:
+- 993
+- GREEK SMALL LETTER SAMPI
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 03E0
+- ''
+- 03E0
+994:
+- 994
+- COPTIC CAPITAL LETTER SHEI
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- GREEK CAPITAL LETTER SHEI
+- ''
+- ''
+- 03E3
+- ''
+995:
+- 995
+- COPTIC SMALL LETTER SHEI
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- GREEK SMALL LETTER SHEI
+- ''
+- 03E2
+- ''
+- 03E2
+996:
+- 996
+- COPTIC CAPITAL LETTER FEI
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- GREEK CAPITAL LETTER FEI
+- ''
+- ''
+- 03E5
+- ''
+997:
+- 997
+- COPTIC SMALL LETTER FEI
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- GREEK SMALL LETTER FEI
+- ''
+- 03E4
+- ''
+- 03E4
+998:
+- 998
+- COPTIC CAPITAL LETTER KHEI
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- GREEK CAPITAL LETTER KHEI
+- ''
+- ''
+- 03E7
+- ''
+999:
+- 999
+- COPTIC SMALL LETTER KHEI
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- GREEK SMALL LETTER KHEI
+- ''
+- 03E6
+- ''
+- 03E6
+1000:
+- 1000
+- COPTIC CAPITAL LETTER HORI
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- GREEK CAPITAL LETTER HORI
+- ''
+- ''
+- 03E9
+- ''
+1001:
+- 1001
+- COPTIC SMALL LETTER HORI
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- GREEK SMALL LETTER HORI
+- ''
+- 03E8
+- ''
+- 03E8
+1002:
+- 1002
+- COPTIC CAPITAL LETTER GANGIA
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- GREEK CAPITAL LETTER GANGIA
+- ''
+- ''
+- 03EB
+- ''
+1003:
+- 1003
+- COPTIC SMALL LETTER GANGIA
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- GREEK SMALL LETTER GANGIA
+- ''
+- 03EA
+- ''
+- 03EA
+1004:
+- 1004
+- COPTIC CAPITAL LETTER SHIMA
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- GREEK CAPITAL LETTER SHIMA
+- ''
+- ''
+- 03ED
+- ''
+1005:
+- 1005
+- COPTIC SMALL LETTER SHIMA
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- GREEK SMALL LETTER SHIMA
+- ''
+- 03EC
+- ''
+- 03EC
+1006:
+- 1006
+- COPTIC CAPITAL LETTER DEI
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- GREEK CAPITAL LETTER DEI
+- ''
+- ''
+- 03EF
+- ''
+1007:
+- 1007
+- COPTIC SMALL LETTER DEI
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- GREEK SMALL LETTER DEI
+- ''
+- 03EE
+- ''
+- 03EE
+1008:
+- 1008
+- GREEK KAPPA SYMBOL
+- Ll
+- '0'
+- L
+- "<compat> 03BA"
+- ''
+- ''
+- ''
+- N
+- GREEK SMALL LETTER SCRIPT KAPPA
+- ''
+- '039A'
+- ''
+- '039A'
+1009:
+- 1009
+- GREEK RHO SYMBOL
+- Ll
+- '0'
+- L
+- "<compat> 03C1"
+- ''
+- ''
+- ''
+- N
+- GREEK SMALL LETTER TAILED RHO
+- ''
+- 03A1
+- ''
+- 03A1
+1010:
+- 1010
+- GREEK LUNATE SIGMA SYMBOL
+- Ll
+- '0'
+- L
+- "<compat> 03C2"
+- ''
+- ''
+- ''
+- N
+- GREEK SMALL LETTER LUNATE SIGMA
+- ''
+- 03F9
+- ''
+- 03F9
+1011:
+- 1011
+- GREEK LETTER YOT
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 037F
+- ''
+- 037F
+1012:
+- 1012
+- GREEK CAPITAL THETA SYMBOL
+- Lu
+- '0'
+- L
+- "<compat> 0398"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 03B8
+- ''
+1013:
+- 1013
+- GREEK LUNATE EPSILON SYMBOL
+- Ll
+- '0'
+- L
+- "<compat> 03B5"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- '0395'
+- ''
+- '0395'
+1014:
+- 1014
+- GREEK REVERSED LUNATE EPSILON SYMBOL
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+1015:
+- 1015
+- GREEK CAPITAL LETTER SHO
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 03F8
+- ''
+1016:
+- 1016
+- GREEK SMALL LETTER SHO
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 03F7
+- ''
+- 03F7
+1017:
+- 1017
+- GREEK CAPITAL LUNATE SIGMA SYMBOL
+- Lu
+- '0'
+- L
+- "<compat> 03A3"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 03F2
+- ''
+1018:
+- 1018
+- GREEK CAPITAL LETTER SAN
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 03FB
+- ''
+1019:
+- 1019
+- GREEK SMALL LETTER SAN
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 03FA
+- ''
+- 03FA
+1020:
+- 1020
+- GREEK RHO WITH STROKE SYMBOL
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+1021:
+- 1021
+- GREEK CAPITAL REVERSED LUNATE SIGMA SYMBOL
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 037B
+- ''
+1022:
+- 1022
+- GREEK CAPITAL DOTTED LUNATE SIGMA SYMBOL
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 037C
+- ''
+1023:
+- 1023
+- GREEK CAPITAL REVERSED DOTTED LUNATE SIGMA SYMBOL
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 037D
+- ''

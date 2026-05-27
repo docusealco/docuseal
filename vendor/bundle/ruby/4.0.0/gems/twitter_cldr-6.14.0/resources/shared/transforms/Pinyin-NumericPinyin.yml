@@ -1,0 +1,14 @@
+--- 
+:transforms: 
+  - 
+    :aliases: ~
+    :direction: both
+    :rules: 
+      - "̄ <> 1 ;"
+      - "́ <> 2 ;"
+      - "̌ <> 3 ;"
+      - "̀ <> 4 ;"
+      - "< 5 ;"
+    :source: Pinyin
+    :target: NumericPinyin
+    :variant: ~

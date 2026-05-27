@@ -1,0 +1,216 @@
+--- 
+:sw: 
+  :fields: 
+    :day: 
+      :display_name: siku
+      :relative: 
+        -1: jana
+        -2: juzi
+        0: leo
+        1: kesho
+        2: "kesho kutwa"
+      :relative_time: 
+        :future: 
+          :one: "baada ya siku {0}"
+          :other: "baada ya siku {0}"
+        :past: 
+          :one: "siku {0} iliyopita"
+          :other: "siku {0} zilizopita"
+    :dayOfYear: 
+      :display_name: "siku ya mwaka"
+    :dayperiod: 
+      :display_name: AM/PM
+    :era: 
+      :display_name: enzi
+    :fri: 
+      :relative: 
+        -1: "Ijumaa iliyopita"
+        0: "Ijumaa hii"
+        1: "Ijumaa ijayo"
+      :relative_time: 
+        :future: 
+          :one: "baada ya Ijumaa {0}"
+          :other: "baada ya Ijumaa {0}"
+        :past: 
+          :one: "Ijumaa {0} iliyopita"
+          :other: "Ijumaa {0} zilizopita"
+    :hour: 
+      :display_name: saa
+      :relative: 
+        0: "saa hii"
+      :relative_time: 
+        :future: 
+          :one: "baada ya saa {0}"
+          :other: "baada ya saa {0}"
+        :past: 
+          :one: "saa {0} iliyopita"
+          :other: "saa {0} zilizopita"
+    :hour-narrow: 
+      :relative_time: 
+        :past: 
+          :one: "Saa {0} iliyopita"
+          :other: "Saa {0} zilizopita"
+    :minute: 
+      :display_name: dakika
+      :relative: 
+        0: "dakika hii"
+      :relative_time: 
+        :future: 
+          :one: "baada ya dakika {0}"
+          :other: "baada ya dakika {0}"
+        :past: 
+          :one: "dakika {0} iliyopita"
+          :other: "dakika {0} zilizopita"
+    :minute-short: 
+      :display_name: dak
+    :mon: 
+      :relative: 
+        -1: "Jumatatu iliyopita"
+        0: "Jumatatu hii"
+        1: "Jumatatu ijayo"
+      :relative_time: 
+        :future: 
+          :one: "baada ya Jumatatu {0}"
+          :other: "baada ya Jumatatu {0}"
+        :past: 
+          :one: "Jumatatu {0} iliyopita"
+          :other: "Jumatatu {0} zilizopita"
+    :month: 
+      :display_name: mwezi
+      :relative: 
+        -1: "mwezi uliopita"
+        0: "mwezi huu"
+        1: "mwezi ujao"
+      :relative_time: 
+        :future: 
+          :one: "baada ya mwezi {0}"
+          :other: "baada ya miezi {0}"
+        :past: 
+          :one: "mwezi {0} uliopita"
+          :other: "miezi {0} iliyopita"
+    :quarter: 
+      :display_name: robo
+      :relative: 
+        -1: "robo ya mwaka iliyopita"
+        0: "robo hii ya mwaka"
+        1: "robo ya mwaka inayofuata"
+      :relative_time: 
+        :future: 
+          :one: "baada ya robo {0}"
+          :other: "baada ya robo {0}"
+        :past: 
+          :one: "robo {0} iliyopita"
+          :other: "robo {0} zilizopita"
+    :sat: 
+      :relative: 
+        -1: "Jumamosi iliyopita"
+        0: "Jumamosi hii"
+        1: "Jumamosi ijayo"
+      :relative_time: 
+        :future: 
+          :one: "baada ya Jumamosi {0}"
+          :other: "baada ya Jumamosi {0}"
+        :past: 
+          :one: "Jumamosi {0} iliyopita"
+          :other: "Jumamosi {0} zilizopita"
+    :second: 
+      :display_name: sekunde
+      :relative: 
+        0: "sasa hivi"
+      :relative_time: 
+        :future: 
+          :one: "baada ya sekunde {0}"
+          :other: "baada ya sekunde {0}"
+        :past: 
+          :one: "Sekunde {0} iliyopita"
+          :other: "Sekunde {0} zilizopita"
+    :second-short: 
+      :display_name: sek
+      :relative_time: 
+        :past: 
+          :one: "sekunde {0} iliyopita"
+          :other: "sekunde {0} zilizopita"
+    :sun: 
+      :relative: 
+        -1: "Jumapili iliyopita"
+        0: "Jumapili hii"
+        1: "Jumapili ijayo"
+      :relative_time: 
+        :future: 
+          :one: "baada ya Jumapili {0}"
+          :other: "baada ya Jumapili {0}"
+        :past: 
+          :one: "Jumapili {0} iliyopita"
+          :other: "Jumapili {0} zilizopita"
+    :thu: 
+      :relative: 
+        -1: "Alhamisi iliyopita"
+        0: "Alhamisi hii"
+        1: "Alhamisi ijayo"
+      :relative_time: 
+        :future: 
+          :one: "baada ya Alhamisi {0}"
+          :other: "baada ya Alhamisi {0}"
+        :past: 
+          :one: "Alhamisi {0} iliyopita"
+          :other: "Alhamisi {0} zilizopita"
+    :tue: 
+      :relative: 
+        -1: "Jumanne iliyopita"
+        0: "Jumanne hii"
+        1: "Jumanne ijayo"
+      :relative_time: 
+        :future: 
+          :one: "baada ya Jumanne {0}"
+          :other: "baada ya Jumanne {0}"
+        :past: 
+          :one: "Jumanne {0} iliyopita"
+          :other: "Jumanne {0} zilizopita"
+    :wed: 
+      :relative: 
+        -1: "Jumatano iliyopita"
+        0: "Jumatano hii"
+        1: "Jumatano ijayo"
+      :relative_time: 
+        :future: 
+          :one: "baada ya Jumatano {0}"
+          :other: "baada ya Jumatano {0}"
+        :past: 
+          :one: "Jumatano {0} iliyopita"
+          :other: "Jumatano {0} zilizopita"
+    :week: 
+      :display_name: wiki
+      :relative: 
+        -1: "wiki iliyopita"
+        0: "wiki hii"
+        1: "wiki ijayo"
+      :relative_time: 
+        :future: 
+          :one: "baada ya wiki {0}"
+          :other: "baada ya wiki {0}"
+        :past: 
+          :one: "wiki {0} iliyopita"
+          :other: "wiki {0} zilizopita"
+    :weekOfMonth: 
+      :display_name: "wiki ya mwezi"
+    :weekday: 
+      :display_name: "siku ya wiki"
+    :weekdayOfMonth: 
+      :display_name: "siku ya mwezi"
+    :year: 
+      :display_name: mwaka
+      :relative: 
+        -1: "mwaka uliopita"
+        0: "mwaka huu"
+        1: "mwaka ujao"
+      :relative_time: 
+        :future: 
+          :one: "baada ya mwaka {0}"
+          :other: "baada ya miaka {0}"
+        :past: 
+          :one: "mwaka {0} uliopita"
+          :other: "miaka {0} iliyopita"
+    :zone: 
+      :display_name: "saa za eneo"
+    :zone-short: 
+      :display_name: eneo

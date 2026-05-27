@@ -1,0 +1,209 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+#
+# bin/rebrand-sync — applies the DocuSeal → WaboSign rename sweep across
+# the working tree. Idempotent: re-running produces no further changes.
+#
+# Intended use: on a sync branch created from an upstream tag, before
+# merging into master. Re-run after the merge to catch any new files
+# upstream introduced. See REBRANDING.md "Sync workflow".
+#
+# Rule spec lives at .claude/plans/come-up-with-a-foamy-flask.md.
+# Preserved tokens (SDK custom elements, @docuseal/* npm packages,
+# upstream binary URLs, AGPL §7(b) attribution) are protected via
+# sentinel-swap before substitutions run.
+
+require 'find'
+require 'set'
+require 'fileutils'
+
+ROOT = File.expand_path('..', __dir__)
+
+# Pull canonical target names from lib/wabosign.rb when present, so a
+# future brand change only needs editing that file. On a fresh upstream
+# tag the file does not exist yet — fall back to the literal defaults.
+wabosign_rb_path = File.join(ROOT, 'lib/wabosign.rb')
+WABOSIGN_RB = File.exist?(wabosign_rb_path) ? File.read(wabosign_rb_path) : ''
+
+def const_str(name)
+  m = WABOSIGN_RB.match(/^\s*#{Regexp.escape(name)}\s*=\s*['"]([^'"]+)['"]/)
+  m && m[1]
+end
+
+PRODUCT_NAME = const_str('PRODUCT_NAME') || 'WaboSign'
+AATL_CERT    = const_str('AATL_CERT_NAME') || 'wabosign_aatl'
+LC           = PRODUCT_NAME.downcase
+
+DENY_PATHS = Set.new([
+  'NOTICE',
+  'LICENSE',
+  'LICENSE_ADDITIONAL_TERMS',
+  'REBRANDING.md',
+  'CHANGELOG.md',
+  'README.md',
+  'GOOGLE_SSO.md',
+  'SMS.md',
+  'app/javascript/submission_form/calculator.js',
+  'app/javascript/submission_form/completed.vue',
+  'app/views/shared/_powered_by.html.erb',
+  'app/views/shared/_email_attribution.html.erb',
+  'bin/rebrand-sync',
+  'bin/rebrand-check',
+  # Holds UPSTREAM_NAME / UPSTREAM_URL constants — must not be swept.
+  'lib/wabosign.rb',
+  # Encrypted-config migration matches the literal upstream string to find
+  # rows to rewrite; sweeping would silently neuter it.
+  'db/migrate/20260515183000_rename_docuseal_aatl_cert.rb'
+]).freeze
+
+DENY_PREFIXES = [
+  'docs/embedding/',
+  '.git/',
+  '.github/',
+  'node_modules/',
+  'vendor/bundle/',
+  'vendor/cache/',
+  'tmp/',
+  'log/',
+  'pg_data/',
+  'public/packs/',
+  'public/packs-test/',
+  'wabosign/',
+  '.claude/',
+  'coverage/'
+].freeze
+
+BINARY_EXT = Set.new(%w[
+  .png .jpg .jpeg .gif .ico .svg .pdf .zip .tgz .gz .bz2 .xz
+  .woff .woff2 .ttf .eot .otf
+  .pkcs12 .p12 .pem .crt .cer .key
+  .db .sqlite .sqlite3 .so .dylib .dll .exe .onnx
+]).freeze
+
+# File renames the upstream rebrand commit applied. The two logo partials
+# were given a *semantic* name (_brand_logo, not _wabosign_logo) so we do
+# NOT rename them in the sweep — git's rename detection during merge will
+# carry upstream content edits into the fork's _brand_logo.html.erb.
+FILE_RENAMES = {
+  'lib/docuseal.rb' => 'lib/wabosign.rb'
+}.freeze
+
+# Tokens that must survive the sweep. Sentinel-protected so the
+# substitutions below cannot touch them. Sentinels use plain ASCII; the
+# surrounding spaces and digits make a collision with real content
+# vanishingly unlikely.
+PRESERVE = {
+  # SDK custom-element identifiers (hyphenated — match anywhere they
+  # appear: bare, inside <tags> with attributes, HTML-encoded as
+  # &lt;docuseal-form, or quoted as 'docuseal-form')
+  'docuseal-form'                           => ' SENTINEL00 ',
+  'docuseal-builder'                        => ' SENTINEL01 ',
+  # npm packages
+  '@docuseal/react'                         => ' SENTINEL02 ',
+  '@docuseal/vue'                           => ' SENTINEL03 ',
+  '@docuseal/angular'                       => ' SENTINEL04 ',
+  '@docuseal/embed'                         => ' SENTINEL05 ',
+  # Upstream binary release URLs (org + repo path)
+  'docusealco/fields-detection'             => ' SENTINEL06 ',
+  'docusealco/pdfium-binaries'              => ' SENTINEL07 ',
+  'docusealco/turbo'                        => ' SENTINEL08 ',
+  # Ruby constants holding the AGPL §7(b) attribution
+  'Wabosign::UPSTREAM_NAME'                 => ' SENTINEL09 ',
+  'Wabosign::UPSTREAM_URL'                  => ' SENTINEL0A ',
+  # AGPL attribution idioms — preserve the literal "DocuSeal" credit
+  # wherever the fork describes itself as derived from upstream.
+  'fork of DocuSeal'                        => ' SENTINEL0B ',
+  'forked from DocuSeal'                    => ' SENTINEL0C ',
+  'based on DocuSeal'                       => ' SENTINEL0D ',
+  'derived from DocuSeal'                   => ' SENTINEL0E ',
+  # JS calculator copyright header
+  'DocuSeal LLC'                            => ' SENTINEL0F ',
+  'DocuSeal, LLC'                           => ' SENTINEL10 ',
+  # i18n key (not value) for AGPL credit
+  'based_on:'                               => ' SENTINEL11 '
+}.freeze
+
+RULES = [
+  [/\bDocuseal\b/,                'Wabosign'],
+  [/\bDocuSeal\b/,                PRODUCT_NAME],
+  ['docuseal_aatl',               AATL_CERT],
+  ['docuseal_dev',                "#{LC}_dev"],
+  ['docuseal_test',               "#{LC}_test"],
+  ['docuseal_production',         "#{LC}_production"],
+  ['docuseal.env',                "#{LC}.env"],
+  ['ghcr.io/docusealco/docuseal', "ghcr.io/wabolabs/#{LC}"],
+  ['docusealco/docuseal',         "wabolabs/#{LC}"],
+  ['/home/docuseal',              "/home/#{LC}"],
+  ['docuseal:docuseal',           "#{LC}:#{LC}"],
+  [/\bdocuseal_/,                 "#{LC}_"],
+  [/\bdocuseal\b/,                LC]
+].freeze
+
+def deny_listed?(rel)
+  return true if DENY_PATHS.include?(rel)
+  DENY_PREFIXES.any? { |p| rel.start_with?(p) }
+end
+
+def likely_binary?(path)
+  return true if BINARY_EXT.include?(File.extname(path).downcase)
+  head = File.binread(path, 1024)
+  head.include?("\x00")
+rescue StandardError
+  false
+end
+
+def rewrite(text)
+  PRESERVE.each { |t, s| text = text.gsub(t, s) }
+  RULES.each   { |pat, repl| text = text.gsub(pat, repl) }
+  PRESERVE.each { |t, s| text = text.gsub(s, t) }
+  text
+end
+
+renamed = []
+FILE_RENAMES.each do |from, to|
+  from_path = File.join(ROOT, from)
+  to_path   = File.join(ROOT, to)
+  next unless File.exist?(from_path)
+  next if File.exist?(to_path)
+
+  FileUtils.mkdir_p(File.dirname(to_path))
+  FileUtils.mv(from_path, to_path)
+  renamed << "#{from} -> #{to}"
+end
+
+changed = []
+skipped_encoding = []
+
+Find.find(ROOT) do |path|
+  rel = path.sub(%r{\A#{Regexp.escape(ROOT)}/}, '')
+  if File.directory?(path)
+    Find.prune if rel != '' && deny_listed?("#{rel}/")
+    next
+  end
+
+  next if deny_listed?(rel)
+  next if likely_binary?(path)
+
+  begin
+    original = File.read(path, encoding: 'UTF-8')
+  rescue Encoding::InvalidByteSequenceError, ArgumentError
+    skipped_encoding << rel
+    next
+  end
+
+  begin
+    updated = rewrite(original)
+  rescue ArgumentError, Encoding::InvalidByteSequenceError
+    skipped_encoding << rel
+    next
+  end
+  next if updated == original
+
+  File.write(path, updated)
+  changed << rel
+end
+
+puts "rebrand-sync: renamed #{renamed.size} file(s), rewrote #{changed.size} file(s)"
+renamed.each  { |r| puts "  renamed: #{r}" }
+changed.each  { |f| puts "  rewrote: #{f}" }
+skipped_encoding.each { |f| warn "  skipped (encoding): #{f}" }

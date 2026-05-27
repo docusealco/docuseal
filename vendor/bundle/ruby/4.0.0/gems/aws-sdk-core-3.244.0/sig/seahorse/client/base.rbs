@@ -1,0 +1,25 @@
+module Seahorse
+  module Client
+    class Base
+      include HandlerBuilder
+
+      def self.new: (?untyped options) -> instance
+      def self.add_plugin: (untyped plugin) -> untyped
+      def self.remove_plugin: (untyped plugin) -> untyped
+      def self.clear_plugins: () -> untyped
+      def self.set_plugins: (Array[untyped] plugins) -> untyped
+      def self.plugins: () -> Array[untyped]
+      def self.api: () -> untyped
+      def self.set_api: (untyped api) -> untyped
+      def self.define: (?untyped options) -> untyped
+
+      attr_reader config: untyped
+
+      attr_reader handlers: untyped
+
+      def build_request: (_ToS operation_name, ?untyped params) -> untyped
+
+      def operation_names: () -> Array[Symbol]
+    end
+  end
+end

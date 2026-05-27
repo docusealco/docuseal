@@ -1,0 +1,2057 @@
+--- 
+:ga: 
+  :units: 
+    :durationUnit: 
+      :hm: "h:mm"
+      :hms: "h:mm:ss"
+      :ms: "m:ss"
+    :unitLength: 
+      :long: 
+        :acceleration-g-force: 
+          :few: "{0} g-fhórsa"
+          :many: "{0} g-fhórsa"
+          :one: "{0} g-fhórsa"
+          :other: "{0} g-fhórsa"
+          :two: "{0} g-fhórsa"
+        :angle-arc-minute: 
+          :few: "{0} nóiméad stua"
+          :many: "{0} nóiméad stua"
+          :one: "{0} nóiméad stua"
+          :other: "{0} nóiméad stua"
+          :two: "{0} nóiméad stua"
+        :angle-arc-second: 
+          :few: "{0} shoicind stua"
+          :many: "{0} soicind stua"
+          :one: "{0} soicind stua"
+          :other: "{0} soicind stua"
+          :two: "{0} shoicind stua"
+        :angle-degree: 
+          :few: "{0} chéim"
+          :many: "{0} gcéim"
+          :one: "{0} chéim"
+          :other: "{0} céim"
+          :two: "{0} chéim"
+        :angle-radian: 
+          :few: "{0} raidian"
+          :many: "{0} raidian"
+          :one: "{0} raidian"
+          :other: "{0} raidian"
+          :two: "{0} raidian"
+        :angle-revolution: 
+          :few: "{0} imrothlú"
+          :many: "{0} n-imrothlú"
+          :one: "{0} imrothlú"
+          :other: "{0} imrothlú"
+          :two: "{0} imrothlú"
+        :area-acre: 
+          :few: "{0} acra"
+          :many: "{0} n-acra"
+          :one: "{0} acra"
+          :other: "{0} acra"
+          :two: "{0} acra"
+        :area-hectare: 
+          :few: "{0} heicteár"
+          :many: "{0} heicteár"
+          :one: "{0} heicteár"
+          :other: "{0} heicteár"
+          :two: "{0} heicteár"
+        :area-square-centimeter: 
+          :few: "{0} cheintiméadar chearnacha"
+          :many: "{0} gceintiméadar chearnacha"
+          :one: "{0} cheintiméadar cearnach"
+          :other: "{0} ceintiméadar cearnach"
+          :two: "{0} cheintiméadar chearnacha"
+        :area-square-foot: 
+          :few: "{0} throigh chearnacha"
+          :many: "{0} dtroigh chearnacha"
+          :one: "{0} troigh chearnach"
+          :other: "{0} troigh chearnach"
+          :two: "{0} throigh chearnacha"
+        :area-square-inch: 
+          :few: "{0} orlach chearnacha"
+          :many: "{0} orlach chearnacha"
+          :one: "{0} orlach cearnach"
+          :other: "{0} orlach cearnach"
+          :two: "{0} orlach chearnacha"
+        :area-square-kilometer: 
+          :few: "{0} chiliméadar chearnacha"
+          :many: "{0} gciliméadar chearnacha"
+          :one: "{0} chiliméadar cearnach"
+          :other: "{0} ciliméadar cearnach"
+          :two: "{0} chiliméadar chearnacha"
+        :area-square-meter: 
+          :few: "{0} mhéadar chearnacha"
+          :many: "{0} méadar chearnacha"
+          :one: "{0} mhéadar cearnach"
+          :other: "{0} méadar cearnach"
+          :two: "{0} mhéadar chearnacha"
+        :area-square-mile: 
+          :few: "{0} mhíle chearnacha"
+          :many: "{0} míle chearnacha"
+          :one: "{0} mhíle cearnach"
+          :other: "{0} míle cearnach"
+          :two: "{0} mhíle chearnacha"
+        :area-square-yard: 
+          :few: "{0} shlat chearnacha"
+          :many: "{0} slat chearnacha"
+          :one: "{0} slat chearnach"
+          :other: "{0} slat chearnach"
+          :two: "{0} shlat chearnacha"
+        :concentr-karat: 
+          :few: "{0} charat"
+          :many: "{0} gcarat óir"
+          :one: "{0} charat óir"
+          :other: "{0} carat óir"
+          :two: "{0} charat óir"
+        :concentr-milligram-ofglucose-per-deciliter: 
+          :few: "{0} mhilleagram sa deicilítear"
+          :many: "{0} milleagram sa deicilítear"
+          :one: "{0} mhilleagram sa deicilítear"
+          :other: "{0} milleagram sa deicilítear"
+          :two: "{0} mhilleagram sa deicilítear"
+        :concentr-millimole-per-liter: 
+          :few: "{0} mhilleamól sa lítear"
+          :many: "{0} milleamól sa lítear"
+          :one: "{0} mhilleamól sa lítear"
+          :other: "{0} milleamól sa lítear"
+          :two: "{0} mhilleamól sa lítear"
+        :concentr-percent: 
+          :few: "{0}%"
+          :many: "{0}%"
+          :one: "{0} faoin gcéad"
+          :other: "{0} faoin gcéad"
+          :two: "{0}%"
+        :concentr-permille: 
+          :few: "{0}‰"
+          :many: "{0}‰"
+          :one: "{0} faoin míle"
+          :other: "{0} faoin míle"
+          :two: "{0}‰"
+        :concentr-permillion: 
+          :few: "{0} chuid sa mhilliún"
+          :many: "{0} gcuid sa mhilliún"
+          :one: "{0} chuid sa mhilliún"
+          :other: "{0} cuid sa mhilliún"
+          :two: "{0} chuid sa mhilliún"
+        :concentr-permyriad: 
+          :few: "{0}‱"
+          :many: "{0}‱"
+          :one: "{0} faoin deich míle"
+          :other: "{0}‱"
+          :two: "{0}‱"
+        :consumption-liter-per-100-kilometer: 
+          :few: "{0} lítear sa 100 ciliméadar"
+          :many: "{0} lítear sa 100 ciliméadar"
+          :one: "{0} lítear sa 100 ciliméadar"
+          :other: "{0} lítear sa 100 ciliméadar"
+          :two: "{0} lítear sa 100 ciliméadar"
+        :consumption-liter-per-kilometer: 
+          :few: "{0} lítear sa chiliméadar"
+          :many: "{0} lítear sa chiliméadar"
+          :one: "{0} lítear sa chiliméadar"
+          :other: "{0} lítear sa chiliméadar"
+          :two: "{0} lítear sa chiliméadar"
+        :consumption-mile-per-gallon: 
+          :few: "{0} mhíle an galún"
+          :many: "{0} míle an galún"
+          :one: "{0} mhíle an galún"
+          :other: "{0} míle an galún"
+          :two: "{0} mhíle an galún"
+        :consumption-mile-per-gallon-imperial: 
+          :few: "{0} mhíle sa ghalún impiriúil"
+          :many: "{0} míle sa ghalún impiriúil"
+          :one: "{0} mhíle sa ghalún impiriúil"
+          :other: "{0} míle sa ghalún impiriúil"
+          :two: "{0} mhíle sa ghalún impiriúil"
+        :digital-gigabit: 
+          :few: "{0} ghigighiotán"
+          :many: "{0} ngigighiotán"
+          :one: "{0} ghigighiotán"
+          :other: "{0} gigighiotán"
+          :two: "{0} ghigighiotán"
+        :digital-gigabyte: 
+          :few: "{0} ghigibheart"
+          :many: "{0} ngigibheart"
+          :one: "{0} ghigibheart"
+          :other: "{0} gigibheart"
+          :two: "{0} ghigibheart"
+        :digital-kilobit: 
+          :few: "{0} chilighiotán"
+          :many: "{0} gcilighiotán"
+          :one: "{0} chilighiotán"
+          :other: "{0} cilighiotán"
+          :two: "{0} chilighiotán"
+        :digital-kilobyte: 
+          :few: "{0} chilibheart"
+          :many: "{0} gcilibheart"
+          :one: "{0} chilibheart"
+          :other: "{0} cilibheart"
+          :two: "{0} chilibheart"
+        :digital-megabit: 
+          :few: "{0} mheigighiotán"
+          :many: "{0} meigighiotán"
+          :one: "{0} mheigighiotán"
+          :other: "{0} meigighiotán"
+          :two: "{0} mheigighiotán"
+        :digital-megabyte: 
+          :few: "{0} mheigibheart"
+          :many: "{0} meigibheart"
+          :one: "{0} mheigibheart"
+          :other: "{0} meigibheart"
+          :two: "{0} mheigibheart"
+        :digital-petabyte: 
+          :few: "{0} PB"
+          :many: "{0} PB"
+          :one: "{0} peitibheart"
+          :other: "{0} petabytes"
+          :two: "{0} PB"
+        :digital-terabit: 
+          :few: "{0} theirighiotán"
+          :many: "{0} dteirighiotán"
+          :one: "{0} teirighiotán"
+          :other: "{0} teirighiotán"
+          :two: "{0} theirighiotán"
+        :digital-terabyte: 
+          :few: "{0} theiribheart"
+          :many: "{0} dteiribheart"
+          :one: "{0} teiribheart"
+          :other: "{0} teiribheart"
+          :two: "{0} theiribheart"
+        :duration-century: 
+          :few: "{0} chéad bliain"
+          :many: "{0} gcéad bliain"
+          :one: "céad bliain"
+          :other: "{0} céad bliain"
+          :two: "{0} chéad bliain"
+        :duration-decade: 
+          :few: "{0} dec"
+          :many: "{0} dec"
+          :one: "{0} deich mbliana"
+          :other: "{0} deich mbliana"
+          :two: "{0} dec"
+        :duration-month: 
+          :few: "{0} mhí"
+          :many: "{0} mí"
+          :one: "{0} mhí"
+          :other: "{0} mí"
+          :two: "{0} mhí"
+        :duration-nanosecond: 
+          :few: "{0} nanashoicind"
+          :many: "{0} nanashoicind"
+          :one: "{0} nanashoicind"
+          :other: "{0} nanashoicind"
+          :two: "{0} nanashoicind"
+        :duration-night: 
+          :few: "{0} oíche"
+          :many: "{0} n-oíche"
+          :one: "{0} oíche amháin"
+          :other: "{0} oíche"
+          :two: "{0} oíche"
+        :duration-quarter: 
+          :few: "{0} cna"
+          :many: "{0} cna"
+          :one: "{0} ceathrú"
+          :other: "{0} ceathrúna"
+          :two: "{0} cna"
+        :duration-second: 
+          :few: "{0} shoic"
+          :many: "{0} soic"
+          :one: "{0} soic"
+          :other: "{0} soic"
+          :two: "{0} shoic"
+        :duration-year: 
+          :few: "{0} bl"
+          :many: "{0} mbl"
+          :one: "{0} bhliain"
+          :other: "{0} bl"
+          :two: "{0} bhl"
+        :electric-ampere: 
+          :few: "{0} aimpéar"
+          :many: "{0} n-aimpéar"
+          :one: "{0} aimpéar"
+          :other: "{0} aimpéar"
+          :two: "{0} aimpéar"
+        :electric-milliampere: 
+          :few: "{0} mhiollaimpéar"
+          :many: "{0} miollaimpéar"
+          :one: "{0} mhiollaimpéar"
+          :other: "{0} miollaimpéar"
+          :two: "{0} mhiollaimpéar"
+        :electric-ohm: 
+          :few: "{0} óm"
+          :many: "{0} n-óm"
+          :one: "{0} óm"
+          :other: "{0} óm"
+          :two: "{0} óm"
+        :electric-volt: 
+          :few: "{0} volta"
+          :many: "{0} volta"
+          :one: "{0} volta"
+          :other: "{0} volta"
+          :two: "{0} volta"
+        :energy-british-thermal-unit: 
+          :few: "{0} Btu"
+          :many: "{0} Btu"
+          :one: "{0} theas-aonad Briotanach"
+          :other: "{0} aonad teirmeach Briotanach"
+          :two: "{0} Btu"
+        :energy-calorie: 
+          :few: "{0} chalra"
+          :many: "{0} gcalra"
+          :one: "{0} chalra"
+          :other: "{0} calra"
+          :two: "{0} chalra"
+        :energy-electronvolt: 
+          :few: "{0} eV"
+          :many: "{0} eV"
+          :one: "{0} leictreavolta"
+          :other: "{0} leictreonvolta"
+          :two: "{0} eV"
+        :energy-foodcalorie: 
+          :few: "{0} Chalra"
+          :many: "{0} gCalra"
+          :one: "{0} Chalra"
+          :other: "{0} Calra"
+          :two: "{0} Chalra"
+        :energy-joule: 
+          :few: "{0} ghiúl"
+          :many: "{0} ngiúl"
+          :one: "{0} ghiúl"
+          :other: "{0} giúl"
+          :two: "{0} ghiúl"
+        :energy-kilocalorie: 
+          :few: "{0} chileacalra"
+          :many: "{0} gcileacalra"
+          :one: "{0} chileacalra"
+          :other: "{0} cileacalra"
+          :two: "{0} chileacalra"
+        :energy-kilojoule: 
+          :few: "{0} chiligiúl"
+          :many: "{0} gciligiúl"
+          :one: "{0} chiligiúl"
+          :other: "{0} ciligiúl"
+          :two: "{0} chiligiúl"
+        :energy-kilowatt-hour: 
+          :few: "{0} chileavatuair"
+          :many: "{0} gcileavatuair"
+          :one: "{0} chileavatuair"
+          :other: "{0} cileavatuair"
+          :two: "{0} chileavatuair"
+        :force-kilowatt-hour-per-100-kilometer: 
+          :few: "{0} kWh/100km"
+          :many: "{0} kWh/100km"
+          :one: "cileavatuair in aghaidh 100 ciliméadar"
+          :other: "{0} cileavatuair in aghaidh 100 ciliméadar"
+          :two: "{0} cileavatuair in aghaidh 100 cilliméadar"
+        :force-newton: 
+          :few: "{0} N"
+          :many: "{0} N"
+          :one: "{0} niútan"
+          :other: "{0} niútan"
+          :two: "{0} N"
+        :force-pound-force: 
+          :few: "{0} lbf"
+          :many: "{0} lbf"
+          :one: "{0} punt fórsa"
+          :other: "{0} lbf"
+          :two: "{0} lbf"
+        :frequency-gigahertz: 
+          :few: "{0} ghigiheirts"
+          :many: "{0} ngigiheirts"
+          :one: "{0} ghigiheirts"
+          :other: "{0} gigiheirts"
+          :two: "{0} ghigiheirts"
+        :frequency-hertz: 
+          :few: "{0} heirts"
+          :many: "{0} heirts"
+          :one: "{0} heirts"
+          :other: "{0} heirts"
+          :two: "{0} heirts"
+        :frequency-kilohertz: 
+          :few: "{0} chiliheirts"
+          :many: "{0} gciliheirts"
+          :one: "{0} chiliheirts"
+          :other: "{0} ciliheirts"
+          :two: "{0} chiliheirts"
+        :frequency-megahertz: 
+          :few: "{0} mheigiheirts"
+          :many: "{0} meigiheirts"
+          :one: "{0} mheigiheirts"
+          :other: "{0} meigiheirts"
+          :two: "{0} mheigiheirts"
+        :graphics-em: 
+          :few: "{0} eim"
+          :many: "{0} n-eim"
+          :one: "{0} eim"
+          :other: "{0} eim"
+          :two: "{0} eim"
+        :graphics-megapixel: 
+          :few: "{0} MP"
+          :many: "{0} MP"
+          :one: "{0} mheigiphicteilín"
+          :other: "{0} meigiphicteilín"
+          :two: "{0} MP"
+        :length-astronomical-unit: 
+          :few: "{0} AR"
+          :many: "{0} AR"
+          :one: "{0} aonad réalteolaíoch"
+          :other: "{0} AR"
+          :two: "{0} aonad réalteolaíoch"
+        :length-centimeter: 
+          :few: "{0} cheintiméadar"
+          :many: "{0} gceintiméadar"
+          :one: "{0} cheintiméadar"
+          :other: "{0} ceintiméadar"
+          :two: "{0} cheintiméadar"
+        :length-decimeter: 
+          :few: "{0} dheiciméadar"
+          :many: "{0} ndeiciméadar"
+          :one: "{0} deiciméadar"
+          :other: "{0} deiciméadar"
+          :two: "{0} dheiciméadar"
+        :length-earth-radius: 
+          :few: "{0} gha an domhain"
+          :many: "{0} nga an domhain"
+          :one: "{0} gha an domhain"
+          :other: "{0} ga an domhain"
+          :two: "{0} gha an domhain"
+        :length-foot: 
+          :few: "{0} thr."
+          :many: "{0} dtr."
+          :one: "{0} troigh"
+          :other: "{0} tr."
+          :two: "{0} thr."
+        :length-inch: 
+          :few: "{0} orlach"
+          :many: "{0} or."
+          :one: "{0} orlach"
+          :other: "{0} orlach"
+          :two: "{0} orlach"
+        :length-kilometer: 
+          :few: "{0} chiliméadar"
+          :many: "{0} gciliméadar"
+          :one: "{0} chiliméadar"
+          :other: "{0} ciliméadar"
+          :two: "{0} chiliméadar"
+        :length-light-year: 
+          :few: "{0} sbh"
+          :many: "{0} sbh"
+          :one: "{0} solasbhliain"
+          :other: "{0} sbh"
+          :two: "{0} sbh"
+        :length-meter: 
+          :few: "{0} mhéadar"
+          :many: "{0} méadar"
+          :one: "{0} mhéadar"
+          :other: "{0} méadar"
+          :two: "{0} mhéadar"
+        :length-micrometer: 
+          :few: "{0} mhicriméadar"
+          :many: "{0} micriméadar"
+          :one: "{0} mhicriméadar"
+          :other: "{0} micriméadar"
+          :two: "{0} mhicriméadar"
+        :length-mile: 
+          :few: "{0} mhíle"
+          :many: "{0} míle"
+          :one: "{0} mhíle"
+          :other: "{0} míle"
+          :two: "{0} mhíle"
+        :length-mile-scandinavian: 
+          :few: "{0} mhíle Lochlannacha"
+          :many: "{0} míle Lochlannacha"
+          :one: "{0} mhíle Lochlannach"
+          :other: "{0} míle Lochlannach"
+          :two: "{0} mhíle Lochlannacha"
+        :length-millimeter: 
+          :few: "{0} mhilliméadar"
+          :many: "{0} milliméadar"
+          :one: "{0} mhilliméadar"
+          :other: "{0} milliméadar"
+          :two: "{0} mhilliméadar"
+        :length-nanometer: 
+          :few: "{0} nanaiméadar"
+          :many: "{0} nanaiméadar"
+          :one: "{0} nanaiméadar"
+          :other: "{0} nanaiméadar"
+          :two: "{0} nanaiméadar"
+        :length-nautical-mile: 
+          :few: "{0} muirmh."
+          :many: "{0} muirmh."
+          :one: "{0} mhuirmhíle"
+          :other: "{0} muirmh."
+          :two: "{0} muirmh."
+        :length-parsec: 
+          :few: "{0} pharsoic"
+          :many: "{0} bparsoic"
+          :one: "{0} pharsoic"
+          :other: "{0} parsoic"
+          :two: "{0} pharsoic"
+        :length-picometer: 
+          :few: "{0} phiciméadar"
+          :many: "{0} bpiciméadar"
+          :one: "{0} phiciméadar"
+          :other: "{0} piciméadar"
+          :two: "{0} phiciméadar"
+        :length-solar-radius: 
+          :few: "{0} ghriangha"
+          :many: "{0} R☉"
+          :one: "{0} ghriangha"
+          :other: "{0} griangha"
+          :two: "{0} R☉"
+        :length-yard: 
+          :few: "{0} shlat"
+          :many: "{0} slat"
+          :one: "{0} slat"
+          :other: "{0} slat"
+          :two: "{0} shlat"
+        :light-candela: 
+          :few: "{0} chaindéile"
+          :many: "{0} gcaindéile"
+          :one: "{0} chaindéile"
+          :other: "{0} caindéile"
+          :two: "{0} chaindéile"
+        :light-lumen: 
+          :few: "{0} lúman"
+          :many: "{0} lúman"
+          :one: "{0} lúman"
+          :other: "{0} lúman"
+          :two: "{0} lúman"
+        :light-lux: 
+          :few: "{0} lucsa"
+          :many: "{0} lucsa"
+          :one: "{0} lucsa"
+          :other: "{0} lucsa"
+          :two: "{0} lucsa"
+        :light-solar-luminosity: 
+          :few: "{0} L☉"
+          :many: "{0} L☉"
+          :one: "{0} ghrianlonrachas"
+          :other: "{0} grianlonrachas"
+          :two: "{0} ghrianlonrachas"
+        :mass-carat: 
+          :few: "{0} charat"
+          :many: "{0} gcarat"
+          :one: "{0} charat"
+          :other: "{0} carat"
+          :two: "{0} charat"
+        :mass-dalton: 
+          :few: "{0} dhaltún"
+          :many: "{0} ndaltún"
+          :one: "{0} daltún"
+          :other: "{0} daltún"
+          :two: "{0} dhaltún"
+        :mass-earth-mass: 
+          :few: "{0} mhais an Domhain"
+          :many: "{0} mais an Domhain"
+          :one: "mais an Domhain"
+          :other: "{0} mais an Domhain"
+          :two: "{0} mhais an Domhain"
+        :mass-grain: 
+          :few: "{0} ghráinne"
+          :many: "{0} ngráinne"
+          :one: "{0} ghráinne"
+          :other: "{0} gráinne"
+          :two: "{0} ghráinne"
+        :mass-gram: 
+          :few: "{0} ghram"
+          :many: "{0} ngram"
+          :one: "{0} ghram"
+          :other: "{0} gram"
+          :two: "{0} ghram"
+        :mass-kilogram: 
+          :few: "{0} chileagram"
+          :many: "{0} gcileagram"
+          :one: "{0} chileagram"
+          :other: "{0} cileagram"
+          :two: "{0} chileagram"
+        :mass-microgram: 
+          :few: "{0} mhicreagram"
+          :many: "{0} micreagram"
+          :one: "{0} mhicreagram"
+          :other: "{0} micreagram"
+          :two: "{0} mhicreagram"
+        :mass-milligram: 
+          :few: "{0} mhilleagram"
+          :many: "{0} milleagram"
+          :one: "{0} mhilleagram"
+          :other: "{0} milleagram"
+          :two: "{0} mhilleagram"
+        :mass-ounce-troy: 
+          :few: "{0} unsa troí"
+          :many: "{0} n-unsa troí"
+          :one: "{0} unsa troí"
+          :other: "{0} unsa troí"
+          :two: "{0} unsa troí"
+        :mass-solar-mass: 
+          :few: "{0} mhais ghréine"
+          :many: "{0} mais ghréine"
+          :one: "{0} mhais ghréine"
+          :other: "{0} mais ghréine"
+          :two: "{0} mhais ghréine"
+        :mass-stone: 
+          :few: "{0} chloch"
+          :many: "{0} gcloch"
+          :one: "{0} chloch"
+          :other: "{0} cloch"
+          :two: "{0} chloch"
+        :mass-ton: 
+          :few: "{0} thonna ghearra"
+          :many: "{0} dtonna ghearra"
+          :one: "{0} tonna gearr"
+          :other: "{0} tonna gearr"
+          :two: "{0} thonna ghearra"
+        :mass-tonne: 
+          :few: "{0} thonna mhéadracha"
+          :many: "{0} dtonna mhéadracha"
+          :one: "{0} tonna méadrach"
+          :other: "{0} tonna méadrach"
+          :two: "{0} thonna mhéadracha"
+        :power-gigawatt: 
+          :few: "{0} ghigeavata"
+          :many: "{0} ngigeavata"
+          :one: "{0} ghigeavata"
+          :other: "{0} gigeavata"
+          :two: "{0} ghigeavata"
+        :power-horsepower: 
+          :few: "{0} each-chumhacht"
+          :many: "{0} n-each-chumhacht"
+          :one: "{0} each-chumhacht"
+          :other: "{0} each-chumhacht"
+          :two: "{0} each-chumhacht"
+        :power-kilowatt: 
+          :few: "{0} chileavata"
+          :many: "{0} gcileavata"
+          :one: "{0} chileavata"
+          :other: "{0} cileavata"
+          :two: "{0} chileavata"
+        :power-megawatt: 
+          :few: "{0} mheigeavata"
+          :many: "{0} meigeavata"
+          :one: "{0} mheigeavata"
+          :other: "{0} meigeavata"
+          :two: "{0} mheigeavata"
+        :power-milliwatt: 
+          :few: "{0} mhilleavata"
+          :many: "{0} milleavata"
+          :one: "{0} mhilleavata"
+          :other: "{0} milleavata"
+          :two: "{0} mhilleavata"
+        :power-watt: 
+          :few: "{0} vata"
+          :many: "{0} vata"
+          :one: "{0} vata"
+          :other: "{0} vata"
+          :two: "{0} vata"
+        :pressure-atmosphere: 
+          :few: "{0} atmaisféar"
+          :many: "{0} n-atmaisféar"
+          :one: "{0} atmaisféar"
+          :other: "{0} atmaisféar"
+          :two: "{0} atmaisféar"
+        :pressure-hectopascal: 
+          :few: "{0} heicteapascal"
+          :many: "{0} heicteapascal"
+          :one: "{0} heicteapascal"
+          :other: "{0} heicteapascal"
+          :two: "{0} heicteapascal"
+        :pressure-inch-ofhg: 
+          :few: "{0} orlach mearcair"
+          :many: "{0} n-orlach mearcair"
+          :one: "{0} orlach mearcair"
+          :other: "{0} orlach mearcair"
+          :two: "{0} orlach mearcair"
+        :pressure-kilopascal: 
+          :few: "{0} kPa"
+          :many: "{0} kPa"
+          :one: "{0} chileapascal"
+          :other: "{0} kPa"
+          :two: "{0} kPa"
+        :pressure-megapascal: 
+          :few: "{0} MPa"
+          :many: "{0} MPa"
+          :one: "{0} mheigeapascal"
+          :other: "{0} meigeapascal"
+          :two: "{0} MPa"
+        :pressure-millibar: 
+          :few: "{0} mhilleabar"
+          :many: "{0} milleabar"
+          :one: "{0} mhilleabar"
+          :other: "{0} milleabar"
+          :two: "{0} mhilleabar"
+        :pressure-millimeter-ofhg: 
+          :few: "{0} mhilliméadar mearcair"
+          :many: "{0} milliméadar mearcair"
+          :one: "{0} mhilliméadar mearcair"
+          :other: "{0} milliméadar mearcair"
+          :two: "{0} mhilliméadar mearcair"
+        :pressure-pascal: 
+          :few: "{0} phascal"
+          :many: "{0} bpascal"
+          :one: "{0} phascal"
+          :other: "{0} pascal"
+          :two: "{0} phascal"
+        :pressure-pound-force-per-square-inch: 
+          :few: "{0} phunt san orlach cearnach"
+          :many: "{0} bpunt san orlach cearnach"
+          :one: "{0} phunt san orlach cearnach"
+          :other: "{0} punt san orlach cearnach"
+          :two: "{0} phunt san orlach cearnach"
+        :speed-knot: 
+          :few: "{0} mrml/u"
+          :many: "{0} mrml/u"
+          :one: "{0} mhuirmh/u"
+          :other: "{0} mrml/u"
+          :two: "{0} muirmh/u"
+        :temperature-celsius: 
+          :few: "{0} chéim Celsius"
+          :many: "{0} gcéim Celsius"
+          :one: "{0} chéim Celsius"
+          :other: "{0} céim Celsius"
+          :two: "{0} chéim Celsius"
+        :temperature-fahrenheit: 
+          :few: "{0} chéim Fahrenheit"
+          :many: "{0} gcéim Fahrenheit"
+          :one: "{0} chéim Fahrenheit"
+          :other: "{0} céim Fahrenheit"
+          :two: "{0} chéim Fahrenheit"
+        :temperature-kelvin: 
+          :few: "{0} chéim cheilvin"
+          :many: "{0} gcéim cheilvin"
+          :one: "{0} chéim cheilvin"
+          :other: "{0} céim cheilvin"
+          :two: "{0} chéim cheilvin"
+        :torque-newton-meter: 
+          :few: "{0} N⋅m"
+          :many: "{0} N⋅m"
+          :one: "{0} mhéadar niútain"
+          :other: "{0} méadar niútain"
+          :two: "{0} mhéadar niútain"
+        :torque-pound-force-foot: 
+          :few: "{0} lbf⋅ft"
+          :many: "{0} lbf⋅ft"
+          :one: "{0} punt-troigh"
+          :other: "{0} punt-troigh"
+          :two: "{0} lbf⋅ft"
+        :volume-acre-foot: 
+          :few: "{0} acra-troigh"
+          :many: "{0} n-acra-troigh"
+          :one: "{0} acra-troigh"
+          :other: "{0} acra-troigh"
+          :two: "{0} acra-troigh"
+        :volume-barrel: 
+          :few: "{0} bbl"
+          :many: "{0} bbl"
+          :one: "{0} bairille"
+          :other: "{0} bbl"
+          :two: "{0} bbl"
+        :volume-bushel: 
+          :few: "{0} bhuiséal"
+          :many: "{0} mbuiséal"
+          :one: "{0} bhuiséal"
+          :other: "{0} buiséal"
+          :two: "{0} bhuiséal"
+        :volume-centiliter: 
+          :few: "{0} cheintilítear"
+          :many: "{0} gceintilítear"
+          :one: "{0} cheintilítear"
+          :other: "{0} ceintilítear"
+          :two: "{0} cheintilítear"
+        :volume-cubic-centimeter: 
+          :few: "{0} cheintiméadar chiúbacha"
+          :many: "{0} gceintiméadar chiúbacha"
+          :one: "{0} cheintiméadar ciúbach"
+          :other: "{0} ceintiméadar ciúbach"
+          :two: "{0} cheintiméadar chiúbacha"
+        :volume-cubic-foot: 
+          :few: "{0} throigh chiúbacha"
+          :many: "{0} dtroigh chiúbacha"
+          :one: "{0} troigh chiúbach"
+          :other: "{0} troigh chiúbach"
+          :two: "{0} throigh chiúbacha"
+        :volume-cubic-inch: 
+          :few: "{0} orlach chiúbacha"
+          :many: "{0} n-orlach chiúbacha"
+          :one: "{0} orlach ciúbach"
+          :other: "{0} orlach ciúbach"
+          :two: "{0} orlach chiúbacha"
+        :volume-cubic-kilometer: 
+          :few: "{0} chiliméadar chiúbacha"
+          :many: "{0} gciliméadar chiúbacha"
+          :one: "{0} chiliméadar ciúbach"
+          :other: "{0} ciliméadar ciúbach"
+          :two: "{0} chiliméadar chiúbacha"
+        :volume-cubic-meter: 
+          :few: "{0} mhéadar chiúbacha"
+          :many: "{0} méadar chiúbacha"
+          :one: "{0} mhéadar ciúbach"
+          :other: "{0} méadar ciúbach"
+          :two: "{0} mhéadar chiúbacha"
+        :volume-cubic-mile: 
+          :few: "{0} mhíle chiúbacha"
+          :many: "{0} míle chiúbacha"
+          :one: "{0} mhíle ciúbach"
+          :other: "{0} míle ciúbach"
+          :two: "{0} mhíle chiúbacha"
+        :volume-cubic-yard: 
+          :few: "{0} shlat chiúbacha"
+          :many: "{0} slat chiúbacha"
+          :one: "{0} slat chiúbach"
+          :other: "{0} slat chiúbach"
+          :two: "{0} shlat chiúbacha"
+        :volume-cup: 
+          :few: "{0} c"
+          :many: "{0} c"
+          :one: "{0} chupán"
+          :other: "{0} cupán"
+          :two: "{0} c"
+        :volume-cup-metric: 
+          :few: "{0} chupán mhéadracha"
+          :many: "{0} gcupán mhéadracha"
+          :one: "{0} chupán méadrach"
+          :other: "{0} cupán méadrach"
+          :two: "{0} chupán mhéadracha"
+        :volume-deciliter: 
+          :few: "{0} dheicilítear"
+          :many: "{0} ndeicilítear"
+          :one: "{0} deicilítear"
+          :other: "{0} deicilítear"
+          :two: "{0} dheicilítear"
+        :volume-dessert-spoon: 
+          :few: "{0} spúnóg mhilseoige"
+          :many: "{0} spúnóg mhilseoige"
+          :one: "{0} spúnóg mhilseoige"
+          :other: "{0} spúnóg mhilseoige"
+          :two: "{0} spúnóg mhilseoige"
+        :volume-dessert-spoon-imperial: 
+          :few: "{0} spúnóg mhilseoige impiriúla"
+          :many: "{0} spúnóg mhilseoige impiriúla"
+          :one: "{0} spúnóg mhilseoige impiriúil"
+          :other: "{0} spúnóg mhilseoige impiriúol"
+          :two: "{0} spúnóg mhilseoige impiriúla"
+        :volume-dram: 
+          :few: "{0} dhram leachtacha"
+          :many: "{0} ndram leachtacha"
+          :one: "{0} dram leachtach"
+          :other: "{0} dram leachtach"
+          :two: "{0} dhram leachtacha"
+        :volume-fluid-ounce: 
+          :few: "{0} unsa leachtacha"
+          :many: "{0} n-unsa leachtacha"
+          :one: "{0} unsa leachtach"
+          :other: "{0} unsa leachtach"
+          :two: "{0} unsa leachtacha"
+        :volume-fluid-ounce-imperial: 
+          :few: "{0} fl oz Imp."
+          :many: "{0} fl oz Imp."
+          :one: "{0} unsa leachtach impiriúil"
+          :other: "{0} fl oz Imp."
+          :two: "{0} unsa leachtacha impiriúla"
+        :volume-gallon: 
+          :few: "{0} ghalún"
+          :many: "{0} ngalún"
+          :one: "{0} ghalún"
+          :other: "{0} galún"
+          :two: "{0} ghalún"
+        :volume-gallon-imperial: 
+          :few: "{0} ghalún impiriúla"
+          :many: "{0} ngalún impiriúla"
+          :one: "{0} ghalún impiriúil"
+          :other: "{0} galún impiriúil"
+          :two: "{0} ghalún impiriúla"
+        :volume-hectoliter: 
+          :few: "{0} heictilítear"
+          :many: "{0} heictilítear"
+          :one: "{0} heictilítear"
+          :other: "{0} heictilítear"
+          :two: "{0} heictilítear"
+        :volume-liter: 
+          :few: "{0} lítear"
+          :many: "{0} lítear"
+          :one: "{0} lítear"
+          :other: "{0} lítear"
+          :two: "{0} lítear"
+        :volume-megaliter: 
+          :few: "{0} mheigilítear"
+          :many: "{0} meigilítear"
+          :one: "{0} mheigilítear"
+          :other: "{0} meigilítear"
+          :two: "{0} mheigilítear"
+        :volume-milliliter: 
+          :few: "{0} mhillilítear"
+          :many: "{0} millilítear"
+          :one: "{0} mhillilítear"
+          :other: "{0} millilítear"
+          :two: "{0} mhillilítear"
+        :volume-pint: 
+          :few: "{0} pt"
+          :many: "{0} pt"
+          :one: "{0} phionta"
+          :other: "{0} pionta"
+          :two: "{0} pt"
+        :volume-pint-metric: 
+          :few: "{0} phionta mhéadracha"
+          :many: "{0} bpionta mhéadracha"
+          :one: "{0} phionta méadrach"
+          :other: "{0} pionta méadrach"
+          :two: "{0} phionta mhéadracha"
+        :volume-teaspoon: 
+          :few: "{0} thaespúnóg"
+          :many: "{0} dtaespúnóg"
+          :one: "{0} taespúnóg"
+          :other: "{0} taespúnóg"
+          :two: "{0} thaespúnóg"
+      :narrow: 
+        :acceleration-g-force: 
+          :few: "{0}G"
+          :many: "{0}G"
+          :one: "{0}G"
+          :other: "{0}G"
+          :two: "{0}G"
+        :angle-radian: 
+          :few: "{0}raid"
+          :many: "{0}raid"
+          :one: "{0}raid"
+          :other: "{0}raid"
+          :two: "{0}raid"
+        :concentr-karat: 
+          :few: "{0}kt"
+          :many: "{0}kt"
+          :one: "{0}kt"
+          :other: "{0}kt"
+          :two: "{0}kt"
+        :consumption-liter-per-100-kilometer: 
+          :few: "{0}l/100km"
+          :many: "{0}l/100km"
+          :one: "{0}l/100km"
+          :other: "{0}l/100km"
+          :two: "{0}l/100km"
+        :consumption-liter-per-kilometer: 
+          :few: "{0}l/km"
+          :many: "{0}l/km"
+          :one: "{0}l/km"
+          :other: "{0}l/km"
+          :two: "{0}l/km"
+        :consumption-mile-per-gallon: 
+          :few: "{0}míle/g"
+          :many: "{0}míle/g"
+          :one: "{0}míle/g"
+          :other: "{0}míle/g"
+          :two: "{0}míle/g"
+        :consumption-mile-per-gallon-imperial: 
+          :few: "{0}m/gRA"
+          :many: "{0}m/gRA"
+          :one: "{0}m/gRA"
+          :other: "{0}m/gRA"
+          :two: "{0}m/gRA"
+        :digital-bit: 
+          :few: "{0} ghiot."
+          :many: "{0} ngiot."
+          :one: "{0} ghiot."
+          :other: "{0} giot."
+          :two: "{0} ghiot."
+        :digital-byte: 
+          :few: "{0}B"
+          :many: "{0}B"
+          :one: "{0}B"
+          :other: "{0}B"
+          :two: "{0}B"
+        :digital-gigabit: 
+          :few: "{0}Gb"
+          :many: "{0}Gb"
+          :one: "{0}Gb"
+          :other: "{0}Gb"
+          :two: "{0}Gb"
+        :digital-gigabyte: 
+          :few: "{0}GB"
+          :many: "{0}GB"
+          :one: "{0}GB"
+          :other: "{0}GB"
+          :two: "{0}GB"
+        :digital-kilobit: 
+          :few: "{0}kb"
+          :many: "{0}kb"
+          :one: "{0}kb"
+          :other: "{0}kb"
+          :two: "{0}kb"
+        :digital-kilobyte: 
+          :few: "{0}kB"
+          :many: "{0}kB"
+          :one: "{0}kB"
+          :other: "{0}kB"
+          :two: "{0}kB"
+        :digital-megabit: 
+          :few: "{0}Mb"
+          :many: "{0}Mb"
+          :one: "{0}Mb"
+          :other: "{0}Mb"
+          :two: "{0}Mb"
+        :digital-megabyte: 
+          :few: "{0}MB"
+          :many: "{0}MB"
+          :one: "{0}MB"
+          :other: "{0}MB"
+          :two: "{0}MB"
+        :digital-terabit: 
+          :few: "{0}Tb"
+          :many: "{0}Tb"
+          :one: "{0}Tb"
+          :other: "{0}Tb"
+          :two: "{0}Tb"
+        :digital-terabyte: 
+          :few: "{0}TB"
+          :many: "{0}TB"
+          :one: "{0}TB"
+          :other: "{0}TB"
+          :two: "{0}TB"
+        :duration-microsecond: 
+          :few: "{0}μs"
+          :many: "{0}μs"
+          :one: "{0}μs"
+          :other: "{0}μs"
+          :two: "{0}μs"
+        :duration-minute: 
+          :few: "{0} nóim"
+          :many: "{0}n"
+          :one: "{0} nóim"
+          :other: "{0} nóim"
+          :two: "{0} nóim"
+        :duration-month: 
+          :few: "{0}m"
+          :many: "{0}m"
+          :one: "{0}m"
+          :other: "{0} m"
+          :two: "{0}m"
+        :duration-nanosecond: 
+          :few: "{0}ns"
+          :many: "{0}ns"
+          :one: "{0}ns"
+          :other: "{0}ns"
+          :two: "{0}ns"
+        :duration-night: 
+          :few: "{0}oí"
+          :many: "{0}oí"
+          :one: "{0}oí"
+          :other: "{0}oí"
+          :two: "{0}oí"
+        :duration-quarter: 
+          :few: "{0} cna"
+          :many: "{0} cna"
+          :one: "{0} ctú"
+          :other: "{0} ctú"
+          :two: "{0} cna"
+        :electric-ampere: 
+          :few: "{0}A"
+          :many: "{0}A"
+          :one: "{0}A"
+          :other: "{0}A"
+          :two: "{0}A"
+        :electric-milliampere: 
+          :few: "{0}mA"
+          :many: "{0}mA"
+          :one: "{0}mA"
+          :other: "{0}mA"
+          :two: "{0}mA"
+        :electric-ohm: 
+          :few: "{0}Ω"
+          :many: "{0}Ω"
+          :one: "{0}Ω"
+          :other: "{0}Ω"
+          :two: "{0}Ω"
+        :electric-volt: 
+          :few: "{0}V"
+          :many: "{0}V"
+          :one: "{0}V"
+          :other: "{0}V"
+          :two: "{0}V"
+        :energy-calorie: 
+          :few: "{0}cal"
+          :many: "{0}cal"
+          :one: "{0}cal"
+          :other: "{0}cal"
+          :two: "{0}cal"
+        :energy-foodcalorie: 
+          :few: "{0}Cal"
+          :many: "{0}Cal"
+          :one: "{0}Cal"
+          :other: "{0}Cal"
+          :two: "{0}Cal"
+        :energy-joule: 
+          :few: "{0}J"
+          :many: "{0}J"
+          :one: "{0}J"
+          :other: "{0}J"
+          :two: "{0}J"
+        :energy-kilocalorie: 
+          :few: "{0}kcal"
+          :many: "{0}kcal"
+          :one: "{0}kcal"
+          :other: "{0}kcal"
+          :two: "{0}kcal"
+        :energy-kilojoule: 
+          :few: "{0}kJ"
+          :many: "{0}kJ"
+          :one: "{0}kJ"
+          :other: "{0}kJ"
+          :two: "{0}kJ"
+        :energy-kilowatt-hour: 
+          :few: "{0}kWh"
+          :many: "{0}kWh"
+          :one: "{0}kWh"
+          :other: "{0}kWh"
+          :two: "{0}kWh"
+        :frequency-gigahertz: 
+          :few: "{0}GHz"
+          :many: "{0}GHz"
+          :one: "{0}GHz"
+          :other: "{0}GHz"
+          :two: "{0}GHz"
+        :frequency-hertz: 
+          :few: "{0}Hz"
+          :many: "{0}Hz"
+          :one: "{0}Hz"
+          :other: "{0}Hz"
+          :two: "{0}Hz"
+        :frequency-kilohertz: 
+          :few: "{0}kHz"
+          :many: "{0}kHz"
+          :one: "{0}kHz"
+          :other: "{0}kHz"
+          :two: "{0}kHz"
+        :frequency-megahertz: 
+          :few: "{0}MHz"
+          :many: "{0}MHz"
+          :one: "{0}MHz"
+          :other: "{0}MHz"
+          :two: "{0}MHz"
+        :graphics-em: 
+          :few: "{0} eim"
+          :many: "{0} n-eim"
+          :one: "{0} eim"
+          :other: "{0} eim"
+          :two: "{0} eim"
+        :length-centimeter: 
+          :few: "{0}cm"
+          :many: "{0}cm"
+          :one: "{0}cm"
+          :other: "{0}cm"
+          :two: "{0}cm"
+        :length-decimeter: 
+          :few: "{0}dm"
+          :many: "{0}dm"
+          :one: "{0}dm"
+          :other: "{0}dm"
+          :two: "{0}dm"
+        :length-inch: 
+          :few: "{0} or."
+          :many: "{0} n-or."
+          :one: "{0} or."
+          :other: "{0} or."
+          :two: "{0} or."
+        :length-kilometer: 
+          :few: "{0}km"
+          :many: "{0}km"
+          :one: "{0}km"
+          :other: "{0}km"
+          :two: "{0}km"
+        :length-light-year: 
+          :few: "{0} sbh"
+          :many: "{0} sbh"
+          :one: "{0}sbh"
+          :other: "{0} sbh"
+          :two: "{0} sbh"
+        :length-meter: 
+          :few: "{0}m"
+          :many: "{0}m"
+          :one: "{0}m"
+          :other: "{0}m"
+          :two: "{0}m"
+        :length-micrometer: 
+          :few: "{0}μm"
+          :many: "{0}μm"
+          :one: "{0}μm"
+          :other: "{0}μm"
+          :two: "{0}μm"
+        :length-mile: 
+          :few: "{0} mhíle"
+          :many: "{0} míle"
+          :one: "{0} mhíle"
+          :other: "{0} míle"
+          :two: "{0} mhíle"
+        :length-mile-scandinavian: 
+          :few: "{0} m lch"
+          :many: "{0} m lch"
+          :one: "{0} m lch"
+          :other: "{0} m lch"
+          :two: "{0} mh lch"
+        :length-millimeter: 
+          :few: "{0}mm"
+          :many: "{0}mm"
+          :one: "{0}mm"
+          :other: "{0}mm"
+          :two: "{0}mm"
+        :length-nanometer: 
+          :few: "{0}nm"
+          :many: "{0}nm"
+          :one: "{0}nm"
+          :other: "{0}nm"
+          :two: "{0}nm"
+        :length-nautical-mile: 
+          :few: "{0} mhuirmh."
+          :many: "{0} muirmh."
+          :one: "{0} mhuirmh."
+          :other: "{0} muirmh."
+          :two: "{0} mhuirmh."
+        :length-picometer: 
+          :few: "{0}pm"
+          :many: "{0}pm"
+          :one: "{0}pm"
+          :other: "{0}pm"
+          :two: "{0}pm"
+        :length-yard: 
+          :few: "{0}sl"
+          :many: "{0}sl"
+          :one: "{0}sl"
+          :other: "{0}sl"
+          :two: "{0}sl"
+        :light-lux: 
+          :few: "{0}lx"
+          :many: "{0}lx"
+          :one: "{0}lx"
+          :other: "{0}lx"
+          :two: "{0}lx"
+        :mass-carat: 
+          :few: "{0}CD"
+          :many: "{0}CD"
+          :one: "{0}CD"
+          :other: "{0}CD"
+          :two: "{0}CD"
+        :mass-grain: 
+          :few: "{0} ghráinne"
+          :many: "{0} ngráinne"
+          :one: "{0} ghráinne"
+          :other: "{0} gráinne"
+          :two: "{0} ghráinne"
+        :mass-gram: 
+          :few: "{0}g"
+          :many: "{0}g"
+          :one: "{0}g"
+          :other: "{0}g"
+          :two: "{0}g"
+        :mass-kilogram: 
+          :few: "{0}kg"
+          :many: "{0}kg"
+          :one: "{0}kg"
+          :other: "{0}kg"
+          :two: "{0}kg"
+        :mass-microgram: 
+          :few: "{0}μg"
+          :many: "{0}μg"
+          :one: "{0}μg"
+          :other: "{0}μg"
+          :two: "{0}μg"
+        :mass-milligram: 
+          :few: "{0}mg"
+          :many: "{0}mg"
+          :one: "{0}mg"
+          :other: "{0}mg"
+          :two: "{0}mg"
+        :mass-ounce-troy: 
+          :few: "{0} unsa t"
+          :many: "{0} unsa t"
+          :one: "{0} unsa t"
+          :other: "{0} unsa t"
+          :two: "{0} unsa t"
+        :mass-tonne: 
+          :few: "{0}t"
+          :many: "{0}t"
+          :one: "{0}t"
+          :other: "{0}t"
+          :two: "{0}t"
+        :power-gigawatt: 
+          :few: "{0}GW"
+          :many: "{0}GW"
+          :one: "{0}GW"
+          :other: "{0}GW"
+          :two: "{0}GW"
+        :power-horsepower: 
+          :few: "{0}ec"
+          :many: "{0}ec"
+          :one: "{0}ec"
+          :other: "{0}ec"
+          :two: "{0}ec"
+        :power-kilowatt: 
+          :few: "{0}kW"
+          :many: "{0}kW"
+          :one: "{0}kW"
+          :other: "{0}kW"
+          :two: "{0}kW"
+        :power-megawatt: 
+          :few: "{0}MW"
+          :many: "{0}MW"
+          :one: "{0}MW"
+          :other: "{0}MW"
+          :two: "{0}MW"
+        :power-milliwatt: 
+          :few: "{0}mW"
+          :many: "{0}mW"
+          :one: "{0}mW"
+          :other: "{0}mW"
+          :two: "{0}mW"
+        :power-watt: 
+          :few: "{0}W"
+          :many: "{0}W"
+          :one: "{0}W"
+          :other: "{0}W"
+          :two: "{0}W"
+        :pressure-hectopascal: 
+          :few: "{0}hPa"
+          :many: "{0}hPa"
+          :one: "{0}hPa"
+          :other: "{0}hPa"
+          :two: "{0}hPa"
+        :pressure-inch-ofhg: 
+          :few: "{0}″ Hg"
+          :many: "{0}″ Hg"
+          :one: "{0}″ Hg"
+          :other: "{0}″ Hg"
+          :two: "{0}″ Hg"
+        :pressure-millibar: 
+          :few: "{0}mb"
+          :many: "{0}mb"
+          :one: "{0}mb"
+          :other: "{0}mb"
+          :two: "{0}mb"
+        :pressure-millimeter-ofhg: 
+          :few: "{0}mmHg"
+          :many: "{0}mmHg"
+          :one: "{0}mmHg"
+          :other: "{0}mmHg"
+          :two: "{0}mmHg"
+        :pressure-pound-force-per-square-inch: 
+          :few: "{0}psoc"
+          :many: "{0}psoc"
+          :one: "{0}psoc"
+          :other: "{0}psoc"
+          :two: "{0}psoc"
+        :temperature-kelvin: 
+          :few: "{0}K"
+          :many: "{0}K"
+          :one: "{0}K"
+          :other: "{0}K"
+          :two: "{0}K"
+        :volume-cubic-centimeter: 
+          :few: "{0}cm³"
+          :many: "{0}cm³"
+          :one: "{0}cm³"
+          :other: "{0}cm³"
+          :two: "{0}cm³"
+        :volume-cubic-foot: 
+          :few: "{0}tr³"
+          :many: "{0}tr³"
+          :one: "{0}tr³"
+          :other: "{0}tr³"
+          :two: "{0}tr³"
+        :volume-cubic-inch: 
+          :few: "{0}or³"
+          :many: "{0}or³"
+          :one: "{0}or³"
+          :other: "{0}or³"
+          :two: "{0}or³"
+        :volume-cubic-kilometer: 
+          :few: "{0}km³"
+          :many: "{0}km³"
+          :one: "{0}km³"
+          :other: "{0}km³"
+          :two: "{0}km³"
+        :volume-cubic-meter: 
+          :few: "{0}m³"
+          :many: "{0}m³"
+          :one: "{0}m³"
+          :other: "{0}m³"
+          :two: "{0}m³"
+        :volume-cubic-yard: 
+          :few: "{0}sl³"
+          :many: "{0}sl³"
+          :one: "{0}sl³"
+          :other: "{0}sl³"
+          :two: "{0}sl³"
+        :volume-deciliter: 
+          :few: "{0}dl"
+          :many: "{0}dl"
+          :one: "{0}dl"
+          :other: "{0}dl"
+          :two: "{0}dl"
+        :volume-fluid-ounce: 
+          :few: "{0} unsa l."
+          :many: "{0} unsa l."
+          :one: "{0} unsa l."
+          :other: "{0} unsa l."
+          :two: "{0} unsa l."
+        :volume-gallon-imperial: 
+          :few: "{0} ghalIm"
+          :many: "{0} ngalIm"
+          :one: "{0}ghalIm"
+          :other: "{0}galIm"
+          :two: "{0}ghalIm"
+        :volume-liter: 
+          :few: "{0}l"
+          :many: "{0}l"
+          :one: "{0}l"
+          :other: "{0}l"
+          :two: "{0}l"
+      :short: 
+        :acceleration-g-force: 
+          :other: "{0} G"
+        :acceleration-meter-per-square-second: 
+          :other: "{0} m/s²"
+        :angle-arc-minute: 
+          :other: "{0}′"
+        :angle-arc-second: 
+          :other: "{0}″"
+        :angle-degree: 
+          :other: "{0}°"
+        :angle-radian: 
+          :few: "{0} raid"
+          :many: "{0} raid"
+          :one: "{0} raid"
+          :other: "{0} raid"
+          :two: "{0} raid"
+        :angle-revolution: 
+          :few: "{0} imr"
+          :many: "{0} imr"
+          :one: "{0} imr"
+          :other: "{0} imr"
+          :two: "{0} imr"
+        :area-acre: 
+          :other: "{0} ac"
+        :area-dunam: 
+          :few: "{0} dhunam"
+          :many: "{0} ndunam"
+          :one: "{0} dunam"
+          :other: "{0} dunam"
+          :two: "{0} dhunam"
+        :area-hectare: 
+          :other: "{0} ha"
+        :area-square-centimeter: 
+          :other: "{0} cm²"
+        :area-square-foot: 
+          :few: "{0} tr²"
+          :many: "{0} tr²"
+          :one: "{0} tr²"
+          :other: "{0} tr²"
+          :two: "{0} tr²"
+        :area-square-inch: 
+          :few: "{0} or²"
+          :many: "{0} or²"
+          :one: "{0} or²"
+          :other: "{0} or²"
+          :two: "{0} or²"
+        :area-square-kilometer: 
+          :other: "{0} km²"
+        :area-square-meter: 
+          :other: "{0} m²"
+        :area-square-mile: 
+          :few: "{0} mhíle²"
+          :many: "{0} míle²"
+          :one: "{0} mhíle²"
+          :other: "{0} míle²"
+          :two: "{0} mhíle²"
+        :area-square-yard: 
+          :few: "{0} sl²"
+          :many: "{0} sl²"
+          :one: "{0} sl²"
+          :other: "{0} sl²"
+          :two: "{0} sl²"
+        :concentr-item: 
+          :other: "{0} item"
+        :concentr-karat: 
+          :other: "{0} kt"
+        :concentr-milligram-ofglucose-per-deciliter: 
+          :other: "{0} mg/dL"
+        :concentr-millimole-per-liter: 
+          :other: "{0} mmol/L"
+        :concentr-mole: 
+          :few: "{0} mhól"
+          :many: "{0} mól"
+          :one: "{0} mhól"
+          :other: "{0} mól"
+          :two: "{0} mhól"
+        :concentr-percent: 
+          :other: "{0}%"
+        :concentr-permille: 
+          :other: "{0}‰"
+        :concentr-permillion: 
+          :few: "{0}/milliún"
+          :many: "{0}/milliún"
+          :one: "{0}/milliún"
+          :other: "{0}/milliún"
+          :two: "{0}/milliún"
+        :concentr-permyriad: 
+          :other: "{0}‱"
+        :concentr-portion-per-1e9: 
+          :other: "{0} ppb"
+        :consumption-liter-per-100-kilometer: 
+          :few: "{0} l/100km"
+          :many: "{0} l/100km"
+          :one: "{0} l/100km"
+          :other: "{0} l/100km"
+          :two: "{0} l/100km"
+        :consumption-liter-per-kilometer: 
+          :few: "{0} l/km"
+          :many: "{0} l/km"
+          :one: "{0} l/km"
+          :other: "{0} l/km"
+          :two: "{0} l/km"
+        :consumption-mile-per-gallon: 
+          :few: "{0} mhíle/gal"
+          :many: "{0} míle/gal"
+          :one: "{0} mhíle/gal"
+          :other: "{0} míle/gal"
+          :two: "{0} mhíle/gal"
+        :consumption-mile-per-gallon-imperial: 
+          :few: "{0} msg imp"
+          :many: "{0} msg imp"
+          :one: "{0} msg imp"
+          :other: "{0} msg imp"
+          :two: "{0} msg imp"
+        :digital-bit: 
+          :few: "{0} ghiotán"
+          :many: "{0} ngiotán"
+          :one: "{0} ghiotán"
+          :other: "{0} giotán"
+          :two: "{0} ghiotán"
+        :digital-byte: 
+          :few: "{0} bheart"
+          :many: "{0} mbeart"
+          :one: "{0} bheart"
+          :other: "{0} beart"
+          :two: "{0} bheart"
+        :digital-gigabit: 
+          :other: "{0} Gb"
+        :digital-gigabyte: 
+          :other: "{0} GB"
+        :digital-kilobit: 
+          :other: "{0} kb"
+        :digital-kilobyte: 
+          :other: "{0} kB"
+        :digital-megabit: 
+          :other: "{0} Mb"
+        :digital-megabyte: 
+          :other: "{0} MB"
+        :digital-petabyte: 
+          :other: "{0} PB"
+        :digital-terabit: 
+          :other: "{0} Tb"
+        :digital-terabyte: 
+          :other: "{0} TB"
+        :duration-century: 
+          :other: "{0} c"
+        :duration-day: 
+          :few: "{0} lá"
+          :many: "{0} lá"
+          :one: "{0} lá"
+          :other: "{0} lá"
+          :two: "{0} lá"
+        :duration-decade: 
+          :other: "{0} dec"
+        :duration-hour: 
+          :few: "{0} u"
+          :many: "{0} u"
+          :one: "{0} u"
+          :other: "{0} u"
+          :two: "{0} u"
+        :duration-microsecond: 
+          :other: "{0} μs"
+        :duration-millisecond: 
+          :other: "{0} ms"
+        :duration-minute: 
+          :few: "{0} nóim"
+          :many: "{0} nóim"
+          :one: "{0} nóim"
+          :other: "{0} nóim"
+          :two: "{0} nóim"
+        :duration-month: 
+          :few: "{0} mí"
+          :many: "{0} mí"
+          :one: "{0} mí"
+          :other: "{0} m"
+          :two: "{0} mí"
+        :duration-nanosecond: 
+          :other: "{0} ns"
+        :duration-night: 
+          :few: "{0} oíche"
+          :many: "{0} n-oíche"
+          :one: "{0} oíche"
+          :other: "{0} oíche"
+          :two: "{0} oíche"
+        :duration-quarter: 
+          :few: "{0} cna"
+          :many: "{0} cna"
+          :one: "{0} ctú"
+          :other: "{0} cna"
+          :two: "{0} cna"
+        :duration-second: 
+          :few: "{0} soic"
+          :many: "{0} soic"
+          :one: "{0} soic"
+          :other: "{0} soic"
+          :two: "{0} soic"
+        :duration-week: 
+          :few: "{0} scht"
+          :many: "{0} scht"
+          :one: "{0} scht"
+          :other: "{0} scht"
+          :two: "{0} scht"
+        :duration-year: 
+          :few: "{0} bl"
+          :many: "{0} bl"
+          :one: "{0} bl"
+          :other: "{0} bl"
+          :two: "{0} bl"
+        :electric-ampere: 
+          :other: "{0} A"
+        :electric-milliampere: 
+          :other: "{0} mA"
+        :electric-ohm: 
+          :other: "{0} Ω"
+        :electric-volt: 
+          :other: "{0} V"
+        :energy-british-thermal-unit: 
+          :other: "{0} Btu"
+        :energy-calorie: 
+          :other: "{0} cal"
+        :energy-electronvolt: 
+          :other: "{0} eV"
+        :energy-foodcalorie: 
+          :few: "{0} Cal"
+          :many: "{0} Cal"
+          :one: "{0} Cal"
+          :other: "{0} Cal"
+          :two: "{0} Cal"
+        :energy-joule: 
+          :other: "{0} J"
+        :energy-kilocalorie: 
+          :other: "{0} kcal"
+        :energy-kilojoule: 
+          :other: "{0} kJ"
+        :energy-kilowatt-hour: 
+          :other: "{0} kWh"
+        :energy-therm-us: 
+          :few: "{0} theirm SAM"
+          :many: "{0} dteirm SAM"
+          :one: "{0} teirm SAM"
+          :other: "{0} teirm SAM"
+          :two: "{0} theirm SAM"
+        :force-kilowatt-hour-per-100-kilometer: 
+          :other: "{0} kWh/100km"
+        :force-newton: 
+          :other: "{0} N"
+        :force-pound-force: 
+          :other: "{0} lbf"
+        :frequency-gigahertz: 
+          :other: "{0} GHz"
+        :frequency-hertz: 
+          :other: "{0} Hz"
+        :frequency-kilohertz: 
+          :other: "{0} kHz"
+        :frequency-megahertz: 
+          :other: "{0} MHz"
+        :graphics-dot: 
+          :few: "{0} phonc"
+          :many: "{0} bponc"
+          :one: "{0} phonc"
+          :other: "{0} ponc"
+          :two: "{0} phonc"
+        :graphics-em: 
+          :few: "{0} eim"
+          :many: "{0} eim"
+          :one: "{0} eim"
+          :other: "{0} em"
+          :two: "{0} eim"
+        :graphics-megapixel: 
+          :other: "{0} MP"
+        :graphics-pixel: 
+          :other: "{0} px"
+        :graphics-pixel-per-centimeter: 
+          :other: "{0} ppcm"
+        :graphics-pixel-per-inch: 
+          :other: "{0} ppi"
+        :length-astronomical-unit: 
+          :few: "{0} AR"
+          :many: "{0} AR"
+          :one: "{0} AR"
+          :other: "{0} AR"
+          :two: "{0} AR"
+        :length-centimeter: 
+          :other: "{0} cm"
+        :length-decimeter: 
+          :other: "{0} dm"
+        :length-earth-radius: 
+          :other: "{0} R⊕"
+        :length-fathom: 
+          :other: "{0} fth"
+        :length-foot: 
+          :few: "{0} tr."
+          :many: "{0} tr."
+          :one: "{0} tr."
+          :other: "{0} tr."
+          :two: "{0} tr."
+        :length-furlong: 
+          :few: "{0} st"
+          :many: "{0} st"
+          :one: "{0} st"
+          :other: "{0} st"
+          :two: "{0} st"
+        :length-inch: 
+          :few: "{0} or."
+          :many: "{0} or."
+          :one: "{0} or."
+          :other: "{0} or."
+          :two: "{0} or."
+        :length-kilometer: 
+          :other: "{0} km"
+        :length-light-year: 
+          :few: "{0} sbh"
+          :many: "{0} sbh"
+          :one: "{0} sbh"
+          :other: "{0} sbh"
+          :two: "{0} sbh"
+        :length-meter: 
+          :other: "{0} m"
+        :length-micrometer: 
+          :other: "{0} μm"
+        :length-mile: 
+          :few: "{0} mhíle"
+          :many: "{0} míle"
+          :one: "{0} mhíle"
+          :other: "{0} mi"
+          :two: "{0} mhíle"
+        :length-mile-scandinavian: 
+          :few: "{0} mhíle Lch"
+          :many: "{0} míle Lch"
+          :one: "{0} míle Lch"
+          :other: "{0} míle Lch"
+          :two: "{0} mhíle Lch"
+        :length-millimeter: 
+          :other: "{0} mm"
+        :length-nanometer: 
+          :other: "{0} nm"
+        :length-nautical-mile: 
+          :few: "{0} muirmh."
+          :many: "{0} muirmh."
+          :one: "{0} muirmh."
+          :other: "{0} muirmh."
+          :two: "{0} muirmh."
+        :length-parsec: 
+          :other: "{0} pc"
+        :length-picometer: 
+          :other: "{0} pm"
+        :length-point: 
+          :other: "{0} pt"
+        :length-solar-radius: 
+          :other: "{0} R☉"
+        :length-yard: 
+          :few: "{0} shl."
+          :many: "{0} sl."
+          :one: "{0} sl."
+          :other: "{0} sl."
+          :two: "{0} shl."
+        :light-candela: 
+          :other: "{0} cd"
+        :light-lumen: 
+          :other: "{0} lm"
+        :light-lux: 
+          :other: "{0} lx"
+        :light-solar-luminosity: 
+          :other: "{0} L☉"
+        :mass-carat: 
+          :other: "{0} CD"
+        :mass-dalton: 
+          :other: "{0} Da"
+        :mass-earth-mass: 
+          :other: "{0} M⊕"
+        :mass-grain: 
+          :few: "{0} gráinne"
+          :many: "{0} gráinne"
+          :one: "{0} gráinne"
+          :other: "{0} gráinne"
+          :two: "{0} gráinne"
+        :mass-gram: 
+          :other: "{0} g"
+        :mass-kilogram: 
+          :other: "{0} kg"
+        :mass-microgram: 
+          :other: "{0} μg"
+        :mass-milligram: 
+          :other: "{0} mg"
+        :mass-ounce: 
+          :few: "{0} unsa"
+          :many: "{0} n-unsa"
+          :one: "{0} unsa"
+          :other: "{0} unsa"
+          :two: "{0} unsa"
+        :mass-ounce-troy: 
+          :few: "{0} unsa t"
+          :many: "{0} n-unsa t"
+          :one: "{0} unsa t"
+          :other: "{0} unsa t"
+          :two: "{0} unsa t"
+        :mass-pound: 
+          :few: "{0} phunt"
+          :many: "{0} bpunt"
+          :one: "{0} phunt"
+          :other: "{0} punt"
+          :two: "{0} phunt"
+        :mass-solar-mass: 
+          :other: "{0} M☉"
+        :mass-stone: 
+          :few: "{0} chl."
+          :many: "{0} gcl."
+          :one: "{0} chl."
+          :other: "{0} cl."
+          :two: "{0} chl."
+        :mass-ton: 
+          :few: "{0} t.g."
+          :many: "{0} t.g."
+          :one: "{0} t.g."
+          :other: "{0} t.g."
+          :two: "{0} t.g."
+        :mass-tonne: 
+          :other: "{0} t"
+        :power-gigawatt: 
+          :other: "{0} GW"
+        :power-horsepower: 
+          :few: "{0} ec"
+          :many: "{0} ec"
+          :one: "{0} ec"
+          :other: "{0} ec"
+          :two: "{0} ec"
+        :power-kilowatt: 
+          :other: "{0} kW"
+        :power-megawatt: 
+          :other: "{0} MW"
+        :power-milliwatt: 
+          :other: "{0} mW"
+        :power-watt: 
+          :other: "{0} W"
+        :pressure-atmosphere: 
+          :other: "{0} atm"
+        :pressure-bar: 
+          :few: "{0} bharra"
+          :many: "{0} mbarra"
+          :one: "{0} bharra"
+          :other: "{0} barra"
+          :two: "{0} bharra"
+        :pressure-hectopascal: 
+          :other: "{0} hPa"
+        :pressure-inch-ofhg: 
+          :few: "{0} or. Hg"
+          :many: "{0} n-or. Hg"
+          :one: "{0} or. Hg"
+          :other: "{0} or. Hg"
+          :two: "{0} or. Hg"
+        :pressure-kilopascal: 
+          :other: "{0} kPa"
+        :pressure-megapascal: 
+          :other: "{0} MPa"
+        :pressure-millibar: 
+          :other: "{0} mbar"
+        :pressure-millimeter-ofhg: 
+          :other: "{0} mm Hg"
+        :pressure-pascal: 
+          :other: "{0} Pa"
+        :pressure-pound-force-per-square-inch: 
+          :few: "{0} psoc"
+          :many: "{0} psoc"
+          :one: "{0} psoc"
+          :other: "{0} psoc"
+          :two: "{0} psoc"
+        :speed-beaufort: 
+          :other: "B {0}"
+        :speed-kilometer-per-hour: 
+          :few: "{0} km/u"
+          :many: "{0} km/u"
+          :one: "{0} km/u"
+          :other: "{0} km/u"
+          :two: "{0} km/u"
+        :speed-knot: 
+          :few: "{0} mrml/u"
+          :many: "{0} mrml/u"
+          :one: "{0} mrml/u"
+          :other: "{0} mrml/u"
+          :two: "{0} mrml/u"
+        :speed-light-speed: 
+          :other: "{0} light"
+        :speed-meter-per-second: 
+          :other: "{0} m/s"
+        :speed-mile-per-hour: 
+          :few: "{0} msu"
+          :many: "{0} msu"
+          :one: "{0} msu"
+          :other: "{0} msu"
+          :two: "{0} msu"
+        :temperature-celsius: 
+          :other: "{0}°C"
+        :temperature-fahrenheit: 
+          :other: "{0}°F"
+        :temperature-generic: 
+          :other: "{0}°"
+        :temperature-kelvin: 
+          :other: "{0} K"
+        :torque-newton-meter: 
+          :other: "{0} N⋅m"
+        :torque-pound-force-foot: 
+          :other: "{0} lbf⋅ft"
+        :volume-acre-foot: 
+          :few: "{0} ac tr"
+          :many: "{0} ac tr"
+          :one: "{0} ac tr"
+          :other: "{0} ac tr"
+          :two: "{0} ac tr"
+        :volume-barrel: 
+          :other: "{0} bbl"
+        :volume-bushel: 
+          :other: "{0} bu"
+        :volume-centiliter: 
+          :other: "{0} cL"
+        :volume-cubic-centimeter: 
+          :other: "{0} cm³"
+        :volume-cubic-foot: 
+          :few: "{0} tr³"
+          :many: "{0} tr³"
+          :one: "{0} tr³"
+          :other: "{0} tr³"
+          :two: "{0} tr³"
+        :volume-cubic-inch: 
+          :few: "{0} or³"
+          :many: "{0} or³"
+          :one: "{0} or³"
+          :other: "{0} or³"
+          :two: "{0} or³"
+        :volume-cubic-kilometer: 
+          :other: "{0} km³"
+        :volume-cubic-meter: 
+          :other: "{0} m³"
+        :volume-cubic-mile: 
+          :few: "{0} mhíle³"
+          :many: "{0} míle³"
+          :one: "{0} mhíle³"
+          :other: "{0} míle³"
+          :two: "{0} mhíle³"
+        :volume-cubic-yard: 
+          :few: "{0} sl³"
+          :many: "{0} sl³"
+          :one: "{0} sl³"
+          :other: "{0} sl³"
+          :two: "{0} sl³"
+        :volume-cup: 
+          :other: "{0} c"
+        :volume-cup-metric: 
+          :other: "{0} mc"
+        :volume-deciliter: 
+          :few: "{0} dl"
+          :many: "{0} dl"
+          :one: "{0} dl"
+          :other: "{0} dl"
+          :two: "{0} dl"
+        :volume-dessert-spoon: 
+          :few: "{0} spmhil"
+          :many: "{0} spmhil"
+          :one: "{0} spmhil"
+          :other: "{0} spmhil"
+          :two: "{0} spmhil"
+        :volume-dessert-spoon-imperial: 
+          :few: "{0} spmhil imp"
+          :many: "{0} spmhil imp"
+          :one: "{0} spmhil imp"
+          :other: "{0} spmhil imp"
+          :two: "{0} spmhil imp"
+        :volume-dram: 
+          :few: "{0} dr l."
+          :many: "{0} dr l."
+          :one: "{0} dr l."
+          :other: "{0} dr l."
+          :two: "{0} dr l."
+        :volume-drop: 
+          :few: "{0} bhraon"
+          :many: "{0} mbraon"
+          :one: "{0} bhraon"
+          :other: "{0} braon"
+          :two: "{0} bhraon"
+        :volume-fluid-ounce: 
+          :few: "{0} unsa l."
+          :many: "{0} n-unsa l."
+          :one: "{0} unsa l."
+          :other: "{0} unsa l."
+          :two: "{0} unsa l."
+        :volume-fluid-ounce-imperial: 
+          :other: "{0} fl oz Imp."
+        :volume-gallon: 
+          :few: "{0} ghal."
+          :many: "{0} ngal."
+          :one: "{0} ghal."
+          :other: "{0} gal."
+          :two: "{0} ghal."
+        :volume-gallon-imperial: 
+          :few: "{0} ghal. imp."
+          :many: "{0} ngal. imp."
+          :one: "{0} ghal. imp."
+          :other: "{0} gal. imp."
+          :two: "{0} ghal. imp."
+        :volume-hectoliter: 
+          :few: "{0} hl"
+          :many: "{0} hl"
+          :one: "{0} hl"
+          :other: "{0} hl"
+          :two: "{0} hl"
+        :volume-jigger: 
+          :few: "{0} mhiosúr"
+          :many: "{0} miosúr"
+          :one: "{0} mhiosúr"
+          :other: "{0} miosúr"
+          :two: "{0} mhiosúr"
+        :volume-liter: 
+          :other: "{0} l"
+        :volume-megaliter: 
+          :few: "{0} Ml"
+          :many: "{0} Ml"
+          :one: "{0} Ml"
+          :other: "{0} Ml"
+          :two: "{0} Ml"
+        :volume-milliliter: 
+          :few: "{0} ml"
+          :many: "{0} ml"
+          :one: "{0} ml"
+          :other: "{0} ml"
+          :two: "{0} ml"
+        :volume-pinch: 
+          :few: "{0} phinse"
+          :many: "{0} bpinse"
+          :one: "{0} phinse"
+          :other: "{0} pinse"
+          :two: "{0} phinse"
+        :volume-pint: 
+          :other: "{0} pt"
+        :volume-pint-metric: 
+          :other: "{0} mpt"
+        :volume-quart: 
+          :few: "{0} chárt"
+          :many: "{0} gcárt"
+          :one: "{0} chárt"
+          :other: "{0} cárt"
+          :two: "{0} chárt"
+        :volume-quart-imperial: 
+          :few: "{0} chárt impiriúla"
+          :many: "{0} gcárt impiriúla"
+          :one: "{0} chárt impiriúil"
+          :other: "{0} cárt impiriúil"
+          :two: "{0} chárt impiriúla"
+        :volume-tablespoon: 
+          :few: "{0} spbh"
+          :many: "{0} spbh"
+          :one: "{0} spbh"
+          :other: "{0} spbh"
+          :two: "{0} spbh"
+        :volume-teaspoon: 
+          :other: "{0} tsp"

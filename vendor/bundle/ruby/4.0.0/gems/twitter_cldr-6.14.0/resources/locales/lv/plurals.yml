@@ -1,0 +1,20 @@
+---
+:lv:
+  :cardinal:
+    :rule: 'lambda { |num, runtime| n = runtime.n(num); i = runtime.i(num); f = runtime.f(num);
+      t = runtime.t(num); v = runtime.v(num); w = runtime.w(num); e = runtime.e(num);
+      (((((n % 10 == 0) || ((((n % 100).floor == (n % 100)) && ((n % 100) >= 11) &&
+      ((n % 100) <= 19))))) || (((v == 2) && ((((f % 100).floor == (f % 100)) && ((f
+      % 100) >= 11) && ((f % 100) <= 19)))))) ? :zero : (((((((n % 10 == 1) && (n
+      % 100 != 11))) || (((((v == 2) && (f % 10 == 1))) && (f % 100 != 11))))) ||
+      (((v != 2) && (f % 10 == 1)))) ? :one : :other)) }'
+    :names:
+    - :zero
+    - :one
+    - :other
+  :ordinal:
+    :rule: lambda { |num, runtime| n = runtime.n(num); i = runtime.i(num); f = runtime.f(num);
+      t = runtime.t(num); v = runtime.v(num); w = runtime.w(num); e = runtime.e(num);
+      :other }
+    :names:
+    - :other

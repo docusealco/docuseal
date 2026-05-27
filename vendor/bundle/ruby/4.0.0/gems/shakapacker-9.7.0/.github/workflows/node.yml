@@ -1,0 +1,170 @@
+name: Node based checks
+
+on:
+  push:
+    branches:
+      - "main"
+  pull_request:
+    paths:
+      - "**.js"
+      - "**.ts"
+      - "package.json"
+      - "yarn.lock"
+      - "eslint.config.js"
+      - ".prettierrc"
+      - ".prettierignore"
+      - "knip.json"
+      - "tsconfig.json"
+      - "jest.config.js"
+      - ".github/workflows/node.yml"
+  workflow_dispatch:
+
+concurrency:
+  # Pushing new changes to a branch will cancel any in-progress CI runs
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: Linting
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn --frozen-lockfile --non-interactive --prefer-offline
+
+      - name: Node eslint
+        run: yarn lint
+
+      - name: Prettier format check
+        run: yarn prettier --check .
+
+      - name: Detect dead code
+        run: yarn knip
+
+      - name: Detect dead code in production
+        run: yarn knip:production
+
+  type-check:
+    name: TypeScript Type Checking
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn --frozen-lockfile --non-interactive --prefer-offline
+
+      - name: TypeScript type check
+        run: yarn type-check
+
+      # We only download and run Actionlint if there is any difference in GitHub Action workflows
+      # https://github.com/rhysd/actionlint/blob/main/docs/usage.md#on-github-actions
+      # Note: Only runs on pull_request events, not push events (where github.event.pull_request is null)
+      - name: Check GitHub Action changes
+        if: github.event_name == 'pull_request'
+        id: check-workflows
+        run: |
+          git fetch origin ${{ github.event.pull_request.base.sha }}
+          if git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep -q '^.github/workflows'; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            response=$(curl -sf https://api.github.com/repos/rhysd/actionlint/releases/latest)
+            if [ $? -eq 0 ]; then
+              actionlint_version=$(echo "$response" | jq -r .tag_name)
+              if [ -z "$actionlint_version" ]; then
+                echo "Failed to parse Actionlint version"
+                exit 1
+              fi
+              echo "actionlint_version=\"$actionlint_version\"" >> "$GITHUB_OUTPUT"
+            fi
+          fi
+      - name: Setup Actionlint
+        if: github.event_name == 'pull_request' && steps.check-workflows.outputs.changed == 'true'
+        uses: actions/cache@v4
+        id: cache-actionlint
+        with:
+          path: ./actionlint
+          key: ${{ runner.os }}-actionlint-${{ steps.check-workflows.outputs.actionlint_version }}
+      - name: Download Actionlint
+        if: github.event_name == 'pull_request' && steps.check-workflows.outputs.changed == 'true' && steps.cache-actionlint.outputs.cache-hit != 'true'
+        run: bash <(curl https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
+      - name: Lint GitHub Actions
+        if: github.event_name == 'pull_request' && steps.check-workflows.outputs.changed == 'true'
+        run: |
+          echo "::add-matcher::.github/actionlint-matcher.json"
+          SHELLCHECK_OPTS="-S warning" ./actionlint -color
+        shell: bash
+
+  type-check-dts-without-webpack:
+    name: Verify .d.ts files work without webpack
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+
+      - name: Create test directory and copy .d.ts files
+        run: |
+          mkdir -p /tmp/test-types
+          cp package/*.d.ts /tmp/test-types/
+          # types.ts is imported by index.d.ts; copy if it exists
+          cp package/types.ts /tmp/test-types/ 2>/dev/null || true
+
+      - name: Install TypeScript in test directory
+        run: |
+          cd /tmp/test-types
+          npm init -y
+          npm install typescript @types/node
+
+      - name: Verify hand-written .d.ts files type-check without webpack
+        run: |
+          cd /tmp/test-types
+          npx tsc --noEmit \
+            --skipLibCheck \
+            --moduleResolution node \
+            *.d.ts
+  test:
+    name: Testing
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: [20.x, 22.x]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Use Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn --frozen-lockfile --non-interactive --prefer-offline
+
+      - name: Build TypeScript
+        run: yarn build
+
+      - name: Jest Specs
+        run: yarn test

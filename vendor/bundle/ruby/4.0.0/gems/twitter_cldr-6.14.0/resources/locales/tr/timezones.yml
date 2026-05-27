@@ -1,0 +1,964 @@
+--- 
+:tr: 
+  :formats: 
+    :fallback_formats: 
+      :generic: "{1} ({0})"
+    :gmt_formats: 
+      :generic: "GMT{0}"
+    :gmt_zero_formats: 
+      :generic: GMT
+    :hour_formats: 
+      :generic: "+HH:mm;-HH:mm"
+    :region_formats: 
+      :daylight: "{0} Yaz Saati"
+      :generic: "{0} Saati"
+      :standard: "{0} Standart Saati"
+  :metazones: 
+    :Acre: 
+      :long: 
+        :daylight: "Acre Yaz Saati"
+        :generic: "Acre Saati"
+        :standard: "Acre Standart Saati"
+    :Afghanistan: 
+      :long: 
+        :standard: "Afganistan Saati"
+    :Africa_Central: 
+      :long: 
+        :standard: "Orta Afrika Saati"
+    :Africa_Eastern: 
+      :long: 
+        :standard: "Doğu Afrika Saati"
+    :Africa_Southern: 
+      :long: 
+        :standard: "Güney Afrika Standart Saati"
+    :Africa_Western: 
+      :long: 
+        :daylight: "Batı Afrika Yaz Saati"
+        :generic: "Batı Afrika Saati"
+        :standard: "Batı Afrika Standart Saati"
+    :Alaska: 
+      :long: 
+        :daylight: "Alaska Yaz Saati"
+        :generic: "Alaska Saati"
+        :standard: "Alaska Standart Saati"
+    :Almaty: 
+      :long: 
+        :daylight: "Almatı Yaz Saati"
+        :generic: "Almatı Saati"
+        :standard: "Almatı Standart Saati"
+    :Amazon: 
+      :long: 
+        :daylight: "Amazon Yaz Saati"
+        :generic: "Amazon Saati"
+        :standard: "Amazon Standart Saati"
+    :America_Central: 
+      :long: 
+        :daylight: "Kuzey Amerika Merkezi Yaz Saati"
+        :generic: "Kuzey Amerika Merkezi Saati"
+        :standard: "Kuzey Amerika Merkezi Standart Saati"
+    :America_Eastern: 
+      :long: 
+        :daylight: "Kuzey Amerika Doğu Yaz Saati"
+        :generic: "Kuzey Amerika Doğu Saati"
+        :standard: "Kuzey Amerika Doğu Standart Saati"
+    :America_Mountain: 
+      :long: 
+        :daylight: "Kuzey Amerika Dağ Yaz Saati"
+        :generic: "Kuzey Amerika Dağ Saati"
+        :standard: "Kuzey Amerika Dağ Standart Saati"
+    :America_Pacific: 
+      :long: 
+        :daylight: "Kuzey Amerika Pasifik Yaz Saati"
+        :generic: "Kuzey Amerika Pasifik Saati"
+        :standard: "Kuzey Amerika Pasifik Standart Saati"
+    :Anadyr: 
+      :long: 
+        :daylight: "Anadır Yaz Saati"
+        :generic: "Anadyr Saati"
+        :standard: "Anadır Standart Saati"
+    :Apia: 
+      :long: 
+        :daylight: "Apia Yaz Saati"
+        :generic: "Apia Saati"
+        :standard: "Apia Standart Saati"
+    :Aqtau: 
+      :long: 
+        :daylight: "Aktav Yaz Saati"
+        :generic: "Aktav Saati"
+        :standard: "Aktav Standart Saati"
+    :Aqtobe: 
+      :long: 
+        :daylight: "Aktöbe Yaz Saati"
+        :generic: "Aktöbe Saati"
+        :standard: "Aktöbe Standart Saati"
+    :Arabian: 
+      :long: 
+        :daylight: "Arabistan Yaz Saati"
+        :generic: "Arabistan Saati"
+        :standard: "Arabistan Standart Saati"
+    :Argentina: 
+      :long: 
+        :daylight: "Arjantin Yaz Saati"
+        :generic: "Arjantin Saati"
+        :standard: "Arjantin Standart Saati"
+    :Argentina_Western: 
+      :long: 
+        :daylight: "Batı Arjantin Yaz Saati"
+        :generic: "Batı Arjantin Saati"
+        :standard: "Batı Arjantin Standart Saati"
+    :Armenia: 
+      :long: 
+        :daylight: "Ermenistan Yaz Saati"
+        :generic: "Ermenistan Saati"
+        :standard: "Ermenistan Standart Saati"
+    :Atlantic: 
+      :long: 
+        :daylight: "Atlantik Yaz Saati"
+        :generic: "Atlantik Saati"
+        :standard: "Atlantik Standart Saati"
+    :Australia_Central: 
+      :long: 
+        :daylight: "Orta Avustralya Yaz Saati"
+        :generic: "Orta Avustralya Saati"
+        :standard: "Orta Avustralya Standart Saati"
+    :Australia_CentralWestern: 
+      :long: 
+        :daylight: "İç Batı Avustralya Yaz Saati"
+        :generic: "İç Batı Avustralya Saati"
+        :standard: "İç Batı Avustralya Standart Saati"
+    :Australia_Eastern: 
+      :long: 
+        :daylight: "Doğu Avustralya Yaz Saati"
+        :generic: "Doğu Avustralya Saati"
+        :standard: "Doğu Avustralya Standart Saati"
+    :Australia_Western: 
+      :long: 
+        :daylight: "Batı Avustralya Yaz Saati"
+        :generic: "Batı Avustralya Saati"
+        :standard: "Batı Avustralya Standart Saati"
+    :Azerbaijan: 
+      :long: 
+        :daylight: "Azerbaycan Yaz Saati"
+        :generic: "Azerbaycan Saati"
+        :standard: "Azerbaycan Standart Saati"
+    :Azores: 
+      :long: 
+        :daylight: "Azorlar Yaz Saati"
+        :generic: "Azorlar Saati"
+        :standard: "Azorlar Standart Saati"
+    :Bangladesh: 
+      :long: 
+        :daylight: "Bangladeş Yaz Saati"
+        :generic: "Bangladeş Saati"
+        :standard: "Bangladeş Standart Saati"
+    :Bhutan: 
+      :long: 
+        :standard: "Butan Saati"
+    :Bolivia: 
+      :long: 
+        :standard: "Bolivya Saati"
+    :Brasilia: 
+      :long: 
+        :daylight: "Brasilia Yaz Saati"
+        :generic: "Brasilia Saati"
+        :standard: "Brasilia Standart Saati"
+    :Brunei: 
+      :long: 
+        :standard: "Brunei Darü’s-Selam Saati"
+    :Cape_Verde: 
+      :long: 
+        :daylight: "Cape Verde Yaz Saati"
+        :generic: "Cape Verde Saati"
+        :standard: "Cape Verde Standart Saati"
+    :Casey: 
+      :long: 
+        :standard: "Casey Saati"
+    :Chamorro: 
+      :long: 
+        :standard: "Chamorro Saati"
+    :Chatham: 
+      :long: 
+        :daylight: "Chatham Yaz Saati"
+        :generic: "Chatham Saati"
+        :standard: "Chatham Standart Saati"
+    :Chile: 
+      :long: 
+        :daylight: "Şili Yaz Saati"
+        :generic: "Şili Saati"
+        :standard: "Şili Standart Saati"
+    :China: 
+      :long: 
+        :daylight: "Çin Yaz Saati"
+        :generic: "Çin Saati"
+        :standard: "Çin Standart Saati"
+    :Christmas: 
+      :long: 
+        :standard: "Christmas Adası Saati"
+    :Cocos: 
+      :long: 
+        :standard: "Cocos Adaları Saati"
+    :Colombia: 
+      :long: 
+        :daylight: "Kolombiya Yaz Saati"
+        :generic: "Kolombiya Saati"
+        :standard: "Kolombiya Standart Saati"
+    :Cook: 
+      :long: 
+        :daylight: "Cook Adaları Yarı Yaz Saati"
+        :generic: "Cook Adaları Saati"
+        :standard: "Cook Adaları Standart Saati"
+    :Cuba: 
+      :long: 
+        :daylight: "Küba Yaz Saati"
+        :generic: "Küba Saati"
+        :standard: "Küba Standart Saati"
+    :Davis: 
+      :long: 
+        :standard: "Davis Saati"
+    :DumontDUrville: 
+      :long: 
+        :standard: "Dumont-d’Urville Saati"
+    :East_Timor: 
+      :long: 
+        :standard: "Doğu Timor Saati"
+    :Easter: 
+      :long: 
+        :daylight: "Paskalya Adası Yaz Saati"
+        :generic: "Paskalya Adası Saati"
+        :standard: "Paskalya Adası Standart Saati"
+    :Ecuador: 
+      :long: 
+        :standard: "Ekvador Saati"
+    :Europe_Central: 
+      :long: 
+        :daylight: "Orta Avrupa Yaz Saati"
+        :generic: "Orta Avrupa Saati"
+        :standard: "Orta Avrupa Standart Saati"
+    :Europe_Eastern: 
+      :long: 
+        :daylight: "Doğu Avrupa Yaz Saati"
+        :generic: "Doğu Avrupa Saati"
+        :standard: "Doğu Avrupa Standart Saati"
+    :Europe_Further_Eastern: 
+      :long: 
+        :standard: "İleri Doğu Avrupa Saati"
+    :Europe_Western: 
+      :long: 
+        :daylight: "Batı Avrupa Yaz Saati"
+        :generic: "Batı Avrupa Saati"
+        :standard: "Batı Avrupa Standart Saati"
+    :Falkland: 
+      :long: 
+        :daylight: "Falkland Adaları Yaz Saati"
+        :generic: "Falkland Adaları Saati"
+        :standard: "Falkland Adaları Standart Saati"
+    :Fiji: 
+      :long: 
+        :daylight: "Fiji Yaz Saati"
+        :generic: "Fiji Saati"
+        :standard: "Fiji Standart Saati"
+    :French_Guiana: 
+      :long: 
+        :standard: "Fransız Guyanası Saati"
+    :French_Southern: 
+      :long: 
+        :standard: "Fransız Güney ve Antarktika Saati"
+    :GMT: 
+      :long: 
+        :standard: "Greenwich Ortalama Saati"
+    :Galapagos: 
+      :long: 
+        :standard: "Galapagos Saati"
+    :Gambier: 
+      :long: 
+        :standard: "Gambier Saati"
+    :Georgia: 
+      :long: 
+        :daylight: "Gürcistan Yaz Saati"
+        :generic: "Gürcistan Saati"
+        :standard: "Gürcistan Standart Saati"
+    :Gilbert_Islands: 
+      :long: 
+        :standard: "Gilbert Adaları Saati"
+    :Greenland_Eastern: 
+      :long: 
+        :daylight: "Doğu Grönland Yaz Saati"
+        :generic: "Doğu Grönland Saati"
+        :standard: "Doğu Grönland Standart Saati"
+    :Greenland_Western: 
+      :long: 
+        :daylight: "Batı Grönland Yaz Saati"
+        :generic: "Batı Grönland Saati"
+        :standard: "Batı Grönland Standart Saati"
+    :Guam: 
+      :long: 
+        :standard: "Guam Standart Saati"
+    :Gulf: 
+      :long: 
+        :standard: "Körfez Saati"
+    :Guyana: 
+      :long: 
+        :standard: "Guyana Saati"
+    :Hawaii_Aleutian: 
+      :long: 
+        :daylight: "Hawaii-Aleut Yaz Saati"
+        :generic: "Hawaii-Aleut Saati"
+        :standard: "Hawaii-Aleut Standart Saati"
+    :Hong_Kong: 
+      :long: 
+        :daylight: "Hong Kong Yaz Saati"
+        :generic: "Hong Kong Saati"
+        :standard: "Hong Kong Standart Saati"
+    :Hovd: 
+      :long: 
+        :daylight: "Hovd Yaz Saati"
+        :generic: "Hovd Saati"
+        :standard: "Hovd Standart Saati"
+    :India: 
+      :long: 
+        :standard: "Hindistan Standart Saati"
+    :Indian_Ocean: 
+      :long: 
+        :standard: "Hint Okyanusu Saati"
+    :Indochina: 
+      :long: 
+        :standard: "Hindiçin Saati"
+    :Indonesia_Central: 
+      :long: 
+        :standard: "Orta Endonezya Saati"
+    :Indonesia_Eastern: 
+      :long: 
+        :standard: "Doğu Endonezya Saati"
+    :Indonesia_Western: 
+      :long: 
+        :standard: "Batı Endonezya Saati"
+    :Iran: 
+      :long: 
+        :daylight: "İran Yaz Saati"
+        :generic: "İran Saati"
+        :standard: "İran Standart Saati"
+    :Irkutsk: 
+      :long: 
+        :daylight: "İrkutsk Yaz Saati"
+        :generic: "İrkutsk Saati"
+        :standard: "İrkutsk Standart Saati"
+    :Israel: 
+      :long: 
+        :daylight: "İsrail Yaz Saati"
+        :generic: "İsrail Saati"
+        :standard: "İsrail Standart Saati"
+    :Japan: 
+      :long: 
+        :daylight: "Japonya Yaz Saati"
+        :generic: "Japonya Saati"
+        :standard: "Japonya Standart Saati"
+    :Kamchatka: 
+      :long: 
+        :daylight: "Petropavlovsk-Kamçatski Yaz Saati"
+        :generic: "Petropavlovsk-Kamçatski Saati"
+        :standard: "Petropavlovsk-Kamçatski Standart Saati"
+    :Kazakhstan: 
+      :long: 
+        :standard: "Kazakistan Saati"
+    :Kazakhstan_Eastern: 
+      :long: 
+        :standard: "Doğu Kazakistan Saati"
+    :Kazakhstan_Western: 
+      :long: 
+        :standard: "Batı Kazakistan Saati"
+    :Korea: 
+      :long: 
+        :daylight: "Kore Yaz Saati"
+        :generic: "Kore Saati"
+        :standard: "Kore Standart Saati"
+    :Kosrae: 
+      :long: 
+        :standard: "Kosrae Saati"
+    :Krasnoyarsk: 
+      :long: 
+        :daylight: "Krasnoyarsk Yaz Saati"
+        :generic: "Krasnoyarsk Saati"
+        :standard: "Krasnoyarsk Standart Saati"
+    :Kyrgystan: 
+      :long: 
+        :standard: "Kırgızistan Saati"
+    :Lanka: 
+      :long: 
+        :standard: "Lanka Saati"
+    :Line_Islands: 
+      :long: 
+        :standard: "Line Adaları Saati"
+    :Lord_Howe: 
+      :long: 
+        :daylight: "Lord Howe Yaz Saati"
+        :generic: "Lord Howe Saati"
+        :standard: "Lord Howe Standart Saati"
+    :Macau: 
+      :long: 
+        :daylight: "Makao Yaz Saati"
+        :generic: "Makao Saati"
+        :standard: "Makao Standart Saati"
+    :Magadan: 
+      :long: 
+        :daylight: "Magadan Yaz Saati"
+        :generic: "Magadan Saati"
+        :standard: "Magadan Standart Saati"
+    :Malaysia: 
+      :long: 
+        :standard: "Malezya Saati"
+    :Maldives: 
+      :long: 
+        :standard: "Maldivler Saati"
+    :Marquesas: 
+      :long: 
+        :standard: "Markiz Adaları Saati"
+    :Marshall_Islands: 
+      :long: 
+        :standard: "Marshall Adaları Saati"
+    :Mauritius: 
+      :long: 
+        :daylight: "Mauritius Yaz Saati"
+        :generic: "Mauritius Saati"
+        :standard: "Mauritius Standart Saati"
+    :Mawson: 
+      :long: 
+        :standard: "Mawson Saati"
+    :Mexico_Pacific: 
+      :long: 
+        :daylight: "Meksika Pasifik Kıyısı Yaz Saati"
+        :generic: "Meksika Pasifik Kıyısı Saati"
+        :standard: "Meksika Pasifik Kıyısı Standart Saati"
+    :Mongolia: 
+      :long: 
+        :daylight: "Ulan Batur Yaz Saati"
+        :generic: "Ulan Batur Saati"
+        :standard: "Ulan Batur Standart Saati"
+    :Moscow: 
+      :long: 
+        :daylight: "Moskova Yaz Saati"
+        :generic: "Moskova Saati"
+        :standard: "Moskova Standart Saati"
+    :Myanmar: 
+      :long: 
+        :standard: "Myanmar Saati"
+    :Nauru: 
+      :long: 
+        :standard: "Nauru Saati"
+    :Nepal: 
+      :long: 
+        :standard: "Nepal Saati"
+    :New_Caledonia: 
+      :long: 
+        :daylight: "Yeni Kaledonya Yaz Saati"
+        :generic: "Yeni Kaledonya Saati"
+        :standard: "Yeni Kaledonya Standart Saati"
+    :New_Zealand: 
+      :long: 
+        :daylight: "Yeni Zelanda Yaz Saati"
+        :generic: "Yeni Zelanda Saati"
+        :standard: "Yeni Zelanda Standart Saati"
+    :Newfoundland: 
+      :long: 
+        :daylight: "Newfoundland Yaz Saati"
+        :generic: "Newfoundland Saati"
+        :standard: "Newfoundland Standart Saati"
+    :Niue: 
+      :long: 
+        :standard: "Niue Saati"
+    :Norfolk: 
+      :long: 
+        :daylight: "Norfolk Adası Yaz Saati"
+        :generic: "Norfolk Adası Saati"
+        :standard: "Norfolk Adası Standart Saati"
+    :Noronha: 
+      :long: 
+        :daylight: "Fernando de Noronha Yaz Saati"
+        :generic: "Fernando de Noronha Saati"
+        :standard: "Fernando de Noronha Standart Saati"
+    :North_Mariana: 
+      :long: 
+        :standard: "Kuzey Mariana Adaları Saati"
+    :Novosibirsk: 
+      :long: 
+        :daylight: "Novosibirsk Yaz Saati"
+        :generic: "Novosibirsk Saati"
+        :standard: "Novosibirsk Standart Saati"
+    :Omsk: 
+      :long: 
+        :daylight: "Omsk Yaz Saati"
+        :generic: "Omsk Saati"
+        :standard: "Omsk Standart Saati"
+    :Pakistan: 
+      :long: 
+        :daylight: "Pakistan Yaz Saati"
+        :generic: "Pakistan Saati"
+        :standard: "Pakistan Standart Saati"
+    :Palau: 
+      :long: 
+        :standard: "Palau Saati"
+    :Papua_New_Guinea: 
+      :long: 
+        :standard: "Papua Yeni Gine Saati"
+    :Paraguay: 
+      :long: 
+        :daylight: "Paraguay Yaz Saati"
+        :generic: "Paraguay Saati"
+        :standard: "Paraguay Standart Saati"
+    :Peru: 
+      :long: 
+        :daylight: "Peru Yaz Saati"
+        :generic: "Peru Saati"
+        :standard: "Peru Standart Saati"
+    :Philippines: 
+      :long: 
+        :daylight: "Filipinler Yaz Saati"
+        :generic: "Filipinler Saati"
+        :standard: "Filipinler Standart Saati"
+    :Phoenix_Islands: 
+      :long: 
+        :standard: "Phoenix Adaları Saati"
+    :Pierre_Miquelon: 
+      :long: 
+        :daylight: "Saint Pierre ve Miquelon Yaz Saati"
+        :generic: "Saint Pierre ve Miquelon Saati"
+        :standard: "Saint Pierre ve Miquelon Standart Saati"
+    :Pitcairn: 
+      :long: 
+        :standard: "Pitcairn Saati"
+    :Ponape: 
+      :long: 
+        :standard: "Ponape Saati"
+    :Pyongyang: 
+      :long: 
+        :standard: "Pyongyang Saati"
+    :Qyzylorda: 
+      :long: 
+        :daylight: "Kızılorda Yaz Saati"
+        :generic: "Kızılorda Saati"
+        :standard: "Kızılorda Standart Saati"
+    :Reunion: 
+      :long: 
+        :standard: "Reunion Saati"
+    :Rothera: 
+      :long: 
+        :standard: "Rothera Saati"
+    :Sakhalin: 
+      :long: 
+        :daylight: "Sahalin Yaz Saati"
+        :generic: "Sahalin Saati"
+        :standard: "Sahalin Standart Saati"
+    :Samara: 
+      :long: 
+        :daylight: "Samara Yaz Saati"
+        :generic: "Samara Saati"
+        :standard: "Samara Standart Saati"
+    :Samoa: 
+      :long: 
+        :daylight: "Samoa Yaz Saati"
+        :generic: "Samoa Saati"
+        :standard: "Samoa Standart Saati"
+    :Seychelles: 
+      :long: 
+        :standard: "Seyşeller Saati"
+    :Singapore: 
+      :long: 
+        :standard: "Singapur Standart Saati"
+    :Solomon: 
+      :long: 
+        :standard: "Solomon Adaları Saati"
+    :South_Georgia: 
+      :long: 
+        :standard: "Güney Georgia Saati"
+    :Suriname: 
+      :long: 
+        :standard: "Surinam Saati"
+    :Syowa: 
+      :long: 
+        :standard: "Showa Saati"
+    :Tahiti: 
+      :long: 
+        :standard: "Tahiti Saati"
+    :Taipei: 
+      :long: 
+        :daylight: "Taipei Yaz Saati"
+        :generic: "Taipei Saati"
+        :standard: "Taipei Standart Saati"
+    :Tajikistan: 
+      :long: 
+        :standard: "Tacikistan Saati"
+    :Tokelau: 
+      :long: 
+        :standard: "Tokelau Saati"
+    :Tonga: 
+      :long: 
+        :daylight: "Tonga Yaz Saati"
+        :generic: "Tonga Saati"
+        :standard: "Tonga Standart Saati"
+    :Truk: 
+      :long: 
+        :standard: "Chuuk Saati"
+    :Turkmenistan: 
+      :long: 
+        :daylight: "Türkmenistan Yaz Saati"
+        :generic: "Türkmenistan Saati"
+        :standard: "Türkmenistan Standart Saati"
+    :Tuvalu: 
+      :long: 
+        :standard: "Tuvalu Saati"
+    :Uruguay: 
+      :long: 
+        :daylight: "Uruguay Yaz Saati"
+        :generic: "Uruguay Saati"
+        :standard: "Uruguay Standart Saati"
+    :Uzbekistan: 
+      :long: 
+        :daylight: "Özbekistan Yaz Saati"
+        :generic: "Özbekistan Saati"
+        :standard: "Özbekistan Standart Saati"
+    :Vanuatu: 
+      :long: 
+        :daylight: "Vanuatu Yaz Saati"
+        :generic: "Vanuatu Saati"
+        :standard: "Vanuatu Standart Saati"
+    :Venezuela: 
+      :long: 
+        :standard: "Venezuela Saati"
+    :Vladivostok: 
+      :long: 
+        :daylight: "Vladivostok Yaz Saati"
+        :generic: "Vladivostok Saati"
+        :standard: "Vladivostok Standart Saati"
+    :Volgograd: 
+      :long: 
+        :daylight: "Volgograd Yaz Saati"
+        :generic: "Volgograd Saati"
+        :standard: "Volgograd Standart Saati"
+    :Vostok: 
+      :long: 
+        :standard: "Vostok Saati"
+    :Wake: 
+      :long: 
+        :standard: "Wake Adası Saati"
+    :Wallis: 
+      :long: 
+        :standard: "Wallis ve Futuna Saati"
+    :Yakutsk: 
+      :long: 
+        :daylight: "Yakutsk Yaz Saati"
+        :generic: "Yakutsk Saati"
+        :standard: "Yakutsk Standart Saati"
+    :Yekaterinburg: 
+      :long: 
+        :daylight: "Yekaterinburg Yaz Saati"
+        :generic: "Yekaterinburg Saati"
+        :standard: "Yekaterinburg Standart Saati"
+    :Yukon: 
+      :long: 
+        :standard: "Yukon Saati"
+  :timezones: 
+    :Africa/Accra: 
+      :city: Akra
+    :Africa/Algiers: 
+      :city: Cezayir
+    :Africa/Asmera: 
+      :city: Asmara
+    :Africa/Brazzaville: 
+      :city: Brazzavil
+    :Africa/Cairo: 
+      :city: Kahire
+    :Africa/Casablanca: 
+      :city: Kazablanka
+    :Africa/Ceuta: 
+      :city: Septe
+    :Africa/Conakry: 
+      :city: Konakri
+    :Africa/Dar_es_Salaam: 
+      :city: Darüsselam
+    :Africa/Djibouti: 
+      :city: Cibuti
+    :Africa/El_Aaiun: 
+      :city: Layun
+    :Africa/Juba: 
+      :city: Cuba
+    :Africa/Khartoum: 
+      :city: Hartum
+    :Africa/Kinshasa: 
+      :city: Kinşasa
+    :Africa/Libreville: 
+      :city: Librevil
+    :Africa/Mogadishu: 
+      :city: Mogadişu
+    :Africa/Sao_Tome: 
+      :city: "São Tomé"
+    :Africa/Tripoli: 
+      :city: Trablus
+    :Africa/Tunis: 
+      :city: Tunus
+    :America/Asuncion: 
+      :city: Asunción
+    :America/Bahia_Banderas: 
+      :city: "Bahia Banderas"
+    :America/Cancun: 
+      :city: Cancun
+    :America/Ciudad_Juarez: 
+      :city: "Ciudad Juárez"
+    :America/Coral_Harbour: 
+      :city: Atikokan
+    :America/Costa_Rica: 
+      :city: "Kosta Rika"
+    :America/Curacao: 
+      :city: Curaçao
+    :America/Dominica: 
+      :city: Dominika
+    :America/Godthab: 
+      :city: Nuuk
+    :America/Indiana/Knox: 
+      :city: "Knox, Indiana"
+    :America/Indiana/Marengo: 
+      :city: "Marengo, Indiana"
+    :America/Indiana/Petersburg: 
+      :city: "Petersburg, Indiana"
+    :America/Indiana/Tell_City: 
+      :city: "Tell City, Indiana"
+    :America/Indiana/Vevay: 
+      :city: "Vevay, Indiana"
+    :America/Indiana/Vincennes: 
+      :city: "Vincennes, Indiana"
+    :America/Indiana/Winamac: 
+      :city: "Winamac, Indiana"
+    :America/Jamaica: 
+      :city: Jamaika
+    :America/Kentucky/Monticello: 
+      :city: "Monticello, Kentucky"
+    :America/Lower_Princes: 
+      :city: "Lower Prince’s Quarter"
+    :America/Merida: 
+      :city: Merida
+    :America/North_Dakota/Beulah: 
+      :city: "Beulah, Kuzey Dakota"
+    :America/North_Dakota/Center: 
+      :city: "Merkez, Kuzey Dakota"
+    :America/North_Dakota/New_Salem: 
+      :city: "New Salem, Kuzey Dakota"
+    :America/Puerto_Rico: 
+      :city: "Porto Riko"
+    :America/Scoresbysund: 
+      :city: Ittoqqortoormiit
+    :America/St_Barthelemy: 
+      :city: "Saint Barthelemy"
+    :America/St_Johns: 
+      :city: "St. John’s"
+    :America/St_Kitts: 
+      :city: "St. Kitts"
+    :America/St_Lucia: 
+      :city: "St. Lucia"
+    :America/St_Thomas: 
+      :city: "St. Thomas"
+    :America/St_Vincent: 
+      :city: "St. Vincent"
+    :Antarctica/DumontDUrville: 
+      :city: "Dumont d’Urville"
+    :Antarctica/Syowa: 
+      :city: Showa
+    :Asia/Almaty: 
+      :city: Almatı
+    :Asia/Anadyr: 
+      :city: Anadır
+    :Asia/Aqtau: 
+      :city: Aktav
+    :Asia/Aqtobe: 
+      :city: Aktöbe
+    :Asia/Ashgabat: 
+      :city: Aşkabat
+    :Asia/Atyrau: 
+      :city: Atırav
+    :Asia/Baghdad: 
+      :city: Bağdat
+    :Asia/Bahrain: 
+      :city: Bahreyn
+    :Asia/Baku: 
+      :city: Bakü
+    :Asia/Beirut: 
+      :city: Beyrut
+    :Asia/Bishkek: 
+      :city: Bişkek
+    :Asia/Calcutta: 
+      :city: Kalküta
+    :Asia/Chita: 
+      :city: Çita
+    :Asia/Colombo: 
+      :city: Kolombo
+    :Asia/Damascus: 
+      :city: Şam
+    :Asia/Dhaka: 
+      :city: Dakka
+    :Asia/Dushanbe: 
+      :city: Duşanbe
+    :Asia/Famagusta: 
+      :city: Gazimağusa
+    :Asia/Gaza: 
+      :city: Gazze
+    :Asia/Hebron: 
+      :city: "El Halil"
+    :Asia/Irkutsk: 
+      :city: İrkutsk
+    :Asia/Jakarta: 
+      :city: Cakarta
+    :Asia/Jerusalem: 
+      :city: Kudüs
+    :Asia/Kabul: 
+      :city: Kabil
+    :Asia/Kamchatka: 
+      :city: Kamçatka
+    :Asia/Karachi: 
+      :city: Karaçi
+    :Asia/Katmandu: 
+      :city: Katmandu
+    :Asia/Khandyga: 
+      :city: Handiga
+    :Asia/Kuching: 
+      :city: Kuçing
+    :Asia/Kuwait: 
+      :city: Kuveyt
+    :Asia/Macau: 
+      :city: Makao
+    :Asia/Muscat: 
+      :city: Maskat
+    :Asia/Nicosia: 
+      :city: Lefkoşa
+    :Asia/Qatar: 
+      :city: Katar
+    :Asia/Qostanay: 
+      :city: Kostanay
+    :Asia/Qyzylorda: 
+      :city: Kızılorda
+    :Asia/Rangoon: 
+      :city: Yangon
+    :Asia/Riyadh: 
+      :city: Riyad
+    :Asia/Saigon: 
+      :city: "Ho Chi Minh Kenti"
+    :Asia/Sakhalin: 
+      :city: Sahalin
+    :Asia/Samarkand: 
+      :city: Semerkand
+    :Asia/Seoul: 
+      :city: Seul
+    :Asia/Shanghai: 
+      :city: Şanghay
+    :Asia/Singapore: 
+      :city: Singapur
+    :Asia/Tashkent: 
+      :city: Taşkent
+    :Asia/Tbilisi: 
+      :city: Tiflis
+    :Asia/Tehran: 
+      :city: Tahran
+    :Asia/Ulaanbaatar: 
+      :city: "Ulan Batur"
+    :Asia/Urumqi: 
+      :city: Urumçi
+    :Asia/Yerevan: 
+      :city: Erivan
+    :Atlantic/Azores: 
+      :city: "Azor Adaları"
+    :Atlantic/Canary: 
+      :city: "Kanarya Adaları"
+    :Atlantic/Faeroe: 
+      :city: Faroe
+    :Atlantic/Madeira: 
+      :city: "Madeira Adaları"
+    :Atlantic/South_Georgia: 
+      :city: "Güney Georgia"
+    :Atlantic/St_Helena: 
+      :city: "St. Helena"
+    :Australia/Sydney: 
+      :city: Sidney
+    :Etc/UTC: 
+      :long: 
+        :standard: "Eş Güdümlü Evrensel Zaman"
+      :short: 
+        :standard: UTC
+    :Etc/Unknown: 
+      :city: "Bilinmeyen Şehir"
+    :Europe/Astrakhan: 
+      :city: Astrahan
+    :Europe/Athens: 
+      :city: Atina
+    :Europe/Belgrade: 
+      :city: Belgrad
+    :Europe/Brussels: 
+      :city: Brüksel
+    :Europe/Bucharest: 
+      :city: Bükreş
+    :Europe/Budapest: 
+      :city: Budapeşte
+    :Europe/Busingen: 
+      :city: Büsingen
+    :Europe/Chisinau: 
+      :city: Kişinev
+    :Europe/Copenhagen: 
+      :city: Kopenhag
+    :Europe/Dublin: 
+      :long: 
+        :daylight: "İrlanda Standart Saati"
+    :Europe/Gibraltar: 
+      :city: Cebelitarık
+    :Europe/Isle_of_Man: 
+      :city: "Man Adası"
+    :Europe/Istanbul: 
+      :city: İstanbul
+    :Europe/Kiev: 
+      :city: Kiev
+    :Europe/Lisbon: 
+      :city: Lizbon
+    :Europe/London: 
+      :city: Londra
+      :long: 
+        :daylight: "İngiltere Yaz Saati"
+    :Europe/Luxembourg: 
+      :city: Lüksemburg
+    :Europe/Monaco: 
+      :city: Monako
+    :Europe/Moscow: 
+      :city: Moskova
+    :Europe/Prague: 
+      :city: Prag
+    :Europe/Rome: 
+      :city: Roma
+    :Europe/Sarajevo: 
+      :city: Saraybosna
+    :Europe/Skopje: 
+      :city: Üsküp
+    :Europe/Sofia: 
+      :city: Sofya
+    :Europe/Stockholm: 
+      :city: Stokholm
+    :Europe/Tirane: 
+      :city: Tiran
+    :Europe/Vatican: 
+      :city: Vatikan
+    :Europe/Vienna: 
+      :city: Viyana
+    :Europe/Warsaw: 
+      :city: Varşova
+    :Europe/Zurich: 
+      :city: Zürih
+    :Indian/Comoro: 
+      :city: Komor
+    :Indian/Maldives: 
+      :city: Maldivler
+    :Indian/Reunion: 
+      :city: Réunion
+    :Pacific/Easter: 
+      :city: "Paskalya Adası"
+    :Pacific/Enderbury: 
+      :city: Enderbury
+    :Pacific/Honolulu: 
+      :city: Honolulu
+    :Pacific/Marquesas: 
+      :city: "Markiz Adaları"
+    :Pacific/Ponape: 
+      :city: Pohnpei
+    :Pacific/Truk: 
+      :city: Chuuk

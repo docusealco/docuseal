@@ -1,0 +1,359 @@
+--- 
+:cy: 
+  :calendars: 
+    :gregorian: 
+      :additional_formats: 
+        :Bh: "h B"
+        :Bhm: "h:mm B"
+        :Bhms: "h:mm:ss B"
+        :E: ccc
+        :EBhm: "E h:mm B"
+        :EBhms: "E h:mm:ss B"
+        :EHm: "E, HH:mm"
+        :EHms: "E, HH:mm:ss"
+        :Ed: "d, E"
+        :Ehm: "E, h:mm a"
+        :Ehms: "E, h:mm:ss a"
+        :Gy: "y G"
+        :GyMMM: "MMM y G"
+        :GyMMMEd: "E, d MMM y G"
+        :GyMMMd: "d MMM y G"
+        :GyMd: "M/d/y GGGGG"
+        :H: HH
+        :Hm: "HH:mm"
+        :Hms: "HH:mm:ss"
+        :Hmsv: "HH:mm:ss v"
+        :Hmv: "HH:mm v"
+        :M: L
+        :MEd: "E, d/M"
+        :MMM: LLL
+        :MMMEd: "E, d MMM"
+        :MMMMW: "'wythnos' W 'o' MMMM"
+        :MMMMd: "MMMM d"
+        :MMMd: "d MMM"
+        :Md: d/M
+        :d: d
+        :h: h a
+        :hm: "h:mm a"
+        :hms: "h:mm:ss a"
+        :hmsv: "h:mm:ss a v"
+        :hmv: "h:mm a v"
+        :ms: "mm:ss"
+        ? !ruby/symbol "y"
+        : "y"
+        :yM: M/y
+        :yMEd: "E, d/M/y"
+        :yMMM: "MMM y"
+        :yMMMEd: "E, d MMM y"
+        :yMMMM: "MMMM y"
+        :yMMMd: "d MMM y"
+        :yMd: d/M/y
+        :yQ: "Q y"
+        :yQQQ: "QQQ y"
+        :yQQQQ: "QQQQ y"
+        :yw: "'wythnos' w 'o' Y"
+      :days: 
+        :format: 
+          :abbreviated: 
+            :fri: Gwen
+            :mon: Llun
+            :sat: Sad
+            :sun: Sul
+            :thu: Iau
+            :tue: Maw
+            :wed: Mer
+          :narrow: 
+            :fri: G
+            :mon: Ll
+            :sat: S
+            :sun: S
+            :thu: I
+            :tue: M
+            :wed: M
+          :short: 
+            :fri: Gw
+            :mon: Ll
+            :sat: Sa
+            :sun: Su
+            :thu: Ia
+            :tue: Ma
+            :wed: Me
+          :wide: 
+            :fri: "Dydd Gwener"
+            :mon: "Dydd Llun"
+            :sat: "Dydd Sadwrn"
+            :sun: "Dydd Sul"
+            :thu: "Dydd Iau"
+            :tue: "Dydd Mawrth"
+            :wed: "Dydd Mercher"
+        :stand-alone: 
+          :abbreviated: 
+            :fri: Gwe
+            :mon: Llun
+            :sat: Sad
+            :sun: Sul
+            :thu: Iau
+            :tue: Maw
+            :wed: Mer
+          :narrow: 
+            :fri: G
+            :mon: Ll
+            :sat: S
+            :sun: S
+            :thu: I
+            :tue: M
+            :wed: M
+          :short: 
+            :fri: Gw
+            :mon: Ll
+            :sat: Sa
+            :sun: Su
+            :thu: Ia
+            :tue: Ma
+            :wed: Me
+          :wide: 
+            :fri: "Dydd Gwener"
+            :mon: "Dydd Llun"
+            :sat: "Dydd Sadwrn"
+            :sun: "Dydd Sul"
+            :thu: "Dydd Iau"
+            :tue: "Dydd Mawrth"
+            :wed: "Dydd Mercher"
+      :eras: 
+        :abbr: 
+          0: CCC
+          1: CYCY
+        :name: 
+          0: "Cyn Cyfnod Cyffredin"
+          1: "Cyfnod Cyffredin"
+        :narrow: 
+          0: C
+          1: O
+      :fields: 
+        :day: diwrnod
+        :day-narrow: Day
+        :day-short: diwrnod
+        :dayOfYear: "rhif y dydd yn y flwyddyn"
+        :dayOfYear-narrow: "dydd y fl."
+        :dayOfYear-short: "rhif y dydd yn y fl."
+        :dayperiod: AM/PM
+        :dayperiod-narrow: AM/PM
+        :dayperiod-short: AM/PM
+        :era: oes
+        :era-narrow: oes
+        :era-short: oes
+        :hour: awr
+        :hour-narrow: Hour
+        :hour-short: Hour
+        :minute: munud
+        :minute-narrow: Minute
+        :minute-short: mun.
+        :month: mis
+        :month-narrow: Month
+        :month-short: Month
+        :quarter: chwarter
+        :quarter-narrow: chw.
+        :quarter-short: chw.
+        :second: eiliad
+        :second-narrow: Second
+        :second-short: Second
+        :week: wythnos
+        :week-narrow: Week
+        :week-short: Week
+        :weekOfMonth: "rhif wythnos yn y mis"
+        :weekOfMonth-narrow: "wythnos y mis"
+        :weekOfMonth-short: "wythnos y mis"
+        :weekday: "diwrnod o’r wythnos"
+        :weekday-narrow: "diwrnod o’r wythnos"
+        :weekday-short: "diwrnod o’r wythnos"
+        :weekdayOfMonth: "diwrnod yn y mis"
+        :weekdayOfMonth-narrow: "diwrnod yn y mis"
+        :weekdayOfMonth-short: "diwrnod yn y mis"
+        :year: blwyddyn
+        :year-narrow: Year
+        :year-short: bl.
+        :zone: "cylchfa amser"
+        :zone-narrow: cylchfa
+        :zone-short: "cylchfa amser"
+      :formats: 
+        :date: 
+          :full: 
+            :pattern: "EEEE, d MMMM y"
+          :long: 
+            :pattern: "d MMMM y"
+          :medium: 
+            :pattern: "d MMM y"
+          :short: 
+            :pattern: dd/MM/yy
+        :datetime: 
+          :full: 
+            :pattern: "{{date}} 'am' {{time}}"
+          :long: 
+            :pattern: "{{date}} 'am' {{time}}"
+          :medium: 
+            :pattern: "{{date}}, {{time}}"
+          :short: 
+            :pattern: "{{date}}, {{time}}"
+        :time: 
+          :full: 
+            :pattern: "HH:mm:ss zzzz"
+          :long: 
+            :pattern: "HH:mm:ss z"
+          :medium: 
+            :pattern: "HH:mm:ss"
+          :short: 
+            :pattern: "HH:mm"
+      :months: 
+        :format: 
+          :abbreviated: 
+            1: Ion
+            10: Hyd
+            11: Tach
+            12: Rhag
+            2: Chwef
+            3: Maw
+            4: Ebr
+            5: Mai
+            6: Meh
+            7: Gorff
+            8: Awst
+            9: Medi
+          :narrow: 
+            1: I
+            10: H
+            11: T
+            12: Rh
+            2: Ch
+            3: M
+            4: E
+            5: M
+            6: M
+            7: G
+            8: A
+            9: M
+          :wide: 
+            1: Ionawr
+            10: Hydref
+            11: Tachwedd
+            12: Rhagfyr
+            2: Chwefror
+            3: Mawrth
+            4: Ebrill
+            5: Mai
+            6: Mehefin
+            7: Gorffennaf
+            8: Awst
+            9: Medi
+        :stand-alone: 
+          :abbreviated: 
+            1: Ion
+            10: Hyd
+            11: Tach
+            12: Rhag
+            2: Chw
+            3: Maw
+            4: Ebr
+            5: Mai
+            6: Meh
+            7: Gor
+            8: Awst
+            9: Medi
+          :narrow: 
+            1: I
+            10: H
+            11: T
+            12: Rh
+            2: Ch
+            3: M
+            4: E
+            5: M
+            6: M
+            7: G
+            8: A
+            9: M
+          :wide: 
+            1: Ionawr
+            10: Hydref
+            11: Tachwedd
+            12: Rhagfyr
+            2: Chwefror
+            3: Mawrth
+            4: Ebrill
+            5: Mai
+            6: Mehefin
+            7: Gorffennaf
+            8: Awst
+            9: Medi
+      :periods: 
+        :format: 
+          :abbreviated: 
+            :afternoon1: "y prynhawn"
+            :am: AM
+            :evening1: "yr hwyr"
+            :midnight: "canol nos"
+            :morning1: "y bore"
+            :noon: "canol dydd"
+            :pm: PM
+          :narrow: 
+            :afternoon1: "yn y prynhawn"
+            :am: b
+            :evening1: "min nos"
+            :midnight: "canol nos"
+            :morning1: "yn y bore"
+            :noon: "canol dydd"
+            :pm: h
+          :wide: 
+            :am: yb
+            :pm: yh
+        :stand-alone: 
+          :abbreviated: 
+            :afternoon1: prynhawn
+            :am: AM
+            :evening1: "yr hwyr"
+            :morning1: bore
+            :pm: PM
+          :narrow: 
+            :afternoon1: prynhawn
+            :am: AM
+            :evening1: "min nos"
+            :morning1: bore
+            :pm: PM
+          :wide: 
+            :afternoon1: "y prynhawn"
+            :am: AM
+            :evening1: "yr hwyr"
+            :morning1: "y bore"
+            :pm: PM
+      :quarters: 
+        :format: 
+          :abbreviated: 
+            1: Ch1
+            2: Ch2
+            3: Ch3
+            4: Ch4
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: "chwarter 1af"
+            2: "2il chwarter"
+            3: "3ydd chwarter"
+            4: "4ydd chwarter"
+        :stand-alone: 
+          :abbreviated: 
+            1: Ch1
+            2: Ch2
+            3: Ch3
+            4: Ch4
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: "chwarter 1af"
+            2: "2il chwarter"
+            3: "3ydd chwarter"
+            4: "4ydd chwarter"

@@ -1,0 +1,261 @@
+--- 
+:af: 
+  :rbnf: 
+    :grouping: 
+      - 
+        :ruleset: 
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: "honderd[ >%spellout-numbering>];"
+                :value: 0
+              - 
+                :rule: "nul =%spellout-numbering=;"
+                :value: 1
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 10
+            :type: 2d-year
+          - 
+            :rules: 
+              - 
+                :rule: "min >>;"
+                :value: "-x"
+              - 
+                :rule: =0.0=;
+                :value: x.x
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 0
+              - 
+                :radix: 100
+                :rule: "<< >%%2d-year>;"
+                :value: 1100
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 10000
+            :type: spellout-numbering-year
+          - 
+            :rules: 
+              - 
+                :rule: =%spellout-cardinal=;
+                :value: 0
+            :type: spellout-numbering
+          - 
+            :rules: 
+              - 
+                :rule: "min >>;"
+                :value: "-x"
+              - 
+                :rule: "<< komma >>;"
+                :value: x.x
+              - 
+                :rule: nul;
+                :value: 0
+              - 
+                :rule: een;
+                :value: 1
+              - 
+                :rule: twee;
+                :value: 2
+              - 
+                :rule: drie;
+                :value: 3
+              - 
+                :rule: vier;
+                :value: 4
+              - 
+                :rule: vyf;
+                :value: 5
+              - 
+                :rule: ses;
+                :value: 6
+              - 
+                :rule: sewe;
+                :value: 7
+              - 
+                :rule: agt;
+                :value: 8
+              - 
+                :rule: nege;
+                :value: 9
+              - 
+                :rule: tien;
+                :value: 10
+              - 
+                :rule: elf;
+                :value: 11
+              - 
+                :rule: twaalf;
+                :value: 12
+              - 
+                :rule: dertien;
+                :value: 13
+              - 
+                :rule: veertien;
+                :value: 14
+              - 
+                :rule: vyftien;
+                :value: 15
+              - 
+                :rule: sestien;
+                :value: 16
+              - 
+                :rule: sewentien;
+                :value: 17
+              - 
+                :rule: agttien;
+                :value: 18
+              - 
+                :rule: negentien;
+                :value: 19
+              - 
+                :rule: "[>>-en-]twintig;"
+                :value: 20
+              - 
+                :rule: "[>>-en-]dertig;"
+                :value: 30
+              - 
+                :rule: "[>>-en-]veertig;"
+                :value: 40
+              - 
+                :rule: "[>>-en-]vyftig;"
+                :value: 50
+              - 
+                :rule: "[>>-en-]sestig;"
+                :value: 60
+              - 
+                :rule: "[>>-en-]sewentig;"
+                :value: 70
+              - 
+                :rule: "[>>-en-]tagtig;"
+                :value: 80
+              - 
+                :rule: "[>>-en-]negentig;"
+                :value: 90
+              - 
+                :rule: "honderd[ >>];"
+                :value: 100
+              - 
+                :rule: "<<honderd[ >>];"
+                :value: 200
+              - 
+                :rule: "duisend[ >>];"
+                :value: 1000
+              - 
+                :rule: "<<­duisend[ >>];"
+                :value: 2000
+              - 
+                :radix: 1000
+                :rule: "<< duisend[ >>];"
+                :value: 21000
+              - 
+                :rule: "<< miljoen[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<< miljard[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<< biljoen[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<< biljard[ >>];"
+                :value: 1000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: ste;
+                :value: 0
+              - 
+                :rule: " en =%spellout-ordinal=;"
+                :value: 1
+              - 
+                :rule: " =%spellout-ordinal=;"
+                :value: 2
+            :type: ord-ste
+          - 
+            :rules: 
+              - 
+                :rule: "min >>;"
+                :value: "-x"
+              - 
+                :rule: "=#,##0.#=;"
+                :value: x.x
+              - 
+                :rule: nulste;
+                :value: 0
+              - 
+                :rule: eerste;
+                :value: 1
+              - 
+                :rule: tweede;
+                :value: 2
+              - 
+                :rule: derde;
+                :value: 3
+              - 
+                :rule: =%spellout-numbering=de;
+                :value: 4
+              - 
+                :rule: =%spellout-numbering=ste;
+                :value: 20
+              - 
+                :rule: "<%spellout-numbering< honderd>%%ord-ste>;"
+                :value: 102
+              - 
+                :rule: "<%spellout-numbering< duisend>%%ord-ste>;"
+                :value: 1000
+              - 
+                :rule: "<%spellout-numbering< miljoen>%%ord-ste>;"
+                :value: 1000000
+              - 
+                :rule: "<%spellout-numbering< miljard>%%ord-ste>;"
+                :value: 1000000000
+              - 
+                :rule: "<%spellout-numbering< biljoen>%%ord-ste>;"
+                :value: 1000000000000
+              - 
+                :rule: "<%spellout-numbering< biljard>%%ord-ste>;"
+                :value: 1000000000000000
+              - 
+                :rule: "=#,##0=.;"
+                :value: 1000000000000000000
+            :type: spellout-ordinal
+        :type: SpelloutRules
+      - 
+        :ruleset: 
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: ste;
+                :value: 0
+              - 
+                :rule: ste;
+                :value: 1
+              - 
+                :rule: de;
+                :value: 2
+              - 
+                :rule: ste;
+                :value: 20
+              - 
+                :rule: ">>;"
+                :value: 100
+            :type: digits-ordinal-indicator
+          - 
+            :rules: 
+              - 
+                :rule: −>>;
+                :value: "-x"
+              - 
+                :rule: "=#,##0==%%digits-ordinal-indicator=;"
+                :value: 0
+            :type: digits-ordinal
+        :type: OrdinalRules

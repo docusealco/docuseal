@@ -1,0 +1,28 @@
+# See https://ddnexus.github.io/pagy/resources/i18n
+
+sw:
+  pagy:
+    p11n: 'OneOther'
+    # please add a comment in the https://github.com/ddnexus/pagy/issues/603
+    # posting the translation of the following  "Page"/"Pages" with the plurals for this locale
+    # Please change the final test in 18n_loacles_test.rb to remove the sw.yml exclusion
+    # after you make these changes.
+    aria_label:
+      nav:
+        one: "Ukurasa"
+        other: "Kurasa"
+      previous: "Awali"
+      next: "Ifuatayo"
+    previous: "&lt;"
+    next: "&gt;"
+    gap: "&hellip;"
+    item_name:
+      one: "kifaa"
+      other: "vifaa"
+    info_tag:
+      no_count: "Kurasa %{page} ya %{pages}"
+      no_items: "Hamna %{item_name} vilivyopatikana"
+      single_page: "Inaonyesha %{item_name} %{count}"
+      multiple_pages: "Inaonyesha %{item_name} %{from}-%{to} ya %{count} kwa jumla"
+    input_nav_js: "Kurasa %{page_input} ya %{pages}"
+    limit_tag_js: "Onyesha %{limit_input} %{item_name} kwa kila ukurasa"

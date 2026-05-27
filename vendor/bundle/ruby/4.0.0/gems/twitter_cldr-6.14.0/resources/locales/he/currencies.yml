@@ -1,0 +1,946 @@
+--- 
+:he: 
+  :currencies: 
+    :ADP: 
+      :name: "פזטה אנדורית"
+      :one: "פזטה אנדורית"
+    :AED: 
+      :name: "דירהם של איחוד הנסיכויות הערביות"
+      :one: "דירהם של איחוד הנסיכויות הערביות"
+    :AFN: 
+      :name: "אפגני אפגני"
+      :narrow_symbol: ؋
+      :one: "אפגני אפגני"
+      :symbol: ؋
+    :ALL: 
+      :name: "לק אלבני"
+      :one: "לק אלבני"
+    :AMD: 
+      :name: "דראם ארמני"
+      :narrow_symbol: ֏
+      :one: "דראם ארמני"
+      :symbol: ֏
+    :ANG: 
+      :name: "גילדר של האנטילים ההולנדיים"
+      :one: "גילדר של האנטילים ההולנדיים"
+    :AOA: 
+      :name: "קואנזה אנגולי"
+      :narrow_symbol: Kz
+      :one: "קואנזה אנגולי"
+      :symbol: Kz
+    :AON: 
+      :name: "קואנזה חדש אנגולי (1990–2000)"
+      :one: "קואנזה חדש אנגולי (1990–2000)"
+    :AOR: 
+      :name: "קואנזה רג׳וסטדו אנגולי (1995–1999)"
+      :one: "קואנזה רג׳וסטדו אנגולי (1995–1999)"
+    :ARP: 
+      :name: "פזו ארגנטינאי (1983–1985)"
+      :one: "פזו ארגנטינאי (1983–1985)"
+    :ARS: 
+      :name: "פסו ארגנטינאי"
+      :narrow_symbol: $
+      :one: "פסו ארגנטינאי"
+      :symbol: $
+    :ATS: 
+      :name: "שילינג אוסטרי"
+      :one: "שילינג אוסטרי"
+    :AUD: 
+      :name: "דולר אוסטרלי"
+      :narrow_symbol: $
+      :one: "דולר אוסטרלי"
+      :symbol: A$
+    :AWG: 
+      :name: "פלורין של ארובה"
+      :one: "פלורין של ארובה"
+    :AZM: 
+      :name: "מנאט אזרביג׳אני (1993–2006)"
+      :one: "מנאט אזרביג׳אני (1993–2006)"
+    :AZN: 
+      :name: "מאנאט אזרבייג׳ני"
+      :narrow_symbol: ₼
+      :one: "מאנאט אזרבייג׳ני"
+      :symbol: ₼
+    :BAD: 
+      :name: "דינר של בוסניה־הרצגובינה"
+      :one: "דינר של בוסניה־הרצגובינה"
+    :BAM: 
+      :name: "מארק סחיר של בוסניה והרצגובינה"
+      :narrow_symbol: KM
+      :one: "מארק סחיר של בוסניה והרצגובינה"
+      :symbol: KM
+    :BBD: 
+      :name: "דולר ברבדיאני"
+      :narrow_symbol: $
+      :one: "דולר ברבדיאני"
+      :symbol: $
+    :BDT: 
+      :name: "טאקה בנגלדשי"
+      :narrow_symbol: ৳
+      :one: "טאקה בנגלדשי"
+      :symbol: ৳
+    :BEC: 
+      :name: "פרנק בלגי (בר המרה)"
+      :one: "פרנק בלגי (בר המרה)"
+    :BEF: 
+      :name: "פרנק בלגי"
+      :one: "פרנק בלגי"
+    :BGL: 
+      :name: "לב בולגרי ישן"
+      :one: "לב בולגרי ישן"
+    :BGN: 
+      :name: "לב בולגרי"
+      :one: "לב בולגרי"
+    :BHD: 
+      :name: "דינר בחרייני"
+      :one: "דינר בחרייני"
+    :BIF: 
+      :name: "פרנק בורונדי"
+      :one: "פרנק בורונדי"
+    :BMD: 
+      :name: "דולר ברמודה"
+      :narrow_symbol: $
+      :one: "דולר ברמודה"
+      :symbol: $
+    :BND: 
+      :name: "דולר ברוניי"
+      :narrow_symbol: $
+      :one: "דולר ברוניי"
+      :symbol: $
+    :BOB: 
+      :name: בוליביאנו
+      :narrow_symbol: Bs
+      :one: בוליביאנו
+      :symbol: Bs
+    :BOP: 
+      :name: "פזו בוליבי"
+      :one: "פזו בוליבי"
+    :BRB: 
+      :name: "קרוזיארו חדש ברזילאי (1967–1986)"
+      :one: "קרוזיארו חדש ברזילאי (1967–1986)"
+    :BRC: 
+      :name: "קרוזדו ברזילאי"
+      :one: "קרוזדו ברזילאי"
+    :BRL: 
+      :name: "ריאל ברזילאי"
+      :narrow_symbol: R$
+      :one: "ריאל ברזילאי"
+      :symbol: R$
+    :BSD: 
+      :name: "דולר בהאמי"
+      :narrow_symbol: $
+      :one: "דולר בהאמי"
+      :symbol: $
+    :BTN: 
+      :name: "נגולטרום בהוטני"
+      :one: "נגולטרום בהוטני"
+    :BWP: 
+      :name: "פולה בוטסואני"
+      :narrow_symbol: P
+      :one: "פולה בוטסואני"
+      :symbol: P
+    :BYN: 
+      :name: "רובל בלרוסי"
+      :narrow_symbol: р
+      :one: "רובל בלרוסי"
+      :symbol: р
+    :BYR: 
+      :name: "רובל בלרוסי (2000–2016)"
+      :one: "רובל בלרוסי (2000–2016)"
+    :BZD: 
+      :name: "דולר בליזי"
+      :narrow_symbol: $
+      :one: "דולר בליזי"
+      :symbol: $
+    :CAD: 
+      :name: "דולר קנדי"
+      :narrow_symbol: $
+      :one: "דולר קנדי"
+      :symbol: CA$
+    :CDF: 
+      :name: "פרנק קונגולזי"
+      :one: "פרנק קונגולזי"
+    :CHF: 
+      :name: "פרנק שוויצרי"
+      :one: "פרנק שוויצרי"
+    :CLP: 
+      :name: "פסו צ׳ילאני"
+      :narrow_symbol: $
+      :one: "פסו צ׳ילאני"
+      :symbol: $
+    :CNH: 
+      :name: "יואן סיני (CNH)"
+      :one: "יואן סיני (CNH)"
+    :CNY: 
+      :name: "יואן סיני"
+      :narrow_symbol: ¥
+      :one: "יואן סיני"
+      :symbol: ‎CN¥‎
+    :COP: 
+      :name: "פסו קולומביאני"
+      :narrow_symbol: $
+      :one: "פסו קולומביאני"
+      :symbol: $
+    :CRC: 
+      :name: "קולון קוסטה־ריקני"
+      :narrow_symbol: ₡
+      :one: "קולון קוסטה־ריקני"
+      :symbol: ₡
+    :CSD: 
+      :name: "דינר סרבי ישן"
+      :one: "דינר סרבי ישן"
+    :CUC: 
+      :name: "פסו קובני להמרה"
+      :narrow_symbol: $
+      :one: "פסו קובני להמרה"
+      :symbol: $
+    :CUP: 
+      :name: "פסו קובני"
+      :narrow_symbol: $
+      :one: "פסו קובני"
+      :symbol: $
+    :CVE: 
+      :name: "אסקודו כף ורדה"
+      :one: "אסקודו כף ורדה"
+    :CYP: 
+      :name: "לירה קפריסאית"
+      :one: "לירה קפריסאית"
+    :CZK: 
+      :name: "קורונה צ׳כית"
+      :narrow_symbol: Kč
+      :one: "קורונה צ׳כית"
+      :symbol: Kč
+    :DDM: 
+      :name: "מרק מזרח גרמני"
+      :one: "מרק מזרח גרמני"
+    :DEM: 
+      :name: "מרק גרמני"
+      :one: "מרק גרמני"
+    :DJF: 
+      :name: "פרנק ג׳יבוטי"
+      :one: "פרנק ג׳יבוטי"
+    :DKK: 
+      :name: "כתר דני"
+      :narrow_symbol: kr
+      :one: "כתר דני"
+      :symbol: kr
+    :DOP: 
+      :name: "פסו דומיניקני"
+      :narrow_symbol: $
+      :one: "פסו דומיניקני"
+      :symbol: $
+    :DZD: 
+      :name: "דינר אלג׳ירי"
+      :one: "דינר אלג׳ירי"
+    :ECS: 
+      :name: "סוקר אקואדורי"
+      :one: "סוקר אקואדורי"
+    :EEK: 
+      :name: "קרון אסטוני"
+      :one: "קרון אסטוני"
+    :EGP: 
+      :name: "לירה מצרית"
+      :narrow_symbol: E£
+      :one: "לירה מצרית"
+      :symbol: E£
+    :ERN: 
+      :name: "נאקפה אריתראי"
+      :one: "נאקפה אריתראי"
+    :ESA: 
+      :name: "פזטה [ESA]"
+      :one: "פזטה [ESA]"
+    :ESB: 
+      :name: "פזטה [ESB]"
+      :one: "פזטה [ESB]"
+    :ESP: 
+      :name: "פסטה ספרדי"
+      :narrow_symbol: ₧
+      :one: "פסטה ספרדי"
+      :symbol: ₧
+    :ETB: 
+      :name: "ביר אתיופי"
+      :one: "ביר אתיופי"
+    :EUR: 
+      :name: אירו
+      :narrow_symbol: €
+      :one: אירו
+      :symbol: €
+    :FIM: 
+      :name: "מרק פיני"
+      :one: "מרק פיני"
+    :FJD: 
+      :name: "דולר פיג׳י"
+      :narrow_symbol: $
+      :one: "דולר פיג׳י"
+      :symbol: $
+    :FKP: 
+      :name: "לירה של איי פוקלנד"
+      :narrow_symbol: £
+      :one: "לירה של איי פוקלנד"
+      :symbol: £
+    :FRF: 
+      :name: "פרנק צרפתי"
+      :one: "פרנק צרפתי"
+    :GBP: 
+      :name: "לירה שטרלינג"
+      :narrow_symbol: £
+      :one: "לירה שטרלינג"
+      :symbol: £
+    :GEL: 
+      :name: "לארי גאורגי"
+      :narrow_symbol: ₾
+      :one: "לארי גאורגי"
+      :symbol: ₾
+    :GHS: 
+      :name: "סדי גאני"
+      :narrow_symbol: GH₵
+      :one: "סדי גאני"
+      :symbol: GH₵
+    :GIP: 
+      :name: "פאונד גיברלטר"
+      :narrow_symbol: £
+      :one: "פאונד גיברלטר"
+      :symbol: £
+    :GMD: 
+      :name: "דלסי גמבי"
+      :one: "דלסי גמבי"
+    :GNF: 
+      :name: "פרנק גינאי"
+      :narrow_symbol: FG
+      :one: "פרנק גינאי"
+      :symbol: FG
+    :GRD: 
+      :name: דרכמה
+      :one: דרכמה
+    :GTQ: 
+      :name: "קצאל גואטמלי"
+      :narrow_symbol: Q
+      :one: "קצאל גואטמלי"
+      :symbol: Q
+    :GWP: 
+      :name: "פזו גינאי"
+      :one: "פזו גינאי"
+    :GYD: 
+      :name: "דולר גיאני"
+      :narrow_symbol: $
+      :one: "דולר גיאני"
+      :symbol: $
+    :HKD: 
+      :name: "דולר הונג קונגי"
+      :narrow_symbol: $
+      :one: "דולר הונג קונגי"
+      :symbol: HK$
+    :HNL: 
+      :name: "למפירה הונדורי"
+      :narrow_symbol: L
+      :one: "למפירה הונדורי"
+      :symbol: L
+    :HRK: 
+      :name: "קונה קרואטי"
+      :narrow_symbol: kn
+      :one: "קונה קרואטי"
+      :symbol: kn
+    :HTG: 
+      :name: "גורד האיטי"
+      :one: "גורד האיטי"
+    :HUF: 
+      :name: "פורינט הונגרי"
+      :narrow_symbol: Ft
+      :one: "פורינט הונגרי"
+      :symbol: Ft
+    :IDR: 
+      :name: "רופיה אינדונזית"
+      :narrow_symbol: Rp
+      :one: "רופיה אינדונזית"
+      :other: "רופיות אינדונזיות"
+      :symbol: Rp
+      :two: "רופיות אינדונזיות"
+    :IEP: 
+      :name: "לירה אירית"
+      :one: "לירה אירית"
+    :ILP: 
+      :name: "לירה ישראלית"
+      :one: "לירה ישראלית"
+      :symbol: ל״י
+    :ILS: 
+      :name: "שקל חדש"
+      :narrow_symbol: ₪
+      :one: "שקל חדש"
+      :other: "שקלים חדשים"
+      :symbol: ₪
+      :two: "שקלים חדשים"
+    :INR: 
+      :name: "רופי הודי"
+      :narrow_symbol: ₹
+      :one: "רופי הודי"
+      :symbol: ₹
+    :IQD: 
+      :name: "דינר עיראקי"
+      :one: "דינר עיראקי"
+    :IRR: 
+      :name: "ריאל איראני"
+      :one: "ריאל איראני"
+    :ISK: 
+      :name: "כתר איסלנדי"
+      :narrow_symbol: kr
+      :one: "כתר איסלנדי"
+      :symbol: kr
+    :ITL: 
+      :name: "לירה איטלקית"
+      :one: "לירה איטלקית"
+    :JMD: 
+      :name: "דולר ג׳מייקני"
+      :narrow_symbol: $
+      :one: "דולר ג׳מייקני"
+      :symbol: $
+    :JOD: 
+      :name: "דינר ירדני"
+      :one: "דינר ירדני"
+    :JPY: 
+      :name: "ין יפני"
+      :narrow_symbol: ¥
+      :one: "ין יפני"
+      :symbol: ¥
+    :KES: 
+      :name: "שילינג קנייתי"
+      :one: "שילינג קנייתי"
+    :KGS: 
+      :name: "סום קירגיזי"
+      :narrow_symbol: ⃀
+      :one: "סום קירגיזי"
+      :symbol: ⃀
+    :KHR: 
+      :name: "ריל קמבודי"
+      :narrow_symbol: ៛
+      :one: "ריל קמבודי"
+      :symbol: ៛
+    :KMF: 
+      :name: "פרנק קומורואי"
+      :narrow_symbol: CF
+      :one: "פרנק קומורואי"
+      :symbol: CF
+    :KPW: 
+      :name: "וון צפון קוריאני"
+      :narrow_symbol: ₩
+      :one: "וון צפון קוריאני"
+      :symbol: ₩
+    :KRW: 
+      :name: "וון דרום קוריאני"
+      :narrow_symbol: ₩
+      :one: "וון דרום קוריאני"
+      :symbol: ₩
+    :KWD: 
+      :name: "דינר כוויתי"
+      :one: "דינר כוויתי"
+    :KYD: 
+      :name: "דולר קיימני"
+      :narrow_symbol: $
+      :one: "דולר קיימני"
+      :symbol: $
+    :KZT: 
+      :name: "טנגה קזחסטני"
+      :narrow_symbol: ₸
+      :one: "טנגה קזחסטני"
+      :symbol: ₸
+    :LAK: 
+      :name: "קיפ לאי"
+      :narrow_symbol: ₭
+      :one: "קיפ לאי"
+      :symbol: ₭
+    :LBP: 
+      :name: "לירה לבנונית"
+      :narrow_symbol: L£
+      :one: "לירה לבנונית"
+      :other: "לירות לבנוניות"
+      :symbol: L£
+      :two: "לירות לבנוניות"
+    :LKR: 
+      :name: "רופי סרי לנקי"
+      :narrow_symbol: Rs
+      :one: "רופי סרי לנקי"
+      :symbol: Rs
+    :LRD: 
+      :name: "דולר ליברי"
+      :narrow_symbol: $
+      :one: "דולר ליברי"
+      :symbol: $
+    :LSL: 
+      :name: "לוטי לסותי"
+      :one: "לוטי לסותי"
+    :LTL: 
+      :name: "ליטא ליטאי"
+      :narrow_symbol: Lt
+      :one: "ליטא ליטאי"
+      :symbol: Lt
+    :LUF: 
+      :name: "פרנק לוקסמבורגי"
+      :one: "פרנק לוקסמבורגי"
+    :LVL: 
+      :name: "לט לטבי"
+      :narrow_symbol: Ls
+      :one: "לט לטבי"
+      :symbol: Ls
+    :LYD: 
+      :name: "דינר לובי"
+      :one: "דינר לובי"
+    :MAD: 
+      :name: "דירהם מרוקאי"
+      :one: "דירהם מרוקאי"
+    :MAF: 
+      :name: "פרנק מרוקאי"
+      :one: "פרנק מרוקאי"
+    :MDL: 
+      :name: "לאו מולדובני"
+      :one: "לאו מולדובני"
+    :MGA: 
+      :name: "אריארי מלגשי"
+      :narrow_symbol: Ar
+      :one: "אריארי מלגשי"
+      :symbol: Ar
+    :MGF: 
+      :name: "פרנק מדגסקארי"
+      :one: "פרנק מדגסקארי"
+    :MKD: 
+      :name: "דינר מקדוני"
+      :one: "דינר מקדוני"
+    :MMK: 
+      :name: "קיאט מיאנמרי"
+      :narrow_symbol: K
+      :one: "קיאט מיאנמרי"
+      :symbol: K
+    :MNT: 
+      :name: "טוגרוג מונגולי"
+      :narrow_symbol: ₮
+      :one: "טוגרוג מונגולי"
+      :symbol: ₮
+    :MOP: 
+      :name: "פטקה של מקאו"
+      :one: "פטקה של מקאו"
+    :MRO: 
+      :name: "אואוגויה מאוריטני (1973–2017)"
+      :one: "אואוגויה מאוריטני (1973–2017)"
+    :MRU: 
+      :name: "אואוגויה מאוריטני"
+      :one: "אואוגויה מאוריטני"
+    :MTL: 
+      :name: "לירה מלטית"
+      :one: "לירה מלטית"
+    :MUR: 
+      :name: "רופי מאוריציני"
+      :narrow_symbol: Rs
+      :one: "רופי מאוריציני"
+      :symbol: Rs
+    :MVR: 
+      :name: "רופיה מלדיבית"
+      :one: "רופיה מלדיבית"
+      :other: "רופיות מלדיביות"
+      :two: "רופיות מלדיביות"
+    :MWK: 
+      :name: "קואצ׳ה מלאווי"
+      :one: "קואצ׳ה מלאווי"
+    :MXN: 
+      :name: "פסו מקסיקני"
+      :narrow_symbol: $
+      :one: "פסו מקסיקני"
+      :symbol: MX$
+    :MXP: 
+      :name: "פזו מקסיקני (1861 – 1992)"
+      :one: "פסו מקסיקני (1861 – 1992)"
+      :other: "פסו מקסיקני (1861 – 1992)"
+      :two: "פסו מקסיקני (1861 – 1992)"
+    :MXV: 
+      :name: "יחידת השקעות מקסיקנית"
+      :one: "יחידת השקעות מקסיקנית"
+      :other: "יחידות השקעות מקסיקניות"
+      :two: "יחידות השקעות מקסיקניות"
+    :MYR: 
+      :name: "רינגיט מלזי"
+      :narrow_symbol: RM
+      :one: "רינגיט מלזי"
+      :symbol: RM
+    :MZE: 
+      :many: "אסקודו מוזמביקי"
+      :name: "אסקודו מוזמביקי"
+      :one: "אסקודו מוזמביקי"
+      :other: "אסקודואים מוזמביקיים"
+      :two: "אסקודואים מוזמביקיים"
+    :MZM: 
+      :name: מטיקל
+      :one: מטיקל
+    :MZN: 
+      :name: "מטיקל מוזמביני"
+      :one: "מטיקל מוזמביני"
+    :NAD: 
+      :name: "דולר נמיבי"
+      :narrow_symbol: $
+      :one: "דולר נמיבי"
+      :symbol: $
+    :NGN: 
+      :name: "נאירה ניגרי"
+      :narrow_symbol: ₦
+      :one: "נאירה ניגרי"
+      :symbol: ₦
+    :NIC: 
+      :name: "קורדובה (1988–1991)"
+      :one: "קורדובה (1988–1991)"
+      :other: "קורדובות (1988–1991)"
+      :two: "קורדובות (1988–1991)"
+    :NIO: 
+      :name: "קורדובה ניקרגואה"
+      :narrow_symbol: C$
+      :one: "קורדובה ניקרגואה"
+      :symbol: C$
+    :NLG: 
+      :name: "גילדן הולנדי"
+      :one: "גילדן הולנדי"
+    :NOK: 
+      :name: "כתר נורווגי"
+      :narrow_symbol: kr
+      :one: "כתר נורווגי"
+      :symbol: kr
+    :NPR: 
+      :name: "רופי נפאלי"
+      :narrow_symbol: Rs
+      :one: "רופי נפאלי"
+      :symbol: Rs
+    :NZD: 
+      :name: "דולר ניו זילנדי"
+      :narrow_symbol: $
+      :one: "דולר ניו זילנדי"
+      :symbol: NZ$
+    :OMR: 
+      :name: "ריאל עומאני"
+      :one: "ריאל עומאני"
+    :PAB: 
+      :name: "בלבואה פנמי"
+      :one: "בלבואה פנמי"
+    :PEN: 
+      :name: "סול פרואני"
+      :one: "סול פרואני"
+    :PGK: 
+      :name: "קינה של פפואה גינאה החדשה"
+      :one: "קינה של פפואה גינאה החדשה"
+    :PHP: 
+      :name: "פסו פיליפיני"
+      :narrow_symbol: ₱
+      :one: "פסו פיליפיני"
+      :symbol: PHP
+    :PKR: 
+      :name: "רופי פקיסטני"
+      :narrow_symbol: Rs
+      :one: "רופי פקיסטני"
+      :symbol: Rs
+    :PLN: 
+      :name: "זלוטי פולני"
+      :narrow_symbol: zł
+      :one: "זלוטי פולני"
+      :symbol: zł
+    :PLZ: 
+      :name: "זלוטי (1950 – 1995)"
+      :one: "זלוטי (1950 – 1995)"
+    :PTE: 
+      :name: "אסקודו פורטוגלי"
+      :one: "אסקודו פורטוגלי"
+    :PYG: 
+      :name: "גוארני פרגוואי"
+      :narrow_symbol: ₲
+      :one: "גוארני פרגוואי"
+      :symbol: ₲
+    :QAR: 
+      :name: "ריאל קטארי"
+      :one: "ריאל קטארי"
+    :ROL: 
+      :name: "לאו רומני ישן"
+      :one: "לאו רומני ישן"
+    :RON: 
+      :name: "לאו רומני"
+      :narrow_symbol: lei
+      :one: "לאו רומני"
+      :symbol: lei
+    :RSD: 
+      :name: "דינר סרבי"
+      :one: "דינר סרבי"
+    :RUB: 
+      :name: "רובל רוסי"
+      :narrow_symbol: ₽
+      :one: "רובל רוסי"
+      :symbol: ₽
+    :RUR: 
+      :name: "רובל רוסי (1991 – 1998)"
+      :one: "רובל רוסי (1991 – 1998)"
+    :RWF: 
+      :name: "פרנק רואנדי"
+      :narrow_symbol: RF
+      :one: "פרנק רואנדי"
+      :symbol: RF
+    :SAR: 
+      :name: "ריאל סעודי"
+      :one: "ריאל סעודי"
+    :SBD: 
+      :name: "דולר איי שלמה"
+      :narrow_symbol: $
+      :one: "דולר איי שלמה"
+      :symbol: $
+    :SCR: 
+      :name: "רופי סיישלי"
+      :one: "רופי סיישלי"
+    :SDD: 
+      :name: "דינר סודני"
+      :one: "דינר סודני"
+    :SDG: 
+      :name: "לירה סודנית"
+      :one: "לירה סודנית"
+    :SDP: 
+      :name: "לירה סודנית (1957–1998)"
+      :one: "לירה סודנית (1957–1998)"
+    :SEK: 
+      :name: "כתר שוודי"
+      :narrow_symbol: kr
+      :one: "כתר שוודי"
+      :symbol: kr
+    :SGD: 
+      :name: "דולר סינגפורי"
+      :narrow_symbol: $
+      :one: "דולר סינגפורי"
+      :symbol: $
+    :SHP: 
+      :name: "פאונד סנט הלני"
+      :narrow_symbol: £
+      :one: "פאונד סנט הלני"
+      :symbol: £
+    :SIT: 
+      :name: "טולאר סלובני"
+      :one: "טולאר סלובני"
+    :SKK: 
+      :name: "קורונה סלובקי"
+      :one: "קורונה סלובקי"
+    :SLE: 
+      :name: "ליאון סיירה לאוני"
+      :one: "ליאון סיירה לאוני"
+    :SLL: 
+      :name: "ליאון סיירה לאוני - 1964-2022"
+      :one: "ליאון סיירה לאוני - 1964-2022"
+    :SOS: 
+      :name: "שילינג סומלי"
+      :one: "שילינג סומלי"
+    :SRD: 
+      :name: "דולר סורינאמי"
+      :narrow_symbol: $
+      :one: "דולר סורינאמי"
+      :symbol: $
+    :SRG: 
+      :name: "גילדר סורינאמי"
+      :one: "גילדר סורינאמי"
+    :SSP: 
+      :name: "לירה דרום-סודנית"
+      :narrow_symbol: £
+      :one: "לירה דרום-סודנית"
+      :symbol: £
+    :STD: 
+      :name: "דוברה של סן טומה ופרינסיפה (1977–2017)"
+      :one: "דוברה של סן טומה ופרינסיפה (1977–2017)"
+    :STN: 
+      :name: "דוברה של סאו טומה ופרינסיפה"
+      :narrow_symbol: Db
+      :one: "דוברה של סאו טומה ופרינסיפה"
+      :symbol: Db
+    :SUR: 
+      :name: "רובל סובייטי"
+      :one: "רובל סובייטי"
+    :SVC: 
+      :many: "קולון סלבדורי"
+      :name: "קולון סלבדורי"
+      :one: "קולון סלבדורי"
+      :other: "קולונים סלבדוריים"
+      :two: "קולונים סלבדוריים"
+    :SYP: 
+      :name: "לירה סורית"
+      :narrow_symbol: £
+      :one: "לירה סורית"
+      :other: "לירות סוריות"
+      :symbol: £
+      :two: "לירות סוריות"
+    :SZL: 
+      :name: "לילנגני סווזילנדי"
+      :one: "לילנגני סווזילנדי"
+    :THB: 
+      :name: "בהט תאילנדי"
+      :narrow_symbol: ฿
+      :one: "בהט תאילנדי"
+      :symbol: ฿
+    :TJS: 
+      :name: "סומוני טג׳קיסטני"
+      :one: "סומוני טג׳קיסטני"
+    :TMM: 
+      :name: "מנאט טורקמאני"
+      :one: "מנאט טורקמאני"
+    :TMT: 
+      :name: "מאנאט טורקמני"
+      :one: "מאנאט טורקמני"
+    :TND: 
+      :name: "דינר טוניסאי"
+      :one: "דינר טוניסאי"
+    :TOP: 
+      :name: "פאנגה טונגי"
+      :narrow_symbol: T$
+      :one: "פאנגה טונגי"
+      :symbol: T$
+    :TPE: 
+      :name: "אסקודו טימוראי"
+      :one: "אסקודו טימוראי"
+    :TRL: 
+      :name: "לירה טורקית"
+      :one: "לירה טורקית"
+    :TRY: 
+      :many: "לירות טורקיות"
+      :name: "לירה טורקית חדשה"
+      :narrow_symbol: ₺
+      :one: "לירה טורקית חדשה"
+      :other: "לירות טורקיות"
+      :symbol: ₺
+      :two: "לירות טורקיות"
+    :TTD: 
+      :name: "דולר טרינידדי"
+      :narrow_symbol: $
+      :one: "דולר טרינידדי"
+      :symbol: $
+    :TWD: 
+      :name: "דולר טייוואני חדש"
+      :narrow_symbol: NT$
+      :one: "דולר טייוואני חדש"
+      :symbol: NT$
+    :TZS: 
+      :name: "שילינג טנזני"
+      :one: "שילינג טנזני"
+    :UAH: 
+      :name: "הריבנה אוקראיני"
+      :narrow_symbol: ₴
+      :one: "הריבנה אוקראיני"
+      :symbol: ₴
+    :UGS: 
+      :name: "שילינג אוגנדי (1966 – 1987)"
+      :one: "שילינג אוגנדי (1966 – 1987)"
+    :UGX: 
+      :name: "שילינג אוגנדי"
+      :one: "שילינג אוגנדי"
+    :USD: 
+      :name: "דולר אמריקאי"
+      :narrow_symbol: $
+      :one: "דולר אמריקאי"
+      :symbol: $
+    :USN: 
+      :name: "דולר אמריקאי (היום הבא)"
+      :one: "דולר אמריקאי (היום הבא)"
+    :USS: 
+      :name: "דולר אמריקאי (היום הזה)"
+      :one: "דולר אמריקאי (היום הזה)"
+    :UYU: 
+      :name: "פסו אורוגוואי"
+      :narrow_symbol: $
+      :one: "פסו אורוגוואי"
+      :symbol: $
+    :UZS: 
+      :name: "סום אוזבקי"
+      :one: "סום אוזבקי"
+    :VEB: 
+      :name: "בוליבר ונצואלי (1871–2008)"
+      :one: "בוליבר ונצואלי (1871–2008)"
+    :VEF: 
+      :name: "בוליבר ונצואלי (2008–2018)"
+      :narrow_symbol: Bs
+      :one: "בוליבר ונצואלי (2008–2018)"
+      :symbol: Bs
+    :VES: 
+      :name: "בוליבר ונצואלי"
+      :one: "בוליבר ונצואלי"
+    :VND: 
+      :name: "דונג וייטנאמי"
+      :narrow_symbol: ₫
+      :one: "דונג וייטנאמי"
+      :symbol: ₫
+    :VUV: 
+      :name: "ואטו של ונואטו"
+      :one: "ואטו של ונואטו"
+    :WST: 
+      :name: "טאלה סמואי"
+      :one: "טאלה סמואי"
+    :XAF: 
+      :name: "פרנק CFA מרכז אפריקני"
+      :one: "פרנק CFA מרכז אפריקני"
+      :symbol: FCFA
+    :XAG: 
+      :name: כסף
+      :one: כסף
+    :XAU: 
+      :name: זהב
+      :one: זהב
+    :XCD: 
+      :name: "דולר מזרח קריבי"
+      :narrow_symbol: $
+      :one: "דולר מזרח קריבי"
+      :symbol: EC$
+    :XCG: 
+      :symbol: Cg.
+    :XDR: 
+      :name: "זכויות משיכה מיוחדות"
+      :one: "זכויות משיכה מיוחדות"
+    :XFO: 
+      :name: "פרנק זהב"
+      :one: "פרנק זהב"
+    :XOF: 
+      :name: "פרנק CFA מערב אפריקני"
+      :one: "פרנק CFA מערב אפריקני"
+      :symbol: F CFA
+    :XPD: 
+      :name: פלדיום
+      :one: פלדיום
+    :XPF: 
+      :name: "פרנק פולינזיה הצרפתית"
+      :one: "פרנק פולינזיה הצרפתית"
+      :symbol: CFPF
+    :XPT: 
+      :name: פלטינה
+      :one: פלטינה
+    :XTS: 
+      :name: "סימון למטרות בדיקה"
+      :one: "סימון למטרות בדיקה"
+    :XXX: 
+      :name: "מטבע שאינו ידוע"
+      :one: "(מטבע שאינו ידוע)"
+      :other: "(מטבע שאינו ידוע)"
+      :symbol: ¤
+      :two: "(מטבע שאינו ידוע)"
+    :YDD: 
+      :name: "דינר תימני"
+      :one: "דינר תימני"
+    :YER: 
+      :name: "ריאל תימני"
+      :one: "ריאל תימני"
+    :YUD: 
+      :name: "דינר יגוסלבי חדש"
+      :one: "דינר יגוסלבי חדש"
+    :YUM: 
+      :name: "דינר יגוסלבי"
+      :one: "דינר יגוסלבי"
+    :ZAL: 
+      :name: "ראנד דרום אפריקאי (כספי)"
+      :one: "ראנד דרום אפריקאי (כספי)"
+    :ZAR: 
+      :name: "ראנד דרום אפריקאי"
+      :narrow_symbol: R
+      :one: "ראנד דרום אפריקאי"
+      :symbol: R
+    :ZMK: 
+      :name: "קוואצ׳ה זמבית (1968–2012)"
+      :one: "קוואצ׳ה זמבית (1968–2012)"
+    :ZMW: 
+      :name: "קוואצ׳ה זמבי"
+      :narrow_symbol: ZK
+      :one: "קוואצ׳ה זמבי"
+      :symbol: ZK
+    :ZRN: 
+      :name: "זאיר חדש"
+      :one: "זאיר חדש"
+    :ZWD: 
+      :name: "דולר זימבבואי"
+      :one: "דולר זימבבואי"

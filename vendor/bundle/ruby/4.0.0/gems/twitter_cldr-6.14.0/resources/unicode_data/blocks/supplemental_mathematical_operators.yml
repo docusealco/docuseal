@@ -1,0 +1,4097 @@
+---
+10752:
+- 10752
+- N-ARY CIRCLED DOT OPERATOR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10753:
+- 10753
+- N-ARY CIRCLED PLUS OPERATOR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10754:
+- 10754
+- N-ARY CIRCLED TIMES OPERATOR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10755:
+- 10755
+- N-ARY UNION OPERATOR WITH DOT
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10756:
+- 10756
+- N-ARY UNION OPERATOR WITH PLUS
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10757:
+- 10757
+- N-ARY SQUARE INTERSECTION OPERATOR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10758:
+- 10758
+- N-ARY SQUARE UNION OPERATOR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10759:
+- 10759
+- TWO LOGICAL AND OPERATOR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10760:
+- 10760
+- TWO LOGICAL OR OPERATOR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10761:
+- 10761
+- N-ARY TIMES OPERATOR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10762:
+- 10762
+- MODULO TWO SUM
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10763:
+- 10763
+- SUMMATION WITH INTEGRAL
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10764:
+- 10764
+- QUADRUPLE INTEGRAL OPERATOR
+- Sm
+- '0'
+- 'ON'
+- "<compat> 222B 222B 222B 222B"
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10765:
+- 10765
+- FINITE PART INTEGRAL
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10766:
+- 10766
+- INTEGRAL WITH DOUBLE STROKE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10767:
+- 10767
+- INTEGRAL AVERAGE WITH SLASH
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10768:
+- 10768
+- CIRCULATION FUNCTION
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10769:
+- 10769
+- ANTICLOCKWISE INTEGRATION
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10770:
+- 10770
+- LINE INTEGRATION WITH RECTANGULAR PATH AROUND POLE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10771:
+- 10771
+- LINE INTEGRATION WITH SEMICIRCULAR PATH AROUND POLE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10772:
+- 10772
+- LINE INTEGRATION NOT INCLUDING THE POLE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10773:
+- 10773
+- INTEGRAL AROUND A POINT OPERATOR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10774:
+- 10774
+- QUATERNION INTEGRAL OPERATOR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10775:
+- 10775
+- INTEGRAL WITH LEFTWARDS ARROW WITH HOOK
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10776:
+- 10776
+- INTEGRAL WITH TIMES SIGN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10777:
+- 10777
+- INTEGRAL WITH INTERSECTION
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10778:
+- 10778
+- INTEGRAL WITH UNION
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10779:
+- 10779
+- INTEGRAL WITH OVERBAR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10780:
+- 10780
+- INTEGRAL WITH UNDERBAR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10781:
+- 10781
+- JOIN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10782:
+- 10782
+- LARGE LEFT TRIANGLE OPERATOR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10783:
+- 10783
+- Z NOTATION SCHEMA COMPOSITION
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10784:
+- 10784
+- Z NOTATION SCHEMA PIPING
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10785:
+- 10785
+- Z NOTATION SCHEMA PROJECTION
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10786:
+- 10786
+- PLUS SIGN WITH SMALL CIRCLE ABOVE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10787:
+- 10787
+- PLUS SIGN WITH CIRCUMFLEX ACCENT ABOVE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10788:
+- 10788
+- PLUS SIGN WITH TILDE ABOVE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10789:
+- 10789
+- PLUS SIGN WITH DOT BELOW
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10790:
+- 10790
+- PLUS SIGN WITH TILDE BELOW
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10791:
+- 10791
+- PLUS SIGN WITH SUBSCRIPT TWO
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10792:
+- 10792
+- PLUS SIGN WITH BLACK TRIANGLE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10793:
+- 10793
+- MINUS SIGN WITH COMMA ABOVE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10794:
+- 10794
+- MINUS SIGN WITH DOT BELOW
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10795:
+- 10795
+- MINUS SIGN WITH FALLING DOTS
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10796:
+- 10796
+- MINUS SIGN WITH RISING DOTS
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10797:
+- 10797
+- PLUS SIGN IN LEFT HALF CIRCLE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10798:
+- 10798
+- PLUS SIGN IN RIGHT HALF CIRCLE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10799:
+- 10799
+- VECTOR OR CROSS PRODUCT
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10800:
+- 10800
+- MULTIPLICATION SIGN WITH DOT ABOVE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10801:
+- 10801
+- MULTIPLICATION SIGN WITH UNDERBAR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10802:
+- 10802
+- SEMIDIRECT PRODUCT WITH BOTTOM CLOSED
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10803:
+- 10803
+- SMASH PRODUCT
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10804:
+- 10804
+- MULTIPLICATION SIGN IN LEFT HALF CIRCLE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10805:
+- 10805
+- MULTIPLICATION SIGN IN RIGHT HALF CIRCLE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10806:
+- 10806
+- CIRCLED MULTIPLICATION SIGN WITH CIRCUMFLEX ACCENT
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10807:
+- 10807
+- MULTIPLICATION SIGN IN DOUBLE CIRCLE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10808:
+- 10808
+- CIRCLED DIVISION SIGN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10809:
+- 10809
+- PLUS SIGN IN TRIANGLE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10810:
+- 10810
+- MINUS SIGN IN TRIANGLE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10811:
+- 10811
+- MULTIPLICATION SIGN IN TRIANGLE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10812:
+- 10812
+- INTERIOR PRODUCT
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10813:
+- 10813
+- RIGHTHAND INTERIOR PRODUCT
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10814:
+- 10814
+- Z NOTATION RELATIONAL COMPOSITION
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10815:
+- 10815
+- AMALGAMATION OR COPRODUCT
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10816:
+- 10816
+- INTERSECTION WITH DOT
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10817:
+- 10817
+- UNION WITH MINUS SIGN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10818:
+- 10818
+- UNION WITH OVERBAR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10819:
+- 10819
+- INTERSECTION WITH OVERBAR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10820:
+- 10820
+- INTERSECTION WITH LOGICAL AND
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10821:
+- 10821
+- UNION WITH LOGICAL OR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10822:
+- 10822
+- UNION ABOVE INTERSECTION
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10823:
+- 10823
+- INTERSECTION ABOVE UNION
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10824:
+- 10824
+- UNION ABOVE BAR ABOVE INTERSECTION
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10825:
+- 10825
+- INTERSECTION ABOVE BAR ABOVE UNION
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10826:
+- 10826
+- UNION BESIDE AND JOINED WITH UNION
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10827:
+- 10827
+- INTERSECTION BESIDE AND JOINED WITH INTERSECTION
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10828:
+- 10828
+- CLOSED UNION WITH SERIFS
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10829:
+- 10829
+- CLOSED INTERSECTION WITH SERIFS
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10830:
+- 10830
+- DOUBLE SQUARE INTERSECTION
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10831:
+- 10831
+- DOUBLE SQUARE UNION
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10832:
+- 10832
+- CLOSED UNION WITH SERIFS AND SMASH PRODUCT
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10833:
+- 10833
+- LOGICAL AND WITH DOT ABOVE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10834:
+- 10834
+- LOGICAL OR WITH DOT ABOVE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10835:
+- 10835
+- DOUBLE LOGICAL AND
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10836:
+- 10836
+- DOUBLE LOGICAL OR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10837:
+- 10837
+- TWO INTERSECTING LOGICAL AND
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10838:
+- 10838
+- TWO INTERSECTING LOGICAL OR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10839:
+- 10839
+- SLOPING LARGE OR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10840:
+- 10840
+- SLOPING LARGE AND
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10841:
+- 10841
+- LOGICAL OR OVERLAPPING LOGICAL AND
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10842:
+- 10842
+- LOGICAL AND WITH MIDDLE STEM
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10843:
+- 10843
+- LOGICAL OR WITH MIDDLE STEM
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10844:
+- 10844
+- LOGICAL AND WITH HORIZONTAL DASH
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10845:
+- 10845
+- LOGICAL OR WITH HORIZONTAL DASH
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10846:
+- 10846
+- LOGICAL AND WITH DOUBLE OVERBAR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10847:
+- 10847
+- LOGICAL AND WITH UNDERBAR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10848:
+- 10848
+- LOGICAL AND WITH DOUBLE UNDERBAR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10849:
+- 10849
+- SMALL VEE WITH UNDERBAR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10850:
+- 10850
+- LOGICAL OR WITH DOUBLE OVERBAR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10851:
+- 10851
+- LOGICAL OR WITH DOUBLE UNDERBAR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10852:
+- 10852
+- Z NOTATION DOMAIN ANTIRESTRICTION
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10853:
+- 10853
+- Z NOTATION RANGE ANTIRESTRICTION
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10854:
+- 10854
+- EQUALS SIGN WITH DOT BELOW
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10855:
+- 10855
+- IDENTICAL WITH DOT ABOVE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10856:
+- 10856
+- TRIPLE HORIZONTAL BAR WITH DOUBLE VERTICAL STROKE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10857:
+- 10857
+- TRIPLE HORIZONTAL BAR WITH TRIPLE VERTICAL STROKE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10858:
+- 10858
+- TILDE OPERATOR WITH DOT ABOVE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10859:
+- 10859
+- TILDE OPERATOR WITH RISING DOTS
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10860:
+- 10860
+- SIMILAR MINUS SIMILAR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10861:
+- 10861
+- CONGRUENT WITH DOT ABOVE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10862:
+- 10862
+- EQUALS WITH ASTERISK
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10863:
+- 10863
+- ALMOST EQUAL TO WITH CIRCUMFLEX ACCENT
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10864:
+- 10864
+- APPROXIMATELY EQUAL OR EQUAL TO
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10865:
+- 10865
+- EQUALS SIGN ABOVE PLUS SIGN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10866:
+- 10866
+- PLUS SIGN ABOVE EQUALS SIGN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10867:
+- 10867
+- EQUALS SIGN ABOVE TILDE OPERATOR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10868:
+- 10868
+- DOUBLE COLON EQUAL
+- Sm
+- '0'
+- 'ON'
+- "<compat> 003A 003A 003D"
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10869:
+- 10869
+- TWO CONSECUTIVE EQUALS SIGNS
+- Sm
+- '0'
+- 'ON'
+- "<compat> 003D 003D"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10870:
+- 10870
+- THREE CONSECUTIVE EQUALS SIGNS
+- Sm
+- '0'
+- 'ON'
+- "<compat> 003D 003D 003D"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10871:
+- 10871
+- EQUALS SIGN WITH TWO DOTS ABOVE AND TWO DOTS BELOW
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10872:
+- 10872
+- EQUIVALENT WITH FOUR DOTS ABOVE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10873:
+- 10873
+- LESS-THAN WITH CIRCLE INSIDE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10874:
+- 10874
+- GREATER-THAN WITH CIRCLE INSIDE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10875:
+- 10875
+- LESS-THAN WITH QUESTION MARK ABOVE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10876:
+- 10876
+- GREATER-THAN WITH QUESTION MARK ABOVE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10877:
+- 10877
+- LESS-THAN OR SLANTED EQUAL TO
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10878:
+- 10878
+- GREATER-THAN OR SLANTED EQUAL TO
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10879:
+- 10879
+- LESS-THAN OR SLANTED EQUAL TO WITH DOT INSIDE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10880:
+- 10880
+- GREATER-THAN OR SLANTED EQUAL TO WITH DOT INSIDE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10881:
+- 10881
+- LESS-THAN OR SLANTED EQUAL TO WITH DOT ABOVE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10882:
+- 10882
+- GREATER-THAN OR SLANTED EQUAL TO WITH DOT ABOVE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10883:
+- 10883
+- LESS-THAN OR SLANTED EQUAL TO WITH DOT ABOVE RIGHT
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10884:
+- 10884
+- GREATER-THAN OR SLANTED EQUAL TO WITH DOT ABOVE LEFT
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10885:
+- 10885
+- LESS-THAN OR APPROXIMATE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10886:
+- 10886
+- GREATER-THAN OR APPROXIMATE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10887:
+- 10887
+- LESS-THAN AND SINGLE-LINE NOT EQUAL TO
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10888:
+- 10888
+- GREATER-THAN AND SINGLE-LINE NOT EQUAL TO
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10889:
+- 10889
+- LESS-THAN AND NOT APPROXIMATE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10890:
+- 10890
+- GREATER-THAN AND NOT APPROXIMATE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10891:
+- 10891
+- LESS-THAN ABOVE DOUBLE-LINE EQUAL ABOVE GREATER-THAN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10892:
+- 10892
+- GREATER-THAN ABOVE DOUBLE-LINE EQUAL ABOVE LESS-THAN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10893:
+- 10893
+- LESS-THAN ABOVE SIMILAR OR EQUAL
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10894:
+- 10894
+- GREATER-THAN ABOVE SIMILAR OR EQUAL
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10895:
+- 10895
+- LESS-THAN ABOVE SIMILAR ABOVE GREATER-THAN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10896:
+- 10896
+- GREATER-THAN ABOVE SIMILAR ABOVE LESS-THAN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10897:
+- 10897
+- LESS-THAN ABOVE GREATER-THAN ABOVE DOUBLE-LINE EQUAL
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10898:
+- 10898
+- GREATER-THAN ABOVE LESS-THAN ABOVE DOUBLE-LINE EQUAL
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10899:
+- 10899
+- LESS-THAN ABOVE SLANTED EQUAL ABOVE GREATER-THAN ABOVE SLANTED EQUAL
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10900:
+- 10900
+- GREATER-THAN ABOVE SLANTED EQUAL ABOVE LESS-THAN ABOVE SLANTED EQUAL
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10901:
+- 10901
+- SLANTED EQUAL TO OR LESS-THAN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10902:
+- 10902
+- SLANTED EQUAL TO OR GREATER-THAN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10903:
+- 10903
+- SLANTED EQUAL TO OR LESS-THAN WITH DOT INSIDE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10904:
+- 10904
+- SLANTED EQUAL TO OR GREATER-THAN WITH DOT INSIDE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10905:
+- 10905
+- DOUBLE-LINE EQUAL TO OR LESS-THAN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10906:
+- 10906
+- DOUBLE-LINE EQUAL TO OR GREATER-THAN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10907:
+- 10907
+- DOUBLE-LINE SLANTED EQUAL TO OR LESS-THAN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10908:
+- 10908
+- DOUBLE-LINE SLANTED EQUAL TO OR GREATER-THAN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10909:
+- 10909
+- SIMILAR OR LESS-THAN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10910:
+- 10910
+- SIMILAR OR GREATER-THAN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10911:
+- 10911
+- SIMILAR ABOVE LESS-THAN ABOVE EQUALS SIGN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10912:
+- 10912
+- SIMILAR ABOVE GREATER-THAN ABOVE EQUALS SIGN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10913:
+- 10913
+- DOUBLE NESTED LESS-THAN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10914:
+- 10914
+- DOUBLE NESTED GREATER-THAN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10915:
+- 10915
+- DOUBLE NESTED LESS-THAN WITH UNDERBAR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10916:
+- 10916
+- GREATER-THAN OVERLAPPING LESS-THAN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10917:
+- 10917
+- GREATER-THAN BESIDE LESS-THAN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10918:
+- 10918
+- LESS-THAN CLOSED BY CURVE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10919:
+- 10919
+- GREATER-THAN CLOSED BY CURVE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10920:
+- 10920
+- LESS-THAN CLOSED BY CURVE ABOVE SLANTED EQUAL
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10921:
+- 10921
+- GREATER-THAN CLOSED BY CURVE ABOVE SLANTED EQUAL
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10922:
+- 10922
+- SMALLER THAN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10923:
+- 10923
+- LARGER THAN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10924:
+- 10924
+- SMALLER THAN OR EQUAL TO
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10925:
+- 10925
+- LARGER THAN OR EQUAL TO
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10926:
+- 10926
+- EQUALS SIGN WITH BUMPY ABOVE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10927:
+- 10927
+- PRECEDES ABOVE SINGLE-LINE EQUALS SIGN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10928:
+- 10928
+- SUCCEEDS ABOVE SINGLE-LINE EQUALS SIGN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10929:
+- 10929
+- PRECEDES ABOVE SINGLE-LINE NOT EQUAL TO
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10930:
+- 10930
+- SUCCEEDS ABOVE SINGLE-LINE NOT EQUAL TO
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10931:
+- 10931
+- PRECEDES ABOVE EQUALS SIGN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10932:
+- 10932
+- SUCCEEDS ABOVE EQUALS SIGN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10933:
+- 10933
+- PRECEDES ABOVE NOT EQUAL TO
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10934:
+- 10934
+- SUCCEEDS ABOVE NOT EQUAL TO
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10935:
+- 10935
+- PRECEDES ABOVE ALMOST EQUAL TO
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10936:
+- 10936
+- SUCCEEDS ABOVE ALMOST EQUAL TO
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10937:
+- 10937
+- PRECEDES ABOVE NOT ALMOST EQUAL TO
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10938:
+- 10938
+- SUCCEEDS ABOVE NOT ALMOST EQUAL TO
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10939:
+- 10939
+- DOUBLE PRECEDES
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10940:
+- 10940
+- DOUBLE SUCCEEDS
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10941:
+- 10941
+- SUBSET WITH DOT
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10942:
+- 10942
+- SUPERSET WITH DOT
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10943:
+- 10943
+- SUBSET WITH PLUS SIGN BELOW
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10944:
+- 10944
+- SUPERSET WITH PLUS SIGN BELOW
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10945:
+- 10945
+- SUBSET WITH MULTIPLICATION SIGN BELOW
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10946:
+- 10946
+- SUPERSET WITH MULTIPLICATION SIGN BELOW
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10947:
+- 10947
+- SUBSET OF OR EQUAL TO WITH DOT ABOVE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10948:
+- 10948
+- SUPERSET OF OR EQUAL TO WITH DOT ABOVE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10949:
+- 10949
+- SUBSET OF ABOVE EQUALS SIGN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10950:
+- 10950
+- SUPERSET OF ABOVE EQUALS SIGN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10951:
+- 10951
+- SUBSET OF ABOVE TILDE OPERATOR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10952:
+- 10952
+- SUPERSET OF ABOVE TILDE OPERATOR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10953:
+- 10953
+- SUBSET OF ABOVE ALMOST EQUAL TO
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10954:
+- 10954
+- SUPERSET OF ABOVE ALMOST EQUAL TO
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10955:
+- 10955
+- SUBSET OF ABOVE NOT EQUAL TO
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10956:
+- 10956
+- SUPERSET OF ABOVE NOT EQUAL TO
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10957:
+- 10957
+- SQUARE LEFT OPEN BOX OPERATOR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10958:
+- 10958
+- SQUARE RIGHT OPEN BOX OPERATOR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10959:
+- 10959
+- CLOSED SUBSET
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10960:
+- 10960
+- CLOSED SUPERSET
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10961:
+- 10961
+- CLOSED SUBSET OR EQUAL TO
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10962:
+- 10962
+- CLOSED SUPERSET OR EQUAL TO
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10963:
+- 10963
+- SUBSET ABOVE SUPERSET
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10964:
+- 10964
+- SUPERSET ABOVE SUBSET
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10965:
+- 10965
+- SUBSET ABOVE SUBSET
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10966:
+- 10966
+- SUPERSET ABOVE SUPERSET
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10967:
+- 10967
+- SUPERSET BESIDE SUBSET
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10968:
+- 10968
+- SUPERSET BESIDE AND JOINED BY DASH WITH SUBSET
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10969:
+- 10969
+- ELEMENT OF OPENING DOWNWARDS
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10970:
+- 10970
+- PITCHFORK WITH TEE TOP
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10971:
+- 10971
+- TRANSVERSAL INTERSECTION
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10972:
+- 10972
+- FORKING
+- Sm
+- '0'
+- 'ON'
+- 2ADD 0338
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10973:
+- 10973
+- NONFORKING
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10974:
+- 10974
+- SHORT LEFT TACK
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10975:
+- 10975
+- SHORT DOWN TACK
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10976:
+- 10976
+- SHORT UP TACK
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10977:
+- 10977
+- PERPENDICULAR WITH S
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10978:
+- 10978
+- VERTICAL BAR TRIPLE RIGHT TURNSTILE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10979:
+- 10979
+- DOUBLE VERTICAL BAR LEFT TURNSTILE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10980:
+- 10980
+- VERTICAL BAR DOUBLE LEFT TURNSTILE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10981:
+- 10981
+- DOUBLE VERTICAL BAR DOUBLE LEFT TURNSTILE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10982:
+- 10982
+- LONG DASH FROM LEFT MEMBER OF DOUBLE VERTICAL
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10983:
+- 10983
+- SHORT DOWN TACK WITH OVERBAR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10984:
+- 10984
+- SHORT UP TACK WITH UNDERBAR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10985:
+- 10985
+- SHORT UP TACK ABOVE SHORT DOWN TACK
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10986:
+- 10986
+- DOUBLE DOWN TACK
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10987:
+- 10987
+- DOUBLE UP TACK
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10988:
+- 10988
+- DOUBLE STROKE NOT SIGN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10989:
+- 10989
+- REVERSED DOUBLE STROKE NOT SIGN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10990:
+- 10990
+- DOES NOT DIVIDE WITH REVERSED NEGATION SLASH
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10991:
+- 10991
+- VERTICAL LINE WITH CIRCLE ABOVE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10992:
+- 10992
+- VERTICAL LINE WITH CIRCLE BELOW
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10993:
+- 10993
+- DOWN TACK WITH CIRCLE BELOW
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10994:
+- 10994
+- PARALLEL WITH HORIZONTAL STROKE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10995:
+- 10995
+- PARALLEL WITH TILDE OPERATOR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10996:
+- 10996
+- TRIPLE VERTICAL BAR BINARY RELATION
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10997:
+- 10997
+- TRIPLE VERTICAL BAR WITH HORIZONTAL STROKE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10998:
+- 10998
+- TRIPLE COLON OPERATOR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10999:
+- 10999
+- TRIPLE NESTED LESS-THAN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+11000:
+- 11000
+- TRIPLE NESTED GREATER-THAN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+11001:
+- 11001
+- DOUBLE-LINE SLANTED LESS-THAN OR EQUAL TO
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+11002:
+- 11002
+- DOUBLE-LINE SLANTED GREATER-THAN OR EQUAL TO
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+11003:
+- 11003
+- TRIPLE SOLIDUS BINARY RELATION
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+11004:
+- 11004
+- LARGE TRIPLE VERTICAL BAR OPERATOR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11005:
+- 11005
+- DOUBLE SOLIDUS OPERATOR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+11006:
+- 11006
+- WHITE VERTICAL BAR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11007:
+- 11007
+- N-ARY WHITE VERTICAL BAR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''

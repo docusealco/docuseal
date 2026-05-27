@@ -1,0 +1,2635 @@
+# WARNING ABOUT GENERATED CODE
+#
+# This file is generated. See the contributing guide for more information:
+# https://github.com/aws/aws-sdk-ruby/blob/version-3/CONTRIBUTING.md
+#
+# WARNING ABOUT GENERATED CODE
+
+module Aws
+  module S3
+    class Client < ::Seahorse::Client::Base
+      include ::Aws::ClientStubs
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#initialize-instance_method
+      def self.new: (
+                      ?credentials: untyped,
+                      ?region: String,
+                      ?access_grants: bool,
+                      ?access_grants_credentials_provider: untyped,
+                      ?access_key_id: String,
+                      ?account_id: String,
+                      ?active_endpoint_cache: bool,
+                      ?adaptive_retry_wait_to_fill: bool,
+                      ?auth_scheme_preference: Array[String],
+                      ?client_side_monitoring: bool,
+                      ?client_side_monitoring_client_id: String,
+                      ?client_side_monitoring_host: String,
+                      ?client_side_monitoring_port: Integer,
+                      ?client_side_monitoring_publisher: untyped,
+                      ?compute_checksums: bool,
+                      ?convert_params: bool,
+                      ?correct_clock_skew: bool,
+                      ?defaults_mode: String,
+                      ?disable_host_prefix_injection: bool,
+                      ?disable_request_compression: bool,
+                      ?disable_s3_express_session_auth: bool,
+                      ?endpoint: String,
+                      ?endpoint_cache_max_entries: Integer,
+                      ?endpoint_cache_max_threads: Integer,
+                      ?endpoint_cache_poll_interval: Integer,
+                      ?endpoint_discovery: bool,
+                      ?event_stream_handler: Proc,
+                      ?express_credentials_provider: untyped,
+                      ?follow_redirects: bool,
+                      ?force_path_style: bool,
+                      ?ignore_configured_endpoint_urls: bool,
+                      ?input_event_stream_handler: Proc,
+                      ?log_formatter: untyped,
+                      ?log_level: Symbol,
+                      ?logger: untyped,
+                      ?max_attempts: Integer,
+                      ?output_event_stream_handler: Proc,
+                      ?profile: String,
+                      ?request_checksum_calculation: String,
+                      ?request_min_compression_size_bytes: Integer,
+                      ?require_https_for_sse_cpk: bool,
+                      ?response_checksum_validation: String,
+                      ?retry_backoff: Proc,
+                      ?retry_base_delay: Float,
+                      ?retry_jitter: (:none | :equal | :full | ^(Integer) -> Integer),
+                      ?retry_limit: Integer,
+                      ?retry_max_delay: Integer,
+                      ?retry_mode: ("legacy" | "standard" | "adaptive"),
+                      ?s3_disable_multiregion_access_points: bool,
+                      ?s3_us_east_1_regional_endpoint: String,
+                      ?s3_use_arn_region: bool,
+                      ?sdk_ua_app_id: String,
+                      ?secret_access_key: String,
+                      ?session_token: String,
+                      ?sigv4a_signing_region_set: Array[String],
+                      ?stub_responses: untyped,
+                      ?telemetry_provider: Aws::Telemetry::TelemetryProviderBase,
+                      ?token_provider: untyped,
+                      ?use_accelerate_endpoint: bool,
+                      ?use_dualstack_endpoint: bool,
+                      ?use_fips_endpoint: bool,
+                      ?validate_params: bool,
+                      ?endpoint_provider: untyped,
+                      ?http_proxy: String,
+                      ?http_open_timeout: (Float | Integer),
+                      ?http_read_timeout: (Float | Integer),
+                      ?http_idle_timeout: (Float | Integer),
+                      ?http_continue_timeout: (Float | Integer),
+                      ?ssl_timeout: (Float | Integer | nil),
+                      ?http_wire_trace: bool,
+                      ?ssl_verify_peer: bool,
+                      ?ssl_ca_bundle: String,
+                      ?ssl_ca_directory: String,
+                      ?ssl_ca_store: String,
+                      ?on_chunk_received: Proc,
+                      ?on_chunk_sent: Proc,
+                      ?raise_response_errors: bool
+                    ) -> instance
+                  | (?Hash[Symbol, untyped]) -> instance
+
+
+      interface _AbortMultipartUploadResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::AbortMultipartUploadOutput]
+        def request_charged: () -> ("requester")
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#abort_multipart_upload-instance_method
+      def abort_multipart_upload: (
+                                    bucket: ::String,
+                                    key: ::String,
+                                    upload_id: ::String,
+                                    ?request_payer: ("requester"),
+                                    ?expected_bucket_owner: ::String,
+                                    ?if_match_initiated_time: ::Time
+                                  ) -> _AbortMultipartUploadResponseSuccess
+                                | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _AbortMultipartUploadResponseSuccess
+
+      interface _CompleteMultipartUploadResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::CompleteMultipartUploadOutput]
+        def location: () -> ::String
+        def bucket: () -> ::String
+        def key: () -> ::String
+        def expiration: () -> ::String
+        def etag: () -> ::String
+        def checksum_crc32: () -> ::String
+        def checksum_crc32c: () -> ::String
+        def checksum_crc64nvme: () -> ::String
+        def checksum_sha1: () -> ::String
+        def checksum_sha256: () -> ::String
+        def checksum_type: () -> ("COMPOSITE" | "FULL_OBJECT")
+        def server_side_encryption: () -> ("AES256" | "aws:fsx" | "aws:kms" | "aws:kms:dsse")
+        def version_id: () -> ::String
+        def ssekms_key_id: () -> ::String
+        def bucket_key_enabled: () -> bool
+        def request_charged: () -> ("requester")
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#complete_multipart_upload-instance_method
+      def complete_multipart_upload: (
+                                       bucket: ::String,
+                                       key: ::String,
+                                       ?multipart_upload: {
+                                         parts: Array[
+                                           {
+                                             etag: ::String?,
+                                             checksum_crc32: ::String?,
+                                             checksum_crc32c: ::String?,
+                                             checksum_crc64nvme: ::String?,
+                                             checksum_sha1: ::String?,
+                                             checksum_sha256: ::String?,
+                                             part_number: ::Integer?
+                                           },
+                                         ]?
+                                       },
+                                       upload_id: ::String,
+                                       ?checksum_crc32: ::String,
+                                       ?checksum_crc32c: ::String,
+                                       ?checksum_crc64nvme: ::String,
+                                       ?checksum_sha1: ::String,
+                                       ?checksum_sha256: ::String,
+                                       ?checksum_type: ("COMPOSITE" | "FULL_OBJECT"),
+                                       ?mpu_object_size: ::Integer,
+                                       ?request_payer: ("requester"),
+                                       ?expected_bucket_owner: ::String,
+                                       ?if_match: ::String,
+                                       ?if_none_match: ::String,
+                                       ?sse_customer_algorithm: ::String,
+                                       ?sse_customer_key: ::String,
+                                       ?sse_customer_key_md5: ::String
+                                     ) -> _CompleteMultipartUploadResponseSuccess
+                                   | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _CompleteMultipartUploadResponseSuccess
+
+      interface _CopyObjectResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::CopyObjectOutput]
+        def copy_object_result: () -> Types::CopyObjectResult
+        def expiration: () -> ::String
+        def copy_source_version_id: () -> ::String
+        def version_id: () -> ::String
+        def server_side_encryption: () -> ("AES256" | "aws:fsx" | "aws:kms" | "aws:kms:dsse")
+        def sse_customer_algorithm: () -> ::String
+        def sse_customer_key_md5: () -> ::String
+        def ssekms_key_id: () -> ::String
+        def ssekms_encryption_context: () -> ::String
+        def bucket_key_enabled: () -> bool
+        def request_charged: () -> ("requester")
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#copy_object-instance_method
+      def copy_object: (
+                         ?acl: ("private" | "public-read" | "public-read-write" | "authenticated-read" | "aws-exec-read" | "bucket-owner-read" | "bucket-owner-full-control"),
+                         bucket: ::String,
+                         ?cache_control: ::String,
+                         ?checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME"),
+                         ?content_disposition: ::String,
+                         ?content_encoding: ::String,
+                         ?content_language: ::String,
+                         ?content_type: ::String,
+                         copy_source: ::String,
+                         ?copy_source_if_match: ::String,
+                         ?copy_source_if_modified_since: ::Time,
+                         ?copy_source_if_none_match: ::String,
+                         ?copy_source_if_unmodified_since: ::Time,
+                         ?expires: ::Time,
+                         ?grant_full_control: ::String,
+                         ?grant_read: ::String,
+                         ?grant_read_acp: ::String,
+                         ?grant_write_acp: ::String,
+                         ?if_match: ::String,
+                         ?if_none_match: ::String,
+                         key: ::String,
+                         ?metadata: Hash[::String, ::String],
+                         ?metadata_directive: ("COPY" | "REPLACE"),
+                         ?tagging_directive: ("COPY" | "REPLACE"),
+                         ?server_side_encryption: ("AES256" | "aws:fsx" | "aws:kms" | "aws:kms:dsse"),
+                         ?storage_class: ("STANDARD" | "REDUCED_REDUNDANCY" | "STANDARD_IA" | "ONEZONE_IA" | "INTELLIGENT_TIERING" | "GLACIER" | "DEEP_ARCHIVE" | "OUTPOSTS" | "GLACIER_IR" | "SNOW" | "EXPRESS_ONEZONE" | "FSX_OPENZFS" | "FSX_ONTAP"),
+                         ?website_redirect_location: ::String,
+                         ?sse_customer_algorithm: ::String,
+                         ?sse_customer_key: ::String,
+                         ?sse_customer_key_md5: ::String,
+                         ?ssekms_key_id: ::String,
+                         ?ssekms_encryption_context: ::String,
+                         ?bucket_key_enabled: bool,
+                         ?copy_source_sse_customer_algorithm: ::String,
+                         ?copy_source_sse_customer_key: ::String,
+                         ?copy_source_sse_customer_key_md5: ::String,
+                         ?request_payer: ("requester"),
+                         ?tagging: ::String,
+                         ?object_lock_mode: ("GOVERNANCE" | "COMPLIANCE"),
+                         ?object_lock_retain_until_date: ::Time,
+                         ?object_lock_legal_hold_status: ("ON" | "OFF"),
+                         ?expected_bucket_owner: ::String,
+                         ?expected_source_bucket_owner: ::String
+                       ) -> _CopyObjectResponseSuccess
+                     | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _CopyObjectResponseSuccess
+
+      interface _CreateBucketResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::CreateBucketOutput]
+        def location: () -> ::String
+        def bucket_arn: () -> ::String
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#create_bucket-instance_method
+      def create_bucket: (
+                           ?acl: ("private" | "public-read" | "public-read-write" | "authenticated-read"),
+                           bucket: ::String,
+                           ?create_bucket_configuration: {
+                             location_constraint: ("af-south-1" | "ap-east-1" | "ap-northeast-1" | "ap-northeast-2" | "ap-northeast-3" | "ap-south-1" | "ap-south-2" | "ap-southeast-1" | "ap-southeast-2" | "ap-southeast-3" | "ap-southeast-4" | "ap-southeast-5" | "ca-central-1" | "cn-north-1" | "cn-northwest-1" | "EU" | "eu-central-1" | "eu-central-2" | "eu-north-1" | "eu-south-1" | "eu-south-2" | "eu-west-1" | "eu-west-2" | "eu-west-3" | "il-central-1" | "me-central-1" | "me-south-1" | "sa-east-1" | "us-east-2" | "us-gov-east-1" | "us-gov-west-1" | "us-west-1" | "us-west-2")?,
+                             location: {
+                               type: ("AvailabilityZone" | "LocalZone")?,
+                               name: ::String?
+                             }?,
+                             bucket: {
+                               data_redundancy: ("SingleAvailabilityZone" | "SingleLocalZone")?,
+                               type: ("Directory")?
+                             }?,
+                             tags: Array[
+                               {
+                                 key: ::String,
+                                 value: ::String
+                               },
+                             ]?
+                           },
+                           ?grant_full_control: ::String,
+                           ?grant_read: ::String,
+                           ?grant_read_acp: ::String,
+                           ?grant_write: ::String,
+                           ?grant_write_acp: ::String,
+                           ?object_lock_enabled_for_bucket: bool,
+                           ?object_ownership: ("BucketOwnerPreferred" | "ObjectWriter" | "BucketOwnerEnforced"),
+                           ?bucket_namespace: ("account-regional" | "global")
+                         ) -> _CreateBucketResponseSuccess
+                       | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _CreateBucketResponseSuccess
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#create_bucket_metadata_configuration-instance_method
+      def create_bucket_metadata_configuration: (
+                                                  bucket: ::String,
+                                                  ?content_md5: ::String,
+                                                  ?checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME"),
+                                                  metadata_configuration: {
+                                                    journal_table_configuration: {
+                                                      record_expiration: {
+                                                        expiration: ("ENABLED" | "DISABLED"),
+                                                        days: ::Integer?
+                                                      },
+                                                      encryption_configuration: {
+                                                        sse_algorithm: ("aws:kms" | "AES256"),
+                                                        kms_key_arn: ::String?
+                                                      }?
+                                                    },
+                                                    inventory_table_configuration: {
+                                                      configuration_state: ("ENABLED" | "DISABLED"),
+                                                      encryption_configuration: {
+                                                        sse_algorithm: ("aws:kms" | "AES256"),
+                                                        kms_key_arn: ::String?
+                                                      }?
+                                                    }?
+                                                  },
+                                                  ?expected_bucket_owner: ::String
+                                                ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                                              | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#create_bucket_metadata_table_configuration-instance_method
+      def create_bucket_metadata_table_configuration: (
+                                                        bucket: ::String,
+                                                        ?content_md5: ::String,
+                                                        ?checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME"),
+                                                        metadata_table_configuration: {
+                                                          s3_tables_destination: {
+                                                            table_bucket_arn: ::String,
+                                                            table_name: ::String
+                                                          }
+                                                        },
+                                                        ?expected_bucket_owner: ::String
+                                                      ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                                                    | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      interface _CreateMultipartUploadResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::CreateMultipartUploadOutput]
+        def abort_date: () -> ::Time
+        def abort_rule_id: () -> ::String
+        def bucket: () -> ::String
+        def key: () -> ::String
+        def upload_id: () -> ::String
+        def server_side_encryption: () -> ("AES256" | "aws:fsx" | "aws:kms" | "aws:kms:dsse")
+        def sse_customer_algorithm: () -> ::String
+        def sse_customer_key_md5: () -> ::String
+        def ssekms_key_id: () -> ::String
+        def ssekms_encryption_context: () -> ::String
+        def bucket_key_enabled: () -> bool
+        def request_charged: () -> ("requester")
+        def checksum_algorithm: () -> ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+        def checksum_type: () -> ("COMPOSITE" | "FULL_OBJECT")
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#create_multipart_upload-instance_method
+      def create_multipart_upload: (
+                                     ?acl: ("private" | "public-read" | "public-read-write" | "authenticated-read" | "aws-exec-read" | "bucket-owner-read" | "bucket-owner-full-control"),
+                                     bucket: ::String,
+                                     ?cache_control: ::String,
+                                     ?content_disposition: ::String,
+                                     ?content_encoding: ::String,
+                                     ?content_language: ::String,
+                                     ?content_type: ::String,
+                                     ?expires: ::Time,
+                                     ?grant_full_control: ::String,
+                                     ?grant_read: ::String,
+                                     ?grant_read_acp: ::String,
+                                     ?grant_write_acp: ::String,
+                                     key: ::String,
+                                     ?metadata: Hash[::String, ::String],
+                                     ?server_side_encryption: ("AES256" | "aws:fsx" | "aws:kms" | "aws:kms:dsse"),
+                                     ?storage_class: ("STANDARD" | "REDUCED_REDUNDANCY" | "STANDARD_IA" | "ONEZONE_IA" | "INTELLIGENT_TIERING" | "GLACIER" | "DEEP_ARCHIVE" | "OUTPOSTS" | "GLACIER_IR" | "SNOW" | "EXPRESS_ONEZONE" | "FSX_OPENZFS" | "FSX_ONTAP"),
+                                     ?website_redirect_location: ::String,
+                                     ?sse_customer_algorithm: ::String,
+                                     ?sse_customer_key: ::String,
+                                     ?sse_customer_key_md5: ::String,
+                                     ?ssekms_key_id: ::String,
+                                     ?ssekms_encryption_context: ::String,
+                                     ?bucket_key_enabled: bool,
+                                     ?request_payer: ("requester"),
+                                     ?tagging: ::String,
+                                     ?object_lock_mode: ("GOVERNANCE" | "COMPLIANCE"),
+                                     ?object_lock_retain_until_date: ::Time,
+                                     ?object_lock_legal_hold_status: ("ON" | "OFF"),
+                                     ?expected_bucket_owner: ::String,
+                                     ?checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME"),
+                                     ?checksum_type: ("COMPOSITE" | "FULL_OBJECT")
+                                   ) -> _CreateMultipartUploadResponseSuccess
+                                 | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _CreateMultipartUploadResponseSuccess
+
+      interface _CreateSessionResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::CreateSessionOutput]
+        def server_side_encryption: () -> ("AES256" | "aws:fsx" | "aws:kms" | "aws:kms:dsse")
+        def ssekms_key_id: () -> ::String
+        def ssekms_encryption_context: () -> ::String
+        def bucket_key_enabled: () -> bool
+        def credentials: () -> Types::SessionCredentials
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#create_session-instance_method
+      def create_session: (
+                            ?session_mode: ("ReadOnly" | "ReadWrite"),
+                            bucket: ::String,
+                            ?server_side_encryption: ("AES256" | "aws:fsx" | "aws:kms" | "aws:kms:dsse"),
+                            ?ssekms_key_id: ::String,
+                            ?ssekms_encryption_context: ::String,
+                            ?bucket_key_enabled: bool
+                          ) -> _CreateSessionResponseSuccess
+                        | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _CreateSessionResponseSuccess
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#delete_bucket-instance_method
+      def delete_bucket: (
+                           bucket: ::String,
+                           ?expected_bucket_owner: ::String
+                         ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                       | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#delete_bucket_analytics_configuration-instance_method
+      def delete_bucket_analytics_configuration: (
+                                                   bucket: ::String,
+                                                   id: ::String,
+                                                   ?expected_bucket_owner: ::String
+                                                 ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                                               | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#delete_bucket_cors-instance_method
+      def delete_bucket_cors: (
+                                bucket: ::String,
+                                ?expected_bucket_owner: ::String
+                              ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                            | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#delete_bucket_encryption-instance_method
+      def delete_bucket_encryption: (
+                                      bucket: ::String,
+                                      ?expected_bucket_owner: ::String
+                                    ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                                  | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#delete_bucket_intelligent_tiering_configuration-instance_method
+      def delete_bucket_intelligent_tiering_configuration: (
+                                                             bucket: ::String,
+                                                             id: ::String,
+                                                             ?expected_bucket_owner: ::String
+                                                           ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                                                         | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#delete_bucket_inventory_configuration-instance_method
+      def delete_bucket_inventory_configuration: (
+                                                   bucket: ::String,
+                                                   id: ::String,
+                                                   ?expected_bucket_owner: ::String
+                                                 ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                                               | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#delete_bucket_lifecycle-instance_method
+      def delete_bucket_lifecycle: (
+                                     bucket: ::String,
+                                     ?expected_bucket_owner: ::String
+                                   ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                                 | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#delete_bucket_metadata_configuration-instance_method
+      def delete_bucket_metadata_configuration: (
+                                                  bucket: ::String,
+                                                  ?expected_bucket_owner: ::String
+                                                ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                                              | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#delete_bucket_metadata_table_configuration-instance_method
+      def delete_bucket_metadata_table_configuration: (
+                                                        bucket: ::String,
+                                                        ?expected_bucket_owner: ::String
+                                                      ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                                                    | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#delete_bucket_metrics_configuration-instance_method
+      def delete_bucket_metrics_configuration: (
+                                                 bucket: ::String,
+                                                 id: ::String,
+                                                 ?expected_bucket_owner: ::String
+                                               ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                                             | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#delete_bucket_ownership_controls-instance_method
+      def delete_bucket_ownership_controls: (
+                                              bucket: ::String,
+                                              ?expected_bucket_owner: ::String
+                                            ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                                          | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#delete_bucket_policy-instance_method
+      def delete_bucket_policy: (
+                                  bucket: ::String,
+                                  ?expected_bucket_owner: ::String
+                                ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                              | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#delete_bucket_replication-instance_method
+      def delete_bucket_replication: (
+                                       bucket: ::String,
+                                       ?expected_bucket_owner: ::String
+                                     ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                                   | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#delete_bucket_tagging-instance_method
+      def delete_bucket_tagging: (
+                                   bucket: ::String,
+                                   ?expected_bucket_owner: ::String
+                                 ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                               | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#delete_bucket_website-instance_method
+      def delete_bucket_website: (
+                                   bucket: ::String,
+                                   ?expected_bucket_owner: ::String
+                                 ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                               | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      interface _DeleteObjectResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::DeleteObjectOutput]
+        def delete_marker: () -> bool
+        def version_id: () -> ::String
+        def request_charged: () -> ("requester")
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#delete_object-instance_method
+      def delete_object: (
+                           bucket: ::String,
+                           key: ::String,
+                           ?mfa: ::String,
+                           ?version_id: ::String,
+                           ?request_payer: ("requester"),
+                           ?bypass_governance_retention: bool,
+                           ?expected_bucket_owner: ::String,
+                           ?if_match: ::String,
+                           ?if_match_last_modified_time: ::Time,
+                           ?if_match_size: ::Integer
+                         ) -> _DeleteObjectResponseSuccess
+                       | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _DeleteObjectResponseSuccess
+
+      interface _DeleteObjectTaggingResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::DeleteObjectTaggingOutput]
+        def version_id: () -> ::String
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#delete_object_tagging-instance_method
+      def delete_object_tagging: (
+                                   bucket: ::String,
+                                   key: ::String,
+                                   ?version_id: ::String,
+                                   ?expected_bucket_owner: ::String
+                                 ) -> _DeleteObjectTaggingResponseSuccess
+                               | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _DeleteObjectTaggingResponseSuccess
+
+      interface _DeleteObjectsResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::DeleteObjectsOutput]
+        def deleted: () -> ::Array[Types::DeletedObject]
+        def request_charged: () -> ("requester")
+        def errors: () -> ::Array[Types::Error]
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#delete_objects-instance_method
+      def delete_objects: (
+                            bucket: ::String,
+                            delete: {
+                              objects: Array[
+                                {
+                                  key: ::String,
+                                  version_id: ::String?,
+                                  etag: ::String?,
+                                  last_modified_time: ::Time?,
+                                  size: ::Integer?
+                                },
+                              ],
+                              quiet: bool?
+                            },
+                            ?mfa: ::String,
+                            ?request_payer: ("requester"),
+                            ?bypass_governance_retention: bool,
+                            ?expected_bucket_owner: ::String,
+                            ?checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+                          ) -> _DeleteObjectsResponseSuccess
+                        | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _DeleteObjectsResponseSuccess
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#delete_public_access_block-instance_method
+      def delete_public_access_block: (
+                                        bucket: ::String,
+                                        ?expected_bucket_owner: ::String
+                                      ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                                    | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      interface _GetBucketAbacResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::GetBucketAbacOutput]
+        def abac_status: () -> Types::AbacStatus
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#get_bucket_abac-instance_method
+      def get_bucket_abac: (
+                             bucket: ::String,
+                             ?expected_bucket_owner: ::String
+                           ) -> _GetBucketAbacResponseSuccess
+                         | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _GetBucketAbacResponseSuccess
+
+      interface _GetBucketAccelerateConfigurationResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::GetBucketAccelerateConfigurationOutput]
+        def status: () -> ("Enabled" | "Suspended")
+        def request_charged: () -> ("requester")
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#get_bucket_accelerate_configuration-instance_method
+      def get_bucket_accelerate_configuration: (
+                                                 bucket: ::String,
+                                                 ?expected_bucket_owner: ::String,
+                                                 ?request_payer: ("requester")
+                                               ) -> _GetBucketAccelerateConfigurationResponseSuccess
+                                             | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _GetBucketAccelerateConfigurationResponseSuccess
+
+      interface _GetBucketAclResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::GetBucketAclOutput]
+        def owner: () -> Types::Owner
+        def grants: () -> ::Array[Types::Grant]
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#get_bucket_acl-instance_method
+      def get_bucket_acl: (
+                            bucket: ::String,
+                            ?expected_bucket_owner: ::String
+                          ) -> _GetBucketAclResponseSuccess
+                        | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _GetBucketAclResponseSuccess
+
+      interface _GetBucketAnalyticsConfigurationResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::GetBucketAnalyticsConfigurationOutput]
+        def analytics_configuration: () -> Types::AnalyticsConfiguration
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#get_bucket_analytics_configuration-instance_method
+      def get_bucket_analytics_configuration: (
+                                                bucket: ::String,
+                                                id: ::String,
+                                                ?expected_bucket_owner: ::String
+                                              ) -> _GetBucketAnalyticsConfigurationResponseSuccess
+                                            | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _GetBucketAnalyticsConfigurationResponseSuccess
+
+      interface _GetBucketCorsResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::GetBucketCorsOutput]
+        def cors_rules: () -> ::Array[Types::CORSRule]
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#get_bucket_cors-instance_method
+      def get_bucket_cors: (
+                             bucket: ::String,
+                             ?expected_bucket_owner: ::String
+                           ) -> _GetBucketCorsResponseSuccess
+                         | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _GetBucketCorsResponseSuccess
+
+      interface _GetBucketEncryptionResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::GetBucketEncryptionOutput]
+        def server_side_encryption_configuration: () -> Types::ServerSideEncryptionConfiguration
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#get_bucket_encryption-instance_method
+      def get_bucket_encryption: (
+                                   bucket: ::String,
+                                   ?expected_bucket_owner: ::String
+                                 ) -> _GetBucketEncryptionResponseSuccess
+                               | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _GetBucketEncryptionResponseSuccess
+
+      interface _GetBucketIntelligentTieringConfigurationResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::GetBucketIntelligentTieringConfigurationOutput]
+        def intelligent_tiering_configuration: () -> Types::IntelligentTieringConfiguration
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#get_bucket_intelligent_tiering_configuration-instance_method
+      def get_bucket_intelligent_tiering_configuration: (
+                                                          bucket: ::String,
+                                                          id: ::String,
+                                                          ?expected_bucket_owner: ::String
+                                                        ) -> _GetBucketIntelligentTieringConfigurationResponseSuccess
+                                                      | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _GetBucketIntelligentTieringConfigurationResponseSuccess
+
+      interface _GetBucketInventoryConfigurationResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::GetBucketInventoryConfigurationOutput]
+        def inventory_configuration: () -> Types::InventoryConfiguration
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#get_bucket_inventory_configuration-instance_method
+      def get_bucket_inventory_configuration: (
+                                                bucket: ::String,
+                                                id: ::String,
+                                                ?expected_bucket_owner: ::String
+                                              ) -> _GetBucketInventoryConfigurationResponseSuccess
+                                            | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _GetBucketInventoryConfigurationResponseSuccess
+
+      interface _GetBucketLifecycleResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::GetBucketLifecycleOutput]
+        def rules: () -> ::Array[Types::Rule]
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#get_bucket_lifecycle-instance_method
+      def get_bucket_lifecycle: (
+                                  bucket: ::String,
+                                  ?expected_bucket_owner: ::String
+                                ) -> _GetBucketLifecycleResponseSuccess
+                              | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _GetBucketLifecycleResponseSuccess
+
+      interface _GetBucketLifecycleConfigurationResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::GetBucketLifecycleConfigurationOutput]
+        def rules: () -> ::Array[Types::LifecycleRule]
+        def transition_default_minimum_object_size: () -> ("varies_by_storage_class" | "all_storage_classes_128K")
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#get_bucket_lifecycle_configuration-instance_method
+      def get_bucket_lifecycle_configuration: (
+                                                bucket: ::String,
+                                                ?expected_bucket_owner: ::String
+                                              ) -> _GetBucketLifecycleConfigurationResponseSuccess
+                                            | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _GetBucketLifecycleConfigurationResponseSuccess
+
+      interface _GetBucketLocationResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::GetBucketLocationOutput]
+        def location_constraint: () -> ("af-south-1" | "ap-east-1" | "ap-northeast-1" | "ap-northeast-2" | "ap-northeast-3" | "ap-south-1" | "ap-south-2" | "ap-southeast-1" | "ap-southeast-2" | "ap-southeast-3" | "ap-southeast-4" | "ap-southeast-5" | "ca-central-1" | "cn-north-1" | "cn-northwest-1" | "EU" | "eu-central-1" | "eu-central-2" | "eu-north-1" | "eu-south-1" | "eu-south-2" | "eu-west-1" | "eu-west-2" | "eu-west-3" | "il-central-1" | "me-central-1" | "me-south-1" | "sa-east-1" | "us-east-2" | "us-gov-east-1" | "us-gov-west-1" | "us-west-1" | "us-west-2")
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#get_bucket_location-instance_method
+      def get_bucket_location: (
+                                 bucket: ::String,
+                                 ?expected_bucket_owner: ::String
+                               ) -> _GetBucketLocationResponseSuccess
+                             | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _GetBucketLocationResponseSuccess
+
+      interface _GetBucketLoggingResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::GetBucketLoggingOutput]
+        def logging_enabled: () -> Types::LoggingEnabled
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#get_bucket_logging-instance_method
+      def get_bucket_logging: (
+                                bucket: ::String,
+                                ?expected_bucket_owner: ::String
+                              ) -> _GetBucketLoggingResponseSuccess
+                            | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _GetBucketLoggingResponseSuccess
+
+      interface _GetBucketMetadataConfigurationResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::GetBucketMetadataConfigurationOutput]
+        def get_bucket_metadata_configuration_result: () -> Types::GetBucketMetadataConfigurationResult
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#get_bucket_metadata_configuration-instance_method
+      def get_bucket_metadata_configuration: (
+                                               bucket: ::String,
+                                               ?expected_bucket_owner: ::String
+                                             ) -> _GetBucketMetadataConfigurationResponseSuccess
+                                           | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _GetBucketMetadataConfigurationResponseSuccess
+
+      interface _GetBucketMetadataTableConfigurationResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::GetBucketMetadataTableConfigurationOutput]
+        def get_bucket_metadata_table_configuration_result: () -> Types::GetBucketMetadataTableConfigurationResult
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#get_bucket_metadata_table_configuration-instance_method
+      def get_bucket_metadata_table_configuration: (
+                                                     bucket: ::String,
+                                                     ?expected_bucket_owner: ::String
+                                                   ) -> _GetBucketMetadataTableConfigurationResponseSuccess
+                                                 | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _GetBucketMetadataTableConfigurationResponseSuccess
+
+      interface _GetBucketMetricsConfigurationResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::GetBucketMetricsConfigurationOutput]
+        def metrics_configuration: () -> Types::MetricsConfiguration
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#get_bucket_metrics_configuration-instance_method
+      def get_bucket_metrics_configuration: (
+                                              bucket: ::String,
+                                              id: ::String,
+                                              ?expected_bucket_owner: ::String
+                                            ) -> _GetBucketMetricsConfigurationResponseSuccess
+                                          | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _GetBucketMetricsConfigurationResponseSuccess
+
+      interface _GetBucketNotificationResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::NotificationConfigurationDeprecated]
+        def topic_configuration: () -> Types::TopicConfigurationDeprecated
+        def queue_configuration: () -> Types::QueueConfigurationDeprecated
+        def cloud_function_configuration: () -> Types::CloudFunctionConfiguration
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#get_bucket_notification-instance_method
+      def get_bucket_notification: (
+                                     bucket: ::String,
+                                     ?expected_bucket_owner: ::String
+                                   ) -> _GetBucketNotificationResponseSuccess
+                                 | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _GetBucketNotificationResponseSuccess
+
+      interface _GetBucketNotificationConfigurationResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::NotificationConfiguration]
+        def topic_configurations: () -> ::Array[Types::TopicConfiguration]
+        def queue_configurations: () -> ::Array[Types::QueueConfiguration]
+        def lambda_function_configurations: () -> ::Array[Types::LambdaFunctionConfiguration]
+        def event_bridge_configuration: () -> Types::EventBridgeConfiguration
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#get_bucket_notification_configuration-instance_method
+      def get_bucket_notification_configuration: (
+                                                   bucket: ::String,
+                                                   ?expected_bucket_owner: ::String
+                                                 ) -> _GetBucketNotificationConfigurationResponseSuccess
+                                               | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _GetBucketNotificationConfigurationResponseSuccess
+
+      interface _GetBucketOwnershipControlsResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::GetBucketOwnershipControlsOutput]
+        def ownership_controls: () -> Types::OwnershipControls
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#get_bucket_ownership_controls-instance_method
+      def get_bucket_ownership_controls: (
+                                           bucket: ::String,
+                                           ?expected_bucket_owner: ::String
+                                         ) -> _GetBucketOwnershipControlsResponseSuccess
+                                       | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _GetBucketOwnershipControlsResponseSuccess
+
+      interface _GetBucketPolicyResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::GetBucketPolicyOutput]
+        def policy: () -> ::IO
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#get_bucket_policy-instance_method
+      def get_bucket_policy: (
+                               bucket: ::String,
+                               ?expected_bucket_owner: ::String
+                             ) ?{ (*untyped) -> void } -> _GetBucketPolicyResponseSuccess
+                           | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) ?{ (*untyped) -> void } -> _GetBucketPolicyResponseSuccess
+
+      interface _GetBucketPolicyStatusResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::GetBucketPolicyStatusOutput]
+        def policy_status: () -> Types::PolicyStatus
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#get_bucket_policy_status-instance_method
+      def get_bucket_policy_status: (
+                                      bucket: ::String,
+                                      ?expected_bucket_owner: ::String
+                                    ) -> _GetBucketPolicyStatusResponseSuccess
+                                  | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _GetBucketPolicyStatusResponseSuccess
+
+      interface _GetBucketReplicationResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::GetBucketReplicationOutput]
+        def replication_configuration: () -> Types::ReplicationConfiguration
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#get_bucket_replication-instance_method
+      def get_bucket_replication: (
+                                    bucket: ::String,
+                                    ?expected_bucket_owner: ::String
+                                  ) -> _GetBucketReplicationResponseSuccess
+                                | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _GetBucketReplicationResponseSuccess
+
+      interface _GetBucketRequestPaymentResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::GetBucketRequestPaymentOutput]
+        def payer: () -> ("Requester" | "BucketOwner")
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#get_bucket_request_payment-instance_method
+      def get_bucket_request_payment: (
+                                        bucket: ::String,
+                                        ?expected_bucket_owner: ::String
+                                      ) -> _GetBucketRequestPaymentResponseSuccess
+                                    | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _GetBucketRequestPaymentResponseSuccess
+
+      interface _GetBucketTaggingResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::GetBucketTaggingOutput]
+        def tag_set: () -> ::Array[Types::Tag]
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#get_bucket_tagging-instance_method
+      def get_bucket_tagging: (
+                                bucket: ::String,
+                                ?expected_bucket_owner: ::String
+                              ) -> _GetBucketTaggingResponseSuccess
+                            | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _GetBucketTaggingResponseSuccess
+
+      interface _GetBucketVersioningResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::GetBucketVersioningOutput]
+        def status: () -> ("Enabled" | "Suspended")
+        def mfa_delete: () -> ("Enabled" | "Disabled")
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#get_bucket_versioning-instance_method
+      def get_bucket_versioning: (
+                                   bucket: ::String,
+                                   ?expected_bucket_owner: ::String
+                                 ) -> _GetBucketVersioningResponseSuccess
+                               | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _GetBucketVersioningResponseSuccess
+
+      interface _GetBucketWebsiteResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::GetBucketWebsiteOutput]
+        def redirect_all_requests_to: () -> Types::RedirectAllRequestsTo
+        def index_document: () -> Types::IndexDocument
+        def error_document: () -> Types::ErrorDocument
+        def routing_rules: () -> ::Array[Types::RoutingRule]
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#get_bucket_website-instance_method
+      def get_bucket_website: (
+                                bucket: ::String,
+                                ?expected_bucket_owner: ::String
+                              ) -> _GetBucketWebsiteResponseSuccess
+                            | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _GetBucketWebsiteResponseSuccess
+
+      interface _GetObjectResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::GetObjectOutput]
+        def body: () -> ::IO
+        def delete_marker: () -> bool
+        def accept_ranges: () -> ::String
+        def expiration: () -> ::String
+        def restore: () -> ::String
+        def last_modified: () -> ::Time
+        def content_length: () -> ::Integer
+        def etag: () -> ::String
+        def checksum_crc32: () -> ::String
+        def checksum_crc32c: () -> ::String
+        def checksum_crc64nvme: () -> ::String
+        def checksum_sha1: () -> ::String
+        def checksum_sha256: () -> ::String
+        def checksum_type: () -> ("COMPOSITE" | "FULL_OBJECT")
+        def missing_meta: () -> ::Integer
+        def version_id: () -> ::String
+        def cache_control: () -> ::String
+        def content_disposition: () -> ::String
+        def content_encoding: () -> ::String
+        def content_language: () -> ::String
+        def content_range: () -> ::String
+        def content_type: () -> ::String
+        def expires: () -> ::Time
+        def expires_string: () -> ::String
+        def website_redirect_location: () -> ::String
+        def server_side_encryption: () -> ("AES256" | "aws:fsx" | "aws:kms" | "aws:kms:dsse")
+        def metadata: () -> ::Hash[::String, ::String]
+        def sse_customer_algorithm: () -> ::String
+        def sse_customer_key_md5: () -> ::String
+        def ssekms_key_id: () -> ::String
+        def bucket_key_enabled: () -> bool
+        def storage_class: () -> ("STANDARD" | "REDUCED_REDUNDANCY" | "STANDARD_IA" | "ONEZONE_IA" | "INTELLIGENT_TIERING" | "GLACIER" | "DEEP_ARCHIVE" | "OUTPOSTS" | "GLACIER_IR" | "SNOW" | "EXPRESS_ONEZONE" | "FSX_OPENZFS" | "FSX_ONTAP")
+        def request_charged: () -> ("requester")
+        def replication_status: () -> ("COMPLETE" | "PENDING" | "FAILED" | "REPLICA" | "COMPLETED")
+        def parts_count: () -> ::Integer
+        def tag_count: () -> ::Integer
+        def object_lock_mode: () -> ("GOVERNANCE" | "COMPLIANCE")
+        def object_lock_retain_until_date: () -> ::Time
+        def object_lock_legal_hold_status: () -> ("ON" | "OFF")
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#get_object-instance_method
+      def get_object: (
+                        bucket: ::String,
+                        ?if_match: ::String,
+                        ?if_modified_since: ::Time,
+                        ?if_none_match: ::String,
+                        ?if_unmodified_since: ::Time,
+                        key: ::String,
+                        ?range: ::String,
+                        ?response_cache_control: ::String,
+                        ?response_content_disposition: ::String,
+                        ?response_content_encoding: ::String,
+                        ?response_content_language: ::String,
+                        ?response_content_type: ::String,
+                        ?response_expires: ::Time,
+                        ?version_id: ::String,
+                        ?sse_customer_algorithm: ::String,
+                        ?sse_customer_key: ::String,
+                        ?sse_customer_key_md5: ::String,
+                        ?request_payer: ("requester"),
+                        ?part_number: ::Integer,
+                        ?expected_bucket_owner: ::String,
+                        ?checksum_mode: ("ENABLED")
+                      ) ?{ (*untyped) -> void } -> _GetObjectResponseSuccess
+                    | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) ?{ (*untyped) -> void } -> _GetObjectResponseSuccess
+
+      interface _GetObjectAclResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::GetObjectAclOutput]
+        def owner: () -> Types::Owner
+        def grants: () -> ::Array[Types::Grant]
+        def request_charged: () -> ("requester")
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#get_object_acl-instance_method
+      def get_object_acl: (
+                            bucket: ::String,
+                            key: ::String,
+                            ?version_id: ::String,
+                            ?request_payer: ("requester"),
+                            ?expected_bucket_owner: ::String
+                          ) -> _GetObjectAclResponseSuccess
+                        | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _GetObjectAclResponseSuccess
+
+      interface _GetObjectAttributesResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::GetObjectAttributesOutput]
+        def delete_marker: () -> bool
+        def last_modified: () -> ::Time
+        def version_id: () -> ::String
+        def request_charged: () -> ("requester")
+        def etag: () -> ::String
+        def checksum: () -> Types::Checksum
+        def object_parts: () -> Types::GetObjectAttributesParts
+        def storage_class: () -> ("STANDARD" | "REDUCED_REDUNDANCY" | "STANDARD_IA" | "ONEZONE_IA" | "INTELLIGENT_TIERING" | "GLACIER" | "DEEP_ARCHIVE" | "OUTPOSTS" | "GLACIER_IR" | "SNOW" | "EXPRESS_ONEZONE" | "FSX_OPENZFS" | "FSX_ONTAP")
+        def object_size: () -> ::Integer
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#get_object_attributes-instance_method
+      def get_object_attributes: (
+                                   bucket: ::String,
+                                   key: ::String,
+                                   ?version_id: ::String,
+                                   ?max_parts: ::Integer,
+                                   ?part_number_marker: ::Integer,
+                                   ?sse_customer_algorithm: ::String,
+                                   ?sse_customer_key: ::String,
+                                   ?sse_customer_key_md5: ::String,
+                                   ?request_payer: ("requester"),
+                                   ?expected_bucket_owner: ::String,
+                                   object_attributes: Array[("ETag" | "Checksum" | "ObjectParts" | "StorageClass" | "ObjectSize")]
+                                 ) -> _GetObjectAttributesResponseSuccess
+                               | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _GetObjectAttributesResponseSuccess
+
+      interface _GetObjectLegalHoldResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::GetObjectLegalHoldOutput]
+        def legal_hold: () -> Types::ObjectLockLegalHold
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#get_object_legal_hold-instance_method
+      def get_object_legal_hold: (
+                                   bucket: ::String,
+                                   key: ::String,
+                                   ?version_id: ::String,
+                                   ?request_payer: ("requester"),
+                                   ?expected_bucket_owner: ::String
+                                 ) -> _GetObjectLegalHoldResponseSuccess
+                               | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _GetObjectLegalHoldResponseSuccess
+
+      interface _GetObjectLockConfigurationResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::GetObjectLockConfigurationOutput]
+        def object_lock_configuration: () -> Types::ObjectLockConfiguration
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#get_object_lock_configuration-instance_method
+      def get_object_lock_configuration: (
+                                           bucket: ::String,
+                                           ?expected_bucket_owner: ::String
+                                         ) -> _GetObjectLockConfigurationResponseSuccess
+                                       | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _GetObjectLockConfigurationResponseSuccess
+
+      interface _GetObjectRetentionResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::GetObjectRetentionOutput]
+        def retention: () -> Types::ObjectLockRetention
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#get_object_retention-instance_method
+      def get_object_retention: (
+                                  bucket: ::String,
+                                  key: ::String,
+                                  ?version_id: ::String,
+                                  ?request_payer: ("requester"),
+                                  ?expected_bucket_owner: ::String
+                                ) -> _GetObjectRetentionResponseSuccess
+                              | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _GetObjectRetentionResponseSuccess
+
+      interface _GetObjectTaggingResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::GetObjectTaggingOutput]
+        def version_id: () -> ::String
+        def tag_set: () -> ::Array[Types::Tag]
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#get_object_tagging-instance_method
+      def get_object_tagging: (
+                                bucket: ::String,
+                                key: ::String,
+                                ?version_id: ::String,
+                                ?expected_bucket_owner: ::String,
+                                ?request_payer: ("requester")
+                              ) -> _GetObjectTaggingResponseSuccess
+                            | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _GetObjectTaggingResponseSuccess
+
+      interface _GetObjectTorrentResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::GetObjectTorrentOutput]
+        def body: () -> ::IO
+        def request_charged: () -> ("requester")
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#get_object_torrent-instance_method
+      def get_object_torrent: (
+                                bucket: ::String,
+                                key: ::String,
+                                ?request_payer: ("requester"),
+                                ?expected_bucket_owner: ::String
+                              ) ?{ (*untyped) -> void } -> _GetObjectTorrentResponseSuccess
+                            | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) ?{ (*untyped) -> void } -> _GetObjectTorrentResponseSuccess
+
+      interface _GetPublicAccessBlockResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::GetPublicAccessBlockOutput]
+        def public_access_block_configuration: () -> Types::PublicAccessBlockConfiguration
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#get_public_access_block-instance_method
+      def get_public_access_block: (
+                                     bucket: ::String,
+                                     ?expected_bucket_owner: ::String
+                                   ) -> _GetPublicAccessBlockResponseSuccess
+                                 | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _GetPublicAccessBlockResponseSuccess
+
+      interface _HeadBucketResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::HeadBucketOutput]
+        def bucket_arn: () -> ::String
+        def bucket_location_type: () -> ("AvailabilityZone" | "LocalZone")
+        def bucket_location_name: () -> ::String
+        def bucket_region: () -> ::String
+        def access_point_alias: () -> bool
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#head_bucket-instance_method
+      def head_bucket: (
+                         bucket: ::String,
+                         ?expected_bucket_owner: ::String
+                       ) -> _HeadBucketResponseSuccess
+                     | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _HeadBucketResponseSuccess
+
+      interface _HeadObjectResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::HeadObjectOutput]
+        def delete_marker: () -> bool
+        def accept_ranges: () -> ::String
+        def expiration: () -> ::String
+        def restore: () -> ::String
+        def archive_status: () -> ("ARCHIVE_ACCESS" | "DEEP_ARCHIVE_ACCESS")
+        def last_modified: () -> ::Time
+        def content_length: () -> ::Integer
+        def checksum_crc32: () -> ::String
+        def checksum_crc32c: () -> ::String
+        def checksum_crc64nvme: () -> ::String
+        def checksum_sha1: () -> ::String
+        def checksum_sha256: () -> ::String
+        def checksum_type: () -> ("COMPOSITE" | "FULL_OBJECT")
+        def etag: () -> ::String
+        def missing_meta: () -> ::Integer
+        def version_id: () -> ::String
+        def cache_control: () -> ::String
+        def content_disposition: () -> ::String
+        def content_encoding: () -> ::String
+        def content_language: () -> ::String
+        def content_type: () -> ::String
+        def content_range: () -> ::String
+        def expires: () -> ::Time
+        def expires_string: () -> ::String
+        def website_redirect_location: () -> ::String
+        def server_side_encryption: () -> ("AES256" | "aws:fsx" | "aws:kms" | "aws:kms:dsse")
+        def metadata: () -> ::Hash[::String, ::String]
+        def sse_customer_algorithm: () -> ::String
+        def sse_customer_key_md5: () -> ::String
+        def ssekms_key_id: () -> ::String
+        def bucket_key_enabled: () -> bool
+        def storage_class: () -> ("STANDARD" | "REDUCED_REDUNDANCY" | "STANDARD_IA" | "ONEZONE_IA" | "INTELLIGENT_TIERING" | "GLACIER" | "DEEP_ARCHIVE" | "OUTPOSTS" | "GLACIER_IR" | "SNOW" | "EXPRESS_ONEZONE" | "FSX_OPENZFS" | "FSX_ONTAP")
+        def request_charged: () -> ("requester")
+        def replication_status: () -> ("COMPLETE" | "PENDING" | "FAILED" | "REPLICA" | "COMPLETED")
+        def parts_count: () -> ::Integer
+        def tag_count: () -> ::Integer
+        def object_lock_mode: () -> ("GOVERNANCE" | "COMPLIANCE")
+        def object_lock_retain_until_date: () -> ::Time
+        def object_lock_legal_hold_status: () -> ("ON" | "OFF")
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#head_object-instance_method
+      def head_object: (
+                         bucket: ::String,
+                         ?if_match: ::String,
+                         ?if_modified_since: ::Time,
+                         ?if_none_match: ::String,
+                         ?if_unmodified_since: ::Time,
+                         key: ::String,
+                         ?range: ::String,
+                         ?response_cache_control: ::String,
+                         ?response_content_disposition: ::String,
+                         ?response_content_encoding: ::String,
+                         ?response_content_language: ::String,
+                         ?response_content_type: ::String,
+                         ?response_expires: ::Time,
+                         ?version_id: ::String,
+                         ?sse_customer_algorithm: ::String,
+                         ?sse_customer_key: ::String,
+                         ?sse_customer_key_md5: ::String,
+                         ?request_payer: ("requester"),
+                         ?part_number: ::Integer,
+                         ?expected_bucket_owner: ::String,
+                         ?checksum_mode: ("ENABLED")
+                       ) -> _HeadObjectResponseSuccess
+                     | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _HeadObjectResponseSuccess
+
+      interface _ListBucketAnalyticsConfigurationsResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::ListBucketAnalyticsConfigurationsOutput]
+        def is_truncated: () -> bool
+        def continuation_token: () -> ::String
+        def next_continuation_token: () -> ::String
+        def analytics_configuration_list: () -> ::Array[Types::AnalyticsConfiguration]
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#list_bucket_analytics_configurations-instance_method
+      def list_bucket_analytics_configurations: (
+                                                  bucket: ::String,
+                                                  ?continuation_token: ::String,
+                                                  ?expected_bucket_owner: ::String
+                                                ) -> _ListBucketAnalyticsConfigurationsResponseSuccess
+                                              | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _ListBucketAnalyticsConfigurationsResponseSuccess
+
+      interface _ListBucketIntelligentTieringConfigurationsResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::ListBucketIntelligentTieringConfigurationsOutput]
+        def is_truncated: () -> bool
+        def continuation_token: () -> ::String
+        def next_continuation_token: () -> ::String
+        def intelligent_tiering_configuration_list: () -> ::Array[Types::IntelligentTieringConfiguration]
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#list_bucket_intelligent_tiering_configurations-instance_method
+      def list_bucket_intelligent_tiering_configurations: (
+                                                            bucket: ::String,
+                                                            ?continuation_token: ::String,
+                                                            ?expected_bucket_owner: ::String
+                                                          ) -> _ListBucketIntelligentTieringConfigurationsResponseSuccess
+                                                        | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _ListBucketIntelligentTieringConfigurationsResponseSuccess
+
+      interface _ListBucketInventoryConfigurationsResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::ListBucketInventoryConfigurationsOutput]
+        def continuation_token: () -> ::String
+        def inventory_configuration_list: () -> ::Array[Types::InventoryConfiguration]
+        def is_truncated: () -> bool
+        def next_continuation_token: () -> ::String
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#list_bucket_inventory_configurations-instance_method
+      def list_bucket_inventory_configurations: (
+                                                  bucket: ::String,
+                                                  ?continuation_token: ::String,
+                                                  ?expected_bucket_owner: ::String
+                                                ) -> _ListBucketInventoryConfigurationsResponseSuccess
+                                              | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _ListBucketInventoryConfigurationsResponseSuccess
+
+      interface _ListBucketMetricsConfigurationsResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::ListBucketMetricsConfigurationsOutput]
+        def is_truncated: () -> bool
+        def continuation_token: () -> ::String
+        def next_continuation_token: () -> ::String
+        def metrics_configuration_list: () -> ::Array[Types::MetricsConfiguration]
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#list_bucket_metrics_configurations-instance_method
+      def list_bucket_metrics_configurations: (
+                                                bucket: ::String,
+                                                ?continuation_token: ::String,
+                                                ?expected_bucket_owner: ::String
+                                              ) -> _ListBucketMetricsConfigurationsResponseSuccess
+                                            | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _ListBucketMetricsConfigurationsResponseSuccess
+
+      interface _ListBucketsResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::ListBucketsOutput]
+        def buckets: () -> ::Array[Types::Bucket]
+        def owner: () -> Types::Owner
+        def continuation_token: () -> ::String
+        def prefix: () -> ::String
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#list_buckets-instance_method
+      def list_buckets: (
+                          ?max_buckets: ::Integer,
+                          ?continuation_token: ::String,
+                          ?prefix: ::String,
+                          ?bucket_region: ::String
+                        ) -> _ListBucketsResponseSuccess
+                      | (?Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _ListBucketsResponseSuccess
+
+      interface _ListDirectoryBucketsResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::ListDirectoryBucketsOutput]
+        def buckets: () -> ::Array[Types::Bucket]
+        def continuation_token: () -> ::String
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#list_directory_buckets-instance_method
+      def list_directory_buckets: (
+                                    ?continuation_token: ::String,
+                                    ?max_directory_buckets: ::Integer
+                                  ) -> _ListDirectoryBucketsResponseSuccess
+                                | (?Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _ListDirectoryBucketsResponseSuccess
+
+      interface _ListMultipartUploadsResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::ListMultipartUploadsOutput]
+        def bucket: () -> ::String
+        def key_marker: () -> ::String
+        def upload_id_marker: () -> ::String
+        def next_key_marker: () -> ::String
+        def prefix: () -> ::String
+        def delimiter: () -> ::String
+        def next_upload_id_marker: () -> ::String
+        def max_uploads: () -> ::Integer
+        def is_truncated: () -> bool
+        def uploads: () -> ::Array[Types::MultipartUpload]
+        def common_prefixes: () -> ::Array[Types::CommonPrefix]
+        def encoding_type: () -> ("url")
+        def request_charged: () -> ("requester")
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#list_multipart_uploads-instance_method
+      def list_multipart_uploads: (
+                                    bucket: ::String,
+                                    ?delimiter: ::String,
+                                    ?encoding_type: ("url"),
+                                    ?key_marker: ::String,
+                                    ?max_uploads: ::Integer,
+                                    ?prefix: ::String,
+                                    ?upload_id_marker: ::String,
+                                    ?expected_bucket_owner: ::String,
+                                    ?request_payer: ("requester")
+                                  ) -> _ListMultipartUploadsResponseSuccess
+                                | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _ListMultipartUploadsResponseSuccess
+
+      interface _ListObjectVersionsResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::ListObjectVersionsOutput]
+        def is_truncated: () -> bool
+        def key_marker: () -> ::String
+        def version_id_marker: () -> ::String
+        def next_key_marker: () -> ::String
+        def next_version_id_marker: () -> ::String
+        def versions: () -> ::Array[Types::ObjectVersion]
+        def delete_markers: () -> ::Array[Types::DeleteMarkerEntry]
+        def name: () -> ::String
+        def prefix: () -> ::String
+        def delimiter: () -> ::String
+        def max_keys: () -> ::Integer
+        def common_prefixes: () -> ::Array[Types::CommonPrefix]
+        def encoding_type: () -> ("url")
+        def request_charged: () -> ("requester")
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#list_object_versions-instance_method
+      def list_object_versions: (
+                                  bucket: ::String,
+                                  ?delimiter: ::String,
+                                  ?encoding_type: ("url"),
+                                  ?key_marker: ::String,
+                                  ?max_keys: ::Integer,
+                                  ?prefix: ::String,
+                                  ?version_id_marker: ::String,
+                                  ?expected_bucket_owner: ::String,
+                                  ?request_payer: ("requester"),
+                                  ?optional_object_attributes: Array[("RestoreStatus")]
+                                ) -> _ListObjectVersionsResponseSuccess
+                              | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _ListObjectVersionsResponseSuccess
+
+      interface _ListObjectsResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::ListObjectsOutput]
+        def is_truncated: () -> bool
+        def marker: () -> ::String
+        def next_marker: () -> ::String
+        def contents: () -> ::Array[Types::Object]
+        def name: () -> ::String
+        def prefix: () -> ::String
+        def delimiter: () -> ::String
+        def max_keys: () -> ::Integer
+        def common_prefixes: () -> ::Array[Types::CommonPrefix]
+        def encoding_type: () -> ("url")
+        def request_charged: () -> ("requester")
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#list_objects-instance_method
+      def list_objects: (
+                          bucket: ::String,
+                          ?delimiter: ::String,
+                          ?encoding_type: ("url"),
+                          ?marker: ::String,
+                          ?max_keys: ::Integer,
+                          ?prefix: ::String,
+                          ?request_payer: ("requester"),
+                          ?expected_bucket_owner: ::String,
+                          ?optional_object_attributes: Array[("RestoreStatus")]
+                        ) -> _ListObjectsResponseSuccess
+                      | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _ListObjectsResponseSuccess
+
+      interface _ListObjectsV2ResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::ListObjectsV2Output]
+        def is_truncated: () -> bool
+        def contents: () -> ::Array[Types::Object]
+        def name: () -> ::String
+        def prefix: () -> ::String
+        def delimiter: () -> ::String
+        def max_keys: () -> ::Integer
+        def common_prefixes: () -> ::Array[Types::CommonPrefix]
+        def encoding_type: () -> ("url")
+        def key_count: () -> ::Integer
+        def continuation_token: () -> ::String
+        def next_continuation_token: () -> ::String
+        def start_after: () -> ::String
+        def request_charged: () -> ("requester")
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#list_objects_v2-instance_method
+      def list_objects_v2: (
+                             bucket: ::String,
+                             ?delimiter: ::String,
+                             ?encoding_type: ("url"),
+                             ?max_keys: ::Integer,
+                             ?prefix: ::String,
+                             ?continuation_token: ::String,
+                             ?fetch_owner: bool,
+                             ?start_after: ::String,
+                             ?request_payer: ("requester"),
+                             ?expected_bucket_owner: ::String,
+                             ?optional_object_attributes: Array[("RestoreStatus")]
+                           ) -> _ListObjectsV2ResponseSuccess
+                         | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _ListObjectsV2ResponseSuccess
+
+      interface _ListPartsResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::ListPartsOutput]
+        def abort_date: () -> ::Time
+        def abort_rule_id: () -> ::String
+        def bucket: () -> ::String
+        def key: () -> ::String
+        def upload_id: () -> ::String
+        def part_number_marker: () -> ::Integer
+        def next_part_number_marker: () -> ::Integer
+        def max_parts: () -> ::Integer
+        def is_truncated: () -> bool
+        def parts: () -> ::Array[Types::Part]
+        def initiator: () -> Types::Initiator
+        def owner: () -> Types::Owner
+        def storage_class: () -> ("STANDARD" | "REDUCED_REDUNDANCY" | "STANDARD_IA" | "ONEZONE_IA" | "INTELLIGENT_TIERING" | "GLACIER" | "DEEP_ARCHIVE" | "OUTPOSTS" | "GLACIER_IR" | "SNOW" | "EXPRESS_ONEZONE" | "FSX_OPENZFS" | "FSX_ONTAP")
+        def request_charged: () -> ("requester")
+        def checksum_algorithm: () -> ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+        def checksum_type: () -> ("COMPOSITE" | "FULL_OBJECT")
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#list_parts-instance_method
+      def list_parts: (
+                        bucket: ::String,
+                        key: ::String,
+                        ?max_parts: ::Integer,
+                        ?part_number_marker: ::Integer,
+                        upload_id: ::String,
+                        ?request_payer: ("requester"),
+                        ?expected_bucket_owner: ::String,
+                        ?sse_customer_algorithm: ::String,
+                        ?sse_customer_key: ::String,
+                        ?sse_customer_key_md5: ::String
+                      ) -> _ListPartsResponseSuccess
+                    | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _ListPartsResponseSuccess
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#put_bucket_abac-instance_method
+      def put_bucket_abac: (
+                             bucket: ::String,
+                             ?content_md5: ::String,
+                             ?checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME"),
+                             ?expected_bucket_owner: ::String,
+                             abac_status: {
+                               status: ("Enabled" | "Disabled")?
+                             }
+                           ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                         | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#put_bucket_accelerate_configuration-instance_method
+      def put_bucket_accelerate_configuration: (
+                                                 bucket: ::String,
+                                                 accelerate_configuration: {
+                                                   status: ("Enabled" | "Suspended")?
+                                                 },
+                                                 ?expected_bucket_owner: ::String,
+                                                 ?checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+                                               ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                                             | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#put_bucket_acl-instance_method
+      def put_bucket_acl: (
+                            ?acl: ("private" | "public-read" | "public-read-write" | "authenticated-read"),
+                            ?access_control_policy: {
+                              grants: Array[
+                                {
+                                  grantee: {
+                                    display_name: ::String?,
+                                    email_address: ::String?,
+                                    id: ::String?,
+                                    type: ("CanonicalUser" | "AmazonCustomerByEmail" | "Group"),
+                                    uri: ::String?
+                                  }?,
+                                  permission: ("FULL_CONTROL" | "WRITE" | "WRITE_ACP" | "READ" | "READ_ACP")?
+                                },
+                              ]?,
+                              owner: {
+                                display_name: ::String?,
+                                id: ::String?
+                              }?
+                            },
+                            bucket: ::String,
+                            ?content_md5: ::String,
+                            ?checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME"),
+                            ?grant_full_control: ::String,
+                            ?grant_read: ::String,
+                            ?grant_read_acp: ::String,
+                            ?grant_write: ::String,
+                            ?grant_write_acp: ::String,
+                            ?expected_bucket_owner: ::String
+                          ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                        | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#put_bucket_analytics_configuration-instance_method
+      def put_bucket_analytics_configuration: (
+                                                bucket: ::String,
+                                                id: ::String,
+                                                analytics_configuration: {
+                                                  id: ::String,
+                                                  filter: {
+                                                    prefix: ::String?,
+                                                    tag: {
+                                                      key: ::String,
+                                                      value: ::String
+                                                    }?,
+                                                    and: {
+                                                      prefix: ::String?,
+                                                      tags: Array[
+                                                        {
+                                                          key: ::String,
+                                                          value: ::String
+                                                        },
+                                                      ]?
+                                                    }?
+                                                  }?,
+                                                  storage_class_analysis: {
+                                                    data_export: {
+                                                      output_schema_version: ("V_1"),
+                                                      destination: {
+                                                        s3_bucket_destination: {
+                                                          format: ("CSV"),
+                                                          bucket_account_id: ::String?,
+                                                          bucket: ::String,
+                                                          prefix: ::String?
+                                                        }
+                                                      }
+                                                    }?
+                                                  }
+                                                },
+                                                ?expected_bucket_owner: ::String
+                                              ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                                            | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#put_bucket_cors-instance_method
+      def put_bucket_cors: (
+                             bucket: ::String,
+                             cors_configuration: {
+                               cors_rules: Array[
+                                 {
+                                   id: ::String?,
+                                   allowed_headers: Array[::String]?,
+                                   allowed_methods: Array[::String],
+                                   allowed_origins: Array[::String],
+                                   expose_headers: Array[::String]?,
+                                   max_age_seconds: ::Integer?
+                                 },
+                               ]
+                             },
+                             ?content_md5: ::String,
+                             ?checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME"),
+                             ?expected_bucket_owner: ::String
+                           ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                         | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#put_bucket_encryption-instance_method
+      def put_bucket_encryption: (
+                                   bucket: ::String,
+                                   ?content_md5: ::String,
+                                   ?checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME"),
+                                   server_side_encryption_configuration: {
+                                     rules: Array[
+                                       {
+                                         apply_server_side_encryption_by_default: {
+                                           sse_algorithm: ("AES256" | "aws:fsx" | "aws:kms" | "aws:kms:dsse"),
+                                           kms_master_key_id: ::String?
+                                         }?,
+                                         bucket_key_enabled: bool?,
+                                         blocked_encryption_types: {
+                                           encryption_type: Array[("NONE" | "SSE-C")]?
+                                         }?
+                                       },
+                                     ]
+                                   },
+                                   ?expected_bucket_owner: ::String
+                                 ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                               | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#put_bucket_intelligent_tiering_configuration-instance_method
+      def put_bucket_intelligent_tiering_configuration: (
+                                                          bucket: ::String,
+                                                          id: ::String,
+                                                          ?expected_bucket_owner: ::String,
+                                                          intelligent_tiering_configuration: {
+                                                            id: ::String,
+                                                            filter: {
+                                                              prefix: ::String?,
+                                                              tag: {
+                                                                key: ::String,
+                                                                value: ::String
+                                                              }?,
+                                                              and: {
+                                                                prefix: ::String?,
+                                                                tags: Array[
+                                                                  {
+                                                                    key: ::String,
+                                                                    value: ::String
+                                                                  },
+                                                                ]?
+                                                              }?
+                                                            }?,
+                                                            status: ("Enabled" | "Disabled"),
+                                                            tierings: Array[
+                                                              {
+                                                                days: ::Integer,
+                                                                access_tier: ("ARCHIVE_ACCESS" | "DEEP_ARCHIVE_ACCESS")
+                                                              },
+                                                            ]
+                                                          }
+                                                        ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                                                      | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#put_bucket_inventory_configuration-instance_method
+      def put_bucket_inventory_configuration: (
+                                                bucket: ::String,
+                                                id: ::String,
+                                                inventory_configuration: {
+                                                  destination: {
+                                                    s3_bucket_destination: {
+                                                      account_id: ::String?,
+                                                      bucket: ::String,
+                                                      format: ("CSV" | "ORC" | "Parquet"),
+                                                      prefix: ::String?,
+                                                      encryption: {
+                                                        sses3: {
+                                                        }?,
+                                                        ssekms: {
+                                                          key_id: ::String
+                                                        }?
+                                                      }?
+                                                    }
+                                                  },
+                                                  is_enabled: bool,
+                                                  filter: {
+                                                    prefix: ::String
+                                                  }?,
+                                                  id: ::String,
+                                                  included_object_versions: ("All" | "Current"),
+                                                  optional_fields: Array[("Size" | "LastModifiedDate" | "StorageClass" | "ETag" | "IsMultipartUploaded" | "ReplicationStatus" | "EncryptionStatus" | "ObjectLockRetainUntilDate" | "ObjectLockMode" | "ObjectLockLegalHoldStatus" | "IntelligentTieringAccessTier" | "BucketKeyStatus" | "ChecksumAlgorithm" | "ObjectAccessControlList" | "ObjectOwner" | "LifecycleExpirationDate")]?,
+                                                  schedule: {
+                                                    frequency: ("Daily" | "Weekly")
+                                                  }
+                                                },
+                                                ?expected_bucket_owner: ::String
+                                              ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                                            | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#put_bucket_lifecycle-instance_method
+      def put_bucket_lifecycle: (
+                                  bucket: ::String,
+                                  ?content_md5: ::String,
+                                  ?checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME"),
+                                  ?lifecycle_configuration: {
+                                    rules: Array[
+                                      {
+                                        expiration: {
+                                          date: ::Time?,
+                                          days: ::Integer?,
+                                          expired_object_delete_marker: bool?
+                                        }?,
+                                        id: ::String?,
+                                        prefix: ::String,
+                                        status: ("Enabled" | "Disabled"),
+                                        transition: {
+                                          date: ::Time?,
+                                          days: ::Integer?,
+                                          storage_class: ("GLACIER" | "STANDARD_IA" | "ONEZONE_IA" | "INTELLIGENT_TIERING" | "DEEP_ARCHIVE" | "GLACIER_IR")?
+                                        }?,
+                                        noncurrent_version_transition: {
+                                          noncurrent_days: ::Integer?,
+                                          storage_class: ("GLACIER" | "STANDARD_IA" | "ONEZONE_IA" | "INTELLIGENT_TIERING" | "DEEP_ARCHIVE" | "GLACIER_IR")?,
+                                          newer_noncurrent_versions: ::Integer?
+                                        }?,
+                                        noncurrent_version_expiration: {
+                                          noncurrent_days: ::Integer?,
+                                          newer_noncurrent_versions: ::Integer?
+                                        }?,
+                                        abort_incomplete_multipart_upload: {
+                                          days_after_initiation: ::Integer?
+                                        }?
+                                      },
+                                    ]
+                                  },
+                                  ?expected_bucket_owner: ::String
+                                ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                              | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      interface _PutBucketLifecycleConfigurationResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::PutBucketLifecycleConfigurationOutput]
+        def transition_default_minimum_object_size: () -> ("varies_by_storage_class" | "all_storage_classes_128K")
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#put_bucket_lifecycle_configuration-instance_method
+      def put_bucket_lifecycle_configuration: (
+                                                bucket: ::String,
+                                                ?checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME"),
+                                                ?lifecycle_configuration: {
+                                                  rules: Array[
+                                                    {
+                                                      expiration: {
+                                                        date: ::Time?,
+                                                        days: ::Integer?,
+                                                        expired_object_delete_marker: bool?
+                                                      }?,
+                                                      id: ::String?,
+                                                      prefix: ::String?,
+                                                      filter: {
+                                                        prefix: ::String?,
+                                                        tag: {
+                                                          key: ::String,
+                                                          value: ::String
+                                                        }?,
+                                                        object_size_greater_than: ::Integer?,
+                                                        object_size_less_than: ::Integer?,
+                                                        and: {
+                                                          prefix: ::String?,
+                                                          tags: Array[
+                                                            {
+                                                              key: ::String,
+                                                              value: ::String
+                                                            },
+                                                          ]?,
+                                                          object_size_greater_than: ::Integer?,
+                                                          object_size_less_than: ::Integer?
+                                                        }?
+                                                      }?,
+                                                      status: ("Enabled" | "Disabled"),
+                                                      transitions: Array[
+                                                        {
+                                                          date: ::Time?,
+                                                          days: ::Integer?,
+                                                          storage_class: ("GLACIER" | "STANDARD_IA" | "ONEZONE_IA" | "INTELLIGENT_TIERING" | "DEEP_ARCHIVE" | "GLACIER_IR")?
+                                                        },
+                                                      ]?,
+                                                      noncurrent_version_transitions: Array[
+                                                        {
+                                                          noncurrent_days: ::Integer?,
+                                                          storage_class: ("GLACIER" | "STANDARD_IA" | "ONEZONE_IA" | "INTELLIGENT_TIERING" | "DEEP_ARCHIVE" | "GLACIER_IR")?,
+                                                          newer_noncurrent_versions: ::Integer?
+                                                        },
+                                                      ]?,
+                                                      noncurrent_version_expiration: {
+                                                        noncurrent_days: ::Integer?,
+                                                        newer_noncurrent_versions: ::Integer?
+                                                      }?,
+                                                      abort_incomplete_multipart_upload: {
+                                                        days_after_initiation: ::Integer?
+                                                      }?
+                                                    },
+                                                  ]
+                                                },
+                                                ?expected_bucket_owner: ::String,
+                                                ?transition_default_minimum_object_size: ("varies_by_storage_class" | "all_storage_classes_128K")
+                                              ) -> _PutBucketLifecycleConfigurationResponseSuccess
+                                            | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _PutBucketLifecycleConfigurationResponseSuccess
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#put_bucket_logging-instance_method
+      def put_bucket_logging: (
+                                bucket: ::String,
+                                bucket_logging_status: {
+                                  logging_enabled: {
+                                    target_bucket: ::String,
+                                    target_grants: Array[
+                                      {
+                                        grantee: {
+                                          display_name: ::String?,
+                                          email_address: ::String?,
+                                          id: ::String?,
+                                          type: ("CanonicalUser" | "AmazonCustomerByEmail" | "Group"),
+                                          uri: ::String?
+                                        }?,
+                                        permission: ("FULL_CONTROL" | "READ" | "WRITE")?
+                                      },
+                                    ]?,
+                                    target_prefix: ::String,
+                                    target_object_key_format: {
+                                      simple_prefix: {
+                                      }?,
+                                      partitioned_prefix: {
+                                        partition_date_source: ("EventTime" | "DeliveryTime")?
+                                      }?
+                                    }?
+                                  }?
+                                },
+                                ?content_md5: ::String,
+                                ?checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME"),
+                                ?expected_bucket_owner: ::String
+                              ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                            | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#put_bucket_metrics_configuration-instance_method
+      def put_bucket_metrics_configuration: (
+                                              bucket: ::String,
+                                              id: ::String,
+                                              metrics_configuration: {
+                                                id: ::String,
+                                                filter: {
+                                                  prefix: ::String?,
+                                                  tag: {
+                                                    key: ::String,
+                                                    value: ::String
+                                                  }?,
+                                                  access_point_arn: ::String?,
+                                                  and: {
+                                                    prefix: ::String?,
+                                                    tags: Array[
+                                                      {
+                                                        key: ::String,
+                                                        value: ::String
+                                                      },
+                                                    ]?,
+                                                    access_point_arn: ::String?
+                                                  }?
+                                                }?
+                                              },
+                                              ?expected_bucket_owner: ::String
+                                            ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                                          | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#put_bucket_notification-instance_method
+      def put_bucket_notification: (
+                                     bucket: ::String,
+                                     ?content_md5: ::String,
+                                     ?checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME"),
+                                     notification_configuration: {
+                                       topic_configuration: {
+                                         id: ::String?,
+                                         events: Array[("s3:ReducedRedundancyLostObject" | "s3:ObjectCreated:*" | "s3:ObjectCreated:Put" | "s3:ObjectCreated:Post" | "s3:ObjectCreated:Copy" | "s3:ObjectCreated:CompleteMultipartUpload" | "s3:ObjectRemoved:*" | "s3:ObjectRemoved:Delete" | "s3:ObjectRemoved:DeleteMarkerCreated" | "s3:ObjectRestore:*" | "s3:ObjectRestore:Post" | "s3:ObjectRestore:Completed" | "s3:Replication:*" | "s3:Replication:OperationFailedReplication" | "s3:Replication:OperationNotTracked" | "s3:Replication:OperationMissedThreshold" | "s3:Replication:OperationReplicatedAfterThreshold" | "s3:ObjectRestore:Delete" | "s3:LifecycleTransition" | "s3:IntelligentTiering" | "s3:ObjectAcl:Put" | "s3:LifecycleExpiration:*" | "s3:LifecycleExpiration:Delete" | "s3:LifecycleExpiration:DeleteMarkerCreated" | "s3:ObjectTagging:*" | "s3:ObjectTagging:Put" | "s3:ObjectTagging:Delete")]?,
+                                         event: ("s3:ReducedRedundancyLostObject" | "s3:ObjectCreated:*" | "s3:ObjectCreated:Put" | "s3:ObjectCreated:Post" | "s3:ObjectCreated:Copy" | "s3:ObjectCreated:CompleteMultipartUpload" | "s3:ObjectRemoved:*" | "s3:ObjectRemoved:Delete" | "s3:ObjectRemoved:DeleteMarkerCreated" | "s3:ObjectRestore:*" | "s3:ObjectRestore:Post" | "s3:ObjectRestore:Completed" | "s3:Replication:*" | "s3:Replication:OperationFailedReplication" | "s3:Replication:OperationNotTracked" | "s3:Replication:OperationMissedThreshold" | "s3:Replication:OperationReplicatedAfterThreshold" | "s3:ObjectRestore:Delete" | "s3:LifecycleTransition" | "s3:IntelligentTiering" | "s3:ObjectAcl:Put" | "s3:LifecycleExpiration:*" | "s3:LifecycleExpiration:Delete" | "s3:LifecycleExpiration:DeleteMarkerCreated" | "s3:ObjectTagging:*" | "s3:ObjectTagging:Put" | "s3:ObjectTagging:Delete")?,
+                                         topic: ::String?
+                                       }?,
+                                       queue_configuration: {
+                                         id: ::String?,
+                                         event: ("s3:ReducedRedundancyLostObject" | "s3:ObjectCreated:*" | "s3:ObjectCreated:Put" | "s3:ObjectCreated:Post" | "s3:ObjectCreated:Copy" | "s3:ObjectCreated:CompleteMultipartUpload" | "s3:ObjectRemoved:*" | "s3:ObjectRemoved:Delete" | "s3:ObjectRemoved:DeleteMarkerCreated" | "s3:ObjectRestore:*" | "s3:ObjectRestore:Post" | "s3:ObjectRestore:Completed" | "s3:Replication:*" | "s3:Replication:OperationFailedReplication" | "s3:Replication:OperationNotTracked" | "s3:Replication:OperationMissedThreshold" | "s3:Replication:OperationReplicatedAfterThreshold" | "s3:ObjectRestore:Delete" | "s3:LifecycleTransition" | "s3:IntelligentTiering" | "s3:ObjectAcl:Put" | "s3:LifecycleExpiration:*" | "s3:LifecycleExpiration:Delete" | "s3:LifecycleExpiration:DeleteMarkerCreated" | "s3:ObjectTagging:*" | "s3:ObjectTagging:Put" | "s3:ObjectTagging:Delete")?,
+                                         events: Array[("s3:ReducedRedundancyLostObject" | "s3:ObjectCreated:*" | "s3:ObjectCreated:Put" | "s3:ObjectCreated:Post" | "s3:ObjectCreated:Copy" | "s3:ObjectCreated:CompleteMultipartUpload" | "s3:ObjectRemoved:*" | "s3:ObjectRemoved:Delete" | "s3:ObjectRemoved:DeleteMarkerCreated" | "s3:ObjectRestore:*" | "s3:ObjectRestore:Post" | "s3:ObjectRestore:Completed" | "s3:Replication:*" | "s3:Replication:OperationFailedReplication" | "s3:Replication:OperationNotTracked" | "s3:Replication:OperationMissedThreshold" | "s3:Replication:OperationReplicatedAfterThreshold" | "s3:ObjectRestore:Delete" | "s3:LifecycleTransition" | "s3:IntelligentTiering" | "s3:ObjectAcl:Put" | "s3:LifecycleExpiration:*" | "s3:LifecycleExpiration:Delete" | "s3:LifecycleExpiration:DeleteMarkerCreated" | "s3:ObjectTagging:*" | "s3:ObjectTagging:Put" | "s3:ObjectTagging:Delete")]?,
+                                         queue: ::String?
+                                       }?,
+                                       cloud_function_configuration: {
+                                         id: ::String?,
+                                         event: ("s3:ReducedRedundancyLostObject" | "s3:ObjectCreated:*" | "s3:ObjectCreated:Put" | "s3:ObjectCreated:Post" | "s3:ObjectCreated:Copy" | "s3:ObjectCreated:CompleteMultipartUpload" | "s3:ObjectRemoved:*" | "s3:ObjectRemoved:Delete" | "s3:ObjectRemoved:DeleteMarkerCreated" | "s3:ObjectRestore:*" | "s3:ObjectRestore:Post" | "s3:ObjectRestore:Completed" | "s3:Replication:*" | "s3:Replication:OperationFailedReplication" | "s3:Replication:OperationNotTracked" | "s3:Replication:OperationMissedThreshold" | "s3:Replication:OperationReplicatedAfterThreshold" | "s3:ObjectRestore:Delete" | "s3:LifecycleTransition" | "s3:IntelligentTiering" | "s3:ObjectAcl:Put" | "s3:LifecycleExpiration:*" | "s3:LifecycleExpiration:Delete" | "s3:LifecycleExpiration:DeleteMarkerCreated" | "s3:ObjectTagging:*" | "s3:ObjectTagging:Put" | "s3:ObjectTagging:Delete")?,
+                                         events: Array[("s3:ReducedRedundancyLostObject" | "s3:ObjectCreated:*" | "s3:ObjectCreated:Put" | "s3:ObjectCreated:Post" | "s3:ObjectCreated:Copy" | "s3:ObjectCreated:CompleteMultipartUpload" | "s3:ObjectRemoved:*" | "s3:ObjectRemoved:Delete" | "s3:ObjectRemoved:DeleteMarkerCreated" | "s3:ObjectRestore:*" | "s3:ObjectRestore:Post" | "s3:ObjectRestore:Completed" | "s3:Replication:*" | "s3:Replication:OperationFailedReplication" | "s3:Replication:OperationNotTracked" | "s3:Replication:OperationMissedThreshold" | "s3:Replication:OperationReplicatedAfterThreshold" | "s3:ObjectRestore:Delete" | "s3:LifecycleTransition" | "s3:IntelligentTiering" | "s3:ObjectAcl:Put" | "s3:LifecycleExpiration:*" | "s3:LifecycleExpiration:Delete" | "s3:LifecycleExpiration:DeleteMarkerCreated" | "s3:ObjectTagging:*" | "s3:ObjectTagging:Put" | "s3:ObjectTagging:Delete")]?,
+                                         cloud_function: ::String?,
+                                         invocation_role: ::String?
+                                       }?
+                                     },
+                                     ?expected_bucket_owner: ::String
+                                   ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                                 | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#put_bucket_notification_configuration-instance_method
+      def put_bucket_notification_configuration: (
+                                                   bucket: ::String,
+                                                   notification_configuration: {
+                                                     topic_configurations: Array[
+                                                       {
+                                                         id: ::String?,
+                                                         topic_arn: ::String,
+                                                         events: Array[("s3:ReducedRedundancyLostObject" | "s3:ObjectCreated:*" | "s3:ObjectCreated:Put" | "s3:ObjectCreated:Post" | "s3:ObjectCreated:Copy" | "s3:ObjectCreated:CompleteMultipartUpload" | "s3:ObjectRemoved:*" | "s3:ObjectRemoved:Delete" | "s3:ObjectRemoved:DeleteMarkerCreated" | "s3:ObjectRestore:*" | "s3:ObjectRestore:Post" | "s3:ObjectRestore:Completed" | "s3:Replication:*" | "s3:Replication:OperationFailedReplication" | "s3:Replication:OperationNotTracked" | "s3:Replication:OperationMissedThreshold" | "s3:Replication:OperationReplicatedAfterThreshold" | "s3:ObjectRestore:Delete" | "s3:LifecycleTransition" | "s3:IntelligentTiering" | "s3:ObjectAcl:Put" | "s3:LifecycleExpiration:*" | "s3:LifecycleExpiration:Delete" | "s3:LifecycleExpiration:DeleteMarkerCreated" | "s3:ObjectTagging:*" | "s3:ObjectTagging:Put" | "s3:ObjectTagging:Delete")],
+                                                         filter: {
+                                                           key: {
+                                                             filter_rules: Array[
+                                                               {
+                                                                 name: ("prefix" | "suffix")?,
+                                                                 value: ::String?
+                                                               },
+                                                             ]?
+                                                           }?
+                                                         }?
+                                                       },
+                                                     ]?,
+                                                     queue_configurations: Array[
+                                                       {
+                                                         id: ::String?,
+                                                         queue_arn: ::String,
+                                                         events: Array[("s3:ReducedRedundancyLostObject" | "s3:ObjectCreated:*" | "s3:ObjectCreated:Put" | "s3:ObjectCreated:Post" | "s3:ObjectCreated:Copy" | "s3:ObjectCreated:CompleteMultipartUpload" | "s3:ObjectRemoved:*" | "s3:ObjectRemoved:Delete" | "s3:ObjectRemoved:DeleteMarkerCreated" | "s3:ObjectRestore:*" | "s3:ObjectRestore:Post" | "s3:ObjectRestore:Completed" | "s3:Replication:*" | "s3:Replication:OperationFailedReplication" | "s3:Replication:OperationNotTracked" | "s3:Replication:OperationMissedThreshold" | "s3:Replication:OperationReplicatedAfterThreshold" | "s3:ObjectRestore:Delete" | "s3:LifecycleTransition" | "s3:IntelligentTiering" | "s3:ObjectAcl:Put" | "s3:LifecycleExpiration:*" | "s3:LifecycleExpiration:Delete" | "s3:LifecycleExpiration:DeleteMarkerCreated" | "s3:ObjectTagging:*" | "s3:ObjectTagging:Put" | "s3:ObjectTagging:Delete")],
+                                                         filter: {
+                                                           key: {
+                                                             filter_rules: Array[
+                                                               {
+                                                                 name: ("prefix" | "suffix")?,
+                                                                 value: ::String?
+                                                               },
+                                                             ]?
+                                                           }?
+                                                         }?
+                                                       },
+                                                     ]?,
+                                                     lambda_function_configurations: Array[
+                                                       {
+                                                         id: ::String?,
+                                                         lambda_function_arn: ::String,
+                                                         events: Array[("s3:ReducedRedundancyLostObject" | "s3:ObjectCreated:*" | "s3:ObjectCreated:Put" | "s3:ObjectCreated:Post" | "s3:ObjectCreated:Copy" | "s3:ObjectCreated:CompleteMultipartUpload" | "s3:ObjectRemoved:*" | "s3:ObjectRemoved:Delete" | "s3:ObjectRemoved:DeleteMarkerCreated" | "s3:ObjectRestore:*" | "s3:ObjectRestore:Post" | "s3:ObjectRestore:Completed" | "s3:Replication:*" | "s3:Replication:OperationFailedReplication" | "s3:Replication:OperationNotTracked" | "s3:Replication:OperationMissedThreshold" | "s3:Replication:OperationReplicatedAfterThreshold" | "s3:ObjectRestore:Delete" | "s3:LifecycleTransition" | "s3:IntelligentTiering" | "s3:ObjectAcl:Put" | "s3:LifecycleExpiration:*" | "s3:LifecycleExpiration:Delete" | "s3:LifecycleExpiration:DeleteMarkerCreated" | "s3:ObjectTagging:*" | "s3:ObjectTagging:Put" | "s3:ObjectTagging:Delete")],
+                                                         filter: {
+                                                           key: {
+                                                             filter_rules: Array[
+                                                               {
+                                                                 name: ("prefix" | "suffix")?,
+                                                                 value: ::String?
+                                                               },
+                                                             ]?
+                                                           }?
+                                                         }?
+                                                       },
+                                                     ]?,
+                                                     event_bridge_configuration: {
+                                                     }?
+                                                   },
+                                                   ?expected_bucket_owner: ::String,
+                                                   ?skip_destination_validation: bool
+                                                 ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                                               | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#put_bucket_ownership_controls-instance_method
+      def put_bucket_ownership_controls: (
+                                           bucket: ::String,
+                                           ?content_md5: ::String,
+                                           ?expected_bucket_owner: ::String,
+                                           ownership_controls: {
+                                             rules: Array[
+                                               {
+                                                 object_ownership: ("BucketOwnerPreferred" | "ObjectWriter" | "BucketOwnerEnforced")
+                                               },
+                                             ]
+                                           },
+                                           ?checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+                                         ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                                       | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#put_bucket_policy-instance_method
+      def put_bucket_policy: (
+                               bucket: ::String,
+                               ?content_md5: ::String,
+                               ?checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME"),
+                               ?confirm_remove_self_bucket_access: bool,
+                               policy: ::String,
+                               ?expected_bucket_owner: ::String
+                             ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                           | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#put_bucket_replication-instance_method
+      def put_bucket_replication: (
+                                    bucket: ::String,
+                                    ?content_md5: ::String,
+                                    ?checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME"),
+                                    replication_configuration: {
+                                      role: ::String,
+                                      rules: Array[
+                                        {
+                                          id: ::String?,
+                                          priority: ::Integer?,
+                                          prefix: ::String?,
+                                          filter: {
+                                            prefix: ::String?,
+                                            tag: {
+                                              key: ::String,
+                                              value: ::String
+                                            }?,
+                                            and: {
+                                              prefix: ::String?,
+                                              tags: Array[
+                                                {
+                                                  key: ::String,
+                                                  value: ::String
+                                                },
+                                              ]?
+                                            }?
+                                          }?,
+                                          status: ("Enabled" | "Disabled"),
+                                          source_selection_criteria: {
+                                            sse_kms_encrypted_objects: {
+                                              status: ("Enabled" | "Disabled")
+                                            }?,
+                                            replica_modifications: {
+                                              status: ("Enabled" | "Disabled")
+                                            }?
+                                          }?,
+                                          existing_object_replication: {
+                                            status: ("Enabled" | "Disabled")
+                                          }?,
+                                          destination: {
+                                            bucket: ::String,
+                                            account: ::String?,
+                                            storage_class: ("STANDARD" | "REDUCED_REDUNDANCY" | "STANDARD_IA" | "ONEZONE_IA" | "INTELLIGENT_TIERING" | "GLACIER" | "DEEP_ARCHIVE" | "OUTPOSTS" | "GLACIER_IR" | "SNOW" | "EXPRESS_ONEZONE" | "FSX_OPENZFS" | "FSX_ONTAP")?,
+                                            access_control_translation: {
+                                              owner: ("Destination")
+                                            }?,
+                                            encryption_configuration: {
+                                              replica_kms_key_id: ::String?
+                                            }?,
+                                            replication_time: {
+                                              status: ("Enabled" | "Disabled"),
+                                              time: {
+                                                minutes: ::Integer?
+                                              }
+                                            }?,
+                                            metrics: {
+                                              status: ("Enabled" | "Disabled"),
+                                              event_threshold: {
+                                                minutes: ::Integer?
+                                              }?
+                                            }?
+                                          },
+                                          delete_marker_replication: {
+                                            status: ("Enabled" | "Disabled")?
+                                          }?
+                                        },
+                                      ]
+                                    },
+                                    ?token: ::String,
+                                    ?expected_bucket_owner: ::String
+                                  ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                                | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#put_bucket_request_payment-instance_method
+      def put_bucket_request_payment: (
+                                        bucket: ::String,
+                                        ?content_md5: ::String,
+                                        ?checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME"),
+                                        request_payment_configuration: {
+                                          payer: ("Requester" | "BucketOwner")
+                                        },
+                                        ?expected_bucket_owner: ::String
+                                      ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                                    | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#put_bucket_tagging-instance_method
+      def put_bucket_tagging: (
+                                bucket: ::String,
+                                ?content_md5: ::String,
+                                ?checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME"),
+                                tagging: {
+                                  tag_set: Array[
+                                    {
+                                      key: ::String,
+                                      value: ::String
+                                    },
+                                  ]
+                                },
+                                ?expected_bucket_owner: ::String
+                              ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                            | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#put_bucket_versioning-instance_method
+      def put_bucket_versioning: (
+                                   bucket: ::String,
+                                   ?content_md5: ::String,
+                                   ?checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME"),
+                                   ?mfa: ::String,
+                                   versioning_configuration: {
+                                     mfa_delete: ("Enabled" | "Disabled")?,
+                                     status: ("Enabled" | "Suspended")?
+                                   },
+                                   ?expected_bucket_owner: ::String
+                                 ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                               | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#put_bucket_website-instance_method
+      def put_bucket_website: (
+                                bucket: ::String,
+                                ?content_md5: ::String,
+                                ?checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME"),
+                                website_configuration: {
+                                  error_document: {
+                                    key: ::String
+                                  }?,
+                                  index_document: {
+                                    suffix: ::String
+                                  }?,
+                                  redirect_all_requests_to: {
+                                    host_name: ::String,
+                                    protocol: ("http" | "https")?
+                                  }?,
+                                  routing_rules: Array[
+                                    {
+                                      condition: {
+                                        http_error_code_returned_equals: ::String?,
+                                        key_prefix_equals: ::String?
+                                      }?,
+                                      redirect: {
+                                        host_name: ::String?,
+                                        http_redirect_code: ::String?,
+                                        protocol: ("http" | "https")?,
+                                        replace_key_prefix_with: ::String?,
+                                        replace_key_with: ::String?
+                                      }
+                                    },
+                                  ]?
+                                },
+                                ?expected_bucket_owner: ::String
+                              ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                            | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      interface _PutObjectResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::PutObjectOutput]
+        def expiration: () -> ::String
+        def etag: () -> ::String
+        def checksum_crc32: () -> ::String
+        def checksum_crc32c: () -> ::String
+        def checksum_crc64nvme: () -> ::String
+        def checksum_sha1: () -> ::String
+        def checksum_sha256: () -> ::String
+        def checksum_type: () -> ("COMPOSITE" | "FULL_OBJECT")
+        def server_side_encryption: () -> ("AES256" | "aws:fsx" | "aws:kms" | "aws:kms:dsse")
+        def version_id: () -> ::String
+        def sse_customer_algorithm: () -> ::String
+        def sse_customer_key_md5: () -> ::String
+        def ssekms_key_id: () -> ::String
+        def ssekms_encryption_context: () -> ::String
+        def bucket_key_enabled: () -> bool
+        def size: () -> ::Integer
+        def request_charged: () -> ("requester")
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#put_object-instance_method
+      def put_object: (
+                        ?acl: ("private" | "public-read" | "public-read-write" | "authenticated-read" | "aws-exec-read" | "bucket-owner-read" | "bucket-owner-full-control"),
+                        ?body: ::String | ::StringIO | ::File,
+                        bucket: ::String,
+                        ?cache_control: ::String,
+                        ?content_disposition: ::String,
+                        ?content_encoding: ::String,
+                        ?content_language: ::String,
+                        ?content_length: ::Integer,
+                        ?content_md5: ::String,
+                        ?content_type: ::String,
+                        ?checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME"),
+                        ?checksum_crc32: ::String,
+                        ?checksum_crc32c: ::String,
+                        ?checksum_crc64nvme: ::String,
+                        ?checksum_sha1: ::String,
+                        ?checksum_sha256: ::String,
+                        ?expires: ::Time,
+                        ?if_match: ::String,
+                        ?if_none_match: ::String,
+                        ?grant_full_control: ::String,
+                        ?grant_read: ::String,
+                        ?grant_read_acp: ::String,
+                        ?grant_write_acp: ::String,
+                        key: ::String,
+                        ?write_offset_bytes: ::Integer,
+                        ?metadata: Hash[::String, ::String],
+                        ?server_side_encryption: ("AES256" | "aws:fsx" | "aws:kms" | "aws:kms:dsse"),
+                        ?storage_class: ("STANDARD" | "REDUCED_REDUNDANCY" | "STANDARD_IA" | "ONEZONE_IA" | "INTELLIGENT_TIERING" | "GLACIER" | "DEEP_ARCHIVE" | "OUTPOSTS" | "GLACIER_IR" | "SNOW" | "EXPRESS_ONEZONE" | "FSX_OPENZFS" | "FSX_ONTAP"),
+                        ?website_redirect_location: ::String,
+                        ?sse_customer_algorithm: ::String,
+                        ?sse_customer_key: ::String,
+                        ?sse_customer_key_md5: ::String,
+                        ?ssekms_key_id: ::String,
+                        ?ssekms_encryption_context: ::String,
+                        ?bucket_key_enabled: bool,
+                        ?request_payer: ("requester"),
+                        ?tagging: ::String,
+                        ?object_lock_mode: ("GOVERNANCE" | "COMPLIANCE"),
+                        ?object_lock_retain_until_date: ::Time,
+                        ?object_lock_legal_hold_status: ("ON" | "OFF"),
+                        ?expected_bucket_owner: ::String
+                      ) -> _PutObjectResponseSuccess
+                    | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _PutObjectResponseSuccess
+
+      interface _PutObjectAclResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::PutObjectAclOutput]
+        def request_charged: () -> ("requester")
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#put_object_acl-instance_method
+      def put_object_acl: (
+                            ?acl: ("private" | "public-read" | "public-read-write" | "authenticated-read" | "aws-exec-read" | "bucket-owner-read" | "bucket-owner-full-control"),
+                            ?access_control_policy: {
+                              grants: Array[
+                                {
+                                  grantee: {
+                                    display_name: ::String?,
+                                    email_address: ::String?,
+                                    id: ::String?,
+                                    type: ("CanonicalUser" | "AmazonCustomerByEmail" | "Group"),
+                                    uri: ::String?
+                                  }?,
+                                  permission: ("FULL_CONTROL" | "WRITE" | "WRITE_ACP" | "READ" | "READ_ACP")?
+                                },
+                              ]?,
+                              owner: {
+                                display_name: ::String?,
+                                id: ::String?
+                              }?
+                            },
+                            bucket: ::String,
+                            ?content_md5: ::String,
+                            ?checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME"),
+                            ?grant_full_control: ::String,
+                            ?grant_read: ::String,
+                            ?grant_read_acp: ::String,
+                            ?grant_write: ::String,
+                            ?grant_write_acp: ::String,
+                            key: ::String,
+                            ?request_payer: ("requester"),
+                            ?version_id: ::String,
+                            ?expected_bucket_owner: ::String
+                          ) -> _PutObjectAclResponseSuccess
+                        | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _PutObjectAclResponseSuccess
+
+      interface _PutObjectLegalHoldResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::PutObjectLegalHoldOutput]
+        def request_charged: () -> ("requester")
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#put_object_legal_hold-instance_method
+      def put_object_legal_hold: (
+                                   bucket: ::String,
+                                   key: ::String,
+                                   ?legal_hold: {
+                                     status: ("ON" | "OFF")?
+                                   },
+                                   ?request_payer: ("requester"),
+                                   ?version_id: ::String,
+                                   ?content_md5: ::String,
+                                   ?checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME"),
+                                   ?expected_bucket_owner: ::String
+                                 ) -> _PutObjectLegalHoldResponseSuccess
+                               | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _PutObjectLegalHoldResponseSuccess
+
+      interface _PutObjectLockConfigurationResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::PutObjectLockConfigurationOutput]
+        def request_charged: () -> ("requester")
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#put_object_lock_configuration-instance_method
+      def put_object_lock_configuration: (
+                                           bucket: ::String,
+                                           ?object_lock_configuration: {
+                                             object_lock_enabled: ("Enabled")?,
+                                             rule: {
+                                               default_retention: {
+                                                 mode: ("GOVERNANCE" | "COMPLIANCE")?,
+                                                 days: ::Integer?,
+                                                 years: ::Integer?
+                                               }?
+                                             }?
+                                           },
+                                           ?request_payer: ("requester"),
+                                           ?token: ::String,
+                                           ?content_md5: ::String,
+                                           ?checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME"),
+                                           ?expected_bucket_owner: ::String
+                                         ) -> _PutObjectLockConfigurationResponseSuccess
+                                       | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _PutObjectLockConfigurationResponseSuccess
+
+      interface _PutObjectRetentionResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::PutObjectRetentionOutput]
+        def request_charged: () -> ("requester")
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#put_object_retention-instance_method
+      def put_object_retention: (
+                                  bucket: ::String,
+                                  key: ::String,
+                                  ?retention: {
+                                    mode: ("GOVERNANCE" | "COMPLIANCE")?,
+                                    retain_until_date: ::Time?
+                                  },
+                                  ?request_payer: ("requester"),
+                                  ?version_id: ::String,
+                                  ?bypass_governance_retention: bool,
+                                  ?content_md5: ::String,
+                                  ?checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME"),
+                                  ?expected_bucket_owner: ::String
+                                ) -> _PutObjectRetentionResponseSuccess
+                              | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _PutObjectRetentionResponseSuccess
+
+      interface _PutObjectTaggingResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::PutObjectTaggingOutput]
+        def version_id: () -> ::String
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#put_object_tagging-instance_method
+      def put_object_tagging: (
+                                bucket: ::String,
+                                key: ::String,
+                                ?version_id: ::String,
+                                ?content_md5: ::String,
+                                ?checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME"),
+                                tagging: {
+                                  tag_set: Array[
+                                    {
+                                      key: ::String,
+                                      value: ::String
+                                    },
+                                  ]
+                                },
+                                ?expected_bucket_owner: ::String,
+                                ?request_payer: ("requester")
+                              ) -> _PutObjectTaggingResponseSuccess
+                            | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _PutObjectTaggingResponseSuccess
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#put_public_access_block-instance_method
+      def put_public_access_block: (
+                                     bucket: ::String,
+                                     ?content_md5: ::String,
+                                     ?checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME"),
+                                     public_access_block_configuration: {
+                                       block_public_acls: bool?,
+                                       ignore_public_acls: bool?,
+                                       block_public_policy: bool?,
+                                       restrict_public_buckets: bool?
+                                     },
+                                     ?expected_bucket_owner: ::String
+                                   ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                                 | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      interface _RenameObjectResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::RenameObjectOutput]
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#rename_object-instance_method
+      def rename_object: (
+                           bucket: ::String,
+                           key: ::String,
+                           rename_source: ::String,
+                           ?destination_if_match: ::String,
+                           ?destination_if_none_match: ::String,
+                           ?destination_if_modified_since: ::Time,
+                           ?destination_if_unmodified_since: ::Time,
+                           ?source_if_match: ::String,
+                           ?source_if_none_match: ::String,
+                           ?source_if_modified_since: ::Time,
+                           ?source_if_unmodified_since: ::Time,
+                           ?client_token: ::String
+                         ) -> _RenameObjectResponseSuccess
+                       | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _RenameObjectResponseSuccess
+
+      interface _RestoreObjectResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::RestoreObjectOutput]
+        def request_charged: () -> ("requester")
+        def restore_output_path: () -> ::String
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#restore_object-instance_method
+      def restore_object: (
+                            bucket: ::String,
+                            key: ::String,
+                            ?version_id: ::String,
+                            ?restore_request: {
+                              days: ::Integer?,
+                              glacier_job_parameters: {
+                                tier: ("Standard" | "Bulk" | "Expedited")
+                              }?,
+                              type: ("SELECT")?,
+                              tier: ("Standard" | "Bulk" | "Expedited")?,
+                              description: ::String?,
+                              select_parameters: {
+                                input_serialization: {
+                                  csv: {
+                                    file_header_info: ("USE" | "IGNORE" | "NONE")?,
+                                    comments: ::String?,
+                                    quote_escape_character: ::String?,
+                                    record_delimiter: ::String?,
+                                    field_delimiter: ::String?,
+                                    quote_character: ::String?,
+                                    allow_quoted_record_delimiter: bool?
+                                  }?,
+                                  compression_type: ("NONE" | "GZIP" | "BZIP2")?,
+                                  json: {
+                                    type: ("DOCUMENT" | "LINES")?
+                                  }?,
+                                  parquet: {
+                                  }?
+                                },
+                                expression_type: ("SQL"),
+                                expression: ::String,
+                                output_serialization: {
+                                  csv: {
+                                    quote_fields: ("ALWAYS" | "ASNEEDED")?,
+                                    quote_escape_character: ::String?,
+                                    record_delimiter: ::String?,
+                                    field_delimiter: ::String?,
+                                    quote_character: ::String?
+                                  }?,
+                                  json: {
+                                    record_delimiter: ::String?
+                                  }?
+                                }
+                              }?,
+                              output_location: {
+                                s3: {
+                                  bucket_name: ::String,
+                                  prefix: ::String,
+                                  encryption: {
+                                    encryption_type: ("AES256" | "aws:fsx" | "aws:kms" | "aws:kms:dsse"),
+                                    kms_key_id: ::String?,
+                                    kms_context: ::String?
+                                  }?,
+                                  canned_acl: ("private" | "public-read" | "public-read-write" | "authenticated-read" | "aws-exec-read" | "bucket-owner-read" | "bucket-owner-full-control")?,
+                                  access_control_list: Array[
+                                    {
+                                      grantee: {
+                                        display_name: ::String?,
+                                        email_address: ::String?,
+                                        id: ::String?,
+                                        type: ("CanonicalUser" | "AmazonCustomerByEmail" | "Group"),
+                                        uri: ::String?
+                                      }?,
+                                      permission: ("FULL_CONTROL" | "WRITE" | "WRITE_ACP" | "READ" | "READ_ACP")?
+                                    },
+                                  ]?,
+                                  tagging: {
+                                    tag_set: Array[
+                                      {
+                                        key: ::String,
+                                        value: ::String
+                                      },
+                                    ]
+                                  }?,
+                                  user_metadata: Array[
+                                    {
+                                      name: ::String?,
+                                      value: ::String?
+                                    },
+                                  ]?,
+                                  storage_class: ("STANDARD" | "REDUCED_REDUNDANCY" | "STANDARD_IA" | "ONEZONE_IA" | "INTELLIGENT_TIERING" | "GLACIER" | "DEEP_ARCHIVE" | "OUTPOSTS" | "GLACIER_IR" | "SNOW" | "EXPRESS_ONEZONE" | "FSX_OPENZFS" | "FSX_ONTAP")?
+                                }?
+                              }?
+                            },
+                            ?request_payer: ("requester"),
+                            ?checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME"),
+                            ?expected_bucket_owner: ::String
+                          ) -> _RestoreObjectResponseSuccess
+                        | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _RestoreObjectResponseSuccess
+
+      interface _SelectObjectContentResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::SelectObjectContentOutput]
+        def payload: () -> Types::SelectObjectContentEventStream
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#select_object_content-instance_method
+      def select_object_content: (
+                                   bucket: ::String,
+                                   key: ::String,
+                                   ?sse_customer_algorithm: ::String,
+                                   ?sse_customer_key: ::String,
+                                   ?sse_customer_key_md5: ::String,
+                                   expression: ::String,
+                                   expression_type: ("SQL"),
+                                   ?request_progress: {
+                                     enabled: bool?
+                                   },
+                                   input_serialization: {
+                                     csv: {
+                                       file_header_info: ("USE" | "IGNORE" | "NONE")?,
+                                       comments: ::String?,
+                                       quote_escape_character: ::String?,
+                                       record_delimiter: ::String?,
+                                       field_delimiter: ::String?,
+                                       quote_character: ::String?,
+                                       allow_quoted_record_delimiter: bool?
+                                     }?,
+                                     compression_type: ("NONE" | "GZIP" | "BZIP2")?,
+                                     json: {
+                                       type: ("DOCUMENT" | "LINES")?
+                                     }?,
+                                     parquet: {
+                                     }?
+                                   },
+                                   output_serialization: {
+                                     csv: {
+                                       quote_fields: ("ALWAYS" | "ASNEEDED")?,
+                                       quote_escape_character: ::String?,
+                                       record_delimiter: ::String?,
+                                       field_delimiter: ::String?,
+                                       quote_character: ::String?
+                                     }?,
+                                     json: {
+                                       record_delimiter: ::String?
+                                     }?
+                                   },
+                                   ?scan_range: {
+                                     start: ::Integer?,
+                                     end: ::Integer?
+                                   },
+                                   ?expected_bucket_owner: ::String
+                                 ) ?{ (*untyped) -> void } -> _SelectObjectContentResponseSuccess
+                               | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) ?{ (*untyped) -> void } -> _SelectObjectContentResponseSuccess
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#update_bucket_metadata_inventory_table_configuration-instance_method
+      def update_bucket_metadata_inventory_table_configuration: (
+                                                                  bucket: ::String,
+                                                                  ?content_md5: ::String,
+                                                                  ?checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME"),
+                                                                  inventory_table_configuration: {
+                                                                    configuration_state: ("ENABLED" | "DISABLED"),
+                                                                    encryption_configuration: {
+                                                                      sse_algorithm: ("aws:kms" | "AES256"),
+                                                                      kms_key_arn: ::String?
+                                                                    }?
+                                                                  },
+                                                                  ?expected_bucket_owner: ::String
+                                                                ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                                                              | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#update_bucket_metadata_journal_table_configuration-instance_method
+      def update_bucket_metadata_journal_table_configuration: (
+                                                                bucket: ::String,
+                                                                ?content_md5: ::String,
+                                                                ?checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME"),
+                                                                journal_table_configuration: {
+                                                                  record_expiration: {
+                                                                    expiration: ("ENABLED" | "DISABLED"),
+                                                                    days: ::Integer?
+                                                                  }
+                                                                },
+                                                                ?expected_bucket_owner: ::String
+                                                              ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                                                            | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      interface _UpdateObjectEncryptionResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::UpdateObjectEncryptionResponse]
+        def request_charged: () -> ("requester")
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#update_object_encryption-instance_method
+      def update_object_encryption: (
+                                      bucket: ::String,
+                                      key: ::String,
+                                      ?version_id: ::String,
+                                      object_encryption: {
+                                        ssekms: {
+                                          kms_key_arn: ::String,
+                                          bucket_key_enabled: bool?
+                                        }?
+                                      },
+                                      ?request_payer: ("requester"),
+                                      ?expected_bucket_owner: ::String,
+                                      ?content_md5: ::String,
+                                      ?checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+                                    ) -> _UpdateObjectEncryptionResponseSuccess
+                                  | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _UpdateObjectEncryptionResponseSuccess
+
+      interface _UploadPartResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::UploadPartOutput]
+        def server_side_encryption: () -> ("AES256" | "aws:fsx" | "aws:kms" | "aws:kms:dsse")
+        def etag: () -> ::String
+        def checksum_crc32: () -> ::String
+        def checksum_crc32c: () -> ::String
+        def checksum_crc64nvme: () -> ::String
+        def checksum_sha1: () -> ::String
+        def checksum_sha256: () -> ::String
+        def sse_customer_algorithm: () -> ::String
+        def sse_customer_key_md5: () -> ::String
+        def ssekms_key_id: () -> ::String
+        def bucket_key_enabled: () -> bool
+        def request_charged: () -> ("requester")
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#upload_part-instance_method
+      def upload_part: (
+                         ?body: ::String | ::StringIO | ::File,
+                         bucket: ::String,
+                         ?content_length: ::Integer,
+                         ?content_md5: ::String,
+                         ?checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME"),
+                         ?checksum_crc32: ::String,
+                         ?checksum_crc32c: ::String,
+                         ?checksum_crc64nvme: ::String,
+                         ?checksum_sha1: ::String,
+                         ?checksum_sha256: ::String,
+                         key: ::String,
+                         part_number: ::Integer,
+                         upload_id: ::String,
+                         ?sse_customer_algorithm: ::String,
+                         ?sse_customer_key: ::String,
+                         ?sse_customer_key_md5: ::String,
+                         ?request_payer: ("requester"),
+                         ?expected_bucket_owner: ::String
+                       ) -> _UploadPartResponseSuccess
+                     | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _UploadPartResponseSuccess
+
+      interface _UploadPartCopyResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::UploadPartCopyOutput]
+        def copy_source_version_id: () -> ::String
+        def copy_part_result: () -> Types::CopyPartResult
+        def server_side_encryption: () -> ("AES256" | "aws:fsx" | "aws:kms" | "aws:kms:dsse")
+        def sse_customer_algorithm: () -> ::String
+        def sse_customer_key_md5: () -> ::String
+        def ssekms_key_id: () -> ::String
+        def bucket_key_enabled: () -> bool
+        def request_charged: () -> ("requester")
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#upload_part_copy-instance_method
+      def upload_part_copy: (
+                              bucket: ::String,
+                              copy_source: ::String,
+                              ?copy_source_if_match: ::String,
+                              ?copy_source_if_modified_since: ::Time,
+                              ?copy_source_if_none_match: ::String,
+                              ?copy_source_if_unmodified_since: ::Time,
+                              ?copy_source_range: ::String,
+                              key: ::String,
+                              part_number: ::Integer,
+                              upload_id: ::String,
+                              ?sse_customer_algorithm: ::String,
+                              ?sse_customer_key: ::String,
+                              ?sse_customer_key_md5: ::String,
+                              ?copy_source_sse_customer_algorithm: ::String,
+                              ?copy_source_sse_customer_key: ::String,
+                              ?copy_source_sse_customer_key_md5: ::String,
+                              ?request_payer: ("requester"),
+                              ?expected_bucket_owner: ::String,
+                              ?expected_source_bucket_owner: ::String
+                            ) -> _UploadPartCopyResponseSuccess
+                          | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _UploadPartCopyResponseSuccess
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#write_get_object_response-instance_method
+      def write_get_object_response: (
+                                       request_route: ::String,
+                                       request_token: ::String,
+                                       ?body: ::String | ::StringIO | ::File,
+                                       ?status_code: ::Integer,
+                                       ?error_code: ::String,
+                                       ?error_message: ::String,
+                                       ?accept_ranges: ::String,
+                                       ?cache_control: ::String,
+                                       ?content_disposition: ::String,
+                                       ?content_encoding: ::String,
+                                       ?content_language: ::String,
+                                       ?content_length: ::Integer,
+                                       ?content_range: ::String,
+                                       ?content_type: ::String,
+                                       ?checksum_crc32: ::String,
+                                       ?checksum_crc32c: ::String,
+                                       ?checksum_crc64nvme: ::String,
+                                       ?checksum_sha1: ::String,
+                                       ?checksum_sha256: ::String,
+                                       ?delete_marker: bool,
+                                       ?etag: ::String,
+                                       ?expires: ::Time,
+                                       ?expiration: ::String,
+                                       ?last_modified: ::Time,
+                                       ?missing_meta: ::Integer,
+                                       ?metadata: Hash[::String, ::String],
+                                       ?object_lock_mode: ("GOVERNANCE" | "COMPLIANCE"),
+                                       ?object_lock_legal_hold_status: ("ON" | "OFF"),
+                                       ?object_lock_retain_until_date: ::Time,
+                                       ?parts_count: ::Integer,
+                                       ?replication_status: ("COMPLETE" | "PENDING" | "FAILED" | "REPLICA" | "COMPLETED"),
+                                       ?request_charged: ("requester"),
+                                       ?restore: ::String,
+                                       ?server_side_encryption: ("AES256" | "aws:fsx" | "aws:kms" | "aws:kms:dsse"),
+                                       ?sse_customer_algorithm: ::String,
+                                       ?ssekms_key_id: ::String,
+                                       ?sse_customer_key_md5: ::String,
+                                       ?storage_class: ("STANDARD" | "REDUCED_REDUNDANCY" | "STANDARD_IA" | "ONEZONE_IA" | "INTELLIGENT_TIERING" | "GLACIER" | "DEEP_ARCHIVE" | "OUTPOSTS" | "GLACIER_IR" | "SNOW" | "EXPRESS_ONEZONE" | "FSX_OPENZFS" | "FSX_ONTAP"),
+                                       ?tag_count: ::Integer,
+                                       ?version_id: ::String,
+                                       ?bucket_key_enabled: bool
+                                     ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                                   | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Client.html#wait_until-instance_method
+      def wait_until: (:bucket_exists waiter_name, 
+                    bucket: ::String,
+                    ?expected_bucket_owner: ::String
+                  ) -> Client::_HeadBucketResponseSuccess
+                    | (:bucket_exists waiter_name, Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> Client::_HeadBucketResponseSuccess
+                    | (:bucket_not_exists waiter_name, 
+                    bucket: ::String,
+                    ?expected_bucket_owner: ::String
+                  ) -> Client::_HeadBucketResponseSuccess
+                    | (:bucket_not_exists waiter_name, Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> Client::_HeadBucketResponseSuccess
+                    | (:object_exists waiter_name, 
+                    bucket: ::String,
+                    ?if_match: ::String,
+                    ?if_modified_since: ::Time,
+                    ?if_none_match: ::String,
+                    ?if_unmodified_since: ::Time,
+                    key: ::String,
+                    ?range: ::String,
+                    ?response_cache_control: ::String,
+                    ?response_content_disposition: ::String,
+                    ?response_content_encoding: ::String,
+                    ?response_content_language: ::String,
+                    ?response_content_type: ::String,
+                    ?response_expires: ::Time,
+                    ?version_id: ::String,
+                    ?sse_customer_algorithm: ::String,
+                    ?sse_customer_key: ::String,
+                    ?sse_customer_key_md5: ::String,
+                    ?request_payer: ("requester"),
+                    ?part_number: ::Integer,
+                    ?expected_bucket_owner: ::String,
+                    ?checksum_mode: ("ENABLED")
+                  ) -> Client::_HeadObjectResponseSuccess
+                    | (:object_exists waiter_name, Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> Client::_HeadObjectResponseSuccess
+                    | (:object_not_exists waiter_name, 
+                    bucket: ::String,
+                    ?if_match: ::String,
+                    ?if_modified_since: ::Time,
+                    ?if_none_match: ::String,
+                    ?if_unmodified_since: ::Time,
+                    key: ::String,
+                    ?range: ::String,
+                    ?response_cache_control: ::String,
+                    ?response_content_disposition: ::String,
+                    ?response_content_encoding: ::String,
+                    ?response_content_language: ::String,
+                    ?response_content_type: ::String,
+                    ?response_expires: ::Time,
+                    ?version_id: ::String,
+                    ?sse_customer_algorithm: ::String,
+                    ?sse_customer_key: ::String,
+                    ?sse_customer_key_md5: ::String,
+                    ?request_payer: ("requester"),
+                    ?part_number: ::Integer,
+                    ?expected_bucket_owner: ::String,
+                    ?checksum_mode: ("ENABLED")
+                  ) -> Client::_HeadObjectResponseSuccess
+                    | (:object_not_exists waiter_name, Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> Client::_HeadObjectResponseSuccess
+    end
+  end
+end
+

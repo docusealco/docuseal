@@ -1,0 +1,904 @@
+--- 
+:is: 
+  :formats: 
+    :fallback_formats: 
+      :generic: "{1} ({0})"
+    :gmt_formats: 
+      :generic: "GMT{0}"
+    :gmt_zero_formats: 
+      :generic: GMT
+    :hour_formats: 
+      :generic: "+HH:mm;-HH:mm"
+    :region_formats: 
+      :daylight: "{0} (sumartími)"
+      :generic: "{0}"
+      :standard: "{0} (staðaltími)"
+  :metazones: 
+    :Afghanistan: 
+      :long: 
+        :standard: Afganistantími
+    :Africa_Central: 
+      :long: 
+        :standard: Mið-Afríkutími
+    :Africa_Eastern: 
+      :long: 
+        :standard: Austur-Afríkutími
+    :Africa_Southern: 
+      :long: 
+        :standard: Suður-Afríkutími
+    :Africa_Western: 
+      :long: 
+        :daylight: "Sumartími í Vestur-Afríku"
+        :generic: Vestur-Afríkutími
+        :standard: "Staðaltími í Vestur-Afríku"
+    :Alaska: 
+      :long: 
+        :daylight: "Sumartími í Alaska"
+        :generic: "Tími í Alaska"
+        :standard: "Staðaltími í Alaska"
+    :Amazon: 
+      :long: 
+        :daylight: "Sumartími á Amasónsvæðinu"
+        :generic: Amasóntími
+        :standard: "Staðaltími á Amasónsvæðinu"
+    :America_Central: 
+      :long: 
+        :daylight: "Sumartími í miðhluta Bandaríkjanna og Kanada"
+        :generic: "Tími í miðhluta Bandaríkjanna og Kanada"
+        :standard: "Staðaltími í miðhluta Bandaríkjanna og Kanada"
+    :America_Eastern: 
+      :long: 
+        :daylight: "Sumartími í austurhluta Bandaríkjanna og Kanada"
+        :generic: "Tími í austurhluta Bandaríkjanna og Kanada"
+        :standard: "Staðaltími í austurhluta Bandaríkjanna og Kanada"
+    :America_Mountain: 
+      :long: 
+        :daylight: "Sumartími í Klettafjöllum"
+        :generic: "Tími í Klettafjöllum"
+        :standard: "Staðaltími í Klettafjöllum"
+    :America_Pacific: 
+      :long: 
+        :daylight: "Sumartími á Kyrrahafssvæðinu"
+        :generic: "Tími á Kyrrahafssvæðinu"
+        :standard: "Staðaltími á Kyrrahafssvæðinu"
+    :Anadyr: 
+      :long: 
+        :daylight: "Sumartími í Anadyr"
+        :generic: "Tími í Anadyr"
+        :standard: "Staðaltími í Anadyr"
+    :Apia: 
+      :long: 
+        :daylight: "Sumartími í Apía"
+        :generic: "Tími í Apía"
+        :standard: "Staðaltími í Apía"
+    :Arabian: 
+      :long: 
+        :daylight: "Sumartími í Arabíu"
+        :generic: Arabíutími
+        :standard: "Staðaltími í Arabíu"
+    :Argentina: 
+      :long: 
+        :daylight: "Sumartími í Argentínu"
+        :generic: Argentínutími
+        :standard: "Staðaltími í Argentínu"
+    :Argentina_Western: 
+      :long: 
+        :daylight: "Sumartími í Vestur-Argentínu"
+        :generic: Vestur-Argentínutími
+        :standard: "Staðaltími í Vestur-Argentínu"
+    :Armenia: 
+      :long: 
+        :daylight: "Sumartími í Armeníu"
+        :generic: Armeníutími
+        :standard: "Staðaltími í Armeníu"
+    :Atlantic: 
+      :long: 
+        :daylight: "Sumartími á Atlantshafssvæðinu"
+        :generic: "Tími á Atlantshafssvæðinu"
+        :standard: "Staðaltími á Atlantshafssvæðinu"
+    :Australia_Central: 
+      :long: 
+        :daylight: "Sumartími í Mið-Ástralíu"
+        :generic: "Tími í Mið-Ástralíu"
+        :standard: "Staðaltími í Mið-Ástralíu"
+    :Australia_CentralWestern: 
+      :long: 
+        :daylight: "Sumartími í miðvesturhluta Ástralíu"
+        :generic: "Tími í miðvesturhluta Ástralíu"
+        :standard: "Staðaltími í miðvesturhluta Ástralíu"
+    :Australia_Eastern: 
+      :long: 
+        :daylight: "Sumartími í Austur-Ástralíu"
+        :generic: "Tími í Austur-Ástralíu"
+        :standard: "Staðaltími í Austur-Ástralíu"
+    :Australia_Western: 
+      :long: 
+        :daylight: "Sumartími í Vestur-Ástralíu"
+        :generic: "Tími í Vestur-Ástralíu"
+        :standard: "Staðaltími í Vestur-Ástralíu"
+    :Azerbaijan: 
+      :long: 
+        :daylight: "Sumartími í Aserbaídsjan"
+        :generic: Aserbaídsjantími
+        :standard: "Staðaltími í Aserbaídsjan"
+    :Azores: 
+      :long: 
+        :daylight: "Sumartími á Asóreyjum"
+        :generic: Asóreyjatími
+        :standard: "Staðaltími á Asóreyjum"
+    :Bangladesh: 
+      :long: 
+        :daylight: "Sumartími í Bangladess"
+        :generic: Bangladess-tími
+        :standard: "Staðaltími í Bangladess"
+    :Bhutan: 
+      :long: 
+        :standard: Bútantími
+    :Bolivia: 
+      :long: 
+        :standard: Bólivíutími
+    :Brasilia: 
+      :long: 
+        :daylight: "Sumartími í Brasilíu"
+        :generic: Brasilíutími
+        :standard: "Staðaltími í Brasilíu"
+    :Brunei: 
+      :long: 
+        :standard: Brúneitími
+    :Cape_Verde: 
+      :long: 
+        :daylight: "Sumartími á Grænhöfðaeyjum"
+        :generic: Grænhöfðaeyjatími
+        :standard: "Staðaltími á Grænhöfðaeyjum"
+    :Chamorro: 
+      :long: 
+        :standard: Chamorro-staðaltími
+    :Chatham: 
+      :long: 
+        :daylight: "Sumartími í Chatham"
+        :generic: Chatham-tími
+        :standard: "Staðaltími í Chatham"
+    :Chile: 
+      :long: 
+        :daylight: "Sumartími í Síle"
+        :generic: Síletími
+        :standard: "Staðaltími í Síle"
+    :China: 
+      :long: 
+        :daylight: "Sumartími í Kína"
+        :generic: Kínatími
+        :standard: "Staðaltími í Kína"
+    :Christmas: 
+      :long: 
+        :standard: Jólaeyjartími
+    :Cocos: 
+      :long: 
+        :standard: Kókoseyjatími
+    :Colombia: 
+      :long: 
+        :daylight: "Sumartími í Kólumbíu"
+        :generic: Kólumbíutími
+        :standard: "Staðaltími í Kólumbíu"
+    :Cook: 
+      :long: 
+        :daylight: "Hálfsumartími á Cooks-eyjum"
+        :generic: Cooks-eyjatími
+        :standard: "Staðaltími á Cooks-eyjum"
+    :Cuba: 
+      :long: 
+        :daylight: "Sumartími á Kúbu"
+        :generic: Kúbutími
+        :standard: "Staðaltími á Kúbu"
+    :Davis: 
+      :long: 
+        :standard: Davis-tími
+    :DumontDUrville: 
+      :long: 
+        :standard: "Tími á Dumont-d’Urville"
+    :East_Timor: 
+      :long: 
+        :standard: "Tími á Tímor-Leste"
+    :Easter: 
+      :long: 
+        :daylight: "Sumartími á Páskaeyju"
+        :generic: Páskaeyjutími
+        :standard: "Staðaltími á Páskaeyju"
+    :Ecuador: 
+      :long: 
+        :standard: Ekvadortími
+    :Europe_Central: 
+      :long: 
+        :daylight: "Sumartími í Mið-Evrópu"
+        :generic: Mið-Evróputími
+        :standard: "Staðaltími í Mið-Evrópu"
+    :Europe_Eastern: 
+      :long: 
+        :daylight: "Sumartími í Austur-Evrópu"
+        :generic: Austur-Evróputími
+        :standard: "Staðaltími í Austur-Evrópu"
+    :Europe_Further_Eastern: 
+      :long: 
+        :standard: "Staðartími Kalíníngrad"
+    :Europe_Western: 
+      :long: 
+        :daylight: "Sumartími í Vestur-Evrópu"
+        :generic: Vestur-Evróputími
+        :standard: "Staðaltími í Vestur-Evrópu"
+    :Falkland: 
+      :long: 
+        :daylight: "Sumartími á Falklandseyjum"
+        :generic: Falklandseyjatími
+        :standard: "Staðaltími á Falklandseyjum"
+    :Fiji: 
+      :long: 
+        :daylight: "Sumartími á Fídjíeyjum"
+        :generic: Fídjíeyjatími
+        :standard: "Staðaltími á Fídjíeyjum"
+    :French_Guiana: 
+      :long: 
+        :standard: "Tími í Frönsku Gvæjana"
+    :French_Southern: 
+      :long: 
+        :standard: "Tími á frönsku suðurhafssvæðum og Suðurskautslandssvæði"
+    :GMT: 
+      :long: 
+        :standard: Greenwich-staðaltími
+    :Galapagos: 
+      :long: 
+        :standard: Galapagos-tími
+    :Gambier: 
+      :long: 
+        :standard: Gambier-tími
+    :Georgia: 
+      :long: 
+        :daylight: "Sumartími í Georgíu"
+        :generic: Georgíutími
+        :standard: "Staðaltími í Georgíu"
+    :Gilbert_Islands: 
+      :long: 
+        :standard: "Tími á Gilbert-eyjum"
+    :Greenland_Eastern: 
+      :long: 
+        :daylight: "Sumartími á Austur-Grænlandi"
+        :generic: Austur-Grænlandstími
+        :standard: "Staðaltími á Austur-Grænlandi"
+    :Greenland_Western: 
+      :long: 
+        :daylight: "Sumartími á Vestur-Grænlandi"
+        :generic: Vestur-Grænlandstími
+        :standard: "Staðaltími á Vestur-Grænlandi"
+    :Gulf: 
+      :long: 
+        :standard: "Staðaltími við Persaflóa"
+    :Guyana: 
+      :long: 
+        :standard: Gvæjanatími
+    :Hawaii_Aleutian: 
+      :long: 
+        :daylight: "Sumartími á Havaí og Aleúta"
+        :generic: "Tími á Havaí og Aleúta"
+        :standard: "Staðaltími á Havaí og Aleúta"
+    :Hong_Kong: 
+      :long: 
+        :daylight: "Sumartími í Hong Kong"
+        :generic: "Hong Kong-tími"
+        :standard: "Staðaltími í Hong Kong"
+    :Hovd: 
+      :long: 
+        :daylight: "Sumartími í Hovd"
+        :generic: Hovd-tími
+        :standard: "Staðaltími í Hovd"
+    :India: 
+      :long: 
+        :standard: Indlandstími
+    :Indian_Ocean: 
+      :long: 
+        :standard: Indlandshafstími
+    :Indochina: 
+      :long: 
+        :standard: Indókínatími
+    :Indonesia_Central: 
+      :long: 
+        :standard: Mið-Indónesíutími
+    :Indonesia_Eastern: 
+      :long: 
+        :standard: Austur-Indónesíutími
+    :Indonesia_Western: 
+      :long: 
+        :standard: Vestur-Indónesíutími
+    :Iran: 
+      :long: 
+        :daylight: "Sumartími í Íran"
+        :generic: Íranstími
+        :standard: "Staðaltími í Íran"
+    :Irkutsk: 
+      :long: 
+        :daylight: "Sumartími í Irkutsk"
+        :generic: "Tími í Irkutsk"
+        :standard: "Staðaltími í Irkutsk"
+    :Israel: 
+      :long: 
+        :daylight: "Sumartími í Ísrael"
+        :generic: Ísraelstími
+        :standard: "Staðaltími í Ísrael"
+    :Japan: 
+      :long: 
+        :daylight: "Sumartími í Japan"
+        :generic: Japanstími
+        :standard: "Staðaltími í Japan"
+    :Kamchatka: 
+      :long: 
+        :daylight: "Sumartími í Petropavlovsk-Kamchatski"
+        :generic: "Tími í Petropavlovsk-Kamchatski"
+        :standard: "Staðaltími í Petropavlovsk-Kamchatski"
+    :Kazakhstan: 
+      :long: 
+        :standard: "Tími í Kasakstan"
+    :Kazakhstan_Eastern: 
+      :long: 
+        :standard: "Tími í Austur-Kasakstan"
+    :Kazakhstan_Western: 
+      :long: 
+        :standard: "Tími í Vestur-Kasakstan"
+    :Korea: 
+      :long: 
+        :daylight: "Sumartími í Kóreu"
+        :generic: Kóreutími
+        :standard: "Staðaltími í Kóreu"
+    :Kosrae: 
+      :long: 
+        :standard: Kosrae-tími
+    :Krasnoyarsk: 
+      :long: 
+        :daylight: "Sumartími í Krasnoyarsk"
+        :generic: "Tími í Krasnoyarsk"
+        :standard: "Staðaltími í Krasnoyarsk"
+    :Kyrgystan: 
+      :long: 
+        :standard: Kirgistan-tími
+    :Line_Islands: 
+      :long: 
+        :standard: Línueyja-tími
+    :Lord_Howe: 
+      :long: 
+        :daylight: "Sumartími á Lord Howe-eyju"
+        :generic: "Tími á Lord Howe-eyju"
+        :standard: "Staðaltími á Lord Howe-eyju"
+    :Magadan: 
+      :long: 
+        :daylight: "Sumartími í Magadan"
+        :generic: "Tími í Magadan"
+        :standard: "Staðaltími í Magadan"
+    :Malaysia: 
+      :long: 
+        :standard: Malasíutími
+    :Maldives: 
+      :long: 
+        :standard: Maldíveyja-tími
+    :Marquesas: 
+      :long: 
+        :standard: "Tími á Markgreifafrúreyjum"
+    :Marshall_Islands: 
+      :long: 
+        :standard: "Tími á Marshall-eyjum"
+    :Mauritius: 
+      :long: 
+        :daylight: "Sumartími á Máritíus"
+        :generic: Máritíustími
+        :standard: "Staðaltími á Máritíus"
+    :Mawson: 
+      :long: 
+        :standard: Mawson-tími
+    :Mexico_Pacific: 
+      :long: 
+        :daylight: "Sumartími í Mexíkó á Kyrrahafssvæðinu"
+        :generic: "Kyrrahafstími í Mexíkó"
+        :standard: "Staðaltími í Mexíkó á Kyrrahafssvæðinu"
+    :Mongolia: 
+      :long: 
+        :daylight: "Sumartími í Úlan Bator"
+        :generic: "Tími í Úlan Bator"
+        :standard: "Staðaltími í Úlan Bator"
+    :Moscow: 
+      :long: 
+        :daylight: "Sumartími í Moskvu"
+        :generic: Moskvutími
+        :standard: "Staðaltími í Moskvu"
+    :Myanmar: 
+      :long: 
+        :standard: Mjanmar-tími
+    :Nauru: 
+      :long: 
+        :standard: Nárú-tími
+    :Nepal: 
+      :long: 
+        :standard: Nepaltími
+    :New_Caledonia: 
+      :long: 
+        :daylight: "Sumartími í Nýju-Kaledóníu"
+        :generic: "Tími í Nýju-Kaledóníu"
+        :standard: "Staðaltími í Nýju-Kaledóníu"
+    :New_Zealand: 
+      :long: 
+        :daylight: "Sumartími á Nýja-Sjálandi"
+        :generic: "Tími á Nýja-Sjálandi"
+        :standard: "Staðaltími á Nýja-Sjálandi"
+    :Newfoundland: 
+      :long: 
+        :daylight: "Sumartími á Nýfundnalandi"
+        :generic: "Tími á Nýfundnalandi"
+        :standard: "Staðaltími á Nýfundnalandi"
+    :Niue: 
+      :long: 
+        :standard: Niue-tími
+    :Norfolk: 
+      :long: 
+        :daylight: "Sumartími á Norfolk-eyju"
+        :generic: "Tími á Norfolk-eyju"
+        :standard: "Staðaltími á Norfolk-eyju"
+    :Noronha: 
+      :long: 
+        :daylight: "Sumartími í Fernando de Noronha"
+        :generic: "Tími í Fernando de Noronha"
+        :standard: "Staðaltími í Fernando de Noronha"
+    :Novosibirsk: 
+      :long: 
+        :daylight: "Sumartími í Novosibirsk"
+        :generic: "Tími í Novosibirsk"
+        :standard: "Staðaltími í Novosibirsk"
+    :Omsk: 
+      :long: 
+        :daylight: "Sumartími í Omsk"
+        :generic: "Tími í Omsk"
+        :standard: "Staðaltími í Omsk"
+    :Pakistan: 
+      :long: 
+        :daylight: "Sumartími í Pakistan"
+        :generic: Pakistantími
+        :standard: "Staðaltími í Pakistan"
+    :Palau: 
+      :long: 
+        :standard: Palátími
+    :Papua_New_Guinea: 
+      :long: 
+        :standard: "Tími á Papúa Nýju-Gíneu"
+    :Paraguay: 
+      :long: 
+        :daylight: "Sumartími í Paragvæ"
+        :generic: Paragvætími
+        :standard: "Staðaltími í Paragvæ"
+    :Peru: 
+      :long: 
+        :daylight: "Sumartími í Perú"
+        :generic: Perútími
+        :standard: "Staðaltími í Perú"
+    :Philippines: 
+      :long: 
+        :daylight: "Sumartími á Filippseyjum"
+        :generic: Filippseyjatími
+        :standard: "Staðaltími á Filippseyjum"
+    :Phoenix_Islands: 
+      :long: 
+        :standard: Fönixeyjatími
+    :Pierre_Miquelon: 
+      :long: 
+        :daylight: "Sumartími á Sankti Pierre og Miquelon"
+        :generic: "Tími á Sankti Pierre og Miquelon"
+        :standard: "Staðaltími á Sankti Pierre og Miquelon"
+    :Pitcairn: 
+      :long: 
+        :standard: Pitcairn-tími
+    :Ponape: 
+      :long: 
+        :standard: Ponape-tími
+    :Pyongyang: 
+      :long: 
+        :standard: "Tími í Pjongjang"
+    :Reunion: 
+      :long: 
+        :standard: Réunion-tími
+    :Rothera: 
+      :long: 
+        :standard: Rothera-tími
+    :Sakhalin: 
+      :long: 
+        :daylight: "Sumartími á Sakhalin"
+        :generic: "Tími á Sakhalin"
+        :standard: "Staðaltími á Sakhalin"
+    :Samara: 
+      :long: 
+        :daylight: "Sumartími í Samara"
+        :generic: "Tími í Samara"
+        :standard: "Staðaltími í Samara"
+    :Samoa: 
+      :long: 
+        :daylight: "Sumartími á Samóa"
+        :generic: Samóa-tími
+        :standard: "Staðaltími á Samóa"
+    :Seychelles: 
+      :long: 
+        :standard: Seychelles-eyjatími
+    :Singapore: 
+      :long: 
+        :standard: Singapúrtími
+    :Solomon: 
+      :long: 
+        :standard: Salómonseyjatími
+    :South_Georgia: 
+      :long: 
+        :standard: Suður-Georgíutími
+    :Suriname: 
+      :long: 
+        :standard: Súrinamtími
+    :Syowa: 
+      :long: 
+        :standard: Syowa-tími
+    :Tahiti: 
+      :long: 
+        :standard: Tahítí-tími
+    :Taipei: 
+      :long: 
+        :daylight: "Sumartími í Taipei"
+        :generic: Taipei-tími
+        :standard: "Staðaltími í Taipei"
+    :Tajikistan: 
+      :long: 
+        :standard: Tadsjíkistan-tími
+    :Tokelau: 
+      :long: 
+        :standard: Tókelá-tími
+    :Tonga: 
+      :long: 
+        :daylight: "Sumartími á Tonga"
+        :generic: Tongatími
+        :standard: "Staðaltími á Tonga"
+    :Truk: 
+      :long: 
+        :standard: Chuuk-tími
+    :Turkmenistan: 
+      :long: 
+        :daylight: "Sumartími í Túrkmenistan"
+        :generic: Túrkmenistan-tími
+        :standard: "Staðaltími í Túrkmenistan"
+    :Tuvalu: 
+      :long: 
+        :standard: Túvalútími
+    :Uruguay: 
+      :long: 
+        :daylight: "Sumartími í Úrúgvæ"
+        :generic: Úrúgvætími
+        :standard: "Staðaltími í Úrúgvæ"
+    :Uzbekistan: 
+      :long: 
+        :daylight: "Sumartími í Úsbekistan"
+        :generic: Úsbekistan-tími
+        :standard: "Staðaltími í Úsbekistan"
+    :Vanuatu: 
+      :long: 
+        :daylight: "Sumartími á Vanúatú"
+        :generic: Vanúatú-tími
+        :standard: "Staðaltími á Vanúatú"
+    :Venezuela: 
+      :long: 
+        :standard: Venesúelatími
+    :Vladivostok: 
+      :long: 
+        :daylight: "Sumartími í Vladivostok"
+        :generic: "Tími í Vladivostok"
+        :standard: "Staðaltími í Vladivostok"
+    :Volgograd: 
+      :long: 
+        :daylight: "Sumartími í Volgograd"
+        :generic: "Tími í Volgograd"
+        :standard: "Staðaltími í Volgograd"
+    :Vostok: 
+      :long: 
+        :standard: Vostok-tími
+    :Wake: 
+      :long: 
+        :standard: "Tími á Wake-eyju"
+    :Wallis: 
+      :long: 
+        :standard: "Tími á Wallis- og Fútúnaeyjum"
+    :Yakutsk: 
+      :long: 
+        :daylight: "Sumartími í Yakutsk"
+        :generic: "Tími í Yakutsk"
+        :standard: "Staðaltími í Yakutsk"
+    :Yekaterinburg: 
+      :long: 
+        :daylight: "Sumartími í Yekaterinburg"
+        :generic: "Tími í Yekaterinburg"
+        :standard: "Staðaltími í Yekaterinborg"
+    :Yukon: 
+      :long: 
+        :standard: "Tími í Júkon"
+  :timezones: 
+    :Africa/Algiers: 
+      :city: Algeirsborg
+    :Africa/Asmera: 
+      :city: Asmara
+    :Africa/Bissau: 
+      :city: Bissá
+    :Africa/Cairo: 
+      :city: Kaíró
+    :Africa/Djibouti: 
+      :city: Djibútí
+    :Africa/Johannesburg: 
+      :city: Jóhannesarborg
+    :Africa/Sao_Tome: 
+      :city: "Saó Tóme"
+    :Africa/Tripoli: 
+      :city: Trípólí
+    :Africa/Tunis: 
+      :city: Túnisborg
+    :America/Anguilla: 
+      :city: Angvilla
+    :America/Antigua: 
+      :city: Antígva
+    :America/Aruba: 
+      :city: Arúba
+    :America/Asuncion: 
+      :city: Asunción
+    :America/Bahia_Banderas: 
+      :city: "Bahia Banderas"
+    :America/Belize: 
+      :city: Belís
+    :America/Cancun: 
+      :city: Kankún
+    :America/Cayman: 
+      :city: Cayman-eyjar
+    :America/Ciudad_Juarez: 
+      :city: "Ciudad Juárez"
+    :America/Coral_Harbour: 
+      :city: Atikokan
+    :America/Costa_Rica: 
+      :city: Kostaríka
+    :America/Curacao: 
+      :city: Curaçao
+    :America/Dominica: 
+      :city: Dóminíka
+    :America/Godthab: 
+      :city: Nuuk
+    :America/Guadeloupe: 
+      :city: Gvadelúp
+    :America/Guatemala: 
+      :city: Gvatemala
+    :America/Guyana: 
+      :city: Gvæjana
+    :America/Indiana/Knox: 
+      :city: "Knox, Indiana"
+    :America/Indiana/Marengo: 
+      :city: "Marengo, Indiana"
+    :America/Indiana/Petersburg: 
+      :city: "Petersburg, Indiana"
+    :America/Indiana/Tell_City: 
+      :city: "Tell City, Indiana"
+    :America/Indiana/Vevay: 
+      :city: "Vevay, Indiana"
+    :America/Indiana/Vincennes: 
+      :city: "Vincennes, Indiana"
+    :America/Indiana/Winamac: 
+      :city: "Winamac, Indiana"
+    :America/Jamaica: 
+      :city: Jamaíka
+    :America/Kentucky/Monticello: 
+      :city: "Monticello, Kentucky"
+    :America/Lower_Princes: 
+      :city: "Lower Prince’s Quarter"
+    :America/Martinique: 
+      :city: Martiník
+    :America/Merida: 
+      :city: Merida
+    :America/Mexico_City: 
+      :city: Mexíkóborg
+    :America/North_Dakota/Beulah: 
+      :city: "Beulah, North Dakota"
+    :America/North_Dakota/Center: 
+      :city: "Center, North Dakota"
+    :America/North_Dakota/New_Salem: 
+      :city: "New Salem, North Dakota"
+    :America/Puerto_Rico: 
+      :city: "Púertó Ríkó"
+    :America/Scoresbysund: 
+      :city: Ittoqqortoormiit
+    :America/St_Barthelemy: 
+      :city: "Sankti Bartólómeusareyjar"
+    :America/St_Johns: 
+      :city: "St. John’s"
+    :America/St_Kitts: 
+      :city: "Sankti Kitts"
+    :America/St_Lucia: 
+      :city: "Sankti Lúsía"
+    :America/St_Thomas: 
+      :city: "Sankti Thomas"
+    :America/St_Vincent: 
+      :city: "Sankti Vinsent"
+    :America/Tortola: 
+      :city: Tortóla
+    :Antarctica/DumontDUrville: 
+      :city: "Dumont d’Urville"
+    :Asia/Baghdad: 
+      :city: Bagdad
+    :Asia/Bahrain: 
+      :city: Barein
+    :Asia/Baku: 
+      :city: Bakú
+    :Asia/Beirut: 
+      :city: Beirút
+    :Asia/Brunei: 
+      :city: Brúnei
+    :Asia/Calcutta: 
+      :city: Kalkútta
+    :Asia/Colombo: 
+      :city: Kólombó
+    :Asia/Damascus: 
+      :city: Damaskus
+    :Asia/Dhaka: 
+      :city: Dakka
+    :Asia/Jakarta: 
+      :city: Djakarta
+    :Asia/Jerusalem: 
+      :city: Jerúsalem
+    :Asia/Kabul: 
+      :city: Kabúl
+    :Asia/Kamchatka: 
+      :city: Kamtsjatka
+    :Asia/Katmandu: 
+      :city: Katmandú
+    :Asia/Kuala_Lumpur: 
+      :city: "Kúala Lúmpúr"
+    :Asia/Kuwait: 
+      :city: Kúveit
+    :Asia/Macau: 
+      :city: Makaó
+    :Asia/Nicosia: 
+      :city: Níkósía
+    :Asia/Pyongyang: 
+      :city: Pjongjang
+    :Asia/Qatar: 
+      :city: Katar
+    :Asia/Qostanay: 
+      :city: Kostanay
+    :Asia/Rangoon: 
+      :city: Rangún
+    :Asia/Riyadh: 
+      :city: Ríjad
+    :Asia/Saigon: 
+      :city: "Ho Chi Minh-borg"
+    :Asia/Seoul: 
+      :city: Seúl
+    :Asia/Shanghai: 
+      :city: Sjanghæ
+    :Asia/Singapore: 
+      :city: Singapúr
+    :Asia/Tehran: 
+      :city: Teheran
+    :Asia/Tokyo: 
+      :city: Tókýó
+    :Asia/Ulaanbaatar: 
+      :city: "Úlan Bator"
+    :Asia/Yerevan: 
+      :city: Jerevan
+    :Atlantic/Azores: 
+      :city: Azoreyjar
+    :Atlantic/Bermuda: 
+      :city: Bermúda
+    :Atlantic/Canary: 
+      :city: Kanaríeyjar
+    :Atlantic/Cape_Verde: 
+      :city: Grænhöfðaeyjar
+    :Atlantic/Faeroe: 
+      :city: Færeyjar
+    :Atlantic/Reykjavik: 
+      :city: Reykjavík
+    :Atlantic/South_Georgia: 
+      :city: Suður-Georgía
+    :Atlantic/St_Helena: 
+      :city: "Sankti Helena"
+    :Etc/UTC: 
+      :long: 
+        :standard: "Samræmdur alþjóðlegur tími"
+      :short: 
+        :standard: UTC
+    :Etc/Unknown: 
+      :city: "Óþekkt borg"
+    :Europe/Athens: 
+      :city: Aþena
+    :Europe/Belgrade: 
+      :city: Belgrad
+    :Europe/Berlin: 
+      :city: Berlín
+    :Europe/Brussels: 
+      :city: Brussel
+    :Europe/Bucharest: 
+      :city: Búkarest
+    :Europe/Budapest: 
+      :city: Búdapest
+    :Europe/Copenhagen: 
+      :city: Kaupmannahöfn
+    :Europe/Dublin: 
+      :long: 
+        :daylight: "Sumartími á Írlandi"
+    :Europe/Gibraltar: 
+      :city: Gíbraltar
+    :Europe/Isle_of_Man: 
+      :city: Mön
+    :Europe/Istanbul: 
+      :city: Istanbúl
+    :Europe/Kiev: 
+      :city: Kænugarður
+    :Europe/Lisbon: 
+      :city: Lissabon
+    :Europe/London: 
+      :city: Lundúnir
+      :long: 
+        :daylight: "Sumartími í Bretlandi"
+    :Europe/Luxembourg: 
+      :city: Lúxemborg
+    :Europe/Madrid: 
+      :city: Madríd
+    :Europe/Mariehamn: 
+      :city: Maríuhöfn
+    :Europe/Monaco: 
+      :city: Mónakó
+    :Europe/Moscow: 
+      :city: Moskva
+    :Europe/Oslo: 
+      :city: Osló
+    :Europe/Paris: 
+      :city: París
+    :Europe/Prague: 
+      :city: Prag
+    :Europe/Rome: 
+      :city: Róm
+    :Europe/San_Marino: 
+      :city: "San Marínó"
+    :Europe/Sarajevo: 
+      :city: Sarajevó
+    :Europe/Sofia: 
+      :city: Sófía
+    :Europe/Stockholm: 
+      :city: Stokkhólmur
+    :Europe/Tirane: 
+      :city: Tírana
+    :Europe/Vatican: 
+      :city: Vatíkanið
+    :Europe/Vienna: 
+      :city: Vín
+    :Europe/Vilnius: 
+      :city: Vilníus
+    :Europe/Warsaw: 
+      :city: Varsjá
+    :Indian/Christmas: 
+      :city: Jólaey
+    :Indian/Cocos: 
+      :city: Kókoseyjar
+    :Indian/Maldives: 
+      :city: Maldíveyjar
+    :Indian/Mauritius: 
+      :city: Máritíus
+    :Indian/Reunion: 
+      :city: Réunion
+    :Pacific/Easter: 
+      :city: Páskaeyja
+    :Pacific/Enderbury: 
+      :city: Enderbury
+    :Pacific/Fiji: 
+      :city: Fídjí
+    :Pacific/Guam: 
+      :city: Gvam
+    :Pacific/Honolulu: 
+      :city: Honolulu
+    :Pacific/Marquesas: 
+      :city: Marquesas-eyjar
+    :Pacific/Nauru: 
+      :city: Nárú
+    :Pacific/Palau: 
+      :city: Palá
+    :Pacific/Ponape: 
+      :city: Pohnpei
+    :Pacific/Tahiti: 
+      :city: Tahítí
+    :Pacific/Truk: 
+      :city: Chuuk

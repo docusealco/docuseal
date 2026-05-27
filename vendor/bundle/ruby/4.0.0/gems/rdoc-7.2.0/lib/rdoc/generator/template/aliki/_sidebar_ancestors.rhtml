@@ -1,0 +1,16 @@
+<%- if klass.type == 'class' && (ancestors = klass.super_classes).any? %>
+<div id="parent-class-section" class="nav-section">
+  <details class="nav-section-collapsible" open>
+    <summary class="nav-section-header">
+      <span class="nav-section-icon">
+        <svg><use href="#icon-ancestors"></use></svg>
+      </span>
+      <span class="nav-section-title">Ancestors</span>
+      <span class="nav-section-chevron">
+        <svg><use href="#icon-chevron"></use></svg>
+      </span>
+    </summary>
+    <%= generate_ancestor_list(ancestors, klass) %>
+  </details>
+</div>
+<%- end %>

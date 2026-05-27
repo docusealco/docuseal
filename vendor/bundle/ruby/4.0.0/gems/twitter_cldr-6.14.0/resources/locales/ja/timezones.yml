@@ -1,0 +1,1508 @@
+--- 
+:ja: 
+  :formats: 
+    :fallback_formats: 
+      :generic: "{1}（{0}）"
+    :gmt_formats: 
+      :generic: "GMT{0}"
+    :gmt_zero_formats: 
+      :generic: GMT
+    :hour_formats: 
+      :generic: "+HH:mm;-HH:mm"
+    :region_formats: 
+      :daylight: "{0}夏時間"
+      :generic: "{0}時間"
+      :standard: "{0}標準時"
+  :metazones: 
+    :Acre: 
+      :long: 
+        :daylight: アクレ夏時間
+        :generic: アクレ時間
+        :standard: アクレ標準時
+    :Afghanistan: 
+      :long: 
+        :standard: アフガニスタン時間
+    :Africa_Central: 
+      :long: 
+        :standard: 中央アフリカ時間
+    :Africa_Eastern: 
+      :long: 
+        :standard: 東アフリカ時間
+    :Africa_Southern: 
+      :long: 
+        :standard: 南アフリカ標準時
+    :Africa_Western: 
+      :long: 
+        :daylight: 西アフリカ夏時間
+        :generic: 西アフリカ時間
+        :standard: 西アフリカ標準時
+    :Alaska: 
+      :long: 
+        :daylight: アラスカ夏時間
+        :generic: アラスカ時間
+        :standard: アラスカ標準時
+    :Almaty: 
+      :long: 
+        :daylight: アルマトイ夏時間
+        :generic: アルトマイ時間
+        :standard: アルトマイ標準時
+    :Amazon: 
+      :long: 
+        :daylight: アマゾン夏時間
+        :generic: アマゾン時間
+        :standard: アマゾン標準時
+    :America_Central: 
+      :long: 
+        :daylight: アメリカ中部夏時間
+        :generic: アメリカ中部時間
+        :standard: アメリカ中部標準時
+    :America_Eastern: 
+      :long: 
+        :daylight: アメリカ東部夏時間
+        :generic: アメリカ東部時間
+        :standard: アメリカ東部標準時
+    :America_Mountain: 
+      :long: 
+        :daylight: アメリカ山地夏時間
+        :generic: アメリカ山地時間
+        :standard: アメリカ山地標準時
+    :America_Pacific: 
+      :long: 
+        :daylight: アメリカ太平洋夏時間
+        :generic: アメリカ太平洋時間
+        :standard: アメリカ太平洋標準時
+    :Anadyr: 
+      :long: 
+        :daylight: アナディリ夏時間
+        :generic: アナディリ時間
+        :standard: アナディリ標準時
+    :Apia: 
+      :long: 
+        :daylight: アピア夏時間
+        :generic: アピア時間
+        :standard: アピア標準時
+    :Aqtau: 
+      :long: 
+        :daylight: アクタウ夏時間
+        :generic: アクタウ時間
+        :standard: アクタウ標準時
+    :Aqtobe: 
+      :long: 
+        :daylight: アクトベ夏時間
+        :generic: アクトベ時間
+        :standard: アクトベ標準時
+    :Arabian: 
+      :long: 
+        :daylight: アラビア夏時間
+        :generic: アラビア時間
+        :standard: アラビア標準時
+    :Argentina: 
+      :long: 
+        :daylight: アルゼンチン夏時間
+        :generic: アルゼンチン時間
+        :standard: アルゼンチン標準時
+    :Argentina_Western: 
+      :long: 
+        :daylight: 西部アルゼンチン夏時間
+        :generic: 西部アルゼンチン時間
+        :standard: 西部アルゼンチン標準時
+    :Armenia: 
+      :long: 
+        :daylight: アルメニア夏時間
+        :generic: アルメニア時間
+        :standard: アルメニア標準時
+    :Atlantic: 
+      :long: 
+        :daylight: 大西洋夏時間
+        :generic: 大西洋時間
+        :standard: 大西洋標準時
+    :Australia_Central: 
+      :long: 
+        :daylight: オーストラリア中部夏時間
+        :generic: オーストラリア中部時間
+        :standard: オーストラリア中部標準時
+    :Australia_CentralWestern: 
+      :long: 
+        :daylight: オーストラリア中西部夏時間
+        :generic: オーストラリア中西部時間
+        :standard: オーストラリア中西部標準時
+    :Australia_Eastern: 
+      :long: 
+        :daylight: オーストラリア東部夏時間
+        :generic: オーストラリア東部時間
+        :standard: オーストラリア東部標準時
+    :Australia_Western: 
+      :long: 
+        :daylight: オーストラリア西部夏時間
+        :generic: オーストラリア西部時間
+        :standard: オーストラリア西部標準時
+    :Azerbaijan: 
+      :long: 
+        :daylight: アゼルバイジャン夏時間
+        :generic: アゼルバイジャン時間
+        :standard: アゼルバイジャン標準時
+    :Azores: 
+      :long: 
+        :daylight: アゾレス夏時間
+        :generic: アゾレス時間
+        :standard: アゾレス標準時
+    :Bangladesh: 
+      :long: 
+        :daylight: バングラデシュ夏時間
+        :generic: バングラデシュ時間
+        :standard: バングラデシュ標準時
+    :Bhutan: 
+      :long: 
+        :standard: ブータン時間
+    :Bolivia: 
+      :long: 
+        :standard: ボリビア時間
+    :Brasilia: 
+      :long: 
+        :daylight: ブラジリア夏時間
+        :generic: ブラジリア時間
+        :standard: ブラジリア標準時
+    :Brunei: 
+      :long: 
+        :standard: ブルネイ・ダルサラーム時間
+    :Cape_Verde: 
+      :long: 
+        :daylight: カーボベルデ夏時間
+        :generic: カーボベルデ時間
+        :standard: カーボベルデ標準時
+    :Casey: 
+      :long: 
+        :standard: ケイシー基地時間
+    :Chamorro: 
+      :long: 
+        :standard: チャモロ時間
+    :Chatham: 
+      :long: 
+        :daylight: チャタム夏時間
+        :generic: チャタム時間
+        :standard: チャタム標準時
+    :Chile: 
+      :long: 
+        :daylight: チリ夏時間
+        :generic: チリ時間
+        :standard: チリ標準時
+    :China: 
+      :long: 
+        :daylight: 中国夏時間
+        :generic: 中国時間
+        :standard: 中国標準時
+    :Christmas: 
+      :long: 
+        :standard: クリスマス島時間
+    :Cocos: 
+      :long: 
+        :standard: ココス諸島時間
+    :Colombia: 
+      :long: 
+        :daylight: コロンビア夏時間
+        :generic: コロンビア時間
+        :standard: コロンビア標準時
+    :Cook: 
+      :long: 
+        :daylight: クック諸島夏時間
+        :generic: クック諸島時間
+        :standard: クック諸島標準時
+    :Cuba: 
+      :long: 
+        :daylight: キューバ夏時間
+        :generic: キューバ時間
+        :standard: キューバ標準時
+    :Davis: 
+      :long: 
+        :standard: デービス基地時間
+    :DumontDUrville: 
+      :long: 
+        :standard: デュモン・デュルヴィル基地時間
+    :East_Timor: 
+      :long: 
+        :standard: 東ティモール時間
+    :Easter: 
+      :long: 
+        :daylight: イースター島夏時間
+        :generic: イースター島時間
+        :standard: イースター島標準時
+    :Ecuador: 
+      :long: 
+        :standard: エクアドル時間
+    :Europe_Central: 
+      :long: 
+        :daylight: 中央ヨーロッパ夏時間
+        :generic: 中央ヨーロッパ時間
+        :standard: 中央ヨーロッパ標準時
+    :Europe_Eastern: 
+      :long: 
+        :daylight: 東ヨーロッパ夏時間
+        :generic: 東ヨーロッパ時間
+        :standard: 東ヨーロッパ標準時
+    :Europe_Further_Eastern: 
+      :long: 
+        :standard: 極東ヨーロッパ時間
+    :Europe_Western: 
+      :long: 
+        :daylight: 西ヨーロッパ夏時間
+        :generic: 西ヨーロッパ時間
+        :standard: 西ヨーロッパ標準時
+    :Falkland: 
+      :long: 
+        :daylight: フォークランド諸島夏時間
+        :generic: フォークランド諸島時間
+        :standard: フォークランド諸島標準時
+    :Fiji: 
+      :long: 
+        :daylight: フィジー夏時間
+        :generic: フィジー時間
+        :standard: フィジー標準時
+    :French_Guiana: 
+      :long: 
+        :standard: 仏領ギアナ時間
+    :French_Southern: 
+      :long: 
+        :standard: 仏領南方南極時間
+    :GMT: 
+      :long: 
+        :standard: グリニッジ標準時
+    :Galapagos: 
+      :long: 
+        :standard: ガラパゴス時間
+    :Gambier: 
+      :long: 
+        :standard: ガンビエ諸島時間
+    :Georgia: 
+      :long: 
+        :daylight: ジョージア夏時間
+        :generic: ジョージア時間
+        :standard: ジョージア標準時
+    :Gilbert_Islands: 
+      :long: 
+        :standard: ギルバート諸島時間
+    :Greenland_Eastern: 
+      :long: 
+        :daylight: グリーンランド東部夏時間
+        :generic: グリーンランド東部時間
+        :standard: グリーンランド東部標準時
+    :Greenland_Western: 
+      :long: 
+        :daylight: グリーンランド西部夏時間
+        :generic: グリーンランド西部時間
+        :standard: グリーンランド西部標準時
+    :Guam: 
+      :long: 
+        :standard: グアム時間
+    :Gulf: 
+      :long: 
+        :standard: 湾岸標準時
+    :Guyana: 
+      :long: 
+        :standard: ガイアナ時間
+    :Hawaii_Aleutian: 
+      :long: 
+        :daylight: ハワイ・アリューシャン夏時間
+        :generic: ハワイ・アリューシャン時間
+        :standard: ハワイ・アリューシャン標準時
+    :Hong_Kong: 
+      :long: 
+        :daylight: 香港夏時間
+        :generic: 香港時間
+        :standard: 香港標準時
+    :Hovd: 
+      :long: 
+        :daylight: ホブド夏時間
+        :generic: ホブド時間
+        :standard: ホブド標準時
+    :India: 
+      :long: 
+        :standard: インド標準時
+    :Indian_Ocean: 
+      :long: 
+        :standard: インド洋時間
+    :Indochina: 
+      :long: 
+        :standard: インドシナ時間
+    :Indonesia_Central: 
+      :long: 
+        :standard: インドネシア中部時間
+    :Indonesia_Eastern: 
+      :long: 
+        :standard: インドネシア東部時間
+    :Indonesia_Western: 
+      :long: 
+        :standard: インドネシア西部時間
+    :Iran: 
+      :long: 
+        :daylight: イラン夏時間
+        :generic: イラン時間
+        :standard: イラン標準時
+    :Irkutsk: 
+      :long: 
+        :daylight: イルクーツク夏時間
+        :generic: イルクーツク時間
+        :standard: イルクーツク標準時
+    :Israel: 
+      :long: 
+        :daylight: イスラエル夏時間
+        :generic: イスラエル時間
+        :standard: イスラエル標準時
+    :Japan: 
+      :long: 
+        :daylight: 日本夏時間
+        :generic: 日本時間
+        :standard: 日本標準時
+      :short: 
+        :daylight: JDT
+        :standard: JST
+    :Kamchatka: 
+      :long: 
+        :daylight: ペトロパブロフスク・カムチャツキー夏時間
+        :generic: ペトロパブロフスク・カムチャツキー時間
+        :standard: ペトロパブロフスク・カムチャツキー標準時
+    :Kazakhstan: 
+      :long: 
+        :standard: カザフスタン時間
+    :Kazakhstan_Eastern: 
+      :long: 
+        :standard: 東カザフスタン時間
+    :Kazakhstan_Western: 
+      :long: 
+        :standard: 西カザフスタン時間
+    :Korea: 
+      :long: 
+        :daylight: 韓国夏時間
+        :generic: 韓国時間
+        :standard: 韓国標準時
+    :Kosrae: 
+      :long: 
+        :standard: コスラエ時間
+    :Krasnoyarsk: 
+      :long: 
+        :daylight: クラスノヤルスク夏時間
+        :generic: クラスノヤルスク時間
+        :standard: クラスノヤルスク標準時
+    :Kyrgystan: 
+      :long: 
+        :standard: キルギス時間
+    :Lanka: 
+      :long: 
+        :standard: ランカ時間
+    :Line_Islands: 
+      :long: 
+        :standard: ライン諸島時間
+    :Lord_Howe: 
+      :long: 
+        :daylight: ロードハウ夏時間
+        :generic: ロードハウ時間
+        :standard: ロードハウ標準時
+    :Macau: 
+      :long: 
+        :daylight: マカオ夏時間
+        :generic: マカオ時間
+        :standard: マカオ標準時
+    :Magadan: 
+      :long: 
+        :daylight: マガダン夏時間
+        :generic: マガダン時間
+        :standard: マガダン標準時
+    :Malaysia: 
+      :long: 
+        :standard: マレーシア時間
+    :Maldives: 
+      :long: 
+        :standard: モルディブ時間
+    :Marquesas: 
+      :long: 
+        :standard: マルキーズ時間
+    :Marshall_Islands: 
+      :long: 
+        :standard: マーシャル諸島時間
+    :Mauritius: 
+      :long: 
+        :daylight: モーリシャス夏時間
+        :generic: モーリシャス時間
+        :standard: モーリシャス標準時
+    :Mawson: 
+      :long: 
+        :standard: モーソン基地時間
+    :Mexico_Pacific: 
+      :long: 
+        :daylight: メキシコ太平洋夏時間
+        :generic: メキシコ太平洋時間
+        :standard: メキシコ太平洋標準時
+    :Mongolia: 
+      :long: 
+        :daylight: ウランバートル夏時間
+        :generic: ウランバートル時間
+        :standard: ウランバートル標準時
+    :Moscow: 
+      :long: 
+        :daylight: モスクワ夏時間
+        :generic: モスクワ時間
+        :standard: モスクワ標準時
+    :Myanmar: 
+      :long: 
+        :standard: ミャンマー時間
+    :Nauru: 
+      :long: 
+        :standard: ナウル時間
+    :Nepal: 
+      :long: 
+        :standard: ネパール時間
+    :New_Caledonia: 
+      :long: 
+        :daylight: ニューカレドニア夏時間
+        :generic: ニューカレドニア時間
+        :standard: ニューカレドニア標準時
+    :New_Zealand: 
+      :long: 
+        :daylight: ニュージーランド夏時間
+        :generic: ニュージーランド時間
+        :standard: ニュージーランド標準時
+    :Newfoundland: 
+      :long: 
+        :daylight: ニューファンドランド夏時間
+        :generic: ニューファンドランド時間
+        :standard: ニューファンドランド標準時
+    :Niue: 
+      :long: 
+        :standard: ニウエ時間
+    :Norfolk: 
+      :long: 
+        :daylight: ノーフォーク島夏時間
+        :generic: ノーフォーク島時間
+        :standard: ノーフォーク島標準時
+    :Noronha: 
+      :long: 
+        :daylight: フェルナンド・デ・ノローニャ夏時間
+        :generic: フェルナンド・デ・ノローニャ時間
+        :standard: フェルナンド・デ・ノローニャ標準時
+    :North_Mariana: 
+      :long: 
+        :standard: 北マリアナ諸島時間
+    :Novosibirsk: 
+      :long: 
+        :daylight: ノヴォシビルスク夏時間
+        :generic: ノヴォシビルスク時間
+        :standard: ノヴォシビルスク標準時
+    :Omsk: 
+      :long: 
+        :daylight: オムスク夏時間
+        :generic: オムスク時間
+        :standard: オムスク標準時
+    :Pakistan: 
+      :long: 
+        :daylight: パキスタン夏時間
+        :generic: パキスタン時間
+        :standard: パキスタン標準時
+    :Palau: 
+      :long: 
+        :standard: パラオ時間
+    :Papua_New_Guinea: 
+      :long: 
+        :standard: パプアニューギニア時間
+    :Paraguay: 
+      :long: 
+        :daylight: パラグアイ夏時間
+        :generic: パラグアイ時間
+        :standard: パラグアイ標準時
+    :Peru: 
+      :long: 
+        :daylight: ペルー夏時間
+        :generic: ペルー時間
+        :standard: ペルー標準時
+    :Philippines: 
+      :long: 
+        :daylight: フィリピン夏時間
+        :generic: フィリピン時間
+        :standard: フィリピン標準時
+    :Phoenix_Islands: 
+      :long: 
+        :standard: フェニックス諸島時間
+    :Pierre_Miquelon: 
+      :long: 
+        :daylight: サンピエール島・ミクロン島夏時間
+        :generic: サンピエール島・ミクロン島時間
+        :standard: サンピエール島・ミクロン島標準時
+    :Pitcairn: 
+      :long: 
+        :standard: ピトケアン時間
+    :Ponape: 
+      :long: 
+        :standard: ポナペ時間
+    :Pyongyang: 
+      :long: 
+        :standard: 平壌時間
+    :Qyzylorda: 
+      :long: 
+        :daylight: クズロルダ夏時間
+        :generic: クズロルダ時間
+        :standard: クズロルダ標準時
+    :Reunion: 
+      :long: 
+        :standard: レユニオン時間
+    :Rothera: 
+      :long: 
+        :standard: ロゼラ基地時間
+    :Sakhalin: 
+      :long: 
+        :daylight: サハリン夏時間
+        :generic: サハリン時間
+        :standard: サハリン標準時
+    :Samara: 
+      :long: 
+        :daylight: サマラ夏時間
+        :generic: サマラ時間
+        :standard: サマラ標準時
+    :Samoa: 
+      :long: 
+        :daylight: サモア夏時間
+        :generic: サモア時間
+        :standard: サモア標準時
+    :Seychelles: 
+      :long: 
+        :standard: セーシェル時間
+    :Singapore: 
+      :long: 
+        :standard: シンガポール標準時
+    :Solomon: 
+      :long: 
+        :standard: ソロモン諸島時間
+    :South_Georgia: 
+      :long: 
+        :standard: サウスジョージア時間
+    :Suriname: 
+      :long: 
+        :standard: スリナム時間
+    :Syowa: 
+      :long: 
+        :standard: 昭和基地時間
+    :Tahiti: 
+      :long: 
+        :standard: タヒチ時間
+    :Taipei: 
+      :long: 
+        :daylight: 台北夏時間
+        :generic: 台北時間
+        :standard: 台北標準時
+    :Tajikistan: 
+      :long: 
+        :standard: タジキスタン時間
+    :Tokelau: 
+      :long: 
+        :standard: トケラウ時間
+    :Tonga: 
+      :long: 
+        :daylight: トンガ夏時間
+        :generic: トンガ時間
+        :standard: トンガ標準時
+    :Truk: 
+      :long: 
+        :standard: チューク時間
+    :Turkmenistan: 
+      :long: 
+        :daylight: トルクメニスタン夏時間
+        :generic: トルクメニスタン時間
+        :standard: トルクメニスタン標準時
+    :Tuvalu: 
+      :long: 
+        :standard: ツバル時間
+    :Uruguay: 
+      :long: 
+        :daylight: ウルグアイ夏時間
+        :generic: ウルグアイ時間
+        :standard: ウルグアイ標準時
+    :Uzbekistan: 
+      :long: 
+        :daylight: ウズベキスタン夏時間
+        :generic: ウズベキスタン時間
+        :standard: ウズベキスタン標準時
+    :Vanuatu: 
+      :long: 
+        :daylight: バヌアツ夏時間
+        :generic: バヌアツ時間
+        :standard: バヌアツ標準時
+    :Venezuela: 
+      :long: 
+        :standard: ベネズエラ時間
+    :Vladivostok: 
+      :long: 
+        :daylight: ウラジオストク夏時間
+        :generic: ウラジオストク時間
+        :standard: ウラジオストク標準時
+    :Volgograd: 
+      :long: 
+        :daylight: ボルゴグラード夏時間
+        :generic: ボルゴグラード時間
+        :standard: ボルゴグラード標準時
+    :Vostok: 
+      :long: 
+        :standard: ボストーク基地時間
+    :Wake: 
+      :long: 
+        :standard: ウェーク島時間
+    :Wallis: 
+      :long: 
+        :standard: ウォリス・フツナ時間
+    :Yakutsk: 
+      :long: 
+        :daylight: ヤクーツク夏時間
+        :generic: ヤクーツク時間
+        :standard: ヤクーツク標準時
+    :Yekaterinburg: 
+      :long: 
+        :daylight: エカテリンブルグ夏時間
+        :generic: エカテリンブルグ時間
+        :standard: エカテリンブルグ標準時
+    :Yukon: 
+      :long: 
+        :standard: ユーコン時間
+  :timezones: 
+    :Africa/Abidjan: 
+      :city: アビジャン
+    :Africa/Accra: 
+      :city: アクラ
+    :Africa/Addis_Ababa: 
+      :city: アジスアベバ
+    :Africa/Algiers: 
+      :city: アルジェ
+    :Africa/Asmera: 
+      :city: アスマラ
+    :Africa/Bamako: 
+      :city: バマコ
+    :Africa/Bangui: 
+      :city: バンギ
+    :Africa/Banjul: 
+      :city: バンジュール
+    :Africa/Bissau: 
+      :city: ビサウ
+    :Africa/Blantyre: 
+      :city: ブランタイヤ
+    :Africa/Brazzaville: 
+      :city: ブラザビル
+    :Africa/Bujumbura: 
+      :city: ブジュンブラ
+    :Africa/Cairo: 
+      :city: カイロ
+    :Africa/Casablanca: 
+      :city: カサブランカ
+    :Africa/Ceuta: 
+      :city: セウタ
+    :Africa/Conakry: 
+      :city: コナクリ
+    :Africa/Dakar: 
+      :city: ダカール
+    :Africa/Dar_es_Salaam: 
+      :city: ダルエスサラーム
+    :Africa/Djibouti: 
+      :city: ジブチ
+    :Africa/Douala: 
+      :city: ドゥアラ
+    :Africa/El_Aaiun: 
+      :city: アイウン
+    :Africa/Freetown: 
+      :city: フリータウン
+    :Africa/Gaborone: 
+      :city: ハボローネ
+    :Africa/Harare: 
+      :city: ハラレ
+    :Africa/Johannesburg: 
+      :city: ヨハネスブルグ
+    :Africa/Juba: 
+      :city: ジュバ
+    :Africa/Kampala: 
+      :city: カンパラ
+    :Africa/Khartoum: 
+      :city: ハルツーム
+    :Africa/Kigali: 
+      :city: キガリ
+    :Africa/Kinshasa: 
+      :city: キンシャサ
+    :Africa/Lagos: 
+      :city: ラゴス
+    :Africa/Libreville: 
+      :city: リーブルヴィル
+    :Africa/Lome: 
+      :city: ロメ
+    :Africa/Luanda: 
+      :city: ルアンダ
+    :Africa/Lubumbashi: 
+      :city: ルブンバシ
+    :Africa/Lusaka: 
+      :city: ルサカ
+    :Africa/Malabo: 
+      :city: マラボ
+    :Africa/Maputo: 
+      :city: マプト
+    :Africa/Maseru: 
+      :city: マセル
+    :Africa/Mbabane: 
+      :city: ムババーネ
+    :Africa/Mogadishu: 
+      :city: モガディシオ
+    :Africa/Monrovia: 
+      :city: モンロビア
+    :Africa/Nairobi: 
+      :city: ナイロビ
+    :Africa/Ndjamena: 
+      :city: ンジャメナ
+    :Africa/Niamey: 
+      :city: ニアメ
+    :Africa/Nouakchott: 
+      :city: ヌアクショット
+    :Africa/Ouagadougou: 
+      :city: ワガドゥグー
+    :Africa/Porto-Novo: 
+      :city: ポルトノボ
+    :Africa/Sao_Tome: 
+      :city: サントメ
+    :Africa/Tripoli: 
+      :city: トリポリ
+    :Africa/Tunis: 
+      :city: チュニス
+    :Africa/Windhoek: 
+      :city: ウィントフック
+    :America/Adak: 
+      :city: アダック
+    :America/Anchorage: 
+      :city: アンカレッジ
+    :America/Anguilla: 
+      :city: アンギラ
+    :America/Antigua: 
+      :city: アンティグア
+    :America/Araguaina: 
+      :city: アラグァイナ
+    :America/Argentina/La_Rioja: 
+      :city: ラリオハ
+    :America/Argentina/Rio_Gallegos: 
+      :city: リオガジェゴス
+    :America/Argentina/Salta: 
+      :city: サルタ
+    :America/Argentina/San_Juan: 
+      :city: サンファン
+    :America/Argentina/San_Luis: 
+      :city: サンルイス
+    :America/Argentina/Tucuman: 
+      :city: トゥクマン
+    :America/Argentina/Ushuaia: 
+      :city: ウシュアイア
+    :America/Aruba: 
+      :city: アルバ
+    :America/Asuncion: 
+      :city: アスンシオン
+    :America/Bahia: 
+      :city: バイーア
+    :America/Bahia_Banderas: 
+      :city: バイアバンデラ
+    :America/Barbados: 
+      :city: バルバドス
+    :America/Belem: 
+      :city: ベレン
+    :America/Belize: 
+      :city: ベリーズ
+    :America/Blanc-Sablon: 
+      :city: ブラン・サブロン
+    :America/Boa_Vista: 
+      :city: ボアビスタ
+    :America/Bogota: 
+      :city: ボゴタ
+    :America/Boise: 
+      :city: ボイシ
+    :America/Buenos_Aires: 
+      :city: ブエノスアイレス
+    :America/Cambridge_Bay: 
+      :city: ケンブリッジベイ
+    :America/Campo_Grande: 
+      :city: カンポグランデ
+    :America/Cancun: 
+      :city: カンクン
+    :America/Caracas: 
+      :city: カラカス
+    :America/Catamarca: 
+      :city: カタマルカ
+    :America/Cayenne: 
+      :city: カイエンヌ
+    :America/Cayman: 
+      :city: ケイマン
+    :America/Chicago: 
+      :city: シカゴ
+    :America/Chihuahua: 
+      :city: チワワ
+    :America/Ciudad_Juarez: 
+      :city: シウダー・フアレス
+    :America/Coral_Harbour: 
+      :city: アティコカン
+    :America/Cordoba: 
+      :city: コルドバ
+    :America/Costa_Rica: 
+      :city: コスタリカ
+    :America/Creston: 
+      :city: クレストン
+    :America/Cuiaba: 
+      :city: クイアバ
+    :America/Curacao: 
+      :city: キュラソー
+    :America/Danmarkshavn: 
+      :city: デンマークシャウン
+    :America/Dawson: 
+      :city: ドーソン
+    :America/Dawson_Creek: 
+      :city: ドーソンクリーク
+    :America/Denver: 
+      :city: デンバー
+    :America/Detroit: 
+      :city: デトロイト
+    :America/Dominica: 
+      :city: ドミニカ
+    :America/Edmonton: 
+      :city: エドモントン
+    :America/Eirunepe: 
+      :city: エイルネペ
+    :America/El_Salvador: 
+      :city: エルサルバドル
+    :America/Fort_Nelson: 
+      :city: フォートネルソン
+    :America/Fortaleza: 
+      :city: フォルタレザ
+    :America/Glace_Bay: 
+      :city: グレースベイ
+    :America/Godthab: 
+      :city: ヌーク
+    :America/Goose_Bay: 
+      :city: グースベイ
+    :America/Grand_Turk: 
+      :city: グランドターク
+    :America/Grenada: 
+      :city: グレナダ
+    :America/Guadeloupe: 
+      :city: グアドループ
+    :America/Guatemala: 
+      :city: グアテマラ
+    :America/Guayaquil: 
+      :city: グアヤキル
+    :America/Guyana: 
+      :city: ガイアナ
+    :America/Halifax: 
+      :city: ハリファクス
+    :America/Havana: 
+      :city: ハバナ
+    :America/Hermosillo: 
+      :city: エルモシヨ
+    :America/Indiana/Knox: 
+      :city: インディアナ州ノックス
+    :America/Indiana/Marengo: 
+      :city: インディアナ州マレンゴ
+    :America/Indiana/Petersburg: 
+      :city: インディアナ州ピーターズバーグ
+    :America/Indiana/Tell_City: 
+      :city: インディアナ州テルシティ
+    :America/Indiana/Vevay: 
+      :city: インディアナ州ビベー
+    :America/Indiana/Vincennes: 
+      :city: インディアナ州ビンセンス
+    :America/Indiana/Winamac: 
+      :city: インディアナ州ウィナマック
+    :America/Indianapolis: 
+      :city: インディアナポリス
+    :America/Inuvik: 
+      :city: イヌヴィク
+    :America/Iqaluit: 
+      :city: イカルイット
+    :America/Jamaica: 
+      :city: ジャマイカ
+    :America/Jujuy: 
+      :city: フフイ
+    :America/Juneau: 
+      :city: ジュノー
+    :America/Kentucky/Monticello: 
+      :city: ケンタッキー州モンティチェロ
+    :America/Kralendijk: 
+      :city: クラレンダイク
+    :America/La_Paz: 
+      :city: ラパス
+    :America/Lima: 
+      :city: リマ
+    :America/Los_Angeles: 
+      :city: ロサンゼルス
+    :America/Louisville: 
+      :city: ルイビル
+    :America/Lower_Princes: 
+      :city: ローワー・プリンセズ・クウォーター
+    :America/Maceio: 
+      :city: マセイオ
+    :America/Managua: 
+      :city: マナグア
+    :America/Manaus: 
+      :city: マナウス
+    :America/Marigot: 
+      :city: マリゴ
+    :America/Martinique: 
+      :city: マルティニーク
+    :America/Matamoros: 
+      :city: マタモロス
+    :America/Mazatlan: 
+      :city: マサトラン
+    :America/Mendoza: 
+      :city: メンドーサ
+    :America/Menominee: 
+      :city: メノミニー
+    :America/Merida: 
+      :city: メリダ
+    :America/Metlakatla: 
+      :city: メトラカトラ
+    :America/Mexico_City: 
+      :city: メキシコシティー
+    :America/Miquelon: 
+      :city: ミクロン島
+    :America/Moncton: 
+      :city: モンクトン
+    :America/Monterrey: 
+      :city: モンテレイ
+    :America/Montevideo: 
+      :city: モンテビデオ
+    :America/Montserrat: 
+      :city: モントセラト
+    :America/Nassau: 
+      :city: ナッソー
+    :America/New_York: 
+      :city: ニューヨーク
+    :America/Nome: 
+      :city: ノーム
+    :America/Noronha: 
+      :city: ノローニャ
+    :America/North_Dakota/Beulah: 
+      :city: ノースダコタ州ビューラー
+    :America/North_Dakota/Center: 
+      :city: ノースダコタ州センター
+    :America/North_Dakota/New_Salem: 
+      :city: ノースダコタ州ニューセーラム
+    :America/Ojinaga: 
+      :city: オヒナガ
+    :America/Panama: 
+      :city: パナマ
+    :America/Paramaribo: 
+      :city: パラマリボ
+    :America/Phoenix: 
+      :city: フェニックス
+    :America/Port-au-Prince: 
+      :city: ポルトープランス
+    :America/Port_of_Spain: 
+      :city: ポートオブスペイン
+    :America/Porto_Velho: 
+      :city: ポルトベーリョ
+    :America/Puerto_Rico: 
+      :city: プエルトリコ
+    :America/Punta_Arenas: 
+      :city: プンタアレナス
+    :America/Rankin_Inlet: 
+      :city: ランキンインレット
+    :America/Recife: 
+      :city: レシフェ
+    :America/Regina: 
+      :city: レジャイナ
+    :America/Resolute: 
+      :city: レゾリュート
+    :America/Rio_Branco: 
+      :city: リオブランコ
+    :America/Santarem: 
+      :city: サンタレム
+    :America/Santiago: 
+      :city: サンチアゴ
+    :America/Santo_Domingo: 
+      :city: サントドミンゴ
+    :America/Sao_Paulo: 
+      :city: サンパウロ
+    :America/Scoresbysund: 
+      :city: イトコルトルミット
+    :America/Sitka: 
+      :city: シトカ
+    :America/St_Barthelemy: 
+      :city: サン・バルテルミー
+    :America/St_Johns: 
+      :city: セントジョンズ
+    :America/St_Kitts: 
+      :city: セントクリストファー
+    :America/St_Lucia: 
+      :city: セントルシア
+    :America/St_Thomas: 
+      :city: セントトーマス
+    :America/St_Vincent: 
+      :city: セントビンセント
+    :America/Swift_Current: 
+      :city: スウィフトカレント
+    :America/Tegucigalpa: 
+      :city: テグシガルパ
+    :America/Thule: 
+      :city: チューレ
+    :America/Tijuana: 
+      :city: ティフアナ
+    :America/Toronto: 
+      :city: トロント
+    :America/Tortola: 
+      :city: トルトーラ
+    :America/Vancouver: 
+      :city: バンクーバー
+    :America/Whitehorse: 
+      :city: ホワイトホース
+    :America/Winnipeg: 
+      :city: ウィニペグ
+    :America/Yakutat: 
+      :city: ヤクタット
+    :Antarctica/Casey: 
+      :city: ケーシー基地
+    :Antarctica/Davis: 
+      :city: デービス基地
+    :Antarctica/DumontDUrville: 
+      :city: デュモン・デュルヴィル基地
+    :Antarctica/Macquarie: 
+      :city: マッコリー
+    :Antarctica/Mawson: 
+      :city: モーソン基地
+    :Antarctica/McMurdo: 
+      :city: マクマード基地
+    :Antarctica/Palmer: 
+      :city: パーマー基地
+    :Antarctica/Rothera: 
+      :city: ロゼラ基地
+    :Antarctica/Syowa: 
+      :city: 昭和基地
+    :Antarctica/Troll: 
+      :city: トロル基地
+    :Antarctica/Vostok: 
+      :city: ボストーク基地
+    :Arctic/Longyearbyen: 
+      :city: ロングイェールビーン
+    :Asia/Aden: 
+      :city: アデン
+    :Asia/Almaty: 
+      :city: アルマトイ
+    :Asia/Amman: 
+      :city: アンマン
+    :Asia/Anadyr: 
+      :city: アナディリ
+    :Asia/Aqtau: 
+      :city: アクタウ
+    :Asia/Aqtobe: 
+      :city: アクトベ
+    :Asia/Ashgabat: 
+      :city: アシガバード
+    :Asia/Atyrau: 
+      :city: アティラウ
+    :Asia/Baghdad: 
+      :city: バグダッド
+    :Asia/Bahrain: 
+      :city: バーレーン
+    :Asia/Baku: 
+      :city: バクー
+    :Asia/Bangkok: 
+      :city: バンコク
+    :Asia/Barnaul: 
+      :city: バルナウル
+    :Asia/Beirut: 
+      :city: ベイルート
+    :Asia/Bishkek: 
+      :city: ビシュケク
+    :Asia/Brunei: 
+      :city: ブルネイ
+    :Asia/Calcutta: 
+      :city: コルカタ
+    :Asia/Chita: 
+      :city: チタ
+    :Asia/Colombo: 
+      :city: コロンボ
+    :Asia/Damascus: 
+      :city: ダマスカス
+    :Asia/Dhaka: 
+      :city: ダッカ
+    :Asia/Dili: 
+      :city: ディリ
+    :Asia/Dubai: 
+      :city: ドバイ
+    :Asia/Dushanbe: 
+      :city: ドゥシャンベ
+    :Asia/Famagusta: 
+      :city: ファマグスタ
+    :Asia/Gaza: 
+      :city: ガザ
+    :Asia/Hebron: 
+      :city: ヘブロン
+    :Asia/Hong_Kong: 
+      :city: 香港
+    :Asia/Hovd: 
+      :city: ホブド
+    :Asia/Irkutsk: 
+      :city: イルクーツク
+    :Asia/Jakarta: 
+      :city: ジャカルタ
+    :Asia/Jayapura: 
+      :city: ジャヤプラ
+    :Asia/Jerusalem: 
+      :city: エルサレム
+    :Asia/Kabul: 
+      :city: カブール
+    :Asia/Kamchatka: 
+      :city: カムチャッカ
+    :Asia/Karachi: 
+      :city: カラチ
+    :Asia/Katmandu: 
+      :city: カトマンズ
+    :Asia/Khandyga: 
+      :city: ハンドゥイガ
+    :Asia/Krasnoyarsk: 
+      :city: クラスノヤルスク
+    :Asia/Kuala_Lumpur: 
+      :city: クアラルンプール
+    :Asia/Kuching: 
+      :city: クチン
+    :Asia/Kuwait: 
+      :city: クウェート
+    :Asia/Macau: 
+      :city: マカオ
+    :Asia/Magadan: 
+      :city: マガダン
+    :Asia/Makassar: 
+      :city: マカッサル
+    :Asia/Manila: 
+      :city: マニラ
+    :Asia/Muscat: 
+      :city: マスカット
+    :Asia/Nicosia: 
+      :city: ニコシア
+    :Asia/Novokuznetsk: 
+      :city: ノヴォクズネツク
+    :Asia/Novosibirsk: 
+      :city: ノヴォシビルスク
+    :Asia/Omsk: 
+      :city: オムスク
+    :Asia/Oral: 
+      :city: オラル
+    :Asia/Phnom_Penh: 
+      :city: プノンペン
+    :Asia/Pontianak: 
+      :city: ポンティアナック
+    :Asia/Pyongyang: 
+      :city: 平壌
+    :Asia/Qatar: 
+      :city: カタール
+    :Asia/Qostanay: 
+      :city: コスタナイ
+    :Asia/Qyzylorda: 
+      :city: クズロルダ
+    :Asia/Rangoon: 
+      :city: ヤンゴン
+    :Asia/Riyadh: 
+      :city: リヤド
+    :Asia/Saigon: 
+      :city: ホーチミン
+    :Asia/Sakhalin: 
+      :city: サハリン
+    :Asia/Samarkand: 
+      :city: サマルカンド
+    :Asia/Seoul: 
+      :city: ソウル
+    :Asia/Shanghai: 
+      :city: 上海
+    :Asia/Singapore: 
+      :city: シンガポール
+    :Asia/Srednekolymsk: 
+      :city: スレドネコリムスク
+    :Asia/Taipei: 
+      :city: 台北
+    :Asia/Tashkent: 
+      :city: タシケント
+    :Asia/Tbilisi: 
+      :city: トビリシ
+    :Asia/Tehran: 
+      :city: テヘラン
+    :Asia/Thimphu: 
+      :city: ティンプー
+    :Asia/Tokyo: 
+      :city: 東京
+    :Asia/Tomsk: 
+      :city: トムスク
+    :Asia/Ulaanbaatar: 
+      :city: ウランバートル
+    :Asia/Urumqi: 
+      :city: ウルムチ
+    :Asia/Ust-Nera: 
+      :city: ウスチネラ
+    :Asia/Vientiane: 
+      :city: ビエンチャン
+    :Asia/Vladivostok: 
+      :city: ウラジオストク
+    :Asia/Yakutsk: 
+      :city: ヤクーツク
+    :Asia/Yekaterinburg: 
+      :city: エカテリンブルグ
+    :Asia/Yerevan: 
+      :city: エレバン
+    :Atlantic/Azores: 
+      :city: アゾレス
+    :Atlantic/Bermuda: 
+      :city: バミューダ
+    :Atlantic/Canary: 
+      :city: カナリア
+    :Atlantic/Cape_Verde: 
+      :city: カーボベルデ
+    :Atlantic/Faeroe: 
+      :city: フェロー
+    :Atlantic/Madeira: 
+      :city: マデイラ
+    :Atlantic/Reykjavik: 
+      :city: レイキャビク
+    :Atlantic/South_Georgia: 
+      :city: サウスジョージア
+    :Atlantic/St_Helena: 
+      :city: セントヘレナ
+    :Atlantic/Stanley: 
+      :city: スタンレー
+    :Australia/Adelaide: 
+      :city: アデレード
+    :Australia/Brisbane: 
+      :city: ブリスベン
+    :Australia/Broken_Hill: 
+      :city: ブロークンヒル
+    :Australia/Darwin: 
+      :city: ダーウィン
+    :Australia/Eucla: 
+      :city: ユークラ
+    :Australia/Hobart: 
+      :city: ホバート
+    :Australia/Lindeman: 
+      :city: リンデマン
+    :Australia/Lord_Howe: 
+      :city: ロードハウ
+    :Australia/Melbourne: 
+      :city: メルボルン
+    :Australia/Perth: 
+      :city: パース
+    :Australia/Sydney: 
+      :city: シドニー
+    :Etc/UTC: 
+      :long: 
+        :standard: 協定世界時
+      :short: 
+        :standard: UTC
+    :Etc/Unknown: 
+      :city: 地域不明
+    :Europe/Amsterdam: 
+      :city: アムステルダム
+    :Europe/Andorra: 
+      :city: アンドラ
+    :Europe/Astrakhan: 
+      :city: アストラハン
+    :Europe/Athens: 
+      :city: アテネ
+    :Europe/Belgrade: 
+      :city: ベオグラード
+    :Europe/Berlin: 
+      :city: ベルリン
+    :Europe/Bratislava: 
+      :city: ブラチスラバ
+    :Europe/Brussels: 
+      :city: ブリュッセル
+    :Europe/Bucharest: 
+      :city: ブカレスト
+    :Europe/Budapest: 
+      :city: ブダペスト
+    :Europe/Busingen: 
+      :city: ビュージンゲン
+    :Europe/Chisinau: 
+      :city: キシナウ
+    :Europe/Copenhagen: 
+      :city: コペンハーゲン
+    :Europe/Dublin: 
+      :city: ダブリン
+      :long: 
+        :daylight: アイルランド標準時
+    :Europe/Gibraltar: 
+      :city: ジブラルタル
+    :Europe/Guernsey: 
+      :city: ガーンジー
+    :Europe/Helsinki: 
+      :city: ヘルシンキ
+    :Europe/Isle_of_Man: 
+      :city: マン島
+    :Europe/Istanbul: 
+      :city: イスタンブール
+    :Europe/Jersey: 
+      :city: ジャージー
+    :Europe/Kaliningrad: 
+      :city: カリーニングラード
+    :Europe/Kiev: 
+      :city: キーウ
+    :Europe/Kirov: 
+      :city: キーロフ
+    :Europe/Lisbon: 
+      :city: リスボン
+    :Europe/Ljubljana: 
+      :city: リュブリャナ
+    :Europe/London: 
+      :city: ロンドン
+      :long: 
+        :daylight: 英国夏時間
+    :Europe/Luxembourg: 
+      :city: ルクセンブルク
+    :Europe/Madrid: 
+      :city: マドリード
+    :Europe/Malta: 
+      :city: マルタ
+    :Europe/Mariehamn: 
+      :city: マリエハムン
+    :Europe/Minsk: 
+      :city: ミンスク
+    :Europe/Monaco: 
+      :city: モナコ
+    :Europe/Moscow: 
+      :city: モスクワ
+    :Europe/Oslo: 
+      :city: オスロ
+    :Europe/Paris: 
+      :city: パリ
+    :Europe/Podgorica: 
+      :city: ポドゴリツァ
+    :Europe/Prague: 
+      :city: プラハ
+    :Europe/Riga: 
+      :city: リガ
+    :Europe/Rome: 
+      :city: ローマ
+    :Europe/Samara: 
+      :city: サマラ
+    :Europe/San_Marino: 
+      :city: サンマリノ
+    :Europe/Sarajevo: 
+      :city: サラエボ
+    :Europe/Saratov: 
+      :city: サラトフ
+    :Europe/Simferopol: 
+      :city: シンフェロポリ
+    :Europe/Skopje: 
+      :city: スコピエ
+    :Europe/Sofia: 
+      :city: ソフィア
+    :Europe/Stockholm: 
+      :city: ストックホルム
+    :Europe/Tallinn: 
+      :city: タリン
+    :Europe/Tirane: 
+      :city: ティラナ
+    :Europe/Ulyanovsk: 
+      :city: ウリヤノフスク
+    :Europe/Vaduz: 
+      :city: ファドゥーツ
+    :Europe/Vatican: 
+      :city: バチカン
+    :Europe/Vienna: 
+      :city: ウィーン
+    :Europe/Vilnius: 
+      :city: ヴィリニュス
+    :Europe/Volgograd: 
+      :city: ボルゴグラード
+    :Europe/Warsaw: 
+      :city: ワルシャワ
+    :Europe/Zagreb: 
+      :city: ザグレブ
+    :Europe/Zurich: 
+      :city: チューリッヒ
+    :Indian/Antananarivo: 
+      :city: アンタナナリボ
+    :Indian/Chagos: 
+      :city: チャゴス
+    :Indian/Christmas: 
+      :city: クリスマス島
+    :Indian/Cocos: 
+      :city: ココス諸島
+    :Indian/Comoro: 
+      :city: コモロ
+    :Indian/Kerguelen: 
+      :city: ケルゲレン諸島
+    :Indian/Mahe: 
+      :city: マヘ
+    :Indian/Maldives: 
+      :city: モルディブ
+    :Indian/Mauritius: 
+      :city: モーリシャス
+    :Indian/Mayotte: 
+      :city: マヨット
+    :Indian/Reunion: 
+      :city: レユニオン
+    :Pacific/Apia: 
+      :city: アピア
+    :Pacific/Auckland: 
+      :city: オークランド
+    :Pacific/Bougainville: 
+      :city: ブーゲンビル
+    :Pacific/Chatham: 
+      :city: チャタム
+    :Pacific/Easter: 
+      :city: イースター島
+    :Pacific/Efate: 
+      :city: エフェテ島
+    :Pacific/Enderbury: 
+      :city: エンダーベリー島
+    :Pacific/Fakaofo: 
+      :city: ファカオフォ
+    :Pacific/Fiji: 
+      :city: フィジー
+    :Pacific/Funafuti: 
+      :city: フナフティ
+    :Pacific/Galapagos: 
+      :city: ガラパゴス
+    :Pacific/Gambier: 
+      :city: ガンビエ諸島
+    :Pacific/Guadalcanal: 
+      :city: ガダルカナル
+    :Pacific/Guam: 
+      :city: グアム
+    :Pacific/Honolulu: 
+      :city: ホノルル
+    :Pacific/Kanton: 
+      :city: カントン島
+    :Pacific/Kiritimati: 
+      :city: キリスィマスィ島
+    :Pacific/Kosrae: 
+      :city: コスラエ
+    :Pacific/Kwajalein: 
+      :city: クェゼリン
+    :Pacific/Majuro: 
+      :city: マジュロ
+    :Pacific/Marquesas: 
+      :city: マルキーズ
+    :Pacific/Midway: 
+      :city: ミッドウェー島
+    :Pacific/Nauru: 
+      :city: ナウル
+    :Pacific/Niue: 
+      :city: ニウエ
+    :Pacific/Norfolk: 
+      :city: ノーフォーク島
+    :Pacific/Noumea: 
+      :city: ヌメア
+    :Pacific/Pago_Pago: 
+      :city: パゴパゴ
+    :Pacific/Palau: 
+      :city: パラオ
+    :Pacific/Pitcairn: 
+      :city: ピトケアン諸島
+    :Pacific/Ponape: 
+      :city: ポンペイ島
+    :Pacific/Port_Moresby: 
+      :city: ポートモレスビー
+    :Pacific/Rarotonga: 
+      :city: ラロトンガ
+    :Pacific/Saipan: 
+      :city: サイパン
+    :Pacific/Tahiti: 
+      :city: タヒチ
+    :Pacific/Tarawa: 
+      :city: タラワ
+    :Pacific/Tongatapu: 
+      :city: トンガタプ
+    :Pacific/Truk: 
+      :city: チューク
+    :Pacific/Wake: 
+      :city: ウェーク島
+    :Pacific/Wallis: 
+      :city: ウォリス諸島

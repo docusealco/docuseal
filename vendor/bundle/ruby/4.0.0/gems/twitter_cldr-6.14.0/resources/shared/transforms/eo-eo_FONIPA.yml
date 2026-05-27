@@ -1,0 +1,54 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - eo-fonipa-t-eo
+    :direction: forward
+    :rules: 
+      - "::NFC ;"
+      - "::Lower ;"
+      - "[\\-\\'’] > ;"
+      - "aj > ai̯ ;"
+      - "aŭ > au̯ ;"
+      - "á > a ;"
+      - "a > a ;"
+      - "b > b ;"
+      - "ĉ > t͡ʃ ;"
+      - "c > t͡s ;"
+      - "dz > d͡z ;"
+      - "d > d ;"
+      - "ej > ei̯ ;"
+      - "eŭ > eu̯ ;"
+      - "é > e ;"
+      - "e > e ;"
+      - "f > f ;"
+      - "ĝ > d͡ʒ ;"
+      - "g > ɡ ;"
+      - "ĥ > x ;"
+      - "h > h ;"
+      - "í > i ;"
+      - "i > i ;"
+      - "ĵ > ʒ ;"
+      - "j > j ;"
+      - "k > k ;"
+      - "l > l ;"
+      - "m > m ;"
+      - "n > n ;"
+      - "oj > oi̯ ;"
+      - "ó > o ;"
+      - "o > o ;"
+      - "p > p ;"
+      - "r > r ;"
+      - "ŝ > ʃ ;"
+      - "s > s ;"
+      - "t > t ;"
+      - "uj > ui̯ ;"
+      - "ŭ > w ;"
+      - "ú > u ;"
+      - "u > u ;"
+      - "v > v ;"
+      - "z > z ;"
+      - "::NFC ;"
+    :source: eo
+    :target: eo_FONIPA
+    :variant: ~

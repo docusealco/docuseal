@@ -1,0 +1,1069 @@
+# WARNING ABOUT GENERATED CODE
+#
+# This file is generated. See the contributing guide for more information:
+# https://github.com/aws/aws-sdk-ruby/blob/version-3/CONTRIBUTING.md
+#
+# WARNING ABOUT GENERATED CODE
+
+module Aws::KMS
+  module Types
+
+    class AliasListEntry
+      attr_accessor alias_name: ::String
+      attr_accessor alias_arn: ::String
+      attr_accessor target_key_id: ::String
+      attr_accessor creation_date: ::Time
+      attr_accessor last_updated_date: ::Time
+      SENSITIVE: []
+    end
+
+    class AlreadyExistsException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class CancelKeyDeletionRequest
+      attr_accessor key_id: ::String
+      SENSITIVE: []
+    end
+
+    class CancelKeyDeletionResponse
+      attr_accessor key_id: ::String
+      SENSITIVE: []
+    end
+
+    class CloudHsmClusterInUseException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class CloudHsmClusterInvalidConfigurationException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class CloudHsmClusterNotActiveException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class CloudHsmClusterNotFoundException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class CloudHsmClusterNotRelatedException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class ConflictException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class ConnectCustomKeyStoreRequest
+      attr_accessor custom_key_store_id: ::String
+      SENSITIVE: []
+    end
+
+    class ConnectCustomKeyStoreResponse < Aws::EmptyStructure
+    end
+
+    class CreateAliasRequest
+      attr_accessor alias_name: ::String
+      attr_accessor target_key_id: ::String
+      SENSITIVE: []
+    end
+
+    class CreateCustomKeyStoreRequest
+      attr_accessor custom_key_store_name: ::String
+      attr_accessor cloud_hsm_cluster_id: ::String
+      attr_accessor trust_anchor_certificate: ::String
+      attr_accessor key_store_password: ::String
+      attr_accessor custom_key_store_type: ("AWS_CLOUDHSM" | "EXTERNAL_KEY_STORE")
+      attr_accessor xks_proxy_uri_endpoint: ::String
+      attr_accessor xks_proxy_uri_path: ::String
+      attr_accessor xks_proxy_vpc_endpoint_service_name: ::String
+      attr_accessor xks_proxy_vpc_endpoint_service_owner: ::String
+      attr_accessor xks_proxy_authentication_credential: Types::XksProxyAuthenticationCredentialType
+      attr_accessor xks_proxy_connectivity: ("PUBLIC_ENDPOINT" | "VPC_ENDPOINT_SERVICE")
+      SENSITIVE: [:key_store_password]
+    end
+
+    class CreateCustomKeyStoreResponse
+      attr_accessor custom_key_store_id: ::String
+      SENSITIVE: []
+    end
+
+    class CreateGrantRequest
+      attr_accessor key_id: ::String
+      attr_accessor grantee_principal: ::String
+      attr_accessor retiring_principal: ::String
+      attr_accessor operations: ::Array[("Decrypt" | "Encrypt" | "GenerateDataKey" | "GenerateDataKeyWithoutPlaintext" | "ReEncryptFrom" | "ReEncryptTo" | "Sign" | "Verify" | "GetPublicKey" | "CreateGrant" | "RetireGrant" | "DescribeKey" | "GenerateDataKeyPair" | "GenerateDataKeyPairWithoutPlaintext" | "GenerateMac" | "VerifyMac" | "DeriveSharedSecret")]
+      attr_accessor constraints: Types::GrantConstraints
+      attr_accessor grant_tokens: ::Array[::String]
+      attr_accessor name: ::String
+      attr_accessor dry_run: bool
+      SENSITIVE: []
+    end
+
+    class CreateGrantResponse
+      attr_accessor grant_token: ::String
+      attr_accessor grant_id: ::String
+      SENSITIVE: []
+    end
+
+    class CreateKeyRequest
+      attr_accessor policy: ::String
+      attr_accessor description: ::String
+      attr_accessor key_usage: ("SIGN_VERIFY" | "ENCRYPT_DECRYPT" | "GENERATE_VERIFY_MAC" | "KEY_AGREEMENT")
+      attr_accessor customer_master_key_spec: ("RSA_2048" | "RSA_3072" | "RSA_4096" | "ECC_NIST_P256" | "ECC_NIST_P384" | "ECC_NIST_P521" | "ECC_SECG_P256K1" | "SYMMETRIC_DEFAULT" | "HMAC_224" | "HMAC_256" | "HMAC_384" | "HMAC_512" | "SM2")
+      attr_accessor key_spec: ("RSA_2048" | "RSA_3072" | "RSA_4096" | "ECC_NIST_P256" | "ECC_NIST_P384" | "ECC_NIST_P521" | "ECC_SECG_P256K1" | "SYMMETRIC_DEFAULT" | "HMAC_224" | "HMAC_256" | "HMAC_384" | "HMAC_512" | "SM2" | "ML_DSA_44" | "ML_DSA_65" | "ML_DSA_87" | "ECC_NIST_EDWARDS25519")
+      attr_accessor origin: ("AWS_KMS" | "EXTERNAL" | "AWS_CLOUDHSM" | "EXTERNAL_KEY_STORE")
+      attr_accessor custom_key_store_id: ::String
+      attr_accessor bypass_policy_lockout_safety_check: bool
+      attr_accessor tags: ::Array[Types::Tag]
+      attr_accessor multi_region: bool
+      attr_accessor xks_key_id: ::String
+      SENSITIVE: []
+    end
+
+    class CreateKeyResponse
+      attr_accessor key_metadata: Types::KeyMetadata
+      SENSITIVE: []
+    end
+
+    class CustomKeyStoreHasCMKsException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class CustomKeyStoreInvalidStateException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class CustomKeyStoreNameInUseException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class CustomKeyStoreNotFoundException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class CustomKeyStoresListEntry
+      attr_accessor custom_key_store_id: ::String
+      attr_accessor custom_key_store_name: ::String
+      attr_accessor cloud_hsm_cluster_id: ::String
+      attr_accessor trust_anchor_certificate: ::String
+      attr_accessor connection_state: ("CONNECTED" | "CONNECTING" | "FAILED" | "DISCONNECTED" | "DISCONNECTING")
+      attr_accessor connection_error_code: ("INVALID_CREDENTIALS" | "CLUSTER_NOT_FOUND" | "NETWORK_ERRORS" | "INTERNAL_ERROR" | "INSUFFICIENT_CLOUDHSM_HSMS" | "USER_LOCKED_OUT" | "USER_NOT_FOUND" | "USER_LOGGED_IN" | "SUBNET_NOT_FOUND" | "INSUFFICIENT_FREE_ADDRESSES_IN_SUBNET" | "XKS_PROXY_ACCESS_DENIED" | "XKS_PROXY_NOT_REACHABLE" | "XKS_VPC_ENDPOINT_SERVICE_NOT_FOUND" | "XKS_PROXY_INVALID_RESPONSE" | "XKS_PROXY_INVALID_CONFIGURATION" | "XKS_VPC_ENDPOINT_SERVICE_INVALID_CONFIGURATION" | "XKS_PROXY_TIMED_OUT" | "XKS_PROXY_INVALID_TLS_CONFIGURATION")
+      attr_accessor creation_date: ::Time
+      attr_accessor custom_key_store_type: ("AWS_CLOUDHSM" | "EXTERNAL_KEY_STORE")
+      attr_accessor xks_proxy_configuration: Types::XksProxyConfigurationType
+      SENSITIVE: []
+    end
+
+    class DecryptRequest
+      attr_accessor ciphertext_blob: ::String
+      attr_accessor encryption_context: ::Hash[::String, ::String]
+      attr_accessor grant_tokens: ::Array[::String]
+      attr_accessor key_id: ::String
+      attr_accessor encryption_algorithm: ("SYMMETRIC_DEFAULT" | "RSAES_OAEP_SHA_1" | "RSAES_OAEP_SHA_256" | "SM2PKE")
+      attr_accessor recipient: Types::RecipientInfo
+      attr_accessor dry_run: bool
+      attr_accessor dry_run_modifiers: ::Array[("IGNORE_CIPHERTEXT")]
+      SENSITIVE: []
+    end
+
+    class DecryptResponse
+      attr_accessor key_id: ::String
+      attr_accessor plaintext: ::String
+      attr_accessor encryption_algorithm: ("SYMMETRIC_DEFAULT" | "RSAES_OAEP_SHA_1" | "RSAES_OAEP_SHA_256" | "SM2PKE")
+      attr_accessor ciphertext_for_recipient: ::String
+      attr_accessor key_material_id: ::String
+      SENSITIVE: [:plaintext]
+    end
+
+    class DeleteAliasRequest
+      attr_accessor alias_name: ::String
+      SENSITIVE: []
+    end
+
+    class DeleteCustomKeyStoreRequest
+      attr_accessor custom_key_store_id: ::String
+      SENSITIVE: []
+    end
+
+    class DeleteCustomKeyStoreResponse < Aws::EmptyStructure
+    end
+
+    class DeleteImportedKeyMaterialRequest
+      attr_accessor key_id: ::String
+      attr_accessor key_material_id: ::String
+      SENSITIVE: []
+    end
+
+    class DeleteImportedKeyMaterialResponse
+      attr_accessor key_id: ::String
+      attr_accessor key_material_id: ::String
+      SENSITIVE: []
+    end
+
+    class DependencyTimeoutException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class DeriveSharedSecretRequest
+      attr_accessor key_id: ::String
+      attr_accessor key_agreement_algorithm: ("ECDH")
+      attr_accessor public_key: ::String
+      attr_accessor grant_tokens: ::Array[::String]
+      attr_accessor dry_run: bool
+      attr_accessor recipient: Types::RecipientInfo
+      SENSITIVE: []
+    end
+
+    class DeriveSharedSecretResponse
+      attr_accessor key_id: ::String
+      attr_accessor shared_secret: ::String
+      attr_accessor ciphertext_for_recipient: ::String
+      attr_accessor key_agreement_algorithm: ("ECDH")
+      attr_accessor key_origin: ("AWS_KMS" | "EXTERNAL" | "AWS_CLOUDHSM" | "EXTERNAL_KEY_STORE")
+      SENSITIVE: [:shared_secret]
+    end
+
+    class DescribeCustomKeyStoresRequest
+      attr_accessor custom_key_store_id: ::String
+      attr_accessor custom_key_store_name: ::String
+      attr_accessor limit: ::Integer
+      attr_accessor marker: ::String
+      SENSITIVE: []
+    end
+
+    class DescribeCustomKeyStoresResponse
+      attr_accessor custom_key_stores: ::Array[Types::CustomKeyStoresListEntry]
+      attr_accessor next_marker: ::String
+      attr_accessor truncated: bool
+      SENSITIVE: []
+    end
+
+    class DescribeKeyRequest
+      attr_accessor key_id: ::String
+      attr_accessor grant_tokens: ::Array[::String]
+      SENSITIVE: []
+    end
+
+    class DescribeKeyResponse
+      attr_accessor key_metadata: Types::KeyMetadata
+      SENSITIVE: []
+    end
+
+    class DisableKeyRequest
+      attr_accessor key_id: ::String
+      SENSITIVE: []
+    end
+
+    class DisableKeyRotationRequest
+      attr_accessor key_id: ::String
+      SENSITIVE: []
+    end
+
+    class DisabledException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class DisconnectCustomKeyStoreRequest
+      attr_accessor custom_key_store_id: ::String
+      SENSITIVE: []
+    end
+
+    class DisconnectCustomKeyStoreResponse < Aws::EmptyStructure
+    end
+
+    class DryRunOperationException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class EnableKeyRequest
+      attr_accessor key_id: ::String
+      SENSITIVE: []
+    end
+
+    class EnableKeyRotationRequest
+      attr_accessor key_id: ::String
+      attr_accessor rotation_period_in_days: ::Integer
+      SENSITIVE: []
+    end
+
+    class EncryptRequest
+      attr_accessor key_id: ::String
+      attr_accessor plaintext: ::String
+      attr_accessor encryption_context: ::Hash[::String, ::String]
+      attr_accessor grant_tokens: ::Array[::String]
+      attr_accessor encryption_algorithm: ("SYMMETRIC_DEFAULT" | "RSAES_OAEP_SHA_1" | "RSAES_OAEP_SHA_256" | "SM2PKE")
+      attr_accessor dry_run: bool
+      SENSITIVE: [:plaintext]
+    end
+
+    class EncryptResponse
+      attr_accessor ciphertext_blob: ::String
+      attr_accessor key_id: ::String
+      attr_accessor encryption_algorithm: ("SYMMETRIC_DEFAULT" | "RSAES_OAEP_SHA_1" | "RSAES_OAEP_SHA_256" | "SM2PKE")
+      SENSITIVE: []
+    end
+
+    class ExpiredImportTokenException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class GenerateDataKeyPairRequest
+      attr_accessor encryption_context: ::Hash[::String, ::String]
+      attr_accessor key_id: ::String
+      attr_accessor key_pair_spec: ("RSA_2048" | "RSA_3072" | "RSA_4096" | "ECC_NIST_P256" | "ECC_NIST_P384" | "ECC_NIST_P521" | "ECC_SECG_P256K1" | "SM2" | "ECC_NIST_EDWARDS25519")
+      attr_accessor grant_tokens: ::Array[::String]
+      attr_accessor recipient: Types::RecipientInfo
+      attr_accessor dry_run: bool
+      SENSITIVE: []
+    end
+
+    class GenerateDataKeyPairResponse
+      attr_accessor private_key_ciphertext_blob: ::String
+      attr_accessor private_key_plaintext: ::String
+      attr_accessor public_key: ::String
+      attr_accessor key_id: ::String
+      attr_accessor key_pair_spec: ("RSA_2048" | "RSA_3072" | "RSA_4096" | "ECC_NIST_P256" | "ECC_NIST_P384" | "ECC_NIST_P521" | "ECC_SECG_P256K1" | "SM2" | "ECC_NIST_EDWARDS25519")
+      attr_accessor ciphertext_for_recipient: ::String
+      attr_accessor key_material_id: ::String
+      SENSITIVE: [:private_key_plaintext]
+    end
+
+    class GenerateDataKeyPairWithoutPlaintextRequest
+      attr_accessor encryption_context: ::Hash[::String, ::String]
+      attr_accessor key_id: ::String
+      attr_accessor key_pair_spec: ("RSA_2048" | "RSA_3072" | "RSA_4096" | "ECC_NIST_P256" | "ECC_NIST_P384" | "ECC_NIST_P521" | "ECC_SECG_P256K1" | "SM2" | "ECC_NIST_EDWARDS25519")
+      attr_accessor grant_tokens: ::Array[::String]
+      attr_accessor dry_run: bool
+      SENSITIVE: []
+    end
+
+    class GenerateDataKeyPairWithoutPlaintextResponse
+      attr_accessor private_key_ciphertext_blob: ::String
+      attr_accessor public_key: ::String
+      attr_accessor key_id: ::String
+      attr_accessor key_pair_spec: ("RSA_2048" | "RSA_3072" | "RSA_4096" | "ECC_NIST_P256" | "ECC_NIST_P384" | "ECC_NIST_P521" | "ECC_SECG_P256K1" | "SM2" | "ECC_NIST_EDWARDS25519")
+      attr_accessor key_material_id: ::String
+      SENSITIVE: []
+    end
+
+    class GenerateDataKeyRequest
+      attr_accessor key_id: ::String
+      attr_accessor encryption_context: ::Hash[::String, ::String]
+      attr_accessor number_of_bytes: ::Integer
+      attr_accessor key_spec: ("AES_256" | "AES_128")
+      attr_accessor grant_tokens: ::Array[::String]
+      attr_accessor recipient: Types::RecipientInfo
+      attr_accessor dry_run: bool
+      SENSITIVE: []
+    end
+
+    class GenerateDataKeyResponse
+      attr_accessor ciphertext_blob: ::String
+      attr_accessor plaintext: ::String
+      attr_accessor key_id: ::String
+      attr_accessor ciphertext_for_recipient: ::String
+      attr_accessor key_material_id: ::String
+      SENSITIVE: [:plaintext]
+    end
+
+    class GenerateDataKeyWithoutPlaintextRequest
+      attr_accessor key_id: ::String
+      attr_accessor encryption_context: ::Hash[::String, ::String]
+      attr_accessor key_spec: ("AES_256" | "AES_128")
+      attr_accessor number_of_bytes: ::Integer
+      attr_accessor grant_tokens: ::Array[::String]
+      attr_accessor dry_run: bool
+      SENSITIVE: []
+    end
+
+    class GenerateDataKeyWithoutPlaintextResponse
+      attr_accessor ciphertext_blob: ::String
+      attr_accessor key_id: ::String
+      attr_accessor key_material_id: ::String
+      SENSITIVE: []
+    end
+
+    class GenerateMacRequest
+      attr_accessor message: ::String
+      attr_accessor key_id: ::String
+      attr_accessor mac_algorithm: ("HMAC_SHA_224" | "HMAC_SHA_256" | "HMAC_SHA_384" | "HMAC_SHA_512")
+      attr_accessor grant_tokens: ::Array[::String]
+      attr_accessor dry_run: bool
+      SENSITIVE: [:message]
+    end
+
+    class GenerateMacResponse
+      attr_accessor mac: ::String
+      attr_accessor mac_algorithm: ("HMAC_SHA_224" | "HMAC_SHA_256" | "HMAC_SHA_384" | "HMAC_SHA_512")
+      attr_accessor key_id: ::String
+      SENSITIVE: []
+    end
+
+    class GenerateRandomRequest
+      attr_accessor number_of_bytes: ::Integer
+      attr_accessor custom_key_store_id: ::String
+      attr_accessor recipient: Types::RecipientInfo
+      SENSITIVE: []
+    end
+
+    class GenerateRandomResponse
+      attr_accessor plaintext: ::String
+      attr_accessor ciphertext_for_recipient: ::String
+      SENSITIVE: [:plaintext]
+    end
+
+    class GetKeyPolicyRequest
+      attr_accessor key_id: ::String
+      attr_accessor policy_name: ::String
+      SENSITIVE: []
+    end
+
+    class GetKeyPolicyResponse
+      attr_accessor policy: ::String
+      attr_accessor policy_name: ::String
+      SENSITIVE: []
+    end
+
+    class GetKeyRotationStatusRequest
+      attr_accessor key_id: ::String
+      SENSITIVE: []
+    end
+
+    class GetKeyRotationStatusResponse
+      attr_accessor key_rotation_enabled: bool
+      attr_accessor key_id: ::String
+      attr_accessor rotation_period_in_days: ::Integer
+      attr_accessor next_rotation_date: ::Time
+      attr_accessor on_demand_rotation_start_date: ::Time
+      SENSITIVE: []
+    end
+
+    class GetParametersForImportRequest
+      attr_accessor key_id: ::String
+      attr_accessor wrapping_algorithm: ("RSAES_PKCS1_V1_5" | "RSAES_OAEP_SHA_1" | "RSAES_OAEP_SHA_256" | "RSA_AES_KEY_WRAP_SHA_1" | "RSA_AES_KEY_WRAP_SHA_256" | "SM2PKE")
+      attr_accessor wrapping_key_spec: ("RSA_2048" | "RSA_3072" | "RSA_4096" | "SM2")
+      SENSITIVE: []
+    end
+
+    class GetParametersForImportResponse
+      attr_accessor key_id: ::String
+      attr_accessor import_token: ::String
+      attr_accessor public_key: ::String
+      attr_accessor parameters_valid_to: ::Time
+      SENSITIVE: [:public_key]
+    end
+
+    class GetPublicKeyRequest
+      attr_accessor key_id: ::String
+      attr_accessor grant_tokens: ::Array[::String]
+      SENSITIVE: []
+    end
+
+    class GetPublicKeyResponse
+      attr_accessor key_id: ::String
+      attr_accessor public_key: ::String
+      attr_accessor customer_master_key_spec: ("RSA_2048" | "RSA_3072" | "RSA_4096" | "ECC_NIST_P256" | "ECC_NIST_P384" | "ECC_NIST_P521" | "ECC_SECG_P256K1" | "SYMMETRIC_DEFAULT" | "HMAC_224" | "HMAC_256" | "HMAC_384" | "HMAC_512" | "SM2")
+      attr_accessor key_spec: ("RSA_2048" | "RSA_3072" | "RSA_4096" | "ECC_NIST_P256" | "ECC_NIST_P384" | "ECC_NIST_P521" | "ECC_SECG_P256K1" | "SYMMETRIC_DEFAULT" | "HMAC_224" | "HMAC_256" | "HMAC_384" | "HMAC_512" | "SM2" | "ML_DSA_44" | "ML_DSA_65" | "ML_DSA_87" | "ECC_NIST_EDWARDS25519")
+      attr_accessor key_usage: ("SIGN_VERIFY" | "ENCRYPT_DECRYPT" | "GENERATE_VERIFY_MAC" | "KEY_AGREEMENT")
+      attr_accessor encryption_algorithms: ::Array[("SYMMETRIC_DEFAULT" | "RSAES_OAEP_SHA_1" | "RSAES_OAEP_SHA_256" | "SM2PKE")]
+      attr_accessor signing_algorithms: ::Array[("RSASSA_PSS_SHA_256" | "RSASSA_PSS_SHA_384" | "RSASSA_PSS_SHA_512" | "RSASSA_PKCS1_V1_5_SHA_256" | "RSASSA_PKCS1_V1_5_SHA_384" | "RSASSA_PKCS1_V1_5_SHA_512" | "ECDSA_SHA_256" | "ECDSA_SHA_384" | "ECDSA_SHA_512" | "SM2DSA" | "ML_DSA_SHAKE_256" | "ED25519_SHA_512" | "ED25519_PH_SHA_512")]
+      attr_accessor key_agreement_algorithms: ::Array[("ECDH")]
+      SENSITIVE: []
+    end
+
+    class GrantConstraints
+      attr_accessor encryption_context_subset: ::Hash[::String, ::String]
+      attr_accessor encryption_context_equals: ::Hash[::String, ::String]
+      SENSITIVE: []
+    end
+
+    class GrantListEntry
+      attr_accessor key_id: ::String
+      attr_accessor grant_id: ::String
+      attr_accessor name: ::String
+      attr_accessor creation_date: ::Time
+      attr_accessor grantee_principal: ::String
+      attr_accessor retiring_principal: ::String
+      attr_accessor issuing_account: ::String
+      attr_accessor operations: ::Array[("Decrypt" | "Encrypt" | "GenerateDataKey" | "GenerateDataKeyWithoutPlaintext" | "ReEncryptFrom" | "ReEncryptTo" | "Sign" | "Verify" | "GetPublicKey" | "CreateGrant" | "RetireGrant" | "DescribeKey" | "GenerateDataKeyPair" | "GenerateDataKeyPairWithoutPlaintext" | "GenerateMac" | "VerifyMac" | "DeriveSharedSecret")]
+      attr_accessor constraints: Types::GrantConstraints
+      SENSITIVE: []
+    end
+
+    class ImportKeyMaterialRequest
+      attr_accessor key_id: ::String
+      attr_accessor import_token: ::String
+      attr_accessor encrypted_key_material: ::String
+      attr_accessor valid_to: ::Time
+      attr_accessor expiration_model: ("KEY_MATERIAL_EXPIRES" | "KEY_MATERIAL_DOES_NOT_EXPIRE")
+      attr_accessor import_type: ("NEW_KEY_MATERIAL" | "EXISTING_KEY_MATERIAL")
+      attr_accessor key_material_description: ::String
+      attr_accessor key_material_id: ::String
+      SENSITIVE: []
+    end
+
+    class ImportKeyMaterialResponse
+      attr_accessor key_id: ::String
+      attr_accessor key_material_id: ::String
+      SENSITIVE: []
+    end
+
+    class IncorrectKeyException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class IncorrectKeyMaterialException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class IncorrectTrustAnchorException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class InvalidAliasNameException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class InvalidArnException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class InvalidCiphertextException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class InvalidGrantIdException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class InvalidGrantTokenException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class InvalidImportTokenException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class InvalidKeyUsageException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class InvalidMarkerException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class KMSInternalException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class KMSInvalidMacException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class KMSInvalidSignatureException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class KMSInvalidStateException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class KeyListEntry
+      attr_accessor key_id: ::String
+      attr_accessor key_arn: ::String
+      SENSITIVE: []
+    end
+
+    class KeyMetadata
+      attr_accessor aws_account_id: ::String
+      attr_accessor key_id: ::String
+      attr_accessor arn: ::String
+      attr_accessor creation_date: ::Time
+      attr_accessor enabled: bool
+      attr_accessor description: ::String
+      attr_accessor key_usage: ("SIGN_VERIFY" | "ENCRYPT_DECRYPT" | "GENERATE_VERIFY_MAC" | "KEY_AGREEMENT")
+      attr_accessor key_state: ("Creating" | "Enabled" | "Disabled" | "PendingDeletion" | "PendingImport" | "PendingReplicaDeletion" | "Unavailable" | "Updating")
+      attr_accessor deletion_date: ::Time
+      attr_accessor valid_to: ::Time
+      attr_accessor origin: ("AWS_KMS" | "EXTERNAL" | "AWS_CLOUDHSM" | "EXTERNAL_KEY_STORE")
+      attr_accessor custom_key_store_id: ::String
+      attr_accessor cloud_hsm_cluster_id: ::String
+      attr_accessor expiration_model: ("KEY_MATERIAL_EXPIRES" | "KEY_MATERIAL_DOES_NOT_EXPIRE")
+      attr_accessor key_manager: ("AWS" | "CUSTOMER")
+      attr_accessor customer_master_key_spec: ("RSA_2048" | "RSA_3072" | "RSA_4096" | "ECC_NIST_P256" | "ECC_NIST_P384" | "ECC_NIST_P521" | "ECC_SECG_P256K1" | "SYMMETRIC_DEFAULT" | "HMAC_224" | "HMAC_256" | "HMAC_384" | "HMAC_512" | "SM2")
+      attr_accessor key_spec: ("RSA_2048" | "RSA_3072" | "RSA_4096" | "ECC_NIST_P256" | "ECC_NIST_P384" | "ECC_NIST_P521" | "ECC_SECG_P256K1" | "SYMMETRIC_DEFAULT" | "HMAC_224" | "HMAC_256" | "HMAC_384" | "HMAC_512" | "SM2" | "ML_DSA_44" | "ML_DSA_65" | "ML_DSA_87" | "ECC_NIST_EDWARDS25519")
+      attr_accessor encryption_algorithms: ::Array[("SYMMETRIC_DEFAULT" | "RSAES_OAEP_SHA_1" | "RSAES_OAEP_SHA_256" | "SM2PKE")]
+      attr_accessor signing_algorithms: ::Array[("RSASSA_PSS_SHA_256" | "RSASSA_PSS_SHA_384" | "RSASSA_PSS_SHA_512" | "RSASSA_PKCS1_V1_5_SHA_256" | "RSASSA_PKCS1_V1_5_SHA_384" | "RSASSA_PKCS1_V1_5_SHA_512" | "ECDSA_SHA_256" | "ECDSA_SHA_384" | "ECDSA_SHA_512" | "SM2DSA" | "ML_DSA_SHAKE_256" | "ED25519_SHA_512" | "ED25519_PH_SHA_512")]
+      attr_accessor key_agreement_algorithms: ::Array[("ECDH")]
+      attr_accessor multi_region: bool
+      attr_accessor multi_region_configuration: Types::MultiRegionConfiguration
+      attr_accessor pending_deletion_window_in_days: ::Integer
+      attr_accessor mac_algorithms: ::Array[("HMAC_SHA_224" | "HMAC_SHA_256" | "HMAC_SHA_384" | "HMAC_SHA_512")]
+      attr_accessor xks_key_configuration: Types::XksKeyConfigurationType
+      attr_accessor current_key_material_id: ::String
+      SENSITIVE: []
+    end
+
+    class KeyUnavailableException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class LimitExceededException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class ListAliasesRequest
+      attr_accessor key_id: ::String
+      attr_accessor limit: ::Integer
+      attr_accessor marker: ::String
+      SENSITIVE: []
+    end
+
+    class ListAliasesResponse
+      attr_accessor aliases: ::Array[Types::AliasListEntry]
+      attr_accessor next_marker: ::String
+      attr_accessor truncated: bool
+      SENSITIVE: []
+    end
+
+    class ListGrantsRequest
+      attr_accessor limit: ::Integer
+      attr_accessor marker: ::String
+      attr_accessor key_id: ::String
+      attr_accessor grant_id: ::String
+      attr_accessor grantee_principal: ::String
+      SENSITIVE: []
+    end
+
+    class ListGrantsResponse
+      attr_accessor grants: ::Array[Types::GrantListEntry]
+      attr_accessor next_marker: ::String
+      attr_accessor truncated: bool
+      SENSITIVE: []
+    end
+
+    class ListKeyPoliciesRequest
+      attr_accessor key_id: ::String
+      attr_accessor limit: ::Integer
+      attr_accessor marker: ::String
+      SENSITIVE: []
+    end
+
+    class ListKeyPoliciesResponse
+      attr_accessor policy_names: ::Array[::String]
+      attr_accessor next_marker: ::String
+      attr_accessor truncated: bool
+      SENSITIVE: []
+    end
+
+    class ListKeyRotationsRequest
+      attr_accessor key_id: ::String
+      attr_accessor include_key_material: ("ALL_KEY_MATERIAL" | "ROTATIONS_ONLY")
+      attr_accessor limit: ::Integer
+      attr_accessor marker: ::String
+      SENSITIVE: []
+    end
+
+    class ListKeyRotationsResponse
+      attr_accessor rotations: ::Array[Types::RotationsListEntry]
+      attr_accessor next_marker: ::String
+      attr_accessor truncated: bool
+      SENSITIVE: []
+    end
+
+    class ListKeysRequest
+      attr_accessor limit: ::Integer
+      attr_accessor marker: ::String
+      SENSITIVE: []
+    end
+
+    class ListKeysResponse
+      attr_accessor keys: ::Array[Types::KeyListEntry]
+      attr_accessor next_marker: ::String
+      attr_accessor truncated: bool
+      SENSITIVE: []
+    end
+
+    class ListResourceTagsRequest
+      attr_accessor key_id: ::String
+      attr_accessor limit: ::Integer
+      attr_accessor marker: ::String
+      SENSITIVE: []
+    end
+
+    class ListResourceTagsResponse
+      attr_accessor tags: ::Array[Types::Tag]
+      attr_accessor next_marker: ::String
+      attr_accessor truncated: bool
+      SENSITIVE: []
+    end
+
+    class ListRetirableGrantsRequest
+      attr_accessor limit: ::Integer
+      attr_accessor marker: ::String
+      attr_accessor retiring_principal: ::String
+      SENSITIVE: []
+    end
+
+    class MalformedPolicyDocumentException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class MultiRegionConfiguration
+      attr_accessor multi_region_key_type: ("PRIMARY" | "REPLICA")
+      attr_accessor primary_key: Types::MultiRegionKey
+      attr_accessor replica_keys: ::Array[Types::MultiRegionKey]
+      SENSITIVE: []
+    end
+
+    class MultiRegionKey
+      attr_accessor arn: ::String
+      attr_accessor region: ::String
+      SENSITIVE: []
+    end
+
+    class NotFoundException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class PutKeyPolicyRequest
+      attr_accessor key_id: ::String
+      attr_accessor policy_name: ::String
+      attr_accessor policy: ::String
+      attr_accessor bypass_policy_lockout_safety_check: bool
+      SENSITIVE: []
+    end
+
+    class ReEncryptRequest
+      attr_accessor ciphertext_blob: ::String
+      attr_accessor source_encryption_context: ::Hash[::String, ::String]
+      attr_accessor source_key_id: ::String
+      attr_accessor destination_key_id: ::String
+      attr_accessor destination_encryption_context: ::Hash[::String, ::String]
+      attr_accessor source_encryption_algorithm: ("SYMMETRIC_DEFAULT" | "RSAES_OAEP_SHA_1" | "RSAES_OAEP_SHA_256" | "SM2PKE")
+      attr_accessor destination_encryption_algorithm: ("SYMMETRIC_DEFAULT" | "RSAES_OAEP_SHA_1" | "RSAES_OAEP_SHA_256" | "SM2PKE")
+      attr_accessor grant_tokens: ::Array[::String]
+      attr_accessor dry_run: bool
+      attr_accessor dry_run_modifiers: ::Array[("IGNORE_CIPHERTEXT")]
+      SENSITIVE: []
+    end
+
+    class ReEncryptResponse
+      attr_accessor ciphertext_blob: ::String
+      attr_accessor source_key_id: ::String
+      attr_accessor key_id: ::String
+      attr_accessor source_encryption_algorithm: ("SYMMETRIC_DEFAULT" | "RSAES_OAEP_SHA_1" | "RSAES_OAEP_SHA_256" | "SM2PKE")
+      attr_accessor destination_encryption_algorithm: ("SYMMETRIC_DEFAULT" | "RSAES_OAEP_SHA_1" | "RSAES_OAEP_SHA_256" | "SM2PKE")
+      attr_accessor source_key_material_id: ::String
+      attr_accessor destination_key_material_id: ::String
+      SENSITIVE: []
+    end
+
+    class RecipientInfo
+      attr_accessor key_encryption_algorithm: ("RSAES_OAEP_SHA_256")
+      attr_accessor attestation_document: ::String
+      SENSITIVE: []
+    end
+
+    class ReplicateKeyRequest
+      attr_accessor key_id: ::String
+      attr_accessor replica_region: ::String
+      attr_accessor policy: ::String
+      attr_accessor bypass_policy_lockout_safety_check: bool
+      attr_accessor description: ::String
+      attr_accessor tags: ::Array[Types::Tag]
+      SENSITIVE: []
+    end
+
+    class ReplicateKeyResponse
+      attr_accessor replica_key_metadata: Types::KeyMetadata
+      attr_accessor replica_policy: ::String
+      attr_accessor replica_tags: ::Array[Types::Tag]
+      SENSITIVE: []
+    end
+
+    class RetireGrantRequest
+      attr_accessor grant_token: ::String
+      attr_accessor key_id: ::String
+      attr_accessor grant_id: ::String
+      attr_accessor dry_run: bool
+      SENSITIVE: []
+    end
+
+    class RevokeGrantRequest
+      attr_accessor key_id: ::String
+      attr_accessor grant_id: ::String
+      attr_accessor dry_run: bool
+      SENSITIVE: []
+    end
+
+    class RotateKeyOnDemandRequest
+      attr_accessor key_id: ::String
+      SENSITIVE: []
+    end
+
+    class RotateKeyOnDemandResponse
+      attr_accessor key_id: ::String
+      SENSITIVE: []
+    end
+
+    class RotationsListEntry
+      attr_accessor key_id: ::String
+      attr_accessor key_material_id: ::String
+      attr_accessor key_material_description: ::String
+      attr_accessor import_state: ("IMPORTED" | "PENDING_IMPORT")
+      attr_accessor key_material_state: ("NON_CURRENT" | "CURRENT" | "PENDING_ROTATION" | "PENDING_MULTI_REGION_IMPORT_AND_ROTATION")
+      attr_accessor expiration_model: ("KEY_MATERIAL_EXPIRES" | "KEY_MATERIAL_DOES_NOT_EXPIRE")
+      attr_accessor valid_to: ::Time
+      attr_accessor rotation_date: ::Time
+      attr_accessor rotation_type: ("AUTOMATIC" | "ON_DEMAND")
+      SENSITIVE: []
+    end
+
+    class ScheduleKeyDeletionRequest
+      attr_accessor key_id: ::String
+      attr_accessor pending_window_in_days: ::Integer
+      SENSITIVE: []
+    end
+
+    class ScheduleKeyDeletionResponse
+      attr_accessor key_id: ::String
+      attr_accessor deletion_date: ::Time
+      attr_accessor key_state: ("Creating" | "Enabled" | "Disabled" | "PendingDeletion" | "PendingImport" | "PendingReplicaDeletion" | "Unavailable" | "Updating")
+      attr_accessor pending_window_in_days: ::Integer
+      SENSITIVE: []
+    end
+
+    class SignRequest
+      attr_accessor key_id: ::String
+      attr_accessor message: ::String
+      attr_accessor message_type: ("RAW" | "DIGEST" | "EXTERNAL_MU")
+      attr_accessor grant_tokens: ::Array[::String]
+      attr_accessor signing_algorithm: ("RSASSA_PSS_SHA_256" | "RSASSA_PSS_SHA_384" | "RSASSA_PSS_SHA_512" | "RSASSA_PKCS1_V1_5_SHA_256" | "RSASSA_PKCS1_V1_5_SHA_384" | "RSASSA_PKCS1_V1_5_SHA_512" | "ECDSA_SHA_256" | "ECDSA_SHA_384" | "ECDSA_SHA_512" | "SM2DSA" | "ML_DSA_SHAKE_256" | "ED25519_SHA_512" | "ED25519_PH_SHA_512")
+      attr_accessor dry_run: bool
+      SENSITIVE: [:message]
+    end
+
+    class SignResponse
+      attr_accessor key_id: ::String
+      attr_accessor signature: ::String
+      attr_accessor signing_algorithm: ("RSASSA_PSS_SHA_256" | "RSASSA_PSS_SHA_384" | "RSASSA_PSS_SHA_512" | "RSASSA_PKCS1_V1_5_SHA_256" | "RSASSA_PKCS1_V1_5_SHA_384" | "RSASSA_PKCS1_V1_5_SHA_512" | "ECDSA_SHA_256" | "ECDSA_SHA_384" | "ECDSA_SHA_512" | "SM2DSA" | "ML_DSA_SHAKE_256" | "ED25519_SHA_512" | "ED25519_PH_SHA_512")
+      SENSITIVE: []
+    end
+
+    class Tag
+      attr_accessor tag_key: ::String
+      attr_accessor tag_value: ::String
+      SENSITIVE: []
+    end
+
+    class TagException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class TagResourceRequest
+      attr_accessor key_id: ::String
+      attr_accessor tags: ::Array[Types::Tag]
+      SENSITIVE: []
+    end
+
+    class UnsupportedOperationException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class UntagResourceRequest
+      attr_accessor key_id: ::String
+      attr_accessor tag_keys: ::Array[::String]
+      SENSITIVE: []
+    end
+
+    class UpdateAliasRequest
+      attr_accessor alias_name: ::String
+      attr_accessor target_key_id: ::String
+      SENSITIVE: []
+    end
+
+    class UpdateCustomKeyStoreRequest
+      attr_accessor custom_key_store_id: ::String
+      attr_accessor new_custom_key_store_name: ::String
+      attr_accessor key_store_password: ::String
+      attr_accessor cloud_hsm_cluster_id: ::String
+      attr_accessor xks_proxy_uri_endpoint: ::String
+      attr_accessor xks_proxy_uri_path: ::String
+      attr_accessor xks_proxy_vpc_endpoint_service_name: ::String
+      attr_accessor xks_proxy_vpc_endpoint_service_owner: ::String
+      attr_accessor xks_proxy_authentication_credential: Types::XksProxyAuthenticationCredentialType
+      attr_accessor xks_proxy_connectivity: ("PUBLIC_ENDPOINT" | "VPC_ENDPOINT_SERVICE")
+      SENSITIVE: [:key_store_password]
+    end
+
+    class UpdateCustomKeyStoreResponse < Aws::EmptyStructure
+    end
+
+    class UpdateKeyDescriptionRequest
+      attr_accessor key_id: ::String
+      attr_accessor description: ::String
+      SENSITIVE: []
+    end
+
+    class UpdatePrimaryRegionRequest
+      attr_accessor key_id: ::String
+      attr_accessor primary_region: ::String
+      SENSITIVE: []
+    end
+
+    class VerifyMacRequest
+      attr_accessor message: ::String
+      attr_accessor key_id: ::String
+      attr_accessor mac_algorithm: ("HMAC_SHA_224" | "HMAC_SHA_256" | "HMAC_SHA_384" | "HMAC_SHA_512")
+      attr_accessor mac: ::String
+      attr_accessor grant_tokens: ::Array[::String]
+      attr_accessor dry_run: bool
+      SENSITIVE: [:message]
+    end
+
+    class VerifyMacResponse
+      attr_accessor key_id: ::String
+      attr_accessor mac_valid: bool
+      attr_accessor mac_algorithm: ("HMAC_SHA_224" | "HMAC_SHA_256" | "HMAC_SHA_384" | "HMAC_SHA_512")
+      SENSITIVE: []
+    end
+
+    class VerifyRequest
+      attr_accessor key_id: ::String
+      attr_accessor message: ::String
+      attr_accessor message_type: ("RAW" | "DIGEST" | "EXTERNAL_MU")
+      attr_accessor signature: ::String
+      attr_accessor signing_algorithm: ("RSASSA_PSS_SHA_256" | "RSASSA_PSS_SHA_384" | "RSASSA_PSS_SHA_512" | "RSASSA_PKCS1_V1_5_SHA_256" | "RSASSA_PKCS1_V1_5_SHA_384" | "RSASSA_PKCS1_V1_5_SHA_512" | "ECDSA_SHA_256" | "ECDSA_SHA_384" | "ECDSA_SHA_512" | "SM2DSA" | "ML_DSA_SHAKE_256" | "ED25519_SHA_512" | "ED25519_PH_SHA_512")
+      attr_accessor grant_tokens: ::Array[::String]
+      attr_accessor dry_run: bool
+      SENSITIVE: [:message]
+    end
+
+    class VerifyResponse
+      attr_accessor key_id: ::String
+      attr_accessor signature_valid: bool
+      attr_accessor signing_algorithm: ("RSASSA_PSS_SHA_256" | "RSASSA_PSS_SHA_384" | "RSASSA_PSS_SHA_512" | "RSASSA_PKCS1_V1_5_SHA_256" | "RSASSA_PKCS1_V1_5_SHA_384" | "RSASSA_PKCS1_V1_5_SHA_512" | "ECDSA_SHA_256" | "ECDSA_SHA_384" | "ECDSA_SHA_512" | "SM2DSA" | "ML_DSA_SHAKE_256" | "ED25519_SHA_512" | "ED25519_PH_SHA_512")
+      SENSITIVE: []
+    end
+
+    class XksKeyAlreadyInUseException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class XksKeyConfigurationType
+      attr_accessor id: ::String
+      SENSITIVE: []
+    end
+
+    class XksKeyInvalidConfigurationException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class XksKeyNotFoundException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class XksProxyAuthenticationCredentialType
+      attr_accessor access_key_id: ::String
+      attr_accessor raw_secret_access_key: ::String
+      SENSITIVE: [:access_key_id, :raw_secret_access_key]
+    end
+
+    class XksProxyConfigurationType
+      attr_accessor connectivity: ("PUBLIC_ENDPOINT" | "VPC_ENDPOINT_SERVICE")
+      attr_accessor access_key_id: ::String
+      attr_accessor uri_endpoint: ::String
+      attr_accessor uri_path: ::String
+      attr_accessor vpc_endpoint_service_name: ::String
+      attr_accessor vpc_endpoint_service_owner: ::String
+      SENSITIVE: [:access_key_id]
+    end
+
+    class XksProxyIncorrectAuthenticationCredentialException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class XksProxyInvalidConfigurationException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class XksProxyInvalidResponseException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class XksProxyUriEndpointInUseException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class XksProxyUriInUseException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class XksProxyUriUnreachableException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class XksProxyVpcEndpointServiceInUseException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class XksProxyVpcEndpointServiceInvalidConfigurationException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class XksProxyVpcEndpointServiceNotFoundException
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+  end
+end

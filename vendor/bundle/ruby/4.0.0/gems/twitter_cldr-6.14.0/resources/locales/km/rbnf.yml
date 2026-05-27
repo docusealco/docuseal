@@ -1,0 +1,131 @@
+--- 
+:km: 
+  :rbnf: 
+    :grouping: 
+      - 
+        :ruleset: 
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: "&[last primary ignorable ] << ' ' << '​' << '­';"
+                :value: 0
+            :type: lenient-parse
+          - 
+            :rules: 
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 0
+            :type: spellout-numbering-year
+          - 
+            :rules: 
+              - 
+                :rule: ដក​>>;
+                :value: "-x"
+              - 
+                :rule: <<​ចុច​>>>;
+                :value: x.x
+              - 
+                :rule: សូន្យ;
+                :value: 0
+              - 
+                :rule: មួយ;
+                :value: 1
+              - 
+                :rule: ពីរ;
+                :value: 2
+              - 
+                :rule: បី;
+                :value: 3
+              - 
+                :rule: បួន;
+                :value: 4
+              - 
+                :rule: ប្រាំ;
+                :value: 5
+              - 
+                :rule: ប្រាំមួយ;
+                :value: 6
+              - 
+                :rule: ប្រាំពីរ;
+                :value: 7
+              - 
+                :rule: ប្រាំបី;
+                :value: 8
+              - 
+                :rule: ប្រាំបួន;
+                :value: 9
+              - 
+                :rule: "ដប់[​>>];"
+                :value: 10
+              - 
+                :rule: "ម្ភៃ[​>>];"
+                :value: 20
+              - 
+                :rule: "សាមសិប[​>>];"
+                :value: 30
+              - 
+                :rule: "សែសិប[​>>];"
+                :value: 40
+              - 
+                :rule: "ហាសិប[​>>];"
+                :value: 50
+              - 
+                :rule: "ហុកសិប[​>>];"
+                :value: 60
+              - 
+                :rule: "ចិតសិប[​>>];"
+                :value: 70
+              - 
+                :rule: "ប៉ែតសិប[​>>];"
+                :value: 80
+              - 
+                :rule: "កៅសិប[​>>];"
+                :value: 90
+              - 
+                :rule: "<<​រយ[​>>];"
+                :value: 100
+              - 
+                :rule: "<<​ពាន់[​>>];"
+                :value: 1000
+              - 
+                :rule: "<<​ម៉ឺន[​>>];"
+                :value: 10000
+              - 
+                :rule: "<<​សែន[​>>];"
+                :value: 100000
+              - 
+                :rule: "<<​លាន[​>>];"
+                :value: 1000000
+              - 
+                :rule: "<<​ពាន់​កោដិ[​>>];"
+                :value: 10000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000
+            :type: spellout-numbering
+          - 
+            :rules: 
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 0
+            :type: spellout-cardinal
+          - 
+            :rules: 
+              - 
+                :rule: ទី=%spellout-cardinal=;
+                :value: 0
+            :type: spellout-ordinal
+        :type: SpelloutRules
+      - 
+        :ruleset: 
+          - 
+            :rules: 
+              - 
+                :rule: −>>;
+                :value: "-x"
+              - 
+                :rule: "ទី=#,##0=;"
+                :value: 0
+            :type: digits-ordinal
+        :type: OrdinalRules

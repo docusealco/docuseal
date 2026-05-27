@@ -1,0 +1,3 @@
+module WEBrick
+  VERSION: String
+end

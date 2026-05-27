@@ -1,0 +1,29 @@
+current directory: /app/vendor/bundle/ruby/4.0.0/gems/psych-5.3.1/ext/psych
+/usr/local/bin/ruby extconf.rb
+checking for pkg-config for yaml-0.1... [" ", "", "-lyaml"]
+creating Makefile
+
+current directory: /app/vendor/bundle/ruby/4.0.0/gems/psych-5.3.1/ext/psych
+make -j4 DESTDIR\= sitearchdir\=./.gem.20260516-47-qljnnr sitelibdir\=./.gem.20260516-47-qljnnr clean
+cd libyaml && make clean
+/bin/sh: cd: line 0: can't cd to libyaml: No such file or directory
+make: [Makefile:287: clean-so] Error 2 (ignored)
+
+current directory: /app/vendor/bundle/ruby/4.0.0/gems/psych-5.3.1/ext/psych
+make -j4 DESTDIR\= sitearchdir\=./.gem.20260516-47-qljnnr sitelibdir\=./.gem.20260516-47-qljnnr
+compiling psych.c
+compiling psych_emitter.c
+compiling psych_parser.c
+compiling psych_to_ruby.c
+compiling psych_yaml_tree.c
+linking shared-object psych.so
+
+current directory: /app/vendor/bundle/ruby/4.0.0/gems/psych-5.3.1/ext/psych
+make -j4 DESTDIR\= sitearchdir\=./.gem.20260516-47-qljnnr sitelibdir\=./.gem.20260516-47-qljnnr install
+/usr/bin/install -c -m 0755 psych.so ./.gem.20260516-47-qljnnr
+
+current directory: /app/vendor/bundle/ruby/4.0.0/gems/psych-5.3.1/ext/psych
+make DESTDIR\= sitearchdir\=./.gem.20260516-47-qljnnr sitelibdir\=./.gem.20260516-47-qljnnr clean
+cd libyaml && make clean
+/bin/sh: cd: line 0: can't cd to libyaml: No such file or directory
+make: [Makefile:287: clean-so] Error 2 (ignored)

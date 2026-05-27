@@ -1,0 +1,538 @@
+--- 
+:sl: 
+  :fields: 
+    :day: 
+      :display_name: dan
+      :relative: 
+        -1: včeraj
+        -2: predvčerajšnjim
+        0: danes
+        1: jutri
+        2: pojutrišnjem
+      :relative_time: 
+        :future: 
+          :few: "čez {0} dni"
+          :one: "čez {0} dan"
+          :other: "čez {0} dni"
+          :two: "čez {0} dneva"
+        :past: 
+          :few: "pred {0} dnevi"
+          :one: "pred {0} dnevom"
+          :other: "pred {0} dnevi"
+          :two: "pred {0} dnevoma"
+    :dayOfYear: 
+      :display_name: "dan leta"
+    :dayperiod: 
+      :display_name: dop/pop
+    :era: 
+      :display_name: doba
+    :fri: 
+      :relative: 
+        -1: "prejšnji petek"
+        0: "ta petek"
+        1: "naslednji petek"
+      :relative_time: 
+        :future: 
+          :few: "čez {0} petke"
+          :one: "čez {0} petek"
+          :other: "čez {0} petkov"
+          :two: "čez {0} petka"
+        :past: 
+          :few: "pred {0} petki"
+          :one: "pred {0} petkom"
+          :other: "pred {0} petki"
+          :two: "pred {0} petkoma"
+    :fri-narrow: 
+      :relative: 
+        -1: "prejš. pet."
+        0: "ta pet."
+        1: "nasl. pet."
+    :fri-short: 
+      :relative: 
+        -1: "prejšnji pet."
+        0: "ta pet."
+        1: "naslednji pet."
+      :relative_time: 
+        :future: 
+          :few: "čez {0} pet."
+          :one: "čez {0} pet."
+          :other: "čez {0} pet."
+          :two: "čez {0} pet."
+        :past: 
+          :few: "pred {0} pet."
+          :one: "pred {0} pet."
+          :other: "pred {0} pet."
+          :two: "pred {0} pet."
+    :hour: 
+      :display_name: ura
+      :relative: 
+        0: "v tej uri"
+      :relative_time: 
+        :future: 
+          :few: "čez {0} ure"
+          :one: "čez {0} uro"
+          :other: "čez {0} ur"
+          :two: "čez {0} uri"
+        :past: 
+          :few: "pred {0} urami"
+          :one: "pred {0} uro"
+          :other: "pred {0} urami"
+          :two: "pred {0} urama"
+    :hour-narrow: 
+      :display_name: h
+      :relative_time: 
+        :future: 
+          :few: "čez {0} h"
+          :one: "čez {0} h"
+          :other: "čez {0} h"
+          :two: "čez {0} h"
+        :past: 
+          :few: "pred {0} h"
+          :one: "pred {0} h"
+          :other: "pred {0} h"
+          :two: "pred {0} h"
+    :minute: 
+      :display_name: minuta
+      :relative: 
+        0: "to minuto"
+      :relative_time: 
+        :future: 
+          :few: "čez {0} minute"
+          :one: "čez {0} minuto"
+          :other: "čez {0} minut"
+          :two: "čez {0} minuti"
+        :past: 
+          :few: "pred {0} minutami"
+          :one: "pred {0} minuto"
+          :other: "pred {0} minutami"
+          :two: "pred {0} minutama"
+    :minute-narrow: 
+      :display_name: min
+      :relative_time: 
+        :future: 
+          :few: "čez {0} min"
+          :one: "čez {0} min"
+          :other: "čez {0} min"
+          :two: "čez {0} min"
+        :past: 
+          :few: "pred {0} min"
+          :one: "pred {0} min"
+          :other: "pred {0} min"
+          :two: "pred {0} min"
+    :minute-short: 
+      :display_name: min.
+      :relative_time: 
+        :future: 
+          :few: "čez {0} min."
+          :one: "čez {0} min."
+          :other: "čez {0} min."
+          :two: "čez {0} min."
+        :past: 
+          :few: "pred {0} min."
+          :one: "pred {0} min."
+          :other: "pred {0} min."
+          :two: "pred {0} min."
+    :mon: 
+      :relative: 
+        -1: "prejšnji ponedeljek"
+        0: "ta ponedeljek"
+        1: "naslednji ponedeljek"
+      :relative_time: 
+        :future: 
+          :few: "čez {0} ponedeljke"
+          :one: "čez {0} ponedeljek"
+          :other: "čez {0} ponedeljkov"
+          :two: "čez {0} ponedeljka"
+        :past: 
+          :few: "pred {0} ponedeljki"
+          :one: "pred {0} ponedeljkom"
+          :other: "pred {0} ponedeljki"
+          :two: "pred {0} ponedeljkoma"
+    :mon-narrow: 
+      :relative: 
+        -1: "prejš. pon."
+        0: "ta pon."
+        1: "nasl. pon."
+    :mon-short: 
+      :relative: 
+        -1: "prejšnji pon."
+        0: "ta pon."
+        1: "naslednji pon."
+      :relative_time: 
+        :future: 
+          :few: "čez {0} pon."
+          :one: "čez {0} pon."
+          :other: "čez {0} pon."
+          :two: "čez {0} pon."
+        :past: 
+          :few: "pred {0} pon."
+          :one: "pred {0} pon."
+          :other: "pred {0} pon."
+          :two: "pred {0} pon."
+    :month: 
+      :display_name: mesec
+      :relative: 
+        -1: "prejšnji mesec"
+        0: "ta mesec"
+        1: "naslednji mesec"
+      :relative_time: 
+        :future: 
+          :few: "čez {0} mesece"
+          :one: "čez {0} mesec"
+          :other: "čez {0} mesecev"
+          :two: "čez {0} meseca"
+        :past: 
+          :few: "pred {0} meseci"
+          :one: "pred {0} mesecem"
+          :other: "pred {0} meseci"
+          :two: "pred {0} mesecema"
+    :month-narrow: 
+      :relative: 
+        -1: "prej. mes."
+        0: "ta mes."
+        1: "nasl. mes."
+    :month-short: 
+      :display_name: mes.
+      :relative: 
+        -1: "prejšnji mes."
+        0: "ta mes."
+        1: "naslednji mes."
+      :relative_time: 
+        :future: 
+          :few: "čez {0} mes."
+          :one: "čez {0} mes."
+          :other: "čez {0} mes."
+          :two: "čez {0} mes."
+        :past: 
+          :few: "pred {0} mes."
+          :one: "pred {0} mes."
+          :other: "pred {0} mes."
+          :two: "pred {0} mes."
+    :quarter: 
+      :display_name: četrtletje
+      :relative: 
+        -1: "zadnje četrtletje"
+        0: "to četrtletje"
+        1: "naslednje četrtletje"
+      :relative_time: 
+        :future: 
+          :few: "čez {0} četrtletja"
+          :one: "čez {0} četrtletje"
+          :other: "čez {0} četrtletij"
+          :two: "čez {0} četrtletji"
+        :past: 
+          :few: "pred {0} četrtletji"
+          :one: "pred {0} četrtletjem"
+          :other: "pred {0} četrtletji"
+          :two: "pred {0} četrtletjema"
+    :quarter-narrow: 
+      :display_name: četr.
+      :relative_time: 
+        :future: 
+          :few: "čez {0} četr."
+          :one: "čez {0} četr."
+          :other: "čez {0} četr."
+          :two: "čez {0} četr."
+        :past: 
+          :few: "pred {0} četr."
+          :one: "pred {0} četr."
+          :other: "pred {0} četr."
+          :two: "pred {0} četr."
+    :quarter-short: 
+      :display_name: četrtl.
+      :relative_time: 
+        :future: 
+          :few: "čez {0} četrtl."
+          :one: "čez {0} četrtl."
+          :other: "čez {0} četrtl."
+          :two: "čez {0} četrtl."
+        :past: 
+          :few: "pred {0} četrtl."
+          :one: "pred {0} četrtl."
+          :other: "pred {0} četrtl."
+          :two: "pred {0} četrtl."
+    :sat: 
+      :relative: 
+        -1: "prejšnjo soboto"
+        0: "to soboto"
+        1: "naslednjo soboto"
+      :relative_time: 
+        :future: 
+          :few: "čez {0} sobote"
+          :one: "čez {0} soboto"
+          :other: "čez {0} sobot"
+          :two: "čez {0} soboti"
+        :past: 
+          :few: "pred {0} sobotami"
+          :one: "pred {0} soboto"
+          :other: "pred {0} sobotami"
+          :two: "pred {0} sobotama"
+    :sat-narrow: 
+      :relative: 
+        -1: "prejš. sob."
+        0: "to sob."
+        1: "nasl. sob."
+    :sat-short: 
+      :relative: 
+        -1: "prejšnjo sob."
+        0: "to sob."
+        1: "naslednjo sob."
+      :relative_time: 
+        :future: 
+          :few: "čez {0} sob."
+          :one: "čez {0} sob."
+          :other: "čez {0} sob."
+          :two: "čez {0} sob."
+        :past: 
+          :few: "pred {0} sob."
+          :one: "pred {0} sob."
+          :other: "pred {0} sob."
+          :two: "pred {0} sob."
+    :second: 
+      :display_name: sekunda
+      :relative: 
+        0: zdaj
+      :relative_time: 
+        :future: 
+          :few: "čez {0} sekunde"
+          :one: "čez {0} sekundo"
+          :other: "čez {0} sekund"
+          :two: "čez {0} sekundi"
+        :past: 
+          :few: "pred {0} sekundami"
+          :one: "pred {0} sekundo"
+          :other: "pred {0} sekundami"
+          :two: "pred {0} sekundama"
+    :second-narrow: 
+      :display_name: s
+    :second-short: 
+      :display_name: sek.
+      :relative_time: 
+        :future: 
+          :few: "čez {0} s"
+          :one: "čez {0} s"
+          :other: "čez {0} s"
+          :two: "čez {0} s"
+        :past: 
+          :few: "pred {0} s"
+          :one: "pred {0} s"
+          :other: "pred {0} s"
+          :two: "pred {0} s"
+    :sun: 
+      :relative: 
+        -1: "prejšnjo nedeljo"
+        0: "to nedeljo"
+        1: "naslednjo nedeljo"
+      :relative_time: 
+        :future: 
+          :few: "čez {0} nedelje"
+          :one: "čez {0} nedeljo"
+          :other: "čez {0} nedelj"
+          :two: "čez {0} nedelji"
+        :past: 
+          :few: "pred {0} nedeljami"
+          :one: "pred {0} nedeljo"
+          :other: "pred {0} nedeljami"
+          :two: "pred {0} nedeljama"
+    :sun-narrow: 
+      :relative: 
+        -1: "prejš. ned."
+        0: "to ned."
+        1: "nasl. ned."
+    :sun-short: 
+      :relative: 
+        -1: "prejšnjo ned."
+        0: "to ned."
+        1: "naslednjo ned."
+      :relative_time: 
+        :future: 
+          :few: "čez {0} ned."
+          :one: "čez {0} ned."
+          :other: "čez {0} ned."
+          :two: "čez {0} ned."
+        :past: 
+          :few: "pred {0} ned."
+          :one: "pred {0} ned."
+          :other: "pred {0} ned."
+          :two: "pred {0} ned."
+    :thu: 
+      :relative: 
+        -1: "prejšnji četrtek"
+        0: "ta četrtek"
+        1: "naslednji četrtek"
+      :relative_time: 
+        :future: 
+          :few: "čez {0} četrtke"
+          :one: "čez {0} četrtek"
+          :other: "čez {0} četrtkov"
+          :two: "čez {0} četrtka"
+        :past: 
+          :few: "pred {0} četrtki"
+          :one: "pred {0} četrtkom"
+          :other: "pred {0} četrtki"
+          :two: "pred {0} četrtkoma"
+    :thu-narrow: 
+      :relative: 
+        -1: "prejš. čet."
+        0: "ta čet."
+        1: "nasl. čet."
+    :thu-short: 
+      :relative: 
+        -1: "prejšnji čet."
+        0: "ta čet."
+        1: "naslednji čet."
+      :relative_time: 
+        :future: 
+          :few: "čez {0} čet."
+          :one: "čez {0} čet."
+          :other: "čez {0} čet."
+          :two: "čez {0} čet."
+        :past: 
+          :few: "pred {0} čet."
+          :one: "pred {0} čet."
+          :other: "pred {0} čet."
+          :two: "pred {0} čet."
+    :tue: 
+      :relative: 
+        -1: "prejšnji torek"
+        0: "ta torek"
+        1: "naslednji torek"
+      :relative_time: 
+        :future: 
+          :few: "čez {0} torke"
+          :one: "čez {0} torek"
+          :other: "čez {0} torkov"
+          :two: "čez {0} torka"
+        :past: 
+          :few: "pred {0} torki"
+          :one: "pred {0} torkom"
+          :other: "pred {0} torki"
+          :two: "pred {0} torkoma"
+    :tue-narrow: 
+      :relative: 
+        -1: "prejš. tor."
+        0: "ta tor."
+        1: "nasl. tor."
+    :tue-short: 
+      :relative: 
+        -1: "prejšnji tor."
+        0: "ta tor."
+        1: "naslednji tor."
+      :relative_time: 
+        :future: 
+          :few: "čez {0} tor."
+          :one: "čez {0} tor."
+          :other: "čez {0} tor."
+          :two: "čez {0} tor."
+        :past: 
+          :few: "pred {0} tor."
+          :one: "pred {0} tor."
+          :other: "pred {0} tor."
+          :two: "pred {0} tor."
+    :wed: 
+      :relative: 
+        -1: "prejšnjo sredo"
+        0: "to sredo"
+        1: "naslednjo sredo"
+      :relative_time: 
+        :future: 
+          :few: "čez {0} srede"
+          :one: "čez {0} sredo"
+          :other: "čez {0} sred"
+          :two: "čez {0} sredi"
+        :past: 
+          :few: "pred {0} sredami"
+          :one: "pred {0} sredo"
+          :other: "pred {0} sredami"
+          :two: "pred {0} sredama"
+    :wed-narrow: 
+      :relative: 
+        -1: "prejš. sre."
+        0: "to sre."
+        1: "nasl. sre."
+    :wed-short: 
+      :relative: 
+        -1: "prejšnjo sre."
+        0: "to sre."
+        1: "naslednjo sre."
+      :relative_time: 
+        :future: 
+          :few: "čez {0} sre."
+          :one: "čez {0} sre."
+          :other: "čez {0} sre."
+          :two: "čez {0} sre."
+        :past: 
+          :few: "pred {0} sre."
+          :one: "pred {0} sre."
+          :other: "pred {0} sre."
+          :two: "pred {0} sre."
+    :week: 
+      :display_name: teden
+      :relative: 
+        -1: "prejšnji teden"
+        0: "ta teden"
+        1: "naslednji teden"
+      :relative_time: 
+        :future: 
+          :few: "čez {0} tedne"
+          :one: "čez {0} teden"
+          :other: "čez {0} tednov"
+          :two: "čez {0} tedna"
+        :past: 
+          :few: "pred {0} tedni"
+          :one: "pred {0} tednom"
+          :other: "pred {0} tedni"
+          :two: "pred {0} tednoma"
+    :week-narrow: 
+      :relative: 
+        -1: "prej. ted."
+        0: "ta ted."
+        1: "nasl. ted."
+    :week-short: 
+      :display_name: ted.
+      :relative: 
+        -1: "prejšnji ted."
+        0: "ta ted."
+        1: "naslednji ted."
+      :relative_time: 
+        :future: 
+          :few: "čez {0} ted."
+          :one: "čez {0} ted."
+          :other: "čez {0} ted."
+          :two: "čez {0} ted."
+        :past: 
+          :few: "pred {0} ted."
+          :one: "pred {0} ted."
+          :other: "pred {0} ted."
+          :two: "pred {0} ted."
+    :weekOfMonth: 
+      :display_name: "teden meseca"
+    :weekOfMonth-narrow: 
+      :display_name: "teden meseca"
+    :weekOfMonth-short: 
+      :display_name: "ted. v mes."
+    :weekday: 
+      :display_name: "dan v tednu"
+    :weekdayOfMonth: 
+      :display_name: "dan meseca"
+    :weekdayOfMonth-narrow: 
+      :display_name: "dan v mes."
+    :year: 
+      :display_name: leto
+      :relative: 
+        -1: lani
+        0: letos
+        1: "naslednje leto"
+      :relative_time: 
+        :future: 
+          :few: "čez {0} leta"
+          :one: "čez {0} leto"
+          :other: "čez {0} let"
+          :two: "čez {0} leti"
+        :past: 
+          :few: "pred {0} leti"
+          :one: "pred {0} letom"
+          :other: "pred {0} leti"
+          :two: "pred {0} letoma"
+    :zone: 
+      :display_name: "časovni pas"

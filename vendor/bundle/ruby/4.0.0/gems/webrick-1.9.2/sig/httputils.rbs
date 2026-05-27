@@ -1,0 +1,116 @@
+module WEBrick
+  CR: String
+
+  LF: String
+
+  CRLF: String
+
+  module HTTPUtils
+    def self?.normalize_path: (String path) -> String
+
+    type mime_types = Hash[String, String]
+
+    DefaultMimeTypes: mime_types
+
+    def self?.load_mime_types: (string | _ToPath file) -> mime_types
+
+    def self?.mime_type: (String filename, mime_types mime_tab) -> String
+
+    class SplitHeader < Array[String]
+      def join: (?String separator) -> String
+    end
+
+    class CookieHeader < Array[String]
+      def join: (?String separator) -> String
+    end
+
+    HEADER_CLASSES: Hash[String, untyped]
+
+    def self?.parse_header: (String raw) -> Hash[String, Array[String]]
+
+    def self?.split_header_value: (String str) -> Array[String]
+
+    def self?.parse_range_header: (String? ranges_specifier) -> Array[Range[Integer]]?
+
+    def self?.parse_qvalues: (String? value) -> Array[String]
+
+    def self?.dequote: (String str) -> String
+
+    def self?.quote: (String str) -> String
+
+    class FormData < String
+      @raw_header: Array[String]
+
+      @header: Hash[String, Array[String]]
+
+      EmptyRawHeader: Array[String]
+
+      EmptyHeader: Hash[String, Array[String]]
+
+      attr_accessor name: String?
+
+      attr_accessor filename: String?
+
+      attr_accessor next_data: instance?
+
+      def initialize: (*String args) -> void
+
+      def []: (*String key) -> String
+            # following is as same as String#[]
+            | (int start, ?int length) -> String?
+            | (range[int?] range) -> String?
+            | (Regexp regexp, ?MatchData::capture backref) -> String?
+            | (String substring) -> String?
+
+      def <<: (String str) -> self
+
+      def append_data: (instance data) -> self
+
+      def each_data: () { (instance) -> void } -> void
+
+      def list: () -> Array[String]
+
+      alias to_ary list
+
+      def to_s: () -> String
+    end
+
+    def self?.parse_query: (String? str) -> Hash[String, FormData]
+
+    interface _EachLine
+      def each_line: () { (String) -> void } -> void
+    end
+
+    def self?.parse_form_data: (_EachLine? io, interned boundary) -> Hash[String, FormData]
+
+    def self?._make_regex: (String str) -> Regexp
+
+    def self?._make_regex!: (String str) -> Regexp
+
+    def self?._escape: (String str, Regexp regex) -> String
+
+    def self?._unescape: (String str, Regexp regex) -> String
+
+    UNESCAPED: Regexp
+
+    UNESCAPED_FORM: Regexp
+
+    NONASCII: Regexp
+
+    ESCAPED: Regexp
+
+    UNESCAPED_PCHAR: Regexp
+
+    def self?.escape: (String str) -> String
+
+    def self?.unescape: (String str) -> String
+
+    def self?.escape_form: (String str) -> String
+
+    def self?.unescape_form: (String str) -> String
+
+    def self?.escape_path: (String str) -> String
+
+    def self?.escape8bit: (String str) -> String
+  end
+end

@@ -1,0 +1,359 @@
+--- 
+:it: 
+  :calendars: 
+    :gregorian: 
+      :additional_formats: 
+        :Bh: "h B"
+        :Bhm: "h:mm B"
+        :Bhms: "h:mm:ss B"
+        :E: ccc
+        :EBhm: "E h:mm B"
+        :EBhms: "E h:mm:ss B"
+        :EHm: "E HH:mm"
+        :EHms: "E HH:mm:ss"
+        :Ed: "E d"
+        :Ehm: "E h:mm a"
+        :Ehms: "E h:mm:ss a"
+        :Gy: "y G"
+        :GyMMM: "MMM y G"
+        :GyMMMEd: "E d MMM y G"
+        :GyMMMd: "d MMM y G"
+        :GyMd: "dd/MM/y GGGGG"
+        :H: HH
+        :Hm: "HH:mm"
+        :Hms: "HH:mm:ss"
+        :Hmsv: "HH:mm:ss v"
+        :Hmv: "HH:mm v"
+        :M: L
+        :MEd: "E dd/MM"
+        :MMM: LLL
+        :MMMEd: "E d MMM"
+        :MMMMW: "'settimana' W 'di' MMMM"
+        :MMMMd: "d MMMM"
+        :MMMd: "d MMM"
+        :Md: dd/MM
+        :d: d
+        :h: h a
+        :hm: "h:mm a"
+        :hms: "h:mm:ss a"
+        :hmsv: "h:mm:ss a v"
+        :hmv: "h:mm a v"
+        :ms: "mm:ss"
+        ? !ruby/symbol "y"
+        : "y"
+        :yM: MM/y
+        :yMEd: "E dd/MM/y"
+        :yMMM: "MMM y"
+        :yMMMEd: "E d MMM y"
+        :yMMMM: "MMMM y"
+        :yMMMd: "d MMM y"
+        :yMd: dd/MM/y
+        :yQQQ: "QQQ y"
+        :yQQQQ: "QQQQ y"
+        :yw: "'settimana' w 'del' Y"
+      :days: 
+        :format: 
+          :abbreviated: 
+            :fri: ven
+            :mon: lun
+            :sat: sab
+            :sun: dom
+            :thu: gio
+            :tue: mar
+            :wed: mer
+          :narrow: 
+            :fri: V
+            :mon: L
+            :sat: S
+            :sun: D
+            :thu: G
+            :tue: M
+            :wed: M
+          :short: 
+            :fri: ven
+            :mon: lun
+            :sat: sab
+            :sun: dom
+            :thu: gio
+            :tue: mar
+            :wed: mer
+          :wide: 
+            :fri: venerdì
+            :mon: lunedì
+            :sat: sabato
+            :sun: domenica
+            :thu: giovedì
+            :tue: martedì
+            :wed: mercoledì
+        :stand-alone: 
+          :abbreviated: 
+            :fri: ven
+            :mon: lun
+            :sat: sab
+            :sun: dom
+            :thu: gio
+            :tue: mar
+            :wed: mer
+          :narrow: 
+            :fri: V
+            :mon: L
+            :sat: S
+            :sun: D
+            :thu: G
+            :tue: M
+            :wed: M
+          :short: 
+            :fri: ven
+            :mon: lun
+            :sat: sab
+            :sun: dom
+            :thu: gio
+            :tue: mar
+            :wed: mer
+          :wide: 
+            :fri: venerdì
+            :mon: lunedì
+            :sat: sabato
+            :sun: domenica
+            :thu: giovedì
+            :tue: martedì
+            :wed: mercoledì
+      :eras: 
+        :abbr: 
+          0: a.E.V.
+          1: E.V.
+        :name: 
+          0: "avanti Era Volgare"
+          1: "Era Volgare"
+        :narrow: 
+          0: aEV
+          1: EV
+      :fields: 
+        :day: giorno
+        :day-narrow: g.
+        :day-short: g.
+        :dayOfYear: "giorno dell’anno"
+        :dayOfYear-narrow: "giorno anno"
+        :dayOfYear-short: "giorno anno"
+        :dayperiod: AM/PM
+        :dayperiod-narrow: AM/PM
+        :dayperiod-short: AM/PM
+        :era: era
+        :era-narrow: era
+        :era-short: era
+        :hour: ora
+        :hour-narrow: h
+        :hour-short: h
+        :minute: minuto
+        :minute-narrow: min
+        :minute-short: min
+        :month: mese
+        :month-narrow: mese
+        :month-short: mese
+        :quarter: trimestre
+        :quarter-narrow: trim.
+        :quarter-short: trim.
+        :second: secondo
+        :second-narrow: Second
+        :second-short: s
+        :week: settimana
+        :week-narrow: sett.
+        :week-short: sett.
+        :weekOfMonth: "settimana del mese"
+        :weekOfMonth-narrow: "sett. mese"
+        :weekOfMonth-short: "sett. mese"
+        :weekday: "giorno della settimana"
+        :weekday-narrow: "giorno sett."
+        :weekday-short: "giorno settimana"
+        :weekdayOfMonth: "giorno del mese"
+        :weekdayOfMonth-narrow: "giorno mese"
+        :weekdayOfMonth-short: "giorno mese"
+        :year: anno
+        :year-narrow: anno
+        :year-short: anno
+        :zone: "fuso orario"
+        :zone-narrow: fuso
+        :zone-short: fuso
+      :formats: 
+        :date: 
+          :full: 
+            :pattern: "EEEE d MMMM y"
+          :long: 
+            :pattern: "d MMMM y"
+          :medium: 
+            :pattern: "d MMM y"
+          :short: 
+            :pattern: dd/MM/yy
+        :datetime: 
+          :full: 
+            :pattern: "{{date}} 'alle' 'ore' {{time}}"
+          :long: 
+            :pattern: "{{date}} 'alle' 'ore' {{time}}"
+          :medium: 
+            :pattern: "{{date}}, {{time}}"
+          :short: 
+            :pattern: "{{date}}, {{time}}"
+        :time: 
+          :full: 
+            :pattern: "HH:mm:ss zzzz"
+          :long: 
+            :pattern: "HH:mm:ss z"
+          :medium: 
+            :pattern: "HH:mm:ss"
+          :short: 
+            :pattern: "HH:mm"
+      :months: 
+        :format: 
+          :abbreviated: 
+            1: gen
+            10: ott
+            11: nov
+            12: dic
+            2: feb
+            3: mar
+            4: apr
+            5: mag
+            6: giu
+            7: lug
+            8: ago
+            9: set
+          :narrow: 
+            1: G
+            10: O
+            11: "N"
+            12: D
+            2: F
+            3: M
+            4: A
+            5: M
+            6: G
+            7: L
+            8: A
+            9: S
+          :wide: 
+            1: gennaio
+            10: ottobre
+            11: novembre
+            12: dicembre
+            2: febbraio
+            3: marzo
+            4: aprile
+            5: maggio
+            6: giugno
+            7: luglio
+            8: agosto
+            9: settembre
+        :stand-alone: 
+          :abbreviated: 
+            1: gen
+            10: ott
+            11: nov
+            12: dic
+            2: feb
+            3: mar
+            4: apr
+            5: mag
+            6: giu
+            7: lug
+            8: ago
+            9: set
+          :narrow: 
+            1: G
+            10: O
+            11: "N"
+            12: D
+            2: F
+            3: M
+            4: A
+            5: M
+            6: G
+            7: L
+            8: A
+            9: S
+          :wide: 
+            1: gennaio
+            10: ottobre
+            11: novembre
+            12: dicembre
+            2: febbraio
+            3: marzo
+            4: aprile
+            5: maggio
+            6: giugno
+            7: luglio
+            8: agosto
+            9: settembre
+      :periods: 
+        :format: 
+          :abbreviated: 
+            :afternoon1: "di pomeriggio"
+            :am: AM
+            :evening1: "di sera"
+            :midnight: mezzanotte
+            :morning1: "di mattina"
+            :night1: "di notte"
+            :noon: mezzogiorno
+            :pm: PM
+          :narrow: 
+            :am: m.
+            :pm: p.
+          :wide: 
+            :afternoon1: "del pomeriggio"
+            :am: AM
+            :evening1: "di sera"
+            :midnight: mezzanotte
+            :morning1: "di mattina"
+            :night1: "di notte"
+            :noon: mezzogiorno
+            :pm: PM
+        :stand-alone: 
+          :abbreviated: 
+            :afternoon1: pomeriggio
+            :am: AM
+            :evening1: sera
+            :morning1: mattina
+            :night1: notte
+            :pm: PM
+          :narrow: 
+            :am: m.
+            :pm: p.
+          :wide: 
+            :afternoon1: pomeriggio
+            :am: AM
+            :evening1: sera
+            :morning1: mattina
+            :night1: notte
+            :pm: PM
+      :quarters: 
+        :format: 
+          :abbreviated: 
+            1: T1
+            2: T2
+            3: T3
+            4: T4
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: "1º trimestre"
+            2: "2º trimestre"
+            3: "3º trimestre"
+            4: "4º trimestre"
+        :stand-alone: 
+          :abbreviated: 
+            1: T1
+            2: T2
+            3: T3
+            4: T4
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: "1º trimestre"
+            2: "2º trimestre"
+            3: "3º trimestre"
+            4: "4º trimestre"

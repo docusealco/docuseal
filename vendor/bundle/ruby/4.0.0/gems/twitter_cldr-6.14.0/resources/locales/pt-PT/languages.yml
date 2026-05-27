@@ -1,0 +1,579 @@
+--- 
+:pt-PT: 
+  :languages: 
+    :aa: afar
+    :ab: abcázio
+    :ace: achém
+    :ach: acoli
+    :ada: adangme
+    :ady: adigue
+    :ae: avéstico
+    :af: africanês
+    :afh: afrihili
+    :agq: aghem
+    :ain: ainu
+    :ak: akan
+    :akk: acadiano
+    :ale: aleúte
+    :alt: "altai do sul"
+    :am: amárico
+    :an: aragonês
+    :ang: "inglês antigo"
+    :ann: obolo
+    :anp: angika
+    :ar: árabe
+    :ar-001: "árabe moderno padrão"
+    :arc: aramaico
+    :arn: mapuche
+    :arp: arapaho
+    :ars: "árabe do Négede"
+    :arw: arauaqui
+    :as: assamês
+    :asa: asu
+    :ast: asturiano
+    :atj: atikamekw
+    :av: avar
+    :awa: awadhi
+    :ay: aimará
+    :az: azerbaijano
+    :az-Arab: "azeri sul"
+    :ba: bashkir
+    :bal: balúchi
+    :ban: balinês
+    :bas: basa
+    :bax: bamun
+    :bbj: ghomala
+    :be: bielorrusso
+    :bej: beja
+    :bem: bemba
+    :bez: bena
+    :bfd: bafut
+    :bg: búlgaro
+    :bgc: hariani
+    :bgn: "balúchi ocidental"
+    :bho: bhojpuri
+    :bi: bislamá
+    :bik: bikol
+    :bin: bini
+    :bkm: kom
+    :bla: siksika
+    :blo: anii
+    :bm: bambara
+    :bn: bengalês
+    :bo: tibetano
+    :br: bretão
+    :bra: braj
+    :brx: bodo
+    :bs: bósnio
+    :bss: akoose
+    :bua: buriat
+    :bug: buginês
+    :bum: bulu
+    :byn: blin
+    :byv: medumba
+    :ca: catalão
+    :cad: caddo
+    :car: caribe
+    :cay: cayuga
+    :cch: atsam
+    :ccp: changma
+    :ce: checheno
+    :ceb: cebuano
+    :cgg: chiga
+    :ch: chamorro
+    :chb: chibcha
+    :chg: chagatai
+    :chk: chuquês
+    :chm: mari
+    :chn: "jargão chinook"
+    :cho: choctaw
+    :chp: chipewyan
+    :chr: cherokee
+    :chy: cheyenne
+    :ckb: "curdo central"
+    :clc: chilcotin
+    :co: córsico
+    :cop: copta
+    :cr: cree
+    :crg: michif
+    :crh: "tártara da Crimeia"
+    :crj: "cree do sudeste"
+    :crk: "cree das planícies"
+    :crl: "cree do nordeste"
+    :crm: "moose cree"
+    :crr: "algonquiano de Carolina"
+    :crs: "francês crioulo seselwa"
+    :cs: checo
+    :csb: kashubian
+    :csw: "cree swampy"
+    :cu: "eslavo eclesiástico"
+    :cv: chuvash
+    :cy: galês
+    :da: dinamarquês
+    :dak: dacota
+    :dar: dargwa
+    :dav: taita
+    :de: alemão
+    :de-AT: "alemão austríaco"
+    :de-CH: "alto alemão suíço"
+    :del: delaware
+    :den: slave
+    :dgr: dogrib
+    :din: dinka
+    :dje: zarma
+    :doi: dogri
+    :dsb: "baixo sorábio"
+    :dua: duala
+    :dum: "holandês médio"
+    :dv: divehi
+    :dyo: jola-fonyi
+    :dyu: diúla
+    :dz: dzonga
+    :dzg: dazaga
+    :ebu: embu
+    :ee: ewe
+    :efi: efik
+    :egy: "egípcio clássico"
+    :eka: ekajuk
+    :el: grego
+    :elx: elamite
+    :en: inglês
+    :en-AU: "inglês australiano"
+    :en-CA: "inglês canadiano"
+    :en-GB: "inglês britânico"
+    :en-US: "inglês americano"
+    :enm: "inglês médio"
+    :eo: esperanto
+    :es: espanhol
+    :es-419: "espanhol latino-americano"
+    :es-ES: "espanhol europeu"
+    :es-MX: "espanhol mexicano"
+    :et: estónio
+    :eu: basco
+    :ewo: ewondo
+    :fa: persa
+    :fa-AF: dari
+    :fan: fangue
+    :fat: fanti
+    :ff: fula
+    :fi: finlandês
+    :fil: filipino
+    :fj: fijiano
+    :fo: feroês
+    :fon: fon
+    :fr: francês
+    :fr-CA: "francês canadiano"
+    :fr-CH: "francês suíço"
+    :frc: "francês cajun"
+    :frm: "francês médio"
+    :fro: "francês antigo"
+    :frr: "frísio setentrional"
+    :frs: "frísio oriental"
+    :fur: friulano
+    :fy: "frísico ocidental"
+    :ga: irlandês
+    :gaa: ga
+    :gag: gagauz
+    :gan: gan
+    :gay: gayo
+    :gba: gbaia
+    :gd: "gaélico escocês"
+    :gez: geʼez
+    :gil: gilbertês
+    :gl: galego
+    :gmh: "alto alemão médio"
+    :gn: guarani
+    :goh: "alemão alto antigo"
+    :gon: gondi
+    :gor: gorontalo
+    :got: gótico
+    :grb: grebo
+    :grc: "grego clássico"
+    :gsw: "alemão suíço"
+    :gu: guzerate
+    :guz: gusii
+    :gv: manx
+    :gwi: gwichʼin
+    :ha: haúça
+    :hai: haida
+    :hak: hacá
+    :haw: havaiano
+    :hax: "haida do sul"
+    :he: hebraico
+    :hi: hindi
+    :hil: hiligaynon
+    :hit: hitita
+    :hmn: hmong
+    :ho: "hiri motu"
+    :hr: croata
+    :hsb: "alto sorábio"
+    :hsn: xiang
+    :ht: haitiano
+    :hu: húngaro
+    :hup: hupa
+    :hur: halkomelem
+    :hy: arménio
+    :hz: herero
+    :ia: interlíngua
+    :iba: iban
+    :ibb: ibibio
+    :id: indonésio
+    :ie: interlingue
+    :ig: igbo
+    :ii: "sichuan yi"
+    :ik: inupiaque
+    :ikt: "inuktitut canadiano ocidental"
+    :ilo: ilocano
+    :inh: inguche
+    :io: ido
+    :is: islandês
+    :it: italiano
+    :iu: inuktitut
+    :ja: japonês
+    :jbo: lojban
+    :jgo: nguemba
+    :jmc: machame
+    :jpr: judaico-persa
+    :jrb: judaico-arábico
+    :jv: javanês
+    :ka: georgiano
+    :kaa: kara-kalpak
+    :kab: kabyle
+    :kac: kachin
+    :kaj: jju
+    :kam: kamba
+    :kaw: kawi
+    :kbd: cabardiano
+    :kbl: kanembu
+    :kcg: tyap
+    :kde: maconde
+    :kea: "crioulo cabo-verdiano"
+    :kfo: koro
+    :kg: congolês
+    :kgp: caingangue
+    :kha: khasi
+    :kho: khotanês
+    :khq: "koyra chiini"
+    :ki: quicuio
+    :kj: cuanhama
+    :kk: cazaque
+    :kkj: kako
+    :kl: gronelandês
+    :kln: kalenjin
+    :km: khmer
+    :kmb: quimbundo
+    :kn: canarim
+    :ko: coreano
+    :koi: komi-permyak
+    :kok: concani
+    :kos: kosraean
+    :kpe: kpelle
+    :kr: canúri
+    :krc: carachaio-bálcaro
+    :krl: carélio
+    :kru: kurukh
+    :ks: caxemira
+    :ksb: shambala
+    :ksf: bafia
+    :ksh: kölsch
+    :ku: curdo
+    :kum: kumyk
+    :kut: kutenai
+    :kv: komi
+    :kw: córnico
+    :kwk: kwakʼwala
+    :kxv: kuvi
+    :ky: quirguiz
+    :la: latim
+    :lad: ladino
+    :lag: langi
+    :lah: lahnda
+    :lam: lamba
+    :lb: luxemburguês
+    :lez: lezghiano
+    :lg: ganda
+    :li: limburguês
+    :lij: ligure
+    :lil: lillooet
+    :lkt: lacota
+    :lmo: lombardo
+    :ln: lingala
+    :lo: laosiano
+    :lol: mongo
+    :lou: "crioulo de Louisiana"
+    :loz: lozi
+    :lrc: "luri do norte"
+    :lsm: saamia
+    :lt: lituano
+    :lu: luba-catanga
+    :lua: luba-lulua
+    :lui: luiseno
+    :lun: lunda
+    :lus: mizo
+    :luy: luyia
+    :lv: letão
+    :mad: madurês
+    :maf: mafa
+    :mag: magahi
+    :mai: maithili
+    :mak: makassarês
+    :man: mandinga
+    :mas: massai
+    :mde: maba
+    :mdf: mocsa
+    :mdr: mandar
+    :men: mende
+    :mer: meru
+    :mfe: "crioulo mauriciano"
+    :mg: malgaxe
+    :mga: "irlandês médio"
+    :mgh: macua-mêto
+    :mgo: meta’
+    :mh: marshalês
+    :mi: maori
+    :mic: miquemaque
+    :min: minangkabau
+    :mk: macedónio
+    :ml: malaiala
+    :mn: mongol
+    :mnc: manchu
+    :mni: manipuri
+    :moe: innu-aimun
+    :moh: mohawk
+    :mos: mossi
+    :mr: marata
+    :ms: malaio
+    :mt: maltês
+    :mua: mundang
+    :mul: "vários idiomas"
+    :mus: creek
+    :mwl: mirandês
+    :mwr: marwari
+    :my: birmanês
+    :mye: myene
+    :myv: erzya
+    :mzn: mazandarani
+    :na: nauruano
+    :nan: "min nan"
+    :nap: napolitano
+    :naq: nama
+    :nb: "norueguês bokmål"
+    :nd: "ndebele do norte"
+    :nds: baixo-alemão
+    :nds-NL: baixo-saxão
+    :ne: nepalês
+    :new: newari
+    :ng: dongo
+    :nia: nias
+    :niu: niueano
+    :nl: neerlandês
+    :nl-BE: flamengo
+    :nmg: kwasio
+    :nn: "norueguês nynorsk"
+    :nnh: ngiemboon
+    ? !ruby/symbol "no"
+    : norueguês
+    :nog: nogai
+    :non: "nórdico antigo"
+    :nqo: n’ko
+    :nr: "ndebele do sul"
+    :nso: "soto setentrional"
+    :nus: nuer
+    :nv: navajo
+    :nwc: "newari clássico"
+    :ny: nianja
+    :nym: nyamwezi
+    :nyn: nyankole
+    :nyo: nyoro
+    :nzi: nzima
+    :oc: occitano
+    :oj: ojibwa
+    :ojb: "ojibwa do noroeste"
+    :ojc: "ojibwa central"
+    :ojs: oji-cree
+    :ojw: "ojibwa ocidental"
+    :oka: okanagan
+    :om: oromo
+    :or: oriá
+    :os: ossético
+    :osa: osage
+    :ota: "turco otomano"
+    :pa: panjabi
+    :pag: "língua pangasinesa"
+    :pal: pálavi
+    :pam: pampango
+    :pap: papiamento
+    :pau: palauano
+    :pcm: "pidgin nigeriano"
+    :peo: "persa antigo"
+    :phn: fenício
+    :pi: páli
+    :pis: pijin
+    :pl: polaco
+    :pon: "língua pohnpeica"
+    :pqm: malecite–passamaquoddy
+    :prg: prussiano
+    :pro: "provençal antigo"
+    :ps: pastó
+    :pt: português
+    :pt-BR: "português do Brasil"
+    :pt-PT: "português europeu"
+    :qu: quíchua
+    :quc: quiché
+    :raj: rajastanês
+    :rap: rapanui
+    :rar: rarotongano
+    :rhg: rohingya
+    :rm: romanche
+    :rn: rundi
+    :ro: romeno
+    :ro-MD: moldávio
+    :rof: rombo
+    :rom: romani
+    :ru: russo
+    :rup: aromeno
+    :rw: quiniaruanda
+    :rwk: rwa
+    :sa: sânscrito
+    :sad: sandawe
+    :sah: sakha
+    :sam: "aramaico samaritano"
+    :saq: samburu
+    :sas: sasak
+    :sat: santali
+    :sba: ngambay
+    :sbp: sangu
+    :sc: sardo
+    :scn: siciliano
+    :sco: scots
+    :sd: sindi
+    :sdh: "curdo meridional"
+    :se: "sami do norte"
+    :see: seneca
+    :seh: sena
+    :sel: selkup
+    :ses: "koyraboro senni"
+    :sg: sango
+    :sga: "irlandês antigo"
+    :sh: servo-croata
+    :shi: tachelhit
+    :shn: shan
+    :shu: "árabe do Chade"
+    :si: cingalês
+    :sid: sidamo
+    :sk: eslovaco
+    :sl: esloveno
+    :slh: "lushootseed do sul"
+    :sm: samoano
+    :sma: "sami do sul"
+    :smj: "sami de Lule"
+    :smn: "inari sami"
+    :sms: "sami de Skolt"
+    :sn: shona
+    :snk: soninquê
+    :so: somali
+    :sog: sogdiano
+    :sq: albanês
+    :sr: sérvio
+    :srn: surinamês
+    :srr: serere
+    :ss: suázi
+    :ssy: saho
+    :st: sesoto
+    :str: "salish dos estreitos"
+    :su: sundanês
+    :suk: sukuma
+    :sus: susu
+    :sux: sumério
+    :sv: sueco
+    :sw: suaíli
+    :sw-CD: "suaíli do Congo"
+    :swb: comoriano
+    :syc: "siríaco clássico"
+    :syr: siríaco
+    :szl: silesiano
+    :ta: tâmil
+    :tce: "tutchone do sul"
+    :te: telugu
+    :tem: temne
+    :teo: teso
+    :ter: tereno
+    :tet: tétum
+    :tg: tajique
+    :tgx: tagish
+    :th: tailandês
+    :tht: tahltan
+    :ti: tigrínia
+    :tig: tigré
+    :tiv: tiv
+    :tk: turcomano
+    :tkl: toquelauano
+    :tl: tagalo
+    :tlh: klingon
+    :tli: tlinguite
+    :tmh: tamaxeque
+    :tn: tswana
+    :to: tonga
+    :tog: "tonganês de Nyasa"
+    :tok: "toki pona"
+    :tpi: "tok pisin"
+    :tr: turco
+    :trv: taroko
+    :ts: tsonga
+    :tsi: tsimshiano
+    :tt: tatar
+    :ttm: "tutchone do norte"
+    :tum: tumbuka
+    :tvl: tuvaluano
+    :tw: twi
+    :twq: tasawaq
+    :ty: taitiano
+    :tyv: tuviniano
+    :tzm: "tamazigue do Atlas Central"
+    :udm: udmurte
+    :ug: uigur
+    :uga: ugarítico
+    :uk: ucraniano
+    :umb: umbundu
+    :und: "idioma desconhecido"
+    :ur: urdu
+    :uz: usbeque
+    :ve: venda
+    :vec: véneto
+    :vi: vietnamita
+    :vmw: macua
+    :vo: volapuque
+    :vot: vótico
+    :vun: vunjo
+    :wa: valão
+    :wae: walser
+    :wal: wolaytta
+    :war: waray
+    :was: washo
+    :wbp: warlpiri
+    :wo: uólofe
+    :wuu: wu
+    :xal: kalmyk
+    :xh: xosa
+    :xnr: kangri
+    :xog: soga
+    :yao: yao
+    :yap: yapese
+    :yav: yangben
+    :ybb: yemba
+    :yi: iídiche
+    :yo: ioruba
+    :yrl: nheengatu
+    :yue: cantonês
+    :za: zhuang
+    :zap: zapoteco
+    :zbl: "símbolos blis"
+    :zen: zenaga
+    :zgh: "tamazight marroquino padrão"
+    :zh: chinês
+    :zh-Hans: "chinês simplificado"
+    :zh-Hant: "chinês tradicional"
+    :zu: zulu
+    :zun: zuni
+    :zxx: "sem conteúdo linguístico"
+    :zza: zaza

@@ -1,0 +1,124 @@
+en-GB:
+  faker:
+    address:
+      postcode: "/[A-PR-UWYZ]([A-HK-Y][0-9][ABEHMNPRVWXY0-9]?|[0-9][ABCDEFGHJKPSTUW0-9]?) [0-9][ABD-HJLNP-UW-Z]{2}/"
+      county:
+        - Avon
+        - Bedfordshire
+        - Berkshire
+        - Borders
+        - Buckinghamshire
+        - Cambridgeshire
+        - Central
+        - Cheshire
+        - Cleveland
+        - Clwyd
+        - Cornwall
+        - County Antrim
+        - County Armagh
+        - County Down
+        - County Fermanagh
+        - County Londonderry
+        - County Tyrone
+        - Cumbria
+        - Derbyshire
+        - Devon
+        - Dorset
+        - Dumfries and Galloway
+        - Durham
+        - Dyfed
+        - East Sussex
+        - Essex
+        - Fife
+        - Gloucestershire
+        - Grampian
+        - Greater Manchester
+        - Gwent
+        - Gwynedd County
+        - Hampshire
+        - Herefordshire
+        - Hertfordshire
+        - Highlands and Islands
+        - Humberside
+        - Isle of Wight
+        - Kent
+        - Lancashire
+        - Leicestershire
+        - Lincolnshire
+        - Lothian
+        - Merseyside
+        - Mid Glamorgan
+        - Norfolk
+        - North Yorkshire
+        - Northamptonshire
+        - Northumberland
+        - Nottinghamshire
+        - Oxfordshire
+        - Powys
+        - Rutland
+        - Shropshire
+        - Somerset
+        - South Glamorgan
+        - South Yorkshire
+        - Staffordshire
+        - Strathclyde
+        - Suffolk
+        - Surrey
+        - Tayside
+        - Tyne and Wear
+        - Warwickshire
+        - West Glamorgan
+        - West Midlands
+        - West Sussex
+        - West Yorkshire
+        - Wiltshire
+        - Worcestershire
+      uk_country:
+        - England
+        - Scotland
+        - Wales
+        - Northern Ireland
+      default_country:
+        - England
+        - Scotland
+        - Wales
+        - Northern Ireland
+      default_country_code:
+        - GB
+    id_number:
+      valid: '/[A-CEGHJ-NOPR-TW-Z][ACEHJLMOPRSW][0-9]{6}[ABCD]/'
+      invalid: '/(BG|GB|NK|KN|TN|NT|ZZ)[0-9]{6}[E-Z]{1}/'
+    internet:
+      domain_suffix:
+        - co.uk
+        - com
+        - biz
+        - info
+        - name
+    phone_number:
+      country_code:
+        - '44'
+      formats:
+        - '01#### #####'
+        - '01#1 496 0###'
+        - '02# #### ####'
+        - '0306 999 0###'
+        - '055 #### ####'
+        - '056 #### ####'
+        - '0800 ### ####'
+        - '0808 157 0###'
+        - '0902 ### ####'
+        - '0909 ### ####'
+        - '016977 ####'
+        - '01### #####'
+        - '0500 ######'
+    cell_phone:
+      formats:
+        - '07000 900###'
+        - '071## ######'
+        - '073## ######'
+        - '074## ######'
+        - '075## ######'
+        - '077## ######'
+        - '078## ######'
+        - '079## ######'

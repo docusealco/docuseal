@@ -1,0 +1,390 @@
+--- 
+:tr: 
+  :calendars: 
+    :gregorian: 
+      :additional_formats: 
+        :Bh: "B h"
+        :Bhm: "B h:mm"
+        :Bhms: "B h:mm:ss"
+        :E: ccc
+        :EBhm: "E B h:mm"
+        :EBhms: "E B h:mm:ss"
+        :EHm: "E HH:mm"
+        :EHms: "E HH:mm:ss"
+        :Ed: "d E"
+        :Ehm: "E a h:mm"
+        :Ehms: "E a h:mm:ss"
+        :Gy: "G y"
+        :GyMMM: "G MMM y"
+        :GyMMMEd: "G d MMM y E"
+        :GyMMMd: "G d MMM y"
+        :GyMd: "GGGGG dd.MM.y"
+        :H: HH
+        :Hm: "HH:mm"
+        :Hms: "HH:mm:ss"
+        :Hmsv: "HH:mm:ss v"
+        :Hmv: "HH:mm v"
+        :M: L
+        :MEd: "d/MM E"
+        :MMM: LLL
+        :MMMEd: "d MMM E"
+        :MMMMEd: "d MMMM E"
+        :MMMMW: "MMMM 'ayının' W. 'haftası'"
+        :MMMMd: "d MMMM"
+        :MMMd: "d MMM"
+        :Md: d/M
+        :d: d
+        :h: a h
+        :hm: "a h:mm"
+        :hms: "a h:mm:ss"
+        :hmsv: "a h:mm:ss v"
+        :hmv: "a h:mm v"
+        :mmss: "mm:ss"
+        :ms: "mm:ss"
+        ? !ruby/symbol "y"
+        : "y"
+        :yM: MM/y
+        :yMEd: "d.M.y E"
+        :yMM: MM.y
+        :yMMM: "MMM y"
+        :yMMMEd: "d MMM y E"
+        :yMMMM: "MMMM y"
+        :yMMMd: "d MMM y"
+        :yMd: dd.MM.y
+        :yQQQ: "y QQQ"
+        :yQQQQ: "y QQQQ"
+        :yw: "Y 'yılının' w. 'haftası'"
+      :days: 
+        :format: 
+          :abbreviated: 
+            :fri: Cum
+            :mon: Pzt
+            :sat: Cmt
+            :sun: Paz
+            :thu: Per
+            :tue: Sal
+            :wed: Çar
+          :narrow: 
+            :fri: C
+            :mon: P
+            :sat: C
+            :sun: P
+            :thu: P
+            :tue: S
+            :wed: Ç
+          :short: 
+            :fri: Cu
+            :mon: Pt
+            :sat: Ct
+            :sun: Pa
+            :thu: Pe
+            :tue: Sa
+            :wed: Ça
+          :wide: 
+            :fri: Cuma
+            :mon: Pazartesi
+            :sat: Cumartesi
+            :sun: Pazar
+            :thu: Perşembe
+            :tue: Salı
+            :wed: Çarşamba
+        :stand-alone: 
+          :abbreviated: 
+            :fri: Cum
+            :mon: Pzt
+            :sat: Cmt
+            :sun: Paz
+            :thu: Per
+            :tue: Sal
+            :wed: Çar
+          :narrow: 
+            :fri: C
+            :mon: P
+            :sat: C
+            :sun: P
+            :thu: P
+            :tue: S
+            :wed: Ç
+          :short: 
+            :fri: Cu
+            :mon: Pt
+            :sat: Ct
+            :sun: Pa
+            :thu: Pe
+            :tue: Sa
+            :wed: Ça
+          :wide: 
+            :fri: Cuma
+            :mon: Pazartesi
+            :sat: Cumartesi
+            :sun: Pazar
+            :thu: Perşembe
+            :tue: Salı
+            :wed: Çarşamba
+      :eras: 
+        :abbr: 
+          0: İÖ
+          1: İS
+        :name: 
+          0: "İsa’dan Önce"
+          1: "İsa’dan Sonra"
+        :narrow: 
+          0: BCE
+          1: CE
+      :fields: 
+        :day: gün
+        :day-narrow: gün
+        :day-short: gün
+        :dayOfYear: "yılın günü"
+        :dayOfYear-narrow: "yılın günü"
+        :dayOfYear-short: "yılın günü"
+        :dayperiod: ÖÖ/ÖS
+        :dayperiod-narrow: ÖÖ/ÖS
+        :dayperiod-short: ÖÖ/ÖS
+        :era: çağ
+        :era-narrow: çağ
+        :era-short: çağ
+        :hour: saat
+        :hour-narrow: sa.
+        :hour-short: sa.
+        :minute: dakika
+        :minute-narrow: dk.
+        :minute-short: dk.
+        :month: ay
+        :month-narrow: ay
+        :month-short: ay
+        :quarter: çeyrek
+        :quarter-narrow: çyr.
+        :quarter-short: çyr.
+        :second: saniye
+        :second-narrow: sn.
+        :second-short: sn.
+        :week: hafta
+        :week-narrow: hf.
+        :week-short: hf.
+        :weekOfMonth: "ayın haftası"
+        :weekOfMonth-narrow: "ayın haftası"
+        :weekOfMonth-short: "ayın haftası"
+        :weekday: "haftanın günü"
+        :weekday-narrow: "haftanın günü"
+        :weekday-short: "haftanın günü"
+        :weekdayOfMonth: "ayın günü"
+        :weekdayOfMonth-narrow: "ayın günü"
+        :weekdayOfMonth-short: "ayın günü"
+        :year: yıl
+        :year-narrow: yıl
+        :year-short: yıl
+        :zone: "saat dilimi"
+        :zone-narrow: dilim
+        :zone-short: dilim
+      :formats: 
+        :date: 
+          :full: 
+            :pattern: "d MMMM y EEEE"
+          :long: 
+            :pattern: "d MMMM y"
+          :medium: 
+            :pattern: "d MMM y"
+          :short: 
+            :pattern: d.MM.y
+        :datetime: 
+          :full: 
+            :pattern: "{{date}} {{time}}"
+          :long: 
+            :pattern: "{{date}} {{time}}"
+          :medium: 
+            :pattern: "{{date}} {{time}}"
+          :short: 
+            :pattern: "{{date}} {{time}}"
+        :time: 
+          :full: 
+            :pattern: "HH:mm:ss zzzz"
+          :long: 
+            :pattern: "HH:mm:ss z"
+          :medium: 
+            :pattern: "HH:mm:ss"
+          :short: 
+            :pattern: "HH:mm"
+      :months: 
+        :format: 
+          :abbreviated: 
+            1: Oca
+            10: Eki
+            11: Kas
+            12: Ara
+            2: Şub
+            3: Mar
+            4: Nis
+            5: May
+            6: Haz
+            7: Tem
+            8: Ağu
+            9: Eyl
+          :narrow: 
+            1: O
+            10: E
+            11: K
+            12: A
+            2: Ş
+            3: M
+            4: "N"
+            5: M
+            6: H
+            7: T
+            8: A
+            9: E
+          :wide: 
+            1: Ocak
+            10: Ekim
+            11: Kasım
+            12: Aralık
+            2: Şubat
+            3: Mart
+            4: Nisan
+            5: Mayıs
+            6: Haziran
+            7: Temmuz
+            8: Ağustos
+            9: Eylül
+        :stand-alone: 
+          :abbreviated: 
+            1: Oca
+            10: Eki
+            11: Kas
+            12: Ara
+            2: Şub
+            3: Mar
+            4: Nis
+            5: May
+            6: Haz
+            7: Tem
+            8: Ağu
+            9: Eyl
+          :narrow: 
+            1: O
+            10: E
+            11: K
+            12: A
+            2: Ş
+            3: M
+            4: "N"
+            5: M
+            6: H
+            7: T
+            8: A
+            9: E
+          :wide: 
+            1: Ocak
+            10: Ekim
+            11: Kasım
+            12: Aralık
+            2: Şubat
+            3: Mart
+            4: Nisan
+            5: Mayıs
+            6: Haziran
+            7: Temmuz
+            8: Ağustos
+            9: Eylül
+      :periods: 
+        :format: 
+          :abbreviated: 
+            :afternoon1: "öğleden sonra"
+            :afternoon2: akşamüstü
+            :am: ÖÖ
+            :evening1: akşam
+            :midnight: "gece yarısı"
+            :morning1: sabah
+            :morning2: "öğleden önce"
+            :night1: gece
+            :noon: öğle
+            :pm: ÖS
+          :narrow: 
+            :afternoon1: "öğleden sonra"
+            :afternoon2: akşamüstü
+            :am: öö
+            :evening1: akşam
+            :midnight: gece
+            :morning1: sabah
+            :morning2: "öğleden önce"
+            :night1: gece
+            :noon: ö
+            :pm: ös
+          :wide: 
+            :afternoon1: "öğleden sonra"
+            :afternoon2: akşamüstü
+            :am: ÖÖ
+            :evening1: akşam
+            :midnight: "gece yarısı"
+            :morning1: sabah
+            :morning2: "öğleden önce"
+            :night1: gece
+            :noon: öğle
+            :pm: ÖS
+        :stand-alone: 
+          :abbreviated: 
+            :afternoon1: "öğleden sonra"
+            :afternoon2: akşamüstü
+            :am: ÖÖ
+            :evening1: akşam
+            :midnight: "gece yarısı"
+            :morning1: sabah
+            :morning2: "öğleden önce"
+            :night1: gece
+            :noon: öğle
+            :pm: ÖS
+          :narrow: 
+            :afternoon1: "öğleden sonra"
+            :afternoon2: akşamüstü
+            :am: ÖÖ
+            :evening1: akşam
+            :midnight: "gece yarısı"
+            :morning1: sabah
+            :morning2: "öğleden önce"
+            :night1: gece
+            :noon: öğle
+            :pm: ÖS
+          :wide: 
+            :afternoon1: "öğleden sonra"
+            :afternoon2: akşamüstü
+            :am: ÖÖ
+            :evening1: akşam
+            :midnight: "gece yarısı"
+            :morning1: sabah
+            :morning2: "öğleden önce"
+            :night1: gece
+            :noon: öğle
+            :pm: ÖS
+      :quarters: 
+        :format: 
+          :abbreviated: 
+            1: Ç1
+            2: Ç2
+            3: Ç3
+            4: Ç4
+          :narrow: 
+            1: "1."
+            2: "2."
+            3: "3."
+            4: "4."
+          :wide: 
+            1: "1. çeyrek"
+            2: "2. çeyrek"
+            3: "3. çeyrek"
+            4: "4. çeyrek"
+        :stand-alone: 
+          :abbreviated: 
+            1: Ç1
+            2: Ç2
+            3: Ç3
+            4: Ç4
+          :narrow: 
+            1: "1."
+            2: "2."
+            3: "3."
+            4: "4."
+          :wide: 
+            1: "1. çeyrek"
+            2: "2. çeyrek"
+            3: "3. çeyrek"
+            4: "4. çeyrek"

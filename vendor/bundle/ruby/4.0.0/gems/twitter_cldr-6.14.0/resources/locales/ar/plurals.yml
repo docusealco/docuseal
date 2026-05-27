@@ -1,0 +1,22 @@
+---
+:ar:
+  :cardinal:
+    :rule: 'lambda { |num, runtime| n = runtime.n(num); i = runtime.i(num); f = runtime.f(num);
+      t = runtime.t(num); v = runtime.v(num); w = runtime.w(num); e = runtime.e(num);
+      (n == 0 ? :zero : (n == 1 ? :one : (n == 2 ? :two : ((((n % 100).floor == (n
+      % 100)) && ((n % 100) >= 3) && ((n % 100) <= 10)) ? :few : ((((n % 100).floor
+      == (n % 100)) && ((n % 100) >= 11) && ((n % 100) <= 99)) ? :many : :other)))))
+      }'
+    :names:
+    - :zero
+    - :one
+    - :two
+    - :few
+    - :many
+    - :other
+  :ordinal:
+    :rule: lambda { |num, runtime| n = runtime.n(num); i = runtime.i(num); f = runtime.f(num);
+      t = runtime.t(num); v = runtime.v(num); w = runtime.w(num); e = runtime.e(num);
+      :other }
+    :names:
+    - :other

@@ -1,0 +1,12 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - nl-t-d0-title
+    :direction: forward
+    :rules: 
+      - "::Any-Title() ;"
+      - "[:^WB=ALetter:] [:WB=Extend:]* [[:WB=MidLetter:][:WB=MidNumLet:]]? { Ij } > IJ ;"
+    :source: nl
+    :target: Title
+    :variant: ~

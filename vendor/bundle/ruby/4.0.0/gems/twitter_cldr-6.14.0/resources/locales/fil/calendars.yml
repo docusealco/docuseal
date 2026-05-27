@@ -1,0 +1,377 @@
+--- 
+:fil: 
+  :calendars: 
+    :gregorian: 
+      :additional_formats: 
+        :Bh: "h B"
+        :Bhm: "h:mm B"
+        :Bhms: "h:mm:ss B"
+        :E: ccc
+        :EBhm: "E h:mm B"
+        :EBhms: "E h:mm:ss B"
+        :EHm: "E HH:mm"
+        :EHms: "E HH:mm:ss"
+        :Ed: "d E"
+        :Ehm: "E h:mm a"
+        :Ehms: "E h:mm:ss a"
+        :Gy: "y G"
+        :GyMMM: "MMM y G"
+        :GyMMMEd: "E, MMM d, y G"
+        :GyMMMd: "MMM d, y G"
+        :GyMd: "M/d/y G"
+        :H: HH
+        :Hm: "HH:mm"
+        :Hms: "HH:mm:ss"
+        :Hmsv: "HH:mm:ss v"
+        :Hmv: "HH:mm v"
+        :M: L
+        :MEd: "E, M/d"
+        :MMM: LLL
+        :MMMEd: "E, MMM d"
+        :MMMMEd: "E, MMMM d"
+        :MMMMW: "'linggo' W 'ng' MMMM"
+        :MMMMd: "MMMM d"
+        :MMMd: "MMM d"
+        :Md: M/d
+        :d: d
+        :h: h a
+        :hm: "h:mm a"
+        :hms: "h:mm:ss a"
+        :hmsv: "h:mm:ss a v"
+        :hmv: "h:mm a v"
+        :ms: "mm:ss"
+        ? !ruby/symbol "y"
+        : "y"
+        :yM: M/y
+        :yMEd: "E, M/d/y"
+        :yMM: MM/y
+        :yMMM: "MMM y"
+        :yMMMEd: "E, MMM d, y"
+        :yMMMM: "MMMM y"
+        :yMMMd: "MMM d, y"
+        :yMd: M/d/y
+        :yQQQ: "QQQ y"
+        :yQQQQ: "QQQQ y"
+        :yw: "'linggo' w 'ng' Y"
+      :days: 
+        :format: 
+          :abbreviated: 
+            :fri: Biy
+            :mon: Lun
+            :sat: Sab
+            :sun: Lin
+            :thu: Huw
+            :tue: Mar
+            :wed: Miy
+          :narrow: 
+            :fri: Biy
+            :mon: Lun
+            :sat: Sab
+            :sun: Lin
+            :thu: Huw
+            :tue: Mar
+            :wed: Miy
+          :short: 
+            :fri: Biy
+            :mon: Lun
+            :sat: Sab
+            :sun: Lin
+            :thu: Huw
+            :tue: Mar
+            :wed: Miy
+          :wide: 
+            :fri: Biyernes
+            :mon: Lunes
+            :sat: Sabado
+            :sun: Linggo
+            :thu: Huwebes
+            :tue: Martes
+            :wed: Miyerkules
+        :stand-alone: 
+          :abbreviated: 
+            :fri: Biy
+            :mon: Lun
+            :sat: Sab
+            :sun: Lin
+            :thu: Huw
+            :tue: Mar
+            :wed: Miy
+          :narrow: 
+            :fri: Biy
+            :mon: Lun
+            :sat: Sab
+            :sun: Lin
+            :thu: Huw
+            :tue: Mar
+            :wed: Miy
+          :short: 
+            :fri: Biy
+            :mon: Lun
+            :sat: Sab
+            :sun: Lin
+            :thu: Huw
+            :tue: Mar
+            :wed: Miy
+          :wide: 
+            :fri: Biyernes
+            :mon: Lunes
+            :sat: Sabado
+            :sun: Linggo
+            :thu: Huwebes
+            :tue: Martes
+            :wed: Miyerkules
+      :eras: 
+        :abbr: 
+          0: BCE
+          1: CE
+        :name: 
+          0: "Before Common Era"
+          1: "Common Era"
+        :narrow: 
+          0: BCE
+          1: CE
+      :fields: 
+        :day: araw
+        :day-narrow: Day
+        :day-short: Day
+        :dayOfYear: "araw ng taon"
+        :dayOfYear-narrow: "araw ng taon"
+        :dayOfYear-short: "araw ng taon"
+        :dayperiod: AM/PM
+        :dayperiod-narrow: AM/PM
+        :dayperiod-short: AM/PM
+        :era: panahon
+        :era-narrow: panahon
+        :era-short: panahon
+        :hour: oras
+        :hour-narrow: Hour
+        :hour-short: Hour
+        :minute: minuto
+        :minute-narrow: min.
+        :minute-short: min.
+        :month: buwan
+        :month-narrow: buwan
+        :month-short: buwan
+        :quarter: quarter
+        :quarter-narrow: qtr.
+        :quarter-short: qtr.
+        :second: segundo
+        :second-narrow: seg.
+        :second-short: seg.
+        :week: linggo
+        :week-narrow: Week
+        :week-short: Week
+        :weekOfMonth: "linggo ng buwan"
+        :weekOfMonth-narrow: "linggo ng buwan"
+        :weekOfMonth-short: "linggo ng buwan"
+        :weekday: "araw ng linggo"
+        :weekday-narrow: "araw ng linggo"
+        :weekday-short: "araw ng linggo"
+        :weekdayOfMonth: "karaniwang araw ng buwan"
+        :weekdayOfMonth-narrow: "karaniwang araw ng buwan"
+        :weekdayOfMonth-short: "karaniwang araw ng buwan"
+        :year: taon
+        :year-narrow: taon
+        :year-short: taon
+        :zone: "time zone"
+        :zone-narrow: zone
+        :zone-short: zone
+      :formats: 
+        :date: 
+          :full: 
+            :pattern: "EEEE, MMMM d, y"
+          :long: 
+            :pattern: "MMMM d, y"
+          :medium: 
+            :pattern: "MMM d, y"
+          :short: 
+            :pattern: M/d/yy
+        :datetime: 
+          :full: 
+            :pattern: "{{date}} 'nang' {{time}}"
+          :long: 
+            :pattern: "{{date}} 'nang' {{time}}"
+          :medium: 
+            :pattern: "{{date}}, {{time}}"
+          :short: 
+            :pattern: "{{date}}, {{time}}"
+        :time: 
+          :full: 
+            :pattern: "h:mm:ss a zzzz"
+          :long: 
+            :pattern: "h:mm:ss a z"
+          :medium: 
+            :pattern: "h:mm:ss a"
+          :short: 
+            :pattern: "h:mm a"
+      :months: 
+        :format: 
+          :abbreviated: 
+            1: Ene
+            10: Okt
+            11: Nob
+            12: Dis
+            2: Peb
+            3: Mar
+            4: Abr
+            5: May
+            6: Hun
+            7: Hul
+            8: Ago
+            9: Set
+          :narrow: 
+            1: Ene
+            10: Okt
+            11: Nob
+            12: Dis
+            2: Peb
+            3: Mar
+            4: Abr
+            5: May
+            6: Hun
+            7: Hul
+            8: Ago
+            9: Set
+          :wide: 
+            1: Enero
+            10: Oktubre
+            11: Nobyembre
+            12: Disyembre
+            2: Pebrero
+            3: Marso
+            4: Abril
+            5: Mayo
+            6: Hunyo
+            7: Hulyo
+            8: Agosto
+            9: Setyembre
+        :stand-alone: 
+          :abbreviated: 
+            1: Ene
+            10: Okt
+            11: Nob
+            12: Dis
+            2: Peb
+            3: Mar
+            4: Abr
+            5: May
+            6: Hun
+            7: Hul
+            8: Ago
+            9: Set
+          :narrow: 
+            1: E
+            10: Okt
+            11: Nob
+            12: Dis
+            2: P
+            3: M
+            4: A
+            5: M
+            6: Hun
+            7: Hul
+            8: Ago
+            9: Set
+          :wide: 
+            1: Enero
+            10: Oktubre
+            11: Nobyembre
+            12: Disyembre
+            2: Pebrero
+            3: Marso
+            4: Abril
+            5: Mayo
+            6: Hunyo
+            7: Hulyo
+            8: Agosto
+            9: Setyembre
+      :periods: 
+        :format: 
+          :abbreviated: 
+            :afternoon1: "ng hapon"
+            :am: AM
+            :evening1: "ng gabi"
+            :midnight: hatinggabi
+            :morning1: "ng umaga"
+            :morning2: madaling-araw
+            :night1: "ng gabi"
+            :noon: tanghaling-tapat
+            :pm: PM
+          :narrow: 
+            :afternoon1: "ng hapon"
+            :am: am
+            :evening1: "ng gabi"
+            :midnight: hatinggabi
+            :morning1: "ng umaga"
+            :morning2: madaling-araw
+            :night1: "ng gabi"
+            :noon: tanghaling-tapat
+            :pm: pm
+          :wide: 
+            :afternoon1: "ng hapon"
+            :am: AM
+            :evening1: "ng gabi"
+            :midnight: hatinggabi
+            :morning1: "ng umaga"
+            :morning2: madaling-araw
+            :night1: "ng gabi"
+            :noon: tanghaling-tapat
+            :pm: PM
+        :stand-alone: 
+          :abbreviated: 
+            :afternoon1: hapon
+            :am: AM
+            :evening1: gabi
+            :morning1: umaga
+            :morning2: madaling-araw
+            :night1: gabi
+            :pm: PM
+          :narrow: 
+            :afternoon1: hapon
+            :am: AM
+            :evening1: gabi
+            :morning1: umaga
+            :morning2: madaling-araw
+            :night1: gabi
+            :pm: PM
+          :wide: 
+            :afternoon1: hapon
+            :am: AM
+            :evening1: gabi
+            :morning1: umaga
+            :morning2: madaling-araw
+            :night1: gabi
+            :pm: PM
+      :quarters: 
+        :format: 
+          :abbreviated: 
+            1: Q1
+            2: Q2
+            3: Q3
+            4: Q4
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: "ika-1 quarter"
+            2: "ika-2 quarter"
+            3: "ika-3 quarter"
+            4: "ika-4 na quarter"
+        :stand-alone: 
+          :abbreviated: 
+            1: Q1
+            2: Q2
+            3: Q3
+            4: Q4
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: "ika-1 quarter"
+            2: "ika-2 quarter"
+            3: "ika-3 quarter"
+            4: "ika-4 na quarter"

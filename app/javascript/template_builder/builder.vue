@@ -634,7 +634,7 @@
       </div>
     </Transition>
     <div
-      id="docuseal_modal_container"
+      id="wabosign_modal_container"
       class="modal-container"
     >
       <RevisionsModal
@@ -2216,7 +2216,7 @@ export default {
       delete clipboardData.field.submitter_uuid
 
       try {
-        localStorage.setItem('docuseal_clipboard', JSON.stringify(clipboardData))
+        localStorage.setItem('wabosign_clipboard', JSON.stringify(clipboardData))
       } catch (e) {
         console.error('Failed to save clipboard:', e)
       }
@@ -2254,20 +2254,20 @@ export default {
       }
 
       try {
-        localStorage.setItem('docuseal_clipboard', JSON.stringify(clipboardData))
+        localStorage.setItem('wabosign_clipboard', JSON.stringify(clipboardData))
       } catch (e) {
         console.error('Failed to save clipboard:', e)
       }
     },
     pasteField (targetPosition = null) {
-      const clipboard = localStorage.getItem('docuseal_clipboard')
+      const clipboard = localStorage.getItem('wabosign_clipboard')
 
       if (!clipboard) return
 
       const data = JSON.parse(clipboard)
 
       if (Date.now() - data.timestamp >= 3600000) {
-        localStorage.removeItem('docuseal_clipboard')
+        localStorage.removeItem('wabosign_clipboard')
 
         return
       }
@@ -2420,7 +2420,7 @@ export default {
     },
     hasClipboardData () {
       try {
-        const clipboard = localStorage.getItem('docuseal_clipboard')
+        const clipboard = localStorage.getItem('wabosign_clipboard')
 
         if (clipboard) {
           const data = JSON.parse(clipboard)

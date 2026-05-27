@@ -1,0 +1,4081 @@
+---
+12800:
+- 12800
+- PARENTHESIZED HANGUL KIYEOK
+- So
+- '0'
+- L
+- "<compat> 0028 1100 0029"
+- ''
+- ''
+- ''
+- N
+- PARENTHESIZED HANGUL GIYEOG
+- ''
+- ''
+- ''
+- ''
+12801:
+- 12801
+- PARENTHESIZED HANGUL NIEUN
+- So
+- '0'
+- L
+- "<compat> 0028 1102 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12802:
+- 12802
+- PARENTHESIZED HANGUL TIKEUT
+- So
+- '0'
+- L
+- "<compat> 0028 1103 0029"
+- ''
+- ''
+- ''
+- N
+- PARENTHESIZED HANGUL DIGEUD
+- ''
+- ''
+- ''
+- ''
+12803:
+- 12803
+- PARENTHESIZED HANGUL RIEUL
+- So
+- '0'
+- L
+- "<compat> 0028 1105 0029"
+- ''
+- ''
+- ''
+- N
+- PARENTHESIZED HANGUL LIEUL
+- ''
+- ''
+- ''
+- ''
+12804:
+- 12804
+- PARENTHESIZED HANGUL MIEUM
+- So
+- '0'
+- L
+- "<compat> 0028 1106 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12805:
+- 12805
+- PARENTHESIZED HANGUL PIEUP
+- So
+- '0'
+- L
+- "<compat> 0028 1107 0029"
+- ''
+- ''
+- ''
+- N
+- PARENTHESIZED HANGUL BIEUB
+- ''
+- ''
+- ''
+- ''
+12806:
+- 12806
+- PARENTHESIZED HANGUL SIOS
+- So
+- '0'
+- L
+- "<compat> 0028 1109 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12807:
+- 12807
+- PARENTHESIZED HANGUL IEUNG
+- So
+- '0'
+- L
+- "<compat> 0028 110B 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12808:
+- 12808
+- PARENTHESIZED HANGUL CIEUC
+- So
+- '0'
+- L
+- "<compat> 0028 110C 0029"
+- ''
+- ''
+- ''
+- N
+- PARENTHESIZED HANGUL JIEUJ
+- ''
+- ''
+- ''
+- ''
+12809:
+- 12809
+- PARENTHESIZED HANGUL CHIEUCH
+- So
+- '0'
+- L
+- "<compat> 0028 110E 0029"
+- ''
+- ''
+- ''
+- N
+- PARENTHESIZED HANGUL CIEUC
+- ''
+- ''
+- ''
+- ''
+12810:
+- 12810
+- PARENTHESIZED HANGUL KHIEUKH
+- So
+- '0'
+- L
+- "<compat> 0028 110F 0029"
+- ''
+- ''
+- ''
+- N
+- PARENTHESIZED HANGUL KIYEOK
+- ''
+- ''
+- ''
+- ''
+12811:
+- 12811
+- PARENTHESIZED HANGUL THIEUTH
+- So
+- '0'
+- L
+- "<compat> 0028 1110 0029"
+- ''
+- ''
+- ''
+- N
+- PARENTHESIZED HANGUL TIEUT
+- ''
+- ''
+- ''
+- ''
+12812:
+- 12812
+- PARENTHESIZED HANGUL PHIEUPH
+- So
+- '0'
+- L
+- "<compat> 0028 1111 0029"
+- ''
+- ''
+- ''
+- N
+- PARENTHESIZED HANGUL PIEUP
+- ''
+- ''
+- ''
+- ''
+12813:
+- 12813
+- PARENTHESIZED HANGUL HIEUH
+- So
+- '0'
+- L
+- "<compat> 0028 1112 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12814:
+- 12814
+- PARENTHESIZED HANGUL KIYEOK A
+- So
+- '0'
+- L
+- "<compat> 0028 1100 1161 0029"
+- ''
+- ''
+- ''
+- N
+- PARENTHESIZED HANGUL GA
+- ''
+- ''
+- ''
+- ''
+12815:
+- 12815
+- PARENTHESIZED HANGUL NIEUN A
+- So
+- '0'
+- L
+- "<compat> 0028 1102 1161 0029"
+- ''
+- ''
+- ''
+- N
+- PARENTHESIZED HANGUL NA
+- ''
+- ''
+- ''
+- ''
+12816:
+- 12816
+- PARENTHESIZED HANGUL TIKEUT A
+- So
+- '0'
+- L
+- "<compat> 0028 1103 1161 0029"
+- ''
+- ''
+- ''
+- N
+- PARENTHESIZED HANGUL DA
+- ''
+- ''
+- ''
+- ''
+12817:
+- 12817
+- PARENTHESIZED HANGUL RIEUL A
+- So
+- '0'
+- L
+- "<compat> 0028 1105 1161 0029"
+- ''
+- ''
+- ''
+- N
+- PARENTHESIZED HANGUL LA
+- ''
+- ''
+- ''
+- ''
+12818:
+- 12818
+- PARENTHESIZED HANGUL MIEUM A
+- So
+- '0'
+- L
+- "<compat> 0028 1106 1161 0029"
+- ''
+- ''
+- ''
+- N
+- PARENTHESIZED HANGUL MA
+- ''
+- ''
+- ''
+- ''
+12819:
+- 12819
+- PARENTHESIZED HANGUL PIEUP A
+- So
+- '0'
+- L
+- "<compat> 0028 1107 1161 0029"
+- ''
+- ''
+- ''
+- N
+- PARENTHESIZED HANGUL BA
+- ''
+- ''
+- ''
+- ''
+12820:
+- 12820
+- PARENTHESIZED HANGUL SIOS A
+- So
+- '0'
+- L
+- "<compat> 0028 1109 1161 0029"
+- ''
+- ''
+- ''
+- N
+- PARENTHESIZED HANGUL SA
+- ''
+- ''
+- ''
+- ''
+12821:
+- 12821
+- PARENTHESIZED HANGUL IEUNG A
+- So
+- '0'
+- L
+- "<compat> 0028 110B 1161 0029"
+- ''
+- ''
+- ''
+- N
+- PARENTHESIZED HANGUL A
+- ''
+- ''
+- ''
+- ''
+12822:
+- 12822
+- PARENTHESIZED HANGUL CIEUC A
+- So
+- '0'
+- L
+- "<compat> 0028 110C 1161 0029"
+- ''
+- ''
+- ''
+- N
+- PARENTHESIZED HANGUL JA
+- ''
+- ''
+- ''
+- ''
+12823:
+- 12823
+- PARENTHESIZED HANGUL CHIEUCH A
+- So
+- '0'
+- L
+- "<compat> 0028 110E 1161 0029"
+- ''
+- ''
+- ''
+- N
+- PARENTHESIZED HANGUL CA
+- ''
+- ''
+- ''
+- ''
+12824:
+- 12824
+- PARENTHESIZED HANGUL KHIEUKH A
+- So
+- '0'
+- L
+- "<compat> 0028 110F 1161 0029"
+- ''
+- ''
+- ''
+- N
+- PARENTHESIZED HANGUL KA
+- ''
+- ''
+- ''
+- ''
+12825:
+- 12825
+- PARENTHESIZED HANGUL THIEUTH A
+- So
+- '0'
+- L
+- "<compat> 0028 1110 1161 0029"
+- ''
+- ''
+- ''
+- N
+- PARENTHESIZED HANGUL TA
+- ''
+- ''
+- ''
+- ''
+12826:
+- 12826
+- PARENTHESIZED HANGUL PHIEUPH A
+- So
+- '0'
+- L
+- "<compat> 0028 1111 1161 0029"
+- ''
+- ''
+- ''
+- N
+- PARENTHESIZED HANGUL PA
+- ''
+- ''
+- ''
+- ''
+12827:
+- 12827
+- PARENTHESIZED HANGUL HIEUH A
+- So
+- '0'
+- L
+- "<compat> 0028 1112 1161 0029"
+- ''
+- ''
+- ''
+- N
+- PARENTHESIZED HANGUL HA
+- ''
+- ''
+- ''
+- ''
+12828:
+- 12828
+- PARENTHESIZED HANGUL CIEUC U
+- So
+- '0'
+- L
+- "<compat> 0028 110C 116E 0029"
+- ''
+- ''
+- ''
+- N
+- PARENTHESIZED HANGUL JU
+- ''
+- ''
+- ''
+- ''
+12829:
+- 12829
+- PARENTHESIZED KOREAN CHARACTER OJEON
+- So
+- '0'
+- 'ON'
+- "<compat> 0028 110B 1169 110C 1165 11AB 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12830:
+- 12830
+- PARENTHESIZED KOREAN CHARACTER O HU
+- So
+- '0'
+- 'ON'
+- "<compat> 0028 110B 1169 1112 116E 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12832:
+- 12832
+- PARENTHESIZED IDEOGRAPH ONE
+- 'No'
+- '0'
+- L
+- "<compat> 0028 4E00 0029"
+- ''
+- ''
+- '1'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12833:
+- 12833
+- PARENTHESIZED IDEOGRAPH TWO
+- 'No'
+- '0'
+- L
+- "<compat> 0028 4E8C 0029"
+- ''
+- ''
+- '2'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12834:
+- 12834
+- PARENTHESIZED IDEOGRAPH THREE
+- 'No'
+- '0'
+- L
+- "<compat> 0028 4E09 0029"
+- ''
+- ''
+- '3'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12835:
+- 12835
+- PARENTHESIZED IDEOGRAPH FOUR
+- 'No'
+- '0'
+- L
+- "<compat> 0028 56DB 0029"
+- ''
+- ''
+- '4'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12836:
+- 12836
+- PARENTHESIZED IDEOGRAPH FIVE
+- 'No'
+- '0'
+- L
+- "<compat> 0028 4E94 0029"
+- ''
+- ''
+- '5'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12837:
+- 12837
+- PARENTHESIZED IDEOGRAPH SIX
+- 'No'
+- '0'
+- L
+- "<compat> 0028 516D 0029"
+- ''
+- ''
+- '6'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12838:
+- 12838
+- PARENTHESIZED IDEOGRAPH SEVEN
+- 'No'
+- '0'
+- L
+- "<compat> 0028 4E03 0029"
+- ''
+- ''
+- '7'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12839:
+- 12839
+- PARENTHESIZED IDEOGRAPH EIGHT
+- 'No'
+- '0'
+- L
+- "<compat> 0028 516B 0029"
+- ''
+- ''
+- '8'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12840:
+- 12840
+- PARENTHESIZED IDEOGRAPH NINE
+- 'No'
+- '0'
+- L
+- "<compat> 0028 4E5D 0029"
+- ''
+- ''
+- '9'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12841:
+- 12841
+- PARENTHESIZED IDEOGRAPH TEN
+- 'No'
+- '0'
+- L
+- "<compat> 0028 5341 0029"
+- ''
+- ''
+- '10'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12842:
+- 12842
+- PARENTHESIZED IDEOGRAPH MOON
+- So
+- '0'
+- L
+- "<compat> 0028 6708 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12843:
+- 12843
+- PARENTHESIZED IDEOGRAPH FIRE
+- So
+- '0'
+- L
+- "<compat> 0028 706B 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12844:
+- 12844
+- PARENTHESIZED IDEOGRAPH WATER
+- So
+- '0'
+- L
+- "<compat> 0028 6C34 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12845:
+- 12845
+- PARENTHESIZED IDEOGRAPH WOOD
+- So
+- '0'
+- L
+- "<compat> 0028 6728 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12846:
+- 12846
+- PARENTHESIZED IDEOGRAPH METAL
+- So
+- '0'
+- L
+- "<compat> 0028 91D1 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12847:
+- 12847
+- PARENTHESIZED IDEOGRAPH EARTH
+- So
+- '0'
+- L
+- "<compat> 0028 571F 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12848:
+- 12848
+- PARENTHESIZED IDEOGRAPH SUN
+- So
+- '0'
+- L
+- "<compat> 0028 65E5 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12849:
+- 12849
+- PARENTHESIZED IDEOGRAPH STOCK
+- So
+- '0'
+- L
+- "<compat> 0028 682A 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12850:
+- 12850
+- PARENTHESIZED IDEOGRAPH HAVE
+- So
+- '0'
+- L
+- "<compat> 0028 6709 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12851:
+- 12851
+- PARENTHESIZED IDEOGRAPH SOCIETY
+- So
+- '0'
+- L
+- "<compat> 0028 793E 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12852:
+- 12852
+- PARENTHESIZED IDEOGRAPH NAME
+- So
+- '0'
+- L
+- "<compat> 0028 540D 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12853:
+- 12853
+- PARENTHESIZED IDEOGRAPH SPECIAL
+- So
+- '0'
+- L
+- "<compat> 0028 7279 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12854:
+- 12854
+- PARENTHESIZED IDEOGRAPH FINANCIAL
+- So
+- '0'
+- L
+- "<compat> 0028 8CA1 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12855:
+- 12855
+- PARENTHESIZED IDEOGRAPH CONGRATULATION
+- So
+- '0'
+- L
+- "<compat> 0028 795D 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12856:
+- 12856
+- PARENTHESIZED IDEOGRAPH LABOR
+- So
+- '0'
+- L
+- "<compat> 0028 52B4 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12857:
+- 12857
+- PARENTHESIZED IDEOGRAPH REPRESENT
+- So
+- '0'
+- L
+- "<compat> 0028 4EE3 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12858:
+- 12858
+- PARENTHESIZED IDEOGRAPH CALL
+- So
+- '0'
+- L
+- "<compat> 0028 547C 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12859:
+- 12859
+- PARENTHESIZED IDEOGRAPH STUDY
+- So
+- '0'
+- L
+- "<compat> 0028 5B66 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12860:
+- 12860
+- PARENTHESIZED IDEOGRAPH SUPERVISE
+- So
+- '0'
+- L
+- "<compat> 0028 76E3 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12861:
+- 12861
+- PARENTHESIZED IDEOGRAPH ENTERPRISE
+- So
+- '0'
+- L
+- "<compat> 0028 4F01 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12862:
+- 12862
+- PARENTHESIZED IDEOGRAPH RESOURCE
+- So
+- '0'
+- L
+- "<compat> 0028 8CC7 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12863:
+- 12863
+- PARENTHESIZED IDEOGRAPH ALLIANCE
+- So
+- '0'
+- L
+- "<compat> 0028 5354 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12864:
+- 12864
+- PARENTHESIZED IDEOGRAPH FESTIVAL
+- So
+- '0'
+- L
+- "<compat> 0028 796D 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12865:
+- 12865
+- PARENTHESIZED IDEOGRAPH REST
+- So
+- '0'
+- L
+- "<compat> 0028 4F11 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12866:
+- 12866
+- PARENTHESIZED IDEOGRAPH SELF
+- So
+- '0'
+- L
+- "<compat> 0028 81EA 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12867:
+- 12867
+- PARENTHESIZED IDEOGRAPH REACH
+- So
+- '0'
+- L
+- "<compat> 0028 81F3 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12868:
+- 12868
+- CIRCLED IDEOGRAPH QUESTION
+- So
+- '0'
+- L
+- "<circle> 554F"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12869:
+- 12869
+- CIRCLED IDEOGRAPH KINDERGARTEN
+- So
+- '0'
+- L
+- "<circle> 5E7C"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12870:
+- 12870
+- CIRCLED IDEOGRAPH SCHOOL
+- So
+- '0'
+- L
+- "<circle> 6587"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12871:
+- 12871
+- CIRCLED IDEOGRAPH KOTO
+- So
+- '0'
+- L
+- "<circle> 7B8F"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12872:
+- 12872
+- CIRCLED NUMBER TEN ON BLACK SQUARE
+- 'No'
+- '0'
+- L
+- ''
+- ''
+- ''
+- '10'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12873:
+- 12873
+- CIRCLED NUMBER TWENTY ON BLACK SQUARE
+- 'No'
+- '0'
+- L
+- ''
+- ''
+- ''
+- '20'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12874:
+- 12874
+- CIRCLED NUMBER THIRTY ON BLACK SQUARE
+- 'No'
+- '0'
+- L
+- ''
+- ''
+- ''
+- '30'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12875:
+- 12875
+- CIRCLED NUMBER FORTY ON BLACK SQUARE
+- 'No'
+- '0'
+- L
+- ''
+- ''
+- ''
+- '40'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12876:
+- 12876
+- CIRCLED NUMBER FIFTY ON BLACK SQUARE
+- 'No'
+- '0'
+- L
+- ''
+- ''
+- ''
+- '50'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12877:
+- 12877
+- CIRCLED NUMBER SIXTY ON BLACK SQUARE
+- 'No'
+- '0'
+- L
+- ''
+- ''
+- ''
+- '60'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12878:
+- 12878
+- CIRCLED NUMBER SEVENTY ON BLACK SQUARE
+- 'No'
+- '0'
+- L
+- ''
+- ''
+- ''
+- '70'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12879:
+- 12879
+- CIRCLED NUMBER EIGHTY ON BLACK SQUARE
+- 'No'
+- '0'
+- L
+- ''
+- ''
+- ''
+- '80'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12880:
+- 12880
+- PARTNERSHIP SIGN
+- So
+- '0'
+- 'ON'
+- "<square> 0050 0054 0045"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12881:
+- 12881
+- CIRCLED NUMBER TWENTY ONE
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0032 0031"
+- ''
+- ''
+- '21'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12882:
+- 12882
+- CIRCLED NUMBER TWENTY TWO
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0032 0032"
+- ''
+- ''
+- '22'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12883:
+- 12883
+- CIRCLED NUMBER TWENTY THREE
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0032 0033"
+- ''
+- ''
+- '23'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12884:
+- 12884
+- CIRCLED NUMBER TWENTY FOUR
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0032 0034"
+- ''
+- ''
+- '24'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12885:
+- 12885
+- CIRCLED NUMBER TWENTY FIVE
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0032 0035"
+- ''
+- ''
+- '25'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12886:
+- 12886
+- CIRCLED NUMBER TWENTY SIX
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0032 0036"
+- ''
+- ''
+- '26'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12887:
+- 12887
+- CIRCLED NUMBER TWENTY SEVEN
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0032 0037"
+- ''
+- ''
+- '27'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12888:
+- 12888
+- CIRCLED NUMBER TWENTY EIGHT
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0032 0038"
+- ''
+- ''
+- '28'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12889:
+- 12889
+- CIRCLED NUMBER TWENTY NINE
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0032 0039"
+- ''
+- ''
+- '29'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12890:
+- 12890
+- CIRCLED NUMBER THIRTY
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0033 0030"
+- ''
+- ''
+- '30'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12891:
+- 12891
+- CIRCLED NUMBER THIRTY ONE
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0033 0031"
+- ''
+- ''
+- '31'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12892:
+- 12892
+- CIRCLED NUMBER THIRTY TWO
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0033 0032"
+- ''
+- ''
+- '32'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12893:
+- 12893
+- CIRCLED NUMBER THIRTY THREE
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0033 0033"
+- ''
+- ''
+- '33'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12894:
+- 12894
+- CIRCLED NUMBER THIRTY FOUR
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0033 0034"
+- ''
+- ''
+- '34'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12895:
+- 12895
+- CIRCLED NUMBER THIRTY FIVE
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0033 0035"
+- ''
+- ''
+- '35'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12896:
+- 12896
+- CIRCLED HANGUL KIYEOK
+- So
+- '0'
+- L
+- "<circle> 1100"
+- ''
+- ''
+- ''
+- N
+- CIRCLED HANGUL GIYEOG
+- ''
+- ''
+- ''
+- ''
+12897:
+- 12897
+- CIRCLED HANGUL NIEUN
+- So
+- '0'
+- L
+- "<circle> 1102"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12898:
+- 12898
+- CIRCLED HANGUL TIKEUT
+- So
+- '0'
+- L
+- "<circle> 1103"
+- ''
+- ''
+- ''
+- N
+- CIRCLED HANGUL DIGEUD
+- ''
+- ''
+- ''
+- ''
+12899:
+- 12899
+- CIRCLED HANGUL RIEUL
+- So
+- '0'
+- L
+- "<circle> 1105"
+- ''
+- ''
+- ''
+- N
+- CIRCLED HANGUL LIEUL
+- ''
+- ''
+- ''
+- ''
+12900:
+- 12900
+- CIRCLED HANGUL MIEUM
+- So
+- '0'
+- L
+- "<circle> 1106"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12901:
+- 12901
+- CIRCLED HANGUL PIEUP
+- So
+- '0'
+- L
+- "<circle> 1107"
+- ''
+- ''
+- ''
+- N
+- CIRCLED HANGUL BIEUB
+- ''
+- ''
+- ''
+- ''
+12902:
+- 12902
+- CIRCLED HANGUL SIOS
+- So
+- '0'
+- L
+- "<circle> 1109"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12903:
+- 12903
+- CIRCLED HANGUL IEUNG
+- So
+- '0'
+- L
+- "<circle> 110B"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12904:
+- 12904
+- CIRCLED HANGUL CIEUC
+- So
+- '0'
+- L
+- "<circle> 110C"
+- ''
+- ''
+- ''
+- N
+- CIRCLED HANGUL JIEUJ
+- ''
+- ''
+- ''
+- ''
+12905:
+- 12905
+- CIRCLED HANGUL CHIEUCH
+- So
+- '0'
+- L
+- "<circle> 110E"
+- ''
+- ''
+- ''
+- N
+- CIRCLED HANGUL CIEUC
+- ''
+- ''
+- ''
+- ''
+12906:
+- 12906
+- CIRCLED HANGUL KHIEUKH
+- So
+- '0'
+- L
+- "<circle> 110F"
+- ''
+- ''
+- ''
+- N
+- CIRCLED HANGUL KIYEOK
+- ''
+- ''
+- ''
+- ''
+12907:
+- 12907
+- CIRCLED HANGUL THIEUTH
+- So
+- '0'
+- L
+- "<circle> 1110"
+- ''
+- ''
+- ''
+- N
+- CIRCLED HANGUL TIEUT
+- ''
+- ''
+- ''
+- ''
+12908:
+- 12908
+- CIRCLED HANGUL PHIEUPH
+- So
+- '0'
+- L
+- "<circle> 1111"
+- ''
+- ''
+- ''
+- N
+- CIRCLED HANGUL PIEUP
+- ''
+- ''
+- ''
+- ''
+12909:
+- 12909
+- CIRCLED HANGUL HIEUH
+- So
+- '0'
+- L
+- "<circle> 1112"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12910:
+- 12910
+- CIRCLED HANGUL KIYEOK A
+- So
+- '0'
+- L
+- "<circle> 1100 1161"
+- ''
+- ''
+- ''
+- N
+- CIRCLED HANGUL GA
+- ''
+- ''
+- ''
+- ''
+12911:
+- 12911
+- CIRCLED HANGUL NIEUN A
+- So
+- '0'
+- L
+- "<circle> 1102 1161"
+- ''
+- ''
+- ''
+- N
+- CIRCLED HANGUL NA
+- ''
+- ''
+- ''
+- ''
+12912:
+- 12912
+- CIRCLED HANGUL TIKEUT A
+- So
+- '0'
+- L
+- "<circle> 1103 1161"
+- ''
+- ''
+- ''
+- N
+- CIRCLED HANGUL DA
+- ''
+- ''
+- ''
+- ''
+12913:
+- 12913
+- CIRCLED HANGUL RIEUL A
+- So
+- '0'
+- L
+- "<circle> 1105 1161"
+- ''
+- ''
+- ''
+- N
+- CIRCLED HANGUL LA
+- ''
+- ''
+- ''
+- ''
+12914:
+- 12914
+- CIRCLED HANGUL MIEUM A
+- So
+- '0'
+- L
+- "<circle> 1106 1161"
+- ''
+- ''
+- ''
+- N
+- CIRCLED HANGUL MA
+- ''
+- ''
+- ''
+- ''
+12915:
+- 12915
+- CIRCLED HANGUL PIEUP A
+- So
+- '0'
+- L
+- "<circle> 1107 1161"
+- ''
+- ''
+- ''
+- N
+- CIRCLED HANGUL BA
+- ''
+- ''
+- ''
+- ''
+12916:
+- 12916
+- CIRCLED HANGUL SIOS A
+- So
+- '0'
+- L
+- "<circle> 1109 1161"
+- ''
+- ''
+- ''
+- N
+- CIRCLED HANGUL SA
+- ''
+- ''
+- ''
+- ''
+12917:
+- 12917
+- CIRCLED HANGUL IEUNG A
+- So
+- '0'
+- L
+- "<circle> 110B 1161"
+- ''
+- ''
+- ''
+- N
+- CIRCLED HANGUL A
+- ''
+- ''
+- ''
+- ''
+12918:
+- 12918
+- CIRCLED HANGUL CIEUC A
+- So
+- '0'
+- L
+- "<circle> 110C 1161"
+- ''
+- ''
+- ''
+- N
+- CIRCLED HANGUL JA
+- ''
+- ''
+- ''
+- ''
+12919:
+- 12919
+- CIRCLED HANGUL CHIEUCH A
+- So
+- '0'
+- L
+- "<circle> 110E 1161"
+- ''
+- ''
+- ''
+- N
+- CIRCLED HANGUL CA
+- ''
+- ''
+- ''
+- ''
+12920:
+- 12920
+- CIRCLED HANGUL KHIEUKH A
+- So
+- '0'
+- L
+- "<circle> 110F 1161"
+- ''
+- ''
+- ''
+- N
+- CIRCLED HANGUL KA
+- ''
+- ''
+- ''
+- ''
+12921:
+- 12921
+- CIRCLED HANGUL THIEUTH A
+- So
+- '0'
+- L
+- "<circle> 1110 1161"
+- ''
+- ''
+- ''
+- N
+- CIRCLED HANGUL TA
+- ''
+- ''
+- ''
+- ''
+12922:
+- 12922
+- CIRCLED HANGUL PHIEUPH A
+- So
+- '0'
+- L
+- "<circle> 1111 1161"
+- ''
+- ''
+- ''
+- N
+- CIRCLED HANGUL PA
+- ''
+- ''
+- ''
+- ''
+12923:
+- 12923
+- CIRCLED HANGUL HIEUH A
+- So
+- '0'
+- L
+- "<circle> 1112 1161"
+- ''
+- ''
+- ''
+- N
+- CIRCLED HANGUL HA
+- ''
+- ''
+- ''
+- ''
+12924:
+- 12924
+- CIRCLED KOREAN CHARACTER CHAMKO
+- So
+- '0'
+- 'ON'
+- "<circle> 110E 1161 11B7 1100 1169"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12925:
+- 12925
+- CIRCLED KOREAN CHARACTER JUEUI
+- So
+- '0'
+- 'ON'
+- "<circle> 110C 116E 110B 1174"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12926:
+- 12926
+- CIRCLED HANGUL IEUNG U
+- So
+- '0'
+- 'ON'
+- "<circle> 110B 116E"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12927:
+- 12927
+- KOREAN STANDARD SYMBOL
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12928:
+- 12928
+- CIRCLED IDEOGRAPH ONE
+- 'No'
+- '0'
+- L
+- "<circle> 4E00"
+- ''
+- ''
+- '1'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12929:
+- 12929
+- CIRCLED IDEOGRAPH TWO
+- 'No'
+- '0'
+- L
+- "<circle> 4E8C"
+- ''
+- ''
+- '2'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12930:
+- 12930
+- CIRCLED IDEOGRAPH THREE
+- 'No'
+- '0'
+- L
+- "<circle> 4E09"
+- ''
+- ''
+- '3'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12931:
+- 12931
+- CIRCLED IDEOGRAPH FOUR
+- 'No'
+- '0'
+- L
+- "<circle> 56DB"
+- ''
+- ''
+- '4'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12932:
+- 12932
+- CIRCLED IDEOGRAPH FIVE
+- 'No'
+- '0'
+- L
+- "<circle> 4E94"
+- ''
+- ''
+- '5'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12933:
+- 12933
+- CIRCLED IDEOGRAPH SIX
+- 'No'
+- '0'
+- L
+- "<circle> 516D"
+- ''
+- ''
+- '6'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12934:
+- 12934
+- CIRCLED IDEOGRAPH SEVEN
+- 'No'
+- '0'
+- L
+- "<circle> 4E03"
+- ''
+- ''
+- '7'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12935:
+- 12935
+- CIRCLED IDEOGRAPH EIGHT
+- 'No'
+- '0'
+- L
+- "<circle> 516B"
+- ''
+- ''
+- '8'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12936:
+- 12936
+- CIRCLED IDEOGRAPH NINE
+- 'No'
+- '0'
+- L
+- "<circle> 4E5D"
+- ''
+- ''
+- '9'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12937:
+- 12937
+- CIRCLED IDEOGRAPH TEN
+- 'No'
+- '0'
+- L
+- "<circle> 5341"
+- ''
+- ''
+- '10'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12938:
+- 12938
+- CIRCLED IDEOGRAPH MOON
+- So
+- '0'
+- L
+- "<circle> 6708"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12939:
+- 12939
+- CIRCLED IDEOGRAPH FIRE
+- So
+- '0'
+- L
+- "<circle> 706B"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12940:
+- 12940
+- CIRCLED IDEOGRAPH WATER
+- So
+- '0'
+- L
+- "<circle> 6C34"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12941:
+- 12941
+- CIRCLED IDEOGRAPH WOOD
+- So
+- '0'
+- L
+- "<circle> 6728"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12942:
+- 12942
+- CIRCLED IDEOGRAPH METAL
+- So
+- '0'
+- L
+- "<circle> 91D1"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12943:
+- 12943
+- CIRCLED IDEOGRAPH EARTH
+- So
+- '0'
+- L
+- "<circle> 571F"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12944:
+- 12944
+- CIRCLED IDEOGRAPH SUN
+- So
+- '0'
+- L
+- "<circle> 65E5"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12945:
+- 12945
+- CIRCLED IDEOGRAPH STOCK
+- So
+- '0'
+- L
+- "<circle> 682A"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12946:
+- 12946
+- CIRCLED IDEOGRAPH HAVE
+- So
+- '0'
+- L
+- "<circle> 6709"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12947:
+- 12947
+- CIRCLED IDEOGRAPH SOCIETY
+- So
+- '0'
+- L
+- "<circle> 793E"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12948:
+- 12948
+- CIRCLED IDEOGRAPH NAME
+- So
+- '0'
+- L
+- "<circle> 540D"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12949:
+- 12949
+- CIRCLED IDEOGRAPH SPECIAL
+- So
+- '0'
+- L
+- "<circle> 7279"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12950:
+- 12950
+- CIRCLED IDEOGRAPH FINANCIAL
+- So
+- '0'
+- L
+- "<circle> 8CA1"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12951:
+- 12951
+- CIRCLED IDEOGRAPH CONGRATULATION
+- So
+- '0'
+- L
+- "<circle> 795D"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12952:
+- 12952
+- CIRCLED IDEOGRAPH LABOR
+- So
+- '0'
+- L
+- "<circle> 52B4"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12953:
+- 12953
+- CIRCLED IDEOGRAPH SECRET
+- So
+- '0'
+- L
+- "<circle> 79D8"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12954:
+- 12954
+- CIRCLED IDEOGRAPH MALE
+- So
+- '0'
+- L
+- "<circle> 7537"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12955:
+- 12955
+- CIRCLED IDEOGRAPH FEMALE
+- So
+- '0'
+- L
+- "<circle> 5973"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12956:
+- 12956
+- CIRCLED IDEOGRAPH SUITABLE
+- So
+- '0'
+- L
+- "<circle> 9069"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12957:
+- 12957
+- CIRCLED IDEOGRAPH EXCELLENT
+- So
+- '0'
+- L
+- "<circle> 512A"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12958:
+- 12958
+- CIRCLED IDEOGRAPH PRINT
+- So
+- '0'
+- L
+- "<circle> 5370"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12959:
+- 12959
+- CIRCLED IDEOGRAPH ATTENTION
+- So
+- '0'
+- L
+- "<circle> 6CE8"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12960:
+- 12960
+- CIRCLED IDEOGRAPH ITEM
+- So
+- '0'
+- L
+- "<circle> 9805"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12961:
+- 12961
+- CIRCLED IDEOGRAPH REST
+- So
+- '0'
+- L
+- "<circle> 4F11"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12962:
+- 12962
+- CIRCLED IDEOGRAPH COPY
+- So
+- '0'
+- L
+- "<circle> 5199"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12963:
+- 12963
+- CIRCLED IDEOGRAPH CORRECT
+- So
+- '0'
+- L
+- "<circle> 6B63"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12964:
+- 12964
+- CIRCLED IDEOGRAPH HIGH
+- So
+- '0'
+- L
+- "<circle> 4E0A"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12965:
+- 12965
+- CIRCLED IDEOGRAPH CENTRE
+- So
+- '0'
+- L
+- "<circle> 4E2D"
+- ''
+- ''
+- ''
+- N
+- CIRCLED IDEOGRAPH CENTER
+- ''
+- ''
+- ''
+- ''
+12966:
+- 12966
+- CIRCLED IDEOGRAPH LOW
+- So
+- '0'
+- L
+- "<circle> 4E0B"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12967:
+- 12967
+- CIRCLED IDEOGRAPH LEFT
+- So
+- '0'
+- L
+- "<circle> 5DE6"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12968:
+- 12968
+- CIRCLED IDEOGRAPH RIGHT
+- So
+- '0'
+- L
+- "<circle> 53F3"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12969:
+- 12969
+- CIRCLED IDEOGRAPH MEDICINE
+- So
+- '0'
+- L
+- "<circle> 533B"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12970:
+- 12970
+- CIRCLED IDEOGRAPH RELIGION
+- So
+- '0'
+- L
+- "<circle> 5B97"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12971:
+- 12971
+- CIRCLED IDEOGRAPH STUDY
+- So
+- '0'
+- L
+- "<circle> 5B66"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12972:
+- 12972
+- CIRCLED IDEOGRAPH SUPERVISE
+- So
+- '0'
+- L
+- "<circle> 76E3"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12973:
+- 12973
+- CIRCLED IDEOGRAPH ENTERPRISE
+- So
+- '0'
+- L
+- "<circle> 4F01"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12974:
+- 12974
+- CIRCLED IDEOGRAPH RESOURCE
+- So
+- '0'
+- L
+- "<circle> 8CC7"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12975:
+- 12975
+- CIRCLED IDEOGRAPH ALLIANCE
+- So
+- '0'
+- L
+- "<circle> 5354"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12976:
+- 12976
+- CIRCLED IDEOGRAPH NIGHT
+- So
+- '0'
+- L
+- "<circle> 591C"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12977:
+- 12977
+- CIRCLED NUMBER THIRTY SIX
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0033 0036"
+- ''
+- ''
+- '36'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12978:
+- 12978
+- CIRCLED NUMBER THIRTY SEVEN
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0033 0037"
+- ''
+- ''
+- '37'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12979:
+- 12979
+- CIRCLED NUMBER THIRTY EIGHT
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0033 0038"
+- ''
+- ''
+- '38'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12980:
+- 12980
+- CIRCLED NUMBER THIRTY NINE
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0033 0039"
+- ''
+- ''
+- '39'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12981:
+- 12981
+- CIRCLED NUMBER FORTY
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0034 0030"
+- ''
+- ''
+- '40'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12982:
+- 12982
+- CIRCLED NUMBER FORTY ONE
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0034 0031"
+- ''
+- ''
+- '41'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12983:
+- 12983
+- CIRCLED NUMBER FORTY TWO
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0034 0032"
+- ''
+- ''
+- '42'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12984:
+- 12984
+- CIRCLED NUMBER FORTY THREE
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0034 0033"
+- ''
+- ''
+- '43'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12985:
+- 12985
+- CIRCLED NUMBER FORTY FOUR
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0034 0034"
+- ''
+- ''
+- '44'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12986:
+- 12986
+- CIRCLED NUMBER FORTY FIVE
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0034 0035"
+- ''
+- ''
+- '45'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12987:
+- 12987
+- CIRCLED NUMBER FORTY SIX
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0034 0036"
+- ''
+- ''
+- '46'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12988:
+- 12988
+- CIRCLED NUMBER FORTY SEVEN
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0034 0037"
+- ''
+- ''
+- '47'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12989:
+- 12989
+- CIRCLED NUMBER FORTY EIGHT
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0034 0038"
+- ''
+- ''
+- '48'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12990:
+- 12990
+- CIRCLED NUMBER FORTY NINE
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0034 0039"
+- ''
+- ''
+- '49'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12991:
+- 12991
+- CIRCLED NUMBER FIFTY
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0035 0030"
+- ''
+- ''
+- '50'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12992:
+- 12992
+- IDEOGRAPHIC TELEGRAPH SYMBOL FOR JANUARY
+- So
+- '0'
+- L
+- "<compat> 0031 6708"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12993:
+- 12993
+- IDEOGRAPHIC TELEGRAPH SYMBOL FOR FEBRUARY
+- So
+- '0'
+- L
+- "<compat> 0032 6708"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12994:
+- 12994
+- IDEOGRAPHIC TELEGRAPH SYMBOL FOR MARCH
+- So
+- '0'
+- L
+- "<compat> 0033 6708"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12995:
+- 12995
+- IDEOGRAPHIC TELEGRAPH SYMBOL FOR APRIL
+- So
+- '0'
+- L
+- "<compat> 0034 6708"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12996:
+- 12996
+- IDEOGRAPHIC TELEGRAPH SYMBOL FOR MAY
+- So
+- '0'
+- L
+- "<compat> 0035 6708"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12997:
+- 12997
+- IDEOGRAPHIC TELEGRAPH SYMBOL FOR JUNE
+- So
+- '0'
+- L
+- "<compat> 0036 6708"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12998:
+- 12998
+- IDEOGRAPHIC TELEGRAPH SYMBOL FOR JULY
+- So
+- '0'
+- L
+- "<compat> 0037 6708"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+12999:
+- 12999
+- IDEOGRAPHIC TELEGRAPH SYMBOL FOR AUGUST
+- So
+- '0'
+- L
+- "<compat> 0038 6708"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13000:
+- 13000
+- IDEOGRAPHIC TELEGRAPH SYMBOL FOR SEPTEMBER
+- So
+- '0'
+- L
+- "<compat> 0039 6708"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13001:
+- 13001
+- IDEOGRAPHIC TELEGRAPH SYMBOL FOR OCTOBER
+- So
+- '0'
+- L
+- "<compat> 0031 0030 6708"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13002:
+- 13002
+- IDEOGRAPHIC TELEGRAPH SYMBOL FOR NOVEMBER
+- So
+- '0'
+- L
+- "<compat> 0031 0031 6708"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13003:
+- 13003
+- IDEOGRAPHIC TELEGRAPH SYMBOL FOR DECEMBER
+- So
+- '0'
+- L
+- "<compat> 0031 0032 6708"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13004:
+- 13004
+- SQUARE HG
+- So
+- '0'
+- 'ON'
+- "<square> 0048 0067"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13005:
+- 13005
+- SQUARE ERG
+- So
+- '0'
+- 'ON'
+- "<square> 0065 0072 0067"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13006:
+- 13006
+- SQUARE EV
+- So
+- '0'
+- 'ON'
+- "<square> 0065 0056"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13007:
+- 13007
+- LIMITED LIABILITY SIGN
+- So
+- '0'
+- 'ON'
+- "<square> 004C 0054 0044"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13008:
+- 13008
+- CIRCLED KATAKANA A
+- So
+- '0'
+- L
+- "<circle> 30A2"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13009:
+- 13009
+- CIRCLED KATAKANA I
+- So
+- '0'
+- L
+- "<circle> 30A4"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13010:
+- 13010
+- CIRCLED KATAKANA U
+- So
+- '0'
+- L
+- "<circle> 30A6"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13011:
+- 13011
+- CIRCLED KATAKANA E
+- So
+- '0'
+- L
+- "<circle> 30A8"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13012:
+- 13012
+- CIRCLED KATAKANA O
+- So
+- '0'
+- L
+- "<circle> 30AA"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13013:
+- 13013
+- CIRCLED KATAKANA KA
+- So
+- '0'
+- L
+- "<circle> 30AB"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13014:
+- 13014
+- CIRCLED KATAKANA KI
+- So
+- '0'
+- L
+- "<circle> 30AD"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13015:
+- 13015
+- CIRCLED KATAKANA KU
+- So
+- '0'
+- L
+- "<circle> 30AF"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13016:
+- 13016
+- CIRCLED KATAKANA KE
+- So
+- '0'
+- L
+- "<circle> 30B1"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13017:
+- 13017
+- CIRCLED KATAKANA KO
+- So
+- '0'
+- L
+- "<circle> 30B3"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13018:
+- 13018
+- CIRCLED KATAKANA SA
+- So
+- '0'
+- L
+- "<circle> 30B5"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13019:
+- 13019
+- CIRCLED KATAKANA SI
+- So
+- '0'
+- L
+- "<circle> 30B7"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13020:
+- 13020
+- CIRCLED KATAKANA SU
+- So
+- '0'
+- L
+- "<circle> 30B9"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13021:
+- 13021
+- CIRCLED KATAKANA SE
+- So
+- '0'
+- L
+- "<circle> 30BB"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13022:
+- 13022
+- CIRCLED KATAKANA SO
+- So
+- '0'
+- L
+- "<circle> 30BD"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13023:
+- 13023
+- CIRCLED KATAKANA TA
+- So
+- '0'
+- L
+- "<circle> 30BF"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13024:
+- 13024
+- CIRCLED KATAKANA TI
+- So
+- '0'
+- L
+- "<circle> 30C1"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13025:
+- 13025
+- CIRCLED KATAKANA TU
+- So
+- '0'
+- L
+- "<circle> 30C4"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13026:
+- 13026
+- CIRCLED KATAKANA TE
+- So
+- '0'
+- L
+- "<circle> 30C6"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13027:
+- 13027
+- CIRCLED KATAKANA TO
+- So
+- '0'
+- L
+- "<circle> 30C8"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13028:
+- 13028
+- CIRCLED KATAKANA NA
+- So
+- '0'
+- L
+- "<circle> 30CA"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13029:
+- 13029
+- CIRCLED KATAKANA NI
+- So
+- '0'
+- L
+- "<circle> 30CB"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13030:
+- 13030
+- CIRCLED KATAKANA NU
+- So
+- '0'
+- L
+- "<circle> 30CC"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13031:
+- 13031
+- CIRCLED KATAKANA NE
+- So
+- '0'
+- L
+- "<circle> 30CD"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13032:
+- 13032
+- CIRCLED KATAKANA NO
+- So
+- '0'
+- L
+- "<circle> 30CE"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13033:
+- 13033
+- CIRCLED KATAKANA HA
+- So
+- '0'
+- L
+- "<circle> 30CF"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13034:
+- 13034
+- CIRCLED KATAKANA HI
+- So
+- '0'
+- L
+- "<circle> 30D2"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13035:
+- 13035
+- CIRCLED KATAKANA HU
+- So
+- '0'
+- L
+- "<circle> 30D5"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13036:
+- 13036
+- CIRCLED KATAKANA HE
+- So
+- '0'
+- L
+- "<circle> 30D8"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13037:
+- 13037
+- CIRCLED KATAKANA HO
+- So
+- '0'
+- L
+- "<circle> 30DB"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13038:
+- 13038
+- CIRCLED KATAKANA MA
+- So
+- '0'
+- L
+- "<circle> 30DE"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13039:
+- 13039
+- CIRCLED KATAKANA MI
+- So
+- '0'
+- L
+- "<circle> 30DF"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13040:
+- 13040
+- CIRCLED KATAKANA MU
+- So
+- '0'
+- L
+- "<circle> 30E0"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13041:
+- 13041
+- CIRCLED KATAKANA ME
+- So
+- '0'
+- L
+- "<circle> 30E1"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13042:
+- 13042
+- CIRCLED KATAKANA MO
+- So
+- '0'
+- L
+- "<circle> 30E2"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13043:
+- 13043
+- CIRCLED KATAKANA YA
+- So
+- '0'
+- L
+- "<circle> 30E4"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13044:
+- 13044
+- CIRCLED KATAKANA YU
+- So
+- '0'
+- L
+- "<circle> 30E6"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13045:
+- 13045
+- CIRCLED KATAKANA YO
+- So
+- '0'
+- L
+- "<circle> 30E8"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13046:
+- 13046
+- CIRCLED KATAKANA RA
+- So
+- '0'
+- L
+- "<circle> 30E9"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13047:
+- 13047
+- CIRCLED KATAKANA RI
+- So
+- '0'
+- L
+- "<circle> 30EA"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13048:
+- 13048
+- CIRCLED KATAKANA RU
+- So
+- '0'
+- L
+- "<circle> 30EB"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13049:
+- 13049
+- CIRCLED KATAKANA RE
+- So
+- '0'
+- L
+- "<circle> 30EC"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13050:
+- 13050
+- CIRCLED KATAKANA RO
+- So
+- '0'
+- L
+- "<circle> 30ED"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13051:
+- 13051
+- CIRCLED KATAKANA WA
+- So
+- '0'
+- L
+- "<circle> 30EF"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13052:
+- 13052
+- CIRCLED KATAKANA WI
+- So
+- '0'
+- L
+- "<circle> 30F0"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13053:
+- 13053
+- CIRCLED KATAKANA WE
+- So
+- '0'
+- L
+- "<circle> 30F1"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13054:
+- 13054
+- CIRCLED KATAKANA WO
+- So
+- '0'
+- L
+- "<circle> 30F2"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+13055:
+- 13055
+- SQUARE ERA NAME REIWA
+- So
+- '0'
+- L
+- "<square> 4EE4 548C"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''

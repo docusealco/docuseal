@@ -1,0 +1,340 @@
+--- 
+:be: 
+  :calendars: 
+    :gregorian: 
+      :additional_formats: 
+        :Bh: "h B"
+        :Bhm: "h:mm B"
+        :Bhms: "h:mm:ss B"
+        :E: ccc
+        :EBhm: "E h:mm B"
+        :EBhms: "E h:mm:ss B"
+        :EHm: "E HH:mm"
+        :EHms: "E HH:mm:ss"
+        :Ed: "d, E"
+        :Ehm: "E h:mm a"
+        :Ehms: "E h:mm:ss a"
+        :Gy: "y 'г'. G"
+        :GyMMM: "LLL y 'г'. G"
+        :GyMMMEd: "E, d MMM y 'г'. G"
+        :GyMMMd: "d MMM y 'г'. G"
+        :GyMd: "dd.MM.y GGGGG"
+        :H: HH
+        :Hm: "HH:mm"
+        :Hms: "HH:mm:ss"
+        :Hmsv: "HH:mm:ss v"
+        :Hmv: "HH:mm v"
+        :M: L
+        :MEd: "E, d.M"
+        :MMM: LLL
+        :MMMEd: "E, d MMM"
+        :MMMMEd: "E, d MMMM"
+        :MMMMW: "W 'тыдзень' MMMM"
+        :MMMMd: "d MMMM"
+        :MMMd: "d MMM"
+        :Md: d.M
+        :d: d
+        :h: hh a
+        :hm: "h:mm a"
+        :hms: "h:mm:ss a"
+        :hmsv: "h:mm:ss a v"
+        :hmv: "h:mm a v"
+        :ms: mm.ss
+        ? !ruby/symbol "y"
+        : "y"
+        :yM: M.y
+        :yMEd: "E, d.M.y"
+        :yMMM: "LLL y"
+        :yMMMEd: "E, d MMM y"
+        :yMMMM: "LLLL y"
+        :yMMMd: "d MMM y"
+        :yMd: d.M.y
+        :yQQQ: "QQQ y"
+        :yQQQQ: "QQQQ y"
+        :yw: "w 'тыдзень' Y"
+      :days: 
+        :format: 
+          :abbreviated: 
+            :fri: пт
+            :mon: пн
+            :sat: сб
+            :sun: нд
+            :thu: чц
+            :tue: аў
+            :wed: ср
+          :narrow: 
+            :fri: п
+            :mon: п
+            :sat: с
+            :sun: н
+            :thu: ч
+            :tue: а
+            :wed: с
+          :short: 
+            :fri: пт
+            :mon: пн
+            :sat: сб
+            :sun: нд
+            :thu: чц
+            :tue: аў
+            :wed: ср
+          :wide: 
+            :fri: пятніца
+            :mon: панядзелак
+            :sat: субота
+            :sun: нядзеля
+            :thu: чацвер
+            :tue: аўторак
+            :wed: серада
+        :stand-alone: 
+          :abbreviated: 
+            :fri: пт
+            :mon: пн
+            :sat: сб
+            :sun: нд
+            :thu: чц
+            :tue: аў
+            :wed: ср
+          :narrow: 
+            :fri: п
+            :mon: п
+            :sat: с
+            :sun: н
+            :thu: ч
+            :tue: а
+            :wed: с
+          :short: 
+            :fri: пт
+            :mon: пн
+            :sat: сб
+            :sun: нд
+            :thu: чц
+            :tue: аў
+            :wed: ср
+          :wide: 
+            :fri: пятніца
+            :mon: панядзелак
+            :sat: субота
+            :sun: нядзеля
+            :thu: чацвер
+            :tue: аўторак
+            :wed: серада
+      :eras: 
+        :abbr: 
+          0: "да н.э."
+          1: н.э.
+        :name: 
+          0: "да нашай эры"
+          1: "нашай эры"
+        :narrow: 
+          0: BCE
+          1: CE
+      :fields: 
+        :day: дзень
+        :day-narrow: д.
+        :day-short: дзень
+        :dayOfYear: "дзень года"
+        :dayOfYear-narrow: "дзень года"
+        :dayOfYear-short: "дзень года"
+        :dayperiod: AM/PM
+        :dayperiod-narrow: AM/PM
+        :dayperiod-short: AM/PM
+        :era: эра
+        :era-narrow: эра
+        :era-short: эра
+        :hour: гадзіна
+        :hour-narrow: гадз
+        :hour-short: гадз
+        :minute: хвіліна
+        :minute-narrow: хв
+        :minute-short: хв
+        :month: месяц
+        :month-narrow: мес.
+        :month-short: мес.
+        :quarter: квартал
+        :quarter-narrow: кв.
+        :quarter-short: кв.
+        :second: секунда
+        :second-narrow: с
+        :second-short: с
+        :week: тыд
+        :week-narrow: Week
+        :week-short: Week
+        :weekOfMonth: "тыдзень месяца"
+        :weekOfMonth-narrow: "тыдзень месяца"
+        :weekOfMonth-short: "тыдзень месяца"
+        :weekday: "дзень тыдня"
+        :weekday-narrow: "дзень тыдня"
+        :weekday-short: "дзень тыдня"
+        :weekdayOfMonth: "дзень месяца"
+        :weekdayOfMonth-narrow: "дзень месяца"
+        :weekdayOfMonth-short: "дзень месяца"
+        :year: год
+        :year-narrow: г.
+        :year-short: г.
+        :zone: "часавы пояс"
+        :zone-narrow: "часавы пояс"
+        :zone-short: "часавы пояс"
+      :formats: 
+        :date: 
+          :full: 
+            :pattern: "EEEE, d MMMM y 'г'."
+          :long: 
+            :pattern: "d MMMM y 'г'."
+          :medium: 
+            :pattern: "d MMM y 'г'."
+          :short: 
+            :pattern: d.MM.yy
+        :datetime: 
+          :full: 
+            :pattern: "{{date}} 'у' {{time}}"
+          :long: 
+            :pattern: "{{date}} 'у' {{time}}"
+          :medium: 
+            :pattern: "{{date}}, {{time}}"
+          :short: 
+            :pattern: "{{date}}, {{time}}"
+        :time: 
+          :full: 
+            :pattern: "HH:mm:ss, zzzz"
+          :long: 
+            :pattern: "HH:mm:ss z"
+          :medium: 
+            :pattern: "HH:mm:ss"
+          :short: 
+            :pattern: "HH:mm"
+      :months: 
+        :format: 
+          :abbreviated: 
+            1: сту
+            10: кас
+            11: ліс
+            12: сне
+            2: лют
+            3: сак
+            4: кра
+            5: мая
+            6: чэр
+            7: ліп
+            8: жні
+            9: вер
+          :narrow: 
+            1: с
+            10: к
+            11: л
+            12: с
+            2: л
+            3: с
+            4: к
+            5: м
+            6: ч
+            7: л
+            8: ж
+            9: в
+          :wide: 
+            1: студзеня
+            10: кастрычніка
+            11: лістапада
+            12: снежня
+            2: лютага
+            3: сакавіка
+            4: красавіка
+            5: мая
+            6: чэрвеня
+            7: ліпеня
+            8: жніўня
+            9: верасня
+        :stand-alone: 
+          :abbreviated: 
+            1: сту
+            10: кас
+            11: ліс
+            12: сне
+            2: лют
+            3: сак
+            4: кра
+            5: май
+            6: чэр
+            7: ліп
+            8: жні
+            9: вер
+          :narrow: 
+            1: с
+            10: к
+            11: л
+            12: с
+            2: л
+            3: с
+            4: к
+            5: м
+            6: ч
+            7: л
+            8: ж
+            9: в
+          :wide: 
+            1: студзень
+            10: кастрычнік
+            11: лістапад
+            12: снежань
+            2: люты
+            3: сакавік
+            4: красавік
+            5: май
+            6: чэрвень
+            7: ліпень
+            8: жнівень
+            9: верасень
+      :periods: 
+        :format: 
+          :abbreviated: 
+            :am: AM
+            :pm: PM
+          :narrow: 
+            :am: am
+            :pm: pm
+          :wide: 
+            :am: AM
+            :pm: PM
+        :stand-alone: 
+          :abbreviated: 
+            :am: AM
+            :pm: PM
+          :narrow: 
+            :am: AM
+            :pm: PM
+          :wide: 
+            :am: AM
+            :pm: PM
+      :quarters: 
+        :format: 
+          :abbreviated: 
+            1: "1-шы кв."
+            2: "2-гі кв."
+            3: "3-ці кв."
+            4: "4-ты кв."
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: "1-шы квартал"
+            2: "2-гі квартал"
+            3: "3-ці квартал"
+            4: "4-ты квартал"
+        :stand-alone: 
+          :abbreviated: 
+            1: "1-шы кв."
+            2: "2-гі кв."
+            3: "3-ці кв."
+            4: "4-ты кв."
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: "1-шы квартал"
+            2: "2-гі квартал"
+            3: "3-ці квартал"
+            4: "4-ты квартал"

@@ -1,0 +1,31 @@
+--- 
+:bo: 
+  :fields: 
+    :day: 
+      :display_name: ཉིན།
+      :relative: 
+        -1: ཁས་ས་
+        -2: ཁས་ཉིན་
+        0: དེ་རིང་
+        1: སང་ཉིན་
+        2: གནངས་ཉིན་
+    :dayperiod: 
+      :display_name: "སྔ་དྲོ། ཕྱི་དྲོ།"
+    :era: 
+      :display_name: ལོ་རིམ།
+    :hour: 
+      :display_name: ཆུ་ཚོད་
+    :minute: 
+      :display_name: སྐར་མ།
+    :month: 
+      :display_name: ཟླ་བ་
+    :second: 
+      :display_name: སྐར་ཆ།
+    :week: 
+      :display_name: གཟའ་འཁོར།
+    :weekday: 
+      :display_name: གཟའ་འཁོར་གཅིག
+    :year: 
+      :display_name: ལོ།
+    :zone: 
+      :display_name: དུས་ཚོད།

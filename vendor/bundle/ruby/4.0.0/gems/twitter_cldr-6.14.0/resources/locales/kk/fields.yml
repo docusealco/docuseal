@@ -1,0 +1,432 @@
+--- 
+:kk: 
+  :fields: 
+    :day: 
+      :display_name: күн
+      :relative: 
+        -1: кеше
+        -2: алдыңгүні
+        0: бүгін
+        1: ертең
+        2: бүрсігүні
+      :relative_time: 
+        :future: 
+          :one: "{0} күннен кейін"
+          :other: "{0} күннен кейін"
+        :past: 
+          :one: "{0} күн бұрын"
+          :other: "{0} күн бұрын"
+    :day-short: 
+      :relative: 
+        -2: "алдыңғы күні"
+    :dayOfYear: 
+      :display_name: "жылдағы күн"
+    :dayperiod: 
+      :display_name: АМ/РМ
+    :era: 
+      :display_name: дәуір
+    :fri: 
+      :relative: 
+        -1: "өткен жұма"
+        0: "осы жұма"
+        1: "келесі жұма"
+      :relative_time: 
+        :future: 
+          :one: "{0} жұмадан кейін"
+          :other: "{0} жұмадан кейін"
+        :past: 
+          :one: "{0} жұма бұрын"
+          :other: "{0} жұма бұрын"
+    :fri-narrow: 
+      :relative: 
+        -1: "өткен жм"
+        0: "осы жм"
+        1: "келесі жм"
+      :relative_time: 
+        :future: 
+          :one: "{0} жм кейін"
+          :other: "{0} жм кейін"
+        :past: 
+          :one: "{0} жм бұрын"
+          :other: "{0} жм бұрын"
+    :fri-short: 
+      :relative: 
+        -1: "өткен жұм."
+        0: "осы жұм."
+        1: "келесі жұм."
+      :relative_time: 
+        :future: 
+          :one: "{0} жұм. кейін"
+          :other: "{0} жұм. кейін"
+        :past: 
+          :one: "{0} жұм. бұрын"
+          :other: "{0} жұм. бұрын"
+    :hour: 
+      :display_name: сағат
+      :relative: 
+        0: "осы сағат"
+      :relative_time: 
+        :future: 
+          :one: "{0} сағаттан кейін"
+          :other: "{0} сағаттан кейін"
+        :past: 
+          :one: "{0} сағат бұрын"
+          :other: "{0} сағат бұрын"
+    :hour-short: 
+      :display_name: сағ
+      :relative_time: 
+        :future: 
+          :one: "{0} сағ. кейін"
+          :other: "{0} сағ. кейін"
+        :past: 
+          :one: "{0} сағ. бұрын"
+          :other: "{0} сағ. бұрын"
+    :minute: 
+      :display_name: минут
+      :relative: 
+        0: "осы минут"
+      :relative_time: 
+        :future: 
+          :one: "{0} минуттан кейін"
+          :other: "{0} минуттан кейін"
+        :past: 
+          :one: "{0} минут бұрын"
+          :other: "{0} минут бұрын"
+    :minute-narrow: 
+      :display_name: мин
+    :minute-short: 
+      :display_name: мин.
+      :relative_time: 
+        :future: 
+          :one: "{0} мин. кейін"
+          :other: "{0} мин. кейін"
+        :past: 
+          :one: "{0} мин. бұрын"
+          :other: "{0} мин. бұрын"
+    :mon: 
+      :relative: 
+        -1: "өткен дүйсенбі"
+        0: "осы дүйсенбі"
+        1: "келесі дүйсенбі"
+      :relative_time: 
+        :future: 
+          :one: "{0} дүйсенбіден кейін"
+          :other: "{0} дүйсенбіден кейін"
+        :past: 
+          :one: "{0} дүйсенбі бұрын"
+          :other: "{0} дүйсенбі бұрын"
+    :mon-narrow: 
+      :relative: 
+        -1: "өткен дс"
+        0: "осы дс"
+        1: "келесі дс"
+      :relative_time: 
+        :future: 
+          :one: "{0} дс кейін"
+          :other: "{0} дс кейін"
+        :past: 
+          :one: "{0} дс бұрын"
+          :other: "{0} дс бұрын"
+    :mon-short: 
+      :relative: 
+        -1: "өткен дүй."
+        0: "осы дүй."
+        1: "келесі дүй."
+      :relative_time: 
+        :future: 
+          :one: "{0} дүй. кейін"
+          :other: "{0} дүй. кейін"
+        :past: 
+          :one: "{0} дүй. бұрын"
+          :other: "{0} дүй. бұрын"
+    :month: 
+      :display_name: ай
+      :relative: 
+        -1: "өткен ай"
+        0: "осы ай"
+        1: "келесі ай"
+      :relative_time: 
+        :future: 
+          :one: "{0} айдан кейін"
+          :other: "{0} айдан кейін"
+        :past: 
+          :one: "{0} ай бұрын"
+          :other: "{0} ай бұрын"
+    :quarter: 
+      :display_name: ширек
+      :relative: 
+        -1: "өткен тоқсан"
+        0: "осы тоқсан"
+        1: "келесі тоқсан"
+      :relative_time: 
+        :future: 
+          :one: "{0} тоқсаннан кейін"
+          :other: "{0} тоқсаннан кейін"
+        :past: 
+          :one: "{0} тоқсан бұрын"
+          :other: "{0} тоқсан бұрын"
+    :quarter-short: 
+      :display_name: ш.
+      :relative_time: 
+        :future: 
+          :one: "{0} тқс. кейін"
+          :other: "{0} тқс. кейін"
+        :past: 
+          :one: "{0} тқс. бұрын"
+          :other: "{0} тқс. бұрын"
+    :sat: 
+      :relative: 
+        -1: "өткен сенбі"
+        0: "осы сенбі"
+        1: "келесі сенбі"
+      :relative_time: 
+        :future: 
+          :one: "{0} сенбіден кейін"
+          :other: "{0} сенбіден кейін"
+        :past: 
+          :one: "{0} сенбі бұрын"
+          :other: "{0} сенбі бұрын"
+    :sat-narrow: 
+      :relative: 
+        -1: "өткен сб"
+        0: "осы сб"
+        1: "келесі сб"
+      :relative_time: 
+        :future: 
+          :one: "{0} сб кейін"
+          :other: "{0} сб кейін"
+        :past: 
+          :one: "{0} сб бұрын"
+          :other: "{0} сб бұрын"
+    :sat-short: 
+      :relative: 
+        -1: "өткен сен."
+        0: "осы сен."
+        1: "келесі сен."
+      :relative_time: 
+        :future: 
+          :one: "{0} сен. кейін"
+          :other: "{0} сен. кейін"
+        :past: 
+          :one: "{0} сен. бұрын"
+          :other: "{0} сен. бұрын"
+    :second: 
+      :display_name: секунд
+      :relative: 
+        0: қазір
+      :relative_time: 
+        :future: 
+          :one: "{0} секундтан кейін"
+          :other: "{0} секундтан кейін"
+        :past: 
+          :one: "{0} секунд бұрын"
+          :other: "{0} секунд бұрын"
+    :second-short: 
+      :display_name: с
+      :relative_time: 
+        :future: 
+          :one: "{0} сек. кейін"
+          :other: "{0} сек. кейін"
+        :past: 
+          :one: "{0} сек. бұрын"
+          :other: "{0} сек. бұрын"
+    :sun: 
+      :relative: 
+        -1: "өткен жексенбі"
+        0: "осы жексенбі"
+        1: "келесі жексенбі"
+      :relative_time: 
+        :future: 
+          :one: "{0} жексенбіден кейін"
+          :other: "{0} жексенбіден кейін"
+        :past: 
+          :one: "{0} жексенбі бұрын"
+          :other: "{0} жексенбі бұрын"
+    :sun-narrow: 
+      :relative: 
+        -1: "өткен жс"
+        0: "осы жс"
+        1: "келесі жс"
+      :relative_time: 
+        :future: 
+          :one: "{0} жс кейін"
+          :other: "{0} жс кейін"
+        :past: 
+          :one: "{0} жс бұрын"
+          :other: "{0} жс бұрын"
+    :sun-short: 
+      :relative: 
+        -1: "өткен жек."
+        0: "осы жек."
+        1: "келесі жек."
+      :relative_time: 
+        :future: 
+          :one: "{0} жек. кейін"
+          :other: "{0} жек. кейін"
+        :past: 
+          :one: "{0} жек. бұрын"
+          :other: "{0} жек. бұрын"
+    :thu: 
+      :relative: 
+        -1: "өткен бейсенбі"
+        0: "осы бейсенбі"
+        1: "келесі бейсенбі"
+      :relative_time: 
+        :future: 
+          :one: "{0} бейсенбіден кейін"
+          :other: "{0} бейсенбіден кейін"
+        :past: 
+          :one: "{0} бейсенбі бұрын"
+          :other: "{0} бейсенбі бұрын"
+    :thu-narrow: 
+      :relative: 
+        -1: "өткен бс"
+        0: "осы бс"
+        1: "келесі бс"
+      :relative_time: 
+        :future: 
+          :one: "{0} бс кейін"
+          :other: "{0} бс кейін"
+        :past: 
+          :one: "{0} бс бұрын"
+          :other: "{0} бс бұрын"
+    :thu-short: 
+      :relative: 
+        -1: "өткен бей."
+        0: "осы бей."
+        1: "келесі бей."
+      :relative_time: 
+        :future: 
+          :one: "{0} бей. кейін"
+          :other: "{0} бей. кейін"
+        :past: 
+          :one: "{0} бей. бұрын"
+          :other: "{0} бей. бұрын"
+    :tue: 
+      :relative: 
+        -1: "өткен сейсенбі"
+        0: "осы сейсенбі"
+        1: "келесі сейсенбі"
+      :relative_time: 
+        :future: 
+          :one: "{0} сейсенбіден кейін"
+          :other: "{0} сейсенбіден кейін"
+        :past: 
+          :one: "{0} сейсенбі бұрын"
+          :other: "{0} сейсенбі бұрын"
+    :tue-narrow: 
+      :relative: 
+        -1: "өткен сс"
+        0: "осы сс"
+        1: "келесі сс"
+      :relative_time: 
+        :future: 
+          :one: "{0} сс кейін"
+          :other: "{0} сс кейін"
+        :past: 
+          :one: "{0} сс бұрын"
+          :other: "{0} сс бұрын"
+    :tue-short: 
+      :relative: 
+        -1: "өткен сей."
+        0: "осы сей."
+        1: "келесі сей."
+      :relative_time: 
+        :future: 
+          :one: "{0} сей. кейін"
+          :other: "{0} сей. кейін"
+        :past: 
+          :one: "{0} сей. бұрын"
+          :other: "{0} сей. бұрын"
+    :wed: 
+      :relative: 
+        -1: "өткен сәрсенбі"
+        0: "осы сәрсенбі"
+        1: "келесі сәрсенбі"
+      :relative_time: 
+        :future: 
+          :one: "{0} сәрсенбіден кейін"
+          :other: "{0} сәрсенбіден кейін"
+        :past: 
+          :one: "{0} сәрсенбі бұрын"
+          :other: "{0} сәрсенбі бұрын"
+    :wed-narrow: 
+      :relative: 
+        -1: "өткен ср"
+        0: "осы ср"
+        1: "келесі ср"
+      :relative_time: 
+        :future: 
+          :one: "{0} ср кейін"
+          :other: "{0} ср кейін"
+        :past: 
+          :one: "{0} ср бұрын"
+          :other: "{0} ср бұрын"
+    :wed-short: 
+      :relative: 
+        -1: "өткен сәр."
+        0: "осы сәр."
+        1: "келесі сәр."
+      :relative_time: 
+        :future: 
+          :one: "{0} сәр. кейін"
+          :other: "{0} сәр. кейін"
+        :past: 
+          :one: "{0} сәр. бұрын"
+          :other: "{0} сәр. бұрын"
+    :week: 
+      :display_name: апта
+      :relative: 
+        -1: "өткен апта"
+        0: "осы апта"
+        1: "келесі апта"
+      :relative_time: 
+        :future: 
+          :one: "{0} аптадан кейін"
+          :other: "{0} аптадан кейін"
+        :past: 
+          :one: "{0} апта бұрын"
+          :other: "{0} апта бұрын"
+    :week-short: 
+      :display_name: ап.
+      :relative_time: 
+        :future: 
+          :one: "{0} ап. кейін"
+          :other: "{0} ап. кейін"
+        :past: 
+          :one: "{0} ап. бұрын"
+          :other: "{0} ап. бұрын"
+    :weekOfMonth: 
+      :display_name: "айдағы апта"
+    :weekday: 
+      :display_name: "апта күні"
+    :weekdayOfMonth: 
+      :display_name: "айдағы апта күні"
+    :weekdayOfMonth-short: 
+      :display_name: "айдағы ап. күні"
+    :year: 
+      :display_name: жыл
+      :relative: 
+        -1: "былтырғы жыл"
+        0: "биылғы жыл"
+        1: "келесі жыл"
+      :relative_time: 
+        :future: 
+          :one: "{0} жылдан кейін"
+          :other: "{0} жылдан кейін"
+        :past: 
+          :one: "{0} жыл бұрын"
+          :other: "{0} жыл бұрын"
+    :year-short: 
+      :display_name: ж.
+      :relative_time: 
+        :future: 
+          :one: "{0} ж. кейін"
+          :other: "{0} ж. кейін"
+        :past: 
+          :one: "{0} ж. бұрын"
+          :other: "{0} ж. бұрын"
+    :zone: 
+      :display_name: "уақыт белдеуі"
+    :zone-short: 
+      :display_name: "уақ. белдеуі"

@@ -1,0 +1,11 @@
+#!/usr/bin/env node
+
+// Minimal shim - all logic is in the TypeScript module
+const { run } = require("shakapacker/configExporter")
+
+run(process.argv.slice(2))
+  .then((exitCode) => process.exit(exitCode))
+  .catch((error) => {
+    console.error(error.message)
+    process.exit(1)
+  })

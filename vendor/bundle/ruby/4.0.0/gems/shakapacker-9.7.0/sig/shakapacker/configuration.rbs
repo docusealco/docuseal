@@ -1,0 +1,140 @@
+# Configuration management for Shakapacker
+#
+# Loads and provides access to settings from config/shakapacker.yml
+class Shakapacker::Configuration
+  # Flag indicating whether Shakapacker is currently being installed
+  def self.installing: () -> bool
+
+  # Sets the installing flag
+  def self.installing=: (bool value) -> bool
+
+  # The application root path
+  attr_reader root_path: Pathname
+
+  # The path to the shakapacker.yml configuration file
+  attr_reader config_path: Pathname
+
+  # The current Rails environment
+  attr_reader env: ActiveSupport::StringInquirer
+
+  # Override for the assets bundler (set via CLI flag)
+  attr_reader bundler_override: String?
+
+  # Creates a new configuration instance
+  def initialize: (
+    root_path: Pathname,
+    config_path: Pathname,
+    env: ActiveSupport::StringInquirer,
+    ?bundler_override: String?
+  ) -> void
+
+  # Returns the dev server configuration hash
+  def dev_server: () -> Hash[String | Symbol, untyped]
+
+  # Returns whether automatic compilation is enabled
+  def compile?: () -> bool
+
+  # Returns whether nested entries are enabled
+  def nested_entries?: () -> bool
+
+  # Returns whether consistent versioning check is enabled
+  def ensure_consistent_versioning?: () -> bool
+
+  # Returns whether Shakapacker should precompile assets
+  def shakapacker_precompile?: () -> bool
+
+  # Returns the absolute path to the source directory
+  def source_path: () -> Pathname
+
+  # Returns additional paths to include in compilation
+  def additional_paths: () -> Array[String]
+
+  # Returns the absolute path to the source entry directory
+  def source_entry_path: () -> Pathname
+
+  # Returns the absolute path to the manifest.json file
+  def manifest_path: () -> Pathname
+
+  # Alias for manifest_path
+  def public_manifest_path: () -> Pathname
+
+  # Returns the absolute path to the public root directory
+  def public_path: () -> Pathname
+
+  # Returns the absolute path to the private output directory
+  def private_output_path: () -> Pathname?
+
+  # Returns the absolute path to the public output directory
+  def public_output_path: () -> Pathname
+
+  # Returns whether manifest caching is enabled
+  def cache_manifest?: () -> bool
+
+  # Returns the absolute path to the compilation cache directory
+  def cache_path: () -> Pathname
+
+  # Returns whether webpack/rspack compilation output should be shown
+  def webpack_compile_output?: () -> bool
+
+  # Returns the compiler strategy for determining staleness
+  def compiler_strategy: () -> String
+
+  # Returns the assets bundler to use (webpack or rspack)
+  def assets_bundler: () -> String
+
+  # Deprecated alias for assets_bundler
+  def bundler: () -> String
+
+  # Returns whether rspack is the configured bundler
+  def rspack?: () -> bool
+
+  # Returns whether webpack is the configured bundler
+  def webpack?: () -> bool
+
+  # Returns the precompile hook command to run after compilation
+  def precompile_hook: () -> String?
+
+  # Returns the JavaScript transpiler to use (babel, swc, or esbuild)
+  def javascript_transpiler: () -> String
+
+  # Deprecated alias for javascript_transpiler
+  def webpack_loader: () -> String
+
+  # Returns the path to the bundler configuration directory
+  def assets_bundler_config_path: () -> String
+
+  # Returns the raw configuration data hash
+  def data: () -> Hash[Symbol, untyped]
+
+  # Fetches a configuration value
+  def fetch: (Symbol key) -> untyped
+
+  # Returns the asset host URL for serving assets
+  def asset_host: () -> String?
+
+  # Returns whether subresource integrity (SRI) is enabled
+  def integrity: () -> (bool | Hash[String | Symbol, untyped])
+
+  # Returns whether HTTP/2 Early Hints are enabled
+  def early_hints: () -> bool
+
+  private
+
+  def default_javascript_transpiler: () -> String
+
+  def validate_transpiler_configuration: (String transpiler) -> void
+
+  def warn_transpiler_mismatch: (String configured, String message) -> void
+
+  def validate_output_paths!: () -> void
+
+  def resolve_paths_for_comparison: () -> [String, String]
+
+  def load: () -> Hash[Symbol, untyped]
+
+  def defaults: () -> HashWithIndifferentAccess
+
+  def relative_path: (String path) -> String
+
+  def log_fallback: (String requested_env, String fallback_env) -> void
+end

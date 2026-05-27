@@ -1,0 +1,9 @@
+--- spec/fixtures/four_lines	2025-01-31 12:17:43.926013315 +0100
++++ spec/fixtures/four_lines_with_missing_new_line	2025-01-31 12:17:43.926013315 +0100
+@@ -1,4 +1,4 @@
+ one
+ two
+ three
+-four
++four
+\ No newline at end of file

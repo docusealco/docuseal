@@ -1,0 +1,267 @@
+--- 
+:sq: 
+  :territories: 
+    :ac: "Ishulli Asenshion"
+    :ad: Andorrë
+    :ae: "Emiratet e Bashkuara Arabe"
+    :af: Afganistan
+    :ag: "Antigua e Barbuda"
+    :ai: Anguilë
+    :al: Shqipëri
+    :am: Armeni
+    :ao: Angolë
+    :aq: Antarktikë
+    :ar: Argjentinë
+    :as: "Samoa Amerikane"
+    :at: Austri
+    :au: Australi
+    :aw: Arubë
+    :ax: "Ishujt Alandë"
+    :az: Azerbajxhan
+    :ba: Bosnjë-Hercegovinë
+    :bb: Barbados
+    :bd: Bangladesh
+    :be: Belgjikë
+    :bf: Burkina-Faso
+    :bg: Bullgari
+    :bh: Bahrejn
+    :bi: Burundi
+    :bj: Benin
+    :bl: Sen-Bartelemi
+    :bm: Bermude
+    :bn: Brunei
+    :bo: Bolivi
+    :bq: "Karaibet holandeze"
+    :br: Brazil
+    :bs: Bahama
+    :bt: Butan
+    :bv: "Ishulli Bove"
+    :bw: Botsvanë
+    :by: Bjellorusi
+    :bz: Belizë
+    :ca: Kanada
+    :cc: "Ishujt Kokos"
+    :cd: Kongo-Kinshasa
+    :cf: "Republika e Afrikës Qendrore"
+    :cg: Kongo-Brazavilë
+    :ch: Zvicër
+    :ci: "Côte d’Ivoire"
+    :ck: "Ishujt Kuk"
+    :cl: Kili
+    :cm: Kamerun
+    :cn: Kinë
+    :co: Kolumbi
+    :cp: "Ishulli Klipërton"
+    :cr: Kosta-Rikë
+    :cu: Kubë
+    :cv: "Kepi i Gjelbër"
+    :cw: Kurasao
+    :cx: "Ishulli i Krishtlindjes"
+    :cy: Qipro
+    :cz: Çeki
+    :de: Gjermani
+    :dg: Diego-Garsia
+    :dj: Xhibuti
+    :dk: Danimarkë
+    :dm: Dominikë
+    :do: "Republika Dominikane"
+    :dz: Algjeri
+    :ea: "Theuta e Melila"
+    :ec: Ekuador
+    :ee: Estoni
+    :eg: Egjipt
+    :eh: "Saharaja Perëndimore"
+    :er: Eritre
+    :es: Spanjë
+    :et: Etiopi
+    :eu: "Bashkimi Evropian"
+    :ez: "Zona euro"
+    :fi: Finlandë
+    :fj: Fixhi
+    :fk: "Ishujt Falkland"
+    :fm: Mikronezi
+    :fo: "Ishujt Faroe"
+    :fr: Francë
+    :ga: Gabon
+    :gb: "Mbretëria e Bashkuar"
+    :gd: Granadë
+    :ge: Gjeorgji
+    :gf: "Guajana Franceze"
+    :gg: Gernsej
+    :gh: Ganë
+    :gi: Gjibraltar
+    :gl: Grënlandë
+    :gm: Gambi
+    :gn: Guine
+    :gp: Guadelupë
+    :gq: "Guineja Ekuatoriale"
+    :gr: Greqi
+    :gs: "Xhorxha Jugore dhe Ishujt Senduiçë të Jugut"
+    :gt: Guatemalë
+    :gu: Guam
+    :gw: Guine-Bisau
+    :gy: Guajanë
+    :hk: "RPA i Hong-Kongut"
+    :hm: "Ishujt Hërd e Mekdonald"
+    :hn: Honduras
+    :hr: Kroaci
+    :ht: Haiti
+    :hu: Hungari
+    :ic: "Ishujt Kanarie"
+    :id: Indonezi
+    :ie: Irlandë
+    :il: Izrael
+    :im: "Ishulli i Manit"
+    :in: Indi
+    :io: "Territori Britanik i Oqeanit Indian"
+    :iq: Irak
+    :ir: Iran
+    :is: Islandë
+    :it: Itali
+    :je: Xhersej
+    :jm: Xhamajkë
+    :jo: Jordani
+    :jp: Japoni
+    :ke: Kenia
+    :kg: Kirgizi
+    :kh: Kamboxhia
+    :ki: Kiribati
+    :km: Komore
+    :kn: "Shën-Kits dhe Nevis"
+    :kp: "Kore e Veriut"
+    :kr: "Kore e Jugut"
+    :kw: Kuvajt
+    :ky: "Ishujt Kajman"
+    :kz: Kazakistan
+    :la: Laos
+    :lb: Liban
+    :lc: Shën-Luçia
+    :li: Lihtenshtajn
+    :lk: Sri-Lankë
+    :lr: Liberi
+    :ls: Lesoto
+    :lt: Lituani
+    :lu: Luksemburg
+    :lv: Letoni
+    :ly: Libi
+    :ma: Marok
+    :mc: Monako
+    :md: Moldavi
+    :me: "Mal i Zi"
+    :mf: Sen-Marten
+    :mg: Madagaskar
+    :mh: "Ishujt Marshall"
+    :mk: "Maqedonia e Veriut"
+    :ml: Mali
+    :mm: "Mianmar (Burmë)"
+    :mn: Mongoli
+    :mo: "RPA i Makaos"
+    :mp: "Ishujt e Marianës Veriore"
+    :mq: Martinikë
+    :mr: Mauritani
+    :ms: Montserat
+    :mt: Maltë
+    :mu: Mauritius
+    :mv: Maldive
+    :mw: Malavi
+    :mx: Meksikë
+    :my: Malajzi
+    :mz: Mozambik
+    :na: Namibi
+    :nc: "Kaledoni e Re"
+    :ne: Niger
+    :nf: "Ishulli Norfolk"
+    :ng: Nigeri
+    :ni: Nikaragua
+    :nl: Holandë
+    ? !ruby/symbol "no"
+    : Norvegji
+    :np: Nepal
+    :nr: Nauru
+    :nu: Niue
+    :nz: "Zelandë e Re"
+    :om: Oman
+    :pa: Panama
+    :pe: Peru
+    :pf: "Polinezia Franceze"
+    :pg: "Guineja e Re-Papua"
+    :ph: Filipine
+    :pk: Pakistan
+    :pl: Poloni
+    :pm: "Shën-Pier dhe Mikelon"
+    :pn: "Ishujt Pitkern"
+    :pr: Porto-Riko
+    :ps: "Territoret Palestineze"
+    :pt: Portugali
+    :pw: Palau
+    :py: Paraguai
+    :qa: Katar
+    :qo: "Oqeania e Largët (Lindja e Largët)"
+    :re: Reunion
+    :ro: Rumani
+    :rs: Serbi
+    :ru: Rusi
+    :rw: Ruandë
+    :sa: "Arabi Saudite"
+    :sb: "Ishujt Solomon"
+    :sc: Sejshelle
+    :sd: Sudan
+    :se: Suedi
+    :sg: Singapor
+    :sh: Shën-Elenë
+    :si: Slloveni
+    :sj: "Svalbard e Jan-Majen"
+    :sk: Sllovaki
+    :sl: Sierra-Leone
+    :sm: San-Marino
+    :sn: Senegal
+    :so: Somali
+    :sr: Surinami
+    :ss: "Sudani i Jugut"
+    :st: "Sao-Tome e Principe"
+    :sv: Salvador
+    :sx: Sint-Marten
+    :sy: Siri
+    :sz: Esvatini
+    :ta: Tristan-da-Kuna
+    :tc: "Ishujt Turks dhe Kaikos"
+    :td: Çad
+    :tf: "Territoret Jugore Franceze"
+    :tg: Togo
+    :th: Tajlandë
+    :tj: Taxhikistan
+    :tk: Tokelau
+    :tl: Timor-Leste
+    :tm: Turkmenistan
+    :tn: Tunizi
+    :to: Tonga
+    :tr: Turqi
+    :tt: "Trinidad e Tobago"
+    :tv: Tuvalu
+    :tw: Tajvan
+    :tz: Tanzani
+    :ua: Ukrainë
+    :ug: Ugandë
+    :um: "Ishujt Periferikë të SHBA-së"
+    :un: "Organizata e Kombeve të Bashkuara"
+    :us: SHBA
+    :uy: Uruguai
+    :uz: Uzbekistan
+    :va: Vatikan
+    :vc: "Shën-Vincent dhe Grenadine"
+    :ve: Venezuelë
+    :vg: "Ishujt e Virgjër Britanikë"
+    :vi: "Ishujt e Virgjër të SHBA-së"
+    :vn: Vietnam
+    :vu: Vanuatu
+    :wf: "Uollis e Futuna"
+    :ws: Samoa
+    :xa: Pseudo-thekse
+    :xb: Pseudo-bidi
+    :xk: Kosovë
+    :ye: Jemen
+    :yt: Majotë
+    :za: "Afrika e Jugut"
+    :zm: Zambi
+    :zw: Zimbabve
+    :zz: "I panjohur"

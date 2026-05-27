@@ -1,0 +1,35 @@
+# Build operation commands for Shakapacker
+class Shakapacker::Commands
+  # Creates a new commands instance
+  def initialize: (Instance instance) -> void
+
+  # Cleanup old assets in the compile directory
+  def clean: (?Integer, ?Integer) -> bool
+
+  # Removes all compiled packs
+  def clobber: () -> void
+
+  # Creates the default configuration files and directory structure
+  def bootstrap: () -> void
+
+  # Compiles all webpack/rspack packs
+  def compile: () -> bool
+
+  # Returns the configuration object
+  def config: () -> Configuration
+
+  # Returns the compiler instance
+  def compiler: () -> Compiler
+
+  # Returns the manifest instance
+  def manifest: () -> Manifest
+
+  # Returns the logger instance
+  def logger: () -> ActiveSupport::TaggedLogging
+
+  private
+
+  def packs: () -> Array[String]
+
+  def current_version: () -> Array[String]
+end

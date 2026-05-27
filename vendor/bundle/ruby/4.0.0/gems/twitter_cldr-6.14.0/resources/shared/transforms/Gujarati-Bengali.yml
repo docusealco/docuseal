@@ -1,0 +1,16 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - Gujarati-Bengali
+      - und-Beng-t-und-gujr
+    :direction: forward
+    :rules: 
+      - "::[।-॥ઁ-ઃઅ-ઍએ-ઑઓ-નપ-રલ-ળવ-હ઼-ૅે-ૉો-્ૐૠૡ૦-૯] ;"
+      - "::NFD ;"
+      - "::Gujarati-InterIndic ;"
+      - "::InterIndic-Bengali ;"
+      - "::NFC ;"
+    :source: Gujr
+    :target: Beng
+    :variant: ~

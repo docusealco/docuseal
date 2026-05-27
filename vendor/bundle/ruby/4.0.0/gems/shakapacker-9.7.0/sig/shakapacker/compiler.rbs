@@ -1,0 +1,65 @@
+# Compiler for compiling assets with webpack/rspack
+class Shakapacker::Compiler
+  # Additional environment variables that the compiler is being run with
+  def self.env: () -> Hash[String, String]
+
+  # Sets additional environment variables
+  def self.env=: (Hash[String, String] env) -> Hash[String, String]
+
+  # Creates a new compiler instance
+  def initialize: (Instance instance) -> void
+
+  # Compiles all webpack/rspack packs
+  def compile: () -> bool
+
+  # Returns the configuration object
+  def config: () -> Configuration
+
+  # Returns the logger instance
+  def logger: () -> ActiveSupport::TaggedLogging
+
+  # Returns the compiler strategy
+  def strategy: () -> CompilerStrategy
+
+  # Returns whether assets are fresh (up-to-date)
+  def fresh?: () -> bool
+
+  # Returns whether assets are stale (need recompilation)
+  def stale?: () -> bool
+
+  # Runs the post-compile hook
+  def after_compile_hook: () -> void
+
+  private
+
+  attr_reader instance: Instance
+
+  def acquire_ipc_lock: [T] () { () -> T } -> T
+
+  def locked?: () -> bool
+
+  alias compiling? locked?
+
+  def wait_for_compilation_to_complete: () -> void
+
+  def open_lock_file: [T] () { (File) -> T } -> T
+
+  def create_lock_file_dir: () -> void
+
+  def lock_file_path: () -> Pathname
+
+  def optional_ruby_runner: () -> String?
+
+  def bin_shakapacker_path: () -> Pathname
+
+  # Returns true if precompile hook should run, false if disabled or skipped via ENV
+  def should_run_precompile_hook?: () -> bool
+
+  def run_precompile_hook: () -> void
+
+  def validate_precompile_hook: (String hook_command) -> Hash[Symbol, untyped]
+
+  def run_webpack: () -> bool
+
+  def webpack_env: () -> Hash[String, String]
+end

@@ -1,0 +1,44 @@
+%PDF-1.2
+%¿÷¢þ
+1 0 obj
+<< /Pages 2 0 R /Type /Catalog >>
+endobj
+2 0 obj
+<< /Count 1 /Kids [ 3 0 R ] /MediaBox [ 0 0 612 446 ] /Type /Pages >>
+endobj
+3 0 obj
+<< /Contents 4 0 R /Parent 2 0 R /Resources 5 0 R /Type /Page >>
+endobj
+4 0 obj
+<< /Length 51 >>
+stream
+BT
+/F1 24 Tf
+1 0 0 1 260 254 Tm
+(Hello World)Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Font << /F1 6 0 R >> /ProcSet [ /PDF /Text ] >>
+endobj
+6 0 obj
+<< /BaseFont /Helvetica /Name /F1 /Subtype /Type1 /Type /Font >>
+endobj
+7 0 obj
+<</ModDate (D:20150409164600)>>
+endobj
+xref
+0 8
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000149 00000 n 
+0000000229 00000 n 
+0000000329 00000 n 
+0000000396 00000 n 
+0000000476 00000 n 
+trailer << /Root 1 0 R /Info 7 0 R /Size 8 /ID [<6790ffa610024e78369114311fc0df96><6790ffa610024e78369114311fc0df96>] >>
+startxref
+523
+%%EOF

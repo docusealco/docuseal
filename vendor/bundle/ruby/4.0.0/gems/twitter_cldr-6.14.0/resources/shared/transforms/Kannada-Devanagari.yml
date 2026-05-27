@@ -1,0 +1,16 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - Kannada-Devanagari
+      - und-Deva-t-und-knda
+    :direction: forward
+    :rules: 
+      - "::[ಂ-ಃಅ-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼ಽಾ-ೄೆ-ೈೊ-್ೕ-ೖೞೠ-ೡ೦-೯] ;"
+      - "::NFD ;"
+      - "::Kannada-InterIndic ;"
+      - "::InterIndic-Devanagari ;"
+      - "::NFC ;"
+    :source: Knda
+    :target: Deva
+    :variant: ~

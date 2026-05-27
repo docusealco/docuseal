@@ -1,0 +1,16 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - Malayalam-Telugu
+      - und-Telu-t-und-mlym
+    :direction: forward
+    :rules: 
+      - "::[ം-ഃഅ-ഌഎ-ഐഒ-നപ-ഹാ-ൃെ-ൈൊ-്ൗൠ-ൡ൦-൯] ;"
+      - "::NFD ;"
+      - "::Malayalam-InterIndic ;"
+      - "::InterIndic-Telugu ;"
+      - "::NFC ;"
+    :source: Mlym
+    :target: Telu
+    :variant: ~

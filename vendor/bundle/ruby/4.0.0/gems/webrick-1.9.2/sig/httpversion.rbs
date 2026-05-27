@@ -1,0 +1,17 @@
+module WEBrick
+  class HTTPVersion
+    include Comparable
+
+    attr_accessor major: Integer
+
+    attr_accessor minor: Integer
+
+    def self.convert: (HTTPVersion | String version) -> instance
+
+    def initialize: (HTTPVersion | String version) -> void
+
+    def <=>: (HTTPVersion | String other) -> Integer?
+
+    def to_s: () -> String
+  end
+end

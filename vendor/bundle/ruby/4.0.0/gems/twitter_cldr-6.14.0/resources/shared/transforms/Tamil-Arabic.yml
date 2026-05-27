@@ -1,0 +1,16 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - Tamil-Arabic
+      - und-Arab-t-und-taml
+    :direction: forward
+    :rules: 
+      - "::[\\u0BE6ஂ-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-வஷ-ஹா-ூெ-ைொ-்ௗ௧-௲ஶ] ;"
+      - "::NFD ;"
+      - "::Tamil-InterIndic ;"
+      - "::InterIndic-Arabic ;"
+      - "::NFC ;"
+    :source: Taml
+    :target: Arab
+    :variant: ~

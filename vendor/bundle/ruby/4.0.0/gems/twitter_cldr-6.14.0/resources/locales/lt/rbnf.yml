@@ -1,0 +1,314 @@
+--- 
+:lt: 
+  :rbnf: 
+    :grouping: 
+      - 
+        :ruleset: 
+          - 
+            :rules: 
+              - 
+                :rule: =0.0=;
+                :value: x.x
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 0
+            :type: spellout-numbering-year
+          - 
+            :rules: 
+              - 
+                :rule: =%spellout-cardinal-masculine=;
+                :value: 0
+            :type: spellout-numbering
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: ERROR;
+                :value: 0
+              - 
+                :rule: dvi;
+                :value: 2
+              - 
+                :rule: tris;
+                :value: 3
+              - 
+                :rule: keturias;
+                :value: 4
+              - 
+                :rule: penkias;
+                :value: 5
+              - 
+                :rule: šešias;
+                :value: 6
+              - 
+                :rule: septynias;
+                :value: 7
+              - 
+                :rule: aštuonias;
+                :value: 8
+              - 
+                :rule: devynias;
+                :value: 9
+              - 
+                :rule: ERROR;
+                :value: 10
+            :type: spellout-cardinal-feminine-accusative
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: tūkstančių;
+                :value: 0
+              - 
+                :rule: "=%spellout-cardinal-masculine= tūkstantis;"
+                :value: 1
+              - 
+                :rule: "=%spellout-cardinal-masculine= tūkstančiai;"
+                :value: 2
+              - 
+                :rule: "=%spellout-cardinal-masculine= tūkstančių;"
+                :value: 10
+              - 
+                :rule: "=%spellout-cardinal-masculine= tūkstantis;"
+                :value: 21
+              - 
+                :rule: "=%spellout-cardinal-masculine= tūkstančiai;"
+                :value: 22
+              - 
+                :rule: "=%spellout-cardinal-masculine= tūkstančių;"
+                :value: 30
+              - 
+                :rule: "=%spellout-cardinal-masculine= tūkstantis;"
+                :value: 31
+              - 
+                :rule: "=%spellout-cardinal-masculine= tūkstančiai;"
+                :value: 32
+              - 
+                :rule: "=%spellout-cardinal-masculine= tūkstančių;"
+                :value: 40
+              - 
+                :rule: "=%spellout-cardinal-masculine= tūkstantis;"
+                :value: 41
+              - 
+                :rule: "=%spellout-cardinal-masculine= tūkstančiai;"
+                :value: 42
+              - 
+                :rule: "=%spellout-cardinal-masculine= tūkstančių;"
+                :value: 50
+              - 
+                :rule: "=%spellout-cardinal-masculine= tūkstantis;"
+                :value: 51
+              - 
+                :rule: "=%spellout-cardinal-masculine= tūkstančiai;"
+                :value: 52
+              - 
+                :rule: "=%spellout-cardinal-masculine= tūkstančių;"
+                :value: 60
+              - 
+                :rule: "=%spellout-cardinal-masculine= tūkstantis;"
+                :value: 61
+              - 
+                :rule: "=%spellout-cardinal-masculine= tūkstančiai;"
+                :value: 62
+              - 
+                :rule: "=%spellout-cardinal-masculine= tūkstančių;"
+                :value: 70
+              - 
+                :rule: "=%spellout-cardinal-masculine= tūkstantis;"
+                :value: 71
+              - 
+                :rule: "=%spellout-cardinal-masculine= tūkstančiai;"
+                :value: 72
+              - 
+                :rule: "=%spellout-cardinal-masculine= tūkstančių;"
+                :value: 80
+              - 
+                :rule: "=%spellout-cardinal-masculine= tūkstantis;"
+                :value: 81
+              - 
+                :rule: "=%spellout-cardinal-masculine= tūkstančiai;"
+                :value: 82
+              - 
+                :rule: "=%spellout-cardinal-masculine= tūkstančių;"
+                :value: 90
+              - 
+                :rule: "=%spellout-cardinal-masculine= tūkstantis;"
+                :value: 91
+              - 
+                :rule: "=%spellout-cardinal-masculine= tūkstančiai;"
+                :value: 92
+              - 
+                :rule: "šimtas >>;"
+                :value: 100
+              - 
+                :rule: "<%spellout-cardinal-masculine< šimtai >>;"
+                :value: 200
+            :type: spellout-thousands
+          - 
+            :rules: 
+              - 
+                :rule: "mīnus >>;"
+                :value: "-x"
+              - 
+                :rule: "<< kablelis >>;"
+                :value: x.x
+              - 
+                :rule: nulis;
+                :value: 0
+              - 
+                :rule: vienas;
+                :value: 1
+              - 
+                :rule: du;
+                :value: 2
+              - 
+                :rule: trys;
+                :value: 3
+              - 
+                :rule: keturi;
+                :value: 4
+              - 
+                :rule: penki;
+                :value: 5
+              - 
+                :rule: šeši;
+                :value: 6
+              - 
+                :rule: septyni;
+                :value: 7
+              - 
+                :rule: aštuoni;
+                :value: 8
+              - 
+                :rule: devyni;
+                :value: 9
+              - 
+                :rule: dešimt;
+                :value: 10
+              - 
+                :rule: vienuolika;
+                :value: 11
+              - 
+                :rule: dvylika;
+                :value: 12
+              - 
+                :rule: trylika;
+                :value: 13
+              - 
+                :rule: ">>olika;"
+                :value: 14
+              - 
+                :rule: "<%%spellout-cardinal-feminine-accusative<dešimt[ >>];"
+                :value: 20
+              - 
+                :rule: "šimtas[ >>];"
+                :value: 100
+              - 
+                :rule: "<%spellout-cardinal-masculine< šimtai[ >>];"
+                :value: 200
+              - 
+                :rule: "tūkstantis[ >>];"
+                :value: 1000
+              - 
+                :radix: 1000
+                :rule: "<%%spellout-thousands<[ >>];"
+                :value: 2000
+              - 
+                :rule: "vienas milijonas[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<%spellout-cardinal-masculine< milijonų[ >>];"
+                :value: 2000000
+              - 
+                :rule: "vienas milijardas[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<%spellout-cardinal-masculine< milijardų[ >>];"
+                :value: 2000000000
+              - 
+                :rule: "vienas trilijonas[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%spellout-cardinal-masculine<trilijonų[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "vienas kvadrilijonas[ >>];"
+                :value: 1000000000000000
+              - 
+                :rule: "<%spellout-cardinal-masculine< kvadrilijonų[ >>];"
+                :value: 2000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-masculine
+          - 
+            :rules: 
+              - 
+                :rule: "mīnus >>;"
+                :value: "-x"
+              - 
+                :rule: "<< kablelis >>;"
+                :value: x.x
+              - 
+                :rule: nulis;
+                :value: 0
+              - 
+                :rule: viena;
+                :value: 1
+              - 
+                :rule: dvi;
+                :value: 2
+              - 
+                :rule: trys;
+                :value: 3
+              - 
+                :rule: =%spellout-cardinal-masculine=os;
+                :value: 4
+              - 
+                :rule: =%spellout-cardinal-masculine=;
+                :value: 10
+              - 
+                :rule: "<%%spellout-cardinal-feminine-accusative<dešimt[ >>];"
+                :value: 20
+              - 
+                :rule: "šimtas[ >>];"
+                :value: 100
+              - 
+                :rule: "<%spellout-cardinal-masculine< šimtai[ >>];"
+                :value: 200
+              - 
+                :rule: "tūkstantis[ >>];"
+                :value: 1000
+              - 
+                :radix: 1000
+                :rule: "<%%spellout-thousands<[ >>];"
+                :value: 2000
+              - 
+                :rule: "vienas milijonas[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<%spellout-cardinal-masculine< milijonų[ >>];"
+                :value: 2000000
+              - 
+                :rule: "vienas milijardas[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<%spellout-cardinal-masculine< milijardų[ >>];"
+                :value: 2000000000
+              - 
+                :rule: "vienas trilijonas[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%spellout-cardinal-masculine< trilijonų[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "vienas kvadrilijonas[ >>];"
+                :value: 1000000000000000
+              - 
+                :rule: "<%spellout-cardinal-masculine< kvadrilijonų[ >>];"
+                :value: 2000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-feminine
+        :type: SpelloutRules

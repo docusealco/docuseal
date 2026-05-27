@@ -1,0 +1,6 @@
+---
+eo:
+  number:
+    nth:
+      ordinals: "."
+      ordinalized: "%{number}."

@@ -1,0 +1,12 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - am-t-ky
+    :direction: forward
+    :rules: 
+      - "::ky-ky_FONIPA ;"
+      - "::am_FONIPA-am ;"
+    :source: ky
+    :target: am
+    :variant: ~

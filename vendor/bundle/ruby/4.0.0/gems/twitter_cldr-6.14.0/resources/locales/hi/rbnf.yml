@@ -1,0 +1,517 @@
+--- 
+:hi: 
+  :rbnf: 
+    :grouping: 
+      - 
+        :ruleset: 
+          - 
+            :rules: 
+              - 
+                :rule: =0.0=;
+                :value: x.x
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 0
+            :type: spellout-numbering-year
+          - 
+            :rules: 
+              - 
+                :rule: =%spellout-cardinal=;
+                :value: 0
+            :type: spellout-numbering
+          - 
+            :rules: 
+              - 
+                :rule: "ऋण >>;"
+                :value: "-x"
+              - 
+                :rule: "<< दशमलव >>;"
+                :value: x.x
+              - 
+                :rule: शून्य;
+                :value: 0
+              - 
+                :rule: एक;
+                :value: 1
+              - 
+                :rule: दो;
+                :value: 2
+              - 
+                :rule: तीन;
+                :value: 3
+              - 
+                :rule: चार;
+                :value: 4
+              - 
+                :rule: पाँच;
+                :value: 5
+              - 
+                :rule: छह;
+                :value: 6
+              - 
+                :rule: सात;
+                :value: 7
+              - 
+                :rule: आठ;
+                :value: 8
+              - 
+                :rule: नौ;
+                :value: 9
+              - 
+                :rule: दस;
+                :value: 10
+              - 
+                :rule: ग्यारह;
+                :value: 11
+              - 
+                :rule: बारह;
+                :value: 12
+              - 
+                :rule: तेरह;
+                :value: 13
+              - 
+                :rule: चौदह;
+                :value: 14
+              - 
+                :rule: पन्द्रह;
+                :value: 15
+              - 
+                :rule: सोलह;
+                :value: 16
+              - 
+                :rule: सत्रह;
+                :value: 17
+              - 
+                :rule: अठारह;
+                :value: 18
+              - 
+                :rule: उन्नीस;
+                :value: 19
+              - 
+                :rule: बीस;
+                :value: 20
+              - 
+                :rule: इक्कीस;
+                :value: 21
+              - 
+                :rule: बाईस;
+                :value: 22
+              - 
+                :rule: तेईस;
+                :value: 23
+              - 
+                :rule: चौबीस;
+                :value: 24
+              - 
+                :rule: पच्चीस;
+                :value: 25
+              - 
+                :rule: छब्बीस;
+                :value: 26
+              - 
+                :rule: सत्ताईस;
+                :value: 27
+              - 
+                :rule: अट्ठाईस;
+                :value: 28
+              - 
+                :rule: उनतीस;
+                :value: 29
+              - 
+                :rule: तीस;
+                :value: 30
+              - 
+                :rule: इकतीस;
+                :value: 31
+              - 
+                :rule: बत्तीस;
+                :value: 32
+              - 
+                :rule: तैंतीस;
+                :value: 33
+              - 
+                :rule: चौंतीस;
+                :value: 34
+              - 
+                :rule: पैंतीस;
+                :value: 35
+              - 
+                :rule: छत्तीस;
+                :value: 36
+              - 
+                :rule: सैंतीस;
+                :value: 37
+              - 
+                :rule: अड़तीस;
+                :value: 38
+              - 
+                :rule: उनतालीस;
+                :value: 39
+              - 
+                :rule: चालीस;
+                :value: 40
+              - 
+                :rule: इकतालीस;
+                :value: 41
+              - 
+                :rule: बयालीस;
+                :value: 42
+              - 
+                :rule: तैंतालीस;
+                :value: 43
+              - 
+                :rule: चौवालीस;
+                :value: 44
+              - 
+                :rule: पैंतालीस;
+                :value: 45
+              - 
+                :rule: छियालीस;
+                :value: 46
+              - 
+                :rule: सैंतालीस;
+                :value: 47
+              - 
+                :rule: अड़तालीस;
+                :value: 48
+              - 
+                :rule: उनचास;
+                :value: 49
+              - 
+                :rule: पचास;
+                :value: 50
+              - 
+                :rule: इक्यावन;
+                :value: 51
+              - 
+                :rule: बावन;
+                :value: 52
+              - 
+                :rule: तिरेपन;
+                :value: 53
+              - 
+                :rule: चौवन;
+                :value: 54
+              - 
+                :rule: पचपन;
+                :value: 55
+              - 
+                :rule: छप्पन;
+                :value: 56
+              - 
+                :rule: सत्तावन;
+                :value: 57
+              - 
+                :rule: अट्ठावन;
+                :value: 58
+              - 
+                :rule: उनसठ;
+                :value: 59
+              - 
+                :rule: साठ;
+                :value: 60
+              - 
+                :rule: इकसठ;
+                :value: 61
+              - 
+                :rule: बासठ;
+                :value: 62
+              - 
+                :rule: तिरेसठ;
+                :value: 63
+              - 
+                :rule: चौंसठ;
+                :value: 64
+              - 
+                :rule: पैंसठ;
+                :value: 65
+              - 
+                :rule: छियासठ;
+                :value: 66
+              - 
+                :rule: सड़सठ;
+                :value: 67
+              - 
+                :rule: अड़सठ;
+                :value: 68
+              - 
+                :rule: उनहत्तर;
+                :value: 69
+              - 
+                :rule: सत्तर;
+                :value: 70
+              - 
+                :rule: इकहत्तर;
+                :value: 71
+              - 
+                :rule: बहत्तर;
+                :value: 72
+              - 
+                :rule: तिहत्तर;
+                :value: 73
+              - 
+                :rule: चौहत्तर;
+                :value: 74
+              - 
+                :rule: पचहत्तर;
+                :value: 75
+              - 
+                :rule: छिहत्तर;
+                :value: 76
+              - 
+                :rule: सतहत्तर;
+                :value: 77
+              - 
+                :rule: अठहत्तर;
+                :value: 78
+              - 
+                :rule: उनासी;
+                :value: 79
+              - 
+                :rule: अस्सी;
+                :value: 80
+              - 
+                :rule: इक्यासी;
+                :value: 81
+              - 
+                :rule: बयासी;
+                :value: 82
+              - 
+                :rule: तिरासी;
+                :value: 83
+              - 
+                :rule: चौरासी;
+                :value: 84
+              - 
+                :rule: पचासी;
+                :value: 85
+              - 
+                :rule: छियासी;
+                :value: 86
+              - 
+                :rule: सत्तासी;
+                :value: 87
+              - 
+                :rule: अट्ठासी;
+                :value: 88
+              - 
+                :rule: नवासी;
+                :value: 89
+              - 
+                :rule: नब्बे;
+                :value: 90
+              - 
+                :rule: इक्यानबे;
+                :value: 91
+              - 
+                :rule: बानबे;
+                :value: 92
+              - 
+                :rule: तिरानबे;
+                :value: 93
+              - 
+                :rule: चौरानबे;
+                :value: 94
+              - 
+                :rule: पंचानबे;
+                :value: 95
+              - 
+                :rule: छियानबे;
+                :value: 96
+              - 
+                :rule: सत्तानबे;
+                :value: 97
+              - 
+                :rule: अट्ठानबे;
+                :value: 98
+              - 
+                :rule: निन्यानबे;
+                :value: 99
+              - 
+                :rule: "<< सौ[ >>];"
+                :value: 100
+              - 
+                :rule: "<< हज़ार[ >>];"
+                :value: 1000
+              - 
+                :rule: "<< लाख[ >>];"
+                :value: 100000
+              - 
+                :rule: "<< करोड़[ >>];"
+                :value: 10000000
+              - 
+                :rule: "<< अरब[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<< खरब[ >>];"
+                :value: 100000000000
+              - 
+                :rule: "=#,##,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal
+          - 
+            :rules: 
+              - 
+                :rule: "ऋण >>;"
+                :value: "-x"
+              - 
+                :rule: "=#,##,##0.0=;"
+                :value: x.x
+              - 
+                :rule: शून्यवाँ;
+                :value: 0
+              - 
+                :rule: पहला;
+                :value: 1
+              - 
+                :rule: दूसरा;
+                :value: 2
+              - 
+                :rule: तीसरा;
+                :value: 3
+              - 
+                :rule: चौथा;
+                :value: 4
+              - 
+                :rule: पाँचवाँ;
+                :value: 5
+              - 
+                :rule: छठा;
+                :value: 6
+              - 
+                :rule: =%spellout-cardinal=वाँ;
+                :value: 7
+            :type: spellout-ordinal-masculine
+          - 
+            :rules: 
+              - 
+                :rule: "ऋण >>;"
+                :value: "-x"
+              - 
+                :rule: "=#,##,##0.0=;"
+                :value: x.x
+              - 
+                :rule: शून्यवी;
+                :value: 0
+              - 
+                :rule: पहली;
+                :value: 1
+              - 
+                :rule: दूसरी;
+                :value: 2
+              - 
+                :rule: तीसरी;
+                :value: 3
+              - 
+                :rule: चौथी;
+                :value: 4
+              - 
+                :rule: पाँचवी;
+                :value: 5
+              - 
+                :rule: छठी;
+                :value: 6
+              - 
+                :rule: =%spellout-cardinal=वी;
+                :value: 7
+            :type: spellout-ordinal-feminine
+        :type: SpelloutRules
+      - 
+        :ruleset: 
+          - 
+            :rules: 
+              - 
+                :rule: −>>;
+                :value: "-x"
+              - 
+                :rule: "=#,##,##0.0=;"
+                :value: x.x
+              - 
+                :rule: 0;
+                :value: 0
+              - 
+                :rule: =0=ला;
+                :value: 1
+              - 
+                :rule: =0=रा;
+                :value: 2
+              - 
+                :rule: =0=था;
+                :value: 4
+              - 
+                :rule: =0=वाँ;
+                :value: 5
+              - 
+                :rule: =0=ठा;
+                :value: 6
+              - 
+                :rule: "=#,##,##0=वाँ;"
+                :value: 7
+            :type: digits-ordinal-masculine
+          - 
+            :rules: 
+              - 
+                :rule: −>>;
+                :value: "-x"
+              - 
+                :rule: "=#,##,##0.0=;"
+                :value: x.x
+              - 
+                :rule: 0;
+                :value: 0
+              - 
+                :rule: =0=ले;
+                :value: 1
+              - 
+                :rule: =0=रे;
+                :value: 2
+              - 
+                :rule: =0=थे;
+                :value: 4
+              - 
+                :rule: =0=वें;
+                :value: 5
+              - 
+                :rule: =0=ठे;
+                :value: 6
+              - 
+                :rule: "=#,##,##0=वें;"
+                :value: 7
+            :type: digits-ordinal-masculine-oblique
+          - 
+            :rules: 
+              - 
+                :rule: −>>;
+                :value: "-x"
+              - 
+                :rule: "=#,##,##0.0=;"
+                :value: x.x
+              - 
+                :rule: 0;
+                :value: 0
+              - 
+                :rule: =0=ली;
+                :value: 1
+              - 
+                :rule: =0=री;
+                :value: 2
+              - 
+                :rule: =0=थी;
+                :value: 4
+              - 
+                :rule: =0=वीँ;
+                :value: 5
+              - 
+                :rule: =0=ठी;
+                :value: 6
+              - 
+                :rule: "=#,##,##0=वीँ;"
+                :value: 7
+            :type: digits-ordinal-feminine
+          - 
+            :rules: 
+              - 
+                :rule: =%digits-ordinal-masculine=;
+                :value: 0
+            :type: digits-ordinal
+        :type: OrdinalRules

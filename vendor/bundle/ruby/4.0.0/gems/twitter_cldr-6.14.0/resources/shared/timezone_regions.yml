@@ -1,0 +1,1657 @@
+---
+:Africa/Abidjan:
+  :region: CI
+  :primary: true
+:Africa/Accra:
+  :region: GH
+  :primary: true
+:Africa/Addis_Ababa:
+  :region: ET
+  :primary: true
+:Africa/Algiers:
+  :region: DZ
+  :primary: true
+:Africa/Asmara:
+  :region: ER
+  :primary: true
+:Africa/Asmera:
+  :region: ER
+  :primary: true
+:Africa/Bamako:
+  :region: ML
+  :primary: true
+:Africa/Bangui:
+  :region: CF
+  :primary: true
+:Africa/Banjul:
+  :region: GM
+  :primary: true
+:Africa/Bissau:
+  :region: GW
+  :primary: true
+:Africa/Blantyre:
+  :region: MW
+  :primary: true
+:Africa/Brazzaville:
+  :region: CG
+  :primary: true
+:Africa/Bujumbura:
+  :region: BI
+  :primary: true
+:Africa/Cairo:
+  :region: EG
+  :primary: true
+:Africa/Casablanca:
+  :region: MA
+  :primary: true
+:Africa/Ceuta:
+  :region: ES
+  :primary: false
+:Africa/Conakry:
+  :region: GN
+  :primary: true
+:Africa/Dakar:
+  :region: SN
+  :primary: true
+:Africa/Dar_es_Salaam:
+  :region: TZ
+  :primary: true
+:Africa/Djibouti:
+  :region: DJ
+  :primary: true
+:Africa/Douala:
+  :region: CM
+  :primary: true
+:Africa/El_Aaiun:
+  :region: EH
+  :primary: true
+:Africa/Freetown:
+  :region: SL
+  :primary: true
+:Africa/Gaborone:
+  :region: BW
+  :primary: true
+:Africa/Harare:
+  :region: ZW
+  :primary: true
+:Africa/Johannesburg:
+  :region: ZA
+  :primary: true
+:Africa/Juba:
+  :region: SS
+  :primary: true
+:Africa/Kampala:
+  :region: UG
+  :primary: true
+:Africa/Khartoum:
+  :region: SD
+  :primary: true
+:Africa/Kigali:
+  :region: RW
+  :primary: true
+:Africa/Kinshasa:
+  :region: CD
+  :primary: false
+:Africa/Lagos:
+  :region: NG
+  :primary: true
+:Africa/Libreville:
+  :region: GA
+  :primary: true
+:Africa/Lome:
+  :region: TG
+  :primary: true
+:Africa/Luanda:
+  :region: AO
+  :primary: true
+:Africa/Lubumbashi:
+  :region: CD
+  :primary: false
+:Africa/Lusaka:
+  :region: ZM
+  :primary: true
+:Africa/Malabo:
+  :region: GQ
+  :primary: true
+:Africa/Maputo:
+  :region: MZ
+  :primary: true
+:Africa/Maseru:
+  :region: LS
+  :primary: true
+:Africa/Mbabane:
+  :region: SZ
+  :primary: true
+:Africa/Mogadishu:
+  :region: SO
+  :primary: true
+:Africa/Monrovia:
+  :region: LR
+  :primary: true
+:Africa/Nairobi:
+  :region: KE
+  :primary: true
+:Africa/Ndjamena:
+  :region: TD
+  :primary: true
+:Africa/Niamey:
+  :region: NE
+  :primary: true
+:Africa/Nouakchott:
+  :region: MR
+  :primary: true
+:Africa/Ouagadougou:
+  :region: BF
+  :primary: true
+:Africa/Porto-Novo:
+  :region: BJ
+  :primary: true
+:Africa/Sao_Tome:
+  :region: ST
+  :primary: true
+:Africa/Timbuktu:
+  :region: ML
+  :primary: true
+:Africa/Tripoli:
+  :region: LY
+  :primary: true
+:Africa/Tunis:
+  :region: TN
+  :primary: true
+:Africa/Windhoek:
+  :region: NA
+  :primary: true
+:America/Adak:
+  :region: US
+  :primary: false
+:America/Anchorage:
+  :region: US
+  :primary: false
+:America/Anguilla:
+  :region: AI
+  :primary: true
+:America/Antigua:
+  :region: AG
+  :primary: true
+:America/Araguaina:
+  :region: BR
+  :primary: false
+:America/Argentina/Buenos_Aires:
+  :region: AR
+  :primary: false
+:America/Argentina/Catamarca:
+  :region: AR
+  :primary: false
+:America/Argentina/ComodRivadavia:
+  :region: AR
+  :primary: false
+:America/Argentina/Cordoba:
+  :region: AR
+  :primary: false
+:America/Argentina/Jujuy:
+  :region: AR
+  :primary: false
+:America/Argentina/La_Rioja:
+  :region: AR
+  :primary: false
+:America/Argentina/Mendoza:
+  :region: AR
+  :primary: false
+:America/Argentina/Rio_Gallegos:
+  :region: AR
+  :primary: false
+:America/Argentina/Salta:
+  :region: AR
+  :primary: false
+:America/Argentina/San_Juan:
+  :region: AR
+  :primary: false
+:America/Argentina/San_Luis:
+  :region: AR
+  :primary: false
+:America/Argentina/Tucuman:
+  :region: AR
+  :primary: false
+:America/Argentina/Ushuaia:
+  :region: AR
+  :primary: false
+:America/Aruba:
+  :region: AW
+  :primary: true
+:America/Asuncion:
+  :region: PY
+  :primary: true
+:America/Atikokan:
+  :region: CA
+  :primary: false
+:America/Atka:
+  :region: US
+  :primary: false
+:America/Bahia:
+  :region: BR
+  :primary: false
+:America/Bahia_Banderas:
+  :region: MX
+  :primary: false
+:America/Barbados:
+  :region: BB
+  :primary: true
+:America/Belem:
+  :region: BR
+  :primary: false
+:America/Belize:
+  :region: BZ
+  :primary: true
+:America/Blanc-Sablon:
+  :region: CA
+  :primary: false
+:America/Boa_Vista:
+  :region: BR
+  :primary: false
+:America/Bogota:
+  :region: CO
+  :primary: true
+:America/Boise:
+  :region: US
+  :primary: false
+:America/Buenos_Aires:
+  :region: AR
+  :primary: false
+:America/Cambridge_Bay:
+  :region: CA
+  :primary: false
+:America/Campo_Grande:
+  :region: BR
+  :primary: false
+:America/Cancun:
+  :region: MX
+  :primary: false
+:America/Caracas:
+  :region: VE
+  :primary: true
+:America/Catamarca:
+  :region: AR
+  :primary: false
+:America/Cayenne:
+  :region: GF
+  :primary: true
+:America/Cayman:
+  :region: KY
+  :primary: true
+:America/Chicago:
+  :region: US
+  :primary: false
+:America/Chihuahua:
+  :region: MX
+  :primary: false
+:America/Ciudad_Juarez:
+  :region: MX
+  :primary: false
+:America/Coral_Harbour:
+  :region: CA
+  :primary: false
+:America/Cordoba:
+  :region: AR
+  :primary: false
+:America/Costa_Rica:
+  :region: CR
+  :primary: true
+:America/Creston:
+  :region: CA
+  :primary: false
+:America/Cuiaba:
+  :region: BR
+  :primary: false
+:America/Curacao:
+  :region: CW
+  :primary: true
+:America/Danmarkshavn:
+  :region: GL
+  :primary: false
+:America/Dawson:
+  :region: CA
+  :primary: false
+:America/Dawson_Creek:
+  :region: CA
+  :primary: false
+:America/Denver:
+  :region: US
+  :primary: false
+:America/Detroit:
+  :region: US
+  :primary: false
+:America/Dominica:
+  :region: DM
+  :primary: true
+:America/Edmonton:
+  :region: CA
+  :primary: false
+:America/Eirunepe:
+  :region: BR
+  :primary: false
+:America/El_Salvador:
+  :region: SV
+  :primary: true
+:America/Ensenada:
+  :region: MX
+  :primary: false
+:America/Fort_Nelson:
+  :region: CA
+  :primary: false
+:America/Fort_Wayne:
+  :region: US
+  :primary: false
+:America/Fortaleza:
+  :region: BR
+  :primary: false
+:America/Glace_Bay:
+  :region: CA
+  :primary: false
+:America/Godthab:
+  :region: GL
+  :primary: false
+:America/Goose_Bay:
+  :region: CA
+  :primary: false
+:America/Grand_Turk:
+  :region: TC
+  :primary: true
+:America/Grenada:
+  :region: GD
+  :primary: true
+:America/Guadeloupe:
+  :region: GP
+  :primary: true
+:America/Guatemala:
+  :region: GT
+  :primary: true
+:America/Guayaquil:
+  :region: EC
+  :primary: true
+:America/Guyana:
+  :region: GY
+  :primary: true
+:America/Halifax:
+  :region: CA
+  :primary: false
+:America/Havana:
+  :region: CU
+  :primary: true
+:America/Hermosillo:
+  :region: MX
+  :primary: false
+:America/Indiana/Indianapolis:
+  :region: US
+  :primary: false
+:America/Indiana/Knox:
+  :region: US
+  :primary: false
+:America/Indiana/Marengo:
+  :region: US
+  :primary: false
+:America/Indiana/Petersburg:
+  :region: US
+  :primary: false
+:America/Indiana/Tell_City:
+  :region: US
+  :primary: false
+:America/Indiana/Vevay:
+  :region: US
+  :primary: false
+:America/Indiana/Vincennes:
+  :region: US
+  :primary: false
+:America/Indiana/Winamac:
+  :region: US
+  :primary: false
+:America/Indianapolis:
+  :region: US
+  :primary: false
+:America/Inuvik:
+  :region: CA
+  :primary: false
+:America/Iqaluit:
+  :region: CA
+  :primary: false
+:America/Jamaica:
+  :region: JM
+  :primary: true
+:America/Jujuy:
+  :region: AR
+  :primary: false
+:America/Juneau:
+  :region: US
+  :primary: false
+:America/Kentucky/Louisville:
+  :region: US
+  :primary: false
+:America/Kentucky/Monticello:
+  :region: US
+  :primary: false
+:America/Knox_IN:
+  :region: US
+  :primary: false
+:America/Kralendijk:
+  :region: BQ
+  :primary: true
+:America/La_Paz:
+  :region: BO
+  :primary: true
+:America/Lima:
+  :region: PE
+  :primary: true
+:America/Los_Angeles:
+  :region: US
+  :primary: false
+:America/Louisville:
+  :region: US
+  :primary: false
+:America/Lower_Princes:
+  :region: SX
+  :primary: true
+:America/Maceio:
+  :region: BR
+  :primary: false
+:America/Managua:
+  :region: NI
+  :primary: true
+:America/Manaus:
+  :region: BR
+  :primary: false
+:America/Marigot:
+  :region: MF
+  :primary: true
+:America/Martinique:
+  :region: MQ
+  :primary: true
+:America/Matamoros:
+  :region: MX
+  :primary: false
+:America/Mazatlan:
+  :region: MX
+  :primary: false
+:America/Mendoza:
+  :region: AR
+  :primary: false
+:America/Menominee:
+  :region: US
+  :primary: false
+:America/Merida:
+  :region: MX
+  :primary: false
+:America/Metlakatla:
+  :region: US
+  :primary: false
+:America/Mexico_City:
+  :region: MX
+  :primary: false
+:America/Miquelon:
+  :region: PM
+  :primary: true
+:America/Moncton:
+  :region: CA
+  :primary: false
+:America/Monterrey:
+  :region: MX
+  :primary: false
+:America/Montevideo:
+  :region: UY
+  :primary: true
+:America/Montreal:
+  :region: CA
+  :primary: false
+:America/Montserrat:
+  :region: MS
+  :primary: true
+:America/Nassau:
+  :region: BS
+  :primary: true
+:America/New_York:
+  :region: US
+  :primary: false
+:America/Nipigon:
+  :region: CA
+  :primary: false
+:America/Nome:
+  :region: US
+  :primary: false
+:America/Noronha:
+  :region: BR
+  :primary: false
+:America/North_Dakota/Beulah:
+  :region: US
+  :primary: false
+:America/North_Dakota/Center:
+  :region: US
+  :primary: false
+:America/North_Dakota/New_Salem:
+  :region: US
+  :primary: false
+:America/Nuuk:
+  :region: GL
+  :primary: false
+:America/Ojinaga:
+  :region: MX
+  :primary: false
+:America/Panama:
+  :region: PA
+  :primary: true
+:America/Pangnirtung:
+  :region: CA
+  :primary: false
+:America/Paramaribo:
+  :region: SR
+  :primary: true
+:America/Phoenix:
+  :region: US
+  :primary: false
+:America/Port-au-Prince:
+  :region: HT
+  :primary: true
+:America/Port_of_Spain:
+  :region: TT
+  :primary: true
+:America/Porto_Acre:
+  :region: BR
+  :primary: false
+:America/Porto_Velho:
+  :region: BR
+  :primary: false
+:America/Puerto_Rico:
+  :region: PR
+  :primary: true
+:America/Punta_Arenas:
+  :region: CL
+  :primary: false
+:America/Rainy_River:
+  :region: CA
+  :primary: false
+:America/Rankin_Inlet:
+  :region: CA
+  :primary: false
+:America/Recife:
+  :region: BR
+  :primary: false
+:America/Regina:
+  :region: CA
+  :primary: false
+:America/Resolute:
+  :region: CA
+  :primary: false
+:America/Rio_Branco:
+  :region: BR
+  :primary: false
+:America/Rosario:
+  :region: AR
+  :primary: false
+:America/Santa_Isabel:
+  :region: MX
+  :primary: false
+:America/Santarem:
+  :region: BR
+  :primary: false
+:America/Santiago:
+  :region: CL
+  :primary: true
+:America/Santo_Domingo:
+  :region: DO
+  :primary: true
+:America/Sao_Paulo:
+  :region: BR
+  :primary: false
+:America/Scoresbysund:
+  :region: GL
+  :primary: false
+:America/Shiprock:
+  :region: US
+  :primary: false
+:America/Sitka:
+  :region: US
+  :primary: false
+:America/St_Barthelemy:
+  :region: BL
+  :primary: true
+:America/St_Johns:
+  :region: CA
+  :primary: false
+:America/St_Kitts:
+  :region: KN
+  :primary: true
+:America/St_Lucia:
+  :region: LC
+  :primary: true
+:America/St_Thomas:
+  :region: VI
+  :primary: true
+:America/St_Vincent:
+  :region: VC
+  :primary: true
+:America/Swift_Current:
+  :region: CA
+  :primary: false
+:America/Tegucigalpa:
+  :region: HN
+  :primary: true
+:America/Thule:
+  :region: GL
+  :primary: false
+:America/Thunder_Bay:
+  :region: CA
+  :primary: false
+:America/Tijuana:
+  :region: MX
+  :primary: false
+:America/Toronto:
+  :region: CA
+  :primary: false
+:America/Tortola:
+  :region: VG
+  :primary: true
+:America/Vancouver:
+  :region: CA
+  :primary: false
+:America/Virgin:
+  :region: VI
+  :primary: true
+:America/Whitehorse:
+  :region: CA
+  :primary: false
+:America/Winnipeg:
+  :region: CA
+  :primary: false
+:America/Yakutat:
+  :region: US
+  :primary: false
+:America/Yellowknife:
+  :region: CA
+  :primary: false
+:Antarctica/Casey:
+  :region: AQ
+  :primary: false
+:Antarctica/Davis:
+  :region: AQ
+  :primary: false
+:Antarctica/DumontDUrville:
+  :region: AQ
+  :primary: false
+:Antarctica/Macquarie:
+  :region: AU
+  :primary: false
+:Antarctica/Mawson:
+  :region: AQ
+  :primary: false
+:Antarctica/McMurdo:
+  :region: AQ
+  :primary: false
+:Antarctica/Palmer:
+  :region: AQ
+  :primary: false
+:Antarctica/Rothera:
+  :region: AQ
+  :primary: false
+:Antarctica/South_Pole:
+  :region: AQ
+  :primary: false
+:Antarctica/Syowa:
+  :region: AQ
+  :primary: false
+:Antarctica/Troll:
+  :region: AQ
+  :primary: false
+:Antarctica/Vostok:
+  :region: AQ
+  :primary: false
+:Arctic/Longyearbyen:
+  :region: SJ
+  :primary: true
+:Asia/Aden:
+  :region: YE
+  :primary: true
+:Asia/Almaty:
+  :region: KZ
+  :primary: false
+:Asia/Amman:
+  :region: JO
+  :primary: true
+:Asia/Anadyr:
+  :region: RU
+  :primary: false
+:Asia/Aqtau:
+  :region: KZ
+  :primary: false
+:Asia/Aqtobe:
+  :region: KZ
+  :primary: false
+:Asia/Ashgabat:
+  :region: TM
+  :primary: true
+:Asia/Ashkhabad:
+  :region: TM
+  :primary: true
+:Asia/Atyrau:
+  :region: KZ
+  :primary: false
+:Asia/Baghdad:
+  :region: IQ
+  :primary: true
+:Asia/Bahrain:
+  :region: BH
+  :primary: true
+:Asia/Baku:
+  :region: AZ
+  :primary: true
+:Asia/Bangkok:
+  :region: TH
+  :primary: true
+:Asia/Barnaul:
+  :region: RU
+  :primary: false
+:Asia/Beirut:
+  :region: LB
+  :primary: true
+:Asia/Bishkek:
+  :region: KG
+  :primary: true
+:Asia/Brunei:
+  :region: BN
+  :primary: true
+:Asia/Calcutta:
+  :region: IN
+  :primary: true
+:Asia/Chita:
+  :region: RU
+  :primary: false
+:Asia/Choibalsan:
+  :region: MN
+  :primary: false
+:Asia/Chongqing:
+  :region: CN
+  :primary: true
+:Asia/Chungking:
+  :region: CN
+  :primary: true
+:Asia/Colombo:
+  :region: LK
+  :primary: true
+:Asia/Dacca:
+  :region: BD
+  :primary: true
+:Asia/Damascus:
+  :region: SY
+  :primary: true
+:Asia/Dhaka:
+  :region: BD
+  :primary: true
+:Asia/Dili:
+  :region: TL
+  :primary: true
+:Asia/Dubai:
+  :region: AE
+  :primary: true
+:Asia/Dushanbe:
+  :region: TJ
+  :primary: true
+:Asia/Famagusta:
+  :region: CY
+  :primary: false
+:Asia/Gaza:
+  :region: PS
+  :primary: false
+:Asia/Harbin:
+  :region: CN
+  :primary: true
+:Asia/Hebron:
+  :region: PS
+  :primary: false
+:Asia/Ho_Chi_Minh:
+  :region: VN
+  :primary: true
+:Asia/Hong_Kong:
+  :region: HK
+  :primary: true
+:Asia/Hovd:
+  :region: MN
+  :primary: false
+:Asia/Irkutsk:
+  :region: RU
+  :primary: false
+:Asia/Istanbul:
+  :region: TR
+  :primary: true
+:Asia/Jakarta:
+  :region: ID
+  :primary: false
+:Asia/Jayapura:
+  :region: ID
+  :primary: false
+:Asia/Jerusalem:
+  :region: IL
+  :primary: true
+:Asia/Kabul:
+  :region: AF
+  :primary: true
+:Asia/Kamchatka:
+  :region: RU
+  :primary: false
+:Asia/Karachi:
+  :region: PK
+  :primary: true
+:Asia/Kashgar:
+  :region: CN
+  :primary: false
+:Asia/Kathmandu:
+  :region: NP
+  :primary: true
+:Asia/Katmandu:
+  :region: NP
+  :primary: true
+:Asia/Khandyga:
+  :region: RU
+  :primary: false
+:Asia/Kolkata:
+  :region: IN
+  :primary: true
+:Asia/Krasnoyarsk:
+  :region: RU
+  :primary: false
+:Asia/Kuala_Lumpur:
+  :region: MY
+  :primary: true
+:Asia/Kuching:
+  :region: MY
+  :primary: false
+:Asia/Kuwait:
+  :region: KW
+  :primary: true
+:Asia/Macao:
+  :region: MO
+  :primary: true
+:Asia/Macau:
+  :region: MO
+  :primary: true
+:Asia/Magadan:
+  :region: RU
+  :primary: false
+:Asia/Makassar:
+  :region: ID
+  :primary: false
+:Asia/Manila:
+  :region: PH
+  :primary: true
+:Asia/Muscat:
+  :region: OM
+  :primary: true
+:Asia/Nicosia:
+  :region: CY
+  :primary: false
+:Asia/Novokuznetsk:
+  :region: RU
+  :primary: false
+:Asia/Novosibirsk:
+  :region: RU
+  :primary: false
+:Asia/Omsk:
+  :region: RU
+  :primary: false
+:Asia/Oral:
+  :region: KZ
+  :primary: false
+:Asia/Phnom_Penh:
+  :region: KH
+  :primary: true
+:Asia/Pontianak:
+  :region: ID
+  :primary: false
+:Asia/Pyongyang:
+  :region: KP
+  :primary: true
+:Asia/Qatar:
+  :region: QA
+  :primary: true
+:Asia/Qostanay:
+  :region: KZ
+  :primary: false
+:Asia/Qyzylorda:
+  :region: KZ
+  :primary: false
+:Asia/Rangoon:
+  :region: MM
+  :primary: true
+:Asia/Riyadh:
+  :region: SA
+  :primary: true
+:Asia/Saigon:
+  :region: VN
+  :primary: true
+:Asia/Sakhalin:
+  :region: RU
+  :primary: false
+:Asia/Samarkand:
+  :region: UZ
+  :primary: false
+:Asia/Seoul:
+  :region: KR
+  :primary: true
+:Asia/Shanghai:
+  :region: CN
+  :primary: true
+:Asia/Singapore:
+  :region: SG
+  :primary: true
+:Asia/Srednekolymsk:
+  :region: RU
+  :primary: false
+:Asia/Taipei:
+  :region: TW
+  :primary: true
+:Asia/Tashkent:
+  :region: UZ
+  :primary: true
+:Asia/Tbilisi:
+  :region: GE
+  :primary: true
+:Asia/Tehran:
+  :region: IR
+  :primary: true
+:Asia/Tel_Aviv:
+  :region: IL
+  :primary: true
+:Asia/Thimbu:
+  :region: BT
+  :primary: true
+:Asia/Thimphu:
+  :region: BT
+  :primary: true
+:Asia/Tokyo:
+  :region: JP
+  :primary: true
+:Asia/Tomsk:
+  :region: RU
+  :primary: false
+:Asia/Ujung_Pandang:
+  :region: ID
+  :primary: false
+:Asia/Ulaanbaatar:
+  :region: MN
+  :primary: false
+:Asia/Ulan_Bator:
+  :region: MN
+  :primary: false
+:Asia/Urumqi:
+  :region: CN
+  :primary: false
+:Asia/Ust-Nera:
+  :region: RU
+  :primary: false
+:Asia/Vientiane:
+  :region: LA
+  :primary: true
+:Asia/Vladivostok:
+  :region: RU
+  :primary: false
+:Asia/Yakutsk:
+  :region: RU
+  :primary: false
+:Asia/Yangon:
+  :region: MM
+  :primary: true
+:Asia/Yekaterinburg:
+  :region: RU
+  :primary: false
+:Asia/Yerevan:
+  :region: AM
+  :primary: true
+:Atlantic/Azores:
+  :region: PT
+  :primary: false
+:Atlantic/Bermuda:
+  :region: BM
+  :primary: true
+:Atlantic/Canary:
+  :region: ES
+  :primary: false
+:Atlantic/Cape_Verde:
+  :region: CV
+  :primary: true
+:Atlantic/Faeroe:
+  :region: FO
+  :primary: true
+:Atlantic/Faroe:
+  :region: FO
+  :primary: true
+:Atlantic/Jan_Mayen:
+  :region: SJ
+  :primary: true
+:Atlantic/Madeira:
+  :region: PT
+  :primary: false
+:Atlantic/Reykjavik:
+  :region: IS
+  :primary: true
+:Atlantic/South_Georgia:
+  :region: GS
+  :primary: true
+:Atlantic/St_Helena:
+  :region: SH
+  :primary: true
+:Atlantic/Stanley:
+  :region: FK
+  :primary: true
+:Australia/ACT:
+  :region: AU
+  :primary: false
+:Australia/Adelaide:
+  :region: AU
+  :primary: false
+:Australia/Brisbane:
+  :region: AU
+  :primary: false
+:Australia/Broken_Hill:
+  :region: AU
+  :primary: false
+:Australia/Canberra:
+  :region: AU
+  :primary: false
+:Australia/Currie:
+  :region: AU
+  :primary: false
+:Australia/Darwin:
+  :region: AU
+  :primary: false
+:Australia/Eucla:
+  :region: AU
+  :primary: false
+:Australia/Hobart:
+  :region: AU
+  :primary: false
+:Australia/LHI:
+  :region: AU
+  :primary: false
+:Australia/Lindeman:
+  :region: AU
+  :primary: false
+:Australia/Lord_Howe:
+  :region: AU
+  :primary: false
+:Australia/Melbourne:
+  :region: AU
+  :primary: false
+:Australia/NSW:
+  :region: AU
+  :primary: false
+:Australia/North:
+  :region: AU
+  :primary: false
+:Australia/Perth:
+  :region: AU
+  :primary: false
+:Australia/Queensland:
+  :region: AU
+  :primary: false
+:Australia/South:
+  :region: AU
+  :primary: false
+:Australia/Sydney:
+  :region: AU
+  :primary: false
+:Australia/Tasmania:
+  :region: AU
+  :primary: false
+:Australia/Victoria:
+  :region: AU
+  :primary: false
+:Australia/West:
+  :region: AU
+  :primary: false
+:Australia/Yancowinna:
+  :region: AU
+  :primary: false
+:Brazil/Acre:
+  :region: BR
+  :primary: false
+:Brazil/DeNoronha:
+  :region: BR
+  :primary: false
+:Brazil/East:
+  :region: BR
+  :primary: false
+:Brazil/West:
+  :region: BR
+  :primary: false
+:CET:
+  :region: BE
+  :primary: true
+:CST6CDT:
+  :region: US
+  :primary: false
+:Canada/Atlantic:
+  :region: CA
+  :primary: false
+:Canada/Central:
+  :region: CA
+  :primary: false
+:Canada/Eastern:
+  :region: CA
+  :primary: false
+:Canada/Mountain:
+  :region: CA
+  :primary: false
+:Canada/Newfoundland:
+  :region: CA
+  :primary: false
+:Canada/Pacific:
+  :region: CA
+  :primary: false
+:Canada/Saskatchewan:
+  :region: CA
+  :primary: false
+:Canada/Yukon:
+  :region: CA
+  :primary: false
+:Chile/Continental:
+  :region: CL
+  :primary: true
+:Chile/EasterIsland:
+  :region: CL
+  :primary: false
+:Cuba:
+  :region: CU
+  :primary: true
+:EET:
+  :region: GR
+  :primary: true
+:EST:
+  :region: PA
+  :primary: true
+:EST5EDT:
+  :region: US
+  :primary: false
+:Egypt:
+  :region: EG
+  :primary: true
+:Eire:
+  :region: IE
+  :primary: true
+:Europe/Amsterdam:
+  :region: NL
+  :primary: true
+:Europe/Andorra:
+  :region: AD
+  :primary: true
+:Europe/Astrakhan:
+  :region: RU
+  :primary: false
+:Europe/Athens:
+  :region: GR
+  :primary: true
+:Europe/Belfast:
+  :region: GB
+  :primary: true
+:Europe/Belgrade:
+  :region: RS
+  :primary: true
+:Europe/Berlin:
+  :region: DE
+  :primary: true
+:Europe/Bratislava:
+  :region: SK
+  :primary: true
+:Europe/Brussels:
+  :region: BE
+  :primary: true
+:Europe/Bucharest:
+  :region: RO
+  :primary: true
+:Europe/Budapest:
+  :region: HU
+  :primary: true
+:Europe/Busingen:
+  :region: DE
+  :primary: false
+:Europe/Chisinau:
+  :region: MD
+  :primary: true
+:Europe/Copenhagen:
+  :region: DK
+  :primary: true
+:Europe/Dublin:
+  :region: IE
+  :primary: true
+:Europe/Gibraltar:
+  :region: GI
+  :primary: true
+:Europe/Guernsey:
+  :region: GG
+  :primary: true
+:Europe/Helsinki:
+  :region: FI
+  :primary: true
+:Europe/Isle_of_Man:
+  :region: IM
+  :primary: true
+:Europe/Istanbul:
+  :region: TR
+  :primary: true
+:Europe/Jersey:
+  :region: JE
+  :primary: true
+:Europe/Kaliningrad:
+  :region: RU
+  :primary: false
+:Europe/Kiev:
+  :region: UA
+  :primary: true
+:Europe/Kirov:
+  :region: RU
+  :primary: false
+:Europe/Kyiv:
+  :region: UA
+  :primary: true
+:Europe/Lisbon:
+  :region: PT
+  :primary: true
+:Europe/Ljubljana:
+  :region: SI
+  :primary: true
+:Europe/London:
+  :region: GB
+  :primary: true
+:Europe/Luxembourg:
+  :region: LU
+  :primary: true
+:Europe/Madrid:
+  :region: ES
+  :primary: true
+:Europe/Malta:
+  :region: MT
+  :primary: true
+:Europe/Mariehamn:
+  :region: AX
+  :primary: true
+:Europe/Minsk:
+  :region: BY
+  :primary: true
+:Europe/Monaco:
+  :region: MC
+  :primary: true
+:Europe/Moscow:
+  :region: RU
+  :primary: false
+:Europe/Nicosia:
+  :region: CY
+  :primary: false
+:Europe/Oslo:
+  :region: 'NO'
+  :primary: true
+:Europe/Paris:
+  :region: FR
+  :primary: true
+:Europe/Podgorica:
+  :region: ME
+  :primary: true
+:Europe/Prague:
+  :region: CZ
+  :primary: true
+:Europe/Riga:
+  :region: LV
+  :primary: true
+:Europe/Rome:
+  :region: IT
+  :primary: true
+:Europe/Samara:
+  :region: RU
+  :primary: false
+:Europe/San_Marino:
+  :region: SM
+  :primary: true
+:Europe/Sarajevo:
+  :region: BA
+  :primary: true
+:Europe/Saratov:
+  :region: RU
+  :primary: false
+:Europe/Simferopol:
+  :region: UA
+  :primary: false
+:Europe/Skopje:
+  :region: MK
+  :primary: true
+:Europe/Sofia:
+  :region: BG
+  :primary: true
+:Europe/Stockholm:
+  :region: SE
+  :primary: true
+:Europe/Tallinn:
+  :region: EE
+  :primary: true
+:Europe/Tirane:
+  :region: AL
+  :primary: true
+:Europe/Tiraspol:
+  :region: MD
+  :primary: true
+:Europe/Ulyanovsk:
+  :region: RU
+  :primary: false
+:Europe/Uzhgorod:
+  :region: UA
+  :primary: true
+:Europe/Vaduz:
+  :region: LI
+  :primary: true
+:Europe/Vatican:
+  :region: VA
+  :primary: true
+:Europe/Vienna:
+  :region: AT
+  :primary: true
+:Europe/Vilnius:
+  :region: LT
+  :primary: true
+:Europe/Volgograd:
+  :region: RU
+  :primary: false
+:Europe/Warsaw:
+  :region: PL
+  :primary: true
+:Europe/Zagreb:
+  :region: HR
+  :primary: true
+:Europe/Zaporozhye:
+  :region: UA
+  :primary: true
+:Europe/Zurich:
+  :region: CH
+  :primary: true
+:GB:
+  :region: GB
+  :primary: true
+:GB-Eire:
+  :region: GB
+  :primary: true
+:HST:
+  :region: US
+  :primary: false
+:Hongkong:
+  :region: HK
+  :primary: true
+:Iceland:
+  :region: CI
+  :primary: true
+:Indian/Antananarivo:
+  :region: MG
+  :primary: true
+:Indian/Chagos:
+  :region: IO
+  :primary: true
+:Indian/Christmas:
+  :region: CX
+  :primary: true
+:Indian/Cocos:
+  :region: CC
+  :primary: true
+:Indian/Comoro:
+  :region: KM
+  :primary: true
+:Indian/Kerguelen:
+  :region: TF
+  :primary: true
+:Indian/Mahe:
+  :region: SC
+  :primary: true
+:Indian/Maldives:
+  :region: MV
+  :primary: true
+:Indian/Mauritius:
+  :region: MU
+  :primary: true
+:Indian/Mayotte:
+  :region: YT
+  :primary: true
+:Indian/Reunion:
+  :region: RE
+  :primary: true
+:Iran:
+  :region: IR
+  :primary: true
+:Israel:
+  :region: IL
+  :primary: true
+:Jamaica:
+  :region: JM
+  :primary: true
+:Japan:
+  :region: JP
+  :primary: true
+:Kwajalein:
+  :region: MH
+  :primary: false
+:Libya:
+  :region: LY
+  :primary: true
+:MET:
+  :region: BE
+  :primary: true
+:MST:
+  :region: US
+  :primary: false
+:MST7MDT:
+  :region: US
+  :primary: false
+:Mexico/BajaNorte:
+  :region: MX
+  :primary: false
+:Mexico/BajaSur:
+  :region: MX
+  :primary: false
+:Mexico/General:
+  :region: MX
+  :primary: false
+:NZ:
+  :region: NZ
+  :primary: true
+:NZ-CHAT:
+  :region: NZ
+  :primary: false
+:Navajo:
+  :region: US
+  :primary: false
+:PRC:
+  :region: CN
+  :primary: true
+:PST8PDT:
+  :region: US
+  :primary: false
+:Pacific/Apia:
+  :region: WS
+  :primary: true
+:Pacific/Auckland:
+  :region: NZ
+  :primary: true
+:Pacific/Bougainville:
+  :region: PG
+  :primary: false
+:Pacific/Chatham:
+  :region: NZ
+  :primary: false
+:Pacific/Chuuk:
+  :region: FM
+  :primary: false
+:Pacific/Easter:
+  :region: CL
+  :primary: false
+:Pacific/Efate:
+  :region: VU
+  :primary: true
+:Pacific/Enderbury:
+  :region: KI
+  :primary: false
+:Pacific/Fakaofo:
+  :region: TK
+  :primary: true
+:Pacific/Fiji:
+  :region: FJ
+  :primary: true
+:Pacific/Funafuti:
+  :region: TV
+  :primary: true
+:Pacific/Galapagos:
+  :region: EC
+  :primary: false
+:Pacific/Gambier:
+  :region: PF
+  :primary: false
+:Pacific/Guadalcanal:
+  :region: SB
+  :primary: true
+:Pacific/Guam:
+  :region: GU
+  :primary: true
+:Pacific/Honolulu:
+  :region: US
+  :primary: false
+:Pacific/Johnston:
+  :region: UM
+  :primary: false
+:Pacific/Kanton:
+  :region: KI
+  :primary: false
+:Pacific/Kiritimati:
+  :region: KI
+  :primary: false
+:Pacific/Kosrae:
+  :region: FM
+  :primary: false
+:Pacific/Kwajalein:
+  :region: MH
+  :primary: false
+:Pacific/Majuro:
+  :region: MH
+  :primary: true
+:Pacific/Marquesas:
+  :region: PF
+  :primary: false
+:Pacific/Midway:
+  :region: UM
+  :primary: false
+:Pacific/Nauru:
+  :region: NR
+  :primary: true
+:Pacific/Niue:
+  :region: NU
+  :primary: true
+:Pacific/Norfolk:
+  :region: NF
+  :primary: true
+:Pacific/Noumea:
+  :region: NC
+  :primary: true
+:Pacific/Pago_Pago:
+  :region: AS
+  :primary: true
+:Pacific/Palau:
+  :region: PW
+  :primary: true
+:Pacific/Pitcairn:
+  :region: PN
+  :primary: true
+:Pacific/Pohnpei:
+  :region: FM
+  :primary: false
+:Pacific/Ponape:
+  :region: FM
+  :primary: false
+:Pacific/Port_Moresby:
+  :region: PG
+  :primary: false
+:Pacific/Rarotonga:
+  :region: CK
+  :primary: true
+:Pacific/Saipan:
+  :region: MP
+  :primary: true
+:Pacific/Samoa:
+  :region: AS
+  :primary: true
+:Pacific/Tahiti:
+  :region: PF
+  :primary: false
+:Pacific/Tarawa:
+  :region: KI
+  :primary: false
+:Pacific/Tongatapu:
+  :region: TO
+  :primary: true
+:Pacific/Truk:
+  :region: FM
+  :primary: false
+:Pacific/Wake:
+  :region: UM
+  :primary: false
+:Pacific/Wallis:
+  :region: WF
+  :primary: true
+:Pacific/Yap:
+  :region: FM
+  :primary: false
+:Poland:
+  :region: PL
+  :primary: true
+:Portugal:
+  :region: PT
+  :primary: true
+:ROC:
+  :region: TW
+  :primary: true
+:ROK:
+  :region: KR
+  :primary: true
+:Singapore:
+  :region: SG
+  :primary: true
+:Turkey:
+  :region: TR
+  :primary: true
+:US/Alaska:
+  :region: US
+  :primary: false
+:US/Aleutian:
+  :region: US
+  :primary: false
+:US/Arizona:
+  :region: US
+  :primary: false
+:US/Central:
+  :region: US
+  :primary: false
+:US/East-Indiana:
+  :region: US
+  :primary: false
+:US/Eastern:
+  :region: US
+  :primary: false
+:US/Hawaii:
+  :region: US
+  :primary: false
+:US/Indiana-Starke:
+  :region: US
+  :primary: false
+:US/Michigan:
+  :region: US
+  :primary: false
+:US/Mountain:
+  :region: US
+  :primary: false
+:US/Pacific:
+  :region: US
+  :primary: false
+:US/Samoa:
+  :region: AS
+  :primary: true
+:W-SU:
+  :region: RU
+  :primary: false
+:WET:
+  :region: PT
+  :primary: true

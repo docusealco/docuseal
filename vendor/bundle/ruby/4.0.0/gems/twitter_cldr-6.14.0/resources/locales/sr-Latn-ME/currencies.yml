@@ -1,0 +1,1712 @@
+--- 
+:sr-Latn-ME: 
+  :currencies: 
+    :ADP: 
+      :few: "andorske pezete"
+      :name: "Andorska pezeta"
+      :one: "andorska pezeta"
+      :other: "andorske pezete"
+    :AED: 
+      :few: "dirhama UAE"
+      :name: "dirham UAE"
+      :one: "dirham UAE"
+      :other: "dirhama UAE"
+    :AFA: 
+      :few: "avganistanska avgana (1927–2002)"
+      :name: "Avganistanski avgani (1927–2002)"
+      :one: "avganistanski avgani (1927–2002)"
+      :other: "avganistanskih avgana (1927–2002)"
+    :AFN: 
+      :few: "avganistanska avgana"
+      :name: "avganistanski avgani"
+      :narrow_symbol: ؋
+      :one: "avganistanski avgani"
+      :other: "avganistanskih avgana"
+      :symbol: ؋
+    :ALK: 
+      :few: "stara albanska leka"
+      :one: "stari albanski lek"
+      :other: "starih albanskih leka"
+    :ALL: 
+      :few: "albanska leka"
+      :name: "albanski lek"
+      :one: "albanski lek"
+      :other: "albanskih leka"
+    :AMD: 
+      :few: "jermenska drama"
+      :name: "jermenski dram"
+      :narrow_symbol: ֏
+      :one: "jermenski dram"
+      :other: "jermenska drama"
+      :symbol: ֏
+    :ANG: 
+      :few: "holandskoantilska guldena"
+      :name: "holandskoantilski gulden"
+      :one: "holandskoantilski gulden"
+      :other: "holandskoantilskih guldena"
+    :AOA: 
+      :few: "angolske kvanze"
+      :name: "angolska kvanza"
+      :narrow_symbol: Kz
+      :one: "angolska kvanza"
+      :other: "angolskih kvanzi"
+      :symbol: Kz
+    :AOK: 
+      :few: "angolijske kvanze (1977–1990)"
+      :name: "Angolijska kvanza (1977–1990)"
+      :one: "angolijska kvanza (1977–1990)"
+      :other: "angolijskih kvanzi (1977–1990)"
+    :AON: 
+      :few: "angolijske nove kvanze"
+      :name: "Angolijska nova kvanza (1990–2000)"
+      :one: "angolijska nova kvanza"
+      :other: "angolijskih novih kvanzi"
+    :AOR: 
+      :few: "angolijske kvanze reađustado (1995–1999)"
+      :name: "Angolijska kvanza reađustado (1995–1999)"
+      :one: "angolijska kvanza reađustado (1995–1999)"
+      :other: "angolijskih kvanzi reađustado (1995–1999)"
+    :ARA: 
+      :few: "argentinska australa"
+      :name: "Argentinski austral"
+      :one: "argentinski austral"
+      :other: "argentinskih australa"
+    :ARL: 
+      :few: "argentinska pezos leja"
+      :name: "Argentinski pezos lej"
+      :one: "argentinski pezos lej"
+      :other: "argentinskih pezos leja"
+    :ARM: 
+      :few: "argentinska pezos moneda nacional"
+      :name: "Argentinski pezos monedo nacional"
+      :one: "argentinski pezos monedo nacional"
+      :other: "argentinskih pezos moneda nacionala"
+    :ARP: 
+      :few: "argentinska pezosa (1983–1985)"
+      :name: "Argentinski pezo (1983–1985)"
+      :one: "argentinski pezo (1983–1985)"
+      :other: "argentinskih pezosa (1983–1985)"
+    :ARS: 
+      :few: "argentinska pezosa"
+      :name: "argentinski pezos"
+      :narrow_symbol: $
+      :one: "argentinski pezos"
+      :other: "argentinskih pezosa"
+      :symbol: $
+    :ATS: 
+      :few: "austrijska šilinga"
+      :name: "Austrijski šiling"
+      :one: "austrijski šiling"
+      :other: "austrijskih šilinga"
+    :AUD: 
+      :few: "australijska dolara"
+      :name: "australijski dolar"
+      :narrow_symbol: $
+      :one: "australijski dolar"
+      :other: "australijskih dolara"
+      :symbol: AUD
+    :AWG: 
+      :few: "arubanska florina"
+      :name: "arubanski florin"
+      :one: "arubanski florin"
+      :other: "arubanskih florina"
+    :AZM: 
+      :few: "azerbejdžanska manata (1993–2006)"
+      :name: "Azerbejdžanski manat (1993–2006)"
+      :one: "azerbejdžanski manat (1993–2006)"
+      :other: "azerbejdžanskih manata (1993–2006)"
+    :AZN: 
+      :few: "azerbejdžanska manata"
+      :name: "azerbejdžanski manat"
+      :narrow_symbol: ₼
+      :one: "azerbejdžanski manat"
+      :other: "azerbejdžanskih manata"
+      :symbol: ₼
+    :BAD: 
+      :few: "bosansko-hercegovačka dinara"
+      :name: "Bosansko-Hercegovački dinar"
+      :one: "bosansko-hercegovački dinar"
+      :other: "bosansko-hercegovačkih dinara"
+    :BAM: 
+      :few: "bosanskohercegovačke konvertibilne marke"
+      :name: "bosanskohercegovačka konvertibilna marka"
+      :narrow_symbol: KM
+      :one: "bosanskohercegovačka konvertibilna marka"
+      :other: "bosanskohercegovačkih konvertibilnih maraka"
+      :symbol: KM
+    :BAN: 
+      :few: "bosansko-hercegovačka nova dinara"
+      :name: "Bosansko-hercegovački novi dinar"
+      :one: "bosansko-hercegovački novi dinar"
+      :other: "bosansko-hercegovačkih novih dinara"
+    :BBD: 
+      :few: "barbadoška dolara"
+      :name: "barbadoški dolar"
+      :narrow_symbol: $
+      :one: "barbadoški dolar"
+      :other: "barbadoških dolara"
+      :symbol: $
+    :BDT: 
+      :few: "bangladeške take"
+      :name: "bangladeška taka"
+      :narrow_symbol: ৳
+      :one: "bangladeška taka"
+      :other: "bangladeških taka"
+      :symbol: ৳
+    :BEC: 
+      :few: "belgijska franka (konvertibilna)"
+      :name: "Belgijski franak (konvertibilni)"
+      :one: "belgijski franak (konvertibilni)"
+      :other: "belgijskih franaka (konvertibilnih)"
+    :BEF: 
+      :few: "belgijska franka"
+      :name: "Belgijski franak"
+      :one: "belgijski franak"
+      :other: "belgijskih franaka"
+    :BEL: 
+      :few: "belgijska franka (finansijska)"
+      :name: "Belgijski franak (finansijski)"
+      :one: "belgijski franak (finansijski)"
+      :other: "belgijskih franaka (finansijskih)"
+    :BGL: 
+      :few: "bugarska tvrda leva"
+      :name: "Bugarski tvrdi lev"
+      :one: "bugarski tvrdi lev"
+      :other: "bugarskih tvrdih leva"
+    :BGM: 
+      :few: "bugarska socijalistička leva"
+      :name: "Bugarski socijalistički lev"
+      :one: "bugarski socijalistički lev"
+      :other: "bugarskih socijalističkih leva"
+    :BGN: 
+      :few: "bugarska leva"
+      :name: "bugarski lev"
+      :one: "bugarski lev"
+      :other: "bugarskih leva"
+    :BGO: 
+      :few: "stara bugarska leva"
+      :name: "Stari bugarski lev"
+      :one: "stari bugarski lev"
+      :other: "starih bugarskih leva"
+    :BHD: 
+      :few: "bahreinska dinara"
+      :name: "bahreinski dinar"
+      :one: "bahreinski dinar"
+      :other: "bahreinskih dinara"
+    :BIF: 
+      :few: "burundska franka"
+      :name: "burundski franak"
+      :one: "burundski franak"
+      :other: "burundskih franaka"
+    :BMD: 
+      :few: "bermudska dolara"
+      :name: "bermudski dolar"
+      :narrow_symbol: $
+      :one: "bermudski dolar"
+      :other: "bermudskih dolara"
+      :symbol: $
+    :BND: 
+      :few: "brunejska dolara"
+      :name: "brunejski dolar"
+      :narrow_symbol: $
+      :one: "brunejski dolar"
+      :other: "brunejskih dolara"
+      :symbol: $
+    :BOB: 
+      :few: "bolivijska bolivijana"
+      :name: "bolivijski bolivijano"
+      :narrow_symbol: Bs
+      :one: "bolivijski bolivijano"
+      :other: "bolivijskih bolivijana"
+      :symbol: Bs
+    :BOL: 
+      :few: "stara bolivijska bolivijana"
+      :name: "Stari bolivijski bolivijano"
+      :one: "stari bolivijski bolivijano"
+      :other: "starih bolivijskih bolivijana"
+    :BOP: 
+      :few: "bolivijska pezosa"
+      :name: "Bolivijski pezo"
+      :one: "bolivijski pezo"
+      :other: "bolivijskih pezosa"
+    :BOV: 
+      :few: "bolivijska mvdola"
+      :name: "Bolivijski mvdol"
+      :one: "bolivijski mvdol"
+      :other: "bolivijskih mvdola"
+    :BRB: 
+      :few: "brazilska nova kruzeira (1967–1986)"
+      :name: "Brazilski novi kruzeiro (1967–1986)"
+      :one: "brazilski novi kruzeiro (1967–1986)"
+      :other: "brazilskih novih kruzeira (1967–1986)"
+    :BRC: 
+      :few: "brazilska kruzadosa"
+      :name: "Brazilijski kruzado"
+      :one: "brazilski kruzados"
+      :other: "brazilskih kruzadosa"
+    :BRE: 
+      :few: "brazilska kruzeira (1990–1993)"
+      :name: "Brazilski kruzeiro (1990–1993)"
+      :one: "brazilski kruzeiro (1990–1993)"
+      :other: "brazilskih kruzeira (1990–1993)"
+    :BRL: 
+      :few: "brazilska reala"
+      :name: "brazilski real"
+      :narrow_symbol: R$
+      :one: "brazilski real"
+      :other: "brazilskih reala"
+      :symbol: R$
+    :BRN: 
+      :few: "brazilska nova kruzada"
+      :name: "Brazilijski novi kruzado"
+      :one: "brazilski novi kruzado"
+      :other: "brazilskih novih kruzada"
+    :BRR: 
+      :few: "brazilska kruzeira"
+      :name: "Brazilski kruzeiro"
+      :one: "brazilski kruzeiro"
+      :other: "brazilskih kruzeira"
+    :BRZ: 
+      :few: "stara brazilska kruzeira"
+      :name: "Stari brazilski kruzeiro"
+      :one: "stari brazilski kruzeiro"
+      :other: "starih brazilskih kruzeira"
+    :BSD: 
+      :few: "bahamska dolara"
+      :name: "bahamski dolar"
+      :narrow_symbol: $
+      :one: "bahamski dolar"
+      :other: "bahamskih dolara"
+      :symbol: $
+    :BTN: 
+      :few: "butanska ngultruma"
+      :name: "butanski ngultrum"
+      :one: "butanski ngultrum"
+      :other: "butanskih ngultruma"
+    :BUK: 
+      :few: "burmanska kjata"
+      :name: "Burmanski kjat"
+      :one: "burmanski kjat"
+      :other: "burmanskih kjata"
+    :BWP: 
+      :few: "bocvanske pule"
+      :name: "bocvanska pula"
+      :narrow_symbol: P
+      :one: "bocvanska pula"
+      :other: "bocvanskih pula"
+      :symbol: P
+    :BYB: 
+      :few: "beloruske nove rublja (1994–1999)"
+      :name: "Beloruska nova rublja (1994–1999)"
+      :one: "beloruska nova rublja (1994–1999)"
+      :other: "beloruskih novih rublji (1994–1999)"
+    :BYN: 
+      :few: "beloruske rublje"
+      :name: "beloruska rublja"
+      :narrow_symbol: r.
+      :one: "beloruska rublja"
+      :other: "beloruskih rublji"
+      :symbol: r.
+    :BYR: 
+      :few: "beloruske rublje (2000–2016)"
+      :name: "Beloruska rublja (2000–2016)"
+      :one: "beloruska rublja (2000–2016)"
+      :other: "beloruskih rublji (2000–2016)"
+    :BZD: 
+      :few: "beliska dolara"
+      :name: "beliski dolar"
+      :narrow_symbol: $
+      :one: "beliski dolar"
+      :other: "beliskih dolara"
+      :symbol: $
+    :CAD: 
+      :few: "kanadska dolara"
+      :name: "kanadski dolar"
+      :narrow_symbol: $
+      :one: "kanadski dolar"
+      :other: "kanadskih dolara"
+      :symbol: CA$
+    :CDF: 
+      :few: "kongoanska franka"
+      :name: "kongoanski franak"
+      :one: "kongoanski franak"
+      :other: "kongoanskih franaka"
+    :CHE: 
+      :few: "WIR evra"
+      :name: "WIR evro"
+      :one: "WIR evro"
+      :other: "WIR evra"
+    :CHF: 
+      :few: "švajcarska franka"
+      :name: "švajcarski franak"
+      :one: "švajcarski franak"
+      :other: "švajcarskih franaka"
+    :CHW: 
+      :few: "WIR franka"
+      :name: "WIR franak"
+      :one: "WIR franak"
+      :other: "WIR franaka"
+    :CLE: 
+      :few: "čileanska eskuda"
+      :name: "Čileanski eskudo"
+      :one: "čileanski eskudo"
+      :other: "čileanskih eskuda"
+    :CLF: 
+      :few: "čileanska unidades de fomenta"
+      :name: "Čileovski unidades se fomento"
+      :one: "čileanski unidades de fomento"
+      :other: "čileanski unidadesi de fomento"
+    :CLP: 
+      :few: "čileanska pezosa"
+      :name: "čileanski pezos"
+      :narrow_symbol: $
+      :one: "čileanski pezos"
+      :other: "čileanskih pezosa"
+      :symbol: $
+    :CNH: 
+      :few: "kineska juana (ostrvska)"
+      :name: "kineski juan (ostrvski)"
+      :one: "kineski juan (ostrvski)"
+      :other: "kineskih juana (ostrvskih)"
+    :CNX: 
+      :few: "dolara kineske narodne banke"
+      :name: "Dolar kineske narodne banke"
+      :one: "dolar kineske narodne banke"
+      :other: "dolara kineske narodne banke"
+    :CNY: 
+      :few: "kineska juana"
+      :name: "kineski juan"
+      :narrow_symbol: ¥
+      :one: "kineski juan"
+      :other: "kineskih juana"
+      :symbol: CN¥
+    :COP: 
+      :few: "kolumbijska pezosa"
+      :name: "kolumbijski pezos"
+      :narrow_symbol: $
+      :one: "kolumbijski pezos"
+      :other: "kolumbijskih pezosa"
+      :symbol: $
+    :COU: 
+      :few: "nidad de valor reala"
+      :name: "Unidad de valorški real"
+      :one: "unidad de valorški real"
+      :other: "unidad de valorških reala"
+    :CRC: 
+      :few: "kostarikanska kolona"
+      :name: "kostarikanski kolon"
+      :narrow_symbol: ₡
+      :one: "kostarikanski kolon"
+      :other: "kostarikanskih kolona"
+      :symbol: ₡
+    :CSD: 
+      :few: "stara srpska dinara"
+      :name: "Stari srpski dinar"
+      :one: "stari srpski dinar"
+      :other: "starih srpskih dinara"
+    :CSK: 
+      :few: "čehoslovačke tvrde krune"
+      :name: "Čehoslovačka tvrda kruna"
+      :one: "čehoslovačka tvrda kruna"
+      :other: "čehoslovačkih tvrdih kruna"
+    :CUC: 
+      :few: "kubanska konvertibilna pezosa"
+      :name: "kubanski konvertibilni pezos"
+      :narrow_symbol: $
+      :one: "kubanski konvertibilni pezos"
+      :other: "kubanskih konvertibilnih pezosa"
+      :symbol: $
+    :CUP: 
+      :few: "kubanska pezosa"
+      :name: "kubanski pezos"
+      :narrow_symbol: $
+      :one: "kubanski pezos"
+      :other: "kubanskih pezosa"
+      :symbol: $
+    :CVE: 
+      :few: "zelenortska eskuda"
+      :name: "zelenortski eskudo"
+      :one: "zelenortski eskudo"
+      :other: "zelenortskih eskuda"
+    :CYP: 
+      :few: "kiparske funte"
+      :name: "Kiparska funta"
+      :one: "kiparska funta"
+      :other: "kiparskih funti"
+    :CZK: 
+      :few: "češke krune"
+      :name: "češka kruna"
+      :narrow_symbol: Kč
+      :one: "češka kruna"
+      :other: "čeških kruna"
+      :symbol: Kč
+    :DDM: 
+      :few: "istočno-nemačke marke"
+      :name: "Istočno-nemačka marka"
+      :one: "istočno-nemačka marka"
+      :other: "istočno-nemačkih maraka"
+    :DEM: 
+      :few: "nemačke marke"
+      :name: "Nemačka marka"
+      :one: "nemačka marka"
+      :other: "nemačkih maraka"
+    :DJF: 
+      :few: "džibutska franka"
+      :name: "džibutski franak"
+      :one: "džibutski franak"
+      :other: "džibutskih franaka"
+    :DKK: 
+      :few: "danske krune"
+      :name: "danska kruna"
+      :narrow_symbol: kr
+      :one: "danska kruna"
+      :other: "danskih kruna"
+      :symbol: kr
+    :DOP: 
+      :few: "dominikanska pezosa"
+      :name: "dominikanski pezos"
+      :narrow_symbol: $
+      :one: "dominikanski pezos"
+      :other: "dominikanskih pezosa"
+      :symbol: $
+    :DZD: 
+      :few: "alžirska dinara"
+      :name: "alžirski dinar"
+      :one: "alžirski dinar"
+      :other: "alžirskih dinara"
+    :ECS: 
+      :few: "ekvadorska sakra"
+      :name: "Ekvadorski sakr"
+      :one: "ekvadorski sakr"
+      :other: "ekvadorskih sakra"
+    :ECV: 
+      :few: "ekvadorska unidad de valor konstanta"
+      :name: "Ekvadorski unidad de valor konstante"
+      :one: "ekvadorski unidad de valor konstante"
+      :other: "ekvadorskih unidad de valor konstanta"
+    :EEK: 
+      :few: "estonske krune"
+      :name: "Estonska kroon"
+      :one: "estonska kruna"
+      :other: "estonskih kruna"
+    :EGP: 
+      :few: "egipatske funte"
+      :name: "egipatska funta"
+      :narrow_symbol: E£
+      :one: "egipatska funta"
+      :other: "egipatskih funti"
+      :symbol: E£
+    :ERN: 
+      :few: "eritrejske nakfe"
+      :name: "eritrejska nakfa"
+      :one: "eritrejska nakfa"
+      :other: "eritrejskih nakfi"
+    :ESA: 
+      :few: "španske pezete (A račun)"
+      :name: "Španska pezeta (račun)"
+      :one: "španska pezeta (A račun)"
+      :other: "španskih pezeta (A račun)"
+    :ESB: 
+      :few: "španske pezete (konvertibilan račun)"
+      :name: "Španska pezeta (konvertibilniračun)"
+      :one: "španska pezeta (konvertibilan račun)"
+      :other: "španskih pezeta (konvertibilan račun)"
+    :ESP: 
+      :few: "španska pezeta"
+      :name: "Španska pezeta"
+      :narrow_symbol: ₧
+      :one: "španska pezeta"
+      :other: "španske pezete"
+      :symbol: ₧
+    :ETB: 
+      :few: "etiopska bira"
+      :name: "etiopijski bir"
+      :one: "etiopski bir"
+      :other: "etiopskih bira"
+    :EUR: 
+      :few: evra
+      :name: evro
+      :narrow_symbol: €
+      :one: evro
+      :other: evra
+      :symbol: €
+    :FIM: 
+      :few: "finske marke"
+      :name: "Finska marka"
+      :one: "finska marka"
+      :other: "finskih maraka"
+    :FJD: 
+      :few: "fidžijska dolara"
+      :name: "fidžijski dolar"
+      :narrow_symbol: $
+      :one: "fidžijski dolar"
+      :other: "fidžijskih dolara"
+      :symbol: $
+    :FKP: 
+      :few: "foklandske funte"
+      :name: "folklandska funta"
+      :narrow_symbol: £
+      :one: "foklandska funta"
+      :other: "foklandskih funti"
+      :symbol: £
+    :FRF: 
+      :few: "francuska franka"
+      :name: "Francuski franak"
+      :one: "francuski franak"
+      :other: "francuskih franaka"
+    :GBP: 
+      :few: "britanske funte"
+      :name: "britanska funta"
+      :narrow_symbol: £
+      :one: "britanska funta"
+      :other: "britanskih funti"
+      :symbol: £
+    :GEK: 
+      :few: "gruzijska kupon larita"
+      :name: "Gruzijski kupon larit"
+      :one: "gruzijski kupon larit"
+      :other: "gruzijskih kupon larita"
+    :GEL: 
+      :few: "gruzijska larija"
+      :name: "gruzijski lari"
+      :narrow_symbol: ლ
+      :one: "gruzijski lari"
+      :other: "gruzijskih larija"
+      :symbol: ლ
+    :GHC: 
+      :few: "ganska ceda (1979–2007)"
+      :name: "Ganski cedi (1979–2007)"
+      :one: "ganski ced (1979–2007)"
+      :other: "ganskih ceda (1979–2007)"
+    :GHS: 
+      :few: "ganska sedija"
+      :name: "ganski sedi"
+      :narrow_symbol: GH₵
+      :one: "ganski sedi"
+      :other: "ganskih sedija"
+      :symbol: GH₵
+    :GIP: 
+      :few: "gibraltarske funte"
+      :name: "gibraltarska funta"
+      :narrow_symbol: £
+      :one: "gibraltarska funta"
+      :other: "gibraltarskih funti"
+      :symbol: £
+    :GMD: 
+      :few: "gambijskih dalasija"
+      :name: "gambijski dalasi"
+      :one: "gambijski dalasi"
+      :other: "gambijskih dalasija"
+    :GNF: 
+      :few: "gvinejska franka"
+      :name: "gvinejski franak"
+      :narrow_symbol: FG
+      :one: "gvinejski franak"
+      :other: "gvinejskih franaka"
+      :symbol: FG
+    :GNS: 
+      :few: "gvinejska sila"
+      :name: "Gvinejski sili"
+      :one: "gvinejski sili"
+      :other: "gvinejskih sila"
+    :GQE: 
+      :few: "ekvatorijalno-gvinejska ekvela"
+      :name: "Ekvatorijalno-gvinejski ekvele"
+      :one: "ekvatorijalno-gvinejski ekvele"
+      :other: "ekvatorijalno-gvinejskih ekvela"
+    :GRD: 
+      :few: "grčke drahme"
+      :name: "Grčka drahma"
+      :one: "grčka drahma"
+      :other: "grčkih drahmi"
+    :GTQ: 
+      :few: "gvatemalska kecala"
+      :name: "gvatemalski kecal"
+      :narrow_symbol: Q
+      :one: "gvatemalski kecal"
+      :other: "gvatemalskih kecala"
+      :symbol: Q
+    :GWE: 
+      :few: "portugalsko-gvinejska eskuda"
+      :name: "Portugalska gvineja eskudo"
+      :one: "portugalsko-gvinejski eskudo"
+      :other: "portugalsko-gvinejskih eskuda"
+    :GWP: 
+      :few: "gvineja-bisaoška pezosa"
+      :name: "Gvineja Bisao Pezo"
+      :one: "gvineja-bisaoški pezo"
+      :other: "gvineja-bisaoških pezosa"
+    :GYD: 
+      :few: "gvajanska dolara"
+      :name: "gvajanski dolar"
+      :narrow_symbol: $
+      :one: "gvajanski dolar"
+      :other: "gvajanskih dolara"
+      :symbol: $
+    :HKD: 
+      :few: "hongkonška dolara"
+      :name: "hongkonški dolar"
+      :narrow_symbol: $
+      :one: "hongkonški dolar"
+      :other: "hongkonških dolara"
+      :symbol: HK$
+    :HNL: 
+      :few: "honduraške lempire"
+      :name: "honduraška lempira"
+      :narrow_symbol: L
+      :one: "honduraška lempira"
+      :other: "honduraških lempira"
+      :symbol: L
+    :HRD: 
+      :few: "hrvatska dinara"
+      :name: "Hrvatski dinar"
+      :one: "hrvatski dinar"
+      :other: "hrvatskih dinara"
+    :HRK: 
+      :few: "hrvatske kune"
+      :name: "hrvatska kuna"
+      :narrow_symbol: kn
+      :one: "hrvatska kuna"
+      :other: "hrvatskih kuna"
+      :symbol: kn
+    :HTG: 
+      :few: "haićanska gurda"
+      :name: "haićanski gurd"
+      :one: "haićanski gurd"
+      :other: "haićanskih gurda"
+    :HUF: 
+      :few: "mađarske forinte"
+      :name: "mađarska forinta"
+      :narrow_symbol: Ft
+      :one: "mađarska forinta"
+      :other: "mađarskih forinti"
+      :symbol: Ft
+    :IDR: 
+      :few: "indonežanske rupije"
+      :name: "indonežanska rupija"
+      :narrow_symbol: Rp
+      :one: "indonežanska rupija"
+      :other: "indonežanskih rupija"
+      :symbol: Rp
+    :IEP: 
+      :few: "irske funte"
+      :name: "Irska funta"
+      :one: "irska funta"
+      :other: "irskih funti"
+    :ILP: 
+      :few: "izraelske funte"
+      :name: "Izraelska funta"
+      :one: "izraelska funta"
+      :other: "izraelskih funti"
+    :ILR: 
+      :few: "stari izraelski šekeli"
+      :name: "Stari izraelski šekeli"
+      :one: "stari izraelski šekeli"
+      :other: "stari izraelski šekeli"
+    :ILS: 
+      :few: "izraelska nova šekela"
+      :name: "izraelski novi šekel"
+      :narrow_symbol: ₪
+      :one: "izraelski novi šekel"
+      :other: "izraelskih novih šekela"
+      :symbol: ₪
+    :INR: 
+      :few: "indijske rupije"
+      :name: "indijska rupija"
+      :narrow_symbol: ₹
+      :one: "indijska rupija"
+      :other: "indijskih rupija"
+      :symbol: ₹
+    :IQD: 
+      :few: "iračka dinara"
+      :name: "irački dinar"
+      :one: "irački dinar"
+      :other: "iračkih dinara"
+    :IRR: 
+      :few: "iranska rijala"
+      :name: "iranski rijal"
+      :one: "iranski rijal"
+      :other: "iranskih rijala"
+    :ISJ: 
+      :few: "stara islandska kruna"
+      :name: "Stara islandska kruna"
+      :one: "stara islandska kruna"
+      :other: "stara islandska kruna"
+    :ISK: 
+      :few: "islandske krune"
+      :name: "islandska kruna"
+      :narrow_symbol: kr
+      :one: "islandska kruna"
+      :other: "islandskih kruna"
+      :symbol: kr
+    :ITL: 
+      :few: "italijanske lire"
+      :name: "Italijanska lira"
+      :one: "italijanska lira"
+      :other: "italijanske lire"
+    :JMD: 
+      :few: "jamajčanska dolara"
+      :name: "jamajčanski dolar"
+      :narrow_symbol: $
+      :one: "jamajčanski dolar"
+      :other: "jamajčanskix dolara"
+      :symbol: $
+    :JOD: 
+      :few: "jordanska dinara"
+      :name: "jordanski dinar"
+      :one: "jordanski dinar"
+      :other: "jordanskih dinara"
+    :JPY: 
+      :few: "japanska jena"
+      :name: "japanski jen"
+      :narrow_symbol: ¥
+      :one: "japanski jen"
+      :other: "japanskih jena"
+      :symbol: ¥
+    :KES: 
+      :few: "kenijska šilinga"
+      :name: "kenijski šiling"
+      :one: "kenijski šiling"
+      :other: "kenijskih šilinga"
+    :KGS: 
+      :few: "kirgistanska soma"
+      :name: "kirgistanski som"
+      :narrow_symbol: ⃀
+      :one: "kirgistanski som"
+      :other: "kirgistanskih soma"
+      :symbol: ⃀
+    :KHR: 
+      :few: "kambodžanska rijela"
+      :name: "kambodžanski rijel"
+      :narrow_symbol: ៛
+      :one: "kambodžanski rijel"
+      :other: "kambodžanskih rijela"
+      :symbol: ៛
+    :KMF: 
+      :few: "komorska franka"
+      :name: "komorski franak"
+      :narrow_symbol: CF
+      :one: "komorski franak"
+      :other: "komorskih franaka"
+      :symbol: CF
+    :KPW: 
+      :few: "severnokorejska vona"
+      :name: "severnokorejski von"
+      :narrow_symbol: ₩
+      :one: "severnokorejski von"
+      :other: "severnokorejskih vona"
+      :symbol: ₩
+    :KRH: 
+      :few: "južnokorejska hvana"
+      :name: "Južnokorejski hvan"
+      :one: "južnokorejski hvan"
+      :other: "južnokorejskih hvana"
+    :KRO: 
+      :few: "stara južnokorejska vona"
+      :name: "Stari južnokorejski von"
+      :one: "stari južnokorejski von"
+      :other: "starih južnokorejskih vona"
+    :KRW: 
+      :few: "južnokorejska vona"
+      :name: "južnokorejski von"
+      :narrow_symbol: ₩
+      :one: "južnokorejski von"
+      :other: "južnokorejskih vona"
+      :symbol: KRW
+    :KWD: 
+      :few: "kuvajtska dinara"
+      :name: "kuvajtski dinar"
+      :one: "kuvajtski dinar"
+      :other: "kuvajtskih dinara"
+    :KYD: 
+      :few: "kajmanska dolara"
+      :name: "kajmanski dolar"
+      :narrow_symbol: $
+      :one: "kajmanski dolar"
+      :other: "kajmanskih dolara"
+      :symbol: $
+    :KZT: 
+      :few: "kazahstanska tengea"
+      :name: "kazahstanski tenge"
+      :narrow_symbol: ₸
+      :one: "kazahstanski tenge"
+      :other: "kazahstanskih tengea"
+      :symbol: ₸
+    :LAK: 
+      :few: "laoska kipa"
+      :name: "laoski kip"
+      :narrow_symbol: ₭
+      :one: "laoski kip"
+      :other: "laoskih kipa"
+      :symbol: ₭
+    :LBP: 
+      :few: "libanske funte"
+      :name: "libanska funta"
+      :narrow_symbol: L£
+      :one: "libanska funta"
+      :other: "libanskih funti"
+      :symbol: L£
+    :LKR: 
+      :few: "šrilančanske rupije"
+      :name: "šrilančanska rupija"
+      :narrow_symbol: Rs
+      :one: "šrilančanska rupija"
+      :other: "šrilančanskih rupija"
+      :symbol: Rs
+    :LRD: 
+      :few: "liberijska dolara"
+      :name: "liberijski dolar"
+      :narrow_symbol: $
+      :one: "liberijski dolar"
+      :other: "liberijskih dolara"
+      :symbol: $
+    :LSL: 
+      :few: "lesotska lotija"
+      :name: "lesotski loti"
+      :one: "lesotski loti"
+      :other: "lesotskih lotija"
+    :LTL: 
+      :few: "litvanska litasa"
+      :name: "Litvanski litas"
+      :narrow_symbol: Lt
+      :one: "litvanski litas"
+      :other: "litvanskih litasa"
+      :symbol: Lt
+    :LTT: 
+      :few: "litvanska talonasa"
+      :name: "Litvanski talonas"
+      :one: "litvanski talonas"
+      :other: "litvanskih talonasa"
+    :LUC: 
+      :few: "luksemburška konvertibilna franka"
+      :name: "Luksemburški konvertibilni franak"
+      :one: "luksemburški konvertibilni franak"
+      :other: "luksemburških konvertibilnih franaka"
+    :LUF: 
+      :few: "luksemburška franka"
+      :name: "Luksemburški franak"
+      :one: "luksemburški franak"
+      :other: "luksemburški franci"
+    :LUL: 
+      :few: "luksemburška finansijska franka"
+      :name: "Luksemburški finansijski franak"
+      :one: "luksemburški finansijski franak"
+      :other: "luksemburških finansijskih franaka"
+    :LVL: 
+      :few: "latvijska lata"
+      :name: "Latvijski lati"
+      :narrow_symbol: Ls
+      :one: "latvijski lat"
+      :other: "latvijskih lata"
+      :symbol: Ls
+    :LVR: 
+      :few: "latvijske rublje"
+      :name: "Latvijska rublja"
+      :one: "latvijska rublja"
+      :other: "latvijskih rublji"
+    :LYD: 
+      :few: "libijska dinara"
+      :name: "libijski dinar"
+      :one: "libijski dinar"
+      :other: "libijskih dinara"
+    :MAD: 
+      :few: "marokanska dirhama"
+      :name: "marokanski dirham"
+      :one: "marokanski dirham"
+      :other: "marokanskih dirhama"
+    :MAF: 
+      :few: "marokanska franka"
+      :name: "Marokanski franak"
+      :one: "marokanski franak"
+      :other: "marokanskih franaka"
+    :MCF: 
+      :few: "monegaskanska franka"
+      :name: "Monegaskanski franak"
+      :one: "monegaskanski franak"
+      :other: "monegaskanskih franaka"
+    :MDC: 
+      :few: "moldovanska kupona"
+      :name: "Moldovanski kupon"
+      :one: "moldovanski kupon"
+      :other: "moldovanskih kupona"
+    :MDL: 
+      :few: "moldavska leja"
+      :name: "moldavski lej"
+      :one: "moldavski lej"
+      :other: "moldavskih leja"
+    :MGA: 
+      :few: "malgaška arijarija"
+      :name: "malgaški arijari"
+      :narrow_symbol: Ar
+      :one: "malgaški arijari"
+      :other: "malgaških arijarija"
+      :symbol: Ar
+    :MGF: 
+      :few: "malagašajska franka"
+      :name: "Malagasijski franak"
+      :one: "malagašajski franak"
+      :other: "malagašajski franci"
+    :MKD: 
+      :few: "makedonska denara"
+      :name: "makedonski denar"
+      :one: "makedonski denar"
+      :other: "makedonskih denara"
+    :MKN: 
+      :few: "stara makedonska denara"
+      :name: "Stari makedonski denar"
+      :one: "stari makedonski denar"
+      :other: "starih makedonskih denara"
+    :MLF: 
+      :few: "malijska franka"
+      :name: "Malijanski franak"
+      :one: "malijski franak"
+      :other: "malijskih franaka"
+    :MMK: 
+      :few: "mjanmarska kjata"
+      :name: "mjanmarski kjat"
+      :narrow_symbol: K
+      :one: "mjanmarski kjat"
+      :other: "mjanmarskih kjata"
+      :symbol: K
+    :MNT: 
+      :few: "mongolska tugrika"
+      :name: "mongolski tugrik"
+      :narrow_symbol: ₮
+      :one: "mongolski tugrik"
+      :other: "mongolskih tugrika"
+      :symbol: ₮
+    :MOP: 
+      :few: "makaoske patake"
+      :name: "makaoska pataka"
+      :one: "makaoska pataka"
+      :other: "makaoskih pataka"
+    :MRO: 
+      :few: "mauritanijske ogije (1973–2017)"
+      :name: "Mauritanijska ogija (1973–2017)"
+      :one: "mauritanijska ogija (1973–2017)"
+      :other: "mauritanijskih ogija (1973–2017)"
+    :MRU: 
+      :few: "mauritanske ogije"
+      :name: "mauritanska ogija"
+      :one: "mauritanska ogija"
+      :other: "mauritanskih ogija"
+    :MTL: 
+      :few: "malteške lire"
+      :name: "Malteška lira"
+      :one: "malteška lira"
+      :other: "malteških lira"
+    :MTP: 
+      :few: "malteške funte"
+      :name: "Malteška funta"
+      :one: "malteška funta"
+      :other: "malteških funti"
+    :MUR: 
+      :few: "mauricijske rupije"
+      :name: "mauricijska rupija"
+      :narrow_symbol: Rs
+      :one: "mauricijska rupija"
+      :other: "mauricijskih rupija"
+      :symbol: Rs
+    :MVR: 
+      :few: "maldivske rufije"
+      :name: "maldivska rufija"
+      :one: "maldivska rufija"
+      :other: "maldivskih rufija"
+    :MWK: 
+      :few: "malavijske kvače"
+      :name: "malavijska kvača"
+      :one: "malavijska kvača"
+      :other: "malavijskih kvača"
+    :MXN: 
+      :few: "meksička pezosa"
+      :name: "meksički pezos"
+      :narrow_symbol: $
+      :one: "meksički pezos"
+      :other: "meksičkih pezosa"
+      :symbol: MX$
+    :MXP: 
+      :few: "meksička srebrna pezosa"
+      :name: "Meksički srebrni pezo (1861–1992)"
+      :one: "meksički srebrni pezo"
+      :other: "meksičkih srebrnih pezosa"
+    :MXV: 
+      :few: "meksička unidads de inverziona"
+      :name: "Meksički unidad de inversion (UDI)"
+      :one: "meksički unidads de inverzion"
+      :other: "meksičkih unidads de inverziona"
+    :MYR: 
+      :few: "malezijska ringita"
+      :name: "malezijski ringit"
+      :narrow_symbol: RM
+      :one: "malezijski ringit"
+      :other: "malezijskih ringita"
+      :symbol: RM
+    :MZE: 
+      :few: "mozambijska eskuda"
+      :name: "Mozambijski eskudo"
+      :one: "mozambijski eskudo"
+      :other: "mozambijskih eskuda"
+    :MZM: 
+      :few: "stara mozambijska metikala"
+      :name: "Stari mozambijski metikal"
+      :one: "stari mozambijski metikal"
+      :other: "starih mozambijskih metikala"
+    :MZN: 
+      :few: "mozambička metikala"
+      :name: "mozambički metikal"
+      :one: "mozambički metikal"
+      :other: "mozambičkih metikala"
+    :NAD: 
+      :few: "namibijska dolara"
+      :name: "namibijski dolar"
+      :narrow_symbol: $
+      :one: "namibijski dolar"
+      :other: "namibijskih dolara"
+      :symbol: $
+    :NGN: 
+      :few: "nigerijske naire"
+      :name: "nigerijska naira"
+      :narrow_symbol: ₦
+      :one: "nigerijska naira"
+      :other: "nigerijskih naira"
+      :symbol: ₦
+    :NIC: 
+      :few: "nikaragvanske kordobe (1988–1991)"
+      :name: "nikaragvanska kordoba (1988–1991)"
+      :one: "nikaragvanska kordoba (1988–1991)"
+      :other: "nikaragvanskih kordoba (1988–1991)"
+    :NIO: 
+      :few: "nikaragvanske kordobe"
+      :name: "nikaragvanska kordoba"
+      :narrow_symbol: C$
+      :one: "nikaragvanska kordoba"
+      :other: "nikaragvanskih kordoba"
+      :symbol: C$
+    :NLG: 
+      :few: "holandska guldena"
+      :name: "Holandski gulden"
+      :one: "holandski gulden"
+      :other: "holandskih guldena"
+    :NOK: 
+      :few: "norveške krune"
+      :name: "norveška kruna"
+      :narrow_symbol: kr
+      :one: "norveška kruna"
+      :other: "norveških kruna"
+      :symbol: kr
+    :NPR: 
+      :few: "nepalske rupije"
+      :name: "nepalska rupija"
+      :narrow_symbol: Rs
+      :one: "nepalska rupija"
+      :other: "nepalskih rupija"
+      :symbol: Rs
+    :NZD: 
+      :few: "novozelandska dolara"
+      :name: "novozelandski dolar"
+      :narrow_symbol: $
+      :one: "novozelandski dolar"
+      :other: "novozelandskih dolara"
+      :symbol: NZD
+    :OMR: 
+      :few: "omanska rijala"
+      :name: "omanski rijal"
+      :one: "omanski rijal"
+      :other: "omanskih rijala"
+    :PAB: 
+      :few: "panamske balboe"
+      :name: "panamska balboa"
+      :one: "panamska balboa"
+      :other: "panamskih balboa"
+    :PEI: 
+      :few: "peruvijska intija"
+      :name: "Peruanski inti"
+      :one: "peruvijski inti"
+      :other: "peruvijskih intija"
+    :PEN: 
+      :few: "peruanska sola"
+      :name: "peruanski sol"
+      :one: "peruanski sol"
+      :other: "peruanskih sola"
+    :PES: 
+      :few: "peruanska sola (1863–1965)"
+      :name: "Peruanski sol (1863–1965)"
+      :one: "peruanski sol (1863–1965)"
+      :other: "peruanskih sola (1863–1965)"
+    :PGK: 
+      :few: "papuanske kine"
+      :name: "papuanska kina"
+      :one: "papuanska kina"
+      :other: "papuanskih kina"
+    :PHP: 
+      :few: "filipinska pezosa"
+      :name: "filipinski pezos"
+      :narrow_symbol: ₱
+      :one: "filipinski pezos"
+      :other: "filipinskih pezosa"
+      :symbol: PHP
+    :PKR: 
+      :few: "pakistanske rupije"
+      :name: "pakistanska rupija"
+      :narrow_symbol: Rs
+      :one: "pakistanska rupija"
+      :other: "pakistanskih rupija"
+      :symbol: Rs
+    :PLN: 
+      :few: "poljska zlota"
+      :name: "poljski zlot"
+      :narrow_symbol: zł
+      :one: "poljski zlot"
+      :other: "poljskih zlota"
+      :symbol: zł
+    :PLZ: 
+      :few: "poljska zlota (1950–1995)"
+      :name: "Poljski zloti (1950–1995)"
+      :one: "poljski zlot (1950–1995)"
+      :other: "poljskih zlota (1950–1995)"
+    :PTE: 
+      :few: "portugalska eskuda"
+      :name: "Portugalski eskudo"
+      :one: "portugalski eskudo"
+      :other: "portugalskih eskuda"
+    :PYG: 
+      :few: "paragvajska gvaranija"
+      :name: "paragvajski gvarani"
+      :narrow_symbol: ₲
+      :one: "paragvajski gvarani"
+      :other: "paragvajskih gvaranija"
+      :symbol: ₲
+    :QAR: 
+      :few: "katarska rijala"
+      :name: "katarski rijal"
+      :one: "katarski rijal"
+      :other: "katarskih rijala"
+    :RHD: 
+      :few: "rodežanska dolara"
+      :name: Rodejskidolar
+      :one: "rodežanski dolar"
+      :other: "rodežanskih dolara"
+    :ROL: 
+      :few: "rumunska leja (1952–2006)"
+      :name: "Rumunski lej (1952–2006)"
+      :one: "rumunski lej (1952–2006)"
+      :other: "rumunskih leja (1952–2006)"
+    :RON: 
+      :few: "rumunska leja"
+      :name: "rumunski lej"
+      :narrow_symbol: lei
+      :one: "rumunski lej"
+      :other: "rumunskih leja"
+      :symbol: lei
+    :RSD: 
+      :few: "srpska dinara"
+      :name: "srpski dinar"
+      :one: "srpski dinar"
+      :other: "srpskih dinara"
+    :RUB: 
+      :few: "ruske rublje"
+      :name: "ruska rublja"
+      :narrow_symbol: ₽
+      :one: "ruska rublja"
+      :other: "ruskih rublji"
+      :symbol: ₽
+    :RUR: 
+      :few: "ruske rublje (1991–1998)"
+      :name: "Ruska rublja (1991–1998)"
+      :one: "ruska rublja (1991–1998)"
+      :other: "ruskih rublji (1991–1998)"
+    :RWF: 
+      :few: "ruandska franka"
+      :name: "ruandski franak"
+      :narrow_symbol: RF
+      :one: "ruandski franak"
+      :other: "ruandskih franaka"
+      :symbol: RF
+    :SAR: 
+      :few: "saudijska rijala"
+      :name: "saudijski rijal"
+      :one: "saudijski rijal"
+      :other: "saudijskih rijala"
+    :SBD: 
+      :few: "solomonska dolara"
+      :name: "solomonski dolar"
+      :narrow_symbol: $
+      :one: "solomonski dolar"
+      :other: "solomonskih dolara"
+      :symbol: $
+    :SCR: 
+      :few: "sejšelske rupije"
+      :name: "sejšelska rupija"
+      :one: "sejšelska rupija"
+      :other: "sejšelskih rupija"
+    :SDD: 
+      :few: "stara sudanska dinara"
+      :name: "Stari sudanski dinar"
+      :one: "stari sudanski dinar"
+      :other: "starih sudanskih dinara"
+    :SDG: 
+      :few: "sudanske funte"
+      :name: "sudanska funta"
+      :one: "sudanska funta"
+      :other: "sudanskih funti"
+    :SDP: 
+      :few: "stare sudanske funte"
+      :name: "Stara sudanska funta"
+      :one: "stara sudanska funta"
+      :other: "starih sudanskih funti"
+    :SEK: 
+      :few: "švedske krune"
+      :name: "švedska kruna"
+      :narrow_symbol: kr
+      :one: "švedska kruna"
+      :other: "švedskih kruna"
+      :symbol: kr
+    :SGD: 
+      :few: "singapurska dolara"
+      :name: "singapurski dolar"
+      :narrow_symbol: $
+      :one: "singapurski dolar"
+      :other: "singapurskih dolara"
+      :symbol: $
+    :SHP: 
+      :few: "funte Svete Jelene"
+      :name: "funta Svete Jelene"
+      :narrow_symbol: £
+      :one: "funta Svete Jelene"
+      :other: "funti Svete Jelene"
+      :symbol: £
+    :SIT: 
+      :few: "slovenačka tolara"
+      :name: "Slovenački tolar"
+      :one: "slovenački tolar"
+      :other: "slovenačkih tolara"
+    :SKK: 
+      :few: "slovačke krune"
+      :name: "Slovačka kruna"
+      :one: "slovačka kruna"
+      :other: "slovačkih kruna"
+    :SLE: 
+      :few: "sijeraleonska leona"
+      :name: "sijeraleonski leone"
+      :one: "sijeraleonski leone"
+      :other: "sijeraleonskih leona"
+    :SLL: 
+      :few: "sijeraleonska leona (1964—2022)"
+      :name: "sijeraleonski leone (1964—2022)"
+      :one: "sijeraleonski leone (1964—2022)"
+      :other: "sijeraleonskih leona (1964—2022)"
+    :SOS: 
+      :few: "somalijska šilinga"
+      :name: "somalijski šiling"
+      :one: "somalijski šiling"
+      :other: "somalijskih šilinga"
+    :SRD: 
+      :few: "surinamska dolara"
+      :name: "surinamski dolar"
+      :narrow_symbol: $
+      :one: "surinamski dolar"
+      :other: "surinamskih dolara"
+      :symbol: $
+    :SRG: 
+      :few: "surinamska gildera"
+      :name: "Surinamski gilder"
+      :one: "surinamski gilder"
+      :other: "surinamskih gildera"
+    :SSP: 
+      :few: "južnosudanske funte"
+      :name: "južnosudanska funta"
+      :narrow_symbol: £
+      :one: "južnosudanska funta"
+      :other: "južnosudanskih funti"
+      :symbol: £
+    :STD: 
+      :few: "saotomske dobre (1977–2017)"
+      :name: "Saotomska dobra (1977–2017)"
+      :one: "saotomska dobra (1977–2017)"
+      :other: "saotomskih dobri (1977–2017)"
+    :STN: 
+      :few: "saotomske dobre"
+      :name: "saotomska dobra"
+      :narrow_symbol: Db
+      :one: "saotomska dobra"
+      :other: "saotomskih dobri"
+      :symbol: Db
+    :SUR: 
+      :few: "sovjetske rublje"
+      :name: "Sovjetska rublja"
+      :one: "sovjetska rublja"
+      :other: "sovjetskih rublji"
+    :SVC: 
+      :few: "salvadorska kolona"
+      :name: "Salvadorski kolon"
+      :one: "salvadorski kolon"
+      :other: "salvadorskih kolona"
+    :SYP: 
+      :few: "sirijske funte"
+      :name: "sirijska funta"
+      :narrow_symbol: £
+      :one: "sirijska funta"
+      :other: "sirijskih funti"
+      :symbol: £
+    :SZL: 
+      :few: "svazilendska lilangenija"
+      :name: "svazilendski lilangeni"
+      :one: "svazilendski lilangeni"
+      :other: "svazilendskih lilangenija"
+    :THB: 
+      :few: "tajlandska bata"
+      :name: "tajlandski bat"
+      :narrow_symbol: ฿
+      :one: "tajlandski bat"
+      :other: "tajlandskih bata"
+      :symbol: ฿
+    :TJR: 
+      :few: "tadžihistanske rublje"
+      :name: "Tadžihistanska rublja"
+      :one: "tadžihistanska rublja"
+      :other: "tadžihistanskih rublji"
+    :TJS: 
+      :few: "tadžikistanska somona"
+      :name: "tadžikistanski somon"
+      :one: "tadžikistanski somon"
+      :other: "tadžikistanskih somona"
+    :TMM: 
+      :few: "turkmenistanska manata (1993–2009)"
+      :name: "Turkmenistanski manat (1993–2009)"
+      :one: "turkmenistanski manat (1993–2009)"
+      :other: "turkmenistanski manat (1993–2009)"
+    :TMT: 
+      :few: "turkmenistanska manata"
+      :name: "turkmenistanski manat"
+      :one: "turkmenistanski manat"
+      :other: "turkmenistanskih manata"
+    :TND: 
+      :few: "tuniska dinara"
+      :name: "tuniski dinar"
+      :one: "tuniski dinar"
+      :other: "tuniskih dinara"
+    :TOP: 
+      :few: "tonganske pange"
+      :name: "tonganska panga"
+      :narrow_symbol: T$
+      :one: "tonganska panga"
+      :other: "tonganskih pangi"
+      :symbol: T$
+    :TPE: 
+      :few: "timorška eskuda"
+      :name: "Timorški eskudo"
+      :one: "timorški eskudo"
+      :other: "timorških eskuda"
+    :TRL: 
+      :few: "turske lire (1922–2005)"
+      :name: "Turska lira (1922–2005)"
+      :one: "turska lira (1922–2005)"
+      :other: "turskih lira (1922–2005)"
+    :TRY: 
+      :few: "turske lire"
+      :name: "turska lira"
+      :narrow_symbol: ₺
+      :one: "turska lira"
+      :other: "turskih lira"
+      :symbol: ₺
+    :TTD: 
+      :few: "trinidadskotobaška dolara"
+      :name: "trinidadskotobaški dolar"
+      :narrow_symbol: $
+      :one: "trinidadskotobaški dolar"
+      :other: "trinidadskotobaških dolara"
+      :symbol: $
+    :TWD: 
+      :few: "nova tajvanska dolara"
+      :name: "novi tajvanski dolar"
+      :narrow_symbol: NT$
+      :one: "novi tajvanski dolar"
+      :other: "novih tajvanskih dolara"
+      :symbol: NT$
+    :TZS: 
+      :few: "tanzanijska šilinga"
+      :name: "tanzanijski šiling"
+      :one: "tanzanijski šiling"
+      :other: "tanzanijskih šilinga"
+    :UAH: 
+      :few: "ukrajinske grivne"
+      :name: "ukrajinska grivna"
+      :narrow_symbol: ₴
+      :one: "ukrajinska grivna"
+      :other: "ukrajinskih hrivnji"
+      :symbol: ₴
+    :UAK: 
+      :few: "ukrajinska karbovanciva"
+      :name: "Ukrajinski karbovaneti"
+      :one: "ukrajinski karbovanec"
+      :other: "ukrajinskih karbovanciva"
+    :UGS: 
+      :few: "ugandijska šilinga (1966–1987)"
+      :name: "Ugandski šiling (1966–1987)"
+      :one: "ugandijski šiling (1966–1987)"
+      :other: "ugandijskih šilinga (1966–1987)"
+    :UGX: 
+      :few: "ugandska šilinga"
+      :name: "ugandski šiling"
+      :one: "ugandski šiling"
+      :other: "ugandskih šilinga"
+    :USD: 
+      :few: "američka dolara"
+      :name: "američki dolar"
+      :narrow_symbol: $
+      :one: "američki dolar"
+      :other: "američkih dolara"
+      :symbol: US$
+    :USN: 
+      :few: "SAD dolara (sledeći dan)"
+      :name: "SAD dolar (sledeći dan)"
+      :one: "SAD dolar (sledeći dan)"
+      :other: "SAD dolara (sledeći dan)"
+    :USS: 
+      :few: "SAD dolara (isti dan)"
+      :name: "SAD dolar (isti dan)"
+      :one: "SAD dolar (isti dan)"
+      :other: "SAD dolara (isti dan)"
+    :UYI: 
+      :few: "urugvajska pezosa en unidades indeksadesa"
+      :name: "Urugvajski pezo en unidades indeksadas"
+      :one: "urugvajski pezo en unidades indeksades"
+      :other: "ugvajskih pezosa en unidades indeksadesa"
+    :UYP: 
+      :few: "urugvajska pezosa (1975–1993)"
+      :name: "Urugvajski pezo (1975–1993)"
+      :one: "urugvajski pezo (1975–1993)"
+      :other: "urugvajskih pezosa (1975–1993)"
+    :UYU: 
+      :few: "urugvajska pezosa"
+      :name: "urugvajski pezos"
+      :narrow_symbol: $
+      :one: "urugvajski pezos"
+      :other: "urugvajskih pezosa"
+      :symbol: $
+    :UZS: 
+      :few: "uzbekistanska soma"
+      :name: "uzbekistanski som"
+      :one: "uzbekistanski som"
+      :other: "uzbekistanskih soma"
+    :VEB: 
+      :few: "venecuelanska bolivara (1871–2008)"
+      :name: "Venecuelanski bolivar (1871–2008)"
+      :one: "venecuelanski bolivar (1871–2008)"
+      :other: "venecuelanskih bolivara (1871–2008)"
+    :VEF: 
+      :few: "venecuelanska bolivara (2008–2018)"
+      :name: "Venecuelanski bolivar (2008–2018)"
+      :narrow_symbol: Bs
+      :one: "venecuelanski bolivar (2008–2018)"
+      :other: "venecuelanskih bolivara (2008–2018)"
+      :symbol: Bs
+    :VES: 
+      :few: "venecuelanska bolivara"
+      :name: "venecuelanski bolivar"
+      :one: "venecuelanski bolivar"
+      :other: "venecuelanskih bolivara"
+    :VND: 
+      :few: "vijetnamska donga"
+      :name: "vijetnamski dong"
+      :narrow_symbol: ₫
+      :one: "vijetnamski dong"
+      :other: "vijetnamskih donga"
+      :symbol: VND
+    :VNN: 
+      :few: "vijetnamska donga (1978–1985)"
+      :name: "Vijetnamski dong (1978–1985)"
+      :one: "vijetnamski dong (1978–1985)"
+      :other: "vijetnamskih donga (1978–1985)"
+    :VUV: 
+      :few: "vanuatska vatua"
+      :name: "vanuatski vatu"
+      :one: "vanuatski vatu"
+      :other: "vanuatskih vatua"
+    :WST: 
+      :few: "samoanske tale"
+      :name: "samoanska tala"
+      :one: "samoanska tala"
+      :other: "samoanskih tala"
+    :XAF: 
+      :few: "centralnoafrička franka"
+      :name: "centralnoafrički franak"
+      :one: "centralnoafrički franak"
+      :other: "centralnoafričkih franaka"
+      :symbol: FCFA
+    :XAG: 
+      :few: srebra
+      :name: Srebro
+      :one: srebro
+      :other: srebra
+    :XAU: 
+      :few: zlata
+      :name: Zlato
+      :one: zlato
+      :other: zlata
+    :XBA: 
+      :few: "evropske kompozitne jedinice"
+      :name: "Evropska kompozitna jedinica"
+      :one: "evropska kompozitna jedinica"
+      :other: "evropskih kompozitnih jedinica"
+    :XBB: 
+      :few: "evropske novčane jedinice (XBB)"
+      :name: "Evropska novčana jedinica"
+      :one: "evropska novčana jedinica (XBB)"
+      :other: "evropske novčane jedinice (XBB)"
+    :XBC: 
+      :few: "evropske jedinice računa (XBC)"
+      :name: "Evropska jedinica računa (XBC)"
+      :one: "evropska jedinica računa (XBC)"
+      :other: "evropskih jedinica računa (XBC)"
+    :XBD: 
+      :few: "evropske jedinice računa (XBD)"
+      :name: "Evropska jedinica računa (XBD)"
+      :one: "evropska jedinica računa (XBD)"
+      :other: "evropskih jedinica računa (XBD)"
+    :XCD: 
+      :few: "istočnokaripska dolara"
+      :name: "istočnokaripski dolar"
+      :narrow_symbol: $
+      :one: "istočnokaripski dolar"
+      :other: "istočnokaripskix dolara"
+      :symbol: EC$
+    :XCG: 
+      :symbol: Cg.
+    :XDR: 
+      :few: "posebna crtaća prava"
+      :name: "Posebna crtaća prava"
+      :one: "posebno crtaće pravo"
+      :other: "posebnih crtaćih prava"
+    :XEU: 
+      :few: "evropske novčane jedinice (XEU)"
+      :name: "Evropska valutna jedinica"
+      :one: "evropska novčana jedinica (XEU)"
+      :other: "evropskih novčanih jedinica"
+    :XFO: 
+      :few: "francuska zlatna franka"
+      :name: "Francuski zlatni franak"
+      :one: "francuski zlatni franak"
+      :other: "francuskih zlatnih franaka"
+    :XFU: 
+      :few: "francuska UIC-franka"
+      :name: "Francuski UIC-franak"
+      :one: "francuski UIC-franak"
+      :other: "francuskih UIC-franaka"
+    :XOF: 
+      :few: "zapadnoafrička franka"
+      :name: "zapadnoafrički franak"
+      :one: "zapadnoafrički franak"
+      :other: "zapadnoafričkih franaka"
+      :symbol: F CFA
+    :XPD: 
+      :few: paladijuma
+      :name: Paladijum
+      :one: paladijum
+      :other: paladijuma
+    :XPF: 
+      :few: "CFP franka"
+      :name: "CFP franak"
+      :one: "CFP franak"
+      :other: "CFP franaka"
+      :symbol: CFPF
+    :XPT: 
+      :few: platine
+      :name: Platina
+      :one: platina
+      :other: platina
+    :XRE: 
+      :few: "RINET fonda"
+      :name: "RINET fond"
+      :one: "RINET fond"
+      :other: "RINET fondova"
+    :XTS: 
+      :few: "koda testirane valute"
+      :name: "Kod testirane valute"
+      :one: "kod testirane valute"
+      :other: "kodova testirane valute"
+    :XXX: 
+      :few: "nepoznate valute"
+      :name: "nepoznata valuta"
+      :one: "nepoznata jedinica valute"
+      :other: "nepoznatih valuta"
+      :symbol: ¤
+    :YDD: 
+      :few: "jemenska dolara"
+      :name: "Jemenski dinar"
+      :one: "jemenski dolar"
+      :other: "jemenskih dolara"
+    :YER: 
+      :few: "jemenska rijala"
+      :name: "jemenski rijal"
+      :one: "jemenski rijal"
+      :other: "jemenskih rijala"
+    :YUD: 
+      :few: "jugoslovenska tvrda dinara"
+      :name: "Jugoslovenski tvrdi dinar"
+      :one: "jugoslovenski tvrdi dinar"
+      :other: "jugoslovenskih tvrdih dinara"
+    :YUM: 
+      :few: "jugoslovenska nova dinara"
+      :name: "Jugoslovenski novi dinar"
+      :one: "jugoslovenski novi dinar"
+      :other: "jugoslovenskih novih dinara"
+    :YUN: 
+      :few: "jugoslovenska konvertibilna dinara"
+      :name: "Jugoslovenski konvertibilni dinar"
+      :one: "jugoslovenski konvertibilni dinar"
+      :other: "jugoslovenskih konvertibilnih dinara"
+    :YUR: 
+      :few: "jugoslovenska reformirana dinara"
+      :name: "Jugoslovenski reformirani dinar"
+      :one: "jugoslovenski reformirani dinar"
+      :other: "jugoslovenskih reformiranih dinara"
+    :ZAL: 
+      :few: "južnoafrička randa (finansijska)"
+      :name: "Južno-afrički rand (finansijski)"
+      :one: "južnoafrički rand (finansijski)"
+      :other: "južnoafričkih randa (finansijskih)"
+    :ZAR: 
+      :few: "južnoafrička randa"
+      :name: "južnoafrički rand"
+      :narrow_symbol: R
+      :one: "južnoafrički rand"
+      :other: "južnoafričkih randa"
+      :symbol: R
+    :ZMK: 
+      :few: "zambijske kvače (1968–2012)"
+      :name: "Zambijska kvača (1968–2012)"
+      :one: "zambijska kvača (1968–2012)"
+      :other: "zambijskih kvača (1968–2012)"
+    :ZMW: 
+      :few: "zambijske kvače"
+      :name: "zambijska kvača"
+      :narrow_symbol: ZK
+      :one: "zambijska kvača"
+      :other: "zambijskih kvača"
+      :symbol: ZK
+    :ZRN: 
+      :few: "zairska nova zaira"
+      :name: "Zairski novi zair"
+      :one: "zairski novi zair"
+      :other: "zairskih novih zaira"
+    :ZRZ: 
+      :few: "zairska zaira"
+      :name: "Zairski zair"
+      :one: "zairski zair"
+      :other: "zairskih zaira"
+    :ZWD: 
+      :few: "zimbabvejska dolara (1980–2008)"
+      :name: "Zimbabveanski dolar (1980–2008)"
+      :one: "zimbabvejski dolar (1980–2008)"
+      :other: "zimbabvejskih dolara (1980–2008)"
+    :ZWL: 
+      :few: "zimbabvejska dolara (2009)"
+      :name: "Zimbabveanski dolar (2009)"
+      :one: "zimbabvejski dolar (2009)"
+      :other: "zimbabvejskih dolara (2009)"
+    :ZWR: 
+      :few: "zimbabvejska dolara (2008)"
+      :name: "Zimbabveanski dolar (2008)"
+      :one: "zimbabvejski dolar (2008)"
+      :other: "zimbabvejskih dolara (2008)"

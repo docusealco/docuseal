@@ -1,0 +1,24 @@
+# See https://ddnexus.github.io/pagy/resources/i18n
+
+tr:
+  pagy:
+    p11n: 'OneOther'
+    aria_label:
+      nav:
+        one: "Sayfa"
+        other: "Sayfalar"
+      previous: "Önceki"
+      next: "Sonraki"
+    previous: "&lt;"
+    next: "&gt;"
+    gap: "&hellip;"
+    item_name:
+      one: "kayıt"
+      other: "kayıtlar"
+    info_tag:
+      no_count: "Sayfa %{page} / %{pages}"
+      no_items: "Hiç %{item_name} bulunamadı"
+      single_page: "%{count} %{item_name} gösteriliyor"
+      multiple_pages: "Toplam %{count} %{item_name} arasından %{from}-%{to} arası gösteriliyor"
+    input_nav_js: "Sayfa %{page_input} / %{pages}"
+    limit_tag_js: "Sayfa başına %{limit_input} %{item_name} göster"

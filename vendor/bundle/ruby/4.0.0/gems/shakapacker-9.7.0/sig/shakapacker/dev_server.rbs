@@ -1,0 +1,56 @@
+# Development server status and configuration
+#
+# Provides methods to query the status and configuration of the webpack-dev-server
+# or rspack-dev-server.
+class Shakapacker::DevServer
+  # Default environment variable prefix for dev server settings
+  DEFAULT_ENV_PREFIX: String
+
+  # Configure dev server connection timeout (in seconds)
+  def self.connect_timeout: () -> Float
+
+  # Sets the connection timeout
+  def self.connect_timeout=: (Float | Integer timeout) -> Float
+
+  # The Shakapacker configuration
+  attr_reader config: Configuration
+
+  # Creates a new dev server instance
+  def initialize: (Configuration config) -> void
+
+  # Returns whether the dev server is currently running
+  def running?: () -> bool
+
+  # Returns the dev server host
+  def host: () -> String
+
+  # Returns the dev server port
+  def port: () -> Integer
+
+  # Returns the server type (http or https)
+  def server: () -> String
+
+  # Alias for server
+  def protocol: () -> String
+
+  # Returns the host with port (e.g., "localhost:3035")
+  def host_with_port: () -> String
+
+  # Returns whether pretty output is enabled
+  def pretty?: () -> bool
+
+  # Returns whether Hot Module Replacement (HMR) is enabled
+  def hmr?: () -> bool
+
+  # Returns whether CSS should be inlined by the dev server
+  def inline_css?: () -> bool
+
+  # Returns the environment variable prefix for dev server settings
+  def env_prefix: () -> String
+
+  private
+
+  def connect_timeout: () -> Float
+
+  def fetch: (Symbol key) -> untyped
+end

@@ -36,7 +36,7 @@ class SetupController < ApplicationController
       @account.encrypted_configs.create!(encrypted_configs)
       @account.account_configs.create!(key: :fulltext_search, value: true) if SearchEntry.table_exists?
 
-      Docuseal.refresh_default_url_options!
+      Wabosign.refresh_default_url_options!
 
       sign_in(@user)
 

@@ -1,0 +1,222 @@
+--- 
+:sq: 
+  :fields: 
+    :day: 
+      :display_name: ditë
+      :relative: 
+        -1: dje
+        0: sot
+        1: nesër
+      :relative_time: 
+        :future: 
+          :one: "pas {0} dite"
+          :other: "pas {0} ditësh"
+        :past: 
+          :one: "{0} ditë më parë"
+          :other: "{0} ditë më parë"
+    :dayOfYear: 
+      :display_name: "ditë e vitit"
+    :dayperiod: 
+      :display_name: paradite/pasdite
+    :era: 
+      :display_name: erë
+    :fri: 
+      :relative: 
+        -1: "të premten e kaluar"
+        0: "këtë të premte"
+        1: "të premten e ardhshme"
+      :relative_time: 
+        :future: 
+          :one: "pas {0} të premteje"
+          :other: "pas {0} të premtesh"
+        :past: 
+          :one: "{0} të premte më parë"
+          :other: "{0} të premte më parë"
+    :hour: 
+      :display_name: orë
+      :relative: 
+        0: "këtë orë"
+      :relative_time: 
+        :future: 
+          :one: "pas {0} ore"
+          :other: "pas {0} orësh"
+        :past: 
+          :one: "{0} orë më parë"
+          :other: "{0} orë më parë"
+    :minute: 
+      :display_name: minutë
+      :relative: 
+        0: "këtë minutë"
+      :relative_time: 
+        :future: 
+          :one: "pas {0} minute"
+          :other: "pas {0} minutash"
+        :past: 
+          :one: "{0} minutë më parë"
+          :other: "{0} minuta më parë"
+    :minute-short: 
+      :display_name: min
+      :relative_time: 
+        :future: 
+          :one: "pas {0} min"
+          :other: "pas {0} min"
+        :past: 
+          :one: "{0} min më parë"
+          :other: "{0} min më parë"
+    :mon: 
+      :relative: 
+        -1: "të hënën e kaluar"
+        0: "këtë të hënë"
+        1: "të hënën e ardhshme"
+      :relative_time: 
+        :future: 
+          :one: "pas {0} të hëne"
+          :other: "pas {0} të hënash"
+        :past: 
+          :one: "{0} të hënë më parë"
+          :other: "{0} të hëna më parë"
+    :month: 
+      :display_name: muaj
+      :relative: 
+        -1: "muajin e kaluar"
+        0: "këtë muaj"
+        1: "muajin e ardhshëm"
+      :relative_time: 
+        :future: 
+          :one: "pas {0} muaji"
+          :other: "pas {0} muajsh"
+        :past: 
+          :one: "{0} muaj më parë"
+          :other: "{0} muaj më parë"
+    :quarter: 
+      :display_name: tremujor
+      :relative: 
+        -1: "tremujorin e kaluar"
+        0: "këtë tremujor"
+        1: "tremujorin e ardhshëm"
+      :relative_time: 
+        :future: 
+          :one: "pas {0} tremujori"
+          :other: "pas {0} tremujorësh"
+        :past: 
+          :one: "{0} tremujor më parë"
+          :other: "{0} tremujorë më parë"
+    :sat: 
+      :relative: 
+        -1: "të shtunën e kaluar"
+        0: "këtë të shtunë"
+        1: "të shtunën e ardhshme"
+      :relative_time: 
+        :future: 
+          :one: "pas {0} të shtune"
+          :other: "pas {0} të shtunash"
+        :past: 
+          :one: "{0} të shtunë më parë"
+          :other: "{0} të shtuna më parë"
+    :second: 
+      :display_name: sekondë
+      :relative: 
+        0: tani
+      :relative_time: 
+        :future: 
+          :one: "pas {0} sekonde"
+          :other: "pas {0} sekondash"
+        :past: 
+          :one: "{0} sekondë më parë"
+          :other: "{0} sekonda më parë"
+    :second-short: 
+      :display_name: sek
+      :relative_time: 
+        :future: 
+          :one: "pas {0} sek"
+          :other: "pas {0} sek"
+        :past: 
+          :one: "{0} sek më parë"
+          :other: "{0} sek më parë"
+    :sun: 
+      :relative: 
+        -1: "të dielën e kaluar"
+        0: "këtë të diel"
+        1: "të dielën e ardhshme"
+      :relative_time: 
+        :future: 
+          :one: "pas {0} të diele"
+          :other: "pas {0} të dielash"
+        :past: 
+          :one: "{0} të dielë më parë"
+          :other: "{0} të diela më parë"
+    :thu: 
+      :relative: 
+        -1: "të enjten e kaluar"
+        0: "këtë të enjte"
+        1: "të enjten e ardhshme"
+      :relative_time: 
+        :future: 
+          :one: "pas {0} të enjteje"
+          :other: "pas {0} të enjtesh"
+        :past: 
+          :one: "{0} të enjte më parë"
+          :other: "{0} të enjte më parë"
+    :tue: 
+      :relative: 
+        -1: "të martën e kaluar"
+        0: "këtë të martë"
+        1: "të martën e ardhshme"
+      :relative_time: 
+        :future: 
+          :one: "pas {0} të marte"
+          :other: "pas {0} të martash"
+        :past: 
+          :one: "{0} të martë më parë"
+          :other: "{0} të marta më parë"
+    :wed: 
+      :relative: 
+        -1: "të mërkurën e kaluar"
+        0: "këtë të mërkurë"
+        1: "të mërkurën e ardhshme"
+      :relative_time: 
+        :future: 
+          :one: "pas {0} të mërkure"
+          :other: "pas {0} të mërkurash"
+        :past: 
+          :one: "{0} të mërkurë më parë"
+          :other: "{0} të mërkura më parë"
+    :week: 
+      :display_name: javë
+      :relative: 
+        -1: "javën e kaluar"
+        0: "këtë javë"
+        1: "javën e ardhshme"
+      :relative_time: 
+        :future: 
+          :one: "pas {0} jave"
+          :other: "pas {0} javësh"
+        :past: 
+          :one: "{0} javë më parë"
+          :other: "{0} javë më parë"
+    :weekOfMonth: 
+      :display_name: "javë e muajit"
+    :weekday: 
+      :display_name: "ditë e javës"
+    :weekdayOfMonth: 
+      :display_name: "ditë pune e muajit"
+    :year: 
+      :display_name: vit
+      :relative: 
+        -1: vjet
+        0: sivjet
+        1: mot
+      :relative_time: 
+        :future: 
+          :one: "pas {0} viti"
+          :other: "pas {0} vjetësh"
+        :past: 
+          :one: "{0} vit më parë"
+          :other: "{0} vjet më parë"
+    :year-short: 
+      :relative: 
+        -1: "vitin e kaluar"
+        0: "këtë vit"
+        1: "vitin e ardhshëm"
+    :zone: 
+      :display_name: "brezi orar"

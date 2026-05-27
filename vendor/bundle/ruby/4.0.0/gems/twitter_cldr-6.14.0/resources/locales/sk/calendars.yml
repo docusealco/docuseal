@@ -1,0 +1,383 @@
+--- 
+:sk: 
+  :calendars: 
+    :gregorian: 
+      :additional_formats: 
+        :Bh: "h B"
+        :Bhm: "h:mm B"
+        :Bhms: "h:mm:ss B"
+        :E: ccc
+        :EBhm: "E h:mm B"
+        :EBhms: "E h:mm:ss B"
+        :EHm: "E HH:mm"
+        :EHms: "E HH:mm:ss"
+        :Ed: "E d."
+        :Ehm: "E h:mm a"
+        :Ehms: "E h:mm:ss a"
+        :Gy: "y G"
+        :GyMMM: "LLLL y G"
+        :GyMMMEd: "E d. M. y G"
+        :GyMMMMd: "d. M. y G"
+        :GyMMMd: "d. M. y G"
+        :GyMd: "d. M. y GGGGG"
+        :H: H
+        :Hm: "H:mm"
+        :Hms: "H:mm:ss"
+        :Hmsv: "H:mm:ss v"
+        :Hmv: "H:mm v"
+        :M: L.
+        :MEd: "E d. M."
+        :MMM: LLL
+        :MMMEd: "E d. M."
+        :MMMMEd: "E d. MMMM"
+        :MMMMW: "W. 'týždeň' MMMM"
+        :MMMMd: "d. MMMM"
+        :MMMd: "d. M."
+        :Md: "d. M."
+        :d: d.
+        :h: h a
+        :hm: "h:mm a"
+        :hms: "h:mm:ss a"
+        :hmsv: "h:mm:ss a v"
+        :hmv: "h:mm a v"
+        :mmss: "mm:ss"
+        :ms: "mm:ss"
+        ? !ruby/symbol "y"
+        : "y"
+        :yM: M/y
+        :yMEd: "E d. M. y"
+        :yMMM: M/y
+        :yMMMEd: "E d. M. y"
+        :yMMMM: "LLLL y"
+        :yMMMMd: "d. MMMM y"
+        :yMMMd: "d. M. y"
+        :yMd: "d. M. y"
+        :yQQQ: "QQQ y"
+        :yQQQQ: "QQQQ y"
+        :yw: "w. 'týždeň' 'roka' Y"
+      :days: 
+        :format: 
+          :abbreviated: 
+            :fri: pi
+            :mon: po
+            :sat: so
+            :sun: ne
+            :thu: št
+            :tue: ut
+            :wed: st
+          :narrow: 
+            :fri: p
+            :mon: p
+            :sat: s
+            :sun: "n"
+            :thu: š
+            :tue: u
+            :wed: s
+          :short: 
+            :fri: pi
+            :mon: po
+            :sat: so
+            :sun: ne
+            :thu: št
+            :tue: ut
+            :wed: st
+          :wide: 
+            :fri: piatok
+            :mon: pondelok
+            :sat: sobota
+            :sun: nedeľa
+            :thu: štvrtok
+            :tue: utorok
+            :wed: streda
+        :stand-alone: 
+          :abbreviated: 
+            :fri: pi
+            :mon: po
+            :sat: so
+            :sun: ne
+            :thu: št
+            :tue: ut
+            :wed: st
+          :narrow: 
+            :fri: p
+            :mon: p
+            :sat: s
+            :sun: "n"
+            :thu: š
+            :tue: u
+            :wed: s
+          :short: 
+            :fri: pi
+            :mon: po
+            :sat: so
+            :sun: ne
+            :thu: št
+            :tue: ut
+            :wed: st
+          :wide: 
+            :fri: piatok
+            :mon: pondelok
+            :sat: sobota
+            :sun: nedeľa
+            :thu: štvrtok
+            :tue: utorok
+            :wed: streda
+      :eras: 
+        :abbr: 
+          0: "pred n. l."
+          1: "n. l."
+        :name: 
+          0: "pred naším letopočtom"
+          1: "nášho letopočtu"
+        :narrow: 
+          0: BCE
+          1: CE
+      :fields: 
+        :day: deň
+        :day-narrow: d.
+        :day-short: d.
+        :dayOfYear: "deň roka"
+        :dayOfYear-narrow: "deň r."
+        :dayOfYear-short: "deň r."
+        :dayperiod: AM/PM
+        :dayperiod-narrow: AM/PM
+        :dayperiod-short: AM/PM
+        :era: letopočet
+        :era-narrow: letop.
+        :era-short: letop.
+        :hour: hodina
+        :hour-narrow: h
+        :hour-short: h
+        :minute: minúta
+        :minute-narrow: min
+        :minute-short: min
+        :month: mesiac
+        :month-narrow: mes.
+        :month-short: mes.
+        :quarter: štvrťrok
+        :quarter-narrow: Q
+        :quarter-short: Q
+        :second: sekunda
+        :second-narrow: s
+        :second-short: s
+        :week: týždeň
+        :week-narrow: týž.
+        :week-short: týž.
+        :weekOfMonth: "týždeň mesiaca"
+        :weekOfMonth-narrow: "týž. mes."
+        :weekOfMonth-short: "týž. mes."
+        :weekday: "deň týždňa"
+        :weekday-narrow: "deň týž."
+        :weekday-short: "deň týž."
+        :weekdayOfMonth: "deň týždňa v mesiaci"
+        :weekdayOfMonth-narrow: "d. týž. v mes."
+        :weekdayOfMonth-short: "d. týž. v mes."
+        :year: rok
+        :year-narrow: r.
+        :year-short: r.
+        :zone: "časové pásmo"
+        :zone-narrow: pásmo
+        :zone-short: pásmo
+      :formats: 
+        :date: 
+          :full: 
+            :pattern: "EEEE d. MMMM y"
+          :long: 
+            :pattern: "d. MMMM y"
+          :medium: 
+            :pattern: "d. M. y"
+          :short: 
+            :pattern: "d. M. y"
+        :datetime: 
+          :full: 
+            :pattern: "{{date}} 'o' {{time}}"
+          :long: 
+            :pattern: "{{date}} 'o' {{time}}"
+          :medium: 
+            :pattern: "{{date}}, {{time}}"
+          :short: 
+            :pattern: "{{date}} {{time}}"
+        :time: 
+          :full: 
+            :pattern: "H:mm:ss zzzz"
+          :long: 
+            :pattern: "H:mm:ss z"
+          :medium: 
+            :pattern: "H:mm:ss"
+          :short: 
+            :pattern: "H:mm"
+      :months: 
+        :format: 
+          :abbreviated: 
+            1: jan
+            10: okt
+            11: nov
+            12: dec
+            2: feb
+            3: mar
+            4: apr
+            5: máj
+            6: jún
+            7: júl
+            8: aug
+            9: sep
+          :narrow: 
+            1: j
+            10: o
+            11: "n"
+            12: d
+            2: f
+            3: m
+            4: a
+            5: m
+            6: j
+            7: j
+            8: a
+            9: s
+          :wide: 
+            1: januára
+            10: októbra
+            11: novembra
+            12: decembra
+            2: februára
+            3: marca
+            4: apríla
+            5: mája
+            6: júna
+            7: júla
+            8: augusta
+            9: septembra
+        :stand-alone: 
+          :abbreviated: 
+            1: jan
+            10: okt
+            11: nov
+            12: dec
+            2: feb
+            3: mar
+            4: apr
+            5: máj
+            6: jún
+            7: júl
+            8: aug
+            9: sep
+          :narrow: 
+            1: j
+            10: o
+            11: "n"
+            12: d
+            2: f
+            3: m
+            4: a
+            5: m
+            6: j
+            7: j
+            8: a
+            9: s
+          :wide: 
+            1: január
+            10: október
+            11: november
+            12: december
+            2: február
+            3: marec
+            4: apríl
+            5: máj
+            6: jún
+            7: júl
+            8: august
+            9: september
+      :periods: 
+        :format: 
+          :abbreviated: 
+            :afternoon1: popol.
+            :am: AM
+            :evening1: večer
+            :midnight: "o poln."
+            :morning1: ráno
+            :morning2: dopol.
+            :night1: "v noci"
+            :noon: napol.
+            :pm: PM
+          :narrow: 
+            :afternoon1: pop.
+            :am: AM
+            :evening1: več.
+            :midnight: "o poln."
+            :morning1: ráno
+            :morning2: dop.
+            :night1: "v n."
+            :noon: nap.
+            :pm: PM
+          :wide: 
+            :afternoon1: popoludní
+            :am: AM
+            :evening1: večer
+            :midnight: "o polnoci"
+            :morning1: ráno
+            :morning2: dopoludnia
+            :night1: "v noci"
+            :noon: napoludnie
+            :pm: PM
+        :stand-alone: 
+          :abbreviated: 
+            :afternoon1: popol.
+            :am: AM
+            :evening1: večer
+            :midnight: poln.
+            :morning1: ráno
+            :morning2: dopol.
+            :night1: noc
+            :noon: pol.
+            :pm: PM
+          :narrow: 
+            :afternoon1: pop.
+            :am: AM
+            :evening1: več.
+            :morning1: ráno
+            :morning2: dop.
+            :night1: noc
+            :pm: PM
+          :wide: 
+            :afternoon1: popoludnie
+            :am: AM
+            :evening1: večer
+            :midnight: polnoc
+            :morning1: ráno
+            :morning2: dopoludnie
+            :night1: noc
+            :noon: poludnie
+            :pm: PM
+      :quarters: 
+        :format: 
+          :abbreviated: 
+            1: Q1
+            2: Q2
+            3: Q3
+            4: Q4
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: "1. štvrťrok"
+            2: "2. štvrťrok"
+            3: "3. štvrťrok"
+            4: "4. štvrťrok"
+        :stand-alone: 
+          :abbreviated: 
+            1: Q1
+            2: Q2
+            3: Q3
+            4: Q4
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: "1. štvrťrok"
+            2: "2. štvrťrok"
+            3: "3. štvrťrok"
+            4: "4. štvrťrok"

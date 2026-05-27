@@ -1,0 +1,665 @@
+--- 
+:ga: 
+  :fields: 
+    :day: 
+      :display_name: lá
+      :relative: 
+        -1: inné
+        -2: "arú inné"
+        0: inniu
+        1: amárach
+        2: "arú amárach"
+      :relative_time: 
+        :future: 
+          :few: "i gceann {0} lá"
+          :many: "i gceann {0} lá"
+          :one: "i gceann {0} lá"
+          :other: "i gceann {0} lá"
+          :two: "i gceann {0} lá"
+        :past: 
+          :few: "{0} lá ó shin"
+          :many: "{0} lá ó shin"
+          :one: "{0} lá ó shin"
+          :other: "{0} lá ó shin"
+          :two: "{0} lá ó shin"
+    :day-narrow: 
+      :relative_time: 
+        :future: 
+          :few: "+{0} lá"
+          :many: "+{0} lá"
+          :one: "+{0} lá"
+          :other: "+{0} lá"
+          :two: "+{0} lá"
+        :past: 
+          :few: "-{0} lá"
+          :many: "-{0} lá"
+          :one: "-{0} lá"
+          :other: "-{0} lá"
+          :two: "-{0} lá"
+    :dayOfYear: 
+      :display_name: "lá den bhliain"
+    :dayOfYear-short: 
+      :display_name: "lá den bhl."
+    :dayperiod: 
+      :display_name: a.m./p.m.
+    :era: 
+      :display_name: ré
+    :fri: 
+      :relative: 
+        -1: "an Aoine seo caite"
+        0: "an Aoine seo"
+        1: "an Aoine seo chugainn"
+      :relative_time: 
+        :future: 
+          :few: "{0} seachtaine ón Aoine"
+          :many: "{0} seachtaine ón Aoine"
+          :one: "{0} seachtain ón Aoine"
+          :other: "{0} seachtain ón Aoine"
+          :two: "{0} sheachtain ón Aoine"
+        :past: 
+          :few: "Dé hAoine {0} seachtaine ó shin"
+          :many: "Dé hAoine {0} seachtaine ó shin"
+          :one: "Dé hAoine {0} seachtain ó shin"
+          :other: "Dé hAoine {0} seachtain ó shin"
+          :two: "Dé hAoine {0} sheachtain ó shin"
+    :fri-narrow: 
+      :relative: 
+        -1: "an Aoine seo caite"
+        0: "an Aoine seo"
+        1: "an Aoine seo chug."
+      :relative_time: 
+        :future: 
+          :few: "+{0} Aoine"
+          :many: "+{0} nAoine"
+          :one: "+{0} Aoine"
+          :other: "+{0} Aoine"
+          :two: "+{0} Aoine"
+        :past: 
+          :few: "{0} Aoine ó shin"
+          :many: "{0} nAoine ó shin"
+          :one: "{0} Aoine ó shin"
+          :other: "{0} Aoine ó shin"
+          :two: "{0} Aoine ó shin"
+    :hour: 
+      :display_name: uair
+      :relative: 
+        0: "an uair seo"
+      :relative_time: 
+        :future: 
+          :few: "i gceann {0} uair an chloig"
+          :many: "i gceann {0} n-uair an chloig"
+          :one: "i gceann {0} uair an chloig"
+          :other: "i gceann {0} uair an chloig"
+          :two: "i gceann {0} uair an chloig"
+        :past: 
+          :few: "{0} uair an chloig ó shin"
+          :many: "{0} n-uair an chloig ó shin"
+          :one: "{0} uair an chloig ó shin"
+          :other: "{0} uair an chloig ó shin"
+          :two: "{0} uair an chloig ó shin"
+    :hour-narrow: 
+      :display_name: u
+      :relative_time: 
+        :future: 
+          :few: "+{0} u"
+          :many: "+{0} u"
+          :one: "+{0} u"
+          :other: "+{0} u"
+          :two: "+{0} u"
+        :past: 
+          :few: "-{0} u"
+          :many: "-{0} u"
+          :one: "-{0} u"
+          :other: "-{0} u"
+          :two: "-{0} u"
+    :hour-short: 
+      :relative_time: 
+        :future: 
+          :few: "i gceann {0} huaire"
+          :many: "i gceann {0} n-uaire"
+          :one: "i gceann {0} uair"
+          :other: "i gceann {0} uair"
+          :two: "i gceann {0} uair"
+        :past: 
+          :few: "{0} huaire ó shin"
+          :many: "{0} n-uaire ó shin"
+          :one: "{0} uair ó shin"
+          :other: "{0} uair ó shin"
+          :two: "{0} uair ó shin"
+    :minute: 
+      :display_name: nóiméad
+      :relative: 
+        0: "an nóiméad seo"
+      :relative_time: 
+        :future: 
+          :few: "i gceann {0} nóiméad"
+          :many: "i gceann {0} nóiméad"
+          :one: "i gceann {0} nóiméad"
+          :other: "i gceann {0} nóiméad"
+          :two: "i gceann {0} nóiméad"
+        :past: 
+          :few: "{0} nóiméad ó shin"
+          :many: "{0} nóiméad ó shin"
+          :one: "{0} nóiméad ó shin"
+          :other: "{0} nóiméad ó shin"
+          :two: "{0} nóiméad ó shin"
+    :minute-narrow: 
+      :display_name: "n"
+      :relative_time: 
+        :future: 
+          :few: "+{0} n"
+          :many: "+{0} n"
+          :one: "+{0} n"
+          :other: "+{0} n"
+          :two: "+{0} n"
+        :past: 
+          :few: "-{0} n"
+          :many: "-{0} n"
+          :one: "-{0} n"
+          :other: "-{0} n"
+          :two: "-{0} n"
+    :minute-short: 
+      :display_name: nóim.
+      :relative_time: 
+        :future: 
+          :few: "i gceann {0} nóim."
+          :many: "i gceann {0} nóim."
+          :one: "i gceann {0} nóim."
+          :other: "i gceann {0} nóim."
+          :two: "i gceann {0} nóim."
+        :past: 
+          :few: "{0} nóim. ó shin"
+          :many: "{0} nóim. ó shin"
+          :one: "{0} nóim. ó shin"
+          :other: "{0} nóim. ó shin"
+          :two: "{0} nóim. ó shin"
+    :mon: 
+      :relative: 
+        -1: "an Luan seo caite"
+        0: "an Luan seo"
+        1: "an Luan seo chugainn"
+      :relative_time: 
+        :future: 
+          :few: "{0} seachtaine ón Luan"
+          :many: "{0} seachtaine ón Luan"
+          :one: "{0} seachtain ón Luan"
+          :other: "{0} seachtain ón Luan"
+          :two: "{0} sheachtain ón Luan"
+        :past: 
+          :few: "Dé Luain {0} seachtaine ó shin"
+          :many: "Dé Luain {0} seachtaine ó shin"
+          :one: "Dé Luain {0} seachtain ó shin"
+          :other: "Dé Luain {0} seachtain ó shin"
+          :two: "Dé Luain {0} sheachtain ó shin"
+    :mon-narrow: 
+      :relative: 
+        -1: "an Luan seo caite"
+        0: "an Luan seo"
+        1: "an Luan seo chug."
+      :relative_time: 
+        :future: 
+          :few: "+{0} Luan"
+          :many: "+{0} Luan"
+          :one: "+{0} Luan"
+          :other: "+{0} Luan"
+          :two: "+{0} Luan"
+        :past: 
+          :few: "{0} Luan ó shin"
+          :many: "{0} Luan ó shin"
+          :one: "{0} Luan ó shin"
+          :other: "{0} Luan ó shin"
+          :two: "{0} Luan ó shin"
+    :month: 
+      :display_name: mí
+      :relative: 
+        -1: "an mhí seo caite"
+        0: "an mhí seo"
+        1: "an mhí seo chugainn"
+      :relative_time: 
+        :future: 
+          :few: "i gceann {0} mhí"
+          :many: "i gceann {0} mí"
+          :one: "i gceann {0} mhí"
+          :other: "i gceann {0} mí"
+          :two: "i gceann {0} mhí"
+        :past: 
+          :few: "{0} mhí ó shin"
+          :many: "{0} mí ó shin"
+          :one: "{0} mhí ó shin"
+          :other: "{0} mí ó shin"
+          :two: "{0} mhí ó shin"
+    :month-narrow: 
+      :relative_time: 
+        :future: 
+          :few: "+{0} mhí"
+          :many: "+{0} mí"
+          :one: "+{0} mhí"
+          :other: "+{0} mí"
+          :two: "+{0} mhí"
+        :past: 
+          :few: "-{0} mhí"
+          :many: "-{0} mí"
+          :one: "-{0} mhí"
+          :other: "-{0} mí"
+          :two: "-{0} mhí"
+    :month-short: 
+      :relative_time: 
+        :future: 
+          :few: "i gceann {0} mhí"
+          :many: "i gceann {0} mí"
+          :one: "i gceann {0} míosa"
+          :other: "i gceann {0} mí"
+          :two: "i gceann {0} mhí"
+    :quarter: 
+      :display_name: ráithe
+      :relative: 
+        -1: "an ráithe seo caite"
+        0: "an ráithe seo"
+        1: "an ráithe seo chugainn"
+      :relative_time: 
+        :future: 
+          :few: "i gceann {0} ráithe"
+          :many: "i gceann {0} ráithe"
+          :one: "i gceann {0} ráithe"
+          :other: "i gceann {0} ráithe"
+          :two: "i gceann {0} ráithe"
+        :past: 
+          :few: "{0} ráithe ó shin"
+          :many: "{0} ráithe ó shin"
+          :one: "{0} ráithe ó shin"
+          :other: "{0} ráithe ó shin"
+          :two: "{0} ráithe ó shin"
+    :quarter-narrow: 
+      :relative_time: 
+        :future: 
+          :few: "+{0} R"
+          :many: "+{0} R"
+          :one: "+{0} R"
+          :other: "+{0} R"
+          :two: "+{0} R"
+        :past: 
+          :few: "-{0} R"
+          :many: "-{0} R"
+          :one: "-{0} R"
+          :other: "-{0} R"
+          :two: "-{0} R"
+    :sat: 
+      :relative: 
+        -1: "an Satharn seo caite"
+        0: "an Satharn seo"
+        1: "an Satharn seo chugainn"
+      :relative_time: 
+        :future: 
+          :few: "{0} seachtaine ón Satharn"
+          :many: "{0} seachtaine ón Satharn"
+          :one: "{0} seachtain ón Satharn"
+          :other: "{0} seachtain ón Satharn"
+          :two: "{0} sheachtain ón Satharn"
+        :past: 
+          :few: "Dé Sathairn {0} seachtaine ó shin"
+          :many: "Dé Sathairn {0} seachtaine ó shin"
+          :one: "Dé Sathairn {0} seachtain ó shin"
+          :other: "Dé Sathairn {0} seachtain ó shin"
+          :two: "Dé Sathairn {0} sheachtain ó shin"
+    :sat-narrow: 
+      :relative: 
+        -1: "an Sath seo caite"
+        0: "an Sath seo"
+        1: "an Sath seo chug."
+      :relative_time: 
+        :future: 
+          :few: "+{0} Shatharn"
+          :many: "+{0} Satharn"
+          :one: "+{0} Satharn"
+          :other: "+{0} Satharn"
+          :two: "+{0} Shatharn"
+        :past: 
+          :few: "{0} Shatharn ó shin"
+          :many: "{0} Satharn ó shin"
+          :one: "{0} Satharn ó shin"
+          :other: "{0} Satharn ó shin"
+          :two: "{0} Shatharn ó shin"
+    :sat-short: 
+      :relative: 
+        -1: "an Sath. seo caite"
+        0: "an Sath. seo"
+        1: "an Sath. seo chugainn"
+    :second: 
+      :display_name: soicind
+      :relative: 
+        0: anois
+      :relative_time: 
+        :future: 
+          :few: "i gceann {0} shoicind"
+          :many: "i gceann {0} soicind"
+          :one: "i gceann {0} soicind"
+          :other: "i gceann {0} soicind"
+          :two: "i gceann {0} shoicind"
+        :past: 
+          :few: "{0} shoicind ó shin"
+          :many: "{0} soicind ó shin"
+          :one: "{0} soicind ó shin"
+          :other: "{0} soicind ó shin"
+          :two: "{0} shoicind ó shin"
+    :second-narrow: 
+      :display_name: s
+      :relative_time: 
+        :future: 
+          :few: "+{0} s"
+          :many: "+{0} s"
+          :one: "+{0} s"
+          :other: "+{0} s"
+          :two: "+{0} s"
+        :past: 
+          :few: "-{0} s"
+          :many: "-{0} s"
+          :one: "-{0} s"
+          :other: "-{0} s"
+          :two: "-{0} s"
+    :second-short: 
+      :display_name: soic.
+      :relative_time: 
+        :future: 
+          :few: "i gceann {0} shoic."
+          :many: "i gceann {0} soic."
+          :one: "i gceann {0} soic."
+          :other: "i gceann {0} soic."
+          :two: "i gceann {0} shoic."
+        :past: 
+          :few: "{0} shoic. ó shin"
+          :many: "{0} soic. ó shin"
+          :one: "{0} soic. ó shin"
+          :other: "{0} soic. ó shin"
+          :two: "{0} shoic. ó shin"
+    :sun: 
+      :relative: 
+        -1: "an Domhnach seo caite"
+        0: "an Domhnach seo"
+        1: "an Domhnach seo chugainn"
+      :relative_time: 
+        :future: 
+          :few: "{0} seachtaine ón Domhnach"
+          :many: "{0} seachtaine ón Domhnach"
+          :one: "{0} seachtain ón Domhnach"
+          :other: "{0} seachtain ón Domhnach"
+          :two: "{0} sheachtain ón Domhnach"
+        :past: 
+          :few: "Dé Domhnaigh {0} seachtaine ó shin"
+          :many: "Dé Domhnaigh {0} seachtaine ó shin"
+          :one: "Dé Domhnaigh {0} seachtain ó shin"
+          :other: "Dé Domhnaigh {0} seachtain ó shin"
+          :two: "Dé Domhnaigh {0} sheachtain ó shin"
+    :sun-narrow: 
+      :relative: 
+        -1: "an Domh seo caite"
+        0: "an Domh seo"
+        1: "an Domh seo chug."
+      :relative_time: 
+        :future: 
+          :few: "+{0} Dhomh."
+          :many: "+{0} nDomh."
+          :one: "+{0} Domh."
+          :other: "+{0} Domh."
+          :two: "+{0} Dhomh."
+        :past: 
+          :few: "{0} Dhomh. ó shin"
+          :many: "{0} nDomh. ó shin"
+          :one: "{0} Domh. ó shin"
+          :other: "{0} Domh. ó shin"
+          :two: "{0} Dhomh. ó shin"
+    :sun-short: 
+      :relative: 
+        -1: "an Domh. seo caite"
+        0: "an Domh. seo"
+        1: "an Domh. seo chugainn"
+      :relative_time: 
+        :future: 
+          :few: "{0} seachtaine ón Domh."
+          :many: "{0} seachtaine ón Domh."
+          :one: "{0} seachtain ón Domh."
+          :other: "{0} seachtain ón Domh."
+          :two: "{0} sheachtain ón Domh."
+        :past: 
+          :few: "Dé Domh. {0} seachtaine ó shin"
+          :many: "Dé Domh. {0} seachtaine ó shin"
+          :one: "Dé Domh. {0} seachtain ó shin"
+          :other: "Dé Domh. {0} seachtain ó shin"
+          :two: "Dé Domh. {0} sheachtain ó shin"
+    :thu: 
+      :relative: 
+        -1: "an Déardaoin seo caite"
+        0: "an Déardaoin seo"
+        1: "an Déardaoin seo chugainn"
+      :relative_time: 
+        :future: 
+          :few: "{0} seachtaine ón Déardaoin"
+          :many: "{0} seachtaine ón Déardaoin"
+          :one: "{0} seachtain ón Déardaoin"
+          :other: "{0} seachtain ón Déardaoin"
+          :two: "{0} sheachtain ón Déardaoin"
+        :past: 
+          :few: "Déardaoin {0} seachtaine ó shin"
+          :many: "Déardaoin {0} seachtaine ó shin"
+          :one: "Déardaoin {0} seachtain ó shin"
+          :other: "Déardaoin {0} seachtain ó shin"
+          :two: "Déardaoin {0} sheachtain ó shin"
+    :thu-narrow: 
+      :relative: 
+        -1: "an Déar. seo caite"
+        0: "an Déar. seo"
+        1: "an Déar. seo chug."
+      :relative_time: 
+        :future: 
+          :few: "+{0} Dhéardaoin"
+          :many: "+{0} nDéardaoin"
+          :one: "+{0} Déardaoin"
+          :other: "+{0} Déardaoin"
+          :two: "+{0} Dhéardaoin"
+        :past: 
+          :few: "{0} Dhéardaoin ó shin"
+          :many: "{0} nDéardaoin ó shin"
+          :one: "{0} Déardaoin ó shin"
+          :other: "{0} Déardaoin ó shin"
+          :two: "{0} Dhéardaoin ó shin"
+    :thu-short: 
+      :relative: 
+        -1: "an Déar. seo caite"
+        0: "an Déar. seo"
+        1: "an Déar. seo chugainn"
+    :tue: 
+      :relative: 
+        -1: "an Mháirt seo caite"
+        0: "an Mháirt seo"
+        1: "an Mháirt seo chugainn"
+      :relative_time: 
+        :future: 
+          :few: "{0} seachtaine ón Máirt"
+          :many: "{0} seachtaine ón Máirt"
+          :one: "{0} seachtain ón Máirt"
+          :other: "{0} seachtain ón Máirt"
+          :two: "{0} sheachtain ón Máirt"
+        :past: 
+          :few: "Dé Máirt {0} seachtaine ó shin"
+          :many: "Dé Máirt {0} seachtaine ó shin"
+          :one: "Dé Máirt {0} seachtain ó shin"
+          :other: "Dé Máirt {0} seachtain ó shin"
+          :two: "Dé Máirt {0} sheachtain ó shin"
+    :tue-narrow: 
+      :relative: 
+        -1: "an Mháirt seo caite"
+        0: "an Mháirt seo"
+        1: "an Mháirt seo chug."
+      :relative_time: 
+        :future: 
+          :few: "+{0} Mháirt"
+          :many: "+{0} Máirt"
+          :one: "+{0} Mháirt"
+          :other: "+{0} Máirt"
+          :two: "+{0} Mháirt"
+        :past: 
+          :few: "{0} Mháirt ó shin"
+          :many: "{0} Máirt ó shin"
+          :one: "{0} Mháirt ó shin"
+          :other: "{0} Máirt ó shin"
+          :two: "{0} Mháirt ó shin"
+    :wed: 
+      :relative: 
+        -1: "an Chéadaoin seo caite"
+        0: "an Chéadaoin seo"
+        1: "an Chéadaoin seo chugainn"
+      :relative_time: 
+        :future: 
+          :few: "{0} seachtaine ón gCéadaoin"
+          :many: "{0} seachtaine ón gCéadaoin"
+          :one: "{0} seachtain ón gCéadaoin"
+          :other: "{0} seachtain ón gCéadaoin"
+          :two: "{0} sheachtain ón gCéadaoin"
+        :past: 
+          :few: "Dé Céadaoin {0} seachtaine ó shin"
+          :many: "Dé Céadaoin {0} seachtaine ó shin"
+          :one: "Dé Céadaoin {0} seachtain ó shin"
+          :other: "Dé Céadaoin {0} seachtain ó shin"
+          :two: "Dé Céadaoin {0} sheachtain ó shin"
+    :wed-narrow: 
+      :relative: 
+        -1: "an Chéad. seo caite"
+        0: "an Chéad. seo"
+        1: "an Chéad seo chug."
+      :relative_time: 
+        :future: 
+          :few: "+{0} Chéadaoin"
+          :many: "+{0} gCéadaoin"
+          :one: "+{0} Chéadaoin"
+          :other: "+{0} Céadaoin"
+          :two: "+{0} Chéadaoin"
+        :past: 
+          :few: "{0} Chéadaoin ó shin"
+          :many: "{0} gCéadaoin ó shin"
+          :one: "{0} Chéadaoin ó shin"
+          :other: "{0} Céadaoin ó shin"
+          :two: "{0} Chéadaoin ó shin"
+    :wed-short: 
+      :relative: 
+        -1: "an Chéad. seo caite"
+        0: "an Chéad. seo"
+        1: "an Chéad. seo chugainn"
+    :week: 
+      :display_name: seachtain
+      :relative: 
+        -1: "an tseachtain seo caite"
+        0: "an tseachtain seo"
+        1: "an tseachtain seo chugainn"
+      :relative_time: 
+        :future: 
+          :few: "i gceann {0} seachtaine"
+          :many: "i gceann {0} seachtaine"
+          :one: "i gceann {0} seachtaine"
+          :other: "i gceann {0} seachtain"
+          :two: "i gceann {0} sheachtain"
+        :past: 
+          :few: "{0} seachtaine ó shin"
+          :many: "{0} seachtaine ó shin"
+          :one: "{0} seachtain ó shin"
+          :other: "{0} seachtain ó shin"
+          :two: "{0} sheachtain ó shin"
+    :week-narrow: 
+      :relative_time: 
+        :future: 
+          :few: "i gceann {0} shcht."
+          :many: "+{0} scht."
+          :one: "+{0} scht."
+          :other: "+{0} scht."
+          :two: "i gceann {0} shcht."
+        :past: 
+          :few: "{0} shcht. ó shin"
+          :many: "-{0} scht."
+          :one: "-{0} scht."
+          :other: "-{0} scht."
+          :two: "{0} shcht. ó shin"
+    :week-short: 
+      :display_name: scht.
+      :relative: 
+        -1: "an tscht. seo caite"
+        0: "an tscht. seo"
+        1: "an tscht. seo chugainn"
+      :relative_time: 
+        :future: 
+          :few: "i gceann {0} shcht."
+          :many: "i gceann {0} scht."
+          :one: "i gceann {0} scht."
+          :other: "i gceann {0} scht."
+          :two: "i gceann {0} shcht."
+        :past: 
+          :few: "{0} shcht. ó shin"
+          :many: "{0} scht. ó shin"
+          :one: "{0} scht. ó shin"
+          :other: "{0} scht. ó shin"
+          :two: "{0} shcht. ó shin"
+    :weekOfMonth: 
+      :display_name: "seachtain den mhí"
+    :weekOfMonth-short: 
+      :display_name: "scht. den mhí"
+    :weekday: 
+      :display_name: "lá den tseachtain"
+    :weekday-short: 
+      :display_name: "lá den tscht."
+    :weekdayOfMonth: 
+      :display_name: "lá den tseachtain sa mhí"
+    :weekdayOfMonth-short: 
+      :display_name: "lá oib. den mhí"
+    :year: 
+      :display_name: bliain
+      :relative: 
+        -1: anuraidh
+        0: "i mbliana"
+        1: "an bhliain seo chugainn"
+      :relative_time: 
+        :future: 
+          :few: "i gceann {0} bliana"
+          :many: "i gceann {0} mbliana"
+          :one: "i gceann {0} bliana"
+          :other: "i gceann {0} bliain"
+          :two: "i gceann {0} bhliain"
+        :past: 
+          :few: "{0} bliana ó shin"
+          :many: "{0} mbliana ó shin"
+          :one: "{0} bhliain ó shin"
+          :other: "{0} bliain ó shin"
+          :two: "{0} bhliain ó shin"
+    :year-narrow: 
+      :relative_time: 
+        :future: 
+          :few: "+{0} bl."
+          :many: "+{0} mbl."
+          :one: "+{0} bhl."
+          :other: "+{0} bl."
+          :two: "+{0} bhl."
+        :past: 
+          :few: "-{0} bl."
+          :many: "-{0} mbl."
+          :one: "-{0} bhl."
+          :other: "-{0} bl."
+          :two: "-{0} bhl."
+    :year-short: 
+      :display_name: bl.
+      :relative: 
+        -1: anuraidh
+        0: "i mbl."
+        1: "an bhl. seo chugainn"
+      :relative_time: 
+        :future: 
+          :few: "i gceann {0} bl."
+          :many: "i gceann {0} mbl."
+          :one: "i gceann {0} bl."
+          :other: "i gceann {0} bl."
+          :two: "i gceann {0} bhl."
+        :past: 
+          :few: "{0} bl. ó shin"
+          :many: "{0} mbl. ó shin"
+          :one: "{0} bhl. ó shin"
+          :other: "{0} bl. ó shin"
+          :two: "{0} bhl. ó shin"
+    :zone: 
+      :display_name: "crios ama"
+    :zone-short: 
+      :display_name: crios

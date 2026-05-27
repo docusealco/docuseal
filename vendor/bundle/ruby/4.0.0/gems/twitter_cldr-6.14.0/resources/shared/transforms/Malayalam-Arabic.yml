@@ -1,0 +1,16 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - Malayalam-Arabic
+      - und-Arab-t-und-mlym
+    :direction: forward
+    :rules: 
+      - "::[ം-ഃഅ-ഌഎ-ഐഒ-നപ-ഹാ-ൃെ-ൈൊ-്ൗൠ-ൡ൦-൯] ;"
+      - "::NFD ;"
+      - "::Malayalam-InterIndic ;"
+      - "::InterIndic-Arabic ;"
+      - "::NFC ;"
+    :source: Mlym
+    :target: Arab
+    :variant: ~

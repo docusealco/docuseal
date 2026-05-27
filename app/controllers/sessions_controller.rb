@@ -8,7 +8,7 @@ class SessionsController < Devise::SessionsController
   def create
     email = sign_in_params[:email].to_s.downcase
 
-    if Docuseal.multitenant? && !User.exists?(email:)
+    if Wabosign.multitenant? && !User.exists?(email:)
       Rollbar.warning('Sign in new user') if defined?(Rollbar)
 
       return redirect_to new_registration_path(sign_up: true, user: sign_in_params.slice(:email)),
@@ -26,7 +26,7 @@ class SessionsController < Devise::SessionsController
 
   def after_sign_in_path_for(...)
     if params[:redir].present?
-      return console_redirect_index_path(redir: params[:redir]) if params[:redir].starts_with?(Docuseal::CONSOLE_URL)
+      return console_redirect_index_path(redir: params[:redir]) if params[:redir].starts_with?(Wabosign::CONSOLE_URL)
 
       return params[:redir]
     end

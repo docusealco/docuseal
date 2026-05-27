@@ -1,0 +1,47 @@
+name: Ruby
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        ruby: [2.5, 2.6, 2.7, '3.0', 3.1, 3.2, head, debug, truffleruby, truffleruby-head, jruby, jruby-head]
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.ruby }}
+        bundler-cache: true
+    - name: Set JRUBY_OPTS environment variable
+      run: echo "JRUBY_OPTS=--debug" >> "$GITHUB_ENV"
+      if: ${{ startsWith(matrix.ruby, 'jruby') }}
+    - name: Run tests
+      run: bundle exec rake
+    - uses: actions/upload-artifact@v3
+      if: ${{ matrix.os == 'ubuntu-latest' && matrix.ruby == '3.0' }}
+      with:
+        name: coverage
+        path: coverage/
+        retention-days: 1
+
+  coveralls:
+    needs: test
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+    - uses: actions/download-artifact@v3
+      with:
+        name: coverage
+        path: coverage/
+    - name: Coveralls GitHub Action
+      uses: coverallsapp/github-action@v2

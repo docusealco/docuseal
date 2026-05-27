@@ -1,0 +1,4097 @@
+---
+7680:
+- 7680
+- LATIN CAPITAL LETTER A WITH RING BELOW
+- Lu
+- '0'
+- L
+- 0041 0325
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E01
+- ''
+7681:
+- 7681
+- LATIN SMALL LETTER A WITH RING BELOW
+- Ll
+- '0'
+- L
+- 0061 0325
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E00
+- ''
+- 1E00
+7682:
+- 7682
+- LATIN CAPITAL LETTER B WITH DOT ABOVE
+- Lu
+- '0'
+- L
+- 0042 0307
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E03
+- ''
+7683:
+- 7683
+- LATIN SMALL LETTER B WITH DOT ABOVE
+- Ll
+- '0'
+- L
+- 0062 0307
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E02
+- ''
+- 1E02
+7684:
+- 7684
+- LATIN CAPITAL LETTER B WITH DOT BELOW
+- Lu
+- '0'
+- L
+- 0042 0323
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E05
+- ''
+7685:
+- 7685
+- LATIN SMALL LETTER B WITH DOT BELOW
+- Ll
+- '0'
+- L
+- 0062 0323
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E04
+- ''
+- 1E04
+7686:
+- 7686
+- LATIN CAPITAL LETTER B WITH LINE BELOW
+- Lu
+- '0'
+- L
+- 0042 0331
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E07
+- ''
+7687:
+- 7687
+- LATIN SMALL LETTER B WITH LINE BELOW
+- Ll
+- '0'
+- L
+- 0062 0331
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E06
+- ''
+- 1E06
+7688:
+- 7688
+- LATIN CAPITAL LETTER C WITH CEDILLA AND ACUTE
+- Lu
+- '0'
+- L
+- 00C7 0301
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E09
+- ''
+7689:
+- 7689
+- LATIN SMALL LETTER C WITH CEDILLA AND ACUTE
+- Ll
+- '0'
+- L
+- 00E7 0301
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E08
+- ''
+- 1E08
+7690:
+- 7690
+- LATIN CAPITAL LETTER D WITH DOT ABOVE
+- Lu
+- '0'
+- L
+- 0044 0307
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E0B
+- ''
+7691:
+- 7691
+- LATIN SMALL LETTER D WITH DOT ABOVE
+- Ll
+- '0'
+- L
+- 0064 0307
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E0A
+- ''
+- 1E0A
+7692:
+- 7692
+- LATIN CAPITAL LETTER D WITH DOT BELOW
+- Lu
+- '0'
+- L
+- 0044 0323
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E0D
+- ''
+7693:
+- 7693
+- LATIN SMALL LETTER D WITH DOT BELOW
+- Ll
+- '0'
+- L
+- 0064 0323
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E0C
+- ''
+- 1E0C
+7694:
+- 7694
+- LATIN CAPITAL LETTER D WITH LINE BELOW
+- Lu
+- '0'
+- L
+- 0044 0331
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E0F
+- ''
+7695:
+- 7695
+- LATIN SMALL LETTER D WITH LINE BELOW
+- Ll
+- '0'
+- L
+- 0064 0331
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E0E
+- ''
+- 1E0E
+7696:
+- 7696
+- LATIN CAPITAL LETTER D WITH CEDILLA
+- Lu
+- '0'
+- L
+- 0044 0327
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E11
+- ''
+7697:
+- 7697
+- LATIN SMALL LETTER D WITH CEDILLA
+- Ll
+- '0'
+- L
+- 0064 0327
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E10
+- ''
+- 1E10
+7698:
+- 7698
+- LATIN CAPITAL LETTER D WITH CIRCUMFLEX BELOW
+- Lu
+- '0'
+- L
+- 0044 032D
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E13
+- ''
+7699:
+- 7699
+- LATIN SMALL LETTER D WITH CIRCUMFLEX BELOW
+- Ll
+- '0'
+- L
+- 0064 032D
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E12
+- ''
+- 1E12
+7700:
+- 7700
+- LATIN CAPITAL LETTER E WITH MACRON AND GRAVE
+- Lu
+- '0'
+- L
+- 0112 0300
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E15
+- ''
+7701:
+- 7701
+- LATIN SMALL LETTER E WITH MACRON AND GRAVE
+- Ll
+- '0'
+- L
+- 0113 0300
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E14
+- ''
+- 1E14
+7702:
+- 7702
+- LATIN CAPITAL LETTER E WITH MACRON AND ACUTE
+- Lu
+- '0'
+- L
+- 0112 0301
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E17
+- ''
+7703:
+- 7703
+- LATIN SMALL LETTER E WITH MACRON AND ACUTE
+- Ll
+- '0'
+- L
+- 0113 0301
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E16
+- ''
+- 1E16
+7704:
+- 7704
+- LATIN CAPITAL LETTER E WITH CIRCUMFLEX BELOW
+- Lu
+- '0'
+- L
+- 0045 032D
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E19
+- ''
+7705:
+- 7705
+- LATIN SMALL LETTER E WITH CIRCUMFLEX BELOW
+- Ll
+- '0'
+- L
+- 0065 032D
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E18
+- ''
+- 1E18
+7706:
+- 7706
+- LATIN CAPITAL LETTER E WITH TILDE BELOW
+- Lu
+- '0'
+- L
+- 0045 0330
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E1B
+- ''
+7707:
+- 7707
+- LATIN SMALL LETTER E WITH TILDE BELOW
+- Ll
+- '0'
+- L
+- 0065 0330
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E1A
+- ''
+- 1E1A
+7708:
+- 7708
+- LATIN CAPITAL LETTER E WITH CEDILLA AND BREVE
+- Lu
+- '0'
+- L
+- '0228 0306'
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E1D
+- ''
+7709:
+- 7709
+- LATIN SMALL LETTER E WITH CEDILLA AND BREVE
+- Ll
+- '0'
+- L
+- '0229 0306'
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E1C
+- ''
+- 1E1C
+7710:
+- 7710
+- LATIN CAPITAL LETTER F WITH DOT ABOVE
+- Lu
+- '0'
+- L
+- 0046 0307
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E1F
+- ''
+7711:
+- 7711
+- LATIN SMALL LETTER F WITH DOT ABOVE
+- Ll
+- '0'
+- L
+- 0066 0307
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E1E
+- ''
+- 1E1E
+7712:
+- 7712
+- LATIN CAPITAL LETTER G WITH MACRON
+- Lu
+- '0'
+- L
+- 0047 0304
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E21
+- ''
+7713:
+- 7713
+- LATIN SMALL LETTER G WITH MACRON
+- Ll
+- '0'
+- L
+- 0067 0304
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E20
+- ''
+- 1E20
+7714:
+- 7714
+- LATIN CAPITAL LETTER H WITH DOT ABOVE
+- Lu
+- '0'
+- L
+- '0048 0307'
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E23
+- ''
+7715:
+- 7715
+- LATIN SMALL LETTER H WITH DOT ABOVE
+- Ll
+- '0'
+- L
+- '0068 0307'
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E22
+- ''
+- 1E22
+7716:
+- 7716
+- LATIN CAPITAL LETTER H WITH DOT BELOW
+- Lu
+- '0'
+- L
+- '0048 0323'
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E25
+- ''
+7717:
+- 7717
+- LATIN SMALL LETTER H WITH DOT BELOW
+- Ll
+- '0'
+- L
+- '0068 0323'
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E24
+- ''
+- 1E24
+7718:
+- 7718
+- LATIN CAPITAL LETTER H WITH DIAERESIS
+- Lu
+- '0'
+- L
+- '0048 0308'
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E27
+- ''
+7719:
+- 7719
+- LATIN SMALL LETTER H WITH DIAERESIS
+- Ll
+- '0'
+- L
+- '0068 0308'
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E26
+- ''
+- 1E26
+7720:
+- 7720
+- LATIN CAPITAL LETTER H WITH CEDILLA
+- Lu
+- '0'
+- L
+- '0048 0327'
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E29
+- ''
+7721:
+- 7721
+- LATIN SMALL LETTER H WITH CEDILLA
+- Ll
+- '0'
+- L
+- '0068 0327'
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E28
+- ''
+- 1E28
+7722:
+- 7722
+- LATIN CAPITAL LETTER H WITH BREVE BELOW
+- Lu
+- '0'
+- L
+- '0048 032E'
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E2B
+- ''
+7723:
+- 7723
+- LATIN SMALL LETTER H WITH BREVE BELOW
+- Ll
+- '0'
+- L
+- '0068 032E'
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E2A
+- ''
+- 1E2A
+7724:
+- 7724
+- LATIN CAPITAL LETTER I WITH TILDE BELOW
+- Lu
+- '0'
+- L
+- '0049 0330'
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E2D
+- ''
+7725:
+- 7725
+- LATIN SMALL LETTER I WITH TILDE BELOW
+- Ll
+- '0'
+- L
+- '0069 0330'
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E2C
+- ''
+- 1E2C
+7726:
+- 7726
+- LATIN CAPITAL LETTER I WITH DIAERESIS AND ACUTE
+- Lu
+- '0'
+- L
+- 00CF 0301
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E2F
+- ''
+7727:
+- 7727
+- LATIN SMALL LETTER I WITH DIAERESIS AND ACUTE
+- Ll
+- '0'
+- L
+- 00EF 0301
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E2E
+- ''
+- 1E2E
+7728:
+- 7728
+- LATIN CAPITAL LETTER K WITH ACUTE
+- Lu
+- '0'
+- L
+- 004B 0301
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E31
+- ''
+7729:
+- 7729
+- LATIN SMALL LETTER K WITH ACUTE
+- Ll
+- '0'
+- L
+- 006B 0301
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E30
+- ''
+- 1E30
+7730:
+- 7730
+- LATIN CAPITAL LETTER K WITH DOT BELOW
+- Lu
+- '0'
+- L
+- 004B 0323
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E33
+- ''
+7731:
+- 7731
+- LATIN SMALL LETTER K WITH DOT BELOW
+- Ll
+- '0'
+- L
+- 006B 0323
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E32
+- ''
+- 1E32
+7732:
+- 7732
+- LATIN CAPITAL LETTER K WITH LINE BELOW
+- Lu
+- '0'
+- L
+- 004B 0331
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E35
+- ''
+7733:
+- 7733
+- LATIN SMALL LETTER K WITH LINE BELOW
+- Ll
+- '0'
+- L
+- 006B 0331
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E34
+- ''
+- 1E34
+7734:
+- 7734
+- LATIN CAPITAL LETTER L WITH DOT BELOW
+- Lu
+- '0'
+- L
+- 004C 0323
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E37
+- ''
+7735:
+- 7735
+- LATIN SMALL LETTER L WITH DOT BELOW
+- Ll
+- '0'
+- L
+- 006C 0323
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E36
+- ''
+- 1E36
+7736:
+- 7736
+- LATIN CAPITAL LETTER L WITH DOT BELOW AND MACRON
+- Lu
+- '0'
+- L
+- 1E36 0304
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E39
+- ''
+7737:
+- 7737
+- LATIN SMALL LETTER L WITH DOT BELOW AND MACRON
+- Ll
+- '0'
+- L
+- 1E37 0304
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E38
+- ''
+- 1E38
+7738:
+- 7738
+- LATIN CAPITAL LETTER L WITH LINE BELOW
+- Lu
+- '0'
+- L
+- 004C 0331
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E3B
+- ''
+7739:
+- 7739
+- LATIN SMALL LETTER L WITH LINE BELOW
+- Ll
+- '0'
+- L
+- 006C 0331
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E3A
+- ''
+- 1E3A
+7740:
+- 7740
+- LATIN CAPITAL LETTER L WITH CIRCUMFLEX BELOW
+- Lu
+- '0'
+- L
+- 004C 032D
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E3D
+- ''
+7741:
+- 7741
+- LATIN SMALL LETTER L WITH CIRCUMFLEX BELOW
+- Ll
+- '0'
+- L
+- 006C 032D
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E3C
+- ''
+- 1E3C
+7742:
+- 7742
+- LATIN CAPITAL LETTER M WITH ACUTE
+- Lu
+- '0'
+- L
+- 004D 0301
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E3F
+- ''
+7743:
+- 7743
+- LATIN SMALL LETTER M WITH ACUTE
+- Ll
+- '0'
+- L
+- 006D 0301
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E3E
+- ''
+- 1E3E
+7744:
+- 7744
+- LATIN CAPITAL LETTER M WITH DOT ABOVE
+- Lu
+- '0'
+- L
+- 004D 0307
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E41
+- ''
+7745:
+- 7745
+- LATIN SMALL LETTER M WITH DOT ABOVE
+- Ll
+- '0'
+- L
+- 006D 0307
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E40
+- ''
+- 1E40
+7746:
+- 7746
+- LATIN CAPITAL LETTER M WITH DOT BELOW
+- Lu
+- '0'
+- L
+- 004D 0323
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E43
+- ''
+7747:
+- 7747
+- LATIN SMALL LETTER M WITH DOT BELOW
+- Ll
+- '0'
+- L
+- 006D 0323
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E42
+- ''
+- 1E42
+7748:
+- 7748
+- LATIN CAPITAL LETTER N WITH DOT ABOVE
+- Lu
+- '0'
+- L
+- 004E 0307
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E45
+- ''
+7749:
+- 7749
+- LATIN SMALL LETTER N WITH DOT ABOVE
+- Ll
+- '0'
+- L
+- 006E 0307
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E44
+- ''
+- 1E44
+7750:
+- 7750
+- LATIN CAPITAL LETTER N WITH DOT BELOW
+- Lu
+- '0'
+- L
+- 004E 0323
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E47
+- ''
+7751:
+- 7751
+- LATIN SMALL LETTER N WITH DOT BELOW
+- Ll
+- '0'
+- L
+- 006E 0323
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E46
+- ''
+- 1E46
+7752:
+- 7752
+- LATIN CAPITAL LETTER N WITH LINE BELOW
+- Lu
+- '0'
+- L
+- 004E 0331
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E49
+- ''
+7753:
+- 7753
+- LATIN SMALL LETTER N WITH LINE BELOW
+- Ll
+- '0'
+- L
+- 006E 0331
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E48
+- ''
+- 1E48
+7754:
+- 7754
+- LATIN CAPITAL LETTER N WITH CIRCUMFLEX BELOW
+- Lu
+- '0'
+- L
+- 004E 032D
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E4B
+- ''
+7755:
+- 7755
+- LATIN SMALL LETTER N WITH CIRCUMFLEX BELOW
+- Ll
+- '0'
+- L
+- 006E 032D
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E4A
+- ''
+- 1E4A
+7756:
+- 7756
+- LATIN CAPITAL LETTER O WITH TILDE AND ACUTE
+- Lu
+- '0'
+- L
+- 00D5 0301
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E4D
+- ''
+7757:
+- 7757
+- LATIN SMALL LETTER O WITH TILDE AND ACUTE
+- Ll
+- '0'
+- L
+- 00F5 0301
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E4C
+- ''
+- 1E4C
+7758:
+- 7758
+- LATIN CAPITAL LETTER O WITH TILDE AND DIAERESIS
+- Lu
+- '0'
+- L
+- 00D5 0308
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E4F
+- ''
+7759:
+- 7759
+- LATIN SMALL LETTER O WITH TILDE AND DIAERESIS
+- Ll
+- '0'
+- L
+- 00F5 0308
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E4E
+- ''
+- 1E4E
+7760:
+- 7760
+- LATIN CAPITAL LETTER O WITH MACRON AND GRAVE
+- Lu
+- '0'
+- L
+- 014C 0300
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E51
+- ''
+7761:
+- 7761
+- LATIN SMALL LETTER O WITH MACRON AND GRAVE
+- Ll
+- '0'
+- L
+- 014D 0300
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E50
+- ''
+- 1E50
+7762:
+- 7762
+- LATIN CAPITAL LETTER O WITH MACRON AND ACUTE
+- Lu
+- '0'
+- L
+- 014C 0301
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E53
+- ''
+7763:
+- 7763
+- LATIN SMALL LETTER O WITH MACRON AND ACUTE
+- Ll
+- '0'
+- L
+- 014D 0301
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E52
+- ''
+- 1E52
+7764:
+- 7764
+- LATIN CAPITAL LETTER P WITH ACUTE
+- Lu
+- '0'
+- L
+- 0050 0301
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E55
+- ''
+7765:
+- 7765
+- LATIN SMALL LETTER P WITH ACUTE
+- Ll
+- '0'
+- L
+- 0070 0301
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E54
+- ''
+- 1E54
+7766:
+- 7766
+- LATIN CAPITAL LETTER P WITH DOT ABOVE
+- Lu
+- '0'
+- L
+- 0050 0307
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E57
+- ''
+7767:
+- 7767
+- LATIN SMALL LETTER P WITH DOT ABOVE
+- Ll
+- '0'
+- L
+- 0070 0307
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E56
+- ''
+- 1E56
+7768:
+- 7768
+- LATIN CAPITAL LETTER R WITH DOT ABOVE
+- Lu
+- '0'
+- L
+- 0052 0307
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E59
+- ''
+7769:
+- 7769
+- LATIN SMALL LETTER R WITH DOT ABOVE
+- Ll
+- '0'
+- L
+- 0072 0307
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E58
+- ''
+- 1E58
+7770:
+- 7770
+- LATIN CAPITAL LETTER R WITH DOT BELOW
+- Lu
+- '0'
+- L
+- 0052 0323
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E5B
+- ''
+7771:
+- 7771
+- LATIN SMALL LETTER R WITH DOT BELOW
+- Ll
+- '0'
+- L
+- 0072 0323
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E5A
+- ''
+- 1E5A
+7772:
+- 7772
+- LATIN CAPITAL LETTER R WITH DOT BELOW AND MACRON
+- Lu
+- '0'
+- L
+- 1E5A 0304
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E5D
+- ''
+7773:
+- 7773
+- LATIN SMALL LETTER R WITH DOT BELOW AND MACRON
+- Ll
+- '0'
+- L
+- 1E5B 0304
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E5C
+- ''
+- 1E5C
+7774:
+- 7774
+- LATIN CAPITAL LETTER R WITH LINE BELOW
+- Lu
+- '0'
+- L
+- 0052 0331
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E5F
+- ''
+7775:
+- 7775
+- LATIN SMALL LETTER R WITH LINE BELOW
+- Ll
+- '0'
+- L
+- 0072 0331
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E5E
+- ''
+- 1E5E
+7776:
+- 7776
+- LATIN CAPITAL LETTER S WITH DOT ABOVE
+- Lu
+- '0'
+- L
+- 0053 0307
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E61
+- ''
+7777:
+- 7777
+- LATIN SMALL LETTER S WITH DOT ABOVE
+- Ll
+- '0'
+- L
+- 0073 0307
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E60
+- ''
+- 1E60
+7778:
+- 7778
+- LATIN CAPITAL LETTER S WITH DOT BELOW
+- Lu
+- '0'
+- L
+- 0053 0323
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E63
+- ''
+7779:
+- 7779
+- LATIN SMALL LETTER S WITH DOT BELOW
+- Ll
+- '0'
+- L
+- 0073 0323
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E62
+- ''
+- 1E62
+7780:
+- 7780
+- LATIN CAPITAL LETTER S WITH ACUTE AND DOT ABOVE
+- Lu
+- '0'
+- L
+- 015A 0307
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E65
+- ''
+7781:
+- 7781
+- LATIN SMALL LETTER S WITH ACUTE AND DOT ABOVE
+- Ll
+- '0'
+- L
+- 015B 0307
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E64
+- ''
+- 1E64
+7782:
+- 7782
+- LATIN CAPITAL LETTER S WITH CARON AND DOT ABOVE
+- Lu
+- '0'
+- L
+- 0160 0307
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E67
+- ''
+7783:
+- 7783
+- LATIN SMALL LETTER S WITH CARON AND DOT ABOVE
+- Ll
+- '0'
+- L
+- 0161 0307
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E66
+- ''
+- 1E66
+7784:
+- 7784
+- LATIN CAPITAL LETTER S WITH DOT BELOW AND DOT ABOVE
+- Lu
+- '0'
+- L
+- 1E62 0307
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E69
+- ''
+7785:
+- 7785
+- LATIN SMALL LETTER S WITH DOT BELOW AND DOT ABOVE
+- Ll
+- '0'
+- L
+- 1E63 0307
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E68
+- ''
+- 1E68
+7786:
+- 7786
+- LATIN CAPITAL LETTER T WITH DOT ABOVE
+- Lu
+- '0'
+- L
+- 0054 0307
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E6B
+- ''
+7787:
+- 7787
+- LATIN SMALL LETTER T WITH DOT ABOVE
+- Ll
+- '0'
+- L
+- 0074 0307
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E6A
+- ''
+- 1E6A
+7788:
+- 7788
+- LATIN CAPITAL LETTER T WITH DOT BELOW
+- Lu
+- '0'
+- L
+- 0054 0323
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E6D
+- ''
+7789:
+- 7789
+- LATIN SMALL LETTER T WITH DOT BELOW
+- Ll
+- '0'
+- L
+- 0074 0323
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E6C
+- ''
+- 1E6C
+7790:
+- 7790
+- LATIN CAPITAL LETTER T WITH LINE BELOW
+- Lu
+- '0'
+- L
+- 0054 0331
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E6F
+- ''
+7791:
+- 7791
+- LATIN SMALL LETTER T WITH LINE BELOW
+- Ll
+- '0'
+- L
+- 0074 0331
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E6E
+- ''
+- 1E6E
+7792:
+- 7792
+- LATIN CAPITAL LETTER T WITH CIRCUMFLEX BELOW
+- Lu
+- '0'
+- L
+- 0054 032D
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E71
+- ''
+7793:
+- 7793
+- LATIN SMALL LETTER T WITH CIRCUMFLEX BELOW
+- Ll
+- '0'
+- L
+- 0074 032D
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E70
+- ''
+- 1E70
+7794:
+- 7794
+- LATIN CAPITAL LETTER U WITH DIAERESIS BELOW
+- Lu
+- '0'
+- L
+- 0055 0324
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E73
+- ''
+7795:
+- 7795
+- LATIN SMALL LETTER U WITH DIAERESIS BELOW
+- Ll
+- '0'
+- L
+- 0075 0324
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E72
+- ''
+- 1E72
+7796:
+- 7796
+- LATIN CAPITAL LETTER U WITH TILDE BELOW
+- Lu
+- '0'
+- L
+- 0055 0330
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E75
+- ''
+7797:
+- 7797
+- LATIN SMALL LETTER U WITH TILDE BELOW
+- Ll
+- '0'
+- L
+- 0075 0330
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E74
+- ''
+- 1E74
+7798:
+- 7798
+- LATIN CAPITAL LETTER U WITH CIRCUMFLEX BELOW
+- Lu
+- '0'
+- L
+- 0055 032D
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E77
+- ''
+7799:
+- 7799
+- LATIN SMALL LETTER U WITH CIRCUMFLEX BELOW
+- Ll
+- '0'
+- L
+- 0075 032D
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E76
+- ''
+- 1E76
+7800:
+- 7800
+- LATIN CAPITAL LETTER U WITH TILDE AND ACUTE
+- Lu
+- '0'
+- L
+- '0168 0301'
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E79
+- ''
+7801:
+- 7801
+- LATIN SMALL LETTER U WITH TILDE AND ACUTE
+- Ll
+- '0'
+- L
+- '0169 0301'
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E78
+- ''
+- 1E78
+7802:
+- 7802
+- LATIN CAPITAL LETTER U WITH MACRON AND DIAERESIS
+- Lu
+- '0'
+- L
+- 016A 0308
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E7B
+- ''
+7803:
+- 7803
+- LATIN SMALL LETTER U WITH MACRON AND DIAERESIS
+- Ll
+- '0'
+- L
+- 016B 0308
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E7A
+- ''
+- 1E7A
+7804:
+- 7804
+- LATIN CAPITAL LETTER V WITH TILDE
+- Lu
+- '0'
+- L
+- 0056 0303
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E7D
+- ''
+7805:
+- 7805
+- LATIN SMALL LETTER V WITH TILDE
+- Ll
+- '0'
+- L
+- 0076 0303
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E7C
+- ''
+- 1E7C
+7806:
+- 7806
+- LATIN CAPITAL LETTER V WITH DOT BELOW
+- Lu
+- '0'
+- L
+- 0056 0323
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E7F
+- ''
+7807:
+- 7807
+- LATIN SMALL LETTER V WITH DOT BELOW
+- Ll
+- '0'
+- L
+- 0076 0323
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E7E
+- ''
+- 1E7E
+7808:
+- 7808
+- LATIN CAPITAL LETTER W WITH GRAVE
+- Lu
+- '0'
+- L
+- 0057 0300
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E81
+- ''
+7809:
+- 7809
+- LATIN SMALL LETTER W WITH GRAVE
+- Ll
+- '0'
+- L
+- 0077 0300
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E80
+- ''
+- 1E80
+7810:
+- 7810
+- LATIN CAPITAL LETTER W WITH ACUTE
+- Lu
+- '0'
+- L
+- 0057 0301
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E83
+- ''
+7811:
+- 7811
+- LATIN SMALL LETTER W WITH ACUTE
+- Ll
+- '0'
+- L
+- 0077 0301
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E82
+- ''
+- 1E82
+7812:
+- 7812
+- LATIN CAPITAL LETTER W WITH DIAERESIS
+- Lu
+- '0'
+- L
+- 0057 0308
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E85
+- ''
+7813:
+- 7813
+- LATIN SMALL LETTER W WITH DIAERESIS
+- Ll
+- '0'
+- L
+- 0077 0308
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E84
+- ''
+- 1E84
+7814:
+- 7814
+- LATIN CAPITAL LETTER W WITH DOT ABOVE
+- Lu
+- '0'
+- L
+- 0057 0307
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E87
+- ''
+7815:
+- 7815
+- LATIN SMALL LETTER W WITH DOT ABOVE
+- Ll
+- '0'
+- L
+- 0077 0307
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E86
+- ''
+- 1E86
+7816:
+- 7816
+- LATIN CAPITAL LETTER W WITH DOT BELOW
+- Lu
+- '0'
+- L
+- 0057 0323
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E89
+- ''
+7817:
+- 7817
+- LATIN SMALL LETTER W WITH DOT BELOW
+- Ll
+- '0'
+- L
+- 0077 0323
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E88
+- ''
+- 1E88
+7818:
+- 7818
+- LATIN CAPITAL LETTER X WITH DOT ABOVE
+- Lu
+- '0'
+- L
+- '0058 0307'
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E8B
+- ''
+7819:
+- 7819
+- LATIN SMALL LETTER X WITH DOT ABOVE
+- Ll
+- '0'
+- L
+- '0078 0307'
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E8A
+- ''
+- 1E8A
+7820:
+- 7820
+- LATIN CAPITAL LETTER X WITH DIAERESIS
+- Lu
+- '0'
+- L
+- '0058 0308'
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E8D
+- ''
+7821:
+- 7821
+- LATIN SMALL LETTER X WITH DIAERESIS
+- Ll
+- '0'
+- L
+- '0078 0308'
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E8C
+- ''
+- 1E8C
+7822:
+- 7822
+- LATIN CAPITAL LETTER Y WITH DOT ABOVE
+- Lu
+- '0'
+- L
+- '0059 0307'
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E8F
+- ''
+7823:
+- 7823
+- LATIN SMALL LETTER Y WITH DOT ABOVE
+- Ll
+- '0'
+- L
+- '0079 0307'
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E8E
+- ''
+- 1E8E
+7824:
+- 7824
+- LATIN CAPITAL LETTER Z WITH CIRCUMFLEX
+- Lu
+- '0'
+- L
+- 005A 0302
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E91
+- ''
+7825:
+- 7825
+- LATIN SMALL LETTER Z WITH CIRCUMFLEX
+- Ll
+- '0'
+- L
+- 007A 0302
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E90
+- ''
+- 1E90
+7826:
+- 7826
+- LATIN CAPITAL LETTER Z WITH DOT BELOW
+- Lu
+- '0'
+- L
+- 005A 0323
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E93
+- ''
+7827:
+- 7827
+- LATIN SMALL LETTER Z WITH DOT BELOW
+- Ll
+- '0'
+- L
+- 007A 0323
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E92
+- ''
+- 1E92
+7828:
+- 7828
+- LATIN CAPITAL LETTER Z WITH LINE BELOW
+- Lu
+- '0'
+- L
+- 005A 0331
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1E95
+- ''
+7829:
+- 7829
+- LATIN SMALL LETTER Z WITH LINE BELOW
+- Ll
+- '0'
+- L
+- 007A 0331
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E94
+- ''
+- 1E94
+7830:
+- 7830
+- LATIN SMALL LETTER H WITH LINE BELOW
+- Ll
+- '0'
+- L
+- '0068 0331'
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+7831:
+- 7831
+- LATIN SMALL LETTER T WITH DIAERESIS
+- Ll
+- '0'
+- L
+- 0074 0308
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+7832:
+- 7832
+- LATIN SMALL LETTER W WITH RING ABOVE
+- Ll
+- '0'
+- L
+- 0077 030A
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+7833:
+- 7833
+- LATIN SMALL LETTER Y WITH RING ABOVE
+- Ll
+- '0'
+- L
+- '0079 030A'
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+7834:
+- 7834
+- LATIN SMALL LETTER A WITH RIGHT HALF RING
+- Ll
+- '0'
+- L
+- "<compat> 0061 02BE"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+7835:
+- 7835
+- LATIN SMALL LETTER LONG S WITH DOT ABOVE
+- Ll
+- '0'
+- L
+- 017F 0307
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1E60
+- ''
+- 1E60
+7836:
+- 7836
+- LATIN SMALL LETTER LONG S WITH DIAGONAL STROKE
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+7837:
+- 7837
+- LATIN SMALL LETTER LONG S WITH HIGH STROKE
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+7838:
+- 7838
+- LATIN CAPITAL LETTER SHARP S
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 00DF
+- ''
+7839:
+- 7839
+- LATIN SMALL LETTER DELTA
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+7840:
+- 7840
+- LATIN CAPITAL LETTER A WITH DOT BELOW
+- Lu
+- '0'
+- L
+- 0041 0323
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1EA1
+- ''
+7841:
+- 7841
+- LATIN SMALL LETTER A WITH DOT BELOW
+- Ll
+- '0'
+- L
+- 0061 0323
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1EA0
+- ''
+- 1EA0
+7842:
+- 7842
+- LATIN CAPITAL LETTER A WITH HOOK ABOVE
+- Lu
+- '0'
+- L
+- 0041 0309
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1EA3
+- ''
+7843:
+- 7843
+- LATIN SMALL LETTER A WITH HOOK ABOVE
+- Ll
+- '0'
+- L
+- 0061 0309
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1EA2
+- ''
+- 1EA2
+7844:
+- 7844
+- LATIN CAPITAL LETTER A WITH CIRCUMFLEX AND ACUTE
+- Lu
+- '0'
+- L
+- 00C2 0301
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1EA5
+- ''
+7845:
+- 7845
+- LATIN SMALL LETTER A WITH CIRCUMFLEX AND ACUTE
+- Ll
+- '0'
+- L
+- 00E2 0301
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1EA4
+- ''
+- 1EA4
+7846:
+- 7846
+- LATIN CAPITAL LETTER A WITH CIRCUMFLEX AND GRAVE
+- Lu
+- '0'
+- L
+- 00C2 0300
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1EA7
+- ''
+7847:
+- 7847
+- LATIN SMALL LETTER A WITH CIRCUMFLEX AND GRAVE
+- Ll
+- '0'
+- L
+- 00E2 0300
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1EA6
+- ''
+- 1EA6
+7848:
+- 7848
+- LATIN CAPITAL LETTER A WITH CIRCUMFLEX AND HOOK ABOVE
+- Lu
+- '0'
+- L
+- 00C2 0309
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1EA9
+- ''
+7849:
+- 7849
+- LATIN SMALL LETTER A WITH CIRCUMFLEX AND HOOK ABOVE
+- Ll
+- '0'
+- L
+- 00E2 0309
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1EA8
+- ''
+- 1EA8
+7850:
+- 7850
+- LATIN CAPITAL LETTER A WITH CIRCUMFLEX AND TILDE
+- Lu
+- '0'
+- L
+- 00C2 0303
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1EAB
+- ''
+7851:
+- 7851
+- LATIN SMALL LETTER A WITH CIRCUMFLEX AND TILDE
+- Ll
+- '0'
+- L
+- 00E2 0303
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1EAA
+- ''
+- 1EAA
+7852:
+- 7852
+- LATIN CAPITAL LETTER A WITH CIRCUMFLEX AND DOT BELOW
+- Lu
+- '0'
+- L
+- 1EA0 0302
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1EAD
+- ''
+7853:
+- 7853
+- LATIN SMALL LETTER A WITH CIRCUMFLEX AND DOT BELOW
+- Ll
+- '0'
+- L
+- 1EA1 0302
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1EAC
+- ''
+- 1EAC
+7854:
+- 7854
+- LATIN CAPITAL LETTER A WITH BREVE AND ACUTE
+- Lu
+- '0'
+- L
+- 0102 0301
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1EAF
+- ''
+7855:
+- 7855
+- LATIN SMALL LETTER A WITH BREVE AND ACUTE
+- Ll
+- '0'
+- L
+- 0103 0301
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1EAE
+- ''
+- 1EAE
+7856:
+- 7856
+- LATIN CAPITAL LETTER A WITH BREVE AND GRAVE
+- Lu
+- '0'
+- L
+- 0102 0300
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1EB1
+- ''
+7857:
+- 7857
+- LATIN SMALL LETTER A WITH BREVE AND GRAVE
+- Ll
+- '0'
+- L
+- 0103 0300
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1EB0
+- ''
+- 1EB0
+7858:
+- 7858
+- LATIN CAPITAL LETTER A WITH BREVE AND HOOK ABOVE
+- Lu
+- '0'
+- L
+- 0102 0309
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1EB3
+- ''
+7859:
+- 7859
+- LATIN SMALL LETTER A WITH BREVE AND HOOK ABOVE
+- Ll
+- '0'
+- L
+- 0103 0309
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1EB2
+- ''
+- 1EB2
+7860:
+- 7860
+- LATIN CAPITAL LETTER A WITH BREVE AND TILDE
+- Lu
+- '0'
+- L
+- 0102 0303
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1EB5
+- ''
+7861:
+- 7861
+- LATIN SMALL LETTER A WITH BREVE AND TILDE
+- Ll
+- '0'
+- L
+- 0103 0303
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1EB4
+- ''
+- 1EB4
+7862:
+- 7862
+- LATIN CAPITAL LETTER A WITH BREVE AND DOT BELOW
+- Lu
+- '0'
+- L
+- 1EA0 0306
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1EB7
+- ''
+7863:
+- 7863
+- LATIN SMALL LETTER A WITH BREVE AND DOT BELOW
+- Ll
+- '0'
+- L
+- 1EA1 0306
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1EB6
+- ''
+- 1EB6
+7864:
+- 7864
+- LATIN CAPITAL LETTER E WITH DOT BELOW
+- Lu
+- '0'
+- L
+- 0045 0323
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1EB9
+- ''
+7865:
+- 7865
+- LATIN SMALL LETTER E WITH DOT BELOW
+- Ll
+- '0'
+- L
+- 0065 0323
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1EB8
+- ''
+- 1EB8
+7866:
+- 7866
+- LATIN CAPITAL LETTER E WITH HOOK ABOVE
+- Lu
+- '0'
+- L
+- 0045 0309
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1EBB
+- ''
+7867:
+- 7867
+- LATIN SMALL LETTER E WITH HOOK ABOVE
+- Ll
+- '0'
+- L
+- 0065 0309
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1EBA
+- ''
+- 1EBA
+7868:
+- 7868
+- LATIN CAPITAL LETTER E WITH TILDE
+- Lu
+- '0'
+- L
+- 0045 0303
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1EBD
+- ''
+7869:
+- 7869
+- LATIN SMALL LETTER E WITH TILDE
+- Ll
+- '0'
+- L
+- 0065 0303
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1EBC
+- ''
+- 1EBC
+7870:
+- 7870
+- LATIN CAPITAL LETTER E WITH CIRCUMFLEX AND ACUTE
+- Lu
+- '0'
+- L
+- 00CA 0301
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1EBF
+- ''
+7871:
+- 7871
+- LATIN SMALL LETTER E WITH CIRCUMFLEX AND ACUTE
+- Ll
+- '0'
+- L
+- 00EA 0301
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1EBE
+- ''
+- 1EBE
+7872:
+- 7872
+- LATIN CAPITAL LETTER E WITH CIRCUMFLEX AND GRAVE
+- Lu
+- '0'
+- L
+- 00CA 0300
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1EC1
+- ''
+7873:
+- 7873
+- LATIN SMALL LETTER E WITH CIRCUMFLEX AND GRAVE
+- Ll
+- '0'
+- L
+- 00EA 0300
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1EC0
+- ''
+- 1EC0
+7874:
+- 7874
+- LATIN CAPITAL LETTER E WITH CIRCUMFLEX AND HOOK ABOVE
+- Lu
+- '0'
+- L
+- 00CA 0309
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1EC3
+- ''
+7875:
+- 7875
+- LATIN SMALL LETTER E WITH CIRCUMFLEX AND HOOK ABOVE
+- Ll
+- '0'
+- L
+- 00EA 0309
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1EC2
+- ''
+- 1EC2
+7876:
+- 7876
+- LATIN CAPITAL LETTER E WITH CIRCUMFLEX AND TILDE
+- Lu
+- '0'
+- L
+- 00CA 0303
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1EC5
+- ''
+7877:
+- 7877
+- LATIN SMALL LETTER E WITH CIRCUMFLEX AND TILDE
+- Ll
+- '0'
+- L
+- 00EA 0303
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1EC4
+- ''
+- 1EC4
+7878:
+- 7878
+- LATIN CAPITAL LETTER E WITH CIRCUMFLEX AND DOT BELOW
+- Lu
+- '0'
+- L
+- 1EB8 0302
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1EC7
+- ''
+7879:
+- 7879
+- LATIN SMALL LETTER E WITH CIRCUMFLEX AND DOT BELOW
+- Ll
+- '0'
+- L
+- 1EB9 0302
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1EC6
+- ''
+- 1EC6
+7880:
+- 7880
+- LATIN CAPITAL LETTER I WITH HOOK ABOVE
+- Lu
+- '0'
+- L
+- '0049 0309'
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1EC9
+- ''
+7881:
+- 7881
+- LATIN SMALL LETTER I WITH HOOK ABOVE
+- Ll
+- '0'
+- L
+- '0069 0309'
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1EC8
+- ''
+- 1EC8
+7882:
+- 7882
+- LATIN CAPITAL LETTER I WITH DOT BELOW
+- Lu
+- '0'
+- L
+- '0049 0323'
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1ECB
+- ''
+7883:
+- 7883
+- LATIN SMALL LETTER I WITH DOT BELOW
+- Ll
+- '0'
+- L
+- '0069 0323'
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1ECA
+- ''
+- 1ECA
+7884:
+- 7884
+- LATIN CAPITAL LETTER O WITH DOT BELOW
+- Lu
+- '0'
+- L
+- 004F 0323
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1ECD
+- ''
+7885:
+- 7885
+- LATIN SMALL LETTER O WITH DOT BELOW
+- Ll
+- '0'
+- L
+- 006F 0323
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1ECC
+- ''
+- 1ECC
+7886:
+- 7886
+- LATIN CAPITAL LETTER O WITH HOOK ABOVE
+- Lu
+- '0'
+- L
+- 004F 0309
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1ECF
+- ''
+7887:
+- 7887
+- LATIN SMALL LETTER O WITH HOOK ABOVE
+- Ll
+- '0'
+- L
+- 006F 0309
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1ECE
+- ''
+- 1ECE
+7888:
+- 7888
+- LATIN CAPITAL LETTER O WITH CIRCUMFLEX AND ACUTE
+- Lu
+- '0'
+- L
+- 00D4 0301
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1ED1
+- ''
+7889:
+- 7889
+- LATIN SMALL LETTER O WITH CIRCUMFLEX AND ACUTE
+- Ll
+- '0'
+- L
+- 00F4 0301
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1ED0
+- ''
+- 1ED0
+7890:
+- 7890
+- LATIN CAPITAL LETTER O WITH CIRCUMFLEX AND GRAVE
+- Lu
+- '0'
+- L
+- 00D4 0300
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1ED3
+- ''
+7891:
+- 7891
+- LATIN SMALL LETTER O WITH CIRCUMFLEX AND GRAVE
+- Ll
+- '0'
+- L
+- 00F4 0300
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1ED2
+- ''
+- 1ED2
+7892:
+- 7892
+- LATIN CAPITAL LETTER O WITH CIRCUMFLEX AND HOOK ABOVE
+- Lu
+- '0'
+- L
+- 00D4 0309
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1ED5
+- ''
+7893:
+- 7893
+- LATIN SMALL LETTER O WITH CIRCUMFLEX AND HOOK ABOVE
+- Ll
+- '0'
+- L
+- 00F4 0309
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1ED4
+- ''
+- 1ED4
+7894:
+- 7894
+- LATIN CAPITAL LETTER O WITH CIRCUMFLEX AND TILDE
+- Lu
+- '0'
+- L
+- 00D4 0303
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1ED7
+- ''
+7895:
+- 7895
+- LATIN SMALL LETTER O WITH CIRCUMFLEX AND TILDE
+- Ll
+- '0'
+- L
+- 00F4 0303
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1ED6
+- ''
+- 1ED6
+7896:
+- 7896
+- LATIN CAPITAL LETTER O WITH CIRCUMFLEX AND DOT BELOW
+- Lu
+- '0'
+- L
+- 1ECC 0302
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1ED9
+- ''
+7897:
+- 7897
+- LATIN SMALL LETTER O WITH CIRCUMFLEX AND DOT BELOW
+- Ll
+- '0'
+- L
+- 1ECD 0302
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1ED8
+- ''
+- 1ED8
+7898:
+- 7898
+- LATIN CAPITAL LETTER O WITH HORN AND ACUTE
+- Lu
+- '0'
+- L
+- 01A0 0301
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1EDB
+- ''
+7899:
+- 7899
+- LATIN SMALL LETTER O WITH HORN AND ACUTE
+- Ll
+- '0'
+- L
+- 01A1 0301
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1EDA
+- ''
+- 1EDA
+7900:
+- 7900
+- LATIN CAPITAL LETTER O WITH HORN AND GRAVE
+- Lu
+- '0'
+- L
+- 01A0 0300
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1EDD
+- ''
+7901:
+- 7901
+- LATIN SMALL LETTER O WITH HORN AND GRAVE
+- Ll
+- '0'
+- L
+- 01A1 0300
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1EDC
+- ''
+- 1EDC
+7902:
+- 7902
+- LATIN CAPITAL LETTER O WITH HORN AND HOOK ABOVE
+- Lu
+- '0'
+- L
+- 01A0 0309
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1EDF
+- ''
+7903:
+- 7903
+- LATIN SMALL LETTER O WITH HORN AND HOOK ABOVE
+- Ll
+- '0'
+- L
+- 01A1 0309
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1EDE
+- ''
+- 1EDE
+7904:
+- 7904
+- LATIN CAPITAL LETTER O WITH HORN AND TILDE
+- Lu
+- '0'
+- L
+- 01A0 0303
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1EE1
+- ''
+7905:
+- 7905
+- LATIN SMALL LETTER O WITH HORN AND TILDE
+- Ll
+- '0'
+- L
+- 01A1 0303
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1EE0
+- ''
+- 1EE0
+7906:
+- 7906
+- LATIN CAPITAL LETTER O WITH HORN AND DOT BELOW
+- Lu
+- '0'
+- L
+- 01A0 0323
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1EE3
+- ''
+7907:
+- 7907
+- LATIN SMALL LETTER O WITH HORN AND DOT BELOW
+- Ll
+- '0'
+- L
+- 01A1 0323
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1EE2
+- ''
+- 1EE2
+7908:
+- 7908
+- LATIN CAPITAL LETTER U WITH DOT BELOW
+- Lu
+- '0'
+- L
+- 0055 0323
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1EE5
+- ''
+7909:
+- 7909
+- LATIN SMALL LETTER U WITH DOT BELOW
+- Ll
+- '0'
+- L
+- 0075 0323
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1EE4
+- ''
+- 1EE4
+7910:
+- 7910
+- LATIN CAPITAL LETTER U WITH HOOK ABOVE
+- Lu
+- '0'
+- L
+- 0055 0309
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1EE7
+- ''
+7911:
+- 7911
+- LATIN SMALL LETTER U WITH HOOK ABOVE
+- Ll
+- '0'
+- L
+- 0075 0309
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1EE6
+- ''
+- 1EE6
+7912:
+- 7912
+- LATIN CAPITAL LETTER U WITH HORN AND ACUTE
+- Lu
+- '0'
+- L
+- 01AF 0301
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1EE9
+- ''
+7913:
+- 7913
+- LATIN SMALL LETTER U WITH HORN AND ACUTE
+- Ll
+- '0'
+- L
+- 01B0 0301
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1EE8
+- ''
+- 1EE8
+7914:
+- 7914
+- LATIN CAPITAL LETTER U WITH HORN AND GRAVE
+- Lu
+- '0'
+- L
+- 01AF 0300
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1EEB
+- ''
+7915:
+- 7915
+- LATIN SMALL LETTER U WITH HORN AND GRAVE
+- Ll
+- '0'
+- L
+- 01B0 0300
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1EEA
+- ''
+- 1EEA
+7916:
+- 7916
+- LATIN CAPITAL LETTER U WITH HORN AND HOOK ABOVE
+- Lu
+- '0'
+- L
+- 01AF 0309
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1EED
+- ''
+7917:
+- 7917
+- LATIN SMALL LETTER U WITH HORN AND HOOK ABOVE
+- Ll
+- '0'
+- L
+- 01B0 0309
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1EEC
+- ''
+- 1EEC
+7918:
+- 7918
+- LATIN CAPITAL LETTER U WITH HORN AND TILDE
+- Lu
+- '0'
+- L
+- 01AF 0303
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1EEF
+- ''
+7919:
+- 7919
+- LATIN SMALL LETTER U WITH HORN AND TILDE
+- Ll
+- '0'
+- L
+- 01B0 0303
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1EEE
+- ''
+- 1EEE
+7920:
+- 7920
+- LATIN CAPITAL LETTER U WITH HORN AND DOT BELOW
+- Lu
+- '0'
+- L
+- 01AF 0323
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1EF1
+- ''
+7921:
+- 7921
+- LATIN SMALL LETTER U WITH HORN AND DOT BELOW
+- Ll
+- '0'
+- L
+- 01B0 0323
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1EF0
+- ''
+- 1EF0
+7922:
+- 7922
+- LATIN CAPITAL LETTER Y WITH GRAVE
+- Lu
+- '0'
+- L
+- '0059 0300'
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1EF3
+- ''
+7923:
+- 7923
+- LATIN SMALL LETTER Y WITH GRAVE
+- Ll
+- '0'
+- L
+- '0079 0300'
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1EF2
+- ''
+- 1EF2
+7924:
+- 7924
+- LATIN CAPITAL LETTER Y WITH DOT BELOW
+- Lu
+- '0'
+- L
+- '0059 0323'
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1EF5
+- ''
+7925:
+- 7925
+- LATIN SMALL LETTER Y WITH DOT BELOW
+- Ll
+- '0'
+- L
+- '0079 0323'
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1EF4
+- ''
+- 1EF4
+7926:
+- 7926
+- LATIN CAPITAL LETTER Y WITH HOOK ABOVE
+- Lu
+- '0'
+- L
+- '0059 0309'
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1EF7
+- ''
+7927:
+- 7927
+- LATIN SMALL LETTER Y WITH HOOK ABOVE
+- Ll
+- '0'
+- L
+- '0079 0309'
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1EF6
+- ''
+- 1EF6
+7928:
+- 7928
+- LATIN CAPITAL LETTER Y WITH TILDE
+- Lu
+- '0'
+- L
+- '0059 0303'
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1EF9
+- ''
+7929:
+- 7929
+- LATIN SMALL LETTER Y WITH TILDE
+- Ll
+- '0'
+- L
+- '0079 0303'
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1EF8
+- ''
+- 1EF8
+7930:
+- 7930
+- LATIN CAPITAL LETTER MIDDLE-WELSH LL
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1EFB
+- ''
+7931:
+- 7931
+- LATIN SMALL LETTER MIDDLE-WELSH LL
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1EFA
+- ''
+- 1EFA
+7932:
+- 7932
+- LATIN CAPITAL LETTER MIDDLE-WELSH V
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1EFD
+- ''
+7933:
+- 7933
+- LATIN SMALL LETTER MIDDLE-WELSH V
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1EFC
+- ''
+- 1EFC
+7934:
+- 7934
+- LATIN CAPITAL LETTER Y WITH LOOP
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 1EFF
+- ''
+7935:
+- 7935
+- LATIN SMALL LETTER Y WITH LOOP
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 1EFE
+- ''
+- 1EFE

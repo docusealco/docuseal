@@ -1,0 +1,380 @@
+--- 
+:eu: 
+  :calendars: 
+    :gregorian: 
+      :additional_formats: 
+        :Bh: "B h"
+        :Bhm: "B h:mm"
+        :Bhms: "B h:mm:ss"
+        :E: ccc
+        :EBhm: "E B h:mm"
+        :EBhms: "E B h:mm:ss"
+        :EHm: "E HH:mm"
+        :EHms: "E HH:mm:ss"
+        :Ed: "d, E"
+        :Ehm: "E h:mm a"
+        :Ehms: "E h:mm:ss a"
+        :Gy: "G y"
+        :GyMMM: "G y. 'urteko' MMM"
+        :GyMMMEd: "G y. 'urteko' MMM d('a'), E"
+        :GyMMMd: "G y. 'urteko' MMM d('a')"
+        :GyMd: "GGGGG y-MM-dd"
+        :H: HH
+        :Hm: "HH:mm"
+        :Hms: "HH:mm:ss"
+        :Hmsv: "HH:mm:ss v"
+        :Hmv: "HH:mm v"
+        :M: L
+        :MEd: "M/d, E"
+        :MMM: LLL
+        :MMMEd: "MMM d('a'), E"
+        :MMMMW: "MMMM'ren' W. 'astea'"
+        :MMMMd: "MMMM'ren' d('a')"
+        :MMMd: "MMM d('a')"
+        :Md: M/d
+        :d: d
+        :h: h a
+        :hm: "h:mm a"
+        :hms: "h:mm:ss a"
+        :hmsv: "h:mm:ss a v"
+        :hmv: "h:mm a v"
+        :ms: "mm:ss"
+        ? !ruby/symbol "y"
+        : "y"
+        :yM: y/M
+        :yMEd: "y/M/d, E"
+        :yMMM: "y MMM"
+        :yMMMEd: "y MMM d('a'), E"
+        :yMMMM: "y('e')'ko' MMMM"
+        :yMMMMEd: "y('e')'ko' MMMM'ren' d('a'), E"
+        :yMMMMd: "y('e')'ko' MMMM'ren' d('a')"
+        :yMMMd: "y MMM d('a')"
+        :yMd: y/M/d
+        :yQQQ: "y('e')'ko' QQQ"
+        :yQQQQ: "y('e')'ko' QQQQ"
+        :yw: "Y. 'urteko' w. 'astea'"
+      :days: 
+        :format: 
+          :abbreviated: 
+            :fri: or.
+            :mon: al.
+            :sat: lr.
+            :sun: ig.
+            :thu: og.
+            :tue: ar.
+            :wed: az.
+          :narrow: 
+            :fri: O
+            :mon: A
+            :sat: L
+            :sun: I
+            :thu: O
+            :tue: A
+            :wed: A
+          :short: 
+            :fri: or.
+            :mon: al.
+            :sat: lr.
+            :sun: ig.
+            :thu: og.
+            :tue: ar.
+            :wed: az.
+          :wide: 
+            :fri: ostirala
+            :mon: astelehena
+            :sat: larunbata
+            :sun: igandea
+            :thu: osteguna
+            :tue: asteartea
+            :wed: asteazkena
+        :stand-alone: 
+          :abbreviated: 
+            :fri: or.
+            :mon: al.
+            :sat: lr.
+            :sun: ig.
+            :thu: og.
+            :tue: ar.
+            :wed: az.
+          :narrow: 
+            :fri: O
+            :mon: A
+            :sat: L
+            :sun: I
+            :thu: O
+            :tue: A
+            :wed: A
+          :short: 
+            :fri: or.
+            :mon: al.
+            :sat: lr.
+            :sun: ig.
+            :thu: og.
+            :tue: ar.
+            :wed: az.
+          :wide: 
+            :fri: ostirala
+            :mon: astelehena
+            :sat: larunbata
+            :sun: igandea
+            :thu: osteguna
+            :tue: asteartea
+            :wed: asteazkena
+      :eras: 
+        :abbr: 
+          0: o.a.a.
+          1: o.a.
+        :name: 
+          0: "oraingo aroaren aurretik"
+          1: "oraingo aroa"
+        :narrow: 
+          0: G.a.a.
+          1: G.a.
+      :fields: 
+        :day: eguna
+        :day-narrow: eg.
+        :day-short: eg.
+        :dayOfYear: "urteko #. eguna"
+        :dayOfYear-narrow: "urteko #. eguna"
+        :dayOfYear-short: "urteko #. eguna"
+        :dayperiod: AM/PM
+        :dayperiod-narrow: AM/PM
+        :dayperiod-short: AM/PM
+        :era: aroa
+        :era-narrow: aroa
+        :era-short: aroa
+        :hour: ordua
+        :hour-narrow: h
+        :hour-short: h
+        :minute: minutua
+        :minute-narrow: min
+        :minute-short: min
+        :month: hilabetea
+        :month-narrow: hil.
+        :month-short: hil.
+        :quarter: hiruhilekoa
+        :quarter-narrow: hiruhil.
+        :quarter-short: hiruhil.
+        :second: segundoa
+        :second-narrow: s
+        :second-short: s
+        :week: astea
+        :week-narrow: ast.
+        :week-short: ast.
+        :weekOfMonth: "hileko #. astea"
+        :weekOfMonth-narrow: "hileko #. astea"
+        :weekOfMonth-short: "hileko #. astea"
+        :weekday: asteguna
+        :weekday-narrow: asteguna
+        :weekday-short: asteguna
+        :weekdayOfMonth: "hileko #. asteguna"
+        :weekdayOfMonth-narrow: "hileko #. asteguna"
+        :weekdayOfMonth-short: "hileko #. asteguna"
+        :year: urtea
+        :year-narrow: Year
+        :year-short: Year
+        :zone: ordu-zona
+        :zone-narrow: ordu-zona
+        :zone-short: ordu-zona
+      :formats: 
+        :date: 
+          :full: 
+            :pattern: "y('e')'ko' MMMM'ren' d('a'), EEEE"
+          :long: 
+            :pattern: "y('e')'ko' MMMM'ren' d('a')"
+          :medium: 
+            :pattern: "y('e')'ko' MMM d('a')"
+          :short: 
+            :pattern: yy/M/d
+        :datetime: 
+          :full: 
+            :pattern: "{{date}} ({{time}})"
+          :long: 
+            :pattern: "{{date}} ({{time}})"
+          :medium: 
+            :pattern: "{{date}} ({{time}})"
+          :short: 
+            :pattern: "{{date}} ({{time}})"
+        :time: 
+          :full: 
+            :pattern: "HH:mm:ss (zzzz)"
+          :long: 
+            :pattern: "HH:mm:ss (z)"
+          :medium: 
+            :pattern: "HH:mm:ss"
+          :short: 
+            :pattern: "HH:mm"
+      :months: 
+        :format: 
+          :abbreviated: 
+            1: urt.
+            10: urr.
+            11: aza.
+            12: abe.
+            2: ots.
+            3: mar.
+            4: api.
+            5: mai.
+            6: eka.
+            7: uzt.
+            8: abu.
+            9: ira.
+          :narrow: 
+            1: U
+            10: U
+            11: A
+            12: A
+            2: O
+            3: M
+            4: A
+            5: M
+            6: E
+            7: U
+            8: A
+            9: I
+          :wide: 
+            1: urtarrila
+            10: urria
+            11: azaroa
+            12: abendua
+            2: otsaila
+            3: martxoa
+            4: apirila
+            5: maiatza
+            6: ekaina
+            7: uztaila
+            8: abuztua
+            9: iraila
+        :stand-alone: 
+          :abbreviated: 
+            1: urt.
+            10: urr.
+            11: aza.
+            12: abe.
+            2: ots.
+            3: mar.
+            4: api.
+            5: mai.
+            6: eka.
+            7: uzt.
+            8: abu.
+            9: ira.
+          :narrow: 
+            1: U
+            10: U
+            11: A
+            12: A
+            2: O
+            3: M
+            4: A
+            5: M
+            6: E
+            7: U
+            8: A
+            9: I
+          :wide: 
+            1: urtarrila
+            10: urria
+            11: azaroa
+            12: abendua
+            2: otsaila
+            3: martxoa
+            4: apirila
+            5: maiatza
+            6: ekaina
+            7: uztaila
+            8: abuztua
+            9: iraila
+      :periods: 
+        :format: 
+          :abbreviated: 
+            :afternoon1: eguerd.
+            :afternoon2: arrats.
+            :am: AM
+            :evening1: iluntz.
+            :midnight: gauerdia
+            :morning1: goizald.
+            :morning2: goizeko
+            :night1: gaueko
+            :pm: PM
+          :narrow: 
+            :afternoon1: eguerd.
+            :afternoon2: arrats.
+            :am: g
+            :evening1: iluntz.
+            :midnight: gauerd.
+            :morning1: goizald.
+            :morning2: goizeko
+            :night1: gaueko
+            :pm: a
+          :wide: 
+            :afternoon1: eguerdiko
+            :afternoon2: arratsaldeko
+            :am: AM
+            :evening1: iluntzeko
+            :midnight: gauerdia
+            :morning1: goizaldeko
+            :morning2: goizeko
+            :night1: gaueko
+            :pm: PM
+        :stand-alone: 
+          :abbreviated: 
+            :afternoon1: eguerd.
+            :afternoon2: arrats.
+            :am: AM
+            :evening1: iluntz.
+            :morning1: goiz.
+            :morning2: goiza
+            :night1: gaua
+            :pm: PM
+          :narrow: 
+            :afternoon1: eguerd.
+            :afternoon2: arrats.
+            :am: AM
+            :evening1: iluntz.
+            :morning1: goizald.
+            :morning2: goiza
+            :night1: gaua
+            :pm: PM
+          :wide: 
+            :afternoon1: eguerdia
+            :afternoon2: arratsaldea
+            :am: AM
+            :evening1: iluntzea
+            :morning1: goizaldea
+            :morning2: goiza
+            :night1: gaua
+            :pm: PM
+      :quarters: 
+        :format: 
+          :abbreviated: 
+            1: 1Hh
+            2: 2Hh
+            3: 3Hh
+            4: 4Hh
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: "1. hiruhilekoa"
+            2: "2. hiruhilekoa"
+            3: "3. hiruhilekoa"
+            4: "4. hiruhilekoa"
+        :stand-alone: 
+          :abbreviated: 
+            1: 1Hh
+            2: 2Hh
+            3: 3Hh
+            4: 4Hh
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: "1. hiruhilekoa"
+            2: "2. hiruhilekoa"
+            3: "3. hiruhilekoa"
+            4: "4. hiruhilekoa"

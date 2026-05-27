@@ -1,0 +1,975 @@
+--- 
+:th: 
+  :units: 
+    :durationUnit: 
+      :hm: "h:mm"
+      :hms: "h:mm:ss"
+      :ms: "m:ss"
+    :unitLength: 
+      :long: 
+        :acceleration-g-force: 
+          :other: "{0} แรง G"
+        :acceleration-meter-per-square-second: 
+          :other: "{0} เมตรต่อวินาทีกำลังสอง"
+        :angle-degree: 
+          :other: "{0} องศา"
+        :area-square-centimeter: 
+          :other: "{0} ตารางเซนติเมตร"
+        :area-square-foot: 
+          :other: "{0} ตารางฟุต"
+        :area-square-kilometer: 
+          :other: "{0} ตารางกิโลเมตร"
+        :area-square-meter: 
+          :other: "{0} ตารางเมตร"
+        :area-square-mile: 
+          :other: "{0} ตารางไมล์"
+        :area-square-yard: 
+          :other: "{0} ตารางหลา"
+        :concentr-milligram-ofglucose-per-deciliter: 
+          :other: "{0} มิลลิกรัมต่อเดซิลิตร"
+        :concentr-millimole-per-liter: 
+          :other: "{0} มิลลิโมลต่อลิตร"
+        :concentr-percent: 
+          :other: "{0} เปอร์เซ็นต์"
+        :concentr-permille: 
+          :other: "{0} เปอร์มิลล์"
+        :concentr-permillion: 
+          :other: "{0} ส่วนต่อล้าน"
+        :concentr-permyriad: 
+          :other: "{0} เปอร์มีเรียด"
+        :concentr-portion-per-1e9: 
+          :other: "{0} ส่วนต่อพันล้าน"
+        :consumption-liter-per-100-kilometer: 
+          :other: "{0} ลิตรต่อ 100 กิโลเมตร"
+        :consumption-liter-per-kilometer: 
+          :other: "{0} ลิตรต่อกิโลเมตร"
+        :consumption-mile-per-gallon: 
+          :other: "{0} ไมล์ต่อแกลลอน"
+        :digital-gigabit: 
+          :other: "{0} กิกะบิต"
+        :digital-gigabyte: 
+          :other: "{0} กิกะไบต์"
+        :digital-kilobit: 
+          :other: "{0} กิโลบิต"
+        :digital-kilobyte: 
+          :other: "{0} กิโลไบต์"
+        :digital-megabit: 
+          :other: "{0} เมกะบิต"
+        :digital-megabyte: 
+          :other: "{0} เมกะไบต์"
+        :digital-petabyte: 
+          :other: "{0} เพตะไบต์"
+        :digital-terabit: 
+          :other: "{0} เทราบิต"
+        :digital-terabyte: 
+          :other: "{0} เทราไบต์"
+        :duration-hour: 
+          :other: "{0} ชั่วโมง"
+        :duration-microsecond: 
+          :other: "{0} ไมโครวินาที"
+        :duration-nanosecond: 
+          :other: "{0} นาโนวินาที"
+        :duration-night: 
+          :other: "{0} คืน"
+        :duration-second: 
+          :other: "{0} วินาที"
+        :electric-ampere: 
+          :other: "{0} แอมแปร์"
+        :electric-milliampere: 
+          :other: "{0} มิลลิแอมแปร์"
+        :electric-ohm: 
+          :other: "{0} โอห์ม"
+        :electric-volt: 
+          :other: "{0} โวลต์"
+        :energy-british-thermal-unit: 
+          :other: "{0} หน่วยความร้อนอังกฤษ"
+        :energy-electronvolt: 
+          :other: "{0} อิเล็กตรอนโวลต์"
+        :energy-kilowatt-hour: 
+          :other: "{0} กิโลวัตต์-ชั่วโมง"
+        :energy-therm-us: 
+          :other: "{0} เธิร์มสหรัฐฯ"
+        :force-kilowatt-hour-per-100-kilometer: 
+          :other: "{0} กิโลวัตต์-ชั่วโมงต่อ 100 กิโลเมตร"
+        :force-newton: 
+          :other: "{0} นิวตัน"
+        :force-pound-force: 
+          :other: "{0} แรงปอนด์"
+        :frequency-gigahertz: 
+          :other: "{0} กิกะเฮิรตซ์"
+        :frequency-hertz: 
+          :other: "{0} เฮิรตซ์"
+        :frequency-kilohertz: 
+          :other: "{0} กิโลเฮิรตซ์"
+        :frequency-megahertz: 
+          :other: "{0} เมกะเฮิรตซ์"
+        :graphics-dot-per-centimeter: 
+          :other: "{0} จุดต่อเซนติเมตร"
+        :graphics-dot-per-inch: 
+          :other: "{0} จุดต่อนิ้ว"
+        :graphics-megapixel: 
+          :other: "{0} เมกะพิกเซล"
+        :graphics-pixel: 
+          :other: "{0} พิกเซล"
+        :graphics-pixel-per-centimeter: 
+          :other: "{0} พิกเซลต่อเซนติเมตร"
+        :graphics-pixel-per-inch: 
+          :other: "{0} พิกเซลต่อนิ้ว"
+        :length-centimeter: 
+          :other: "{0} เซนติเมตร"
+        :length-decimeter: 
+          :other: "{0} เดซิเมตร"
+        :length-earth-radius: 
+          :other: "{0} รัศมีของโลก"
+        :length-fathom: 
+          :other: "{0} ฟาทอม"
+        :length-furlong: 
+          :other: "{0} เฟอร์ลอง"
+        :length-kilometer: 
+          :other: "{0} กิโลเมตร"
+        :length-meter: 
+          :other: "{0} เมตร"
+        :length-micrometer: 
+          :other: "{0} ไมโครเมตร"
+        :length-mile-scandinavian: 
+          :other: "{0} ไมล์สแกนดิเนเวีย"
+        :length-millimeter: 
+          :other: "{0} มิลลิเมตร"
+        :length-nanometer: 
+          :other: "{0} นาโนเมตร"
+        :length-solar-radius: 
+          :other: "{0} รัศมีวงกลมของดวงอาทิตย์"
+        :light-candela: 
+          :other: "{0} แรงเทียน"
+        :light-lumen: 
+          :other: "{0} ลูเมน"
+        :light-solar-luminosity: 
+          :other: "{0} ความสว่างดวงอาทิตย์"
+        :mass-dalton: 
+          :other: "{0} ดัลตัน"
+        :mass-earth-mass: 
+          :other: "{0} มวลของโลก"
+        :mass-gram: 
+          :other: "{0} กรัม"
+        :mass-kilogram: 
+          :other: "{0} กิโลกรัม"
+        :mass-microgram: 
+          :other: "{0} ไมโครกรัม"
+        :mass-milligram: 
+          :other: "{0} มิลลิกรัม"
+        :mass-solar-mass: 
+          :other: "{0} มวลดวงอาทิตย์"
+        :mass-stone: 
+          :other: "{0} สโตน"
+        :mass-tonne: 
+          :other: "{0} เมตริกตัน"
+        :pressure-kilopascal: 
+          :other: "{0} กิโลปาสกาล"
+        :pressure-megapascal: 
+          :other: "{0} เมกะปาสคาล"
+        :pressure-millimeter-ofhg: 
+          :other: "{0} มิลลิเมตรปรอท"
+        :pressure-pascal: 
+          :other: "{0} ปาสกาล"
+        :pressure-pound-force-per-square-inch: 
+          :other: "{0} ปอนด์ต่อตารางนิ้ว"
+        :speed-beaufort: 
+          :other: "โบฟอร์ต {0}"
+        :speed-kilometer-per-hour: 
+          :other: "{0} กิโลเมตรต่อชั่วโมง"
+        :speed-light-speed: 
+          :other: "{0} แสง"
+        :speed-meter-per-second: 
+          :other: "{0} เมตรต่อวินาที"
+        :speed-mile-per-hour: 
+          :other: "{0} ไมล์ต่อชั่วโมง"
+        :temperature-celsius: 
+          :other: "{0} องศาเซลเซียส"
+        :temperature-fahrenheit: 
+          :other: "{0} องศาฟาเรนไฮต์"
+        :temperature-kelvin: 
+          :other: "{0} เคลวิน"
+        :torque-newton-meter: 
+          :other: "{0} นิวตันเมตร"
+        :torque-pound-force-foot: 
+          :other: "{0} ปอนด์-ฟุต"
+        :volume-barrel: 
+          :other: "{0} บาร์เรล"
+        :volume-bushel: 
+          :other: "{0} บุชเชล"
+        :volume-centiliter: 
+          :other: "{0} เซนติลิตร"
+        :volume-cubic-centimeter: 
+          :other: "{0} ลูกบาศก์เซนติเมตร"
+        :volume-cubic-foot: 
+          :other: "{0} ลูกบาศก์ฟุต"
+        :volume-cubic-inch: 
+          :other: "{0} ลูกบาศก์นิ้ว"
+        :volume-cubic-kilometer: 
+          :other: "{0} ลูกบาศก์กิโลเมตร"
+        :volume-cubic-meter: 
+          :other: "{0} ลูกบาศก์เมตร"
+        :volume-cubic-mile: 
+          :other: "{0} ลูกบาศก์ไมล์"
+        :volume-cubic-yard: 
+          :other: "{0} ลูกบาศก์หลา"
+        :volume-cup: 
+          :other: "{0} ถ้วย"
+        :volume-cup-metric: 
+          :other: "{0} ถ้วยเมตริก"
+        :volume-deciliter: 
+          :other: "{0} เดซิลิตร"
+        :volume-dram: 
+          :other: "{0} แดรม"
+        :volume-fluid-ounce-imperial: 
+          :other: "{0} ฟลูอิดออนซ์ระบบอิมพีเรียล"
+        :volume-hectoliter: 
+          :other: "{0} เฮกโตลิตร"
+        :volume-liter: 
+          :other: "{0} ลิตร"
+        :volume-milliliter: 
+          :other: "{0} มิลลิลิตร"
+        :volume-quart: 
+          :other: "{0} ควอร์ต"
+        :volume-quart-imperial: 
+          :other: "{0} ควอร์ตอังกฤษ"
+        :volume-tablespoon: 
+          :other: "{0} ช้อนโต๊ะ"
+        :volume-teaspoon: 
+          :other: "{0} ช้อนชา"
+      :narrow: 
+        :acceleration-g-force: 
+          :other: "{0}G"
+        :acceleration-meter-per-square-second: 
+          :other: "{0}ม./วิ²"
+        :angle-arc-minute: 
+          :other: "{0}ลิปดา"
+        :angle-arc-second: 
+          :other: "{0}พิลิปดา"
+        :angle-radian: 
+          :other: "{0}เรเดียน"
+        :angle-revolution: 
+          :other: "{0}รอบ"
+        :area-acre: 
+          :other: "{0}เอเคอร์"
+        :area-dunam: 
+          :other: "{0}ดูนัม"
+        :area-hectare: 
+          :other: "{0}เฮกตาร์"
+        :area-square-centimeter: 
+          :other: "{0}ตร.ซม."
+        :area-square-foot: 
+          :other: "{0}ตร.ฟุต"
+        :area-square-inch: 
+          :other: "{0}ตร.นิ้ว"
+        :area-square-kilometer: 
+          :other: "{0}ตร.กม."
+        :area-square-meter: 
+          :other: "{0}ตร.ม."
+        :area-square-mile: 
+          :other: "{0}ตร.ไมล์"
+        :area-square-yard: 
+          :other: "{0}ตร.หลา"
+        :concentr-item: 
+          :other: "{0}รายการ"
+        :concentr-karat: 
+          :other: "{0}กะรัต"
+        :concentr-milligram-ofglucose-per-deciliter: 
+          :other: "{0}มก./ดล."
+        :concentr-millimole-per-liter: 
+          :other: "{0}มลม./ล."
+        :concentr-mole: 
+          :other: "{0}โมล"
+        :concentr-permillion: 
+          :other: "{0}สตล."
+        :concentr-portion-per-1e9: 
+          :other: "{0}สตพล."
+        :consumption-liter-per-100-kilometer: 
+          :other: "{0} ล./100กม."
+        :consumption-liter-per-kilometer: 
+          :other: "{0}ล./กม."
+        :consumption-mile-per-gallon: 
+          :other: "{0}mpg"
+        :consumption-mile-per-gallon-imperial: 
+          :other: "{0}m/gUK"
+        :digital-bit: 
+          :other: "{0}บิต"
+        :digital-byte: 
+          :other: "{0}ไบต์"
+        :digital-gigabit: 
+          :other: "{0}Gb"
+        :digital-gigabyte: 
+          :other: "{0}GB"
+        :digital-kilobit: 
+          :other: "{0}kb"
+        :digital-kilobyte: 
+          :other: "{0}kB"
+        :digital-megabit: 
+          :other: "{0}Mb"
+        :digital-megabyte: 
+          :other: "{0}MB"
+        :digital-petabyte: 
+          :other: "{0}PB"
+        :digital-terabit: 
+          :other: "{0}Tb"
+        :digital-terabyte: 
+          :other: "{0}TB"
+        :duration-century: 
+          :other: "{0}ศตวรรษ"
+        :duration-day: 
+          :other: "{0}วัน"
+        :duration-decade: 
+          :other: "{0}ทศวรรษ"
+        :duration-hour: 
+          :other: "{0}ชม."
+        :duration-microsecond: 
+          :other: "{0}ไมโครวิ"
+        :duration-millisecond: 
+          :other: "{0} มิลลิวิ"
+        :duration-minute: 
+          :other: "{0}นาที"
+        :duration-month: 
+          :other: "{0}เดือน"
+        :duration-nanosecond: 
+          :other: "{0}นาโนวิ"
+        :duration-night: 
+          :other: "{0}คืน"
+        :duration-quarter: 
+          :other: "{0}ไตรมาส"
+        :duration-second: 
+          :other: "{0}วิ"
+        :duration-week: 
+          :other: "{0}สัปดาห์"
+        :duration-year: 
+          :other: "{0}ปี"
+        :electric-ampere: 
+          :other: "{0}แอมป์"
+        :electric-milliampere: 
+          :other: "{0}mA"
+        :electric-ohm: 
+          :other: "{0}Ω"
+        :electric-volt: 
+          :other: "{0}V"
+        :energy-british-thermal-unit: 
+          :other: "{0}BTU"
+        :energy-calorie: 
+          :other: "{0}แคลอรี"
+        :energy-electronvolt: 
+          :other: "{0}eV"
+        :energy-foodcalorie: 
+          :other: "{0}แคลอรี"
+        :energy-joule: 
+          :other: "{0}จูล"
+        :energy-kilocalorie: 
+          :other: "{0}kcal"
+        :energy-kilojoule: 
+          :other: "{0}กิโลจูล"
+        :energy-kilowatt-hour: 
+          :other: "{0}kWh"
+        :energy-therm-us: 
+          :other: "{0}เธิร์ม"
+        :force-kilowatt-hour-per-100-kilometer: 
+          :other: "{0}กิโลวัตต์-ชม./100กม."
+        :force-newton: 
+          :other: "{0}N"
+        :force-pound-force: 
+          :other: "{0}lbf"
+        :frequency-gigahertz: 
+          :other: "{0}GHz"
+        :frequency-hertz: 
+          :other: "{0}Hz"
+        :frequency-kilohertz: 
+          :other: "{0}kHz"
+        :frequency-megahertz: 
+          :other: "{0}MHz"
+        :graphics-dot: 
+          :other: "{0}ดอท"
+        :graphics-dot-per-centimeter: 
+          :other: "{0}dpcm"
+        :graphics-dot-per-inch: 
+          :other: "{0}dpi"
+        :graphics-em: 
+          :other: "{0}em"
+        :graphics-megapixel: 
+          :other: "{0}MP"
+        :graphics-pixel: 
+          :other: "{0}px"
+        :graphics-pixel-per-centimeter: 
+          :other: "{0}ppcm"
+        :graphics-pixel-per-inch: 
+          :other: "{0}ppi"
+        :length-astronomical-unit: 
+          :other: "{0}au"
+        :length-centimeter: 
+          :other: "{0}ซม."
+        :length-decimeter: 
+          :other: "{0}ดม."
+        :length-earth-radius: 
+          :other: "{0}R⊕"
+        :length-fathom: 
+          :other: "{0}fth"
+        :length-foot: 
+          :other: "{0}′"
+        :length-furlong: 
+          :other: "{0}fur"
+        :length-inch: 
+          :other: "{0}″"
+        :length-kilometer: 
+          :other: "{0}กม."
+        :length-light-year: 
+          :other: "{0}ปีแสง"
+        :length-meter: 
+          :other: "{0}ม."
+        :length-micrometer: 
+          :other: "{0}μm"
+        :length-mile: 
+          :other: "{0}ไมล์"
+        :length-mile-scandinavian: 
+          :other: "{0}smi"
+        :length-millimeter: 
+          :other: "{0}มม."
+        :length-nanometer: 
+          :other: "{0}น.ม."
+        :length-nautical-mile: 
+          :other: "{0}ไมล์ทะเล"
+        :length-parsec: 
+          :other: "{0}พาร์เซก"
+        :length-picometer: 
+          :other: "{0}พิโกเมตร"
+        :length-point: 
+          :other: "{0}จุด"
+        :length-solar-radius: 
+          :other: "{0}R☉"
+        :length-yard: 
+          :other: "{0}หลา"
+        :light-candela: 
+          :other: "{0}cd"
+        :light-lumen: 
+          :other: "{0}lm"
+        :light-lux: 
+          :other: "{0}ลักซ์"
+        :light-solar-luminosity: 
+          :other: "{0}L☉"
+        :mass-carat: 
+          :other: "{0}กะรัต"
+        :mass-dalton: 
+          :other: "{0}Da"
+        :mass-earth-mass: 
+          :other: "{0}M⊕"
+        :mass-grain: 
+          :other: "{0}เกรน"
+        :mass-gram: 
+          :other: "{0}ก."
+        :mass-kilogram: 
+          :other: "{0}กก."
+        :mass-microgram: 
+          :other: "{0}มคก."
+        :mass-milligram: 
+          :other: "{0}มก."
+        :mass-ounce: 
+          :other: "{0}ออนซ์"
+        :mass-ounce-troy: 
+          :other: "{0}oz t"
+        :mass-pound: 
+          :other: "{0}#"
+        :mass-solar-mass: 
+          :other: "{0}M☉"
+        :mass-stone: 
+          :other: "{0}st"
+        :mass-ton: 
+          :other: "{0}ตัน"
+        :mass-tonne: 
+          :other: "{0}ต."
+        :power-gigawatt: 
+          :other: "{0}GW"
+        :power-horsepower: 
+          :other: "{0}แรงม้า"
+        :power-kilowatt: 
+          :other: "{0}kW"
+        :power-megawatt: 
+          :other: "{0}MW"
+        :power-milliwatt: 
+          :other: "{0}mW"
+        :power-watt: 
+          :other: "{0}วัตต์"
+        :pressure-atmosphere: 
+          :other: "{0}atm"
+        :pressure-bar: 
+          :other: "{0}บาร์"
+        :pressure-hectopascal: 
+          :other: "{0}hPa"
+        :pressure-inch-ofhg: 
+          :other: "{0}นิ้วปรอท"
+        :pressure-kilopascal: 
+          :other: "{0}kPa"
+        :pressure-megapascal: 
+          :other: "{0}MPa"
+        :pressure-millibar: 
+          :other: "{0}มิลลิบาร์"
+        :pressure-millimeter-ofhg: 
+          :other: "{0}มม. ปรอท"
+        :pressure-pascal: 
+          :other: "{0}Pa"
+        :pressure-pound-force-per-square-inch: 
+          :other: "{0}psi"
+        :speed-beaufort: 
+          :other: "B{0}"
+        :speed-kilometer-per-hour: 
+          :other: "{0}กม./ชม."
+        :speed-knot: 
+          :other: "{0}นอต"
+        :speed-light-speed: 
+          :other: "{0}แสง"
+        :speed-meter-per-second: 
+          :other: "{0}ม./วิ"
+        :speed-mile-per-hour: 
+          :other: "{0}ไมล์/ชม."
+        :temperature-kelvin: 
+          :other: "{0}K"
+        :torque-newton-meter: 
+          :other: "{0}N⋅m"
+        :torque-pound-force-foot: 
+          :other: "{0}lbf⋅ft"
+        :volume-acre-foot: 
+          :other: "{0}ac ft"
+        :volume-barrel: 
+          :other: "{0}bbl"
+        :volume-bushel: 
+          :other: "{0}bu"
+        :volume-centiliter: 
+          :other: "{0}ซล."
+        :volume-cubic-centimeter: 
+          :other: "{0}ลบ.ซม."
+        :volume-cubic-foot: 
+          :other: "{0}ลบ.ฟุต"
+        :volume-cubic-inch: 
+          :other: "{0}ลบ.นิ้ว"
+        :volume-cubic-kilometer: 
+          :other: "{0}ลบ.กม."
+        :volume-cubic-meter: 
+          :other: "{0}ลบ.ม."
+        :volume-cubic-mile: 
+          :other: "{0}ลบ.ไมล์"
+        :volume-cubic-yard: 
+          :other: "{0}ลบ.หลา"
+        :volume-cup: 
+          :other: "{0}ถ."
+        :volume-cup-metric: 
+          :other: "{0}mc"
+        :volume-deciliter: 
+          :other: "{0}ดล."
+        :volume-dessert-spoon: 
+          :other: "{0}ช้อนขนม"
+        :volume-dessert-spoon-imperial: 
+          :other: "{0}dsp-Imp"
+        :volume-dram: 
+          :other: "{0}fl.dr."
+        :volume-drop: 
+          :other: "{0}หยด"
+        :volume-fluid-ounce: 
+          :other: "{0}fl oz"
+        :volume-fluid-ounce-imperial: 
+          :other: "{0}fl oz Im"
+        :volume-gallon: 
+          :other: "{0}แกลลอน"
+        :volume-gallon-imperial: 
+          :other: "{0}galIm"
+        :volume-hectoliter: 
+          :other: "{0}ฮล."
+        :volume-jigger: 
+          :other: "{0}จิกเกอร์"
+        :volume-liter: 
+          :other: "{0}ล."
+        :volume-megaliter: 
+          :other: "{0}เมกะลิตร"
+        :volume-milliliter: 
+          :other: "{0}มล."
+        :volume-pinch: 
+          :other: "{0}หยิบมือ"
+        :volume-pint: 
+          :other: "{0}ไพนต์"
+        :volume-pint-metric: 
+          :other: "{0}mpt"
+        :volume-quart: 
+          :other: "{0}คว."
+        :volume-quart-imperial: 
+          :other: "{0}qt-Imp."
+        :volume-tablespoon: 
+          :other: "{0}ชต."
+        :volume-teaspoon: 
+          :other: "{0}ชช."
+      :short: 
+        :acceleration-g-force: 
+          :other: "{0} G"
+        :acceleration-meter-per-square-second: 
+          :other: "{0} ม./วิ²"
+        :angle-arc-minute: 
+          :other: "{0} ลิปดา"
+        :angle-arc-second: 
+          :other: "{0} พิลิปดา"
+        :angle-degree: 
+          :other: "{0}°"
+        :angle-radian: 
+          :other: "{0} เรเดียน"
+        :angle-revolution: 
+          :other: "{0} รอบ"
+        :area-acre: 
+          :other: "{0} เอเคอร์"
+        :area-dunam: 
+          :other: "{0} ดูนัม"
+        :area-hectare: 
+          :other: "{0} เฮกตาร์"
+        :area-square-centimeter: 
+          :other: "{0} ตร.ซม."
+        :area-square-foot: 
+          :other: "{0} ตร.ฟุต"
+        :area-square-inch: 
+          :other: "{0} ตร.นิ้ว"
+        :area-square-kilometer: 
+          :other: "{0} ตร.กม."
+        :area-square-meter: 
+          :other: "{0} ตร.ม."
+        :area-square-mile: 
+          :other: "{0} ตร.ไมล์"
+        :area-square-yard: 
+          :other: "{0} ตร.หลา"
+        :concentr-item: 
+          :other: "{0} รายการ"
+        :concentr-karat: 
+          :other: "{0} กะรัต"
+        :concentr-milligram-ofglucose-per-deciliter: 
+          :other: "{0} มก./ดล."
+        :concentr-millimole-per-liter: 
+          :other: "{0} มลม./ล."
+        :concentr-mole: 
+          :other: "{0} โมล"
+        :concentr-percent: 
+          :other: "{0}%"
+        :concentr-permille: 
+          :other: "{0}‰"
+        :concentr-permillion: 
+          :other: "{0} สตล."
+        :concentr-permyriad: 
+          :other: "{0}‱"
+        :concentr-portion-per-1e9: 
+          :other: "{0} สตพล."
+        :consumption-liter-per-100-kilometer: 
+          :other: "{0} ล./100 กม."
+        :consumption-liter-per-kilometer: 
+          :other: "{0} ล./กม."
+        :consumption-mile-per-gallon: 
+          :other: "{0} ไมล์/แกลลอน"
+        :consumption-mile-per-gallon-imperial: 
+          :other: "{0} ไมล์ต่อแกลลอนอังกฤษ"
+        :digital-bit: 
+          :other: "{0} บิต"
+        :digital-byte: 
+          :other: "{0} ไบต์"
+        :digital-gigabit: 
+          :other: "{0} Gb"
+        :digital-gigabyte: 
+          :other: "{0} GB"
+        :digital-kilobit: 
+          :other: "{0} kb"
+        :digital-kilobyte: 
+          :other: "{0} kB"
+        :digital-megabit: 
+          :other: "{0} Mb"
+        :digital-megabyte: 
+          :other: "{0} MB"
+        :digital-petabyte: 
+          :other: "{0} PB"
+        :digital-terabit: 
+          :other: "{0} Tb"
+        :digital-terabyte: 
+          :other: "{0} TB"
+        :duration-century: 
+          :other: "{0} ศตวรรษ"
+        :duration-day: 
+          :other: "{0} วัน"
+        :duration-decade: 
+          :other: "{0} ทศวรรษ"
+        :duration-hour: 
+          :other: "{0} ชม."
+        :duration-microsecond: 
+          :other: "{0} ไมโครวิ"
+        :duration-millisecond: 
+          :other: "{0} มิลลิวินาที"
+        :duration-minute: 
+          :other: "{0} นาที"
+        :duration-month: 
+          :other: "{0} เดือน"
+        :duration-nanosecond: 
+          :other: "{0} นาโนวิ"
+        :duration-night: 
+          :other: "{0} คืน"
+        :duration-quarter: 
+          :other: "{0} ไตรมาส"
+        :duration-second: 
+          :other: "{0} วิ"
+        :duration-week: 
+          :other: "{0} สัปดาห์"
+        :duration-year: 
+          :other: "{0} ปี"
+        :electric-ampere: 
+          :other: "{0} แอมป์"
+        :electric-milliampere: 
+          :other: "{0} มิลลิแอมป์"
+        :electric-ohm: 
+          :other: "{0} Ω"
+        :electric-volt: 
+          :other: "{0} V"
+        :energy-british-thermal-unit: 
+          :other: "{0} BTU"
+        :energy-calorie: 
+          :other: "{0} แคลอรี"
+        :energy-electronvolt: 
+          :other: "{0} eV"
+        :energy-foodcalorie: 
+          :other: "{0} แคลอรี"
+        :energy-joule: 
+          :other: "{0} จูล"
+        :energy-kilocalorie: 
+          :other: "{0} กิโลแคลอรี"
+        :energy-kilojoule: 
+          :other: "{0} กิโลจูล"
+        :energy-kilowatt-hour: 
+          :other: "{0} กว.-ชม."
+        :energy-therm-us: 
+          :other: "{0} เธิร์ม"
+        :force-kilowatt-hour-per-100-kilometer: 
+          :other: "{0} กิโลวัตต์-ชม./100กม."
+        :force-newton: 
+          :other: "{0} N"
+        :force-pound-force: 
+          :other: "{0} lbf"
+        :frequency-gigahertz: 
+          :other: "{0} GHz"
+        :frequency-hertz: 
+          :other: "{0} Hz"
+        :frequency-kilohertz: 
+          :other: "{0} kHz"
+        :frequency-megahertz: 
+          :other: "{0} MHz"
+        :graphics-dot: 
+          :other: "{0} ดอท"
+        :graphics-dot-per-centimeter: 
+          :other: "{0} dpcm"
+        :graphics-dot-per-inch: 
+          :other: "{0} dpi"
+        :graphics-em: 
+          :other: "{0} em"
+        :graphics-megapixel: 
+          :other: "{0} MP"
+        :graphics-pixel: 
+          :other: "{0} px"
+        :graphics-pixel-per-centimeter: 
+          :other: "{0} ppcm"
+        :graphics-pixel-per-inch: 
+          :other: "{0} ppi"
+        :length-astronomical-unit: 
+          :other: "{0} หน่วยดาราศาสตร์"
+        :length-centimeter: 
+          :other: "{0} ซม."
+        :length-decimeter: 
+          :other: "{0} ดม."
+        :length-earth-radius: 
+          :other: "{0} R⊕"
+        :length-fathom: 
+          :other: "{0} fth"
+        :length-foot: 
+          :other: "{0} ฟุต"
+        :length-furlong: 
+          :other: "{0} fur"
+        :length-inch: 
+          :other: "{0} นิ้ว"
+        :length-kilometer: 
+          :other: "{0} กม."
+        :length-light-year: 
+          :other: "{0} ปีแสง"
+        :length-meter: 
+          :other: "{0} ม."
+        :length-micrometer: 
+          :other: "{0} μm"
+        :length-mile: 
+          :other: "{0} ไมล์"
+        :length-mile-scandinavian: 
+          :other: "{0} smi"
+        :length-millimeter: 
+          :other: "{0} มม."
+        :length-nanometer: 
+          :other: "{0} น.ม."
+        :length-nautical-mile: 
+          :other: "{0} ไมล์ทะเล"
+        :length-parsec: 
+          :other: "{0} พาร์เซก"
+        :length-picometer: 
+          :other: "{0} พิโกเมตร"
+        :length-point: 
+          :other: "{0} จุด"
+        :length-solar-radius: 
+          :other: "{0} R☉"
+        :length-yard: 
+          :other: "{0} หลา"
+        :light-candela: 
+          :other: "{0} cd"
+        :light-lumen: 
+          :other: "{0} lm"
+        :light-lux: 
+          :other: "{0} ลักซ์"
+        :light-solar-luminosity: 
+          :other: "{0} L☉"
+        :mass-carat: 
+          :other: "{0} กะรัต"
+        :mass-dalton: 
+          :other: "{0} Da"
+        :mass-earth-mass: 
+          :other: "{0} M⊕"
+        :mass-grain: 
+          :other: "{0} เกรน"
+        :mass-gram: 
+          :other: "{0} ก."
+        :mass-kilogram: 
+          :other: "{0} กก."
+        :mass-microgram: 
+          :other: "{0} มคก."
+        :mass-milligram: 
+          :other: "{0} มก."
+        :mass-ounce: 
+          :other: "{0} ออนซ์"
+        :mass-ounce-troy: 
+          :other: "{0} ทรอยออนซ์"
+        :mass-pound: 
+          :other: "{0} ปอนด์"
+        :mass-solar-mass: 
+          :other: "{0} M☉"
+        :mass-stone: 
+          :other: "{0} st"
+        :mass-ton: 
+          :other: "{0} ตัน"
+        :mass-tonne: 
+          :other: "{0} ต."
+        :power-gigawatt: 
+          :other: "{0} กิกะวัตต์"
+        :power-horsepower: 
+          :other: "{0} แรงม้า"
+        :power-kilowatt: 
+          :other: "{0} กิโลวัตต์"
+        :power-megawatt: 
+          :other: "{0} เมกะวัตต์"
+        :power-milliwatt: 
+          :other: "{0} มิลลิวัตต์"
+        :power-watt: 
+          :other: "{0} วัตต์"
+        :pressure-atmosphere: 
+          :other: "{0} บรรยากาศ"
+        :pressure-bar: 
+          :other: "{0} บาร์"
+        :pressure-hectopascal: 
+          :other: "{0} เฮกโตปาสกาล"
+        :pressure-inch-ofhg: 
+          :other: "{0} นิ้วปรอท"
+        :pressure-kilopascal: 
+          :other: "{0} kPa"
+        :pressure-megapascal: 
+          :other: "{0} MPa"
+        :pressure-millibar: 
+          :other: "{0} มิลลิบาร์"
+        :pressure-millimeter-ofhg: 
+          :other: "{0} มม. ปรอท"
+        :pressure-pascal: 
+          :other: "{0} Pa"
+        :pressure-pound-force-per-square-inch: 
+          :other: "{0} ปอนด์/ตร.นิ้ว"
+        :speed-beaufort: 
+          :other: "B {0}"
+        :speed-kilometer-per-hour: 
+          :other: "{0} กม./ชม."
+        :speed-knot: 
+          :other: "{0} นอต"
+        :speed-light-speed: 
+          :other: "{0} แสง"
+        :speed-meter-per-second: 
+          :other: "{0} ม./วิ"
+        :speed-mile-per-hour: 
+          :other: "{0} ไมล์/ชม."
+        :temperature-celsius: 
+          :other: "{0}°C"
+        :temperature-fahrenheit: 
+          :other: "{0}°F"
+        :temperature-generic: 
+          :other: "{0}°"
+        :temperature-kelvin: 
+          :other: "{0} K"
+        :torque-newton-meter: 
+          :other: "{0} N⋅m"
+        :torque-pound-force-foot: 
+          :other: "{0} lbf⋅ft"
+        :volume-acre-foot: 
+          :other: "{0} เอเคอร์-ฟุต"
+        :volume-barrel: 
+          :other: "{0} bbl"
+        :volume-bushel: 
+          :other: "{0} bu"
+        :volume-centiliter: 
+          :other: "{0} ซล."
+        :volume-cubic-centimeter: 
+          :other: "{0} ลบ.ซม."
+        :volume-cubic-foot: 
+          :other: "{0} ลบ.ฟุต"
+        :volume-cubic-inch: 
+          :other: "{0} ลบ.นิ้ว"
+        :volume-cubic-kilometer: 
+          :other: "{0} ลบ.กม."
+        :volume-cubic-meter: 
+          :other: "{0} ลบ.ม."
+        :volume-cubic-mile: 
+          :other: "{0} ลบ.ไมล์"
+        :volume-cubic-yard: 
+          :other: "{0} ลบ.หลา"
+        :volume-cup: 
+          :other: "{0} ถ."
+        :volume-cup-metric: 
+          :other: "{0} ถ. เมตริก"
+        :volume-deciliter: 
+          :other: "{0} ดล."
+        :volume-dessert-spoon: 
+          :other: "{0} ช้อนขนม"
+        :volume-dessert-spoon-imperial: 
+          :other: "{0} ช้อนขนม - อังกฤษ"
+        :volume-dram: 
+          :other: "{0} dram fl"
+        :volume-drop: 
+          :other: "{0} หยด"
+        :volume-fluid-ounce: 
+          :other: "{0} ฟลูอิดออนซ์"
+        :volume-fluid-ounce-imperial: 
+          :other: "{0} fl oz Imp."
+        :volume-gallon: 
+          :other: "{0} แกลลอน"
+        :volume-gallon-imperial: 
+          :other: "{0} แกลลอนอังกฤษ"
+        :volume-hectoliter: 
+          :other: "{0} ฮล."
+        :volume-jigger: 
+          :other: "{0} จิกเกอร์"
+        :volume-liter: 
+          :other: "{0} ล."
+        :volume-megaliter: 
+          :other: "{0} เมกะลิตร"
+        :volume-milliliter: 
+          :other: "{0} มล."
+        :volume-pinch: 
+          :other: "{0} หยิบมือ"
+        :volume-pint: 
+          :other: "{0} ไพนต์"
+        :volume-pint-metric: 
+          :other: "{0} ไพนต์เมตริก"
+        :volume-quart: 
+          :other: "{0} คว."
+        :volume-quart-imperial: 
+          :other: "{0} qt Imp."
+        :volume-tablespoon: 
+          :other: "{0} ชต."
+        :volume-teaspoon: 
+          :other: "{0} ชช."

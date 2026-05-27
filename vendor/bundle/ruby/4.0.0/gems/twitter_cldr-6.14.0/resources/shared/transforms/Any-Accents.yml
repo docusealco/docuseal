@@ -1,0 +1,54 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - und-t-d0-accents
+    :direction: both
+    :rules: 
+      - ":: NFD (NFC) ;"
+      - "$pre = \\< ;"
+      - "$post = \\> ;"
+      - "$pre \\` $post <> ̀ ;"
+      - "$pre \\' $post <> ́ ;"
+      - "$pre \\^ $post <> ̂ ;"
+      - "$pre \\~ $post <> ̃ ;"
+      - "$pre \\- $post <> ̄ ;"
+      - "$pre \\\" $post <> ̈ ;"
+      - "$pre \\* $post <> ̊ ;"
+      - "$pre \\, $post <> ̧ ;"
+      - "$pre '/' $post <> ̸ ;"
+      - "$pre \\. $post <> ̣ ;"
+      - "$pre AE $post <> Æ ;"
+      - "$pre ae $post <> æ ;"
+      - "$pre D $post <> Ð ;"
+      - "$pre d $post <> ð ;"
+      - "$pre O'/' $post <> Ø ;"
+      - "$pre o'/' $post <> ø ;"
+      - "$pre TH $post <> Þ ;"
+      - "$pre th $post <> þ ;"
+      - "$pre OE $post <> Œ ;"
+      - "$pre oe $post <> œ ;"
+      - "$pre ss $post <> ß ;"
+      - "$pre NG $post <> Ŋ ;"
+      - "$pre ng $post <> ŋ ;"
+      - "$pre T $post <> Θ ;"
+      - "$pre t $post <> θ ;"
+      - "$pre SH $post <> Ʃ ;"
+      - "$pre sh $post <> ʃ ;"
+      - "$pre ZH $post <> Ʒ ;"
+      - "$pre zh $post <> ʒ ;"
+      - "$pre U $post <> Ʊ ;"
+      - "$pre u $post <> ʊ ;"
+      - "$pre A $post <> Ə ;"
+      - "$pre a $post <> ə ;"
+      - "$pre O $post <> Ɔ ;"
+      - "$pre o $post <> ɔ ;"
+      - "$pre E $post <> Ɛ ;"
+      - "$pre e $post <> ɛ ;"
+      - "$pre '?' $post <> ʔ ;"
+      - "$pre i $post <> ɪ ;"
+      - "$pre v $post <> ʌ ;"
+      - ":: NFC (NFD) ;"
+    :source: Any
+    :target: Accents
+    :variant: ~

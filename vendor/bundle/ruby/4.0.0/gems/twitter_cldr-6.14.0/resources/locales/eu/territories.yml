@@ -1,0 +1,267 @@
+--- 
+:eu: 
+  :territories: 
+    :ac: "Ascension uhartea"
+    :ad: Andorra
+    :ae: "Arabiar Emirerri Batuak"
+    :af: Afganistan
+    :ag: "Antigua eta Barbuda"
+    :ai: Aingira
+    :al: Albania
+    :am: Armenia
+    :ao: Angola
+    :aq: Antartika
+    :ar: Argentina
+    :as: "Samoa Estatubatuarra"
+    :at: Austria
+    :au: Australia
+    :aw: Aruba
+    :ax: Åland
+    :az: Azerbaijan
+    :ba: Bosnia-Herzegovina
+    :bb: Barbados
+    :bd: Bangladesh
+    :be: Belgika
+    :bf: "Burkina Faso"
+    :bg: Bulgaria
+    :bh: Bahrain
+    :bi: Burundi
+    :bj: Benin
+    :bl: "Saint Barthélemy"
+    :bm: Bermuda
+    :bn: Brunei
+    :bo: Bolivia
+    :bq: "Karibeko Herbehereak"
+    :br: Brasil
+    :bs: Bahamak
+    :bt: Bhutan
+    :bv: "Bouvet uhartea"
+    :bw: Botswana
+    :by: Bielorrusia
+    :bz: Belize
+    :ca: Kanada
+    :cc: "Cocos (Keeling) uharteak"
+    :cd: "Kongoko Errepublika Demokratikoa"
+    :cf: "Afrika Erdiko Errepublika"
+    :cg: Kongo
+    :ch: Suitza
+    :ci: "Boli Kosta"
+    :ck: "Cook uharteak"
+    :cl: Txile
+    :cm: Kamerun
+    :cn: Txina
+    :co: Kolonbia
+    :cp: "Clipperton uhartea"
+    :cr: "Costa Rica"
+    :cu: Kuba
+    :cv: "Cabo Verde"
+    :cw: Curaçao
+    :cx: "Christmas uhartea"
+    :cy: Zipre
+    :cz: Txekia
+    :de: Alemania
+    :dg: "Diego García"
+    :dj: Djibuti
+    :dk: Danimarka
+    :dm: Dominika
+    :do: "Dominikar Errepublika"
+    :dz: Aljeria
+    :ea: "Ceuta eta Melilla"
+    :ec: Ekuador
+    :ee: Estonia
+    :eg: Egipto
+    :eh: "Mendebaldeko Sahara"
+    :er: Eritrea
+    :es: Espainia
+    :et: Etiopia
+    :eu: "Europar Batasuna"
+    :ez: Eurogunea
+    :fi: Finlandia
+    :fj: Fiji
+    :fk: Falklandak
+    :fm: Mikronesia
+    :fo: "Faroe uharteak"
+    :fr: Frantzia
+    :ga: Gabon
+    :gb: "Erresuma Batua"
+    :gd: Grenada
+    :ge: Georgia
+    :gf: "Guyana Frantsesa"
+    :gg: Guernesey
+    :gh: Ghana
+    :gi: Gibraltar
+    :gl: Groenlandia
+    :gm: Gambia
+    :gn: Ginea
+    :gp: Guadalupe
+    :gq: "Ekuatore Ginea"
+    :gr: Grezia
+    :gs: "Hegoaldeko Georgia eta Hegoaldeko Sandwich uharteak"
+    :gt: Guatemala
+    :gu: Guam
+    :gw: "Ginea Bissau"
+    :gy: Guyana
+    :hk: "Hong Kong Txinako AEB"
+    :hm: "Heard eta McDonald uharteak"
+    :hn: Honduras
+    :hr: Kroazia
+    :ht: Haiti
+    :hu: Hungaria
+    :ic: Kanariak
+    :id: Indonesia
+    :ie: Irlanda
+    :il: Israel
+    :im: "Man uhartea"
+    :in: India
+    :io: "Indiako Ozeanoko lurralde britainiarra"
+    :iq: Irak
+    :ir: Iran
+    :is: Islandia
+    :it: Italia
+    :je: Jersey
+    :jm: Jamaika
+    :jo: Jordania
+    :jp: Japonia
+    :ke: Kenya
+    :kg: Kirgizistan
+    :kh: Kanbodia
+    :ki: Kiribati
+    :km: Komoreak
+    :kn: "Saint Kitts eta Nevis"
+    :kp: "Ipar Korea"
+    :kr: "Hego Korea"
+    :kw: Kuwait
+    :ky: "Kaiman uharteak"
+    :kz: Kazakhstan
+    :la: Laos
+    :lb: Libano
+    :lc: "Santa Luzia"
+    :li: Liechtenstein
+    :lk: "Sri Lanka"
+    :lr: Liberia
+    :ls: Lesotho
+    :lt: Lituania
+    :lu: Luxenburgo
+    :lv: Letonia
+    :ly: Libia
+    :ma: Maroko
+    :mc: Monako
+    :md: Moldavia
+    :me: Montenegro
+    :mf: "San Martin"
+    :mg: Madagaskar
+    :mh: "Marshall Uharteak"
+    :mk: "Ipar Mazedonia"
+    :ml: Mali
+    :mm: "Myanmar (Birmania)"
+    :mn: Mongolia
+    :mo: "Macau Txinako AEB"
+    :mp: "Ipar Mariana uharteak"
+    :mq: Martinika
+    :mr: Mauritania
+    :ms: Montserrat
+    :mt: Malta
+    :mu: Maurizio
+    :mv: Maldivak
+    :mw: Malawi
+    :mx: Mexiko
+    :my: Malaysia
+    :mz: Mozambike
+    :na: Namibia
+    :nc: "Kaledonia Berria"
+    :ne: Niger
+    :nf: "Norfolk uhartea"
+    :ng: Nigeria
+    :ni: Nikaragua
+    :nl: Herbehereak
+    ? !ruby/symbol "no"
+    : Norvegia
+    :np: Nepal
+    :nr: Nauru
+    :nu: Niue
+    :nz: "Zeelanda Berria"
+    :om: Oman
+    :pa: Panama
+    :pe: Peru
+    :pf: "Polinesia Frantsesa"
+    :pg: "Papua Ginea Berria"
+    :ph: Filipinak
+    :pk: Pakistan
+    :pl: Polonia
+    :pm: "Saint-Pierre eta Mikelune"
+    :pn: "Pitcairn uharteak"
+    :pr: "Puerto Rico"
+    :ps: "Palestinar Lurralde Okupatuak"
+    :pt: Portugal
+    :pw: Palau
+    :py: Paraguai
+    :qa: Qatar
+    :qo: "Mugaz kanpoko Ozeania"
+    :re: Reunion
+    :ro: Errumania
+    :rs: Serbia
+    :ru: Errusia
+    :rw: Ruanda
+    :sa: "Saudi Arabia"
+    :sb: "Salomon Uharteak"
+    :sc: Seychelleak
+    :sd: Sudan
+    :se: Suedia
+    :sg: Singapur
+    :sh: "Santa Helena"
+    :si: Eslovenia
+    :sj: "Svalbard eta Jan Mayen uharteak"
+    :sk: Eslovakia
+    :sl: "Sierra Leona"
+    :sm: "San Marino"
+    :sn: Senegal
+    :so: Somalia
+    :sr: Surinam
+    :ss: "Hego Sudan"
+    :st: "Sao Tome eta Principe"
+    :sv: "El Salvador"
+    :sx: "Sint Maarten"
+    :sy: Siria
+    :sz: Swazilandia
+    :ta: "Tristan da Cunha"
+    :tc: "Turk eta Caico uharteak"
+    :td: Txad
+    :tf: "Hegoaldeko lurralde frantsesak"
+    :tg: Togo
+    :th: Thailandia
+    :tj: Tajikistan
+    :tk: Tokelau
+    :tl: "Ekialdeko Timor"
+    :tm: Turkmenistan
+    :tn: Tunisia
+    :to: Tonga
+    :tr: Turkia
+    :tt: "Trinidad eta Tobago"
+    :tv: Tuvalu
+    :tw: Taiwan
+    :tz: Tanzania
+    :ua: Ukraina
+    :ug: Uganda
+    :um: "Ameriketako Estatu Batuetako Kanpoaldeko Uharte Txikiak"
+    :un: "Nazio Batuak"
+    :us: "Ameriketako Estatu Batuak"
+    :uy: Uruguai
+    :uz: Uzbekistan
+    :va: "Vatikano Hiria"
+    :vc: "Saint Vincent eta Grenadinak"
+    :ve: Venezuela
+    :vg: "Birjina uharte britainiarrak"
+    :vi: "Birjina uharte amerikarrak"
+    :vn: Vietnam
+    :vu: Vanuatu
+    :wf: "Wallis eta Futuna"
+    :ws: Samoa
+    :xa: Sasiazentuak
+    :xb: Pseudobidia
+    :xk: Kosovo
+    :ye: Yemen
+    :yt: Mayotte
+    :za: Hegoafrika
+    :zm: Zambia
+    :zw: Zimbabwe
+    :zz: "Eskualde ezezaguna"

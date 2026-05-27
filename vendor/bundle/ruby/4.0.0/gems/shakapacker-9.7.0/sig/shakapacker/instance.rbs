@@ -1,0 +1,46 @@
+# Represents a single instance of Shakapacker configuration and state
+#
+# An instance encapsulates all the configuration, compilation, and manifest
+# lookup functionality for a specific Rails application.
+class Shakapacker::Instance
+  # The shared logger used by all Shakapacker instances
+  def self.logger: () -> ActiveSupport::TaggedLogging
+
+  # Sets the shared logger used by all Shakapacker instances
+  def self.logger=: (ActiveSupport::TaggedLogging logger) -> ActiveSupport::TaggedLogging
+
+  # The root path of the application
+  attr_reader root_path: Pathname
+
+  # The path to the Shakapacker configuration file
+  attr_reader config_path: Pathname
+
+  # Creates a new Shakapacker instance
+  def initialize: (?root_path: String | Pathname | nil, ?config_path: String | Pathname | nil) -> void
+
+  # Returns the current Rails environment as a StringInquirer
+  def env: () -> ActiveSupport::StringInquirer
+
+  # Returns the configuration object for this instance
+  def config: () -> Configuration
+
+  # Returns the compiler for this instance
+  def compiler: () -> Compiler
+
+  # Returns the development server instance
+  def dev_server: () -> DevServer
+
+  # Returns the manifest for looking up compiled assets
+  def manifest: () -> Manifest
+
+  # Returns the commands instance for build operations
+  def commands: () -> Commands
+
+  # Returns whether CSS should be inlined by the dev server
+  def inlining_css?: () -> bool
+
+  private
+
+  # Returns the compiler strategy for determining staleness
+  def strategy: () -> (MtimeStrategy | DigestStrategy)
+end

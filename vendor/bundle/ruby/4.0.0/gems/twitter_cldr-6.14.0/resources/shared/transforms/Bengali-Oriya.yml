@@ -1,0 +1,16 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - Bengali-Oriya
+      - und-Orya-t-und-beng
+    :direction: forward
+    :rules: 
+      - "::[।-॥ঁ-ঃঅ-ঌএ-ঐও-নপ-রলশ-হ়-ৄে-ৈো-্ৗড়-ঢ়য়-ৣ০-৺ৎ] ;"
+      - "::NFD ;"
+      - "::Bengali-InterIndic ;"
+      - "::InterIndic-Oriya ;"
+      - "::NFC ;"
+    :source: Beng
+    :target: Orya
+    :variant: ~

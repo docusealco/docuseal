@@ -1,0 +1,24 @@
+# See https://ddnexus.github.io/pagy/resources/i18n
+
+bg:
+  pagy:
+    p11n: 'OneOther'
+    aria_label:
+      nav:
+        one: "Страница"
+        other: "Страници"
+      previous: "Предишна"
+      next: "Следваща"
+    previous: "&lt;"
+    next: "&gt;"
+    gap: "&hellip;"
+    item_name:
+      one: "резултат"
+      other: "резултати"
+    info_tag:
+      no_count: "Страница %{page} от %{pages}"
+      no_items: "Няма намерени %{item_name}"
+      single_page: "Показани са %{count} %{item_name}"
+      multiple_pages: "Показани са %{item_name} %{from}-%{to} от %{count} общо"
+    input_nav_js: "Страница %{page_input} от %{pages}"
+    limit_tag_js: "Покажи %{limit_input} %{item_name} на страница"

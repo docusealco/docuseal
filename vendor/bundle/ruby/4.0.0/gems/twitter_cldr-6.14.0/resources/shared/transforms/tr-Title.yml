@@ -1,0 +1,15 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - tr-t-d0-title
+    :direction: forward
+    :rules: 
+      - "[:Cased:] [:Case_Ignorable:]* { İ > i ;"
+      - "[:Cased:] [:Case_Ignorable:]* { I > ı ;"
+      - "[:Cased:] [:Case_Ignorable:]* { (.) > &Any-Lower($1) ;"
+      - "i>İ ;"
+      - "([:Lowercase:]) > &Any-Upper($1) ;"
+    :source: tr
+    :target: Title
+    :variant: ~

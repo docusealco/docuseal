@@ -1,0 +1,1126 @@
+--- 
+:ja: 
+  :currencies: 
+    :ADP: 
+      :name: "アンドラ ペセタ"
+      :one: "アンドラ ペセタ"
+    :AED: 
+      :name: アラブ首長国連邦ディルハム
+      :one: アラブ首長国連邦ディルハム
+      :other: "UAE ディルハム"
+    :AFA: 
+      :name: "アフガニスタン アフガニー (1927–2002)"
+      :one: "アフガニスタン アフガニー (1927–2002)"
+    :AFN: 
+      :name: "アフガニスタン アフガニー"
+      :narrow_symbol: ؋
+      :one: "アフガニスタン アフガニー"
+      :symbol: ؋
+    :ALK: 
+      :name: "アルバニア レク (1946–1965)"
+      :one: "アルバニア レク (1946–1965)"
+    :ALL: 
+      :name: "アルバニア レク"
+      :one: "アルバニア レク"
+    :AMD: 
+      :name: "アルメニア ドラム"
+      :narrow_symbol: ֏
+      :one: "アルメニア ドラム"
+      :symbol: ֏
+    :ANG: 
+      :name: "オランダ領アンティル ギルダー"
+      :one: "オランダ領アンティル ギルダー"
+    :AOA: 
+      :name: "アンゴラ クワンザ"
+      :narrow_symbol: Kz
+      :one: "アンゴラ クワンザ"
+      :symbol: Kz
+    :AOK: 
+      :name: "アンゴラ クワンザ (1977–1991)"
+      :one: "アンゴラ クワンザ (1977–1991)"
+    :AON: 
+      :name: "アンゴラ 新クワンザ (1990–2000)"
+      :one: "アンゴラ 新クワンザ (1990–2000)"
+    :AOR: 
+      :name: "アンゴラ 旧クワンザ (1995–1999)"
+      :one: "アンゴラ 旧クワンザ (1995–1999)"
+    :ARA: 
+      :name: "アルゼンチン アゥストラール"
+      :one: "アルゼンチン アゥストラール"
+    :ARL: 
+      :name: アルゼンチン・ペソ・レイ（1970–1983）
+      :one: アルゼンチン・ペソ・レイ（1970–1983）
+    :ARM: 
+      :name: アルゼンチン・ペソ（1881–1970）
+      :one: アルゼンチン・ペソ（1881–1970）
+    :ARP: 
+      :name: "アルゼンチン ペソ (1983–1985)"
+      :one: "アルゼンチン ペソ (1983–1985)"
+    :ARS: 
+      :name: "アルゼンチン ペソ"
+      :narrow_symbol: $
+      :one: "アルゼンチン ペソ"
+      :symbol: $
+    :ATS: 
+      :name: "オーストリア シリング"
+      :one: "オーストリア シリング"
+    :AUD: 
+      :name: "オーストラリア ドル"
+      :narrow_symbol: $
+      :one: "オーストラリア ドル"
+      :symbol: A$
+    :AWG: 
+      :name: "アルバ フロリン"
+      :one: "アルバ フロリン"
+    :AZM: 
+      :name: "アゼルバイジャン マナト (1993–2006)"
+      :one: "アゼルバイジャン マナト (1993–2006)"
+    :AZN: 
+      :name: "アゼルバイジャン マナト"
+      :narrow_symbol: ₼
+      :one: "アゼルバイジャン マナト"
+      :symbol: ₼
+    :BAD: 
+      :name: "ボスニア・ヘルツェゴビナ ディナール (1992–1994)"
+      :one: "ボスニア・ヘルツェゴビナ ディナール (1992–1994)"
+    :BAM: 
+      :name: "ボスニア・ヘルツェゴビナ 兌換マルク (BAM)"
+      :narrow_symbol: KM
+      :one: "ボスニア・ヘルツェゴビナ 兌換マルク (BAM)"
+      :symbol: KM
+    :BAN: 
+      :name: "ボスニア・ヘルツェゴビナ 新ディナール（1994–1997）"
+      :one: "ボスニア・ヘルツェゴビナ 新ディナール（1994–1997）"
+    :BBD: 
+      :name: "バルバドス ドル"
+      :narrow_symbol: $
+      :one: "バルバドス ドル"
+      :symbol: $
+    :BDT: 
+      :name: "バングラデシュ タカ"
+      :narrow_symbol: ৳
+      :one: "バングラデシュ タカ"
+      :symbol: ৳
+    :BEC: 
+      :name: "ベルギー フラン (BEC)"
+      :one: "ベルギー フラン (BEC)"
+    :BEF: 
+      :name: "ベルギー フラン"
+      :one: "ベルギー フラン"
+    :BEL: 
+      :name: "ベルギー フラン (BEL)"
+      :one: "ベルギー フラン (BEL)"
+    :BGL: 
+      :name: "ブルガリア レフ"
+      :one: "ブルガリア レフ"
+    :BGM: 
+      :name: "ブルガリア社会主義 レフ"
+      :one: "ブルガリア社会主義 レフ"
+    :BGN: 
+      :name: "ブルガリア 新レフ"
+      :one: "ブルガリア 新レフ"
+    :BGO: 
+      :name: "ブルガリア レフ（1879–1952）"
+      :one: "ブルガリア レフ（1879–1952）"
+    :BHD: 
+      :name: "バーレーン ディナール"
+      :one: "バーレーン ディナール"
+    :BIF: 
+      :name: "ブルンジ フラン"
+      :one: "ブルンジ フラン"
+    :BMD: 
+      :name: "バミューダ ドル"
+      :narrow_symbol: $
+      :one: "バミューダ ドル"
+      :symbol: $
+    :BND: 
+      :name: "ブルネイ ドル"
+      :narrow_symbol: $
+      :one: "ブルネイ ドル"
+      :symbol: $
+    :BOB: 
+      :name: "ボリビア ボリビアーノ"
+      :narrow_symbol: Bs
+      :one: "ボリビア ボリビアーノ"
+      :symbol: Bs
+    :BOL: 
+      :name: "ボリビア ボリビアーノ (1863–1963)"
+      :one: "ボリビア ボリビアーノ (1863–1963)"
+    :BOP: 
+      :name: "ボリビア ペソ"
+      :one: "ボリビア ペソ"
+    :BOV: 
+      :name: "ボリビア (Mvdol)"
+      :one: "ボリビア (Mvdol)"
+    :BRB: 
+      :name: "ブラジル 新クルゼイロ (1967–1986)"
+      :one: "ブラジル 新クルゼイロ (1967–1986)"
+    :BRC: 
+      :name: "ブラジル クルザード (1986–1989)"
+      :one: "ブラジル クルザード (1986–1989)"
+    :BRE: 
+      :name: "ブラジル クルゼイロ (1990–1993)"
+      :one: "ブラジル クルゼイロ (1990–1993)"
+    :BRL: 
+      :name: "ブラジル レアル"
+      :narrow_symbol: R$
+      :one: "ブラジル レアル"
+      :symbol: R$
+    :BRN: 
+      :name: "ブラジル 新クルザード (1989–1990)"
+      :one: "ブラジル 新クルザード (1989–1990)"
+    :BRR: 
+      :name: "ブラジル クルゼイロ (1993–1994)"
+      :one: "ブラジル クルゼイロ (1993–1994)"
+    :BRZ: 
+      :name: "ブラジル クルゼイロ（1942–1967）"
+      :one: "ブラジル クルゼイロ（1942–1967）"
+    :BSD: 
+      :name: "バハマ ドル"
+      :narrow_symbol: $
+      :one: "バハマ ドル"
+      :symbol: $
+    :BTN: 
+      :name: "ブータン ニュルタム"
+      :one: "ブータン ニュルタム"
+    :BUK: 
+      :name: "ビルマ チャット"
+      :one: "ビルマ チャット"
+    :BWP: 
+      :name: "ボツワナ プラ"
+      :narrow_symbol: P
+      :one: "ボツワナ プラ"
+      :symbol: P
+    :BYB: 
+      :name: "ベラルーシ 新ルーブル (1994–1999)"
+      :one: "ベラルーシ 新ルーブル (1994–1999)"
+    :BYN: 
+      :name: "ベラルーシ ルーブル"
+      :narrow_symbol: р.
+      :one: "ベラルーシ ルーブル"
+      :symbol: р.
+    :BYR: 
+      :name: "ベラルーシ ルーブル (2000–2016)"
+      :one: "ベラルーシ ルーブル (2000–2016)"
+    :BZD: 
+      :name: "ベリーズ ドル"
+      :narrow_symbol: $
+      :one: "ベリーズ ドル"
+      :symbol: $
+    :CAD: 
+      :name: "カナダ ドル"
+      :narrow_symbol: $
+      :one: "カナダ ドル"
+      :symbol: CA$
+    :CDF: 
+      :name: "コンゴ フラン"
+      :one: "コンゴ フラン"
+    :CHE: 
+      :name: "ユーロ (WIR)"
+      :one: "ユーロ (WIR)"
+    :CHF: 
+      :name: "スイス フラン"
+      :one: "スイス フラン"
+    :CHW: 
+      :name: "フラン (WIR)"
+      :one: "フラン (WIR)"
+    :CLE: 
+      :name: "チリ エスクード"
+      :one: "チリ エスクード"
+    :CLF: 
+      :name: "チリ ウニダ・デ・フォメント (UF)"
+      :one: "チリ ウニダ・デ・フォメント (UF)"
+    :CLP: 
+      :name: "チリ ペソ"
+      :narrow_symbol: $
+      :one: "チリ ペソ"
+      :symbol: $
+    :CNH: 
+      :name: 中国人民元(オフショア)
+      :one: 中国人民元(オフショア)
+    :CNX: 
+      :name: 中国人民銀行ドル
+      :one: 中国人民銀行ドル
+    :CNY: 
+      :name: 中国人民元
+      :narrow_symbol: ￥
+      :one: 中国人民元
+      :symbol: 元
+    :COP: 
+      :name: "コロンビア ペソ"
+      :narrow_symbol: $
+      :one: "コロンビア ペソ"
+      :symbol: $
+    :COU: 
+      :name: "コロンビア レアル （UVR)"
+      :one: "コロンビア レアル （UVR)"
+    :CRC: 
+      :name: "コスタリカ コロン"
+      :narrow_symbol: ₡
+      :one: "コスタリカ コロン"
+      :symbol: ₡
+    :CSD: 
+      :name: "セルビア ディナール (2002–2006)"
+      :one: "セルビア ディナール (2002–2006)"
+    :CSK: 
+      :name: "チェコスロバキア コルナ"
+      :one: "チェコスロバキア コルナ"
+    :CUC: 
+      :name: "キューバ 兌換ペソ"
+      :narrow_symbol: $
+      :one: "キューバ 兌換ペソ"
+      :symbol: $
+    :CUP: 
+      :name: "キューバ ペソ"
+      :narrow_symbol: $
+      :one: "キューバ ペソ"
+      :symbol: $
+    :CVE: 
+      :name: "カーボベルデ エスクード"
+      :one: "カーボベルデ エスクード"
+    :CYP: 
+      :name: "キプロス ポンド"
+      :one: "キプロス ポンド"
+    :CZK: 
+      :name: "チェコ コルナ"
+      :narrow_symbol: Kč
+      :one: "チェコ コルナ"
+      :symbol: Kč
+    :DDM: 
+      :name: "東ドイツ マルク"
+      :one: "東ドイツ マルク"
+    :DEM: 
+      :name: "ドイツ マルク"
+      :one: "ドイツ マルク"
+    :DJF: 
+      :name: "ジブチ フラン"
+      :one: "ジブチ フラン"
+    :DKK: 
+      :name: "デンマーク クローネ"
+      :narrow_symbol: kr
+      :one: "デンマーク クローネ"
+      :symbol: kr
+    :DOP: 
+      :name: "ドミニカ ペソ"
+      :narrow_symbol: $
+      :one: "ドミニカ ペソ"
+      :symbol: $
+    :DZD: 
+      :name: "アルジェリア ディナール"
+      :one: "アルジェリア ディナール"
+    :ECS: 
+      :name: "エクアドル スクレ"
+      :one: "エクアドル スクレ"
+    :ECV: 
+      :name: "エクアドル (UVC)"
+      :one: "エクアドル (UVC)"
+    :EEK: 
+      :name: "エストニア クルーン"
+      :one: "エストニア クルーン"
+    :EGP: 
+      :name: "エジプト ポンド"
+      :narrow_symbol: E£
+      :one: "エジプト ポンド"
+      :symbol: E£
+    :ERN: 
+      :name: "エリトリア ナクファ"
+      :one: "エリトリア ナクファ"
+    :ESA: 
+      :name: スペインペセタ（勘定A）
+      :one: スペインペセタ（勘定A）
+    :ESB: 
+      :name: "スペイン 兌換ペセタ"
+      :one: "スペイン 兌換ペセタ"
+    :ESP: 
+      :name: "スペイン ペセタ"
+      :narrow_symbol: ₧
+      :one: "スペイン ペセタ"
+      :symbol: ₧
+    :ETB: 
+      :name: "エチオピア ブル"
+      :one: "エチオピア ブル"
+    :EUR: 
+      :name: ユーロ
+      :narrow_symbol: €
+      :one: ユーロ
+      :symbol: €
+    :FIM: 
+      :name: "フィンランド マルカ"
+      :one: "フィンランド マルカ"
+    :FJD: 
+      :name: "フィジー ドル"
+      :narrow_symbol: $
+      :one: "フィジー ドル"
+      :symbol: $
+    :FKP: 
+      :name: "フォークランド（マルビナス）諸島 ポンド"
+      :narrow_symbol: £
+      :one: "フォークランド（マルビナス）諸島 ポンド"
+      :symbol: £
+    :FRF: 
+      :name: "フランス フラン"
+      :one: "フランス フラン"
+    :GBP: 
+      :name: 英国ポンド
+      :narrow_symbol: £
+      :one: 英国ポンド
+      :symbol: £
+    :GEK: 
+      :name: "ジョージア クーポン ラリ"
+      :one: "ジョージア クーポン ラリ"
+    :GEL: 
+      :name: "ジョージア ラリ"
+      :narrow_symbol: ₾
+      :one: "ジョージア ラリ"
+      :symbol: ₾
+    :GHC: 
+      :name: "ガーナ セディ (1979–2007)"
+      :one: "ガーナ セディ (1979–2007)"
+    :GHS: 
+      :name: "ガーナ セディ"
+      :narrow_symbol: GH₵
+      :one: "ガーナ セディ"
+      :symbol: GH₵
+    :GIP: 
+      :name: "ジブラルタル ポンド"
+      :narrow_symbol: £
+      :one: "ジブラルタル ポンド"
+      :symbol: £
+    :GMD: 
+      :name: "ガンビア ダラシ"
+      :one: "ガンビア ダラシ"
+    :GNF: 
+      :name: "ギニア フラン"
+      :narrow_symbol: FG
+      :one: "ギニア フラン"
+      :symbol: FG
+    :GNS: 
+      :name: "ギニア シリー"
+      :one: "ギニア シリー"
+    :GQE: 
+      :name: "赤道ギニア エクウェレ"
+      :one: "赤道ギニア エクウェレ"
+    :GRD: 
+      :name: "ギリシャ ドラクマ"
+      :one: "ギリシャ ドラクマ"
+    :GTQ: 
+      :name: "グアテマラ ケツァル"
+      :narrow_symbol: Q
+      :one: "グアテマラ ケツァル"
+      :symbol: Q
+    :GWE: 
+      :name: "ポルトガル領ギニア エスクード"
+      :one: "ポルトガル領ギニア エスクード"
+    :GWP: 
+      :name: "ギニアビサウ ペソ"
+      :one: "ギニアビサウ ペソ"
+    :GYD: 
+      :name: "ガイアナ ドル"
+      :narrow_symbol: $
+      :one: "ガイアナ ドル"
+      :symbol: $
+    :HKD: 
+      :name: 香港ドル
+      :narrow_symbol: $
+      :one: 香港ドル
+      :symbol: HK$
+    :HNL: 
+      :name: "ホンジュラス レンピラ"
+      :narrow_symbol: L
+      :one: "ホンジュラス レンピラ"
+      :symbol: L
+    :HRD: 
+      :name: "クロアチア ディナール"
+      :one: "クロアチア ディナール"
+    :HRK: 
+      :name: "クロアチア クーナ"
+      :narrow_symbol: kn
+      :one: "クロアチア クーナ"
+      :symbol: kn
+    :HTG: 
+      :name: "ハイチ グールド"
+      :one: "ハイチ グールド"
+    :HUF: 
+      :name: "ハンガリー フォリント"
+      :narrow_symbol: Ft
+      :one: "ハンガリー フォリント"
+      :symbol: Ft
+    :IDR: 
+      :name: "インドネシア ルピア"
+      :narrow_symbol: Rp
+      :one: "インドネシア ルピア"
+      :symbol: Rp
+    :IEP: 
+      :name: "アイリッシュ ポンド"
+      :one: "アイリッシュ ポンド"
+    :ILP: 
+      :name: "イスラエル ポンド"
+      :one: "イスラエル ポンド"
+    :ILR: 
+      :name: "イスラエル シェケル (1980–1985)"
+      :one: "イスラエル シェケル (1980–1985)"
+    :ILS: 
+      :name: イスラエル新シェケル
+      :narrow_symbol: ₪
+      :one: イスラエル新シェケル
+      :symbol: ₪
+    :INR: 
+      :name: "インド ルピー"
+      :narrow_symbol: ₹
+      :one: "インド ルピー"
+      :symbol: ₹
+    :IQD: 
+      :name: "イラク ディナール"
+      :one: "イラク ディナール"
+    :IRR: 
+      :name: "イラン リアル"
+      :one: "イラン リアル"
+    :ISJ: 
+      :name: "アイスランド クローナ (1918–1981)"
+      :one: "アイスランド クローナ (1918–1981)"
+    :ISK: 
+      :name: "アイスランド クローナ"
+      :narrow_symbol: kr
+      :one: "アイスランド クローナ"
+      :symbol: kr
+    :ITL: 
+      :name: "イタリア リラ"
+      :one: "イタリア リラ"
+    :JMD: 
+      :name: "ジャマイカ ドル"
+      :narrow_symbol: $
+      :one: "ジャマイカ ドル"
+      :symbol: $
+    :JOD: 
+      :name: "ヨルダン ディナール"
+      :one: "ヨルダン ディナール"
+    :JPY: 
+      :name: 日本円
+      :narrow_symbol: ￥
+      :one: 日本円
+      :other: 円
+      :symbol: ￥
+    :KES: 
+      :name: "ケニア シリング"
+      :one: "ケニア シリング"
+    :KGS: 
+      :name: "キルギス ソム"
+      :narrow_symbol: ⃀
+      :one: "キルギス ソム"
+      :symbol: ⃀
+    :KHR: 
+      :name: "カンボジア リエル"
+      :narrow_symbol: ៛
+      :one: "カンボジア リエル"
+      :symbol: ៛
+    :KMF: 
+      :name: "コモロ フラン"
+      :narrow_symbol: CF
+      :one: "コモロ フラン"
+      :symbol: CF
+    :KPW: 
+      :name: 北朝鮮ウォン
+      :narrow_symbol: ₩
+      :one: 北朝鮮ウォン
+      :symbol: ₩
+    :KRH: 
+      :name: "韓国 ファン（1953–1962）"
+      :one: "韓国 ファン（1953–1962）"
+    :KRO: 
+      :name: "韓国 ウォン（1945–1953）"
+      :one: "韓国 ウォン（1945–1953）"
+    :KRW: 
+      :name: 韓国ウォン
+      :narrow_symbol: ₩
+      :one: 韓国ウォン
+      :symbol: ₩
+    :KWD: 
+      :name: "クウェート ディナール"
+      :one: "クウェート ディナール"
+    :KYD: 
+      :name: "ケイマン諸島 ドル"
+      :narrow_symbol: $
+      :one: "ケイマン諸島 ドル"
+      :symbol: $
+    :KZT: 
+      :name: "カザフスタン テンゲ"
+      :narrow_symbol: ₸
+      :one: "カザフスタン テンゲ"
+      :symbol: ₸
+    :LAK: 
+      :name: "ラオス キープ"
+      :narrow_symbol: ₭
+      :one: "ラオス キープ"
+      :symbol: ₭
+    :LBP: 
+      :name: "レバノン ポンド"
+      :narrow_symbol: L£
+      :one: "レバノン ポンド"
+      :symbol: L£
+    :LKR: 
+      :name: "スリランカ ルピー"
+      :narrow_symbol: Rs
+      :one: "スリランカ ルピー"
+      :symbol: Rs
+    :LRD: 
+      :name: "リベリア ドル"
+      :narrow_symbol: $
+      :one: "リベリア ドル"
+      :symbol: $
+    :LSL: 
+      :name: "レソト ロティ"
+      :one: "レソト ロティ"
+    :LTL: 
+      :name: "リトアニア リタス"
+      :narrow_symbol: Lt
+      :one: "リトアニア リタス"
+      :symbol: Lt
+    :LTT: 
+      :name: "リトアニア タロナ"
+      :one: "リトアニア タロナ"
+    :LUC: 
+      :name: "ルクセンブルク 兌換フラン"
+      :one: "ルクセンブルク 兌換フラン"
+    :LUF: 
+      :name: "ルクセンブルグ フラン"
+      :one: "ルクセンブルグ フラン"
+    :LUL: 
+      :name: "ルクセンブルク 金融フラン"
+      :one: "ルクセンブルク 金融フラン"
+    :LVL: 
+      :name: "ラトビア ラッツ"
+      :narrow_symbol: Ls
+      :one: "ラトビア ラッツ"
+      :symbol: Ls
+    :LVR: 
+      :name: "ラトビア ルーブル"
+      :one: "ラトビア ルーブル"
+    :LYD: 
+      :name: "リビア ディナール"
+      :one: "リビア ディナール"
+    :MAD: 
+      :name: "モロッコ ディルハム"
+      :one: "モロッコ ディルハム"
+    :MAF: 
+      :name: "モロッコ フラン"
+      :one: "モロッコ フラン"
+    :MCF: 
+      :name: "モネガスク フラン"
+      :one: "モネガスク フラン"
+    :MDC: 
+      :name: "モルドバ クーポン"
+      :one: "モルドバ クーポン"
+    :MDL: 
+      :name: "モルドバ レイ"
+      :one: "モルドバ レイ"
+    :MGA: 
+      :name: "マダガスカル アリアリ"
+      :narrow_symbol: Ar
+      :one: "マダガスカル アリアリ"
+      :symbol: Ar
+    :MGF: 
+      :name: "マラガシ フラン"
+      :one: "マラガシ フラン"
+    :MKD: 
+      :name: "マケドニア デナル"
+      :one: "マケドニア デナル"
+    :MKN: 
+      :name: "マケドニア ディナール（1992–1993）"
+      :one: "マケドニア ディナール（1992–1993）"
+    :MLF: 
+      :name: "マリ フラン"
+      :one: "マリ フラン"
+    :MMK: 
+      :name: "ミャンマー チャット"
+      :narrow_symbol: K
+      :one: "ミャンマー チャット"
+      :symbol: K
+    :MNT: 
+      :name: "モンゴル トグログ"
+      :narrow_symbol: ₮
+      :one: "モンゴル トグログ"
+      :symbol: ₮
+    :MOP: 
+      :name: "マカオ パタカ"
+      :one: "マカオ パタカ"
+    :MRO: 
+      :name: "モーリタニア ウギア (1973–2017)"
+      :one: "モーリタニア ウギア (1973–2017)"
+    :MRU: 
+      :name: "モーリタニア ウギア"
+      :one: "モーリタニア ウギア"
+    :MTL: 
+      :name: "マルタ リラ"
+      :one: "マルタ リラ"
+    :MTP: 
+      :name: "マルタ ポンド"
+      :one: "マルタ ポンド"
+    :MUR: 
+      :name: "モーリシャス ルピー"
+      :narrow_symbol: Rs
+      :one: "モーリシャス ルピー"
+      :symbol: Rs
+    :MVP: 
+      :name: "モルディブ諸島 ルピー"
+      :one: "モルディブ諸島 ルピー"
+    :MVR: 
+      :name: "モルディブ ルフィア"
+      :one: "モルディブ ルフィア"
+    :MWK: 
+      :name: "マラウィ クワチャ"
+      :one: "マラウィ クワチャ"
+    :MXN: 
+      :name: "メキシコ ペソ"
+      :narrow_symbol: $
+      :one: "メキシコ ペソ"
+      :symbol: MX$
+    :MXP: 
+      :name: "メキシコ ペソ (1861–1992)"
+      :one: "メキシコ ペソ (1861–1992)"
+    :MXV: 
+      :name: "メキシコ (UDI)"
+      :one: "メキシコ (UDI)"
+    :MYR: 
+      :name: "マレーシア リンギット"
+      :narrow_symbol: RM
+      :one: "マレーシア リンギット"
+      :symbol: RM
+    :MZE: 
+      :name: "モザンピーク エスクード"
+      :one: "モザンピーク エスクード"
+    :MZM: 
+      :name: "モザンビーク メティカル (1980–2006)"
+      :one: "モザンビーク メティカル (1980–2006)"
+    :MZN: 
+      :name: "モザンビーク メティカル"
+      :one: "モザンビーク メティカル"
+    :NAD: 
+      :name: "ナミビア ドル"
+      :narrow_symbol: $
+      :one: "ナミビア ドル"
+      :symbol: $
+    :NGN: 
+      :name: "ナイジェリア ナイラ"
+      :narrow_symbol: ₦
+      :one: "ナイジェリア ナイラ"
+      :symbol: ₦
+    :NIC: 
+      :name: "ニカラグア コルドバ (1988–1991)"
+      :one: "ニカラグア コルドバ (1988–1991)"
+    :NIO: 
+      :name: "ニカラグア コルドバ オロ"
+      :narrow_symbol: C$
+      :one: "ニカラグア コルドバ オロ"
+      :symbol: C$
+    :NLG: 
+      :name: "オランダ ギルダー"
+      :one: "オランダ ギルダー"
+    :NOK: 
+      :name: "ノルウェー クローネ"
+      :narrow_symbol: kr
+      :one: "ノルウェー クローネ"
+      :symbol: kr
+    :NPR: 
+      :name: "ネパール ルピー"
+      :narrow_symbol: Rs
+      :one: "ネパール ルピー"
+      :symbol: Rs
+    :NZD: 
+      :name: "ニュージーランド ドル"
+      :narrow_symbol: $
+      :one: "ニュージーランド ドル"
+      :symbol: NZ$
+    :OMR: 
+      :name: "オマーン リアル"
+      :one: "オマーン リアル"
+    :PAB: 
+      :name: "パナマ バルボア"
+      :one: "パナマ バルボア"
+    :PEI: 
+      :name: "ペルー インティ"
+      :one: "ペルー インティ"
+    :PEN: 
+      :name: "ペルー ソル"
+      :one: "ペルー ソル"
+    :PES: 
+      :name: "ペルー ソル (1863–1965)"
+      :one: "ペルー ソル (1863–1965)"
+    :PGK: 
+      :name: "パプアニューギニア キナ"
+      :one: "パプアニューギニア キナ"
+    :PHP: 
+      :name: "フィリピン ペソ"
+      :narrow_symbol: ₱
+      :one: "フィリピン ペソ"
+      :symbol: PHP
+    :PKR: 
+      :name: "パキスタン ルピー"
+      :narrow_symbol: Rs
+      :one: "パキスタン ルピー"
+      :symbol: Rs
+    :PLN: 
+      :name: "ポーランド ズウォティ"
+      :narrow_symbol: zł
+      :one: "ポーランド ズウォティ"
+      :symbol: zł
+    :PLZ: 
+      :name: "ポーランド ズウォティ (1950–1995)"
+      :one: "ポーランド ズウォティ (1950–1995)"
+    :PTE: 
+      :name: "ポルトガル エスクード"
+      :one: "ポルトガル エスクード"
+    :PYG: 
+      :name: "パラグアイ グアラニ"
+      :narrow_symbol: ₲
+      :one: "パラグアイ グアラニ"
+      :symbol: ₲
+    :QAR: 
+      :name: "カタール リアル"
+      :one: "カタール リアル"
+    :RHD: 
+      :name: "ローデシア ドル"
+      :one: "ローデシア ドル"
+    :ROL: 
+      :name: "ルーマニア レイ (1952–2006)"
+      :one: "ルーマニア レイ (1952–2006)"
+    :RON: 
+      :name: "ルーマニア レイ"
+      :narrow_symbol: レイ
+      :one: "ルーマニア レイ"
+      :symbol: レイ
+    :RSD: 
+      :name: "セルビア ディナール"
+      :one: "セルビア ディナール"
+      :other: "セルビア ディナール"
+    :RUB: 
+      :name: "ロシア ルーブル"
+      :narrow_symbol: ₽
+      :one: "ロシア ルーブル"
+      :symbol: ₽
+    :RUR: 
+      :name: "ロシア ルーブル (1991–1998)"
+      :one: "ロシア ルーブル (1991–1998)"
+    :RWF: 
+      :name: "ルワンダ フラン"
+      :narrow_symbol: RF
+      :one: "ルワンダ フラン"
+      :symbol: RF
+    :SAR: 
+      :name: "サウジ リヤル"
+      :one: "サウジ リヤル"
+    :SBD: 
+      :name: "ソロモン諸島 ドル"
+      :narrow_symbol: $
+      :one: "ソロモン諸島 ドル"
+      :symbol: $
+    :SCR: 
+      :name: "セーシェル ルピー"
+      :one: "セーシェル ルピー"
+    :SDD: 
+      :name: "スーダン ディナール (1992–2007)"
+      :one: "スーダン ディナール (1992–2007)"
+    :SDG: 
+      :name: "スーダン ポンド"
+      :one: "スーダン ポンド"
+    :SDP: 
+      :name: "スーダン ポンド (1957–1998)"
+      :one: "スーダン ポンド (1957–1998)"
+    :SEK: 
+      :name: "スウェーデン クローナ"
+      :narrow_symbol: kr
+      :one: "スウェーデン クローナ"
+      :symbol: kr
+    :SGD: 
+      :name: "シンガポール ドル"
+      :narrow_symbol: $
+      :one: "シンガポール ドル"
+      :symbol: $
+    :SHP: 
+      :name: "セントヘレナ ポンド"
+      :narrow_symbol: £
+      :one: "セントヘレナ ポンド"
+      :symbol: £
+    :SIT: 
+      :name: "スロベニア トラール"
+      :one: "スロベニア トラール"
+    :SKK: 
+      :name: "スロバキア コルナ"
+      :one: "スロバキア コルナ"
+    :SLE: 
+      :name: "シエラレオネ レオン"
+      :one: "シエラレオネ レオン"
+    :SLL: 
+      :name: "シエラレオネ レオン (1964—2022)"
+      :one: "シエラレオネ レオン (1964—2022)"
+    :SOS: 
+      :name: "ソマリア シリング"
+      :one: "ソマリア シリング"
+    :SRD: 
+      :name: "スリナム ドル"
+      :narrow_symbol: $
+      :one: "スリナム ドル"
+      :symbol: $
+    :SRG: 
+      :name: "スリナム ギルダー"
+      :one: "スリナム ギルダー"
+    :SSP: 
+      :name: "南スーダン ポンド"
+      :narrow_symbol: £
+      :one: "南スーダン ポンド"
+      :symbol: £
+    :STD: 
+      :name: "サントメ・プリンシペ ドブラ (1977–2017)"
+      :one: "サントメ・プリンシペ ドブラ (1977–2017)"
+    :STN: 
+      :name: "サントメ・プリンシペ ドブラ"
+      :narrow_symbol: Db
+      :one: "サントメ・プリンシペ ドブラ"
+      :symbol: Db
+    :SUR: 
+      :name: "ソ連 ルーブル"
+      :one: "ソ連 ルーブル"
+    :SVC: 
+      :name: "エルサルバドル コロン"
+      :one: "エルサルバドル コロン"
+    :SYP: 
+      :name: "シリア ポンド"
+      :narrow_symbol: £
+      :one: "シリア ポンド"
+      :symbol: £
+    :SZL: 
+      :name: "スワジランド リランゲニ"
+      :one: "スワジランド リランゲニ"
+    :THB: 
+      :name: "タイ バーツ"
+      :narrow_symbol: ฿
+      :one: "タイ バーツ"
+      :symbol: ฿
+    :TJR: 
+      :name: "タジキスタン ルーブル"
+      :one: "タジキスタン ルーブル"
+    :TJS: 
+      :name: "タジキスタン ソモニ"
+      :one: "タジキスタン ソモニ"
+    :TMM: 
+      :name: "トルクメニスタン マナト (1993–2009)"
+      :one: "トルクメニスタン マナト (1993–2009)"
+    :TMT: 
+      :name: "トルクメニスタン マナト"
+      :one: "トルクメニスタン マナト"
+    :TND: 
+      :name: "チュニジア ディナール"
+      :one: "チュニジア ディナール"
+    :TOP: 
+      :name: "トンガ パ・アンガ"
+      :narrow_symbol: T$
+      :one: "トンガ パ・アンガ"
+      :symbol: T$
+    :TPE: 
+      :name: "ティモール エスクード"
+      :one: "ティモール エスクード"
+    :TRL: 
+      :name: "トルコ リラ (1922–2005)"
+      :one: "トルコ リラ (1922–2005)"
+    :TRY: 
+      :name: "トルコ リラ"
+      :narrow_symbol: ₺
+      :one: "トルコ リラ"
+      :symbol: ₺
+    :TTD: 
+      :name: "トリニダード・トバゴ ドル"
+      :narrow_symbol: $
+      :one: "トリニダード・トバゴ ドル"
+      :symbol: $
+    :TWD: 
+      :name: 新台湾ドル
+      :narrow_symbol: $
+      :one: 新台湾ドル
+      :symbol: NT$
+    :TZS: 
+      :name: "タンザニア シリング"
+      :one: "タンザニア シリング"
+    :UAH: 
+      :name: "ウクライナ フリヴニャ"
+      :narrow_symbol: ₴
+      :one: "ウクライナ フリヴニャ"
+      :other: "ウクライナ フリヴニャ"
+      :symbol: ₴
+    :UAK: 
+      :name: "ウクライナ カルボバネツ"
+      :one: "ウクライナ カルボバネツ"
+    :UGS: 
+      :name: "ウガンダ シリング (1966–1987)"
+      :one: "ウガンダ シリング (1966–1987)"
+    :UGX: 
+      :name: "ウガンダ シリング"
+      :one: "ウガンダ シリング"
+    :USD: 
+      :name: 米ドル
+      :narrow_symbol: $
+      :one: 米ドル
+      :symbol: $
+    :USN: 
+      :name: "米ドル (翌日)"
+      :one: "米ドル (翌日)"
+    :USS: 
+      :name: "米ドル (当日)"
+      :one: "米ドル (当日)"
+    :UYI: 
+      :name: "ウルグアイ ペソエン"
+      :one: "ウルグアイ ペソエン"
+    :UYP: 
+      :name: "ウルグアイ ペソ (1975–1993)"
+      :one: "ウルグアイ ペソ (1975–1993)"
+    :UYU: 
+      :name: "ウルグアイ ペソ"
+      :narrow_symbol: $
+      :one: "ウルグアイ ペソ"
+      :symbol: $
+    :UZS: 
+      :name: "ウズベキスタン スム"
+      :one: "ウズベキスタン スム"
+    :VEB: 
+      :name: "ベネズエラ ボリバル (1871–2008)"
+      :one: "ベネズエラ ボリバル (1871–2008)"
+    :VEF: 
+      :name: "ベネズエラ ボリバル (2008–2018)"
+      :narrow_symbol: Bs
+      :one: "ベネズエラ ボリバル (2008–2018)"
+      :symbol: Bs
+    :VES: 
+      :name: "ベネズエラ ボリバル"
+      :one: "ベネズエラ ボリバル"
+    :VND: 
+      :name: "ベトナム ドン"
+      :narrow_symbol: ₫
+      :one: "ベトナム ドン"
+      :symbol: ₫
+    :VNN: 
+      :name: "ベトナム ドン（1978–1985）"
+      :one: "ベトナム ドン（1978–1985）"
+    :VUV: 
+      :name: "バヌアツ バツ"
+      :one: "バヌアツ バツ"
+    :WST: 
+      :name: "サモア タラ"
+      :one: "サモア タラ"
+    :XAF: 
+      :name: "中央アフリカ CFA フラン"
+      :one: "中央アフリカ CFA フラン"
+      :symbol: FCFA
+    :XAG: 
+      :name: 銀
+      :one: 銀
+    :XAU: 
+      :name: 金
+      :one: 金
+    :XBA: 
+      :name: "ヨーロッパ混合単位 (EURCO)"
+      :one: "ヨーロッパ混合単位 (EURCO)"
+    :XBB: 
+      :name: "ヨーロッパ通貨単位 (EMU–6)"
+      :one: "ヨーロッパ通貨単位 (EMU–6)"
+    :XBC: 
+      :name: "ヨーロッパ勘定単位 (EUA–9)"
+      :one: "ヨーロッパ勘定単位 (EUA–9)"
+    :XBD: 
+      :name: "ヨーロッパ勘定単位 (EUA–17)"
+      :one: "ヨーロッパ勘定単位 (EUA–17)"
+    :XCD: 
+      :name: "東カリブ ドル"
+      :narrow_symbol: $
+      :one: "東カリブ ドル"
+      :symbol: EC$
+    :XCG: 
+      :symbol: Cg.
+    :XDR: 
+      :name: 特別引き出し権
+      :one: 特別引き出し権
+    :XEU: 
+      :name: ヨーロッパ通貨単位
+      :one: ヨーロッパ通貨単位
+    :XFO: 
+      :name: フランス金フラン
+      :one: フランス金フラン
+    :XFU: 
+      :name: "フランス フラン (UIC)"
+      :one: "フランス フラン (UIC)"
+    :XOF: 
+      :name: "西アフリカ CFA フラン"
+      :one: "西アフリカ CFA フラン"
+      :symbol: F CFA
+    :XPD: 
+      :name: パラジウム
+      :one: パラジウム
+    :XPF: 
+      :name: "CFP フラン"
+      :one: "CFP フラン"
+      :symbol: CFPF
+    :XPT: 
+      :name: プラチナ
+      :one: プラチナ
+    :XRE: 
+      :name: RINET基金
+      :one: RINET基金
+    :XSU: 
+      :name: スクレ
+      :one: スクレ
+    :XTS: 
+      :name: テスト用通貨コード
+      :one: テスト用通貨コード
+    :XUA: 
+      :name: "UA (アフリカ開発銀行)"
+      :one: "UA (アフリカ開発銀行)"
+    :XXX: 
+      :name: 不明または無効な通貨
+      :one: 不明または無効な通貨
+      :symbol: XXX
+    :YDD: 
+      :name: "イエメン ディナール"
+      :one: "イエメン ディナール"
+    :YER: 
+      :name: "イエメン リアル"
+      :one: "イエメン リアル"
+    :YUD: 
+      :name: "ユーゴスラビア ハード・ディナール (1966–1990)"
+      :one: "ユーゴスラビア ハード・ディナール (1966–1990)"
+    :YUM: 
+      :name: "ユーゴスラビア ノビ・ディナール (1994–2002)"
+      :one: "ユーゴスラビア ノビ・ディナール (1994–2002)"
+    :YUN: 
+      :name: "ユーゴスラビア 兌換ディナール (1990–1992)"
+      :one: "ユーゴスラビア 兌換ディナール (1990–1992)"
+    :YUR: 
+      :name: "ユーゴスラビア 改革ディナール（1992–1993）"
+      :one: "ユーゴスラビア 改革ディナール（1992–1993）"
+    :ZAL: 
+      :name: "南アフリカ ランド (ZAL)"
+      :one: "南アフリカ ランド (ZAL)"
+    :ZAR: 
+      :name: "南アフリカ ランド"
+      :narrow_symbol: R
+      :one: "南アフリカ ランド"
+      :symbol: R
+    :ZMK: 
+      :name: "ザンビア クワチャ (1968–2012)"
+      :one: "ザンビア クワチャ (1968–2012)"
+    :ZMW: 
+      :name: "ザンビア クワチャ"
+      :narrow_symbol: ZK
+      :one: "ザンビア クワチャ"
+      :symbol: ZK
+    :ZRN: 
+      :name: "ザイール 新ザイール (1993–1998)"
+      :one: "ザイール 新ザイール (1993–1998)"
+    :ZRZ: 
+      :name: "ザイール ザイール (1971–1993)"
+      :one: "ザイール ザイール (1971–1993)"
+    :ZWD: 
+      :name: "ジンバブエ ドル (1980–2008)"
+      :one: "ジンバブエ ドル (1980–2008)"
+    :ZWL: 
+      :name: "ジンバブエ ドル (2009)"
+      :one: "ジンバブエ ドル (2009)"
+    :ZWR: 
+      :name: "シンバブエ ドル（2008）"
+      :one: "シンバブエ ドル（2008）"

@@ -44,7 +44,7 @@ module Mcp
 
         data = submissions.map do |submission|
           url = Rails.application.routes.url_helpers.submission_url(
-            submission.id, **Docuseal.default_url_options
+            submission.id, **Wabosign.default_url_options
           )
 
           {

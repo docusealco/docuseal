@@ -1,0 +1,347 @@
+# WARNING ABOUT GENERATED CODE
+#
+# This file is generated. See the contributing guide for more information:
+# https://github.com/aws/aws-sdk-ruby/blob/version-3/CONTRIBUTING.md
+#
+# WARNING ABOUT GENERATED CODE
+
+module Aws
+  module S3
+    # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectSummary.html
+    class ObjectSummary
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectSummary.html#initialize-instance_method
+      def initialize: (String bucket_name, String key, Hash[Symbol, untyped] options) -> void
+                    | (bucket_name: String, key: String, ?client: Client) -> void
+                    | (Hash[Symbol, untyped] args) -> void
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectSummary.html#bucket_name-instance_method
+      def bucket_name: () -> String
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectSummary.html#key-instance_method
+      def key: () -> String
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectSummary.html#last_modified-instance_method
+      def last_modified: () -> ::Time
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectSummary.html#etag-instance_method
+      def etag: () -> ::String
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectSummary.html#checksum_algorithm-instance_method
+      def checksum_algorithm: () -> ::Array[("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")]
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectSummary.html#checksum_type-instance_method
+      def checksum_type: () -> ("COMPOSITE" | "FULL_OBJECT")
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectSummary.html#size-instance_method
+      def size: () -> ::Integer
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectSummary.html#storage_class-instance_method
+      def storage_class: () -> ("STANDARD" | "REDUCED_REDUNDANCY" | "GLACIER" | "STANDARD_IA" | "ONEZONE_IA" | "INTELLIGENT_TIERING" | "DEEP_ARCHIVE" | "OUTPOSTS" | "GLACIER_IR" | "SNOW" | "EXPRESS_ONEZONE" | "FSX_OPENZFS" | "FSX_ONTAP")
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectSummary.html#owner-instance_method
+      def owner: () -> Types::Owner
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectSummary.html#restore_status-instance_method
+      def restore_status: () -> Types::RestoreStatus
+
+      def client: () -> Client
+
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectSummary.html#data-instance_method
+      def data: () -> Types::Object
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectSummary.html#data_loaded?-instance_method
+      def data_loaded?: () -> bool
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectSummary.html#exists?-instance_method
+      def exists?: (?max_attempts: Integer, ?delay: Numeric, ?before_attempt: (^(Integer attempts) -> void), ?before_wait: (^(Integer attempts, untyped response) -> void)) -> bool
+                 | (?Hash[Symbol, untyped]) -> bool
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectSummary.html#wait_until_exists-instance_method
+      def wait_until_exists: (?max_attempts: Integer, ?delay: Numeric, ?before_attempt: (^(Integer attempts) -> void), ?before_wait: (^(Integer attempts, untyped response) -> void)) ?{ (untyped waiter) -> void } -> ObjectSummary
+                           | (?Hash[Symbol, untyped]) ?{ (untyped waiter) -> void } -> ObjectSummary
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectSummary.html#wait_until_not_exists-instance_method
+      def wait_until_not_exists: (?max_attempts: Integer, ?delay: Numeric, ?before_attempt: (^(Integer attempts) -> void), ?before_wait: (^(Integer attempts, untyped response) -> void)) ?{ (untyped waiter) -> void } -> ObjectSummary
+                               | (?Hash[Symbol, untyped]) ?{ (untyped waiter) -> void } -> ObjectSummary
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectSummary.html#copy_from-instance_method
+      def copy_from: (
+                       ?acl: ("private" | "public-read" | "public-read-write" | "authenticated-read" | "aws-exec-read" | "bucket-owner-read" | "bucket-owner-full-control"),
+                       ?cache_control: ::String,
+                       ?checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME"),
+                       ?content_disposition: ::String,
+                       ?content_encoding: ::String,
+                       ?content_language: ::String,
+                       ?content_type: ::String,
+                       copy_source: ::String,
+                       ?copy_source_if_match: ::String,
+                       ?copy_source_if_modified_since: ::Time,
+                       ?copy_source_if_none_match: ::String,
+                       ?copy_source_if_unmodified_since: ::Time,
+                       ?expires: ::Time,
+                       ?grant_full_control: ::String,
+                       ?grant_read: ::String,
+                       ?grant_read_acp: ::String,
+                       ?grant_write_acp: ::String,
+                       ?if_match: ::String,
+                       ?if_none_match: ::String,
+                       ?metadata: Hash[::String, ::String],
+                       ?metadata_directive: ("COPY" | "REPLACE"),
+                       ?tagging_directive: ("COPY" | "REPLACE"),
+                       ?server_side_encryption: ("AES256" | "aws:fsx" | "aws:kms" | "aws:kms:dsse"),
+                       ?storage_class: ("STANDARD" | "REDUCED_REDUNDANCY" | "STANDARD_IA" | "ONEZONE_IA" | "INTELLIGENT_TIERING" | "GLACIER" | "DEEP_ARCHIVE" | "OUTPOSTS" | "GLACIER_IR" | "SNOW" | "EXPRESS_ONEZONE" | "FSX_OPENZFS" | "FSX_ONTAP"),
+                       ?website_redirect_location: ::String,
+                       ?sse_customer_algorithm: ::String,
+                       ?sse_customer_key: ::String,
+                       ?sse_customer_key_md5: ::String,
+                       ?ssekms_key_id: ::String,
+                       ?ssekms_encryption_context: ::String,
+                       ?bucket_key_enabled: bool,
+                       ?copy_source_sse_customer_algorithm: ::String,
+                       ?copy_source_sse_customer_key: ::String,
+                       ?copy_source_sse_customer_key_md5: ::String,
+                       ?request_payer: ("requester"),
+                       ?tagging: ::String,
+                       ?object_lock_mode: ("GOVERNANCE" | "COMPLIANCE"),
+                       ?object_lock_retain_until_date: ::Time,
+                       ?object_lock_legal_hold_status: ("ON" | "OFF"),
+                       ?expected_bucket_owner: ::String,
+                       ?expected_source_bucket_owner: ::String
+                     ) -> Types::CopyObjectOutput
+                   | (?Hash[Symbol, untyped]) -> Types::CopyObjectOutput
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectSummary.html#delete-instance_method
+      def delete: (
+                    ?mfa: ::String,
+                    ?version_id: ::String,
+                    ?request_payer: ("requester"),
+                    ?bypass_governance_retention: bool,
+                    ?expected_bucket_owner: ::String,
+                    ?if_match: ::String,
+                    ?if_match_last_modified_time: ::Time,
+                    ?if_match_size: ::Integer
+                  ) -> Types::DeleteObjectOutput
+                | (?Hash[Symbol, untyped]) -> Types::DeleteObjectOutput
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectSummary.html#get-instance_method
+      def get: (
+                 ?if_match: ::String,
+                 ?if_modified_since: ::Time,
+                 ?if_none_match: ::String,
+                 ?if_unmodified_since: ::Time,
+                 ?range: ::String,
+                 ?response_cache_control: ::String,
+                 ?response_content_disposition: ::String,
+                 ?response_content_encoding: ::String,
+                 ?response_content_language: ::String,
+                 ?response_content_type: ::String,
+                 ?response_expires: ::Time,
+                 ?version_id: ::String,
+                 ?sse_customer_algorithm: ::String,
+                 ?sse_customer_key: ::String,
+                 ?sse_customer_key_md5: ::String,
+                 ?request_payer: ("requester"),
+                 ?part_number: ::Integer,
+                 ?expected_bucket_owner: ::String,
+                 ?checksum_mode: ("ENABLED")
+               ) -> Types::GetObjectOutput
+             | (?Hash[Symbol, untyped]) -> Types::GetObjectOutput
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectSummary.html#initiate_multipart_upload-instance_method
+      def initiate_multipart_upload: (
+                                       ?acl: ("private" | "public-read" | "public-read-write" | "authenticated-read" | "aws-exec-read" | "bucket-owner-read" | "bucket-owner-full-control"),
+                                       ?cache_control: ::String,
+                                       ?content_disposition: ::String,
+                                       ?content_encoding: ::String,
+                                       ?content_language: ::String,
+                                       ?content_type: ::String,
+                                       ?expires: ::Time,
+                                       ?grant_full_control: ::String,
+                                       ?grant_read: ::String,
+                                       ?grant_read_acp: ::String,
+                                       ?grant_write_acp: ::String,
+                                       ?metadata: Hash[::String, ::String],
+                                       ?server_side_encryption: ("AES256" | "aws:fsx" | "aws:kms" | "aws:kms:dsse"),
+                                       ?storage_class: ("STANDARD" | "REDUCED_REDUNDANCY" | "STANDARD_IA" | "ONEZONE_IA" | "INTELLIGENT_TIERING" | "GLACIER" | "DEEP_ARCHIVE" | "OUTPOSTS" | "GLACIER_IR" | "SNOW" | "EXPRESS_ONEZONE" | "FSX_OPENZFS" | "FSX_ONTAP"),
+                                       ?website_redirect_location: ::String,
+                                       ?sse_customer_algorithm: ::String,
+                                       ?sse_customer_key: ::String,
+                                       ?sse_customer_key_md5: ::String,
+                                       ?ssekms_key_id: ::String,
+                                       ?ssekms_encryption_context: ::String,
+                                       ?bucket_key_enabled: bool,
+                                       ?request_payer: ("requester"),
+                                       ?tagging: ::String,
+                                       ?object_lock_mode: ("GOVERNANCE" | "COMPLIANCE"),
+                                       ?object_lock_retain_until_date: ::Time,
+                                       ?object_lock_legal_hold_status: ("ON" | "OFF"),
+                                       ?expected_bucket_owner: ::String,
+                                       ?checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME"),
+                                       ?checksum_type: ("COMPOSITE" | "FULL_OBJECT")
+                                     ) -> MultipartUpload
+                                   | (?Hash[Symbol, untyped]) -> MultipartUpload
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectSummary.html#put-instance_method
+      def put: (
+                 ?acl: ("private" | "public-read" | "public-read-write" | "authenticated-read" | "aws-exec-read" | "bucket-owner-read" | "bucket-owner-full-control"),
+                 ?body: ::String | ::StringIO | ::File,
+                 ?cache_control: ::String,
+                 ?content_disposition: ::String,
+                 ?content_encoding: ::String,
+                 ?content_language: ::String,
+                 ?content_length: ::Integer,
+                 ?content_md5: ::String,
+                 ?content_type: ::String,
+                 ?checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME"),
+                 ?checksum_crc32: ::String,
+                 ?checksum_crc32c: ::String,
+                 ?checksum_crc64nvme: ::String,
+                 ?checksum_sha1: ::String,
+                 ?checksum_sha256: ::String,
+                 ?expires: ::Time,
+                 ?if_match: ::String,
+                 ?if_none_match: ::String,
+                 ?grant_full_control: ::String,
+                 ?grant_read: ::String,
+                 ?grant_read_acp: ::String,
+                 ?grant_write_acp: ::String,
+                 ?write_offset_bytes: ::Integer,
+                 ?metadata: Hash[::String, ::String],
+                 ?server_side_encryption: ("AES256" | "aws:fsx" | "aws:kms" | "aws:kms:dsse"),
+                 ?storage_class: ("STANDARD" | "REDUCED_REDUNDANCY" | "STANDARD_IA" | "ONEZONE_IA" | "INTELLIGENT_TIERING" | "GLACIER" | "DEEP_ARCHIVE" | "OUTPOSTS" | "GLACIER_IR" | "SNOW" | "EXPRESS_ONEZONE" | "FSX_OPENZFS" | "FSX_ONTAP"),
+                 ?website_redirect_location: ::String,
+                 ?sse_customer_algorithm: ::String,
+                 ?sse_customer_key: ::String,
+                 ?sse_customer_key_md5: ::String,
+                 ?ssekms_key_id: ::String,
+                 ?ssekms_encryption_context: ::String,
+                 ?bucket_key_enabled: bool,
+                 ?request_payer: ("requester"),
+                 ?tagging: ::String,
+                 ?object_lock_mode: ("GOVERNANCE" | "COMPLIANCE"),
+                 ?object_lock_retain_until_date: ::Time,
+                 ?object_lock_legal_hold_status: ("ON" | "OFF"),
+                 ?expected_bucket_owner: ::String
+               ) -> Types::PutObjectOutput
+             | (?Hash[Symbol, untyped]) -> Types::PutObjectOutput
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectSummary.html#restore_object-instance_method
+      def restore_object: (
+                            ?version_id: ::String,
+                            ?restore_request: {
+                              days: ::Integer?,
+                              glacier_job_parameters: {
+                                tier: ("Standard" | "Bulk" | "Expedited")
+                              }?,
+                              type: ("SELECT")?,
+                              tier: ("Standard" | "Bulk" | "Expedited")?,
+                              description: ::String?,
+                              select_parameters: {
+                                input_serialization: {
+                                  csv: {
+                                    file_header_info: ("USE" | "IGNORE" | "NONE")?,
+                                    comments: ::String?,
+                                    quote_escape_character: ::String?,
+                                    record_delimiter: ::String?,
+                                    field_delimiter: ::String?,
+                                    quote_character: ::String?,
+                                    allow_quoted_record_delimiter: bool?
+                                  }?,
+                                  compression_type: ("NONE" | "GZIP" | "BZIP2")?,
+                                  json: {
+                                    type: ("DOCUMENT" | "LINES")?
+                                  }?,
+                                  parquet: {
+                                  }?
+                                },
+                                expression_type: ("SQL"),
+                                expression: ::String,
+                                output_serialization: {
+                                  csv: {
+                                    quote_fields: ("ALWAYS" | "ASNEEDED")?,
+                                    quote_escape_character: ::String?,
+                                    record_delimiter: ::String?,
+                                    field_delimiter: ::String?,
+                                    quote_character: ::String?
+                                  }?,
+                                  json: {
+                                    record_delimiter: ::String?
+                                  }?
+                                }
+                              }?,
+                              output_location: {
+                                s3: {
+                                  bucket_name: ::String,
+                                  prefix: ::String,
+                                  encryption: {
+                                    encryption_type: ("AES256" | "aws:fsx" | "aws:kms" | "aws:kms:dsse"),
+                                    kms_key_id: ::String?,
+                                    kms_context: ::String?
+                                  }?,
+                                  canned_acl: ("private" | "public-read" | "public-read-write" | "authenticated-read" | "aws-exec-read" | "bucket-owner-read" | "bucket-owner-full-control")?,
+                                  access_control_list: Array[
+                                    {
+                                      grantee: {
+                                        display_name: ::String?,
+                                        email_address: ::String?,
+                                        id: ::String?,
+                                        type: ("CanonicalUser" | "AmazonCustomerByEmail" | "Group"),
+                                        uri: ::String?
+                                      }?,
+                                      permission: ("FULL_CONTROL" | "WRITE" | "WRITE_ACP" | "READ" | "READ_ACP")?
+                                    },
+                                  ]?,
+                                  tagging: {
+                                    tag_set: Array[
+                                      {
+                                        key: ::String,
+                                        value: ::String
+                                      },
+                                    ]
+                                  }?,
+                                  user_metadata: Array[
+                                    {
+                                      name: ::String?,
+                                      value: ::String?
+                                    },
+                                  ]?,
+                                  storage_class: ("STANDARD" | "REDUCED_REDUNDANCY" | "STANDARD_IA" | "ONEZONE_IA" | "INTELLIGENT_TIERING" | "GLACIER" | "DEEP_ARCHIVE" | "OUTPOSTS" | "GLACIER_IR" | "SNOW" | "EXPRESS_ONEZONE" | "FSX_OPENZFS" | "FSX_ONTAP")?
+                                }?
+                              }?
+                            },
+                            ?request_payer: ("requester"),
+                            ?checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME"),
+                            ?expected_bucket_owner: ::String
+                          ) -> Types::RestoreObjectOutput
+                        | (?Hash[Symbol, untyped]) -> Types::RestoreObjectOutput
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectSummary.html#acl-instance_method
+      def acl: () -> ObjectAcl
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectSummary.html#bucket-instance_method
+      def bucket: () -> Bucket
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectSummary.html#multipart_upload-instance_method
+      def multipart_upload: (String id) -> MultipartUpload
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectSummary.html#object-instance_method
+      def object: () -> Object
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectSummary.html#version-instance_method
+      def version: (String id) -> ObjectVersion
+
+      class Collection < ::Aws::Resources::Collection[ObjectSummary]
+
+        def batch_delete!: (
+                             ?mfa: ::String,
+                             ?request_payer: ("requester"),
+                             ?bypass_governance_retention: bool,
+                             ?expected_bucket_owner: ::String,
+                             ?checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+                           ) -> void
+                       | (?Hash[Symbol, untyped]) -> void
+      end
+    end
+  end
+end

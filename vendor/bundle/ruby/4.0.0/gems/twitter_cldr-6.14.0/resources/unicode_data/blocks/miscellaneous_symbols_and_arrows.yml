@@ -1,0 +1,4049 @@
+---
+11008:
+- 11008
+- NORTH EAST WHITE ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11009:
+- 11009
+- NORTH WEST WHITE ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11010:
+- 11010
+- SOUTH EAST WHITE ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11011:
+- 11011
+- SOUTH WEST WHITE ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11012:
+- 11012
+- LEFT RIGHT WHITE ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11013:
+- 11013
+- LEFTWARDS BLACK ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11014:
+- 11014
+- UPWARDS BLACK ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11015:
+- 11015
+- DOWNWARDS BLACK ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11016:
+- 11016
+- NORTH EAST BLACK ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11017:
+- 11017
+- NORTH WEST BLACK ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11018:
+- 11018
+- SOUTH EAST BLACK ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11019:
+- 11019
+- SOUTH WEST BLACK ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11020:
+- 11020
+- LEFT RIGHT BLACK ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11021:
+- 11021
+- UP DOWN BLACK ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11022:
+- 11022
+- RIGHTWARDS ARROW WITH TIP DOWNWARDS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11023:
+- 11023
+- RIGHTWARDS ARROW WITH TIP UPWARDS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11024:
+- 11024
+- LEFTWARDS ARROW WITH TIP DOWNWARDS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11025:
+- 11025
+- LEFTWARDS ARROW WITH TIP UPWARDS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11026:
+- 11026
+- SQUARE WITH TOP HALF BLACK
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11027:
+- 11027
+- SQUARE WITH BOTTOM HALF BLACK
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11028:
+- 11028
+- SQUARE WITH UPPER RIGHT DIAGONAL HALF BLACK
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11029:
+- 11029
+- SQUARE WITH LOWER LEFT DIAGONAL HALF BLACK
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11030:
+- 11030
+- DIAMOND WITH LEFT HALF BLACK
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11031:
+- 11031
+- DIAMOND WITH RIGHT HALF BLACK
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11032:
+- 11032
+- DIAMOND WITH TOP HALF BLACK
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11033:
+- 11033
+- DIAMOND WITH BOTTOM HALF BLACK
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11034:
+- 11034
+- DOTTED SQUARE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11035:
+- 11035
+- BLACK LARGE SQUARE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11036:
+- 11036
+- WHITE LARGE SQUARE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11037:
+- 11037
+- BLACK VERY SMALL SQUARE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11038:
+- 11038
+- WHITE VERY SMALL SQUARE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11039:
+- 11039
+- BLACK PENTAGON
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11040:
+- 11040
+- WHITE PENTAGON
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11041:
+- 11041
+- WHITE HEXAGON
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11042:
+- 11042
+- BLACK HEXAGON
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11043:
+- 11043
+- HORIZONTAL BLACK HEXAGON
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11044:
+- 11044
+- BLACK LARGE CIRCLE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11045:
+- 11045
+- BLACK MEDIUM DIAMOND
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11046:
+- 11046
+- WHITE MEDIUM DIAMOND
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11047:
+- 11047
+- BLACK MEDIUM LOZENGE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11048:
+- 11048
+- WHITE MEDIUM LOZENGE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11049:
+- 11049
+- BLACK SMALL DIAMOND
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11050:
+- 11050
+- BLACK SMALL LOZENGE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11051:
+- 11051
+- WHITE SMALL LOZENGE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11052:
+- 11052
+- BLACK HORIZONTAL ELLIPSE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11053:
+- 11053
+- WHITE HORIZONTAL ELLIPSE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11054:
+- 11054
+- BLACK VERTICAL ELLIPSE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11055:
+- 11055
+- WHITE VERTICAL ELLIPSE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11056:
+- 11056
+- LEFT ARROW WITH SMALL CIRCLE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11057:
+- 11057
+- THREE LEFTWARDS ARROWS
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11058:
+- 11058
+- LEFT ARROW WITH CIRCLED PLUS
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11059:
+- 11059
+- LONG LEFTWARDS SQUIGGLE ARROW
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11060:
+- 11060
+- LEFTWARDS TWO-HEADED ARROW WITH VERTICAL STROKE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11061:
+- 11061
+- LEFTWARDS TWO-HEADED ARROW WITH DOUBLE VERTICAL STROKE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11062:
+- 11062
+- LEFTWARDS TWO-HEADED ARROW FROM BAR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11063:
+- 11063
+- LEFTWARDS TWO-HEADED TRIPLE DASH ARROW
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11064:
+- 11064
+- LEFTWARDS ARROW WITH DOTTED STEM
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11065:
+- 11065
+- LEFTWARDS ARROW WITH TAIL WITH VERTICAL STROKE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11066:
+- 11066
+- LEFTWARDS ARROW WITH TAIL WITH DOUBLE VERTICAL STROKE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11067:
+- 11067
+- LEFTWARDS TWO-HEADED ARROW WITH TAIL
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11068:
+- 11068
+- LEFTWARDS TWO-HEADED ARROW WITH TAIL WITH VERTICAL STROKE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11069:
+- 11069
+- LEFTWARDS TWO-HEADED ARROW WITH TAIL WITH DOUBLE VERTICAL STROKE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11070:
+- 11070
+- LEFTWARDS ARROW THROUGH X
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11071:
+- 11071
+- WAVE ARROW POINTING DIRECTLY LEFT
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11072:
+- 11072
+- EQUALS SIGN ABOVE LEFTWARDS ARROW
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11073:
+- 11073
+- REVERSE TILDE OPERATOR ABOVE LEFTWARDS ARROW
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11074:
+- 11074
+- LEFTWARDS ARROW ABOVE REVERSE ALMOST EQUAL TO
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11075:
+- 11075
+- RIGHTWARDS ARROW THROUGH GREATER-THAN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11076:
+- 11076
+- RIGHTWARDS ARROW THROUGH SUPERSET
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11077:
+- 11077
+- LEFTWARDS QUADRUPLE ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11078:
+- 11078
+- RIGHTWARDS QUADRUPLE ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11079:
+- 11079
+- REVERSE TILDE OPERATOR ABOVE RIGHTWARDS ARROW
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11080:
+- 11080
+- RIGHTWARDS ARROW ABOVE REVERSE ALMOST EQUAL TO
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11081:
+- 11081
+- TILDE OPERATOR ABOVE LEFTWARDS ARROW
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11082:
+- 11082
+- LEFTWARDS ARROW ABOVE ALMOST EQUAL TO
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11083:
+- 11083
+- LEFTWARDS ARROW ABOVE REVERSE TILDE OPERATOR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11084:
+- 11084
+- RIGHTWARDS ARROW ABOVE REVERSE TILDE OPERATOR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11085:
+- 11085
+- DOWNWARDS TRIANGLE-HEADED ZIGZAG ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11086:
+- 11086
+- SHORT SLANTED NORTH ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11087:
+- 11087
+- SHORT BACKSLANTED SOUTH ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11088:
+- 11088
+- WHITE MEDIUM STAR
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11089:
+- 11089
+- BLACK SMALL STAR
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11090:
+- 11090
+- WHITE SMALL STAR
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11091:
+- 11091
+- BLACK RIGHT-POINTING PENTAGON
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11092:
+- 11092
+- WHITE RIGHT-POINTING PENTAGON
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11093:
+- 11093
+- HEAVY LARGE CIRCLE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11094:
+- 11094
+- HEAVY OVAL WITH OVAL INSIDE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11095:
+- 11095
+- HEAVY CIRCLE WITH CIRCLE INSIDE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11096:
+- 11096
+- HEAVY CIRCLE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11097:
+- 11097
+- HEAVY CIRCLED SALTIRE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11098:
+- 11098
+- SLANTED NORTH ARROW WITH HOOKED HEAD
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11099:
+- 11099
+- BACKSLANTED SOUTH ARROW WITH HOOKED TAIL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11100:
+- 11100
+- SLANTED NORTH ARROW WITH HORIZONTAL TAIL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11101:
+- 11101
+- BACKSLANTED SOUTH ARROW WITH HORIZONTAL TAIL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11102:
+- 11102
+- BENT ARROW POINTING DOWNWARDS THEN NORTH EAST
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11103:
+- 11103
+- SHORT BENT ARROW POINTING DOWNWARDS THEN NORTH EAST
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11104:
+- 11104
+- LEFTWARDS TRIANGLE-HEADED ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11105:
+- 11105
+- UPWARDS TRIANGLE-HEADED ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11106:
+- 11106
+- RIGHTWARDS TRIANGLE-HEADED ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11107:
+- 11107
+- DOWNWARDS TRIANGLE-HEADED ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11108:
+- 11108
+- LEFT RIGHT TRIANGLE-HEADED ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11109:
+- 11109
+- UP DOWN TRIANGLE-HEADED ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11110:
+- 11110
+- NORTH WEST TRIANGLE-HEADED ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11111:
+- 11111
+- NORTH EAST TRIANGLE-HEADED ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11112:
+- 11112
+- SOUTH EAST TRIANGLE-HEADED ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11113:
+- 11113
+- SOUTH WEST TRIANGLE-HEADED ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11114:
+- 11114
+- LEFTWARDS TRIANGLE-HEADED DASHED ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11115:
+- 11115
+- UPWARDS TRIANGLE-HEADED DASHED ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11116:
+- 11116
+- RIGHTWARDS TRIANGLE-HEADED DASHED ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11117:
+- 11117
+- DOWNWARDS TRIANGLE-HEADED DASHED ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11118:
+- 11118
+- CLOCKWISE TRIANGLE-HEADED OPEN CIRCLE ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11119:
+- 11119
+- ANTICLOCKWISE TRIANGLE-HEADED OPEN CIRCLE ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11120:
+- 11120
+- LEFTWARDS TRIANGLE-HEADED ARROW TO BAR
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11121:
+- 11121
+- UPWARDS TRIANGLE-HEADED ARROW TO BAR
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11122:
+- 11122
+- RIGHTWARDS TRIANGLE-HEADED ARROW TO BAR
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11123:
+- 11123
+- DOWNWARDS TRIANGLE-HEADED ARROW TO BAR
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11126:
+- 11126
+- NORTH WEST TRIANGLE-HEADED ARROW TO BAR
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11127:
+- 11127
+- NORTH EAST TRIANGLE-HEADED ARROW TO BAR
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11128:
+- 11128
+- SOUTH EAST TRIANGLE-HEADED ARROW TO BAR
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11129:
+- 11129
+- SOUTH WEST TRIANGLE-HEADED ARROW TO BAR
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11130:
+- 11130
+- LEFTWARDS TRIANGLE-HEADED ARROW WITH DOUBLE HORIZONTAL STROKE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11131:
+- 11131
+- UPWARDS TRIANGLE-HEADED ARROW WITH DOUBLE HORIZONTAL STROKE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11132:
+- 11132
+- RIGHTWARDS TRIANGLE-HEADED ARROW WITH DOUBLE HORIZONTAL STROKE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11133:
+- 11133
+- DOWNWARDS TRIANGLE-HEADED ARROW WITH DOUBLE HORIZONTAL STROKE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11134:
+- 11134
+- HORIZONTAL TAB KEY
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11135:
+- 11135
+- VERTICAL TAB KEY
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11136:
+- 11136
+- LEFTWARDS TRIANGLE-HEADED ARROW OVER RIGHTWARDS TRIANGLE-HEADED ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11137:
+- 11137
+- UPWARDS TRIANGLE-HEADED ARROW LEFTWARDS OF DOWNWARDS TRIANGLE-HEADED ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11138:
+- 11138
+- RIGHTWARDS TRIANGLE-HEADED ARROW OVER LEFTWARDS TRIANGLE-HEADED ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11139:
+- 11139
+- DOWNWARDS TRIANGLE-HEADED ARROW LEFTWARDS OF UPWARDS TRIANGLE-HEADED ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11140:
+- 11140
+- LEFTWARDS TRIANGLE-HEADED PAIRED ARROWS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11141:
+- 11141
+- UPWARDS TRIANGLE-HEADED PAIRED ARROWS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11142:
+- 11142
+- RIGHTWARDS TRIANGLE-HEADED PAIRED ARROWS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11143:
+- 11143
+- DOWNWARDS TRIANGLE-HEADED PAIRED ARROWS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11144:
+- 11144
+- LEFTWARDS BLACK CIRCLED WHITE ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11145:
+- 11145
+- UPWARDS BLACK CIRCLED WHITE ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11146:
+- 11146
+- RIGHTWARDS BLACK CIRCLED WHITE ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11147:
+- 11147
+- DOWNWARDS BLACK CIRCLED WHITE ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11148:
+- 11148
+- ANTICLOCKWISE TRIANGLE-HEADED RIGHT U-SHAPED ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11149:
+- 11149
+- ANTICLOCKWISE TRIANGLE-HEADED BOTTOM U-SHAPED ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11150:
+- 11150
+- ANTICLOCKWISE TRIANGLE-HEADED LEFT U-SHAPED ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11151:
+- 11151
+- ANTICLOCKWISE TRIANGLE-HEADED TOP U-SHAPED ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11152:
+- 11152
+- RETURN LEFT
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11153:
+- 11153
+- RETURN RIGHT
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11154:
+- 11154
+- NEWLINE LEFT
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11155:
+- 11155
+- NEWLINE RIGHT
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11156:
+- 11156
+- FOUR CORNER ARROWS CIRCLING ANTICLOCKWISE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11157:
+- 11157
+- RIGHTWARDS BLACK ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11159:
+- 11159
+- SYMBOL FOR TYPE A ELECTRONICS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11160:
+- 11160
+- THREE-D TOP-LIGHTED LEFTWARDS EQUILATERAL ARROWHEAD
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11161:
+- 11161
+- THREE-D RIGHT-LIGHTED UPWARDS EQUILATERAL ARROWHEAD
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11162:
+- 11162
+- THREE-D TOP-LIGHTED RIGHTWARDS EQUILATERAL ARROWHEAD
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11163:
+- 11163
+- THREE-D LEFT-LIGHTED DOWNWARDS EQUILATERAL ARROWHEAD
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11164:
+- 11164
+- BLACK LEFTWARDS EQUILATERAL ARROWHEAD
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11165:
+- 11165
+- BLACK UPWARDS EQUILATERAL ARROWHEAD
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11166:
+- 11166
+- BLACK RIGHTWARDS EQUILATERAL ARROWHEAD
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11167:
+- 11167
+- BLACK DOWNWARDS EQUILATERAL ARROWHEAD
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11168:
+- 11168
+- DOWNWARDS TRIANGLE-HEADED ARROW WITH LONG TIP LEFTWARDS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11169:
+- 11169
+- DOWNWARDS TRIANGLE-HEADED ARROW WITH LONG TIP RIGHTWARDS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11170:
+- 11170
+- UPWARDS TRIANGLE-HEADED ARROW WITH LONG TIP LEFTWARDS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11171:
+- 11171
+- UPWARDS TRIANGLE-HEADED ARROW WITH LONG TIP RIGHTWARDS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11172:
+- 11172
+- LEFTWARDS TRIANGLE-HEADED ARROW WITH LONG TIP UPWARDS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11173:
+- 11173
+- RIGHTWARDS TRIANGLE-HEADED ARROW WITH LONG TIP UPWARDS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11174:
+- 11174
+- LEFTWARDS TRIANGLE-HEADED ARROW WITH LONG TIP DOWNWARDS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11175:
+- 11175
+- RIGHTWARDS TRIANGLE-HEADED ARROW WITH LONG TIP DOWNWARDS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11176:
+- 11176
+- BLACK CURVED DOWNWARDS AND LEFTWARDS ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11177:
+- 11177
+- BLACK CURVED DOWNWARDS AND RIGHTWARDS ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11178:
+- 11178
+- BLACK CURVED UPWARDS AND LEFTWARDS ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11179:
+- 11179
+- BLACK CURVED UPWARDS AND RIGHTWARDS ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11180:
+- 11180
+- BLACK CURVED LEFTWARDS AND UPWARDS ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11181:
+- 11181
+- BLACK CURVED RIGHTWARDS AND UPWARDS ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11182:
+- 11182
+- BLACK CURVED LEFTWARDS AND DOWNWARDS ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11183:
+- 11183
+- BLACK CURVED RIGHTWARDS AND DOWNWARDS ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11184:
+- 11184
+- RIBBON ARROW DOWN LEFT
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11185:
+- 11185
+- RIBBON ARROW DOWN RIGHT
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11186:
+- 11186
+- RIBBON ARROW UP LEFT
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11187:
+- 11187
+- RIBBON ARROW UP RIGHT
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11188:
+- 11188
+- RIBBON ARROW LEFT UP
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11189:
+- 11189
+- RIBBON ARROW RIGHT UP
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11190:
+- 11190
+- RIBBON ARROW LEFT DOWN
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11191:
+- 11191
+- RIBBON ARROW RIGHT DOWN
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11192:
+- 11192
+- UPWARDS WHITE ARROW FROM BAR WITH HORIZONTAL BAR
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11193:
+- 11193
+- UP ARROWHEAD IN A RECTANGLE BOX
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11194:
+- 11194
+- OVERLAPPING WHITE SQUARES
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11195:
+- 11195
+- OVERLAPPING WHITE AND BLACK SQUARES
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11196:
+- 11196
+- OVERLAPPING BLACK SQUARES
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11197:
+- 11197
+- BALLOT BOX WITH LIGHT X
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11198:
+- 11198
+- CIRCLED X
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11199:
+- 11199
+- CIRCLED BOLD X
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11200:
+- 11200
+- BLACK SQUARE CENTRED
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11201:
+- 11201
+- BLACK DIAMOND CENTRED
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11202:
+- 11202
+- TURNED BLACK PENTAGON
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11203:
+- 11203
+- HORIZONTAL BLACK OCTAGON
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11204:
+- 11204
+- BLACK OCTAGON
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11205:
+- 11205
+- BLACK MEDIUM UP-POINTING TRIANGLE CENTRED
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11206:
+- 11206
+- BLACK MEDIUM DOWN-POINTING TRIANGLE CENTRED
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11207:
+- 11207
+- BLACK MEDIUM LEFT-POINTING TRIANGLE CENTRED
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11208:
+- 11208
+- BLACK MEDIUM RIGHT-POINTING TRIANGLE CENTRED
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11209:
+- 11209
+- NEPTUNE FORM TWO
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11210:
+- 11210
+- TOP HALF BLACK CIRCLE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11211:
+- 11211
+- BOTTOM HALF BLACK CIRCLE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11212:
+- 11212
+- LIGHT FOUR POINTED BLACK CUSP
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11213:
+- 11213
+- ROTATED LIGHT FOUR POINTED BLACK CUSP
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11214:
+- 11214
+- WHITE FOUR POINTED CUSP
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11215:
+- 11215
+- ROTATED WHITE FOUR POINTED CUSP
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11216:
+- 11216
+- SQUARE POSITION INDICATOR
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11217:
+- 11217
+- UNCERTAINTY SIGN
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11218:
+- 11218
+- GROUP MARK
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11219:
+- 11219
+- PLUTO FORM TWO
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11220:
+- 11220
+- PLUTO FORM THREE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11221:
+- 11221
+- PLUTO FORM FOUR
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11222:
+- 11222
+- PLUTO FORM FIVE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11223:
+- 11223
+- TRANSPLUTO
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11224:
+- 11224
+- PROSERPINA
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11225:
+- 11225
+- ASTRAEA
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11226:
+- 11226
+- HYGIEA
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11227:
+- 11227
+- PHOLUS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11228:
+- 11228
+- NESSUS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11229:
+- 11229
+- WHITE MOON SELENA
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11230:
+- 11230
+- BLACK DIAMOND ON CROSS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11231:
+- 11231
+- TRUE LIGHT MOON ARTA
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11232:
+- 11232
+- CUPIDO
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11233:
+- 11233
+- HADES
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11234:
+- 11234
+- ZEUS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11235:
+- 11235
+- KRONOS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11236:
+- 11236
+- APOLLON
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11237:
+- 11237
+- ADMETOS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11238:
+- 11238
+- VULCANUS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11239:
+- 11239
+- POSEIDON
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11240:
+- 11240
+- LEFT HALF BLACK STAR
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11241:
+- 11241
+- RIGHT HALF BLACK STAR
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11242:
+- 11242
+- STAR WITH LEFT HALF BLACK
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11243:
+- 11243
+- STAR WITH RIGHT HALF BLACK
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11244:
+- 11244
+- LEFTWARDS TWO-HEADED ARROW WITH TRIANGLE ARROWHEADS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11245:
+- 11245
+- UPWARDS TWO-HEADED ARROW WITH TRIANGLE ARROWHEADS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11246:
+- 11246
+- RIGHTWARDS TWO-HEADED ARROW WITH TRIANGLE ARROWHEADS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11247:
+- 11247
+- DOWNWARDS TWO-HEADED ARROW WITH TRIANGLE ARROWHEADS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11248:
+- 11248
+- ERIS FORM ONE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11249:
+- 11249
+- ERIS FORM TWO
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11250:
+- 11250
+- SEDNA
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11251:
+- 11251
+- RUSSIAN ASTROLOGICAL SYMBOL VIGINTILE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11252:
+- 11252
+- RUSSIAN ASTROLOGICAL SYMBOL NOVILE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11253:
+- 11253
+- RUSSIAN ASTROLOGICAL SYMBOL QUINTILE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11254:
+- 11254
+- RUSSIAN ASTROLOGICAL SYMBOL BINOVILE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11255:
+- 11255
+- RUSSIAN ASTROLOGICAL SYMBOL SENTAGON
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11256:
+- 11256
+- RUSSIAN ASTROLOGICAL SYMBOL TREDECILE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11257:
+- 11257
+- EQUALS SIGN WITH INFINITY BELOW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11258:
+- 11258
+- UNITED SYMBOL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11259:
+- 11259
+- SEPARATED SYMBOL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11260:
+- 11260
+- DOUBLED SYMBOL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11261:
+- 11261
+- PASSED SYMBOL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+11262:
+- 11262
+- REVERSED RIGHT ANGLE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+11263:
+- 11263
+- HELLSCHREIBER PAUSE SYMBOL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''

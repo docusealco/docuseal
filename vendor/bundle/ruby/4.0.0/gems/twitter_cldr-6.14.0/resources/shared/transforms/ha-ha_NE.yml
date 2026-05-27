@@ -1,0 +1,14 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - ha-NE-t-ha
+    :direction: forward
+    :rules: 
+      - ":: [yYƴƳʼ] ;"
+      - ":: NFC ;"
+      - "ʼy>ƴ ;"
+      - "ʼY>Ƴ ;"
+    :source: ha
+    :target: ha_NE
+    :variant: ~

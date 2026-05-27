@@ -1,0 +1,2049 @@
+---
+256:
+- 256
+- LATIN CAPITAL LETTER A WITH MACRON
+- Lu
+- '0'
+- L
+- 0041 0304
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER A MACRON
+- ''
+- ''
+- '0101'
+- ''
+257:
+- 257
+- LATIN SMALL LETTER A WITH MACRON
+- Ll
+- '0'
+- L
+- 0061 0304
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER A MACRON
+- ''
+- '0100'
+- ''
+- '0100'
+258:
+- 258
+- LATIN CAPITAL LETTER A WITH BREVE
+- Lu
+- '0'
+- L
+- 0041 0306
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER A BREVE
+- ''
+- ''
+- '0103'
+- ''
+259:
+- 259
+- LATIN SMALL LETTER A WITH BREVE
+- Ll
+- '0'
+- L
+- 0061 0306
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER A BREVE
+- ''
+- '0102'
+- ''
+- '0102'
+260:
+- 260
+- LATIN CAPITAL LETTER A WITH OGONEK
+- Lu
+- '0'
+- L
+- 0041 0328
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER A OGONEK
+- ''
+- ''
+- '0105'
+- ''
+261:
+- 261
+- LATIN SMALL LETTER A WITH OGONEK
+- Ll
+- '0'
+- L
+- 0061 0328
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER A OGONEK
+- ''
+- '0104'
+- ''
+- '0104'
+262:
+- 262
+- LATIN CAPITAL LETTER C WITH ACUTE
+- Lu
+- '0'
+- L
+- 0043 0301
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER C ACUTE
+- ''
+- ''
+- '0107'
+- ''
+263:
+- 263
+- LATIN SMALL LETTER C WITH ACUTE
+- Ll
+- '0'
+- L
+- 0063 0301
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER C ACUTE
+- ''
+- '0106'
+- ''
+- '0106'
+264:
+- 264
+- LATIN CAPITAL LETTER C WITH CIRCUMFLEX
+- Lu
+- '0'
+- L
+- 0043 0302
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER C CIRCUMFLEX
+- ''
+- ''
+- '0109'
+- ''
+265:
+- 265
+- LATIN SMALL LETTER C WITH CIRCUMFLEX
+- Ll
+- '0'
+- L
+- 0063 0302
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER C CIRCUMFLEX
+- ''
+- '0108'
+- ''
+- '0108'
+266:
+- 266
+- LATIN CAPITAL LETTER C WITH DOT ABOVE
+- Lu
+- '0'
+- L
+- 0043 0307
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER C DOT
+- ''
+- ''
+- 010B
+- ''
+267:
+- 267
+- LATIN SMALL LETTER C WITH DOT ABOVE
+- Ll
+- '0'
+- L
+- 0063 0307
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER C DOT
+- ''
+- 010A
+- ''
+- 010A
+268:
+- 268
+- LATIN CAPITAL LETTER C WITH CARON
+- Lu
+- '0'
+- L
+- 0043 030C
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER C HACEK
+- ''
+- ''
+- 010D
+- ''
+269:
+- 269
+- LATIN SMALL LETTER C WITH CARON
+- Ll
+- '0'
+- L
+- 0063 030C
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER C HACEK
+- ''
+- 010C
+- ''
+- 010C
+270:
+- 270
+- LATIN CAPITAL LETTER D WITH CARON
+- Lu
+- '0'
+- L
+- 0044 030C
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER D HACEK
+- ''
+- ''
+- 010F
+- ''
+271:
+- 271
+- LATIN SMALL LETTER D WITH CARON
+- Ll
+- '0'
+- L
+- 0064 030C
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER D HACEK
+- ''
+- 010E
+- ''
+- 010E
+272:
+- 272
+- LATIN CAPITAL LETTER D WITH STROKE
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER D BAR
+- ''
+- ''
+- '0111'
+- ''
+273:
+- 273
+- LATIN SMALL LETTER D WITH STROKE
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER D BAR
+- ''
+- '0110'
+- ''
+- '0110'
+274:
+- 274
+- LATIN CAPITAL LETTER E WITH MACRON
+- Lu
+- '0'
+- L
+- 0045 0304
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER E MACRON
+- ''
+- ''
+- '0113'
+- ''
+275:
+- 275
+- LATIN SMALL LETTER E WITH MACRON
+- Ll
+- '0'
+- L
+- 0065 0304
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER E MACRON
+- ''
+- '0112'
+- ''
+- '0112'
+276:
+- 276
+- LATIN CAPITAL LETTER E WITH BREVE
+- Lu
+- '0'
+- L
+- 0045 0306
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER E BREVE
+- ''
+- ''
+- '0115'
+- ''
+277:
+- 277
+- LATIN SMALL LETTER E WITH BREVE
+- Ll
+- '0'
+- L
+- 0065 0306
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER E BREVE
+- ''
+- '0114'
+- ''
+- '0114'
+278:
+- 278
+- LATIN CAPITAL LETTER E WITH DOT ABOVE
+- Lu
+- '0'
+- L
+- 0045 0307
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER E DOT
+- ''
+- ''
+- '0117'
+- ''
+279:
+- 279
+- LATIN SMALL LETTER E WITH DOT ABOVE
+- Ll
+- '0'
+- L
+- 0065 0307
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER E DOT
+- ''
+- '0116'
+- ''
+- '0116'
+280:
+- 280
+- LATIN CAPITAL LETTER E WITH OGONEK
+- Lu
+- '0'
+- L
+- 0045 0328
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER E OGONEK
+- ''
+- ''
+- '0119'
+- ''
+281:
+- 281
+- LATIN SMALL LETTER E WITH OGONEK
+- Ll
+- '0'
+- L
+- 0065 0328
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER E OGONEK
+- ''
+- '0118'
+- ''
+- '0118'
+282:
+- 282
+- LATIN CAPITAL LETTER E WITH CARON
+- Lu
+- '0'
+- L
+- 0045 030C
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER E HACEK
+- ''
+- ''
+- 011B
+- ''
+283:
+- 283
+- LATIN SMALL LETTER E WITH CARON
+- Ll
+- '0'
+- L
+- 0065 030C
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER E HACEK
+- ''
+- 011A
+- ''
+- 011A
+284:
+- 284
+- LATIN CAPITAL LETTER G WITH CIRCUMFLEX
+- Lu
+- '0'
+- L
+- 0047 0302
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER G CIRCUMFLEX
+- ''
+- ''
+- 011D
+- ''
+285:
+- 285
+- LATIN SMALL LETTER G WITH CIRCUMFLEX
+- Ll
+- '0'
+- L
+- 0067 0302
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER G CIRCUMFLEX
+- ''
+- 011C
+- ''
+- 011C
+286:
+- 286
+- LATIN CAPITAL LETTER G WITH BREVE
+- Lu
+- '0'
+- L
+- 0047 0306
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER G BREVE
+- ''
+- ''
+- 011F
+- ''
+287:
+- 287
+- LATIN SMALL LETTER G WITH BREVE
+- Ll
+- '0'
+- L
+- 0067 0306
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER G BREVE
+- ''
+- 011E
+- ''
+- 011E
+288:
+- 288
+- LATIN CAPITAL LETTER G WITH DOT ABOVE
+- Lu
+- '0'
+- L
+- 0047 0307
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER G DOT
+- ''
+- ''
+- '0121'
+- ''
+289:
+- 289
+- LATIN SMALL LETTER G WITH DOT ABOVE
+- Ll
+- '0'
+- L
+- 0067 0307
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER G DOT
+- ''
+- '0120'
+- ''
+- '0120'
+290:
+- 290
+- LATIN CAPITAL LETTER G WITH CEDILLA
+- Lu
+- '0'
+- L
+- 0047 0327
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER G CEDILLA
+- ''
+- ''
+- '0123'
+- ''
+291:
+- 291
+- LATIN SMALL LETTER G WITH CEDILLA
+- Ll
+- '0'
+- L
+- 0067 0327
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER G CEDILLA
+- ''
+- '0122'
+- ''
+- '0122'
+292:
+- 292
+- LATIN CAPITAL LETTER H WITH CIRCUMFLEX
+- Lu
+- '0'
+- L
+- '0048 0302'
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER H CIRCUMFLEX
+- ''
+- ''
+- '0125'
+- ''
+293:
+- 293
+- LATIN SMALL LETTER H WITH CIRCUMFLEX
+- Ll
+- '0'
+- L
+- '0068 0302'
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER H CIRCUMFLEX
+- ''
+- '0124'
+- ''
+- '0124'
+294:
+- 294
+- LATIN CAPITAL LETTER H WITH STROKE
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER H BAR
+- ''
+- ''
+- '0127'
+- ''
+295:
+- 295
+- LATIN SMALL LETTER H WITH STROKE
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER H BAR
+- ''
+- '0126'
+- ''
+- '0126'
+296:
+- 296
+- LATIN CAPITAL LETTER I WITH TILDE
+- Lu
+- '0'
+- L
+- '0049 0303'
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER I TILDE
+- ''
+- ''
+- '0129'
+- ''
+297:
+- 297
+- LATIN SMALL LETTER I WITH TILDE
+- Ll
+- '0'
+- L
+- '0069 0303'
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER I TILDE
+- ''
+- '0128'
+- ''
+- '0128'
+298:
+- 298
+- LATIN CAPITAL LETTER I WITH MACRON
+- Lu
+- '0'
+- L
+- '0049 0304'
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER I MACRON
+- ''
+- ''
+- 012B
+- ''
+299:
+- 299
+- LATIN SMALL LETTER I WITH MACRON
+- Ll
+- '0'
+- L
+- '0069 0304'
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER I MACRON
+- ''
+- 012A
+- ''
+- 012A
+300:
+- 300
+- LATIN CAPITAL LETTER I WITH BREVE
+- Lu
+- '0'
+- L
+- '0049 0306'
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER I BREVE
+- ''
+- ''
+- 012D
+- ''
+301:
+- 301
+- LATIN SMALL LETTER I WITH BREVE
+- Ll
+- '0'
+- L
+- '0069 0306'
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER I BREVE
+- ''
+- 012C
+- ''
+- 012C
+302:
+- 302
+- LATIN CAPITAL LETTER I WITH OGONEK
+- Lu
+- '0'
+- L
+- '0049 0328'
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER I OGONEK
+- ''
+- ''
+- 012F
+- ''
+303:
+- 303
+- LATIN SMALL LETTER I WITH OGONEK
+- Ll
+- '0'
+- L
+- '0069 0328'
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER I OGONEK
+- ''
+- 012E
+- ''
+- 012E
+304:
+- 304
+- LATIN CAPITAL LETTER I WITH DOT ABOVE
+- Lu
+- '0'
+- L
+- '0049 0307'
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER I DOT
+- ''
+- ''
+- '0069'
+- ''
+305:
+- 305
+- LATIN SMALL LETTER DOTLESS I
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- '0049'
+- ''
+- '0049'
+306:
+- 306
+- LATIN CAPITAL LIGATURE IJ
+- Lu
+- '0'
+- L
+- "<compat> 0049 004A"
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER I J
+- ''
+- ''
+- '0133'
+- ''
+307:
+- 307
+- LATIN SMALL LIGATURE IJ
+- Ll
+- '0'
+- L
+- "<compat> 0069 006A"
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER I J
+- ''
+- '0132'
+- ''
+- '0132'
+308:
+- 308
+- LATIN CAPITAL LETTER J WITH CIRCUMFLEX
+- Lu
+- '0'
+- L
+- 004A 0302
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER J CIRCUMFLEX
+- ''
+- ''
+- '0135'
+- ''
+309:
+- 309
+- LATIN SMALL LETTER J WITH CIRCUMFLEX
+- Ll
+- '0'
+- L
+- 006A 0302
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER J CIRCUMFLEX
+- ''
+- '0134'
+- ''
+- '0134'
+310:
+- 310
+- LATIN CAPITAL LETTER K WITH CEDILLA
+- Lu
+- '0'
+- L
+- 004B 0327
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER K CEDILLA
+- ''
+- ''
+- '0137'
+- ''
+311:
+- 311
+- LATIN SMALL LETTER K WITH CEDILLA
+- Ll
+- '0'
+- L
+- 006B 0327
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER K CEDILLA
+- ''
+- '0136'
+- ''
+- '0136'
+312:
+- 312
+- LATIN SMALL LETTER KRA
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+313:
+- 313
+- LATIN CAPITAL LETTER L WITH ACUTE
+- Lu
+- '0'
+- L
+- 004C 0301
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER L ACUTE
+- ''
+- ''
+- 013A
+- ''
+314:
+- 314
+- LATIN SMALL LETTER L WITH ACUTE
+- Ll
+- '0'
+- L
+- 006C 0301
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER L ACUTE
+- ''
+- '0139'
+- ''
+- '0139'
+315:
+- 315
+- LATIN CAPITAL LETTER L WITH CEDILLA
+- Lu
+- '0'
+- L
+- 004C 0327
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER L CEDILLA
+- ''
+- ''
+- 013C
+- ''
+316:
+- 316
+- LATIN SMALL LETTER L WITH CEDILLA
+- Ll
+- '0'
+- L
+- 006C 0327
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER L CEDILLA
+- ''
+- 013B
+- ''
+- 013B
+317:
+- 317
+- LATIN CAPITAL LETTER L WITH CARON
+- Lu
+- '0'
+- L
+- 004C 030C
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER L HACEK
+- ''
+- ''
+- 013E
+- ''
+318:
+- 318
+- LATIN SMALL LETTER L WITH CARON
+- Ll
+- '0'
+- L
+- 006C 030C
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER L HACEK
+- ''
+- 013D
+- ''
+- 013D
+319:
+- 319
+- LATIN CAPITAL LETTER L WITH MIDDLE DOT
+- Lu
+- '0'
+- L
+- "<compat> 004C 00B7"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- '0140'
+- ''
+320:
+- 320
+- LATIN SMALL LETTER L WITH MIDDLE DOT
+- Ll
+- '0'
+- L
+- "<compat> 006C 00B7"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 013F
+- ''
+- 013F
+321:
+- 321
+- LATIN CAPITAL LETTER L WITH STROKE
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER L SLASH
+- ''
+- ''
+- '0142'
+- ''
+322:
+- 322
+- LATIN SMALL LETTER L WITH STROKE
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER L SLASH
+- ''
+- '0141'
+- ''
+- '0141'
+323:
+- 323
+- LATIN CAPITAL LETTER N WITH ACUTE
+- Lu
+- '0'
+- L
+- 004E 0301
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER N ACUTE
+- ''
+- ''
+- '0144'
+- ''
+324:
+- 324
+- LATIN SMALL LETTER N WITH ACUTE
+- Ll
+- '0'
+- L
+- 006E 0301
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER N ACUTE
+- ''
+- '0143'
+- ''
+- '0143'
+325:
+- 325
+- LATIN CAPITAL LETTER N WITH CEDILLA
+- Lu
+- '0'
+- L
+- 004E 0327
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER N CEDILLA
+- ''
+- ''
+- '0146'
+- ''
+326:
+- 326
+- LATIN SMALL LETTER N WITH CEDILLA
+- Ll
+- '0'
+- L
+- 006E 0327
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER N CEDILLA
+- ''
+- '0145'
+- ''
+- '0145'
+327:
+- 327
+- LATIN CAPITAL LETTER N WITH CARON
+- Lu
+- '0'
+- L
+- 004E 030C
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER N HACEK
+- ''
+- ''
+- '0148'
+- ''
+328:
+- 328
+- LATIN SMALL LETTER N WITH CARON
+- Ll
+- '0'
+- L
+- 006E 030C
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER N HACEK
+- ''
+- '0147'
+- ''
+- '0147'
+329:
+- 329
+- LATIN SMALL LETTER N PRECEDED BY APOSTROPHE
+- Ll
+- '0'
+- L
+- "<compat> 02BC 006E"
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER APOSTROPHE N
+- ''
+- ''
+- ''
+- ''
+330:
+- 330
+- LATIN CAPITAL LETTER ENG
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 014B
+- ''
+331:
+- 331
+- LATIN SMALL LETTER ENG
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 014A
+- ''
+- 014A
+332:
+- 332
+- LATIN CAPITAL LETTER O WITH MACRON
+- Lu
+- '0'
+- L
+- 004F 0304
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER O MACRON
+- ''
+- ''
+- 014D
+- ''
+333:
+- 333
+- LATIN SMALL LETTER O WITH MACRON
+- Ll
+- '0'
+- L
+- 006F 0304
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER O MACRON
+- ''
+- 014C
+- ''
+- 014C
+334:
+- 334
+- LATIN CAPITAL LETTER O WITH BREVE
+- Lu
+- '0'
+- L
+- 004F 0306
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER O BREVE
+- ''
+- ''
+- 014F
+- ''
+335:
+- 335
+- LATIN SMALL LETTER O WITH BREVE
+- Ll
+- '0'
+- L
+- 006F 0306
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER O BREVE
+- ''
+- 014E
+- ''
+- 014E
+336:
+- 336
+- LATIN CAPITAL LETTER O WITH DOUBLE ACUTE
+- Lu
+- '0'
+- L
+- 004F 030B
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER O DOUBLE ACUTE
+- ''
+- ''
+- '0151'
+- ''
+337:
+- 337
+- LATIN SMALL LETTER O WITH DOUBLE ACUTE
+- Ll
+- '0'
+- L
+- 006F 030B
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER O DOUBLE ACUTE
+- ''
+- '0150'
+- ''
+- '0150'
+338:
+- 338
+- LATIN CAPITAL LIGATURE OE
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER O E
+- ''
+- ''
+- '0153'
+- ''
+339:
+- 339
+- LATIN SMALL LIGATURE OE
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER O E
+- ''
+- '0152'
+- ''
+- '0152'
+340:
+- 340
+- LATIN CAPITAL LETTER R WITH ACUTE
+- Lu
+- '0'
+- L
+- 0052 0301
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER R ACUTE
+- ''
+- ''
+- '0155'
+- ''
+341:
+- 341
+- LATIN SMALL LETTER R WITH ACUTE
+- Ll
+- '0'
+- L
+- 0072 0301
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER R ACUTE
+- ''
+- '0154'
+- ''
+- '0154'
+342:
+- 342
+- LATIN CAPITAL LETTER R WITH CEDILLA
+- Lu
+- '0'
+- L
+- 0052 0327
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER R CEDILLA
+- ''
+- ''
+- '0157'
+- ''
+343:
+- 343
+- LATIN SMALL LETTER R WITH CEDILLA
+- Ll
+- '0'
+- L
+- 0072 0327
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER R CEDILLA
+- ''
+- '0156'
+- ''
+- '0156'
+344:
+- 344
+- LATIN CAPITAL LETTER R WITH CARON
+- Lu
+- '0'
+- L
+- 0052 030C
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER R HACEK
+- ''
+- ''
+- '0159'
+- ''
+345:
+- 345
+- LATIN SMALL LETTER R WITH CARON
+- Ll
+- '0'
+- L
+- 0072 030C
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER R HACEK
+- ''
+- '0158'
+- ''
+- '0158'
+346:
+- 346
+- LATIN CAPITAL LETTER S WITH ACUTE
+- Lu
+- '0'
+- L
+- 0053 0301
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER S ACUTE
+- ''
+- ''
+- 015B
+- ''
+347:
+- 347
+- LATIN SMALL LETTER S WITH ACUTE
+- Ll
+- '0'
+- L
+- 0073 0301
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER S ACUTE
+- ''
+- 015A
+- ''
+- 015A
+348:
+- 348
+- LATIN CAPITAL LETTER S WITH CIRCUMFLEX
+- Lu
+- '0'
+- L
+- 0053 0302
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER S CIRCUMFLEX
+- ''
+- ''
+- 015D
+- ''
+349:
+- 349
+- LATIN SMALL LETTER S WITH CIRCUMFLEX
+- Ll
+- '0'
+- L
+- 0073 0302
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER S CIRCUMFLEX
+- ''
+- 015C
+- ''
+- 015C
+350:
+- 350
+- LATIN CAPITAL LETTER S WITH CEDILLA
+- Lu
+- '0'
+- L
+- 0053 0327
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER S CEDILLA
+- ''
+- ''
+- 015F
+- ''
+351:
+- 351
+- LATIN SMALL LETTER S WITH CEDILLA
+- Ll
+- '0'
+- L
+- 0073 0327
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER S CEDILLA
+- ''
+- 015E
+- ''
+- 015E
+352:
+- 352
+- LATIN CAPITAL LETTER S WITH CARON
+- Lu
+- '0'
+- L
+- 0053 030C
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER S HACEK
+- ''
+- ''
+- '0161'
+- ''
+353:
+- 353
+- LATIN SMALL LETTER S WITH CARON
+- Ll
+- '0'
+- L
+- 0073 030C
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER S HACEK
+- ''
+- '0160'
+- ''
+- '0160'
+354:
+- 354
+- LATIN CAPITAL LETTER T WITH CEDILLA
+- Lu
+- '0'
+- L
+- 0054 0327
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER T CEDILLA
+- ''
+- ''
+- '0163'
+- ''
+355:
+- 355
+- LATIN SMALL LETTER T WITH CEDILLA
+- Ll
+- '0'
+- L
+- 0074 0327
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER T CEDILLA
+- ''
+- '0162'
+- ''
+- '0162'
+356:
+- 356
+- LATIN CAPITAL LETTER T WITH CARON
+- Lu
+- '0'
+- L
+- 0054 030C
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER T HACEK
+- ''
+- ''
+- '0165'
+- ''
+357:
+- 357
+- LATIN SMALL LETTER T WITH CARON
+- Ll
+- '0'
+- L
+- 0074 030C
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER T HACEK
+- ''
+- '0164'
+- ''
+- '0164'
+358:
+- 358
+- LATIN CAPITAL LETTER T WITH STROKE
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER T BAR
+- ''
+- ''
+- '0167'
+- ''
+359:
+- 359
+- LATIN SMALL LETTER T WITH STROKE
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER T BAR
+- ''
+- '0166'
+- ''
+- '0166'
+360:
+- 360
+- LATIN CAPITAL LETTER U WITH TILDE
+- Lu
+- '0'
+- L
+- 0055 0303
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER U TILDE
+- ''
+- ''
+- '0169'
+- ''
+361:
+- 361
+- LATIN SMALL LETTER U WITH TILDE
+- Ll
+- '0'
+- L
+- 0075 0303
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER U TILDE
+- ''
+- '0168'
+- ''
+- '0168'
+362:
+- 362
+- LATIN CAPITAL LETTER U WITH MACRON
+- Lu
+- '0'
+- L
+- 0055 0304
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER U MACRON
+- ''
+- ''
+- 016B
+- ''
+363:
+- 363
+- LATIN SMALL LETTER U WITH MACRON
+- Ll
+- '0'
+- L
+- 0075 0304
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER U MACRON
+- ''
+- 016A
+- ''
+- 016A
+364:
+- 364
+- LATIN CAPITAL LETTER U WITH BREVE
+- Lu
+- '0'
+- L
+- 0055 0306
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER U BREVE
+- ''
+- ''
+- 016D
+- ''
+365:
+- 365
+- LATIN SMALL LETTER U WITH BREVE
+- Ll
+- '0'
+- L
+- 0075 0306
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER U BREVE
+- ''
+- 016C
+- ''
+- 016C
+366:
+- 366
+- LATIN CAPITAL LETTER U WITH RING ABOVE
+- Lu
+- '0'
+- L
+- 0055 030A
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER U RING
+- ''
+- ''
+- 016F
+- ''
+367:
+- 367
+- LATIN SMALL LETTER U WITH RING ABOVE
+- Ll
+- '0'
+- L
+- 0075 030A
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER U RING
+- ''
+- 016E
+- ''
+- 016E
+368:
+- 368
+- LATIN CAPITAL LETTER U WITH DOUBLE ACUTE
+- Lu
+- '0'
+- L
+- 0055 030B
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER U DOUBLE ACUTE
+- ''
+- ''
+- '0171'
+- ''
+369:
+- 369
+- LATIN SMALL LETTER U WITH DOUBLE ACUTE
+- Ll
+- '0'
+- L
+- 0075 030B
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER U DOUBLE ACUTE
+- ''
+- '0170'
+- ''
+- '0170'
+370:
+- 370
+- LATIN CAPITAL LETTER U WITH OGONEK
+- Lu
+- '0'
+- L
+- 0055 0328
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER U OGONEK
+- ''
+- ''
+- '0173'
+- ''
+371:
+- 371
+- LATIN SMALL LETTER U WITH OGONEK
+- Ll
+- '0'
+- L
+- 0075 0328
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER U OGONEK
+- ''
+- '0172'
+- ''
+- '0172'
+372:
+- 372
+- LATIN CAPITAL LETTER W WITH CIRCUMFLEX
+- Lu
+- '0'
+- L
+- 0057 0302
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER W CIRCUMFLEX
+- ''
+- ''
+- '0175'
+- ''
+373:
+- 373
+- LATIN SMALL LETTER W WITH CIRCUMFLEX
+- Ll
+- '0'
+- L
+- 0077 0302
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER W CIRCUMFLEX
+- ''
+- '0174'
+- ''
+- '0174'
+374:
+- 374
+- LATIN CAPITAL LETTER Y WITH CIRCUMFLEX
+- Lu
+- '0'
+- L
+- '0059 0302'
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER Y CIRCUMFLEX
+- ''
+- ''
+- '0177'
+- ''
+375:
+- 375
+- LATIN SMALL LETTER Y WITH CIRCUMFLEX
+- Ll
+- '0'
+- L
+- '0079 0302'
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER Y CIRCUMFLEX
+- ''
+- '0176'
+- ''
+- '0176'
+376:
+- 376
+- LATIN CAPITAL LETTER Y WITH DIAERESIS
+- Lu
+- '0'
+- L
+- '0059 0308'
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER Y DIAERESIS
+- ''
+- ''
+- 00FF
+- ''
+377:
+- 377
+- LATIN CAPITAL LETTER Z WITH ACUTE
+- Lu
+- '0'
+- L
+- 005A 0301
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER Z ACUTE
+- ''
+- ''
+- 017A
+- ''
+378:
+- 378
+- LATIN SMALL LETTER Z WITH ACUTE
+- Ll
+- '0'
+- L
+- 007A 0301
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER Z ACUTE
+- ''
+- '0179'
+- ''
+- '0179'
+379:
+- 379
+- LATIN CAPITAL LETTER Z WITH DOT ABOVE
+- Lu
+- '0'
+- L
+- 005A 0307
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER Z DOT
+- ''
+- ''
+- 017C
+- ''
+380:
+- 380
+- LATIN SMALL LETTER Z WITH DOT ABOVE
+- Ll
+- '0'
+- L
+- 007A 0307
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER Z DOT
+- ''
+- 017B
+- ''
+- 017B
+381:
+- 381
+- LATIN CAPITAL LETTER Z WITH CARON
+- Lu
+- '0'
+- L
+- 005A 030C
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER Z HACEK
+- ''
+- ''
+- 017E
+- ''
+382:
+- 382
+- LATIN SMALL LETTER Z WITH CARON
+- Ll
+- '0'
+- L
+- 007A 030C
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER Z HACEK
+- ''
+- 017D
+- ''
+- 017D
+383:
+- 383
+- LATIN SMALL LETTER LONG S
+- Ll
+- '0'
+- L
+- "<compat> 0073"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- '0053'
+- ''
+- '0053'

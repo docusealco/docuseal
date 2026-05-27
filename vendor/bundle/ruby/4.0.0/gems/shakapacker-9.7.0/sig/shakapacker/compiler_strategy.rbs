@@ -1,0 +1,41 @@
+# Compiler strategy for determining staleness
+module Shakapacker
+  # Factory class for creating compiler strategies
+  class CompilerStrategy
+    # Creates a compiler strategy from the configuration
+    def self.from_config: () -> (MtimeStrategy | DigestStrategy)
+  end
+
+  # Base strategy with common functionality
+  class BaseStrategy
+    def initialize: () -> void
+
+    # Returns whether assets are fresh (up-to-date)
+    def fresh?: () -> bool
+
+    # Returns whether assets are stale (need recompilation)
+    def stale?: () -> bool
+
+    # Runs the post-compile hook
+    def after_compile_hook: () -> void
+
+    private
+
+    attr_reader config: Configuration
+
+    def default_watched_paths: () -> Array[String]
+  end
+
+  # Mtime-based compiler strategy
+  class MtimeStrategy < BaseStrategy
+    def fresh?: () -> bool
+    def stale?: () -> bool
+  end
+
+  # Digest-based compiler strategy
+  class DigestStrategy < BaseStrategy
+    def fresh?: () -> bool
+    def stale?: () -> bool
+    def after_compile_hook: () -> void
+  end
+end

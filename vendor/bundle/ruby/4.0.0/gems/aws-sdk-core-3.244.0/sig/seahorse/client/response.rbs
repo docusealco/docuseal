@@ -1,0 +1,61 @@
+module Seahorse
+  module Client
+    # RBS does not support Delegator.
+    # the behavior is mimicked `Seahorse::Client::Response` as much as possible.
+    interface _ResponseCommon
+      def context: () -> untyped
+
+      def checksum_validated: () -> ::String?
+
+      def on: (Integer) { (self) -> void } -> self
+            | (Range[Integer]) { (self) -> void } -> self
+
+      def on_success: () { (self) -> void } -> self
+
+      def successful?: () -> bool
+    end
+
+    # The interface for response success
+    # An interface representing response is provided for each operation,
+    # and _ResponseSuccess is embedded in this interface.
+    # @example client.rbs
+    #
+    #   interface _OperationResponseSuccess
+    #     include ::Seahorse::Client::_ResponseSuccess[Types::OperationOutput]
+    #     def foo: () -> ::String
+    #     def bar: () -> ::Integer
+    #   end
+    #   @client.operation: () -> _OperationResponseSuccess
+    interface _ResponseSuccess[DATA]
+      include _ResponseCommon
+
+      def data: () -> DATA
+
+      def data=: (DATA) -> DATA
+
+      def error: () -> nil
+
+      def error=: (nil) -> nil
+    end
+
+    # The interface for response error
+    # It is useful to use annotation on ruby code
+    # @example foo.rb
+    #
+    #   client = Client.new(raise_response_errors: false)
+    #   # @type var response: ::Seahorse::Client::_ResponseError
+    #   response = client.operation()
+    #   response.error.message
+    interface _ResponseError
+      include _ResponseCommon
+
+      def data: () -> nil
+
+      def data=: (nil) -> nil
+
+      def error: () -> StandardError
+
+      def error=: (StandardError) -> StandardError
+    end
+  end
+end

@@ -1,0 +1,12 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - Ethiopic-Latin
+      - und-Latn-t-und-ethi
+    :direction: both
+    :rules: 
+      - ":: Ethiopic-Latin/Beta_Metsehaf ;"
+    :source: Ethi
+    :target: Latn
+    :variant: ~

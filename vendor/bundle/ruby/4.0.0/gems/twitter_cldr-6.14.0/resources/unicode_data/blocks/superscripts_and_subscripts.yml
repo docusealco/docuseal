@@ -1,0 +1,673 @@
+---
+8304:
+- 8304
+- SUPERSCRIPT ZERO
+- 'No'
+- '0'
+- EN
+- "<super> 0030"
+- ''
+- '0'
+- '0'
+- N
+- SUPERSCRIPT DIGIT ZERO
+- ''
+- ''
+- ''
+- ''
+8305:
+- 8305
+- SUPERSCRIPT LATIN SMALL LETTER I
+- Lm
+- '0'
+- L
+- "<super> 0069"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8308:
+- 8308
+- SUPERSCRIPT FOUR
+- 'No'
+- '0'
+- EN
+- "<super> 0034"
+- ''
+- '4'
+- '4'
+- N
+- SUPERSCRIPT DIGIT FOUR
+- ''
+- ''
+- ''
+- ''
+8309:
+- 8309
+- SUPERSCRIPT FIVE
+- 'No'
+- '0'
+- EN
+- "<super> 0035"
+- ''
+- '5'
+- '5'
+- N
+- SUPERSCRIPT DIGIT FIVE
+- ''
+- ''
+- ''
+- ''
+8310:
+- 8310
+- SUPERSCRIPT SIX
+- 'No'
+- '0'
+- EN
+- "<super> 0036"
+- ''
+- '6'
+- '6'
+- N
+- SUPERSCRIPT DIGIT SIX
+- ''
+- ''
+- ''
+- ''
+8311:
+- 8311
+- SUPERSCRIPT SEVEN
+- 'No'
+- '0'
+- EN
+- "<super> 0037"
+- ''
+- '7'
+- '7'
+- N
+- SUPERSCRIPT DIGIT SEVEN
+- ''
+- ''
+- ''
+- ''
+8312:
+- 8312
+- SUPERSCRIPT EIGHT
+- 'No'
+- '0'
+- EN
+- "<super> 0038"
+- ''
+- '8'
+- '8'
+- N
+- SUPERSCRIPT DIGIT EIGHT
+- ''
+- ''
+- ''
+- ''
+8313:
+- 8313
+- SUPERSCRIPT NINE
+- 'No'
+- '0'
+- EN
+- "<super> 0039"
+- ''
+- '9'
+- '9'
+- N
+- SUPERSCRIPT DIGIT NINE
+- ''
+- ''
+- ''
+- ''
+8314:
+- 8314
+- SUPERSCRIPT PLUS SIGN
+- Sm
+- '0'
+- ES
+- "<super> 002B"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8315:
+- 8315
+- SUPERSCRIPT MINUS
+- Sm
+- '0'
+- ES
+- "<super> 2212"
+- ''
+- ''
+- ''
+- N
+- SUPERSCRIPT HYPHEN-MINUS
+- ''
+- ''
+- ''
+- ''
+8316:
+- 8316
+- SUPERSCRIPT EQUALS SIGN
+- Sm
+- '0'
+- 'ON'
+- "<super> 003D"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8317:
+- 8317
+- SUPERSCRIPT LEFT PARENTHESIS
+- Ps
+- '0'
+- 'ON'
+- "<super> 0028"
+- ''
+- ''
+- ''
+- Y
+- SUPERSCRIPT OPENING PARENTHESIS
+- ''
+- ''
+- ''
+- ''
+8318:
+- 8318
+- SUPERSCRIPT RIGHT PARENTHESIS
+- Pe
+- '0'
+- 'ON'
+- "<super> 0029"
+- ''
+- ''
+- ''
+- Y
+- SUPERSCRIPT CLOSING PARENTHESIS
+- ''
+- ''
+- ''
+- ''
+8319:
+- 8319
+- SUPERSCRIPT LATIN SMALL LETTER N
+- Lm
+- '0'
+- L
+- "<super> 006E"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8320:
+- 8320
+- SUBSCRIPT ZERO
+- 'No'
+- '0'
+- EN
+- "<sub> 0030"
+- ''
+- '0'
+- '0'
+- N
+- SUBSCRIPT DIGIT ZERO
+- ''
+- ''
+- ''
+- ''
+8321:
+- 8321
+- SUBSCRIPT ONE
+- 'No'
+- '0'
+- EN
+- "<sub> 0031"
+- ''
+- '1'
+- '1'
+- N
+- SUBSCRIPT DIGIT ONE
+- ''
+- ''
+- ''
+- ''
+8322:
+- 8322
+- SUBSCRIPT TWO
+- 'No'
+- '0'
+- EN
+- "<sub> 0032"
+- ''
+- '2'
+- '2'
+- N
+- SUBSCRIPT DIGIT TWO
+- ''
+- ''
+- ''
+- ''
+8323:
+- 8323
+- SUBSCRIPT THREE
+- 'No'
+- '0'
+- EN
+- "<sub> 0033"
+- ''
+- '3'
+- '3'
+- N
+- SUBSCRIPT DIGIT THREE
+- ''
+- ''
+- ''
+- ''
+8324:
+- 8324
+- SUBSCRIPT FOUR
+- 'No'
+- '0'
+- EN
+- "<sub> 0034"
+- ''
+- '4'
+- '4'
+- N
+- SUBSCRIPT DIGIT FOUR
+- ''
+- ''
+- ''
+- ''
+8325:
+- 8325
+- SUBSCRIPT FIVE
+- 'No'
+- '0'
+- EN
+- "<sub> 0035"
+- ''
+- '5'
+- '5'
+- N
+- SUBSCRIPT DIGIT FIVE
+- ''
+- ''
+- ''
+- ''
+8326:
+- 8326
+- SUBSCRIPT SIX
+- 'No'
+- '0'
+- EN
+- "<sub> 0036"
+- ''
+- '6'
+- '6'
+- N
+- SUBSCRIPT DIGIT SIX
+- ''
+- ''
+- ''
+- ''
+8327:
+- 8327
+- SUBSCRIPT SEVEN
+- 'No'
+- '0'
+- EN
+- "<sub> 0037"
+- ''
+- '7'
+- '7'
+- N
+- SUBSCRIPT DIGIT SEVEN
+- ''
+- ''
+- ''
+- ''
+8328:
+- 8328
+- SUBSCRIPT EIGHT
+- 'No'
+- '0'
+- EN
+- "<sub> 0038"
+- ''
+- '8'
+- '8'
+- N
+- SUBSCRIPT DIGIT EIGHT
+- ''
+- ''
+- ''
+- ''
+8329:
+- 8329
+- SUBSCRIPT NINE
+- 'No'
+- '0'
+- EN
+- "<sub> 0039"
+- ''
+- '9'
+- '9'
+- N
+- SUBSCRIPT DIGIT NINE
+- ''
+- ''
+- ''
+- ''
+8330:
+- 8330
+- SUBSCRIPT PLUS SIGN
+- Sm
+- '0'
+- ES
+- "<sub> 002B"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8331:
+- 8331
+- SUBSCRIPT MINUS
+- Sm
+- '0'
+- ES
+- "<sub> 2212"
+- ''
+- ''
+- ''
+- N
+- SUBSCRIPT HYPHEN-MINUS
+- ''
+- ''
+- ''
+- ''
+8332:
+- 8332
+- SUBSCRIPT EQUALS SIGN
+- Sm
+- '0'
+- 'ON'
+- "<sub> 003D"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8333:
+- 8333
+- SUBSCRIPT LEFT PARENTHESIS
+- Ps
+- '0'
+- 'ON'
+- "<sub> 0028"
+- ''
+- ''
+- ''
+- Y
+- SUBSCRIPT OPENING PARENTHESIS
+- ''
+- ''
+- ''
+- ''
+8334:
+- 8334
+- SUBSCRIPT RIGHT PARENTHESIS
+- Pe
+- '0'
+- 'ON'
+- "<sub> 0029"
+- ''
+- ''
+- ''
+- Y
+- SUBSCRIPT CLOSING PARENTHESIS
+- ''
+- ''
+- ''
+- ''
+8336:
+- 8336
+- LATIN SUBSCRIPT SMALL LETTER A
+- Lm
+- '0'
+- L
+- "<sub> 0061"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8337:
+- 8337
+- LATIN SUBSCRIPT SMALL LETTER E
+- Lm
+- '0'
+- L
+- "<sub> 0065"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8338:
+- 8338
+- LATIN SUBSCRIPT SMALL LETTER O
+- Lm
+- '0'
+- L
+- "<sub> 006F"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8339:
+- 8339
+- LATIN SUBSCRIPT SMALL LETTER X
+- Lm
+- '0'
+- L
+- "<sub> 0078"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8340:
+- 8340
+- LATIN SUBSCRIPT SMALL LETTER SCHWA
+- Lm
+- '0'
+- L
+- "<sub> 0259"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8341:
+- 8341
+- LATIN SUBSCRIPT SMALL LETTER H
+- Lm
+- '0'
+- L
+- "<sub> 0068"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8342:
+- 8342
+- LATIN SUBSCRIPT SMALL LETTER K
+- Lm
+- '0'
+- L
+- "<sub> 006B"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8343:
+- 8343
+- LATIN SUBSCRIPT SMALL LETTER L
+- Lm
+- '0'
+- L
+- "<sub> 006C"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8344:
+- 8344
+- LATIN SUBSCRIPT SMALL LETTER M
+- Lm
+- '0'
+- L
+- "<sub> 006D"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8345:
+- 8345
+- LATIN SUBSCRIPT SMALL LETTER N
+- Lm
+- '0'
+- L
+- "<sub> 006E"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8346:
+- 8346
+- LATIN SUBSCRIPT SMALL LETTER P
+- Lm
+- '0'
+- L
+- "<sub> 0070"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8347:
+- 8347
+- LATIN SUBSCRIPT SMALL LETTER S
+- Lm
+- '0'
+- L
+- "<sub> 0073"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8348:
+- 8348
+- LATIN SUBSCRIPT SMALL LETTER T
+- Lm
+- '0'
+- L
+- "<sub> 0074"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''

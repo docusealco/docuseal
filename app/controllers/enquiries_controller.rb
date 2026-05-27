@@ -6,7 +6,7 @@ class EnquiriesController < ApplicationController
 
   def create
     if params[:talk_to_sales] == 'on'
-      Faraday.post(Docuseal::ENQUIRIES_URL,
+      Faraday.post(Wabosign::ENQUIRIES_URL,
                    enquiry_params.merge(type: :talk_to_sales).to_json,
                    'Content-Type' => 'application/json')
     end

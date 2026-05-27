@@ -1,0 +1,27 @@
+module VersionGem
+  module Api
+    # Internal memoized version string segments
+    @_to_a: Array[String]
+
+    # Memoized components
+    @major: Integer
+    @minor: Integer
+    @patch: Integer
+    @pre: String?
+    @to_a: Array[Integer | String | nil]
+    @to_h: Hash[Symbol, (Integer | String | nil)]
+
+    # Public API
+    def to_s: () -> String
+    def major: () -> Integer
+    def minor: () -> Integer
+    def patch: () -> Integer
+    def pre: () -> String?
+    def to_a: () -> Array[Integer | String | nil]
+    def to_h: () -> Hash[Symbol, (Integer | String | nil)]
+
+    private
+
+    def _to_a: () -> Array[String]
+  end
+end

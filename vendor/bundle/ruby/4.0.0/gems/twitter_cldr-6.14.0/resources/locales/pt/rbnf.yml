@@ -1,0 +1,554 @@
+--- 
+:pt: 
+  :rbnf: 
+    :grouping: 
+      - 
+        :ruleset: 
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: "&[last primary ignorable ] << ' ' << ',' << '-' << '­';"
+                :value: 0
+            :type: lenient-parse
+          - 
+            :rules: 
+              - 
+                :rule: =0.0=;
+                :value: x.x
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 0
+            :type: spellout-numbering-year
+          - 
+            :rules: 
+              - 
+                :rule: =%spellout-cardinal-masculine=;
+                :value: 0
+            :type: spellout-numbering
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: " e ;"
+                :value: 0
+              - 
+                :rule: " ;"
+                :value: 1
+            :type: optional-e
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: " e =%spellout-cardinal-masculine=;"
+                :value: 0
+              - 
+                :rule: ">%%optional-e>=%spellout-cardinal-masculine=;"
+                :value: 100
+            :type: spellout-cardinal-masculine-with-e
+          - 
+            :rules: 
+              - 
+                :rule: "menos >>;"
+                :value: "-x"
+              - 
+                :rule: "<< vírgula >>;"
+                :value: x.x
+              - 
+                :rule: zero;
+                :value: 0
+              - 
+                :rule: um;
+                :value: 1
+              - 
+                :rule: dois;
+                :value: 2
+              - 
+                :rule: três;
+                :value: 3
+              - 
+                :rule: quatro;
+                :value: 4
+              - 
+                :rule: cinco;
+                :value: 5
+              - 
+                :rule: seis;
+                :value: 6
+              - 
+                :rule: sete;
+                :value: 7
+              - 
+                :rule: oito;
+                :value: 8
+              - 
+                :rule: nove;
+                :value: 9
+              - 
+                :rule: dez;
+                :value: 10
+              - 
+                :rule: onze;
+                :value: 11
+              - 
+                :rule: doze;
+                :value: 12
+              - 
+                :rule: treze;
+                :value: 13
+              - 
+                :rule: catorze;
+                :value: 14
+              - 
+                :rule: quinze;
+                :value: 15
+              - 
+                :rule: dezesseis;
+                :value: 16
+              - 
+                :rule: dezessete;
+                :value: 17
+              - 
+                :rule: dezoito;
+                :value: 18
+              - 
+                :rule: dezenove;
+                :value: 19
+              - 
+                :rule: "vinte[ e >>];"
+                :value: 20
+              - 
+                :rule: "trinta[ e >>];"
+                :value: 30
+              - 
+                :rule: "quarenta[ e >>];"
+                :value: 40
+              - 
+                :rule: "cinquenta[ e >>];"
+                :value: 50
+              - 
+                :rule: "sessenta[ e >>];"
+                :value: 60
+              - 
+                :rule: "setenta[ e >>];"
+                :value: 70
+              - 
+                :rule: "oitenta[ e >>];"
+                :value: 80
+              - 
+                :rule: "noventa[ e >>];"
+                :value: 90
+              - 
+                :rule: cem;
+                :value: 100
+              - 
+                :rule: "cento e >>;"
+                :value: 101
+              - 
+                :rule: "duzentos[ e >>];"
+                :value: 200
+              - 
+                :rule: "trezentos[ e >>];"
+                :value: 300
+              - 
+                :rule: "quatrocentos[ e >>];"
+                :value: 400
+              - 
+                :rule: "quinhentos[ e >>];"
+                :value: 500
+              - 
+                :rule: "seiscentos[ e >>];"
+                :value: 600
+              - 
+                :rule: "setecentos[ e >>];"
+                :value: 700
+              - 
+                :rule: "oitocentos[ e >>];"
+                :value: 800
+              - 
+                :rule: "novecentos[ e >>];"
+                :value: 900
+              - 
+                :rule: "mil[>%%spellout-cardinal-masculine-with-e>];"
+                :value: 1000
+              - 
+                :rule: "<< mil[>%%spellout-cardinal-masculine-with-e>];"
+                :value: 2000
+              - 
+                :rule: "<< $(cardinal,one{milhão}other{milhões})$[>%%spellout-cardinal-masculine-with-e>];"
+                :value: 1000000
+              - 
+                :rule: "<< $(cardinal,one{bilhão}other{bilhões})$[>%%spellout-cardinal-masculine-with-e>];"
+                :value: 1000000000
+              - 
+                :rule: "<< $(cardinal,one{trilhão}other{trilhões})$[>%%spellout-cardinal-masculine-with-e>];"
+                :value: 1000000000000
+              - 
+                :rule: "<< $(cardinal,one{quatrilhão}other{quatrilhões})$[>%%spellout-cardinal-masculine-with-e>];"
+                :value: 1000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-masculine
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: " e =%spellout-cardinal-feminine=;"
+                :value: 0
+              - 
+                :rule: ">%%optional-e>=%spellout-cardinal-feminine=;"
+                :value: 100
+            :type: spellout-cardinal-feminine-with-e
+          - 
+            :rules: 
+              - 
+                :rule: "menos >>;"
+                :value: "-x"
+              - 
+                :rule: "<< vírgula >>;"
+                :value: x.x
+              - 
+                :rule: zero;
+                :value: 0
+              - 
+                :rule: uma;
+                :value: 1
+              - 
+                :rule: duas;
+                :value: 2
+              - 
+                :rule: =%spellout-cardinal-masculine=;
+                :value: 3
+              - 
+                :rule: "vinte[ e >>];"
+                :value: 20
+              - 
+                :rule: "trinta[ e >>];"
+                :value: 30
+              - 
+                :rule: "quarenta[ e >>];"
+                :value: 40
+              - 
+                :rule: "cinquenta[ e >>];"
+                :value: 50
+              - 
+                :rule: "sessenta[ e >>];"
+                :value: 60
+              - 
+                :rule: "setenta[ e >>];"
+                :value: 70
+              - 
+                :rule: "oitenta[ e >>];"
+                :value: 80
+              - 
+                :rule: "noventa[ e >>];"
+                :value: 90
+              - 
+                :rule: cem;
+                :value: 100
+              - 
+                :rule: "cento e >>;"
+                :value: 101
+              - 
+                :rule: "duzentas[ e >>];"
+                :value: 200
+              - 
+                :rule: "trezentas[ e >>];"
+                :value: 300
+              - 
+                :rule: "quatrocentas[ e >>];"
+                :value: 400
+              - 
+                :rule: "quinhentas[ e >>];"
+                :value: 500
+              - 
+                :rule: "seiscentas[ e >>];"
+                :value: 600
+              - 
+                :rule: "setecentas[ e >>];"
+                :value: 700
+              - 
+                :rule: "oitocentas[ e >>];"
+                :value: 800
+              - 
+                :rule: "novecentas[ e >>];"
+                :value: 900
+              - 
+                :rule: "mil[>%%spellout-cardinal-feminine-with-e>];"
+                :value: 1000
+              - 
+                :rule: "<< mil[>%%spellout-cardinal-feminine-with-e>];"
+                :value: 2000
+              - 
+                :rule: "<%spellout-cardinal-masculine< $(cardinal,one{milhão}other{milhões})$[>%%spellout-cardinal-feminine-with-e>];"
+                :value: 1000000
+              - 
+                :rule: "<%spellout-cardinal-masculine< $(cardinal,one{bilhão}other{bilhões})$[>%%spellout-cardinal-feminine-with-e>];"
+                :value: 1000000000
+              - 
+                :rule: "<%spellout-cardinal-masculine< $(cardinal,one{trilhão}other{trilhões})$[>%%spellout-cardinal-feminine-with-e>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%spellout-cardinal-masculine< $(cardinal,one{quatrilhão}other{quatrilhões})$[>%%spellout-cardinal-feminine-with-e>];"
+                :value: 1000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-feminine
+          - 
+            :rules: 
+              - 
+                :rule: "menos >>;"
+                :value: "-x"
+              - 
+                :rule: "=#,##0.#=;"
+                :value: x.x
+              - 
+                :rule: zero;
+                :value: 0
+              - 
+                :rule: primeiro;
+                :value: 1
+              - 
+                :rule: segundo;
+                :value: 2
+              - 
+                :rule: terceiro;
+                :value: 3
+              - 
+                :rule: quarto;
+                :value: 4
+              - 
+                :rule: quinto;
+                :value: 5
+              - 
+                :rule: sexto;
+                :value: 6
+              - 
+                :rule: sétimo;
+                :value: 7
+              - 
+                :rule: oitavo;
+                :value: 8
+              - 
+                :rule: nono;
+                :value: 9
+              - 
+                :rule: "décimo[ >>];"
+                :value: 10
+              - 
+                :rule: "vigésimo[ >>];"
+                :value: 20
+              - 
+                :rule: "trigésimo[ >>];"
+                :value: 30
+              - 
+                :rule: "quadragésimo[ >>];"
+                :value: 40
+              - 
+                :rule: "quinquagésimo[ >>];"
+                :value: 50
+              - 
+                :rule: "sexagésimo[ >>];"
+                :value: 60
+              - 
+                :rule: "septuagésimo[ >>];"
+                :value: 70
+              - 
+                :rule: "octogésimo[ >>];"
+                :value: 80
+              - 
+                :rule: "nonagésimo[ >>];"
+                :value: 90
+              - 
+                :rule: "centésimo[ >>];"
+                :value: 100
+              - 
+                :rule: "ducentésimo[ >>];"
+                :value: 200
+              - 
+                :rule: "tricentésimo[ >>];"
+                :value: 300
+              - 
+                :rule: "quadringentésimo[ >>];"
+                :value: 400
+              - 
+                :rule: "quingentésimo[ >>];"
+                :value: 500
+              - 
+                :rule: "sexcentésimo[ >>];"
+                :value: 600
+              - 
+                :rule: "septingentésimo[ >>];"
+                :value: 700
+              - 
+                :rule: "octingentésimo[ >>];"
+                :value: 800
+              - 
+                :rule: "noningentésimo[ >>];"
+                :value: 900
+              - 
+                :rule: "milésimo[ >>];"
+                :value: 1000
+              - 
+                :rule: "<%spellout-cardinal-masculine< milésimo[ >>];"
+                :value: 2000
+              - 
+                :rule: "<%spellout-cardinal-masculine< milionésimo[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<%spellout-cardinal-masculine< bilionésimo[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<%spellout-cardinal-masculine< trilionésimo[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%spellout-cardinal-masculine< quadrilionésimo[ >>];"
+                :value: 1000000000000000
+              - 
+                :rule: "=#,##0=º;"
+                :value: 1000000000000000000
+            :type: spellout-ordinal-masculine
+          - 
+            :rules: 
+              - 
+                :rule: "menos >>;"
+                :value: "-x"
+              - 
+                :rule: "=#,##0.#=;"
+                :value: x.x
+              - 
+                :rule: zero;
+                :value: 0
+              - 
+                :rule: primeira;
+                :value: 1
+              - 
+                :rule: segunda;
+                :value: 2
+              - 
+                :rule: terceira;
+                :value: 3
+              - 
+                :rule: quarta;
+                :value: 4
+              - 
+                :rule: quinta;
+                :value: 5
+              - 
+                :rule: sexta;
+                :value: 6
+              - 
+                :rule: sétima;
+                :value: 7
+              - 
+                :rule: oitava;
+                :value: 8
+              - 
+                :rule: nona;
+                :value: 9
+              - 
+                :rule: "décima[ >>];"
+                :value: 10
+              - 
+                :rule: "vigésima[ >>];"
+                :value: 20
+              - 
+                :rule: "trigésima[ >>];"
+                :value: 30
+              - 
+                :rule: "quadragésima[ >>];"
+                :value: 40
+              - 
+                :rule: "quinquagésima[ >>];"
+                :value: 50
+              - 
+                :rule: "sexagésima[ >>];"
+                :value: 60
+              - 
+                :rule: "septuagésima[ >>];"
+                :value: 70
+              - 
+                :rule: "octogésima[ >>];"
+                :value: 80
+              - 
+                :rule: "nonagésima[ >>];"
+                :value: 90
+              - 
+                :rule: "centésima[ >>];"
+                :value: 100
+              - 
+                :rule: "ducentésima[ >>];"
+                :value: 200
+              - 
+                :rule: "tricentésima[ >>];"
+                :value: 300
+              - 
+                :rule: "quadringentésima[ >>];"
+                :value: 400
+              - 
+                :rule: "quingentésima[ >>];"
+                :value: 500
+              - 
+                :rule: "sexcentésima[ >>];"
+                :value: 600
+              - 
+                :rule: "septingentésima[ >>];"
+                :value: 700
+              - 
+                :rule: "octingentésima[ >>];"
+                :value: 800
+              - 
+                :rule: "noningentésima[ >>];"
+                :value: 900
+              - 
+                :rule: "milésima[ >>];"
+                :value: 1000
+              - 
+                :rule: "<%spellout-cardinal-feminine< milésima[ >>];"
+                :value: 2000
+              - 
+                :rule: "<%spellout-cardinal-feminine< milionésima[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< bilionésima[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< trilionésima[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< quadrilionésima[ >>];"
+                :value: 1000000000000000
+              - 
+                :rule: "=#,##0=ª;"
+                :value: 1000000000000000000
+            :type: spellout-ordinal-feminine
+        :type: SpelloutRules
+      - 
+        :ruleset: 
+          - 
+            :rules: 
+              - 
+                :rule: −>>;
+                :value: "-x"
+              - 
+                :rule: "=#,##0=º;"
+                :value: 0
+            :type: digits-ordinal-masculine
+          - 
+            :rules: 
+              - 
+                :rule: −>>;
+                :value: "-x"
+              - 
+                :rule: "=#,##0=ª;"
+                :value: 0
+            :type: digits-ordinal-feminine
+          - 
+            :rules: 
+              - 
+                :rule: =%digits-ordinal-masculine=;
+                :value: 0
+            :type: digits-ordinal
+        :type: OrdinalRules

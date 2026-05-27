@@ -1,0 +1,4 @@
+module Aws
+  class EmptyStructure
+  end
+end

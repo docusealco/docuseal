@@ -1,0 +1,15 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - ur-t-und-telu
+    :direction: forward
+    :rules: 
+      - "::[ఁ-ఃఅ-ఌఎ-ఐఒ-నప-ళవ-హా-ౄె-ైొ-్ౕ-ౖౠ-ౡ౦-౯] ;"
+      - "::NFD ;"
+      - "::Telugu-InterIndic ;"
+      - "::InterIndic-ur ;"
+      - "::NFC ;"
+    :source: Telu
+    :target: ur
+    :variant: ~

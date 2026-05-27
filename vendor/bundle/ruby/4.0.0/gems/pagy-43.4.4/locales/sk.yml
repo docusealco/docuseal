@@ -1,0 +1,26 @@
+# See https://ddnexus.github.io/pagy/resources/i18n
+
+sk:
+  pagy:
+    p11n: 'WestSlavic'
+    aria_label:
+      nav:
+        one: "Stránka"
+        few: "Stránky"
+        other: "Stránky"
+      previous: "Predchádzajúca"
+      next: "Ďalšia"
+    previous: "&lt;"
+    next: "&gt;"
+    gap: "&hellip;"
+    item_name:
+      one: "položka"
+      few: "položky"
+      other: "položiek"
+    info_tag:
+      no_count: "Strana %{page} z %{pages}"
+      no_items: "Nič nebolo nájdené"
+      single_page: "Zobrazené %{count} %{item_name}"
+      multiple_pages: "Zobrazené položky %{from}-%{to} z %{count} celkom"
+    input_nav_js: "Strana %{page_input} z %{pages}"
+    limit_tag_js: "Zobraziť %{limit_input} %{item_name} na stránke"

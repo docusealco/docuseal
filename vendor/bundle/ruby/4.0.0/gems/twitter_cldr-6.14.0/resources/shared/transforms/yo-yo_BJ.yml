@@ -1,0 +1,18 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - yo-BJ-t-yo
+    :direction: forward
+    :rules: 
+      - ":: [ẸỌṢẹọṣ] ;"
+      - ":: NFC ;"
+      - "Ẹ>Ɛ ;"
+      - "ẹ>ɛ ;"
+      - "Ọ>Ɔ ;"
+      - "ọ>ɔ ;"
+      - "Ṣ>Sh ;"
+      - "ṣ>sh ;"
+    :source: yo
+    :target: yo_BJ
+    :variant: ~

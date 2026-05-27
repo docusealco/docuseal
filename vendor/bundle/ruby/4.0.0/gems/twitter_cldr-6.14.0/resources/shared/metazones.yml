@@ -1,0 +1,3580 @@
+--- 
+:mapzones: 
+  - 
+    :other: Acre
+    :territory: "001"
+    :type: America/Rio_Branco
+  - 
+    :other: Afghanistan
+    :territory: "001"
+    :type: Asia/Kabul
+  - 
+    :other: Africa_Central
+    :territory: "001"
+    :type: Africa/Maputo
+  - 
+    :other: Africa_Central
+    :territory: BI
+    :type: Africa/Bujumbura
+  - 
+    :other: Africa_Central
+    :territory: BW
+    :type: Africa/Gaborone
+  - 
+    :other: Africa_Central
+    :territory: CD
+    :type: Africa/Lubumbashi
+  - 
+    :other: Africa_Central
+    :territory: MW
+    :type: Africa/Blantyre
+  - 
+    :other: Africa_Central
+    :territory: RW
+    :type: Africa/Kigali
+  - 
+    :other: Africa_Central
+    :territory: ZM
+    :type: Africa/Lusaka
+  - 
+    :other: Africa_Central
+    :territory: ZW
+    :type: Africa/Harare
+  - 
+    :other: Africa_Eastern
+    :territory: "001"
+    :type: Africa/Nairobi
+  - 
+    :other: Africa_Eastern
+    :territory: DJ
+    :type: Africa/Djibouti
+  - 
+    :other: Africa_Eastern
+    :territory: ER
+    :type: Africa/Asmera
+  - 
+    :other: Africa_Eastern
+    :territory: ET
+    :type: Africa/Addis_Ababa
+  - 
+    :other: Africa_Eastern
+    :territory: KM
+    :type: Indian/Comoro
+  - 
+    :other: Africa_Eastern
+    :territory: MG
+    :type: Indian/Antananarivo
+  - 
+    :other: Africa_Eastern
+    :territory: SO
+    :type: Africa/Mogadishu
+  - 
+    :other: Africa_Eastern
+    :territory: TZ
+    :type: Africa/Dar_es_Salaam
+  - 
+    :other: Africa_Eastern
+    :territory: UG
+    :type: Africa/Kampala
+  - 
+    :other: Africa_Eastern
+    :territory: YT
+    :type: Indian/Mayotte
+  - 
+    :other: Africa_FarWestern
+    :territory: "001"
+    :type: Africa/El_Aaiun
+  - 
+    :other: Africa_Southern
+    :territory: "001"
+    :type: Africa/Johannesburg
+  - 
+    :other: Africa_Southern
+    :territory: LS
+    :type: Africa/Maseru
+  - 
+    :other: Africa_Southern
+    :territory: SZ
+    :type: Africa/Mbabane
+  - 
+    :other: Africa_Western
+    :territory: "001"
+    :type: Africa/Lagos
+  - 
+    :other: Africa_Western
+    :territory: AO
+    :type: Africa/Luanda
+  - 
+    :other: Africa_Western
+    :territory: BJ
+    :type: Africa/Porto-Novo
+  - 
+    :other: Africa_Western
+    :territory: CD
+    :type: Africa/Kinshasa
+  - 
+    :other: Africa_Western
+    :territory: CF
+    :type: Africa/Bangui
+  - 
+    :other: Africa_Western
+    :territory: CG
+    :type: Africa/Brazzaville
+  - 
+    :other: Africa_Western
+    :territory: CM
+    :type: Africa/Douala
+  - 
+    :other: Africa_Western
+    :territory: GA
+    :type: Africa/Libreville
+  - 
+    :other: Africa_Western
+    :territory: GQ
+    :type: Africa/Malabo
+  - 
+    :other: Africa_Western
+    :territory: NE
+    :type: Africa/Niamey
+  - 
+    :other: Africa_Western
+    :territory: TD
+    :type: Africa/Ndjamena
+  - 
+    :other: Aktyubinsk
+    :territory: "001"
+    :type: Asia/Aqtobe
+  - 
+    :other: Alaska
+    :territory: "001"
+    :type: America/Juneau
+  - 
+    :other: Alaska_Hawaii
+    :territory: "001"
+    :type: America/Anchorage
+  - 
+    :other: Almaty
+    :territory: "001"
+    :type: Asia/Almaty
+  - 
+    :other: Amazon
+    :territory: "001"
+    :type: America/Manaus
+  - 
+    :other: America_Central
+    :territory: "001"
+    :type: America/Chicago
+  - 
+    :other: America_Central
+    :territory: BZ
+    :type: America/Belize
+  - 
+    :other: America_Central
+    :territory: CA
+    :type: America/Winnipeg
+  - 
+    :other: America_Central
+    :territory: CR
+    :type: America/Costa_Rica
+  - 
+    :other: America_Central
+    :territory: GT
+    :type: America/Guatemala
+  - 
+    :other: America_Central
+    :territory: HN
+    :type: America/Tegucigalpa
+  - 
+    :other: America_Central
+    :territory: MX
+    :type: America/Mexico_City
+  - 
+    :other: America_Central
+    :territory: SV
+    :type: America/El_Salvador
+  - 
+    :other: America_Eastern
+    :territory: "001"
+    :type: America/New_York
+  - 
+    :other: America_Eastern
+    :territory: BS
+    :type: America/Nassau
+  - 
+    :other: America_Eastern
+    :territory: CA
+    :type: America/Toronto
+  - 
+    :other: America_Eastern
+    :territory: HT
+    :type: America/Port-au-Prince
+  - 
+    :other: America_Eastern
+    :territory: JM
+    :type: America/Jamaica
+  - 
+    :other: America_Eastern
+    :territory: KY
+    :type: America/Cayman
+  - 
+    :other: America_Eastern
+    :territory: PA
+    :type: America/Panama
+  - 
+    :other: America_Mountain
+    :territory: "001"
+    :type: America/Denver
+  - 
+    :other: America_Mountain
+    :territory: CA
+    :type: America/Edmonton
+  - 
+    :other: America_Pacific
+    :territory: "001"
+    :type: America/Los_Angeles
+  - 
+    :other: America_Pacific
+    :territory: CA
+    :type: America/Vancouver
+  - 
+    :other: America_Pacific
+    :territory: MX
+    :type: America/Tijuana
+  - 
+    :other: Anadyr
+    :territory: "001"
+    :type: Asia/Anadyr
+  - 
+    :other: Apia
+    :territory: "001"
+    :type: Pacific/Apia
+  - 
+    :other: Aqtau
+    :territory: "001"
+    :type: Asia/Aqtau
+  - 
+    :other: Aqtobe
+    :territory: "001"
+    :type: Asia/Aqtobe
+  - 
+    :other: Arabian
+    :territory: "001"
+    :type: Asia/Riyadh
+  - 
+    :other: Arabian
+    :territory: BH
+    :type: Asia/Bahrain
+  - 
+    :other: Arabian
+    :territory: IQ
+    :type: Asia/Baghdad
+  - 
+    :other: Arabian
+    :territory: KW
+    :type: Asia/Kuwait
+  - 
+    :other: Arabian
+    :territory: QA
+    :type: Asia/Qatar
+  - 
+    :other: Arabian
+    :territory: YE
+    :type: Asia/Aden
+  - 
+    :other: Argentina
+    :territory: "001"
+    :type: America/Buenos_Aires
+  - 
+    :other: Argentina_Western
+    :territory: "001"
+    :type: America/Argentina/San_Luis
+  - 
+    :other: Armenia
+    :territory: "001"
+    :type: Asia/Yerevan
+  - 
+    :other: Ashkhabad
+    :territory: "001"
+    :type: Asia/Ashgabat
+  - 
+    :other: Atlantic
+    :territory: "001"
+    :type: America/Halifax
+  - 
+    :other: Atlantic
+    :territory: AG
+    :type: America/Antigua
+  - 
+    :other: Atlantic
+    :territory: AI
+    :type: America/Anguilla
+  - 
+    :other: Atlantic
+    :territory: AW
+    :type: America/Aruba
+  - 
+    :other: Atlantic
+    :territory: BB
+    :type: America/Barbados
+  - 
+    :other: Atlantic
+    :territory: BM
+    :type: Atlantic/Bermuda
+  - 
+    :other: Atlantic
+    :territory: BQ
+    :type: America/Kralendijk
+  - 
+    :other: Atlantic
+    :territory: CW
+    :type: America/Curacao
+  - 
+    :other: Atlantic
+    :territory: DM
+    :type: America/Dominica
+  - 
+    :other: Atlantic
+    :territory: GD
+    :type: America/Grenada
+  - 
+    :other: Atlantic
+    :territory: GL
+    :type: America/Thule
+  - 
+    :other: Atlantic
+    :territory: GP
+    :type: America/Guadeloupe
+  - 
+    :other: Atlantic
+    :territory: KN
+    :type: America/St_Kitts
+  - 
+    :other: Atlantic
+    :territory: LC
+    :type: America/St_Lucia
+  - 
+    :other: Atlantic
+    :territory: MF
+    :type: America/Marigot
+  - 
+    :other: Atlantic
+    :territory: MQ
+    :type: America/Martinique
+  - 
+    :other: Atlantic
+    :territory: MS
+    :type: America/Montserrat
+  - 
+    :other: Atlantic
+    :territory: PR
+    :type: America/Puerto_Rico
+  - 
+    :other: Atlantic
+    :territory: SX
+    :type: America/Lower_Princes
+  - 
+    :other: Atlantic
+    :territory: TT
+    :type: America/Port_of_Spain
+  - 
+    :other: Atlantic
+    :territory: VC
+    :type: America/St_Vincent
+  - 
+    :other: Atlantic
+    :territory: VG
+    :type: America/Tortola
+  - 
+    :other: Atlantic
+    :territory: VI
+    :type: America/St_Thomas
+  - 
+    :other: Australia_Central
+    :territory: "001"
+    :type: Australia/Adelaide
+  - 
+    :other: Australia_CentralWestern
+    :territory: "001"
+    :type: Australia/Eucla
+  - 
+    :other: Australia_Eastern
+    :territory: "001"
+    :type: Australia/Sydney
+  - 
+    :other: Australia_Western
+    :territory: "001"
+    :type: Australia/Perth
+  - 
+    :other: Azerbaijan
+    :territory: "001"
+    :type: Asia/Baku
+  - 
+    :other: Azores
+    :territory: "001"
+    :type: Atlantic/Azores
+  - 
+    :other: Baku
+    :territory: "001"
+    :type: Asia/Baku
+  - 
+    :other: Bangladesh
+    :territory: "001"
+    :type: Asia/Dhaka
+  - 
+    :other: Bering
+    :territory: "001"
+    :type: America/Adak
+  - 
+    :other: Bhutan
+    :territory: "001"
+    :type: Asia/Thimphu
+  - 
+    :other: Bolivia
+    :territory: "001"
+    :type: America/La_Paz
+  - 
+    :other: Borneo
+    :territory: "001"
+    :type: Asia/Kuching
+  - 
+    :other: Brasilia
+    :territory: "001"
+    :type: America/Sao_Paulo
+  - 
+    :other: British
+    :territory: "001"
+    :type: Europe/London
+  - 
+    :other: Brunei
+    :territory: "001"
+    :type: Asia/Brunei
+  - 
+    :other: Cape_Verde
+    :territory: "001"
+    :type: Atlantic/Cape_Verde
+  - 
+    :other: Casey
+    :territory: "001"
+    :type: Antarctica/Casey
+  - 
+    :other: Chamorro
+    :territory: "001"
+    :type: Pacific/Saipan
+  - 
+    :other: Chamorro
+    :territory: GU
+    :type: Pacific/Guam
+  - 
+    :other: Chatham
+    :territory: "001"
+    :type: Pacific/Chatham
+  - 
+    :other: Chile
+    :territory: "001"
+    :type: America/Santiago
+  - 
+    :other: China
+    :territory: "001"
+    :type: Asia/Shanghai
+  - 
+    :other: Christmas
+    :territory: "001"
+    :type: Indian/Christmas
+  - 
+    :other: Cocos
+    :territory: "001"
+    :type: Indian/Cocos
+  - 
+    :other: Colombia
+    :territory: "001"
+    :type: America/Bogota
+  - 
+    :other: Cook
+    :territory: "001"
+    :type: Pacific/Rarotonga
+  - 
+    :other: Cuba
+    :territory: "001"
+    :type: America/Havana
+  - 
+    :other: Dacca
+    :territory: "001"
+    :type: Asia/Dhaka
+  - 
+    :other: Davis
+    :territory: "001"
+    :type: Antarctica/Davis
+  - 
+    :other: Dominican
+    :territory: "001"
+    :type: America/Santo_Domingo
+  - 
+    :other: DumontDUrville
+    :territory: "001"
+    :type: Antarctica/DumontDUrville
+  - 
+    :other: Dushanbe
+    :territory: "001"
+    :type: Asia/Dushanbe
+  - 
+    :other: Dutch_Guiana
+    :territory: "001"
+    :type: America/Paramaribo
+  - 
+    :other: East_Timor
+    :territory: "001"
+    :type: Asia/Dili
+  - 
+    :other: Easter
+    :territory: "001"
+    :type: Pacific/Easter
+  - 
+    :other: Ecuador
+    :territory: "001"
+    :type: America/Guayaquil
+  - 
+    :other: Europe_Central
+    :territory: "001"
+    :type: Europe/Paris
+  - 
+    :other: Europe_Central
+    :territory: AD
+    :type: Europe/Andorra
+  - 
+    :other: Europe_Central
+    :territory: AL
+    :type: Europe/Tirane
+  - 
+    :other: Europe_Central
+    :territory: AT
+    :type: Europe/Vienna
+  - 
+    :other: Europe_Central
+    :territory: BA
+    :type: Europe/Sarajevo
+  - 
+    :other: Europe_Central
+    :territory: BE
+    :type: Europe/Brussels
+  - 
+    :other: Europe_Central
+    :territory: CH
+    :type: Europe/Zurich
+  - 
+    :other: Europe_Central
+    :territory: CZ
+    :type: Europe/Prague
+  - 
+    :other: Europe_Central
+    :territory: DE
+    :type: Europe/Berlin
+  - 
+    :other: Europe_Central
+    :territory: DK
+    :type: Europe/Copenhagen
+  - 
+    :other: Europe_Central
+    :territory: ES
+    :type: Europe/Madrid
+  - 
+    :other: Europe_Central
+    :territory: GI
+    :type: Europe/Gibraltar
+  - 
+    :other: Europe_Central
+    :territory: HR
+    :type: Europe/Zagreb
+  - 
+    :other: Europe_Central
+    :territory: HU
+    :type: Europe/Budapest
+  - 
+    :other: Europe_Central
+    :territory: IT
+    :type: Europe/Rome
+  - 
+    :other: Europe_Central
+    :territory: LI
+    :type: Europe/Vaduz
+  - 
+    :other: Europe_Central
+    :territory: LU
+    :type: Europe/Luxembourg
+  - 
+    :other: Europe_Central
+    :territory: MC
+    :type: Europe/Monaco
+  - 
+    :other: Europe_Central
+    :territory: ME
+    :type: Europe/Podgorica
+  - 
+    :other: Europe_Central
+    :territory: MK
+    :type: Europe/Skopje
+  - 
+    :other: Europe_Central
+    :territory: MT
+    :type: Europe/Malta
+  - 
+    :other: Europe_Central
+    :territory: NL
+    :type: Europe/Amsterdam
+  - 
+    :other: Europe_Central
+    :territory: "NO"
+    :type: Europe/Oslo
+  - 
+    :other: Europe_Central
+    :territory: PL
+    :type: Europe/Warsaw
+  - 
+    :other: Europe_Central
+    :territory: RS
+    :type: Europe/Belgrade
+  - 
+    :other: Europe_Central
+    :territory: SE
+    :type: Europe/Stockholm
+  - 
+    :other: Europe_Central
+    :territory: SI
+    :type: Europe/Ljubljana
+  - 
+    :other: Europe_Central
+    :territory: SJ
+    :type: Arctic/Longyearbyen
+  - 
+    :other: Europe_Central
+    :territory: SK
+    :type: Europe/Bratislava
+  - 
+    :other: Europe_Central
+    :territory: SM
+    :type: Europe/San_Marino
+  - 
+    :other: Europe_Central
+    :territory: TN
+    :type: Africa/Tunis
+  - 
+    :other: Europe_Central
+    :territory: VA
+    :type: Europe/Vatican
+  - 
+    :other: Europe_Central
+    :territory: XK
+    :type: Europe/Belgrade
+  - 
+    :other: Europe_Eastern
+    :territory: "001"
+    :type: Europe/Bucharest
+  - 
+    :other: Europe_Eastern
+    :territory: AX
+    :type: Europe/Mariehamn
+  - 
+    :other: Europe_Eastern
+    :territory: BG
+    :type: Europe/Sofia
+  - 
+    :other: Europe_Eastern
+    :territory: CY
+    :type: Asia/Nicosia
+  - 
+    :other: Europe_Eastern
+    :territory: EG
+    :type: Africa/Cairo
+  - 
+    :other: Europe_Eastern
+    :territory: FI
+    :type: Europe/Helsinki
+  - 
+    :other: Europe_Eastern
+    :territory: GR
+    :type: Europe/Athens
+  - 
+    :other: Europe_Eastern
+    :territory: LB
+    :type: Asia/Beirut
+  - 
+    :other: Europe_Further_Eastern
+    :territory: "001"
+    :type: Europe/Minsk
+  - 
+    :other: Europe_Further_Eastern
+    :territory: RU
+    :type: Europe/Kaliningrad
+  - 
+    :other: Europe_Western
+    :territory: "001"
+    :type: Atlantic/Canary
+  - 
+    :other: Europe_Western
+    :territory: FO
+    :type: Atlantic/Faeroe
+  - 
+    :other: Falkland
+    :territory: "001"
+    :type: Atlantic/Stanley
+  - 
+    :other: Fiji
+    :territory: "001"
+    :type: Pacific/Fiji
+  - 
+    :other: French_Guiana
+    :territory: "001"
+    :type: America/Cayenne
+  - 
+    :other: French_Southern
+    :territory: "001"
+    :type: Indian/Kerguelen
+  - 
+    :other: Frunze
+    :territory: "001"
+    :type: Asia/Bishkek
+  - 
+    :other: Galapagos
+    :territory: "001"
+    :type: Pacific/Galapagos
+  - 
+    :other: Gambier
+    :territory: "001"
+    :type: Pacific/Gambier
+  - 
+    :other: Georgia
+    :territory: "001"
+    :type: Asia/Tbilisi
+  - 
+    :other: Gilbert_Islands
+    :territory: "001"
+    :type: Pacific/Tarawa
+  - 
+    :other: GMT
+    :territory: "001"
+    :type: Atlantic/Reykjavik
+  - 
+    :other: GMT
+    :territory: BF
+    :type: Africa/Ouagadougou
+  - 
+    :other: GMT
+    :territory: CI
+    :type: Africa/Abidjan
+  - 
+    :other: GMT
+    :territory: GB
+    :type: Europe/London
+  - 
+    :other: GMT
+    :territory: GH
+    :type: Africa/Accra
+  - 
+    :other: GMT
+    :territory: GM
+    :type: Africa/Banjul
+  - 
+    :other: GMT
+    :territory: GN
+    :type: Africa/Conakry
+  - 
+    :other: GMT
+    :territory: IE
+    :type: Europe/Dublin
+  - 
+    :other: GMT
+    :territory: ML
+    :type: Africa/Bamako
+  - 
+    :other: GMT
+    :territory: MR
+    :type: Africa/Nouakchott
+  - 
+    :other: GMT
+    :territory: SH
+    :type: Atlantic/St_Helena
+  - 
+    :other: GMT
+    :territory: SL
+    :type: Africa/Freetown
+  - 
+    :other: GMT
+    :territory: SN
+    :type: Africa/Dakar
+  - 
+    :other: GMT
+    :territory: TG
+    :type: Africa/Lome
+  - 
+    :other: Goose_Bay
+    :territory: "001"
+    :type: America/Goose_Bay
+  - 
+    :other: Greenland
+    :territory: "001"
+    :type: America/Godthab
+  - 
+    :other: Greenland_Central
+    :territory: "001"
+    :type: America/Scoresbysund
+  - 
+    :other: Greenland_Eastern
+    :territory: "001"
+    :type: America/Scoresbysund
+  - 
+    :other: Greenland_Western
+    :territory: "001"
+    :type: America/Godthab
+  - 
+    :other: Guam
+    :territory: "001"
+    :type: Pacific/Guam
+  - 
+    :other: Gulf
+    :territory: "001"
+    :type: Asia/Dubai
+  - 
+    :other: Gulf
+    :territory: OM
+    :type: Asia/Muscat
+  - 
+    :other: Guyana
+    :territory: "001"
+    :type: America/Guyana
+  - 
+    :other: Hawaii_Aleutian
+    :territory: "001"
+    :type: Pacific/Honolulu
+  - 
+    :other: Hong_Kong
+    :territory: "001"
+    :type: Asia/Hong_Kong
+  - 
+    :other: Hovd
+    :territory: "001"
+    :type: Asia/Hovd
+  - 
+    :other: India
+    :territory: "001"
+    :type: Asia/Calcutta
+  - 
+    :other: India
+    :territory: LK
+    :type: Asia/Colombo
+  - 
+    :other: Indian_Ocean
+    :territory: "001"
+    :type: Indian/Chagos
+  - 
+    :other: Indochina
+    :territory: "001"
+    :type: Asia/Bangkok
+  - 
+    :other: Indochina
+    :territory: KH
+    :type: Asia/Phnom_Penh
+  - 
+    :other: Indochina
+    :territory: LA
+    :type: Asia/Vientiane
+  - 
+    :other: Indonesia_Central
+    :territory: "001"
+    :type: Asia/Makassar
+  - 
+    :other: Indonesia_Eastern
+    :territory: "001"
+    :type: Asia/Jayapura
+  - 
+    :other: Indonesia_Western
+    :territory: "001"
+    :type: Asia/Jakarta
+  - 
+    :other: Iran
+    :territory: "001"
+    :type: Asia/Tehran
+  - 
+    :other: Irish
+    :territory: "001"
+    :type: Europe/Dublin
+  - 
+    :other: Irkutsk
+    :territory: "001"
+    :type: Asia/Irkutsk
+  - 
+    :other: Israel
+    :territory: "001"
+    :type: Asia/Jerusalem
+  - 
+    :other: Japan
+    :territory: "001"
+    :type: Asia/Tokyo
+  - 
+    :other: Kamchatka
+    :territory: "001"
+    :type: Asia/Kamchatka
+  - 
+    :other: Karachi
+    :territory: "001"
+    :type: Asia/Karachi
+  - 
+    :other: Kazakhstan
+    :territory: "001"
+    :type: Asia/Almaty
+  - 
+    :other: Kazakhstan_Eastern
+    :territory: "001"
+    :type: Asia/Almaty
+  - 
+    :other: Kazakhstan_Western
+    :territory: "001"
+    :type: Asia/Aqtobe
+  - 
+    :other: Kizilorda
+    :territory: "001"
+    :type: Asia/Qyzylorda
+  - 
+    :other: Korea
+    :territory: "001"
+    :type: Asia/Seoul
+  - 
+    :other: Kosrae
+    :territory: "001"
+    :type: Pacific/Kosrae
+  - 
+    :other: Krasnoyarsk
+    :territory: "001"
+    :type: Asia/Krasnoyarsk
+  - 
+    :other: Kuybyshev
+    :territory: "001"
+    :type: Europe/Samara
+  - 
+    :other: Kwajalein
+    :territory: "001"
+    :type: Pacific/Kwajalein
+  - 
+    :other: Kyrgystan
+    :territory: "001"
+    :type: Asia/Bishkek
+  - 
+    :other: Lanka
+    :territory: "001"
+    :type: Asia/Colombo
+  - 
+    :other: Liberia
+    :territory: "001"
+    :type: Africa/Monrovia
+  - 
+    :other: Line_Islands
+    :territory: "001"
+    :type: Pacific/Kiritimati
+  - 
+    :other: Lord_Howe
+    :territory: "001"
+    :type: Australia/Lord_Howe
+  - 
+    :other: Macau
+    :territory: "001"
+    :type: Asia/Macau
+  - 
+    :other: Magadan
+    :territory: "001"
+    :type: Asia/Magadan
+  - 
+    :other: Malaya
+    :territory: "001"
+    :type: Asia/Kuala_Lumpur
+  - 
+    :other: Malaysia
+    :territory: "001"
+    :type: Asia/Kuching
+  - 
+    :other: Maldives
+    :territory: "001"
+    :type: Indian/Maldives
+  - 
+    :other: Marquesas
+    :territory: "001"
+    :type: Pacific/Marquesas
+  - 
+    :other: Marshall_Islands
+    :territory: "001"
+    :type: Pacific/Majuro
+  - 
+    :other: Mauritius
+    :territory: "001"
+    :type: Indian/Mauritius
+  - 
+    :other: Mawson
+    :territory: "001"
+    :type: Antarctica/Mawson
+  - 
+    :other: Mexico_Pacific
+    :territory: "001"
+    :type: America/Mazatlan
+  - 
+    :other: Mongolia
+    :territory: "001"
+    :type: Asia/Ulaanbaatar
+  - 
+    :other: Moscow
+    :territory: "001"
+    :type: Europe/Moscow
+  - 
+    :other: Myanmar
+    :territory: "001"
+    :type: Asia/Rangoon
+  - 
+    :other: Nauru
+    :territory: "001"
+    :type: Pacific/Nauru
+  - 
+    :other: Nepal
+    :territory: "001"
+    :type: Asia/Katmandu
+  - 
+    :other: New_Caledonia
+    :territory: "001"
+    :type: Pacific/Noumea
+  - 
+    :other: New_Zealand
+    :territory: "001"
+    :type: Pacific/Auckland
+  - 
+    :other: New_Zealand
+    :territory: AQ
+    :type: Antarctica/McMurdo
+  - 
+    :other: Newfoundland
+    :territory: "001"
+    :type: America/St_Johns
+  - 
+    :other: Niue
+    :territory: "001"
+    :type: Pacific/Niue
+  - 
+    :other: Norfolk
+    :territory: "001"
+    :type: Pacific/Norfolk
+  - 
+    :other: Noronha
+    :territory: "001"
+    :type: America/Noronha
+  - 
+    :other: North_Mariana
+    :territory: "001"
+    :type: Pacific/Saipan
+  - 
+    :other: Novosibirsk
+    :territory: "001"
+    :type: Asia/Novosibirsk
+  - 
+    :other: Omsk
+    :territory: "001"
+    :type: Asia/Omsk
+  - 
+    :other: Oral
+    :territory: "001"
+    :type: Asia/Oral
+  - 
+    :other: Pakistan
+    :territory: "001"
+    :type: Asia/Karachi
+  - 
+    :other: Palau
+    :territory: "001"
+    :type: Pacific/Palau
+  - 
+    :other: Papua_New_Guinea
+    :territory: "001"
+    :type: Pacific/Port_Moresby
+  - 
+    :other: Paraguay
+    :territory: "001"
+    :type: America/Asuncion
+  - 
+    :other: Peru
+    :territory: "001"
+    :type: America/Lima
+  - 
+    :other: Philippines
+    :territory: "001"
+    :type: Asia/Manila
+  - 
+    :other: Phoenix_Islands
+    :territory: "001"
+    :type: Pacific/Enderbury
+  - 
+    :other: Pierre_Miquelon
+    :territory: "001"
+    :type: America/Miquelon
+  - 
+    :other: Pitcairn
+    :territory: "001"
+    :type: Pacific/Pitcairn
+  - 
+    :other: Ponape
+    :territory: "001"
+    :type: Pacific/Ponape
+  - 
+    :other: Pyongyang
+    :territory: "001"
+    :type: Asia/Pyongyang
+  - 
+    :other: Qyzylorda
+    :territory: "001"
+    :type: Asia/Qyzylorda
+  - 
+    :other: Reunion
+    :territory: "001"
+    :type: Indian/Reunion
+  - 
+    :other: Rothera
+    :territory: "001"
+    :type: Antarctica/Rothera
+  - 
+    :other: Sakhalin
+    :territory: "001"
+    :type: Asia/Sakhalin
+  - 
+    :other: Samara
+    :territory: "001"
+    :type: Europe/Samara
+  - 
+    :other: Samarkand
+    :territory: "001"
+    :type: Asia/Samarkand
+  - 
+    :other: Samoa
+    :territory: "001"
+    :type: Pacific/Pago_Pago
+  - 
+    :other: Seychelles
+    :territory: "001"
+    :type: Indian/Mahe
+  - 
+    :other: Shevchenko
+    :territory: "001"
+    :type: Asia/Aqtau
+  - 
+    :other: Singapore
+    :territory: "001"
+    :type: Asia/Singapore
+  - 
+    :other: Solomon
+    :territory: "001"
+    :type: Pacific/Guadalcanal
+  - 
+    :other: South_Georgia
+    :territory: "001"
+    :type: Atlantic/South_Georgia
+  - 
+    :other: Suriname
+    :territory: "001"
+    :type: America/Paramaribo
+  - 
+    :other: Sverdlovsk
+    :territory: "001"
+    :type: Asia/Yekaterinburg
+  - 
+    :other: Syowa
+    :territory: "001"
+    :type: Antarctica/Syowa
+  - 
+    :other: Tahiti
+    :territory: "001"
+    :type: Pacific/Tahiti
+  - 
+    :other: Taipei
+    :territory: "001"
+    :type: Asia/Taipei
+  - 
+    :other: Tajikistan
+    :territory: "001"
+    :type: Asia/Dushanbe
+  - 
+    :other: Tashkent
+    :territory: "001"
+    :type: Asia/Tashkent
+  - 
+    :other: Tbilisi
+    :territory: "001"
+    :type: Asia/Tbilisi
+  - 
+    :other: Tokelau
+    :territory: "001"
+    :type: Pacific/Fakaofo
+  - 
+    :other: Tonga
+    :territory: "001"
+    :type: Pacific/Tongatapu
+  - 
+    :other: Truk
+    :territory: "001"
+    :type: Pacific/Truk
+  - 
+    :other: Turkey
+    :territory: "001"
+    :type: Europe/Istanbul
+  - 
+    :other: Turkmenistan
+    :territory: "001"
+    :type: Asia/Ashgabat
+  - 
+    :other: Tuvalu
+    :territory: "001"
+    :type: Pacific/Funafuti
+  - 
+    :other: Uralsk
+    :territory: "001"
+    :type: Asia/Oral
+  - 
+    :other: Uruguay
+    :territory: "001"
+    :type: America/Montevideo
+  - 
+    :other: Urumqi
+    :territory: "001"
+    :type: Asia/Urumqi
+  - 
+    :other: Uzbekistan
+    :territory: "001"
+    :type: Asia/Tashkent
+  - 
+    :other: Vanuatu
+    :territory: "001"
+    :type: Pacific/Efate
+  - 
+    :other: Venezuela
+    :territory: "001"
+    :type: America/Caracas
+  - 
+    :other: Vladivostok
+    :territory: "001"
+    :type: Asia/Vladivostok
+  - 
+    :other: Volgograd
+    :territory: "001"
+    :type: Europe/Volgograd
+  - 
+    :other: Vostok
+    :territory: "001"
+    :type: Antarctica/Vostok
+  - 
+    :other: Wake
+    :territory: "001"
+    :type: Pacific/Wake
+  - 
+    :other: Wallis
+    :territory: "001"
+    :type: Pacific/Wallis
+  - 
+    :other: Yakutsk
+    :territory: "001"
+    :type: Asia/Yakutsk
+  - 
+    :other: Yekaterinburg
+    :territory: "001"
+    :type: Asia/Yekaterinburg
+  - 
+    :other: Yerevan
+    :territory: "001"
+    :type: Asia/Yerevan
+  - 
+    :other: Yukon
+    :territory: "001"
+    :type: America/Whitehorse
+:primaryzones: 
+  :CL: America/Santiago
+  :CN: Asia/Shanghai
+  :DE: Europe/Berlin
+  :EC: America/Guayaquil
+  :ES: Europe/Madrid
+  :MH: Pacific/Majuro
+  :MY: Asia/Kuala_Lumpur
+  :NZ: Pacific/Auckland
+  :PT: Europe/Lisbon
+  :UA: Europe/Kiev
+  :UZ: Asia/Tashkent
+:timezones: 
+  :Africa/Abidjan: 
+    - 
+      :metazone: GMT
+  :Africa/Accra: 
+    - 
+      :metazone: GMT
+  :Africa/Addis_Ababa: 
+    - 
+      :metazone: Africa_Eastern
+  :Africa/Algiers: 
+    - 
+      :metazone: Europe_Western
+      :to: 1977-10-20T23:00:00+00:00
+    - 
+      :from: 1977-10-20T23:00:00+00:00
+      :metazone: Europe_Central
+      :to: 1979-10-25T23:00:00+00:00
+    - 
+      :from: 1979-10-25T23:00:00+00:00
+      :metazone: Europe_Western
+      :to: 1981-05-01T00:00:00+00:00
+    - 
+      :from: 1981-05-01T00:00:00+00:00
+      :metazone: Europe_Central
+  :Africa/Asmera: 
+    - 
+      :metazone: Africa_Eastern
+  :Africa/Bamako: 
+    - 
+      :metazone: GMT
+  :Africa/Bangui: 
+    - 
+      :metazone: Africa_Western
+  :Africa/Banjul: 
+    - 
+      :metazone: GMT
+  :Africa/Bissau: 
+    - 
+      :metazone: Africa_FarWestern
+      :to: 1975-01-01T01:00:00+00:00
+    - 
+      :from: 1975-01-01T01:00:00+00:00
+      :metazone: GMT
+  :Africa/Blantyre: 
+    - 
+      :metazone: Africa_Central
+  :Africa/Brazzaville: 
+    - 
+      :metazone: Africa_Western
+  :Africa/Bujumbura: 
+    - 
+      :metazone: Africa_Central
+  :Africa/Cairo: 
+    - 
+      :metazone: Europe_Eastern
+  :Africa/Casablanca: 
+    - 
+      :metazone: Europe_Western
+      :to: 1984-03-16T00:00:00+00:00
+    - 
+      :from: 1984-03-16T00:00:00+00:00
+      :metazone: Europe_Central
+      :to: 1985-12-31T23:00:00+00:00
+    - 
+      :from: 1985-12-31T23:00:00+00:00
+      :metazone: Europe_Western
+      :to: 2018-10-28T02:00:00+00:00
+  :Africa/Ceuta: 
+    - 
+      :metazone: Europe_Western
+      :to: 1984-03-16T00:00:00+00:00
+    - 
+      :from: 1984-03-16T00:00:00+00:00
+      :metazone: Europe_Central
+  :Africa/Conakry: 
+    - 
+      :metazone: GMT
+  :Africa/Dakar: 
+    - 
+      :metazone: GMT
+  :Africa/Dar_es_Salaam: 
+    - 
+      :metazone: Africa_Eastern
+  :Africa/Djibouti: 
+    - 
+      :metazone: Africa_Eastern
+  :Africa/Douala: 
+    - 
+      :metazone: Africa_Western
+  :Africa/El_Aaiun: 
+    - 
+      :metazone: Africa_FarWestern
+      :to: 1976-04-14T01:00:00+00:00
+    - 
+      :from: 1976-04-14T01:00:00+00:00
+      :metazone: Europe_Western
+      :to: 2018-10-28T02:00:00+00:00
+  :Africa/Freetown: 
+    - 
+      :metazone: GMT
+  :Africa/Gaborone: 
+    - 
+      :metazone: Africa_Central
+  :Africa/Harare: 
+    - 
+      :metazone: Africa_Central
+  :Africa/Johannesburg: 
+    - 
+      :metazone: Africa_Southern
+  :Africa/Juba: 
+    - 
+      :metazone: Africa_Central
+      :to: 2000-01-15T10:00:00+00:00
+    - 
+      :from: 2000-01-15T10:00:00+00:00
+      :metazone: Africa_Eastern
+      :to: 2021-01-31T21:00:00+00:00
+    - 
+      :from: 2021-01-31T21:00:00+00:00
+      :metazone: Africa_Central
+  :Africa/Kampala: 
+    - 
+      :metazone: Africa_Eastern
+  :Africa/Khartoum: 
+    - 
+      :metazone: Africa_Central
+      :to: 2000-01-15T10:00:00+00:00
+    - 
+      :from: 2000-01-15T10:00:00+00:00
+      :metazone: Africa_Eastern
+      :to: 2017-10-31T21:00:00+00:00
+    - 
+      :from: 2017-10-31T21:00:00+00:00
+      :metazone: Africa_Central
+  :Africa/Kigali: 
+    - 
+      :metazone: Africa_Central
+  :Africa/Kinshasa: 
+    - 
+      :metazone: Africa_Western
+  :Africa/Lagos: 
+    - 
+      :metazone: Africa_Western
+  :Africa/Libreville: 
+    - 
+      :metazone: Africa_Western
+  :Africa/Lome: 
+    - 
+      :metazone: GMT
+  :Africa/Luanda: 
+    - 
+      :metazone: Africa_Western
+  :Africa/Lubumbashi: 
+    - 
+      :metazone: Africa_Central
+  :Africa/Lusaka: 
+    - 
+      :metazone: Africa_Central
+  :Africa/Malabo: 
+    - 
+      :metazone: Africa_Western
+  :Africa/Maputo: 
+    - 
+      :metazone: Africa_Central
+  :Africa/Maseru: 
+    - 
+      :metazone: Africa_Southern
+  :Africa/Mbabane: 
+    - 
+      :metazone: Africa_Southern
+  :Africa/Mogadishu: 
+    - 
+      :metazone: Africa_Eastern
+  :Africa/Monrovia: 
+    - 
+      :metazone: Liberia
+      :to: 1972-05-01T00:45:00+00:00
+    - 
+      :from: 1972-05-01T00:45:00+00:00
+      :metazone: GMT
+  :Africa/Nairobi: 
+    - 
+      :metazone: Africa_Eastern
+  :Africa/Ndjamena: 
+    - 
+      :metazone: Africa_Western
+  :Africa/Niamey: 
+    - 
+      :metazone: Africa_Western
+  :Africa/Nouakchott: 
+    - 
+      :metazone: GMT
+  :Africa/Ouagadougou: 
+    - 
+      :metazone: GMT
+  :Africa/Porto-Novo: 
+    - 
+      :metazone: Africa_Western
+  :Africa/Sao_Tome: 
+    - 
+      :metazone: GMT
+      :to: 2018-01-01T01:00:00+00:00
+    - 
+      :from: 2018-01-01T01:00:00+00:00
+      :metazone: Africa_Western
+      :to: 2019-01-01T01:00:00+00:00
+    - 
+      :from: 2019-01-01T01:00:00+00:00
+      :metazone: GMT
+  :Africa/Tripoli: 
+    - 
+      :metazone: Europe_Eastern
+      :to: 1981-12-31T22:00:00+00:00
+    - 
+      :from: 1981-12-31T22:00:00+00:00
+      :metazone: Europe_Central
+      :to: 1990-05-03T23:00:00+00:00
+    - 
+      :from: 1990-05-03T23:00:00+00:00
+      :metazone: Europe_Eastern
+      :to: 1996-09-29T22:00:00+00:00
+    - 
+      :from: 1996-09-29T22:00:00+00:00
+      :metazone: Europe_Central
+      :to: 1997-10-03T22:00:00+00:00
+    - 
+      :from: 1997-10-03T22:00:00+00:00
+      :metazone: Europe_Eastern
+      :to: 2012-11-10T00:00:00+00:00
+    - 
+      :from: 2012-11-10T00:00:00+00:00
+      :metazone: Europe_Central
+      :to: 2013-10-25T00:00:00+00:00
+    - 
+      :from: 2013-10-25T00:00:00+00:00
+      :metazone: Europe_Eastern
+  :Africa/Tunis: 
+    - 
+      :metazone: Europe_Central
+  :Africa/Windhoek: 
+    - 
+      :metazone: Africa_Southern
+      :to: 1990-03-20T22:00:00+00:00
+    - 
+      :from: 1990-03-20T22:00:00+00:00
+      :metazone: Africa_Central
+      :to: 1994-03-20T22:00:00+00:00
+    - 
+      :from: 1994-03-20T22:00:00+00:00
+      :metazone: Africa_Western
+      :to: 2017-10-23T22:00:00+00:00
+    - 
+      :from: 2017-10-23T22:00:00+00:00
+      :metazone: Africa_Central
+  :America/Adak: 
+    - 
+      :metazone: Bering
+      :to: 1983-10-30T12:00:00+00:00
+    - 
+      :from: 1983-11-30T10:00:00+00:00
+      :metazone: Hawaii_Aleutian
+  :America/Anchorage: 
+    - 
+      :metazone: Alaska_Hawaii
+      :to: 1983-10-30T11:00:00+00:00
+    - 
+      :from: 1983-11-30T09:00:00+00:00
+      :metazone: Alaska
+  :America/Anguilla: 
+    - 
+      :metazone: Atlantic
+  :America/Antigua: 
+    - 
+      :metazone: Atlantic
+  :America/Araguaina: 
+    - 
+      :metazone: Brasilia
+  :America/Argentina/La_Rioja: 
+    - 
+      :metazone: Argentina
+      :to: 1991-03-01T02:00:00+00:00
+    - 
+      :from: 1991-03-01T02:00:00+00:00
+      :metazone: Argentina_Western
+      :to: 1991-05-07T04:00:00+00:00
+    - 
+      :from: 1991-05-07T04:00:00+00:00
+      :metazone: Argentina
+      :to: 2004-06-01T03:00:00+00:00
+    - 
+      :from: 2004-06-01T03:00:00+00:00
+      :metazone: Argentina_Western
+      :to: 2004-06-20T04:00:00+00:00
+    - 
+      :from: 2004-06-20T04:00:00+00:00
+      :metazone: Argentina
+  :America/Argentina/Rio_Gallegos: 
+    - 
+      :metazone: Argentina
+      :to: 2004-06-01T03:00:00+00:00
+    - 
+      :from: 2004-06-01T03:00:00+00:00
+      :metazone: Argentina_Western
+      :to: 2004-06-20T04:00:00+00:00
+    - 
+      :from: 2004-06-20T04:00:00+00:00
+      :metazone: Argentina
+  :America/Argentina/Salta: 
+    - 
+      :metazone: Argentina
+      :to: 1991-03-03T02:00:00+00:00
+    - 
+      :from: 1991-10-20T04:00:00+00:00
+      :metazone: Argentina
+  :America/Argentina/San_Juan: 
+    - 
+      :metazone: Argentina
+      :to: 1991-03-01T02:00:00+00:00
+    - 
+      :from: 1991-03-01T02:00:00+00:00
+      :metazone: Argentina_Western
+      :to: 1991-05-07T04:00:00+00:00
+    - 
+      :from: 1991-05-07T04:00:00+00:00
+      :metazone: Argentina
+      :to: 2004-05-31T03:00:00+00:00
+    - 
+      :from: 2004-05-31T03:00:00+00:00
+      :metazone: Argentina_Western
+      :to: 2004-07-25T04:00:00+00:00
+    - 
+      :from: 2004-07-25T04:00:00+00:00
+      :metazone: Argentina
+  :America/Argentina/San_Luis: 
+    - 
+      :metazone: Argentina
+      :to: 1990-03-14T02:00:00+00:00
+    - 
+      :from: 1990-03-14T02:00:00+00:00
+      :metazone: Argentina_Western
+      :to: 1991-06-01T04:00:00+00:00
+    - 
+      :from: 1991-06-01T04:00:00+00:00
+      :metazone: Argentina
+      :to: 1999-10-03T03:00:00+00:00
+    - 
+      :from: 1999-10-03T03:00:00+00:00
+      :metazone: Argentina_Western
+      :to: 2000-03-03T03:00:00+00:00
+    - 
+      :from: 2000-03-03T03:00:00+00:00
+      :metazone: Argentina
+      :to: 2004-05-31T03:00:00+00:00
+    - 
+      :from: 2004-05-31T03:00:00+00:00
+      :metazone: Argentina_Western
+      :to: 2004-07-25T04:00:00+00:00
+    - 
+      :from: 2004-07-25T04:00:00+00:00
+      :metazone: Argentina
+      :to: 2008-01-21T02:00:00+00:00
+    - 
+      :from: 2008-01-21T02:00:00+00:00
+      :metazone: Argentina_Western
+      :to: 2009-10-11T04:00:00+00:00
+    - 
+      :from: 2009-10-11T04:00:00+00:00
+      :metazone: Argentina
+  :America/Argentina/Tucuman: 
+    - 
+      :metazone: Argentina
+      :to: 1991-03-03T02:00:00+00:00
+    - 
+      :from: 1991-10-20T04:00:00+00:00
+      :metazone: Argentina
+      :to: 2004-06-01T03:00:00+00:00
+    - 
+      :from: 2004-06-01T03:00:00+00:00
+      :metazone: Argentina_Western
+      :to: 2004-06-13T04:00:00+00:00
+    - 
+      :from: 2004-06-13T04:00:00+00:00
+      :metazone: Argentina
+  :America/Argentina/Ushuaia: 
+    - 
+      :metazone: Argentina
+      :to: 2004-05-30T03:00:00+00:00
+    - 
+      :from: 2004-06-20T04:00:00+00:00
+      :metazone: Argentina
+  :America/Aruba: 
+    - 
+      :metazone: Atlantic
+  :America/Asuncion: 
+    - 
+      :metazone: Paraguay
+  :America/Bahia: 
+    - 
+      :metazone: Brasilia
+  :America/Bahia_Banderas: 
+    - 
+      :metazone: America_Mountain
+      :to: 2010-04-04T09:00:00+00:00
+    - 
+      :from: 2010-04-04T09:00:00+00:00
+      :metazone: America_Central
+  :America/Barbados: 
+    - 
+      :metazone: Atlantic
+  :America/Belem: 
+    - 
+      :metazone: Brasilia
+  :America/Belize: 
+    - 
+      :metazone: America_Central
+  :America/Blanc-Sablon: 
+    - 
+      :metazone: Atlantic
+  :America/Boa_Vista: 
+    - 
+      :metazone: Amazon
+  :America/Bogota: 
+    - 
+      :metazone: Colombia
+  :America/Boise: 
+    - 
+      :metazone: America_Mountain
+  :America/Buenos_Aires: 
+    - 
+      :metazone: Argentina
+  :America/Cambridge_Bay: 
+    - 
+      :metazone: America_Mountain
+      :to: 1999-10-31T08:00:00+00:00
+    - 
+      :from: 1999-10-31T08:00:00+00:00
+      :metazone: America_Central
+      :to: 2000-10-29T07:00:00+00:00
+    - 
+      :from: 2000-10-29T07:00:00+00:00
+      :metazone: America_Eastern
+      :to: 2000-11-05T05:00:00+00:00
+    - 
+      :from: 2000-11-05T05:00:00+00:00
+      :metazone: America_Central
+      :to: 2001-04-01T09:00:00+00:00
+    - 
+      :from: 2001-04-01T09:00:00+00:00
+      :metazone: America_Mountain
+  :America/Campo_Grande: 
+    - 
+      :metazone: Amazon
+  :America/Cancun: 
+    - 
+      :metazone: America_Central
+      :to: 1981-12-26T08:00:00+00:00
+    - 
+      :from: 1981-12-26T08:00:00+00:00
+      :metazone: America_Eastern
+      :to: 1983-01-04T05:00:00+00:00
+    - 
+      :from: 1983-01-04T05:00:00+00:00
+      :metazone: America_Central
+      :to: 1997-10-26T07:00:00+00:00
+    - 
+      :from: 1997-10-26T07:00:00+00:00
+      :metazone: America_Eastern
+      :to: 1998-08-02T06:00:00+00:00
+    - 
+      :from: 1998-08-02T06:00:00+00:00
+      :metazone: America_Central
+      :to: 2015-02-01T08:00:00+00:00
+    - 
+      :from: 2015-02-01T08:00:00+00:00
+      :metazone: America_Eastern
+  :America/Caracas: 
+    - 
+      :metazone: Venezuela
+  :America/Catamarca: 
+    - 
+      :metazone: Argentina
+      :to: 1991-03-03T02:00:00+00:00
+    - 
+      :from: 1991-10-20T04:00:00+00:00
+      :metazone: Argentina
+      :to: 2004-06-01T03:00:00+00:00
+    - 
+      :from: 2004-06-01T03:00:00+00:00
+      :metazone: Argentina_Western
+      :to: 2004-06-20T04:00:00+00:00
+    - 
+      :from: 2004-06-20T04:00:00+00:00
+      :metazone: Argentina
+  :America/Cayenne: 
+    - 
+      :metazone: French_Guiana
+  :America/Cayman: 
+    - 
+      :metazone: America_Eastern
+  :America/Chicago: 
+    - 
+      :metazone: America_Central
+  :America/Chihuahua: 
+    - 
+      :metazone: America_Central
+      :to: 1998-04-05T09:00:00+00:00
+    - 
+      :from: 1998-04-05T09:00:00+00:00
+      :metazone: Mexico_Pacific
+      :to: 2022-10-30T08:00:00+00:00
+    - 
+      :from: 2022-10-30T08:00:00+00:00
+      :metazone: America_Central
+  :America/Ciudad_Juarez: 
+    - 
+      :metazone: America_Central
+      :to: 1998-04-05T09:00:00+00:00
+    - 
+      :from: 1998-04-05T09:00:00+00:00
+      :metazone: Mexico_Pacific
+      :to: 2022-10-30T08:00:00+00:00
+    - 
+      :from: 2022-10-30T08:00:00+00:00
+      :metazone: America_Central
+      :to: 2022-11-30T06:00:00+00:00
+    - 
+      :from: 2022-11-30T06:00:00+00:00
+      :metazone: America_Mountain
+  :America/Coral_Harbour: 
+    - 
+      :metazone: America_Eastern
+  :America/Cordoba: 
+    - 
+      :metazone: Argentina
+      :to: 1991-03-03T02:00:00+00:00
+    - 
+      :from: 1991-10-20T04:00:00+00:00
+      :metazone: Argentina
+  :America/Costa_Rica: 
+    - 
+      :metazone: America_Central
+  :America/Creston: 
+    - 
+      :metazone: America_Mountain
+  :America/Cuiaba: 
+    - 
+      :metazone: Amazon
+  :America/Curacao: 
+    - 
+      :metazone: Atlantic
+  :America/Danmarkshavn: 
+    - 
+      :metazone: Greenland_Western
+      :to: 1996-01-01T03:00:00+00:00
+    - 
+      :from: 1996-01-01T03:00:00+00:00
+      :metazone: GMT
+  :America/Dawson: 
+    - 
+      :from: 1973-10-28T09:00:00+00:00
+      :metazone: America_Pacific
+      :to: 2020-11-01T07:00:00+00:00
+    - 
+      :from: 2020-11-01T07:00:00+00:00
+      :metazone: Yukon
+  :America/Dawson_Creek: 
+    - 
+      :metazone: America_Pacific
+      :to: 1972-08-30T09:00:00+00:00
+    - 
+      :from: 1972-08-30T09:00:00+00:00
+      :metazone: America_Mountain
+  :America/Denver: 
+    - 
+      :metazone: America_Mountain
+  :America/Detroit: 
+    - 
+      :metazone: America_Eastern
+  :America/Dominica: 
+    - 
+      :metazone: Atlantic
+  :America/Edmonton: 
+    - 
+      :metazone: America_Mountain
+  :America/Eirunepe: 
+    - 
+      :metazone: Acre
+      :to: 2008-06-24T05:00:00+00:00
+    - 
+      :from: 2008-06-24T05:00:00+00:00
+      :metazone: Amazon
+      :to: 2013-11-10T04:00:00+00:00
+    - 
+      :from: 2013-11-10T04:00:00+00:00
+      :metazone: Acre
+  :America/El_Salvador: 
+    - 
+      :metazone: America_Central
+  :America/Fort_Nelson: 
+    - 
+      :metazone: America_Pacific
+      :to: 2015-03-08T10:00:00+00:00
+    - 
+      :from: 2015-03-08T10:00:00+00:00
+      :metazone: America_Mountain
+  :America/Fortaleza: 
+    - 
+      :metazone: Brasilia
+  :America/Glace_Bay: 
+    - 
+      :metazone: Atlantic
+  :America/Godthab: 
+    - 
+      :metazone: Greenland_Western
+      :to: 2024-03-26T01:00:00+00:00
+    - 
+      :from: 2024-03-26T01:00:00+00:00
+      :metazone: Greenland
+  :America/Goose_Bay: 
+    - 
+      :metazone: Atlantic
+      :to: 1988-04-03T04:01:00+00:00
+    - 
+      :from: 1988-04-03T04:01:00+00:00
+      :metazone: Goose_Bay
+      :to: 1988-10-30T02:01:00+00:00
+    - 
+      :from: 1988-10-30T02:01:00+00:00
+      :metazone: Atlantic
+  :America/Grand_Turk: 
+    - 
+      :metazone: America_Eastern
+      :to: 2015-03-08T07:00:00+00:00
+    - 
+      :from: 2015-03-08T07:00:00+00:00
+      :metazone: Atlantic
+      :to: 2018-03-11T07:00:00+00:00
+    - 
+      :from: 2018-03-11T07:00:00+00:00
+      :metazone: America_Eastern
+  :America/Grenada: 
+    - 
+      :metazone: Atlantic
+  :America/Guadeloupe: 
+    - 
+      :metazone: Atlantic
+  :America/Guatemala: 
+    - 
+      :metazone: America_Central
+  :America/Guayaquil: 
+    - 
+      :metazone: Ecuador
+  :America/Guyana: 
+    - 
+      :metazone: Guyana
+  :America/Halifax: 
+    - 
+      :metazone: Atlantic
+  :America/Havana: 
+    - 
+      :metazone: Cuba
+  :America/Hermosillo: 
+    - 
+      :metazone: Mexico_Pacific
+  :America/Indiana/Knox: 
+    - 
+      :metazone: America_Central
+      :to: 1991-10-27T07:00:00+00:00
+    - 
+      :from: 1991-10-27T07:00:00+00:00
+      :metazone: America_Eastern
+      :to: 2006-04-02T07:00:00+00:00
+    - 
+      :from: 2006-04-02T07:00:00+00:00
+      :metazone: America_Central
+  :America/Indiana/Marengo: 
+    - 
+      :metazone: America_Eastern
+      :to: 1974-01-06T07:00:00+00:00
+    - 
+      :from: 1974-01-06T07:00:00+00:00
+      :metazone: America_Central
+      :to: 1974-10-27T07:00:00+00:00
+    - 
+      :from: 1974-10-27T07:00:00+00:00
+      :metazone: America_Eastern
+  :America/Indiana/Petersburg: 
+    - 
+      :metazone: America_Central
+      :to: 1977-10-30T07:00:00+00:00
+    - 
+      :from: 1977-10-30T07:00:00+00:00
+      :metazone: America_Eastern
+      :to: 2006-04-02T07:00:00+00:00
+    - 
+      :from: 2006-04-02T07:00:00+00:00
+      :metazone: America_Central
+      :to: 2007-11-04T07:00:00+00:00
+    - 
+      :from: 2007-11-04T07:00:00+00:00
+      :metazone: America_Eastern
+  :America/Indiana/Tell_City: 
+    - 
+      :metazone: America_Eastern
+      :to: 2006-04-02T07:00:00+00:00
+    - 
+      :from: 2006-04-02T07:00:00+00:00
+      :metazone: America_Central
+  :America/Indiana/Vevay: 
+    - 
+      :metazone: America_Eastern
+  :America/Indiana/Vincennes: 
+    - 
+      :metazone: America_Eastern
+      :to: 2006-04-02T07:00:00+00:00
+    - 
+      :from: 2006-04-02T07:00:00+00:00
+      :metazone: America_Central
+      :to: 2007-11-04T07:00:00+00:00
+    - 
+      :from: 2007-11-04T07:00:00+00:00
+      :metazone: America_Eastern
+  :America/Indiana/Winamac: 
+    - 
+      :metazone: America_Eastern
+      :to: 2006-04-02T07:00:00+00:00
+    - 
+      :from: 2006-04-02T07:00:00+00:00
+      :metazone: America_Central
+      :to: 2007-03-11T08:00:00+00:00
+    - 
+      :from: 2007-03-11T08:00:00+00:00
+      :metazone: America_Eastern
+  :America/Indianapolis: 
+    - 
+      :metazone: America_Eastern
+  :America/Inuvik: 
+    - 
+      :metazone: America_Pacific
+      :to: 1979-04-29T10:00:00+00:00
+    - 
+      :from: 1979-04-29T10:00:00+00:00
+      :metazone: America_Mountain
+  :America/Iqaluit: 
+    - 
+      :metazone: America_Eastern
+      :to: 1999-10-31T06:00:00+00:00
+    - 
+      :from: 1999-10-31T06:00:00+00:00
+      :metazone: America_Central
+      :to: 2000-10-29T07:00:00+00:00
+    - 
+      :from: 2000-10-29T07:00:00+00:00
+      :metazone: America_Eastern
+  :America/Jamaica: 
+    - 
+      :metazone: America_Eastern
+  :America/Jujuy: 
+    - 
+      :metazone: Argentina
+      :to: 1990-03-04T02:00:00+00:00
+    - 
+      :from: 1991-10-06T04:00:00+00:00
+      :metazone: Argentina
+  :America/Juneau: 
+    - 
+      :metazone: America_Pacific
+      :to: 1980-04-27T10:00:00+00:00
+    - 
+      :from: 1980-10-26T10:00:00+00:00
+      :metazone: America_Pacific
+      :to: 1983-10-30T09:00:00+00:00
+    - 
+      :from: 1983-11-30T09:00:00+00:00
+      :metazone: Alaska
+  :America/Kentucky/Monticello: 
+    - 
+      :metazone: America_Central
+      :to: 2000-10-29T07:00:00+00:00
+    - 
+      :from: 2000-10-29T07:00:00+00:00
+      :metazone: America_Eastern
+  :America/Kralendijk: 
+    - 
+      :metazone: Atlantic
+  :America/La_Paz: 
+    - 
+      :metazone: Bolivia
+  :America/Lima: 
+    - 
+      :metazone: Peru
+  :America/Los_Angeles: 
+    - 
+      :metazone: America_Pacific
+  :America/Louisville: 
+    - 
+      :metazone: America_Eastern
+      :to: 1974-01-06T07:00:00+00:00
+    - 
+      :from: 1974-01-06T07:00:00+00:00
+      :metazone: America_Central
+      :to: 1974-10-27T07:00:00+00:00
+    - 
+      :from: 1974-10-27T07:00:00+00:00
+      :metazone: America_Eastern
+  :America/Lower_Princes: 
+    - 
+      :metazone: Atlantic
+  :America/Maceio: 
+    - 
+      :metazone: Brasilia
+  :America/Managua: 
+    - 
+      :metazone: America_Central
+      :to: 1973-05-01T06:00:00+00:00
+    - 
+      :from: 1973-05-01T06:00:00+00:00
+      :metazone: America_Eastern
+      :to: 1975-02-16T05:00:00+00:00
+    - 
+      :from: 1975-02-16T05:00:00+00:00
+      :metazone: America_Central
+      :to: 1992-01-01T10:00:00+00:00
+    - 
+      :from: 1992-01-01T10:00:00+00:00
+      :metazone: America_Eastern
+      :to: 1992-09-24T05:00:00+00:00
+    - 
+      :from: 1992-09-24T05:00:00+00:00
+      :metazone: America_Central
+      :to: 1993-01-01T06:00:00+00:00
+    - 
+      :from: 1993-01-01T06:00:00+00:00
+      :metazone: America_Eastern
+      :to: 1997-01-01T05:00:00+00:00
+    - 
+      :from: 1997-01-01T05:00:00+00:00
+      :metazone: America_Central
+  :America/Manaus: 
+    - 
+      :metazone: Amazon
+  :America/Marigot: 
+    - 
+      :metazone: Atlantic
+  :America/Martinique: 
+    - 
+      :metazone: Atlantic
+  :America/Matamoros: 
+    - 
+      :metazone: America_Central
+  :America/Mazatlan: 
+    - 
+      :metazone: Mexico_Pacific
+  :America/Mendoza: 
+    - 
+      :metazone: Argentina
+      :to: 1990-03-04T02:00:00+00:00
+    - 
+      :from: 1992-10-18T04:00:00+00:00
+      :metazone: Argentina
+      :to: 2004-05-23T03:00:00+00:00
+    - 
+      :from: 2004-09-26T04:00:00+00:00
+      :metazone: Argentina
+  :America/Menominee: 
+    - 
+      :metazone: America_Eastern
+      :to: 1973-04-29T07:00:00+00:00
+    - 
+      :from: 1973-04-29T07:00:00+00:00
+      :metazone: America_Central
+  :America/Merida: 
+    - 
+      :metazone: America_Central
+      :to: 1981-12-26T08:00:00+00:00
+    - 
+      :from: 1981-12-26T08:00:00+00:00
+      :metazone: America_Eastern
+      :to: 1982-11-02T07:00:00+00:00
+    - 
+      :from: 1982-11-02T07:00:00+00:00
+      :metazone: America_Central
+  :America/Metlakatla: 
+    - 
+      :metazone: America_Pacific
+      :to: 2015-11-01T10:00:00+00:00
+    - 
+      :from: 2015-11-01T10:00:00+00:00
+      :metazone: Alaska
+      :to: 2018-11-04T10:00:00+00:00
+    - 
+      :from: 2018-11-04T10:00:00+00:00
+      :metazone: America_Pacific
+      :to: 2019-01-20T10:00:00+00:00
+    - 
+      :from: 2019-01-20T10:00:00+00:00
+      :metazone: Alaska
+  :America/Mexico_City: 
+    - 
+      :metazone: America_Central
+  :America/Miquelon: 
+    - 
+      :metazone: Atlantic
+      :to: 1980-05-01T04:00:00+00:00
+    - 
+      :from: 1980-05-01T04:00:00+00:00
+      :metazone: Pierre_Miquelon
+  :America/Moncton: 
+    - 
+      :metazone: Atlantic
+  :America/Monterrey: 
+    - 
+      :metazone: America_Central
+  :America/Montevideo: 
+    - 
+      :metazone: Uruguay
+  :America/Montserrat: 
+    - 
+      :metazone: Atlantic
+  :America/Nassau: 
+    - 
+      :metazone: America_Eastern
+  :America/New_York: 
+    - 
+      :metazone: America_Eastern
+  :America/Nome: 
+    - 
+      :metazone: Bering
+      :to: 1983-10-30T12:00:00+00:00
+    - 
+      :from: 1983-11-30T09:00:00+00:00
+      :metazone: Alaska
+  :America/Noronha: 
+    - 
+      :metazone: Noronha
+  :America/North_Dakota/Beulah: 
+    - 
+      :metazone: America_Mountain
+      :to: 2010-11-07T08:00:00+00:00
+    - 
+      :from: 2010-11-07T08:00:00+00:00
+      :metazone: America_Central
+  :America/North_Dakota/Center: 
+    - 
+      :metazone: America_Mountain
+      :to: 1992-10-25T08:00:00+00:00
+    - 
+      :from: 1992-10-25T08:00:00+00:00
+      :metazone: America_Central
+  :America/North_Dakota/New_Salem: 
+    - 
+      :metazone: America_Mountain
+      :to: 2003-10-26T08:00:00+00:00
+    - 
+      :from: 2003-10-26T08:00:00+00:00
+      :metazone: America_Central
+  :America/Ojinaga: 
+    - 
+      :metazone: America_Central
+      :to: 1998-04-05T09:00:00+00:00
+    - 
+      :from: 1998-04-05T09:00:00+00:00
+      :metazone: America_Mountain
+      :to: 2022-10-30T08:00:00+00:00
+    - 
+      :from: 2022-10-30T08:00:00+00:00
+      :metazone: America_Central
+  :America/Panama: 
+    - 
+      :metazone: America_Eastern
+  :America/Paramaribo: 
+    - 
+      :metazone: Dutch_Guiana
+      :to: 1975-11-20T03:30:00+00:00
+    - 
+      :from: 1975-11-20T03:30:00+00:00
+      :metazone: Suriname
+  :America/Phoenix: 
+    - 
+      :metazone: America_Mountain
+  :America/Port-au-Prince: 
+    - 
+      :metazone: America_Eastern
+  :America/Port_of_Spain: 
+    - 
+      :metazone: Atlantic
+  :America/Porto_Velho: 
+    - 
+      :metazone: Amazon
+  :America/Puerto_Rico: 
+    - 
+      :metazone: Atlantic
+  :America/Punta_Arenas: 
+    - 
+      :metazone: Chile
+      :to: 2016-12-03T23:00:00+00:00
+  :America/Rankin_Inlet: 
+    - 
+      :metazone: America_Central
+      :to: 2000-10-29T07:00:00+00:00
+    - 
+      :from: 2000-10-29T07:00:00+00:00
+      :metazone: America_Eastern
+      :to: 2001-04-01T08:00:00+00:00
+    - 
+      :from: 2001-04-01T08:00:00+00:00
+      :metazone: America_Central
+  :America/Recife: 
+    - 
+      :metazone: Brasilia
+  :America/Regina: 
+    - 
+      :metazone: America_Central
+  :America/Resolute: 
+    - 
+      :metazone: America_Central
+      :to: 2000-10-29T07:00:00+00:00
+    - 
+      :from: 2000-10-29T07:00:00+00:00
+      :metazone: America_Eastern
+      :to: 2001-04-01T08:00:00+00:00
+    - 
+      :from: 2001-04-01T08:00:00+00:00
+      :metazone: America_Central
+      :to: 2006-10-29T07:00:00+00:00
+    - 
+      :from: 2006-10-29T07:00:00+00:00
+      :metazone: America_Eastern
+      :to: 2007-03-11T08:00:00+00:00
+    - 
+      :from: 2007-03-11T08:00:00+00:00
+      :metazone: America_Central
+  :America/Rio_Branco: 
+    - 
+      :metazone: Acre
+      :to: 2008-06-24T05:00:00+00:00
+    - 
+      :from: 2008-06-24T05:00:00+00:00
+      :metazone: Amazon
+      :to: 2013-11-10T04:00:00+00:00
+    - 
+      :from: 2013-11-10T04:00:00+00:00
+      :metazone: Acre
+  :America/Santarem: 
+    - 
+      :metazone: Amazon
+      :to: 2008-06-24T04:00:00+00:00
+    - 
+      :from: 2008-06-24T04:00:00+00:00
+      :metazone: Brasilia
+  :America/Santiago: 
+    - 
+      :metazone: Chile
+  :America/Santo_Domingo: 
+    - 
+      :metazone: Dominican
+      :to: 1974-10-27T05:00:00+00:00
+    - 
+      :from: 1974-10-27T05:00:00+00:00
+      :metazone: Atlantic
+      :to: 2000-10-29T06:00:00+00:00
+    - 
+      :from: 2000-10-29T06:00:00+00:00
+      :metazone: America_Eastern
+      :to: 2000-12-03T06:00:00+00:00
+    - 
+      :from: 2000-12-03T06:00:00+00:00
+      :metazone: Atlantic
+  :America/Sao_Paulo: 
+    - 
+      :metazone: Brasilia
+  :America/Scoresbysund: 
+    - 
+      :metazone: Greenland_Central
+      :to: 1981-03-29T02:00:00+00:00
+    - 
+      :from: 1981-03-29T02:00:00+00:00
+      :metazone: Greenland_Eastern
+      :to: 2024-03-31T01:00:00+00:00
+    - 
+      :from: 2024-03-31T01:00:00+00:00
+      :metazone: Greenland
+  :America/Sitka: 
+    - 
+      :metazone: America_Pacific
+      :to: 1983-10-30T09:00:00+00:00
+    - 
+      :from: 1983-11-30T09:00:00+00:00
+      :metazone: Alaska
+  :America/St_Barthelemy: 
+    - 
+      :metazone: Atlantic
+  :America/St_Johns: 
+    - 
+      :metazone: Newfoundland
+  :America/St_Kitts: 
+    - 
+      :metazone: Atlantic
+  :America/St_Lucia: 
+    - 
+      :metazone: Atlantic
+  :America/St_Thomas: 
+    - 
+      :metazone: Atlantic
+  :America/St_Vincent: 
+    - 
+      :metazone: Atlantic
+  :America/Swift_Current: 
+    - 
+      :metazone: America_Mountain
+      :to: 1972-04-30T09:00:00+00:00
+    - 
+      :from: 1972-04-30T09:00:00+00:00
+      :metazone: America_Central
+  :America/Tegucigalpa: 
+    - 
+      :metazone: America_Central
+  :America/Thule: 
+    - 
+      :metazone: Atlantic
+  :America/Tijuana: 
+    - 
+      :metazone: America_Pacific
+  :America/Toronto: 
+    - 
+      :metazone: America_Eastern
+  :America/Tortola: 
+    - 
+      :metazone: Atlantic
+  :America/Vancouver: 
+    - 
+      :metazone: America_Pacific
+  :America/Whitehorse: 
+    - 
+      :metazone: America_Pacific
+      :to: 2020-11-01T07:00:00+00:00
+    - 
+      :from: 2020-11-01T07:00:00+00:00
+      :metazone: Yukon
+  :America/Winnipeg: 
+    - 
+      :metazone: America_Central
+  :America/Yakutat: 
+    - 
+      :from: 1983-11-30T09:00:00+00:00
+      :metazone: Alaska
+  :Antarctica/Casey: 
+    - 
+      :metazone: Australia_Western
+      :to: 2009-10-17T18:00:00+00:00
+    - 
+      :from: 2009-10-17T18:00:00+00:00
+      :metazone: Casey
+      :to: 2010-03-04T15:00:00+00:00
+    - 
+      :from: 2010-03-04T15:00:00+00:00
+      :metazone: Australia_Western
+      :to: 2011-10-27T18:00:00+00:00
+    - 
+      :from: 2011-10-27T18:00:00+00:00
+      :metazone: Casey
+      :to: 2012-02-21T17:00:00+00:00
+    - 
+      :from: 2012-02-21T17:00:00+00:00
+      :metazone: Australia_Western
+      :to: 2016-10-21T16:00:00+00:00
+    - 
+      :from: 2016-10-21T16:00:00+00:00
+      :metazone: Casey
+      :to: 2018-03-10T17:00:00+00:00
+    - 
+      :from: 2018-03-10T17:00:00+00:00
+      :metazone: Australia_Western
+      :to: 2018-10-06T20:00:00+00:00
+    - 
+      :from: 2018-10-06T20:00:00+00:00
+      :metazone: Casey
+      :to: 2019-03-16T16:00:00+00:00
+    - 
+      :from: 2019-03-16T16:00:00+00:00
+      :metazone: Australia_Western
+      :to: 2019-10-03T19:00:00+00:00
+    - 
+      :from: 2019-10-03T19:00:00+00:00
+      :metazone: Casey
+      :to: 2020-03-07T16:00:00+00:00
+    - 
+      :from: 2020-03-07T16:00:00+00:00
+      :metazone: Australia_Western
+      :to: 2020-10-03T16:01:00+00:00
+    - 
+      :from: 2020-10-03T16:01:00+00:00
+      :metazone: Casey
+      :to: 2021-03-13T13:00:00+00:00
+    - 
+      :from: 2021-03-13T13:00:00+00:00
+      :metazone: Australia_Western
+      :to: 2021-10-02T16:01:00+00:00
+    - 
+      :from: 2021-10-02T16:01:00+00:00
+      :metazone: Casey
+      :to: 2022-03-12T13:00:00+00:00
+    - 
+      :from: 2022-03-12T13:00:00+00:00
+      :metazone: Australia_Western
+      :to: 2022-10-01T16:01:00+00:00
+    - 
+      :from: 2022-10-01T16:01:00+00:00
+      :metazone: Casey
+      :to: 2023-03-08T16:00:00+00:00
+    - 
+      :from: 2023-03-08T16:00:00+00:00
+      :metazone: Australia_Western
+  :Antarctica/Davis: 
+    - 
+      :metazone: Davis
+  :Antarctica/DumontDUrville: 
+    - 
+      :metazone: DumontDUrville
+  :Antarctica/Macquarie: 
+    - 
+      :metazone: Australia_Eastern
+  :Antarctica/Mawson: 
+    - 
+      :metazone: Mawson
+  :Antarctica/McMurdo: 
+    - 
+      :metazone: New_Zealand
+  :Antarctica/Palmer: 
+    - 
+      :metazone: Argentina
+      :to: 1982-05-01T03:00:00+00:00
+    - 
+      :from: 1982-05-01T03:00:00+00:00
+      :metazone: Chile
+      :to: 2016-12-03T23:00:00+00:00
+  :Antarctica/Rothera: 
+    - 
+      :metazone: Rothera
+  :Antarctica/Syowa: 
+    - 
+      :metazone: Syowa
+  :Antarctica/Troll: 
+    - 
+      :metazone: GMT
+  :Antarctica/Vostok: 
+    - 
+      :metazone: Vostok
+  :Arctic/Longyearbyen: 
+    - 
+      :metazone: Europe_Central
+  :Asia/Aden: 
+    - 
+      :metazone: Arabian
+  :Asia/Almaty: 
+    - 
+      :metazone: Almaty
+      :to: 2004-10-30T20:00:00+00:00
+    - 
+      :from: 2004-10-30T20:00:00+00:00
+      :metazone: Kazakhstan_Eastern
+      :to: 2024-02-29T18:00:00+00:00
+    - 
+      :from: 2024-02-29T18:00:00+00:00
+      :metazone: Kazakhstan
+  :Asia/Amman: 
+    - 
+      :metazone: Europe_Eastern
+      :to: 2022-10-27T22:00:00+00:00
+  :Asia/Anadyr: 
+    - 
+      :metazone: Anadyr
+      :to: 2010-03-27T14:00:00+00:00
+    - 
+      :from: 2010-03-27T14:00:00+00:00
+      :metazone: Magadan
+      :to: 2014-10-25T14:00:00+00:00
+    - 
+      :from: 2014-10-25T14:00:00+00:00
+      :metazone: Anadyr
+  :Asia/Aqtau: 
+    - 
+      :metazone: Shevchenko
+      :to: 1991-12-15T19:00:00+00:00
+    - 
+      :from: 1991-12-15T19:00:00+00:00
+      :metazone: Aqtau
+      :to: 2004-10-30T22:00:00+00:00
+    - 
+      :from: 2004-10-30T22:00:00+00:00
+      :metazone: Kazakhstan_Western
+      :to: 2024-02-29T18:00:00+00:00
+    - 
+      :from: 2024-02-29T18:00:00+00:00
+      :metazone: Kazakhstan
+  :Asia/Aqtobe: 
+    - 
+      :metazone: Aktyubinsk
+      :to: 1991-12-15T19:00:00+00:00
+    - 
+      :from: 1991-12-15T19:00:00+00:00
+      :metazone: Aqtobe
+      :to: 2004-10-30T21:00:00+00:00
+    - 
+      :from: 2004-10-30T21:00:00+00:00
+      :metazone: Kazakhstan_Western
+      :to: 2024-02-29T18:00:00+00:00
+    - 
+      :from: 2024-02-29T18:00:00+00:00
+      :metazone: Kazakhstan
+  :Asia/Ashgabat: 
+    - 
+      :metazone: Ashkhabad
+      :to: 1991-10-26T20:00:00+00:00
+    - 
+      :from: 1991-10-26T20:00:00+00:00
+      :metazone: Turkmenistan
+  :Asia/Atyrau: 
+    - 
+      :from: 2004-10-30T22:00:00+00:00
+      :metazone: Kazakhstan_Western
+      :to: 2024-02-29T18:00:00+00:00
+    - 
+      :from: 2024-02-29T18:00:00+00:00
+      :metazone: Kazakhstan
+  :Asia/Baghdad: 
+    - 
+      :metazone: Arabian
+  :Asia/Bahrain: 
+    - 
+      :metazone: Gulf
+      :to: 1972-05-31T20:00:00+00:00
+    - 
+      :from: 1972-05-31T20:00:00+00:00
+      :metazone: Arabian
+  :Asia/Baku: 
+    - 
+      :metazone: Baku
+      :to: 1991-08-29T20:00:00+00:00
+    - 
+      :from: 1991-08-29T20:00:00+00:00
+      :metazone: Azerbaijan
+  :Asia/Bangkok: 
+    - 
+      :metazone: Indochina
+  :Asia/Beirut: 
+    - 
+      :metazone: Europe_Eastern
+  :Asia/Bishkek: 
+    - 
+      :metazone: Frunze
+      :to: 1991-08-30T20:00:00+00:00
+    - 
+      :from: 1991-08-30T20:00:00+00:00
+      :metazone: Kyrgystan
+  :Asia/Brunei: 
+    - 
+      :metazone: Brunei
+  :Asia/Calcutta: 
+    - 
+      :metazone: India
+  :Asia/Chita: 
+    - 
+      :metazone: Yakutsk
+      :to: 2014-10-25T16:00:00+00:00
+    - 
+      :from: 2014-10-25T16:00:00+00:00
+      :metazone: Irkutsk
+      :to: 2016-03-26T18:00:00+00:00
+    - 
+      :from: 2016-03-26T18:00:00+00:00
+      :metazone: Yakutsk
+  :Asia/Colombo: 
+    - 
+      :metazone: India
+      :to: 1996-05-24T18:30:00+00:00
+    - 
+      :from: 1996-05-24T18:30:00+00:00
+      :metazone: Lanka
+      :to: 2006-04-14T18:30:00+00:00
+    - 
+      :from: 2006-04-14T18:30:00+00:00
+      :metazone: India
+  :Asia/Damascus: 
+    - 
+      :metazone: Europe_Eastern
+      :to: 2022-10-27T21:00:00+00:00
+  :Asia/Dhaka: 
+    - 
+      :metazone: Dacca
+      :to: 1971-03-25T18:00:00+00:00
+    - 
+      :from: 1971-03-25T18:00:00+00:00
+      :metazone: Bangladesh
+  :Asia/Dili: 
+    - 
+      :metazone: East_Timor
+      :to: 1976-05-02T15:00:00+00:00
+    - 
+      :from: 1976-05-02T15:00:00+00:00
+      :metazone: Indonesia_Central
+      :to: 2000-09-16T16:00:00+00:00
+    - 
+      :from: 2000-09-16T16:00:00+00:00
+      :metazone: East_Timor
+  :Asia/Dubai: 
+    - 
+      :metazone: Gulf
+  :Asia/Dushanbe: 
+    - 
+      :metazone: Dushanbe
+      :to: 1991-09-08T21:00:00+00:00
+    - 
+      :from: 1991-09-08T21:00:00+00:00
+      :metazone: Tajikistan
+  :Asia/Famagusta: 
+    - 
+      :metazone: Europe_Eastern
+      :to: 2016-09-07T21:00:00+00:00
+  :Asia/Gaza: 
+    - 
+      :metazone: Israel
+      :to: 1995-12-31T22:00:00+00:00
+    - 
+      :from: 1995-12-31T22:00:00+00:00
+      :metazone: Europe_Eastern
+  :Asia/Hebron: 
+    - 
+      :metazone: Israel
+      :to: 1995-12-31T22:00:00+00:00
+    - 
+      :from: 1995-12-31T22:00:00+00:00
+      :metazone: Europe_Eastern
+  :Asia/Hong_Kong: 
+    - 
+      :metazone: Hong_Kong
+  :Asia/Hovd: 
+    - 
+      :metazone: Hovd
+  :Asia/Irkutsk: 
+    - 
+      :metazone: Irkutsk
+  :Asia/Jakarta: 
+    - 
+      :metazone: Indonesia_Western
+  :Asia/Jayapura: 
+    - 
+      :metazone: Indonesia_Eastern
+  :Asia/Jerusalem: 
+    - 
+      :metazone: Israel
+  :Asia/Kabul: 
+    - 
+      :metazone: Afghanistan
+  :Asia/Kamchatka: 
+    - 
+      :metazone: Kamchatka
+  :Asia/Karachi: 
+    - 
+      :metazone: Karachi
+      :to: 1971-03-25T19:00:00+00:00
+    - 
+      :from: 1971-03-25T19:00:00+00:00
+      :metazone: Pakistan
+  :Asia/Katmandu: 
+    - 
+      :metazone: Nepal
+  :Asia/Khandyga: 
+    - 
+      :metazone: Yakutsk
+      :to: 2003-12-31T15:00:00+00:00
+    - 
+      :from: 2003-12-31T15:00:00+00:00
+      :metazone: Vladivostok
+      :to: 2011-09-12T13:00:00+00:00
+    - 
+      :from: 2011-09-12T13:00:00+00:00
+      :metazone: Yakutsk
+  :Asia/Krasnoyarsk: 
+    - 
+      :metazone: Krasnoyarsk
+  :Asia/Kuala_Lumpur: 
+    - 
+      :metazone: Malaya
+      :to: 1981-12-31T16:00:00+00:00
+    - 
+      :from: 1981-12-31T16:00:00+00:00
+      :metazone: Malaysia
+  :Asia/Kuching: 
+    - 
+      :metazone: Borneo
+      :to: 1981-12-31T16:00:00+00:00
+    - 
+      :from: 1981-12-31T16:00:00+00:00
+      :metazone: Malaysia
+  :Asia/Kuwait: 
+    - 
+      :metazone: Arabian
+  :Asia/Macau: 
+    - 
+      :metazone: Macau
+      :to: 1999-12-19T16:00:00+00:00
+    - 
+      :from: 1999-12-19T16:00:00+00:00
+      :metazone: China
+  :Asia/Magadan: 
+    - 
+      :metazone: Magadan
+  :Asia/Makassar: 
+    - 
+      :metazone: Indonesia_Central
+  :Asia/Manila: 
+    - 
+      :metazone: Philippines
+  :Asia/Muscat: 
+    - 
+      :metazone: Gulf
+  :Asia/Nicosia: 
+    - 
+      :metazone: Europe_Eastern
+  :Asia/Novokuznetsk: 
+    - 
+      :metazone: Krasnoyarsk
+      :to: 2010-03-27T19:00:00+00:00
+    - 
+      :from: 2010-03-27T19:00:00+00:00
+      :metazone: Novosibirsk
+      :to: 2014-10-25T19:00:00+00:00
+    - 
+      :from: 2014-10-25T19:00:00+00:00
+      :metazone: Krasnoyarsk
+  :Asia/Novosibirsk: 
+    - 
+      :metazone: Novosibirsk
+  :Asia/Omsk: 
+    - 
+      :metazone: Omsk
+  :Asia/Oral: 
+    - 
+      :metazone: Uralsk
+      :to: 1991-12-15T20:00:00+00:00
+    - 
+      :from: 1991-12-15T20:00:00+00:00
+      :metazone: Oral
+      :to: 2004-10-30T22:00:00+00:00
+    - 
+      :from: 2004-10-30T22:00:00+00:00
+      :metazone: Kazakhstan_Western
+      :to: 2024-02-29T18:00:00+00:00
+    - 
+      :from: 2024-02-29T18:00:00+00:00
+      :metazone: Kazakhstan
+  :Asia/Phnom_Penh: 
+    - 
+      :metazone: Indochina
+  :Asia/Pontianak: 
+    - 
+      :metazone: Indonesia_Central
+      :to: 1987-12-31T16:00:00+00:00
+    - 
+      :from: 1987-12-31T16:00:00+00:00
+      :metazone: Indonesia_Western
+  :Asia/Pyongyang: 
+    - 
+      :metazone: Korea
+      :to: 2015-08-14T15:00:00+00:00
+    - 
+      :from: 2015-08-14T15:00:00+00:00
+      :metazone: Pyongyang
+      :to: 2018-05-04T15:00:00+00:00
+    - 
+      :from: 2018-05-04T15:00:00+00:00
+      :metazone: Korea
+  :Asia/Qatar: 
+    - 
+      :metazone: Gulf
+      :to: 1972-05-31T20:00:00+00:00
+    - 
+      :from: 1972-05-31T20:00:00+00:00
+      :metazone: Arabian
+  :Asia/Qostanay: 
+    - 
+      :from: 2004-10-30T21:00:00+00:00
+      :metazone: Kazakhstan_Eastern
+      :to: 2024-02-29T18:00:00+00:00
+    - 
+      :from: 2024-02-29T18:00:00+00:00
+      :metazone: Kazakhstan
+  :Asia/Qyzylorda: 
+    - 
+      :metazone: Kizilorda
+      :to: 1991-12-15T19:00:00+00:00
+    - 
+      :from: 1991-12-15T19:00:00+00:00
+      :metazone: Qyzylorda
+      :to: 2004-10-30T21:00:00+00:00
+    - 
+      :from: 2004-10-30T21:00:00+00:00
+      :metazone: Kazakhstan_Eastern
+      :to: 2018-12-20T18:00:00+00:00
+    - 
+      :from: 2018-12-20T18:00:00+00:00
+      :metazone: Kazakhstan_Western
+      :to: 2024-02-29T18:00:00+00:00
+    - 
+      :from: 2024-02-29T18:00:00+00:00
+      :metazone: Kazakhstan
+  :Asia/Rangoon: 
+    - 
+      :metazone: Myanmar
+  :Asia/Riyadh: 
+    - 
+      :metazone: Arabian
+  :Asia/Saigon: 
+    - 
+      :from: 1975-06-12T16:00:00+00:00
+      :metazone: Indochina
+  :Asia/Sakhalin: 
+    - 
+      :metazone: Sakhalin
+  :Asia/Samarkand: 
+    - 
+      :metazone: Samarkand
+      :to: 1981-09-30T18:00:00+00:00
+    - 
+      :from: 1981-09-30T18:00:00+00:00
+      :metazone: Tashkent
+      :to: 1982-03-31T18:00:00+00:00
+    - 
+      :from: 1982-03-31T18:00:00+00:00
+      :metazone: Samarkand
+      :to: 1991-08-31T18:00:00+00:00
+    - 
+      :from: 1991-08-31T18:00:00+00:00
+      :metazone: Uzbekistan
+  :Asia/Seoul: 
+    - 
+      :metazone: Korea
+  :Asia/Shanghai: 
+    - 
+      :metazone: China
+  :Asia/Singapore: 
+    - 
+      :metazone: Singapore
+  :Asia/Srednekolymsk: 
+    - 
+      :metazone: Magadan
+      :to: 2014-10-25T14:00:00+00:00
+  :Asia/Taipei: 
+    - 
+      :metazone: Taipei
+  :Asia/Tashkent: 
+    - 
+      :metazone: Tashkent
+      :to: 1991-08-31T18:00:00+00:00
+    - 
+      :from: 1991-08-31T18:00:00+00:00
+      :metazone: Uzbekistan
+  :Asia/Tbilisi: 
+    - 
+      :metazone: Tbilisi
+      :to: 1991-04-08T20:00:00+00:00
+    - 
+      :from: 1991-04-08T20:00:00+00:00
+      :metazone: Georgia
+  :Asia/Tehran: 
+    - 
+      :metazone: Iran
+  :Asia/Thimphu: 
+    - 
+      :metazone: India
+      :to: 1987-09-30T18:30:00+00:00
+    - 
+      :from: 1987-09-30T18:30:00+00:00
+      :metazone: Bhutan
+  :Asia/Tokyo: 
+    - 
+      :metazone: Japan
+  :Asia/Ulaanbaatar: 
+    - 
+      :metazone: Mongolia
+  :Asia/Urumqi: 
+    - 
+      :metazone: Urumqi
+  :Asia/Ust-Nera: 
+    - 
+      :metazone: Yakutsk
+      :to: 1981-03-31T15:00:00+00:00
+    - 
+      :from: 1981-03-31T15:00:00+00:00
+      :metazone: Magadan
+      :to: 2011-09-12T12:00:00+00:00
+    - 
+      :from: 2011-09-12T12:00:00+00:00
+      :metazone: Vladivostok
+  :Asia/Vientiane: 
+    - 
+      :metazone: Indochina
+  :Asia/Vladivostok: 
+    - 
+      :metazone: Vladivostok
+  :Asia/Yakutsk: 
+    - 
+      :metazone: Yakutsk
+  :Asia/Yekaterinburg: 
+    - 
+      :metazone: Sverdlovsk
+      :to: 1992-01-18T22:00:00+00:00
+    - 
+      :from: 1992-01-18T22:00:00+00:00
+      :metazone: Yekaterinburg
+  :Asia/Yerevan: 
+    - 
+      :metazone: Yerevan
+      :to: 1991-09-22T20:00:00+00:00
+    - 
+      :from: 1991-09-22T20:00:00+00:00
+      :metazone: Armenia
+  :Atlantic/Azores: 
+    - 
+      :metazone: Azores
+      :to: 1992-12-27T02:00:00+00:00
+    - 
+      :from: 1992-12-27T02:00:00+00:00
+      :metazone: Europe_Western
+      :to: 1993-06-17T01:00:00+00:00
+    - 
+      :from: 1993-06-17T01:00:00+00:00
+      :metazone: Azores
+  :Atlantic/Bermuda: 
+    - 
+      :metazone: Atlantic
+  :Atlantic/Canary: 
+    - 
+      :metazone: Europe_Western
+  :Atlantic/Cape_Verde: 
+    - 
+      :metazone: Cape_Verde
+  :Atlantic/Faeroe: 
+    - 
+      :metazone: Europe_Western
+  :Atlantic/Madeira: 
+    - 
+      :metazone: Europe_Western
+  :Atlantic/Reykjavik: 
+    - 
+      :metazone: GMT
+  :Atlantic/South_Georgia: 
+    - 
+      :metazone: South_Georgia
+  :Atlantic/St_Helena: 
+    - 
+      :metazone: GMT
+  :Atlantic/Stanley: 
+    - 
+      :metazone: Falkland
+  :Australia/Adelaide: 
+    - 
+      :metazone: Australia_Central
+  :Australia/Brisbane: 
+    - 
+      :metazone: Australia_Eastern
+  :Australia/Broken_Hill: 
+    - 
+      :metazone: Australia_Central
+  :Australia/Darwin: 
+    - 
+      :metazone: Australia_Central
+  :Australia/Eucla: 
+    - 
+      :metazone: Australia_CentralWestern
+  :Australia/Hobart: 
+    - 
+      :metazone: Australia_Eastern
+  :Australia/Lindeman: 
+    - 
+      :metazone: Australia_Eastern
+  :Australia/Lord_Howe: 
+    - 
+      :metazone: Australia_Eastern
+      :to: 1981-02-28T14:00:00+00:00
+    - 
+      :from: 1981-02-28T14:00:00+00:00
+      :metazone: Lord_Howe
+  :Australia/Melbourne: 
+    - 
+      :metazone: Australia_Eastern
+  :Australia/Perth: 
+    - 
+      :metazone: Australia_Western
+  :Australia/Sydney: 
+    - 
+      :metazone: Australia_Eastern
+  :Etc/GMT: 
+    - 
+      :metazone: GMT
+  :Europe/Amsterdam: 
+    - 
+      :metazone: Europe_Central
+  :Europe/Andorra: 
+    - 
+      :metazone: Europe_Central
+  :Europe/Astrakhan: 
+    - 
+      :from: 1992-03-28T22:00:00+00:00
+      :metazone: Moscow
+      :to: 2016-03-26T23:00:00+00:00
+  :Europe/Athens: 
+    - 
+      :metazone: Europe_Eastern
+  :Europe/Belgrade: 
+    - 
+      :metazone: Europe_Central
+  :Europe/Berlin: 
+    - 
+      :metazone: Europe_Central
+  :Europe/Bratislava: 
+    - 
+      :metazone: Europe_Central
+  :Europe/Brussels: 
+    - 
+      :metazone: Europe_Central
+  :Europe/Bucharest: 
+    - 
+      :metazone: Europe_Eastern
+  :Europe/Budapest: 
+    - 
+      :metazone: Europe_Central
+  :Europe/Busingen: 
+    - 
+      :metazone: Europe_Central
+  :Europe/Chisinau: 
+    - 
+      :metazone: Moscow
+      :to: 1990-05-05T21:00:00+00:00
+    - 
+      :from: 1990-05-05T21:00:00+00:00
+      :metazone: Europe_Eastern
+  :Europe/Copenhagen: 
+    - 
+      :metazone: Europe_Central
+  :Europe/Dublin: 
+    - 
+      :metazone: Irish
+      :to: 1971-10-31T02:00:00+00:00
+    - 
+      :from: 1971-10-31T02:00:00+00:00
+      :metazone: GMT
+  :Europe/Gibraltar: 
+    - 
+      :metazone: Europe_Central
+  :Europe/Guernsey: 
+    - 
+      :metazone: British
+      :to: 1971-10-31T02:00:00+00:00
+    - 
+      :from: 1971-10-31T02:00:00+00:00
+      :metazone: GMT
+  :Europe/Helsinki: 
+    - 
+      :metazone: Europe_Eastern
+  :Europe/Isle_of_Man: 
+    - 
+      :metazone: British
+      :to: 1971-10-31T02:00:00+00:00
+    - 
+      :from: 1971-10-31T02:00:00+00:00
+      :metazone: GMT
+  :Europe/Istanbul: 
+    - 
+      :metazone: Europe_Eastern
+      :to: 1978-06-28T21:00:00+00:00
+    - 
+      :from: 1978-06-28T21:00:00+00:00
+      :metazone: Turkey
+      :to: 1985-04-19T21:00:00+00:00
+    - 
+      :from: 1985-04-19T21:00:00+00:00
+      :metazone: Europe_Eastern
+      :to: 2016-09-06T21:00:00+00:00
+    - 
+      :from: 2016-09-06T21:00:00+00:00
+      :metazone: Turkey
+  :Europe/Jersey: 
+    - 
+      :metazone: British
+      :to: 1971-10-31T02:00:00+00:00
+    - 
+      :from: 1971-10-31T02:00:00+00:00
+      :metazone: GMT
+  :Europe/Kaliningrad: 
+    - 
+      :metazone: Moscow
+      :to: 1989-03-25T23:00:00+00:00
+    - 
+      :from: 1989-03-25T23:00:00+00:00
+      :metazone: Europe_Eastern
+      :to: 2011-03-27T00:00:00+00:00
+    - 
+      :from: 2011-03-27T00:00:00+00:00
+      :metazone: Europe_Further_Eastern
+      :to: 2014-10-25T23:00:00+00:00
+    - 
+      :from: 2014-10-25T23:00:00+00:00
+      :metazone: Europe_Eastern
+  :Europe/Kiev: 
+    - 
+      :metazone: Moscow
+      :to: 1990-06-30T22:00:00+00:00
+    - 
+      :from: 1990-06-30T22:00:00+00:00
+      :metazone: Europe_Eastern
+  :Europe/Lisbon: 
+    - 
+      :metazone: Europe_Central
+      :to: 1976-09-26T00:00:00+00:00
+    - 
+      :from: 1976-09-26T00:00:00+00:00
+      :metazone: Europe_Western
+      :to: 1992-09-27T01:00:00+00:00
+    - 
+      :from: 1992-09-27T01:00:00+00:00
+      :metazone: Europe_Central
+      :to: 1996-03-31T01:00:00+00:00
+    - 
+      :from: 1996-03-31T01:00:00+00:00
+      :metazone: Europe_Western
+  :Europe/Ljubljana: 
+    - 
+      :metazone: Europe_Central
+  :Europe/London: 
+    - 
+      :metazone: British
+      :to: 1971-10-31T02:00:00+00:00
+    - 
+      :from: 1971-10-31T02:00:00+00:00
+      :metazone: GMT
+  :Europe/Luxembourg: 
+    - 
+      :metazone: Europe_Central
+  :Europe/Madrid: 
+    - 
+      :metazone: Europe_Central
+  :Europe/Malta: 
+    - 
+      :metazone: Europe_Central
+  :Europe/Mariehamn: 
+    - 
+      :metazone: Europe_Eastern
+  :Europe/Minsk: 
+    - 
+      :metazone: Moscow
+      :to: 1991-03-30T23:00:00+00:00
+    - 
+      :from: 1991-03-30T23:00:00+00:00
+      :metazone: Europe_Eastern
+      :to: 2011-03-27T00:00:00+00:00
+    - 
+      :from: 2011-03-27T00:00:00+00:00
+      :metazone: Europe_Further_Eastern
+      :to: 2014-10-26T22:00:00+00:00
+    - 
+      :from: 2014-10-26T22:00:00+00:00
+      :metazone: Moscow
+  :Europe/Monaco: 
+    - 
+      :metazone: Europe_Central
+  :Europe/Moscow: 
+    - 
+      :metazone: Moscow
+      :to: 1991-03-30T23:00:00+00:00
+    - 
+      :from: 1991-03-30T23:00:00+00:00
+      :metazone: Europe_Eastern
+      :to: 1992-01-19T00:00:00+00:00
+    - 
+      :from: 1992-01-19T00:00:00+00:00
+      :metazone: Moscow
+  :Europe/Oslo: 
+    - 
+      :metazone: Europe_Central
+  :Europe/Paris: 
+    - 
+      :metazone: Europe_Central
+  :Europe/Podgorica: 
+    - 
+      :metazone: Europe_Central
+  :Europe/Prague: 
+    - 
+      :metazone: Europe_Central
+  :Europe/Riga: 
+    - 
+      :metazone: Moscow
+      :to: 1989-03-25T23:00:00+00:00
+    - 
+      :from: 1989-03-25T23:00:00+00:00
+      :metazone: Europe_Eastern
+  :Europe/Rome: 
+    - 
+      :metazone: Europe_Central
+  :Europe/Samara: 
+    - 
+      :metazone: Kuybyshev
+      :to: 1989-03-25T22:00:00+00:00
+    - 
+      :from: 1989-03-25T22:00:00+00:00
+      :metazone: Moscow
+      :to: 1991-03-30T23:00:00+00:00
+    - 
+      :from: 1991-03-30T23:00:00+00:00
+      :metazone: Europe_Eastern
+      :to: 1991-09-29T00:00:00+00:00
+    - 
+      :from: 1991-09-29T00:00:00+00:00
+      :metazone: Samara
+  :Europe/San_Marino: 
+    - 
+      :metazone: Europe_Central
+  :Europe/Sarajevo: 
+    - 
+      :metazone: Europe_Central
+  :Europe/Saratov: 
+    - 
+      :from: 1992-03-28T22:00:00+00:00
+      :metazone: Moscow
+      :to: 2016-12-03T23:00:00+00:00
+  :Europe/Simferopol: 
+    - 
+      :metazone: Moscow
+      :to: 1990-06-30T23:00:00+00:00
+    - 
+      :from: 1990-06-30T23:00:00+00:00
+      :metazone: Europe_Eastern
+      :to: 1994-04-30T21:00:00+00:00
+    - 
+      :from: 1994-04-30T21:00:00+00:00
+      :metazone: Moscow
+      :to: 1997-03-30T01:00:00+00:00
+    - 
+      :from: 1997-03-30T01:00:00+00:00
+      :metazone: Europe_Eastern
+      :to: 2014-03-30T00:00:00+00:00
+    - 
+      :from: 2014-03-30T00:00:00+00:00
+      :metazone: Moscow
+  :Europe/Skopje: 
+    - 
+      :metazone: Europe_Central
+  :Europe/Sofia: 
+    - 
+      :metazone: Europe_Eastern
+  :Europe/Stockholm: 
+    - 
+      :metazone: Europe_Central
+  :Europe/Tallinn: 
+    - 
+      :metazone: Moscow
+      :to: 1989-03-25T23:00:00+00:00
+    - 
+      :from: 1989-03-25T23:00:00+00:00
+      :metazone: Europe_Eastern
+  :Europe/Tirane: 
+    - 
+      :metazone: Europe_Central
+  :Europe/Ulyanovsk: 
+    - 
+      :from: 1992-01-19T00:00:00+00:00
+      :metazone: Moscow
+      :to: 2016-03-26T23:00:00+00:00
+  :Europe/Vaduz: 
+    - 
+      :metazone: Europe_Central
+  :Europe/Vatican: 
+    - 
+      :metazone: Europe_Central
+  :Europe/Vienna: 
+    - 
+      :metazone: Europe_Central
+  :Europe/Vilnius: 
+    - 
+      :metazone: Moscow
+      :to: 1989-03-25T23:00:00+00:00
+    - 
+      :from: 1989-03-25T23:00:00+00:00
+      :metazone: Europe_Eastern
+      :to: 1998-03-29T01:00:00+00:00
+    - 
+      :from: 1998-03-29T01:00:00+00:00
+      :metazone: Europe_Central
+      :to: 1999-10-31T01:00:00+00:00
+    - 
+      :from: 1999-10-31T01:00:00+00:00
+      :metazone: Europe_Eastern
+  :Europe/Volgograd: 
+    - 
+      :metazone: Volgograd
+  :Europe/Warsaw: 
+    - 
+      :metazone: Europe_Central
+  :Europe/Zagreb: 
+    - 
+      :metazone: Europe_Central
+  :Europe/Zurich: 
+    - 
+      :metazone: Europe_Central
+  :Indian/Antananarivo: 
+    - 
+      :metazone: Africa_Eastern
+  :Indian/Chagos: 
+    - 
+      :metazone: Indian_Ocean
+  :Indian/Christmas: 
+    - 
+      :metazone: Christmas
+  :Indian/Cocos: 
+    - 
+      :metazone: Cocos
+  :Indian/Comoro: 
+    - 
+      :metazone: Africa_Eastern
+  :Indian/Kerguelen: 
+    - 
+      :metazone: French_Southern
+  :Indian/Mahe: 
+    - 
+      :metazone: Seychelles
+  :Indian/Maldives: 
+    - 
+      :metazone: Maldives
+  :Indian/Mauritius: 
+    - 
+      :metazone: Mauritius
+  :Indian/Mayotte: 
+    - 
+      :metazone: Africa_Eastern
+  :Indian/Reunion: 
+    - 
+      :metazone: Reunion
+  :Pacific/Apia: 
+    - 
+      :metazone: Apia
+  :Pacific/Auckland: 
+    - 
+      :metazone: New_Zealand
+  :Pacific/Bougainville: 
+    - 
+      :metazone: Papua_New_Guinea
+      :to: 2014-12-27T16:00:00+00:00
+  :Pacific/Chatham: 
+    - 
+      :metazone: Chatham
+  :Pacific/Easter: 
+    - 
+      :metazone: Easter
+  :Pacific/Efate: 
+    - 
+      :metazone: Vanuatu
+  :Pacific/Enderbury: 
+    - 
+      :metazone: Phoenix_Islands
+  :Pacific/Fakaofo: 
+    - 
+      :metazone: Tokelau
+  :Pacific/Fiji: 
+    - 
+      :metazone: Fiji
+  :Pacific/Funafuti: 
+    - 
+      :metazone: Tuvalu
+  :Pacific/Galapagos: 
+    - 
+      :metazone: Ecuador
+      :to: 1986-01-01T05:00:00+00:00
+    - 
+      :from: 1986-01-01T05:00:00+00:00
+      :metazone: Galapagos
+  :Pacific/Gambier: 
+    - 
+      :metazone: Gambier
+  :Pacific/Guadalcanal: 
+    - 
+      :metazone: Solomon
+  :Pacific/Guam: 
+    - 
+      :metazone: Guam
+      :to: 2000-12-22T14:00:00+00:00
+    - 
+      :from: 2000-12-22T14:00:00+00:00
+      :metazone: Chamorro
+  :Pacific/Honolulu: 
+    - 
+      :metazone: Alaska_Hawaii
+      :to: 1983-10-30T11:00:00+00:00
+    - 
+      :from: 1983-10-30T11:00:00+00:00
+      :metazone: Hawaii_Aleutian
+  :Pacific/Kiritimati: 
+    - 
+      :metazone: Line_Islands
+  :Pacific/Kosrae: 
+    - 
+      :metazone: Kosrae
+  :Pacific/Kwajalein: 
+    - 
+      :metazone: Kwajalein
+      :to: 1993-08-21T12:00:00+00:00
+    - 
+      :from: 1993-08-21T12:00:00+00:00
+      :metazone: Marshall_Islands
+  :Pacific/Majuro: 
+    - 
+      :metazone: Marshall_Islands
+  :Pacific/Marquesas: 
+    - 
+      :metazone: Marquesas
+  :Pacific/Midway: 
+    - 
+      :metazone: Bering
+      :to: 1983-10-30T12:00:00+00:00
+    - 
+      :from: 1983-10-30T12:00:00+00:00
+      :metazone: Samoa
+  :Pacific/Nauru: 
+    - 
+      :metazone: Nauru
+  :Pacific/Niue: 
+    - 
+      :metazone: Niue
+  :Pacific/Norfolk: 
+    - 
+      :metazone: Norfolk
+  :Pacific/Noumea: 
+    - 
+      :metazone: New_Caledonia
+  :Pacific/Pago_Pago: 
+    - 
+      :metazone: Bering
+      :to: 1983-10-30T12:00:00+00:00
+    - 
+      :from: 1983-10-30T12:00:00+00:00
+      :metazone: Samoa
+  :Pacific/Palau: 
+    - 
+      :metazone: Palau
+  :Pacific/Pitcairn: 
+    - 
+      :metazone: Pitcairn
+  :Pacific/Ponape: 
+    - 
+      :metazone: Ponape
+  :Pacific/Port_Moresby: 
+    - 
+      :metazone: Papua_New_Guinea
+  :Pacific/Rarotonga: 
+    - 
+      :metazone: Cook
+  :Pacific/Saipan: 
+    - 
+      :metazone: North_Mariana
+      :to: 2000-12-22T14:00:00+00:00
+    - 
+      :from: 2000-12-22T14:00:00+00:00
+      :metazone: Chamorro
+  :Pacific/Tahiti: 
+    - 
+      :metazone: Tahiti
+  :Pacific/Tarawa: 
+    - 
+      :metazone: Gilbert_Islands
+  :Pacific/Tongatapu: 
+    - 
+      :metazone: Tonga
+  :Pacific/Truk: 
+    - 
+      :metazone: Truk
+  :Pacific/Wake: 
+    - 
+      :metazone: Wake
+  :Pacific/Wallis: 
+    - 
+      :metazone: Wallis

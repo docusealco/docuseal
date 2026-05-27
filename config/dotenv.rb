@@ -6,12 +6,12 @@ if ENV['RAILS_ENV'] == 'production'
       workdir = ENV.fetch('WORKDIR', '.')
 
       if File.exist?(workdir) && File.stat(workdir).uid != 2000
-        puts 'Changing the owner of the docuseal directory...' unless Dir.empty?(workdir)
+        puts 'Changing the owner of the wabosign directory...' unless Dir.empty?(workdir)
 
         FileUtils.chown_R(2000, 2000, workdir)
       end
     rescue StandardError
-      puts 'Unable to change docuseal directory owner'
+      puts 'Unable to change wabosign directory owner'
     end
   end
 
@@ -33,7 +33,7 @@ if ENV['RAILS_ENV'] == 'production'
     require 'dotenv'
     require 'securerandom'
 
-    dotenv_path = "#{ENV.fetch('WORKDIR', '.')}/docuseal.env"
+    dotenv_path = "#{ENV.fetch('WORKDIR', '.')}/wabosign.env"
 
     unless File.exist?(dotenv_path)
       default_env = <<~TEXT

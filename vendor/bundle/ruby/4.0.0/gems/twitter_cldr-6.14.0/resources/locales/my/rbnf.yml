@@ -1,0 +1,145 @@
+--- 
+:my: 
+  :rbnf: 
+    :grouping: 
+      - 
+        :ruleset: 
+          - 
+            :rules: 
+              - 
+                :rule: =0.0=;
+                :value: x.x
+              - 
+                :rule: =%spellout-cardinal=;
+                :value: 0
+            :type: spellout-numbering-year
+          - 
+            :rules: 
+              - 
+                :rule: =%spellout-cardinal=;
+                :value: 0
+            :type: spellout-numbering
+          - 
+            :rules: 
+              - 
+                :rule: အနုတ်>>;
+                :value: "-x"
+              - 
+                :rule: <<ဒသမ>>;
+                :value: x.x
+              - 
+                :rule: သုည;
+                :value: 0
+              - 
+                :rule: တစ်;
+                :value: 1
+              - 
+                :rule: နှစ်;
+                :value: 2
+              - 
+                :rule: သုံး;
+                :value: 3
+              - 
+                :rule: လေး;
+                :value: 4
+              - 
+                :rule: ငါး;
+                :value: 5
+              - 
+                :rule: ခြောက်;
+                :value: 6
+              - 
+                :rule: ခုနှစ်;
+                :value: 7
+              - 
+                :rule: ရှစ်;
+                :value: 8
+              - 
+                :rule: ကိုး;
+                :value: 9
+              - 
+                :rule: ဆယ်;
+                :value: 10
+              - 
+                :rule: "ဆယ့်[>>];"
+                :value: 11
+              - 
+                :rule: "<<ဆယ်[>>];"
+                :value: 20
+              - 
+                :rule: <<ရာ;
+                :value: 100
+              - 
+                :rule: "<<ရာ့[>>];"
+                :value: 101
+              - 
+                :rule: <<ထောင်;
+                :value: 1000
+              - 
+                :rule: "<<ထောင့်[>>];"
+                :value: 1001
+              - 
+                :rule: "<<သောင်း[>>];"
+                :value: 10000
+              - 
+                :rule: "<<သိန်း[>>];"
+                :value: 100000
+              - 
+                :rule: "<<သန်း[>>];"
+                :value: 1000000
+              - 
+                :rule: "<<ကုဋေ[>>];"
+                :value: 10000000
+              - 
+                :rule: "<<ကောဋိ[>>];"
+                :value: 100000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal
+          - 
+            :rules: 
+              - 
+                :rule: အနုတ်>>;
+                :value: "-x"
+              - 
+                :rule: "=#,##0.#=;"
+                :value: x.x
+              - 
+                :rule: =%spellout-cardinal=;
+                :value: 0
+              - 
+                :rule: ပထမ;
+                :value: 1
+              - 
+                :rule: ဒုတိယ;
+                :value: 2
+              - 
+                :rule: တတိယ;
+                :value: 3
+              - 
+                :rule: စတုတ္ထ;
+                :value: 4
+              - 
+                :rule: ပဉ္စမ;
+                :value: 5
+              - 
+                :rule: ဆဋ္ဌမ;
+                :value: 6
+              - 
+                :rule: သတ္တမ;
+                :value: 7
+              - 
+                :rule: အဋ္ဌမ;
+                :value: 8
+              - 
+                :rule: နဝမ;
+                :value: 9
+              - 
+                :rule: ဒသမ;
+                :value: 10
+              - 
+                :rule: =%spellout-cardinal=;
+                :value: 11
+            :type: spellout-ordinal
+        :type: SpelloutRules

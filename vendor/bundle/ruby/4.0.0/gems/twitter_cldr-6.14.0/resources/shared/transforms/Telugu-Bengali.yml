@@ -1,0 +1,16 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - Telugu-Bengali
+      - und-Beng-t-und-telu
+    :direction: forward
+    :rules: 
+      - "::[ఁ-ఃఅ-ఌఎ-ఐఒ-నప-ళవ-హా-ౄె-ైొ-్ౕ-ౖౠ-ౡ౦-౯] ;"
+      - "::NFD ;"
+      - "::Telugu-InterIndic ;"
+      - "::InterIndic-Bengali ;"
+      - "::NFC ;"
+    :source: Telu
+    :target: Beng
+    :variant: ~

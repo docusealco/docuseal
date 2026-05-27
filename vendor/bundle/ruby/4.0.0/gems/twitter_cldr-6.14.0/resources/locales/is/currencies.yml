@@ -1,0 +1,1060 @@
+--- 
+:is: 
+  :currencies: 
+    :ADP: 
+      :name: "Andorrskur peseti"
+      :one: "Andorrskur peseti"
+    :AED: 
+      :name: "arabískt dírham"
+      :one: "arabískt dírham"
+      :other: "arabísk dírhöm"
+    :AFN: 
+      :name: afgani
+      :narrow_symbol: ؋
+      :one: afgani
+      :other: afganar
+      :symbol: ؋
+    :ALL: 
+      :name: "albanskt lek"
+      :one: "albanskt lek"
+      :other: "albönsk lek"
+    :AMD: 
+      :name: "armenskt dramm"
+      :narrow_symbol: ֏
+      :one: "armenskt dramm"
+      :other: "armensk drömm"
+      :symbol: ֏
+    :ANG: 
+      :name: "hollenskt Antillugyllini"
+      :one: "hollenskt Antillugyllini"
+      :other: "hollensk Antillugyllini"
+    :AOA: 
+      :name: "angólsk kvansa"
+      :narrow_symbol: Kz
+      :one: "angólsk kvansa"
+      :other: "angólskar kvönsur"
+      :symbol: Kz
+    :ARA: 
+      :name: "Argentine Austral"
+      :one: "Argentine Austral"
+    :ARP: 
+      :name: "Argentískur pesi (1983–1985)"
+      :one: "Argentískur pesi (1983–1985)"
+    :ARS: 
+      :name: "argentínskur pesi"
+      :narrow_symbol: $
+      :one: "argentínskur pesi"
+      :other: "argentínskir pesar"
+      :symbol: $
+    :ATS: 
+      :name: "Austurrískur skildingur"
+      :one: "Austurrískur skildingur"
+    :AUD: 
+      :name: "ástralskur dalur"
+      :narrow_symbol: $
+      :one: "ástralskur dalur"
+      :other: "ástralskir dalir"
+      :symbol: AUD
+    :AWG: 
+      :name: "arúbönsk flórína"
+      :one: "arúbönsk flórína"
+      :other: "arúbanskar flórínur"
+    :AZN: 
+      :name: "aserskt manat"
+      :narrow_symbol: ₼
+      :one: "aserskt manat"
+      :other: "asersk manöt"
+      :symbol: ₼
+    :BAM: 
+      :name: "skiptanlegt Bosníu og Hersegóvínu-mark"
+      :narrow_symbol: KM
+      :one: "skiptanlegt Bosníu og Hersegóvínu-mark"
+      :other: "skiptanleg Bosníu og Hersegóvínu-mörk"
+      :symbol: KM
+    :BBD: 
+      :name: "barbadoskur dalur"
+      :narrow_symbol: $
+      :one: "barbadoskur dalur"
+      :other: "barbadoskir dalir"
+      :symbol: $
+    :BDT: 
+      :name: "bangladessk taka"
+      :narrow_symbol: ৳
+      :one: "bangladessk taka"
+      :other: "bangladesskar tökur"
+      :symbol: ৳
+    :BEF: 
+      :name: "Belgískur franki"
+      :one: "Belgískur franki"
+    :BGL: 
+      :name: Lef
+      :one: Lef
+    :BGN: 
+      :name: "búlgarskt lef"
+      :one: "búlgarskt lef"
+      :other: "búlgörsk lef"
+    :BHD: 
+      :name: "bareinskur denari"
+      :one: "bareinskur denari"
+      :other: "bareinskir denarar"
+    :BIF: 
+      :name: "búrúndískur franki"
+      :one: "búrúndískur franki"
+      :other: "búrúndískir frankar"
+    :BMD: 
+      :name: Bermúdadalur
+      :narrow_symbol: $
+      :one: Bermúdadalur
+      :other: Bermúdadalir
+      :symbol: $
+    :BND: 
+      :name: "brúneiskur dalur"
+      :narrow_symbol: $
+      :one: "brúneiskur dalur"
+      :other: "brúneiskir dalir"
+      :symbol: $
+    :BOB: 
+      :name: bólivíani
+      :narrow_symbol: Bs
+      :one: bólivíani
+      :other: bólivíanar
+      :symbol: Bs
+    :BOP: 
+      :name: "Bólivískur pesi"
+      :one: "Bólivískur pesi"
+    :BOV: 
+      :name: "Bolivian Mvdol"
+      :one: "Bolivian Mvdol"
+    :BRL: 
+      :name: "brasilískt ríal"
+      :narrow_symbol: R$
+      :one: "brasilískt ríal"
+      :other: "brasilísk ríöl"
+      :symbol: BRL
+    :BSD: 
+      :name: Bahamadalur
+      :narrow_symbol: $
+      :one: Bahamadalur
+      :other: Bahamadalir
+      :symbol: $
+    :BTN: 
+      :name: "bútanskt núltrum"
+      :one: "bútanskt núltrum"
+      :other: "bútönsk núltrum"
+    :BUK: 
+      :name: "Búrmverskt kjat"
+      :one: "Búrmverskt kjat"
+    :BWP: 
+      :name: "botsvönsk púla"
+      :narrow_symbol: P
+      :one: "botsvönsk púla"
+      :other: "botsvanskar púlur"
+      :symbol: P
+    :BYN: 
+      :name: "hvítrússnesk rúbla"
+      :one: "hvítrússnesk rúbla"
+      :other: "hvítrússneskar rúblur"
+    :BYR: 
+      :name: "hvítrússnesk rúbla (2000–2016)"
+      :one: "hvítrússnesk rúbla (2000–2016)"
+      :other: "hvítrússneskar rúblur (2000–2016)"
+    :BZD: 
+      :name: "belískur dalur"
+      :narrow_symbol: $
+      :one: "belískur dalur"
+      :other: "belískir dalir"
+      :symbol: $
+    :CAD: 
+      :name: Kanadadalur
+      :narrow_symbol: $
+      :one: Kanadadalur
+      :other: Kanadadalir
+      :symbol: CAD
+    :CDF: 
+      :name: "kongóskur franki"
+      :one: "kongóskur franki"
+      :other: "kongóskir frankar"
+    :CHF: 
+      :name: "svissneskur franki"
+      :one: "svissneskur franki"
+      :other: "svissneskir frankar"
+    :CLF: 
+      :name: "Chilean Unidades de Fomento"
+      :one: "síleskt Unidad de Fomento"
+      :other: "síleskt Unidad de Fomento"
+    :CLP: 
+      :name: "síleskur pesi"
+      :narrow_symbol: $
+      :one: "síleskur pesi"
+      :other: "síleskir pesar"
+      :symbol: $
+    :CNH: 
+      :name: "kínverskt júan (utan heimalands)"
+      :one: "kínverskt júan (utan heimalands)"
+      :other: "kínversk júön (utan heimalands)"
+    :CNY: 
+      :name: "kínverskt júan"
+      :narrow_symbol: ¥
+      :one: "kínverskt júan"
+      :other: "kínversk júön"
+      :symbol: CN¥
+    :COP: 
+      :name: "kólumbískur pesi"
+      :narrow_symbol: $
+      :one: "kólumbískur pesi"
+      :other: "kólumbískir pesar"
+      :symbol: $
+    :CRC: 
+      :name: "kostarískt kólon"
+      :narrow_symbol: ₡
+      :one: "kostarískt kólon"
+      :other: "kostarísk kólon"
+      :symbol: ₡
+    :CSK: 
+      :name: "Tékknesk króna, eldri"
+      :one: "Tékknesk króna, eldri"
+    :CUC: 
+      :name: "kúbverskur skiptanlegur pesi"
+      :narrow_symbol: $
+      :one: "kúbverskur skiptanlegur pesi"
+      :other: "kúbverskir skiptanlegir pesar"
+      :symbol: $
+    :CUP: 
+      :name: "kúbverskur pesi"
+      :narrow_symbol: $
+      :one: "kúbverskur pesi"
+      :other: "kúbverskir pesar"
+      :symbol: $
+    :CVE: 
+      :name: "grænhöfðeyskur skúti"
+      :one: "grænhöfðeyskur skúti"
+      :other: "grænhöfðeyskir skútar"
+    :CYP: 
+      :name: "Kýpverskt pund"
+      :one: "Kýpverskt pund"
+    :CZK: 
+      :name: "tékknesk króna"
+      :narrow_symbol: Kč
+      :one: "tékknesk króna"
+      :other: "tékkneskar krónur"
+      :symbol: Kč
+    :DDM: 
+      :name: "Austurþýskt mark"
+      :one: "Austurþýskt mark"
+    :DEM: 
+      :name: "Þýskt mark"
+      :one: "Þýskt mark"
+    :DJF: 
+      :name: "djíbútískur franki"
+      :one: "djíbútískur franki"
+      :other: "djíbútískir frankar"
+    :DKK: 
+      :name: "dönsk króna"
+      :narrow_symbol: kr.
+      :one: "dönsk króna"
+      :other: "danskar krónur"
+      :symbol: kr.
+    :DOP: 
+      :name: "dóminískur pesi"
+      :narrow_symbol: $
+      :one: "dóminískur pesi"
+      :other: "dóminískir pesar"
+      :symbol: $
+    :DZD: 
+      :name: "alsírskur denari"
+      :one: "alsírskur denari"
+      :other: "alsírskir denarar"
+    :ECS: 
+      :name: "Ecuador Sucre"
+      :one: "Ecuador Sucre"
+    :EEK: 
+      :name: "Eistnesk króna"
+      :one: "eistnesk króna"
+      :other: "eistneskar krónur"
+    :EGP: 
+      :name: "egypskt pund"
+      :narrow_symbol: E£
+      :one: "egypskt pund"
+      :other: "egypsk pund"
+      :symbol: E£
+    :ERN: 
+      :name: "erítresk nakfa"
+      :one: "erítresk nakfa"
+      :other: "erítreskar nökfur"
+    :ESP: 
+      :name: "Spænskur peseti"
+      :narrow_symbol: ₧
+      :one: "Spænskur peseti"
+      :symbol: ₧
+    :ETB: 
+      :name: "eþíópískt birr"
+      :one: "eþíópískt birr"
+      :other: "eþíópísk birr"
+    :EUR: 
+      :name: evra
+      :narrow_symbol: €
+      :one: evra
+      :other: evrur
+      :symbol: EUR
+    :FIM: 
+      :name: "Finnskt mark"
+      :one: "Finnskt mark"
+    :FJD: 
+      :name: "fídjískur dalur"
+      :narrow_symbol: $
+      :one: "fídjískur dalur"
+      :other: "fídjískir dalir"
+      :symbol: $
+    :FKP: 
+      :name: "falklenskt pund"
+      :narrow_symbol: £
+      :one: "falklenskt pund"
+      :other: "falklensk pund"
+      :symbol: £
+    :FRF: 
+      :name: "Franskur franki"
+      :one: "Franskur franki"
+    :GBP: 
+      :name: sterlingspund
+      :narrow_symbol: £
+      :one: sterlingspund
+      :symbol: GBP
+    :GEL: 
+      :name: "georgískur lari"
+      :narrow_symbol: ₾
+      :one: "georgískur lari"
+      :other: "georgískir larar"
+      :symbol: ₾
+    :GHS: 
+      :name: "ganverskur sedi"
+      :narrow_symbol: GH₵
+      :one: "ganverskur sedi"
+      :other: "ganverskir sedar"
+      :symbol: GH₵
+    :GIP: 
+      :name: Gíbraltarspund
+      :narrow_symbol: £
+      :one: Gíbraltarspund
+      :symbol: £
+    :GMD: 
+      :name: "gambískur dalasi"
+      :one: "gambískur dalasi"
+      :other: "gambískir dalasar"
+    :GNF: 
+      :name: Gíneufranki
+      :narrow_symbol: FG
+      :one: Gíneufranki
+      :other: Gíneufrankar
+      :symbol: FG
+    :GRD: 
+      :name: Drakma
+      :one: Drakma
+    :GTQ: 
+      :name: "gvatemalskt kvesal"
+      :narrow_symbol: Q
+      :one: "gvatemalskt kvesal"
+      :other: "gvatemölsk kvesöl"
+      :symbol: Q
+    :GWE: 
+      :name: "Portúgalskur, gíneskur skúti"
+      :one: "Portúgalskur, gíneskur skúti"
+    :GYD: 
+      :name: "gvæjanskur dalur"
+      :narrow_symbol: $
+      :one: "gvæjanskur dalur"
+      :other: "gvæjanskir dalir"
+      :symbol: $
+    :HKD: 
+      :name: "Hong Kong-dalur"
+      :narrow_symbol: $
+      :one: "Hong Kong-dalur"
+      :other: "Hong Kong-dalir"
+      :symbol: HK$
+    :HNL: 
+      :name: "hondúrsk lempíra"
+      :narrow_symbol: L
+      :one: "hondúrsk lempíra"
+      :other: "hondúrskar lempírur"
+      :symbol: L
+    :HRK: 
+      :name: "króatísk kúna"
+      :narrow_symbol: kn
+      :one: "króatísk kúna"
+      :other: "króatískar kúnur"
+      :symbol: kn
+    :HTG: 
+      :name: "haítískur gúrdi"
+      :one: "haítískur gúrdi"
+      :other: "haítískir gúrdar"
+    :HUF: 
+      :name: "ungversk fórinta"
+      :narrow_symbol: Ft
+      :one: "ungversk fórinta"
+      :other: "ungverskar fórintur"
+      :symbol: Ft
+    :IDR: 
+      :name: "indónesísk rúpía"
+      :narrow_symbol: Rp
+      :one: "indónesísk rúpía"
+      :other: "indónesískar rúpíur"
+      :symbol: Rp
+    :IEP: 
+      :name: "Írskt pund"
+      :one: "Írskt pund"
+    :ILP: 
+      :name: "Ísraelskt pund"
+      :one: "Ísraelskt pund"
+    :ILS: 
+      :name: "nýr ísraelskur sikill"
+      :narrow_symbol: ₪
+      :one: "nýr ísraelskur sikill"
+      :other: "nýir ísraelskir siklar"
+      :symbol: ₪
+    :INR: 
+      :name: "indversk rúpía"
+      :narrow_symbol: ₹
+      :one: "indversk rúpía"
+      :other: "indverskar rúpíur"
+      :symbol: INR
+    :IQD: 
+      :name: "írakskur denari"
+      :one: "írakskur denari"
+      :other: "írakskir denarar"
+    :IRR: 
+      :name: "íranskt ríal"
+      :one: "íranskt ríal"
+      :other: "írönsk ríöl"
+    :ISK: 
+      :name: "íslensk króna"
+      :narrow_symbol: kr.
+      :one: "íslensk króna"
+      :other: "íslenskar krónur"
+      :symbol: kr.
+    :ITL: 
+      :name: "Ítölsk líra"
+      :one: "Ítölsk líra"
+    :JMD: 
+      :name: "jamaískur dalur"
+      :narrow_symbol: $
+      :one: "jamaískur dalur"
+      :other: "jamaískir dalir"
+      :symbol: $
+    :JOD: 
+      :name: "jórdanskur denari"
+      :one: "jórdanskur denari"
+      :other: "jórdanskir denarar"
+    :JPY: 
+      :name: "japanskt jen"
+      :narrow_symbol: ¥
+      :one: "japanskt jen"
+      :other: "japönsk jen"
+      :symbol: JP¥
+    :KES: 
+      :name: "kenískur skildingur"
+      :one: "kenískur skildingur"
+      :other: "kenískir skildingar"
+    :KGS: 
+      :name: "kirgiskt som"
+      :narrow_symbol: ⃀
+      :one: "kirgiskt som"
+      :other: "kirgisk som"
+      :symbol: ⃀
+    :KHR: 
+      :name: "kambódískt ríal"
+      :narrow_symbol: ៛
+      :one: "kambódískt ríal"
+      :other: "kambódísk ríöl"
+      :symbol: ៛
+    :KMF: 
+      :name: "kómoreyskur franki"
+      :narrow_symbol: CF
+      :one: "kómoreyskur franki"
+      :other: "kómoreyskir frankar"
+      :symbol: CF
+    :KPW: 
+      :name: "norðurkóreskt vonn"
+      :narrow_symbol: ₩
+      :one: "norðurkóreskt vonn"
+      :other: "norðurkóresk vonn"
+      :symbol: ₩
+    :KRW: 
+      :name: "suðurkóreskt vonn"
+      :narrow_symbol: ₩
+      :one: "suðurkóreskt vonn"
+      :other: "suðurkóresk vonn"
+      :symbol: KRW
+    :KWD: 
+      :name: "kúveiskur denari"
+      :one: "kúveiskur denari"
+      :other: "kúveiskir denarar"
+    :KYD: 
+      :name: "caymaneyskur dalur"
+      :narrow_symbol: $
+      :one: "caymaneyskur dalur"
+      :other: "caymaneyskir dalir"
+      :symbol: $
+    :KZT: 
+      :name: "kasakst tengi"
+      :narrow_symbol: ₸
+      :one: "kasakst tengi"
+      :other: "kasöksk tengi"
+      :symbol: ₸
+    :LAK: 
+      :name: "laoskt kip"
+      :narrow_symbol: ₭
+      :one: "laoskt kip"
+      :other: "laosk kip"
+      :symbol: ₭
+    :LBP: 
+      :name: "líbanskt pund"
+      :narrow_symbol: L£
+      :one: "líbanskt pund"
+      :other: "líbönsk pund"
+      :symbol: L£
+    :LKR: 
+      :name: "srílönsk rúpía"
+      :narrow_symbol: Rs
+      :one: "srílönsk rúpía"
+      :other: "srílanskar rúpíur"
+      :symbol: Rs
+    :LRD: 
+      :name: "líberískur dalur"
+      :narrow_symbol: $
+      :one: "líberískur dalur"
+      :other: "líberískir dalir"
+      :symbol: $
+    :LSL: 
+      :name: "lesótóskur lóti"
+      :one: "lesótóskur lóti"
+      :other: "lesótóskir lótar"
+    :LTL: 
+      :name: "Litháískt lít"
+      :narrow_symbol: Lt
+      :one: "litháískt lít"
+      :other: "litháísk lít"
+      :symbol: Lt
+    :LTT: 
+      :name: "Lithuanian Talonas"
+      :one: "Lithuanian Talonas"
+    :LUF: 
+      :name: Lúxemborgarfranki
+      :one: Lúxemborgarfranki
+    :LVL: 
+      :name: "Lettneskt lat"
+      :narrow_symbol: Ls
+      :one: "lettneskt lat"
+      :other: "lettnesk löt"
+      :symbol: Ls
+    :LVR: 
+      :name: "Lettnesk rúbla"
+      :one: "Lettnesk rúbla"
+    :LYD: 
+      :name: "líbískur denari"
+      :one: "líbískur denari"
+      :other: "líbískir denarar"
+    :MAD: 
+      :name: "marokkóskt dírham"
+      :one: "marokkóskt dírham"
+      :other: "marokkósk dírhöm"
+    :MAF: 
+      :name: "Marokkóskur franki"
+      :one: "Marokkóskur franki"
+    :MDL: 
+      :name: "moldavískt lei"
+      :one: "moldavískt lei"
+      :other: "moldavísk lei"
+    :MGA: 
+      :name: Madagaskararjari
+      :narrow_symbol: Ar
+      :one: Madagaskararjari
+      :other: Madagaskararjarar
+      :symbol: Ar
+    :MGF: 
+      :name: "Madagaskur franki"
+      :one: "Madagaskur franki"
+    :MKD: 
+      :name: "makedónskur denari"
+      :one: "makedónskur denari"
+      :other: "makedónskir denarar"
+    :MLF: 
+      :name: "Malískur franki"
+      :one: "Malískur franki"
+    :MMK: 
+      :name: "mjanmarskt kjat"
+      :narrow_symbol: K
+      :one: "mjanmarskt kjat"
+      :other: "mjanmörsk kjöt"
+      :symbol: K
+    :MNT: 
+      :name: "mongólskur túríkur"
+      :narrow_symbol: ₮
+      :one: "mongólskur túríkur"
+      :other: "mongólskir túríkar"
+      :symbol: ₮
+    :MOP: 
+      :name: "makaósk pataka"
+      :one: "makaósk pataka"
+      :other: "makaóskar patökur"
+    :MRO: 
+      :name: "márítönsk úgía (1973–2017)"
+      :one: "máritönsk úgía (1973–2017)"
+      :other: "máritanskar úgíur (1973–2017)"
+    :MRU: 
+      :name: "márítönsk úgía"
+      :one: "máritönsk úgía"
+      :other: "máritanskar úgíur"
+    :MTL: 
+      :name: "Meltnesk líra"
+      :one: "Meltnesk líra"
+    :MTP: 
+      :name: "Maltneskt pund"
+      :one: "Maltneskt pund"
+    :MUR: 
+      :name: "máritísk rúpía"
+      :narrow_symbol: Rs
+      :one: "máritísk rúpía"
+      :other: "máritískar rúpíur"
+      :symbol: Rs
+    :MVR: 
+      :name: "maldíveysk rúpía"
+      :one: "maldíveysk rúpía"
+      :other: "maldíveyskar rúpíur"
+    :MWK: 
+      :name: "malavísk kvaka"
+      :one: "malavísk kvaka"
+      :other: "malavískar kvökur"
+    :MXN: 
+      :name: "mexíkóskur pesi"
+      :narrow_symbol: $
+      :one: "mexíkóskur pesi"
+      :other: "mexíkóskir pesar"
+      :symbol: MXN
+    :MXP: 
+      :name: "Mexíkóskur silfurpesi (1861–1992)"
+      :one: "Mexíkóskur silfurpesi (1861–1992)"
+    :MXV: 
+      :name: "Mexíkóskur pesi, UDI"
+      :one: "Mexíkóskur pesi, UDI"
+    :MYR: 
+      :name: "malasískt ringit"
+      :narrow_symbol: RM
+      :one: "malasískt ringit"
+      :other: "malasísk ringit"
+      :symbol: RM
+    :MZE: 
+      :name: "Mósambískur skúti"
+      :one: "Mósambískur skúti"
+    :MZN: 
+      :name: "mósambískt metikal"
+      :one: "mósambískt metikal"
+      :other: "mósambísk metiköl"
+    :NAD: 
+      :name: "namibískur dalur"
+      :narrow_symbol: $
+      :one: "namibískur dalur"
+      :other: "namibískir dalir"
+      :symbol: $
+    :NGN: 
+      :name: "nígerísk næra"
+      :narrow_symbol: ₦
+      :one: "nígerísk næra"
+      :other: "nígerískar nærur"
+      :symbol: ₦
+    :NIC: 
+      :name: "Níkarögsk kordóva (1988–1991)"
+      :one: "Níkarögsk kordóva (1988–1991)"
+      :other: "Níkaragskar kordóvur (1988–1991)"
+    :NIO: 
+      :name: "níkarögsk kordóva"
+      :narrow_symbol: C$
+      :one: "níkarögsk kordóva"
+      :other: "níkaragskar kordóvur"
+      :symbol: C$
+    :NLG: 
+      :name: "Hollenskt gyllini"
+      :one: "Hollenskt gyllini"
+    :NOK: 
+      :name: "norsk króna"
+      :narrow_symbol: kr.
+      :one: "norsk króna"
+      :other: "norskar krónur"
+      :symbol: kr.
+    :NPR: 
+      :name: "nepölsk rúpía"
+      :narrow_symbol: Rs
+      :one: "nepölsk rúpía"
+      :other: "nepalskar rúpíur"
+      :symbol: Rs
+    :NZD: 
+      :name: "nýsjálenskur dalur"
+      :narrow_symbol: $
+      :one: "nýsjálenskur dalur"
+      :other: "nýsjálenskir dalir"
+      :symbol: NZD
+    :OMR: 
+      :name: "ómanskt ríal"
+      :one: "ómanskt ríal"
+      :other: "ómönsk ríöl"
+    :PAB: 
+      :name: balbói
+      :one: balbói
+      :other: balbóar
+    :PEN: 
+      :name: "perúskt sól"
+      :one: "perúskt sól"
+      :other: "perúsk sól"
+    :PGK: 
+      :name: "papúsk kína"
+      :one: "papúsk kína"
+      :other: "papúskar kínur"
+    :PHP: 
+      :name: "filippseyskur pesi"
+      :narrow_symbol: ₱
+      :one: "filippseyskur pesi"
+      :other: "filippseyskir pesar"
+      :symbol: PHP
+    :PKR: 
+      :name: "pakistönsk rúpía"
+      :narrow_symbol: Rs
+      :one: "pakistönsk rúpía"
+      :other: "pakistanskar rúpíur"
+      :symbol: Rs
+    :PLN: 
+      :name: "pólskt slot"
+      :narrow_symbol: zł
+      :one: "pólskt slot"
+      :other: "pólsk slot"
+      :symbol: zł
+    :PLZ: 
+      :name: Slot
+      :one: Slot
+    :PTE: 
+      :name: "Portúgalskur skúti"
+      :one: "Portúgalskur skúti"
+    :PYG: 
+      :name: "paragvæskt gvaraní"
+      :narrow_symbol: ₲
+      :one: "paragvæskt gvaraní"
+      :other: "paragvæsk gvaraní"
+      :symbol: ₲
+    :QAR: 
+      :name: "katarskt ríal"
+      :one: "katarskt ríal"
+      :other: "katörsk ríöl"
+    :ROL: 
+      :name: "Rúmenskt lei (1952–2006)"
+      :one: "Rúmenskt lei (1952–2006)"
+    :RON: 
+      :name: "rúmenskt lei"
+      :narrow_symbol: lei
+      :one: "rúmenskt lei"
+      :other: "rúmensk lei"
+      :symbol: lei
+    :RSD: 
+      :name: "serbneskur denari"
+      :one: "serbneskur denari"
+      :other: "serbneskir denarar"
+    :RUB: 
+      :name: "rússnesk rúbla"
+      :narrow_symbol: ₽
+      :one: "rússnesk rúbla"
+      :other: "rússneskar rúblur"
+      :symbol: ₽
+    :RUR: 
+      :name: "Rússnesk rúbla (1991–1998)"
+      :one: "Rússnesk rúbla (1991–1998)"
+    :RWF: 
+      :name: "rúandskur franki"
+      :narrow_symbol: RF
+      :one: "rúandskur franki"
+      :other: "rúandskir frankar"
+      :symbol: RF
+    :SAR: 
+      :name: "sádíarabískt ríal"
+      :one: "sádiarabískt ríal"
+      :other: "sádiarabísk ríöl"
+    :SBD: 
+      :name: "salómonseyskur dalur"
+      :narrow_symbol: $
+      :one: "salómonseyskur dalur"
+      :other: "salómonseyskir dalir"
+      :symbol: $
+    :SCR: 
+      :name: Seychellesrúpía
+      :one: Seychellesrúpía
+      :other: Seychellesrúpíur
+    :SDD: 
+      :name: "Súdanskur denari"
+      :one: "Súdanskur denari"
+    :SDG: 
+      :name: "súdanskt pund"
+      :one: "súdanskt pund"
+      :other: "súdönsk pund"
+    :SDP: 
+      :name: "Súdanskt pund (1957–1998)"
+      :one: "Súdanskt pund (1957–1998)"
+    :SEK: 
+      :name: "sænsk króna"
+      :narrow_symbol: kr.
+      :one: "sænsk króna"
+      :other: "sænskar krónur"
+      :symbol: kr.
+    :SGD: 
+      :name: "singapúrskur dalur"
+      :narrow_symbol: $
+      :one: "singapúrskur dalur"
+      :other: "singapúrskir dalir"
+      :symbol: $
+    :SHP: 
+      :name: "helenskt pund"
+      :narrow_symbol: £
+      :one: "helenskt pund"
+      :other: "helensk pund"
+      :symbol: £
+    :SIT: 
+      :name: "Slóvenskur dalur"
+      :one: "Slóvenskur dalur"
+    :SKK: 
+      :name: "Slóvakísk króna"
+      :one: "Slóvakísk króna"
+    :SLE: 
+      :name: "síerraleónsk ljóna"
+      :one: "síerraleónsk ljóna"
+      :other: "síerraleónskar ljónur"
+    :SLL: 
+      :name: "síerraleónsk ljóna (1964—2022)"
+      :one: "síerraleónsk ljóna (1964—2022)"
+      :other: "síerraleónskar ljónur (1964—2022)"
+    :SOS: 
+      :name: "sómalískur skildingur"
+      :one: "sómalískur skildingur"
+      :other: "sómalískir skildingar"
+    :SRD: 
+      :name: Súrínamdalur
+      :narrow_symbol: $
+      :one: Súrínamdalur
+      :other: Súrínamdalir
+      :symbol: $
+    :SRG: 
+      :name: "Suriname Guilder"
+      :one: "Suriname Guilder"
+    :SSP: 
+      :name: "suðursúdanskt pund"
+      :narrow_symbol: £
+      :one: "suðursúdanskt pund"
+      :other: "suðursúdönsk pund"
+      :symbol: £
+    :STD: 
+      :name: "Saó Tóme og Prinsípe-dóbra (1977–2017)"
+      :one: "Saó Tóme og Prinsípe-dóbra (1977–2017)"
+      :other: "Saó Tóme og Prinsípe-dóbrur (1977–2017)"
+    :STN: 
+      :name: "Saó Tóme og Prinsípe-dóbra"
+      :narrow_symbol: Db
+      :one: "Saó Tóme og Prinsípe-dóbra"
+      :other: "Saó Tóme og Prinsípe-dóbrur"
+      :symbol: Db
+    :SUR: 
+      :name: "Soviet Rouble"
+      :one: "Soviet Rouble"
+    :SVC: 
+      :name: "El Salvador Colon"
+      :one: "El Salvador Colon"
+    :SYP: 
+      :name: "sýrlenskt pund"
+      :narrow_symbol: £
+      :one: "sýrlenskt pund"
+      :other: "sýrlensk pund"
+      :symbol: £
+    :SZL: 
+      :name: "svasílenskur lílangeni"
+      :one: "svasílenskur lílangeni"
+      :other: "svasílenskir lílangenar"
+    :THB: 
+      :name: "taílenskt bat"
+      :narrow_symbol: ฿
+      :one: "taílenskt bat"
+      :other: "taílensk böt"
+      :symbol: ฿
+    :TJR: 
+      :name: "Tadsjiksk rúbla"
+      :one: "Tadsjiksk rúbla"
+    :TJS: 
+      :name: "tadsjikskur sómóni"
+      :one: "tadsjikskur sómóni"
+      :other: "tadsjikskir sómónar"
+    :TMM: 
+      :name: "Túrkmenskt manat (1993–2009)"
+      :one: "Túrkmenskt manat (1993–2009)"
+    :TMT: 
+      :name: "túrkmenskt manat"
+      :one: "túrkmenskt manat"
+      :other: "túrkmensk manöt"
+    :TND: 
+      :name: "túniskur denari"
+      :one: "túniskur denari"
+      :other: "túniskir denarar"
+    :TOP: 
+      :name: Tongapanga
+      :narrow_symbol: T$
+      :one: Tongapanga
+      :other: Tongapöngur
+      :symbol: T$
+    :TPE: 
+      :name: "Tímorskur skúti"
+      :one: "Tímorskur skúti"
+    :TRL: 
+      :name: "Tyrknesk líra (1922–2005)"
+      :one: "Tyrknesk líra (1922–2005)"
+    :TRY: 
+      :name: "tyrknesk líra"
+      :narrow_symbol: ₺
+      :one: "tyrknesk líra"
+      :other: "tyrkneskar lírur"
+      :symbol: ₺
+    :TTD: 
+      :name: "Trínidad og Tóbagó-dalur"
+      :narrow_symbol: $
+      :one: "Trínidad og Tóbagó-dalur"
+      :other: "Trínidad og Tóbagó-dalir"
+      :symbol: $
+    :TWD: 
+      :name: "taívanskur dalur"
+      :narrow_symbol: NT$
+      :one: "taívanskur dalur"
+      :other: "taívanskir dalir"
+      :symbol: TWD
+    :TZS: 
+      :name: "tansanískur skildingur"
+      :one: "tansanískur skildingur"
+      :other: "tansanískir skildingar"
+    :UAH: 
+      :name: "úkraínsk hrinja"
+      :narrow_symbol: ₴
+      :one: "úkraínsk hrinja"
+      :other: "úkraínskar hrinjur"
+      :symbol: ₴
+    :UAK: 
+      :name: "Ukrainian Karbovanetz"
+      :one: "Ukrainian Karbovanetz"
+    :UGX: 
+      :name: "úgandskur skildingur"
+      :one: "úgandskur skildingur"
+      :other: "úgandskir skildingar"
+    :USD: 
+      :name: Bandaríkjadalur
+      :narrow_symbol: $
+      :one: Bandaríkjadalur
+      :other: Bandaríkjadalir
+      :symbol: USD
+    :USN: 
+      :name: "Bandaríkjadalur (næsta dag)"
+      :one: "Bandaríkjadalur (næsta dag)"
+    :USS: 
+      :name: "Bandaríkjadalur (sama dag)"
+      :one: "Bandaríkjadalur (sama dag)"
+    :UYU: 
+      :name: "úrúgvæskur pesi"
+      :narrow_symbol: $
+      :one: "úrúgvæskur pesi"
+      :other: "úrúgvæskir pesar"
+      :symbol: $
+    :UZS: 
+      :name: "úsbekskt súm"
+      :one: "úsbekskt súm"
+      :other: "úsbeksk súm"
+    :VEB: 
+      :name: "Bolívar í Venesúela (1871–2008)"
+      :one: "Bolívar í Venesúela (1871–2008)"
+    :VEF: 
+      :name: "venesúelskur bólívari (2008–2018)"
+      :narrow_symbol: Bs
+      :one: "venesúelskur bólívari (2008–2018)"
+      :other: "venesúelskir bólívarar (2008–2018)"
+      :symbol: Bs
+    :VES: 
+      :name: "venesúelskur bólívari"
+      :one: "venesúelskur bólívari"
+      :other: "venesúelskir bólívarar"
+    :VND: 
+      :name: "víetnamskt dong"
+      :narrow_symbol: ₫
+      :one: "víetnamskt dong"
+      :other: "víetnömsk dong"
+      :symbol: VND
+    :VUV: 
+      :name: "vanúatúskt vatú"
+      :one: "vanúatúskt vatú"
+      :other: "vanúatúsk vatú"
+    :WST: 
+      :name: Samóatala
+      :one: Samóatala
+      :other: Samóatölur
+    :XAF: 
+      :name: "miðafrískur franki"
+      :one: "miðafrískur franki"
+      :other: "miðafrískir frankar"
+      :symbol: FCFA
+    :XCD: 
+      :name: "austurkarabískur dalur"
+      :narrow_symbol: $
+      :one: "austurkarabískur dalur"
+      :other: "austurkarabískir dalir"
+      :symbol: EC$
+    :XCG: 
+      :symbol: Cg.
+    :XDR: 
+      :name: "Sérstök dráttarréttindi"
+      :one: "Sérstök dráttarréttindi"
+    :XFO: 
+      :name: "Franskur gullfranki"
+      :one: "Franskur gullfranki"
+    :XFU: 
+      :name: "Franskur franki, UIC"
+      :one: "Franskur franki, UIC"
+    :XOF: 
+      :name: "vesturafrískur franki"
+      :one: "vesturafrískur franki"
+      :other: "vesturafrískir frankar"
+      :symbol: F CFA
+    :XPF: 
+      :name: "pólinesískur franki"
+      :one: "pólinesískur franki"
+      :other: "pólinesískir frankar"
+      :symbol: CFPF
+    :XXX: 
+      :name: "óþekktur gjaldmiðill"
+      :one: "(óþekkt mynteining gjaldmiðils)"
+      :other: "(óþekktur gjaldmiðill)"
+      :symbol: ¤
+    :YDD: 
+      :name: "Jemenskur denari"
+      :one: "Jemenskur denari"
+    :YER: 
+      :name: "jemenskt ríal"
+      :one: "jemenskt ríal"
+      :other: "jemensk ríöl"
+    :YUM: 
+      :name: "Júgóslavneskur denari"
+      :one: "Júgóslavneskur denari"
+    :ZAL: 
+      :name: "Rand (viðskipta)"
+      :one: "Rand (viðskipta)"
+    :ZAR: 
+      :name: "suðurafrískt rand"
+      :narrow_symbol: R
+      :one: "suðurafrískt rand"
+      :other: "suðurafrísk rönd"
+      :symbol: R
+    :ZMK: 
+      :name: "Zambian Kwacha (1968–2012)"
+      :one: "Zambian Kwacha (1968–2012)"
+    :ZMW: 
+      :name: "sambísk kvaka"
+      :narrow_symbol: ZK
+      :one: "sambísk kvaka"
+      :other: "sambískar kvökur"
+      :symbol: ZK
+    :ZWD: 
+      :name: "Simbabveskur dalur"
+      :one: "Simbabveskur dalur"

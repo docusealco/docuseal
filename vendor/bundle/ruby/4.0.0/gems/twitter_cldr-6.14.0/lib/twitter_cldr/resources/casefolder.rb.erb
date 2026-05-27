@@ -1,0 +1,68 @@
+# encoding: UTF-8
+
+# Copyright 2012 Twitter, Inc
+# http://www.apache.org/licenses/LICENSE-2.0
+
+module TwitterCldr
+  module Shared
+    class Casefolder
+      class << self
+
+        CASEFOLDING_SOURCE_C = "<%= casefolding_char_class_for("C") %>"
+        CASEFOLDING_SOURCE_F = "<%= casefolding_char_class_for("F") %>"
+        CASEFOLDING_SOURCE_S = "<%= casefolding_char_class_for("S") %>"
+        CASEFOLDING_SOURCE_T = "<%= casefolding_char_class_for("T") %>"
+
+        CASEFOLDING_HASH = <%= inspect_hash_in_lines(casefolding_hash_for(["C", "F", "S"]), 8, 5) %>
+        CASEFOLDING_HASH_T = CASEFOLDING_HASH.merge(
+          <%= inspect_hash_in_lines(casefolding_hash_for(["T"]), 9, 6) %>
+        )
+
+        def simple_casefold(str, t = false)
+          perform_casefold(str, simple_casefold_regex, t)
+        end
+
+        def full_casefold(str, t = false)
+          perform_casefold(str, full_casefold_regex, t)
+        end
+
+        alias :casefold :full_casefold
+
+        def common_casefold(str)
+          perform_casefold(str, CASEFOLDING_REGEX_C, false)
+        end
+
+        private
+
+        def perform_casefold(str, regex, t)
+          regex = regex_with_t(regex) if t
+          casefolding_hash = t ? CASEFOLDING_HASH_T : CASEFOLDING_HASH
+
+          str.gsub(regex) do |s|
+            s.unpack("U*").inject([]) do |ret, ss|
+              ret + casefolding_hash[ss]
+            end.pack("U*")
+          end
+        end
+
+        def simple_casefold_regex
+          @simple_casefold_regex ||= Regexp.new("#{CASEFOLDING_SOURCE_C}|#{CASEFOLDING_SOURCE_S}")
+        end
+
+        def full_casefold_regex
+          @full_casefold_regex ||= Regexp.new("#{CASEFOLDING_SOURCE_C}|#{CASEFOLDING_SOURCE_F}")
+        end
+
+        def regex_with_t(regex)
+          regex_with_t_cache[regex.source] ||=
+            Regexp.new("#{regex.source}|#{CASEFOLDING_SOURCE_T}")
+        end
+
+        def regex_with_t_cache
+          @regex_with_t_cache ||= {}
+        end
+
+      end
+    end
+  end
+end

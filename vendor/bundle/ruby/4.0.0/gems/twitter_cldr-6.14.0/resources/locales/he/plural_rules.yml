@@ -1,0 +1,8 @@
+--- 
+:he: 
+  :cardinal: 
+    :one: "i = 1 and v = 0 or i = 0 and v != 0 @integer 1 @decimal 0.0~0.9, 0.00~0.05"
+    :other: " @integer 0, 3~17, 100, 1000, 10000, 100000, 1000000, … @decimal 1.0~2.5, 10.0, 100.0, 1000.0, 10000.0, 100000.0, 1000000.0, …"
+    :two: "i = 2 and v = 0 @integer 2"
+  :ordinal: 
+    :other: " @integer 0~15, 100, 1000, 10000, 100000, 1000000, …"

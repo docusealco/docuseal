@@ -1,0 +1,1504 @@
+--- 
+:mr: 
+  :formats: 
+    :fallback_formats: 
+      :generic: "{1} ({0})"
+    :gmt_formats: 
+      :generic: "[GMT]{0}"
+    :gmt_zero_formats: 
+      :generic: "[GMT]"
+    :hour_formats: 
+      :generic: "+HH:mm;-HH:mm"
+    :region_formats: 
+      :daylight: "{0} सूर्यप्रकाश वेळ"
+      :generic: "{0} वेळ"
+      :standard: "{0} प्रमाण वेळ"
+  :metazones: 
+    :Acre: 
+      :long: 
+        :daylight: "ऐकर ग्रीष्म वेळ"
+        :generic: "एकर वेळ"
+        :standard: "एकर प्रमाणवेळ"
+    :Afghanistan: 
+      :long: 
+        :standard: "अफगाणिस्तान वेळ"
+    :Africa_Central: 
+      :long: 
+        :standard: "मध्‍य आफ्रिका वेळ"
+    :Africa_Eastern: 
+      :long: 
+        :standard: "पूर्व आफ्रिका वेळ"
+    :Africa_Southern: 
+      :long: 
+        :standard: "दक्षिण आफ्रिका प्रमाण वेळ"
+    :Africa_Western: 
+      :long: 
+        :daylight: "पश्चिम आफ्रिका उन्हाळी वेळ"
+        :generic: "पश्चिम आफ्रिका वेळ"
+        :standard: "पश्चिम आफ्रिका प्रमाण वेळ"
+    :Alaska: 
+      :long: 
+        :daylight: "अलास्का सूर्यप्रकाश वेळ"
+        :generic: "अलास्का वेळ"
+        :standard: "अलास्का प्रमाण वेळ"
+    :Almaty: 
+      :long: 
+        :daylight: "अल्माटी ग्रीष्मकालीन वेळ"
+        :generic: "अल्माटी वेळ"
+        :standard: "अल्माटी प्रमाणवेळ"
+    :Amazon: 
+      :long: 
+        :daylight: "अ‍ॅमेझॉन उन्हाळी वेळ"
+        :generic: "अ‍ॅमेझॉन वेळ"
+        :standard: "अ‍ॅमेझॉन प्रमाण वेळ"
+    :America_Central: 
+      :long: 
+        :daylight: "केंद्रीय सूर्यप्रकाश वेळ"
+        :generic: "केंद्रीय वेळ"
+        :standard: "केंद्रीय प्रमाण वेळ"
+    :America_Eastern: 
+      :long: 
+        :daylight: "पौर्वात्य सूर्यप्रकाश वेळ"
+        :generic: "पौर्वात्य वेळ"
+        :standard: "पौर्वात्य प्रमाण वेळ"
+    :America_Mountain: 
+      :long: 
+        :daylight: "पर्वतीय सूर्यप्रकाश वेळ"
+        :generic: "पर्वतीय वेळ"
+        :standard: "पर्वतीय प्रमाण वेळ"
+    :America_Pacific: 
+      :long: 
+        :daylight: "पॅसिफिक सूर्यप्रकाश वेळ"
+        :generic: "पॅसिफिक वेळ"
+        :standard: "पॅसिफिक प्रमाण वेळ"
+    :Anadyr: 
+      :long: 
+        :daylight: "अनादीर ग्रीष्मकालीन वेळ"
+        :generic: "एनाडीयर वेळ"
+        :standard: "अनादीर प्रमाणवेळ"
+    :Apia: 
+      :long: 
+        :daylight: "एपिया सूर्यप्रकाश वेळ"
+        :generic: "एपिया वेळ"
+        :standard: "एपिया प्रमाण वेळ"
+    :Aqtau: 
+      :long: 
+        :daylight: "अ‍ॅक्ताउ ग्रीष्मकालीन वेळ"
+        :generic: "अ‍ॅक्ताउ वेळ"
+        :standard: "अ‍ॅक्ताउ प्रमाणवेळ"
+    :Aqtobe: 
+      :long: 
+        :daylight: "अ‍ॅक्टोबे ग्रीष्मकालीन वेळ"
+        :generic: "अ‍ॅक्टोबे वेळ"
+        :standard: "अ‍ॅक्टोबे प्रमाणवेळ"
+    :Arabian: 
+      :long: 
+        :daylight: "अरेबियन सूर्यप्रकाश वेळ"
+        :generic: "अरेबियन वेळ"
+        :standard: "अरेबियन प्रमाण वेळ"
+    :Argentina: 
+      :long: 
+        :daylight: "अर्जेंटिना उन्हाळी वेळ"
+        :generic: "अर्जेंटिना वेळ"
+        :standard: "अर्जेंटिना प्रमाण वेळ"
+    :Argentina_Western: 
+      :long: 
+        :daylight: "पश्चिमी अर्जेंटिना उन्हाळी वेळ"
+        :generic: "पश्चिमी अर्जेंटिना वेळ"
+        :standard: "पश्चिमी अर्जेंटिना प्रमाण वेळ"
+    :Armenia: 
+      :long: 
+        :daylight: "आर्मेनिया उन्हाळी वेळ"
+        :generic: "आर्मेनिया वेळ"
+        :standard: "आर्मेनिया प्रमाण वेळ"
+    :Atlantic: 
+      :long: 
+        :daylight: "अटलांटिक सूर्यप्रकाश वेळ"
+        :generic: "अटलांटिक वेळ"
+        :standard: "अटलांटिक प्रमाण वेळ"
+    :Australia_Central: 
+      :long: 
+        :daylight: "ऑस्ट्रेलियन मध्य सूर्यप्रकाश वेळ"
+        :generic: "मध्य ऑस्ट्रेलिया वेळ"
+        :standard: "ऑस्ट्रेलियन मध्य प्रमाण वेळ"
+    :Australia_CentralWestern: 
+      :long: 
+        :daylight: "ऑस्ट्रेलियन मध्य-पश्चिम सूर्यप्रकाश वेळ"
+        :generic: "ऑस्ट्रेलियन मध्य-पश्चिम वेळ"
+        :standard: "ऑस्ट्रेलियन मध्य-पश्चिम प्रमाण वेळ"
+    :Australia_Eastern: 
+      :long: 
+        :daylight: "ऑस्ट्रेलियन पूर्व सूर्यप्रकाश वेळ"
+        :generic: "पूर्व ऑस्ट्रेलिया वेळ"
+        :standard: "ऑस्ट्रेलियन पूर्व प्रमाण वेळ"
+    :Australia_Western: 
+      :long: 
+        :daylight: "ऑस्ट्रेलियन पश्चिम सूर्यप्रकाश वेळ"
+        :generic: "पश्चिम ऑस्ट्रेलिया वेळ"
+        :standard: "ऑस्ट्रेलियन पश्चिम प्रमाण वेळ"
+    :Azerbaijan: 
+      :long: 
+        :daylight: "अझरबैजान उन्हाळी वेळ"
+        :generic: "अझरबैजान वेळ"
+        :standard: "अझरबैजान प्रमाण वेळ"
+    :Azores: 
+      :long: 
+        :daylight: "अ‍ॅझोरेस उन्हाळी वेळ"
+        :generic: "अ‍ॅझोरेस वेळ"
+        :standard: "अ‍ॅझोरेस प्रमाण वेळ"
+    :Bangladesh: 
+      :long: 
+        :daylight: "बांगलादेश उन्हाळी वेळ"
+        :generic: "बांगलादेश वेळ"
+        :standard: "बांगलादेश प्रमाण वेळ"
+    :Bhutan: 
+      :long: 
+        :standard: "भूतान वेळ"
+    :Bolivia: 
+      :long: 
+        :standard: "बोलिव्हिया वेळ"
+    :Brasilia: 
+      :long: 
+        :daylight: "ब्राझिलिया उन्हाळी वेळ"
+        :generic: "ब्राझिलिया वेळ"
+        :standard: "ब्राझिलिया प्रमाण वेळ"
+    :Brunei: 
+      :long: 
+        :standard: "ब्रुनेई दारूसलाम वेळ"
+    :Cape_Verde: 
+      :long: 
+        :daylight: "केप व्हर्डे उन्हाळी वेळ"
+        :generic: "केप व्हर्डे वेळ"
+        :standard: "केप व्हर्डे प्रमाण वेळ"
+    :Chamorro: 
+      :long: 
+        :standard: "चामोरो प्रमाण वेळ"
+    :Chatham: 
+      :long: 
+        :daylight: "चॅथम सूर्यप्रकाश वेळ"
+        :generic: "चॅथम वेळ"
+        :standard: "चॅथम प्रमाण वेळ"
+    :Chile: 
+      :long: 
+        :daylight: "चिली उन्हाळी वेळ"
+        :generic: "चिली वेळ"
+        :standard: "चिली प्रमाण वेळ"
+    :China: 
+      :long: 
+        :daylight: "चीनी सूर्यप्रकाश वेळ"
+        :generic: "चीनी वेळ"
+        :standard: "चीनी प्रमाण वेळ"
+    :Christmas: 
+      :long: 
+        :standard: "ख्रिसमस बेट वेळ"
+    :Cocos: 
+      :long: 
+        :standard: "कॉकोस बेटे वेळ"
+    :Colombia: 
+      :long: 
+        :daylight: "कोलंबिया उन्हाळी वेळ"
+        :generic: "कोलंबिया वेळ"
+        :standard: "कोलंबिया प्रमाण वेळ"
+    :Cook: 
+      :long: 
+        :daylight: "कुक बेटे अर्ध उन्हाळी वेळ"
+        :generic: "कुक बेटे वेळ"
+        :standard: "कुक बेटे प्रमाण वेळ"
+    :Cuba: 
+      :long: 
+        :daylight: "क्यूबा सूर्यप्रकाश वेळ"
+        :generic: "क्यूबा वेळ"
+        :standard: "क्यूबा प्रमाण वेळ"
+    :Davis: 
+      :long: 
+        :standard: "डेव्हिस वेळ"
+    :DumontDUrville: 
+      :long: 
+        :standard: "ड्युमॉन्ट-ड्युर्विल वेळ"
+    :East_Timor: 
+      :long: 
+        :standard: "पूर्व तिमोर वेळ"
+    :Easter: 
+      :long: 
+        :daylight: "इस्टर बेट उन्हाळी वेळ"
+        :generic: "इस्टर बेट वेळ"
+        :standard: "इस्टर बेट प्रमाण वेळ"
+    :Ecuador: 
+      :long: 
+        :standard: "इक्वेडोर वेळ"
+    :Europe_Central: 
+      :long: 
+        :daylight: "मध्‍य युरोपियन उन्हाळी वेळ"
+        :generic: "मध्‍य युरोपियन वेळ"
+        :standard: "मध्‍य युरोपियन प्रमाण वेळ"
+    :Europe_Eastern: 
+      :long: 
+        :daylight: "पूर्व युरोपियन उन्हाळी वेळ"
+        :generic: "पूर्व युरोपियन वेळ"
+        :standard: "पूर्व युरोपियन प्रमाण वेळ"
+    :Europe_Further_Eastern: 
+      :long: 
+        :standard: "अग्र-पौर्वात्य युरोपीयन वेळ"
+    :Europe_Western: 
+      :long: 
+        :daylight: "पश्चिम युरोपियन उन्हाळी वेळ"
+        :generic: "पश्चिम युरोपियन वेळ"
+        :standard: "पश्चिम युरोपियन प्रमाण वेळ"
+    :Falkland: 
+      :long: 
+        :daylight: "फॉकलंड बेटे उन्हाळी वेळ"
+        :generic: "फॉकलंड बेटे वेळ"
+        :standard: "फॉकलंड बेटे प्रमाण वेळ"
+    :Fiji: 
+      :long: 
+        :daylight: "फिजी उन्हाळी वेळ"
+        :generic: "फिजी वेळ"
+        :standard: "फिजी प्रमाण वेळ"
+    :French_Guiana: 
+      :long: 
+        :standard: "फ्रेंच गयाना वेळ"
+    :French_Southern: 
+      :long: 
+        :standard: "फ्रेंच दक्षिण आणि अंटार्क्टिक वेळ"
+    :GMT: 
+      :long: 
+        :standard: "ग्रीनिच प्रमाण वेळ"
+    :Galapagos: 
+      :long: 
+        :standard: "गॅलापागोस वेळ"
+    :Gambier: 
+      :long: 
+        :standard: "गॅम्बियर वेळ"
+    :Georgia: 
+      :long: 
+        :daylight: "जॉर्जिया उन्हाळी वेळ"
+        :generic: "जॉर्जिया वेळ"
+        :standard: "जॉर्जिया प्रमाण वेळ"
+    :Gilbert_Islands: 
+      :long: 
+        :standard: "गिल्बर्ट बेटे वेळ"
+    :Greenland_Eastern: 
+      :long: 
+        :daylight: "पूर्व ग्रीनलँड उन्हाळी वेळ"
+        :generic: "पूर्व ग्रीनलँड वेळ"
+        :standard: "पूर्व ग्रीनलँड प्रमाण वेळ"
+    :Greenland_Western: 
+      :long: 
+        :daylight: "पश्चिम ग्रीनलँड उन्हाळी वेळ"
+        :generic: "पश्चिम ग्रीनलँड वेळ"
+        :standard: "पश्चिम ग्रीनलँड प्रमाण वेळ"
+    :Guam: 
+      :long: 
+        :standard: "गुआम प्रमाणवेळ"
+    :Gulf: 
+      :long: 
+        :standard: "खाडी प्रमाण वेळ"
+    :Guyana: 
+      :long: 
+        :standard: "गयाना वेळ"
+    :Hawaii_Aleutian: 
+      :long: 
+        :daylight: "हवाई-अलूशन सूर्यप्रकाश वेळ"
+        :generic: "हवाई-अलूशन वेळ"
+        :standard: "हवाई-अलूशन प्रमाण वेळ"
+    :Hong_Kong: 
+      :long: 
+        :daylight: "हाँग काँग उन्हाळी वेळ"
+        :generic: "हाँग काँग वेळ"
+        :standard: "हाँग काँग प्रमाण वेळ"
+    :Hovd: 
+      :long: 
+        :daylight: "होव्ह्ड उन्हाळी वेळ"
+        :generic: "होव्ह्ड वेळ"
+        :standard: "होव्ह्ड प्रमाण वेळ"
+    :India: 
+      :long: 
+        :standard: "भारतीय प्रमाण वेळ"
+      :short: 
+        :standard: IST
+    :Indian_Ocean: 
+      :long: 
+        :standard: "हिंद महासागर वेळ"
+    :Indochina: 
+      :long: 
+        :standard: "इंडोचायना वेळ"
+    :Indonesia_Central: 
+      :long: 
+        :standard: "मध्‍य इंडोनेशिया वेळ"
+    :Indonesia_Eastern: 
+      :long: 
+        :standard: "पौर्वात्य इंडोनेशिया वेळ"
+    :Indonesia_Western: 
+      :long: 
+        :standard: "पश्चिमी इंडोनेशिया वेळ"
+    :Iran: 
+      :long: 
+        :daylight: "इराण सूर्यप्रकाश वेळ"
+        :generic: "इराण वेळ"
+        :standard: "इराण प्रमाण वेळ"
+    :Irkutsk: 
+      :long: 
+        :daylight: "इर्कुत्सक उन्हाळी वेळ"
+        :generic: "इर्कुत्सक वेळ"
+        :standard: "इर्कुत्सक प्रमाण वेळ"
+    :Israel: 
+      :long: 
+        :daylight: "इस्रायल सूर्यप्रकाश वेळ"
+        :generic: इस्रायल
+        :standard: "इस्रायल प्रमाण वेळ"
+    :Japan: 
+      :long: 
+        :daylight: "जपान सूर्यप्रकाश वेळ"
+        :generic: "जपान वेळ"
+        :standard: "जपान प्रमाण वेळ"
+    :Kamchatka: 
+      :long: 
+        :daylight: "पेट्रोपाव्हलोस्क- कामचाट्स्की ग्रीष्मकालीन वेळ"
+        :generic: "पेट्रोपाव्हलोस्क- कामचाट्स्की वेळ"
+        :standard: "पेट्रोपाव्हलोस्क- कामचाट्स्की प्रमाणवेळ"
+    :Kazakhstan: 
+      :long: 
+        :standard: "कझाकस्तान वेळ"
+    :Kazakhstan_Eastern: 
+      :long: 
+        :standard: "पूर्व कझाकस्तान वेळ"
+    :Kazakhstan_Western: 
+      :long: 
+        :standard: "पश्चिम कझाकस्तान वेळ"
+    :Korea: 
+      :long: 
+        :daylight: "कोरियन सूर्यप्रकाश वेळ"
+        :generic: "कोरियन वेळ"
+        :standard: "कोरियन प्रमाण वेळ"
+    :Kosrae: 
+      :long: 
+        :standard: "कोस्राई वेळ"
+    :Krasnoyarsk: 
+      :long: 
+        :daylight: "क्रास्नोयार्क्स उन्हाळी वेळ"
+        :generic: "क्रास्नोयार्स्क वेळ"
+        :standard: "क्रास्नोयार्स्क प्रमाण वेळ"
+    :Kyrgystan: 
+      :long: 
+        :standard: "किरगिस्तान वेळ"
+    :Lanka: 
+      :long: 
+        :standard: "लंका वेळ"
+    :Line_Islands: 
+      :long: 
+        :standard: "लाइन बेटे वेळ"
+    :Lord_Howe: 
+      :long: 
+        :daylight: "लॉर्ड होवे सूर्यप्रकाश वेळ"
+        :generic: "लॉर्ड होवे वेळ"
+        :standard: "लॉर्ड होवे प्रमाण वेळ"
+    :Macau: 
+      :long: 
+        :daylight: "मकाऊ ग्रीष्मकालीन वेळ"
+        :generic: "मकाऊ वेळ"
+        :standard: "मकाऊ प्रमाणवेळ"
+    :Magadan: 
+      :long: 
+        :daylight: "मॅगाडन उन्हाळी वेळ"
+        :generic: "मॅगाडन वेळ"
+        :standard: "मॅगाडन प्रमाण वेळ"
+    :Malaysia: 
+      :long: 
+        :standard: "मलेशिया वेळ"
+    :Maldives: 
+      :long: 
+        :standard: "मालदिव वेळ"
+    :Marquesas: 
+      :long: 
+        :standard: "मार्क्वेसास वेळ"
+    :Marshall_Islands: 
+      :long: 
+        :standard: "मार्शल बेटे वेळ"
+    :Mauritius: 
+      :long: 
+        :daylight: "मॉरीशस उन्हाळी वेळ"
+        :generic: "मॉरीशस वेळ"
+        :standard: "मॉरीशस प्रमाण वेळ"
+    :Mawson: 
+      :long: 
+        :standard: "मॉसन वेळ"
+    :Mexico_Pacific: 
+      :long: 
+        :daylight: "मेक्सिको पॅसिफिक सूर्यप्रकाश वेळ"
+        :generic: "मेक्सिको पॅसिफिक वेळ"
+        :standard: "मेक्सिको पॅसिफिक प्रमाण वेळ"
+    :Mongolia: 
+      :long: 
+        :daylight: "उलान बाटोर उन्हाळी वेळ"
+        :generic: "उलान बाटोर वेळ"
+        :standard: "उलान बाटोर प्रमाण वेळ"
+    :Moscow: 
+      :long: 
+        :daylight: "मॉस्को उन्हाळी वेळ"
+        :generic: "मॉस्को वेळ"
+        :standard: "मॉस्को प्रमाण वेळ"
+    :Myanmar: 
+      :long: 
+        :standard: "म्यानमार वेळ"
+    :Nauru: 
+      :long: 
+        :standard: "नउरु वेळ"
+    :Nepal: 
+      :long: 
+        :standard: "नेपाळ वेळ"
+    :New_Caledonia: 
+      :long: 
+        :daylight: "न्यू कॅलेडोनिया उन्हाळी वेळ"
+        :generic: "न्यू कॅलेडोनिया वेळ"
+        :standard: "न्यू कॅलेडोनिया प्रमाण वेळ"
+    :New_Zealand: 
+      :long: 
+        :daylight: "न्यूझीलंड सूर्यप्रकाश वेळ"
+        :generic: "न्यूझीलंड वेळ"
+        :standard: "न्यूझीलंड प्रमाण वेळ"
+    :Newfoundland: 
+      :long: 
+        :daylight: "न्यू फाउंडलंड सूर्यप्रकाश वेळ"
+        :generic: "न्यू फाउंडलंड वेळ"
+        :standard: "न्यू फाउंडलंड प्रमाण वेळ"
+    :Niue: 
+      :long: 
+        :standard: "न्युए वेळ"
+    :Norfolk: 
+      :long: 
+        :daylight: "नॉरफोक बेट सूर्यप्रकाश वेळ"
+        :generic: "नॉरफोक बेट वेळ"
+        :standard: "नॉरफोक बेट प्रमाण वेळ"
+    :Noronha: 
+      :long: 
+        :daylight: "फर्नांडो दी नोरोन्हा उन्हाळी वेळ"
+        :generic: "फर्नांडो दी नोरोन्हा वेळ"
+        :standard: "फर्नांडो दी नोरोन्हा प्रमाण वेळ"
+    :North_Mariana: 
+      :long: 
+        :standard: "उत्तर मरिना बेटे वेळ"
+    :Novosibirsk: 
+      :long: 
+        :daylight: "नोवोसिबिर्स्क उन्हाळी वेळ"
+        :generic: "नोवोसिबिर्स्क वेळ"
+        :standard: "नोवोसिबिर्स्क प्रमाण वेळ"
+    :Omsk: 
+      :long: 
+        :daylight: "ओम्स्क उन्हाळी वेळ"
+        :generic: "ओम्स्क वेळ"
+        :standard: "ओम्स्क प्रमाण वेळ"
+    :Pakistan: 
+      :long: 
+        :daylight: "पाकिस्तान उन्हाळी वेळ"
+        :generic: "पाकिस्तान वेळ"
+        :standard: "पाकिस्तान प्रमाण वेळ"
+    :Palau: 
+      :long: 
+        :standard: "पलाऊ वेळ"
+    :Papua_New_Guinea: 
+      :long: 
+        :standard: "पापुआ न्यू गिनी वेळ"
+    :Paraguay: 
+      :long: 
+        :daylight: "पॅराग्वे उन्हाळी वेळ"
+        :generic: "पॅराग्वे वेळ"
+        :standard: "पॅराग्वे प्रमाण वेळ"
+    :Peru: 
+      :long: 
+        :daylight: "पेरु उन्हाळी वेळ"
+        :generic: "पेरु वेळ"
+        :standard: "पेरु प्रमाण वेळ"
+    :Philippines: 
+      :long: 
+        :daylight: "फिलिपाइन उन्हाळी वेळ"
+        :generic: "फिलिपाइन वेळ"
+        :standard: "फिलिपाइन प्रमाण वेळ"
+    :Phoenix_Islands: 
+      :long: 
+        :standard: "‍फोनिक्स बेटे वेळ"
+    :Pierre_Miquelon: 
+      :long: 
+        :daylight: "सेंट पियरे आणि मिक्वेलोन सूर्यप्रकाश वेळ"
+        :generic: "सेंट पियर आणि मिक्वेलोन वेळ"
+        :standard: "सेंट पियरे आणि मिक्वेलोन प्रमाण वेळ"
+    :Pitcairn: 
+      :long: 
+        :standard: "पिटकैर्न वेळ"
+    :Ponape: 
+      :long: 
+        :standard: "पोनॅपे वेळ"
+    :Pyongyang: 
+      :long: 
+        :standard: "प्योंगयांग वेळ"
+    :Qyzylorda: 
+      :long: 
+        :daylight: "क़िझीलोर्डा ग्रीष्मकालीन वेळ"
+        :generic: "क़िझीलोर्डा वेळ"
+        :standard: "क़िझीलोर्डा प्रमाणवेळ"
+    :Reunion: 
+      :long: 
+        :standard: "रियुनियन वेळ"
+    :Rothera: 
+      :long: 
+        :standard: "रोथेरा वेळ"
+    :Sakhalin: 
+      :long: 
+        :daylight: "सखलिन उन्हाळी वेळ"
+        :generic: "सखलिन वेळ"
+        :standard: "सखलिन प्रमाण वेळ"
+    :Samara: 
+      :long: 
+        :daylight: "सामरा ग्रीष्मकालीन वेळ"
+        :generic: "समारा वेळ"
+        :standard: "सामरा प्रमाणवेळ"
+    :Samoa: 
+      :long: 
+        :daylight: "सामोआ सूर्यप्रकाश वेळ"
+        :generic: "सामोआ वेळ"
+        :standard: "सामोआ प्रमाण वेळ"
+    :Seychelles: 
+      :long: 
+        :standard: "सेशेल्स वेळ"
+    :Singapore: 
+      :long: 
+        :standard: "सिंगापूर प्रमाण वेळ"
+    :Solomon: 
+      :long: 
+        :standard: "सोलोमॉन बेटे वेळ"
+    :South_Georgia: 
+      :long: 
+        :standard: "दक्षिण जॉर्जिया वेळ"
+    :Suriname: 
+      :long: 
+        :standard: "सुरिनाम वेळ"
+    :Syowa: 
+      :long: 
+        :standard: "स्योवा वेळ"
+    :Tahiti: 
+      :long: 
+        :standard: "ताहिती वेळ"
+    :Taipei: 
+      :long: 
+        :daylight: "तैपेई सूर्यप्रकाश वेळ"
+        :generic: "तैपेई वेळ"
+        :standard: "तैपेई प्रमाण वेळ"
+    :Tajikistan: 
+      :long: 
+        :standard: "ताजिकिस्तान वेळ"
+    :Tokelau: 
+      :long: 
+        :standard: "टोकेलाऊ वेळ"
+    :Tonga: 
+      :long: 
+        :daylight: "टोंगा उन्हाळी वेळ"
+        :generic: "टोंगा वेळ"
+        :standard: "टोंगा प्रमाण वेळ"
+    :Truk: 
+      :long: 
+        :standard: "चूक वेळ"
+    :Turkmenistan: 
+      :long: 
+        :daylight: "तुर्कमेनिस्तान उन्हाळी वेळ"
+        :generic: "तुर्कमेनिस्तान वेळ"
+        :standard: "तुर्कमेनिस्तान प्रमाण वेळ"
+    :Tuvalu: 
+      :long: 
+        :standard: "तुवालू वेळ"
+    :Uruguay: 
+      :long: 
+        :daylight: "उरुग्वे उन्हाळी वेळ"
+        :generic: "उरुग्वे वेळ"
+        :standard: "उरुग्वे प्रमाण वेळ"
+    :Uzbekistan: 
+      :long: 
+        :daylight: "उझबेकिस्तान उन्हाळी वेळ"
+        :generic: "उझबेकिस्तान वेळ"
+        :standard: "उझबेकिस्तान प्रमाण वेळ"
+    :Vanuatu: 
+      :long: 
+        :daylight: "वानुआतु उन्हाळी वेळ"
+        :generic: "वानुआतु वेळ"
+        :standard: "वानुआतु प्रमाण वेळ"
+    :Venezuela: 
+      :long: 
+        :standard: "व्हेनेझुएला वेळ"
+    :Vladivostok: 
+      :long: 
+        :daylight: "व्लादिवोस्तोक उन्हाळी वेळ"
+        :generic: "व्लादिवोस्तोक वेळ"
+        :standard: "व्लादिवोस्तोक प्रमाण वेळ"
+    :Volgograd: 
+      :long: 
+        :daylight: "व्होल्गोग्राड उन्हाळी वेळ"
+        :generic: "व्होल्गोग्राड वेळ"
+        :standard: "व्होल्गोग्राड प्रमाण वेळ"
+    :Vostok: 
+      :long: 
+        :standard: "व्होस्टॉक वेळ"
+    :Wake: 
+      :long: 
+        :standard: "वेक बेट वेळ"
+    :Wallis: 
+      :long: 
+        :standard: "वॉलिस आणि फुटुना वेळ"
+    :Yakutsk: 
+      :long: 
+        :daylight: "याकुत्सक उन्हाळी वेळ"
+        :generic: "याकुत्सक वेळ"
+        :standard: "याकुत्सक प्रमाण वेळ"
+    :Yekaterinburg: 
+      :long: 
+        :daylight: "येकतरिनबर्ग उन्हाळी वेळ"
+        :generic: "येकतरिनबर्ग वेळ"
+        :standard: "येकतरिनबर्ग प्रमाण वेळ"
+    :Yukon: 
+      :long: 
+        :standard: "युकोन वेळ"
+  :timezones: 
+    :Africa/Abidjan: 
+      :city: अबिद्जान
+    :Africa/Accra: 
+      :city: अ‍ॅक्रा
+    :Africa/Addis_Ababa: 
+      :city: "आदिस अबाबा"
+    :Africa/Algiers: 
+      :city: अल्जिअर्स
+    :Africa/Asmera: 
+      :city: एस्मारा
+    :Africa/Bamako: 
+      :city: बामको
+    :Africa/Bangui: 
+      :city: बांगुई
+    :Africa/Banjul: 
+      :city: बंजुल
+    :Africa/Bissau: 
+      :city: बिसाउ
+    :Africa/Blantyre: 
+      :city: ब्लँटायर
+    :Africa/Brazzaville: 
+      :city: ब्राझाव्हिले
+    :Africa/Bujumbura: 
+      :city: बुजुंबुरा
+    :Africa/Cairo: 
+      :city: कैरो
+    :Africa/Casablanca: 
+      :city: कॅसाब्लान्का
+    :Africa/Ceuta: 
+      :city: सेउटा
+    :Africa/Conakry: 
+      :city: कोनाक्रि
+    :Africa/Dakar: 
+      :city: डकर
+    :Africa/Dar_es_Salaam: 
+      :city: "दार ए सलाम"
+    :Africa/Djibouti: 
+      :city: जिबौटी
+    :Africa/Douala: 
+      :city: दोउआला
+    :Africa/El_Aaiun: 
+      :city: "एल ऐउन"
+    :Africa/Freetown: 
+      :city: फ्रीटाउन
+    :Africa/Gaborone: 
+      :city: गाबोरोन
+    :Africa/Harare: 
+      :city: हरारे
+    :Africa/Johannesburg: 
+      :city: जोहान्सबर्ग
+    :Africa/Juba: 
+      :city: जुबा
+    :Africa/Kampala: 
+      :city: कंपाला
+    :Africa/Khartoum: 
+      :city: खार्टुम
+    :Africa/Kigali: 
+      :city: कीगाली
+    :Africa/Kinshasa: 
+      :city: किन्शासा
+    :Africa/Lagos: 
+      :city: लागोस
+    :Africa/Libreville: 
+      :city: लिबरव्हिल
+    :Africa/Lome: 
+      :city: लोम
+    :Africa/Luanda: 
+      :city: लुआंडा
+    :Africa/Lubumbashi: 
+      :city: लुबंबाशी
+    :Africa/Lusaka: 
+      :city: लुसाका
+    :Africa/Malabo: 
+      :city: मलाबो
+    :Africa/Maputo: 
+      :city: मापुटो
+    :Africa/Maseru: 
+      :city: मसेरु
+    :Africa/Mbabane: 
+      :city: अंबाबाने
+    :Africa/Mogadishu: 
+      :city: मोगादिशु
+    :Africa/Monrovia: 
+      :city: मोनरोव्हिया
+    :Africa/Nairobi: 
+      :city: नैरोबी
+    :Africa/Ndjamena: 
+      :city: इंजामेना
+    :Africa/Niamey: 
+      :city: नियामे
+    :Africa/Nouakchott: 
+      :city: नुवाकसुत
+    :Africa/Ouagadougou: 
+      :city: वागडूगू
+    :Africa/Porto-Novo: 
+      :city: पोर्टो-नोव्हो
+    :Africa/Sao_Tome: 
+      :city: "साओ तोमे"
+    :Africa/Tripoli: 
+      :city: त्रिपोली
+    :Africa/Tunis: 
+      :city: टयूनिस
+    :Africa/Windhoek: 
+      :city: विंडहोएक
+    :America/Adak: 
+      :city: अडॅक
+    :America/Anchorage: 
+      :city: अँकरेज
+    :America/Anguilla: 
+      :city: अँग्विला
+    :America/Antigua: 
+      :city: अँटिग्वा
+    :America/Araguaina: 
+      :city: अरागायना
+    :America/Argentina/La_Rioja: 
+      :city: "ला रियोजा"
+    :America/Argentina/Rio_Gallegos: 
+      :city: "रियो गॅलेगॉस"
+    :America/Argentina/Salta: 
+      :city: सॉल्ता
+    :America/Argentina/San_Juan: 
+      :city: "सान जुआन"
+    :America/Argentina/San_Luis: 
+      :city: "सान ल्युइस"
+    :America/Argentina/Tucuman: 
+      :city: टुकुमान
+    :America/Argentina/Ushuaia: 
+      :city: उस्वाइया
+    :America/Aruba: 
+      :city: अरुबा
+    :America/Asuncion: 
+      :city: आसुन्सियोन
+    :America/Bahia: 
+      :city: बहिया
+    :America/Bahia_Banderas: 
+      :city: "बाहिया बांदेरास"
+    :America/Barbados: 
+      :city: बार्बाडोस
+    :America/Belem: 
+      :city: बेलेम
+    :America/Belize: 
+      :city: बेलिझे
+    :America/Blanc-Sablon: 
+      :city: "ब्लांक सॅबलोन"
+    :America/Boa_Vista: 
+      :city: "बोआ व्हिस्टा"
+    :America/Bogota: 
+      :city: बोगोटा
+    :America/Boise: 
+      :city: बोइसी
+    :America/Buenos_Aires: 
+      :city: "ब्युनोस आयर्स"
+    :America/Cambridge_Bay: 
+      :city: "केंब्रिज उपसागर"
+    :America/Campo_Grande: 
+      :city: "कॅम्पो ग्रँडे"
+    :America/Cancun: 
+      :city: कानकुन
+    :America/Caracas: 
+      :city: कराकास
+    :America/Catamarca: 
+      :city: कॅटामार्का
+    :America/Cayenne: 
+      :city: कायेने
+    :America/Cayman: 
+      :city: केमन
+    :America/Chicago: 
+      :city: शिकागो
+    :America/Chihuahua: 
+      :city: चिहुआहुआ
+    :America/Ciudad_Juarez: 
+      :city: "सिउदाद हुआरेझ"
+    :America/Coral_Harbour: 
+      :city: अॅटिकोकन
+    :America/Cordoba: 
+      :city: कॉर्डोबा
+    :America/Costa_Rica: 
+      :city: "कोस्टा रिका"
+    :America/Creston: 
+      :city: क्रेस्टन
+    :America/Cuiaba: 
+      :city: कुयाबा
+    :America/Curacao: 
+      :city: क्युरासाओ
+    :America/Danmarkshavn: 
+      :city: डेन्मार्कशॉन
+    :America/Dawson: 
+      :city: डॉसन
+    :America/Dawson_Creek: 
+      :city: "डॉसन क्रीक"
+    :America/Denver: 
+      :city: डेन्व्हर
+    :America/Detroit: 
+      :city: डेट्रॉइट
+    :America/Dominica: 
+      :city: डोमिनिका
+    :America/Edmonton: 
+      :city: एडमाँटन
+    :America/Eirunepe: 
+      :city: यूरुनीपे
+    :America/El_Salvador: 
+      :city: "एल साल्वाडोर"
+    :America/Fort_Nelson: 
+      :city: "फोर्ट नेल्सन"
+    :America/Fortaleza: 
+      :city: फोर्टालेझा
+    :America/Glace_Bay: 
+      :city: "ग्लेस उपसागर"
+    :America/Godthab: 
+      :city: नूक
+    :America/Goose_Bay: 
+      :city: "गूस उपसागर"
+    :America/Grand_Turk: 
+      :city: "ग्रँड टर्क"
+    :America/Grenada: 
+      :city: ग्रेनेडा
+    :America/Guadeloupe: 
+      :city: ग्वाडेलोउपे
+    :America/Guatemala: 
+      :city: ग्वाटेमाला
+    :America/Guayaquil: 
+      :city: गयाक्विल
+    :America/Guyana: 
+      :city: गयाना
+    :America/Halifax: 
+      :city: हॅलिफॅक्स
+    :America/Havana: 
+      :city: हवाना
+    :America/Hermosillo: 
+      :city: हर्मोसिलो
+    :America/Indiana/Knox: 
+      :city: "नॉक्स, इंडियाना"
+    :America/Indiana/Marengo: 
+      :city: "मारेंगो, इंडियाना"
+    :America/Indiana/Petersburg: 
+      :city: "पीटर्सबर्ग, इंडियाना"
+    :America/Indiana/Tell_City: 
+      :city: "टेल सिटी, इंडियाना"
+    :America/Indiana/Vevay: 
+      :city: वेवाय-इंडियाना
+    :America/Indiana/Vincennes: 
+      :city: "विंसेनस, इंडियाना"
+    :America/Indiana/Winamac: 
+      :city: "विनमॅक, इंडियाना"
+    :America/Indianapolis: 
+      :city: इंडियानापोलिस
+    :America/Inuvik: 
+      :city: इनुविक
+    :America/Iqaluit: 
+      :city: इकालुइत
+    :America/Jamaica: 
+      :city: जमैका
+    :America/Jujuy: 
+      :city: जुजुय
+    :America/Juneau: 
+      :city: ज्यूनौ
+    :America/Kentucky/Monticello: 
+      :city: "माँटिसेलो, केंटुकी"
+    :America/Kralendijk: 
+      :city: क्रालेंदिजिक
+    :America/La_Paz: 
+      :city: "ला पाझ"
+    :America/Lima: 
+      :city: लीमा
+    :America/Los_Angeles: 
+      :city: "लॉस एंजेलिस"
+    :America/Louisville: 
+      :city: ल्युइसव्हिल
+    :America/Lower_Princes: 
+      :city: "लोअर प्रिन्सस क्वार्टर"
+    :America/Maceio: 
+      :city: मेसेइओ
+    :America/Managua: 
+      :city: मानागुआ
+    :America/Manaus: 
+      :city: मनौस
+    :America/Marigot: 
+      :city: मेरीगोट
+    :America/Martinique: 
+      :city: मार्टिनिक
+    :America/Matamoros: 
+      :city: माटामोरोस
+    :America/Mazatlan: 
+      :city: माझातलान
+    :America/Mendoza: 
+      :city: मेंदोझा
+    :America/Menominee: 
+      :city: मेनोमिनी
+    :America/Merida: 
+      :city: मेरिडा
+    :America/Metlakatla: 
+      :city: मेतलाकतला
+    :America/Mexico_City: 
+      :city: "मेक्सिको सिटी"
+    :America/Miquelon: 
+      :city: मिक्वेलोन
+    :America/Moncton: 
+      :city: माँकटन
+    :America/Monterrey: 
+      :city: मॉन्टेरे
+    :America/Montevideo: 
+      :city: मोन्टेव्हिडियो
+    :America/Montserrat: 
+      :city: माँन्टसेरात
+    :America/Nassau: 
+      :city: नसाऊ
+    :America/New_York: 
+      :city: न्यूयॉर्क
+    :America/Nome: 
+      :city: नोम
+    :America/Noronha: 
+      :city: नोरोन्हा
+    :America/North_Dakota/Beulah: 
+      :city: "ब्युलाह, उत्तर डकोटा"
+    :America/North_Dakota/Center: 
+      :city: "मध्य, उत्तर डकोटा"
+    :America/North_Dakota/New_Salem: 
+      :city: "न्यू सालेम, उत्तर डकोटा"
+    :America/Ojinaga: 
+      :city: ओजिनागा
+    :America/Panama: 
+      :city: पनामा
+    :America/Paramaribo: 
+      :city: पारमरीबो
+    :America/Phoenix: 
+      :city: फॉनिक्स
+    :America/Port-au-Prince: 
+      :city: पोर्ट-औ-प्रिंस
+    :America/Port_of_Spain: 
+      :city: "पोर्ट ऑफ स्पेन"
+    :America/Porto_Velho: 
+      :city: "पोर्टो वेल्हो"
+    :America/Puerto_Rico: 
+      :city: "प्युएर्तो रिको"
+    :America/Punta_Arenas: 
+      :city: "पुंता अरीनास"
+    :America/Rankin_Inlet: 
+      :city: "रॅनकिन इनलेट"
+    :America/Recife: 
+      :city: रेसिफे
+    :America/Regina: 
+      :city: रेजिना
+    :America/Resolute: 
+      :city: रेजोल्यूट
+    :America/Rio_Branco: 
+      :city: "रियो ब्रांको"
+    :America/Santarem: 
+      :city: सँटारेम
+    :America/Santiago: 
+      :city: सॅन्टिएगो
+    :America/Santo_Domingo: 
+      :city: "सॅन्टो डोमिंगो"
+    :America/Sao_Paulo: 
+      :city: "साओ पावलो"
+    :America/Scoresbysund: 
+      :city: इटोकॉरटॉर्मीट
+    :America/Sitka: 
+      :city: सिटका
+    :America/St_Barthelemy: 
+      :city: "सेंट बार्थेलेमी"
+    :America/St_Johns: 
+      :city: "सेंट जॉन्स"
+    :America/St_Kitts: 
+      :city: "सेंट किट्स"
+    :America/St_Lucia: 
+      :city: "सेंट लुसिया"
+    :America/St_Thomas: 
+      :city: "सेंट थॉमस"
+    :America/St_Vincent: 
+      :city: "सेंट विन्सेंट"
+    :America/Swift_Current: 
+      :city: "स्विफ्ट करंट"
+    :America/Tegucigalpa: 
+      :city: टेगुसिगाल्पा
+    :America/Thule: 
+      :city: थुले
+    :America/Tijuana: 
+      :city: तिजुआना
+    :America/Toronto: 
+      :city: टोरोंटो
+    :America/Tortola: 
+      :city: टोर्टोला
+    :America/Vancouver: 
+      :city: व्हॅनकुव्हर
+    :America/Whitehorse: 
+      :city: व्हाइटहॉर्स
+    :America/Winnipeg: 
+      :city: विनीपेग
+    :America/Yakutat: 
+      :city: यकुतात
+    :Antarctica/Casey: 
+      :city: कॅसे
+    :Antarctica/Davis: 
+      :city: डेव्हिस
+    :Antarctica/DumontDUrville: 
+      :city: "ड्युमॉन्ट ड्युर्विल"
+    :Antarctica/Macquarie: 
+      :city: मॅक्वायर
+    :Antarctica/Mawson: 
+      :city: मॉसन
+    :Antarctica/McMurdo: 
+      :city: मॅक्मुरडो
+    :Antarctica/Palmer: 
+      :city: पामेर
+    :Antarctica/Rothera: 
+      :city: रोथेरा
+    :Antarctica/Syowa: 
+      :city: स्योवा
+    :Antarctica/Troll: 
+      :city: ट्रोल
+    :Antarctica/Vostok: 
+      :city: वोस्टोक
+    :Arctic/Longyearbyen: 
+      :city: लाँगइयरबीयेन
+    :Asia/Aden: 
+      :city: एडेन
+    :Asia/Almaty: 
+      :city: अल्माटी
+    :Asia/Amman: 
+      :city: अम्मान
+    :Asia/Anadyr: 
+      :city: एनाडीयर
+    :Asia/Aqtau: 
+      :city: अ‍ॅक्टौ
+    :Asia/Aqtobe: 
+      :city: अ‍ॅक्टोबे
+    :Asia/Ashgabat: 
+      :city: अश्गाबात
+    :Asia/Atyrau: 
+      :city: अतिरॉ
+    :Asia/Baghdad: 
+      :city: बगदाद
+    :Asia/Bahrain: 
+      :city: बहारिन
+    :Asia/Baku: 
+      :city: बाकु
+    :Asia/Bangkok: 
+      :city: बँकॉक
+    :Asia/Barnaul: 
+      :city: बर्नौल
+    :Asia/Beirut: 
+      :city: बैरुत
+    :Asia/Bishkek: 
+      :city: बिश्केक
+    :Asia/Brunei: 
+      :city: ब्रुनेई
+    :Asia/Calcutta: 
+      :city: कोलकाता
+    :Asia/Chita: 
+      :city: चिता
+    :Asia/Colombo: 
+      :city: कोलंबो
+    :Asia/Damascus: 
+      :city: दमास्कस
+    :Asia/Dhaka: 
+      :city: ढाका
+    :Asia/Dili: 
+      :city: डिलि
+    :Asia/Dubai: 
+      :city: दुबई
+    :Asia/Dushanbe: 
+      :city: दुशान्बे
+    :Asia/Famagusta: 
+      :city: फॅमगुस्ता
+    :Asia/Gaza: 
+      :city: गाझा
+    :Asia/Hebron: 
+      :city: हेब्रॉन
+    :Asia/Hong_Kong: 
+      :city: हाँगकाँग
+    :Asia/Hovd: 
+      :city: होव्ड
+    :Asia/Irkutsk: 
+      :city: ईर्कुत्स्क
+    :Asia/Jakarta: 
+      :city: जकार्ता
+    :Asia/Jayapura: 
+      :city: जयापुरा
+    :Asia/Jerusalem: 
+      :city: जेरुसलेम
+    :Asia/Kabul: 
+      :city: काबूल
+    :Asia/Kamchatka: 
+      :city: कॅमचाटका
+    :Asia/Karachi: 
+      :city: कराची
+    :Asia/Katmandu: 
+      :city: काठमांडू
+    :Asia/Khandyga: 
+      :city: खंदिगा
+    :Asia/Krasnoyarsk: 
+      :city: क्रास्नोयार्स्क
+    :Asia/Kuala_Lumpur: 
+      :city: क्वालालंपूर
+    :Asia/Kuching: 
+      :city: कुचिंग
+    :Asia/Kuwait: 
+      :city: कुवेत
+    :Asia/Macau: 
+      :city: मकाऊ
+    :Asia/Magadan: 
+      :city: मेगाडन
+    :Asia/Makassar: 
+      :city: मकस्सार
+    :Asia/Manila: 
+      :city: मनिला
+    :Asia/Muscat: 
+      :city: मस्कत
+    :Asia/Nicosia: 
+      :city: निकोसिया
+    :Asia/Novokuznetsk: 
+      :city: नोवोकुझ्नेत्स्क
+    :Asia/Novosibirsk: 
+      :city: नोवोसिबिर्स्क
+    :Asia/Omsk: 
+      :city: ओम्स्क
+    :Asia/Oral: 
+      :city: ओरल
+    :Asia/Phnom_Penh: 
+      :city: "प्नोम पेन्ह"
+    :Asia/Pontianak: 
+      :city: पाँटियानाक
+    :Asia/Pyongyang: 
+      :city: प्योंगयांग
+    :Asia/Qatar: 
+      :city: कतार
+    :Asia/Qostanay: 
+      :city: कोस्टाने
+    :Asia/Qyzylorda: 
+      :city: किझीलोर्डा
+    :Asia/Rangoon: 
+      :city: रंगून
+    :Asia/Riyadh: 
+      :city: रियाध
+    :Asia/Saigon: 
+      :city: "हो चि मिन्ह शहर"
+    :Asia/Sakhalin: 
+      :city: साखालिन
+    :Asia/Samarkand: 
+      :city: समरकंद
+    :Asia/Seoul: 
+      :city: सेउल
+    :Asia/Shanghai: 
+      :city: शांघाय
+    :Asia/Singapore: 
+      :city: सिंगापूर
+    :Asia/Srednekolymsk: 
+      :city: स्रेदनेकोलीम्स्क
+    :Asia/Taipei: 
+      :city: तैपेई
+    :Asia/Tashkent: 
+      :city: ताश्कंद
+    :Asia/Tbilisi: 
+      :city: बिलिसी
+    :Asia/Tehran: 
+      :city: तेहरान
+    :Asia/Thimphu: 
+      :city: थिंफू
+    :Asia/Tokyo: 
+      :city: टोकियो
+    :Asia/Tomsk: 
+      :city: तोमसक
+    :Asia/Ulaanbaatar: 
+      :city: उलानबातर
+    :Asia/Urumqi: 
+      :city: उरुम्की
+    :Asia/Ust-Nera: 
+      :city: उस्त-नेरा
+    :Asia/Vientiane: 
+      :city: व्हिएन्टाइन
+    :Asia/Vladivostok: 
+      :city: व्लादिवोस्टोक
+    :Asia/Yakutsk: 
+      :city: यकुत्स्क
+    :Asia/Yekaterinburg: 
+      :city: येक्तेरिनबर्ग
+    :Asia/Yerevan: 
+      :city: येरेवन
+    :Atlantic/Azores: 
+      :city: अझोरेस
+    :Atlantic/Bermuda: 
+      :city: बर्मुडा
+    :Atlantic/Canary: 
+      :city: कॅनरी
+    :Atlantic/Cape_Verde: 
+      :city: "केप व्हर्डे"
+    :Atlantic/Faeroe: 
+      :city: फॅरो
+    :Atlantic/Madeira: 
+      :city: मडीयरा
+    :Atlantic/Reykjavik: 
+      :city: रेयक्जाविक
+    :Atlantic/South_Georgia: 
+      :city: "दक्षिण जॉर्जिया"
+    :Atlantic/St_Helena: 
+      :city: "सेंट. हेलेना"
+    :Atlantic/Stanley: 
+      :city: स्टॅनले
+    :Australia/Adelaide: 
+      :city: एडलेड
+    :Australia/Brisbane: 
+      :city: ब्रिस्बेन
+    :Australia/Broken_Hill: 
+      :city: "ब्रोकन हिल"
+    :Australia/Darwin: 
+      :city: डार्विन
+    :Australia/Eucla: 
+      :city: उक्ला
+    :Australia/Hobart: 
+      :city: होबार्ट
+    :Australia/Lindeman: 
+      :city: लिंडेमन
+    :Australia/Lord_Howe: 
+      :city: "लॉर्ड होवे"
+    :Australia/Melbourne: 
+      :city: मेलबोर्न
+    :Australia/Perth: 
+      :city: पर्थ
+    :Australia/Sydney: 
+      :city: सिडनी
+    :Etc/UTC: 
+      :long: 
+        :standard: "समन्वित वैश्विक वेळ"
+      :short: 
+        :standard: UTC
+    :Etc/Unknown: 
+      :city: "अज्ञात शहर"
+    :Europe/Amsterdam: 
+      :city: अ‍ॅमस्टरडॅम
+    :Europe/Andorra: 
+      :city: अँडोरा
+    :Europe/Astrakhan: 
+      :city: आस्त्राखान
+    :Europe/Athens: 
+      :city: अथेन्स
+    :Europe/Belgrade: 
+      :city: बेलग्रेड
+    :Europe/Berlin: 
+      :city: बर्लिन
+    :Europe/Bratislava: 
+      :city: ब्रातिस्लाव्हा
+    :Europe/Brussels: 
+      :city: ब्रुसेल्स
+    :Europe/Bucharest: 
+      :city: बुखारेस्ट
+    :Europe/Budapest: 
+      :city: बुडापेस्ट
+    :Europe/Busingen: 
+      :city: बुसिंजेन
+    :Europe/Chisinau: 
+      :city: चिसिनौ
+    :Europe/Copenhagen: 
+      :city: कोपेनहेगन
+    :Europe/Dublin: 
+      :city: डब्लिन
+      :long: 
+        :daylight: "आयरिश प्रमाण वेळ"
+    :Europe/Gibraltar: 
+      :city: जिब्राल्टर
+    :Europe/Guernsey: 
+      :city: ग्वेर्नसे
+    :Europe/Helsinki: 
+      :city: हेलसिंकी
+    :Europe/Isle_of_Man: 
+      :city: "आयल ऑफ मॅन"
+    :Europe/Istanbul: 
+      :city: इस्तंबूल
+    :Europe/Jersey: 
+      :city: जर्सी
+    :Europe/Kaliningrad: 
+      :city: कलिनिनग्राड
+    :Europe/Kiev: 
+      :city: कीव
+    :Europe/Kirov: 
+      :city: किरोव
+    :Europe/Lisbon: 
+      :city: लिस्बन
+    :Europe/Ljubljana: 
+      :city: लुब्लियाना
+    :Europe/London: 
+      :city: लंडन
+      :long: 
+        :daylight: "ब्रिटिश उन्हाळी वेळ"
+    :Europe/Luxembourg: 
+      :city: लक्झेंबर्ग
+    :Europe/Madrid: 
+      :city: माद्रिद
+    :Europe/Malta: 
+      :city: माल्टा
+    :Europe/Mariehamn: 
+      :city: मरियेहामेन
+    :Europe/Minsk: 
+      :city: मिन्स्क
+    :Europe/Monaco: 
+      :city: मोनॅको
+    :Europe/Moscow: 
+      :city: मॉस्को
+    :Europe/Oslo: 
+      :city: ऑस्लो
+    :Europe/Paris: 
+      :city: पॅरिस
+    :Europe/Podgorica: 
+      :city: पॉडगोरिका
+    :Europe/Prague: 
+      :city: प्राग
+    :Europe/Riga: 
+      :city: रिगा
+    :Europe/Rome: 
+      :city: रोम
+    :Europe/Samara: 
+      :city: समारा
+    :Europe/San_Marino: 
+      :city: "सॅन मरिनो"
+    :Europe/Sarajevo: 
+      :city: साराजेव्हो
+    :Europe/Saratov: 
+      :city: सारातोव
+    :Europe/Simferopol: 
+      :city: सिम्फरोपोल
+    :Europe/Skopje: 
+      :city: स्कॉप्जे
+    :Europe/Sofia: 
+      :city: सोफिया
+    :Europe/Stockholm: 
+      :city: स्टॉकहोम
+    :Europe/Tallinn: 
+      :city: तालिन
+    :Europe/Tirane: 
+      :city: टिराने
+    :Europe/Ulyanovsk: 
+      :city: उल्यानोव्स्क
+    :Europe/Vaduz: 
+      :city: वडूझ
+    :Europe/Vatican: 
+      :city: व्हॅटिकन
+    :Europe/Vienna: 
+      :city: व्हिएन्ना
+    :Europe/Vilnius: 
+      :city: विलनियस
+    :Europe/Volgograd: 
+      :city: व्होल्गोग्राड
+    :Europe/Warsaw: 
+      :city: वॉर्सा
+    :Europe/Zagreb: 
+      :city: झॅग्रेब
+    :Europe/Zurich: 
+      :city: झुरिक
+    :Indian/Antananarivo: 
+      :city: अंटानानारिवो
+    :Indian/Chagos: 
+      :city: चागोस
+    :Indian/Christmas: 
+      :city: ख्रिसमस
+    :Indian/Cocos: 
+      :city: कोकोस
+    :Indian/Comoro: 
+      :city: कोमोरो
+    :Indian/Kerguelen: 
+      :city: करग्यूलेन
+    :Indian/Mahe: 
+      :city: माहे
+    :Indian/Maldives: 
+      :city: मालदीव
+    :Indian/Mauritius: 
+      :city: मॉरिशस
+    :Indian/Mayotte: 
+      :city: मायोट्टे
+    :Indian/Reunion: 
+      :city: रियुनियन
+    :Pacific/Apia: 
+      :city: अपिया
+    :Pacific/Auckland: 
+      :city: ऑकलंड
+    :Pacific/Bougainville: 
+      :city: बॉगॅनव्हिल
+    :Pacific/Chatham: 
+      :city: चॅटहॅम
+    :Pacific/Easter: 
+      :city: ईस्टर
+    :Pacific/Efate: 
+      :city: इफेट
+    :Pacific/Enderbury: 
+      :city: एंडरबरी
+    :Pacific/Fakaofo: 
+      :city: फाकाओफो
+    :Pacific/Fiji: 
+      :city: फिजी
+    :Pacific/Funafuti: 
+      :city: फुनाफुती
+    :Pacific/Galapagos: 
+      :city: गॅलापागोस
+    :Pacific/Gambier: 
+      :city: गॅम्बियर
+    :Pacific/Guadalcanal: 
+      :city: ग्वाडलकनाल
+    :Pacific/Guam: 
+      :city: गुआम
+    :Pacific/Honolulu: 
+      :city: होनोलुलू
+    :Pacific/Kanton: 
+      :city: कँटन
+    :Pacific/Kiritimati: 
+      :city: किरितिमाती
+    :Pacific/Kosrae: 
+      :city: कोशाय
+    :Pacific/Kwajalein: 
+      :city: क्वाजालेईन
+    :Pacific/Majuro: 
+      :city: मजुरो
+    :Pacific/Marquesas: 
+      :city: मारक्विसास
+    :Pacific/Midway: 
+      :city: मिडवे
+    :Pacific/Nauru: 
+      :city: नउरु
+    :Pacific/Niue: 
+      :city: न्युए
+    :Pacific/Norfolk: 
+      :city: नॉरफोक
+    :Pacific/Noumea: 
+      :city: नौमिआ
+    :Pacific/Pago_Pago: 
+      :city: "पॅगो पॅगो"
+    :Pacific/Palau: 
+      :city: पलाऊ
+    :Pacific/Pitcairn: 
+      :city: पिटकेर्न
+    :Pacific/Ponape: 
+      :city: पोनपेई
+    :Pacific/Port_Moresby: 
+      :city: "पोर्ट मोरेस्बे"
+    :Pacific/Rarotonga: 
+      :city: रारोटोंगा
+    :Pacific/Saipan: 
+      :city: सैपान
+    :Pacific/Tahiti: 
+      :city: ताहिती
+    :Pacific/Tarawa: 
+      :city: तारावा
+    :Pacific/Tongatapu: 
+      :city: टोंगाटापू
+    :Pacific/Truk: 
+      :city: चूक
+    :Pacific/Wake: 
+      :city: वेक
+    :Pacific/Wallis: 
+      :city: वालिस

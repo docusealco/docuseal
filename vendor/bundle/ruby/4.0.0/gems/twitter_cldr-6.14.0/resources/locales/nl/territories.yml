@@ -1,0 +1,268 @@
+--- 
+:nl: 
+  :territories: 
+    :ac: Ascension
+    :ad: Andorra
+    :ae: "Verenigde Arabische Emiraten"
+    :af: Afghanistan
+    :ag: "Antigua en Barbuda"
+    :ai: Anguilla
+    :al: Albanië
+    :am: Armenië
+    :ao: Angola
+    :aq: Antarctica
+    :ar: Argentinië
+    :as: Amerikaans-Samoa
+    :at: Oostenrijk
+    :au: Australië
+    :aw: Aruba
+    :ax: Åland
+    :az: Azerbeidzjan
+    :ba: "Bosnië en Herzegovina"
+    :bb: Barbados
+    :bd: Bangladesh
+    :be: België
+    :bf: "Burkina Faso"
+    :bg: Bulgarije
+    :bh: Bahrein
+    :bi: Burundi
+    :bj: Benin
+    :bl: Saint-Barthélemy
+    :bm: Bermuda
+    :bn: Brunei
+    :bo: Bolivia
+    :bq: "Caribisch Nederland"
+    :br: Brazilië
+    :bs: Bahama’s
+    :bt: Bhutan
+    :bv: Bouveteiland
+    :bw: Botswana
+    :by: Belarus
+    :bz: Belize
+    :ca: Canada
+    :cc: Cocoseilanden
+    :cd: Congo-Kinshasa
+    :cf: "Centraal-Afrikaanse Republiek"
+    :cg: Congo-Brazzaville
+    :ch: Zwitserland
+    :ci: Ivoorkust
+    :ck: Cookeilanden
+    :cl: Chili
+    :cm: Kameroen
+    :cn: China
+    :co: Colombia
+    :cp: Clipperton
+    :cq: Sark
+    :cr: "Costa Rica"
+    :cu: Cuba
+    :cv: Kaapverdië
+    :cw: Curaçao
+    :cx: Christmaseiland
+    :cy: Cyprus
+    :cz: Tsjechië
+    :de: Duitsland
+    :dg: "Diego Garcia"
+    :dj: Djibouti
+    :dk: Denemarken
+    :dm: Dominica
+    :do: "Dominicaanse Republiek"
+    :dz: Algerije
+    :ea: "Ceuta en Melilla"
+    :ec: Ecuador
+    :ee: Estland
+    :eg: Egypte
+    :eh: "Westelijke Sahara"
+    :er: Eritrea
+    :es: Spanje
+    :et: Ethiopië
+    :eu: "Europese Unie"
+    :ez: eurozone
+    :fi: Finland
+    :fj: Fiji
+    :fk: Falklandeilanden
+    :fm: Micronesia
+    :fo: Faeröer
+    :fr: Frankrijk
+    :ga: Gabon
+    :gb: "Verenigd Koninkrijk"
+    :gd: Grenada
+    :ge: Georgië
+    :gf: Frans-Guyana
+    :gg: Guernsey
+    :gh: Ghana
+    :gi: Gibraltar
+    :gl: Groenland
+    :gm: Gambia
+    :gn: Guinee
+    :gp: Guadeloupe
+    :gq: Equatoriaal-Guinea
+    :gr: Griekenland
+    :gs: "Zuid-Georgia en Zuidelijke Sandwicheilanden"
+    :gt: Guatemala
+    :gu: Guam
+    :gw: Guinee-Bissau
+    :gy: Guyana
+    :hk: "Hongkong SAR van China"
+    :hm: "Heard en McDonaldeilanden"
+    :hn: Honduras
+    :hr: Kroatië
+    :ht: Haïti
+    :hu: Hongarije
+    :ic: "Canarische Eilanden"
+    :id: Indonesië
+    :ie: Ierland
+    :il: Israël
+    :im: "Isle of Man"
+    :in: India
+    :io: "Brits Indische Oceaanterritorium"
+    :iq: Irak
+    :ir: Iran
+    :is: IJsland
+    :it: Italië
+    :je: Jersey
+    :jm: Jamaica
+    :jo: Jordanië
+    :jp: Japan
+    :ke: Kenia
+    :kg: Kirgizië
+    :kh: Cambodja
+    :ki: Kiribati
+    :km: Comoren
+    :kn: "Saint Kitts en Nevis"
+    :kp: Noord-Korea
+    :kr: Zuid-Korea
+    :kw: Koeweit
+    :ky: Kaaimaneilanden
+    :kz: Kazachstan
+    :la: Laos
+    :lb: Libanon
+    :lc: "Saint Lucia"
+    :li: Liechtenstein
+    :lk: "Sri Lanka"
+    :lr: Liberia
+    :ls: Lesotho
+    :lt: Litouwen
+    :lu: Luxemburg
+    :lv: Letland
+    :ly: Libië
+    :ma: Marokko
+    :mc: Monaco
+    :md: Moldavië
+    :me: Montenegro
+    :mf: Saint-Martin
+    :mg: Madagaskar
+    :mh: Marshalleilanden
+    :mk: Noord-Macedonië
+    :ml: Mali
+    :mm: "Myanmar (Birma)"
+    :mn: Mongolië
+    :mo: "Macau SAR van China"
+    :mp: "Noordelijke Marianen"
+    :mq: Martinique
+    :mr: Mauritanië
+    :ms: Montserrat
+    :mt: Malta
+    :mu: Mauritius
+    :mv: Maldiven
+    :mw: Malawi
+    :mx: Mexico
+    :my: Maleisië
+    :mz: Mozambique
+    :na: Namibië
+    :nc: Nieuw-Caledonië
+    :ne: Niger
+    :nf: Norfolk
+    :ng: Nigeria
+    :ni: Nicaragua
+    :nl: Nederland
+    ? !ruby/symbol "no"
+    : Noorwegen
+    :np: Nepal
+    :nr: Nauru
+    :nu: Niue
+    :nz: Nieuw-Zeeland
+    :om: Oman
+    :pa: Panama
+    :pe: Peru
+    :pf: Frans-Polynesië
+    :pg: Papoea-Nieuw-Guinea
+    :ph: Filipijnen
+    :pk: Pakistan
+    :pl: Polen
+    :pm: "Saint-Pierre en Miquelon"
+    :pn: Pitcairneilanden
+    :pr: "Puerto Rico"
+    :ps: "Palestijnse gebieden"
+    :pt: Portugal
+    :pw: Palau
+    :py: Paraguay
+    :qa: Qatar
+    :qo: "overig Oceanië"
+    :re: Réunion
+    :ro: Roemenië
+    :rs: Servië
+    :ru: Rusland
+    :rw: Rwanda
+    :sa: Saoedi-Arabië
+    :sb: Salomonseilanden
+    :sc: Seychellen
+    :sd: Soedan
+    :se: Zweden
+    :sg: Singapore
+    :sh: Sint-Helena
+    :si: Slovenië
+    :sj: "Spitsbergen en Jan Mayen"
+    :sk: Slowakije
+    :sl: "Sierra Leone"
+    :sm: "San Marino"
+    :sn: Senegal
+    :so: Somalië
+    :sr: Suriname
+    :ss: Zuid-Soedan
+    :st: "Sao Tomé en Principe"
+    :sv: "El Salvador"
+    :sx: Sint-Maarten
+    :sy: Syrië
+    :sz: Eswatini
+    :ta: "Tristan da Cunha"
+    :tc: "Turks- en Caicoseilanden"
+    :td: Tsjaad
+    :tf: "Franse Gebieden in de zuidelijke Indische Oceaan"
+    :tg: Togo
+    :th: Thailand
+    :tj: Tadzjikistan
+    :tk: Tokelau
+    :tl: Oost-Timor
+    :tm: Turkmenistan
+    :tn: Tunesië
+    :to: Tonga
+    :tr: Turkije
+    :tt: "Trinidad en Tobago"
+    :tv: Tuvalu
+    :tw: Taiwan
+    :tz: Tanzania
+    :ua: Oekraïne
+    :ug: Oeganda
+    :um: "Kleine afgelegen eilanden van de Verenigde Staten"
+    :un: "Verenigde Naties"
+    :us: "Verenigde Staten"
+    :uy: Uruguay
+    :uz: Oezbekistan
+    :va: Vaticaanstad
+    :vc: "Saint Vincent en de Grenadines"
+    :ve: Venezuela
+    :vg: "Britse Maagdeneilanden"
+    :vi: "Amerikaanse Maagdeneilanden"
+    :vn: Vietnam
+    :vu: Vanuatu
+    :wf: "Wallis en Futuna"
+    :ws: Samoa
+    :xa: Pseudo-Accenten
+    :xb: Pseudo-Bidi
+    :xk: Kosovo
+    :ye: Jemen
+    :yt: Mayotte
+    :za: Zuid-Afrika
+    :zm: Zambia
+    :zw: Zimbabwe
+    :zz: "onbekend gebied"

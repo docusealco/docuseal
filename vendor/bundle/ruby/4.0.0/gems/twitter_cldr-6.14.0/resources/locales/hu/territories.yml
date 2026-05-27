@@ -1,0 +1,268 @@
+--- 
+:hu: 
+  :territories: 
+    :ac: Ascension-sziget
+    :ad: Andorra
+    :ae: "Egyesült Arab Emírségek"
+    :af: Afganisztán
+    :ag: "Antigua és Barbuda"
+    :ai: Anguilla
+    :al: Albánia
+    :am: Örményország
+    :ao: Angola
+    :aq: Antarktisz
+    :ar: Argentína
+    :as: "Amerikai Szamoa"
+    :at: Ausztria
+    :au: Ausztrália
+    :aw: Aruba
+    :ax: Åland-szigetek
+    :az: Azerbajdzsán
+    :ba: Bosznia-Hercegovina
+    :bb: Barbados
+    :bd: Banglades
+    :be: Belgium
+    :bf: "Burkina Faso"
+    :bg: Bulgária
+    :bh: Bahrein
+    :bi: Burundi
+    :bj: Benin
+    :bl: Saint-Barthélemy
+    :bm: Bermuda
+    :bn: Brunei
+    :bo: Bolívia
+    :bq: "Holland Karib-térség"
+    :br: Brazília
+    :bs: Bahama-szigetek
+    :bt: Bhután
+    :bv: Bouvet-sziget
+    :bw: Botswana
+    :by: Belarusz
+    :bz: Belize
+    :ca: Kanada
+    :cc: "Kókusz (Keeling)-szigetek"
+    :cd: "Kongó – Kinshasa"
+    :cf: "Közép-afrikai Köztársaság"
+    :cg: "Kongó – Brazzaville"
+    :ch: Svájc
+    :ci: Elefántcsontpart
+    :ck: Cook-szigetek
+    :cl: Chile
+    :cm: Kamerun
+    :cn: Kína
+    :co: Kolumbia
+    :cp: Clipperton-sziget
+    :cq: Sark
+    :cr: "Costa Rica"
+    :cu: Kuba
+    :cv: "Zöld-foki Köztársaság"
+    :cw: Curaçao
+    :cx: Karácsony-sziget
+    :cy: Ciprus
+    :cz: Csehország
+    :de: Németország
+    :dg: "Diego Garcia"
+    :dj: Dzsibuti
+    :dk: Dánia
+    :dm: Dominika
+    :do: "Dominikai Köztársaság"
+    :dz: Algéria
+    :ea: "Ceuta és Melilla"
+    :ec: Ecuador
+    :ee: Észtország
+    :eg: Egyiptom
+    :eh: Nyugat-Szahara
+    :er: Eritrea
+    :es: Spanyolország
+    :et: Etiópia
+    :eu: "Európai Unió"
+    :ez: Eurózóna
+    :fi: Finnország
+    :fj: Fidzsi
+    :fk: Falkland-szigetek
+    :fm: Mikronézia
+    :fo: "Feröer szigetek"
+    :fr: Franciaország
+    :ga: Gabon
+    :gb: "Egyesült Királyság"
+    :gd: Grenada
+    :ge: Grúzia
+    :gf: "Francia Guyana"
+    :gg: Guernsey
+    :gh: Ghána
+    :gi: Gibraltár
+    :gl: Grönland
+    :gm: Gambia
+    :gn: Guinea
+    :gp: Guadeloupe
+    :gq: Egyenlítői-Guinea
+    :gr: Görögország
+    :gs: "Déli-Georgia és Déli-Sandwich-szigetek"
+    :gt: Guatemala
+    :gu: Guam
+    :gw: Bissau-Guinea
+    :gy: Guyana
+    :hk: "Hongkong KKT"
+    :hm: "Heard-sziget és McDonald-szigetek"
+    :hn: Honduras
+    :hr: Horvátország
+    :ht: Haiti
+    :hu: Magyarország
+    :ic: Kanári-szigetek
+    :id: Indonézia
+    :ie: Írország
+    :il: Izrael
+    :im: Man-sziget
+    :in: India
+    :io: "Brit Indiai-óceáni Terület"
+    :iq: Irak
+    :ir: Irán
+    :is: Izland
+    :it: Olaszország
+    :je: Jersey
+    :jm: Jamaica
+    :jo: Jordánia
+    :jp: Japán
+    :ke: Kenya
+    :kg: Kirgizisztán
+    :kh: Kambodzsa
+    :ki: Kiribati
+    :km: Comore-szigetek
+    :kn: "Saint Kitts és Nevis"
+    :kp: Észak-Korea
+    :kr: Dél-Korea
+    :kw: Kuvait
+    :ky: Kajmán-szigetek
+    :kz: Kazahsztán
+    :la: Laosz
+    :lb: Libanon
+    :lc: "Saint Lucia"
+    :li: Liechtenstein
+    :lk: "Srí Lanka"
+    :lr: Libéria
+    :ls: Lesotho
+    :lt: Litvánia
+    :lu: Luxemburg
+    :lv: Lettország
+    :ly: Líbia
+    :ma: Marokkó
+    :mc: Monaco
+    :md: Moldova
+    :me: Montenegró
+    :mf: "Saint Martin"
+    :mg: Madagaszkár
+    :mh: Marshall-szigetek
+    :mk: Észak-Macedónia
+    :ml: Mali
+    :mm: Mianmar
+    :mn: Mongólia
+    :mo: "Makaó KKT"
+    :mp: "Északi Mariana-szigetek"
+    :mq: Martinique
+    :mr: Mauritánia
+    :ms: Montserrat
+    :mt: Málta
+    :mu: Mauritius
+    :mv: Maldív-szigetek
+    :mw: Malawi
+    :mx: Mexikó
+    :my: Malajzia
+    :mz: Mozambik
+    :na: Namíbia
+    :nc: Új-Kaledónia
+    :ne: Niger
+    :nf: Norfolk-sziget
+    :ng: Nigéria
+    :ni: Nicaragua
+    :nl: Hollandia
+    ? !ruby/symbol "no"
+    : Norvégia
+    :np: Nepál
+    :nr: Nauru
+    :nu: Niue
+    :nz: Új-Zéland
+    :om: Omán
+    :pa: Panama
+    :pe: Peru
+    :pf: "Francia Polinézia"
+    :pg: "Pápua Új-Guinea"
+    :ph: Fülöp-szigetek
+    :pk: Pakisztán
+    :pl: Lengyelország
+    :pm: "Saint-Pierre és Miquelon"
+    :pn: Pitcairn-szigetek
+    :pr: "Puerto Rico"
+    :ps: "Palesztin Autonómia"
+    :pt: Portugália
+    :pw: Palau
+    :py: Paraguay
+    :qa: Katar
+    :qo: Külső-Óceánia
+    :re: Réunion
+    :ro: Románia
+    :rs: Szerbia
+    :ru: Oroszország
+    :rw: Ruanda
+    :sa: Szaúd-Arábia
+    :sb: Salamon-szigetek
+    :sc: Seychelle-szigetek
+    :sd: Szudán
+    :se: Svédország
+    :sg: Szingapúr
+    :sh: "Szent Ilona"
+    :si: Szlovénia
+    :sj: "Svalbard és Jan Mayen"
+    :sk: Szlovákia
+    :sl: "Sierra Leone"
+    :sm: "San Marino"
+    :sn: Szenegál
+    :so: Szomália
+    :sr: Suriname
+    :ss: Dél-Szudán
+    :st: "São Tomé és Príncipe"
+    :sv: Salvador
+    :sx: "Sint Maarten"
+    :sy: Szíria
+    :sz: Szváziföld
+    :ta: "Tristan da Cunha"
+    :tc: "Turks- és Caicos-szigetek"
+    :td: Csád
+    :tf: "Francia Déli Területek"
+    :tg: Togo
+    :th: Thaiföld
+    :tj: Tádzsikisztán
+    :tk: Tokelau
+    :tl: Kelet-Timor
+    :tm: Türkmenisztán
+    :tn: Tunézia
+    :to: Tonga
+    :tr: Törökország
+    :tt: "Trinidad és Tobago"
+    :tv: Tuvalu
+    :tw: Tajvan
+    :tz: Tanzánia
+    :ua: Ukrajna
+    :ug: Uganda
+    :um: "Az USA lakatlan külbirtokai"
+    :un: "Egyesült Nemzetek Szervezete"
+    :us: "Egyesült Államok"
+    :uy: Uruguay
+    :uz: Üzbegisztán
+    :va: Vatikán
+    :vc: "Saint Vincent és a Grenadine-szigetek"
+    :ve: Venezuela
+    :vg: "Brit Virgin-szigetek"
+    :vi: "Amerikai Virgin-szigetek"
+    :vn: Vietnám
+    :vu: Vanuatu
+    :wf: "Wallis és Futuna"
+    :ws: Szamoa
+    :xa: Pszeudo-nyelvjárások
+    :xb: Pszeudo-kétirányú
+    :xk: Koszovó
+    :ye: Jemen
+    :yt: Mayotte
+    :za: "Dél-afrikai Köztársaság"
+    :zm: Zambia
+    :zw: Zimbabwe
+    :zz: "Ismeretlen körzet"

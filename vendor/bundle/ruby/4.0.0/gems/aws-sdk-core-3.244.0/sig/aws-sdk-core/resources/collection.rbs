@@ -1,0 +1,21 @@
+module Aws
+  module Resources
+    class Collection[T]
+      include Enumerable[T]
+
+      def initialize: (Enumerable[Enumerable[T]] batches, ?size: Integer, ?limit: Integer) -> void
+
+      def each: () -> Enumerator[T, untyped]
+              | () { (T) -> untyped } -> Enumerator[T, untyped]
+
+      def size: () -> Integer?
+
+      alias length size
+
+      def first: () -> T?
+               | (Integer) -> self
+
+      def limit: (Integer) -> self
+    end
+  end
+end

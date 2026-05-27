@@ -1,0 +1,369 @@
+--- 
+:hy: 
+  :calendars: 
+    :gregorian: 
+      :additional_formats: 
+        :Bh: "B h-ին"
+        :Bhm: "B h:mm-ին"
+        :Bhms: "B h:mm:ss"
+        :E: ccc
+        :EBhm: "E B h:mm-ին"
+        :EBhms: "E B h:mm:ss"
+        :EHm: "E, HH:mm"
+        :EHms: "E, HH:mm:ss"
+        :Ed: "d, ccc"
+        :Ehm: "E, h:mm a"
+        :Ehms: "E, h:mm:ss a"
+        :Gy: "G y թ."
+        :GyMMM: "G y թ. MMM"
+        :GyMMMEd: "G y թ. MMM d, E"
+        :GyMMMd: "G y թ․ MMM d"
+        :GyMd: "dd.MM.y GGGGG"
+        :H: H
+        :Hm: "H:mm"
+        :Hms: "H:mm:ss"
+        :Hmsv: "HH:mm:ss v"
+        :Hmv: "HH:mm v"
+        :M: L
+        :MEd: "dd.MM, E"
+        :MMM: LLL
+        :MMMEd: "d MMM, E"
+        :MMMMW: "MMMM W-րդ շաբաթ"
+        :MMMMd: "d MMMM"
+        :MMMd: "d MMM"
+        :Md: dd.MM
+        :d: d
+        :h: h a
+        :hm: "h:mm a"
+        :hms: "h:mm:ss a"
+        :hmsv: "h:mm:ss a v"
+        :hmv: "h:mm a v"
+        :ms: "mm:ss"
+        ? !ruby/symbol "y"
+        : "y"
+        :yM: MM.y
+        :yMEd: "d.MM.y թ., E"
+        :yMMM: "y թ. LLL"
+        :yMMMEd: "y թ. MMM d, E"
+        :yMMMM: "y թ․ LLLL"
+        :yMMMd: "d MMM, y թ."
+        :yMd: dd.MM.y
+        :yQQQ: "y թ. QQQ"
+        :yQQQQ: "y թ. QQQQ"
+        :yw: "Y թ․ w-րդ շաբաթ"
+      :days: 
+        :format: 
+          :abbreviated: 
+            :fri: ուր
+            :mon: երկ
+            :sat: շբթ
+            :sun: կիր
+            :thu: հնգ
+            :tue: երք
+            :wed: չրք
+          :narrow: 
+            :fri: Ո
+            :mon: Ե
+            :sat: Շ
+            :sun: Կ
+            :thu: Հ
+            :tue: Ե
+            :wed: Չ
+          :short: 
+            :fri: ու
+            :mon: եկ
+            :sat: շբ
+            :sun: կր
+            :thu: հգ
+            :tue: եք
+            :wed: չք
+          :wide: 
+            :fri: ուրբաթ
+            :mon: երկուշաբթի
+            :sat: շաբաթ
+            :sun: կիրակի
+            :thu: հինգշաբթի
+            :tue: երեքշաբթի
+            :wed: չորեքշաբթի
+        :stand-alone: 
+          :abbreviated: 
+            :fri: ուր
+            :mon: երկ
+            :sat: շբթ
+            :sun: կիր
+            :thu: հնգ
+            :tue: երք
+            :wed: չրք
+          :narrow: 
+            :fri: Ո
+            :mon: Ե
+            :sat: Շ
+            :sun: Կ
+            :thu: Հ
+            :tue: Ե
+            :wed: Չ
+          :short: 
+            :fri: ու
+            :mon: եկ
+            :sat: շբ
+            :sun: կր
+            :thu: հգ
+            :tue: եք
+            :wed: չք
+          :wide: 
+            :fri: ուրբաթ
+            :mon: երկուշաբթի
+            :sat: շաբաթ
+            :sun: կիրակի
+            :thu: հինգշաբթի
+            :tue: երեքշաբթի
+            :wed: չորեքշաբթի
+      :eras: 
+        :abbr: 
+          0: մ․թ․ա․
+          1: մ․թ․
+        :name: 
+          0: "մեր թվարկությունից առաջ"
+          1: "մեր թվարկության"
+        :narrow: 
+          0: BCE
+          1: CE
+      :fields: 
+        :day: օր
+        :day-narrow: Day
+        :day-short: Day
+        :dayOfYear: "տարվա օր"
+        :dayOfYear-narrow: "տարվա օր"
+        :dayOfYear-short: "տարվա օր"
+        :dayperiod: ԿԱ/ԿՀ
+        :dayperiod-narrow: ԿԱ/ԿՀ
+        :dayperiod-short: ԿԱ/ԿՀ
+        :era: թվարկություն
+        :era-narrow: թ․
+        :era-short: թ․
+        :hour: ժամ
+        :hour-narrow: ժ
+        :hour-short: ժ
+        :minute: րոպե
+        :minute-narrow: ր
+        :minute-short: ր
+        :month: ամիս
+        :month-narrow: ամս
+        :month-short: ամս
+        :quarter: եռամսյակ
+        :quarter-narrow: եռմս
+        :quarter-short: եռմս
+        :second: վայրկյան
+        :second-narrow: Second
+        :second-short: վ
+        :week: շաբաթ
+        :week-narrow: Week
+        :week-short: շաբ
+        :weekOfMonth: "ամսվա շաբաթ"
+        :weekOfMonth-narrow: "ամս շաբ"
+        :weekOfMonth-short: "ամսվա շաբ"
+        :weekday: "շաբաթվա օր"
+        :weekday-narrow: "շաբաթվա օր"
+        :weekday-short: "շաբաթվա օր"
+        :weekdayOfMonth: "ամսվա օր"
+        :weekdayOfMonth-narrow: "ամս օր"
+        :weekdayOfMonth-short: "ամսվա օր"
+        :year: տարի
+        :year-narrow: տ
+        :year-short: տ
+        :zone: "ժամային գոտի"
+        :zone-narrow: "ժամային գոտի"
+        :zone-short: "ժամային գոտի"
+      :formats: 
+        :date: 
+          :full: 
+            :pattern: "y թ. MMMM d, EEEE"
+          :long: 
+            :pattern: "dd MMMM, y թ."
+          :medium: 
+            :pattern: "dd MMM, y թ."
+          :short: 
+            :pattern: dd.MM.yy
+        :datetime: 
+          :full: 
+            :pattern: "{{date}}, {{time}}"
+          :long: 
+            :pattern: "{{date}}, {{time}}"
+          :medium: 
+            :pattern: "{{date}}, {{time}}"
+          :short: 
+            :pattern: "{{date}}, {{time}}"
+        :time: 
+          :full: 
+            :pattern: "HH:mm:ss zzzz"
+          :long: 
+            :pattern: "HH:mm:ss z"
+          :medium: 
+            :pattern: "HH:mm:ss"
+          :short: 
+            :pattern: "HH:mm"
+      :months: 
+        :format: 
+          :abbreviated: 
+            1: հնվ
+            10: հոկ
+            11: նոյ
+            12: դեկ
+            2: փտվ
+            3: մրտ
+            4: ապր
+            5: մյս
+            6: հնս
+            7: հլս
+            8: օգս
+            9: սեպ
+          :narrow: 
+            1: Հ
+            10: Հ
+            11: Ն
+            12: Դ
+            2: Փ
+            3: Մ
+            4: Ա
+            5: Մ
+            6: Հ
+            7: Հ
+            8: Օ
+            9: Ս
+          :wide: 
+            1: հունվարի
+            10: հոկտեմբերի
+            11: նոյեմբերի
+            12: դեկտեմբերի
+            2: փետրվարի
+            3: մարտի
+            4: ապրիլի
+            5: մայիսի
+            6: հունիսի
+            7: հուլիսի
+            8: օգոստոսի
+            9: սեպտեմբերի
+        :stand-alone: 
+          :abbreviated: 
+            1: հնվ
+            10: հոկ
+            11: նոյ
+            12: դեկ
+            2: փտվ
+            3: մրտ
+            4: ապր
+            5: մյս
+            6: հնս
+            7: հլս
+            8: օգս
+            9: սեպ
+          :narrow: 
+            1: Հ
+            10: Հ
+            11: Ն
+            12: Դ
+            2: Փ
+            3: Մ
+            4: Ա
+            5: Մ
+            6: Հ
+            7: Հ
+            8: Օ
+            9: Ս
+          :wide: 
+            1: հունվար
+            10: հոկտեմբեր
+            11: նոյեմբեր
+            12: դեկտեմբեր
+            2: փետրվար
+            3: մարտ
+            4: ապրիլ
+            5: մայիս
+            6: հունիս
+            7: հուլիս
+            8: օգոստոս
+            9: սեպտեմբեր
+      :periods: 
+        :format: 
+          :abbreviated: 
+            :afternoon1: ցերեկը
+            :am: AM
+            :evening1: երեկոյան
+            :midnight: կեսգիշեր
+            :morning1: առավոտյան
+            :night1: գիշերը
+            :noon: կեսօր
+            :pm: PM
+          :narrow: 
+            :afternoon1: ցրկ
+            :am: ա
+            :evening1: երկ
+            :midnight: կգ․
+            :morning1: առվ
+            :night1: գշր
+            :noon: կօ․
+            :pm: հ
+          :wide: 
+            :afternoon1: ցերեկվա
+            :am: AM
+            :evening1: երեկոյան
+            :midnight: կեսգիշերին
+            :morning1: առավոտյան
+            :night1: գիշերվա
+            :noon: կեսօրին
+            :pm: PM
+        :stand-alone: 
+          :abbreviated: 
+            :afternoon1: ցերեկ
+            :am: AM
+            :evening1: երեկո
+            :morning1: առավոտ
+            :night1: գիշեր
+            :pm: PM
+          :narrow: 
+            :afternoon1: ցերեկ
+            :am: AM
+            :evening1: երեկո
+            :morning1: առավոտ
+            :night1: գիշեր
+            :pm: PM
+          :wide: 
+            :afternoon1: ցերեկ
+            :am: AM
+            :evening1: երեկո
+            :morning1: առավոտ
+            :night1: գիշեր
+            :pm: PM
+      :quarters: 
+        :format: 
+          :abbreviated: 
+            1: "1-ին եռմս."
+            2: "2-րդ եռմս."
+            3: "3-րդ եռմս."
+            4: "4-րդ եռմս."
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: "1-ին եռամսյակ"
+            2: "2-րդ եռամսյակ"
+            3: "3-րդ եռամսյակ"
+            4: "4-րդ եռամսյակ"
+        :stand-alone: 
+          :abbreviated: 
+            1: "1-ին եռմս."
+            2: "2-րդ եռմս."
+            3: "3-րդ եռմս."
+            4: "4-րդ եռմս."
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: "1-ին եռամսյակ"
+            2: "2-րդ եռամսյակ"
+            3: "3-րդ եռամսյակ"
+            4: "4-րդ եռամսյակ"

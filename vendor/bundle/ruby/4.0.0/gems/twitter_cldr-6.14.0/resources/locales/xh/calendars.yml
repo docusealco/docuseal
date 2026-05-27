@@ -1,0 +1,339 @@
+--- 
+:xh: 
+  :calendars: 
+    :gregorian: 
+      :additional_formats: 
+        :Bh: "h B"
+        :Bhm: "h:mm B"
+        :Bhms: "h:mm:ss B"
+        :E: ccc
+        :EBhm: "E h:mm B"
+        :EBhms: "E h:mm:ss B"
+        :EHm: "E HH:mm"
+        :EHms: "E HH:mm:ss"
+        :Ed: "d E"
+        :Ehm: "E h:mm a"
+        :Ehms: "E h:mm:ss a"
+        :Gy: "y G"
+        :GyMMM: "MMM y G"
+        :GyMMMEd: "E, MMM d, y G"
+        :GyMMMd: "MMM d, y G"
+        :GyMd: "M/d/y G"
+        :H: HH
+        :Hm: "HH:mm"
+        :Hms: "HH:mm:ss"
+        :Hmsv: "HH:mm:ss v"
+        :Hmv: "HH:mm v"
+        :M: L
+        :MEd: "E, M/d"
+        :MMM: LLL
+        :MMMEd: "E, MMM d"
+        :MMMMW: "'week' W 'of' MMMM"
+        :MMMMd: "MMMM d"
+        :MMMd: "MMM d"
+        :Md: M/d
+        :d: d
+        :h: h a
+        :hm: "h:mm a"
+        :hms: "h:mm:ss a"
+        :hmsv: "h:mm:ss a v"
+        :hmv: "h:mm a v"
+        :ms: "mm:ss"
+        ? !ruby/symbol "y"
+        : "y"
+        :yM: M/y
+        :yMEd: "E, M/d/y"
+        :yMMM: "MMM y"
+        :yMMMEd: "E, MMM d, y"
+        :yMMMM: "MMMM y"
+        :yMMMd: "MMM d, y"
+        :yMd: M/d/y
+        :yQQQ: "QQQ y"
+        :yQQQQ: "QQQQ y"
+        :yw: "'week' w 'of' Y"
+      :days: 
+        :format: 
+          :abbreviated: 
+            :fri: Hla
+            :mon: Mvu
+            :sat: Mgq
+            :sun: Caw
+            :thu: Sin
+            :tue: Lwesb
+            :wed: Tha
+          :narrow: 
+            :fri: Hl
+            :mon: M
+            :sat: Mg
+            :sun: C
+            :thu: Sin
+            :tue: Sb
+            :wed: Tht
+          :short: 
+            :fri: Hla
+            :mon: Mvu
+            :sat: Mgq
+            :sun: Caw
+            :thu: Sin
+            :tue: Lwesb
+            :wed: Tha
+          :wide: 
+            :fri: Lwesihlanu
+            :mon: Mvulo
+            :sat: Mgqibelo
+            :sun: Cawe
+            :thu: Lwesine
+            :tue: Lwesibini
+            :wed: Lwesithathu
+        :stand-alone: 
+          :abbreviated: 
+            :fri: Hla
+            :mon: Mvu
+            :sat: Mgq
+            :sun: Caw
+            :thu: Sin
+            :tue: Bin
+            :wed: Tha
+          :narrow: 
+            :fri: Hl
+            :mon: M
+            :sat: Mg
+            :sun: C
+            :thu: Sin
+            :tue: Sb
+            :wed: St
+          :short: 
+            :fri: Hla
+            :mon: Mvu
+            :sat: Mgq
+            :sun: Caw
+            :thu: Sin
+            :tue: Lwesb
+            :wed: Tha
+          :wide: 
+            :fri: Lwesihlanu
+            :mon: Mvulo
+            :sat: Mgqibelo
+            :sun: Cawe
+            :thu: Lwesine
+            :tue: Lwesibini
+            :wed: Lwesithathu
+      :eras: 
+        :abbr: 
+          0: BCE
+          1: CE
+        :name: 
+          0: "Phambi Kwexesha Eliqhelekileyo"
+          1: "Ixesha Eliqhelekileyo"
+        :narrow: 
+          0: BCE
+          1: CE
+      :fields: 
+        :day: usuku
+        :day-narrow: usuku
+        :day-short: usuku
+        :dayOfYear: "Day Of Year"
+        :dayOfYear-narrow: "Day Of Year"
+        :dayOfYear-short: "Day Of Year"
+        :dayperiod: "Kusasa/Emva kwemini"
+        :dayperiod-narrow: "Kusasa/Emva kwemini"
+        :dayperiod-short: "Kusasa/Emva kwemini"
+        :era: "ixesha leminyaka"
+        :era-narrow: "ixesha leminyaka"
+        :era-short: "ixesha leminyaka"
+        :hour: iyure
+        :hour-narrow: yur
+        :hour-short: yur.
+        :minute: umzuzu
+        :minute-narrow: umz
+        :minute-short: umz.
+        :month: inyanga
+        :month-narrow: nya
+        :month-short: iny.
+        :quarter: ikota
+        :quarter-narrow: kot
+        :quarter-short: kot.
+        :second: umzuzwana
+        :second-narrow: mzuzwa.
+        :second-short: zuzwa.
+        :week: iveki
+        :week-narrow: vek
+        :week-short: ive.
+        :weekOfMonth: "Week Of Month"
+        :weekOfMonth-narrow: "Week Of Month"
+        :weekOfMonth-short: "Week Of Month"
+        :weekday: "usuku lweveki"
+        :weekday-narrow: "usuku lweveki"
+        :weekday-short: "usuku lweveki"
+        :weekdayOfMonth: "Weekday Of Month"
+        :weekdayOfMonth-narrow: "Weekday Of Month"
+        :weekdayOfMonth-short: "Weekday Of Month"
+        :year: unyaka
+        :year-narrow: uny
+        :year-short: uny.
+        :zone: "ingingqi yexesha"
+        :zone-narrow: "ingingqi yexesha"
+        :zone-short: "ingingqi yexesha"
+      :formats: 
+        :date: 
+          :full: 
+            :pattern: "EEEE, MMMM d, y"
+          :long: 
+            :pattern: "MMMM d, y"
+          :medium: 
+            :pattern: "MMM d, y"
+          :short: 
+            :pattern: M/d/yy
+        :datetime: 
+          :full: 
+            :pattern: "{{date}} {{time}}"
+          :long: 
+            :pattern: "{{date}} 'kwi' {{time}}"
+          :medium: 
+            :pattern: "{{date}} {{time}}"
+          :short: 
+            :pattern: "{{date}} {{time}}"
+        :time: 
+          :full: 
+            :pattern: "HH:mm:ss zzzz"
+          :long: 
+            :pattern: "HH:mm:ss z"
+          :medium: 
+            :pattern: "HH:mm:ss"
+          :short: 
+            :pattern: "HH:mm"
+      :months: 
+        :format: 
+          :abbreviated: 
+            1: Jan
+            10: Okt
+            11: Nov
+            12: Dis
+            2: Feb
+            3: Mat
+            4: Epr
+            5: Mey
+            6: Jun
+            7: Jul
+            8: Aga
+            9: Sept
+          :narrow: 
+            1: "1"
+            10: "10"
+            11: "11"
+            12: "12"
+            2: "2"
+            3: "3"
+            4: "4"
+            5: "5"
+            6: "6"
+            7: "7"
+            8: "8"
+            9: "9"
+          :wide: 
+            1: Janyuwari
+            10: Okthobha
+            11: Novemba
+            12: Disemba
+            2: Februwari
+            3: Matshi
+            4: Epreli
+            5: Meyi
+            6: Juni
+            7: Julayi
+            8: Agasti
+            9: Septemba
+        :stand-alone: 
+          :abbreviated: 
+            1: Jan
+            10: Okt
+            11: Nov
+            12: Dis
+            2: Feb
+            3: Mat
+            4: Epr
+            5: Mey
+            6: Jun
+            7: Jul
+            8: Aga
+            9: Sep
+          :narrow: 
+            1: "1"
+            10: "10"
+            11: "11"
+            12: "12"
+            2: "2"
+            3: "3"
+            4: "4"
+            5: "5"
+            6: "6"
+            7: "7"
+            8: "8"
+            9: "9"
+          :wide: 
+            1: Janyuwari
+            10: Okthoba
+            11: Novemba
+            12: Disemba
+            2: Februwari
+            3: Matshi
+            4: Epreli
+            5: Meyi
+            6: Juni
+            7: Julayi
+            8: Agasti
+            9: Septemba
+      :periods: 
+        :format: 
+          :abbreviated: 
+            :am: AM
+            :pm: PM
+          :narrow: 
+            :am: AM
+            :pm: PM
+          :wide: 
+            :am: AM
+            :pm: PM
+        :stand-alone: 
+          :abbreviated: 
+            :am: AM
+            :pm: PM
+          :narrow: 
+            :am: AM
+            :pm: PM
+          :wide: 
+            :am: AM
+            :pm: PM
+      :quarters: 
+        :format: 
+          :abbreviated: 
+            1: "Kota 1"
+            2: "Kota 2"
+            3: "Kota 3"
+            4: "Kota 4"
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: "ikota yoku-1"
+            2: "ikota yesi-2"
+            3: "ikota yesi-3"
+            4: "ikota yesi-4"
+        :stand-alone: 
+          :abbreviated: 
+            1: "Kota 1"
+            2: "Kota 2"
+            3: "Kota 3"
+            4: "Kota 4"
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: "ikota yoku-1"
+            2: "ikota yesi-2"
+            3: "ikota yesi-3"
+            4: "ikota yesi-4"

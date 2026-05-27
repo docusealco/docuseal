@@ -1,0 +1,5 @@
+COPYING
+*.md
+*.txt
+docs/
+ext/stringio/

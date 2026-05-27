@@ -1,0 +1,176 @@
+--- 
+:vi: 
+  :fields: 
+    :day: 
+      :display_name: Ngày
+      :relative: 
+        -1: "Hôm qua"
+        -2: "Hôm kia"
+        0: "Hôm nay"
+        1: "Ngày mai"
+        2: "Ngày kia"
+      :relative_time: 
+        :future: 
+          :other: "sau {0} ngày nữa"
+        :past: 
+          :other: "{0} ngày trước"
+    :day-short: 
+      :relative: 
+        -1: "hôm qua"
+        0: "hôm nay"
+        1: "ngày mai"
+    :dayOfYear: 
+      :display_name: "ngày trong năm"
+    :dayperiod: 
+      :display_name: SA/CH
+    :era: 
+      :display_name: "thời đại"
+    :fri: 
+      :relative: 
+        -1: "Thứ Sáu tuần trước"
+        0: "Thứ Sáu tuần này"
+        1: "Thứ Sáu tuần sau"
+      :relative_time: 
+        :future: 
+          :other: "sau {0} Thứ Sáu nữa"
+        :past: 
+          :other: "{0} Thứ Sáu trước"
+    :hour: 
+      :display_name: Giờ
+      :relative: 
+        0: "giờ này"
+      :relative_time: 
+        :future: 
+          :other: "sau {0} giờ nữa"
+        :past: 
+          :other: "{0} giờ trước"
+    :minute: 
+      :display_name: Phút
+      :relative: 
+        0: "phút này"
+      :relative_time: 
+        :future: 
+          :other: "sau {0} phút nữa"
+        :past: 
+          :other: "{0} phút trước"
+    :mon: 
+      :relative: 
+        -1: "Thứ Hai tuần trước"
+        0: "Thứ Hai tuần này"
+        1: "Thứ Hai tuần sau"
+      :relative_time: 
+        :future: 
+          :other: "sau {0} Thứ Hai nữa"
+        :past: 
+          :other: "{0} Thứ Hai trước"
+    :month: 
+      :display_name: Tháng
+      :relative: 
+        -1: "tháng trước"
+        0: "tháng này"
+        1: "tháng sau"
+      :relative_time: 
+        :future: 
+          :other: "sau {0} tháng nữa"
+        :past: 
+          :other: "{0} tháng trước"
+    :quarter: 
+      :display_name: Quý
+      :relative: 
+        -1: "quý trước"
+        0: "quý này"
+        1: "quý sau"
+      :relative_time: 
+        :future: 
+          :other: "sau {0} quý nữa"
+        :past: 
+          :other: "{0} quý trước"
+    :sat: 
+      :relative: 
+        -1: "Thứ Bảy tuần trước"
+        0: "Thứ Bảy tuần này"
+        1: "Thứ Bảy tuần sau"
+      :relative_time: 
+        :future: 
+          :other: "sau {0} Thứ Bảy nữa"
+        :past: 
+          :other: "{0} Thứ Bảy trước"
+    :second: 
+      :display_name: Giây
+      :relative: 
+        0: "bây giờ"
+      :relative_time: 
+        :future: 
+          :other: "sau {0} giây nữa"
+        :past: 
+          :other: "{0} giây trước"
+    :sun: 
+      :relative: 
+        -1: "Chủ Nhật tuần trước"
+        0: "Chủ Nhật tuần này"
+        1: "Chủ Nhật tuần sau"
+      :relative_time: 
+        :future: 
+          :other: "sau {0} Chủ Nhật nữa"
+        :past: 
+          :other: "{0} Chủ Nhật trước"
+    :thu: 
+      :relative: 
+        -1: "Thứ Năm tuần trước"
+        0: "Thứ Năm tuần này"
+        1: "Thứ Năm tuần sau"
+      :relative_time: 
+        :future: 
+          :other: "sau {0} Thứ Năm nữa"
+        :past: 
+          :other: "{0} Thứ Năm trước"
+    :tue: 
+      :relative: 
+        -1: "Thứ Ba tuần trước"
+        0: "Thứ Ba tuần này"
+        1: "Thứ Ba tuần sau"
+      :relative_time: 
+        :future: 
+          :other: "sau {0} Thứ Ba nữa"
+        :past: 
+          :other: "{0} Thứ Ba trước"
+    :wed: 
+      :relative: 
+        -1: "Thứ Tư tuần trước"
+        0: "Thứ Tư tuần này"
+        1: "Thứ Tư tuần sau"
+      :relative_time: 
+        :future: 
+          :other: "sau {0} Thứ Tư nữa"
+        :past: 
+          :other: "{0} Thứ Tư trước"
+    :week: 
+      :display_name: Tuần
+      :relative: 
+        -1: "tuần trước"
+        0: "tuần này"
+        1: "tuần sau"
+      :relative_time: 
+        :future: 
+          :other: "sau {0} tuần nữa"
+        :past: 
+          :other: "{0} tuần trước"
+    :weekOfMonth: 
+      :display_name: "tuần trong tháng"
+    :weekday: 
+      :display_name: "ngày trong tuần"
+    :weekdayOfMonth: 
+      :display_name: "ngày thường trong tháng"
+    :year: 
+      :display_name: Năm
+      :relative: 
+        -1: "năm ngoái"
+        0: "năm nay"
+        1: "năm sau"
+      :relative_time: 
+        :future: 
+          :other: "sau {0} năm nữa"
+        :past: 
+          :other: "{0} năm trước"
+    :zone: 
+      :display_name: "Múi giờ"

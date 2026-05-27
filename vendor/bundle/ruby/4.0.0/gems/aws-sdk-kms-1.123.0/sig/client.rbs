@@ -1,0 +1,830 @@
+# WARNING ABOUT GENERATED CODE
+#
+# This file is generated. See the contributing guide for more information:
+# https://github.com/aws/aws-sdk-ruby/blob/version-3/CONTRIBUTING.md
+#
+# WARNING ABOUT GENERATED CODE
+
+module Aws
+  module KMS
+    class Client < ::Seahorse::Client::Base
+      include ::Aws::ClientStubs
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#initialize-instance_method
+      def self.new: (
+                      ?credentials: untyped,
+                      ?region: String,
+                      ?access_key_id: String,
+                      ?account_id: String,
+                      ?active_endpoint_cache: bool,
+                      ?adaptive_retry_wait_to_fill: bool,
+                      ?auth_scheme_preference: Array[String],
+                      ?client_side_monitoring: bool,
+                      ?client_side_monitoring_client_id: String,
+                      ?client_side_monitoring_host: String,
+                      ?client_side_monitoring_port: Integer,
+                      ?client_side_monitoring_publisher: untyped,
+                      ?convert_params: bool,
+                      ?correct_clock_skew: bool,
+                      ?defaults_mode: String,
+                      ?disable_host_prefix_injection: bool,
+                      ?disable_request_compression: bool,
+                      ?endpoint: String,
+                      ?endpoint_cache_max_entries: Integer,
+                      ?endpoint_cache_max_threads: Integer,
+                      ?endpoint_cache_poll_interval: Integer,
+                      ?endpoint_discovery: bool,
+                      ?ignore_configured_endpoint_urls: bool,
+                      ?log_formatter: untyped,
+                      ?log_level: Symbol,
+                      ?logger: untyped,
+                      ?max_attempts: Integer,
+                      ?profile: String,
+                      ?request_checksum_calculation: String,
+                      ?request_min_compression_size_bytes: Integer,
+                      ?response_checksum_validation: String,
+                      ?retry_backoff: Proc,
+                      ?retry_base_delay: Float,
+                      ?retry_jitter: (:none | :equal | :full | ^(Integer) -> Integer),
+                      ?retry_limit: Integer,
+                      ?retry_max_delay: Integer,
+                      ?retry_mode: ("legacy" | "standard" | "adaptive"),
+                      ?sdk_ua_app_id: String,
+                      ?secret_access_key: String,
+                      ?session_token: String,
+                      ?sigv4a_signing_region_set: Array[String],
+                      ?simple_json: bool,
+                      ?stub_responses: untyped,
+                      ?telemetry_provider: Aws::Telemetry::TelemetryProviderBase,
+                      ?token_provider: untyped,
+                      ?use_dualstack_endpoint: bool,
+                      ?use_fips_endpoint: bool,
+                      ?validate_params: bool,
+                      ?endpoint_provider: untyped,
+                      ?http_proxy: String,
+                      ?http_open_timeout: (Float | Integer),
+                      ?http_read_timeout: (Float | Integer),
+                      ?http_idle_timeout: (Float | Integer),
+                      ?http_continue_timeout: (Float | Integer),
+                      ?ssl_timeout: (Float | Integer | nil),
+                      ?http_wire_trace: bool,
+                      ?ssl_verify_peer: bool,
+                      ?ssl_ca_bundle: String,
+                      ?ssl_ca_directory: String,
+                      ?ssl_ca_store: String,
+                      ?on_chunk_received: Proc,
+                      ?on_chunk_sent: Proc,
+                      ?raise_response_errors: bool
+                    ) -> instance
+                  | (?Hash[Symbol, untyped]) -> instance
+
+
+      interface _CancelKeyDeletionResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::CancelKeyDeletionResponse]
+        def key_id: () -> ::String
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#cancel_key_deletion-instance_method
+      def cancel_key_deletion: (
+                                 key_id: ::String
+                               ) -> _CancelKeyDeletionResponseSuccess
+                             | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _CancelKeyDeletionResponseSuccess
+
+      interface _ConnectCustomKeyStoreResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::ConnectCustomKeyStoreResponse]
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#connect_custom_key_store-instance_method
+      def connect_custom_key_store: (
+                                      custom_key_store_id: ::String
+                                    ) -> _ConnectCustomKeyStoreResponseSuccess
+                                  | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _ConnectCustomKeyStoreResponseSuccess
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#create_alias-instance_method
+      def create_alias: (
+                          alias_name: ::String,
+                          target_key_id: ::String
+                        ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                      | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      interface _CreateCustomKeyStoreResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::CreateCustomKeyStoreResponse]
+        def custom_key_store_id: () -> ::String
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#create_custom_key_store-instance_method
+      def create_custom_key_store: (
+                                     custom_key_store_name: ::String,
+                                     ?cloud_hsm_cluster_id: ::String,
+                                     ?trust_anchor_certificate: ::String,
+                                     ?key_store_password: ::String,
+                                     ?custom_key_store_type: ("AWS_CLOUDHSM" | "EXTERNAL_KEY_STORE"),
+                                     ?xks_proxy_uri_endpoint: ::String,
+                                     ?xks_proxy_uri_path: ::String,
+                                     ?xks_proxy_vpc_endpoint_service_name: ::String,
+                                     ?xks_proxy_vpc_endpoint_service_owner: ::String,
+                                     ?xks_proxy_authentication_credential: {
+                                       access_key_id: ::String,
+                                       raw_secret_access_key: ::String
+                                     },
+                                     ?xks_proxy_connectivity: ("PUBLIC_ENDPOINT" | "VPC_ENDPOINT_SERVICE")
+                                   ) -> _CreateCustomKeyStoreResponseSuccess
+                                 | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _CreateCustomKeyStoreResponseSuccess
+
+      interface _CreateGrantResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::CreateGrantResponse]
+        def grant_token: () -> ::String
+        def grant_id: () -> ::String
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#create_grant-instance_method
+      def create_grant: (
+                          key_id: ::String,
+                          grantee_principal: ::String,
+                          ?retiring_principal: ::String,
+                          operations: Array[("Decrypt" | "Encrypt" | "GenerateDataKey" | "GenerateDataKeyWithoutPlaintext" | "ReEncryptFrom" | "ReEncryptTo" | "Sign" | "Verify" | "GetPublicKey" | "CreateGrant" | "RetireGrant" | "DescribeKey" | "GenerateDataKeyPair" | "GenerateDataKeyPairWithoutPlaintext" | "GenerateMac" | "VerifyMac" | "DeriveSharedSecret")],
+                          ?constraints: {
+                            encryption_context_subset: Hash[::String, ::String]?,
+                            encryption_context_equals: Hash[::String, ::String]?
+                          },
+                          ?grant_tokens: Array[::String],
+                          ?name: ::String,
+                          ?dry_run: bool
+                        ) -> _CreateGrantResponseSuccess
+                      | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _CreateGrantResponseSuccess
+
+      interface _CreateKeyResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::CreateKeyResponse]
+        def key_metadata: () -> Types::KeyMetadata
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#create_key-instance_method
+      def create_key: (
+                        ?policy: ::String,
+                        ?description: ::String,
+                        ?key_usage: ("SIGN_VERIFY" | "ENCRYPT_DECRYPT" | "GENERATE_VERIFY_MAC" | "KEY_AGREEMENT"),
+                        ?customer_master_key_spec: ("RSA_2048" | "RSA_3072" | "RSA_4096" | "ECC_NIST_P256" | "ECC_NIST_P384" | "ECC_NIST_P521" | "ECC_SECG_P256K1" | "SYMMETRIC_DEFAULT" | "HMAC_224" | "HMAC_256" | "HMAC_384" | "HMAC_512" | "SM2"),
+                        ?key_spec: ("RSA_2048" | "RSA_3072" | "RSA_4096" | "ECC_NIST_P256" | "ECC_NIST_P384" | "ECC_NIST_P521" | "ECC_SECG_P256K1" | "SYMMETRIC_DEFAULT" | "HMAC_224" | "HMAC_256" | "HMAC_384" | "HMAC_512" | "SM2" | "ML_DSA_44" | "ML_DSA_65" | "ML_DSA_87" | "ECC_NIST_EDWARDS25519"),
+                        ?origin: ("AWS_KMS" | "EXTERNAL" | "AWS_CLOUDHSM" | "EXTERNAL_KEY_STORE"),
+                        ?custom_key_store_id: ::String,
+                        ?bypass_policy_lockout_safety_check: bool,
+                        ?tags: Array[
+                          {
+                            tag_key: ::String,
+                            tag_value: ::String
+                          },
+                        ],
+                        ?multi_region: bool,
+                        ?xks_key_id: ::String
+                      ) -> _CreateKeyResponseSuccess
+                    | (?Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _CreateKeyResponseSuccess
+
+      interface _DecryptResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::DecryptResponse]
+        def key_id: () -> ::String
+        def plaintext: () -> ::String
+        def encryption_algorithm: () -> ("SYMMETRIC_DEFAULT" | "RSAES_OAEP_SHA_1" | "RSAES_OAEP_SHA_256" | "SM2PKE")
+        def ciphertext_for_recipient: () -> ::String
+        def key_material_id: () -> ::String
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#decrypt-instance_method
+      def decrypt: (
+                     ?ciphertext_blob: ::String,
+                     ?encryption_context: Hash[::String, ::String],
+                     ?grant_tokens: Array[::String],
+                     ?key_id: ::String,
+                     ?encryption_algorithm: ("SYMMETRIC_DEFAULT" | "RSAES_OAEP_SHA_1" | "RSAES_OAEP_SHA_256" | "SM2PKE"),
+                     ?recipient: {
+                       key_encryption_algorithm: ("RSAES_OAEP_SHA_256")?,
+                       attestation_document: ::String?
+                     },
+                     ?dry_run: bool,
+                     ?dry_run_modifiers: Array[("IGNORE_CIPHERTEXT")]
+                   ) -> _DecryptResponseSuccess
+                 | (?Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _DecryptResponseSuccess
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#delete_alias-instance_method
+      def delete_alias: (
+                          alias_name: ::String
+                        ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                      | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      interface _DeleteCustomKeyStoreResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::DeleteCustomKeyStoreResponse]
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#delete_custom_key_store-instance_method
+      def delete_custom_key_store: (
+                                     custom_key_store_id: ::String
+                                   ) -> _DeleteCustomKeyStoreResponseSuccess
+                                 | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _DeleteCustomKeyStoreResponseSuccess
+
+      interface _DeleteImportedKeyMaterialResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::DeleteImportedKeyMaterialResponse]
+        def key_id: () -> ::String
+        def key_material_id: () -> ::String
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#delete_imported_key_material-instance_method
+      def delete_imported_key_material: (
+                                          key_id: ::String,
+                                          ?key_material_id: ::String
+                                        ) -> _DeleteImportedKeyMaterialResponseSuccess
+                                      | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _DeleteImportedKeyMaterialResponseSuccess
+
+      interface _DeriveSharedSecretResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::DeriveSharedSecretResponse]
+        def key_id: () -> ::String
+        def shared_secret: () -> ::String
+        def ciphertext_for_recipient: () -> ::String
+        def key_agreement_algorithm: () -> ("ECDH")
+        def key_origin: () -> ("AWS_KMS" | "EXTERNAL" | "AWS_CLOUDHSM" | "EXTERNAL_KEY_STORE")
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#derive_shared_secret-instance_method
+      def derive_shared_secret: (
+                                  key_id: ::String,
+                                  key_agreement_algorithm: ("ECDH"),
+                                  public_key: ::String,
+                                  ?grant_tokens: Array[::String],
+                                  ?dry_run: bool,
+                                  ?recipient: {
+                                    key_encryption_algorithm: ("RSAES_OAEP_SHA_256")?,
+                                    attestation_document: ::String?
+                                  }
+                                ) -> _DeriveSharedSecretResponseSuccess
+                              | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _DeriveSharedSecretResponseSuccess
+
+      interface _DescribeCustomKeyStoresResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::DescribeCustomKeyStoresResponse]
+        def custom_key_stores: () -> ::Array[Types::CustomKeyStoresListEntry]
+        def next_marker: () -> ::String
+        def truncated: () -> bool
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#describe_custom_key_stores-instance_method
+      def describe_custom_key_stores: (
+                                        ?custom_key_store_id: ::String,
+                                        ?custom_key_store_name: ::String,
+                                        ?limit: ::Integer,
+                                        ?marker: ::String
+                                      ) -> _DescribeCustomKeyStoresResponseSuccess
+                                    | (?Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _DescribeCustomKeyStoresResponseSuccess
+
+      interface _DescribeKeyResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::DescribeKeyResponse]
+        def key_metadata: () -> Types::KeyMetadata
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#describe_key-instance_method
+      def describe_key: (
+                          key_id: ::String,
+                          ?grant_tokens: Array[::String]
+                        ) -> _DescribeKeyResponseSuccess
+                      | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _DescribeKeyResponseSuccess
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#disable_key-instance_method
+      def disable_key: (
+                         key_id: ::String
+                       ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                     | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#disable_key_rotation-instance_method
+      def disable_key_rotation: (
+                                  key_id: ::String
+                                ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                              | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      interface _DisconnectCustomKeyStoreResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::DisconnectCustomKeyStoreResponse]
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#disconnect_custom_key_store-instance_method
+      def disconnect_custom_key_store: (
+                                         custom_key_store_id: ::String
+                                       ) -> _DisconnectCustomKeyStoreResponseSuccess
+                                     | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _DisconnectCustomKeyStoreResponseSuccess
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#enable_key-instance_method
+      def enable_key: (
+                        key_id: ::String
+                      ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                    | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#enable_key_rotation-instance_method
+      def enable_key_rotation: (
+                                 key_id: ::String,
+                                 ?rotation_period_in_days: ::Integer
+                               ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                             | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      interface _EncryptResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::EncryptResponse]
+        def ciphertext_blob: () -> ::String
+        def key_id: () -> ::String
+        def encryption_algorithm: () -> ("SYMMETRIC_DEFAULT" | "RSAES_OAEP_SHA_1" | "RSAES_OAEP_SHA_256" | "SM2PKE")
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#encrypt-instance_method
+      def encrypt: (
+                     key_id: ::String,
+                     plaintext: ::String,
+                     ?encryption_context: Hash[::String, ::String],
+                     ?grant_tokens: Array[::String],
+                     ?encryption_algorithm: ("SYMMETRIC_DEFAULT" | "RSAES_OAEP_SHA_1" | "RSAES_OAEP_SHA_256" | "SM2PKE"),
+                     ?dry_run: bool
+                   ) -> _EncryptResponseSuccess
+                 | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _EncryptResponseSuccess
+
+      interface _GenerateDataKeyResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::GenerateDataKeyResponse]
+        def ciphertext_blob: () -> ::String
+        def plaintext: () -> ::String
+        def key_id: () -> ::String
+        def ciphertext_for_recipient: () -> ::String
+        def key_material_id: () -> ::String
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#generate_data_key-instance_method
+      def generate_data_key: (
+                               key_id: ::String,
+                               ?encryption_context: Hash[::String, ::String],
+                               ?number_of_bytes: ::Integer,
+                               ?key_spec: ("AES_256" | "AES_128"),
+                               ?grant_tokens: Array[::String],
+                               ?recipient: {
+                                 key_encryption_algorithm: ("RSAES_OAEP_SHA_256")?,
+                                 attestation_document: ::String?
+                               },
+                               ?dry_run: bool
+                             ) -> _GenerateDataKeyResponseSuccess
+                           | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _GenerateDataKeyResponseSuccess
+
+      interface _GenerateDataKeyPairResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::GenerateDataKeyPairResponse]
+        def private_key_ciphertext_blob: () -> ::String
+        def private_key_plaintext: () -> ::String
+        def public_key: () -> ::String
+        def key_id: () -> ::String
+        def key_pair_spec: () -> ("RSA_2048" | "RSA_3072" | "RSA_4096" | "ECC_NIST_P256" | "ECC_NIST_P384" | "ECC_NIST_P521" | "ECC_SECG_P256K1" | "SM2" | "ECC_NIST_EDWARDS25519")
+        def ciphertext_for_recipient: () -> ::String
+        def key_material_id: () -> ::String
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#generate_data_key_pair-instance_method
+      def generate_data_key_pair: (
+                                    ?encryption_context: Hash[::String, ::String],
+                                    key_id: ::String,
+                                    key_pair_spec: ("RSA_2048" | "RSA_3072" | "RSA_4096" | "ECC_NIST_P256" | "ECC_NIST_P384" | "ECC_NIST_P521" | "ECC_SECG_P256K1" | "SM2" | "ECC_NIST_EDWARDS25519"),
+                                    ?grant_tokens: Array[::String],
+                                    ?recipient: {
+                                      key_encryption_algorithm: ("RSAES_OAEP_SHA_256")?,
+                                      attestation_document: ::String?
+                                    },
+                                    ?dry_run: bool
+                                  ) -> _GenerateDataKeyPairResponseSuccess
+                                | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _GenerateDataKeyPairResponseSuccess
+
+      interface _GenerateDataKeyPairWithoutPlaintextResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::GenerateDataKeyPairWithoutPlaintextResponse]
+        def private_key_ciphertext_blob: () -> ::String
+        def public_key: () -> ::String
+        def key_id: () -> ::String
+        def key_pair_spec: () -> ("RSA_2048" | "RSA_3072" | "RSA_4096" | "ECC_NIST_P256" | "ECC_NIST_P384" | "ECC_NIST_P521" | "ECC_SECG_P256K1" | "SM2" | "ECC_NIST_EDWARDS25519")
+        def key_material_id: () -> ::String
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#generate_data_key_pair_without_plaintext-instance_method
+      def generate_data_key_pair_without_plaintext: (
+                                                      ?encryption_context: Hash[::String, ::String],
+                                                      key_id: ::String,
+                                                      key_pair_spec: ("RSA_2048" | "RSA_3072" | "RSA_4096" | "ECC_NIST_P256" | "ECC_NIST_P384" | "ECC_NIST_P521" | "ECC_SECG_P256K1" | "SM2" | "ECC_NIST_EDWARDS25519"),
+                                                      ?grant_tokens: Array[::String],
+                                                      ?dry_run: bool
+                                                    ) -> _GenerateDataKeyPairWithoutPlaintextResponseSuccess
+                                                  | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _GenerateDataKeyPairWithoutPlaintextResponseSuccess
+
+      interface _GenerateDataKeyWithoutPlaintextResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::GenerateDataKeyWithoutPlaintextResponse]
+        def ciphertext_blob: () -> ::String
+        def key_id: () -> ::String
+        def key_material_id: () -> ::String
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#generate_data_key_without_plaintext-instance_method
+      def generate_data_key_without_plaintext: (
+                                                 key_id: ::String,
+                                                 ?encryption_context: Hash[::String, ::String],
+                                                 ?key_spec: ("AES_256" | "AES_128"),
+                                                 ?number_of_bytes: ::Integer,
+                                                 ?grant_tokens: Array[::String],
+                                                 ?dry_run: bool
+                                               ) -> _GenerateDataKeyWithoutPlaintextResponseSuccess
+                                             | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _GenerateDataKeyWithoutPlaintextResponseSuccess
+
+      interface _GenerateMacResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::GenerateMacResponse]
+        def mac: () -> ::String
+        def mac_algorithm: () -> ("HMAC_SHA_224" | "HMAC_SHA_256" | "HMAC_SHA_384" | "HMAC_SHA_512")
+        def key_id: () -> ::String
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#generate_mac-instance_method
+      def generate_mac: (
+                          message: ::String,
+                          key_id: ::String,
+                          mac_algorithm: ("HMAC_SHA_224" | "HMAC_SHA_256" | "HMAC_SHA_384" | "HMAC_SHA_512"),
+                          ?grant_tokens: Array[::String],
+                          ?dry_run: bool
+                        ) -> _GenerateMacResponseSuccess
+                      | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _GenerateMacResponseSuccess
+
+      interface _GenerateRandomResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::GenerateRandomResponse]
+        def plaintext: () -> ::String
+        def ciphertext_for_recipient: () -> ::String
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#generate_random-instance_method
+      def generate_random: (
+                             ?number_of_bytes: ::Integer,
+                             ?custom_key_store_id: ::String,
+                             ?recipient: {
+                               key_encryption_algorithm: ("RSAES_OAEP_SHA_256")?,
+                               attestation_document: ::String?
+                             }
+                           ) -> _GenerateRandomResponseSuccess
+                         | (?Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _GenerateRandomResponseSuccess
+
+      interface _GetKeyPolicyResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::GetKeyPolicyResponse]
+        def policy: () -> ::String
+        def policy_name: () -> ::String
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#get_key_policy-instance_method
+      def get_key_policy: (
+                            key_id: ::String,
+                            ?policy_name: ::String
+                          ) -> _GetKeyPolicyResponseSuccess
+                        | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _GetKeyPolicyResponseSuccess
+
+      interface _GetKeyRotationStatusResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::GetKeyRotationStatusResponse]
+        def key_rotation_enabled: () -> bool
+        def key_id: () -> ::String
+        def rotation_period_in_days: () -> ::Integer
+        def next_rotation_date: () -> ::Time
+        def on_demand_rotation_start_date: () -> ::Time
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#get_key_rotation_status-instance_method
+      def get_key_rotation_status: (
+                                     key_id: ::String
+                                   ) -> _GetKeyRotationStatusResponseSuccess
+                                 | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _GetKeyRotationStatusResponseSuccess
+
+      interface _GetParametersForImportResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::GetParametersForImportResponse]
+        def key_id: () -> ::String
+        def import_token: () -> ::String
+        def public_key: () -> ::String
+        def parameters_valid_to: () -> ::Time
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#get_parameters_for_import-instance_method
+      def get_parameters_for_import: (
+                                       key_id: ::String,
+                                       wrapping_algorithm: ("RSAES_PKCS1_V1_5" | "RSAES_OAEP_SHA_1" | "RSAES_OAEP_SHA_256" | "RSA_AES_KEY_WRAP_SHA_1" | "RSA_AES_KEY_WRAP_SHA_256" | "SM2PKE"),
+                                       wrapping_key_spec: ("RSA_2048" | "RSA_3072" | "RSA_4096" | "SM2")
+                                     ) -> _GetParametersForImportResponseSuccess
+                                   | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _GetParametersForImportResponseSuccess
+
+      interface _GetPublicKeyResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::GetPublicKeyResponse]
+        def key_id: () -> ::String
+        def public_key: () -> ::String
+        def customer_master_key_spec: () -> ("RSA_2048" | "RSA_3072" | "RSA_4096" | "ECC_NIST_P256" | "ECC_NIST_P384" | "ECC_NIST_P521" | "ECC_SECG_P256K1" | "SYMMETRIC_DEFAULT" | "HMAC_224" | "HMAC_256" | "HMAC_384" | "HMAC_512" | "SM2")
+        def key_spec: () -> ("RSA_2048" | "RSA_3072" | "RSA_4096" | "ECC_NIST_P256" | "ECC_NIST_P384" | "ECC_NIST_P521" | "ECC_SECG_P256K1" | "SYMMETRIC_DEFAULT" | "HMAC_224" | "HMAC_256" | "HMAC_384" | "HMAC_512" | "SM2" | "ML_DSA_44" | "ML_DSA_65" | "ML_DSA_87" | "ECC_NIST_EDWARDS25519")
+        def key_usage: () -> ("SIGN_VERIFY" | "ENCRYPT_DECRYPT" | "GENERATE_VERIFY_MAC" | "KEY_AGREEMENT")
+        def encryption_algorithms: () -> ::Array[("SYMMETRIC_DEFAULT" | "RSAES_OAEP_SHA_1" | "RSAES_OAEP_SHA_256" | "SM2PKE")]
+        def signing_algorithms: () -> ::Array[("RSASSA_PSS_SHA_256" | "RSASSA_PSS_SHA_384" | "RSASSA_PSS_SHA_512" | "RSASSA_PKCS1_V1_5_SHA_256" | "RSASSA_PKCS1_V1_5_SHA_384" | "RSASSA_PKCS1_V1_5_SHA_512" | "ECDSA_SHA_256" | "ECDSA_SHA_384" | "ECDSA_SHA_512" | "SM2DSA" | "ML_DSA_SHAKE_256" | "ED25519_SHA_512" | "ED25519_PH_SHA_512")]
+        def key_agreement_algorithms: () -> ::Array[("ECDH")]
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#get_public_key-instance_method
+      def get_public_key: (
+                            key_id: ::String,
+                            ?grant_tokens: Array[::String]
+                          ) -> _GetPublicKeyResponseSuccess
+                        | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _GetPublicKeyResponseSuccess
+
+      interface _ImportKeyMaterialResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::ImportKeyMaterialResponse]
+        def key_id: () -> ::String
+        def key_material_id: () -> ::String
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#import_key_material-instance_method
+      def import_key_material: (
+                                 key_id: ::String,
+                                 import_token: ::String,
+                                 encrypted_key_material: ::String,
+                                 ?valid_to: ::Time,
+                                 ?expiration_model: ("KEY_MATERIAL_EXPIRES" | "KEY_MATERIAL_DOES_NOT_EXPIRE"),
+                                 ?import_type: ("NEW_KEY_MATERIAL" | "EXISTING_KEY_MATERIAL"),
+                                 ?key_material_description: ::String,
+                                 ?key_material_id: ::String
+                               ) -> _ImportKeyMaterialResponseSuccess
+                             | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _ImportKeyMaterialResponseSuccess
+
+      interface _ListAliasesResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::ListAliasesResponse]
+        def aliases: () -> ::Array[Types::AliasListEntry]
+        def next_marker: () -> ::String
+        def truncated: () -> bool
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#list_aliases-instance_method
+      def list_aliases: (
+                          ?key_id: ::String,
+                          ?limit: ::Integer,
+                          ?marker: ::String
+                        ) -> _ListAliasesResponseSuccess
+                      | (?Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _ListAliasesResponseSuccess
+
+      interface _ListGrantsResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::ListGrantsResponse]
+        def grants: () -> ::Array[Types::GrantListEntry]
+        def next_marker: () -> ::String
+        def truncated: () -> bool
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#list_grants-instance_method
+      def list_grants: (
+                         ?limit: ::Integer,
+                         ?marker: ::String,
+                         key_id: ::String,
+                         ?grant_id: ::String,
+                         ?grantee_principal: ::String
+                       ) -> _ListGrantsResponseSuccess
+                     | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _ListGrantsResponseSuccess
+
+      interface _ListKeyPoliciesResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::ListKeyPoliciesResponse]
+        def policy_names: () -> ::Array[::String]
+        def next_marker: () -> ::String
+        def truncated: () -> bool
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#list_key_policies-instance_method
+      def list_key_policies: (
+                               key_id: ::String,
+                               ?limit: ::Integer,
+                               ?marker: ::String
+                             ) -> _ListKeyPoliciesResponseSuccess
+                           | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _ListKeyPoliciesResponseSuccess
+
+      interface _ListKeyRotationsResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::ListKeyRotationsResponse]
+        def rotations: () -> ::Array[Types::RotationsListEntry]
+        def next_marker: () -> ::String
+        def truncated: () -> bool
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#list_key_rotations-instance_method
+      def list_key_rotations: (
+                                key_id: ::String,
+                                ?include_key_material: ("ALL_KEY_MATERIAL" | "ROTATIONS_ONLY"),
+                                ?limit: ::Integer,
+                                ?marker: ::String
+                              ) -> _ListKeyRotationsResponseSuccess
+                            | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _ListKeyRotationsResponseSuccess
+
+      interface _ListKeysResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::ListKeysResponse]
+        def keys: () -> ::Array[Types::KeyListEntry]
+        def next_marker: () -> ::String
+        def truncated: () -> bool
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#list_keys-instance_method
+      def list_keys: (
+                       ?limit: ::Integer,
+                       ?marker: ::String
+                     ) -> _ListKeysResponseSuccess
+                   | (?Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _ListKeysResponseSuccess
+
+      interface _ListResourceTagsResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::ListResourceTagsResponse]
+        def tags: () -> ::Array[Types::Tag]
+        def next_marker: () -> ::String
+        def truncated: () -> bool
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#list_resource_tags-instance_method
+      def list_resource_tags: (
+                                key_id: ::String,
+                                ?limit: ::Integer,
+                                ?marker: ::String
+                              ) -> _ListResourceTagsResponseSuccess
+                            | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _ListResourceTagsResponseSuccess
+
+      interface _ListRetirableGrantsResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::ListGrantsResponse]
+        def grants: () -> ::Array[Types::GrantListEntry]
+        def next_marker: () -> ::String
+        def truncated: () -> bool
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#list_retirable_grants-instance_method
+      def list_retirable_grants: (
+                                   ?limit: ::Integer,
+                                   ?marker: ::String,
+                                   retiring_principal: ::String
+                                 ) -> _ListRetirableGrantsResponseSuccess
+                               | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _ListRetirableGrantsResponseSuccess
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#put_key_policy-instance_method
+      def put_key_policy: (
+                            key_id: ::String,
+                            ?policy_name: ::String,
+                            policy: ::String,
+                            ?bypass_policy_lockout_safety_check: bool
+                          ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                        | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      interface _ReEncryptResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::ReEncryptResponse]
+        def ciphertext_blob: () -> ::String
+        def source_key_id: () -> ::String
+        def key_id: () -> ::String
+        def source_encryption_algorithm: () -> ("SYMMETRIC_DEFAULT" | "RSAES_OAEP_SHA_1" | "RSAES_OAEP_SHA_256" | "SM2PKE")
+        def destination_encryption_algorithm: () -> ("SYMMETRIC_DEFAULT" | "RSAES_OAEP_SHA_1" | "RSAES_OAEP_SHA_256" | "SM2PKE")
+        def source_key_material_id: () -> ::String
+        def destination_key_material_id: () -> ::String
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#re_encrypt-instance_method
+      def re_encrypt: (
+                        ?ciphertext_blob: ::String,
+                        ?source_encryption_context: Hash[::String, ::String],
+                        ?source_key_id: ::String,
+                        destination_key_id: ::String,
+                        ?destination_encryption_context: Hash[::String, ::String],
+                        ?source_encryption_algorithm: ("SYMMETRIC_DEFAULT" | "RSAES_OAEP_SHA_1" | "RSAES_OAEP_SHA_256" | "SM2PKE"),
+                        ?destination_encryption_algorithm: ("SYMMETRIC_DEFAULT" | "RSAES_OAEP_SHA_1" | "RSAES_OAEP_SHA_256" | "SM2PKE"),
+                        ?grant_tokens: Array[::String],
+                        ?dry_run: bool,
+                        ?dry_run_modifiers: Array[("IGNORE_CIPHERTEXT")]
+                      ) -> _ReEncryptResponseSuccess
+                    | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _ReEncryptResponseSuccess
+
+      interface _ReplicateKeyResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::ReplicateKeyResponse]
+        def replica_key_metadata: () -> Types::KeyMetadata
+        def replica_policy: () -> ::String
+        def replica_tags: () -> ::Array[Types::Tag]
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#replicate_key-instance_method
+      def replicate_key: (
+                           key_id: ::String,
+                           replica_region: ::String,
+                           ?policy: ::String,
+                           ?bypass_policy_lockout_safety_check: bool,
+                           ?description: ::String,
+                           ?tags: Array[
+                             {
+                               tag_key: ::String,
+                               tag_value: ::String
+                             },
+                           ]
+                         ) -> _ReplicateKeyResponseSuccess
+                       | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _ReplicateKeyResponseSuccess
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#retire_grant-instance_method
+      def retire_grant: (
+                          ?grant_token: ::String,
+                          ?key_id: ::String,
+                          ?grant_id: ::String,
+                          ?dry_run: bool
+                        ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                      | (?Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#revoke_grant-instance_method
+      def revoke_grant: (
+                          key_id: ::String,
+                          grant_id: ::String,
+                          ?dry_run: bool
+                        ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                      | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      interface _RotateKeyOnDemandResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::RotateKeyOnDemandResponse]
+        def key_id: () -> ::String
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#rotate_key_on_demand-instance_method
+      def rotate_key_on_demand: (
+                                  key_id: ::String
+                                ) -> _RotateKeyOnDemandResponseSuccess
+                              | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _RotateKeyOnDemandResponseSuccess
+
+      interface _ScheduleKeyDeletionResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::ScheduleKeyDeletionResponse]
+        def key_id: () -> ::String
+        def deletion_date: () -> ::Time
+        def key_state: () -> ("Creating" | "Enabled" | "Disabled" | "PendingDeletion" | "PendingImport" | "PendingReplicaDeletion" | "Unavailable" | "Updating")
+        def pending_window_in_days: () -> ::Integer
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#schedule_key_deletion-instance_method
+      def schedule_key_deletion: (
+                                   key_id: ::String,
+                                   ?pending_window_in_days: ::Integer
+                                 ) -> _ScheduleKeyDeletionResponseSuccess
+                               | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _ScheduleKeyDeletionResponseSuccess
+
+      interface _SignResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::SignResponse]
+        def key_id: () -> ::String
+        def signature: () -> ::String
+        def signing_algorithm: () -> ("RSASSA_PSS_SHA_256" | "RSASSA_PSS_SHA_384" | "RSASSA_PSS_SHA_512" | "RSASSA_PKCS1_V1_5_SHA_256" | "RSASSA_PKCS1_V1_5_SHA_384" | "RSASSA_PKCS1_V1_5_SHA_512" | "ECDSA_SHA_256" | "ECDSA_SHA_384" | "ECDSA_SHA_512" | "SM2DSA" | "ML_DSA_SHAKE_256" | "ED25519_SHA_512" | "ED25519_PH_SHA_512")
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#sign-instance_method
+      def sign: (
+                  key_id: ::String,
+                  message: ::String,
+                  ?message_type: ("RAW" | "DIGEST" | "EXTERNAL_MU"),
+                  ?grant_tokens: Array[::String],
+                  signing_algorithm: ("RSASSA_PSS_SHA_256" | "RSASSA_PSS_SHA_384" | "RSASSA_PSS_SHA_512" | "RSASSA_PKCS1_V1_5_SHA_256" | "RSASSA_PKCS1_V1_5_SHA_384" | "RSASSA_PKCS1_V1_5_SHA_512" | "ECDSA_SHA_256" | "ECDSA_SHA_384" | "ECDSA_SHA_512" | "SM2DSA" | "ML_DSA_SHAKE_256" | "ED25519_SHA_512" | "ED25519_PH_SHA_512"),
+                  ?dry_run: bool
+                ) -> _SignResponseSuccess
+              | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _SignResponseSuccess
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#tag_resource-instance_method
+      def tag_resource: (
+                          key_id: ::String,
+                          tags: Array[
+                            {
+                              tag_key: ::String,
+                              tag_value: ::String
+                            },
+                          ]
+                        ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                      | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#untag_resource-instance_method
+      def untag_resource: (
+                            key_id: ::String,
+                            tag_keys: Array[::String]
+                          ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                        | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#update_alias-instance_method
+      def update_alias: (
+                          alias_name: ::String,
+                          target_key_id: ::String
+                        ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                      | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      interface _UpdateCustomKeyStoreResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::UpdateCustomKeyStoreResponse]
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#update_custom_key_store-instance_method
+      def update_custom_key_store: (
+                                     custom_key_store_id: ::String,
+                                     ?new_custom_key_store_name: ::String,
+                                     ?key_store_password: ::String,
+                                     ?cloud_hsm_cluster_id: ::String,
+                                     ?xks_proxy_uri_endpoint: ::String,
+                                     ?xks_proxy_uri_path: ::String,
+                                     ?xks_proxy_vpc_endpoint_service_name: ::String,
+                                     ?xks_proxy_vpc_endpoint_service_owner: ::String,
+                                     ?xks_proxy_authentication_credential: {
+                                       access_key_id: ::String,
+                                       raw_secret_access_key: ::String
+                                     },
+                                     ?xks_proxy_connectivity: ("PUBLIC_ENDPOINT" | "VPC_ENDPOINT_SERVICE")
+                                   ) -> _UpdateCustomKeyStoreResponseSuccess
+                                 | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _UpdateCustomKeyStoreResponseSuccess
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#update_key_description-instance_method
+      def update_key_description: (
+                                    key_id: ::String,
+                                    description: ::String
+                                  ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                                | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#update_primary_region-instance_method
+      def update_primary_region: (
+                                   key_id: ::String,
+                                   primary_region: ::String
+                                 ) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+                               | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> ::Seahorse::Client::_ResponseSuccess[::Aws::EmptyStructure]
+
+      interface _VerifyResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::VerifyResponse]
+        def key_id: () -> ::String
+        def signature_valid: () -> bool
+        def signing_algorithm: () -> ("RSASSA_PSS_SHA_256" | "RSASSA_PSS_SHA_384" | "RSASSA_PSS_SHA_512" | "RSASSA_PKCS1_V1_5_SHA_256" | "RSASSA_PKCS1_V1_5_SHA_384" | "RSASSA_PKCS1_V1_5_SHA_512" | "ECDSA_SHA_256" | "ECDSA_SHA_384" | "ECDSA_SHA_512" | "SM2DSA" | "ML_DSA_SHAKE_256" | "ED25519_SHA_512" | "ED25519_PH_SHA_512")
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#verify-instance_method
+      def verify: (
+                    key_id: ::String,
+                    message: ::String,
+                    ?message_type: ("RAW" | "DIGEST" | "EXTERNAL_MU"),
+                    signature: ::String,
+                    signing_algorithm: ("RSASSA_PSS_SHA_256" | "RSASSA_PSS_SHA_384" | "RSASSA_PSS_SHA_512" | "RSASSA_PKCS1_V1_5_SHA_256" | "RSASSA_PKCS1_V1_5_SHA_384" | "RSASSA_PKCS1_V1_5_SHA_512" | "ECDSA_SHA_256" | "ECDSA_SHA_384" | "ECDSA_SHA_512" | "SM2DSA" | "ML_DSA_SHAKE_256" | "ED25519_SHA_512" | "ED25519_PH_SHA_512"),
+                    ?grant_tokens: Array[::String],
+                    ?dry_run: bool
+                  ) -> _VerifyResponseSuccess
+                | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _VerifyResponseSuccess
+
+      interface _VerifyMacResponseSuccess
+        include ::Seahorse::Client::_ResponseSuccess[Types::VerifyMacResponse]
+        def key_id: () -> ::String
+        def mac_valid: () -> bool
+        def mac_algorithm: () -> ("HMAC_SHA_224" | "HMAC_SHA_256" | "HMAC_SHA_384" | "HMAC_SHA_512")
+      end
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/KMS/Client.html#verify_mac-instance_method
+      def verify_mac: (
+                        message: ::String,
+                        key_id: ::String,
+                        mac_algorithm: ("HMAC_SHA_224" | "HMAC_SHA_256" | "HMAC_SHA_384" | "HMAC_SHA_512"),
+                        mac: ::String,
+                        ?grant_tokens: Array[::String],
+                        ?dry_run: bool
+                      ) -> _VerifyMacResponseSuccess
+                    | (Hash[Symbol, untyped] params, ?Hash[Symbol, untyped] options) -> _VerifyMacResponseSuccess
+    end
+  end
+end
+

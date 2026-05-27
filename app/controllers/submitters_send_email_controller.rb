@@ -6,7 +6,7 @@ class SubmittersSendEmailController < ApplicationController
   def create
     authorize!(:update, @submitter)
 
-    if Docuseal.multitenant? && SubmissionEvent.exists?(submitter: @submitter,
+    if Wabosign.multitenant? && SubmissionEvent.exists?(submitter: @submitter,
                                                         event_type: 'send_email',
                                                         created_at: 10.hours.ago..Time.current)
       Rollbar.warning("Already sent: #{@submitter.id}") if defined?(Rollbar)

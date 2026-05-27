@@ -1,0 +1,366 @@
+--- 
+:km: 
+  :calendars: 
+    :gregorian: 
+      :additional_formats: 
+        :Bh: "h B"
+        :Bhm: "h:mm B"
+        :Bhms: "h:mm:ss B"
+        :E: ccc
+        :EBhm: "E h:mm B"
+        :EBhms: "E h:mm:ss B"
+        :EHm: "E HH:mm"
+        :EHms: "E HH:mm:ss"
+        :Ed: "d E"
+        :Ehm: "E h:mm a"
+        :Ehms: "E h:mm:ss a"
+        :Gy: "y G"
+        :GyMMM: "MMM y G"
+        :GyMMMEd: "E d MMM y G"
+        :GyMMMd: "d MMM y G"
+        :GyMd: "GGGGG y-MM-dd"
+        :H: HH
+        :Hm: "HH:mm"
+        :Hms: "HH:mm:ss"
+        :Hmsv: "HH:mm:ss v"
+        :Hmv: "HH:mm v"
+        :M: L
+        :MEd: "E d/M"
+        :MMM: LLL
+        :MMMEd: "E d MMM"
+        :MMMMW: "សប្តាហ៍ទី W នៃខែ MMMM"
+        :MMMMd: "d MMMM"
+        :MMMd: "d MMM"
+        :Md: d/M
+        :d: d
+        :h: h a
+        :hm: "h:mm a"
+        :hms: "h:mm:ss a"
+        :hmsv: "h:mm:ss a v"
+        :hmv: "h:mm a v"
+        :ms: "mm:ss"
+        ? !ruby/symbol "y"
+        : "y"
+        :yM: M/y
+        :yMEd: "E d/M/y"
+        :yMMM: "MMM y"
+        :yMMMEd: "E d MMM y"
+        :yMMMM: "MMMM y"
+        :yMMMd: "d MMM y"
+        :yMd: d/M/y
+        :yQQQ: "QQQ y"
+        :yQQQQ: "QQQQ y"
+        :yw: "សប្តាហ៍ទី w នៃឆ្នាំ Y"
+      :days: 
+        :format: 
+          :abbreviated: 
+            :fri: សុក្រ
+            :mon: ចន្ទ
+            :sat: សៅរ៍
+            :sun: អាទិត្យ
+            :thu: ព្រហ
+            :tue: អង្គារ
+            :wed: ពុធ
+          :narrow: 
+            :fri: ស
+            :mon: ច
+            :sat: ស
+            :sun: អ
+            :thu: ព
+            :tue: អ
+            :wed: ព
+          :short: 
+            :fri: សុ
+            :mon: ច
+            :sat: ស
+            :sun: អា
+            :thu: ព្រ
+            :tue: អ
+            :wed: ពុ
+          :wide: 
+            :fri: សុក្រ
+            :mon: ច័ន្ទ
+            :sat: សៅរ៍
+            :sun: អាទិត្យ
+            :thu: ព្រហស្បតិ៍
+            :tue: អង្គារ
+            :wed: ពុធ
+        :stand-alone: 
+          :abbreviated: 
+            :fri: សុក្រ
+            :mon: ចន្ទ
+            :sat: សៅរ៍
+            :sun: អាទិត្យ
+            :thu: ព្រហ
+            :tue: អង្គារ
+            :wed: ពុធ
+          :narrow: 
+            :fri: ស
+            :mon: ច
+            :sat: ស
+            :sun: អ
+            :thu: ព
+            :tue: អ
+            :wed: ព
+          :short: 
+            :fri: សុ
+            :mon: ច
+            :sat: ស
+            :sun: អា
+            :thu: ព្រ
+            :tue: អ
+            :wed: ពុ
+          :wide: 
+            :fri: សុក្រ
+            :mon: ចន្ទ
+            :sat: សៅរ៍
+            :sun: អាទិត្យ
+            :thu: ព្រហស្បតិ៍
+            :tue: អង្គារ
+            :wed: ពុធ
+      :eras: 
+        :abbr: 
+          0: BCE
+          1: CE
+        :name: 
+          0: មុន​គ្រិស្តសករាជ
+          1: គ្រិស្តសករាជ
+        :narrow: 
+          0: BCE
+          1: CE
+      :fields: 
+        :day: ថ្ងៃ
+        :day-narrow: Day
+        :day-short: Day
+        :dayOfYear: ថ្ងៃនៃឆ្នាំ
+        :dayOfYear-narrow: ថ្ងៃនៃឆ្នាំ
+        :dayOfYear-short: ថ្ងៃនៃឆ្នាំ
+        :dayperiod: ព្រឹក/ល្ងាច
+        :dayperiod-narrow: ព្រឹក/ល្ងាច
+        :dayperiod-short: ព្រឹក/ល្ងាច
+        :era: សករាជ
+        :era-narrow: សករាជ
+        :era-short: សករាជ
+        :hour: ម៉ោង
+        :hour-narrow: Hour
+        :hour-short: Hour
+        :minute: នាទី
+        :minute-narrow: Minute
+        :minute-short: Minute
+        :month: ខែ
+        :month-narrow: ខែ
+        :month-short: ខែ
+        :quarter: ត្រីមាស
+        :quarter-narrow: ត្រីមាស
+        :quarter-short: ត្រីមាស
+        :second: វិនាទី
+        :second-narrow: វិនាទី
+        :second-short: វិនាទី
+        :week: សប្ដាហ៍
+        :week-narrow: សប្ដាហ៍
+        :week-short: សប្ដាហ៍
+        :weekOfMonth: សប្ដាហ៍នៃខែ
+        :weekOfMonth-narrow: សប្ដាហ៍នៃខែ
+        :weekOfMonth-short: សប្ដាហ៍នៃខែ
+        :weekday: ថ្ងៃ​នៃ​សប្ដាហ៍
+        :weekday-narrow: ថ្ងៃ​នៃ​សប្ដាហ៍
+        :weekday-short: ថ្ងៃ​នៃ​សប្ដាហ៍
+        :weekdayOfMonth: ថ្ងៃសប្ដាហ៍នៃខែ
+        :weekdayOfMonth-narrow: ថ្ងៃសប្ដាហ៍នៃខែ
+        :weekdayOfMonth-short: ថ្ងៃសប្ដាហ៍នៃខែ
+        :year: ឆ្នាំ
+        :year-narrow: ឆ្នាំ
+        :year-short: ឆ្នាំ
+        :zone: ល្វែងម៉ោង
+        :zone-narrow: ល្វែងម៉ោង
+        :zone-short: ល្វែងម៉ោង
+      :formats: 
+        :date: 
+          :full: 
+            :pattern: "EEEE d MMMM y"
+          :long: 
+            :pattern: "d MMMM y"
+          :medium: 
+            :pattern: "d MMM y"
+          :short: 
+            :pattern: d/M/yy
+        :datetime: 
+          :full: 
+            :pattern: "{{date}} នៅ​ម៉ោង {{time}}"
+          :long: 
+            :pattern: "{{date}} នៅ​ម៉ោង {{time}}"
+          :medium: 
+            :pattern: "{{date}}, {{time}}"
+          :short: 
+            :pattern: "{{date}}, {{time}}"
+        :time: 
+          :full: 
+            :pattern: "h:mm:ss a zzzz"
+          :long: 
+            :pattern: "h:mm:ss a z"
+          :medium: 
+            :pattern: "h:mm:ss a"
+          :short: 
+            :pattern: "h:mm a"
+      :months: 
+        :format: 
+          :abbreviated: 
+            1: មករា
+            10: តុលា
+            11: វិច្ឆិកា
+            12: ធ្នូ
+            2: កុម្ភៈ
+            3: មីនា
+            4: មេសា
+            5: ឧសភា
+            6: មិថុនា
+            7: កក្កដា
+            8: សីហា
+            9: កញ្ញា
+          :narrow: 
+            1: ម
+            10: ត
+            11: វ
+            12: ធ
+            2: ក
+            3: ម
+            4: ម
+            5: ឧ
+            6: ម
+            7: ក
+            8: ស
+            9: ក
+          :wide: 
+            1: មករា
+            10: តុលា
+            11: វិច្ឆិកា
+            12: ធ្នូ
+            2: កុម្ភៈ
+            3: មីនា
+            4: មេសា
+            5: ឧសភា
+            6: មិថុនា
+            7: កក្កដា
+            8: សីហា
+            9: កញ្ញា
+        :stand-alone: 
+          :abbreviated: 
+            1: មករា
+            10: តុលា
+            11: វិច្ឆិកា
+            12: ធ្នូ
+            2: កុម្ភៈ
+            3: មីនា
+            4: មេសា
+            5: ឧសភា
+            6: មិថុនា
+            7: កក្កដា
+            8: សីហា
+            9: កញ្ញា
+          :narrow: 
+            1: ម
+            10: ត
+            11: វ
+            12: ធ
+            2: ក
+            3: ម
+            4: ម
+            5: ឧ
+            6: ម
+            7: ក
+            8: ស
+            9: ក
+          :wide: 
+            1: មករា
+            10: តុលា
+            11: វិច្ឆិកា
+            12: ធ្នូ
+            2: កុម្ភៈ
+            3: មីនា
+            4: មេសា
+            5: ឧសភា
+            6: មិថុនា
+            7: កក្កដា
+            8: សីហា
+            9: កញ្ញា
+      :periods: 
+        :format: 
+          :abbreviated: 
+            :afternoon1: នៅពេលរសៀល
+            :am: AM
+            :evening1: នៅពេល​ល្ងាច
+            :midnight: អធ្រាត្រ
+            :morning1: នៅពេល​ព្រឹក
+            :night1: នៅពេល​យប់
+            :noon: ថ្ងៃត្រង់
+            :pm: PM
+          :narrow: 
+            :am: a
+            :pm: p
+          :wide: 
+            :afternoon1: នៅពេលរសៀល
+            :am: AM
+            :evening1: នៅពេល​ល្ងាច
+            :midnight: អធ្រាត្រ
+            :morning1: នៅពេល​ព្រឹក
+            :night1: នៅពេល​យប់
+            :noon: ថ្ងៃត្រង់
+            :pm: PM
+        :stand-alone: 
+          :abbreviated: 
+            :afternoon1: រសៀល
+            :am: AM
+            :evening1: ល្ងាច
+            :morning1: ព្រឹក
+            :night1: យប់
+            :noon: ថ្ងៃ​ត្រង់
+            :pm: PM
+          :narrow: 
+            :afternoon1: រសៀល
+            :am: AM
+            :evening1: ល្ងាច
+            :morning1: ព្រឹក
+            :night1: យប់
+            :noon: ថ្ងៃ​ត្រង់
+            :pm: PM
+          :wide: 
+            :afternoon1: រសៀល
+            :am: AM
+            :evening1: ល្ងាច
+            :morning1: ព្រឹក
+            :night1: យប់
+            :noon: ថ្ងៃ​ត្រង់
+            :pm: PM
+      :quarters: 
+        :format: 
+          :abbreviated: 
+            1: "ត្រីមាសទី 1"
+            2: "ត្រីមាសទី 2"
+            3: "ត្រីមាសទី 3"
+            4: "ត្រីមាសទី 4"
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: "ត្រីមាសទី 1"
+            2: "ត្រីមាសទី 2"
+            3: "ត្រីមាសទី 3"
+            4: "ត្រីមាសទី 4"
+        :stand-alone: 
+          :abbreviated: 
+            1: "ត្រីមាសទី 1"
+            2: "ត្រីមាសទី 2"
+            3: "ត្រីមាសទី 3"
+            4: "ត្រីមាសទី 4"
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: "ត្រីមាសទី 1"
+            2: "ត្រីមាសទី 2"
+            3: "ត្រីមាសទី 3"
+            4: "ត្រីមាសទី 4"

@@ -1,0 +1,1014 @@
+--- 
+:tr: 
+  :units: 
+    :durationUnit: 
+      :hm: "h:mm"
+      :hms: "h:mm:ss"
+      :ms: "m:ss"
+    :unitLength: 
+      :long: 
+        :acceleration-g-force: 
+          :one: "{0} g kuvveti"
+          :other: "{0} g kuvveti"
+        :acceleration-meter-per-square-second: 
+          :one: "{0} metre/saniye²"
+          :other: "{0} metre/saniye²"
+        :angle-arc-minute: 
+          :one: "{0} açısal dakika"
+          :other: "{0} açısal dakika"
+        :angle-arc-second: 
+          :one: "{0} açısal saniye"
+          :other: "{0} açısal saniye"
+        :angle-degree: 
+          :one: "{0} derece"
+          :other: "{0} derece"
+        :angle-radian: 
+          :one: "{0} radyan"
+          :other: "{0} radyan"
+        :angle-revolution: 
+          :one: "{0} devir"
+          :other: "{0} devir"
+        :area-acre: 
+          :one: "{0} akre"
+          :other: "{0} akre"
+        :area-hectare: 
+          :one: "{0} hektar"
+          :other: "{0} hektar"
+        :area-square-centimeter: 
+          :one: "{0} santimetrekare"
+          :other: "{0} santimetrekare"
+        :area-square-foot: 
+          :one: "{0} fit kare"
+          :other: "{0} fit kare"
+        :area-square-inch: 
+          :one: "{0} inç kare"
+          :other: "{0} inç kare"
+        :area-square-kilometer: 
+          :one: "{0} kilometrekare"
+          :other: "{0} kilometrekare"
+        :area-square-meter: 
+          :one: "{0} metrekare"
+          :other: "{0} metrekare"
+        :area-square-mile: 
+          :one: "{0} mil kare"
+          :other: "{0} mil kare"
+        :area-square-yard: 
+          :one: "{0} yarda kare"
+          :other: "{0} yarda kare"
+        :concentr-milligram-ofglucose-per-deciliter: 
+          :one: "{0} miligram/desilitre"
+          :other: "{0} miligram/desilitre"
+        :concentr-millimole-per-liter: 
+          :one: "{0} milimol/litre"
+          :other: "{0} milimol/litre"
+        :concentr-percent: 
+          :one: "yüzde {0}"
+          :other: "yüzde {0}"
+        :concentr-permille: 
+          :one: "binde {0}"
+          :other: "binde {0}"
+        :concentr-permillion: 
+          :one: "{0} parça/milyon"
+          :other: "{0} parça/milyon"
+        :concentr-permyriad: 
+          :one: "onbinde {0}"
+          :other: "onbinde {0}"
+        :concentr-portion-per-1e9: 
+          :one: "{0} parça/milyar"
+          :other: "{0} parça/milyar"
+        :consumption-liter-per-100-kilometer: 
+          :one: "{0} litre/100 kilometre"
+          :other: "{0} litre/100 kilometre"
+        :consumption-liter-per-kilometer: 
+          :one: "{0} litre/kilometre"
+          :other: "{0} litre/kilometre"
+        :consumption-mile-per-gallon: 
+          :one: "{0} mil/galon"
+          :other: "{0} mil/galon"
+        :consumption-mile-per-gallon-imperial: 
+          :one: "{0} mil/İng. galonu"
+          :other: "{0} mil/İng. galonu"
+        :digital-gigabit: 
+          :one: "{0} gigabit"
+          :other: "{0} gigabit"
+        :digital-gigabyte: 
+          :one: "{0} gigabayt"
+          :other: "{0} gigabayt"
+        :digital-kilobit: 
+          :one: "{0} kilobit"
+          :other: "{0} kilobit"
+        :digital-kilobyte: 
+          :one: "{0} kilobayt"
+          :other: "{0} kilobayt"
+        :digital-megabit: 
+          :one: "{0} megabit"
+          :other: "{0} megabit"
+        :digital-megabyte: 
+          :one: "{0} megabayt"
+          :other: "{0} megabayt"
+        :digital-petabyte: 
+          :one: "{0} petabayt"
+          :other: "{0} petabayt"
+        :digital-terabit: 
+          :one: "{0} terabit"
+          :other: "{0} terabit"
+        :digital-terabyte: 
+          :one: "{0} terabayt"
+          :other: "{0} terabayt"
+        :duration-century: 
+          :one: "{0} yüzyıl"
+          :other: "{0} yüzyıl"
+        :duration-hour: 
+          :one: "{0} saat"
+          :other: "{0} saat"
+        :duration-microsecond: 
+          :one: "{0} mikrosaniye"
+          :other: "{0} mikrosaniye"
+        :duration-millisecond: 
+          :one: "{0} milisaniye"
+          :other: "{0} milisaniye"
+        :duration-minute: 
+          :one: "{0} dakika"
+          :other: "{0} dakika"
+        :duration-nanosecond: 
+          :one: "{0} nanosaniye"
+          :other: "{0} nanosaniye"
+        :duration-night: 
+          :one: "{0} gece"
+          :other: "{0} gece"
+        :duration-quarter: 
+          :one: "{0} çeyrek"
+          :other: "{0} çeyrek"
+        :duration-second: 
+          :one: "{0} saniye"
+          :other: "{0} saniye"
+        :duration-week: 
+          :one: "{0} hafta"
+          :other: "{0} hafta"
+        :electric-ampere: 
+          :one: "{0} amper"
+          :other: "{0} amper"
+        :electric-milliampere: 
+          :one: "{0} miliamper"
+          :other: "{0} miliamper"
+        :electric-ohm: 
+          :one: "{0} ohm"
+          :other: "{0} ohm"
+        :electric-volt: 
+          :one: "{0} volt"
+          :other: "{0} volt"
+        :energy-british-thermal-unit: 
+          :one: "{0} İngiliz ısı birimi"
+          :other: "{0} İngiliz ısı birimi"
+        :energy-calorie: 
+          :one: "{0} kalori"
+          :other: "{0} kalori"
+        :energy-electronvolt: 
+          :one: "{0} elektronvolt"
+          :other: "{0} elektronvolt"
+        :energy-foodcalorie: 
+          :one: "{0} kilokalori"
+          :other: "{0} kilokalori"
+        :energy-joule: 
+          :one: "{0} jul"
+          :other: "{0} jul"
+        :energy-kilocalorie: 
+          :one: "{0} kilokalori"
+          :other: "{0} kilokalori"
+        :energy-kilojoule: 
+          :one: "{0} kilojul"
+          :other: "{0} kilojul"
+        :energy-kilowatt-hour: 
+          :one: "{0} kilovatsaat"
+          :other: "{0} kilovatsaat"
+        :force-kilowatt-hour-per-100-kilometer: 
+          :one: "100 kilometre/{0} kilowatt-saat"
+          :other: "100 kilometre/{0} kilowatt-saat"
+        :force-newton: 
+          :one: "{0} newton"
+          :other: "{0} newton"
+        :force-pound-force: 
+          :one: "{0} pound kuvvet"
+          :other: "{0} pound kuvvet"
+        :frequency-gigahertz: 
+          :one: "{0} gigahertz"
+          :other: "{0} gigahertz"
+        :frequency-hertz: 
+          :one: "{0} hertz"
+          :other: "{0} hertz"
+        :frequency-kilohertz: 
+          :one: "{0} kilohertz"
+          :other: "{0} kilohertz"
+        :frequency-megahertz: 
+          :one: "{0} megahertz"
+          :other: "{0} megahertz"
+        :graphics-dot-per-centimeter: 
+          :one: "{0} nokta/santimetre"
+          :other: "{0} nokta/santimetre"
+        :graphics-dot-per-inch: 
+          :one: "{0} nokta/inç"
+          :other: "{0} nokta/inç"
+        :graphics-megapixel: 
+          :one: "{0} megapiksel"
+          :other: "{0} megapiksel"
+        :graphics-pixel: 
+          :one: "{0} piksel"
+          :other: "{0} piksel"
+        :graphics-pixel-per-centimeter: 
+          :one: "{0} piksel/santimetre"
+          :other: "{0} piksel/santimetre"
+        :graphics-pixel-per-inch: 
+          :one: "{0} piksel/inç"
+          :other: "{0} piksel/inç"
+        :length-astronomical-unit: 
+          :one: "{0} astronomik birim"
+          :other: "{0} astronomik birim"
+        :length-centimeter: 
+          :one: "{0} santimetre"
+          :other: "{0} santimetre"
+        :length-decimeter: 
+          :one: "{0} desimetre"
+          :other: "{0} desimetre"
+        :length-earth-radius: 
+          :one: "{0} Dünya yarıçapı"
+          :other: "{0} Dünya yarıçapı"
+        :length-fathom: 
+          :one: "{0} fathom"
+          :other: "{0} fathom"
+        :length-furlong: 
+          :one: "{0} furlong"
+          :other: "{0} furlong"
+        :length-kilometer: 
+          :one: "{0} kilometre"
+          :other: "{0} kilometre"
+        :length-light-year: 
+          :one: "{0} ışık yılı"
+          :other: "{0} ışık yılı"
+        :length-meter: 
+          :one: "{0} metre"
+          :other: "{0} metre"
+        :length-micrometer: 
+          :one: "{0} mikrometre"
+          :other: "{0} mikrometre"
+        :length-millimeter: 
+          :one: "{0} milimetre"
+          :other: "{0} milimetre"
+        :length-nanometer: 
+          :one: "{0} nanometre"
+          :other: "{0} nanometre"
+        :length-nautical-mile: 
+          :one: "{0} deniz mili"
+          :other: "{0} deniz mili"
+        :length-parsec: 
+          :one: "{0} parsek"
+          :other: "{0} parsek"
+        :length-picometer: 
+          :one: "{0} pikometre"
+          :other: "{0} pikometre"
+        :length-point: 
+          :one: "{0} punto"
+          :other: "{0} punto"
+        :length-solar-radius: 
+          :one: "{0} Güneş yarıçapı"
+          :other: "{0} Güneş yarıçapı"
+        :length-yard: 
+          :one: "{0} yarda"
+          :other: "{0} yarda"
+        :light-candela: 
+          :one: "{0} kandela"
+          :other: "{0} kandela"
+        :light-lumen: 
+          :one: "{0} lümen"
+          :other: "{0} lümen"
+        :light-solar-luminosity: 
+          :one: "{0} Güneş parlaklığı"
+          :other: "{0} Güneş parlaklığı"
+        :mass-carat: 
+          :one: "{0} karat"
+          :other: "{0} karat"
+        :mass-dalton: 
+          :one: "{0} dalton"
+          :other: "{0} dalton"
+        :mass-earth-mass: 
+          :one: "{0} Dünya kütlesi"
+          :other: "{0} Dünya kütlesi"
+        :mass-gram: 
+          :one: "{0} gram"
+          :other: "{0} gram"
+        :mass-kilogram: 
+          :one: "{0} kilogram"
+          :other: "{0} kilogram"
+        :mass-microgram: 
+          :one: "{0} mikrogram"
+          :other: "{0} mikrogram"
+        :mass-milligram: 
+          :one: "{0} miligram"
+          :other: "{0} miligram"
+        :mass-ounce: 
+          :one: "{0} ons"
+          :other: "{0} ons"
+        :mass-ounce-troy: 
+          :one: "{0} troy ons"
+          :other: "{0} troy ons"
+        :mass-pound: 
+          :one: "{0} libre"
+          :other: "{0} libre"
+        :mass-solar-mass: 
+          :one: "{0} Güneş kütlesi"
+          :other: "{0} Güneş kütlesi"
+        :mass-stone: 
+          :one: "{0} stone"
+          :other: "{0} stone"
+        :mass-ton: 
+          :one: "{0} Amerikan tonu"
+          :other: "{0} Amerikan tonu"
+        :mass-tonne: 
+          :one: "{0} ton"
+          :other: "{0} ton"
+        :power-gigawatt: 
+          :one: "{0} gigavat"
+          :other: "{0} gigavat"
+        :power-horsepower: 
+          :one: "{0} beygir gücü"
+          :other: "{0} beygir gücü"
+        :power-kilowatt: 
+          :one: "{0} kilovat"
+          :other: "{0} kilovat"
+        :power-megawatt: 
+          :one: "{0} megavat"
+          :other: "{0} megavat"
+        :power-milliwatt: 
+          :one: "{0} milivat"
+          :other: "{0} milivat"
+        :power-watt: 
+          :one: "{0} vat"
+          :other: "{0} vat"
+        :pressure-atmosphere: 
+          :one: "{0} atmosfer"
+          :other: "{0} atmosfer"
+        :pressure-hectopascal: 
+          :one: "{0} hektopaskal"
+          :other: "{0} hektopaskal"
+        :pressure-inch-ofhg: 
+          :one: "{0} inç cıva"
+          :other: "{0} inç cıva"
+        :pressure-kilopascal: 
+          :one: "{0} kilopaskal"
+          :other: "{0} kilopaskal"
+        :pressure-megapascal: 
+          :one: "{0} megapaskal"
+          :other: "{0} megapaskal"
+        :pressure-millibar: 
+          :one: "{0} milibar"
+          :other: "{0} milibar"
+        :pressure-millimeter-ofhg: 
+          :one: "{0} milimetre cıva"
+          :other: "{0} milimetre cıva"
+        :pressure-pascal: 
+          :one: "{0} paskal"
+          :other: "{0} paskal"
+        :pressure-pound-force-per-square-inch: 
+          :one: "{0} libre/inç kare"
+          :other: "{0} libre/inç kare"
+        :speed-beaufort: 
+          :one: "Beaufort {0}"
+          :other: "Beaufort {0}"
+        :speed-kilometer-per-hour: 
+          :one: "{0} kilometre/saat"
+          :other: "{0} kilometre/saat"
+        :speed-knot: 
+          :one: "{0} knot"
+          :other: "{0} knot"
+        :speed-light-speed: 
+          :one: "{0} ışık"
+          :other: "{0} ışık"
+        :speed-meter-per-second: 
+          :one: "{0} metre/saniye"
+          :other: "{0} metre/saniye"
+        :speed-mile-per-hour: 
+          :one: "{0} mil/saat"
+          :other: "{0} mil/saat"
+        :temperature-celsius: 
+          :one: "{0} santigrat derece"
+          :other: "{0} santigrat derece"
+        :temperature-fahrenheit: 
+          :one: "{0} fahrenhayt derece"
+          :other: "{0} fahrenhayt derece"
+        :temperature-generic: 
+          :one: "{0} derece"
+          :other: "{0} derece"
+        :temperature-kelvin: 
+          :one: "{0} kelvin"
+          :other: "{0} kelvin"
+        :torque-newton-meter: 
+          :one: "{0} newton metre"
+          :other: "{0} newton metre"
+        :torque-pound-force-foot: 
+          :one: "{0} pound fit"
+          :other: "{0} pound fit"
+        :volume-barrel: 
+          :one: "{0} varil"
+          :other: "{0} varil"
+        :volume-bushel: 
+          :one: "{0} buşel"
+          :other: "{0} buşel"
+        :volume-centiliter: 
+          :one: "{0} santilitre"
+          :other: "{0} santilitre"
+        :volume-cubic-centimeter: 
+          :one: "{0} santimetreküp"
+          :other: "{0} santimetreküp"
+        :volume-cubic-foot: 
+          :one: "{0} fit küp"
+          :other: "{0} fit küp"
+        :volume-cubic-inch: 
+          :one: "{0} inç küp"
+          :other: "{0} inç küp"
+        :volume-cubic-kilometer: 
+          :one: "{0} kilometreküp"
+          :other: "{0} kilometreküp"
+        :volume-cubic-meter: 
+          :one: "{0} metreküp"
+          :other: "{0} metreküp"
+        :volume-cubic-mile: 
+          :one: "{0} mil küp"
+          :other: "{0} mil küp"
+        :volume-cubic-yard: 
+          :one: "{0} yarda küp"
+          :other: "{0} yarda küp"
+        :volume-cup: 
+          :one: "{0} su bardağı"
+          :other: "{0} su bardağı"
+        :volume-cup-metric: 
+          :one: "{0} metrik su bardağı"
+          :other: "{0} metrik su bardağı"
+        :volume-deciliter: 
+          :one: "{0} desilitre"
+          :other: "{0} desilitre"
+        :volume-dessert-spoon: 
+          :one: "{0} tatlı kaşığı"
+          :other: "{0} tatlı kaşığı"
+        :volume-dessert-spoon-imperial: 
+          :one: "{0} İng. tatlı kaşığı"
+          :other: "{0} İng. tatlı kaşığı"
+        :volume-dram: 
+          :one: "{0} dram"
+          :other: "{0} dram"
+        :volume-gallon: 
+          :one: "{0} galon"
+          :other: "{0} galon"
+        :volume-gallon-imperial: 
+          :one: "{0} İng. galonu"
+          :other: "{0} İng. galonu"
+        :volume-hectoliter: 
+          :one: "{0} hektolitre"
+          :other: "{0} hektolitre"
+        :volume-liter: 
+          :one: "{0} litre"
+          :other: "{0} litre"
+        :volume-megaliter: 
+          :one: "{0} megalitre"
+          :other: "{0} megalitre"
+        :volume-milliliter: 
+          :one: "{0} mililitre"
+          :other: "{0} mililitre"
+        :volume-pint-metric: 
+          :one: "{0} metrik pint"
+          :other: "{0} metrik pint"
+        :volume-quart: 
+          :one: "{0} quart"
+          :other: "{0} quart"
+        :volume-tablespoon: 
+          :one: "{0} yemek kaşığı"
+          :other: "{0} yemek kaşığı"
+        :volume-teaspoon: 
+          :one: "{0} çay kaşığı"
+          :other: "{0} çay kaşığı"
+      :narrow: 
+        :acceleration-g-force: 
+          :one: "{0}G"
+          :other: "{0}G"
+        :concentr-milligram-ofglucose-per-deciliter: 
+          :one: "{0} mg/dL"
+          :other: "{0} mg/dL"
+        :concentr-millimole-per-liter: 
+          :one: "{0} mmol/L"
+          :other: "{0} mmol/L"
+        :consumption-liter-per-100-kilometer: 
+          :one: "{0} l/100km"
+          :other: "{0} l/100km"
+        :duration-day: 
+          :one: "{0}g"
+          :other: "{0}g"
+        :duration-hour: 
+          :one: "{0} sa"
+          :other: "{0}s"
+        :duration-millisecond: 
+          :one: "{0}msn"
+          :other: "{0}msn"
+        :duration-minute: 
+          :one: "{0}d"
+          :other: "{0}d"
+        :duration-month: 
+          :one: "{0}a"
+          :other: "{0}a"
+        :duration-night: 
+          :one: "{0} gece"
+          :other: "{0} gece"
+        :duration-second: 
+          :one: "{0}sn"
+          :other: "{0}sn"
+        :duration-week: 
+          :one: "{0}h"
+          :other: "{0}h"
+        :duration-year: 
+          :one: "{0}y"
+          :other: "{0}y"
+        :length-foot: 
+          :one: "{0}′"
+          :other: "{0}′"
+        :length-inch: 
+          :one: "{0}″"
+          :other: "{0}″"
+        :pressure-millibar: 
+          :one: "{0} mb"
+          :other: "{0} mb"
+        :speed-light-speed: 
+          :one: "{0} ışık"
+          :other: "{0} ışık"
+        :temperature-celsius: 
+          :one: "{0}°C"
+          :other: "{0} °C"
+        :temperature-fahrenheit: 
+          :one: "{0} °F"
+          :other: "{0} °F"
+        :temperature-kelvin: 
+          :one: "{0} K"
+          :other: "{0} K"
+        :volume-dessert-spoon: 
+          :one: "{0} tk"
+          :other: "{0} tk"
+        :volume-dessert-spoon-imperial: 
+          :one: "{0} İng. tk"
+          :other: "{0} İng. tk"
+        :volume-gallon: 
+          :one: "{0} galon"
+          :other: "{0} galon"
+        :volume-quart: 
+          :one: "{0} quart"
+          :other: "{0} quart"
+        :volume-quart-imperial: 
+          :one: "{0} İng. qt."
+          :other: "{0} İng. qt."
+      :short: 
+        :acceleration-g-force: 
+          :other: "{0} G"
+        :acceleration-meter-per-square-second: 
+          :one: "{0} m/sn²"
+          :other: "{0} m/sn²"
+        :angle-arc-minute: 
+          :one: "{0} açısal dk."
+          :other: "{0} açısal dk."
+        :angle-arc-second: 
+          :one: "{0} açısal sn."
+          :other: "{0} açısal sn."
+        :angle-degree: 
+          :other: "{0}°"
+        :angle-radian: 
+          :other: "{0} rad"
+        :angle-revolution: 
+          :one: "{0} dev"
+          :other: "{0} dev"
+        :area-acre: 
+          :other: "{0} ac"
+        :area-dunam: 
+          :other: "{0} dunam"
+        :area-hectare: 
+          :other: "{0} ha"
+        :area-square-centimeter: 
+          :other: "{0} cm²"
+        :area-square-foot: 
+          :other: "{0} ft²"
+        :area-square-inch: 
+          :other: "{0} in²"
+        :area-square-kilometer: 
+          :other: "{0} km²"
+        :area-square-meter: 
+          :other: "{0} m²"
+        :area-square-mile: 
+          :other: "{0} mi²"
+        :area-square-yard: 
+          :other: "{0} yd²"
+        :concentr-item: 
+          :one: "{0} öğe"
+          :other: "{0} öğe"
+        :concentr-karat: 
+          :one: "{0} ayar"
+          :other: "{0} ayar"
+        :concentr-milligram-ofglucose-per-deciliter: 
+          :one: "{0} mg/dl"
+          :other: "{0} mg/dl"
+        :concentr-millimole-per-liter: 
+          :one: "{0} mmol/l"
+          :other: "{0} mmol/l"
+        :concentr-mole: 
+          :other: "{0} mol"
+        :concentr-percent: 
+          :one: "%{0}"
+          :other: "%{0}"
+        :concentr-permille: 
+          :one: "‰{0}"
+          :other: "‰{0}"
+        :concentr-permillion: 
+          :other: "{0} ppm"
+        :concentr-permyriad: 
+          :one: "‱{0}"
+          :other: "‱{0}"
+        :concentr-portion-per-1e9: 
+          :other: "{0} ppb"
+        :consumption-liter-per-100-kilometer: 
+          :one: "{0} l/100 km"
+          :other: "{0} l/100 km"
+        :consumption-liter-per-kilometer: 
+          :one: "{0} l/km"
+          :other: "{0} l/km"
+        :consumption-mile-per-gallon: 
+          :one: "{0} mpg"
+          :other: "{0} mpg"
+        :consumption-mile-per-gallon-imperial: 
+          :one: "{0} mil/İng. gal"
+          :other: "{0} mil/İng. gal"
+        :digital-bit: 
+          :other: "{0} bit"
+        :digital-byte: 
+          :one: "{0} bayt"
+          :other: "{0} bayt"
+        :digital-gigabit: 
+          :other: "{0} Gb"
+        :digital-gigabyte: 
+          :other: "{0} GB"
+        :digital-kilobit: 
+          :other: "{0} kb"
+        :digital-kilobyte: 
+          :other: "{0} kB"
+        :digital-megabit: 
+          :other: "{0} Mb"
+        :digital-megabyte: 
+          :other: "{0} MB"
+        :digital-petabyte: 
+          :other: "{0} PB"
+        :digital-terabit: 
+          :other: "{0} Tb"
+        :digital-terabyte: 
+          :other: "{0} TB"
+        :duration-century: 
+          :one: "{0} yy"
+          :other: "{0} yy"
+        :duration-day: 
+          :one: "{0} gün"
+          :other: "{0} gün"
+        :duration-decade: 
+          :one: "{0} on yıl"
+          :other: "{0} on yıl"
+        :duration-hour: 
+          :one: "{0} sa."
+          :other: "{0} sa."
+        :duration-microsecond: 
+          :one: "{0} μsn"
+          :other: "{0} μsn"
+        :duration-millisecond: 
+          :one: "{0} msn"
+          :other: "{0} msn"
+        :duration-minute: 
+          :one: "{0} dk."
+          :other: "{0} dk."
+        :duration-month: 
+          :one: "{0} ay"
+          :other: "{0} ay"
+        :duration-nanosecond: 
+          :one: "{0} nsn"
+          :other: "{0} nsn"
+        :duration-night: 
+          :one: "{0} gece"
+          :other: "{0} gece"
+        :duration-quarter: 
+          :one: "{0} çey."
+          :other: "{0} çey."
+        :duration-second: 
+          :one: "{0} sn."
+          :other: "{0} sn."
+        :duration-week: 
+          :one: "{0} hf."
+          :other: "{0} hf."
+        :duration-year: 
+          :one: "{0} yıl"
+          :other: "{0} yıl"
+        :electric-ampere: 
+          :other: "{0} A"
+        :electric-milliampere: 
+          :other: "{0} mA"
+        :electric-ohm: 
+          :other: "{0} Ω"
+        :electric-volt: 
+          :other: "{0} V"
+        :energy-british-thermal-unit: 
+          :other: "{0} Btu"
+        :energy-calorie: 
+          :other: "{0} cal"
+        :energy-electronvolt: 
+          :other: "{0} eV"
+        :energy-joule: 
+          :other: "{0} J"
+        :energy-kilocalorie: 
+          :other: "{0} kcal"
+        :energy-kilojoule: 
+          :other: "{0} kJ"
+        :energy-kilowatt-hour: 
+          :other: "{0} kWh"
+        :energy-therm-us: 
+          :one: "{0} ABD ısı birimi"
+          :other: "{0} ABD ısı birimi"
+        :force-kilowatt-hour-per-100-kilometer: 
+          :one: "{0} kWh/100 km"
+          :other: "{0} kWh/100 km"
+        :force-newton: 
+          :other: "{0} N"
+        :force-pound-force: 
+          :other: "{0} lbf"
+        :frequency-gigahertz: 
+          :other: "{0} GHz"
+        :frequency-hertz: 
+          :other: "{0} Hz"
+        :frequency-kilohertz: 
+          :other: "{0} kHz"
+        :frequency-megahertz: 
+          :other: "{0} MHz"
+        :graphics-dot: 
+          :one: "{0} nokta"
+          :other: "{0} nokta"
+        :graphics-dot-per-centimeter: 
+          :one: "{0} dpcm"
+          :other: "{0} dpcm"
+        :graphics-dot-per-inch: 
+          :one: "{0} dpi"
+          :other: "{0} dpi"
+        :graphics-em: 
+          :other: "{0} em"
+        :graphics-megapixel: 
+          :other: "{0} MP"
+        :graphics-pixel: 
+          :other: "{0} px"
+        :graphics-pixel-per-centimeter: 
+          :other: "{0} ppcm"
+        :graphics-pixel-per-inch: 
+          :other: "{0} ppi"
+        :length-astronomical-unit: 
+          :one: "{0} AU"
+          :other: "{0} AU"
+        :length-centimeter: 
+          :other: "{0} cm"
+        :length-decimeter: 
+          :other: "{0} dm"
+        :length-earth-radius: 
+          :other: "{0} R⊕"
+        :length-fathom: 
+          :other: "{0} fth"
+        :length-foot: 
+          :one: "{0} fit"
+          :other: "{0} fit"
+        :length-furlong: 
+          :other: "{0} fur"
+        :length-inch: 
+          :one: "{0} inç"
+          :other: "{0} inç"
+        :length-kilometer: 
+          :other: "{0} km"
+        :length-light-year: 
+          :one: "{0} IY"
+          :other: "{0} IY"
+        :length-meter: 
+          :other: "{0} m"
+        :length-micrometer: 
+          :other: "{0} μm"
+        :length-mile: 
+          :one: "{0} mil"
+          :other: "{0} mil"
+        :length-mile-scandinavian: 
+          :other: "{0} smi"
+        :length-millimeter: 
+          :other: "{0} mm"
+        :length-nanometer: 
+          :other: "{0} nm"
+        :length-nautical-mile: 
+          :other: "{0} nmi"
+        :length-parsec: 
+          :other: "{0} pc"
+        :length-picometer: 
+          :other: "{0} pm"
+        :length-point: 
+          :other: "{0} pt"
+        :length-solar-radius: 
+          :other: "{0} R☉"
+        :length-yard: 
+          :other: "{0} yd"
+        :light-candela: 
+          :other: "{0} cd"
+        :light-lumen: 
+          :other: "{0} lm"
+        :light-lux: 
+          :one: "{0} lüks"
+          :other: "{0} lüks"
+        :light-solar-luminosity: 
+          :other: "{0} L☉"
+        :mass-carat: 
+          :one: "{0} ct"
+          :other: "{0} ct"
+        :mass-dalton: 
+          :other: "{0} Da"
+        :mass-earth-mass: 
+          :other: "{0} M⊕"
+        :mass-grain: 
+          :one: "{0} tane"
+          :other: "{0} tane"
+        :mass-gram: 
+          :other: "{0} g"
+        :mass-kilogram: 
+          :other: "{0} kg"
+        :mass-microgram: 
+          :other: "{0} μg"
+        :mass-milligram: 
+          :other: "{0} mg"
+        :mass-ounce: 
+          :other: "{0} oz"
+        :mass-ounce-troy: 
+          :other: "{0} oz t"
+        :mass-pound: 
+          :other: "{0} lb"
+        :mass-solar-mass: 
+          :other: "{0} M☉"
+        :mass-stone: 
+          :other: "{0} st"
+        :mass-ton: 
+          :one: "{0} kısa ton"
+          :other: "{0} kısa ton"
+        :mass-tonne: 
+          :other: "{0} t"
+        :power-gigawatt: 
+          :other: "{0} GW"
+        :power-horsepower: 
+          :one: "{0} bg"
+          :other: "{0} bg"
+        :power-kilowatt: 
+          :other: "{0} kW"
+        :power-megawatt: 
+          :other: "{0} MW"
+        :power-milliwatt: 
+          :other: "{0} mW"
+        :power-watt: 
+          :other: "{0} W"
+        :pressure-atmosphere: 
+          :other: "{0} atm"
+        :pressure-bar: 
+          :other: "{0} bar"
+        :pressure-hectopascal: 
+          :other: "{0} hPa"
+        :pressure-inch-ofhg: 
+          :other: "{0} inHg"
+        :pressure-kilopascal: 
+          :other: "{0} kPa"
+        :pressure-megapascal: 
+          :other: "{0} MPa"
+        :pressure-millibar: 
+          :other: "{0} mbar"
+        :pressure-millimeter-ofhg: 
+          :one: "{0} mmHg"
+          :other: "{0} mmHg"
+        :pressure-pascal: 
+          :other: "{0} Pa"
+        :pressure-pound-force-per-square-inch: 
+          :one: "{0} lb/in²"
+          :other: "{0} lb/in²"
+        :speed-beaufort: 
+          :other: "B {0}"
+        :speed-kilometer-per-hour: 
+          :one: "{0} km/sa"
+          :other: "{0} km/sa"
+        :speed-knot: 
+          :other: "{0} kn"
+        :speed-light-speed: 
+          :one: "{0} ışık"
+          :other: "{0} ışık"
+        :speed-meter-per-second: 
+          :one: "{0} m/sn"
+          :other: "{0} m/sn"
+        :speed-mile-per-hour: 
+          :one: "{0} mil/sa"
+          :other: "{0} mil/sa"
+        :temperature-celsius: 
+          :one: "{0} °C"
+          :other: "{0}°C"
+        :temperature-fahrenheit: 
+          :one: "{0} °F"
+          :other: "{0}°F"
+        :temperature-generic: 
+          :other: "{0}°"
+        :temperature-kelvin: 
+          :one: "{0}K"
+          :other: "{0} K"
+        :torque-newton-meter: 
+          :other: "{0} N⋅m"
+        :torque-pound-force-foot: 
+          :other: "{0} lbf⋅ft"
+        :volume-acre-foot: 
+          :one: "{0} akre fit"
+          :other: "{0} akre fit"
+        :volume-barrel: 
+          :other: "{0} bbl"
+        :volume-bushel: 
+          :other: "{0} bu"
+        :volume-centiliter: 
+          :one: "{0} cl"
+          :other: "{0} cl"
+        :volume-cubic-centimeter: 
+          :other: "{0} cm³"
+        :volume-cubic-foot: 
+          :one: "{0} fit³"
+          :other: "{0} fit³"
+        :volume-cubic-inch: 
+          :one: "{0} inç³"
+          :other: "{0} inç³"
+        :volume-cubic-kilometer: 
+          :other: "{0} km³"
+        :volume-cubic-meter: 
+          :other: "{0} m³"
+        :volume-cubic-mile: 
+          :one: "{0} mil³"
+          :other: "{0} mil³"
+        :volume-cubic-yard: 
+          :one: "{0} yarda³"
+          :other: "{0} yarda³"
+        :volume-cup: 
+          :one: "{0} sb"
+          :other: "{0} sb"
+        :volume-cup-metric: 
+          :one: "{0} msb"
+          :other: "{0} msb"
+        :volume-deciliter: 
+          :one: "{0} dl"
+          :other: "{0} dl"
+        :volume-dessert-spoon: 
+          :one: "{0} tat. kaşığı"
+          :other: "{0} tat. kaşığı"
+        :volume-dessert-spoon-imperial: 
+          :one: "{0} İng. tat. kaşığı"
+          :other: "{0} İng. tat. kaşığı"
+        :volume-dram: 
+          :one: "{0} sıvı dram"
+          :other: "{0} sıvı dram"
+        :volume-drop: 
+          :one: "{0} damla"
+          :other: "{0} damla"
+        :volume-fluid-ounce: 
+          :one: "{0} sıvı ons"
+          :other: "{0} sıvı ons"
+        :volume-fluid-ounce-imperial: 
+          :one: "{0} İng. sıvı ons"
+          :other: "{0} İng. sıvı ons"
+        :volume-gallon: 
+          :one: "{0} gal"
+          :other: "{0} gal"
+        :volume-gallon-imperial: 
+          :one: "{0} İng. gal"
+          :other: "{0} İng. gal"
+        :volume-hectoliter: 
+          :one: "{0} hl"
+          :other: "{0} hl"
+        :volume-jigger: 
+          :other: "{0} jigger"
+        :volume-liter: 
+          :other: "{0} l"
+        :volume-megaliter: 
+          :one: "{0} Ml"
+          :other: "{0} Ml"
+        :volume-milliliter: 
+          :one: "{0} ml"
+          :other: "{0} ml"
+        :volume-pinch: 
+          :one: "{0} tutam"
+          :other: "{0} tutam"
+        :volume-pint: 
+          :one: "{0} pint"
+          :other: "{0} pint"
+        :volume-pint-metric: 
+          :other: "{0} mpt"
+        :volume-quart: 
+          :other: "{0} qt"
+        :volume-quart-imperial: 
+          :one: "{0} İng. quart"
+          :other: "{0} İng. quart"
+        :volume-tablespoon: 
+          :one: "{0} yk"
+          :other: "{0} yk"
+        :volume-teaspoon: 
+          :one: "{0} çk"
+          :other: "{0} çk"

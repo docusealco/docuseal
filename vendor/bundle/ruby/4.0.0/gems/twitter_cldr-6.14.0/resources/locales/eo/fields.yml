@@ -1,0 +1,469 @@
+--- 
+:eo: 
+  :fields: 
+    :day: 
+      :display_name: tago
+      :relative: 
+        -1: hieraŭ
+        0: hodiaŭ
+        1: morgaŭ
+      :relative_time: 
+        :future: 
+          :one: "post {0} tago"
+          :other: "post {0} tagoj"
+        :past: 
+          :one: "antaŭ {0} tago"
+          :other: "antaŭ {0} tagoj"
+    :day-narrow: 
+      :display_name: t.
+      :relative_time: 
+        :future: 
+          :one: "post {0} t."
+          :other: "post {0} t."
+        :past: 
+          :one: "antaŭ {0} t."
+          :other: "antaŭ {0} t."
+    :dayOfYear: 
+      :display_name: "tago de jaro"
+    :dayOfYear-narrow: 
+      :display_name: "t. de j."
+    :dayperiod: 
+      :display_name: "mateno / posttagmezo / vespero"
+    :dayperiod-short: 
+      :display_name: tagotempo
+    :era: 
+      :display_name: erao
+    :fri: 
+      :relative: 
+        -1: "pasinta vendredo"
+        0: "ĉi tiu vendredo"
+        1: "venonta vendredo"
+      :relative_time: 
+        :future: 
+          :one: "post {0} vendredo"
+          :other: "post {0} vendredoj"
+        :past: 
+          :one: "antaŭ {0} vendredo"
+          :other: "antaŭ {0} vendredoj"
+    :fri-narrow: 
+      :relative: 
+        -1: "pasinta v."
+        0: "nuna v."
+        1: "venonta v."
+      :relative_time: 
+        :future: 
+          :one: "post {0} v."
+          :other: "post {0} v."
+        :past: 
+          :one: "antaŭ {0} v."
+          :other: "antaŭ {0} v."
+    :fri-short: 
+      :relative: 
+        -1: "pasinta ve."
+        0: "ĉi tiu ve."
+        1: "venonta ve."
+      :relative_time: 
+        :future: 
+          :one: "post {0} ve."
+          :other: "post {0} ve."
+        :past: 
+          :one: "antaŭ {0} ve."
+          :other: "antaŭ {0} ve."
+    :hour: 
+      :display_name: horo
+      :relative: 
+        0: "nuna horo"
+      :relative_time: 
+        :future: 
+          :one: "post {0} horo"
+          :other: "post {0} horoj"
+        :past: 
+          :one: "antaŭ {0} horo"
+          :other: "antaŭ {0} horoj"
+    :hour-narrow: 
+      :display_name: h
+      :relative_time: 
+        :future: 
+          :one: "post {0} h"
+          :other: "post {0} h"
+        :past: 
+          :one: "antaŭ {0} h"
+          :other: "antaŭ {0} h"
+    :minute: 
+      :display_name: minuto
+      :relative: 
+        0: "nuna minuto"
+      :relative_time: 
+        :future: 
+          :one: "post {0} minuto"
+          :other: "post {0} minutoj"
+        :past: 
+          :one: "antaŭ {0} minuto"
+          :other: "antaŭ {0} minutoj"
+    :minute-narrow: 
+      :display_name: min
+      :relative_time: 
+        :future: 
+          :one: "post {0} min"
+          :other: "post {0} min"
+        :past: 
+          :one: "antaŭ {0} min"
+          :other: "antaŭ {0} min"
+    :minute-short: 
+      :display_name: min.
+      :relative_time: 
+        :future: 
+          :one: "post {0} min."
+          :other: "post {0} min."
+        :past: 
+          :one: "antaŭ {0} min."
+          :other: "antaŭ {0} min."
+    :mon: 
+      :relative: 
+        -1: "pasinta lundo"
+        0: "ĉi tiu lundo"
+        1: "venonta lundo"
+      :relative_time: 
+        :future: 
+          :one: "post {0} lundo"
+          :other: "post {0} lundoj"
+        :past: 
+          :one: "antaŭ {0} lundo"
+          :other: "antaŭ {0} lundoj"
+    :mon-narrow: 
+      :relative: 
+        -1: "pasinta l."
+        0: "nuna l."
+        1: "venonta l."
+      :relative_time: 
+        :future: 
+          :one: "post {0} l."
+          :other: "post {0} l."
+        :past: 
+          :one: "antaŭ {0} l."
+          :other: "antaŭ {0} l."
+    :mon-short: 
+      :relative: 
+        -1: "pasinta lu."
+        0: "ĉi tiu lu."
+        1: "venonta lu."
+      :relative_time: 
+        :future: 
+          :one: "post {0} lu."
+          :other: "post {0} lu."
+        :past: 
+          :one: "antaŭ {0} lu."
+          :other: "antaŭ {0} lu."
+    :month: 
+      :display_name: monato
+      :relative: 
+        -1: "pasinta monato"
+        0: "nuna monato"
+        1: "venonta monato"
+      :relative_time: 
+        :future: 
+          :one: "post {0} monato"
+          :other: "post {0} monatoj"
+        :past: 
+          :one: "antaŭ {0} monato"
+          :other: "antaŭ {0} monatoj"
+    :month-short: 
+      :display_name: mon.
+      :relative: 
+        -1: "pasinta mon."
+        0: "nuna mon."
+        1: "venonta mon."
+      :relative_time: 
+        :future: 
+          :one: "post {0} mon."
+          :other: "post {0} mon."
+        :past: 
+          :one: "antaŭ {0} mon."
+          :other: "antaŭ {0} mon."
+    :quarter: 
+      :display_name: jarkvarono
+      :relative: 
+        -1: "pasinta jarkvarono"
+        0: "nuna jarkvarono"
+        1: "venonta jarkvarono"
+      :relative_time: 
+        :future: 
+          :one: "post {0} jarkvarono"
+          :other: "post {0} jarkvaronoj"
+        :past: 
+          :one: "antaŭ {0} jarkvarono"
+          :other: "antaŭ {0} jarkvaronoj"
+    :quarter-narrow: 
+      :display_name: jk.
+      :relative_time: 
+        :future: 
+          :one: "post {0} jk."
+          :other: "post {0} jk."
+        :past: 
+          :one: "antaŭ {0} jk."
+          :other: "antaŭ {0} jk."
+    :sat: 
+      :relative: 
+        -1: "pasinta sabato"
+        0: "ĉi tiu sabato"
+        1: "venonta sabato"
+      :relative_time: 
+        :future: 
+          :one: "post {0} sabato"
+          :other: "post {0} sabatoj"
+        :past: 
+          :one: "antaŭ {0} sabato"
+          :other: "antaŭ {0} sabatoj"
+    :sat-narrow: 
+      :relative: 
+        -1: "pasinta s."
+        0: "nuna s."
+        1: "venonta s."
+      :relative_time: 
+        :future: 
+          :one: "post {0} s."
+          :other: "post {0} s."
+        :past: 
+          :one: "antaŭ {0} s."
+          :other: "antaŭ {0} s."
+    :sat-short: 
+      :relative: 
+        -1: "pasinta sa."
+        0: "ĉi tiu sa."
+        1: "venonta sa."
+      :relative_time: 
+        :future: 
+          :one: "post {0} sa."
+          :other: "post {0} sa."
+        :past: 
+          :one: "antaŭ {0} sa."
+          :other: "antaŭ {0} sa."
+    :second: 
+      :display_name: sekundo
+      :relative: 
+        0: nun
+      :relative_time: 
+        :future: 
+          :one: "post {0} sekundo"
+          :other: "post {0} sekundoj"
+        :past: 
+          :one: "antaŭ {0} sekundo"
+          :other: "antaŭ {0} sekundoj"
+    :second-narrow: 
+      :display_name: s
+      :relative_time: 
+        :future: 
+          :one: "post {0} s"
+          :other: "post {0} s"
+        :past: 
+          :one: "antaŭ {0} s"
+          :other: "antaŭ {0} s"
+    :second-short: 
+      :display_name: sek.
+      :relative_time: 
+        :future: 
+          :one: "post {0} sek."
+          :other: "post {0} sek."
+        :past: 
+          :one: "antaŭ {0} sek."
+          :other: "antaŭ {0} sek."
+    :sun: 
+      :relative: 
+        -1: "pasinta dimanĉo"
+        0: "ĉi tiu dimanĉo"
+        1: "venonta dimanĉo"
+      :relative_time: 
+        :future: 
+          :one: "post {0} dimanĉo"
+          :other: "post {0} dimanĉoj"
+        :past: 
+          :one: "antaŭ {0} dimanĉo"
+          :other: "antaŭ {0} dimanĉoj"
+    :sun-narrow: 
+      :relative: 
+        -1: "pasinta d."
+        0: "nuna d."
+        1: "venonta d."
+      :relative_time: 
+        :future: 
+          :one: "post {0} d."
+          :other: "post {0} d."
+        :past: 
+          :one: "antaŭ {0} d."
+          :other: "antaŭ {0} d."
+    :sun-short: 
+      :relative: 
+        -1: "pasinta di."
+        0: "ĉi tiu di."
+        1: "venonta di."
+      :relative_time: 
+        :future: 
+          :one: "post {0} di."
+          :other: "post {0} di."
+        :past: 
+          :one: "antaŭ {0} di."
+          :other: "antaŭ {0} di."
+    :thu: 
+      :relative: 
+        -1: "pasinta ĵaŭdo"
+        0: "ĉi tiu ĵaŭdo"
+        1: "venonta ĵaŭdo"
+      :relative_time: 
+        :future: 
+          :one: "post {0} ĵaŭdo"
+          :other: "post {0} ĵaŭdoj"
+        :past: 
+          :one: "antaŭ {0} ĵaŭdo"
+          :other: "antaŭ {0} ĵaŭdoj"
+    :thu-narrow: 
+      :relative: 
+        -1: "pasinta ĵ."
+        0: "nuna ĵ."
+        1: "venonta ĵ."
+      :relative_time: 
+        :future: 
+          :one: "post {0} ĵ."
+          :other: "post {0} ĵ."
+        :past: 
+          :one: "antaŭ {0} ĵ."
+          :other: "antaŭ {0} ĵ."
+    :thu-short: 
+      :relative: 
+        -1: "pasinta ĵa."
+        0: "ĉi tiu ĵa."
+        1: "venonta ĵa."
+      :relative_time: 
+        :future: 
+          :one: "post {0} ĵa."
+          :other: "post {0} ĵa."
+        :past: 
+          :one: "antaŭ {0} ĵa."
+          :other: "antaŭ {0} ĵa."
+    :tue: 
+      :relative: 
+        -1: "pasinta mardo"
+        0: "ĉi tiu mardo"
+        1: "venonta mardo"
+      :relative_time: 
+        :future: 
+          :one: "post {0} mardo"
+          :other: "post {0} mardoj"
+        :past: 
+          :one: "antaŭ {0} mardo"
+          :other: "antaŭ {0} mardoj"
+    :tue-narrow: 
+      :relative: 
+        -1: "pasinta ma."
+        0: "nuna ma."
+        1: "venonta ma."
+    :tue-short: 
+      :relative: 
+        -1: "pasinta ma."
+        0: "ĉi tiu ma."
+        1: "venonta ma."
+      :relative_time: 
+        :future: 
+          :one: "post {0} ma."
+          :other: "post {0} ma."
+        :past: 
+          :one: "antaŭ {0} ma."
+          :other: "antaŭ {0} ma."
+    :wed: 
+      :relative: 
+        -1: "pasinta merkredo"
+        0: "ĉi tiu merkredo"
+        1: "venonta merkredo"
+      :relative_time: 
+        :future: 
+          :one: "post {0} merkredo"
+          :other: "post {0} merkredoj"
+        :past: 
+          :one: "antaŭ {0} merkredo"
+          :other: "antaŭ {0} merkredoj"
+    :wed-narrow: 
+      :relative: 
+        -1: "pasinta me."
+        0: "nuna me."
+        1: "venonta me."
+    :wed-short: 
+      :relative: 
+        -1: "pasinta me."
+        0: "ĉi tiu me."
+        1: "venonta me."
+      :relative_time: 
+        :future: 
+          :one: "post {0} me."
+          :other: "post {0} me."
+        :past: 
+          :one: "antaŭ {0} me."
+          :other: "antaŭ {0} me."
+    :week: 
+      :display_name: semajno
+      :relative: 
+        -1: "pasinta semajno"
+        0: "nuna semajno"
+        1: "venonta semajno"
+      :relative_time: 
+        :future: 
+          :one: "post {0} semajno"
+          :other: "post {0} semajnoj"
+        :past: 
+          :one: "antaŭ {0} semajno"
+          :other: "antaŭ {0} semajnoj"
+    :week-narrow: {}
+    :week-short: 
+      :display_name: sem.
+      :relative: 
+        -1: "pasinta sem."
+        0: "nuna sem."
+        1: "venonta sem."
+      :relative_time: 
+        :future: 
+          :one: "post {0} sem."
+          :other: "post {0} sem."
+        :past: 
+          :one: "antaŭ {0} sem."
+          :other: "antaŭ {0} sem."
+    :weekOfMonth: 
+      :display_name: "semajno de monato"
+    :weekOfMonth-short: 
+      :display_name: "sem. de mon."
+    :weekday: 
+      :display_name: "tago de semajno"
+    :weekday-narrow: 
+      :display_name: st.
+    :weekday-short: 
+      :display_name: semajntago
+    :weekdayOfMonth: 
+      :display_name: "semajntago de monato"
+    :weekdayOfMonth-short: 
+      :display_name: "st. de monato"
+    :year: 
+      :display_name: jaro
+      :relative: 
+        -1: "pasinta jaro"
+        0: "nuna jaro"
+        1: "venonta jaro"
+      :relative_time: 
+        :future: 
+          :one: "post {0} jaro"
+          :other: "post {0} jaroj"
+        :past: 
+          :one: "antaŭ {0} jaro"
+          :other: "antaŭ {0} jaroj"
+    :year-narrow: 
+      :relative: 
+        -1: "pasinta j."
+        0: "nuna j."
+        1: "venonta j."
+      :relative_time: 
+        :future: 
+          :one: "post {0} j."
+          :other: "post {0} j."
+        :past: 
+          :one: "antaŭ {0} j."
+          :other: "antaŭ {0} j."
+    :zone: 
+      :display_name: horzono
+    :zone-narrow: 
+      :display_name: zono

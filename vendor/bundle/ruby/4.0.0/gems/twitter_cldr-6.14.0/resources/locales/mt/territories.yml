@@ -1,0 +1,261 @@
+--- 
+:mt: 
+  :territories: 
+    :ac: "Ascension Island"
+    :ad: Andorra
+    :ae: "l-Emirati Għarab Magħquda"
+    :af: l-Afganistan
+    :ag: "Antigua u Barbuda"
+    :ai: Anguilla
+    :al: l-Albanija
+    :am: l-Armenja
+    :ao: l-Angola
+    :aq: l-Antartika
+    :ar: l-Arġentina
+    :as: "is-Samoa Amerikana"
+    :at: l-Awstrija
+    :au: l-Awstralja
+    :aw: Aruba
+    :ax: "il-Gżejjer Aland"
+    :az: l-Ażerbajġan
+    :ba: il-Bożnija-Ħerzegovina
+    :bb: Barbados
+    :bd: il-Bangladesh
+    :be: il-Belġju
+    :bf: "il-Burkina Faso"
+    :bg: il-Bulgarija
+    :bh: il-Bahrain
+    :bi: il-Burundi
+    :bj: il-Benin
+    :bl: "Saint Barthélemy"
+    :bm: Bermuda
+    :bn: il-Brunei
+    :bo: il-Bolivja
+    :bq: "in-Netherlands tal-Karibew"
+    :br: Il-Brażil
+    :bs: il-Bahamas
+    :bt: il-Bhutan
+    :bv: "Gżira Bouvet"
+    :bw: il-Botswana
+    :by: il-Belarussja
+    :bz: il-Belize
+    :ca: il-Kanada
+    :cc: "Gżejjer Cocos (Keeling)"
+    :cd: "ir-Repubblika Demokratika tal-Kongo"
+    :cf: "ir-Repubblika Ċentru-Afrikana"
+    :cg: "il-Kongo - Brazzaville"
+    :ch: l-Iżvizzera
+    :ci: "il-Kosta tal-Avorju"
+    :ck: "Gżejjer Cook"
+    :cl: iċ-Ċili
+    :cm: il-Kamerun
+    :cn: iċ-Ċina
+    :co: il-Kolombja
+    :cp: "il-Gżira Clipperton"
+    :cr: "il-Costa Rica"
+    :cu: Kuba
+    :cv: "Cape Verde"
+    :cw: Curaçao
+    :cx: "il-Gżira Christmas"
+    :cy: Ċipru
+    :cz: "ir-Repubblika Ċeka"
+    :de: il-Ġermanja
+    :dg: "Diego Garcia"
+    :dj: il-Djibouti
+    :dk: id-Danimarka
+    :dm: Dominica
+    :do: "ir-Repubblika Dominicana"
+    :dz: l-Alġerija
+    :ea: "Ceuta u Melilla"
+    :ec: l-Ekwador
+    :ee: l-Estonja
+    :eg: l-Eġittu
+    :eh: "is-Saħara tal-Punent"
+    :er: l-Eritrea
+    :es: Spanja
+    :et: l-Etjopja
+    :eu: "Unjoni Ewropea"
+    :fi: il-Finlandja
+    :fj: Fiġi
+    :fk: "il-Gżejjer Falkland"
+    :fm: il-Mikroneżja
+    :fo: "il-Gżejjer Faeroe"
+    :fr: Franza
+    :ga: il-Gabon
+    :gb: "ir-Renju Unit"
+    :gd: Grenada
+    :ge: il-Georgia
+    :gf: "il-Guyana Franċiża"
+    :gg: Guernsey
+    :gh: il-Ghana
+    :gi: Ġibiltà
+    :gl: Greenland
+    :gm: il-Gambja
+    :gn: il-Guinea
+    :gp: Guadeloupe
+    :gq: "il-Guinea Ekwatorjali"
+    :gr: il-Greċja
+    :gs: "il-Georgia tan-Nofsinhar u l-Gżejjer Sandwich tan-Nofsinhar"
+    :gt: il-Gwatemala
+    :gu: Guam
+    :gw: il-Guinea-Bissau
+    :gy: il-Guyana
+    :hk: "ir-Reġjun Amministrattiv Speċjali ta’ Hong Kong tar-Repubblika tal-Poplu taċ-Ċina"
+    :hm: "il-Gżejjer Heard u l-Gżejjer McDonald"
+    :hn: il-Honduras
+    :hr: il-Kroazja
+    :ht: il-Haiti
+    :hu: l-Ungerija
+    :ic: "il-Gżejjer Canary"
+    :id: l-Indoneżja
+    :ie: l-Irlanda
+    :il: Iżrael
+    :im: "Isle of Man"
+    :in: l-Indja
+    :iq: l-Iraq
+    :ir: l-Iran
+    :is: l-Iżlanda
+    :it: l-Italja
+    :je: Jersey
+    :jm: il-Ġamajka
+    :jo: il-Ġordan
+    :jp: il-Ġappun
+    :ke: il-Kenja
+    :kg: il-Kirgiżistan
+    :kh: il-Kambodja
+    :ki: Kiribati
+    :km: Comoros
+    :kn: "Saint Kitts u Nevis"
+    :kp: "il-Korea ta’ Fuq"
+    :kr: "il-Korea t’Isfel"
+    :kw: il-Kuwajt
+    :ky: "il-Gżejjer Cayman"
+    :kz: il-Każakistan
+    :la: il-Laos
+    :lb: il-Libanu
+    :lc: "Saint Lucia"
+    :li: il-Liechtenstein
+    :lk: "is-Sri Lanka"
+    :lr: il-Liberja
+    :ls: il-Lesoto
+    :lt: il-Litwanja
+    :lu: il-Lussemburgu
+    :lv: il-Latvja
+    :ly: il-Libja
+    :ma: il-Marokk
+    :mc: Monaco
+    :md: il-Moldova
+    :me: il-Montenegro
+    :mf: "Saint Martin"
+    :mg: Madagascar
+    :mh: "Gżejjer Marshall"
+    :mk: "il-Maċedonja ta’ Fuq"
+    :ml: il-Mali
+    :mm: il-Myanmar/Burma
+    :mn: il-Mongolja
+    :mo: "ir-Reġjun Amministrattiv Speċjali tal-Macao tar-Repubblika tal-Poplu taċ-Ċina"
+    :mp: "Ġżejjer Mariana tat-Tramuntana"
+    :mq: Martinique
+    :mr: il-Mauritania
+    :ms: Montserrat
+    :mt: Malta
+    :mu: Mauritius
+    :mv: il-Maldivi
+    :mw: il-Malawi
+    :mx: il-Messiku
+    :my: il-Malasja
+    :mz: il-Mozambique
+    :na: in-Namibja
+    :nc: "New Caledonia"
+    :ne: in-Niġer
+    :nf: "Gżira Norfolk"
+    :ng: in-Niġerja
+    :ni: in-Nikaragwa
+    :nl: in-Netherlands
+    ? !ruby/symbol "no"
+    : in-Norveġja
+    :np: in-Nepal
+    :nr: Nauru
+    :nu: Niue
+    :nz: "New Zealand"
+    :om: l-Oman
+    :pa: il-Panama
+    :pe: il-Perù
+    :pf: "Polineżja Franċiża"
+    :pg: "Papua New Guinea"
+    :ph: il-Filippini
+    :pk: il-Pakistan
+    :pl: il-Polonja
+    :pm: "Saint Pierre u Miquelon"
+    :pn: "Gżejjer Pitcairn"
+    :pr: "Puerto Rico"
+    :ps: "it-Territorji Palestinjani"
+    :pt: il-Portugall
+    :pw: Palau
+    :py: il-Paragwaj
+    :qa: il-Qatar
+    :re: Réunion
+    :ro: ir-Rumanija
+    :rs: is-Serbja
+    :ru: ir-Russja
+    :rw: ir-Rwanda
+    :sa: "l-Arabja Sawdija"
+    :sb: "il-Gżejjer Solomon"
+    :sc: is-Seychelles
+    :sd: is-Sudan
+    :se: l-Iżvezja
+    :sg: Singapore
+    :sh: "Saint Helena"
+    :si: is-Slovenja
+    :sj: "Svalbard u Jan Mayen"
+    :sk: is-Slovakkja
+    :sl: "Sierra Leone"
+    :sm: "San Marino"
+    :sn: is-Senegal
+    :so: is-Somalja
+    :sr: is-Suriname
+    :ss: "is-Sudan t’Isfel"
+    :st: "São Tomé u Príncipe"
+    :sv: "El Salvador"
+    :sx: "Sint Maarten"
+    :sy: is-Sirja
+    :sz: l-Eswatini
+    :ta: "Tristan da Cunha"
+    :tc: "il-Gżejjer Turks u Caicos"
+    :td: iċ-Chad
+    :tf: "It-Territorji Franċiżi tan-Nofsinhar"
+    :tg: it-Togo
+    :th: it-Tajlandja
+    :tj: it-Taġikistan
+    :tk: it-Tokelau
+    :tl: "Timor Leste"
+    :tm: it-Turkmenistan
+    :tn: it-Tuneżija
+    :to: Tonga
+    :tr: it-Turkija
+    :tt: "Trinidad u Tobago"
+    :tv: Tuvalu
+    :tw: it-Tajwan
+    :tz: it-Tanzanija
+    :ua: l-Ukrajna
+    :ug: l-Uganda
+    :um: "Il-Gżejjer Minuri Mbiegħda tal-Istati Uniti"
+    :us: "l-Istati Uniti"
+    :uy: l-Urugwaj
+    :uz: l-Użbekistan
+    :va: "l-Istat tal-Belt tal-Vatikan"
+    :vc: "Saint Vincent u l-Grenadini"
+    :ve: il-Venezwela
+    :vg: "il-Gżejjer Verġni Brittaniċi"
+    :vi: "il-Gżejjer Verġni tal-Istati Uniti"
+    :vn: il-Vjetnam
+    :vu: Vanuatu
+    :wf: "Wallis u Futuna"
+    :ws: Samoa
+    :xk: il-Kosovo
+    :ye: il-Jemen
+    :yt: Mayotte
+    :za: "l-Afrika t’Isfel"
+    :zm: iż-Żambja
+    :zw: iż-Żimbabwe
+    :zz: "Reġjun Mhux Magħruf"

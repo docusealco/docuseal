@@ -1,0 +1,12 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - ar-t-sat
+    :direction: forward
+    :rules: 
+      - "::sat_Olck-sat_FONIPA ;"
+      - "::und_FONIPA-ar ;"
+    :source: sat
+    :target: ar
+    :variant: ~

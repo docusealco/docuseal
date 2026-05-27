@@ -1,0 +1,372 @@
+--- 
+:kk: 
+  :calendars: 
+    :gregorian: 
+      :additional_formats: 
+        :Bh: "B h"
+        :Bhm: "B h:mm"
+        :Bhms: "B h:mm:ss"
+        :E: ccc
+        :EBhm: "E, B h:mm"
+        :EBhms: "E, B h:mm:ss"
+        :EHm: "E HH:mm"
+        :EHms: "E HH:mm:ss"
+        :Ed: "d, E"
+        :Ehm: "E h:mm a"
+        :Ehms: "E h:mm:ss a"
+        :Gy: "G y 'ж'."
+        :GyMMM: "G y 'ж'. MMM"
+        :GyMMMEd: "G y 'ж'. d MMM, E"
+        :GyMMMd: "G y 'ж'. d MMM"
+        :GyMd: "dd-MM-GGGGG y"
+        :H: HH
+        :Hm: "HH:mm"
+        :Hms: "HH:mm:ss"
+        :Hmsv: "HH:mm:ss v"
+        :Hmv: "HH:mm v"
+        :M: L
+        :MEd: "dd.MM, E"
+        :MMM: LLL
+        :MMMEd: "d MMM, E"
+        :MMMMW: "MMMM 'айының' W-'аптасы'"
+        :MMMMd: "d MMMM"
+        :MMMd: "d MMM"
+        :Md: dd.MM
+        :d: d
+        :h: h a
+        :hm: "h:mm a"
+        :hms: "h:mm:ss a"
+        :hmsv: "h:mm:ss a v"
+        :hmv: "h:mm a v"
+        :ms: "mm:ss"
+        ? !ruby/symbol "y"
+        : "y"
+        :yM: MM.y
+        :yMEd: "dd.MM.y, E"
+        :yMMM: "y 'ж'. MMM"
+        :yMMMEd: "y 'ж'. d MMM, E"
+        :yMMMM: "y 'ж'. MMMM"
+        :yMMMd: "y 'ж'. d MMM"
+        :yMd: dd.MM.y
+        :yQQQ: "y 'ж'. QQQ"
+        :yQQQQ: "y 'ж'. QQQQ"
+        :yw: "Y 'жылдың' w-'аптасы'"
+      :days: 
+        :format: 
+          :abbreviated: 
+            :fri: жм
+            :mon: дс
+            :sat: сб
+            :sun: жс
+            :thu: бс
+            :tue: сс
+            :wed: ср
+          :narrow: 
+            :fri: Ж
+            :mon: Д
+            :sat: С
+            :sun: Ж
+            :thu: Б
+            :tue: С
+            :wed: С
+          :short: 
+            :fri: жм
+            :mon: дс
+            :sat: сб
+            :sun: жс
+            :thu: бс
+            :tue: сс
+            :wed: ср
+          :wide: 
+            :fri: жұма
+            :mon: дүйсенбі
+            :sat: сенбі
+            :sun: жексенбі
+            :thu: бейсенбі
+            :tue: сейсенбі
+            :wed: сәрсенбі
+        :stand-alone: 
+          :abbreviated: 
+            :fri: жм
+            :mon: дс
+            :sat: сб
+            :sun: жс
+            :thu: бс
+            :tue: сс
+            :wed: ср
+          :narrow: 
+            :fri: Ж
+            :mon: Д
+            :sat: С
+            :sun: Ж
+            :thu: Б
+            :tue: С
+            :wed: С
+          :short: 
+            :fri: жм
+            :mon: дс
+            :sat: сб
+            :sun: жс
+            :thu: бс
+            :tue: сс
+            :wed: ср
+          :wide: 
+            :fri: жұма
+            :mon: дүйсенбі
+            :sat: сенбі
+            :sun: жексенбі
+            :thu: бейсенбі
+            :tue: сейсенбі
+            :wed: сәрсенбі
+      :eras: 
+        :abbr: 
+          0: б.з.д.
+          1: б.з.
+        :name: 
+          0: "біздің заманымызға дейін"
+          1: "Біздің заманымыз"
+        :narrow: 
+          0: BCE
+          1: CE
+      :fields: 
+        :day: күн
+        :day-narrow: Day
+        :day-short: Day
+        :dayOfYear: "жылдағы күн"
+        :dayOfYear-narrow: "жылдағы күн"
+        :dayOfYear-short: "жылдағы күн"
+        :dayperiod: АМ/РМ
+        :dayperiod-narrow: АМ/РМ
+        :dayperiod-short: АМ/РМ
+        :era: дәуір
+        :era-narrow: дәуір
+        :era-short: дәуір
+        :hour: сағат
+        :hour-narrow: сағ
+        :hour-short: сағ
+        :minute: минут
+        :minute-narrow: мин
+        :minute-short: мин.
+        :month: ай
+        :month-narrow: ай
+        :month-short: ай
+        :quarter: ширек
+        :quarter-narrow: ш.
+        :quarter-short: ш.
+        :second: секунд
+        :second-narrow: с
+        :second-short: с
+        :week: апта
+        :week-narrow: ап.
+        :week-short: ап.
+        :weekOfMonth: "айдағы апта"
+        :weekOfMonth-narrow: "айдағы апта"
+        :weekOfMonth-short: "айдағы апта"
+        :weekday: "апта күні"
+        :weekday-narrow: "апта күні"
+        :weekday-short: "апта күні"
+        :weekdayOfMonth: "айдағы апта күні"
+        :weekdayOfMonth-narrow: "айдағы ап. күні"
+        :weekdayOfMonth-short: "айдағы ап. күні"
+        :year: жыл
+        :year-narrow: ж.
+        :year-short: ж.
+        :zone: "уақыт белдеуі"
+        :zone-narrow: "уақ. белдеуі"
+        :zone-short: "уақ. белдеуі"
+      :formats: 
+        :date: 
+          :full: 
+            :pattern: "y 'ж'. d MMMM, EEEE"
+          :long: 
+            :pattern: "y 'ж'. d MMMM"
+          :medium: 
+            :pattern: "y 'ж'. dd MMM"
+          :short: 
+            :pattern: dd.MM.yy
+        :datetime: 
+          :full: 
+            :pattern: "{{date}}, {{time}}"
+          :long: 
+            :pattern: "{{date}}, {{time}}"
+          :medium: 
+            :pattern: "{{date}}, {{time}}"
+          :short: 
+            :pattern: "{{date}}, {{time}}"
+        :time: 
+          :full: 
+            :pattern: "HH:mm:ss zzzz"
+          :long: 
+            :pattern: "HH:mm:ss z"
+          :medium: 
+            :pattern: "HH:mm:ss"
+          :short: 
+            :pattern: "HH:mm"
+      :months: 
+        :format: 
+          :abbreviated: 
+            1: қаң.
+            10: қаз.
+            11: қар.
+            12: жел.
+            2: ақп.
+            3: нау.
+            4: сәу.
+            5: мам.
+            6: мау.
+            7: шіл.
+            8: там.
+            9: қыр.
+          :narrow: 
+            1: Қ
+            10: Қ
+            11: Қ
+            12: Ж
+            2: А
+            3: Н
+            4: С
+            5: М
+            6: М
+            7: Ш
+            8: Т
+            9: Қ
+          :wide: 
+            1: қаңтар
+            10: қазан
+            11: қараша
+            12: желтоқсан
+            2: ақпан
+            3: наурыз
+            4: сәуір
+            5: мамыр
+            6: маусым
+            7: шілде
+            8: тамыз
+            9: қыркүйек
+        :stand-alone: 
+          :abbreviated: 
+            1: қаң.
+            10: қаз.
+            11: қар.
+            12: жел.
+            2: ақп.
+            3: нау.
+            4: сәу.
+            5: мам.
+            6: мау.
+            7: шіл.
+            8: там.
+            9: қыр.
+          :narrow: 
+            1: Қ
+            10: Қ
+            11: Қ
+            12: Ж
+            2: А
+            3: Н
+            4: С
+            5: М
+            6: М
+            7: Ш
+            8: Т
+            9: Қ
+          :wide: 
+            1: Қаңтар
+            10: Қазан
+            11: Қараша
+            12: Желтоқсан
+            2: Ақпан
+            3: Наурыз
+            4: Сәуір
+            5: Мамыр
+            6: Маусым
+            7: Шілде
+            8: Тамыз
+            9: Қыркүйек
+      :periods: 
+        :format: 
+          :abbreviated: 
+            :afternoon1: "түстен кейінгі"
+            :am: AM
+            :evening1: кешкі
+            :midnight: "түн жарымы"
+            :morning1: таңғы
+            :night1: түнгі
+            :noon: түскі
+            :pm: PM
+          :narrow: 
+            :afternoon1: "түстен кейінгі"
+            :am: AM
+            :evening1: кешкі
+            :midnight: түнгі
+            :morning1: таңғы
+            :night1: түнгі
+            :noon: түскі
+            :pm: PM
+          :wide: 
+            :afternoon1: "түстен кейінгі"
+            :am: AM
+            :evening1: кешкі
+            :midnight: "түн жарымы"
+            :morning1: таңғы
+            :night1: түнгі
+            :noon: түскі
+            :pm: PM
+        :stand-alone: 
+          :abbreviated: 
+            :afternoon1: "түстен кейін"
+            :am: AM
+            :evening1: кеш
+            :morning1: таң
+            :night1: түн
+            :noon: талтүс
+            :pm: PM
+          :narrow: 
+            :afternoon1: "түстен кейін"
+            :am: AM
+            :evening1: кеш
+            :morning1: таң
+            :night1: түн
+            :noon: талтүс
+            :pm: PM
+          :wide: 
+            :afternoon1: "түстен кейін"
+            :am: AM
+            :evening1: кеш
+            :morning1: таң
+            :night1: түн
+            :noon: талтүс
+            :pm: PM
+      :quarters: 
+        :format: 
+          :abbreviated: 
+            1: "І тқс."
+            2: "ІІ тқс."
+            3: "ІІІ тқс."
+            4: "IV тқс."
+          :narrow: 
+            1: I
+            2: II
+            3: III
+            4: IV
+          :wide: 
+            1: "І тоқсан"
+            2: "ІІ тоқсан"
+            3: "ІІІ тоқсан"
+            4: "IV тоқсан"
+        :stand-alone: 
+          :abbreviated: 
+            1: "І тқс."
+            2: "ІІ тқс."
+            3: "ІІІ тқс."
+            4: "IV тқс."
+          :narrow: 
+            1: I
+            2: II
+            3: III
+            4: IV
+          :wide: 
+            1: "І тоқсан"
+            2: "ІІ тоқсан"
+            3: "ІІІ тоқсан"
+            4: "IV тоқсан"

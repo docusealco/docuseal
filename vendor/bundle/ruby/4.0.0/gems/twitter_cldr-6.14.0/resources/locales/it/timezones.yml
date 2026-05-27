@@ -1,0 +1,890 @@
+--- 
+:it: 
+  :formats: 
+    :fallback_formats: 
+      :generic: "{1} ({0})"
+    :gmt_formats: 
+      :generic: "GMT{0}"
+    :gmt_zero_formats: 
+      :generic: GMT
+    :hour_formats: 
+      :generic: "+HH:mm;-HH:mm"
+    :region_formats: 
+      :daylight: "Ora legale: {0}"
+      :generic: "Ora {0}"
+      :standard: "Ora standard: {0}"
+  :metazones: 
+    :Afghanistan: 
+      :long: 
+        :standard: "Ora dell’Afghanistan"
+    :Africa_Central: 
+      :long: 
+        :standard: "Ora dell’Africa centrale"
+    :Africa_Eastern: 
+      :long: 
+        :standard: "Ora dell’Africa orientale"
+    :Africa_Southern: 
+      :long: 
+        :standard: "Ora dell’Africa meridionale"
+    :Africa_Western: 
+      :long: 
+        :daylight: "Ora legale dell’Africa occidentale"
+        :generic: "Ora dell’Africa occidentale"
+        :standard: "Ora standard dell’Africa occidentale"
+    :Alaska: 
+      :long: 
+        :daylight: "Ora legale dell’Alaska"
+        :generic: "Ora dell’Alaska"
+        :standard: "Ora standard dell’Alaska"
+    :Amazon: 
+      :long: 
+        :daylight: "Ora legale dell’Amazzonia"
+        :generic: "Ora dell’Amazzonia"
+        :standard: "Ora standard dell’Amazzonia"
+    :America_Central: 
+      :long: 
+        :daylight: "Ora legale centrale USA"
+        :generic: "Ora centrale USA"
+        :standard: "Ora standard centrale USA"
+    :America_Eastern: 
+      :long: 
+        :daylight: "Ora legale orientale USA"
+        :generic: "Ora orientale USA"
+        :standard: "Ora standard orientale USA"
+    :America_Mountain: 
+      :long: 
+        :daylight: "Ora legale Montagne Rocciose USA"
+        :generic: "Ora Montagne Rocciose USA"
+        :standard: "Ora standard Montagne Rocciose USA"
+    :America_Pacific: 
+      :long: 
+        :daylight: "Ora legale del Pacifico USA"
+        :generic: "Ora del Pacifico USA"
+        :standard: "Ora standard del Pacifico USA"
+    :Anadyr: 
+      :long: 
+        :daylight: "Ora legale di Anadyr"
+        :generic: "Ora di Anadyr"
+        :standard: "Ora standard di Anadyr"
+    :Apia: 
+      :long: 
+        :daylight: "Ora legale di Apia"
+        :generic: "Ora di Apia"
+        :standard: "Ora standard di Apia"
+    :Arabian: 
+      :long: 
+        :daylight: "Ora legale araba"
+        :generic: "Ora araba"
+        :standard: "Ora standard araba"
+    :Argentina: 
+      :long: 
+        :daylight: "Ora legale dell’Argentina"
+        :generic: "Ora dell’Argentina"
+        :standard: "Ora standard dell’Argentina"
+    :Argentina_Western: 
+      :long: 
+        :daylight: "Ora legale dell’Argentina occidentale"
+        :generic: "Ora dell’Argentina occidentale"
+        :standard: "Ora standard dell’Argentina occidentale"
+    :Armenia: 
+      :long: 
+        :daylight: "Ora legale dell’Armenia"
+        :generic: "Ora dell’Armenia"
+        :standard: "Ora standard dell’Armenia"
+    :Atlantic: 
+      :long: 
+        :daylight: "Ora legale dell’Atlantico"
+        :generic: "Ora dell’Atlantico"
+        :standard: "Ora standard dell’Atlantico"
+    :Australia_Central: 
+      :long: 
+        :daylight: "Ora legale dell’Australia centrale"
+        :generic: "Ora dell’Australia centrale"
+        :standard: "Ora standard dell’Australia centrale"
+    :Australia_CentralWestern: 
+      :long: 
+        :daylight: "Ora legale dell’Australia centroccidentale"
+        :generic: "Ora dell’Australia centroccidentale"
+        :standard: "Ora standard dell’Australia centroccidentale"
+    :Australia_Eastern: 
+      :long: 
+        :daylight: "Ora legale dell’Australia orientale"
+        :generic: "Ora dell’Australia orientale"
+        :standard: "Ora standard dell’Australia orientale"
+    :Australia_Western: 
+      :long: 
+        :daylight: "Ora legale dell’Australia occidentale"
+        :generic: "Ora dell’Australia occidentale"
+        :standard: "Ora standard dell’Australia occidentale"
+    :Azerbaijan: 
+      :long: 
+        :daylight: "Ora legale dell’Azerbaigian"
+        :generic: "Ora dell’Azerbaigian"
+        :standard: "Ora standard dell’Azerbaigian"
+    :Azores: 
+      :long: 
+        :daylight: "Ora legale delle Azzorre"
+        :generic: "Ora delle Azzorre"
+        :standard: "Ora standard delle Azzorre"
+    :Bangladesh: 
+      :long: 
+        :daylight: "Ora legale del Bangladesh"
+        :generic: "Ora del Bangladesh"
+        :standard: "Ora standard del Bangladesh"
+    :Bhutan: 
+      :long: 
+        :standard: "Ora del Bhutan"
+    :Bolivia: 
+      :long: 
+        :standard: "Ora della Bolivia"
+    :Brasilia: 
+      :long: 
+        :daylight: "Ora legale di Brasilia"
+        :generic: "Ora di Brasilia"
+        :standard: "Ora standard di Brasilia"
+    :Brunei: 
+      :long: 
+        :standard: "Ora del Brunei Darussalam"
+    :Cape_Verde: 
+      :long: 
+        :daylight: "Ora legale di Capo Verde"
+        :generic: "Ora di Capo Verde"
+        :standard: "Ora standard di Capo Verde"
+    :Chamorro: 
+      :long: 
+        :standard: "Ora di Chamorro"
+    :Chatham: 
+      :long: 
+        :daylight: "Ora legale delle Chatham"
+        :generic: "Ora delle Chatham"
+        :standard: "Ora standard delle Chatham"
+    :Chile: 
+      :long: 
+        :daylight: "Ora legale del Cile"
+        :generic: "Ora del Cile"
+        :standard: "Ora standard del Cile"
+    :China: 
+      :long: 
+        :daylight: "Ora legale della Cina"
+        :generic: "Ora della Cina"
+        :standard: "Ora standard della Cina"
+    :Christmas: 
+      :long: 
+        :standard: "Ora dell’Isola Christmas"
+    :Cocos: 
+      :long: 
+        :standard: "Ora delle Isole Cocos"
+    :Colombia: 
+      :long: 
+        :daylight: "Ora legale della Colombia"
+        :generic: "Ora della Colombia"
+        :standard: "Ora standard della Colombia"
+    :Cook: 
+      :long: 
+        :daylight: "Ora legale media delle isole Cook"
+        :generic: "Ora delle isole Cook"
+        :standard: "Ora standard delle isole Cook"
+    :Cuba: 
+      :long: 
+        :daylight: "Ora legale di Cuba"
+        :generic: "Ora di Cuba"
+        :standard: "Ora standard di Cuba"
+    :Davis: 
+      :long: 
+        :standard: "Ora di Davis"
+    :DumontDUrville: 
+      :long: 
+        :standard: "Ora di Dumont-d’Urville"
+    :East_Timor: 
+      :long: 
+        :standard: "Ora di Timor Est"
+    :Easter: 
+      :long: 
+        :daylight: "Ora legale dell’Isola di Pasqua"
+        :generic: "Ora dell’Isola di Pasqua"
+        :standard: "Ora standard dell’Isola di Pasqua"
+    :Ecuador: 
+      :long: 
+        :standard: "Ora dell’Ecuador"
+    :Europe_Central: 
+      :long: 
+        :daylight: "Ora legale dell’Europa centrale"
+        :generic: "Ora dell’Europa centrale"
+        :standard: "Ora standard dell’Europa centrale"
+      :short: 
+        :daylight: CEST
+        :generic: CET
+        :standard: CET
+    :Europe_Eastern: 
+      :long: 
+        :daylight: "Ora legale dell’Europa orientale"
+        :generic: "Ora dell’Europa orientale"
+        :standard: "Ora standard dell’Europa orientale"
+      :short: 
+        :daylight: EEST
+        :generic: EET
+        :standard: EET
+    :Europe_Further_Eastern: 
+      :long: 
+        :standard: "Ora dell’Europa orientale (Kaliningrad)"
+    :Europe_Western: 
+      :long: 
+        :daylight: "Ora legale dell’Europa occidentale"
+        :generic: "Ora dell’Europa occidentale"
+        :standard: "Ora standard dell’Europa occidentale"
+      :short: 
+        :daylight: WEST
+        :generic: WET
+        :standard: WET
+    :Falkland: 
+      :long: 
+        :daylight: "Ora legale delle Isole Falkland"
+        :generic: "Ora delle Isole Falkland"
+        :standard: "Ora standard delle Isole Falkland"
+    :Fiji: 
+      :long: 
+        :daylight: "Ora legale delle Figi"
+        :generic: "Ora delle Figi"
+        :standard: "Ora standard delle Figi"
+    :French_Guiana: 
+      :long: 
+        :standard: "Ora della Guiana francese"
+    :French_Southern: 
+      :long: 
+        :standard: "Ora delle Terre australi e antartiche francesi"
+    :GMT: 
+      :long: 
+        :standard: "Ora del meridiano di Greenwich"
+    :Galapagos: 
+      :long: 
+        :standard: "Ora delle Galapagos"
+    :Gambier: 
+      :long: 
+        :standard: "Ora di Gambier"
+    :Georgia: 
+      :long: 
+        :daylight: "Ora legale della Georgia"
+        :generic: "Ora della Georgia"
+        :standard: "Ora standard della Georgia"
+    :Gilbert_Islands: 
+      :long: 
+        :standard: "Ora delle isole Gilbert"
+    :Greenland_Eastern: 
+      :long: 
+        :daylight: "Ora legale della Groenlandia orientale"
+        :generic: "Ora della Groenlandia orientale"
+        :standard: "Ora standard della Groenlandia orientale"
+    :Greenland_Western: 
+      :long: 
+        :daylight: "Ora legale della Groenlandia occidentale"
+        :generic: "Ora della Groenlandia occidentale"
+        :standard: "Ora standard della Groenlandia occidentale"
+    :Gulf: 
+      :long: 
+        :standard: "Ora del Golfo"
+    :Guyana: 
+      :long: 
+        :standard: "Ora della Guyana"
+    :Hawaii_Aleutian: 
+      :long: 
+        :daylight: "Ora legale delle Isole Hawaii-Aleutine"
+        :generic: "Ora delle isole Hawaii-Aleutine"
+        :standard: "Ora standard delle Isole Hawaii-Aleutine"
+    :Hong_Kong: 
+      :long: 
+        :daylight: "Ora legale di Hong Kong"
+        :generic: "Ora di Hong Kong"
+        :standard: "Ora standard di Hong Kong"
+    :Hovd: 
+      :long: 
+        :daylight: "Ora legale di Hovd"
+        :generic: "Ora di Hovd"
+        :standard: "Ora standard di Hovd"
+    :India: 
+      :long: 
+        :standard: "Ora standard dell’India"
+    :Indian_Ocean: 
+      :long: 
+        :standard: "Ora dell’Oceano Indiano"
+    :Indochina: 
+      :long: 
+        :standard: "Ora dell’Indocina"
+    :Indonesia_Central: 
+      :long: 
+        :standard: "Ora dell’Indonesia centrale"
+    :Indonesia_Eastern: 
+      :long: 
+        :standard: "Ora dell’Indonesia orientale"
+    :Indonesia_Western: 
+      :long: 
+        :standard: "Ora dell’Indonesia occidentale"
+    :Iran: 
+      :long: 
+        :daylight: "Ora legale dell’Iran"
+        :generic: "Ora dell’Iran"
+        :standard: "Ora standard dell’Iran"
+    :Irkutsk: 
+      :long: 
+        :daylight: "Ora legale di Irkutsk"
+        :generic: "Ora di Irkutsk"
+        :standard: "Ora standard di Irkutsk"
+    :Israel: 
+      :long: 
+        :daylight: "Ora legale di Israele"
+        :generic: "Ora di Israele"
+        :standard: "Ora standard di Israele"
+    :Japan: 
+      :long: 
+        :daylight: "Ora legale del Giappone"
+        :generic: "Ora del Giappone"
+        :standard: "Ora standard del Giappone"
+    :Kamchatka: 
+      :long: 
+        :daylight: "Ora legale di Petropavlovsk-Kamchatski"
+        :generic: "Ora di Petropavlovsk-Kamchatski"
+        :standard: "Ora standard di Petropavlovsk-Kamchatski"
+    :Kazakhstan: 
+      :long: 
+        :standard: "Ora del Kazakistan"
+    :Kazakhstan_Eastern: 
+      :long: 
+        :standard: "Ora del Kazakistan orientale"
+    :Kazakhstan_Western: 
+      :long: 
+        :standard: "Ora del Kazakistan occidentale"
+    :Korea: 
+      :long: 
+        :daylight: "Ora legale coreana"
+        :generic: "Ora coreana"
+        :standard: "Ora standard coreana"
+    :Kosrae: 
+      :long: 
+        :standard: "Ora del Kosrae"
+    :Krasnoyarsk: 
+      :long: 
+        :daylight: "Ora legale di Krasnoyarsk"
+        :generic: "Ora di Krasnoyarsk"
+        :standard: "Ora standard di Krasnoyarsk"
+    :Kyrgystan: 
+      :long: 
+        :standard: "Ora del Kirghizistan"
+    :Line_Islands: 
+      :long: 
+        :standard: "Ora delle Sporadi equatoriali"
+    :Lord_Howe: 
+      :long: 
+        :daylight: "Ora legale di Lord Howe"
+        :generic: "Ora di Lord Howe"
+        :standard: "Ora standard di Lord Howe"
+    :Macau: 
+      :long: 
+        :daylight: "Ora legale di Macao"
+        :generic: "Ora di Macao"
+        :standard: "Ora standard di Macao"
+    :Magadan: 
+      :long: 
+        :daylight: "Ora legale di Magadan"
+        :generic: "Ora di Magadan"
+        :standard: "Ora standard di Magadan"
+    :Malaysia: 
+      :long: 
+        :standard: "Ora della Malesia"
+    :Maldives: 
+      :long: 
+        :standard: "Ora delle Maldive"
+    :Marquesas: 
+      :long: 
+        :standard: "Ora delle Marchesi"
+    :Marshall_Islands: 
+      :long: 
+        :standard: "Ora delle Isole Marshall"
+    :Mauritius: 
+      :long: 
+        :daylight: "Ora legale delle Mauritius"
+        :generic: "Ora delle Mauritius"
+        :standard: "Ora standard delle Mauritius"
+    :Mawson: 
+      :long: 
+        :standard: "Ora di Mawson"
+    :Mexico_Pacific: 
+      :long: 
+        :daylight: "Ora legale del Pacifico (Messico)"
+        :generic: "Ora del Pacifico (Messico)"
+        :standard: "Ora standard del Pacifico (Messico)"
+    :Mongolia: 
+      :long: 
+        :daylight: "Ora legale di Ulan Bator"
+        :generic: "Ora di Ulan Bator"
+        :standard: "Ora standard di Ulan Bator"
+    :Moscow: 
+      :long: 
+        :daylight: "Ora legale di Mosca"
+        :generic: "Ora di Mosca"
+        :standard: "Ora standard di Mosca"
+    :Myanmar: 
+      :long: 
+        :standard: "Ora della Birmania"
+    :Nauru: 
+      :long: 
+        :standard: "Ora di Nauru"
+    :Nepal: 
+      :long: 
+        :standard: "Ora del Nepal"
+    :New_Caledonia: 
+      :long: 
+        :daylight: "Ora legale della Nuova Caledonia"
+        :generic: "Ora della Nuova Caledonia"
+        :standard: "Ora standard della Nuova Caledonia"
+    :New_Zealand: 
+      :long: 
+        :daylight: "Ora legale della Nuova Zelanda"
+        :generic: "Ora della Nuova Zelanda"
+        :standard: "Ora standard della Nuova Zelanda"
+    :Newfoundland: 
+      :long: 
+        :daylight: "Ora legale di Terranova"
+        :generic: "Ora di Terranova"
+        :standard: "Ora standard di Terranova"
+    :Niue: 
+      :long: 
+        :standard: "Ora di Niue"
+    :Norfolk: 
+      :long: 
+        :daylight: "Ora legale delle Isole Norfolk"
+        :generic: "Ora delle Isole Norfolk"
+        :standard: "Ora standard delle Isole Norfolk"
+    :Noronha: 
+      :long: 
+        :daylight: "Ora legale di Fernando de Noronha"
+        :generic: "Ora di Fernando de Noronha"
+        :standard: "Ora standard di Fernando de Noronha"
+    :Novosibirsk: 
+      :long: 
+        :daylight: "Ora legale di Novosibirsk"
+        :generic: "Ora di Novosibirsk"
+        :standard: "Ora standard di Novosibirsk"
+    :Omsk: 
+      :long: 
+        :daylight: "Ora legale di Omsk"
+        :generic: "Ora di Omsk"
+        :standard: "Ora standard di Omsk"
+    :Pakistan: 
+      :long: 
+        :daylight: "Ora legale del Pakistan"
+        :generic: "Ora del Pakistan"
+        :standard: "Ora standard del Pakistan"
+    :Palau: 
+      :long: 
+        :standard: "Ora di Palau"
+    :Papua_New_Guinea: 
+      :long: 
+        :standard: "Ora della Papua Nuova Guinea"
+    :Paraguay: 
+      :long: 
+        :daylight: "Ora legale del Paraguay"
+        :generic: "Ora del Paraguay"
+        :standard: "Ora standard del Paraguay"
+    :Peru: 
+      :long: 
+        :daylight: "Ora legale del Perù"
+        :generic: "Ora del Perù"
+        :standard: "Ora standard del Perù"
+    :Philippines: 
+      :long: 
+        :daylight: "Ora legale delle Filippine"
+        :generic: "Ora delle Filippine"
+        :standard: "Ora standard delle Filippine"
+    :Phoenix_Islands: 
+      :long: 
+        :standard: "Ora delle Isole della Fenice"
+    :Pierre_Miquelon: 
+      :long: 
+        :daylight: "Ora legale di Saint-Pierre e Miquelon"
+        :generic: "Ora di Saint-Pierre e Miquelon"
+        :standard: "Ora standard di Saint-Pierre e Miquelon"
+    :Pitcairn: 
+      :long: 
+        :standard: "Ora delle Pitcairn"
+    :Ponape: 
+      :long: 
+        :standard: "Ora di Pohnpei"
+    :Pyongyang: 
+      :long: 
+        :standard: "Ora di Pyongyang"
+    :Reunion: 
+      :long: 
+        :standard: "Ora di Riunione"
+    :Rothera: 
+      :long: 
+        :standard: "Ora di Rothera"
+    :Sakhalin: 
+      :long: 
+        :daylight: "Ora legale di Sakhalin"
+        :generic: "Ora di Sakhalin"
+        :standard: "Ora standard di Sakhalin"
+    :Samara: 
+      :long: 
+        :daylight: "Ora legale di Samara"
+        :generic: "Ora di Samara"
+        :standard: "Ora standard di Samara"
+    :Samoa: 
+      :long: 
+        :daylight: "Ora legale di Samoa"
+        :generic: "Ora di Samoa"
+        :standard: "Ora standard di Samoa"
+    :Seychelles: 
+      :long: 
+        :standard: "Ora delle Seychelles"
+    :Singapore: 
+      :long: 
+        :standard: "Ora di Singapore"
+    :Solomon: 
+      :long: 
+        :standard: "Ora delle Isole Salomone"
+    :South_Georgia: 
+      :long: 
+        :standard: "Ora della Georgia del Sud"
+    :Suriname: 
+      :long: 
+        :standard: "Ora del Suriname"
+    :Syowa: 
+      :long: 
+        :standard: "Ora di Syowa"
+    :Tahiti: 
+      :long: 
+        :standard: "Ora di Tahiti"
+    :Taipei: 
+      :long: 
+        :daylight: "Ora legale di Taipei"
+        :generic: "Ora di Taipei"
+        :standard: "Ora standard di Taipei"
+    :Tajikistan: 
+      :long: 
+        :standard: "Ora del Tagikistan"
+    :Tokelau: 
+      :long: 
+        :standard: "Ora di Tokelau"
+    :Tonga: 
+      :long: 
+        :daylight: "Ora legale di Tonga"
+        :generic: "Ora di Tonga"
+        :standard: "Ora standard di Tonga"
+    :Truk: 
+      :long: 
+        :standard: "Ora del Chuuk"
+    :Turkmenistan: 
+      :long: 
+        :daylight: "Ora legale del Turkmenistan"
+        :generic: "Ora del Turkmenistan"
+        :standard: "Ora standard del Turkmenistan"
+    :Tuvalu: 
+      :long: 
+        :standard: "Ora di Tuvalu"
+    :Uruguay: 
+      :long: 
+        :daylight: "Ora legale dell’Uruguay"
+        :generic: "Ora dell’Uruguay"
+        :standard: "Ora standard dell’Uruguay"
+    :Uzbekistan: 
+      :long: 
+        :daylight: "Ora legale dell’Uzbekistan"
+        :generic: "Ora dell’Uzbekistan"
+        :standard: "Ora standard dell’Uzbekistan"
+    :Vanuatu: 
+      :long: 
+        :daylight: "Ora legale del Vanuatu"
+        :generic: "Ora del Vanuatu"
+        :standard: "Ora standard del Vanuatu"
+    :Venezuela: 
+      :long: 
+        :standard: "Ora del Venezuela"
+    :Vladivostok: 
+      :long: 
+        :daylight: "Ora legale di Vladivostok"
+        :generic: "Ora di Vladivostok"
+        :standard: "Ora standard di Vladivostok"
+    :Volgograd: 
+      :long: 
+        :daylight: "Ora legale di Volgograd"
+        :generic: "Ora di Volgograd"
+        :standard: "Ora standard di Volgograd"
+    :Vostok: 
+      :long: 
+        :standard: "Ora di Vostok"
+    :Wake: 
+      :long: 
+        :standard: "Ora dell’Isola di Wake"
+    :Wallis: 
+      :long: 
+        :standard: "Ora di Wallis e Futuna"
+    :Yakutsk: 
+      :long: 
+        :daylight: "Ora legale di Yakutsk"
+        :generic: "Ora di Yakutsk"
+        :standard: "Ora standard di Yakutsk"
+    :Yekaterinburg: 
+      :long: 
+        :daylight: "Ora legale di Ekaterinburg"
+        :generic: "Ora di Ekaterinburg"
+        :standard: "Ora standard di Ekaterinburg"
+    :Yukon: 
+      :long: 
+        :standard: "Ora dello Yukon"
+  :timezones: 
+    :Africa/Addis_Ababa: 
+      :city: "Addis Abeba"
+    :Africa/Algiers: 
+      :city: Algeri
+    :Africa/Asmera: 
+      :city: Asmara
+    :Africa/Cairo: 
+      :city: "Il Cairo"
+    :Africa/Djibouti: 
+      :city: Gibuti
+    :Africa/El_Aaiun: 
+      :city: "El Ayun"
+    :Africa/Juba: 
+      :city: Giuba
+    :Africa/Khartoum: 
+      :city: Khartum
+    :Africa/Lome: 
+      :city: Lomé
+    :Africa/Mogadishu: 
+      :city: Mogadiscio
+    :Africa/Ndjamena: 
+      :city: N’Djamena
+    :Africa/Sao_Tome: 
+      :city: "São Tomé"
+    :Africa/Tunis: 
+      :city: Tunisi
+    :America/Argentina/Tucuman: 
+      :city: Tucumán
+    :America/Asuncion: 
+      :city: Asunción
+    :America/Bahia_Banderas: 
+      :city: "Bahía de Banderas"
+    :America/Bogota: 
+      :city: Bogotá
+    :America/Cancun: 
+      :city: Cancún
+    :America/Cayenne: 
+      :city: Caienna
+    :America/Ciudad_Juarez: 
+      :city: "Ciudad Juárez"
+    :America/Coral_Harbour: 
+      :city: Atikokan
+    :America/Curacao: 
+      :city: Curaçao
+    :America/Godthab: 
+      :city: Nuuk
+    :America/Guadeloupe: 
+      :city: Guadalupa
+    :America/Havana: 
+      :city: L’Avana
+    :America/Indiana/Knox: 
+      :city: "Knox, Indiana"
+    :America/Indiana/Marengo: 
+      :city: "Marengo, Indiana"
+    :America/Indiana/Petersburg: 
+      :city: "Petersburg, Indiana"
+    :America/Indiana/Tell_City: 
+      :city: "Tell City, Indiana"
+    :America/Indiana/Vevay: 
+      :city: "Vevay, Indiana"
+    :America/Indiana/Vincennes: 
+      :city: "Vincennes, Indiana"
+    :America/Indiana/Winamac: 
+      :city: "Winamac, Indiana"
+    :America/Jamaica: 
+      :city: Giamaica
+    :America/Kentucky/Monticello: 
+      :city: "Monticello, Kentucky"
+    :America/Lower_Princes: 
+      :city: "Lower Prince’s Quarter"
+    :America/Martinique: 
+      :city: Martinica
+    :America/Merida: 
+      :city: Mérida
+    :America/Mexico_City: 
+      :city: "Città del Messico"
+    :America/North_Dakota/Beulah: 
+      :city: "Beulah, Dakota del nord"
+    :America/North_Dakota/Center: 
+      :city: "Center, Dakota del nord"
+    :America/North_Dakota/New_Salem: 
+      :city: "New Salem, Dakota del nord"
+    :America/Puerto_Rico: 
+      :city: Portorico
+    :America/Santarem: 
+      :city: Santarém
+    :America/Sao_Paulo: 
+      :city: "San Paolo"
+    :America/Scoresbysund: 
+      :city: Ittoqqortoormiit
+    :America/St_Barthelemy: 
+      :city: Saint-Barthélemy
+    :America/St_Johns: 
+      :city: "St. John’s"
+    :America/St_Kitts: 
+      :city: "St. Kitts"
+    :America/St_Lucia: 
+      :city: "Santa Lucia"
+    :America/St_Thomas: 
+      :city: "Saint Thomas"
+    :America/St_Vincent: 
+      :city: "Saint Vincent"
+    :Antarctica/DumontDUrville: 
+      :city: "Dumont d’Urville"
+    :Asia/Anadyr: 
+      :city: Anadyr’
+    :Asia/Aqtobe: 
+      :city: Aqtöbe
+    :Asia/Bahrain: 
+      :city: Bahrein
+    :Asia/Calcutta: 
+      :city: Calcutta
+    :Asia/Chita: 
+      :city: Čita
+    :Asia/Damascus: 
+      :city: Damasco
+    :Asia/Dhaka: 
+      :city: Dacca
+    :Asia/Famagusta: 
+      :city: Famagosta
+    :Asia/Jakarta: 
+      :city: Giacarta
+    :Asia/Jerusalem: 
+      :city: Gerusalemme
+    :Asia/Katmandu: 
+      :city: Kathmandu
+    :Asia/Khandyga: 
+      :city: Chandyga
+    :Asia/Krasnoyarsk: 
+      :city: Krasnojarsk
+    :Asia/Macau: 
+      :city: Macao
+    :Asia/Muscat: 
+      :city: Mascate
+    :Asia/Novokuznetsk: 
+      :city: Novokuzneck
+    :Asia/Rangoon: 
+      :city: Rangoon
+    :Asia/Riyadh: 
+      :city: Riyad
+    :Asia/Saigon: 
+      :city: "Ho Chi Minh"
+    :Asia/Sakhalin: 
+      :city: Sachalin
+    :Asia/Samarkand: 
+      :city: Samarcanda
+    :Asia/Seoul: 
+      :city: Seul
+    :Asia/Tehran: 
+      :city: Teheran
+    :Asia/Ulaanbaatar: 
+      :city: "Ulan Bator"
+    :Asia/Ust-Nera: 
+      :city: Ust’-Nera
+    :Asia/Yakutsk: 
+      :city: Jakutsk
+    :Asia/Yekaterinburg: 
+      :city: Ekaterinburg
+    :Atlantic/Azores: 
+      :city: Azzorre
+    :Atlantic/Canary: 
+      :city: Canarie
+    :Atlantic/Cape_Verde: 
+      :city: "Capo Verde"
+    :Atlantic/Faeroe: 
+      :city: "Isole Fær Øer"
+    :Atlantic/Reykjavik: 
+      :city: Reykjavík
+    :Atlantic/South_Georgia: 
+      :city: "Georgia del Sud"
+    :Atlantic/St_Helena: 
+      :city: Sant’Elena
+    :Etc/UTC: 
+      :long: 
+        :standard: "Tempo coordinato universale"
+      :short: 
+        :standard: UTC
+    :Etc/Unknown: 
+      :city: "Città sconosciuta"
+    :Europe/Athens: 
+      :city: Atene
+    :Europe/Belgrade: 
+      :city: Belgrado
+    :Europe/Berlin: 
+      :city: Berlino
+    :Europe/Brussels: 
+      :city: Bruxelles
+    :Europe/Bucharest: 
+      :city: Bucarest
+    :Europe/Busingen: 
+      :city: Büsingen
+    :Europe/Copenhagen: 
+      :city: Copenaghen
+    :Europe/Dublin: 
+      :city: Dublino
+      :long: 
+        :daylight: "Ora legale dell’Irlanda"
+    :Europe/Gibraltar: 
+      :city: Gibilterra
+    :Europe/Isle_of_Man: 
+      :city: "Isola di Man"
+    :Europe/Kiev: 
+      :city: Kiev
+    :Europe/Lisbon: 
+      :city: Lisbona
+    :Europe/Ljubljana: 
+      :city: Lubiana
+    :Europe/London: 
+      :city: Londra
+      :long: 
+        :daylight: "Ora legale del Regno Unito"
+    :Europe/Luxembourg: 
+      :city: Lussemburgo
+    :Europe/Moscow: 
+      :city: Mosca
+    :Europe/Paris: 
+      :city: Parigi
+    :Europe/Prague: 
+      :city: Praga
+    :Europe/Rome: 
+      :city: Roma
+    :Europe/Simferopol: 
+      :city: Sinferopoli
+    :Europe/Stockholm: 
+      :city: Stoccolma
+    :Europe/Tirane: 
+      :city: Tirana
+    :Europe/Vatican: 
+      :city: "Città del Vaticano"
+    :Europe/Warsaw: 
+      :city: Varsavia
+    :Europe/Zagreb: 
+      :city: Zagabria
+    :Europe/Zurich: 
+      :city: Zurigo
+    :Indian/Comoro: 
+      :city: Comore
+    :Indian/Maldives: 
+      :city: Maldive
+    :Indian/Reunion: 
+      :city: "La Riunione"
+    :Pacific/Easter: 
+      :city: Pasqua
+    :Pacific/Enderbury: 
+      :city: Enderbury
+    :Pacific/Fiji: 
+      :city: Figi
+    :Pacific/Honolulu: 
+      :city: Honolulu
+    :Pacific/Kanton: 
+      :city: Canton
+    :Pacific/Marquesas: 
+      :city: Marchesi
+    :Pacific/Ponape: 
+      :city: Pohnpei
+    :Pacific/Truk: 
+      :city: Chuuk

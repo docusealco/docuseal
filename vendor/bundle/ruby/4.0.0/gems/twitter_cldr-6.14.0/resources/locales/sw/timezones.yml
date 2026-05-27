@@ -1,0 +1,721 @@
+--- 
+:sw: 
+  :formats: 
+    :fallback_formats: 
+      :generic: "{1} ({0})"
+    :gmt_formats: 
+      :generic: "GMT {0}"
+    :gmt_zero_formats: 
+      :generic: GMT
+    :hour_formats: 
+      :generic: "+HH:mm;-HH:mm"
+    :region_formats: 
+      :daylight: "Saa za Mchana za {0}"
+      :generic: "Saa za {0}"
+      :standard: "Saa za wastani za {0}"
+  :metazones: 
+    :Afghanistan: 
+      :long: 
+        :standard: "Saa za Afghanistan"
+    :Africa_Central: 
+      :long: 
+        :standard: "Saa za Afrika ya Kati"
+    :Africa_Eastern: 
+      :long: 
+        :standard: "Saa za Afrika Mashariki"
+    :Africa_Southern: 
+      :long: 
+        :standard: "Saa za Wastani za Afrika Kusini"
+    :Africa_Western: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Afrika Magharibi"
+        :generic: "Saa za Afrika Magharibi"
+        :standard: "Saa za Wastani za Afrika Magharibi"
+    :Alaska: 
+      :long: 
+        :daylight: "Saa za Mchana za Alaska"
+        :generic: "Saa za Alaska"
+        :standard: "Saa za Wastani za Alaska"
+    :Amazon: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Amazon"
+        :generic: "Saa za Amazon"
+        :standard: "Saa za Wastani za Amazon"
+    :America_Central: 
+      :long: 
+        :daylight: "Saa za Mchana za Kati"
+        :generic: "Saa za Kati"
+        :standard: "Saa za Wastani za Kati"
+    :America_Eastern: 
+      :long: 
+        :daylight: "Saa za Mchana za Mashariki"
+        :generic: "Saa za Mashariki"
+        :standard: "Saa za Wastani za Mashariki"
+    :America_Mountain: 
+      :long: 
+        :daylight: "Saa za Mchana za Mountain"
+        :generic: "Saa za Mountain"
+        :standard: "Saa za Wastani za Mountain"
+    :America_Pacific: 
+      :long: 
+        :daylight: "Saa za Mchana za Pasifiki"
+        :generic: "Saa za Pasifiki"
+        :standard: "Saa za Wastani za Pasifiki"
+    :Anadyr: 
+      :long: 
+        :daylight: "Saa za Kiangazi za Anadyr"
+        :generic: "Saa za Anadyr"
+        :standard: "Saa za Wastani za Anadyr"
+    :Apia: 
+      :long: 
+        :daylight: "Saa za Mchana za Apia"
+        :generic: "Saa za Apia"
+        :standard: "Saa za Wastani za Apia"
+    :Arabian: 
+      :long: 
+        :daylight: "Saa za Mchana za Arabiani"
+        :generic: "Saa za Uarabuni"
+        :standard: "Saa za Wastani za Uarabuni"
+    :Argentina: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Argentina"
+        :generic: "Saa za Argentina"
+        :standard: "Saa za Wastani za Argentina"
+    :Argentina_Western: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Magharibi mwa Argentina"
+        :generic: "Saa za Magharibi mwa Argentina"
+        :standard: "Saa za Wastani za Magharibi mwa Argentina"
+    :Armenia: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Armenia"
+        :generic: "Saa za Armenia"
+        :standard: "Saa za Wastani za Armenia"
+    :Atlantic: 
+      :long: 
+        :daylight: "Saa za Mchana za Atlantiki"
+        :generic: "Saa za Atlantiki"
+        :standard: "Saa za Wastani za Atlantiki"
+    :Australia_Central: 
+      :long: 
+        :daylight: "Saa za Mchana za Australia ya Kati"
+        :generic: "Saa za Australia ya Kati"
+        :standard: "Saa za Wastani za Australia ya Kati"
+    :Australia_CentralWestern: 
+      :long: 
+        :daylight: "Saa za Mchana za Magharibi ya Kati ya Australia"
+        :generic: "Saa za Magharibi ya Kati ya Australia"
+        :standard: "Saa za Wastani za Magharibi ya Kati ya Australia"
+    :Australia_Eastern: 
+      :long: 
+        :daylight: "Saa za Mchana za Mashariki mwa Australia"
+        :generic: "Saa za Australia Mashariki"
+        :standard: "Saa za Wastani za Mashariki mwa Australia"
+    :Australia_Western: 
+      :long: 
+        :daylight: "Saa za Mchana za Australia Magharibi"
+        :generic: "Saa za Australia Magharibi"
+        :standard: "Saa za Wastani za Australia Magharibi"
+    :Azerbaijan: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Azerbaijan"
+        :generic: "Saa za Azerbaijan"
+        :standard: "Saa za Wastani za Azerbaijan"
+    :Azores: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Azores"
+        :generic: "Saa za Azores"
+        :standard: "Saa za Wastani za Azores"
+    :Bangladesh: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Bangladesh"
+        :generic: "Saa za Bangladesh"
+        :standard: "Saa za Wastani za Bangladesh"
+    :Bhutan: 
+      :long: 
+        :standard: "Saa za Bhutan"
+    :Bolivia: 
+      :long: 
+        :standard: "Saa za Bolivia"
+    :Brasilia: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Brasilia"
+        :generic: "Saa za Brasilia"
+        :standard: "Saa za Wastani za Brasilia"
+    :Brunei: 
+      :long: 
+        :standard: "Saa za Brunei Darussalam"
+    :Cape_Verde: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Cape Verde"
+        :generic: "Saa za Cape Verde"
+        :standard: "Saa za Wastani za Cape Verde"
+    :Chamorro: 
+      :long: 
+        :standard: "Saa za Wastani za Chamorro"
+    :Chatham: 
+      :long: 
+        :daylight: "Saa za Mchana za Chatham"
+        :generic: "Saa za Chatham"
+        :standard: "Saa za Wastani za Chatham"
+    :Chile: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Chile"
+        :generic: "Saa za Chile"
+        :standard: "Saa za Wastani za Chile"
+    :China: 
+      :long: 
+        :daylight: "Saa za Mchana za Uchina"
+        :generic: "Saa za Uchina"
+        :standard: "Saa za Wastani za Uchina"
+    :Christmas: 
+      :long: 
+        :standard: "Saa za Kisiwa cha Krismasi"
+    :Cocos: 
+      :long: 
+        :standard: "Saa za Visiwa vya Cocos"
+    :Colombia: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Kolombia"
+        :generic: "Saa za Kolombia"
+        :standard: "Saa za Wastani za Kolombia"
+    :Cook: 
+      :long: 
+        :daylight: "Saa za Majira nusu ya joto za Visiwa Cook"
+        :generic: "Saa za Visiwa vya Cook"
+        :standard: "Saa za Wastani za Visiwa vya Cook"
+    :Cuba: 
+      :long: 
+        :daylight: "Saa za Mchana za Kuba"
+        :generic: "Saa za Kuba"
+        :standard: "Saa za Wastani ya Kuba"
+    :Davis: 
+      :long: 
+        :standard: "Saa za Davis"
+    :DumontDUrville: 
+      :long: 
+        :standard: "Saa za Dumont-d’Urville"
+    :East_Timor: 
+      :long: 
+        :standard: "Saa za Timor Mashariki"
+    :Easter: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Kisiwa cha Easter"
+        :generic: "Saa za Kisiwa cha Easter"
+        :standard: "Saa za Wastani za Kisiwa cha Easter"
+    :Ecuador: 
+      :long: 
+        :standard: "Saa za Ekwado"
+    :Europe_Central: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Ulaya ya Kati"
+        :generic: "Saa za Ulaya ya Kati"
+        :standard: "Saa za Wastani za Ulaya ya Kati"
+    :Europe_Eastern: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Mashariki mwa Ulaya"
+        :generic: "Saa za Mashariki mwa Ulaya"
+        :standard: "Saa za Wastani za Mashariki mwa Ulaya"
+    :Europe_Further_Eastern: 
+      :long: 
+        :standard: "Saa za Mashariki zaidi mwa Ulaya"
+    :Europe_Western: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Magharibi mwa Ulaya"
+        :generic: "Saa za Magharibi mwa Ulaya"
+        :standard: "Saa za Wastani za Magharibi mwa Ulaya"
+    :Falkland: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Visiwa vya Falkland"
+        :generic: "Saa za Visiwa vya Falkland"
+        :standard: "Saa za Wastani za Visiwa vya Falkland"
+    :Fiji: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Fiji"
+        :generic: "Saa za Fiji"
+        :standard: "Saa za Wastani za Fiji"
+    :French_Guiana: 
+      :long: 
+        :standard: "Saa za Guiana ya Ufaransa"
+    :French_Southern: 
+      :long: 
+        :standard: "Saa za Kusini mwa Ufaransa na Antaktiki"
+    :GMT: 
+      :long: 
+        :standard: "Saa za Greenwich"
+    :Galapagos: 
+      :long: 
+        :standard: "Saa za Galapagos"
+    :Gambier: 
+      :long: 
+        :standard: "Saa za Gambier"
+    :Georgia: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Jojia"
+        :generic: "Saa za Jojia"
+        :standard: "Saa za Wastani za Jojia"
+    :Gilbert_Islands: 
+      :long: 
+        :standard: "Saa za Visiwa vya Gilbert"
+    :Greenland_Eastern: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Greenland Mashariki"
+        :generic: "Saa za Greenland Mashariki"
+        :standard: "Saa za Wastani za Greenland Mashariki"
+    :Greenland_Western: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Greenland Magharibi"
+        :generic: "Saa za Greenland Magharibi"
+        :standard: "Saa za Wastani za Greenland Magharibi"
+    :Gulf: 
+      :long: 
+        :standard: "Saa za Wastani za Gulf"
+    :Guyana: 
+      :long: 
+        :standard: "Saa za Guyana"
+    :Hawaii_Aleutian: 
+      :long: 
+        :daylight: "Saa za Mchana za Hawaii-Aleutian"
+        :generic: "Saa za Hawaii-Aleutian"
+        :standard: "Saa za Wastani za Hawaii-Aleutian"
+    :Hong_Kong: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Hong Kong"
+        :generic: "Saa za Hong Kong"
+        :standard: "Saa za Wastani za Hong Kong"
+    :Hovd: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Hovd"
+        :generic: "Saa za Hovd"
+        :standard: "Saa za Wastani za Hovd"
+    :India: 
+      :long: 
+        :standard: "Saa za Wastani za India"
+    :Indian_Ocean: 
+      :long: 
+        :standard: "Saa za Bahari Hindi"
+    :Indochina: 
+      :long: 
+        :standard: "Saa za Indochina"
+    :Indonesia_Central: 
+      :long: 
+        :standard: "Saa za Indonesia ya Kati"
+    :Indonesia_Eastern: 
+      :long: 
+        :standard: "Saa za Mashariki mwa Indonesia"
+    :Indonesia_Western: 
+      :long: 
+        :standard: "Saa za Magharibi mwa Indonesia"
+    :Iran: 
+      :long: 
+        :daylight: "Saa za Mchana za Iran"
+        :generic: "Saa za Iran"
+        :standard: "Saa za Wastani za Iran"
+    :Irkutsk: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Irkutsk"
+        :generic: "Saa za Irkutsk"
+        :standard: "Saa za Wastani za Irkutsk"
+    :Israel: 
+      :long: 
+        :daylight: "Saa za Mchana za Israeli"
+        :generic: "Saa za Israeli"
+        :standard: "Saa za Wastani za Israeli"
+    :Japan: 
+      :long: 
+        :daylight: "Saa za Mchana za Japan"
+        :generic: "Saa za Japan"
+        :standard: "Saa za Wastani za Japani"
+    :Kamchatka: 
+      :long: 
+        :daylight: "Saa za Kiangazi za Petropavlovsk-Kamchatski"
+        :generic: "Saa za Petropavlovsk-Kamchatski"
+        :standard: "Saa za Wastani za Petropavlovsk-Kamchatski"
+    :Kazakhstan: 
+      :long: 
+        :standard: "Saa za Kazakhstan"
+    :Kazakhstan_Eastern: 
+      :long: 
+        :standard: "Saa za Kazakhstan Mashariki"
+    :Kazakhstan_Western: 
+      :long: 
+        :standard: "Saa za Kazakhstan Magharibi"
+    :Korea: 
+      :long: 
+        :daylight: "Saa za Mchana za Korea"
+        :generic: "Saa za Korea"
+        :standard: "Saa za Wastani za Korea"
+    :Kosrae: 
+      :long: 
+        :standard: "Saa za Kosrae"
+    :Krasnoyarsk: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Krasnoyarsk"
+        :generic: "Saa za Krasnoyarsk"
+        :standard: "Saa za Wastani za Krasnoyask"
+    :Kyrgystan: 
+      :long: 
+        :standard: "Saa za Kyrgystan"
+    :Line_Islands: 
+      :long: 
+        :standard: "Saa za Visiwa vya Line"
+    :Lord_Howe: 
+      :long: 
+        :daylight: "Saa za Mchana za Lord Howe"
+        :generic: "Saa za Lord Howe"
+        :standard: "Saa za Wastani za Lord Howe"
+    :Magadan: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Magadan"
+        :generic: "Saa za Magadan"
+        :standard: "Saa za Wastani za Magadan"
+    :Malaysia: 
+      :long: 
+        :standard: "Saa za Malaysia"
+    :Maldives: 
+      :long: 
+        :standard: "Saa za Maldives"
+    :Marquesas: 
+      :long: 
+        :standard: "Saa za Marquesas"
+    :Marshall_Islands: 
+      :long: 
+        :standard: "Saa za Visiwa vya Marshall"
+    :Mauritius: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Morisi"
+        :generic: "Saa za Morisi"
+        :standard: "Saa za Wastani za Morisi"
+    :Mawson: 
+      :long: 
+        :standard: "Saa za Mawson"
+    :Mexico_Pacific: 
+      :long: 
+        :daylight: "Saa za mchana za pasifiki za Meksiko"
+        :generic: "Saa za pasifiki za Meksiko"
+        :standard: "Saa za wastani za pasifiki za Meksiko"
+    :Mongolia: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Ulan Bator"
+        :generic: "Saa za Ulan Bator"
+        :standard: "Saa za Wastani za Ulan Bator"
+    :Moscow: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Moscow"
+        :generic: "Saa za Moscow"
+        :standard: "Saa za Wastani za Moscow"
+    :Myanmar: 
+      :long: 
+        :standard: "Saa za Myanmar"
+    :Nauru: 
+      :long: 
+        :standard: "Saa za Nauru"
+    :Nepal: 
+      :long: 
+        :standard: "Saa za Nepal"
+    :New_Caledonia: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za New Caledonia"
+        :generic: "Saa za New Caledonia"
+        :standard: "Saa za Wastani za New Caledonia"
+    :New_Zealand: 
+      :long: 
+        :daylight: "Saa za Mchana za New Zealand"
+        :generic: "Saa za New Zealand"
+        :standard: "Saa za Wastani za New Zealand"
+    :Newfoundland: 
+      :long: 
+        :daylight: "Saa za Mchana za Newfoundland"
+        :generic: "Saa za Newfoundland"
+        :standard: "Saa za Wastani za Newfoundland"
+    :Niue: 
+      :long: 
+        :standard: "Saa za Niue"
+    :Norfolk: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Kisiwa cha Norfolk"
+        :generic: "Saa za Kisiwa cha Norfolk"
+        :standard: "Saa za Wastani za Kisiwa cha Norfolk"
+    :Noronha: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Fernando de Noronha"
+        :generic: "Saa za Fernando de Noronha"
+        :standard: "Saa za Wastani za Fernando de Noronha"
+    :Novosibirsk: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Novosibirsk"
+        :generic: "Saa za Novosibirsk"
+        :standard: "Saa za Wastani za Novosibirsk"
+    :Omsk: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Omsk"
+        :generic: "Saa za Omsk"
+        :standard: "Saa za Wastani za Omsk"
+    :Pakistan: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Pakistan"
+        :generic: "Saa za Pakistan"
+        :standard: "Saa za Wastani za Pakistan"
+    :Palau: 
+      :long: 
+        :standard: "Saa za Palau"
+    :Papua_New_Guinea: 
+      :long: 
+        :standard: "Saa za Papua New Guinea"
+    :Paraguay: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Paragwai"
+        :generic: "Saa za Paragwai"
+        :standard: "Saa za Wastani za Paragwai"
+    :Peru: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Peru"
+        :generic: "Saa za Peru"
+        :standard: "Saa za Wastani za Peru"
+    :Philippines: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Ufilipino"
+        :generic: "Saa za Ufilipino"
+        :standard: "Saa za Wastani za Ufilipino"
+    :Phoenix_Islands: 
+      :long: 
+        :standard: "Saa za Visiwa vya Phoenix"
+    :Pierre_Miquelon: 
+      :long: 
+        :daylight: "Saa za Mchana za Saint-Pierre na Miquelon"
+        :generic: "Saa za Saint-Pierre na Miquelon"
+        :standard: "Saa za Wastani ya Saint-Pierre na Miquelon"
+    :Pitcairn: 
+      :long: 
+        :standard: "Saa za Pitcairn"
+    :Ponape: 
+      :long: 
+        :standard: "Saa za Ponape"
+    :Pyongyang: 
+      :long: 
+        :standard: "Saa za Pyongyang"
+    :Reunion: 
+      :long: 
+        :standard: "Saa za Reunion"
+    :Rothera: 
+      :long: 
+        :standard: "Saa za Rothera"
+    :Sakhalin: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Sakhalin"
+        :generic: "Saa za Sakhalin"
+        :standard: "Saa za Wastani za Sakhalin"
+    :Samara: 
+      :long: 
+        :daylight: "Saa za Kiangazi za Samara"
+        :generic: "Saa za Samara"
+        :standard: "Saa za Wastani za Samara"
+    :Samoa: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Samoa"
+        :generic: "Saa za Samoa"
+        :standard: "Saa za Wastani za Samoa"
+    :Seychelles: 
+      :long: 
+        :standard: "Saa za Ushelisheli"
+    :Singapore: 
+      :long: 
+        :standard: "Saa za Wastani za Singapore"
+    :Solomon: 
+      :long: 
+        :standard: "Saa za Visiwa vya Solomon"
+    :South_Georgia: 
+      :long: 
+        :standard: "Saa za Georgia Kusini"
+    :Suriname: 
+      :long: 
+        :standard: "Saa za Suriname"
+    :Syowa: 
+      :long: 
+        :standard: "Saa za Syowa"
+    :Tahiti: 
+      :long: 
+        :standard: "Saa za Tahiti"
+    :Taipei: 
+      :long: 
+        :daylight: "Saa za Mchana za Taipei"
+        :generic: "Saa za Taipei"
+        :standard: "Saa za Wastani za Taipei"
+    :Tajikistan: 
+      :long: 
+        :standard: "Saa za Tajikistan"
+    :Tokelau: 
+      :long: 
+        :standard: "Saa za Tokelau"
+    :Tonga: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Tonga"
+        :generic: "Saa za Tonga"
+        :standard: "Saa za Wastani za Tonga"
+    :Truk: 
+      :long: 
+        :standard: "Saa za Chuuk"
+    :Turkmenistan: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Turkmenistan"
+        :generic: "Saa za Turkmenistan"
+        :standard: "Saa za Wastani za Turkmenistan"
+    :Tuvalu: 
+      :long: 
+        :standard: "Saa za Tuvalu"
+    :Uruguay: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Urugwai"
+        :generic: "Saa za Urugwai"
+        :standard: "Saa za Wastani za Urugwai"
+    :Uzbekistan: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Uzbekistan"
+        :generic: "Saa za Uzbekistan"
+        :standard: "Saa za Wastani za Uzbekistan"
+    :Vanuatu: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Vanuatu"
+        :generic: "Saa za Vanuatu"
+        :standard: "Saa za Wastani za Vanuatu"
+    :Venezuela: 
+      :long: 
+        :standard: "Saa za Venezuela"
+    :Vladivostok: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Vladivostok"
+        :generic: "Saa za Vladivostok"
+        :standard: "Saa za Wastani za Vladivostok"
+    :Volgograd: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Volgograd"
+        :generic: "Saa za Volgograd"
+        :standard: "Saa za Wastani za Volgograd"
+    :Vostok: 
+      :long: 
+        :standard: "Saa za Vostok"
+    :Wake: 
+      :long: 
+        :standard: "Saa za Kisiwa cha Wake"
+    :Wallis: 
+      :long: 
+        :standard: "Saa za Wallis na Futuna"
+    :Yakutsk: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Yakutsk"
+        :generic: "Saa za Yakutsk"
+        :standard: "Saa za Wastani za Yakutsk"
+    :Yekaterinburg: 
+      :long: 
+        :daylight: "Saa za Majira ya joto za Yekaterinburg"
+        :generic: "Saa za Yekaterinburg"
+        :standard: "Saa za Wastani za Yekaterinburg"
+    :Yukon: 
+      :long: 
+        :standard: "Saa za Yukon"
+  :timezones: 
+    :Africa/Asmera: 
+      :city: Asmara
+    :Africa/Sao_Tome: 
+      :city: "São Tomé"
+    :America/Asuncion: 
+      :city: Asunción
+    :America/Bahia_Banderas: 
+      :city: "Bahia Banderas"
+    :America/Cancun: 
+      :city: Cancun
+    :America/Ciudad_Juarez: 
+      :city: "Ciudad Juarez"
+    :America/Coral_Harbour: 
+      :city: Atikokan
+    :America/Curacao: 
+      :city: Curaçao
+    :America/Godthab: 
+      :city: Nuuk
+    :America/Indiana/Knox: 
+      :city: "Knox, Indiana"
+    :America/Indiana/Marengo: 
+      :city: "Marengo, Indiana"
+    :America/Indiana/Petersburg: 
+      :city: "Petersburg, Indiana"
+    :America/Indiana/Tell_City: 
+      :city: "Tell City, Indiana"
+    :America/Indiana/Vevay: 
+      :city: "Vevay, Indiana"
+    :America/Indiana/Vincennes: 
+      :city: "Vincennes, Indiana"
+    :America/Indiana/Winamac: 
+      :city: "Winamac, Indiana"
+    :America/Kentucky/Monticello: 
+      :city: "Monticello, Kentucky"
+    :America/Lower_Princes: 
+      :city: "Lower Prince’s Quarter"
+    :America/Merida: 
+      :city: Merida
+    :America/Mexico_City: 
+      :city: "Jiji la Mexico"
+    :America/North_Dakota/Beulah: 
+      :city: "Beulah, North Dakota"
+    :America/North_Dakota/Center: 
+      :city: "Center, North Dakota"
+    :America/North_Dakota/New_Salem: 
+      :city: "New Salem, North Dakota"
+    :America/Scoresbysund: 
+      :city: Ittoqqortoormiit
+    :America/St_Barthelemy: 
+      :city: "St. Barthélemy"
+    :America/St_Johns: 
+      :city: "St. John’s"
+    :America/St_Kitts: 
+      :city: "St. Kitts"
+    :America/St_Lucia: 
+      :city: "St. Lucia"
+    :America/St_Thomas: 
+      :city: "St. Thomas"
+    :America/St_Vincent: 
+      :city: "St. Vincent"
+    :Antarctica/DumontDUrville: 
+      :city: "Dumont d’Urville"
+    :Asia/Calcutta: 
+      :city: Kolkata
+    :Asia/Katmandu: 
+      :city: Kathmandu
+    :Asia/Macau: 
+      :city: Macau
+    :Asia/Qostanay: 
+      :city: Kostanay
+    :Asia/Rangoon: 
+      :city: Rangoon
+    :Asia/Saigon: 
+      :city: "Ho Chi Minh"
+    :Atlantic/Faeroe: 
+      :city: Faroe
+    :Atlantic/South_Georgia: 
+      :city: "Georgia Kusini"
+    :Atlantic/St_Helena: 
+      :city: "St. Helena"
+    :Etc/UTC: 
+      :long: 
+        :standard: "Mfumo wa kuratibu saa ulimwenguni"
+      :short: 
+        :standard: UTC
+    :Etc/Unknown: 
+      :city: "Jiji Lisilojulikana"
+    :Europe/Dublin: 
+      :long: 
+        :daylight: "Saa za Majira ya Joto za Ayalandi"
+    :Europe/Kiev: 
+      :city: Kiev
+    :Europe/London: 
+      :long: 
+        :daylight: "Saa za Majira ya Joto za Uingereza"
+    :Indian/Reunion: 
+      :city: Réunion
+    :Pacific/Enderbury: 
+      :city: Enderbury
+    :Pacific/Honolulu: 
+      :city: Honolulu
+    :Pacific/Ponape: 
+      :city: Pohnpei
+    :Pacific/Truk: 
+      :city: Chuuk

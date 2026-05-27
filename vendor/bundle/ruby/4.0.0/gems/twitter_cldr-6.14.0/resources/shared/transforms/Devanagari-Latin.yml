@@ -1,0 +1,16 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - Devanagari-Latin
+      - und-Latn-t-und-deva
+    :direction: forward
+    :rules: 
+      - "::[॑ ॒ ॔ ॓ ़ ँ-ः । ॥ ॰ ०-९ ॐ ॲ ऄ-ऋ ॠ ऌ ॡ ऍ-कक़ खख़ गग़ घ-जज़ झ-डड़ ढढ़ ण-फफ़ ब-यय़ र-ह ऽ ॽ ा-ॄ ॢ ॣ ॅ-्] ;"
+      - "::NFD ;"
+      - "::Devanagari-InterIndic ;"
+      - "::InterIndic-Latin ;"
+      - "::NFC ;"
+    :source: Deva
+    :target: Latn
+    :variant: ~

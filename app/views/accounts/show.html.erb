@@ -27,7 +27,7 @@
         </div>
       <% end %>
       <% encrypted_config = @encrypted_config || EncryptedConfig.find_or_initialize_by(account: current_account, key: EncryptedConfig::APP_URL_KEY) %>
-      <% if !Docuseal.multitenant? && can?(:manage, encrypted_config) && !current_account.testing? && ENV['APP_URL'].blank? %>
+      <% if !Wabosign.multitenant? && can?(:manage, encrypted_config) && !current_account.testing? && ENV['APP_URL'].blank? %>
         <%= fields_for encrypted_config do |ff| %>
           <div class="form-control">
             <%= ff.label :value, t('app_url'), class: 'label' %>
@@ -142,12 +142,12 @@
                   <%= svg_icon('info_circle', class: 'hidden md:inline-block w-4 h-4 shrink-0') %>
                 </span>
               </div>
-              <% if !Docuseal.multitenant? || can?(:manage, :disable_decline) %>
+              <% if !Wabosign.multitenant? || can?(:manage, :disable_decline) %>
                 <submit-form data-on="change" class="flex">
                   <%= f.check_box :value, class: 'toggle', checked: account_config.value != false %>
                 </submit-form>
               <% else %>
-                <a href="<%= console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}/plans") %>" data-turbo="false" data-tip="<%= I18n.t('unlock_with_docuseal_pro') %>" data-on="change" class="flex tooltip">
+                <a href="<%= console_redirect_index_path(redir: "#{Wabosign::CONSOLE_URL}/plans") %>" data-turbo="false" data-tip="<%= I18n.t('unlock_with_docuseal_pro') %>" data-on="change" class="flex tooltip">
                   <%= f.check_box :value, class: 'toggle pointer-events-none', checked: account_config.value != false, disabled: true %>
                 </a>
               <% end %>
@@ -165,12 +165,12 @@
                   <%= svg_icon('info_circle', class: 'hidden md:inline-block w-4 h-4 shrink-0') %>
                 </span>
               </div>
-              <% if !Docuseal.multitenant? || can?(:manage, :delegate_form) %>
+              <% if !Wabosign.multitenant? || can?(:manage, :delegate_form) %>
                 <submit-form data-on="change" class="flex">
                   <%= f.check_box :value, class: 'toggle', checked: account_config.value == true %>
                 </submit-form>
               <% else %>
-                <a href="<%= console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}/plans") %>" data-turbo="false" data-tip="<%= I18n.t('unlock_with_docuseal_pro') %>" class="flex tooltip">
+                <a href="<%= console_redirect_index_path(redir: "#{Wabosign::CONSOLE_URL}/plans") %>" data-turbo="false" data-tip="<%= I18n.t('unlock_with_docuseal_pro') %>" class="flex tooltip">
                   <%= f.check_box :value, class: 'toggle pointer-events-none', checked: account_config.value == true, disabled: true %>
                 </a>
               <% end %>
@@ -245,7 +245,7 @@
             </div>
           <% end %>
         <% end %>
-        <% if !Docuseal.multitenant? || can?(:manage, :personalization_advanced) %>
+        <% if !Wabosign.multitenant? || can?(:manage, :personalization_advanced) %>
           <% account_config = AccountConfig.find_or_initialize_by(account: current_account, key: AccountConfig::ENFORCE_SIGNING_ORDER_KEY) %>
           <% if can?(:manage, account_config) %>
             <%= form_for account_config, url: account_configs_path, method: :post do |f| %>
@@ -264,7 +264,7 @@
             <% end %>
           <% end %>
         <% end %>
-        <% if !Docuseal.multitenant? || can?(:manage, :personalization_advanced) %>
+        <% if !Wabosign.multitenant? || can?(:manage, :personalization_advanced) %>
           <% account_config = AccountConfig.find_or_initialize_by(account: current_account, key: AccountConfig::WITH_FILE_LINKS_KEY) %>
           <% if can?(:manage, account_config) %>
             <%= form_for account_config, url: account_configs_path, method: :post do |f| %>
@@ -281,7 +281,7 @@
           <% end %>
         <% end %>
         <%= render 'extra_preferences' %>
-        <% if !Docuseal.multitenant? && SearchEntry.table_exists? && (!Docuseal.fulltext_search? || params[:reindex] == 'true') && can?(:manage, EncryptedConfig) %>
+        <% if !Wabosign.multitenant? && SearchEntry.table_exists? && (!Wabosign.fulltext_search? || params[:reindex] == 'true') && can?(:manage, EncryptedConfig) %>
           <div class="flex items-center justify-between gap-4 py-2.5">
             <span>
               <%= t('efficient_search_with_search_index') %>
@@ -293,7 +293,7 @@
     <% end %>
     <%= render 'compliances' %>
     <%= render 'integrations' %>
-    <% if can?(:manage, current_account) && Docuseal.multitenant? && true_user == current_user %>
+    <% if can?(:manage, current_account) && Wabosign.multitenant? && true_user == current_user %>
       <div class="px-1 mt-8">
         <h2 class="text-2xl font-bold mb-2">
           <%= t('danger_zone') %>

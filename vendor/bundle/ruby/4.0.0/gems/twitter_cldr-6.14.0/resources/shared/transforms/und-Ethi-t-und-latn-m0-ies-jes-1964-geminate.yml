@@ -1,0 +1,13 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - Ethiopic-Latin/IES_JES_1964_Geminate
+      - und-Latn-t-und-ethi-m0-iesjes-1964-geminate
+    :direction: forward
+    :rules: 
+      - ":: Amharic-Amharic/Geminate ;"
+      - ":: Ethiopic-Latin/IES_JES_1964 ;"
+    :source: Ethi
+    :target: Latn
+    :variant: IES_JES_1964_Geminate

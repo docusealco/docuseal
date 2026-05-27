@@ -1,0 +1,64 @@
+<section>
+  <header>
+    <h1><%= t('ScheduledJobs') %></h1>
+    <% if @scheduled.size > 0 && @total_size > @count %>
+      <%= erb :_paging, locals: { url: "#{root_path}scheduled" } %>
+    <% end %>
+    <%= filtering('scheduled') %>
+  </header>
+
+  <% if @scheduled.size > 0 %>
+    <form action="<%= root_path %>scheduled" method="post">
+      <%= csrf_tag %>
+      <div class="table_container">
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <label>
+                  <input type="checkbox" class="check_all check-all-items">
+                </label>
+              </th>
+              <th><%= t('When') %></th>
+              <th><%= t('Queue') %></th>
+              <th><%= t('Job') %></th>
+              <th><%= t('Arguments') %></th>
+            </tr>
+          </thead>
+          <% @scheduled.each do |entry| %>
+            <tr>
+              <td>
+                <label>
+                  <input type="checkbox" name="key[]" value="<%= job_params(entry.item, entry.score) %>" class="shift_clickable select-item-checkbox">
+                </label>
+              </td>
+              <td>
+                <a href="<%= root_path %>scheduled/<%= job_params(entry.item, entry.score) %>"><%= relative_time(entry.at) %></a>
+              </td>
+              <td>
+                <a href="<%= root_path %>queues/<%= entry.queue %>"><%= entry.queue %></a>
+              </td>
+              <td>
+                <%= entry.display_class %>
+                <%= display_tags(entry, "scheduled") %>
+              </td>
+              <td>
+                <code>
+                  <div class="args"><%= display_args(entry.display_args) %></div>
+                </code>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+      <div class="buttons-row">
+        <input class="btn btn-danger" type="submit" name="delete" value="<%= t('Delete') %>">
+        <input class="btn btn-danger" type="submit" name="add_to_queue" value="<%= t('AddToQueue') %>">
+        <button class="btn btn-danger bulk-action-buttons bulk-lead-button" type="submit" name="action" value="delete_all" formaction="<%= "#{root_path}scheduled/all/delete" %>" data-confirm="<%= t('AreYouSure') %>"><%= t('DeleteAll') %></button>
+        <button class="btn btn-danger bulk-action-buttons" type="submit" name="action" value="add_all_to_queue" formaction="<%= "#{root_path}scheduled/all/add_to_queue" %>"><%= t('AddAllToQueue') %></button>
+      </div>
+    </form>
+  <% else %>
+    <div class="alert alert-success"><%= t('NoScheduledFound') %></div>
+  <% end %>
+</section>

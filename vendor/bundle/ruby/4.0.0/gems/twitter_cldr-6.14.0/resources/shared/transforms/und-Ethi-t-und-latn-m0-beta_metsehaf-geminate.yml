@@ -1,0 +1,13 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - Ethiopic-Latin/BetaMetsehaf_Geminate
+      - und-Latn-t-und-ethi-m0-betamets-geminate
+    :direction: forward
+    :rules: 
+      - ":: Amharic-Amharic/Geminate ;"
+      - ":: Ethiopic-Latin/BetaMetsehaf ;"
+    :source: Ethi
+    :target: Latn
+    :variant: Beta_Metsehaf_Geminate

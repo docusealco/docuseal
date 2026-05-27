@@ -263,7 +263,7 @@ class SubmitterMailer < ApplicationMailer
   end
 
   def maybe_set_custom_domain(submitter)
-    if Docuseal.multitenant? && (config = AccountConfig.find_by(account_id: submitter.account_id, key: :custom_domain))
+    if Wabosign.multitenant? && (config = AccountConfig.find_by(account_id: submitter.account_id, key: :custom_domain))
       @custom_domain = config.value
     end
   end

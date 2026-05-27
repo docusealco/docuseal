@@ -1,0 +1,499 @@
+--- 
+:lt: 
+  :fields: 
+    :day: 
+      :display_name: diena
+      :relative: 
+        -1: vakar
+        -2: užvakar
+        0: šiandien
+        1: rytoj
+        2: poryt
+      :relative_time: 
+        :future: 
+          :few: "po {0} dienų"
+          :many: "po {0} dienos"
+          :one: "po {0} dienos"
+          :other: "po {0} dienų"
+        :past: 
+          :few: "prieš {0} dienas"
+          :many: "prieš {0} dienos"
+          :one: "prieš {0} dieną"
+          :other: "prieš {0} dienų"
+    :day-short: 
+      :display_name: d.
+      :relative_time: 
+        :future: 
+          :few: "po {0} d."
+          :many: "po {0} d."
+          :one: "po {0} d."
+          :other: "po {0} d."
+        :past: 
+          :few: "prieš {0} d."
+          :many: "prieš {0} d."
+          :one: "prieš {0} d."
+          :other: "prieš {0} d."
+    :dayOfYear: 
+      :display_name: "metų diena"
+    :dayperiod: 
+      :display_name: "iki pietų / po pietų"
+    :era: 
+      :display_name: era
+    :fri: 
+      :relative: 
+        -1: "praėjusį penktadienį"
+        0: "šį penktadienį"
+        1: "kitą penktadienį"
+      :relative_time: 
+        :future: 
+          :few: "po {0} penktadienių"
+          :many: "po {0} penktadienio"
+          :one: "po {0} penktadienio"
+          :other: "po {0} penktadienių"
+        :past: 
+          :few: "prieš {0} penktadienius"
+          :many: "prieš {0} penktadienio"
+          :one: "prieš {0} penktadienį"
+          :other: "prieš {0} penktadienių"
+    :fri-short: 
+      :relative: 
+        -1: "praėjusį penkt."
+        0: "šį penkt."
+        1: "kitą penkt."
+      :relative_time: 
+        :future: 
+          :few: "po {0} penkt."
+          :many: "po {0} penkt."
+          :one: "po {0} penkt."
+          :other: "po {0} penkt."
+        :past: 
+          :few: "prieš {0} penkt."
+          :many: "prieš {0} penkt."
+          :one: "prieš {0} penkt."
+          :other: "prieš {0} penkt."
+    :hour: 
+      :display_name: valanda
+      :relative: 
+        0: "šią valandą"
+      :relative_time: 
+        :future: 
+          :few: "po {0} valandų"
+          :many: "po {0} valandos"
+          :one: "po {0} valandos"
+          :other: "po {0} valandų"
+        :past: 
+          :few: "prieš {0} valandas"
+          :many: "prieš {0} valandos"
+          :one: "prieš {0} valandą"
+          :other: "prieš {0} valandų"
+    :hour-narrow: 
+      :display_name: h
+    :hour-short: 
+      :display_name: val.
+      :relative_time: 
+        :future: 
+          :few: "po {0} val."
+          :many: "po {0} val."
+          :one: "po {0} val."
+          :other: "po {0} val."
+        :past: 
+          :few: "prieš {0} val."
+          :many: "prieš {0} val."
+          :one: "prieš {0} val."
+          :other: "prieš {0} val."
+    :minute: 
+      :display_name: minutė
+      :relative: 
+        0: "šią minutę"
+      :relative_time: 
+        :future: 
+          :few: "po {0} minučių"
+          :many: "po {0} minutės"
+          :one: "po {0} minutės"
+          :other: "po {0} minučių"
+        :past: 
+          :few: "prieš {0} minutes"
+          :many: "prieš {0} minutės"
+          :one: "prieš {0} minutę"
+          :other: "prieš {0} minučių"
+    :minute-short: 
+      :display_name: min.
+      :relative_time: 
+        :future: 
+          :few: "po {0} min."
+          :many: "po {0} min."
+          :one: "po {0} min."
+          :other: "po {0} min."
+        :past: 
+          :few: "prieš {0} min."
+          :many: "prieš {0} min."
+          :one: "prieš {0} min."
+          :other: "prieš {0} min."
+    :mon: 
+      :relative: 
+        -1: "praėjusį pirmadienį"
+        0: "šį pirmadienį"
+        1: "kitą pirmadienį"
+      :relative_time: 
+        :future: 
+          :few: "po {0} pirmadienių"
+          :many: "po {0} pirmadienio"
+          :one: "po {0} pirmadienio"
+          :other: "po {0} pirmadienių"
+        :past: 
+          :few: "prieš {0} pirmadienius"
+          :many: "prieš {0} pirmadienio"
+          :one: "prieš {0} pirmadienį"
+          :other: "prieš {0} pirmadienių"
+    :mon-short: 
+      :relative: 
+        -1: "praėjusį pirm."
+        0: "šį pirm."
+        1: "kitą pirm."
+      :relative_time: 
+        :future: 
+          :few: "po {0} pirm."
+          :many: "po {0} pirm."
+          :one: "po {0} pirm."
+          :other: "po {0} pirm."
+        :past: 
+          :few: "prieš {0} pirm."
+          :many: "prieš {0} pirm."
+          :one: "prieš {0} pirm."
+          :other: "prieš {0} pirm."
+    :month: 
+      :display_name: mėnuo
+      :relative: 
+        -1: "praėjusį mėnesį"
+        0: "šį mėnesį"
+        1: "kitą mėnesį"
+      :relative_time: 
+        :future: 
+          :few: "po {0} mėnesių"
+          :many: "po {0} mėnesio"
+          :one: "po {0} mėnesio"
+          :other: "po {0} mėnesių"
+        :past: 
+          :few: "prieš {0} mėnesius"
+          :many: "prieš {0} mėnesio"
+          :one: "prieš {0} mėnesį"
+          :other: "prieš {0} mėnesių"
+    :month-short: 
+      :display_name: mėn.
+      :relative_time: 
+        :future: 
+          :few: "po {0} mėn."
+          :many: "po {0} mėn."
+          :one: "po {0} mėn."
+          :other: "po {0} mėn."
+        :past: 
+          :few: "prieš {0} mėn."
+          :many: "prieš {0} mėn."
+          :one: "prieš {0} mėn."
+          :other: "prieš {0} mėn."
+    :quarter: 
+      :display_name: ketvirtis
+      :relative: 
+        -1: "praėjęs ketvirtis"
+        0: "šis ketvirtis"
+        1: "kitas ketvirtis"
+      :relative_time: 
+        :future: 
+          :few: "po {0} ketvirčių"
+          :many: "po {0} ketvirčio"
+          :one: "po {0} ketvirčio"
+          :other: "po {0} ketvirčių"
+        :past: 
+          :few: "prieš {0} ketvirčius"
+          :many: "prieš {0} ketvirčio"
+          :one: "prieš {0} ketvirtį"
+          :other: "prieš {0} ketvirčių"
+    :quarter-short: 
+      :display_name: ketv.
+      :relative_time: 
+        :future: 
+          :few: "po {0} ketv."
+          :many: "po {0} ketv."
+          :one: "po {0} ketv."
+          :other: "po {0} ketv."
+        :past: 
+          :few: "prieš {0} ketv."
+          :many: "prieš {0} ketv."
+          :one: "prieš {0} ketv."
+          :other: "prieš {0} ketv."
+    :sat: 
+      :relative: 
+        -1: "praėjusį šeštadienį"
+        0: "šį šeštadienį"
+        1: "kitą šeštadienį"
+      :relative_time: 
+        :future: 
+          :few: "po {0} šeštadienių"
+          :many: "po {0} šeštadienio"
+          :one: "po {0} šeštadienio"
+          :other: "po {0} šeštadienių"
+        :past: 
+          :few: "prieš {0} šeštadienius"
+          :many: "prieš {0} šeštadienio"
+          :one: "prieš {0} šeštadienį"
+          :other: "prieš {0} šeštadienių"
+    :sat-narrow: 
+      :relative_time: 
+        :future: 
+          :few: "po {0} šešt."
+          :many: "po {0} šešt."
+          :one: "po {0} šeštadienio"
+          :other: "po {0} šešt."
+    :sat-short: 
+      :relative: 
+        -1: "praėjusį šešt."
+        0: "šį šešt."
+        1: "kitą šešt."
+      :relative_time: 
+        :future: 
+          :few: "po {0} šešt."
+          :many: "po {0} šešt."
+          :one: "po {0} šešt."
+          :other: "po {0} šešt."
+        :past: 
+          :few: "prieš {0} šešt."
+          :many: "prieš {0} šešt."
+          :one: "prieš {0} šešt."
+          :other: "prieš {0} šešt."
+    :second: 
+      :display_name: sekundė
+      :relative: 
+        0: dabar
+      :relative_time: 
+        :future: 
+          :few: "po {0} sekundžių"
+          :many: "po {0} sekundės"
+          :one: "po {0} sekundės"
+          :other: "po {0} sekundžių"
+        :past: 
+          :few: "prieš {0} sekundes"
+          :many: "prieš {0} sekundės"
+          :one: "prieš {0} sekundę"
+          :other: "prieš {0} sekundžių"
+    :second-narrow: 
+      :display_name: s
+      :relative_time: 
+        :future: 
+          :few: "po {0} s"
+          :many: "po {0} s"
+          :one: "po {0} s"
+          :other: "po {0} s"
+        :past: 
+          :few: "prieš {0} s"
+          :many: "prieš {0} s"
+          :one: "prieš {0} s"
+          :other: "prieš {0} s"
+    :second-short: 
+      :display_name: sek.
+      :relative_time: 
+        :future: 
+          :few: "po {0} sek."
+          :many: "po {0} sek."
+          :one: "po {0} sek."
+          :other: "po {0} sek."
+        :past: 
+          :few: "prieš {0} sek."
+          :many: "prieš {0} sek."
+          :one: "prieš {0} sek."
+          :other: "prieš {0} sek."
+    :sun: 
+      :relative: 
+        -1: "praėjusį sekmadienį"
+        0: "šį sekmadienį"
+        1: "kitą sekmadienį"
+      :relative_time: 
+        :future: 
+          :few: "po {0} sekmadienių"
+          :many: "po {0} sekmadienio"
+          :one: "po {0} sekmadienio"
+          :other: "po {0} sekmadienių"
+        :past: 
+          :few: "prieš {0} sekmadienius"
+          :many: "prieš {0} sekmadienio"
+          :one: "prieš {0} sekmadienį"
+          :other: "prieš {0} sekmadienių"
+    :sun-short: 
+      :relative: 
+        -1: "praėjusį sekm."
+        0: "šį sekm."
+        1: "kitą sekm."
+      :relative_time: 
+        :future: 
+          :few: "po {0} sekm."
+          :many: "po {0} sekm."
+          :one: "po {0} sekm."
+          :other: "po {0} sekm."
+        :past: 
+          :few: "prieš {0} sekm."
+          :many: "prieš {0} sekm."
+          :one: "prieš {0} sekm."
+          :other: "prieš {0} sekm."
+    :thu: 
+      :relative: 
+        -1: "praėjusį ketvirtadienį"
+        0: "šį ketvirtadienį"
+        1: "kitą ketvirtadienį"
+      :relative_time: 
+        :future: 
+          :few: "po {0} ketvirtadienių"
+          :many: "po {0} ketvirtadienio"
+          :one: "po {0} ketvirtadienio"
+          :other: "po {0} ketvirtadienių"
+        :past: 
+          :few: "prieš {0} ketvirtadienius"
+          :many: "prieš {0} ketvirtadienio"
+          :one: "prieš {0} ketvirtadienį"
+          :other: "prieš {0} ketvirtadienių"
+    :thu-short: 
+      :relative: 
+        -1: "praėjusį ketv."
+        0: "šį ketv."
+        1: "kitą ketv."
+      :relative_time: 
+        :future: 
+          :few: "po {0} ketv."
+          :many: "po {0} ketv."
+          :one: "po {0} ketv."
+          :other: "po {0} ketv."
+        :past: 
+          :few: "prieš {0} ketv."
+          :many: "prieš {0} ketv."
+          :one: "prieš {0} ketv."
+          :other: "prieš {0} ketv."
+    :tue: 
+      :relative: 
+        -1: "praėjusį antradienį"
+        0: "šį antradienį"
+        1: "kitą antradienį"
+      :relative_time: 
+        :future: 
+          :few: "po {0} antradienių"
+          :many: "po {0} antradienio"
+          :one: "po {0} antradienio"
+          :other: "po {0} antradienių"
+        :past: 
+          :few: "prieš {0} antradienius"
+          :many: "prieš {0} antradienio"
+          :one: "prieš {0} antradienį"
+          :other: "prieš {0} antradienių"
+    :tue-short: 
+      :relative: 
+        -1: "praėjusį antr."
+        0: "šį antr."
+        1: "kitą antr."
+      :relative_time: 
+        :future: 
+          :few: "po {0} antr."
+          :many: "po {0} antr."
+          :one: "po {0} antr."
+          :other: "po {0} antr."
+        :past: 
+          :few: "prieš {0} antr."
+          :many: "prieš {0} antr."
+          :one: "prieš {0} antr."
+          :other: "prieš {0} antr."
+    :wed: 
+      :relative: 
+        -1: "praėjusį trečiadienį"
+        0: "šį trečiadienį"
+        1: "kitą trečiadienį"
+      :relative_time: 
+        :future: 
+          :few: "po {0} trečiadienių"
+          :many: "po {0} trečiadienio"
+          :one: "po {0} trečiadienio"
+          :other: "po {0} trečiadienių"
+        :past: 
+          :few: "prieš {0} trečiadienius"
+          :many: "prieš {0} trečiadienio"
+          :one: "prieš {0} trečiadienį"
+          :other: "prieš {0} trečiadienių"
+    :wed-short: 
+      :relative: 
+        -1: "praėjusį treč."
+        0: "šį treč."
+        1: "kitą treč."
+      :relative_time: 
+        :future: 
+          :few: "po {0} treč."
+          :many: "po {0} treč."
+          :one: "po {0} treč."
+          :other: "po {0} treč."
+        :past: 
+          :few: "prieš {0} treč."
+          :many: "prieš {0} treč."
+          :one: "prieš {0} treč."
+          :other: "prieš {0} treč."
+    :week: 
+      :display_name: savaitė
+      :relative: 
+        -1: "praėjusią savaitę"
+        0: "šią savaitę"
+        1: "kitą savaitę"
+      :relative_time: 
+        :future: 
+          :few: "po {0} savaičių"
+          :many: "po {0} savaitės"
+          :one: "po {0} savaitės"
+          :other: "po {0} savaičių"
+        :past: 
+          :few: "prieš {0} savaites"
+          :many: "prieš {0} savaitės"
+          :one: "prieš {0} savaitę"
+          :other: "prieš {0} savaičių"
+    :week-short: 
+      :display_name: sav.
+      :relative_time: 
+        :future: 
+          :few: "po {0} sav."
+          :many: "po {0} sav."
+          :one: "po {0} sav."
+          :other: "po {0} sav."
+        :past: 
+          :few: "prieš {0} sav."
+          :many: "prieš {0} sav."
+          :one: "prieš {0} sav."
+          :other: "prieš {0} sav."
+    :weekOfMonth: 
+      :display_name: "mėnesio savaitė"
+    :weekday: 
+      :display_name: "savaitės diena"
+    :weekdayOfMonth: 
+      :display_name: "mėnesio šiokiadienis"
+    :year: 
+      :display_name: metai
+      :relative: 
+        -1: "praėjusiais metais"
+        0: "šiais metais"
+        1: "kitais metais"
+      :relative_time: 
+        :future: 
+          :few: "po {0} metų"
+          :many: "po {0} metų"
+          :one: "po {0} metų"
+          :other: "po {0} metų"
+        :past: 
+          :few: "prieš {0} metus"
+          :many: "prieš {0} metų"
+          :one: "prieš {0} metus"
+          :other: "prieš {0} metų"
+    :year-short: 
+      :display_name: m.
+      :relative_time: 
+        :future: 
+          :few: "po {0} m."
+          :many: "po {0} m."
+          :one: "po {0} m."
+          :other: "po {0} m."
+        :past: 
+          :few: "prieš {0} m."
+          :many: "prieš {0} m."
+          :one: "prieš {0} m."
+          :other: "prieš {0} m."
+    :zone: 
+      :display_name: "laiko juosta"

@@ -1,0 +1,23 @@
+import { LinkTo } from '@ember/routing';
+import { local } from 'embroider-css-modules';
+
+import styles from './navigation-menu.css';
+
+const NavigationMenu = <template>
+  <nav aria-label={{@name}} data-test-nav={{@name}}>
+    <ul class={{styles.list}}>
+      {{#each @menuItems as |menuItem|}}
+        <li>
+          <LinkTo
+            class={{local styles "link"}}
+            data-test-link={{menuItem.label}}
+          >
+            {{menuItem.label}}
+          </LinkTo>
+        </li>
+      {{/each}}
+    </ul>
+  </nav>
+</template>;
+
+export default NavigationMenu;

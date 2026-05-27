@@ -1,0 +1,340 @@
+--- 
+:bs: 
+  :rbnf: 
+    :grouping: 
+      - 
+        :ruleset: 
+          - 
+            :rules: 
+              - 
+                :rule: =0.0=;
+                :value: x.x
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 0
+            :type: spellout-numbering-year
+          - 
+            :rules: 
+              - 
+                :rule: =%spellout-cardinal-masculine=;
+                :value: 0
+            :type: spellout-numbering
+          - 
+            :rules: 
+              - 
+                :rule: "minus >>;"
+                :value: "-x"
+              - 
+                :rule: "<< zarez >>;"
+                :value: x.x
+              - 
+                :rule: nula;
+                :value: 0
+              - 
+                :rule: jedan;
+                :value: 1
+              - 
+                :rule: dva;
+                :value: 2
+              - 
+                :rule: tri;
+                :value: 3
+              - 
+                :rule: četiri;
+                :value: 4
+              - 
+                :rule: pet;
+                :value: 5
+              - 
+                :rule: šest;
+                :value: 6
+              - 
+                :rule: sedam;
+                :value: 7
+              - 
+                :rule: osam;
+                :value: 8
+              - 
+                :rule: devet;
+                :value: 9
+              - 
+                :rule: deset;
+                :value: 10
+              - 
+                :rule: jedenaest;
+                :value: 11
+              - 
+                :rule: dvanaest;
+                :value: 12
+              - 
+                :rule: trinaest;
+                :value: 13
+              - 
+                :rule: četrnaest;
+                :value: 14
+              - 
+                :rule: petnaest;
+                :value: 15
+              - 
+                :rule: šestnaest;
+                :value: 16
+              - 
+                :rule: sedamnaest;
+                :value: 17
+              - 
+                :rule: osamnaest;
+                :value: 18
+              - 
+                :rule: devetnaest;
+                :value: 19
+              - 
+                :rule: "dvadeset[ >>];"
+                :value: 20
+              - 
+                :rule: "trideset[ >>];"
+                :value: 30
+              - 
+                :rule: "četrdeset[ >>];"
+                :value: 40
+              - 
+                :rule: "pedeset[ >>];"
+                :value: 50
+              - 
+                :rule: "šezdeset[ >>];"
+                :value: 60
+              - 
+                :rule: "sedamdeset[ >>];"
+                :value: 70
+              - 
+                :rule: "osamdeset[ >>];"
+                :value: 80
+              - 
+                :rule: "devedeset[ >>];"
+                :value: 90
+              - 
+                :rule: "sto[ >>];"
+                :value: 100
+              - 
+                :rule: "dvesta[ >>];"
+                :value: 200
+              - 
+                :rule: "trista[ >>];"
+                :value: 300
+              - 
+                :rule: "četristo[ >>];"
+                :value: 400
+              - 
+                :rule: "petsto[ >>];"
+                :value: 500
+              - 
+                :rule: "šesto[ >>];"
+                :value: 600
+              - 
+                :rule: "sedamsto[ >>];"
+                :value: 700
+              - 
+                :rule: "osamsto[ >>];"
+                :value: 800
+              - 
+                :rule: "devetsto[ >>];"
+                :value: 900
+              - 
+                :rule: "<%spellout-cardinal-feminine< hiljada[ >>];"
+                :value: 1000
+              - 
+                :rule: "<%spellout-cardinal-masculine< milion[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<%spellout-cardinal-masculine< miliard[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<%spellout-cardinal-masculine< bilion[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%spellout-cardinal-masculine< biliard[ >>];"
+                :value: 1000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-masculine
+          - 
+            :rules: 
+              - 
+                :rule: "minus >>;"
+                :value: "-x"
+              - 
+                :rule: "<< zarez >>;"
+                :value: x.x
+              - 
+                :rule: nula;
+                :value: 0
+              - 
+                :rule: jedno;
+                :value: 1
+              - 
+                :rule: dva;
+                :value: 2
+              - 
+                :rule: =%spellout-cardinal-masculine=;
+                :value: 3
+              - 
+                :rule: "dvadeset[ >>];"
+                :value: 20
+              - 
+                :rule: "trideset[ >>];"
+                :value: 30
+              - 
+                :rule: "četrdeset[ >>];"
+                :value: 40
+              - 
+                :rule: "pedeset[ >>];"
+                :value: 50
+              - 
+                :rule: "šezdeset[ >>];"
+                :value: 60
+              - 
+                :rule: "sedamdeset[ >>];"
+                :value: 70
+              - 
+                :rule: "osamdeset[ >>];"
+                :value: 80
+              - 
+                :rule: "devedeset[ >>];"
+                :value: 90
+              - 
+                :rule: "sto[ >>];"
+                :value: 100
+              - 
+                :rule: "dvesta[ >>];"
+                :value: 200
+              - 
+                :rule: "trista[ >>];"
+                :value: 300
+              - 
+                :rule: "četristo[ >>];"
+                :value: 400
+              - 
+                :rule: "petsto[ >>];"
+                :value: 500
+              - 
+                :rule: "šesto[ >>];"
+                :value: 600
+              - 
+                :rule: "sedamsto[ >>];"
+                :value: 700
+              - 
+                :rule: "osamsto[ >>];"
+                :value: 800
+              - 
+                :rule: "devetsto[ >>];"
+                :value: 900
+              - 
+                :rule: "<%spellout-cardinal-feminine< hiljada[ >>];"
+                :value: 1000
+              - 
+                :rule: "<%spellout-cardinal-masculine< milion[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<%spellout-cardinal-masculine< miliard[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<%spellout-cardinal-masculine< bilion[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%spellout-cardinal-masculine< biliard[ >>];"
+                :value: 1000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-neuter
+          - 
+            :rules: 
+              - 
+                :rule: "minus >>;"
+                :value: "-x"
+              - 
+                :rule: "<< zarez >>;"
+                :value: x.x
+              - 
+                :rule: nula;
+                :value: 0
+              - 
+                :rule: jedinica;
+                :value: 1
+              - 
+                :rule: dve;
+                :value: 2
+              - 
+                :rule: =%spellout-cardinal-masculine=;
+                :value: 3
+              - 
+                :rule: "dvadeset[ >>];"
+                :value: 20
+              - 
+                :rule: "trideset[ >>];"
+                :value: 30
+              - 
+                :rule: "četrdeset[ >>];"
+                :value: 40
+              - 
+                :rule: "pedeset[ >>];"
+                :value: 50
+              - 
+                :rule: "šezdeset[ >>];"
+                :value: 60
+              - 
+                :rule: "sedamdeset[ >>];"
+                :value: 70
+              - 
+                :rule: "osamdeset[ >>];"
+                :value: 80
+              - 
+                :rule: "devedeset[ >>];"
+                :value: 90
+              - 
+                :rule: "sto[ >>];"
+                :value: 100
+              - 
+                :rule: "dvesta[ >>];"
+                :value: 200
+              - 
+                :rule: "trista[ >>];"
+                :value: 300
+              - 
+                :rule: "četristo[ >>];"
+                :value: 400
+              - 
+                :rule: "petsto[ >>];"
+                :value: 500
+              - 
+                :rule: "šesto[ >>];"
+                :value: 600
+              - 
+                :rule: "sedamsto[ >>];"
+                :value: 700
+              - 
+                :rule: "osamsto[ >>];"
+                :value: 800
+              - 
+                :rule: "devetsto[ >>];"
+                :value: 900
+              - 
+                :rule: "<%spellout-cardinal-feminine< hiljada[ >>];"
+                :value: 1000
+              - 
+                :rule: "<%spellout-cardinal-masculine< milion[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<%spellout-cardinal-masculine< miliard[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<%spellout-cardinal-masculine< bilion[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%spellout-cardinal-masculine< biliard[ >>];"
+                :value: 1000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-feminine
+        :type: SpelloutRules

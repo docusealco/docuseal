@@ -1,0 +1,74 @@
+<section>
+  <header>
+    <h1><%= t('Retries') %></h1>
+    <% if @retries.size > 0 && @total_size > @count %>
+      <%= erb :_paging, locals: { url: "#{root_path}retries" } %>
+    <% end %>
+    <%= filtering('retries') %>
+  </header>
+
+  <% if @retries.size > 0 %>
+    <form action="<%= root_path %>retries" method="post">
+      <%= csrf_tag %>
+      <div class="table_container">
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <label>
+                  <input type="checkbox" class="check_all check-all-items">
+                </label>
+              </th>
+              <th><%= t('NextRetry') %></th>
+              <th><%= t('RetryCount') %></th>
+              <th><%= t('Queue') %></th>
+              <th><%= t('Job') %></th>
+              <th><%= t('Arguments') %></th>
+              <th><%= t('Error') %></th>
+            </tr>
+          </thead>
+          <% @retries.each do |entry| %>
+            <tr>
+              <td>
+                <label>
+                  <input type="checkbox" name="key[]" value="<%= job_params(entry.item, entry.score) %>" class="shift_clickable select-item-checkbox">
+                </label>
+              </td>
+              <td>
+                <a href="<%= root_path %>retries/<%= job_params(entry.item, entry.score) %>"><%= relative_time(entry.at) %></a>
+              </td>
+              <td><%= entry['retry_count'] %></td>
+              <td>
+                <a href="<%= root_path %>queues/<%= entry.queue %>"><%= entry.queue %></a>
+              </td>
+              <td>
+                <%= entry.display_class %>
+                <%= display_tags(entry, "retries") %>
+              </td>
+              <td>
+                <code>
+                  <div class="args"><%= display_args(entry.display_args) %></div>
+                </code>
+              </td>
+              <td>
+                <div><a href="<%= root_path %>retries/<%= job_params(entry.item, entry.score) %>"><%= h truncate("#{entry['error_class']}: #{entry['error_message']}", 200) %></a></div>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+      <div class="buttons-row">
+        <input class="btn btn-primary" type="submit" name="retry" value="<%= t('RetryNow') %>">
+        <input class="btn btn-danger" type="submit" name="delete" value="<%= t('Delete') %>">
+        <input class="btn btn-danger" type="submit" name="kill" value="<%= t('Kill') %>">
+        <!-- Retry all -->
+        <button class="btn btn-primary bulk-action-buttons bulk-lead-button" type="submit" name="action" value="retry_all" formaction="<%= "#{root_path}retries/all/retry" %>"><%= t('RetryAll') %></button>
+        <button class="btn btn-danger bulk-action-buttons" type="submit" name="action" value="delete_all" formaction="<%= "#{root_path}retries/all/delete" %>" data-confirm="<%= t('AreYouSure') %>"><%= t('DeleteAll') %></button>
+        <button class="btn btn-danger bulk-action-buttons" type="submit" name="action" value="kill_all" formaction="<%= "#{root_path}retries/all/kill" %>"><%= t('KillAll') %></button>
+      </div>
+    </form>
+    
+  <% else %>
+    <div class="alert alert-success"><%= t('NoRetriesFound') %></div>
+  <% end %>
+</section>

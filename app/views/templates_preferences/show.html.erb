@@ -1,5 +1,5 @@
 <%= render 'shared/turbo_modal_large', title: t('preferences') do %>
-  <% show_api = Docuseal.multitenant? || current_account.testing? || !current_account.linked_account_account %>
+  <% show_api = Wabosign.multitenant? || current_account.testing? || !current_account.linked_account_account %>
   <% show_recipients = @template.submitters.to_a.length > 1 %>
   <% options = [[t('general'), 'general']] %>
   <% options << [t('recipients'), 'recipients'] if show_recipients %>

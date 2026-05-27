@@ -1,0 +1,267 @@
+--- 
+:zu: 
+  :territories: 
+    :ac: "i-Ascension Island"
+    :ad: i-Andorra
+    :ae: "i-United Arab Emirates"
+    :af: i-Afghanistan
+    :ag: "i-Antigua ne-Barbuda"
+    :ai: i-Anguilla
+    :al: i-Albania
+    :am: i-Armenia
+    :ao: i-Angola
+    :aq: i-Antarctica
+    :ar: i-Argentina
+    :as: "i-American Samoa"
+    :at: i-Austria
+    :au: i-Australia
+    :aw: i-Aruba
+    :ax: "i-Åland Islands"
+    :az: i-Azerbaijan
+    :ba: "i-Bosnia ne-Herzegovina"
+    :bb: i-Barbados
+    :bd: i-Bangladesh
+    :be: i-Belgium
+    :bf: "i-Burkina Faso"
+    :bg: i-Bulgaria
+    :bh: i-Bahrain
+    :bi: i-Burundi
+    :bj: i-Benin
+    :bl: "i-Saint Barthélemy"
+    :bm: i-Bermuda
+    :bn: i-Brunei
+    :bo: i-Bolivia
+    :bq: "i-Caribbean Netherlands"
+    :br: i-Brazil
+    :bs: i-Bahamas
+    :bt: i-Bhutan
+    :bv: "i-Bouvet Island"
+    :bw: iBotswana
+    :by: i-Belarus
+    :bz: i-Belize
+    :ca: i-Canada
+    :cc: "i-Cocos (Keeling) Islands"
+    :cd: "i-Congo - Kinshasa"
+    :cf: "i-Central African Republic"
+    :cg: "i-Congo - Brazzaville"
+    :ch: i-Switzerland
+    :ci: "i-Côte d’Ivoire"
+    :ck: "i-Cook Islands"
+    :cl: i-Chile
+    :cm: i-Cameroon
+    :cn: i-China
+    :co: i-Colombia
+    :cp: "i-Clipperton Island"
+    :cr: "i-Costa Rica"
+    :cu: i-Cuba
+    :cv: "i-Cape Verde"
+    :cw: i-Curaçao
+    :cx: "i-Christmas Island"
+    :cy: i-Cyprus
+    :cz: i-Czechia
+    :de: i-Germany
+    :dg: "i-Diego Garcia"
+    :dj: i-Djibouti
+    :dk: i-Denmark
+    :dm: i-Dominica
+    :do: "i-Dominican Republic"
+    :dz: i-Algeria
+    :ea: "i-Cueta ne-Melilla"
+    :ec: i-Ecuador
+    :ee: i-Estonia
+    :eg: i-Egypt
+    :eh: "i-Western Sahara"
+    :er: i-Eritrea
+    :es: i-Spain
+    :et: i-Ethiopia
+    :eu: "i-European Union"
+    :ez: I-Eurozone
+    :fi: i-Finland
+    :fj: i-Fiji
+    :fk: "i-Falkland Islands"
+    :fm: i-Micronesia
+    :fo: "i-Faroe Islands"
+    :fr: i-France
+    :ga: i-Gabon
+    :gb: "i-United Kingdom"
+    :gd: i-Grenada
+    :ge: i-Georgia
+    :gf: "i-French Guiana"
+    :gg: i-Guernsey
+    :gh: i-Ghana
+    :gi: i-Gibraltar
+    :gl: i-Greenland
+    :gm: i-Gambia
+    :gn: i-Guinea
+    :gp: i-Guadeloupe
+    :gq: "i-Equatorial Guinea"
+    :gr: i-Greece
+    :gs: "i-South Georgia ne-South Sandwich Islands"
+    :gt: i-Guatemala
+    :gu: i-Guam
+    :gw: i-Guinea-Bissau
+    :gy: i-Guyana
+    :hk: "i-Hong Kong SAR China"
+    :hm: "I-Heard & McDonald Island"
+    :hn: i-Honduras
+    :hr: i-Croatia
+    :ht: i-Haiti
+    :hu: i-Hungary
+    :ic: "i-Canary Islands"
+    :id: i-Indonesia
+    :ie: i-Ireland
+    :il: kwa-Israel
+    :im: "i-Isle of Man"
+    :in: i-India
+    :io: "i-British Indian Ocean Territory"
+    :iq: i-Iraq
+    :ir: i-Iran
+    :is: i-Iceland
+    :it: i-Italy
+    :je: i-Jersey
+    :jm: i-Jamaica
+    :jo: i-Jordan
+    :jp: i-Japan
+    :ke: i-Kenya
+    :kg: i-Kyrgyzstan
+    :kh: i-Cambodia
+    :ki: i-Kiribati
+    :km: i-Comoros
+    :kn: "i-Saint Kitts ne-Nevis"
+    :kp: "i-North Korea"
+    :kr: "i-South Korea"
+    :kw: i-Kuwait
+    :ky: "i-Cayman Islands"
+    :kz: i-Kazakhstan
+    :la: i-Laos
+    :lb: i-Lebanon
+    :lc: "i-Saint Lucia"
+    :li: i-Liechtenstein
+    :lk: "i-Sri Lanka"
+    :lr: i-Liberia
+    :ls: iLesotho
+    :lt: i-Lithuania
+    :lu: i-Luxembourg
+    :lv: i-Latvia
+    :ly: i-Libya
+    :ma: i-Morocco
+    :mc: i-Monaco
+    :md: i-Moldova
+    :me: i-Montenegro
+    :mf: "i-Saint Martin"
+    :mg: i-Madagascar
+    :mh: "i-Marshall Islands"
+    :mk: "i-North Macedonia"
+    :ml: iMali
+    :mm: "i-Myanmar (Burma)"
+    :mn: i-Mongolia
+    :mo: "i-Macau SAR China"
+    :mp: "i-Northern Mariana Islands"
+    :mq: i-Martinique
+    :mr: i-Mauritania
+    :ms: i-Montserrat
+    :mt: i-Malta
+    :mu: i-Mauritius
+    :mv: i-Maldives
+    :mw: iMalawi
+    :mx: i-Mexico
+    :my: i-Malaysia
+    :mz: i-Mozambique
+    :na: i-Namibia
+    :nc: "i-New Caledonia"
+    :ne: i-Niger
+    :nf: "i-Norfolk Island"
+    :ng: i-Nigeria
+    :ni: i-Nicaragua
+    :nl: i-Netherlands
+    ? !ruby/symbol "no"
+    : i-Norway
+    :np: i-Nepal
+    :nr: i-Nauru
+    :nu: i-Niue
+    :nz: "i-New Zealand"
+    :om: i-Oman
+    :pa: i-Panama
+    :pe: i-Peru
+    :pf: "i-French Polynesia"
+    :pg: "i-Papua New Guinea"
+    :ph: i-Philippines
+    :pk: i-Pakistan
+    :pl: i-Poland
+    :pm: "i-Saint Pierre kanye ne-Miquelon"
+    :pn: "i-Pitcairn Islands"
+    :pr: "i-Puerto Rico"
+    :ps: "i-Palestinian Territories"
+    :pt: i-Portugal
+    :pw: i-Palau
+    :py: i-Paraguay
+    :qa: i-Qatar
+    :qo: "i-Outlying Oceania"
+    :re: i-Réunion
+    :ro: i-Romania
+    :rs: i-Serbia
+    :ru: i-Russia
+    :rw: i-Rwanda
+    :sa: "i-Saudi Arabia"
+    :sb: "i-Solomon Islands"
+    :sc: i-Seychelles
+    :sd: i-Sudan
+    :se: i-Sweden
+    :sg: i-Singapore
+    :sh: "i-St. Helena"
+    :si: i-Slovenia
+    :sj: "i-Svalbard ne-Jan Mayen"
+    :sk: i-Slovakia
+    :sl: "i-Sierra Leone"
+    :sm: "i-San Marino"
+    :sn: i-Senegal
+    :so: i-Somalia
+    :sr: i-Suriname
+    :ss: "i-South Sudan"
+    :st: "i-São Tomé kanye ne-Príncipe"
+    :sv: "i-El Salvador"
+    :sx: "i-Sint Maarten"
+    :sy: i-Syria
+    :sz: i-Swaziland
+    :ta: "i-Tristan da Cunha"
+    :tc: "i-Turks ne-Caicos Islands"
+    :td: i-Chad
+    :tf: "i-French Southern Territories"
+    :tg: i-Togo
+    :th: i-Thailand
+    :tj: i-Tajikistan
+    :tk: i-Tokelau
+    :tl: i-Timor-Leste
+    :tm: i-Turkmenistan
+    :tn: i-Tunisia
+    :to: i-Tonga
+    :tr: i-Turkey
+    :tt: "i-Trinidad ne-Tobago"
+    :tv: i-Tuvalu
+    :tw: i-Taiwan
+    :tz: i-Tanzania
+    :ua: i-Ukraine
+    :ug: i-Uganda
+    :um: "I-U.S. Outlying Islands"
+    :un: "I-United Nations"
+    :us: "i-United States"
+    :uy: i-Uruguay
+    :uz: i-Uzbekistan
+    :va: "i-Vatican City"
+    :vc: "i-Saint Vincent ne-Grenadines"
+    :ve: i-Venezuela
+    :vg: "i-British Virgin Islands"
+    :vi: "i-U.S. Virgin Islands"
+    :vn: i-Vietnam
+    :vu: i-Vanuatu
+    :wf: "i-Wallis ne-Futuna"
+    :ws: i-Samoa
+    :xa: Pseudo-Accents
+    :xb: Pseudo-Bidi
+    :xk: i-Kosovo
+    :ye: i-Yemen
+    :yt: i-Mayotte
+    :za: "iNingizimu Afrika"
+    :zm: i-Zambia
+    :zw: iZimbabwe
+    :zz: "iSifunda esingaziwa"

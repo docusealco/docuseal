@@ -1,0 +1,39 @@
+current directory: /app/vendor/bundle/ruby/4.0.0/gems/msgpack-1.8.0/ext/msgpack
+/usr/local/bin/ruby extconf.rb
+checking for rb_enc_interned_str() in ruby.h... yes
+checking for rb_hash_new_capa() in ruby.h... yes
+checking for rb_proc_call_with_block() in ruby.h... yes
+checking for rb_gc_mark_locations() in ruby.h... yes
+checking for whether -fvisibility=hidden is accepted as CFLAGS... yes
+checking for whether -I.. is accepted as CFLAGS... yes
+checking for whether -Wall is accepted as CFLAGS... yes
+checking for whether -std=gnu99 is accepted as CFLAGS... yes
+checking for whether -DHASH_ASET_DEDUPE=1 is accepted as CFLAGS... yes
+checking for whether -DSTR_UMINUS_DEDUPE_FROZEN=1 is accepted as CFLAGS... yes
+creating Makefile
+
+current directory: /app/vendor/bundle/ruby/4.0.0/gems/msgpack-1.8.0/ext/msgpack
+make -j4 DESTDIR\= sitearchdir\=./.gem.20260516-47-ovjxv6 sitelibdir\=./.gem.20260516-47-ovjxv6 clean
+
+current directory: /app/vendor/bundle/ruby/4.0.0/gems/msgpack-1.8.0/ext/msgpack
+make -j4 DESTDIR\= sitearchdir\=./.gem.20260516-47-ovjxv6 sitelibdir\=./.gem.20260516-47-ovjxv6
+compiling buffer.c
+compiling buffer_class.c
+compiling extension_value_class.c
+compiling factory_class.c
+compiling packer.c
+compiling packer_class.c
+compiling packer_ext_registry.c
+compiling rbinit.c
+compiling rmem.c
+compiling unpacker.c
+compiling unpacker_class.c
+compiling unpacker_ext_registry.c
+linking shared-object msgpack/msgpack.so
+
+current directory: /app/vendor/bundle/ruby/4.0.0/gems/msgpack-1.8.0/ext/msgpack
+make -j4 DESTDIR\= sitearchdir\=./.gem.20260516-47-ovjxv6 sitelibdir\=./.gem.20260516-47-ovjxv6 install
+/usr/bin/install -c -m 0755 msgpack.so ./.gem.20260516-47-ovjxv6/msgpack
+
+current directory: /app/vendor/bundle/ruby/4.0.0/gems/msgpack-1.8.0/ext/msgpack
+make DESTDIR\= sitearchdir\=./.gem.20260516-47-ovjxv6 sitelibdir\=./.gem.20260516-47-ovjxv6 clean

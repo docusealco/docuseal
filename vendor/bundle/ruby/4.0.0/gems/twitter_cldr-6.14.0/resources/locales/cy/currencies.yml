@@ -1,0 +1,2277 @@
+--- 
+:cy: 
+  :currencies: 
+    :AED: 
+      :few: "dirham yr Emiradau Arabaidd Unedig"
+      :many: "dirham yr Emiradau Arabaidd Unedig"
+      :name: "Dirham Yr Emiradau Arabaidd Unedig"
+      :one: "dirham yr Emiradau Arabaidd Unedig"
+      :other: "dirham yr Emiradau Arabaidd Unedig"
+      :two: "dirham yr Emiradau Arabaidd Unedig"
+      :zero: "dirham yr Emiradau Arabaidd Unedig"
+    :AFA: 
+      :few: "afghani Afghanistan (1927–2002)"
+      :many: "afghani Afghanistan (1927–2002)"
+      :name: "Afghani Afghanistan (1927–2002)"
+      :one: "afghani Afghanistan (1927–2002)"
+      :other: "afghani Afghanistan (1927–2002)"
+      :two: "afghani Afghanistan (1927–2002)"
+      :zero: "afghani Afghanistan (1927–2002)"
+    :AFN: 
+      :few: "afghani Afghanistan"
+      :many: "afghani Afghanistan"
+      :name: "Afghani Afghanistan"
+      :narrow_symbol: ؋
+      :one: "afghani Afghanistan"
+      :other: "afghani Afghanistan"
+      :symbol: ؋
+      :two: "afghani Afghanistan"
+      :zero: "afghani Afghanistan"
+    :ALL: 
+      :few: "lek Albania"
+      :many: "lek Albania"
+      :name: "Lek Albania"
+      :one: "lek Albania"
+      :other: "lek Albania"
+      :two: "lek Albania"
+      :zero: "lek Albania"
+    :AMD: 
+      :few: "dram Armenia"
+      :many: "dram Armenia"
+      :name: "Dram Armenia"
+      :narrow_symbol: ֏
+      :one: "dram Armenia"
+      :other: "dram Armenia"
+      :symbol: ֏
+      :two: "dram Armenia"
+      :zero: "dram Armenia"
+    :ANG: 
+      :few: "guilder Antilles yr Iseldiroedd"
+      :many: "guilder Antilles yr Iseldiroedd"
+      :name: "Guilder Antilles yr Iseldiroedd"
+      :one: "guilder Antilles yr Iseldiroedd"
+      :other: "guilder Antilles yr Iseldiroedd"
+      :two: "guilder Antilles yr Iseldiroedd"
+      :zero: "guilder Antilles yr Iseldiroedd"
+    :AOA: 
+      :few: "kwanza Angola"
+      :many: "kwanza Angola"
+      :name: "Kwanza Angola"
+      :narrow_symbol: Kz
+      :one: "kwanza Angola"
+      :other: "kwanza Angola"
+      :symbol: Kz
+      :two: "kwanza Angola"
+      :zero: "kwanza Angola"
+    :AOK: 
+      :few: "kwanza Angola (1977 – 1991)"
+      :many: "kwanza Angola (1977 – 1991)"
+      :name: "Kwanza Angola (1977–1991)"
+      :one: "kwanza Angola (1977 – 1991)"
+      :other: "kwanza Angola (1977 – 1991)"
+      :two: "kwanza Angola (1977 – 1991)"
+      :zero: "kwanza Angola (1977 – 1991)"
+    :AON: 
+      :few: "kwanza newydd Angola (1999 – 2000)"
+      :many: "kwanza newydd Angola (1999 – 2000)"
+      :name: "Kwanza Newydd Angola (1990–2000)"
+      :one: "kwanza newydd Angola (1999 – 2000)"
+      :other: "kwanza newydd Angola (1999 – 2000)"
+      :two: "kwanza newydd Angola (1999 – 2000)"
+      :zero: "kwanza newydd Angola (1999 – 2000)"
+    :AOR: 
+      :few: "kwanza ailgymhwysedig Angola (1995 – 1999)"
+      :many: "kwanza ailgymhwysedig Angola (1995 – 1999)"
+      :name: "Kwanza Ailgymhwysedig Angola (1995–1999)"
+      :one: "kwanza ailgymhwysedig Angola (1995 – 1999)"
+      :other: "kwanza ailgymhwysedig Angola (1995 – 1999)"
+      :two: "kwanza ailgymhwysedig Angola (1995 – 1999)"
+      :zero: "kwanza ailgymhwysedig Angola (1995 – 1999)"
+    :ARA: 
+      :few: "austral yr Ariannin"
+      :many: "austral yr Ariannin"
+      :name: "Austral yr Ariannin"
+      :one: "austral yr Ariannin"
+      :other: "austral yr Ariannin"
+      :two: "austral yr Ariannin"
+      :zero: "austral yr Ariannin"
+    :ARL: 
+      :few: "peso ley yr Ariannin (1970–1983)"
+      :many: "peso ley yr Ariannin (1970–1983)"
+      :name: "Peso Ley yr Ariannin (1970–1983)"
+      :one: "peso ley yr Ariannin (1970–1983)"
+      :other: "peso ley yr Ariannin (1970–1983)"
+      :two: "peso ley yr Ariannin (1970–1983)"
+      :zero: "peso ley yr Ariannin (1970–1983)"
+    :ARM: 
+      :few: "peso yr Ariannin (1881–1970)"
+      :many: "peso yr Ariannin (1881–1970)"
+      :name: "Peso yr Ariannin (1881–1970)"
+      :one: "peso yr Ariannin (1881–1970)"
+      :other: "peso yr Ariannin (1881–1970)"
+      :two: "peso yr Ariannin (1881–1970)"
+      :zero: "peso yr Ariannin (1881–1970)"
+    :ARP: 
+      :few: "peso yr Ariannin (1983–1985)"
+      :many: "peso yr Ariannin (1983–1985)"
+      :name: "Peso yr Ariannin (1983–1985)"
+      :one: "peso yr Ariannin (1983–1985)"
+      :other: "peso yr Ariannin (1983–1985)"
+      :two: "peso yr Ariannin (1983–1985)"
+      :zero: "peso yr Ariannin (1983–1985)"
+    :ARS: 
+      :few: "peso yr Ariannin"
+      :many: "peso yr Ariannin"
+      :name: "Peso yr Ariannin"
+      :narrow_symbol: $
+      :one: "peso yr Ariannin"
+      :other: "peso yr Ariannin"
+      :symbol: $
+      :two: "peso yr Ariannin"
+      :zero: "peso yr Ariannin"
+    :ATS: 
+      :few: "swllt Awstria"
+      :many: "swllt Awstria"
+      :name: "Swllt Awstria"
+      :one: "swllt Awstria"
+      :other: "swllt Awstria"
+      :two: "swllt Awstria"
+      :zero: "swllt Awstria"
+    :AUD: 
+      :few: "doler Awstralia"
+      :many: "doler Awstralia"
+      :name: "Doler Awstralia"
+      :narrow_symbol: $
+      :one: "doler Awstralia"
+      :other: "doler Awstralia"
+      :symbol: A$
+      :two: "ddoler Awstralia"
+      :zero: "doler Awstralia"
+    :AWG: 
+      :few: "fflorin Aruba"
+      :many: "fflorin Aruba"
+      :name: "Fflorin Aruba"
+      :one: "fflorin Aruba"
+      :other: "fflorin Aruba"
+      :two: "fflorin Aruba"
+      :zero: "fflorin Aruba"
+    :AZM: 
+      :few: "manat Azerbaijan (1993–2006)"
+      :many: "manat Azerbaijan (1993–2006)"
+      :name: "Manat Azerbaijan (1993–2006)"
+      :one: "manat Azerbaijan (1993–2006)"
+      :other: "manat Azerbaijan (1993–2006)"
+      :two: "manat Azerbaijan (1993–2006)"
+      :zero: "manat Azerbaijan (1993–2006)"
+    :AZN: 
+      :few: "manat Azerbaijan"
+      :many: "manat Azerbaijan"
+      :name: "Manat Azerbaijan"
+      :narrow_symbol: ₼
+      :one: "manat Azerbaijan"
+      :other: "manat Azerbaijan"
+      :symbol: ₼
+      :two: "manat Azerbaijan"
+      :zero: "manat Azerbaijan"
+    :BAM: 
+      :few: "marc trosadwy Bosnia a Hercegovina"
+      :many: "marc trosadwy Bosnia a Hercegovina"
+      :name: "Marc Trosadwy Bosnia a Hercegovina"
+      :narrow_symbol: KM
+      :one: "marc trosadwy Bosnia a Hercegovina"
+      :other: "marc trosadwy Bosnia a Hercegovina"
+      :symbol: KM
+      :two: "farc trosiadwy Bosnia a Hercegovina"
+      :zero: "marc trosadwy Bosnia a Hercegovina"
+    :BBD: 
+      :few: "doler Barbados"
+      :many: "doler Barbados"
+      :name: "Doler Barbados"
+      :narrow_symbol: $
+      :one: "ddoler Barbados"
+      :other: "doler Barbados"
+      :symbol: $
+      :two: "ddoler Barbados"
+      :zero: "doler Barbados"
+    :BDT: 
+      :few: "taka Bangladesh"
+      :many: "taka Bangladesh"
+      :name: "Taka Bangladesh"
+      :narrow_symbol: TK
+      :one: "taka Bangladesh"
+      :other: "taka Bangladesh"
+      :symbol: TK
+      :two: "taka Bangladesh"
+      :zero: "taka Bangladesh"
+    :BEC: 
+      :few: "ffranc Gwlad Belg (arnewidiol)"
+      :many: "ffranc Gwlad Belg (arnewidiol)"
+      :name: "Ffranc Gwlad Belg (arnewidiol)"
+      :one: "ffranc Gwlad Belg (arnewidiol)"
+      :other: "ffranc Gwlad Belg (arnewidiol)"
+      :two: "ffranc Gwlad Belg (arnewidiol)"
+      :zero: "ffranc Gwlad Belg (arnewidiol)"
+    :BEF: 
+      :few: "ffranc Gwlad Belg"
+      :many: "ffranc Gwlad Belg"
+      :name: "Ffranc Gwlad Belg"
+      :one: "ffranc Gwlad Belg"
+      :other: "ffranc Gwlad Belg"
+      :two: "ffranc Gwlad Belg"
+      :zero: "ffranc Gwlad Belg"
+    :BEL: 
+      :few: "ffranc Gwlad Belg (ariannol)"
+      :many: "ffranc Gwlad Belg (ariannol)"
+      :name: "Ffranc Gwlad Belg (ariannol)"
+      :one: "ffranc Gwlad Belg (ariannol)"
+      :other: "ffranc Gwlad Belg (ariannol)"
+      :two: "ffranc Gwlad Belg (ariannol)"
+      :zero: "ffranc Gwlad Belg (ariannol)"
+    :BGM: 
+      :few: "lev sosialaidd Bwlgaria"
+      :many: "lev sosialaidd Bwlgaria"
+      :name: "Lev Sosialaidd Bwlgaria"
+      :one: "lev sosialaidd Bwlgaria"
+      :other: "lev sosialaidd Bwlgaria"
+      :two: "lev sosialaidd Bwlgaria"
+      :zero: "lev sosialaidd Bwlgaria"
+    :BGN: 
+      :few: "lev Bwlgaria"
+      :many: "lev Bwlgaria"
+      :name: "Lev Bwlgaria"
+      :one: "lev Bwlgaria"
+      :other: "lev Bwlgaria"
+      :two: "lev Bwlgaria"
+      :zero: "lev Bwlgaria"
+    :BGO: 
+      :few: "lev Bwlgaria (1879 – 1952)"
+      :many: "lev Bwlgaria (1879 – 1952)"
+      :name: "Lev Bwlgaria (1879–1952)"
+      :one: "lev Bwlgaria (1879 – 1952)"
+      :other: "lev Bwlgaria (1879 – 1952)"
+      :two: "lev Bwlgaria (1879 – 1952)"
+      :zero: "lev Bwlgaria (1879 – 1952)"
+    :BHD: 
+      :few: "dinar Bahrain"
+      :many: "dinar Bahrain"
+      :name: "Dinar Bahrain"
+      :one: "dinar Bahrain"
+      :other: "dinar Bahrain"
+      :two: "dinar Bahrain"
+      :zero: "dinar Bahrain"
+    :BIF: 
+      :few: "ffranc Burundi"
+      :many: "ffranc Burundi"
+      :name: "Ffranc Burundi"
+      :one: "ffranc Burundi"
+      :other: "ffranc Burundi"
+      :two: "ffranc Burundi"
+      :zero: "ffranc Burundi"
+    :BMD: 
+      :few: "doler Bermuda"
+      :many: "doler Bermuda"
+      :name: "Doler Bermuda"
+      :narrow_symbol: $
+      :one: "doler Bermuda"
+      :other: "doler Bermuda"
+      :symbol: $
+      :two: "ddoler Bermuda"
+      :zero: "doler Bermuda"
+    :BND: 
+      :few: "doler Brunei"
+      :many: "doler Brunei"
+      :name: "Doler Brunei"
+      :narrow_symbol: $
+      :one: "doler Brunei"
+      :other: "doler Brunei"
+      :symbol: $
+      :two: "ddoler Brunei"
+      :zero: "doler Brunei"
+    :BOB: 
+      :few: "boliviano Bolifia"
+      :many: "boliviano Bolifia"
+      :name: "Boliviano Bolifia"
+      :narrow_symbol: Bs
+      :one: "boliviano Bolifia"
+      :other: "boliviano Bolifia"
+      :symbol: Bs
+      :two: "boliviano Bolifia"
+      :zero: "boliviano Bolifia"
+    :BOL: 
+      :few: "boliviano Bolifia (1863–1963)"
+      :many: "boliviano Bolifia (1863–1963)"
+      :name: "Boliviano Bolifia (1863–1963)"
+      :one: "boliviano Bolifia (1863–1963)"
+      :other: "boliviano Bolifia (1863–1963)"
+      :two: "boliviano Bolifia (1863–1963)"
+      :zero: "boliviano Bolifia (1863–1963)"
+    :BOP: 
+      :few: "peso Bolifia"
+      :many: "peso Bolifia"
+      :name: "Peso Bolifia"
+      :one: "peso Bolifia"
+      :other: "peso Bolifia"
+      :two: "peso Bolifia"
+      :zero: "peso Bolifia"
+    :BOV: 
+      :few: "mvdol Bolifia"
+      :many: "mvdol Bolifia"
+      :name: "Mvdol Bolifia"
+      :one: "mvdol Bolifia"
+      :other: "mvdol Bolifia"
+      :two: "mvdol Bolifia"
+      :zero: "mvdol Bolifia"
+    :BRB: 
+      :few: "cruzeiro newydd Brasil (1967–1986)"
+      :many: "cruzeiro newydd Brasil (1967–1986)"
+      :name: "Cruzeiro Newydd Brasil (1967–1986)"
+      :one: "cruzeiro newydd Brasil (1967–1986)"
+      :other: "cruzeiro newydd Brasil (1967–1986)"
+      :two: "cruzeiro newydd Brasil (1967–1986)"
+      :zero: "cruzeiro newydd Brasil (1967–1986)"
+    :BRC: 
+      :few: "cruzado Brasil (1986–1989)"
+      :many: "cruzado Brasil (1986–1989)"
+      :name: "Cruzado Brasil (1986–1989)"
+      :one: "cruzado Brasil (1986–1989)"
+      :other: "cruzado Brasil (1986–1989)"
+      :two: "cruzado Brasil (1986–1989)"
+      :zero: "cruzado Brasil (1986–1989)"
+    :BRE: 
+      :few: "cruzeiro Brasil (1990–1993)"
+      :many: "cruzeiro Brasil (1990–1993)"
+      :name: "Cruzeiro Brasil (1990–1993)"
+      :one: "cruzeiro Brasil (1990–1993)"
+      :other: "cruzeiro Brasil (1990–1993)"
+      :two: "cruzeiro Brasil (1990–1993)"
+      :zero: "cruzeiro Brasil (1990–1993)"
+    :BRL: 
+      :few: "real Brasil"
+      :many: "real Brasil"
+      :name: "Real Brasil"
+      :narrow_symbol: R$
+      :one: "real Brasil"
+      :other: "real Brasil"
+      :symbol: R$
+      :two: "real Brasil"
+      :zero: "real Brasil"
+    :BRN: 
+      :few: "cruzado newydd Brasil (1989–1990)"
+      :many: "cruzado newydd Brasil (1989–1990)"
+      :name: "Cruzado Newydd Brasil (1989–1990)"
+      :one: "cruzado newydd Brasil (1989–1990)"
+      :other: "cruzado newydd Brasil (1989–1990)"
+      :two: "cruzado newydd Brasil (1989–1990)"
+      :zero: "cruzado newydd Brasil (1989–1990)"
+    :BRR: 
+      :few: "cruzeiro Brasil (1993–1994)"
+      :many: "cruzeiro Brasil (1993–1994)"
+      :name: "Cruzeiro Brasil (1993–1994)"
+      :one: "cruzeiro Brasil (1993–1994)"
+      :other: "cruzeiro Brasil (1993–1994)"
+      :two: "cruzeiro Brasil (1993–1994)"
+      :zero: "cruzeiro Brasil (1993–1994)"
+    :BRZ: 
+      :few: "cruzeiro Brasil (1942–1967)"
+      :many: "cruzeiro Brasil (1942–1967)"
+      :name: "Cruzeiro Brasil (1942–1967)"
+      :one: "cruzeiro Brasil (1942–1967)"
+      :other: "cruzeiro Brasil (1942–1967)"
+      :two: "cruzeiro Brasil (1942–1967)"
+      :zero: "cruzeiro Brasil (1942–1967)"
+    :BSD: 
+      :few: "doler y Bahamas"
+      :many: "doler y Bahamas"
+      :name: "Doler y Bahamas"
+      :narrow_symbol: $
+      :one: "doler y Bahamas"
+      :other: "doler y Bahamas"
+      :symbol: $
+      :two: "ddoler y Bahamas"
+      :zero: "doler y Bahamas"
+    :BTN: 
+      :few: "ngultrum Bhutan"
+      :many: "ngultrum Bhutan"
+      :name: "Ngultrum Bhutan"
+      :one: "ngultrum Bhutan"
+      :other: "ngultrum Bhutan"
+      :two: "ngultrum Bhutan"
+      :zero: "ngultrum Bhutan"
+    :BUK: 
+      :few: "kyat Byrma"
+      :many: "kyat Byrma"
+      :name: "Kyat Byrma"
+      :one: "kyat Byrma"
+      :other: "kyat Byrma"
+      :two: "kyat Byrma"
+      :zero: "kyat Byrma"
+    :BWP: 
+      :few: "pula Botswana"
+      :many: "pula Botswana"
+      :name: "Pula Botswana"
+      :narrow_symbol: BWP
+      :one: "pula Botswana"
+      :other: "pula Botswana"
+      :symbol: BWP
+      :two: "pula Botswana"
+      :zero: "pula Botswana"
+    :BYN: 
+      :few: "rwbl Belarws"
+      :many: "rwbl Belarws"
+      :name: "Rwbl Belarws"
+      :narrow_symbol: р.
+      :one: "rwbl Belarws"
+      :other: "rwbl Belarws"
+      :symbol: р.
+      :two: "rwbl Belarws"
+      :zero: "rwbl Belarws"
+    :BYR: 
+      :few: "rwbl Belarws (2000–2016)"
+      :many: "rwbl Belarws (2000–2016)"
+      :name: "Rwbl Belarws (2000–2016)"
+      :one: "rwbl Belarws (2000–2016)"
+      :other: "rwbl Belarws (2000–2016)"
+      :two: "rwbl Belarws (2000–2016)"
+      :zero: "rwbl Belarws (2000–2016)"
+    :BZD: 
+      :few: "doler Belize"
+      :many: "doler Belize"
+      :name: "Doler Belize"
+      :narrow_symbol: $
+      :one: "doler Belize"
+      :other: "doler Belize"
+      :symbol: $
+      :two: "ddoler Belize"
+      :zero: "doler Belize"
+    :CAD: 
+      :few: "doler Canada"
+      :many: "doler Canada"
+      :name: "Doler Canada"
+      :narrow_symbol: $
+      :one: "doler Canada"
+      :other: "doler Canada"
+      :symbol: CA$
+      :two: "doler Canada"
+      :zero: "doler Canada"
+    :CDF: 
+      :few: "ffranc Congo"
+      :many: "ffranc Congo"
+      :name: "Ffranc Congo"
+      :one: "ffranc Congo"
+      :other: "ffranc Congo"
+      :two: "ffranc Congo"
+      :zero: "ffranc Congo"
+    :CHE: 
+      :few: "ewro WIR"
+      :many: "ewro WIR"
+      :name: "Ewro WIR"
+      :one: "ewro WIR"
+      :other: "ewro WIR"
+      :two: "ewro WIR"
+      :zero: "ewro WIR"
+    :CHF: 
+      :few: "ffranc y Swistir"
+      :many: "ffranc y Swistir"
+      :name: "Ffranc y Swistir"
+      :one: "ffranc y Swistir"
+      :other: "ffranc y Swistir"
+      :two: "ffranc y Swistir"
+      :zero: "ffranc y Swistir"
+    :CHW: 
+      :few: "ffranc WIR"
+      :many: "ffranc WIR"
+      :name: "Ffranc WIR"
+      :one: "ffranc WIR"
+      :other: "ffranc WIR"
+      :two: "ffranc WIR"
+      :zero: "ffranc WIR"
+    :CLE: 
+      :few: "escudo Chile"
+      :many: "escudo Chile"
+      :name: "Escudo Chile"
+      :one: "escudo Chile"
+      :other: "escudo Chile"
+      :two: "escudo Chile"
+      :zero: "escudo Chile"
+    :CLF: 
+      :few: "uned cyfrifo Chile (UF)"
+      :many: "uned cyfrifo Chile (UF)"
+      :name: "Uned Cyfrifo Chile (UF)"
+      :one: "uned cyfrifo Chile (UF)"
+      :other: "uned cyfrifo Chile (UF)"
+      :two: "uned cyfrifo Chile (UF)"
+      :zero: "uned cyfrifo Chile (UF)"
+    :CLP: 
+      :few: "peso Chile"
+      :many: "peso Chile"
+      :name: "Peso Chile"
+      :narrow_symbol: $
+      :one: "peso Chile"
+      :other: "peso Chile"
+      :symbol: $
+      :two: "peso Chile"
+      :zero: "peso Chile"
+    :CNH: 
+      :few: "yuan Tsieina (ar y môr)"
+      :many: "yuan Tsieina (ar y môr)"
+      :name: "Yuan Tsieina (ar y môr)"
+      :one: "yuan Tsieina (ar y môr)"
+      :other: "yuan Tsieina (ar y môr)"
+      :two: "yuan Tsieina (ar y môr)"
+      :zero: "yuan Tsieina (ar y môr)"
+    :CNX: 
+      :few: "doler Banc Pobl Tsieina"
+      :many: "doler Banc Pobl Tsieina"
+      :name: "Doler Banc Pobl Tsieina"
+      :one: "ddoler Banc Pobl Tsieina"
+      :other: "doler Banc Pobl Tsieina"
+      :two: "ddoler Banc Pobl Tsieina"
+      :zero: "doler Banc Pobl Tsieina"
+    :CNY: 
+      :few: "yuan Tsieina"
+      :many: "yuan Tsieina"
+      :name: "Yuan Tsieina"
+      :narrow_symbol: ¥
+      :one: "yuan Tsieina"
+      :other: "yuan Tsieina"
+      :symbol: CN¥
+      :two: "yuan Tsieina"
+      :zero: "yuan Tsieina"
+    :COP: 
+      :few: "peso Colombia"
+      :many: "peso Colombia"
+      :name: "Peso Colombia"
+      :narrow_symbol: $
+      :one: "peso Colombia"
+      :other: "peso Colombia"
+      :symbol: $
+      :two: "peso Colombia"
+      :zero: "peso Colombia"
+    :COU: 
+      :few: "uned gwir werth Colombia"
+      :many: "uned gwir werth Colombia"
+      :name: "Uned Gwir Werth Colombia"
+      :one: "uned gwir werth Colombia"
+      :other: "uned gwir werth Colombia"
+      :two: "uned gwir werth Colombia"
+      :zero: "uned gwir werth Colombia"
+    :CRC: 
+      :few: "colón Costa Rica"
+      :many: "colón Costa Rica"
+      :name: "Colón Costa Rica"
+      :narrow_symbol: ₡
+      :one: "colón Costa Rica"
+      :other: "colón Costa Rica"
+      :symbol: ₡
+      :two: "colón Costa Rica"
+      :zero: "colón Costa Rica"
+    :CUC: 
+      :few: "peso trosadwy Ciwba"
+      :many: "peso trosadwy Ciwba"
+      :name: "Peso Trosadwy Ciwba"
+      :narrow_symbol: $
+      :one: "peso trosadwy Ciwba"
+      :other: "peso trosadwy Ciwba"
+      :symbol: $
+      :two: "peso trosadwy Ciwba"
+      :zero: "peso trosadwy Ciwba"
+    :CUP: 
+      :few: "peso Ciwba"
+      :many: "peso Ciwba"
+      :name: "Peso Ciwba"
+      :narrow_symbol: $
+      :one: "peso Ciwba"
+      :other: "peso Ciwba"
+      :symbol: $
+      :two: "peso Ciwba"
+      :zero: "peso Ciwba"
+    :CVE: 
+      :few: "esgwdo Cabo Verde"
+      :many: "esgwdo Cabo Verde"
+      :name: "Esgwdo Cabo Verde"
+      :one: "esgwdo Cabo Verde"
+      :other: "esgwdo Cabo Verde"
+      :two: "esgwdo Cabo Verde"
+      :zero: "esgwdo Cabo Verde"
+    :CYP: 
+      :few: "punt Cyprus"
+      :many: "punt Cyprus"
+      :name: "Punt Cyprus"
+      :one: "bunt Cyprus"
+      :other: "punt Cyprus"
+      :two: "bunt Cyprus"
+      :zero: "punt Cyprus"
+    :CZK: 
+      :few: "koruna’r Weriniaeth Tsiec"
+      :many: "koruna’r Weriniaeth Tsiec"
+      :name: "Koruna’r Weriniaeth Tsiec"
+      :narrow_symbol: Kč
+      :one: "koruna’r Weriniaeth Tsiec"
+      :other: "koruna’r Weriniaeth Tsiec"
+      :symbol: Kč
+      :two: "koruna’r Weriniaeth Tsiec"
+      :zero: "koruna’r Weriniaeth Tsiec"
+    :DDM: 
+      :few: "marc Dwyrain yr Almaen"
+      :many: "marc Dwyrain yr Almaen"
+      :name: "Marc Dwyrain yr Almaen"
+      :one: "marc Dwyrain yr Almaen"
+      :other: "marc Dwyrain yr Almaen"
+      :two: "marc Dwyrain yr Almaen"
+      :zero: "marc Dwyrain yr Almaen"
+    :DEM: 
+      :few: "marc yr Almaen"
+      :many: "marc yr Almaen"
+      :name: "Marc yr Almaen"
+      :one: "marc yr Almaen"
+      :other: "marc yr Almaen"
+      :two: "marc yr Almaen"
+      :zero: "marc yr Almaen"
+    :DJF: 
+      :few: "ffranc Djibouti"
+      :many: "ffranc Djibouti"
+      :name: "Ffranc Djibouti"
+      :one: "ffranc Djibouti"
+      :other: "ffranc Djibouti"
+      :two: "ffranc Djibouti"
+      :zero: "ffranc Djibouti"
+    :DKK: 
+      :few: "krone Denmarc"
+      :many: "krone Denmarc"
+      :name: "Krone Denmarc"
+      :narrow_symbol: kr
+      :one: "krone Denmarc"
+      :other: "krone Denmarc"
+      :symbol: kr
+      :two: "krone Denmarc"
+      :zero: "krone Denmarc"
+    :DOP: 
+      :few: "peso Gweriniaeth Dominica"
+      :many: "peso Gweriniaeth Dominica"
+      :name: "Peso Gweriniaeth Dominica"
+      :narrow_symbol: $
+      :one: "peso Gweriniaeth Dominica"
+      :other: "peso Gweriniaeth Dominica"
+      :symbol: $
+      :two: "peso Gweriniaeth Dominica"
+      :zero: "peso Gweriniaeth Dominica"
+    :DZD: 
+      :few: "dinar Algeria"
+      :many: "dinar Algeria"
+      :name: "Dinar Algeria"
+      :one: "dinar Algeria"
+      :other: "dinar Algeria"
+      :two: "dinar Algeria"
+      :zero: "dinar Algeria"
+    :ECS: 
+      :few: "sucre Ecuador"
+      :many: "sucre Ecuador"
+      :name: "Sucre Ecuador"
+      :one: "sucre Ecuador"
+      :other: "sucre Ecuador"
+      :two: "sucre Ecuador"
+      :zero: "sucre Ecuador"
+    :ECV: 
+      :few: "uned gwerth gyson Ecuador"
+      :many: "uned gwerth gyson Ecuador"
+      :name: "Uned Gwerth Gyson Ecuador"
+      :one: "uned gwerth gyson Ecuador"
+      :other: "uned gwerth gyson Ecuador"
+      :two: "uned gwerth gyson Ecuador"
+      :zero: "uned gwerth gyson Ecuador"
+    :EEK: 
+      :few: "kroon Estonia"
+      :many: "kroon Estonia"
+      :name: "Kroon Estonia"
+      :one: "kroon Estonia"
+      :other: "kroon Estonia"
+      :two: "kroon Estonia"
+      :zero: "kroon Estonia"
+    :EGP: 
+      :few: "punt yr Aifft"
+      :many: "punt yr Aifft"
+      :name: "Punt Yr Aifft"
+      :narrow_symbol: E£
+      :one: "punt yr Aifft"
+      :other: "punt yr Aifft"
+      :symbol: E£
+      :two: "bunt yr Aifft"
+      :zero: "punt yr Aifft"
+    :ERN: 
+      :few: "nakfa Eritrea"
+      :many: "nakfa Eritrea"
+      :name: "Nakfa Eritrea"
+      :one: "nakfa Eritrea"
+      :other: "nakfa Eritrea"
+      :two: "nakfa Eritrea"
+      :zero: "nakfa Eritrea"
+    :ESP: 
+      :narrow_symbol: ₧
+      :symbol: ₧
+    :ETB: 
+      :few: "birr Ethiopia"
+      :many: "birr Ethiopia"
+      :name: "Birr Ethiopia"
+      :one: "birr Ethiopia"
+      :other: "birr Ethiopia"
+      :two: "birr Ethiopia"
+      :zero: "birr Ethiopia"
+    :EUR: 
+      :few: ewro
+      :many: ewro
+      :name: Ewro
+      :narrow_symbol: €
+      :one: ewro
+      :other: ewro
+      :symbol: €
+      :two: ewro
+      :zero: ewro
+    :FIM: 
+      :few: "markka’r Ffindir"
+      :many: "markka’r Ffindir"
+      :name: "Markka’r Ffindir"
+      :one: "markka’r Ffindir"
+      :other: "markka’r Ffindir"
+      :two: "markka’r Ffindir"
+      :zero: "markka’r Ffindir"
+    :FJD: 
+      :few: "doler Ffiji"
+      :many: "doler Ffiji"
+      :name: "Doler Ffiji"
+      :narrow_symbol: $
+      :one: "doler Ffiji"
+      :other: "doler Ffiji"
+      :symbol: $
+      :two: "ddoler Ffiji"
+      :zero: "doler Ffiji"
+    :FKP: 
+      :few: "punt Ynysoedd Falkland/Malvinas"
+      :many: "punt Ynysoedd Falkland/Malvinas"
+      :name: "Punt Ynysoedd Falkland/Malvinas"
+      :narrow_symbol: £
+      :one: "punt Ynysoedd Falkland/Malvinas"
+      :other: "punt Ynysoedd Falkland/Malvinas"
+      :symbol: £
+      :two: "bunt Ynysoedd Falkland/Malvinas"
+      :zero: "punt Ynysoedd Falkland/Malvinas"
+    :FRF: 
+      :few: "ffranc Ffrainc"
+      :many: "ffranc Ffrainc"
+      :name: "Ffranc Ffrainc"
+      :one: "ffranc Ffrainc"
+      :other: "ffranc Ffrainc"
+      :two: "ffranc Ffrainc"
+      :zero: "ffranc Ffrainc"
+    :GBP: 
+      :few: "punt Prydain"
+      :many: "punt Prydain"
+      :name: "Punt Prydain"
+      :narrow_symbol: £
+      :one: "bunt Prydain"
+      :other: "punt Prydain"
+      :symbol: £
+      :two: "bunt Prydain"
+      :zero: "punt Prydain"
+    :GEK: 
+      :few: "kupon larit Georgia"
+      :many: "kupon larit Georgia"
+      :name: "Kupon Larit Georgia"
+      :one: "kupon larit Georgia"
+      :other: "kupon larit Georgia"
+      :two: "kupon larit Georgia"
+      :zero: "kupon larit Georgia"
+    :GEL: 
+      :few: "lari Georgia"
+      :many: "lari Georgia"
+      :name: "Lari Georgia"
+      :narrow_symbol: ₾
+      :one: "lari Georgia"
+      :other: "lari Georgia"
+      :symbol: ₾
+      :two: "lari Georgia"
+      :zero: "lari Georgia"
+    :GHC: 
+      :few: "cedi Ghana (1979–2007)"
+      :many: "cedi Ghana (1979–2007)"
+      :name: "Cedi Ghana (1979–2007)"
+      :one: "cedi Ghana (1979–2007)"
+      :other: "cedi Ghana (1979–2007)"
+      :two: "cedi Ghana (1979–2007)"
+      :zero: "cedi Ghana (1979–2007)"
+    :GHS: 
+      :few: "cedi Ghana"
+      :many: "cedi Ghana"
+      :name: "Cedi Ghana"
+      :narrow_symbol: GH₵
+      :one: "cedi Ghana"
+      :other: "cedi Ghana"
+      :symbol: GH₵
+      :two: "cedi Ghana"
+      :zero: "cedi Ghana"
+    :GIP: 
+      :few: "punt Gibraltar"
+      :many: "punt Gibraltar"
+      :name: "Punt Gibraltar"
+      :narrow_symbol: £
+      :one: "punt Gibraltar"
+      :other: "punt Gibraltar"
+      :symbol: £
+      :two: "bunt Gibraltar"
+      :zero: "punt Gibraltar"
+    :GMD: 
+      :few: "dalasi Gambia"
+      :many: "dalasi Gambia"
+      :name: "Dalasi Gambia"
+      :one: "dalasi Gambia"
+      :other: "dalasi Gambia"
+      :two: "dalasi Gambia"
+      :zero: "dalasi Gambia"
+    :GNF: 
+      :few: "ffranc Guinée"
+      :many: "ffranc Guinée"
+      :name: "Ffranc Guinée"
+      :narrow_symbol: FG
+      :one: "ffranc Guinée"
+      :other: "ffranc Guinée"
+      :symbol: FG
+      :two: "ffranc Guinée"
+      :zero: "ffranc Guinée"
+    :GNS: 
+      :few: "syli Guinée"
+      :many: "syli Guinée"
+      :name: "Syli Guinée"
+      :one: "syli Guinée"
+      :other: "syli Guinée"
+      :two: "syli Guinée"
+      :zero: "syli Guinée"
+    :GQE: 
+      :few: "ekwele Guinea Gyhydeddol"
+      :many: "ekwele Guinea Gyhydeddol"
+      :name: "Ekwele Guinea Gyhydeddol"
+      :one: "ekwele Guinea Gyhydeddol"
+      :other: "ekwele Guinea Gyhydeddol"
+      :two: "ekwele Guinea Gyhydeddol"
+      :zero: "ekwele Guinea Gyhydeddol"
+    :GTQ: 
+      :few: "quetzal Guatemala"
+      :many: "quetzal Guatemala"
+      :name: "Quetzal Guatemala"
+      :narrow_symbol: Q
+      :one: "quetzal Guatemala"
+      :other: "quetzal Guatemala"
+      :symbol: Q
+      :two: "quetzal Guatemala"
+      :zero: "quetzal Guatemala"
+    :GWP: 
+      :few: "peso Guiné-Bissau"
+      :many: "peso Guiné-Bissau"
+      :name: "Peso Guiné-Bissau"
+      :one: "peso Guiné-Bissau"
+      :other: "peso Guiné-Bissau"
+      :two: "peso Guiné-Bissau"
+      :zero: "peso Guiné-Bissau"
+    :GYD: 
+      :few: "doler Guyana"
+      :many: "doler Guyana"
+      :name: "Doler Guyana"
+      :narrow_symbol: $
+      :one: "doler Guyana"
+      :other: "doler Guyana"
+      :symbol: $
+      :two: "ddoler Guyana"
+      :zero: "doler Guyana"
+    :HKD: 
+      :few: "doler Hong Kong"
+      :many: "doler Hong Kong"
+      :name: "Doler Hong Kong"
+      :narrow_symbol: HK$
+      :one: "doler Hong Kong"
+      :other: "doler Hong Kong"
+      :symbol: HK$
+      :two: "ddoler Hong Kong"
+      :zero: "doler Hong Kong"
+    :HNL: 
+      :few: "lempira Honduras"
+      :many: "lempira Honduras"
+      :name: "Lempira Honduras"
+      :narrow_symbol: L
+      :one: "lempira Honduras"
+      :other: "lempira Honduras"
+      :symbol: L
+      :two: "lempira Honduras"
+      :zero: "lempira Honduras"
+    :HRK: 
+      :few: "kuna Croatia"
+      :many: "kuna Croatia"
+      :name: "Kuna Croatia"
+      :narrow_symbol: kn
+      :one: "kuna Croatia"
+      :other: "kuna Croatia"
+      :symbol: kn
+      :two: "kuna Croatia"
+      :zero: "kuna Croatia"
+    :HTG: 
+      :few: "gourde Haiti"
+      :many: "gourde Haiti"
+      :name: "Gourde Haiti"
+      :one: "gourde Haiti"
+      :other: "gourde Haiti"
+      :two: "gourde Haiti"
+      :zero: "gourde Haiti"
+    :HUF: 
+      :few: "fforint Hwngari"
+      :many: "fforint Hwngari"
+      :name: "Fforint Hwngari"
+      :narrow_symbol: Ft
+      :one: "fforint Hwngari"
+      :other: "fforint Hwngari"
+      :symbol: Ft
+      :two: "fforint Hwngari"
+      :zero: "fforint Hwngari"
+    :IDR: 
+      :few: "rupiah Indonesia"
+      :many: "rupiah Indonesia"
+      :name: "Rupiah Indonesia"
+      :narrow_symbol: Rp
+      :one: "rupiah Indonesia"
+      :other: "rupiah Indonesia"
+      :symbol: Rp
+      :two: "rupiah Indonesia"
+      :zero: "rupiah Indonesia"
+    :IEP: 
+      :few: "punt Iwerddon"
+      :many: "phunt Iwerddon"
+      :name: "Punt Iwerddon"
+      :one: "bunt Iwerddon"
+      :other: "punt Iwerddon"
+      :two: "bunt Iwerddon"
+      :zero: "punt Iwerddon"
+    :ILP: 
+      :few: "punt Israel"
+      :many: "phunt Israel"
+      :name: "Punt Israel"
+      :one: "bunt Israel"
+      :other: "punt Israel"
+      :two: "bunt Israel"
+      :zero: "punt Israel"
+    :ILR: 
+      :few: "shegel Israel (1980–1985)"
+      :many: "shegel Israel (1980–1985)"
+      :name: "Shegel Israel (1980–1985)"
+      :one: "shegel Israel (1980–1985)"
+      :other: "shegel Israel (1980–1985)"
+      :two: "shegel Israel (1980–1985)"
+      :zero: "shegel Israel (1980–1985)"
+    :ILS: 
+      :few: "shegel newydd Israel"
+      :many: "shegel newydd Israel"
+      :name: "Shegel Newydd Israel"
+      :narrow_symbol: ₪
+      :one: "shegel newydd Israel"
+      :other: "shegel newydd Israel"
+      :symbol: ₪
+      :two: "shegel newydd Israel"
+      :zero: "shegel newydd Israel"
+    :INR: 
+      :few: "rwpî India"
+      :many: "rwpî India"
+      :name: "Rwpî India"
+      :narrow_symbol: ₹
+      :one: "rwpî India"
+      :other: "rwpî India"
+      :symbol: ₹
+      :two: "rwpî India"
+      :zero: "rwpî India"
+    :IQD: 
+      :few: "dinar Irac"
+      :many: "dinar Irac"
+      :name: "Dinar Irac"
+      :one: "dinar Irac"
+      :other: "dinar Irac"
+      :two: "dinar Irac"
+      :zero: "dinar Irac"
+    :IRR: 
+      :few: "rial Iran"
+      :many: "rial Iran"
+      :name: "Rial Iran"
+      :one: "rial Iran"
+      :other: "rial Iran"
+      :two: "rial Iran"
+      :zero: "rial Iran"
+    :ISJ: 
+      :few: "króna Gwlad yr Iâ (1918 – 1981)"
+      :many: "króna Gwlad yr Iâ (1918 – 1981)"
+      :name: "Króna Gwlad yr Iâ (1918 – 1981)"
+      :one: "króna Gwlad yr Iâ (1918 – 1981)"
+      :other: "króna Gwlad yr Iâ (1918 – 1981)"
+      :two: "króna Gwlad yr Iâ (1918 – 1981)"
+      :zero: "króna Gwlad yr Iâ (1918 – 1981)"
+    :ISK: 
+      :few: "króna Gwlad yr Iâ"
+      :many: "króna Gwlad yr Iâ"
+      :name: "Króna Gwlad yr Iâ"
+      :narrow_symbol: kr
+      :one: "króna Gwlad yr Iâ"
+      :other: "króna Gwlad yr Iâ"
+      :symbol: kr
+      :two: "króna Gwlad yr Iâ"
+      :zero: "króna Gwlad yr Iâ"
+    :JMD: 
+      :few: "doler Jamaica"
+      :many: "doler Jamaica"
+      :name: "Doler Jamaica"
+      :narrow_symbol: $
+      :one: "doler Jamaica"
+      :other: "doler Jamaica"
+      :symbol: $
+      :two: "ddoler Jamaica"
+      :zero: "doler Jamaica"
+    :JOD: 
+      :few: "dinar Gwlad yr Iorddonen"
+      :many: "dinar Gwlad yr Iorddonen"
+      :name: "Dinar Gwlad yr Iorddonen"
+      :one: "dinar Gwlad yr Iorddonen"
+      :other: "dinar Gwlad yr Iorddonen"
+      :two: "dinar Gwlad yr Iorddonen"
+      :zero: "dinar Gwlad yr Iorddonen"
+    :JPY: 
+      :few: "yen Japan"
+      :many: "yen Japan"
+      :name: "Yen Japan"
+      :narrow_symbol: ¥
+      :one: "yen Japan"
+      :other: "yen Japan"
+      :symbol: JP¥
+      :two: "yen Japan"
+      :zero: "yen Japan"
+    :KES: 
+      :few: "swllt Kenya"
+      :many: "swllt Kenya"
+      :name: "Swllt Kenya"
+      :one: "swllt Kenya"
+      :other: "swllt Kenya"
+      :two: "swllt Kenya"
+      :zero: "swllt Kenya"
+    :KGS: 
+      :few: "som Kyrgyzstan"
+      :many: "som Kyrgyzstan"
+      :name: "Som Kyrgyzstan"
+      :narrow_symbol: ⃀
+      :one: "som Kyrgyzstan"
+      :other: "som Kyrgyzstan"
+      :symbol: ⃀
+      :two: "som Kyrgyzstan"
+      :zero: "som Kyrgyzstan"
+    :KHR: 
+      :few: "riel Cambodia"
+      :many: "riel Cambodia"
+      :name: "Riel Cambodia"
+      :narrow_symbol: ៛
+      :one: "riel Cambodia"
+      :other: "riel Cambodia"
+      :symbol: ៛
+      :two: "riel Cambodia"
+      :zero: "riel Cambodia"
+    :KMF: 
+      :few: "ffranc Comoros"
+      :many: "ffranc Comoros"
+      :name: "Ffranc Comoros"
+      :narrow_symbol: CF
+      :one: "ffranc Comoros"
+      :other: "ffranc Comoros"
+      :symbol: CF
+      :two: "ffranc Comoros"
+      :zero: "ffranc Comoros"
+    :KPW: 
+      :few: "won Gogledd Corea"
+      :many: "won Gogledd Corea"
+      :name: "Won Gogledd Corea"
+      :narrow_symbol: ₩
+      :one: "won Gogledd Corea"
+      :other: "won Gogledd Corea"
+      :symbol: ₩
+      :two: "won Gogledd Corea"
+      :zero: "won Gogledd Corea"
+    :KRH: 
+      :few: "hwan De Corea (1953–1962)"
+      :many: "hwan De Corea (1953–1962)"
+      :name: "Hwan De Corea (1953–1962)"
+      :one: "hwan De Corea (1953–1962)"
+      :other: "hwan De Corea (1953–1962)"
+      :two: "hwan De Corea (1953–1962)"
+      :zero: "hwan De Corea (1953–1962)"
+    :KRO: 
+      :few: "won De Corea (1945–1953)"
+      :many: "won De Corea (1945–1953)"
+      :name: "Won De Corea (1945–1953)"
+      :one: "won De Corea (1945–1953)"
+      :other: "won De Corea (1945–1953)"
+      :two: "won De Corea (1945–1953)"
+      :zero: "won De Corea (1945–1953)"
+    :KRW: 
+      :few: "won De Corea"
+      :many: "won De Corea"
+      :name: "Won De Corea"
+      :narrow_symbol: ₩
+      :one: "won De Corea"
+      :other: "won De Corea"
+      :symbol: KRW
+      :two: "won De Corea"
+      :zero: "won De Corea"
+    :KWD: 
+      :few: "dinar Kuwait"
+      :many: "dinar Kuwait"
+      :name: "Dinar Kuwait"
+      :one: "dinar Kuwait"
+      :other: "dinar Kuwait"
+      :two: "dinar Kuwait"
+      :zero: "dinar Kuwait"
+    :KYD: 
+      :few: "doler Ynysoedd Cayman"
+      :many: "doler Ynysoedd Cayman"
+      :name: "Doler Ynysoedd Cayman"
+      :narrow_symbol: $
+      :one: "doler Ynysoedd Cayman"
+      :other: "doler Ynysoedd Cayman"
+      :symbol: $
+      :two: "ddoler Ynysoedd Cayman"
+      :zero: "doler Ynysoedd Cayman"
+    :KZT: 
+      :few: "tenge Kazakstan"
+      :many: "tenge Kazakstan"
+      :name: "Tenge Kazakstan"
+      :narrow_symbol: ₸
+      :one: "tenge Kazakstan"
+      :other: "tenge Kazakstan"
+      :symbol: ₸
+      :two: "tenge Kazakstan"
+      :zero: "tenge Kazakstan"
+    :LAK: 
+      :few: "kip Laos"
+      :many: "kip Laos"
+      :name: "Kip Laos"
+      :narrow_symbol: ₭
+      :one: "kip Laos"
+      :other: "kip Laos"
+      :symbol: ₭
+      :two: "kip Laos"
+      :zero: "kip Laos"
+    :LBP: 
+      :few: "punt Libanus"
+      :many: "punt Libanus"
+      :name: "Punt Libanus"
+      :narrow_symbol: L£
+      :one: "punt Libanus"
+      :other: "punt Libanus"
+      :symbol: L£
+      :two: "bunt Libanus"
+      :zero: "punt Libanus"
+    :LKR: 
+      :few: "rwpî Sri Lanka"
+      :many: "rwpî Sri Lanka"
+      :name: "Rwpî Sri Lanka"
+      :narrow_symbol: Rs
+      :one: "rwpî Sri Lanka"
+      :other: "rwpî Sri Lanka"
+      :symbol: Rs
+      :two: "rwpî Sri Lanka"
+      :zero: "rwpî Sri Lanka"
+    :LRD: 
+      :few: "doler Liberia"
+      :many: "doler Liberia"
+      :name: "Doler Liberia"
+      :narrow_symbol: $
+      :one: "ddoler Liberia"
+      :other: "doler Liberia"
+      :symbol: $
+      :two: "ddoler Liberia"
+      :zero: "doler Liberia"
+    :LSL: 
+      :few: "loti Lesotho"
+      :many: "loti Lesotho"
+      :name: "Loti Lesotho"
+      :one: "loti Lesotho"
+      :other: "loti Lesotho"
+      :two: "loti Lesotho"
+      :zero: "loti Lesotho"
+    :LTL: 
+      :few: "litas Lithwania"
+      :many: "litas Lithwania"
+      :name: "Litas Lithwania"
+      :narrow_symbol: Lt
+      :one: "litas Lithwania"
+      :other: "litas Lithwania"
+      :symbol: Lt
+      :two: "litas Lithwania"
+      :zero: "litas Lithwania"
+    :LTT: 
+      :few: "talonas Lithwania"
+      :many: "talonas Lithwania"
+      :name: "Talonas Lithwania"
+      :one: "talonas Lithwania"
+      :other: "talonas Lithwania"
+      :two: "talonas Lithwania"
+      :zero: "talonas Lithwania"
+    :LUF: 
+      :few: "ffranc Lwcsembwrg"
+      :many: "ffranc Lwcsembwrg"
+      :name: "Ffranc Lwcsembwrg"
+      :one: "ffranc Lwcsembwrg"
+      :other: "ffranc Lwcsembwrg"
+      :two: "ffranc Lwcsembwrg"
+      :zero: "ffranc Lwcsembwrg"
+    :LVL: 
+      :few: "lats Latfia"
+      :many: "lats Latfia"
+      :name: "Lats Latfia"
+      :narrow_symbol: Ls
+      :one: "lats Latfia"
+      :other: "lats Latfia"
+      :symbol: Ls
+      :two: "lats Latfia"
+      :zero: "lats Latfia"
+    :LVR: 
+      :few: "rwbl Latfia"
+      :many: "rwbl Latfia"
+      :name: "Rwbl Latfia"
+      :one: "rwbl Latfia"
+      :other: "rwbl Latfia"
+      :two: "rwbl Latfia"
+      :zero: "rwbl Latfia"
+    :LYD: 
+      :few: "dinar Libya"
+      :many: "dinar Libya"
+      :name: "Dinar Libya"
+      :one: "dinar Libya"
+      :other: "dinar Libya"
+      :two: "dinar Libya"
+      :zero: "dinar Libya"
+    :MAD: 
+      :few: "dirham Moroco"
+      :many: "dirham Moroco"
+      :name: "Dirham Moroco"
+      :one: "dirham Moroco"
+      :other: "dirham Moroco"
+      :two: "dirham Moroco"
+      :zero: "dirham Moroco"
+    :MAF: 
+      :few: "ffranc Moroco"
+      :many: "ffranc Moroco"
+      :name: "Ffranc Moroco"
+      :one: "ffranc Moroco"
+      :other: "ffranc Moroco"
+      :two: "ffranc Moroco"
+      :zero: "ffranc Moroco"
+    :MCF: 
+      :few: "ffranc Monaco"
+      :many: "ffranc Monaco"
+      :name: "Ffranc Monaco"
+      :one: "ffranc Monaco"
+      :other: "ffranc Monaco"
+      :two: "ffranc Monaco"
+      :zero: "ffranc Monaco"
+    :MDL: 
+      :few: "leu Moldofa"
+      :many: "leu Moldofa"
+      :name: "Leu Moldofa"
+      :one: "leu Moldofa"
+      :other: "leu Moldofa"
+      :two: "leu Moldofa"
+      :zero: "leu Moldofa"
+    :MGA: 
+      :few: "ariary Madagascar"
+      :many: "ariary Madagascar"
+      :name: "Ariary Madagascar"
+      :narrow_symbol: Ar
+      :one: "ariary Madagascar"
+      :other: "ariary Madagascar"
+      :symbol: Ar
+      :two: "ariary Madagascar"
+      :zero: "ariary Madagascar"
+    :MGF: 
+      :few: "ffranc Madagascar"
+      :many: "ffranc Madagascar"
+      :name: "Ffranc Madagascar"
+      :one: "ffranc Madagascar"
+      :other: "ffranc Madagascar"
+      :two: "ffranc Madagascar"
+      :zero: "ffranc Madagascar"
+    :MKD: 
+      :few: "denar Macedonia"
+      :many: "denar Macedonia"
+      :name: "Denar Macedonia"
+      :one: "denar Macedonia"
+      :other: "denar Macedonia"
+      :two: "denar Macedonia"
+      :zero: "denar Macedonia"
+    :MLF: 
+      :few: "ffranc Mali"
+      :many: "ffranc Mali"
+      :name: "Ffranc Mali"
+      :one: "ffranc Mali"
+      :other: "ffranc Mali"
+      :two: "ffranc Mali"
+      :zero: "ffranc Mali"
+    :MMK: 
+      :few: "kyat Myanmar"
+      :many: "kyat Myanmar"
+      :name: "Kyat Myanmar"
+      :narrow_symbol: K
+      :one: "kyat Myanmar"
+      :other: "kyat Myanmar"
+      :symbol: K
+      :two: "kyat Myanmar"
+      :zero: "kyat Myanmar"
+    :MNT: 
+      :few: "tugrik Mongolia"
+      :many: "tugrik Mongolia"
+      :name: "Tugrik Mongolia"
+      :narrow_symbol: ₮
+      :one: "tugrik Mongolia"
+      :other: "tugrik Mongolia"
+      :symbol: ₮
+      :two: "tugrik Mongolia"
+      :zero: "tugrik Mongolia"
+    :MOP: 
+      :name: "pataca Macau"
+      :one: "pataca Macau"
+    :MRO: 
+      :few: "ouguiya Mauritania (1973–2017)"
+      :many: "ouguiya Mauritania (1973–2017)"
+      :name: "Ouguiya Mauritania (1973–2017)"
+      :one: "ouguiya Mauritania (1973–2017)"
+      :other: "ouguiya Mauritania (1973–2017)"
+      :two: "ouguiya Mauritania (1973–2017)"
+      :zero: "ouguiya Mauritania (1973–2017)"
+    :MRU: 
+      :few: "ouguiya Mauritania"
+      :many: "ouguiya Mauritania"
+      :name: "Ouguiya Mauritania"
+      :one: "ouguiya Mauritania"
+      :other: "ouguiya Mauritania"
+      :two: "ouguiya Mauritania"
+      :zero: "ouguiya Mauritania"
+    :MUR: 
+      :few: "rwpî Mauritius"
+      :many: "rwpî Mauritius"
+      :name: "Rwpî Mauritius"
+      :narrow_symbol: Rs
+      :one: "rwpî Mauritius"
+      :other: "rwpî Mauritius"
+      :symbol: Rs
+      :two: "rwpî Mauritius"
+      :zero: "rwpî Mauritius"
+    :MVP: 
+      :few: "rwpî’r Maldives (1947–1981)"
+      :many: "rwpî’r Maldives (1947–1981)"
+      :name: "Rwpî’r Maldives (1947–1981)"
+      :one: "rwpî’r Maldives (1947–1981)"
+      :other: "rwpî’r Maldives (1947–1981)"
+      :two: "rwpî’r Maldives (1947–1981)"
+      :zero: "rwpî’r Maldives (1947–1981)"
+    :MVR: 
+      :few: "rufiyaa’r Maldives"
+      :many: "rufiyaa’r Maldives"
+      :name: "Rufiyaa’r Maldives"
+      :one: "rufiyaa’r Maldives"
+      :other: "rufiyaa’r Maldives"
+      :two: "rufiyaa’r Maldives"
+      :zero: "rufiyaa’r Maldives"
+    :MWK: 
+      :few: "kwacha Malawi"
+      :many: "kwacha Malawi"
+      :name: "Kwacha Malawi"
+      :one: "kwacha Malawi"
+      :other: "kwacha Malawi"
+      :two: "kwacha Malawi"
+      :zero: "kwacha Malawi"
+    :MXN: 
+      :few: "peso Mecsico"
+      :many: "peso Mecsico"
+      :name: "Peso Mecsico"
+      :narrow_symbol: $
+      :one: "peso Mecsico"
+      :other: "peso Mecsico"
+      :symbol: MX$
+      :two: "peso Mecsico"
+      :zero: "peso Mecsico"
+    :MXP: 
+      :few: "peso arian México (1861–1992)"
+      :many: "peso arian México (1861–1992)"
+      :name: "Peso Arian México (1861–1992)"
+      :one: "peso arian México (1861–1992)"
+      :other: "peso arian México (1861–1992)"
+      :two: "peso arian México (1861–1992)"
+      :zero: "peso arian México (1861–1992)"
+    :MXV: 
+      :few: "uned fuddsoddi México"
+      :many: "uned fuddsoddi México"
+      :name: "Uned Fuddsoddi México"
+      :one: "uned fuddsoddi México"
+      :other: "uned fuddsoddi México"
+      :two: "uned fuddsoddi México"
+      :zero: "uned fuddsoddi México"
+    :MYR: 
+      :few: "ringgit Malaysia"
+      :many: "ringgit Malaysia"
+      :name: "Ringgit Malaysia"
+      :narrow_symbol: RM
+      :one: "ringgit Malaysia"
+      :other: "ringgit Malaysia"
+      :symbol: RM
+      :two: "ringgit Malaysia"
+      :zero: "ringgit Malaysia"
+    :MZE: 
+      :few: "escudo Mozambique"
+      :many: "escudo Mozambique"
+      :name: "Escudo Mozambique"
+      :one: "escudo Mozambique"
+      :other: "escudo Mozambique"
+      :two: "escudo Mozambique"
+      :zero: "escudo Mozambique"
+    :MZM: 
+      :few: "metical Mozambique (1980–2006)"
+      :many: "metical Mozambique (1980–2006)"
+      :name: "Metical Mozambique (1980–2006)"
+      :one: "metical Mozambique (1980–2006)"
+      :other: "metical Mozambique (1980–2006)"
+      :two: "metical Mozambique (1980–2006)"
+      :zero: "metical Mozambique (1980–2006)"
+    :MZN: 
+      :few: "metical Mozambique"
+      :many: "metical Mozambique"
+      :name: "Metical Mozambique"
+      :one: "metical Mozambique"
+      :other: "metical Mozambique"
+      :two: "metical Mozambique"
+      :zero: "metical Mozambique"
+    :NAD: 
+      :few: "doler Namibia"
+      :many: "doler Namibia"
+      :name: "Doler Namibia"
+      :narrow_symbol: $
+      :one: "doler Namibia"
+      :other: "doler Namibia"
+      :symbol: $
+      :two: "ddoler Namibia"
+      :zero: "doler Namibia"
+    :NGN: 
+      :few: "naira Nigeria"
+      :many: "naira Nigeria"
+      :name: "Naira Nigeria"
+      :narrow_symbol: ₦
+      :one: "naira Nigeria"
+      :other: "naira Nigeria"
+      :symbol: ₦
+      :two: "naira Nigeria"
+      :zero: "naira Nigeria"
+    :NIC: 
+      :few: "córdoba Nicaragua (1988–1991)"
+      :many: "córdoba Nicaragua (1988–1991)"
+      :name: "Córdoba Nicaragua (1988–1991)"
+      :one: "córdoba Nicaragua (1988–1991)"
+      :other: "córdoba Nicaragua (1988–1991)"
+      :two: "córdoba Nicaragua (1988–1991)"
+      :zero: "córdoba Nicaragua (1988–1991)"
+    :NIO: 
+      :few: "cordoba Nicaragwa"
+      :many: "cordoba Nicaragwa"
+      :name: "Cordoba Nicaragwa"
+      :narrow_symbol: C$
+      :one: "cordoba Nicaragwa"
+      :other: "cordoba Nicaragwa"
+      :symbol: C$
+      :two: "cordoba Nicaragwa"
+      :zero: "cordoba Nicaragwa"
+    :NLG: 
+      :few: "guilder yr Iseldiroedd"
+      :many: "guilder yr Iseldiroedd"
+      :name: "Guilder yr Iseldiroedd"
+      :one: "guilder yr Iseldiroedd"
+      :other: "guilder yr Iseldiroedd"
+      :two: "guilder yr Iseldiroedd"
+      :zero: "guilder yr Iseldiroedd"
+    :NOK: 
+      :few: "krone Norwy"
+      :many: "krone Norwy"
+      :name: "Krone Norwy"
+      :narrow_symbol: kr
+      :one: "krone Norwy"
+      :other: "krone Norwy"
+      :symbol: kr
+      :two: "krone Norwy"
+      :zero: "krone Norwy"
+    :NPR: 
+      :few: "rwpî Nepal"
+      :many: "rwpî Nepal"
+      :name: "Rwpî Nepal"
+      :narrow_symbol: Rs
+      :one: "rwpî Nepal"
+      :other: "rwpî Nepal"
+      :symbol: Rs
+      :two: "rwpî Nepal"
+      :zero: "rwpî Nepal"
+    :NZD: 
+      :few: "doler Seland Newydd"
+      :many: "doler Seland Newydd"
+      :name: "Doler Seland Newydd"
+      :narrow_symbol: $
+      :one: "doler Seland Newydd"
+      :other: "doler Seland Newydd"
+      :symbol: NZ$
+      :two: "ddoler Seland Newydd"
+      :zero: "doler Seland Newydd"
+    :OMR: 
+      :few: "rial Oman"
+      :many: "rial Oman"
+      :name: "Rial Oman"
+      :one: "rial Oman"
+      :other: "rial Oman"
+      :two: "rial Oman"
+      :zero: "rial Oman"
+    :PAB: 
+      :few: "balboa Panama"
+      :many: "balboa Panama"
+      :name: "Balboa Panama"
+      :one: "balboa Panama"
+      :other: "balboa Panama"
+      :two: "balboa Panama"
+      :zero: "balboa Panama"
+    :PEI: 
+      :few: "inti Periw"
+      :many: "inti Periw"
+      :name: "Inti Periw"
+      :one: "inti Periw"
+      :other: "inti Periw"
+      :two: "inti Periw"
+      :zero: "inti Periw"
+    :PEN: 
+      :few: "sol Periw"
+      :many: "sol Periw"
+      :name: "Sol Periw"
+      :one: "sol Periw"
+      :other: "sol Periw"
+      :two: "sol Periw"
+      :zero: "sol Periw"
+    :PES: 
+      :few: "sol Periw (1863–1965)"
+      :many: "sol Periw (1863–1965)"
+      :name: "Sol Periw (1863–1965)"
+      :one: "sol Periw (1863–1965)"
+      :other: "sol Periw (1863–1965)"
+      :two: "sol Periw (1863–1965)"
+      :zero: "sol Periw (1863–1965)"
+    :PGK: 
+      :few: "kina Papua Guinea Newydd"
+      :many: "kina Papua Guinea Newydd"
+      :name: "Kina Papua Guinea Newydd"
+      :one: "kina Papua Guinea Newydd"
+      :other: "kina Papua Guinea Newydd"
+      :two: "kina Papua Guinea Newydd"
+      :zero: "kina Papua Guinea Newydd"
+    :PHP: 
+      :few: "peso Philipinas"
+      :many: "peso Philipinas"
+      :name: "Peso Philipinas"
+      :narrow_symbol: ₱
+      :one: "peso Philipinas"
+      :other: "peso Philipinas"
+      :symbol: PHP
+      :two: "peso Philipinas"
+      :zero: "peso Philipinas"
+    :PKR: 
+      :few: "rwpî Pacistan"
+      :many: "rwpî Pacistan"
+      :name: "Rwpî Pacistan"
+      :narrow_symbol: Rs
+      :one: "rwpî Pacistan"
+      :other: "rwpî Pacistan"
+      :symbol: Rs
+      :two: "rwpî Pacistan"
+      :zero: "rwpî Pacistan"
+    :PLN: 
+      :few: "zloty Gwlad Pwyl"
+      :many: "zloty Gwlad Pwyl"
+      :name: "Zloty Gwlad Pwyl"
+      :narrow_symbol: zł
+      :one: "zloty Gwlad Pwyl"
+      :other: "zloty Gwlad Pwyl"
+      :symbol: zł
+      :two: "zloty Gwlad Pwyl"
+      :zero: "zloty Gwlad Pwyl"
+    :PYG: 
+      :few: "guarani Paraguay"
+      :many: "guarani Paraguay"
+      :name: "Guarani Paraguay"
+      :narrow_symbol: ₲
+      :one: "guarani Paraguay"
+      :other: "guarani Paraguay"
+      :symbol: ₲
+      :two: "guarani Paraguay"
+      :zero: "guarani Paraguay"
+    :QAR: 
+      :few: "rial Qatar"
+      :many: "rial Qatar"
+      :name: "Rial Qatar"
+      :one: "rial Qatar"
+      :other: "rial Qatar"
+      :two: "rial Qatar"
+      :zero: "rial Qatar"
+    :RHD: 
+      :few: "doler Rhodesia"
+      :many: "doler Rhodesia"
+      :name: "Doler Rhodesia"
+      :one: "ddoler Rhodesia"
+      :other: "doler Rhodesia"
+      :two: "ddoler Rhodesia"
+      :zero: "doler Rhodesia"
+    :RON: 
+      :few: "leu Rwmania"
+      :many: "leu Rwmania"
+      :name: "Leu Rwmania"
+      :narrow_symbol: lei
+      :one: "leu Rwmania"
+      :other: "leu Rwmania"
+      :symbol: lei
+      :two: "leu Rwmania"
+      :zero: "leu Rwmania"
+    :RSD: 
+      :few: "dinar Serbia"
+      :many: "dinar Serbia"
+      :name: "Dinar Serbia"
+      :one: "dinar Serbia"
+      :other: "dinar Serbia"
+      :two: "dinar Serbia"
+      :zero: "dinar Serbia"
+    :RUB: 
+      :few: "rwbl Rwsia"
+      :many: "rwbl Rwsia"
+      :name: "Rwbl Rwsia"
+      :narrow_symbol: ₽
+      :one: "rwbl Rwsia"
+      :other: "rwbl Rwsia"
+      :symbol: ₽
+      :two: "rwbl Rwsia"
+      :zero: "rwbl Rwsia"
+    :RWF: 
+      :few: "ffranc Rwanda"
+      :many: "ffranc Rwanda"
+      :name: "Ffranc Rwanda"
+      :narrow_symbol: RF
+      :one: "ffranc Rwanda"
+      :other: "ffranc Rwanda"
+      :symbol: RF
+      :two: "ffranc Rwanda"
+      :zero: "ffranc Rwanda"
+    :SAR: 
+      :few: "riyal Saudi Arabia"
+      :many: "riyal Saudi Arabia"
+      :name: "Riyal Saudi Arabia"
+      :one: "riyal Saudi Arabia"
+      :other: "riyal Saudi Arabia"
+      :two: "riyal Saudi Arabia"
+      :zero: "riyal Saudi Arabia"
+    :SBD: 
+      :few: "doler Ynysoedd Solomon"
+      :many: "doler Ynysoedd Solomon"
+      :name: "Doler Ynysoedd Solomon"
+      :narrow_symbol: $
+      :one: "doler Ynysoedd Solomon"
+      :other: "doler Ynysoedd Solomon"
+      :symbol: $
+      :two: "ddoler Ynysoedd Solomon"
+      :zero: "doler Ynysoedd Solomon"
+    :SCR: 
+      :few: "rwpî Seychelles"
+      :many: "rwpî Seychelles"
+      :name: "Rwpî Seychelles"
+      :one: "rwpî Seychelles"
+      :other: "rwpî Seychelles"
+      :two: "rwpî Seychelles"
+      :zero: "rwpî Seychelles"
+    :SDD: 
+      :few: "dinar Sudan (1992–2007)"
+      :many: "dinar Sudan (1992–2007)"
+      :name: "Dinar Sudan (1992–2007)"
+      :one: "dinar Sudan (1992–2007)"
+      :other: "dinar Sudan (1992–2007)"
+      :two: "dinar Sudan (1992–2007)"
+      :zero: "dinar Sudan (1992–2007)"
+    :SDG: 
+      :few: "punt Sudan"
+      :many: "punt Sudan"
+      :name: "Punt Sudan"
+      :one: "punt Sudan"
+      :other: "punt Sudan"
+      :two: "bunt Sudan"
+      :zero: "punt Sudan"
+    :SDP: 
+      :few: "punt Sudan (1957–1998)"
+      :many: "phunt Sudan (1957–1998)"
+      :name: "Punt Sudan (1957–1998)"
+      :one: "bunt Sudan (1957–1998)"
+      :other: "punt Sudan (1957–1998)"
+      :two: "bunt Sudan (1957–1998)"
+      :zero: "punt Sudan (1957–1998)"
+    :SEK: 
+      :few: "krona Sweden"
+      :many: "krona Sweden"
+      :name: "Krona Sweden"
+      :narrow_symbol: kr
+      :one: "krona Sweden"
+      :other: "krona Sweden"
+      :symbol: kr
+      :two: "krona Sweden"
+      :zero: "krona Sweden"
+    :SGD: 
+      :few: "doler Singapore"
+      :many: "doler Singapore"
+      :name: "Doler Singapore"
+      :narrow_symbol: $
+      :one: "doler Singapore"
+      :other: "doler Singapore"
+      :symbol: $
+      :two: "ddoler Singapore"
+      :zero: "doler Singapore"
+    :SHP: 
+      :few: "punt St. Helena"
+      :many: "punt St. Helena"
+      :name: "Punt St Helena"
+      :narrow_symbol: £
+      :one: "punt St. Helena"
+      :other: "punt St. Helena"
+      :symbol: £
+      :two: "bunt St. Helena"
+      :zero: "punt St. Helena"
+    :SLE: 
+      :few: "leone Sierra Leone"
+      :many: "leone Sierra Leone"
+      :name: "Leone Sierra Leone"
+      :one: "leone Sierra Leone"
+      :other: "leone Sierra Leone"
+      :two: "leone Sierra Leone"
+      :zero: "leone Sierra Leone"
+    :SLL: 
+      :few: "leone Sierra Leone (1964—2022)"
+      :many: "leone Sierra Leone (1964—2022)"
+      :name: "Leone Sierra Leone (1964—2022)"
+      :one: "leone Sierra Leone (1964—2022)"
+      :other: "leone Sierra Leone (1964—2022)"
+      :two: "leone Sierra Leone (1964—2022)"
+      :zero: "leone Sierra Leone (1964—2022)"
+    :SOS: 
+      :few: "swllt Somalia"
+      :many: "swllt Somalia"
+      :name: "Swllt Somalia"
+      :one: "swllt Somalia"
+      :other: "swllt Somalia"
+      :two: "swllt Somalia"
+      :zero: "swllt Somalia"
+    :SRD: 
+      :few: "doler Surinam"
+      :many: "doler Surinam"
+      :name: "Doler Surinam"
+      :narrow_symbol: $
+      :one: "doler Surinam"
+      :other: "doler Surinam"
+      :symbol: $
+      :two: "ddoler Surinam"
+      :zero: "doler Surinam"
+    :SRG: 
+      :few: "guilder Surinam"
+      :many: "guilder Surinam"
+      :name: "Guilder Surinam"
+      :one: "guilder Surinam"
+      :other: "guilder Surinam"
+      :two: "guilder Surinam"
+      :zero: "guilder Surinam"
+    :SSP: 
+      :few: "punt De Sudan"
+      :many: "punt De Sudan"
+      :name: "Punt De Sudan"
+      :narrow_symbol: £
+      :one: "punt De Sudan"
+      :other: "punt De Sudan"
+      :symbol: £
+      :two: "bunt De Sudan"
+      :zero: "punt De Sudan"
+    :STD: 
+      :few: "dobra São Tomé a Príncipe (1977–2017)"
+      :many: "dobra São Tomé a Príncipe (1977–2017)"
+      :name: "Dobra São Tomé a Príncipe (1977–2017)"
+      :one: "dobra São Tomé a Príncipe (1977–2017)"
+      :other: "dobra São Tomé a Príncipe (1977–2017)"
+      :two: "dobra São Tomé a Príncipe (1977–2017)"
+      :zero: "dobra São Tomé a Príncipe (1977–2017)"
+    :STN: 
+      :few: "dobra São Tomé a Príncipe"
+      :many: "dobra São Tomé a Príncipe"
+      :name: "Dobra São Tomé a Príncipe"
+      :narrow_symbol: Db
+      :one: "dobra São Tomé a Príncipe"
+      :other: "dobra São Tomé a Príncipe"
+      :symbol: Db
+      :two: "dobra São Tomé a Príncipe"
+      :zero: "dobra São Tomé a Príncipe"
+    :SVC: 
+      :few: "colón El Salvador"
+      :many: "colón El Salvador"
+      :name: "Colón El Salvador"
+      :one: "colón El Salvador"
+      :other: "colón El Salvador"
+      :two: "colón El Salvador"
+      :zero: "colón El Salvador"
+    :SYP: 
+      :few: "punt Syria"
+      :many: "punt Syria"
+      :name: "Punt Syria"
+      :narrow_symbol: £
+      :one: "punt Syria"
+      :other: "punt Syria"
+      :symbol: £
+      :two: "bunt Syria"
+      :zero: "punt Syria"
+    :SZL: 
+      :few: "lilangeni Gwlad Swazi"
+      :many: "lilangeni Gwlad Swazi"
+      :name: "Lilangeni Gwlad Swazi"
+      :one: "lilangeni Gwlad Swazi"
+      :other: "lilangeni Gwlad Swazi"
+      :two: "lilangeni Gwlad Swazi"
+      :zero: "lilangeni Gwlad Swazi"
+    :THB: 
+      :few: "baht Gwlad Thai"
+      :many: "baht Gwlad Thai"
+      :name: "Baht Gwlad Thai"
+      :narrow_symbol: ฿
+      :one: "baht Gwlad Thai"
+      :other: "baht Gwlad Thai"
+      :symbol: ฿
+      :two: "baht Gwlad Thai"
+      :zero: "baht Gwlad Thai"
+    :TJR: 
+      :few: "rwbl Tajikistan"
+      :many: "rwbl Tajikistan"
+      :name: "Rwbl Tajikistan"
+      :one: "rwbl Tajikistan"
+      :other: "rwbl Tajikistan"
+      :two: "rwbl Tajikistan"
+      :zero: "rwbl Tajikistan"
+    :TJS: 
+      :few: "somoni Tajikstan"
+      :many: "somoni Tajikstan"
+      :name: "Somoni Tajikistan"
+      :one: "somoni Tajikstan"
+      :other: "somoni Tajikstan"
+      :two: "somoni Tajikstan"
+      :zero: "somoni Tajikstan"
+    :TMM: 
+      :few: "manat Turkmenistan (1993–2009)"
+      :many: "manat Turkmenistan (1993–2009)"
+      :name: "Manat Turkmenistan (1993–2009)"
+      :one: "manat Turkmenistan (1993–2009)"
+      :other: "manat Turkmenistan (1993–2009)"
+      :two: "manat Turkmenistan (1993–2009)"
+      :zero: "manat Turkmenistan (1993–2009)"
+    :TMT: 
+      :few: "manat Turkmenistan"
+      :many: "manat Turkmenistan"
+      :name: "Manat Turkmenistan"
+      :one: "manat Turkmenistan"
+      :other: "manat Turkmenistan"
+      :two: "manat Turkmenistan"
+      :zero: "manat Turkmenistan"
+    :TND: 
+      :few: "dinar Tunisia"
+      :many: "dinar Tunisia"
+      :name: "Dinar Tunisia"
+      :one: "dinar Tunisia"
+      :other: "dinar Tunisia"
+      :two: "dinar Tunisia"
+      :zero: "dinar Tunisia"
+    :TOP: 
+      :few: "paʻanga Tonga"
+      :many: "paʻanga Tonga"
+      :name: "Paʻanga Tonga"
+      :narrow_symbol: T$
+      :one: "paʻanga Tonga"
+      :other: "paʻanga Tonga"
+      :symbol: T$
+      :two: "paʻanga Tonga"
+      :zero: "paʻanga Tonga"
+    :TPE: 
+      :few: "escudo Timor"
+      :many: "escudo Timor"
+      :name: "Escudo Timor"
+      :one: "escudo Timor"
+      :other: "escudo Timor"
+      :two: "escudo Timor"
+      :zero: "escudo Timor"
+    :TRL: 
+      :few: "lira Twrci (1922–2005)"
+      :many: "lira Twrci (1922–2005)"
+      :name: "Lira Twrci (1922–2005)"
+      :one: "lira Twrci (1922–2005)"
+      :other: "lira Twrci (1922–2005)"
+      :two: "lira Twrci (1922–2005)"
+      :zero: "lira Twrci (1922–2005)"
+    :TRY: 
+      :few: "lira Twrci"
+      :many: "lira Twrci"
+      :name: "Lira Twrci"
+      :narrow_symbol: ₺
+      :one: "lira Twrci"
+      :other: "lira Twrci"
+      :symbol: ₺
+      :two: "lira Twrci"
+      :zero: "lira Twrci"
+    :TTD: 
+      :few: "doler Trinidad a Tobago"
+      :many: "doler Trinidad a Tobago"
+      :name: "Doler Trinidad a Tobago"
+      :narrow_symbol: $
+      :one: "doler Trinidad a Tobago"
+      :other: "doler Trinidad a Tobago"
+      :symbol: $
+      :two: "ddoler Trinidad a Tobago"
+      :zero: "doler Trinidad a Tobago"
+    :TWD: 
+      :few: "doler newydd Taiwan"
+      :many: "doler newydd Taiwan"
+      :name: "Doler Newydd Taiwan"
+      :narrow_symbol: NT$
+      :one: "doler newydd Taiwan"
+      :other: "doler newydd Taiwan"
+      :symbol: NT$
+      :two: "ddoler newydd Taiwan"
+      :zero: "doler newydd Taiwan"
+    :TZS: 
+      :few: "swllt Tanzania"
+      :many: "swllt Tanzania"
+      :name: "Swllt Tanzania"
+      :one: "swllt Tanzania"
+      :other: "swllt Tanzania"
+      :two: "swllt Tanzania"
+      :zero: "swllt Tanzania"
+    :UAH: 
+      :few: "hryvnia Wcráin"
+      :many: "hryvnia Wcráin"
+      :name: "Hryvnia Wcráin"
+      :narrow_symbol: ₴
+      :one: "hryvnia Wcráin"
+      :other: "hryvnia Wcráin"
+      :symbol: ₴
+      :two: "hryvnia Wcráin"
+      :zero: "hryvnia Wcráin"
+    :UGS: 
+      :few: "swllt Uganda (1966–1987)"
+      :many: "swllt Uganda (1966–1987)"
+      :name: "Swllt Uganda (1966–1987)"
+      :one: "swllt Uganda (1966–1987)"
+      :other: "swllt Uganda (1966–1987)"
+      :two: "swllt Uganda (1966–1987)"
+      :zero: "swllt Uganda (1966–1987)"
+    :UGX: 
+      :few: "swllt Uganda"
+      :many: "swllt Uganda"
+      :name: "Swllt Uganda"
+      :one: "swllt Uganda"
+      :other: "swllt Uganda"
+      :two: "swllt Uganda"
+      :zero: "swllt Uganda"
+    :USD: 
+      :few: "doler UDA"
+      :many: "doler UDA"
+      :name: "Doler UDA"
+      :narrow_symbol: $
+      :one: "doler UDA"
+      :other: "doler UDA"
+      :symbol: US$
+      :two: "ddoler UDA"
+      :zero: "doler UDA"
+    :USN: 
+      :few: "doler UDA (y diwrnod nesaf)"
+      :many: "doler UDA (y diwrnod nesaf)"
+      :name: "Doler UDA (y diwrnod nesaf)"
+      :one: "ddoler UDA (y diwrnod nesaf)"
+      :other: "doler UDA (y diwrnod nesaf)"
+      :two: "ddoler UDA (y diwrnod nesaf)"
+      :zero: "doler UDA (y diwrnod nesaf)"
+    :USS: 
+      :few: "doler UDA (yr un diwrnod)"
+      :many: "doler UDA (yr un diwrnod)"
+      :name: "Doler UDA (yr un diwrnod)"
+      :one: "ddoler UDA (yr un diwrnod)"
+      :other: "doler UDA (yr un diwrnod)"
+      :two: "ddoler UDA (yr un diwrnod)"
+      :zero: "doler UDA (yr un diwrnod)"
+    :UYP: 
+      :few: "peso Uruguay (1975–1993)"
+      :many: "peso Uruguay (1975–1993)"
+      :name: "Peso Uruguay (1975–1993)"
+      :one: "peso Uruguay (1975–1993)"
+      :other: "peso Uruguay (1975–1993)"
+      :two: "peso Uruguay (1975–1993)"
+      :zero: "peso Uruguay (1975–1993)"
+    :UYU: 
+      :few: "peso Uruguay"
+      :many: "peso Uruguay"
+      :name: "Peso Uruguay"
+      :narrow_symbol: $
+      :one: "peso Uruguay"
+      :other: "peso Uruguay"
+      :symbol: $
+      :two: "peso Uruguay"
+      :zero: "peso Uruguay"
+    :UZS: 
+      :few: "som Uzbekistan"
+      :many: "som Uzbekistan"
+      :name: "Som Uzbekistan"
+      :one: "som Uzbekistan"
+      :other: "som Uzbekistan"
+      :two: "som Uzbekistan"
+      :zero: "som Uzbekistan"
+    :VEB: 
+      :few: "bolívar Venezuela (1871–2008)"
+      :many: "bolívar Venezuela (1871–2008)"
+      :name: "Bolívar Venezuela (1871–2008)"
+      :one: "bolívar Venezuela (1871–2008)"
+      :other: "bolívar Venezuela (1871–2008)"
+      :two: "bolívar Venezuela (1871–2008)"
+      :zero: "bolívar Venezuela (1871–2008)"
+    :VEF: 
+      :few: "bolívar Venezuela (2008–2018)"
+      :many: "bolívar Venezuela (2008–2018)"
+      :name: "Bolívar Venezuela (2008–2018)"
+      :narrow_symbol: Bs
+      :one: "bolívar Venezuela (2008–2018)"
+      :other: "bolívar Venezuela (2008–2018)"
+      :symbol: Bs
+      :two: "bolívar Venezuela (2008–2018)"
+      :zero: "bolívar Venezuela (2008–2018)"
+    :VES: 
+      :few: "bolívar Venezuela"
+      :many: "bolívar Venezuela"
+      :name: "Bolívar Venezuela"
+      :one: "bolívar Venezuela"
+      :other: "bolívar Venezuela"
+      :two: "bolívar Venezuela"
+      :zero: "bolívar Venezuela"
+    :VND: 
+      :few: "dong Fietnam"
+      :many: "dong Fietnam"
+      :name: "Dong Fietnam"
+      :narrow_symbol: ₫
+      :one: "dong Fietnam"
+      :other: "dong Fietnam"
+      :symbol: ₫
+      :two: "dong Fietnam"
+      :zero: "dong Fietnam"
+    :VNN: 
+      :few: "dong Fietnam (1978–1985)"
+      :many: "dong Fietnam (1978–1985)"
+      :name: "Dong Fietnam (1978–1985)"
+      :one: "dong Fietnam (1978–1985)"
+      :other: "dong Fietnam (1978–1985)"
+      :two: "dong Fietnam (1978–1985)"
+      :zero: "dong Fietnam (1978–1985)"
+    :VUV: 
+      :few: "vatu Vanuatu"
+      :many: "vatu Vanuatu"
+      :name: "Vatu Vanuatu"
+      :one: "vatu Vanuatu"
+      :other: "vatu Vanuatu"
+      :two: "vatu Vanuatu"
+      :zero: "vatu Vanuatu"
+    :WST: 
+      :few: "tala Samoa"
+      :many: "tala Samoa"
+      :name: "Tala Samoa"
+      :one: "tala Samoa"
+      :other: "tala Samoa"
+      :two: "tala Samoa"
+      :zero: "tala Samoa"
+    :XAF: 
+      :few: "ffranc CFA Canol Affrica"
+      :many: "ffranc CFA Canol Affrica"
+      :name: "Ffranc CFA Canol Affrica"
+      :one: "ffranc CFA Canol Affrica"
+      :other: "ffranc CFA Canol Affrica"
+      :symbol: FCFA
+      :two: "ffranc CFA Canol Affrica"
+      :zero: "ffranc CFA Canol Affrica"
+    :XAG: 
+      :name: Arian
+      :one: Arian
+    :XAU: 
+      :name: Aur
+      :one: Aur
+    :XBA: 
+      :few: "uned cyfansawdd Ewropeaidd"
+      :many: "uned cyfansawdd Ewropeaidd"
+      :name: "Uned Cyfansawdd Ewropeaidd"
+      :one: "uned cyfansawdd Ewropeaidd"
+      :other: "uned cyfansawdd Ewropeaidd"
+      :two: "uned cyfansawdd Ewropeaidd"
+      :zero: "uned cyfansawdd Ewropeaidd"
+    :XBB: 
+      :few: "uned ariannol Ewropeaidd"
+      :many: "uned ariannol Ewropeaidd"
+      :name: "Uned Ariannol Ewropeaidd"
+      :one: "uned ariannol Ewropeaidd"
+      :other: "uned ariannol Ewropeaidd"
+      :two: "uned ariannol Ewropeaidd"
+      :zero: "uned ariannol Ewropeaidd"
+    :XCD: 
+      :few: "doler Dwyrain y Caribî"
+      :many: "doler Dwyrain y Caribî"
+      :name: "Doler Dwyrain y Caribî"
+      :narrow_symbol: $
+      :one: "doler Dwyrain y Caribî"
+      :other: "doler Dwyrain y Caribî"
+      :symbol: EC$
+      :two: "ddoler Dwyrain y Caribî"
+      :zero: "doler Dwyrain y Caribî"
+    :XCG: 
+      :symbol: Cg.
+    :XEU: 
+      :few: "uned arian cyfred Ewropeaidd"
+      :many: "uned arian cyfred Ewropeaidd"
+      :name: "Uned Arian Cyfred Ewropeaidd"
+      :one: "uned arian cyfred Ewropeaidd"
+      :other: "uned arian cyfred Ewropeaidd"
+      :two: "uned arian cyfred Ewropeaidd"
+      :zero: "uned arian cyfred Ewropeaidd"
+    :XOF: 
+      :few: "ffranc CFA Gorllewin Affrica"
+      :many: "ffranc CFA Gorllewin Affrica"
+      :name: "Ffranc CFA Gorllewin Affrica"
+      :one: "ffranc CFA Gorllewin Affrica"
+      :other: "ffranc CFA Gorllewin Affrica"
+      :symbol: F CFA
+      :two: "ffranc CFA Gorllewin Affrica"
+      :zero: "ffranc CFA Gorllewin Affrica"
+    :XPD: 
+      :name: Paladiwm
+      :one: Paladiwm
+    :XPF: 
+      :few: "ffranc CPF"
+      :many: "ffranc CPF"
+      :name: "Ffranc CFP"
+      :one: "ffranc CPF"
+      :other: "ffranc CPF"
+      :symbol: CFPF
+      :two: "ffranc CPF"
+      :zero: "ffranc CPF"
+    :XPT: 
+      :name: Platinwm
+      :one: Platinwm
+    :XSU: 
+      :few: sucre
+      :many: sucre
+      :name: Sucre
+      :one: sucre
+      :other: sucre
+      :two: sucre
+      :zero: sucre
+    :XXX: 
+      :few: "(arian cyfred anhysbys)"
+      :many: "(arian cyfred anhysbys)"
+      :name: "Arian Cyfred Anhysbys"
+      :one: "(arian cyfred anhysbys)"
+      :other: "(arian cyfred anhysbys)"
+      :symbol: XXX
+      :two: "(arian cyfred anhysbys)"
+      :zero: "(arian cyfred anhysbys)"
+    :YDD: 
+      :few: "dinar Yemen"
+      :many: "dinar Yemen"
+      :name: "Dinar Yemen"
+      :one: "dinar Yemen"
+      :other: "dinar Yemen"
+      :two: "dinar Yemen"
+      :zero: "dinar Yemen"
+    :YER: 
+      :few: "rial Yemen"
+      :many: "rial Yemen"
+      :name: "Rial Yemen"
+      :one: "rial Yemen"
+      :other: "rial Yemen"
+      :two: "rial Yemen"
+      :zero: "rial Yemen"
+    :ZAL: 
+      :few: "rand (ariannol) De Affrica"
+      :many: "rand (ariannol) De Affrica"
+      :name: "Rand (ariannol) De Affrica"
+      :one: "rand (ariannol) De Affrica"
+      :other: "rand (ariannol) De Affrica"
+      :two: "rand (ariannol) De Affrica"
+      :zero: "rand (ariannol) De Affrica"
+    :ZAR: 
+      :few: "rand De Affrica"
+      :many: "rand De Affrica"
+      :name: "Rand De Affrica"
+      :narrow_symbol: ZAR
+      :one: "rand De Affrica"
+      :other: "rand De Affrica"
+      :symbol: ZAR
+      :two: "rand De Affrica"
+      :zero: "rand De Affrica"
+    :ZMK: 
+      :few: "kwacha Zambia (1968–2012)"
+      :many: "kwacha Zambia (1968–2012)"
+      :name: "Kwacha Zambia (1968–2012)"
+      :one: "kwacha Zambia (1968–2012)"
+      :other: "kwacha Zambia (1968–2012)"
+      :two: "kwacha Zambia (1968–2012)"
+      :zero: "kwacha Zambia (1968–2012)"
+    :ZMW: 
+      :few: "kwacha Zambia"
+      :many: "kwacha Zambia"
+      :name: "Kwacha Zambia"
+      :narrow_symbol: ZMW
+      :one: "kwacha Zambia"
+      :other: "kwacha Zambia"
+      :symbol: ZMW
+      :two: "kwacha Zambia"
+      :zero: "kwacha Zambia"
+    :ZRN: 
+      :few: "zaire newydd Zaire (1993 – 1998)"
+      :many: "zaire newydd Zaire (1993 – 1998)"
+      :name: "Zaire Newydd Zaire (1993–1998)"
+      :one: "zaire newydd Zaire (1993 – 1998)"
+      :other: "zaire newydd Zaire (1993 – 1998)"
+      :two: "zaire newydd Zaire (1993 – 1998)"
+      :zero: "zaire newydd Zaire (1993 – 1998)"
+    :ZRZ: 
+      :few: "zaire Zaire (1971 – 1993)"
+      :many: "zaire Zaire (1971 – 1993)"
+      :name: "Zaire Zaire (1971–1993)"
+      :one: "zaire Zaire (1971 – 1993)"
+      :other: "zaire Zaire (1971 – 1993)"
+      :two: "zaire Zaire (1971 – 1993)"
+      :zero: "zaire Zaire (1971 – 1993)"
+    :ZWD: 
+      :few: "doler Zimbabwe (1980–2008)"
+      :many: "doler Zimbabwe (1980–2008)"
+      :name: "Doler Zimbabwe (1980–2008)"
+      :one: "ddoler Zimbabwe (1980–2008)"
+      :other: "doler Zimbabwe (1980–2008)"
+      :two: "ddoler Zimbabwe (1980–2008)"
+      :zero: "doler Zimbabwe (1980–2008)"
+    :ZWL: 
+      :few: "doler Zimbabwe (2009)"
+      :many: "doler Zimbabwe (2009)"
+      :name: "Doler Zimbabwe (2009)"
+      :one: "ddoler Zimbabwe (2009)"
+      :other: "doler Zimbabwe (2009)"
+      :two: "ddoler Zimbabwe (2009)"
+      :zero: "doler Zimbabwe (2009)"
+    :ZWR: 
+      :few: "doler Zimbabwe (2008)"
+      :many: "doler Zimbabwe (2008)"
+      :name: "Doler Zimbabwe (2008)"
+      :one: "ddoler Zimbabwe (2008)"
+      :other: "doler Zimbabwe (2008)"
+      :two: "ddoler Zimbabwe (2008)"
+      :zero: "doler Zimbabwe (2008)"

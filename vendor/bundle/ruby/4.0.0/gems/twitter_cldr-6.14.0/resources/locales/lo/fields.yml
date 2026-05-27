@@ -1,0 +1,252 @@
+--- 
+:lo: 
+  :fields: 
+    :day: 
+      :display_name: ມື້
+      :relative: 
+        -1: ມື້ວານ
+        -2: ມື້ກ່ອນ
+        0: ມື້ນີ້
+        1: ມື້ອື່ນ
+        2: ມື້ຮື
+      :relative_time: 
+        :future: 
+          :other: "ໃນອີກ {0} ມື້"
+        :past: 
+          :other: "{0} ມື້ກ່ອນ"
+    :dayOfYear: 
+      :display_name: ມື້ຂອງປີ
+    :dayperiod: 
+      :display_name: ກ່ອນທ່ຽງ/ຫຼັງທ່ຽງ
+    :era: 
+      :display_name: ສະໄໝ
+    :fri: 
+      :relative: 
+        -1: ວັນສຸກແລ້ວ
+        0: ວັນສຸກນີ້
+        1: ວັນສຸກໜ້າ
+      :relative_time: 
+        :future: 
+          :other: "ໃນອີກ {0} ວັນສຸກ"
+        :past: 
+          :other: "{0} ວັນສຸກກ່ອນ"
+    :fri-short: 
+      :relative: 
+        -1: ສຸກແລ້ວ
+        0: ສຸກນີ້
+        1: ສຸກໜ້າ
+    :hour: 
+      :display_name: ຊົ່ວໂມງ
+      :relative: 
+        0: ຊົ່ວໂມງນີ້
+      :relative_time: 
+        :future: 
+          :other: "ໃນອີກ {0} ຊົ່ວໂມງ"
+        :past: 
+          :other: "{0} ຊົ່ວໂມງກ່ອນ"
+    :hour-short: 
+      :display_name: ຊມ.
+      :relative_time: 
+        :future: 
+          :other: "ໃນອີກ {0} ຊມ."
+        :past: 
+          :other: "{0} ຊມ. ກ່ອນ"
+    :minute: 
+      :display_name: ນາທີ
+      :relative: 
+        0: ນາທີນີ້
+      :relative_time: 
+        :future: 
+          :other: "ໃນອີກ {0} ນາທີ"
+        :past: 
+          :other: "{0} ນາທີກ່ອນ"
+    :minute-short: 
+      :display_name: ນທ.
+      :relative_time: 
+        :future: 
+          :other: "ໃນ {0} ນທ."
+        :past: 
+          :other: "{0} ນທ. ກ່ອນ"
+    :mon: 
+      :relative: 
+        -1: ວັນຈັນແລ້ວ
+        0: ວັນຈັນນີ້
+        1: ວັນຈັນໜ້າ
+      :relative_time: 
+        :future: 
+          :other: "ໃນ {0} ວັນຈັນ"
+        :past: 
+          :other: "{0} ວັນຈັນກ່ອນ"
+    :mon-short: 
+      :relative: 
+        -1: ຈັນແລ້ວ
+        0: ຈັນນີ້
+        1: ຈັນໜ້າ
+    :month: 
+      :display_name: ເດືອນ
+      :relative: 
+        -1: ເດືອນແລ້ວ
+        0: ເດືອນນີ້
+        1: ເດືອນໜ້າ
+      :relative_time: 
+        :future: 
+          :other: "ໃນອີກ {0} ເດືອນ"
+        :past: 
+          :other: "{0} ເດືອນກ່ອນ"
+    :month-short: 
+      :display_name: ດ.
+      :relative_time: 
+        :future: 
+          :other: "ໃນອີກ {0} ດ."
+        :past: 
+          :other: "{0} ດ. ກ່ອນ"
+    :quarter: 
+      :display_name: ໄຕຣມາດ
+      :relative: 
+        -1: ໄຕຣມາດກ່ອນໜ້າ
+        0: ໄຕຣມາດນີ້
+        1: ໄຕຣມາດໜ້າ
+      :relative_time: 
+        :future: 
+          :other: "ໃນອີກ {0} ໄຕຣມາດ"
+        :past: 
+          :other: "{0} ໄຕຣມາດກ່ອນ"
+    :quarter-short: 
+      :display_name: ຕມ.
+      :relative_time: 
+        :future: 
+          :other: "ໃນ {0} ຕມ."
+        :past: 
+          :other: "{0} ຕມ. ກ່ອນ"
+    :sat: 
+      :relative: 
+        -1: ວັນເສົາແລ້ວ
+        0: ວັນເສົານີ້
+        1: ວັນເສົາໜ້າ
+      :relative_time: 
+        :future: 
+          :other: "ໃນ {0} ວັນເສົາ"
+        :past: 
+          :other: "{0} ວັນເສົາກ່ອນ"
+    :sat-short: 
+      :relative: 
+        -1: ເສົາແລ້ວ
+        0: ເສົານີ້
+        1: ເສົາໜ້າ
+    :second: 
+      :display_name: ວິນາທີ
+      :relative: 
+        0: ຕອນນີ້
+      :relative_time: 
+        :future: 
+          :other: "ໃນອີກ {0} ວິນາທີ"
+        :past: 
+          :other: "{0} ວິນາທີກ່ອນ"
+    :second-short: 
+      :display_name: ວິ.
+      :relative_time: 
+        :future: 
+          :other: "ໃນ {0} ວິ."
+        :past: 
+          :other: "{0} ວິ. ກ່ອນ"
+    :sun: 
+      :relative: 
+        -1: ວັນອາທິດແລ້ວ
+        0: ວັນອາທິດນີ້
+        1: ວັນອາທິດໜ້າ
+      :relative_time: 
+        :future: 
+          :other: "ໃນ {0} ວັນອາທິດ"
+        :past: 
+          :other: "{0} ວັນອາທິດກ່ອນ"
+    :sun-short: 
+      :relative: 
+        -1: ວັນທິດແລ້ວ
+        0: ວັນທິດນີ້
+        1: ວັນທິດໜ້າ
+    :thu: 
+      :relative: 
+        -1: ວັນພະຫັດແລ້ວ
+        0: ວັນພະຫັດນີ້
+        1: ວັນພະຫັດໜ້າ
+      :relative_time: 
+        :future: 
+          :other: "ໃນ {0} ວັນພະຫັດ"
+        :past: 
+          :other: "{0} ວັນພະຫັດກ່ອນ"
+    :thu-short: 
+      :relative: 
+        -1: ພະຫັດແລ້ວ
+        0: ພະຫັດນີ້
+        1: ພະຫັດໜ້າ
+    :tue: 
+      :relative: 
+        -1: ວັນອັງຄານແລ້ວ
+        0: ວັນອັງຄານນີ້
+        1: ວັນອັງຄານໜ້າ
+      :relative_time: 
+        :future: 
+          :other: "ໃນ {0} ວັນອັງຄານ"
+        :past: 
+          :other: "{0} ວັນອັງຄານກ່ອນ"
+    :tue-short: 
+      :relative: 
+        -1: ອັງຄານແລ້ວ
+        0: ອັງຄານນີ້
+        1: ອັງຄານໜ້າ
+    :wed: 
+      :relative: 
+        -1: ວັນພຸດແລ້ວ
+        0: ວັນພຸດນີ້
+        1: ວັນພຸດໜ້າ
+      :relative_time: 
+        :future: 
+          :other: "ໃນ {0} ວັນພຸດ"
+        :past: 
+          :other: "{0} ວັນພຸດກ່ອນ"
+    :wed-short: 
+      :relative: 
+        -1: ພຸດແລ້ວ
+        0: ພຸດນີ້
+        1: ພຸດໜ້າ
+    :week: 
+      :display_name: ອາທິດ
+      :relative: 
+        -1: ອາທິດແລ້ວ
+        0: ອາທິດນີ້
+        1: ອາທິດໜ້າ
+      :relative_time: 
+        :future: 
+          :other: "ໃນອີກ {0} ອາທິດ"
+        :past: 
+          :other: "{0} ອາທິດກ່ອນ"
+    :week-short: 
+      :display_name: ອ.
+      :relative_time: 
+        :future: 
+          :other: "ໃນອີກ {0} ອທ."
+        :past: 
+          :other: "{0} ອທ. ກ່ອນ"
+    :weekOfMonth: 
+      :display_name: ອາທິດຂອງເດືອນ
+    :weekOfMonth-short: 
+      :display_name: "ອທ ຂອງ ດ"
+    :weekday: 
+      :display_name: ມື້ຂອງອາທິດ
+    :weekdayOfMonth: 
+      :display_name: ມື້ເຮັດວຽກຂອງເດືອນ
+    :weekdayOfMonth-short: 
+      :display_name: "ມຮວ ຂອງ ດ"
+    :year: 
+      :display_name: ປີ
+      :relative: 
+        -1: ປີກາຍ
+        0: ປີນີ້
+        1: ປີໜ້າ
+      :relative_time: 
+        :future: 
+          :other: "ໃນອີກ {0} ປີ"
+        :past: 
+          :other: "{0} ປີກ່ອນ"
+    :zone: 
+      :display_name: ເຂດເວລາ

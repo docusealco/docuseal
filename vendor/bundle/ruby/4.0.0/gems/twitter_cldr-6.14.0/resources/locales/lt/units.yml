@@ -1,0 +1,1545 @@
+--- 
+:lt: 
+  :units: 
+    :durationUnit: 
+      :hm: "hh:mm"
+      :hms: "hh:mm:ss"
+      :ms: "mm:ss"
+    :unitLength: 
+      :long: 
+        :acceleration-g-force: 
+          :few: "{0} laisvojo kritimo pagreičiuose"
+          :many: "{0} laisvojo kritimo pagreičio"
+          :one: "{0} laisvojo kritimo pagreityje"
+          :other: "{0} laisvojo kritimo pagreičių"
+        :acceleration-meter-per-square-second: 
+          :few: "{0} metruose per kvadratinę sekundę"
+          :many: "{0} metro per kvadratinę sekundę"
+          :one: "{0} metre per kvadratinę sekundę"
+          :other: "{0} metrų per kvadratinę sekundę"
+        :angle-arc-minute: 
+          :few: "{0} kampo minutėse"
+          :many: "{0} kampo minutės"
+          :one: "{0} kampo minutėje"
+          :other: "{0} kampo minučių"
+        :angle-arc-second: 
+          :few: "{0} kampo sekundėse"
+          :many: "{0} kampo sekundės"
+          :one: "{0} kampo sekundėje"
+          :other: "{0} kampo sekundžių"
+        :angle-degree: 
+          :few: "{0} laipsniuose"
+          :many: "{0} laipsnio"
+          :one: "{0} laipsnyje"
+          :other: "{0} laipsnių"
+        :angle-radian: 
+          :few: "{0} radianuose"
+          :many: "{0} radiano"
+          :one: "{0} radiane"
+          :other: "{0} radianų"
+        :angle-revolution: 
+          :few: "{0} pilnuose apsisukimuose"
+          :many: "{0} pilno apsisukimo"
+          :one: "{0} pilname apsisukime"
+          :other: "{0} pilnų apsisukimų"
+        :area-acre: 
+          :few: "{0} akrai"
+          :many: "{0} akro"
+          :one: "{0} akras"
+          :other: "{0} akrų"
+        :area-hectare: 
+          :few: "{0} hektaruose"
+          :many: "{0} hektaro"
+          :one: "{0} hektare"
+          :other: "{0} hektarų"
+        :area-square-centimeter: 
+          :few: "{0} kvadratiniuose centimetruose"
+          :many: "{0} kvadratinio centimetro"
+          :one: "{0} kvadratiniame centimetre"
+          :other: "{0} kvadratinių centimetrų"
+        :area-square-foot: 
+          :few: "{0} kvadratinės pėdos"
+          :many: "{0} kvadratinės pėdos"
+          :one: "{0} kvadratinė pėda"
+          :other: "{0} kvadratinių pėdų"
+        :area-square-inch: 
+          :few: "{0} kvadratiniai coliai"
+          :many: "{0} kvadratinio colio"
+          :one: "{0} kvadratinis colis"
+          :other: "{0} kvadratinių colių"
+        :area-square-kilometer: 
+          :few: "{0} kvadratiniuose kilometruose"
+          :many: "{0} kvadratinio kilometro"
+          :one: "{0} kvadratinį kilometrą"
+          :other: "{0} kvadratinių kilometrų"
+        :area-square-meter: 
+          :few: "{0} kvadratiniuose metruose"
+          :many: "{0} kvadratinio metro"
+          :one: "{0} kvadratiniame metre"
+          :other: "{0} kvadratinių metrų"
+        :area-square-mile: 
+          :few: "{0} kvadratinės mylios"
+          :many: "{0} kvadratinės mylios"
+          :one: "{0} kvadratinė mylia"
+          :other: "{0} kvadratinių mylių"
+        :area-square-yard: 
+          :few: "{0} kvadratiniai jardai"
+          :many: "{0} kvadratinio jardo"
+          :one: "{0} kvadratinis jardas"
+          :other: "{0} yd²"
+        :concentr-item: 
+          :few: "{0} elementuose"
+          :many: "{0} elemento"
+          :one: "{0} elemente"
+          :other: "{0} elementų"
+        :concentr-karat: 
+          :few: "{0} karatuose"
+          :many: "{0} karato"
+          :one: "{0} karate"
+          :other: "{0} karatų"
+        :concentr-milligram-ofglucose-per-deciliter: 
+          :few: "{0} miligramuose decilitre"
+          :many: "{0} miligramo decilitre"
+          :one: "{0} miligrame decilitre"
+          :other: "{0} miligramų decilitre"
+        :concentr-millimole-per-liter: 
+          :few: "{0} milimoliuose litre"
+          :many: "{0} milimolio litre"
+          :one: "{0} milimolyje litre"
+          :other: "{0} milimolių litre"
+        :concentr-mole: 
+          :few: "{0} moliuose"
+          :many: "{0} molio"
+          :one: "{0} molyje"
+          :other: "{0} molių"
+        :concentr-percent: 
+          :few: "{0} procentuose"
+          :many: "{0} procento"
+          :one: "{0} procente"
+          :other: "{0} procentų"
+        :concentr-permille: 
+          :few: "{0} promilėse"
+          :many: "{0} promilės"
+          :one: "{0} promilėje"
+          :other: "{0} promilių"
+        :concentr-permillion: 
+          :few: "{0} milijoninėse dalyse"
+          :many: "{0} milijoninės dalies"
+          :one: "{0} milijoninėje dalyje"
+          :other: "{0} milijoninių dalių"
+        :concentr-portion-per-1e9: 
+          :few: "{0} milijoninėse dalelytėse"
+          :many: "{0} milijoninės dalelytės"
+          :one: "{0} milijoninėje dalelytėje"
+          :other: "{0} milijoninių dalelyčių"
+        :consumption-liter-per-100-kilometer: 
+          :few: "{0} litruose 100 kilometrų"
+          :many: "{0} litro 100 kilometrų"
+          :one: "{0} litre 100 kilometrų"
+          :other: "{0} litrų 100 kilometrų"
+        :consumption-liter-per-kilometer: 
+          :few: "{0} litruose kilometrui"
+          :many: "{0} litro kilometrui"
+          :one: "{0} litre kilometrui"
+          :other: "{0} litrų kilometrui"
+        :consumption-mile-per-gallon: 
+          :few: "{0} mylios už galoną"
+          :many: "{0} mylios už galoną"
+          :one: "{0} mylia už galoną"
+          :other: "{0} mylių už galoną"
+        :consumption-mile-per-gallon-imperial: 
+          :few: "{0} mylios už imperinį galoną"
+          :many: "{0} mylios už imperinį galoną"
+          :one: "{0} mylia už imperinį galoną"
+          :other: "{0} mylių už imperinį galoną"
+        :digital-bit: 
+          :few: "{0} bituose"
+          :many: "{0} bito"
+          :one: "{0} bite"
+          :other: "{0} bitų"
+        :digital-byte: 
+          :few: "{0} baituose"
+          :many: "{0} baito"
+          :one: "{0} baite"
+          :other: "{0} baitų"
+        :digital-gigabit: 
+          :few: "{0} gigabituose"
+          :many: "{0} gigabito"
+          :one: "{0} gigabite"
+          :other: "{0} gigabitų"
+        :digital-gigabyte: 
+          :few: "{0} gigabaituose"
+          :many: "{0} gigabaito"
+          :one: "{0} gigabaite"
+          :other: "{0} gigabaitų"
+        :digital-kilobit: 
+          :few: "{0} kilobituose"
+          :many: "{0} kilobito"
+          :one: "{0} kilobite"
+          :other: "{0} kilobitų"
+        :digital-kilobyte: 
+          :few: "{0} kilobaituose"
+          :many: "{0} kilobaito"
+          :one: "{0} kilobaite"
+          :other: "{0} kilobaitų"
+        :digital-megabit: 
+          :few: "{0} megabituose"
+          :many: "{0} megabito"
+          :one: "{0} megabite"
+          :other: "{0} megabitų"
+        :digital-megabyte: 
+          :few: "{0} megabaituose"
+          :many: "{0} megabaito"
+          :one: "{0} megabaite"
+          :other: "{0} megabaitų"
+        :digital-petabyte: 
+          :few: "{0} pentabaituose"
+          :many: "{0} pentabaito"
+          :one: "{0} pentabaite"
+          :other: "{0} pentabaitų"
+        :digital-terabit: 
+          :few: "{0} terabituose"
+          :many: "{0} terabito"
+          :one: "{0} terabite"
+          :other: "{0} terabitų"
+        :digital-terabyte: 
+          :few: "{0} terabaituose"
+          :many: "{0} terabaito"
+          :one: "{0} terabaite"
+          :other: "{0} terabaitų"
+        :duration-century: 
+          :few: "{0} amžiuose"
+          :many: "{0} amžiaus"
+          :one: "{0} amžiuje"
+          :other: "{0} amžių"
+        :duration-day: 
+          :few: "{0} dienose"
+          :many: "{0} dienos"
+          :one: "{0} dienoje"
+          :other: "{0} dienų"
+        :duration-decade: 
+          :few: "{0} dekadose"
+          :many: "{0} dekados"
+          :one: "{0} dekadoje"
+          :other: "{0} dekadų"
+        :duration-hour: 
+          :few: "{0} valandose"
+          :many: "{0} valandos"
+          :one: "{0} valandoje"
+          :other: "{0} valandų"
+        :duration-microsecond: 
+          :few: "{0} mikrosekundėse"
+          :many: "{0} mikrosekundės"
+          :one: "{0} mikrosekundėje"
+          :other: "{0} mikrosekundžių"
+        :duration-millisecond: 
+          :few: "{0} milisekundėse"
+          :many: "{0} milisekundės"
+          :one: "{0} milisekundėje"
+          :other: "{0} milisekundžių"
+        :duration-minute: 
+          :few: "{0} minutėse"
+          :many: "{0} minutės"
+          :one: "{0} minutėje"
+          :other: "{0} minučių"
+        :duration-month: 
+          :few: "{0} mėnesiuose"
+          :many: "{0} mėnesio"
+          :one: "{0} mėnesyje"
+          :other: "{0} mėnesių"
+        :duration-nanosecond: 
+          :few: "{0} nanosekundėse"
+          :many: "{0} nanosekundės"
+          :one: "{0} nanosekundėje"
+          :other: "{0} nanosekundžių"
+        :duration-night: 
+          :few: "{0} naktyse"
+          :many: "{0} nakties"
+          :one: "{0} naktyje"
+          :other: "{0} naktų"
+        :duration-quarter: 
+          :few: "{0} ketvirčiuose"
+          :many: "{0} ketvirčio"
+          :one: "{0} ketvirtyje"
+          :other: "{0} ketvirčių"
+        :duration-second: 
+          :few: "{0} sekundėse"
+          :many: "{0} sekundės"
+          :one: "{0} sekundėje"
+          :other: "{0} sekundžių"
+        :duration-week: 
+          :few: "{0} savaitėse"
+          :many: "{0} savaitės"
+          :one: "{0} savaitėje"
+          :other: "{0} savaičių"
+        :duration-year: 
+          :few: "{0} metuose"
+          :many: "{0} metų"
+          :one: "{0} metuose"
+          :other: "{0} metų"
+        :electric-ampere: 
+          :few: "{0} amperuose"
+          :many: "{0} ampero"
+          :one: "{0} ampere"
+          :other: "{0} amperų"
+        :electric-milliampere: 
+          :few: "{0} miliamperuose"
+          :many: "{0} miliampero"
+          :one: "{0} miliampere"
+          :other: "{0} miliamperų"
+        :electric-ohm: 
+          :few: "{0} omuose"
+          :many: "{0} omo"
+          :one: "{0} ome"
+          :other: "{0} omų"
+        :electric-volt: 
+          :few: "{0} voltuose"
+          :many: "{0} volto"
+          :one: "{0} volte"
+          :other: "{0} voltų"
+        :energy-calorie: 
+          :few: "{0} kalorijose"
+          :many: "{0} kalorijos"
+          :one: "{0} kalorijoje"
+          :other: "{0} kalorijų"
+        :energy-electronvolt: 
+          :few: "{0} elektronvoltai"
+          :many: "{0} elektronvolto"
+          :one: "{0} elektronvoltas"
+          :other: "{0} elektronvoltų"
+        :energy-foodcalorie: 
+          :few: "{0} kalorijos"
+          :many: "{0} kalorijos"
+          :one: "{0} kalorija"
+          :other: "{0} kalorijų"
+        :energy-joule: 
+          :few: "{0} džauliuose"
+          :many: "{0} džaulio"
+          :one: "{0} džaulyje"
+          :other: "{0} džaulių"
+        :energy-kilocalorie: 
+          :few: "{0} kilokalorijose"
+          :many: "{0} kilokalorijos"
+          :one: "{0} kilokalorijoje"
+          :other: "{0} kilokalorijų"
+        :energy-kilojoule: 
+          :few: "{0} kilodžauliuose"
+          :many: "{0} kilodžaulio"
+          :one: "{0} kilodžaulyje"
+          :other: "{0} kilodžaulių"
+        :energy-kilowatt-hour: 
+          :few: "{0} kilovatvalandėse"
+          :many: "{0} kilovatvalandės"
+          :one: "{0} kilovatvalandėje"
+          :other: "{0} kilovatvalandžių"
+        :force-kilowatt-hour-per-100-kilometer: 
+          :few: "{0} kilovatvalandėse šimtui kilometrų"
+          :many: "{0} kilovatvalandės šimtui kilometrų"
+          :one: "{0} kilovatvalandėje šimtui kilometrų"
+          :other: "{0} kilovatvalandžių šimtui kilometrų"
+        :force-newton: 
+          :few: "{0} niutonuose"
+          :many: "{0} niutono"
+          :one: "{0} niutone"
+          :other: "{0} niutonų"
+        :force-pound-force: 
+          :few: "{0} jėgos svarai"
+          :many: "{0} jėgos svaro"
+          :one: "{0} jėgos svaras"
+          :other: "{0} jėgos svarų"
+        :frequency-gigahertz: 
+          :few: "{0} gigahercuose"
+          :many: "{0} gigaherco"
+          :one: "{0} gigaherce"
+          :other: "{0} gigahercų"
+        :frequency-hertz: 
+          :few: "{0} hercuose"
+          :many: "{0} herco"
+          :one: "{0} herce"
+          :other: "{0} hercų"
+        :frequency-kilohertz: 
+          :few: "{0} kilohercuose"
+          :many: "{0} kiloherco"
+          :one: "{0} kiloherce"
+          :other: "{0} kilohercų"
+        :frequency-megahertz: 
+          :few: "{0} megahercuose"
+          :many: "{0} megaherco"
+          :one: "{0} megaherce"
+          :other: "{0} megahercų"
+        :graphics-dot: 
+          :few: "{0} taškai"
+          :many: "{0} taško"
+          :one: "{0} taškas"
+          :other: "{0} taškų"
+        :graphics-dot-per-centimeter: 
+          :few: "{0} taškai centimetre"
+          :many: "{0} taško centimetre"
+          :one: "{0} taškas centimetre"
+          :other: "{0} taškų centimetre"
+        :graphics-dot-per-inch: 
+          :few: "{0} taškai colyje"
+          :many: "{0} taško colyje"
+          :one: "{0} taškas colyje"
+          :other: "{0} taškų colyje"
+        :graphics-em: 
+          :few: "{0} tipografiniuose emuose"
+          :many: "{0} tipografinio emo"
+          :one: "{0} tipografiniame eme"
+          :other: "{0} tipografinių emų"
+        :graphics-megapixel: 
+          :few: "{0} megapikseliuose"
+          :many: "{0} megapikselio"
+          :one: "{0} megapikselyje"
+          :other: "{0} megapikselių"
+        :graphics-pixel: 
+          :few: "{0} pikseliuose"
+          :many: "{0} pikselio"
+          :one: "{0} pikselyje"
+          :other: "{0} pikselių"
+        :graphics-pixel-per-centimeter: 
+          :few: "{0} pikseliuose centimetre"
+          :many: "{0} pikselio centimetre"
+          :one: "{0} pikselyje centimetre"
+          :other: "{0} pikselių centimetre"
+        :graphics-pixel-per-inch: 
+          :few: "{0} pikseliai colyje"
+          :many: "{0} pikselio colyje"
+          :one: "{0} pikselis colyje"
+          :other: "{0} pikselių colyje"
+        :length-astronomical-unit: 
+          :few: "{0} astronominiai vienetai"
+          :many: "{0} astronominio vieneto"
+          :one: "{0} astronominis vienetas"
+          :other: "{0} astronominių vienetų"
+        :length-centimeter: 
+          :few: "{0} centimetrai"
+          :many: "{0} centimetro"
+          :one: "{0} centimetre"
+          :other: "{0} centimetrų"
+        :length-decimeter: 
+          :few: "{0} decimetruose"
+          :many: "{0} decimetro"
+          :one: "{0} decimetre"
+          :other: "{0} decimetrų"
+        :length-earth-radius: 
+          :few: "{0} R⊕"
+          :many: "{0} R⊕"
+          :one: "{0} žemės spindulys"
+          :other: "{0} žemės spindulių"
+        :length-fathom: 
+          :few: "{0} fadomai"
+          :many: "{0} fadomo"
+          :one: "{0} fadomas"
+          :other: "{0} fth"
+        :length-foot: 
+          :few: "{0} pėdos"
+          :many: "{0} pėdos"
+          :one: "{0} pėda"
+          :other: "{0} pėdų"
+        :length-furlong: 
+          :few: "{0} furlongai"
+          :many: "{0} furlongo"
+          :one: "{0} furlongas"
+          :other: "{0} furlongų"
+        :length-inch: 
+          :few: "{0} coliai"
+          :many: "{0} colio"
+          :one: "{0} colis"
+          :other: "{0} colių"
+        :length-kilometer: 
+          :few: "{0} kilometruose"
+          :many: "{0} kilometro"
+          :one: "{0} kilometre"
+          :other: "{0} kilometrų"
+        :length-light-year: 
+          :few: "{0} šviesmečiai"
+          :many: "{0} šviesmečio"
+          :one: "{0} šviesmetis"
+          :other: "{0} šviesmečių"
+        :length-meter: 
+          :few: "{0} metruose"
+          :many: "{0} metro"
+          :one: "{0} metre"
+          :other: "{0} metrų"
+        :length-micrometer: 
+          :few: "{0} mikrometruose"
+          :many: "{0} mikrometro"
+          :one: "{0} mikrometre"
+          :other: "{0} mikrometrų"
+        :length-mile: 
+          :few: "{0} mylios"
+          :many: "{0} mylios"
+          :one: "{0} mylia"
+          :other: "{0} mylių"
+        :length-mile-scandinavian: 
+          :few: "{0} ilgosiose myliose"
+          :many: "{0} ilgosios mylios"
+          :one: "{0} ilgojoje mylioje"
+          :other: "{0} ilgųjų mylių"
+        :length-millimeter: 
+          :few: "{0} milimetruose"
+          :many: "{0} milimetro"
+          :one: "{0} milimetre"
+          :other: "{0} milimetrų"
+        :length-nanometer: 
+          :few: "{0} nanometruose"
+          :many: "{0} nanometro"
+          :one: "{0} nanometre"
+          :other: "{0} nanometrų"
+        :length-nautical-mile: 
+          :few: "{0} jūrmylės"
+          :many: "{0} jūrmylės"
+          :one: "{0} jūrmylė"
+          :other: "{0} jūrmylių"
+        :length-parsec: 
+          :few: "{0} parsekai"
+          :many: "{0} parseko"
+          :one: "{0} parsekas"
+          :other: "{0} parsekų"
+        :length-picometer: 
+          :few: "{0} pikometruose"
+          :many: "{0} pikometro"
+          :one: "{0} pikometre"
+          :other: "{0} pikometrų"
+        :length-point: 
+          :few: "{0} punktuose"
+          :many: "{0} punkto"
+          :one: "{0} punkte"
+          :other: "{0} punktų"
+        :length-yard: 
+          :few: "{0} jardai"
+          :many: "{0} jardo"
+          :one: "{0} jardas"
+          :other: "{0} jardų"
+        :light-candela: 
+          :few: "{0} kandelose"
+          :many: "{0} kandelos"
+          :one: "{0} kandeloje"
+          :other: "{0} kandelų"
+        :light-lumen: 
+          :few: "{0} liumenuose"
+          :many: "{0} liumeno"
+          :one: "{0} liumene"
+          :other: "{0} liumenų"
+        :light-lux: 
+          :few: "{0} liuksuose"
+          :many: "{0} liukso"
+          :one: "{0} liukse"
+          :other: "{0} liuksų"
+        :mass-carat: 
+          :few: "{0} karatuose"
+          :many: "{0} karato"
+          :one: "{0} karate"
+          :other: "{0} karatų"
+        :mass-dalton: 
+          :few: "{0} daltonai"
+          :many: "{0} daltono"
+          :one: "{0} daltonas"
+          :other: "{0} daltonų"
+        :mass-gram: 
+          :few: "{0} gramuose"
+          :many: "{0} gramo"
+          :one: "{0} grame"
+          :other: "{0} gramų"
+        :mass-kilogram: 
+          :few: "{0} kilogramuose"
+          :many: "{0} kilogramo"
+          :one: "{0} kilograme"
+          :other: "{0} kilogramų"
+        :mass-microgram: 
+          :few: "{0} mikrogramuose"
+          :many: "{0} mikrogramo"
+          :one: "{0} mikrograme"
+          :other: "{0} mikrogramų"
+        :mass-milligram: 
+          :few: "{0} miligramuose"
+          :many: "{0} miligramo"
+          :one: "{0} miligrame"
+          :other: "{0} miligramų"
+        :mass-ounce: 
+          :few: "{0} uncijos"
+          :many: "{0} uncijos"
+          :one: "{0} uncija"
+          :other: "{0} uncijų"
+        :mass-ounce-troy: 
+          :few: "{0} Trojos uncijos"
+          :many: "{0} Trojos uncijos"
+          :one: "{0} Trojos uncija"
+          :other: "{0} Trojos uncijų"
+        :mass-pound: 
+          :few: "{0} svarai"
+          :many: "{0} svaro"
+          :one: "{0} svaras"
+          :other: "{0} svarų"
+        :mass-stone: 
+          :few: "{0} stonai"
+          :many: "{0} stono"
+          :one: "{0} stonas"
+          :other: "{0} stonų"
+        :mass-ton: 
+          :few: "{0} tonos"
+          :many: "{0} tonos"
+          :one: "{0} tona"
+          :other: "{0} tonų"
+        :mass-tonne: 
+          :few: "{0} metrinėse tonose"
+          :many: "{0} metrinės tonos"
+          :one: "{0} metrinėje tonoje"
+          :other: "{0} metrinių tonų"
+        :power-gigawatt: 
+          :few: "{0} gigavatuose"
+          :many: "{0} gigavato"
+          :one: "{0} gigavate"
+          :other: "{0} gigavatų"
+        :power-horsepower: 
+          :few: "{0} arklio galios"
+          :many: "{0} arklio galios"
+          :one: "{0} arklio galia"
+          :other: "{0} arklio galių"
+        :power-kilowatt: 
+          :few: "{0} kilovatuose"
+          :many: "{0} kilovato"
+          :one: "{0} kilovate"
+          :other: "{0} kilovatų"
+        :power-megawatt: 
+          :few: "{0} megavatuose"
+          :many: "{0} megavato"
+          :one: "{0} megavatuose"
+          :other: "{0} megavatų"
+        :power-milliwatt: 
+          :few: "{0} milivatuose"
+          :many: "{0} milivato"
+          :one: "{0} milivate"
+          :other: "{0} milivatų"
+        :power-watt: 
+          :few: "{0} vatuose"
+          :many: "{0} vato"
+          :one: "{0} vate"
+          :other: "{0} vatų"
+        :pressure-atmosphere: 
+          :few: "{0} atmosferose"
+          :many: "{0} atmosferos"
+          :one: "{0} atmosferoje"
+          :other: "{0} atmosferų"
+        :pressure-bar: 
+          :few: "{0} baruose"
+          :many: "{0} baro"
+          :one: "{0} bare"
+          :other: "{0} barų"
+        :pressure-hectopascal: 
+          :few: "{0} hektopaskaliuose"
+          :many: "{0} hektopaskalio"
+          :one: "{0} hektopaskalyje"
+          :other: "{0} hektopaskalių"
+        :pressure-inch-ofhg: 
+          :few: "{0} gyvsidabrio stulpelio coliai"
+          :many: "{0} gyvsidabrio stulpelio colio"
+          :one: "{0} gyvsidabrio stulpelio colis"
+          :other: "{0} gyvsidabrio stulpelio colių"
+        :pressure-kilopascal: 
+          :few: "{0} kilopaskaliuose"
+          :many: "{0} kilopaskalio"
+          :one: "{0} kilopaskaliuose"
+          :other: "{0} kilopaskalių"
+        :pressure-megapascal: 
+          :few: "{0} megapaskaliuose"
+          :many: "{0} megapaskalio"
+          :one: "{0} megapaskalyje"
+          :other: "{0} megapaskalių"
+        :pressure-millibar: 
+          :few: "{0} milibaruose"
+          :many: "{0} milibaro"
+          :one: "{0} milibaruose"
+          :other: "{0} milibarų"
+        :pressure-millimeter-ofhg: 
+          :few: "{0} gysidabrio stulpelio milimetruose"
+          :many: "{0} gysidabrio stulpelio milimetro"
+          :one: "{0} gysidabrio stulpelio milimetre"
+          :other: "{0} gysidabrio stulpelio milimetrų"
+        :pressure-pascal: 
+          :few: "{0} paskaliuose"
+          :many: "{0} paskalio"
+          :one: "{0} paskalyje"
+          :other: "{0} paskalių"
+        :pressure-pound-force-per-square-inch: 
+          :few: "{0} svarai kv. colyje"
+          :many: "{0} svaro kv. colyje"
+          :one: "{0} svaras kv. colyje"
+          :other: "{0} svarų kv. colyje"
+        :speed-beaufort: 
+          :few: "Boforto {0}"
+          :many: "Boforto {0}"
+          :one: "Boforto {0}"
+          :other: "Boforto {0}"
+        :speed-kilometer-per-hour: 
+          :few: "{0} kilometruose per valandą"
+          :many: "{0} kilometro per valandą"
+          :one: "{0} kilometre per valandą"
+          :other: "{0} kilometrų per valandą"
+        :speed-knot: 
+          :few: "{0} mazgai"
+          :many: "{0} mazgo"
+          :one: "{0} mazgas"
+          :other: "{0} mazgų"
+        :speed-meter-per-second: 
+          :few: "{0} metruose per sekundę"
+          :many: "{0} metro per sekundę"
+          :one: "{0} metre per sekundę"
+          :other: "{0} metrų per sekundę"
+        :speed-mile-per-hour: 
+          :few: "{0} mylios per valandą"
+          :many: "{0} mylios per valandą"
+          :one: "{0} mylia per valandą"
+          :other: "{0} mylių per valandą"
+        :temperature-celsius: 
+          :few: "{0} Celsijaus laipsniuose"
+          :many: "{0} Celsijaus laipsnio"
+          :one: "{0} Celsijaus laipsnyje"
+          :other: "{0} Celsijaus laipsnių"
+        :temperature-fahrenheit: 
+          :few: "{0} Farenheito laipsniai"
+          :many: "{0} Farenheito laipsnio"
+          :one: "{0} Farenheito laipsnis"
+          :other: "{0} Farenheito laipsnių"
+        :temperature-kelvin: 
+          :few: "{0} kelvinuose"
+          :many: "{0} kelvino"
+          :one: "{0} kelvine"
+          :other: "{0} kelvinų"
+        :torque-newton-meter: 
+          :few: "{0} niutonmetruose"
+          :many: "{0} niutonmetro"
+          :one: "{0} niutonmetre"
+          :other: "{0} niutonmetrų"
+        :volume-acre-foot: 
+          :few: "{0} pėdos akre"
+          :many: "{0} pėdos akre"
+          :one: "{0} pėda akre"
+          :other: "{0} pėdų akre"
+        :volume-barrel: 
+          :few: "{0} bareliai"
+          :many: "{0} barelio"
+          :one: "{0} barelis"
+          :other: "{0} barelių"
+        :volume-bushel: 
+          :few: "{0} bušeliai"
+          :many: "{0} bušelio"
+          :one: "{0} bušelis"
+          :other: "{0} bušelių"
+        :volume-centiliter: 
+          :few: "{0} centilitruose"
+          :many: "{0} centilitro"
+          :one: "{0} centilitre"
+          :other: "{0} centilitrų"
+        :volume-cubic-centimeter: 
+          :few: "{0} kubiniuose centimetruose"
+          :many: "{0} kubinio centimetro"
+          :one: "{0} kubiniame centimetre"
+          :other: "{0} kubinių centimetrų"
+        :volume-cubic-foot: 
+          :few: "{0} kubinės pėdos"
+          :many: "{0} kubinės pėdos"
+          :one: "{0} kubinė pėda"
+          :other: "{0} kubinių pėdų"
+        :volume-cubic-inch: 
+          :few: "{0} kubiniai coliai"
+          :many: "{0} kubinio colio"
+          :one: "{0} kubinis colis"
+          :other: "{0} kubinių colių"
+        :volume-cubic-kilometer: 
+          :few: "{0} kubiniuose kilometruose"
+          :many: "{0} kubinio kilometro"
+          :one: "{0} kubiniame kilometre"
+          :other: "{0} kubinių kilometrų"
+        :volume-cubic-meter: 
+          :few: "{0} kubiniuose metruose"
+          :many: "{0} kubinio metro"
+          :one: "{0} kubiniame metre"
+          :other: "{0} kubinių metrų"
+        :volume-cubic-mile: 
+          :few: "{0} kubinės mylios"
+          :many: "{0} kubinės mylios"
+          :one: "{0} kubinė mylia"
+          :other: "{0} kubinių mylių"
+        :volume-cubic-yard: 
+          :few: "{0} kubiniai jardai"
+          :many: "{0} kubinio jardo"
+          :one: "{0} kubinis jardas"
+          :other: "{0} kubinių jardų"
+        :volume-cup: 
+          :few: "{0} stiklinės"
+          :many: "{0} stiklinės"
+          :one: "{0} stiklinė"
+          :other: "{0} stiklinių"
+        :volume-cup-metric: 
+          :few: "{0} matavimo puodeliuose"
+          :many: "{0} matavimo puodelio"
+          :one: "{0} matavimo puodelyje"
+          :other: "{0} matavimo puodelių"
+        :volume-deciliter: 
+          :few: "{0} decilitruose"
+          :many: "{0} decilitro"
+          :one: "{0} decilitre"
+          :other: "{0} decilitrų"
+        :volume-dessert-spoon: 
+          :few: "{0} desertiniai šaukšteliai"
+          :many: "{0} desertinio šaukštelio"
+          :one: "{0} desertinis šaukštelis"
+          :other: "{0} desertinių šaukštelių"
+        :volume-dessert-spoon-imperial: 
+          :few: "{0} imp. desertiniai šaukšteliai"
+          :many: "{0} imp. desertinio šaukštelio"
+          :one: "{0} imp. desertinis šaukštelis"
+          :other: "{0} imp. desertinių šaukštelių"
+        :volume-dram: 
+          :few: "{0} skysčio drachmos"
+          :many: "{0} skysčio drachmos"
+          :one: "{0} skysčio drachma"
+          :other: "{0} skysčio drachmų"
+        :volume-drop: 
+          :few: "{0} lašai"
+          :many: "{0} lašo"
+          :one: "{0} lašas"
+          :other: "{0} lašų"
+        :volume-fluid-ounce: 
+          :few: "{0} skysčio uncijos"
+          :many: "{0} skysčio uncijos"
+          :one: "{0} skysčio uncija"
+          :other: "{0} skysčio uncijų"
+        :volume-fluid-ounce-imperial: 
+          :few: "{0} imp. skysčio uncijos"
+          :many: "{0} imp. skysčio uncijos"
+          :one: "{0} imp. skysčio uncija"
+          :other: "{0} imp. skysčio uncijų"
+        :volume-gallon: 
+          :few: "{0} galonai"
+          :many: "{0} galono"
+          :one: "{0} galonas"
+          :other: "{0} galonų"
+        :volume-gallon-imperial: 
+          :few: "{0} imperiniai galonai"
+          :many: "{0} imperinio galono"
+          :one: "{0} imperinis galonas"
+          :other: "{0} imperinių galonų"
+        :volume-hectoliter: 
+          :few: "{0} hektolitruose"
+          :many: "{0} hektolitro"
+          :one: "{0} hektolitre"
+          :other: "{0} hektolitrų"
+        :volume-liter: 
+          :few: "{0} litruose"
+          :many: "{0} litro"
+          :one: "{0} litre"
+          :other: "{0} litrų"
+        :volume-megaliter: 
+          :few: "{0} megalitruose"
+          :many: "{0} megalitro"
+          :one: "{0} megalitre"
+          :other: "{0} megalitrų"
+        :volume-milliliter: 
+          :few: "{0} mililitruose"
+          :many: "{0} mililitro"
+          :one: "{0} mililitre"
+          :other: "{0} mililitrų"
+        :volume-pinch: 
+          :few: "{0} žiupsneliai"
+          :many: "{0} žiupsnelio"
+          :one: "{0} žiupsnelių"
+          :other: "{0} žiupsnelis"
+        :volume-pint: 
+          :few: "{0} pintos"
+          :many: "{0} pintos"
+          :one: "{0} pinta"
+          :other: "{0} pintų"
+        :volume-pint-metric: 
+          :few: "{0} metrinėse pintose"
+          :many: "{0} metrinės pintos"
+          :one: "{0} metrinėje pintoje"
+          :other: "{0} metrinių pintų"
+        :volume-quart-imperial: 
+          :few: "{0} imp. kvortos"
+          :many: "{0} imp. kvortos"
+          :one: "{0} imp. kvorta"
+          :other: "{0} imp. kvortų"
+        :volume-tablespoon: 
+          :few: "{0} valgomieji šaukštai"
+          :many: "{0} valgomojo šaukšto"
+          :one: "{0} valgomasis šaukštas"
+          :other: "{0} valgomųjų šaukštų"
+        :volume-teaspoon: 
+          :few: "{0} arbatiniai šaukšteliai"
+          :many: "{0} arbatinio šaukštelio"
+          :one: "{0} arbatinis šaukštelis"
+          :other: "{0} arbatinių šaukštelių"
+      :narrow: 
+        :area-acre: 
+          :few: "{0} ak"
+          :many: "{0} ak"
+          :one: "{0} ak"
+          :other: "{0} ak"
+        :area-square-foot: 
+          :few: "{0} ft²"
+          :many: "{0} ft²"
+          :one: "{0} ft²"
+          :other: "{0} ft²"
+        :area-square-kilometer: 
+          :few: "{0} km²"
+          :many: "{0} km²"
+          :one: "{0} km²"
+          :other: "{0} km²"
+        :area-square-meter: 
+          :few: "{0} m²"
+          :many: "{0} m²"
+          :one: "{0} m²"
+          :other: "{0} m²"
+        :area-square-mile: 
+          :few: "{0} my²"
+          :many: "{0} my²"
+          :one: "{0} my²"
+          :other: "{0} my²"
+        :concentr-portion-per-1e9: 
+          :few: "{0} dalelytės/mln."
+          :many: "{0} dalelytės/mln."
+          :one: "{0} dalelytė/mln."
+          :other: "{0} dalelyčių/mln."
+        :consumption-mile-per-gallon: 
+          :few: "{0} mi/gal"
+          :many: "{0} mi/gal"
+          :one: "{0} mi/gal"
+          :other: "{0} mi/gal"
+        :duration-hour: 
+          :few: "{0} h"
+          :many: "{0} h"
+          :one: "{0} h"
+          :other: "{0} h"
+        :duration-night: 
+          :few: "{0} nakt."
+          :many: "{0} nakt."
+          :one: "{0} nakt."
+          :other: "{0} nakt."
+        :duration-second: 
+          :few: "{0} s"
+          :many: "{0} s"
+          :one: "{0} s"
+          :other: "{0} s"
+        :speed-kilometer-per-hour: 
+          :few: "{0} km/h"
+          :many: "{0} km/h"
+          :one: "{0} km/h"
+          :other: "{0} km/h"
+        :speed-meter-per-second: 
+          :few: "{0} m/s"
+          :many: "{0} m/s"
+          :one: "{0} m/s"
+          :other: "{0} m/s"
+        :temperature-celsius: 
+          :few: "{0}°"
+          :many: "{0}°"
+          :one: "{0}°"
+          :other: "{0}°"
+        :volume-fluid-ounce: 
+          :few: "{0} fl oz"
+          :many: "{0} fl oz"
+          :one: "{0} fl oz"
+          :other: "{0} fl oz"
+      :short: 
+        :acceleration-g-force: 
+          :other: "{0} G"
+        :acceleration-meter-per-square-second: 
+          :other: "{0} m/s²"
+        :angle-arc-minute: 
+          :other: "{0}′"
+        :angle-arc-second: 
+          :other: "{0}″"
+        :angle-degree: 
+          :other: "{0}°"
+        :angle-radian: 
+          :other: "{0} rad"
+        :angle-revolution: 
+          :few: "{0} apsisuk."
+          :many: "{0} apsisuk."
+          :one: "{0} apsisuk."
+          :other: "{0} apsisuk."
+        :area-acre: 
+          :few: "{0} akr."
+          :many: "{0} akr."
+          :one: "{0} akr."
+          :other: "{0} akr."
+        :area-dunam: 
+          :few: "{0} dunamai"
+          :many: "{0} dunamo"
+          :one: "{0} dunamas"
+          :other: "{0} dunamų"
+        :area-hectare: 
+          :other: "{0} ha"
+        :area-square-centimeter: 
+          :other: "{0} cm²"
+        :area-square-foot: 
+          :few: "{0} kv. pėdos"
+          :many: "{0} kv. pėdos"
+          :one: "{0} kv. pėda"
+          :other: "{0} kv. pėdų"
+        :area-square-inch: 
+          :other: "{0} in²"
+        :area-square-kilometer: 
+          :few: "{0} kv. km"
+          :many: "{0} kv. km"
+          :one: "{0} kv. km"
+          :other: "{0} kv. km"
+        :area-square-meter: 
+          :few: "{0} kv. m"
+          :many: "{0} kv. m"
+          :one: "{0} kv. m"
+          :other: "{0} kv. m"
+        :area-square-mile: 
+          :few: "{0} kv. my"
+          :many: "{0} kv. my"
+          :one: "{0} kv. my"
+          :other: "{0} kv. my"
+        :area-square-yard: 
+          :other: "{0} yd²"
+        :concentr-item: 
+          :few: "{0} elem."
+          :many: "{0} elem."
+          :one: "{0} elem."
+          :other: "{0} elem."
+        :concentr-karat: 
+          :other: "{0} kt"
+        :concentr-milligram-ofglucose-per-deciliter: 
+          :few: "{0} mg/dl"
+          :many: "{0} mg/dl"
+          :one: "{0} mg/dl"
+          :other: "{0} mg/dl"
+        :concentr-millimole-per-liter: 
+          :few: "{0} mmol/l"
+          :many: "{0} mmol/l"
+          :one: "{0} mmol/l"
+          :other: "{0} mmol/l"
+        :concentr-mole: 
+          :other: "{0} mol"
+        :concentr-percent: 
+          :few: "{0} %"
+          :many: "{0} %"
+          :one: "{0} %"
+          :other: "{0} %"
+        :concentr-permille: 
+          :few: "{0} ‰"
+          :many: "{0} ‰"
+          :one: "{0} ‰"
+          :other: "{0} ‰"
+        :concentr-permillion: 
+          :other: "{0} ppm"
+        :concentr-permyriad: 
+          :other: "{0}‱"
+        :concentr-portion-per-1e9: 
+          :few: "{0} dalelytės/mln."
+          :many: "{0} dalelytės/mln."
+          :one: "{0} dalelytė/mln."
+          :other: "{0} dalelyčių/mln."
+        :consumption-liter-per-100-kilometer: 
+          :few: "{0} l/100 km"
+          :many: "{0} l/100 km"
+          :one: "{0} l/100 km"
+          :other: "{0} l/100 km"
+        :consumption-liter-per-kilometer: 
+          :few: "{0} l/km"
+          :many: "{0} l/km"
+          :one: "{0} l/km"
+          :other: "{0} l/km"
+        :consumption-mile-per-gallon: 
+          :few: "{0} my/gal"
+          :many: "{0} my/gal"
+          :one: "{0} my/gal"
+          :other: "{0} my/gal"
+        :consumption-mile-per-gallon-imperial: 
+          :few: "{0} my/imp. g"
+          :many: "{0} my/imp. g"
+          :one: "{0} my/imp. g"
+          :other: "{0} my/imp. g"
+        :digital-bit: 
+          :few: "{0} b"
+          :many: "{0} b"
+          :one: "{0} b"
+          :other: "{0} b"
+        :digital-byte: 
+          :few: "{0} B"
+          :many: "{0} B"
+          :one: "{0} B"
+          :other: "{0} B"
+        :digital-gigabit: 
+          :other: "{0} Gb"
+        :digital-gigabyte: 
+          :other: "{0} GB"
+        :digital-kilobit: 
+          :other: "{0} kb"
+        :digital-kilobyte: 
+          :other: "{0} kB"
+        :digital-megabit: 
+          :other: "{0} Mb"
+        :digital-megabyte: 
+          :other: "{0} MB"
+        :digital-petabyte: 
+          :other: "{0} PB"
+        :digital-terabit: 
+          :other: "{0} Tb"
+        :digital-terabyte: 
+          :other: "{0} TB"
+        :duration-century: 
+          :few: "{0} a."
+          :many: "{0} a."
+          :one: "{0} a."
+          :other: "{0} a."
+        :duration-day: 
+          :few: "{0} d."
+          :many: "{0} d."
+          :one: "{0} d."
+          :other: "{0} d."
+        :duration-decade: 
+          :few: "{0} dek."
+          :many: "{0} dek."
+          :one: "{0} dek."
+          :other: "{0} dek."
+        :duration-hour: 
+          :few: "{0} val."
+          :many: "{0} val."
+          :one: "{0} val."
+          :other: "{0} val."
+        :duration-microsecond: 
+          :other: "{0} μs"
+        :duration-millisecond: 
+          :other: "{0} ms"
+        :duration-minute: 
+          :few: "{0} min."
+          :many: "{0} min."
+          :one: "{0} min."
+          :other: "{0} min."
+        :duration-month: 
+          :few: "{0} mėn."
+          :many: "{0} mėn."
+          :one: "{0} mėn."
+          :other: "{0} mėn."
+        :duration-nanosecond: 
+          :other: "{0} ns"
+        :duration-night: 
+          :few: "{0} nakt."
+          :many: "{0} nakt."
+          :one: "{0} nakt."
+          :other: "{0} nakt."
+        :duration-quarter: 
+          :few: "{0} ketv."
+          :many: "{0} ketv."
+          :one: "{0} ketv."
+          :other: "{0} ketv."
+        :duration-second: 
+          :few: "{0} sek."
+          :many: "{0} sek."
+          :one: "{0} sek."
+          :other: "{0} sek."
+        :duration-week: 
+          :few: "{0} sav."
+          :many: "{0} sav."
+          :one: "{0} sav."
+          :other: "{0} sav."
+        :duration-year: 
+          :few: "{0} m."
+          :many: "{0} m."
+          :one: "{0} m."
+          :other: "{0} m."
+        :electric-ampere: 
+          :other: "{0} A"
+        :electric-milliampere: 
+          :other: "{0} mA"
+        :electric-ohm: 
+          :other: "{0} Ω"
+        :electric-volt: 
+          :other: "{0} V"
+        :energy-british-thermal-unit: 
+          :other: "{0} Btu"
+        :energy-calorie: 
+          :other: "{0} cal"
+        :energy-electronvolt: 
+          :other: "{0} eV"
+        :energy-foodcalorie: 
+          :few: "{0} cal"
+          :many: "{0} cal"
+          :one: "{0} cal"
+          :other: "{0} cal"
+        :energy-joule: 
+          :other: "{0} J"
+        :energy-kilocalorie: 
+          :other: "{0} kcal"
+        :energy-kilojoule: 
+          :other: "{0} kJ"
+        :energy-kilowatt-hour: 
+          :other: "{0} kWh"
+        :energy-therm-us: 
+          :few: "{0} JAV termos"
+          :many: "{0} JAV termos"
+          :one: "{0} JAV terma"
+          :other: "{0} JAV termų"
+        :force-kilowatt-hour-per-100-kilometer: 
+          :other: "{0} kWh/100km"
+        :force-newton: 
+          :other: "{0} N"
+        :force-pound-force: 
+          :other: "{0} lbf"
+        :frequency-gigahertz: 
+          :other: "{0} GHz"
+        :frequency-hertz: 
+          :other: "{0} Hz"
+        :frequency-kilohertz: 
+          :other: "{0} kHz"
+        :frequency-megahertz: 
+          :other: "{0} MHz"
+        :graphics-dot: 
+          :few: "{0} tšk."
+          :many: "{0} tšk."
+          :one: "{0} tšk."
+          :other: "{0} tšk."
+        :graphics-dot-per-centimeter: 
+          :few: "{0} tšk./cm"
+          :many: "{0} tšk./cm"
+          :one: "{0} tšk./cm"
+          :other: "{0} tšk./cm"
+        :graphics-dot-per-inch: 
+          :few: "{0} tšk./in"
+          :many: "{0} tšk./in"
+          :one: "{0} tšk./in"
+          :other: "{0} tšk./in"
+        :graphics-em: 
+          :other: "{0} em"
+        :graphics-megapixel: 
+          :other: "{0} MP"
+        :graphics-pixel: 
+          :few: "{0} p"
+          :many: "{0} p"
+          :one: "{0} p"
+          :other: "{0} p"
+        :graphics-pixel-per-centimeter: 
+          :few: "{0} p/cm"
+          :many: "{0} p/cm"
+          :one: "{0} p/cm"
+          :other: "{0} p/cm"
+        :graphics-pixel-per-inch: 
+          :other: "{0} ppi"
+        :length-astronomical-unit: 
+          :few: "{0} AV"
+          :many: "{0} AV"
+          :one: "{0} AV"
+          :other: "{0} AV"
+        :length-centimeter: 
+          :other: "{0} cm"
+        :length-decimeter: 
+          :other: "{0} dm"
+        :length-earth-radius: 
+          :other: "{0} R⊕"
+        :length-fathom: 
+          :other: "{0} fth"
+        :length-foot: 
+          :other: "{0} ft"
+        :length-furlong: 
+          :other: "{0} fur"
+        :length-inch: 
+          :other: "{0} in"
+        :length-kilometer: 
+          :other: "{0} km"
+        :length-light-year: 
+          :few: "{0} šm."
+          :many: "{0} šm."
+          :one: "{0} šm."
+          :other: "{0} šm."
+        :length-meter: 
+          :other: "{0} m"
+        :length-micrometer: 
+          :other: "{0} μm"
+        :length-mile: 
+          :other: "{0} mi"
+        :length-mile-scandinavian: 
+          :few: "{0} IM"
+          :many: "{0} IM"
+          :one: "{0} IM"
+          :other: "{0} IM"
+        :length-millimeter: 
+          :other: "{0} mm"
+        :length-nanometer: 
+          :other: "{0} nm"
+        :length-nautical-mile: 
+          :few: "{0} M"
+          :many: "{0} M"
+          :one: "{0} M"
+          :other: "{0} M"
+        :length-parsec: 
+          :other: "{0} pc"
+        :length-picometer: 
+          :other: "{0} pm"
+        :length-point: 
+          :other: "{0} pt"
+        :length-solar-radius: 
+          :other: "{0} R☉"
+        :length-yard: 
+          :other: "{0} yd"
+        :light-candela: 
+          :other: "{0} cd"
+        :light-lumen: 
+          :other: "{0} lm"
+        :light-lux: 
+          :other: "{0} lx"
+        :light-solar-luminosity: 
+          :other: "{0} L☉"
+        :mass-carat: 
+          :few: "{0} ct"
+          :many: "{0} ct"
+          :one: "{0} ct"
+          :other: "{0} ct"
+        :mass-dalton: 
+          :other: "{0} Da"
+        :mass-earth-mass: 
+          :other: "{0} M⊕"
+        :mass-grain: 
+          :few: "{0} grūdai"
+          :many: "{0} grūdo"
+          :one: "{0} grūdas"
+          :other: "{0} grūdų"
+        :mass-gram: 
+          :other: "{0} g"
+        :mass-kilogram: 
+          :other: "{0} kg"
+        :mass-microgram: 
+          :other: "{0} μg"
+        :mass-milligram: 
+          :other: "{0} mg"
+        :mass-ounce: 
+          :other: "{0} oz"
+        :mass-ounce-troy: 
+          :few: "{0} ozt"
+          :many: "{0} ozt"
+          :one: "{0} ozt"
+          :other: "{0} ozt"
+        :mass-pound: 
+          :other: "{0} lb"
+        :mass-solar-mass: 
+          :other: "{0} M☉"
+        :mass-stone: 
+          :other: "{0} st"
+        :mass-ton: 
+          :few: "{0} t"
+          :many: "{0} t"
+          :one: "{0} t"
+          :other: "{0} t"
+        :mass-tonne: 
+          :few: "{0} mt"
+          :many: "{0} mt"
+          :one: "{0} mt"
+          :other: "{0} mt"
+        :power-gigawatt: 
+          :other: "{0} GW"
+        :power-horsepower: 
+          :few: "{0} AG"
+          :many: "{0} AG"
+          :one: "{0} AG"
+          :other: "{0} AG"
+        :power-kilowatt: 
+          :other: "{0} kW"
+        :power-megawatt: 
+          :other: "{0} MW"
+        :power-milliwatt: 
+          :other: "{0} mW"
+        :power-watt: 
+          :other: "{0} W"
+        :pressure-atmosphere: 
+          :other: "{0} atm"
+        :pressure-bar: 
+          :few: "{0} ba"
+          :many: "{0} ba"
+          :one: "{0} ba"
+          :other: "{0} ba"
+        :pressure-hectopascal: 
+          :other: "{0} hPa"
+        :pressure-inch-ofhg: 
+          :other: "{0} inHg"
+        :pressure-kilopascal: 
+          :other: "{0} kPa"
+        :pressure-megapascal: 
+          :other: "{0} MPa"
+        :pressure-millibar: 
+          :other: "{0} mbar"
+        :pressure-millimeter-ofhg: 
+          :other: "{0} mm Hg"
+        :pressure-pascal: 
+          :other: "{0} Pa"
+        :pressure-pound-force-per-square-inch: 
+          :few: "{0} lb in²"
+          :many: "{0} lb in²"
+          :one: "{0} lb in²"
+          :other: "{0} lb in²"
+        :speed-beaufort: 
+          :other: "B {0}"
+        :speed-kilometer-per-hour: 
+          :few: "{0} km/val."
+          :many: "{0} km/val."
+          :one: "{0} km/val."
+          :other: "{0} km/val."
+        :speed-knot: 
+          :few: "{0} KN"
+          :many: "{0} KN"
+          :one: "{0} KN"
+          :other: "{0} KN"
+        :speed-light-speed: 
+          :other: "{0} light"
+        :speed-meter-per-second: 
+          :few: "{0} m/sek."
+          :many: "{0} m/sek."
+          :one: "{0} m/sek."
+          :other: "{0} m/sek."
+        :speed-mile-per-hour: 
+          :other: "{0} mi/h"
+        :temperature-celsius: 
+          :other: "{0}°C"
+        :temperature-fahrenheit: 
+          :other: "{0}°F"
+        :temperature-generic: 
+          :other: "{0}°"
+        :temperature-kelvin: 
+          :other: "{0} K"
+        :torque-newton-meter: 
+          :few: "{0} N-m"
+          :many: "{0} N-m"
+          :one: "{0} N-m"
+          :other: "{0} N-m"
+        :torque-pound-force-foot: 
+          :other: "{0} lbf⋅ft"
+        :volume-acre-foot: 
+          :few: "{0} ft akre"
+          :many: "{0} ft akre"
+          :one: "{0} ft akre"
+          :other: "{0} ft akre"
+        :volume-barrel: 
+          :other: "{0} bbl"
+        :volume-bushel: 
+          :other: "{0} bu"
+        :volume-centiliter: 
+          :few: "{0} cl"
+          :many: "{0} cl"
+          :one: "{0} cl"
+          :other: "{0} cl"
+        :volume-cubic-centimeter: 
+          :other: "{0} cm³"
+        :volume-cubic-foot: 
+          :other: "{0} ft³"
+        :volume-cubic-inch: 
+          :other: "{0} in³"
+        :volume-cubic-kilometer: 
+          :other: "{0} km³"
+        :volume-cubic-meter: 
+          :other: "{0} m³"
+        :volume-cubic-mile: 
+          :other: "{0} mi³"
+        :volume-cubic-yard: 
+          :other: "{0} yd³"
+        :volume-cup: 
+          :few: "{0} stikl."
+          :many: "{0} stikl."
+          :one: "{0} stikl."
+          :other: "{0} stikl."
+        :volume-cup-metric: 
+          :few: "{0} mat. puodeliai"
+          :many: "{0} mat. puodelio"
+          :one: "{0} mat. puodelis"
+          :other: "{0} mat. puodelių"
+        :volume-deciliter: 
+          :few: "{0} dl"
+          :many: "{0} dl"
+          :one: "{0} dl"
+          :other: "{0} dl"
+        :volume-dessert-spoon: 
+          :few: "{0} des. š."
+          :many: "{0} des. š."
+          :one: "{0} des. š."
+          :other: "{0} des. š."
+        :volume-dessert-spoon-imperial: 
+          :few: "{0} imp. des. š."
+          :many: "{0} imp. des. š."
+          :one: "{0} imp. des. š."
+          :other: "{0} imp. des. š."
+        :volume-dram: 
+          :few: "{0} sk. drach."
+          :many: "{0} sk. drach."
+          :one: "{0} sk. drach."
+          :other: "{0} sk. drach."
+        :volume-drop: 
+          :few: "{0} laš."
+          :many: "{0} laš."
+          :one: "{0} laš."
+          :other: "{0} laš."
+        :volume-fluid-ounce: 
+          :few: "{0} skysčio oz"
+          :many: "{0} skysčio oz"
+          :one: "{0} skysčio oz"
+          :other: "{0} skysčio oz"
+        :volume-fluid-ounce-imperial: 
+          :few: "{0} imp. fl oz"
+          :many: "{0} imp. fl oz"
+          :one: "{0} imp. fl oz"
+          :other: "{0} imp. fl oz"
+        :volume-gallon: 
+          :few: "{0} gal"
+          :many: "{0} gal"
+          :one: "{0} gal"
+          :other: "{0} gal"
+        :volume-gallon-imperial: 
+          :few: "{0} imp. galonai"
+          :many: "{0} imp. galono"
+          :one: "{0} imp. galonas"
+          :other: "{0} imp. galonų"
+        :volume-hectoliter: 
+          :few: "{0} hl"
+          :many: "{0} hl"
+          :one: "{0} hl"
+          :other: "{0} hl"
+        :volume-jigger: 
+          :few: "{0} džigeriai"
+          :many: "{0} džigerio"
+          :one: "{0} džigeris"
+          :other: "{0} džigerio"
+        :volume-liter: 
+          :other: "{0} l"
+        :volume-megaliter: 
+          :few: "{0} Ml"
+          :many: "{0} Ml"
+          :one: "{0} Ml"
+          :other: "{0} Ml"
+        :volume-milliliter: 
+          :few: "{0} ml"
+          :many: "{0} ml"
+          :one: "{0} ml"
+          :other: "{0} ml"
+        :volume-pinch: 
+          :few: "{0} žiupsn."
+          :many: "{0} žiupsn."
+          :one: "{0} žiupsn."
+          :other: "{0} žiupsn."
+        :volume-pint: 
+          :other: "{0} pt"
+        :volume-pint-metric: 
+          :other: "{0} mpt"
+        :volume-quart: 
+          :few: "{0} kvortos"
+          :many: "{0} kvortos"
+          :one: "{0} kvorta"
+          :other: "{0} kvortų"
+        :volume-quart-imperial: 
+          :few: "{0} imp. kv."
+          :many: "{0} imp. kv."
+          :one: "{0} imp. kv."
+          :other: "{0} imp. kv."
+        :volume-tablespoon: 
+          :few: "{0} v. š."
+          :many: "{0} v. š."
+          :one: "{0} v. š."
+          :other: "{0} v. š."
+        :volume-teaspoon: 
+          :few: "{0} a. š."
+          :many: "{0} a. š."
+          :one: "{0} a. š."
+          :other: "{0} a. š."

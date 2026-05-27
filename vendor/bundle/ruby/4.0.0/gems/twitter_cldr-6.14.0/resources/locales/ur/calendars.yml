@@ -1,0 +1,369 @@
+--- 
+:ur: 
+  :calendars: 
+    :gregorian: 
+      :additional_formats: 
+        :Bh: "h B"
+        :Bhm: "h:mm B"
+        :Bhms: "h:mm:ss B"
+        :E: ccc
+        :EBhm: "E h:mm B"
+        :EBhms: "E h:mm:ss B"
+        :EHm: "E HH:mm"
+        :EHms: "E HH:mm:ss"
+        :Ed: "d E"
+        :Ehm: "E h:mm a"
+        :Ehms: "E h:mm:ss a"
+        :Gy: "y G"
+        :GyMMM: "MMM y G"
+        :GyMMMEd: "E، d MMM، y G"
+        :GyMMMd: "d MMM، y G"
+        :GyMd: "d/M/y GGGGG"
+        :H: HH
+        :Hm: "HH:mm"
+        :Hms: "HH:mm:ss"
+        :Hmsv: "HH:mm:ss v"
+        :Hmv: "HH:mm v"
+        :M: L
+        :MEd: "E، d/M"
+        :MMM: LLL
+        :MMMEd: "E، d MMM"
+        :MMMMW: "MMMM کا ہفتہ W"
+        :MMMMd: "d MMMM"
+        :MMMd: "d MMM"
+        :Md: d/M
+        :d: d
+        :h: h a
+        :hm: "h:mm a"
+        :hms: "h:mm:ss a"
+        :hmsv: "h:mm:ss a v"
+        :hmv: "h:mm a v"
+        :ms: "mm:ss"
+        ? !ruby/symbol "y"
+        : "y"
+        :yM: M/y
+        :yMEd: "E، d/M/y"
+        :yMMM: "MMM y"
+        :yMMMEd: "E، d MMM، y"
+        :yMMMM: "MMMM y"
+        :yMMMd: "d MMM، y"
+        :yMd: d/M/y
+        :yQQQ: "QQQ y"
+        :yQQQQ: "QQQQ y"
+        :yw: "Y کا w ہفتہ"
+      :days: 
+        :format: 
+          :abbreviated: 
+            :fri: جمعہ
+            :mon: پیر
+            :sat: ہفتہ
+            :sun: اتوار
+            :thu: جمعرات
+            :tue: منگل
+            :wed: بدھ
+          :narrow: 
+            :fri: F
+            :mon: M
+            :sat: S
+            :sun: S
+            :thu: T
+            :tue: T
+            :wed: W
+          :short: 
+            :fri: جمعہ
+            :mon: پیر
+            :sat: ہفتہ
+            :sun: اتوار
+            :thu: جمعرات
+            :tue: منگل
+            :wed: بدھ
+          :wide: 
+            :fri: جمعہ
+            :mon: پیر
+            :sat: ہفتہ
+            :sun: اتوار
+            :thu: جمعرات
+            :tue: منگل
+            :wed: بدھ
+        :stand-alone: 
+          :abbreviated: 
+            :fri: جمعہ
+            :mon: پیر
+            :sat: ہفتہ
+            :sun: اتوار
+            :thu: جمعرات
+            :tue: منگل
+            :wed: بدھ
+          :narrow: 
+            :fri: F
+            :mon: M
+            :sat: S
+            :sun: S
+            :thu: T
+            :tue: T
+            :wed: W
+          :short: 
+            :fri: جمعہ
+            :mon: پیر
+            :sat: ہفتہ
+            :sun: اتوار
+            :thu: جمعرات
+            :tue: منگل
+            :wed: بدھ
+          :wide: 
+            :fri: جمعہ
+            :mon: پیر
+            :sat: ہفتہ
+            :sun: اتوار
+            :thu: جمعرات
+            :tue: منگل
+            :wed: بدھ
+      :eras: 
+        :abbr: 
+          0: BCE
+          1: CE
+        :name: 
+          0: "عام دور سے قبل"
+          1: "عام دور"
+        :narrow: 
+          0: BCE
+          1: CE
+      :fields: 
+        :day: دن
+        :day-narrow: Day
+        :day-short: Day
+        :dayOfYear: "یوم سال"
+        :dayOfYear-narrow: "یوم سال"
+        :dayOfYear-short: "یوم سال"
+        :dayperiod: "قبل دوپہر/بعد دوپہر"
+        :dayperiod-narrow: "قبل دوپہر/بعد دوپہر"
+        :dayperiod-short: "قبل دوپہر/بعد دوپہر"
+        :era: عہد
+        :era-narrow: عہد
+        :era-short: عہد
+        :hour: گھنٹہ
+        :hour-narrow: Hour
+        :hour-short: Hour
+        :minute: منٹ
+        :minute-narrow: منٹ
+        :minute-short: منٹ
+        :month: مہینہ
+        :month-narrow: Month
+        :month-short: ماہ
+        :quarter: "سہ ماہی"
+        :quarter-narrow: Quarter
+        :quarter-short: Quarter
+        :second: سیکنڈ
+        :second-narrow: سیکنڈ
+        :second-short: سیکنڈ
+        :week: ہفتہ
+        :week-narrow: Week
+        :week-short: Week
+        :weekOfMonth: "مہینے کا ہفتہ"
+        :weekOfMonth-narrow: "مہینے کا ہفتہ"
+        :weekOfMonth-short: "مہینے کا ہفتہ"
+        :weekday: "ہفتے کا دن"
+        :weekday-narrow: "ہفتے کا دن"
+        :weekday-short: "ہفتے کا دن"
+        :weekdayOfMonth: "مہینے کا یوم ہفتہ"
+        :weekdayOfMonth-narrow: "مہینے کا یوم ہفتہ"
+        :weekdayOfMonth-short: "مہینے کا یوم ہفتہ"
+        :year: سال
+        :year-narrow: سال
+        :year-short: سال
+        :zone: "منطقۂ وقت"
+        :zone-narrow: "منطقۂ وقت"
+        :zone-short: "منطقۂ وقت"
+      :formats: 
+        :date: 
+          :full: 
+            :pattern: "EEEE، d MMMM، y"
+          :long: 
+            :pattern: "d MMMM، y"
+          :medium: 
+            :pattern: "d MMM، y"
+          :short: 
+            :pattern: d/M/yy
+        :datetime: 
+          :full: 
+            :pattern: "{{date}} کو {{time}}"
+          :long: 
+            :pattern: "{{date}} کو {{time}}"
+          :medium: 
+            :pattern: "{{date}}، {{time}}"
+          :short: 
+            :pattern: "{{date}}، {{time}}"
+        :time: 
+          :full: 
+            :pattern: "h:mm:ss a zzzz"
+          :long: 
+            :pattern: "h:mm:ss a z"
+          :medium: 
+            :pattern: "h:mm:ss a"
+          :short: 
+            :pattern: "h:mm a"
+      :months: 
+        :format: 
+          :abbreviated: 
+            1: جنوری
+            10: اکتوبر
+            11: نومبر
+            12: دسمبر
+            2: فروری
+            3: مارچ
+            4: اپریل
+            5: مئی
+            6: جون
+            7: جولائی
+            8: اگست
+            9: ستمبر
+          :narrow: 
+            1: J
+            10: O
+            11: "N"
+            12: D
+            2: F
+            3: M
+            4: A
+            5: M
+            6: J
+            7: J
+            8: A
+            9: S
+          :wide: 
+            1: جنوری
+            10: اکتوبر
+            11: نومبر
+            12: دسمبر
+            2: فروری
+            3: مارچ
+            4: اپریل
+            5: مئی
+            6: جون
+            7: جولائی
+            8: اگست
+            9: ستمبر
+        :stand-alone: 
+          :abbreviated: 
+            1: جنوری
+            10: اکتوبر
+            11: نومبر
+            12: دسمبر
+            2: فروری
+            3: مارچ
+            4: اپریل
+            5: مئی
+            6: جون
+            7: جولائی
+            8: اگست
+            9: ستمبر
+          :narrow: 
+            1: J
+            10: O
+            11: "N"
+            12: D
+            2: F
+            3: M
+            4: A
+            5: M
+            6: J
+            7: J
+            8: A
+            9: S
+          :wide: 
+            1: جنوری
+            10: اکتوبر
+            11: نومبر
+            12: دسمبر
+            2: فروری
+            3: مارچ
+            4: اپریل
+            5: مئی
+            6: جون
+            7: جولائی
+            8: اگست
+            9: ستمبر
+      :periods: 
+        :format: 
+          :abbreviated: 
+            :afternoon1: دوپہر
+            :afternoon2: "سہ پہر"
+            :am: AM
+            :evening1: شام
+            :midnight: "آدھی رات"
+            :morning1: صبح
+            :night1: رات
+            :pm: PM
+          :narrow: 
+            :am: a
+            :pm: p
+          :wide: 
+            :afternoon1: "دوپہر میں"
+            :afternoon2: "سہ پہر"
+            :am: AM
+            :evening1: "شام میں"
+            :midnight: "آدھی رات"
+            :morning1: "صبح میں"
+            :night1: "رات میں"
+            :pm: PM
+        :stand-alone: 
+          :abbreviated: 
+            :afternoon1: دوپہر
+            :afternoon2: "سہ پہر"
+            :am: AM
+            :evening1: شام
+            :midnight: "آدھی رات"
+            :morning1: صبح
+            :night1: رات
+            :pm: PM
+          :narrow: 
+            :afternoon1: دوپہر
+            :afternoon2: "سہ پہر"
+            :am: AM
+            :evening1: شام
+            :midnight: "آدھی رات"
+            :morning1: صبح
+            :night1: رات
+            :pm: PM
+          :wide: 
+            :afternoon1: دوپہر
+            :afternoon2: "سہ پہر"
+            :am: AM
+            :evening1: شام
+            :midnight: "آدھی رات"
+            :morning1: صبح
+            :night1: رات
+            :pm: PM
+      :quarters: 
+        :format: 
+          :abbreviated: 
+            1: "پہلی سہ ماہی"
+            2: "دوسری سہ ماہی"
+            3: "تیسری سہ ماہی"
+            4: "چوتهی سہ ماہی"
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: "پہلی سہ ماہی"
+            2: "دوسری سہ ماہی"
+            3: "تیسری سہ ماہی"
+            4: "چوتهی سہ ماہی"
+        :stand-alone: 
+          :abbreviated: 
+            1: "پہلی سہ ماہی"
+            2: "دوسری سہ ماہی"
+            3: "تیسری سہ ماہی"
+            4: "چوتهی سہ ماہی"
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: "پہلی سہ ماہی"
+            2: "دوسری سہ ماہی"
+            3: "تیسری سہ ماہی"
+            4: "چوتهی سہ ماہی"

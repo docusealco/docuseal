@@ -15,6 +15,6 @@
       </masked-input>
       <%= render 'shared/clipboard_copy', icon: 'copy', text: token, class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: t('copy'), copied_title: t('copied') %>
     </div>
-    <p class="text-sm mt-2 opacity-70"><%= t('hmac_signature_header_hint_html', header: '<code>X-Docuseal-Signature</code>'.html_safe) %></p>
+    <p class="text-sm mt-2 opacity-70"><%= t('hmac_signature_header_hint_html', header: '<code>X-Wabosign-Signature</code>'.html_safe) %></p>
   </div>
 <% end %>

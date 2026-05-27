@@ -1,0 +1,266 @@
+en:
+  faker:
+    creature:
+      dog:
+        name:
+          - Buddy
+          - Max
+          - Bella
+          - Daisy
+          - Molly
+          - Rocky
+          - Lucy
+          - Bear
+          - Bailey
+          - Lucky
+          - Harley
+          - Maggie
+          - Princess
+          - Angel
+          - Charlie
+          - Sadie
+          - Jack
+          - Shadow
+          - Jake
+          - Coco
+          - Gizmo
+          - Chloe
+          - Sophie
+          - Toby
+          - Roxy
+          - Buster
+          - Ginger
+          - Lady
+          - Duke
+          - Baby
+          - Peanut
+          - Bandit
+          - Abby
+          - Sasha
+          - Lola
+          - Zoey
+          - Pepper
+          - Sam
+          - Gracie
+          - Sammy
+          - Precious
+          - Missy
+          - Riley
+          - Spike
+          - Lily
+          - Sassy
+          - Cooper
+          - Rusty
+          - Dakota
+          - Dixie
+          - Cody
+          - Lilly
+          - Zoe
+          - Cookie
+          - Chico
+          - Zeus
+          - Tucker
+          - Oreo
+          - Teddy
+          - Marley
+          - Oscar
+          - Honey
+          - Rex
+          - Tank
+          - Sugar
+          - Sandy
+          - Penny
+          - Tyson
+          - Chance
+          - Mia
+          - Diamond
+          - Bubba
+          - Blue
+          - Belle
+          - Shelby
+          - Rosie
+          - Casey
+          - Ruby
+          - Snoopy
+          - Cocoa
+          - Jasmine
+          - Diesel
+          - Patches
+          - Annie
+          - Sparky
+          - Taz
+          - Bruno
+          - Roxie
+          - Lexi
+          - Scooter
+          - Jasper
+          - Brutus
+          - Baxter
+          - Luna
+          - Snickers
+          - Misty
+          - Rascal
+          - Milo
+          - Murphy
+          - Bo
+          - Harvey
+        breed:
+          - Affenpinscher
+          - Africanis
+          - Airedale
+          - Akita
+          - Appenzeller
+          - Basenji
+          - Beagle
+          - Bluetick
+          - Borzoi
+          - Bouvier
+          - Boxer
+          - Brabancon
+          - Briard
+          - Boston Terrier
+          - French Bulldog
+          - Staffordshire Bullterrier
+          - Cairn
+          - Chihuahua
+          - Chow
+          - Clumber
+          - Border Collie
+          - Coonhound
+          - Cardigan Corgi
+          - Dachshund
+          - Great Dane
+          - Scottish Deerhound
+          - Dhole
+          - Dingo
+          - Doberman
+          - Norwegian Elkhound
+          - Entlebucher
+          - American Eskimo
+          - German Shepherd
+          - Italian Greyhound
+          - Groenendael
+          - Ibizan Hound
+          - Afghan Hound
+          - Basset Hound
+          - Bloodhound
+          - English Foxhound
+          - Treeing Walker Coonhound
+          - Husky
+          - Keeshond
+          - Kelpie
+          - Komondor
+          - Kuvasz
+          - Labrador
+          - Leonberger
+          - Lhasa
+          - Malamute
+          - Malinois
+          - Maltese
+          - Bull Mastiff
+          - Tibetan Mastiff
+          - Mexican Hairless
+          - Bernese Mountain
+          - Greater Swiss Mountain
+          - Newfoundland
+          - Otterhound
+          - Papillon
+          - Pekinese
+          - Pembroke
+          - Miniature Pinscher
+          - German Pointer
+          - Pomeranian
+          - Miniature Poodle
+          - Standard Poodle
+          - Toy Poodle
+          - Pug
+          - Pyrenees
+          - Redbone
+          - Chesapeake Retriever
+          - Curly Retriever
+          - Flat-Coated Retriever
+          - Golden Retriever
+          - Rhodesian Ridgeback
+          - Rottweiler
+          - Saluki
+          - Samoyed
+          - Schipperke
+          - Giant Schnauzer
+          - Miniature Schnauzer
+          - English Setter
+          - Gordon Setter
+          - Irish Setter
+          - English Sheepdog
+          - Shetland Sheepdog
+          - Shiba
+          - Shihtzu
+          - Blenheim Spaniel
+          - Brittany Spaniel
+          - Cocker Spaniel
+          - Irish Spaniel
+          - Japanese Spaniel
+          - Sussex Spaniel
+          - Welsh Spaniel
+          - English Springer
+          - Saint Bernard
+          - American Terrier
+          - Australian Terrier
+          - Bedlington Terrier
+          - Border Terrier
+          - Dandie Terrier
+          - Fox Terrier
+          - Irish Terrier
+          - Kerry Blue Terrier
+          - Lakeland Terrier
+          - Norfolk Terrier
+          - Norwich Terrier
+          - Patterdale Terrier
+          - Rat Terrier
+          - Scottish Terrier
+          - Sealyham Terrier
+          - Silky Terrier
+          - Tibetan Terrier
+          - Toy Terrier
+          - West Highland White
+          - Wheaten Terrier
+          - Yorkshire Terrier
+          - Vizsla
+          - Weimaraner
+          - Whippet
+          - Irish Wolfhound
+        sound:
+          - woof
+          - woof woof
+          - bow wow
+          - ruff
+          - owooooo
+          - grrrrrr
+        meme_phrase:
+          - heck no pal
+          - 11/10
+          - boop the snoot
+          - mlem
+          - blep
+          - long boi
+          - thicc doggo
+          - big ol' pupper
+          - smol pupperino
+          - zoom
+          - they're good dogs Brent
+        age:
+          - puppy
+          - young
+          - adult
+          - senior
+        coat_length:
+          - hairless
+          - short
+          - medium
+          - long
+          - wire
+          - curly
+        size:
+          - small
+          - medium
+          - large
+          - extra large

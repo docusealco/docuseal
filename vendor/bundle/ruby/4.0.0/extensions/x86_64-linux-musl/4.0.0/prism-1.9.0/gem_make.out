@@ -1,0 +1,44 @@
+current directory: /app/vendor/bundle/ruby/4.0.0/gems/prism-1.9.0/ext/prism
+/usr/local/bin/ruby extconf.rb
+checking for prism.h in /app/vendor/bundle/ruby/4.0.0/gems/prism-1.9.0/include... yes
+checking for prism/extension.h in /app/vendor/bundle/ruby/4.0.0/gems/prism-1.9.0/ext... yes
+checking for whether -fvisibility=hidden is accepted as CFLAGS... yes
+creating Makefile
+
+current directory: /app/vendor/bundle/ruby/4.0.0/gems/prism-1.9.0/ext/prism
+make -j4 DESTDIR\= sitearchdir\=./.gem.20260516-47-jrefjg sitelibdir\=./.gem.20260516-47-jrefjg clean
+
+current directory: /app/vendor/bundle/ruby/4.0.0/gems/prism-1.9.0/ext/prism
+make -j4 DESTDIR\= sitearchdir\=./.gem.20260516-47-jrefjg sitelibdir\=./.gem.20260516-47-jrefjg
+compiling api_node.c
+compiling api_pack.c
+compiling extension.c
+compiling ./../../src/diagnostic.c
+compiling ./../../src/encoding.c
+compiling ./../../src/node.c
+compiling ./../../src/options.c
+compiling ./../../src/pack.c
+compiling ./../../src/prettyprint.c
+compiling ./../../src/prism.c
+compiling ./../../src/regexp.c
+compiling ./../../src/serialize.c
+compiling ./../../src/static_literals.c
+compiling ./../../src/token_type.c
+compiling ./../../src/util/pm_buffer.c
+compiling ./../../src/util/pm_char.c
+compiling ./../../src/util/pm_constant_pool.c
+compiling ./../../src/util/pm_integer.c
+compiling ./../../src/util/pm_list.c
+compiling ./../../src/util/pm_memchr.c
+compiling ./../../src/util/pm_newline_list.c
+compiling ./../../src/util/pm_string.c
+compiling ./../../src/util/pm_strncasecmp.c
+compiling ./../../src/util/pm_strpbrk.c
+linking shared-object prism/prism.so
+
+current directory: /app/vendor/bundle/ruby/4.0.0/gems/prism-1.9.0/ext/prism
+make -j4 DESTDIR\= sitearchdir\=./.gem.20260516-47-jrefjg sitelibdir\=./.gem.20260516-47-jrefjg install
+/usr/bin/install -c -m 0755 prism.so ./.gem.20260516-47-jrefjg/prism
+
+current directory: /app/vendor/bundle/ruby/4.0.0/gems/prism-1.9.0/ext/prism
+make DESTDIR\= sitearchdir\=./.gem.20260516-47-jrefjg sitelibdir\=./.gem.20260516-47-jrefjg clean

@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+lib_path = File.expand_path("#{__dir__}/../lib")
+$LOAD_PATH.unshift(lib_path) unless $LOAD_PATH.include?(lib_path)
+
+require "erb_lint/cli"
+
+cli = ERBLint::CLI.new
+exit(cli.run)

@@ -1,0 +1,23 @@
+module WEBrick
+  module HTTPServlet
+    class CGIHandler < AbstractServlet
+      @script_filename: String
+
+      @tempdir: String?
+
+      @cgicmd: Array[String] | String
+
+      Ruby: String
+
+      CGIRunner: String
+
+      CGIRunnerArray: [String, String]
+
+      def initialize: (HTTPServer server, String name) -> void
+
+      def do_GET: (HTTPRequest req, HTTPResponse res) -> void
+
+      alias do_POST do_GET
+    end
+  end
+end

@@ -1,0 +1,12 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - chr-t-pl
+    :direction: forward
+    :rules: 
+      - "::pl-pl_FONIPA ;"
+      - "::und_FONIPA-chr ;"
+    :source: pl
+    :target: chr
+    :variant: ~

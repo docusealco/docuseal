@@ -1,0 +1,15 @@
+<div class="filter">
+  <form id="metrics-form" class="form-inline" action="<%= path %>" method="get">
+    <label for="substr"><%= t('Filter') %></label>
+    <input id="class-filter" class="form-control" type="text" name="substr" placeholder="<%= t('Name') %>" value="<%= h url_params("substr") %>" autocomplete="off">
+    <select id="period-selector" class="form-control" name="period">
+      <% periods.each_key do |code| %>
+        <% if code == period %>
+          <option selected value="<%= code %>"><%= code %></option>
+        <% else %>
+          <option value="<%= code %>"><%= code %></option>
+        <% end %>
+      <% end %>
+    </select>
+  </form>
+</div>

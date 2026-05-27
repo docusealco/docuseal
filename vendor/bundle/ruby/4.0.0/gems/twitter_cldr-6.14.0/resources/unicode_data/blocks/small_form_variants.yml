@@ -1,0 +1,417 @@
+---
+65104:
+- 65104
+- SMALL COMMA
+- Po
+- '0'
+- CS
+- "<small> 002C"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65105:
+- 65105
+- SMALL IDEOGRAPHIC COMMA
+- Po
+- '0'
+- 'ON'
+- "<small> 3001"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65106:
+- 65106
+- SMALL FULL STOP
+- Po
+- '0'
+- CS
+- "<small> 002E"
+- ''
+- ''
+- ''
+- N
+- SMALL PERIOD
+- ''
+- ''
+- ''
+- ''
+65108:
+- 65108
+- SMALL SEMICOLON
+- Po
+- '0'
+- 'ON'
+- "<small> 003B"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65109:
+- 65109
+- SMALL COLON
+- Po
+- '0'
+- CS
+- "<small> 003A"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65110:
+- 65110
+- SMALL QUESTION MARK
+- Po
+- '0'
+- 'ON'
+- "<small> 003F"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65111:
+- 65111
+- SMALL EXCLAMATION MARK
+- Po
+- '0'
+- 'ON'
+- "<small> 0021"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65112:
+- 65112
+- SMALL EM DASH
+- Pd
+- '0'
+- 'ON'
+- "<small> 2014"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65113:
+- 65113
+- SMALL LEFT PARENTHESIS
+- Ps
+- '0'
+- 'ON'
+- "<small> 0028"
+- ''
+- ''
+- ''
+- Y
+- SMALL OPENING PARENTHESIS
+- ''
+- ''
+- ''
+- ''
+65114:
+- 65114
+- SMALL RIGHT PARENTHESIS
+- Pe
+- '0'
+- 'ON'
+- "<small> 0029"
+- ''
+- ''
+- ''
+- Y
+- SMALL CLOSING PARENTHESIS
+- ''
+- ''
+- ''
+- ''
+65115:
+- 65115
+- SMALL LEFT CURLY BRACKET
+- Ps
+- '0'
+- 'ON'
+- "<small> 007B"
+- ''
+- ''
+- ''
+- Y
+- SMALL OPENING CURLY BRACKET
+- ''
+- ''
+- ''
+- ''
+65116:
+- 65116
+- SMALL RIGHT CURLY BRACKET
+- Pe
+- '0'
+- 'ON'
+- "<small> 007D"
+- ''
+- ''
+- ''
+- Y
+- SMALL CLOSING CURLY BRACKET
+- ''
+- ''
+- ''
+- ''
+65117:
+- 65117
+- SMALL LEFT TORTOISE SHELL BRACKET
+- Ps
+- '0'
+- 'ON'
+- "<small> 3014"
+- ''
+- ''
+- ''
+- Y
+- SMALL OPENING TORTOISE SHELL BRACKET
+- ''
+- ''
+- ''
+- ''
+65118:
+- 65118
+- SMALL RIGHT TORTOISE SHELL BRACKET
+- Pe
+- '0'
+- 'ON'
+- "<small> 3015"
+- ''
+- ''
+- ''
+- Y
+- SMALL CLOSING TORTOISE SHELL BRACKET
+- ''
+- ''
+- ''
+- ''
+65119:
+- 65119
+- SMALL NUMBER SIGN
+- Po
+- '0'
+- ET
+- "<small> 0023"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65120:
+- 65120
+- SMALL AMPERSAND
+- Po
+- '0'
+- 'ON'
+- "<small> 0026"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65121:
+- 65121
+- SMALL ASTERISK
+- Po
+- '0'
+- 'ON'
+- "<small> 002A"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65122:
+- 65122
+- SMALL PLUS SIGN
+- Sm
+- '0'
+- ES
+- "<small> 002B"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65123:
+- 65123
+- SMALL HYPHEN-MINUS
+- Pd
+- '0'
+- ES
+- "<small> 002D"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65124:
+- 65124
+- SMALL LESS-THAN SIGN
+- Sm
+- '0'
+- 'ON'
+- "<small> 003C"
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+65125:
+- 65125
+- SMALL GREATER-THAN SIGN
+- Sm
+- '0'
+- 'ON'
+- "<small> 003E"
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+65126:
+- 65126
+- SMALL EQUALS SIGN
+- Sm
+- '0'
+- 'ON'
+- "<small> 003D"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65128:
+- 65128
+- SMALL REVERSE SOLIDUS
+- Po
+- '0'
+- 'ON'
+- "<small> 005C"
+- ''
+- ''
+- ''
+- N
+- SMALL BACKSLASH
+- ''
+- ''
+- ''
+- ''
+65129:
+- 65129
+- SMALL DOLLAR SIGN
+- Sc
+- '0'
+- ET
+- "<small> 0024"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65130:
+- 65130
+- SMALL PERCENT SIGN
+- Po
+- '0'
+- ET
+- "<small> 0025"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65131:
+- 65131
+- SMALL COMMERCIAL AT
+- Po
+- '0'
+- 'ON'
+- "<small> 0040"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''

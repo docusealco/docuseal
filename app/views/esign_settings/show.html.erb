@@ -99,14 +99,14 @@
               </td>
             </tr>
           <% end %>
-          <% unless Docuseal.multitenant? %>
+          <% unless Wabosign.multitenant? %>
             <%= render 'default_signature_row' %>
           <% end %>
         </tbody>
       </table>
     </div>
     <% encrypted_config = EncryptedConfig.find_or_initialize_by(account: current_account, key: EncryptedConfig::TIMESTAMP_SERVER_URL_KEY) %>
-    <% if !Docuseal.multitenant? && can?(:manage, encrypted_config) %>
+    <% if !Wabosign.multitenant? && can?(:manage, encrypted_config) %>
       <div class="flex-grow max-w-xl">
         <div class="flex justify-between items-end mb-4 mt-8">
           <h2 class="text-3xl font-bold">

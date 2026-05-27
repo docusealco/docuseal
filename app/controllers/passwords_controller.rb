@@ -13,7 +13,7 @@ class PasswordsController < Devise::PasswordsController
 
   def create
     super do |resource|
-      resource.errors.clear unless Docuseal.multitenant?
+      resource.errors.clear unless Wabosign.multitenant?
     end
   end
 

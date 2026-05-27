@@ -1,0 +1,39 @@
+name: ubuntu
+
+on: [push, pull_request]
+
+jobs:
+  ruby-versions:
+    uses: ruby/actions/.github/workflows/ruby_versions.yml@master
+    with:
+      engine: cruby
+      min_version: 2.4
+
+  test:
+    needs: ruby-versions
+    name: build (${{ matrix.ruby }} / ${{ matrix.os }})
+    strategy:
+      matrix:
+        ruby: ${{ fromJson(needs.ruby-versions.outputs.versions) }}
+        os: [ ubuntu-latest, macos-latest ]
+        exclude:
+          - os: macos-latest
+            ruby: 2.4
+          - os: macos-latest
+            ruby: 2.5
+    runs-on: ${{ matrix.os }}
+    steps:
+    - uses: actions/checkout@v4.2.2
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.ruby }}
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libdb-dev
+      if: matrix.os == 'ubuntu-latest'
+    - name: Install dependencies
+      run: bundle install --jobs 4 --retry 3
+    - name: Run test
+      run: rake test

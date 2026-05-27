@@ -1,0 +1,2561 @@
+---
+9312:
+- 9312
+- CIRCLED DIGIT ONE
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0031"
+- ''
+- '1'
+- '1'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9313:
+- 9313
+- CIRCLED DIGIT TWO
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0032"
+- ''
+- '2'
+- '2'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9314:
+- 9314
+- CIRCLED DIGIT THREE
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0033"
+- ''
+- '3'
+- '3'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9315:
+- 9315
+- CIRCLED DIGIT FOUR
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0034"
+- ''
+- '4'
+- '4'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9316:
+- 9316
+- CIRCLED DIGIT FIVE
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0035"
+- ''
+- '5'
+- '5'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9317:
+- 9317
+- CIRCLED DIGIT SIX
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0036"
+- ''
+- '6'
+- '6'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9318:
+- 9318
+- CIRCLED DIGIT SEVEN
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0037"
+- ''
+- '7'
+- '7'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9319:
+- 9319
+- CIRCLED DIGIT EIGHT
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0038"
+- ''
+- '8'
+- '8'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9320:
+- 9320
+- CIRCLED DIGIT NINE
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0039"
+- ''
+- '9'
+- '9'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9321:
+- 9321
+- CIRCLED NUMBER TEN
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0031 0030"
+- ''
+- ''
+- '10'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9322:
+- 9322
+- CIRCLED NUMBER ELEVEN
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0031 0031"
+- ''
+- ''
+- '11'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9323:
+- 9323
+- CIRCLED NUMBER TWELVE
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0031 0032"
+- ''
+- ''
+- '12'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9324:
+- 9324
+- CIRCLED NUMBER THIRTEEN
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0031 0033"
+- ''
+- ''
+- '13'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9325:
+- 9325
+- CIRCLED NUMBER FOURTEEN
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0031 0034"
+- ''
+- ''
+- '14'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9326:
+- 9326
+- CIRCLED NUMBER FIFTEEN
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0031 0035"
+- ''
+- ''
+- '15'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9327:
+- 9327
+- CIRCLED NUMBER SIXTEEN
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0031 0036"
+- ''
+- ''
+- '16'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9328:
+- 9328
+- CIRCLED NUMBER SEVENTEEN
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0031 0037"
+- ''
+- ''
+- '17'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9329:
+- 9329
+- CIRCLED NUMBER EIGHTEEN
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0031 0038"
+- ''
+- ''
+- '18'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9330:
+- 9330
+- CIRCLED NUMBER NINETEEN
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0031 0039"
+- ''
+- ''
+- '19'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9331:
+- 9331
+- CIRCLED NUMBER TWENTY
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0032 0030"
+- ''
+- ''
+- '20'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9332:
+- 9332
+- PARENTHESIZED DIGIT ONE
+- 'No'
+- '0'
+- 'ON'
+- "<compat> 0028 0031 0029"
+- ''
+- '1'
+- '1'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9333:
+- 9333
+- PARENTHESIZED DIGIT TWO
+- 'No'
+- '0'
+- 'ON'
+- "<compat> 0028 0032 0029"
+- ''
+- '2'
+- '2'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9334:
+- 9334
+- PARENTHESIZED DIGIT THREE
+- 'No'
+- '0'
+- 'ON'
+- "<compat> 0028 0033 0029"
+- ''
+- '3'
+- '3'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9335:
+- 9335
+- PARENTHESIZED DIGIT FOUR
+- 'No'
+- '0'
+- 'ON'
+- "<compat> 0028 0034 0029"
+- ''
+- '4'
+- '4'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9336:
+- 9336
+- PARENTHESIZED DIGIT FIVE
+- 'No'
+- '0'
+- 'ON'
+- "<compat> 0028 0035 0029"
+- ''
+- '5'
+- '5'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9337:
+- 9337
+- PARENTHESIZED DIGIT SIX
+- 'No'
+- '0'
+- 'ON'
+- "<compat> 0028 0036 0029"
+- ''
+- '6'
+- '6'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9338:
+- 9338
+- PARENTHESIZED DIGIT SEVEN
+- 'No'
+- '0'
+- 'ON'
+- "<compat> 0028 0037 0029"
+- ''
+- '7'
+- '7'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9339:
+- 9339
+- PARENTHESIZED DIGIT EIGHT
+- 'No'
+- '0'
+- 'ON'
+- "<compat> 0028 0038 0029"
+- ''
+- '8'
+- '8'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9340:
+- 9340
+- PARENTHESIZED DIGIT NINE
+- 'No'
+- '0'
+- 'ON'
+- "<compat> 0028 0039 0029"
+- ''
+- '9'
+- '9'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9341:
+- 9341
+- PARENTHESIZED NUMBER TEN
+- 'No'
+- '0'
+- 'ON'
+- "<compat> 0028 0031 0030 0029"
+- ''
+- ''
+- '10'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9342:
+- 9342
+- PARENTHESIZED NUMBER ELEVEN
+- 'No'
+- '0'
+- 'ON'
+- "<compat> 0028 0031 0031 0029"
+- ''
+- ''
+- '11'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9343:
+- 9343
+- PARENTHESIZED NUMBER TWELVE
+- 'No'
+- '0'
+- 'ON'
+- "<compat> 0028 0031 0032 0029"
+- ''
+- ''
+- '12'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9344:
+- 9344
+- PARENTHESIZED NUMBER THIRTEEN
+- 'No'
+- '0'
+- 'ON'
+- "<compat> 0028 0031 0033 0029"
+- ''
+- ''
+- '13'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9345:
+- 9345
+- PARENTHESIZED NUMBER FOURTEEN
+- 'No'
+- '0'
+- 'ON'
+- "<compat> 0028 0031 0034 0029"
+- ''
+- ''
+- '14'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9346:
+- 9346
+- PARENTHESIZED NUMBER FIFTEEN
+- 'No'
+- '0'
+- 'ON'
+- "<compat> 0028 0031 0035 0029"
+- ''
+- ''
+- '15'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9347:
+- 9347
+- PARENTHESIZED NUMBER SIXTEEN
+- 'No'
+- '0'
+- 'ON'
+- "<compat> 0028 0031 0036 0029"
+- ''
+- ''
+- '16'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9348:
+- 9348
+- PARENTHESIZED NUMBER SEVENTEEN
+- 'No'
+- '0'
+- 'ON'
+- "<compat> 0028 0031 0037 0029"
+- ''
+- ''
+- '17'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9349:
+- 9349
+- PARENTHESIZED NUMBER EIGHTEEN
+- 'No'
+- '0'
+- 'ON'
+- "<compat> 0028 0031 0038 0029"
+- ''
+- ''
+- '18'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9350:
+- 9350
+- PARENTHESIZED NUMBER NINETEEN
+- 'No'
+- '0'
+- 'ON'
+- "<compat> 0028 0031 0039 0029"
+- ''
+- ''
+- '19'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9351:
+- 9351
+- PARENTHESIZED NUMBER TWENTY
+- 'No'
+- '0'
+- 'ON'
+- "<compat> 0028 0032 0030 0029"
+- ''
+- ''
+- '20'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9352:
+- 9352
+- DIGIT ONE FULL STOP
+- 'No'
+- '0'
+- EN
+- "<compat> 0031 002E"
+- ''
+- '1'
+- '1'
+- N
+- DIGIT ONE PERIOD
+- ''
+- ''
+- ''
+- ''
+9353:
+- 9353
+- DIGIT TWO FULL STOP
+- 'No'
+- '0'
+- EN
+- "<compat> 0032 002E"
+- ''
+- '2'
+- '2'
+- N
+- DIGIT TWO PERIOD
+- ''
+- ''
+- ''
+- ''
+9354:
+- 9354
+- DIGIT THREE FULL STOP
+- 'No'
+- '0'
+- EN
+- "<compat> 0033 002E"
+- ''
+- '3'
+- '3'
+- N
+- DIGIT THREE PERIOD
+- ''
+- ''
+- ''
+- ''
+9355:
+- 9355
+- DIGIT FOUR FULL STOP
+- 'No'
+- '0'
+- EN
+- "<compat> 0034 002E"
+- ''
+- '4'
+- '4'
+- N
+- DIGIT FOUR PERIOD
+- ''
+- ''
+- ''
+- ''
+9356:
+- 9356
+- DIGIT FIVE FULL STOP
+- 'No'
+- '0'
+- EN
+- "<compat> 0035 002E"
+- ''
+- '5'
+- '5'
+- N
+- DIGIT FIVE PERIOD
+- ''
+- ''
+- ''
+- ''
+9357:
+- 9357
+- DIGIT SIX FULL STOP
+- 'No'
+- '0'
+- EN
+- "<compat> 0036 002E"
+- ''
+- '6'
+- '6'
+- N
+- DIGIT SIX PERIOD
+- ''
+- ''
+- ''
+- ''
+9358:
+- 9358
+- DIGIT SEVEN FULL STOP
+- 'No'
+- '0'
+- EN
+- "<compat> 0037 002E"
+- ''
+- '7'
+- '7'
+- N
+- DIGIT SEVEN PERIOD
+- ''
+- ''
+- ''
+- ''
+9359:
+- 9359
+- DIGIT EIGHT FULL STOP
+- 'No'
+- '0'
+- EN
+- "<compat> 0038 002E"
+- ''
+- '8'
+- '8'
+- N
+- DIGIT EIGHT PERIOD
+- ''
+- ''
+- ''
+- ''
+9360:
+- 9360
+- DIGIT NINE FULL STOP
+- 'No'
+- '0'
+- EN
+- "<compat> 0039 002E"
+- ''
+- '9'
+- '9'
+- N
+- DIGIT NINE PERIOD
+- ''
+- ''
+- ''
+- ''
+9361:
+- 9361
+- NUMBER TEN FULL STOP
+- 'No'
+- '0'
+- EN
+- "<compat> 0031 0030 002E"
+- ''
+- ''
+- '10'
+- N
+- NUMBER TEN PERIOD
+- ''
+- ''
+- ''
+- ''
+9362:
+- 9362
+- NUMBER ELEVEN FULL STOP
+- 'No'
+- '0'
+- EN
+- "<compat> 0031 0031 002E"
+- ''
+- ''
+- '11'
+- N
+- NUMBER ELEVEN PERIOD
+- ''
+- ''
+- ''
+- ''
+9363:
+- 9363
+- NUMBER TWELVE FULL STOP
+- 'No'
+- '0'
+- EN
+- "<compat> 0031 0032 002E"
+- ''
+- ''
+- '12'
+- N
+- NUMBER TWELVE PERIOD
+- ''
+- ''
+- ''
+- ''
+9364:
+- 9364
+- NUMBER THIRTEEN FULL STOP
+- 'No'
+- '0'
+- EN
+- "<compat> 0031 0033 002E"
+- ''
+- ''
+- '13'
+- N
+- NUMBER THIRTEEN PERIOD
+- ''
+- ''
+- ''
+- ''
+9365:
+- 9365
+- NUMBER FOURTEEN FULL STOP
+- 'No'
+- '0'
+- EN
+- "<compat> 0031 0034 002E"
+- ''
+- ''
+- '14'
+- N
+- NUMBER FOURTEEN PERIOD
+- ''
+- ''
+- ''
+- ''
+9366:
+- 9366
+- NUMBER FIFTEEN FULL STOP
+- 'No'
+- '0'
+- EN
+- "<compat> 0031 0035 002E"
+- ''
+- ''
+- '15'
+- N
+- NUMBER FIFTEEN PERIOD
+- ''
+- ''
+- ''
+- ''
+9367:
+- 9367
+- NUMBER SIXTEEN FULL STOP
+- 'No'
+- '0'
+- EN
+- "<compat> 0031 0036 002E"
+- ''
+- ''
+- '16'
+- N
+- NUMBER SIXTEEN PERIOD
+- ''
+- ''
+- ''
+- ''
+9368:
+- 9368
+- NUMBER SEVENTEEN FULL STOP
+- 'No'
+- '0'
+- EN
+- "<compat> 0031 0037 002E"
+- ''
+- ''
+- '17'
+- N
+- NUMBER SEVENTEEN PERIOD
+- ''
+- ''
+- ''
+- ''
+9369:
+- 9369
+- NUMBER EIGHTEEN FULL STOP
+- 'No'
+- '0'
+- EN
+- "<compat> 0031 0038 002E"
+- ''
+- ''
+- '18'
+- N
+- NUMBER EIGHTEEN PERIOD
+- ''
+- ''
+- ''
+- ''
+9370:
+- 9370
+- NUMBER NINETEEN FULL STOP
+- 'No'
+- '0'
+- EN
+- "<compat> 0031 0039 002E"
+- ''
+- ''
+- '19'
+- N
+- NUMBER NINETEEN PERIOD
+- ''
+- ''
+- ''
+- ''
+9371:
+- 9371
+- NUMBER TWENTY FULL STOP
+- 'No'
+- '0'
+- EN
+- "<compat> 0032 0030 002E"
+- ''
+- ''
+- '20'
+- N
+- NUMBER TWENTY PERIOD
+- ''
+- ''
+- ''
+- ''
+9372:
+- 9372
+- PARENTHESIZED LATIN SMALL LETTER A
+- So
+- '0'
+- L
+- "<compat> 0028 0061 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9373:
+- 9373
+- PARENTHESIZED LATIN SMALL LETTER B
+- So
+- '0'
+- L
+- "<compat> 0028 0062 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9374:
+- 9374
+- PARENTHESIZED LATIN SMALL LETTER C
+- So
+- '0'
+- L
+- "<compat> 0028 0063 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9375:
+- 9375
+- PARENTHESIZED LATIN SMALL LETTER D
+- So
+- '0'
+- L
+- "<compat> 0028 0064 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9376:
+- 9376
+- PARENTHESIZED LATIN SMALL LETTER E
+- So
+- '0'
+- L
+- "<compat> 0028 0065 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9377:
+- 9377
+- PARENTHESIZED LATIN SMALL LETTER F
+- So
+- '0'
+- L
+- "<compat> 0028 0066 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9378:
+- 9378
+- PARENTHESIZED LATIN SMALL LETTER G
+- So
+- '0'
+- L
+- "<compat> 0028 0067 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9379:
+- 9379
+- PARENTHESIZED LATIN SMALL LETTER H
+- So
+- '0'
+- L
+- "<compat> 0028 0068 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9380:
+- 9380
+- PARENTHESIZED LATIN SMALL LETTER I
+- So
+- '0'
+- L
+- "<compat> 0028 0069 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9381:
+- 9381
+- PARENTHESIZED LATIN SMALL LETTER J
+- So
+- '0'
+- L
+- "<compat> 0028 006A 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9382:
+- 9382
+- PARENTHESIZED LATIN SMALL LETTER K
+- So
+- '0'
+- L
+- "<compat> 0028 006B 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9383:
+- 9383
+- PARENTHESIZED LATIN SMALL LETTER L
+- So
+- '0'
+- L
+- "<compat> 0028 006C 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9384:
+- 9384
+- PARENTHESIZED LATIN SMALL LETTER M
+- So
+- '0'
+- L
+- "<compat> 0028 006D 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9385:
+- 9385
+- PARENTHESIZED LATIN SMALL LETTER N
+- So
+- '0'
+- L
+- "<compat> 0028 006E 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9386:
+- 9386
+- PARENTHESIZED LATIN SMALL LETTER O
+- So
+- '0'
+- L
+- "<compat> 0028 006F 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9387:
+- 9387
+- PARENTHESIZED LATIN SMALL LETTER P
+- So
+- '0'
+- L
+- "<compat> 0028 0070 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9388:
+- 9388
+- PARENTHESIZED LATIN SMALL LETTER Q
+- So
+- '0'
+- L
+- "<compat> 0028 0071 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9389:
+- 9389
+- PARENTHESIZED LATIN SMALL LETTER R
+- So
+- '0'
+- L
+- "<compat> 0028 0072 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9390:
+- 9390
+- PARENTHESIZED LATIN SMALL LETTER S
+- So
+- '0'
+- L
+- "<compat> 0028 0073 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9391:
+- 9391
+- PARENTHESIZED LATIN SMALL LETTER T
+- So
+- '0'
+- L
+- "<compat> 0028 0074 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9392:
+- 9392
+- PARENTHESIZED LATIN SMALL LETTER U
+- So
+- '0'
+- L
+- "<compat> 0028 0075 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9393:
+- 9393
+- PARENTHESIZED LATIN SMALL LETTER V
+- So
+- '0'
+- L
+- "<compat> 0028 0076 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9394:
+- 9394
+- PARENTHESIZED LATIN SMALL LETTER W
+- So
+- '0'
+- L
+- "<compat> 0028 0077 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9395:
+- 9395
+- PARENTHESIZED LATIN SMALL LETTER X
+- So
+- '0'
+- L
+- "<compat> 0028 0078 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9396:
+- 9396
+- PARENTHESIZED LATIN SMALL LETTER Y
+- So
+- '0'
+- L
+- "<compat> 0028 0079 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9397:
+- 9397
+- PARENTHESIZED LATIN SMALL LETTER Z
+- So
+- '0'
+- L
+- "<compat> 0028 007A 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9398:
+- 9398
+- CIRCLED LATIN CAPITAL LETTER A
+- So
+- '0'
+- L
+- "<circle> 0041"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 24D0
+- ''
+9399:
+- 9399
+- CIRCLED LATIN CAPITAL LETTER B
+- So
+- '0'
+- L
+- "<circle> 0042"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 24D1
+- ''
+9400:
+- 9400
+- CIRCLED LATIN CAPITAL LETTER C
+- So
+- '0'
+- L
+- "<circle> 0043"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 24D2
+- ''
+9401:
+- 9401
+- CIRCLED LATIN CAPITAL LETTER D
+- So
+- '0'
+- L
+- "<circle> 0044"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 24D3
+- ''
+9402:
+- 9402
+- CIRCLED LATIN CAPITAL LETTER E
+- So
+- '0'
+- L
+- "<circle> 0045"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 24D4
+- ''
+9403:
+- 9403
+- CIRCLED LATIN CAPITAL LETTER F
+- So
+- '0'
+- L
+- "<circle> 0046"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 24D5
+- ''
+9404:
+- 9404
+- CIRCLED LATIN CAPITAL LETTER G
+- So
+- '0'
+- L
+- "<circle> 0047"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 24D6
+- ''
+9405:
+- 9405
+- CIRCLED LATIN CAPITAL LETTER H
+- So
+- '0'
+- L
+- "<circle> 0048"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 24D7
+- ''
+9406:
+- 9406
+- CIRCLED LATIN CAPITAL LETTER I
+- So
+- '0'
+- L
+- "<circle> 0049"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 24D8
+- ''
+9407:
+- 9407
+- CIRCLED LATIN CAPITAL LETTER J
+- So
+- '0'
+- L
+- "<circle> 004A"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 24D9
+- ''
+9408:
+- 9408
+- CIRCLED LATIN CAPITAL LETTER K
+- So
+- '0'
+- L
+- "<circle> 004B"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 24DA
+- ''
+9409:
+- 9409
+- CIRCLED LATIN CAPITAL LETTER L
+- So
+- '0'
+- L
+- "<circle> 004C"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 24DB
+- ''
+9410:
+- 9410
+- CIRCLED LATIN CAPITAL LETTER M
+- So
+- '0'
+- L
+- "<circle> 004D"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 24DC
+- ''
+9411:
+- 9411
+- CIRCLED LATIN CAPITAL LETTER N
+- So
+- '0'
+- L
+- "<circle> 004E"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 24DD
+- ''
+9412:
+- 9412
+- CIRCLED LATIN CAPITAL LETTER O
+- So
+- '0'
+- L
+- "<circle> 004F"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 24DE
+- ''
+9413:
+- 9413
+- CIRCLED LATIN CAPITAL LETTER P
+- So
+- '0'
+- L
+- "<circle> 0050"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 24DF
+- ''
+9414:
+- 9414
+- CIRCLED LATIN CAPITAL LETTER Q
+- So
+- '0'
+- L
+- "<circle> 0051"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 24E0
+- ''
+9415:
+- 9415
+- CIRCLED LATIN CAPITAL LETTER R
+- So
+- '0'
+- L
+- "<circle> 0052"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 24E1
+- ''
+9416:
+- 9416
+- CIRCLED LATIN CAPITAL LETTER S
+- So
+- '0'
+- L
+- "<circle> 0053"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 24E2
+- ''
+9417:
+- 9417
+- CIRCLED LATIN CAPITAL LETTER T
+- So
+- '0'
+- L
+- "<circle> 0054"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 24E3
+- ''
+9418:
+- 9418
+- CIRCLED LATIN CAPITAL LETTER U
+- So
+- '0'
+- L
+- "<circle> 0055"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 24E4
+- ''
+9419:
+- 9419
+- CIRCLED LATIN CAPITAL LETTER V
+- So
+- '0'
+- L
+- "<circle> 0056"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 24E5
+- ''
+9420:
+- 9420
+- CIRCLED LATIN CAPITAL LETTER W
+- So
+- '0'
+- L
+- "<circle> 0057"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 24E6
+- ''
+9421:
+- 9421
+- CIRCLED LATIN CAPITAL LETTER X
+- So
+- '0'
+- L
+- "<circle> 0058"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 24E7
+- ''
+9422:
+- 9422
+- CIRCLED LATIN CAPITAL LETTER Y
+- So
+- '0'
+- L
+- "<circle> 0059"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 24E8
+- ''
+9423:
+- 9423
+- CIRCLED LATIN CAPITAL LETTER Z
+- So
+- '0'
+- L
+- "<circle> 005A"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 24E9
+- ''
+9424:
+- 9424
+- CIRCLED LATIN SMALL LETTER A
+- So
+- '0'
+- L
+- "<circle> 0061"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 24B6
+- ''
+- 24B6
+9425:
+- 9425
+- CIRCLED LATIN SMALL LETTER B
+- So
+- '0'
+- L
+- "<circle> 0062"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 24B7
+- ''
+- 24B7
+9426:
+- 9426
+- CIRCLED LATIN SMALL LETTER C
+- So
+- '0'
+- L
+- "<circle> 0063"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 24B8
+- ''
+- 24B8
+9427:
+- 9427
+- CIRCLED LATIN SMALL LETTER D
+- So
+- '0'
+- L
+- "<circle> 0064"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 24B9
+- ''
+- 24B9
+9428:
+- 9428
+- CIRCLED LATIN SMALL LETTER E
+- So
+- '0'
+- L
+- "<circle> 0065"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 24BA
+- ''
+- 24BA
+9429:
+- 9429
+- CIRCLED LATIN SMALL LETTER F
+- So
+- '0'
+- L
+- "<circle> 0066"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 24BB
+- ''
+- 24BB
+9430:
+- 9430
+- CIRCLED LATIN SMALL LETTER G
+- So
+- '0'
+- L
+- "<circle> 0067"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 24BC
+- ''
+- 24BC
+9431:
+- 9431
+- CIRCLED LATIN SMALL LETTER H
+- So
+- '0'
+- L
+- "<circle> 0068"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 24BD
+- ''
+- 24BD
+9432:
+- 9432
+- CIRCLED LATIN SMALL LETTER I
+- So
+- '0'
+- L
+- "<circle> 0069"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 24BE
+- ''
+- 24BE
+9433:
+- 9433
+- CIRCLED LATIN SMALL LETTER J
+- So
+- '0'
+- L
+- "<circle> 006A"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 24BF
+- ''
+- 24BF
+9434:
+- 9434
+- CIRCLED LATIN SMALL LETTER K
+- So
+- '0'
+- L
+- "<circle> 006B"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 24C0
+- ''
+- 24C0
+9435:
+- 9435
+- CIRCLED LATIN SMALL LETTER L
+- So
+- '0'
+- L
+- "<circle> 006C"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 24C1
+- ''
+- 24C1
+9436:
+- 9436
+- CIRCLED LATIN SMALL LETTER M
+- So
+- '0'
+- L
+- "<circle> 006D"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 24C2
+- ''
+- 24C2
+9437:
+- 9437
+- CIRCLED LATIN SMALL LETTER N
+- So
+- '0'
+- L
+- "<circle> 006E"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 24C3
+- ''
+- 24C3
+9438:
+- 9438
+- CIRCLED LATIN SMALL LETTER O
+- So
+- '0'
+- L
+- "<circle> 006F"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 24C4
+- ''
+- 24C4
+9439:
+- 9439
+- CIRCLED LATIN SMALL LETTER P
+- So
+- '0'
+- L
+- "<circle> 0070"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 24C5
+- ''
+- 24C5
+9440:
+- 9440
+- CIRCLED LATIN SMALL LETTER Q
+- So
+- '0'
+- L
+- "<circle> 0071"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 24C6
+- ''
+- 24C6
+9441:
+- 9441
+- CIRCLED LATIN SMALL LETTER R
+- So
+- '0'
+- L
+- "<circle> 0072"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 24C7
+- ''
+- 24C7
+9442:
+- 9442
+- CIRCLED LATIN SMALL LETTER S
+- So
+- '0'
+- L
+- "<circle> 0073"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 24C8
+- ''
+- 24C8
+9443:
+- 9443
+- CIRCLED LATIN SMALL LETTER T
+- So
+- '0'
+- L
+- "<circle> 0074"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 24C9
+- ''
+- 24C9
+9444:
+- 9444
+- CIRCLED LATIN SMALL LETTER U
+- So
+- '0'
+- L
+- "<circle> 0075"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 24CA
+- ''
+- 24CA
+9445:
+- 9445
+- CIRCLED LATIN SMALL LETTER V
+- So
+- '0'
+- L
+- "<circle> 0076"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 24CB
+- ''
+- 24CB
+9446:
+- 9446
+- CIRCLED LATIN SMALL LETTER W
+- So
+- '0'
+- L
+- "<circle> 0077"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 24CC
+- ''
+- 24CC
+9447:
+- 9447
+- CIRCLED LATIN SMALL LETTER X
+- So
+- '0'
+- L
+- "<circle> 0078"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 24CD
+- ''
+- 24CD
+9448:
+- 9448
+- CIRCLED LATIN SMALL LETTER Y
+- So
+- '0'
+- L
+- "<circle> 0079"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 24CE
+- ''
+- 24CE
+9449:
+- 9449
+- CIRCLED LATIN SMALL LETTER Z
+- So
+- '0'
+- L
+- "<circle> 007A"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 24CF
+- ''
+- 24CF
+9450:
+- 9450
+- CIRCLED DIGIT ZERO
+- 'No'
+- '0'
+- 'ON'
+- "<circle> 0030"
+- ''
+- '0'
+- '0'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9451:
+- 9451
+- NEGATIVE CIRCLED NUMBER ELEVEN
+- 'No'
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- '11'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9452:
+- 9452
+- NEGATIVE CIRCLED NUMBER TWELVE
+- 'No'
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- '12'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9453:
+- 9453
+- NEGATIVE CIRCLED NUMBER THIRTEEN
+- 'No'
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- '13'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9454:
+- 9454
+- NEGATIVE CIRCLED NUMBER FOURTEEN
+- 'No'
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- '14'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9455:
+- 9455
+- NEGATIVE CIRCLED NUMBER FIFTEEN
+- 'No'
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- '15'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9456:
+- 9456
+- NEGATIVE CIRCLED NUMBER SIXTEEN
+- 'No'
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- '16'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9457:
+- 9457
+- NEGATIVE CIRCLED NUMBER SEVENTEEN
+- 'No'
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- '17'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9458:
+- 9458
+- NEGATIVE CIRCLED NUMBER EIGHTEEN
+- 'No'
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- '18'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9459:
+- 9459
+- NEGATIVE CIRCLED NUMBER NINETEEN
+- 'No'
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- '19'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9460:
+- 9460
+- NEGATIVE CIRCLED NUMBER TWENTY
+- 'No'
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- '20'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9461:
+- 9461
+- DOUBLE CIRCLED DIGIT ONE
+- 'No'
+- '0'
+- 'ON'
+- ''
+- ''
+- '1'
+- '1'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9462:
+- 9462
+- DOUBLE CIRCLED DIGIT TWO
+- 'No'
+- '0'
+- 'ON'
+- ''
+- ''
+- '2'
+- '2'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9463:
+- 9463
+- DOUBLE CIRCLED DIGIT THREE
+- 'No'
+- '0'
+- 'ON'
+- ''
+- ''
+- '3'
+- '3'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9464:
+- 9464
+- DOUBLE CIRCLED DIGIT FOUR
+- 'No'
+- '0'
+- 'ON'
+- ''
+- ''
+- '4'
+- '4'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9465:
+- 9465
+- DOUBLE CIRCLED DIGIT FIVE
+- 'No'
+- '0'
+- 'ON'
+- ''
+- ''
+- '5'
+- '5'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9466:
+- 9466
+- DOUBLE CIRCLED DIGIT SIX
+- 'No'
+- '0'
+- 'ON'
+- ''
+- ''
+- '6'
+- '6'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9467:
+- 9467
+- DOUBLE CIRCLED DIGIT SEVEN
+- 'No'
+- '0'
+- 'ON'
+- ''
+- ''
+- '7'
+- '7'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9468:
+- 9468
+- DOUBLE CIRCLED DIGIT EIGHT
+- 'No'
+- '0'
+- 'ON'
+- ''
+- ''
+- '8'
+- '8'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9469:
+- 9469
+- DOUBLE CIRCLED DIGIT NINE
+- 'No'
+- '0'
+- 'ON'
+- ''
+- ''
+- '9'
+- '9'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9470:
+- 9470
+- DOUBLE CIRCLED NUMBER TEN
+- 'No'
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- '10'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9471:
+- 9471
+- NEGATIVE CIRCLED DIGIT ZERO
+- 'No'
+- '0'
+- 'ON'
+- ''
+- ''
+- '0'
+- '0'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''

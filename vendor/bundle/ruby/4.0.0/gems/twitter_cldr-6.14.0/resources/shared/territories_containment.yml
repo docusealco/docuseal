@@ -1,0 +1,650 @@
+--- 
+:territories: 
+  ? !ruby/symbol "001"
+  : 
+    :contains: 
+      - "002"
+      - 009
+      - 019
+      - "142"
+      - "150"
+      - EU
+      - EZ
+      - QU
+      - UN
+  ? !ruby/symbol "002"
+  : 
+    :contains: 
+      - "011"
+      - "014"
+      - "015"
+      - "017"
+      - 018
+      - "202"
+  ? !ruby/symbol "003"
+  : 
+    :contains: 
+      - "013"
+      - "021"
+      - 029
+  ? !ruby/symbol "005"
+  : 
+    :contains: 
+      - AR
+      - BO
+      - BR
+      - BV
+      - CL
+      - CO
+      - EC
+      - FK
+      - GF
+      - GS
+      - GY
+      - PE
+      - PY
+      - SR
+      - UY
+      - VE
+  :009: 
+    :contains: 
+      - "053"
+      - "054"
+      - "057"
+      - "061"
+      - QO
+  ? !ruby/symbol "011"
+  : 
+    :contains: 
+      - BF
+      - BJ
+      - CI
+      - CV
+      - GH
+      - GM
+      - GN
+      - GW
+      - LR
+      - ML
+      - MR
+      - NE
+      - NG
+      - SH
+      - SL
+      - SN
+      - TG
+  ? !ruby/symbol "013"
+  : 
+    :contains: 
+      - BZ
+      - CR
+      - GT
+      - HN
+      - MX
+      - NI
+      - PA
+      - SV
+  ? !ruby/symbol "014"
+  : 
+    :contains: 
+      - BI
+      - DJ
+      - ER
+      - ET
+      - IO
+      - KE
+      - KM
+      - MG
+      - MU
+      - MW
+      - MZ
+      - RE
+      - RW
+      - SC
+      - SO
+      - SS
+      - TF
+      - TZ
+      - UG
+      - YT
+      - ZM
+      - ZW
+  ? !ruby/symbol "015"
+  : 
+    :contains: 
+      - DZ
+      - EA
+      - EG
+      - EH
+      - IC
+      - LY
+      - MA
+      - SD
+      - TN
+  ? !ruby/symbol "017"
+  : 
+    :contains: 
+      - AO
+      - CD
+      - CF
+      - CG
+      - CM
+      - GA
+      - GQ
+      - ST
+      - TD
+      - ZR
+  :018: 
+    :contains: 
+      - BW
+      - LS
+      - NA
+      - SZ
+      - ZA
+  :019: 
+    :contains: 
+      - "003"
+      - "005"
+      - "013"
+      - "021"
+      - 029
+      - "419"
+  ? !ruby/symbol "021"
+  : 
+    :contains: 
+      - BM
+      - CA
+      - GL
+      - PM
+      - US
+  :029: 
+    :contains: 
+      - AG
+      - AI
+      - AN
+      - AW
+      - BB
+      - BL
+      - BQ
+      - BS
+      - CU
+      - CW
+      - DM
+      - DO
+      - GD
+      - GP
+      - HT
+      - JM
+      - KN
+      - KY
+      - LC
+      - MF
+      - MQ
+      - MS
+      - PR
+      - SX
+      - TC
+      - TT
+      - VC
+      - VG
+      - VI
+  ? !ruby/symbol "030"
+  : 
+    :contains: 
+      - CN
+      - HK
+      - JP
+      - KP
+      - KR
+      - MN
+      - MO
+      - TW
+  ? !ruby/symbol "034"
+  : 
+    :contains: 
+      - AF
+      - BD
+      - BT
+      - IN
+      - IR
+      - LK
+      - MV
+      - NP
+      - PK
+  ? !ruby/symbol "035"
+  : 
+    :contains: 
+      - BN
+      - BU
+      - ID
+      - KH
+      - LA
+      - MM
+      - MY
+      - PH
+      - SG
+      - TH
+      - TL
+      - TP
+      - VN
+  :039: 
+    :contains: 
+      - AD
+      - AL
+      - BA
+      - CS
+      - ES
+      - GI
+      - GR
+      - HR
+      - IT
+      - ME
+      - MK
+      - MT
+      - PT
+      - RS
+      - SI
+      - SM
+      - VA
+      - XK
+      - YU
+  ? !ruby/symbol "053"
+  : 
+    :contains: 
+      - AU
+      - CC
+      - CX
+      - HM
+      - NF
+      - NZ
+  ? !ruby/symbol "054"
+  : 
+    :contains: 
+      - FJ
+      - NC
+      - PG
+      - SB
+      - VU
+  ? !ruby/symbol "057"
+  : 
+    :contains: 
+      - FM
+      - GU
+      - KI
+      - MH
+      - MP
+      - NR
+      - PW
+      - UM
+  ? !ruby/symbol "061"
+  : 
+    :contains: 
+      - AS
+      - CK
+      - NU
+      - PF
+      - PN
+      - TK
+      - TO
+      - TV
+      - WF
+      - WS
+  ? !ruby/symbol "142"
+  : 
+    :contains: 
+      - "030"
+      - "034"
+      - "035"
+      - "143"
+      - "145"
+  ? !ruby/symbol "143"
+  : 
+    :contains: 
+      - KG
+      - KZ
+      - TJ
+      - TM
+      - UZ
+  ? !ruby/symbol "145"
+  : 
+    :contains: 
+      - AE
+      - AM
+      - AZ
+      - BH
+      - CY
+      - GE
+      - IL
+      - IQ
+      - JO
+      - KW
+      - LB
+      - NT
+      - OM
+      - PS
+      - QA
+      - SA
+      - SY
+      - TR
+      - YD
+      - YE
+  ? !ruby/symbol "150"
+  : 
+    :contains: 
+      - 039
+      - "151"
+      - "154"
+      - "155"
+  ? !ruby/symbol "151"
+  : 
+    :contains: 
+      - BG
+      - BY
+      - CZ
+      - HU
+      - MD
+      - PL
+      - RO
+      - RU
+      - SK
+      - SU
+      - UA
+  ? !ruby/symbol "154"
+  : 
+    :contains: 
+      - AX
+      - CQ
+      - DK
+      - EE
+      - FI
+      - FO
+      - GB
+      - GG
+      - IE
+      - IM
+      - IS
+      - JE
+      - LT
+      - LV
+      - "NO"
+      - SE
+      - SJ
+  ? !ruby/symbol "155"
+  : 
+    :contains: 
+      - AT
+      - BE
+      - CH
+      - DD
+      - DE
+      - FR
+      - FX
+      - LI
+      - LU
+      - MC
+      - NL
+  ? !ruby/symbol "202"
+  : 
+    :contains: 
+      - "011"
+      - "014"
+      - "017"
+      - 018
+  ? !ruby/symbol "419"
+  : 
+    :contains: 
+      - "005"
+      - "013"
+      - 029
+  :EU: 
+    :contains: 
+      - AT
+      - BE
+      - BG
+      - CY
+      - CZ
+      - DE
+      - DK
+      - EE
+      - ES
+      - FI
+      - FR
+      - GR
+      - HR
+      - HU
+      - IE
+      - IT
+      - LT
+      - LU
+      - LV
+      - MT
+      - NL
+      - PL
+      - PT
+      - RO
+      - SE
+      - SI
+      - SK
+  :EZ: 
+    :contains: 
+      - AT
+      - BE
+      - CY
+      - DE
+      - EE
+      - ES
+      - FI
+      - FR
+      - GR
+      - IE
+      - IT
+      - LT
+      - LU
+      - LV
+      - MT
+      - NL
+      - PT
+      - SI
+      - SK
+  :QO: 
+    :contains: 
+      - AC
+      - AQ
+      - CP
+      - DG
+      - TA
+  :UN: 
+    :contains: 
+      - AD
+      - AE
+      - AF
+      - AG
+      - AL
+      - AM
+      - AO
+      - AR
+      - AT
+      - AU
+      - AZ
+      - BA
+      - BB
+      - BD
+      - BE
+      - BF
+      - BG
+      - BH
+      - BI
+      - BJ
+      - BN
+      - BO
+      - BR
+      - BS
+      - BT
+      - BW
+      - BY
+      - BZ
+      - CA
+      - CD
+      - CF
+      - CG
+      - CH
+      - CI
+      - CL
+      - CM
+      - CN
+      - CO
+      - CR
+      - CU
+      - CV
+      - CY
+      - CZ
+      - DE
+      - DJ
+      - DK
+      - DM
+      - DO
+      - DZ
+      - EC
+      - EE
+      - EG
+      - ER
+      - ES
+      - ET
+      - FI
+      - FJ
+      - FM
+      - FR
+      - GA
+      - GB
+      - GD
+      - GE
+      - GH
+      - GM
+      - GN
+      - GQ
+      - GR
+      - GT
+      - GW
+      - GY
+      - HN
+      - HR
+      - HT
+      - HU
+      - ID
+      - IE
+      - IL
+      - IN
+      - IQ
+      - IR
+      - IS
+      - IT
+      - JM
+      - JO
+      - JP
+      - KE
+      - KG
+      - KH
+      - KI
+      - KM
+      - KN
+      - KP
+      - KR
+      - KW
+      - KZ
+      - LA
+      - LB
+      - LC
+      - LI
+      - LK
+      - LR
+      - LS
+      - LT
+      - LU
+      - LV
+      - LY
+      - MA
+      - MC
+      - MD
+      - ME
+      - MG
+      - MH
+      - MK
+      - ML
+      - MM
+      - MN
+      - MR
+      - MT
+      - MU
+      - MV
+      - MW
+      - MX
+      - MY
+      - MZ
+      - NA
+      - NE
+      - NG
+      - NI
+      - NL
+      - "NO"
+      - NP
+      - NR
+      - NZ
+      - OM
+      - PA
+      - PE
+      - PG
+      - PH
+      - PK
+      - PL
+      - PT
+      - PW
+      - PY
+      - QA
+      - RO
+      - RS
+      - RU
+      - RW
+      - SA
+      - SB
+      - SC
+      - SD
+      - SE
+      - SG
+      - SI
+      - SK
+      - SL
+      - SM
+      - SN
+      - SO
+      - SR
+      - SS
+      - ST
+      - SV
+      - SY
+      - SZ
+      - TD
+      - TG
+      - TH
+      - TJ
+      - TL
+      - TM
+      - TN
+      - TO
+      - TR
+      - TT
+      - TV
+      - TZ
+      - UA
+      - UG
+      - US
+      - UY
+      - UZ
+      - VC
+      - VE
+      - VN
+      - VU
+      - WS
+      - YE
+      - ZA
+      - ZM
+      - ZW

@@ -1,0 +1,212 @@
+en-KE:
+  faker:
+    internet:
+      domain_suffix:
+        - ke
+        - co.ke
+        - org.ke
+        - or.ke
+        - go.ke
+        - ac.ke
+        - info.ke
+    address:
+      default_country:
+        - Republic of Kenya
+      default_country_code:
+        - KE
+      counties:
+        - Kiambu
+        - Siaya
+        - Bungoma
+        - Kericho
+        - Kilifi
+        - Kisumu
+        - Machakos
+        - Nakuru
+        - Kisii
+        - Busia
+        - Homa Bay
+        - Kajiado
+        - Kakamega
+        - Laikipia
+        - Migori
+        - Taita-Taveta
+        - Embu
+        - Kitui
+        - Meru
+        - Murang'a
+        - Nyamira
+        - Turkana
+        - Trans-Nzoia
+        - Uasin Gishu
+        - Vihiga
+        - Baringo
+        - Bomet
+        - Elgeyo-Marakwet
+        - Garissa
+        - Isiolo
+        - Kirinyaga
+        - Kwale
+        - Mandera
+        - Marsabit
+        - Mombasa
+        - Nairobi
+        - Nandi
+        - Narok
+        - Nyandarua
+        - Nyeri
+        - Samburu
+        - Tharaka-Nithi
+        - Wajir
+        - West Pokot
+      county:
+        - "#{counties}"
+      cities:
+        - Bungoma
+        - Busia
+        - El Wak
+        - Eldoret
+        - Emali
+        - Embu
+        - Gilgil
+        - Homa Bay
+        - Isiolo
+        - Juja
+        - Kakamega
+        - Karuri
+        - Kenol
+        - Kericho
+        - Kiambu
+        - Kikuyu
+        - Kilifi
+        - Kimilili
+        - Kiserian
+        - Kisii
+        - Kisumu
+        - Kitengela
+        - Limuru
+        - Lodwar
+        - Machakos
+        - Malindi
+        - Mandera
+        - Mavoko
+        - Meru
+        - Migori
+        - Mombasa
+        - Moyale
+        - Mtwapa
+        - Muranga
+        - Nairobi
+        - Naivasha
+        - Nakuru
+        - Nanyuki
+        - Narok
+        - Ngong
+        - Nyeri
+        - Ruiru
+        - Thika
+        - Ukunda
+        - Voi
+        - Wajir
+        - Wanguru
+        - Webuye
+      city:
+        - "#{cities}"
+    company:
+      company_names:
+        - ABSA Kenya
+        - ARM Cement
+        - Africa Development Bank (AfDB)
+        - B.O.C Kenya
+        - Bamburi Cement
+        - Britam Holdings
+        - British American Tobacco Kenya
+        - CIC Insurance Group
+        - Car & General (K)
+        - Carbacid Investments
+        - Centum Investment
+        - Crown Paints Kenya
+        - Deacons (East Africa)
+        - Diamond Trust Bank Kenya
+        - E.A Cables
+        - E.A Portland Cement
+        - Eaagads
+        - East African Breweries
+        - Equity Group Holdings
+        - Eveready East Africa
+        - Express Kenya
+        - Flame Tree Group Holdings
+        - HF Group
+        - Home Afrika
+        - Homeboyz Entertainment
+        - I & M Holdings
+        - ILAM Fahari I-REIT
+        - Jubilee Holdings
+        - KCB Group
+        - Kakuzi
+        - Kapchorua Tea Kenya
+        - KenGen
+        - Kenya Airways
+        - Kenya Orchards
+        - Kenya Power & Lighting
+        - Kenya Re-Insurance Corporation
+        - Kurwitu Ventures
+        - Liberty Kenya Holdings
+        - Limuru Tea
+        - Longhorn Publishers
+        - Mumias Sugar
+        - NCBA Group
+        - Nairobi Business Ventures
+        - Nairobi Securities Exchange
+        - Nation Media Group
+        - Olympia Capital Holdings
+        - Safaricom
+        - Sameer Africa
+        - Sanlam Kenya
+        - Sasini
+        - Stanbic Holdings
+        - Standard Chartered Bank Kenya
+        - Standard Group
+        - TPS Eastern Africa (Serena)
+        - The Co-operative Bank of Kenya
+        - Total Kenya
+        - Trans-Century
+        - Uchumi Supermarket
+        - Umeme
+        - Unga Group
+        - WPP Scangroup
+        - Williamson Tea Kenya
+      suffix:
+        - Co.
+        - Ltd
+        - Plc
+        - Trust
+      name:
+        - "#{company_names}"
+    phone_number:
+      country_code:
+        - "254"
+      area_code:
+      # area codes for Nairobi, Mombasa, Eldoret & Kisumu cities
+        - "20"
+        - "41"
+        - "51"
+        - "57"
+      formats:
+        - "### #######"
+        - "##########"
+        - "###-#######"
+    cell_phone:
+      formats:
+        # safaricom 
+        - "0711 ######"
+        - "0722 ######"
+        # Airtel
+        - "010# ######"
+        - "0730 ######"
+        # Telkom
+        - "0770 ######"
+        - "0771 ######"
+        # Equitel
+        - "0763 ######"
+        - "0764 ######"

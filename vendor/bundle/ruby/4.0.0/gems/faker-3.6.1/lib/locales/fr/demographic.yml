@@ -1,0 +1,6 @@
+fr:
+  faker:
+    demographic:
+      sex:
+        - Homme
+        - Femme

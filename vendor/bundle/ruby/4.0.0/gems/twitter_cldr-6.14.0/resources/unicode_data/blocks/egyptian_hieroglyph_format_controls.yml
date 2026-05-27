@@ -1,0 +1,609 @@
+---
+78896:
+- 78896
+- EGYPTIAN HIEROGLYPH VERTICAL JOINER
+- Cf
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+78897:
+- 78897
+- EGYPTIAN HIEROGLYPH HORIZONTAL JOINER
+- Cf
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+78898:
+- 78898
+- EGYPTIAN HIEROGLYPH INSERT AT TOP START
+- Cf
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+78899:
+- 78899
+- EGYPTIAN HIEROGLYPH INSERT AT BOTTOM START
+- Cf
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+78900:
+- 78900
+- EGYPTIAN HIEROGLYPH INSERT AT TOP END
+- Cf
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+78901:
+- 78901
+- EGYPTIAN HIEROGLYPH INSERT AT BOTTOM END
+- Cf
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+78902:
+- 78902
+- EGYPTIAN HIEROGLYPH OVERLAY MIDDLE
+- Cf
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+78903:
+- 78903
+- EGYPTIAN HIEROGLYPH BEGIN SEGMENT
+- Cf
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+78904:
+- 78904
+- EGYPTIAN HIEROGLYPH END SEGMENT
+- Cf
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+78905:
+- 78905
+- EGYPTIAN HIEROGLYPH INSERT AT MIDDLE
+- Cf
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+78906:
+- 78906
+- EGYPTIAN HIEROGLYPH INSERT AT TOP
+- Cf
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+78907:
+- 78907
+- EGYPTIAN HIEROGLYPH INSERT AT BOTTOM
+- Cf
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+78908:
+- 78908
+- EGYPTIAN HIEROGLYPH BEGIN ENCLOSURE
+- Cf
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+78909:
+- 78909
+- EGYPTIAN HIEROGLYPH END ENCLOSURE
+- Cf
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+78910:
+- 78910
+- EGYPTIAN HIEROGLYPH BEGIN WALLED ENCLOSURE
+- Cf
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+78911:
+- 78911
+- EGYPTIAN HIEROGLYPH END WALLED ENCLOSURE
+- Cf
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+78912:
+- 78912
+- EGYPTIAN HIEROGLYPH MIRROR HORIZONTALLY
+- Mn
+- '0'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+78913:
+- 78913
+- EGYPTIAN HIEROGLYPH FULL BLANK
+- Lo
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+78914:
+- 78914
+- EGYPTIAN HIEROGLYPH HALF BLANK
+- Lo
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+78915:
+- 78915
+- EGYPTIAN HIEROGLYPH LOST SIGN
+- Lo
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+78916:
+- 78916
+- EGYPTIAN HIEROGLYPH HALF LOST SIGN
+- Lo
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+78917:
+- 78917
+- EGYPTIAN HIEROGLYPH TALL LOST SIGN
+- Lo
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+78918:
+- 78918
+- EGYPTIAN HIEROGLYPH WIDE LOST SIGN
+- Lo
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+78919:
+- 78919
+- EGYPTIAN HIEROGLYPH MODIFIER DAMAGED AT TOP START
+- Mn
+- '0'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+78920:
+- 78920
+- EGYPTIAN HIEROGLYPH MODIFIER DAMAGED AT BOTTOM START
+- Mn
+- '0'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+78921:
+- 78921
+- EGYPTIAN HIEROGLYPH MODIFIER DAMAGED AT START
+- Mn
+- '0'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+78922:
+- 78922
+- EGYPTIAN HIEROGLYPH MODIFIER DAMAGED AT TOP END
+- Mn
+- '0'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+78923:
+- 78923
+- EGYPTIAN HIEROGLYPH MODIFIER DAMAGED AT TOP
+- Mn
+- '0'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+78924:
+- 78924
+- EGYPTIAN HIEROGLYPH MODIFIER DAMAGED AT BOTTOM START AND TOP END
+- Mn
+- '0'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+78925:
+- 78925
+- EGYPTIAN HIEROGLYPH MODIFIER DAMAGED AT START AND TOP
+- Mn
+- '0'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+78926:
+- 78926
+- EGYPTIAN HIEROGLYPH MODIFIER DAMAGED AT BOTTOM END
+- Mn
+- '0'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+78927:
+- 78927
+- EGYPTIAN HIEROGLYPH MODIFIER DAMAGED AT TOP START AND BOTTOM END
+- Mn
+- '0'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+78928:
+- 78928
+- EGYPTIAN HIEROGLYPH MODIFIER DAMAGED AT BOTTOM
+- Mn
+- '0'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+78929:
+- 78929
+- EGYPTIAN HIEROGLYPH MODIFIER DAMAGED AT START AND BOTTOM
+- Mn
+- '0'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+78930:
+- 78930
+- EGYPTIAN HIEROGLYPH MODIFIER DAMAGED AT END
+- Mn
+- '0'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+78931:
+- 78931
+- EGYPTIAN HIEROGLYPH MODIFIER DAMAGED AT TOP AND END
+- Mn
+- '0'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+78932:
+- 78932
+- EGYPTIAN HIEROGLYPH MODIFIER DAMAGED AT BOTTOM AND END
+- Mn
+- '0'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+78933:
+- 78933
+- EGYPTIAN HIEROGLYPH MODIFIER DAMAGED
+- Mn
+- '0'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''

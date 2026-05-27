@@ -1,0 +1,374 @@
+--- 
+:ro: 
+  :calendars: 
+    :gregorian: 
+      :additional_formats: 
+        :Bh: "h B"
+        :Bhm: "h:mm B"
+        :Bhms: "h:mm:ss B"
+        :E: ccc
+        :EBhm: "E h:mm B"
+        :EBhms: "E h:mm:ss B"
+        :EHm: "E HH:mm"
+        :EHms: "E HH:mm:ss"
+        :Ed: "E d"
+        :Ehm: "E h:mm a"
+        :Ehms: "E h:mm:ss a"
+        :Gy: "y G"
+        :GyMMM: "MMM y G"
+        :GyMMMEd: "E, d MMM y G"
+        :GyMMMd: "d MMM y G"
+        :GyMd: "dd.MM.y G"
+        :H: HH
+        :Hm: "HH:mm"
+        :Hms: "HH:mm:ss"
+        :Hmsv: "HH:mm:ss v"
+        :Hmv: "HH:mm v"
+        :M: L
+        :MEd: "E, dd.MM"
+        :MMM: LLL
+        :MMMEd: "E, d MMM"
+        :MMMMEd: "E, d MMMM"
+        :MMMMW: "'săptămâna' W 'din' MMMM"
+        :MMMMd: "d MMMM"
+        :MMMd: "d MMM"
+        :MMdd: dd.MM
+        :Md: dd.MM
+        :d: d
+        :h: h a
+        :hm: "h:mm a"
+        :hms: "h:mm:ss a"
+        :hmsv: "h:mm:ss a v"
+        :hmv: "h:mm a v"
+        :ms: "mm:ss"
+        ? !ruby/symbol "y"
+        : "y"
+        :yM: MM.y
+        :yMEd: "E, dd.MM.y"
+        :yMM: MM.y
+        :yMMM: "MMM y"
+        :yMMMEd: "E, d MMM y"
+        :yMMMM: "MMMM y"
+        :yMMMd: "d MMM y"
+        :yMd: dd.MM.y
+        :yQQQ: "QQQ y"
+        :yQQQQ: "QQQQ y"
+        :yw: "'săptămâna' w 'din' Y"
+      :days: 
+        :format: 
+          :abbreviated: 
+            :fri: vin.
+            :mon: lun.
+            :sat: sâm.
+            :sun: dum.
+            :thu: joi
+            :tue: mar.
+            :wed: mie.
+          :narrow: 
+            :fri: V
+            :mon: L
+            :sat: S
+            :sun: D
+            :thu: J
+            :tue: M
+            :wed: M
+          :short: 
+            :fri: vi.
+            :mon: lu.
+            :sat: sâ.
+            :sun: du.
+            :thu: joi
+            :tue: ma.
+            :wed: mi.
+          :wide: 
+            :fri: vineri
+            :mon: luni
+            :sat: sâmbătă
+            :sun: duminică
+            :thu: joi
+            :tue: marți
+            :wed: miercuri
+        :stand-alone: 
+          :abbreviated: 
+            :fri: vin.
+            :mon: lun.
+            :sat: sâm.
+            :sun: dum.
+            :thu: joi
+            :tue: mar.
+            :wed: mie.
+          :narrow: 
+            :fri: V
+            :mon: L
+            :sat: S
+            :sun: D
+            :thu: J
+            :tue: M
+            :wed: M
+          :short: 
+            :fri: vi.
+            :mon: lu.
+            :sat: sâ.
+            :sun: du.
+            :thu: joi
+            :tue: ma.
+            :wed: mi.
+          :wide: 
+            :fri: vineri
+            :mon: luni
+            :sat: sâmbătă
+            :sun: duminică
+            :thu: joi
+            :tue: marți
+            :wed: miercuri
+      :eras: 
+        :abbr: 
+          0: î.e.n
+          1: e.n.
+        :name: 
+          0: "înaintea erei noastre"
+          1: "era noastră"
+        :narrow: 
+          0: BCE
+          1: CE
+      :fields: 
+        :day: zi
+        :day-narrow: Day
+        :day-short: zi
+        :dayOfYear: "ziua din an"
+        :dayOfYear-narrow: "ziua din an"
+        :dayOfYear-short: "ziua din an"
+        :dayperiod: a.m/p.m.
+        :dayperiod-narrow: a.m/p.m.
+        :dayperiod-short: a.m/p.m.
+        :era: eră
+        :era-narrow: eră
+        :era-short: eră
+        :hour: oră
+        :hour-narrow: Hour
+        :hour-short: h
+        :minute: minut
+        :minute-narrow: m
+        :minute-short: min.
+        :month: lună
+        :month-narrow: Month
+        :month-short: Month
+        :quarter: trimestru
+        :quarter-narrow: Quarter
+        :quarter-short: trim.
+        :second: secundă
+        :second-narrow: s
+        :second-short: sec.
+        :week: săptămână
+        :week-narrow: Week
+        :week-short: săpt.
+        :weekOfMonth: "săptămâna din lună"
+        :weekOfMonth-narrow: "săpt. din lună"
+        :weekOfMonth-short: "săpt. din lună"
+        :weekday: "ziua din săptămână"
+        :weekday-narrow: "ziua din săpt."
+        :weekday-short: "ziua din săpt."
+        :weekdayOfMonth: "ziua săptămânii din lună"
+        :weekdayOfMonth-narrow: "ziua săpt. din lună"
+        :weekdayOfMonth-short: "ziua săpt. din lună"
+        :year: an
+        :year-narrow: Year
+        :year-short: an
+        :zone: "fus orar"
+        :zone-narrow: fus
+        :zone-short: fus
+      :formats: 
+        :date: 
+          :full: 
+            :pattern: "EEEE, d MMMM y"
+          :long: 
+            :pattern: "d MMMM y"
+          :medium: 
+            :pattern: "d MMM y"
+          :short: 
+            :pattern: dd.MM.y
+        :datetime: 
+          :full: 
+            :pattern: "{{date}} 'la' {{time}}"
+          :long: 
+            :pattern: "{{date}} 'la' {{time}}"
+          :medium: 
+            :pattern: "{{date}}, {{time}}"
+          :short: 
+            :pattern: "{{date}}, {{time}}"
+        :time: 
+          :full: 
+            :pattern: "HH:mm:ss zzzz"
+          :long: 
+            :pattern: "HH:mm:ss z"
+          :medium: 
+            :pattern: "HH:mm:ss"
+          :short: 
+            :pattern: "HH:mm"
+      :months: 
+        :format: 
+          :abbreviated: 
+            1: ian.
+            10: oct.
+            11: nov.
+            12: dec.
+            2: feb.
+            3: mar.
+            4: apr.
+            5: mai
+            6: iun.
+            7: iul.
+            8: aug.
+            9: sept.
+          :narrow: 
+            1: I
+            10: O
+            11: "N"
+            12: D
+            2: F
+            3: M
+            4: A
+            5: M
+            6: I
+            7: I
+            8: A
+            9: S
+          :wide: 
+            1: ianuarie
+            10: octombrie
+            11: noiembrie
+            12: decembrie
+            2: februarie
+            3: martie
+            4: aprilie
+            5: mai
+            6: iunie
+            7: iulie
+            8: august
+            9: septembrie
+        :stand-alone: 
+          :abbreviated: 
+            1: ian.
+            10: oct.
+            11: nov.
+            12: dec.
+            2: feb.
+            3: mar.
+            4: apr.
+            5: mai
+            6: iun.
+            7: iul.
+            8: aug.
+            9: sept.
+          :narrow: 
+            1: I
+            10: O
+            11: "N"
+            12: D
+            2: F
+            3: M
+            4: A
+            5: M
+            6: I
+            7: I
+            8: A
+            9: S
+          :wide: 
+            1: ianuarie
+            10: octombrie
+            11: noiembrie
+            12: decembrie
+            2: februarie
+            3: martie
+            4: aprilie
+            5: mai
+            6: iunie
+            7: iulie
+            8: august
+            9: septembrie
+      :periods: 
+        :format: 
+          :abbreviated: 
+            :afternoon1: după-amiaza
+            :am: a.m.
+            :evening1: seara
+            :midnight: "miezul nopții"
+            :morning1: dimineața
+            :night1: noaptea
+            :noon: amiază
+            :pm: p.m.
+          :narrow: 
+            :afternoon1: după-amiaza
+            :am: a.m.
+            :evening1: seara
+            :midnight: "miezul nopții"
+            :morning1: dimineața
+            :night1: noaptea
+            :noon: amiază
+            :pm: p.m.
+          :wide: 
+            :afternoon1: după-amiaza
+            :am: AM
+            :evening1: seara
+            :midnight: "la miezul nopții"
+            :morning1: dimineața
+            :night1: noaptea
+            :noon: "la amiază"
+            :pm: PM
+        :stand-alone: 
+          :abbreviated: 
+            :afternoon1: după-amiaza
+            :am: a.m.
+            :evening1: seara
+            :midnight: "miezul nopții"
+            :morning1: dimineața
+            :night1: noaptea
+            :noon: amiază
+            :pm: p.m.
+          :narrow: 
+            :afternoon1: după-amiaza
+            :am: a.m.
+            :evening1: seara
+            :midnight: "miezul nopții"
+            :morning1: dimineața
+            :night1: noaptea
+            :noon: amiază
+            :pm: p.m.
+          :wide: 
+            :am: AM
+            :midnight: "la miezul nopții"
+            :noon: "la amiază"
+            :pm: PM
+      :quarters: 
+        :format: 
+          :abbreviated: 
+            1: "trim. I"
+            2: "trim. II"
+            3: "trim. III"
+            4: "trim. IV"
+          :narrow: 
+            1: I
+            2: II
+            3: III
+            4: IV
+          :wide: 
+            1: "trimestrul I"
+            2: "trimestrul al II-lea"
+            3: "trimestrul al III-lea"
+            4: "trimestrul al IV-lea"
+        :stand-alone: 
+          :abbreviated: 
+            1: "trim. I"
+            2: "trim. II"
+            3: "trim. III"
+            4: "trim. IV"
+          :narrow: 
+            1: I
+            2: II
+            3: III
+            4: IV
+          :wide: 
+            1: "trimestrul I"
+            2: "trimestrul al II-lea"
+            3: "trimestrul al III-lea"
+            4: "trimestrul al IV-lea"

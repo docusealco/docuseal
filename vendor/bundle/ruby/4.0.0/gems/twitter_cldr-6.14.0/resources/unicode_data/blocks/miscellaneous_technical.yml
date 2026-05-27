@@ -1,0 +1,4097 @@
+---
+8960:
+- 8960
+- DIAMETER SIGN
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8961:
+- 8961
+- ELECTRIC ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8962:
+- 8962
+- HOUSE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8963:
+- 8963
+- UP ARROWHEAD
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8964:
+- 8964
+- DOWN ARROWHEAD
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8965:
+- 8965
+- PROJECTIVE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8966:
+- 8966
+- PERSPECTIVE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8967:
+- 8967
+- WAVY LINE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8968:
+- 8968
+- LEFT CEILING
+- Ps
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+8969:
+- 8969
+- RIGHT CEILING
+- Pe
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+8970:
+- 8970
+- LEFT FLOOR
+- Ps
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+8971:
+- 8971
+- RIGHT FLOOR
+- Pe
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+8972:
+- 8972
+- BOTTOM RIGHT CROP
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8973:
+- 8973
+- BOTTOM LEFT CROP
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8974:
+- 8974
+- TOP RIGHT CROP
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8975:
+- 8975
+- TOP LEFT CROP
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8976:
+- 8976
+- REVERSED NOT SIGN
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8977:
+- 8977
+- SQUARE LOZENGE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8978:
+- 8978
+- ARC
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8979:
+- 8979
+- SEGMENT
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8980:
+- 8980
+- SECTOR
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8981:
+- 8981
+- TELEPHONE RECORDER
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8982:
+- 8982
+- POSITION INDICATOR
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8983:
+- 8983
+- VIEWDATA SQUARE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8984:
+- 8984
+- PLACE OF INTEREST SIGN
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- COMMAND KEY
+- ''
+- ''
+- ''
+- ''
+8985:
+- 8985
+- TURNED NOT SIGN
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8986:
+- 8986
+- WATCH
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8987:
+- 8987
+- HOURGLASS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8988:
+- 8988
+- TOP LEFT CORNER
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8989:
+- 8989
+- TOP RIGHT CORNER
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8990:
+- 8990
+- BOTTOM LEFT CORNER
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8991:
+- 8991
+- BOTTOM RIGHT CORNER
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8992:
+- 8992
+- TOP HALF INTEGRAL
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+8993:
+- 8993
+- BOTTOM HALF INTEGRAL
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+8994:
+- 8994
+- FROWN
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8995:
+- 8995
+- SMILE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8996:
+- 8996
+- UP ARROWHEAD BETWEEN TWO HORIZONTAL BARS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ENTER KEY
+- ''
+- ''
+- ''
+- ''
+8997:
+- 8997
+- OPTION KEY
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8998:
+- 8998
+- ERASE TO THE RIGHT
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- DELETE TO THE RIGHT KEY
+- ''
+- ''
+- ''
+- ''
+8999:
+- 8999
+- X IN A RECTANGLE BOX
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- CLEAR KEY
+- ''
+- ''
+- ''
+- ''
+9000:
+- 9000
+- KEYBOARD
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9001:
+- 9001
+- LEFT-POINTING ANGLE BRACKET
+- Ps
+- '0'
+- 'ON'
+- '3008'
+- ''
+- ''
+- ''
+- Y
+- BRA
+- ''
+- ''
+- ''
+- ''
+9002:
+- 9002
+- RIGHT-POINTING ANGLE BRACKET
+- Pe
+- '0'
+- 'ON'
+- '3009'
+- ''
+- ''
+- ''
+- Y
+- KET
+- ''
+- ''
+- ''
+- ''
+9003:
+- 9003
+- ERASE TO THE LEFT
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- DELETE TO THE LEFT KEY
+- ''
+- ''
+- ''
+- ''
+9004:
+- 9004
+- BENZENE RING
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9005:
+- 9005
+- CYLINDRICITY
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9006:
+- 9006
+- ALL AROUND-PROFILE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9007:
+- 9007
+- SYMMETRY
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9008:
+- 9008
+- TOTAL RUNOUT
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9009:
+- 9009
+- DIMENSION ORIGIN
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9010:
+- 9010
+- CONICAL TAPER
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9011:
+- 9011
+- SLOPE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9012:
+- 9012
+- COUNTERBORE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9013:
+- 9013
+- COUNTERSINK
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9014:
+- 9014
+- APL FUNCTIONAL SYMBOL I-BEAM
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9015:
+- 9015
+- APL FUNCTIONAL SYMBOL SQUISH QUAD
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9016:
+- 9016
+- APL FUNCTIONAL SYMBOL QUAD EQUAL
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9017:
+- 9017
+- APL FUNCTIONAL SYMBOL QUAD DIVIDE
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9018:
+- 9018
+- APL FUNCTIONAL SYMBOL QUAD DIAMOND
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9019:
+- 9019
+- APL FUNCTIONAL SYMBOL QUAD JOT
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9020:
+- 9020
+- APL FUNCTIONAL SYMBOL QUAD CIRCLE
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9021:
+- 9021
+- APL FUNCTIONAL SYMBOL CIRCLE STILE
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9022:
+- 9022
+- APL FUNCTIONAL SYMBOL CIRCLE JOT
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9023:
+- 9023
+- APL FUNCTIONAL SYMBOL SLASH BAR
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9024:
+- 9024
+- APL FUNCTIONAL SYMBOL BACKSLASH BAR
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9025:
+- 9025
+- APL FUNCTIONAL SYMBOL QUAD SLASH
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9026:
+- 9026
+- APL FUNCTIONAL SYMBOL QUAD BACKSLASH
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9027:
+- 9027
+- APL FUNCTIONAL SYMBOL QUAD LESS-THAN
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9028:
+- 9028
+- APL FUNCTIONAL SYMBOL QUAD GREATER-THAN
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9029:
+- 9029
+- APL FUNCTIONAL SYMBOL LEFTWARDS VANE
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9030:
+- 9030
+- APL FUNCTIONAL SYMBOL RIGHTWARDS VANE
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9031:
+- 9031
+- APL FUNCTIONAL SYMBOL QUAD LEFTWARDS ARROW
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9032:
+- 9032
+- APL FUNCTIONAL SYMBOL QUAD RIGHTWARDS ARROW
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9033:
+- 9033
+- APL FUNCTIONAL SYMBOL CIRCLE BACKSLASH
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9034:
+- 9034
+- APL FUNCTIONAL SYMBOL DOWN TACK UNDERBAR
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9035:
+- 9035
+- APL FUNCTIONAL SYMBOL DELTA STILE
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9036:
+- 9036
+- APL FUNCTIONAL SYMBOL QUAD DOWN CARET
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9037:
+- 9037
+- APL FUNCTIONAL SYMBOL QUAD DELTA
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9038:
+- 9038
+- APL FUNCTIONAL SYMBOL DOWN TACK JOT
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9039:
+- 9039
+- APL FUNCTIONAL SYMBOL UPWARDS VANE
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9040:
+- 9040
+- APL FUNCTIONAL SYMBOL QUAD UPWARDS ARROW
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9041:
+- 9041
+- APL FUNCTIONAL SYMBOL UP TACK OVERBAR
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9042:
+- 9042
+- APL FUNCTIONAL SYMBOL DEL STILE
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9043:
+- 9043
+- APL FUNCTIONAL SYMBOL QUAD UP CARET
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9044:
+- 9044
+- APL FUNCTIONAL SYMBOL QUAD DEL
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9045:
+- 9045
+- APL FUNCTIONAL SYMBOL UP TACK JOT
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9046:
+- 9046
+- APL FUNCTIONAL SYMBOL DOWNWARDS VANE
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9047:
+- 9047
+- APL FUNCTIONAL SYMBOL QUAD DOWNWARDS ARROW
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9048:
+- 9048
+- APL FUNCTIONAL SYMBOL QUOTE UNDERBAR
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9049:
+- 9049
+- APL FUNCTIONAL SYMBOL DELTA UNDERBAR
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9050:
+- 9050
+- APL FUNCTIONAL SYMBOL DIAMOND UNDERBAR
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9051:
+- 9051
+- APL FUNCTIONAL SYMBOL JOT UNDERBAR
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9052:
+- 9052
+- APL FUNCTIONAL SYMBOL CIRCLE UNDERBAR
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9053:
+- 9053
+- APL FUNCTIONAL SYMBOL UP SHOE JOT
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9054:
+- 9054
+- APL FUNCTIONAL SYMBOL QUOTE QUAD
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9055:
+- 9055
+- APL FUNCTIONAL SYMBOL CIRCLE STAR
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9056:
+- 9056
+- APL FUNCTIONAL SYMBOL QUAD COLON
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9057:
+- 9057
+- APL FUNCTIONAL SYMBOL UP TACK DIAERESIS
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9058:
+- 9058
+- APL FUNCTIONAL SYMBOL DEL DIAERESIS
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9059:
+- 9059
+- APL FUNCTIONAL SYMBOL STAR DIAERESIS
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9060:
+- 9060
+- APL FUNCTIONAL SYMBOL JOT DIAERESIS
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9061:
+- 9061
+- APL FUNCTIONAL SYMBOL CIRCLE DIAERESIS
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9062:
+- 9062
+- APL FUNCTIONAL SYMBOL DOWN SHOE STILE
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9063:
+- 9063
+- APL FUNCTIONAL SYMBOL LEFT SHOE STILE
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9064:
+- 9064
+- APL FUNCTIONAL SYMBOL TILDE DIAERESIS
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9065:
+- 9065
+- APL FUNCTIONAL SYMBOL GREATER-THAN DIAERESIS
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9066:
+- 9066
+- APL FUNCTIONAL SYMBOL COMMA BAR
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9067:
+- 9067
+- APL FUNCTIONAL SYMBOL DEL TILDE
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9068:
+- 9068
+- APL FUNCTIONAL SYMBOL ZILDE
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9069:
+- 9069
+- APL FUNCTIONAL SYMBOL STILE TILDE
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9070:
+- 9070
+- APL FUNCTIONAL SYMBOL SEMICOLON UNDERBAR
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9071:
+- 9071
+- APL FUNCTIONAL SYMBOL QUAD NOT EQUAL
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9072:
+- 9072
+- APL FUNCTIONAL SYMBOL QUAD QUESTION
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9073:
+- 9073
+- APL FUNCTIONAL SYMBOL DOWN CARET TILDE
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9074:
+- 9074
+- APL FUNCTIONAL SYMBOL UP CARET TILDE
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9075:
+- 9075
+- APL FUNCTIONAL SYMBOL IOTA
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9076:
+- 9076
+- APL FUNCTIONAL SYMBOL RHO
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9077:
+- 9077
+- APL FUNCTIONAL SYMBOL OMEGA
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9078:
+- 9078
+- APL FUNCTIONAL SYMBOL ALPHA UNDERBAR
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9079:
+- 9079
+- APL FUNCTIONAL SYMBOL EPSILON UNDERBAR
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9080:
+- 9080
+- APL FUNCTIONAL SYMBOL IOTA UNDERBAR
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9081:
+- 9081
+- APL FUNCTIONAL SYMBOL OMEGA UNDERBAR
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9082:
+- 9082
+- APL FUNCTIONAL SYMBOL ALPHA
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9083:
+- 9083
+- NOT CHECK MARK
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9084:
+- 9084
+- RIGHT ANGLE WITH DOWNWARDS ZIGZAG ARROW
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9085:
+- 9085
+- SHOULDERED OPEN BOX
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9086:
+- 9086
+- BELL SYMBOL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9087:
+- 9087
+- VERTICAL LINE WITH MIDDLE DOT
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9088:
+- 9088
+- INSERTION SYMBOL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9089:
+- 9089
+- CONTINUOUS UNDERLINE SYMBOL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9090:
+- 9090
+- DISCONTINUOUS UNDERLINE SYMBOL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9091:
+- 9091
+- EMPHASIS SYMBOL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9092:
+- 9092
+- COMPOSITION SYMBOL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9093:
+- 9093
+- WHITE SQUARE WITH CENTRE VERTICAL LINE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9094:
+- 9094
+- ENTER SYMBOL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9095:
+- 9095
+- ALTERNATIVE KEY SYMBOL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9096:
+- 9096
+- HELM SYMBOL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9097:
+- 9097
+- CIRCLED HORIZONTAL BAR WITH NOTCH
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9098:
+- 9098
+- CIRCLED TRIANGLE DOWN
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9099:
+- 9099
+- BROKEN CIRCLE WITH NORTHWEST ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9100:
+- 9100
+- UNDO SYMBOL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9101:
+- 9101
+- MONOSTABLE SYMBOL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9102:
+- 9102
+- HYSTERESIS SYMBOL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9103:
+- 9103
+- OPEN-CIRCUIT-OUTPUT H-TYPE SYMBOL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9104:
+- 9104
+- OPEN-CIRCUIT-OUTPUT L-TYPE SYMBOL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9105:
+- 9105
+- PASSIVE-PULL-DOWN-OUTPUT SYMBOL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9106:
+- 9106
+- PASSIVE-PULL-UP-OUTPUT SYMBOL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9107:
+- 9107
+- DIRECT CURRENT SYMBOL FORM TWO
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9108:
+- 9108
+- SOFTWARE-FUNCTION SYMBOL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9109:
+- 9109
+- APL FUNCTIONAL SYMBOL QUAD
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9110:
+- 9110
+- DECIMAL SEPARATOR KEY SYMBOL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9111:
+- 9111
+- PREVIOUS PAGE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9112:
+- 9112
+- NEXT PAGE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9113:
+- 9113
+- PRINT SCREEN SYMBOL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9114:
+- 9114
+- CLEAR SCREEN SYMBOL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9115:
+- 9115
+- LEFT PARENTHESIS UPPER HOOK
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9116:
+- 9116
+- LEFT PARENTHESIS EXTENSION
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9117:
+- 9117
+- LEFT PARENTHESIS LOWER HOOK
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9118:
+- 9118
+- RIGHT PARENTHESIS UPPER HOOK
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9119:
+- 9119
+- RIGHT PARENTHESIS EXTENSION
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9120:
+- 9120
+- RIGHT PARENTHESIS LOWER HOOK
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9121:
+- 9121
+- LEFT SQUARE BRACKET UPPER CORNER
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9122:
+- 9122
+- LEFT SQUARE BRACKET EXTENSION
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9123:
+- 9123
+- LEFT SQUARE BRACKET LOWER CORNER
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9124:
+- 9124
+- RIGHT SQUARE BRACKET UPPER CORNER
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9125:
+- 9125
+- RIGHT SQUARE BRACKET EXTENSION
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9126:
+- 9126
+- RIGHT SQUARE BRACKET LOWER CORNER
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9127:
+- 9127
+- LEFT CURLY BRACKET UPPER HOOK
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9128:
+- 9128
+- LEFT CURLY BRACKET MIDDLE PIECE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9129:
+- 9129
+- LEFT CURLY BRACKET LOWER HOOK
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9130:
+- 9130
+- CURLY BRACKET EXTENSION
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9131:
+- 9131
+- RIGHT CURLY BRACKET UPPER HOOK
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9132:
+- 9132
+- RIGHT CURLY BRACKET MIDDLE PIECE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9133:
+- 9133
+- RIGHT CURLY BRACKET LOWER HOOK
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9134:
+- 9134
+- INTEGRAL EXTENSION
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9135:
+- 9135
+- HORIZONTAL LINE EXTENSION
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9136:
+- 9136
+- UPPER LEFT OR LOWER RIGHT CURLY BRACKET SECTION
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9137:
+- 9137
+- UPPER RIGHT OR LOWER LEFT CURLY BRACKET SECTION
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9138:
+- 9138
+- SUMMATION TOP
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9139:
+- 9139
+- SUMMATION BOTTOM
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9140:
+- 9140
+- TOP SQUARE BRACKET
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9141:
+- 9141
+- BOTTOM SQUARE BRACKET
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9142:
+- 9142
+- BOTTOM SQUARE BRACKET OVER TOP SQUARE BRACKET
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9143:
+- 9143
+- RADICAL SYMBOL BOTTOM
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9144:
+- 9144
+- LEFT VERTICAL BOX LINE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9145:
+- 9145
+- RIGHT VERTICAL BOX LINE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9146:
+- 9146
+- HORIZONTAL SCAN LINE-1
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9147:
+- 9147
+- HORIZONTAL SCAN LINE-3
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9148:
+- 9148
+- HORIZONTAL SCAN LINE-7
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9149:
+- 9149
+- HORIZONTAL SCAN LINE-9
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9150:
+- 9150
+- DENTISTRY SYMBOL LIGHT VERTICAL AND TOP RIGHT
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9151:
+- 9151
+- DENTISTRY SYMBOL LIGHT VERTICAL AND BOTTOM RIGHT
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9152:
+- 9152
+- DENTISTRY SYMBOL LIGHT VERTICAL WITH CIRCLE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9153:
+- 9153
+- DENTISTRY SYMBOL LIGHT DOWN AND HORIZONTAL WITH CIRCLE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9154:
+- 9154
+- DENTISTRY SYMBOL LIGHT UP AND HORIZONTAL WITH CIRCLE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9155:
+- 9155
+- DENTISTRY SYMBOL LIGHT VERTICAL WITH TRIANGLE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9156:
+- 9156
+- DENTISTRY SYMBOL LIGHT DOWN AND HORIZONTAL WITH TRIANGLE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9157:
+- 9157
+- DENTISTRY SYMBOL LIGHT UP AND HORIZONTAL WITH TRIANGLE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9158:
+- 9158
+- DENTISTRY SYMBOL LIGHT VERTICAL AND WAVE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9159:
+- 9159
+- DENTISTRY SYMBOL LIGHT DOWN AND HORIZONTAL WITH WAVE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9160:
+- 9160
+- DENTISTRY SYMBOL LIGHT UP AND HORIZONTAL WITH WAVE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9161:
+- 9161
+- DENTISTRY SYMBOL LIGHT DOWN AND HORIZONTAL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9162:
+- 9162
+- DENTISTRY SYMBOL LIGHT UP AND HORIZONTAL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9163:
+- 9163
+- DENTISTRY SYMBOL LIGHT VERTICAL AND TOP LEFT
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9164:
+- 9164
+- DENTISTRY SYMBOL LIGHT VERTICAL AND BOTTOM LEFT
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9165:
+- 9165
+- SQUARE FOOT
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9166:
+- 9166
+- RETURN SYMBOL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9167:
+- 9167
+- EJECT SYMBOL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9168:
+- 9168
+- VERTICAL LINE EXTENSION
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9169:
+- 9169
+- METRICAL BREVE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9170:
+- 9170
+- METRICAL LONG OVER SHORT
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9171:
+- 9171
+- METRICAL SHORT OVER LONG
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9172:
+- 9172
+- METRICAL LONG OVER TWO SHORTS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9173:
+- 9173
+- METRICAL TWO SHORTS OVER LONG
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9174:
+- 9174
+- METRICAL TWO SHORTS JOINED
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9175:
+- 9175
+- METRICAL TRISEME
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9176:
+- 9176
+- METRICAL TETRASEME
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9177:
+- 9177
+- METRICAL PENTASEME
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9178:
+- 9178
+- EARTH GROUND
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9179:
+- 9179
+- FUSE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9180:
+- 9180
+- TOP PARENTHESIS
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9181:
+- 9181
+- BOTTOM PARENTHESIS
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9182:
+- 9182
+- TOP CURLY BRACKET
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9183:
+- 9183
+- BOTTOM CURLY BRACKET
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9184:
+- 9184
+- TOP TORTOISE SHELL BRACKET
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9185:
+- 9185
+- BOTTOM TORTOISE SHELL BRACKET
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9186:
+- 9186
+- WHITE TRAPEZIUM
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9187:
+- 9187
+- BENZENE RING WITH CIRCLE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9188:
+- 9188
+- STRAIGHTNESS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9189:
+- 9189
+- FLATNESS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9190:
+- 9190
+- AC CURRENT
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9191:
+- 9191
+- ELECTRICAL INTERSECTION
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9192:
+- 9192
+- DECIMAL EXPONENT SYMBOL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9193:
+- 9193
+- BLACK RIGHT-POINTING DOUBLE TRIANGLE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9194:
+- 9194
+- BLACK LEFT-POINTING DOUBLE TRIANGLE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9195:
+- 9195
+- BLACK UP-POINTING DOUBLE TRIANGLE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9196:
+- 9196
+- BLACK DOWN-POINTING DOUBLE TRIANGLE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9197:
+- 9197
+- BLACK RIGHT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9198:
+- 9198
+- BLACK LEFT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9199:
+- 9199
+- BLACK RIGHT-POINTING TRIANGLE WITH DOUBLE VERTICAL BAR
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9200:
+- 9200
+- ALARM CLOCK
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9201:
+- 9201
+- STOPWATCH
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9202:
+- 9202
+- TIMER CLOCK
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9203:
+- 9203
+- HOURGLASS WITH FLOWING SAND
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9204:
+- 9204
+- BLACK MEDIUM LEFT-POINTING TRIANGLE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9205:
+- 9205
+- BLACK MEDIUM RIGHT-POINTING TRIANGLE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9206:
+- 9206
+- BLACK MEDIUM UP-POINTING TRIANGLE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9207:
+- 9207
+- BLACK MEDIUM DOWN-POINTING TRIANGLE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9208:
+- 9208
+- DOUBLE VERTICAL BAR
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9209:
+- 9209
+- BLACK SQUARE FOR STOP
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9210:
+- 9210
+- BLACK CIRCLE FOR RECORD
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9211:
+- 9211
+- POWER SYMBOL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9212:
+- 9212
+- POWER ON-OFF SYMBOL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9213:
+- 9213
+- POWER ON SYMBOL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9214:
+- 9214
+- POWER SLEEP SYMBOL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9215:
+- 9215
+- OBSERVER EYE SYMBOL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''

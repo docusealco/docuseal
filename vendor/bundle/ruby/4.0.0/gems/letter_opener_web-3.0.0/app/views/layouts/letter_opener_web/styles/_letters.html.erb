@@ -1,0 +1,79 @@
+<style>
+  @media (prefers-color-scheme: dark) {
+      body {
+          background-color: black;
+      }
+      .left, .right {
+          filter: invert(1) hue-rotate(180deg);
+      }
+  }
+
+  body {
+    margin: 0
+  }
+
+  .col {
+    top:      0;
+    bottom:   0;
+  }
+
+  .left {
+    overflow-y: auto;
+    width:      350px;
+    position:   absolute;
+  }
+
+  .right {
+    left:     350px;
+    right:    0;
+    position: fixed;
+  }
+
+  iframe {
+    width:      100%;
+    height:     100%;
+    position:   absolute;
+    border:     solid 1px #ccc;
+    border-top: none;
+  }
+
+  h1 {
+    padding-right: 10px;
+    padding-left:  5px;
+  }
+
+  .message-headers a {
+    color: black;
+  }
+
+  .message-headers.active a {
+    color: white;
+  }
+
+  .message-headers dl {
+    float: left;
+    font-size: 0.8rem;
+    padding: 0;
+    margin: 0;
+  }
+
+  .message-headers dt {
+    width: 60px;
+    margin: 0;
+    float: left;
+    font-weight: bold;
+  }
+
+  .message-headers dd {
+    margin: 0 0 0 60px;
+  }
+
+  .message-headers p.alternate {
+    float: right;
+    margin: 0;
+  }
+
+  .message-headers p.alternate a {
+    color: #09c;
+  }
+</style>

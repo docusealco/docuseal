@@ -1,0 +1,158 @@
+--- 
+:fil: 
+  :rbnf: 
+    :grouping: 
+      - 
+        :ruleset: 
+          - 
+            :rules: 
+              - 
+                :rule: =0.0=;
+                :value: x.x
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 0
+            :type: spellout-numbering-year
+          - 
+            :rules: 
+              - 
+                :rule: =%spellout-cardinal=;
+                :value: 0
+            :type: spellout-numbering
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: isáng;
+                :value: 1
+              - 
+                :rule: dalawáng;
+                :value: 2
+              - 
+                :rule: tatlóng;
+                :value: 3
+              - 
+                :rule: "ápat na;"
+                :value: 4
+              - 
+                :rule: limáng;
+                :value: 5
+              - 
+                :rule: "anim na;"
+                :value: 6
+              - 
+                :rule: pitóng;
+                :value: 7
+              - 
+                :rule: walóng;
+                :value: 8
+              - 
+                :rule: "siyám na;"
+                :value: 9
+              - 
+                :rule: sampûng;
+                :value: 10
+              - 
+                :rule: labíng->>;
+                :value: 11
+              - 
+                :rule: "<%%number-times< pû[’t >>];"
+                :value: 20
+              - 
+                :rule: "<%%number-times< daán[ at >>];"
+                :value: 100
+              - 
+                :rule: "<%%number-times< libó[’t >>];"
+                :value: 1000
+            :type: number-times
+          - 
+            :rules: 
+              - 
+                :rule: "minus >>;"
+                :value: "-x"
+              - 
+                :rule: "<< tuldok >>;"
+                :value: x.x
+              - 
+                :rule: walâ;
+                :value: 0
+              - 
+                :rule: isá;
+                :value: 1
+              - 
+                :rule: dalawá;
+                :value: 2
+              - 
+                :rule: tatló;
+                :value: 3
+              - 
+                :rule: ápat;
+                :value: 4
+              - 
+                :rule: limá;
+                :value: 5
+              - 
+                :rule: anim;
+                :value: 6
+              - 
+                :rule: pitó;
+                :value: 7
+              - 
+                :rule: waló;
+                :value: 8
+              - 
+                :rule: siyám;
+                :value: 9
+              - 
+                :rule: sampû;
+                :value: 10
+              - 
+                :rule: labíng->>;
+                :value: 11
+              - 
+                :rule: "<%%number-times< pû[’t >>];"
+                :value: 20
+              - 
+                :rule: "<%%number-times< daán[ at >>];"
+                :value: 100
+              - 
+                :rule: "<%%number-times< libó[’t >>];"
+                :value: 1000
+              - 
+                :rule: "<%%number-times< milyón[ at >>];"
+                :value: 1000000
+              - 
+                :rule: "<%%number-times< bilyón[ at >>];"
+                :value: 1000000000
+              - 
+                :rule: "<%%number-times< trilyón[ at >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%%number-times< katrilyón[ at >>];"
+                :value: 1000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal
+          - 
+            :rules: 
+              - 
+                :rule: "=#,##0.#=;"
+                :value: x.x
+              - 
+                :rule: "ika =%spellout-cardinal=;"
+                :value: 0
+            :type: spellout-ordinal
+        :type: SpelloutRules
+      - 
+        :ruleset: 
+          - 
+            :rules: 
+              - 
+                :rule: −>>;
+                :value: "-x"
+              - 
+                :rule: "ika=#,##0=;"
+                :value: 0
+            :type: digits-ordinal
+        :type: OrdinalRules

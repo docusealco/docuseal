@@ -1,0 +1,254 @@
+--- 
+:az: 
+  :fields: 
+    :day: 
+      :display_name: Gün
+      :relative: 
+        -1: dünən
+        0: "bu gün"
+        1: sabah
+      :relative_time: 
+        :future: 
+          :one: "{0} gün ərzində"
+          :other: "{0} gün ərzində"
+        :past: 
+          :one: "{0} gün öncə"
+          :other: "{0} gün öncə"
+    :dayOfYear: 
+      :display_name: "ilin günü"
+    :dayperiod: 
+      :display_name: AM/PM
+    :fri: 
+      :relative: 
+        -1: "keçən cümə"
+        0: "bu cümə"
+        1: "gələn cümə"
+      :relative_time: 
+        :future: 
+          :one: "{0} cümə ərzində"
+          :other: "{0} cümə ərzində"
+        :past: 
+          :one: "{0} cümə öncə"
+          :other: "{0} cümə öncə"
+    :fri-narrow: 
+      :relative: 
+        -1: "keçən C"
+        0: "bu C"
+        1: "gələn C"
+    :hour: 
+      :display_name: Saat
+      :relative: 
+        0: "bu saat"
+      :relative_time: 
+        :future: 
+          :one: "{0} saat ərzində"
+          :other: "{0} saat ərzində"
+        :past: 
+          :one: "{0} saat öncə"
+          :other: "{0} saat öncə"
+    :hour-short: 
+      :display_name: saat
+    :minute: 
+      :display_name: Dəqiqə
+      :relative: 
+        0: "bu dəqiqə"
+      :relative_time: 
+        :future: 
+          :one: "{0} dəqiqə ərzində"
+          :other: "{0} dəqiqə ərzində"
+        :past: 
+          :one: "{0} dəqiqə öncə"
+          :other: "{0} dəqiqə öncə"
+    :minute-short: 
+      :display_name: dəq.
+    :mon: 
+      :relative: 
+        -1: "keçən bazar ertəsi"
+        0: "bu bazar ertəsi"
+        1: "gələn bazar ertəsi"
+      :relative_time: 
+        :future: 
+          :one: "{0} bazar ertəsi ərzində"
+          :other: "{0} bazar ertəsi əzrində"
+        :past: 
+          :one: "{0} bazar ertəsi öncə"
+          :other: "{0} bazar ertəsi öncə"
+    :mon-narrow: 
+      :relative: 
+        -1: "keçən BE"
+        0: "bu BE"
+        1: "gələn BE"
+    :mon-short: 
+      :relative_time: 
+        :future: 
+          :one: "{0} bazar ertəsi ərzində"
+          :other: "{0} bazar ertəsi ərzində"
+    :month: 
+      :display_name: Ay
+      :relative: 
+        -1: "keçən ay"
+        0: "bu ay"
+        1: "gələn ay"
+      :relative_time: 
+        :future: 
+          :one: "{0} ay ərzində"
+          :other: "{0} ay ərzində"
+        :past: 
+          :one: "{0} ay öncə"
+          :other: "{0} ay öncə"
+    :month-short: 
+      :display_name: ay
+    :quarter: 
+      :display_name: Rüb
+      :relative: 
+        -1: "keçən rüb"
+        0: "bu rüb"
+        1: "gələn rüb"
+      :relative_time: 
+        :future: 
+          :one: "{0} rüb ərzində"
+          :other: "{0} rüb ərzində"
+        :past: 
+          :one: "{0} rüb öncə"
+          :other: "{0} rüb öncə"
+    :quarter-short: 
+      :display_name: rüb
+    :sat: 
+      :relative: 
+        -1: "keçən şənbə"
+        0: "bu şənbə"
+        1: "gələn şənbə"
+      :relative_time: 
+        :future: 
+          :one: "{0} şənbə ərzində"
+          :other: "{0} şənbə ərzində"
+        :past: 
+          :one: "{0} şənbə öncə"
+          :other: "{0} şənbə öncə"
+    :sat-narrow: 
+      :relative: 
+        -1: "keçən Ş"
+        0: "bu Ş"
+        1: "gələn Ş"
+    :second: 
+      :display_name: Saniyə
+      :relative: 
+        0: indi
+      :relative_time: 
+        :future: 
+          :one: "{0} saniyə ərzində"
+          :other: "{0} saniyə ərzində"
+        :past: 
+          :one: "{0} saniyə öncə"
+          :other: "{0} saniyə öncə"
+    :second-short: 
+      :display_name: san.
+    :sun: 
+      :relative: 
+        -1: "keçən bazar"
+        0: "bu bazar"
+        1: "gələn bazar"
+      :relative_time: 
+        :future: 
+          :one: "{0} bazar ərzində"
+          :other: "{0} bazar ərzində"
+        :past: 
+          :one: "{0} bazar öncə"
+          :other: "{0} bazar öncə"
+    :thu: 
+      :relative: 
+        -1: "keçən cümə axşamı"
+        0: "bu cümə axşamı"
+        1: "gələn cümə axşamı"
+      :relative_time: 
+        :future: 
+          :one: "{0} cümə axşamı ərzində"
+          :other: "{0} cümə axşamı ərzində"
+        :past: 
+          :one: "{0} cümə axşamı öncə"
+          :other: "{0} cümə axşamı öncə"
+    :thu-narrow: 
+      :relative: 
+        -1: "keçən CA"
+        0: "bu CA"
+        1: "gələn CA"
+    :tue: 
+      :relative: 
+        -1: "keçən çərşənbə axşamı"
+        0: "bu çərşənbə axşamı"
+        1: "gələn çərşənbə axşamı"
+      :relative_time: 
+        :future: 
+          :one: "{0} çərşənbə axşamı ərzində"
+          :other: "{0} çərşənbə axşamı ərzində"
+        :past: 
+          :one: "{0} çərşənbə axşamı öncə"
+          :other: "{0} çərşənbə axşamı öncə"
+    :tue-short: 
+      :relative: 
+        -1: "keçən ÇƏ"
+        0: "bu ÇƏ"
+        1: "gələn ÇƏ"
+    :wed: 
+      :relative: 
+        -1: "keçən çərşənbə"
+        0: "bu çərşənbə"
+        1: "gələn çərşənbə"
+      :relative_time: 
+        :future: 
+          :one: "{0} çərşənbə ərzində"
+          :other: "{0} çərşənbə ərzində"
+        :past: 
+          :one: "{0} çərşənbə öncə"
+          :other: "{0} çərşənbə öncə"
+    :wed-narrow: 
+      :relative: 
+        -1: "keçən Ç"
+        0: "bu Ç"
+        1: "gələn Ç"
+    :week: 
+      :display_name: Həftə
+      :relative: 
+        -1: "keçən həftə"
+        0: "bu həftə"
+        1: "gələn həftə"
+      :relative_time: 
+        :future: 
+          :one: "{0} həftə ərzində"
+          :other: "{0} həftə ərzində"
+        :past: 
+          :one: "{0} həftə öncə"
+          :other: "{0} həftə öncə"
+    :week-short: 
+      :display_name: həftə
+    :weekOfMonth: 
+      :display_name: "Ayın həftəsi"
+    :weekOfMonth-short: 
+      :display_name: "ay hft."
+    :weekday: 
+      :display_name: "Həftənin Günü"
+    :weekday-short: 
+      :display_name: "hft. günü"
+    :weekdayOfMonth: 
+      :display_name: "ayın həftə günü"
+    :weekdayOfMonth-short: 
+      :display_name: "ay hft. günü"
+    :year: 
+      :display_name: İl
+      :relative: 
+        -1: "keçən il"
+        0: "bu il"
+        1: "gələn il"
+      :relative_time: 
+        :future: 
+          :one: "{0} il ərzində"
+          :other: "{0} il ərzində"
+        :past: 
+          :one: "{0} il öncə"
+          :other: "{0} il öncə"
+    :year-short: 
+      :display_name: il
+    :zone: 
+      :display_name: "Saat Qurşağı"
+    :zone-short: 
+      :display_name: qurşaq

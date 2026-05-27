@@ -1,0 +1,15 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - el-t-d0-lower
+    :direction: forward
+    :rules: 
+      - "::NFD() ;"
+      - "Σ } [:Case_Ignorable:]* [:Cased:] > σ ;"
+      - "[:Cased:] [:Case_Ignorable:]* { Σ > ς ;"
+      - "::Any-Lower ;"
+      - "::NFC() ;"
+    :source: el
+    :target: Lower
+    :variant: ~

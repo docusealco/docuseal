@@ -585,7 +585,7 @@ export default {
     prefillableFieldTypes: FieldSettings.computed.prefillableFieldTypes,
     verificationMethods: FieldSettings.computed.verificationMethods,
     modalContainerEl () {
-      return this.$el.getRootNode().querySelector('#docuseal_modal_container')
+      return this.$el.getRootNode().querySelector('#wabosign_modal_container')
     },
     modalFieldName () {
       return (this.defaultField ? (this.defaultField.title || this.field.title || this.field.name) : this.field.name) || this.buildDefaultName(this.field)

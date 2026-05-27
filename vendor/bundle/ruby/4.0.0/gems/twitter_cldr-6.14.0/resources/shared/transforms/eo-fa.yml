@@ -1,0 +1,12 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - fa-t-eo
+    :direction: forward
+    :rules: 
+      - "::eo-eo_FONIPA ;"
+      - "::und_FONIPA-fa ;"
+    :source: eo
+    :target: fa
+    :variant: ~

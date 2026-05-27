@@ -1,0 +1,3601 @@
+---
+65281:
+- 65281
+- FULLWIDTH EXCLAMATION MARK
+- Po
+- '0'
+- 'ON'
+- "<wide> 0021"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65282:
+- 65282
+- FULLWIDTH QUOTATION MARK
+- Po
+- '0'
+- 'ON'
+- "<wide> 0022"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65283:
+- 65283
+- FULLWIDTH NUMBER SIGN
+- Po
+- '0'
+- ET
+- "<wide> 0023"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65284:
+- 65284
+- FULLWIDTH DOLLAR SIGN
+- Sc
+- '0'
+- ET
+- "<wide> 0024"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65285:
+- 65285
+- FULLWIDTH PERCENT SIGN
+- Po
+- '0'
+- ET
+- "<wide> 0025"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65286:
+- 65286
+- FULLWIDTH AMPERSAND
+- Po
+- '0'
+- 'ON'
+- "<wide> 0026"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65287:
+- 65287
+- FULLWIDTH APOSTROPHE
+- Po
+- '0'
+- 'ON'
+- "<wide> 0027"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65288:
+- 65288
+- FULLWIDTH LEFT PARENTHESIS
+- Ps
+- '0'
+- 'ON'
+- "<wide> 0028"
+- ''
+- ''
+- ''
+- Y
+- FULLWIDTH OPENING PARENTHESIS
+- ''
+- ''
+- ''
+- ''
+65289:
+- 65289
+- FULLWIDTH RIGHT PARENTHESIS
+- Pe
+- '0'
+- 'ON'
+- "<wide> 0029"
+- ''
+- ''
+- ''
+- Y
+- FULLWIDTH CLOSING PARENTHESIS
+- ''
+- ''
+- ''
+- ''
+65290:
+- 65290
+- FULLWIDTH ASTERISK
+- Po
+- '0'
+- 'ON'
+- "<wide> 002A"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65291:
+- 65291
+- FULLWIDTH PLUS SIGN
+- Sm
+- '0'
+- ES
+- "<wide> 002B"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65292:
+- 65292
+- FULLWIDTH COMMA
+- Po
+- '0'
+- CS
+- "<wide> 002C"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65293:
+- 65293
+- FULLWIDTH HYPHEN-MINUS
+- Pd
+- '0'
+- ES
+- "<wide> 002D"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65294:
+- 65294
+- FULLWIDTH FULL STOP
+- Po
+- '0'
+- CS
+- "<wide> 002E"
+- ''
+- ''
+- ''
+- N
+- FULLWIDTH PERIOD
+- ''
+- ''
+- ''
+- ''
+65295:
+- 65295
+- FULLWIDTH SOLIDUS
+- Po
+- '0'
+- CS
+- "<wide> 002F"
+- ''
+- ''
+- ''
+- N
+- FULLWIDTH SLASH
+- ''
+- ''
+- ''
+- ''
+65296:
+- 65296
+- FULLWIDTH DIGIT ZERO
+- Nd
+- '0'
+- EN
+- "<wide> 0030"
+- '0'
+- '0'
+- '0'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65297:
+- 65297
+- FULLWIDTH DIGIT ONE
+- Nd
+- '0'
+- EN
+- "<wide> 0031"
+- '1'
+- '1'
+- '1'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65298:
+- 65298
+- FULLWIDTH DIGIT TWO
+- Nd
+- '0'
+- EN
+- "<wide> 0032"
+- '2'
+- '2'
+- '2'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65299:
+- 65299
+- FULLWIDTH DIGIT THREE
+- Nd
+- '0'
+- EN
+- "<wide> 0033"
+- '3'
+- '3'
+- '3'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65300:
+- 65300
+- FULLWIDTH DIGIT FOUR
+- Nd
+- '0'
+- EN
+- "<wide> 0034"
+- '4'
+- '4'
+- '4'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65301:
+- 65301
+- FULLWIDTH DIGIT FIVE
+- Nd
+- '0'
+- EN
+- "<wide> 0035"
+- '5'
+- '5'
+- '5'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65302:
+- 65302
+- FULLWIDTH DIGIT SIX
+- Nd
+- '0'
+- EN
+- "<wide> 0036"
+- '6'
+- '6'
+- '6'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65303:
+- 65303
+- FULLWIDTH DIGIT SEVEN
+- Nd
+- '0'
+- EN
+- "<wide> 0037"
+- '7'
+- '7'
+- '7'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65304:
+- 65304
+- FULLWIDTH DIGIT EIGHT
+- Nd
+- '0'
+- EN
+- "<wide> 0038"
+- '8'
+- '8'
+- '8'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65305:
+- 65305
+- FULLWIDTH DIGIT NINE
+- Nd
+- '0'
+- EN
+- "<wide> 0039"
+- '9'
+- '9'
+- '9'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65306:
+- 65306
+- FULLWIDTH COLON
+- Po
+- '0'
+- CS
+- "<wide> 003A"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65307:
+- 65307
+- FULLWIDTH SEMICOLON
+- Po
+- '0'
+- 'ON'
+- "<wide> 003B"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65308:
+- 65308
+- FULLWIDTH LESS-THAN SIGN
+- Sm
+- '0'
+- 'ON'
+- "<wide> 003C"
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+65309:
+- 65309
+- FULLWIDTH EQUALS SIGN
+- Sm
+- '0'
+- 'ON'
+- "<wide> 003D"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65310:
+- 65310
+- FULLWIDTH GREATER-THAN SIGN
+- Sm
+- '0'
+- 'ON'
+- "<wide> 003E"
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+65311:
+- 65311
+- FULLWIDTH QUESTION MARK
+- Po
+- '0'
+- 'ON'
+- "<wide> 003F"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65312:
+- 65312
+- FULLWIDTH COMMERCIAL AT
+- Po
+- '0'
+- 'ON'
+- "<wide> 0040"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65313:
+- 65313
+- FULLWIDTH LATIN CAPITAL LETTER A
+- Lu
+- '0'
+- L
+- "<wide> 0041"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- FF41
+- ''
+65314:
+- 65314
+- FULLWIDTH LATIN CAPITAL LETTER B
+- Lu
+- '0'
+- L
+- "<wide> 0042"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- FF42
+- ''
+65315:
+- 65315
+- FULLWIDTH LATIN CAPITAL LETTER C
+- Lu
+- '0'
+- L
+- "<wide> 0043"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- FF43
+- ''
+65316:
+- 65316
+- FULLWIDTH LATIN CAPITAL LETTER D
+- Lu
+- '0'
+- L
+- "<wide> 0044"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- FF44
+- ''
+65317:
+- 65317
+- FULLWIDTH LATIN CAPITAL LETTER E
+- Lu
+- '0'
+- L
+- "<wide> 0045"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- FF45
+- ''
+65318:
+- 65318
+- FULLWIDTH LATIN CAPITAL LETTER F
+- Lu
+- '0'
+- L
+- "<wide> 0046"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- FF46
+- ''
+65319:
+- 65319
+- FULLWIDTH LATIN CAPITAL LETTER G
+- Lu
+- '0'
+- L
+- "<wide> 0047"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- FF47
+- ''
+65320:
+- 65320
+- FULLWIDTH LATIN CAPITAL LETTER H
+- Lu
+- '0'
+- L
+- "<wide> 0048"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- FF48
+- ''
+65321:
+- 65321
+- FULLWIDTH LATIN CAPITAL LETTER I
+- Lu
+- '0'
+- L
+- "<wide> 0049"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- FF49
+- ''
+65322:
+- 65322
+- FULLWIDTH LATIN CAPITAL LETTER J
+- Lu
+- '0'
+- L
+- "<wide> 004A"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- FF4A
+- ''
+65323:
+- 65323
+- FULLWIDTH LATIN CAPITAL LETTER K
+- Lu
+- '0'
+- L
+- "<wide> 004B"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- FF4B
+- ''
+65324:
+- 65324
+- FULLWIDTH LATIN CAPITAL LETTER L
+- Lu
+- '0'
+- L
+- "<wide> 004C"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- FF4C
+- ''
+65325:
+- 65325
+- FULLWIDTH LATIN CAPITAL LETTER M
+- Lu
+- '0'
+- L
+- "<wide> 004D"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- FF4D
+- ''
+65326:
+- 65326
+- FULLWIDTH LATIN CAPITAL LETTER N
+- Lu
+- '0'
+- L
+- "<wide> 004E"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- FF4E
+- ''
+65327:
+- 65327
+- FULLWIDTH LATIN CAPITAL LETTER O
+- Lu
+- '0'
+- L
+- "<wide> 004F"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- FF4F
+- ''
+65328:
+- 65328
+- FULLWIDTH LATIN CAPITAL LETTER P
+- Lu
+- '0'
+- L
+- "<wide> 0050"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- FF50
+- ''
+65329:
+- 65329
+- FULLWIDTH LATIN CAPITAL LETTER Q
+- Lu
+- '0'
+- L
+- "<wide> 0051"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- FF51
+- ''
+65330:
+- 65330
+- FULLWIDTH LATIN CAPITAL LETTER R
+- Lu
+- '0'
+- L
+- "<wide> 0052"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- FF52
+- ''
+65331:
+- 65331
+- FULLWIDTH LATIN CAPITAL LETTER S
+- Lu
+- '0'
+- L
+- "<wide> 0053"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- FF53
+- ''
+65332:
+- 65332
+- FULLWIDTH LATIN CAPITAL LETTER T
+- Lu
+- '0'
+- L
+- "<wide> 0054"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- FF54
+- ''
+65333:
+- 65333
+- FULLWIDTH LATIN CAPITAL LETTER U
+- Lu
+- '0'
+- L
+- "<wide> 0055"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- FF55
+- ''
+65334:
+- 65334
+- FULLWIDTH LATIN CAPITAL LETTER V
+- Lu
+- '0'
+- L
+- "<wide> 0056"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- FF56
+- ''
+65335:
+- 65335
+- FULLWIDTH LATIN CAPITAL LETTER W
+- Lu
+- '0'
+- L
+- "<wide> 0057"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- FF57
+- ''
+65336:
+- 65336
+- FULLWIDTH LATIN CAPITAL LETTER X
+- Lu
+- '0'
+- L
+- "<wide> 0058"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- FF58
+- ''
+65337:
+- 65337
+- FULLWIDTH LATIN CAPITAL LETTER Y
+- Lu
+- '0'
+- L
+- "<wide> 0059"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- FF59
+- ''
+65338:
+- 65338
+- FULLWIDTH LATIN CAPITAL LETTER Z
+- Lu
+- '0'
+- L
+- "<wide> 005A"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- FF5A
+- ''
+65339:
+- 65339
+- FULLWIDTH LEFT SQUARE BRACKET
+- Ps
+- '0'
+- 'ON'
+- "<wide> 005B"
+- ''
+- ''
+- ''
+- Y
+- FULLWIDTH OPENING SQUARE BRACKET
+- ''
+- ''
+- ''
+- ''
+65340:
+- 65340
+- FULLWIDTH REVERSE SOLIDUS
+- Po
+- '0'
+- 'ON'
+- "<wide> 005C"
+- ''
+- ''
+- ''
+- N
+- FULLWIDTH BACKSLASH
+- ''
+- ''
+- ''
+- ''
+65341:
+- 65341
+- FULLWIDTH RIGHT SQUARE BRACKET
+- Pe
+- '0'
+- 'ON'
+- "<wide> 005D"
+- ''
+- ''
+- ''
+- Y
+- FULLWIDTH CLOSING SQUARE BRACKET
+- ''
+- ''
+- ''
+- ''
+65342:
+- 65342
+- FULLWIDTH CIRCUMFLEX ACCENT
+- Sk
+- '0'
+- 'ON'
+- "<wide> 005E"
+- ''
+- ''
+- ''
+- N
+- FULLWIDTH SPACING CIRCUMFLEX
+- ''
+- ''
+- ''
+- ''
+65343:
+- 65343
+- FULLWIDTH LOW LINE
+- Pc
+- '0'
+- 'ON'
+- "<wide> 005F"
+- ''
+- ''
+- ''
+- N
+- FULLWIDTH SPACING UNDERSCORE
+- ''
+- ''
+- ''
+- ''
+65344:
+- 65344
+- FULLWIDTH GRAVE ACCENT
+- Sk
+- '0'
+- 'ON'
+- "<wide> 0060"
+- ''
+- ''
+- ''
+- N
+- FULLWIDTH SPACING GRAVE
+- ''
+- ''
+- ''
+- ''
+65345:
+- 65345
+- FULLWIDTH LATIN SMALL LETTER A
+- Ll
+- '0'
+- L
+- "<wide> 0061"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- FF21
+- ''
+- FF21
+65346:
+- 65346
+- FULLWIDTH LATIN SMALL LETTER B
+- Ll
+- '0'
+- L
+- "<wide> 0062"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- FF22
+- ''
+- FF22
+65347:
+- 65347
+- FULLWIDTH LATIN SMALL LETTER C
+- Ll
+- '0'
+- L
+- "<wide> 0063"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- FF23
+- ''
+- FF23
+65348:
+- 65348
+- FULLWIDTH LATIN SMALL LETTER D
+- Ll
+- '0'
+- L
+- "<wide> 0064"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- FF24
+- ''
+- FF24
+65349:
+- 65349
+- FULLWIDTH LATIN SMALL LETTER E
+- Ll
+- '0'
+- L
+- "<wide> 0065"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- FF25
+- ''
+- FF25
+65350:
+- 65350
+- FULLWIDTH LATIN SMALL LETTER F
+- Ll
+- '0'
+- L
+- "<wide> 0066"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- FF26
+- ''
+- FF26
+65351:
+- 65351
+- FULLWIDTH LATIN SMALL LETTER G
+- Ll
+- '0'
+- L
+- "<wide> 0067"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- FF27
+- ''
+- FF27
+65352:
+- 65352
+- FULLWIDTH LATIN SMALL LETTER H
+- Ll
+- '0'
+- L
+- "<wide> 0068"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- FF28
+- ''
+- FF28
+65353:
+- 65353
+- FULLWIDTH LATIN SMALL LETTER I
+- Ll
+- '0'
+- L
+- "<wide> 0069"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- FF29
+- ''
+- FF29
+65354:
+- 65354
+- FULLWIDTH LATIN SMALL LETTER J
+- Ll
+- '0'
+- L
+- "<wide> 006A"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- FF2A
+- ''
+- FF2A
+65355:
+- 65355
+- FULLWIDTH LATIN SMALL LETTER K
+- Ll
+- '0'
+- L
+- "<wide> 006B"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- FF2B
+- ''
+- FF2B
+65356:
+- 65356
+- FULLWIDTH LATIN SMALL LETTER L
+- Ll
+- '0'
+- L
+- "<wide> 006C"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- FF2C
+- ''
+- FF2C
+65357:
+- 65357
+- FULLWIDTH LATIN SMALL LETTER M
+- Ll
+- '0'
+- L
+- "<wide> 006D"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- FF2D
+- ''
+- FF2D
+65358:
+- 65358
+- FULLWIDTH LATIN SMALL LETTER N
+- Ll
+- '0'
+- L
+- "<wide> 006E"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- FF2E
+- ''
+- FF2E
+65359:
+- 65359
+- FULLWIDTH LATIN SMALL LETTER O
+- Ll
+- '0'
+- L
+- "<wide> 006F"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- FF2F
+- ''
+- FF2F
+65360:
+- 65360
+- FULLWIDTH LATIN SMALL LETTER P
+- Ll
+- '0'
+- L
+- "<wide> 0070"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- FF30
+- ''
+- FF30
+65361:
+- 65361
+- FULLWIDTH LATIN SMALL LETTER Q
+- Ll
+- '0'
+- L
+- "<wide> 0071"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- FF31
+- ''
+- FF31
+65362:
+- 65362
+- FULLWIDTH LATIN SMALL LETTER R
+- Ll
+- '0'
+- L
+- "<wide> 0072"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- FF32
+- ''
+- FF32
+65363:
+- 65363
+- FULLWIDTH LATIN SMALL LETTER S
+- Ll
+- '0'
+- L
+- "<wide> 0073"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- FF33
+- ''
+- FF33
+65364:
+- 65364
+- FULLWIDTH LATIN SMALL LETTER T
+- Ll
+- '0'
+- L
+- "<wide> 0074"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- FF34
+- ''
+- FF34
+65365:
+- 65365
+- FULLWIDTH LATIN SMALL LETTER U
+- Ll
+- '0'
+- L
+- "<wide> 0075"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- FF35
+- ''
+- FF35
+65366:
+- 65366
+- FULLWIDTH LATIN SMALL LETTER V
+- Ll
+- '0'
+- L
+- "<wide> 0076"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- FF36
+- ''
+- FF36
+65367:
+- 65367
+- FULLWIDTH LATIN SMALL LETTER W
+- Ll
+- '0'
+- L
+- "<wide> 0077"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- FF37
+- ''
+- FF37
+65368:
+- 65368
+- FULLWIDTH LATIN SMALL LETTER X
+- Ll
+- '0'
+- L
+- "<wide> 0078"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- FF38
+- ''
+- FF38
+65369:
+- 65369
+- FULLWIDTH LATIN SMALL LETTER Y
+- Ll
+- '0'
+- L
+- "<wide> 0079"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- FF39
+- ''
+- FF39
+65370:
+- 65370
+- FULLWIDTH LATIN SMALL LETTER Z
+- Ll
+- '0'
+- L
+- "<wide> 007A"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- FF3A
+- ''
+- FF3A
+65371:
+- 65371
+- FULLWIDTH LEFT CURLY BRACKET
+- Ps
+- '0'
+- 'ON'
+- "<wide> 007B"
+- ''
+- ''
+- ''
+- Y
+- FULLWIDTH OPENING CURLY BRACKET
+- ''
+- ''
+- ''
+- ''
+65372:
+- 65372
+- FULLWIDTH VERTICAL LINE
+- Sm
+- '0'
+- 'ON'
+- "<wide> 007C"
+- ''
+- ''
+- ''
+- N
+- FULLWIDTH VERTICAL BAR
+- ''
+- ''
+- ''
+- ''
+65373:
+- 65373
+- FULLWIDTH RIGHT CURLY BRACKET
+- Pe
+- '0'
+- 'ON'
+- "<wide> 007D"
+- ''
+- ''
+- ''
+- Y
+- FULLWIDTH CLOSING CURLY BRACKET
+- ''
+- ''
+- ''
+- ''
+65374:
+- 65374
+- FULLWIDTH TILDE
+- Sm
+- '0'
+- 'ON'
+- "<wide> 007E"
+- ''
+- ''
+- ''
+- N
+- FULLWIDTH SPACING TILDE
+- ''
+- ''
+- ''
+- ''
+65375:
+- 65375
+- FULLWIDTH LEFT WHITE PARENTHESIS
+- Ps
+- '0'
+- 'ON'
+- "<wide> 2985"
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+65376:
+- 65376
+- FULLWIDTH RIGHT WHITE PARENTHESIS
+- Pe
+- '0'
+- 'ON'
+- "<wide> 2986"
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+65377:
+- 65377
+- HALFWIDTH IDEOGRAPHIC FULL STOP
+- Po
+- '0'
+- 'ON'
+- "<narrow> 3002"
+- ''
+- ''
+- ''
+- N
+- HALFWIDTH IDEOGRAPHIC PERIOD
+- ''
+- ''
+- ''
+- ''
+65378:
+- 65378
+- HALFWIDTH LEFT CORNER BRACKET
+- Ps
+- '0'
+- 'ON'
+- "<narrow> 300C"
+- ''
+- ''
+- ''
+- Y
+- HALFWIDTH OPENING CORNER BRACKET
+- ''
+- ''
+- ''
+- ''
+65379:
+- 65379
+- HALFWIDTH RIGHT CORNER BRACKET
+- Pe
+- '0'
+- 'ON'
+- "<narrow> 300D"
+- ''
+- ''
+- ''
+- Y
+- HALFWIDTH CLOSING CORNER BRACKET
+- ''
+- ''
+- ''
+- ''
+65380:
+- 65380
+- HALFWIDTH IDEOGRAPHIC COMMA
+- Po
+- '0'
+- 'ON'
+- "<narrow> 3001"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65381:
+- 65381
+- HALFWIDTH KATAKANA MIDDLE DOT
+- Po
+- '0'
+- 'ON'
+- "<narrow> 30FB"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65382:
+- 65382
+- HALFWIDTH KATAKANA LETTER WO
+- Lo
+- '0'
+- L
+- "<narrow> 30F2"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65383:
+- 65383
+- HALFWIDTH KATAKANA LETTER SMALL A
+- Lo
+- '0'
+- L
+- "<narrow> 30A1"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65384:
+- 65384
+- HALFWIDTH KATAKANA LETTER SMALL I
+- Lo
+- '0'
+- L
+- "<narrow> 30A3"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65385:
+- 65385
+- HALFWIDTH KATAKANA LETTER SMALL U
+- Lo
+- '0'
+- L
+- "<narrow> 30A5"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65386:
+- 65386
+- HALFWIDTH KATAKANA LETTER SMALL E
+- Lo
+- '0'
+- L
+- "<narrow> 30A7"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65387:
+- 65387
+- HALFWIDTH KATAKANA LETTER SMALL O
+- Lo
+- '0'
+- L
+- "<narrow> 30A9"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65388:
+- 65388
+- HALFWIDTH KATAKANA LETTER SMALL YA
+- Lo
+- '0'
+- L
+- "<narrow> 30E3"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65389:
+- 65389
+- HALFWIDTH KATAKANA LETTER SMALL YU
+- Lo
+- '0'
+- L
+- "<narrow> 30E5"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65390:
+- 65390
+- HALFWIDTH KATAKANA LETTER SMALL YO
+- Lo
+- '0'
+- L
+- "<narrow> 30E7"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65391:
+- 65391
+- HALFWIDTH KATAKANA LETTER SMALL TU
+- Lo
+- '0'
+- L
+- "<narrow> 30C3"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65392:
+- 65392
+- HALFWIDTH KATAKANA-HIRAGANA PROLONGED SOUND MARK
+- Lm
+- '0'
+- L
+- "<narrow> 30FC"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65393:
+- 65393
+- HALFWIDTH KATAKANA LETTER A
+- Lo
+- '0'
+- L
+- "<narrow> 30A2"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65394:
+- 65394
+- HALFWIDTH KATAKANA LETTER I
+- Lo
+- '0'
+- L
+- "<narrow> 30A4"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65395:
+- 65395
+- HALFWIDTH KATAKANA LETTER U
+- Lo
+- '0'
+- L
+- "<narrow> 30A6"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65396:
+- 65396
+- HALFWIDTH KATAKANA LETTER E
+- Lo
+- '0'
+- L
+- "<narrow> 30A8"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65397:
+- 65397
+- HALFWIDTH KATAKANA LETTER O
+- Lo
+- '0'
+- L
+- "<narrow> 30AA"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65398:
+- 65398
+- HALFWIDTH KATAKANA LETTER KA
+- Lo
+- '0'
+- L
+- "<narrow> 30AB"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65399:
+- 65399
+- HALFWIDTH KATAKANA LETTER KI
+- Lo
+- '0'
+- L
+- "<narrow> 30AD"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65400:
+- 65400
+- HALFWIDTH KATAKANA LETTER KU
+- Lo
+- '0'
+- L
+- "<narrow> 30AF"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65401:
+- 65401
+- HALFWIDTH KATAKANA LETTER KE
+- Lo
+- '0'
+- L
+- "<narrow> 30B1"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65402:
+- 65402
+- HALFWIDTH KATAKANA LETTER KO
+- Lo
+- '0'
+- L
+- "<narrow> 30B3"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65403:
+- 65403
+- HALFWIDTH KATAKANA LETTER SA
+- Lo
+- '0'
+- L
+- "<narrow> 30B5"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65404:
+- 65404
+- HALFWIDTH KATAKANA LETTER SI
+- Lo
+- '0'
+- L
+- "<narrow> 30B7"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65405:
+- 65405
+- HALFWIDTH KATAKANA LETTER SU
+- Lo
+- '0'
+- L
+- "<narrow> 30B9"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65406:
+- 65406
+- HALFWIDTH KATAKANA LETTER SE
+- Lo
+- '0'
+- L
+- "<narrow> 30BB"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65407:
+- 65407
+- HALFWIDTH KATAKANA LETTER SO
+- Lo
+- '0'
+- L
+- "<narrow> 30BD"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65408:
+- 65408
+- HALFWIDTH KATAKANA LETTER TA
+- Lo
+- '0'
+- L
+- "<narrow> 30BF"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65409:
+- 65409
+- HALFWIDTH KATAKANA LETTER TI
+- Lo
+- '0'
+- L
+- "<narrow> 30C1"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65410:
+- 65410
+- HALFWIDTH KATAKANA LETTER TU
+- Lo
+- '0'
+- L
+- "<narrow> 30C4"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65411:
+- 65411
+- HALFWIDTH KATAKANA LETTER TE
+- Lo
+- '0'
+- L
+- "<narrow> 30C6"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65412:
+- 65412
+- HALFWIDTH KATAKANA LETTER TO
+- Lo
+- '0'
+- L
+- "<narrow> 30C8"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65413:
+- 65413
+- HALFWIDTH KATAKANA LETTER NA
+- Lo
+- '0'
+- L
+- "<narrow> 30CA"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65414:
+- 65414
+- HALFWIDTH KATAKANA LETTER NI
+- Lo
+- '0'
+- L
+- "<narrow> 30CB"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65415:
+- 65415
+- HALFWIDTH KATAKANA LETTER NU
+- Lo
+- '0'
+- L
+- "<narrow> 30CC"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65416:
+- 65416
+- HALFWIDTH KATAKANA LETTER NE
+- Lo
+- '0'
+- L
+- "<narrow> 30CD"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65417:
+- 65417
+- HALFWIDTH KATAKANA LETTER NO
+- Lo
+- '0'
+- L
+- "<narrow> 30CE"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65418:
+- 65418
+- HALFWIDTH KATAKANA LETTER HA
+- Lo
+- '0'
+- L
+- "<narrow> 30CF"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65419:
+- 65419
+- HALFWIDTH KATAKANA LETTER HI
+- Lo
+- '0'
+- L
+- "<narrow> 30D2"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65420:
+- 65420
+- HALFWIDTH KATAKANA LETTER HU
+- Lo
+- '0'
+- L
+- "<narrow> 30D5"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65421:
+- 65421
+- HALFWIDTH KATAKANA LETTER HE
+- Lo
+- '0'
+- L
+- "<narrow> 30D8"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65422:
+- 65422
+- HALFWIDTH KATAKANA LETTER HO
+- Lo
+- '0'
+- L
+- "<narrow> 30DB"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65423:
+- 65423
+- HALFWIDTH KATAKANA LETTER MA
+- Lo
+- '0'
+- L
+- "<narrow> 30DE"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65424:
+- 65424
+- HALFWIDTH KATAKANA LETTER MI
+- Lo
+- '0'
+- L
+- "<narrow> 30DF"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65425:
+- 65425
+- HALFWIDTH KATAKANA LETTER MU
+- Lo
+- '0'
+- L
+- "<narrow> 30E0"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65426:
+- 65426
+- HALFWIDTH KATAKANA LETTER ME
+- Lo
+- '0'
+- L
+- "<narrow> 30E1"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65427:
+- 65427
+- HALFWIDTH KATAKANA LETTER MO
+- Lo
+- '0'
+- L
+- "<narrow> 30E2"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65428:
+- 65428
+- HALFWIDTH KATAKANA LETTER YA
+- Lo
+- '0'
+- L
+- "<narrow> 30E4"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65429:
+- 65429
+- HALFWIDTH KATAKANA LETTER YU
+- Lo
+- '0'
+- L
+- "<narrow> 30E6"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65430:
+- 65430
+- HALFWIDTH KATAKANA LETTER YO
+- Lo
+- '0'
+- L
+- "<narrow> 30E8"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65431:
+- 65431
+- HALFWIDTH KATAKANA LETTER RA
+- Lo
+- '0'
+- L
+- "<narrow> 30E9"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65432:
+- 65432
+- HALFWIDTH KATAKANA LETTER RI
+- Lo
+- '0'
+- L
+- "<narrow> 30EA"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65433:
+- 65433
+- HALFWIDTH KATAKANA LETTER RU
+- Lo
+- '0'
+- L
+- "<narrow> 30EB"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65434:
+- 65434
+- HALFWIDTH KATAKANA LETTER RE
+- Lo
+- '0'
+- L
+- "<narrow> 30EC"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65435:
+- 65435
+- HALFWIDTH KATAKANA LETTER RO
+- Lo
+- '0'
+- L
+- "<narrow> 30ED"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65436:
+- 65436
+- HALFWIDTH KATAKANA LETTER WA
+- Lo
+- '0'
+- L
+- "<narrow> 30EF"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65437:
+- 65437
+- HALFWIDTH KATAKANA LETTER N
+- Lo
+- '0'
+- L
+- "<narrow> 30F3"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65438:
+- 65438
+- HALFWIDTH KATAKANA VOICED SOUND MARK
+- Lm
+- '0'
+- L
+- "<narrow> 3099"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65439:
+- 65439
+- HALFWIDTH KATAKANA SEMI-VOICED SOUND MARK
+- Lm
+- '0'
+- L
+- "<narrow> 309A"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65440:
+- 65440
+- HALFWIDTH HANGUL FILLER
+- Lo
+- '0'
+- L
+- "<narrow> 3164"
+- ''
+- ''
+- ''
+- N
+- HALFWIDTH HANGUL CAE OM
+- ''
+- ''
+- ''
+- ''
+65441:
+- 65441
+- HALFWIDTH HANGUL LETTER KIYEOK
+- Lo
+- '0'
+- L
+- "<narrow> 3131"
+- ''
+- ''
+- ''
+- N
+- HALFWIDTH HANGUL LETTER GIYEOG
+- ''
+- ''
+- ''
+- ''
+65442:
+- 65442
+- HALFWIDTH HANGUL LETTER SSANGKIYEOK
+- Lo
+- '0'
+- L
+- "<narrow> 3132"
+- ''
+- ''
+- ''
+- N
+- HALFWIDTH HANGUL LETTER SSANG GIYEOG
+- ''
+- ''
+- ''
+- ''
+65443:
+- 65443
+- HALFWIDTH HANGUL LETTER KIYEOK-SIOS
+- Lo
+- '0'
+- L
+- "<narrow> 3133"
+- ''
+- ''
+- ''
+- N
+- HALFWIDTH HANGUL LETTER GIYEOG SIOS
+- ''
+- ''
+- ''
+- ''
+65444:
+- 65444
+- HALFWIDTH HANGUL LETTER NIEUN
+- Lo
+- '0'
+- L
+- "<narrow> 3134"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65445:
+- 65445
+- HALFWIDTH HANGUL LETTER NIEUN-CIEUC
+- Lo
+- '0'
+- L
+- "<narrow> 3135"
+- ''
+- ''
+- ''
+- N
+- HALFWIDTH HANGUL LETTER NIEUN JIEUJ
+- ''
+- ''
+- ''
+- ''
+65446:
+- 65446
+- HALFWIDTH HANGUL LETTER NIEUN-HIEUH
+- Lo
+- '0'
+- L
+- "<narrow> 3136"
+- ''
+- ''
+- ''
+- N
+- HALFWIDTH HANGUL LETTER NIEUN HIEUH
+- ''
+- ''
+- ''
+- ''
+65447:
+- 65447
+- HALFWIDTH HANGUL LETTER TIKEUT
+- Lo
+- '0'
+- L
+- "<narrow> 3137"
+- ''
+- ''
+- ''
+- N
+- HALFWIDTH HANGUL LETTER DIGEUD
+- ''
+- ''
+- ''
+- ''
+65448:
+- 65448
+- HALFWIDTH HANGUL LETTER SSANGTIKEUT
+- Lo
+- '0'
+- L
+- "<narrow> 3138"
+- ''
+- ''
+- ''
+- N
+- HALFWIDTH HANGUL LETTER SSANG DIGEUD
+- ''
+- ''
+- ''
+- ''
+65449:
+- 65449
+- HALFWIDTH HANGUL LETTER RIEUL
+- Lo
+- '0'
+- L
+- "<narrow> 3139"
+- ''
+- ''
+- ''
+- N
+- HALFWIDTH HANGUL LETTER LIEUL
+- ''
+- ''
+- ''
+- ''
+65450:
+- 65450
+- HALFWIDTH HANGUL LETTER RIEUL-KIYEOK
+- Lo
+- '0'
+- L
+- "<narrow> 313A"
+- ''
+- ''
+- ''
+- N
+- HALFWIDTH HANGUL LETTER LIEUL GIYEOG
+- ''
+- ''
+- ''
+- ''
+65451:
+- 65451
+- HALFWIDTH HANGUL LETTER RIEUL-MIEUM
+- Lo
+- '0'
+- L
+- "<narrow> 313B"
+- ''
+- ''
+- ''
+- N
+- HALFWIDTH HANGUL LETTER LIEUL MIEUM
+- ''
+- ''
+- ''
+- ''
+65452:
+- 65452
+- HALFWIDTH HANGUL LETTER RIEUL-PIEUP
+- Lo
+- '0'
+- L
+- "<narrow> 313C"
+- ''
+- ''
+- ''
+- N
+- HALFWIDTH HANGUL LETTER LIEUL BIEUB
+- ''
+- ''
+- ''
+- ''
+65453:
+- 65453
+- HALFWIDTH HANGUL LETTER RIEUL-SIOS
+- Lo
+- '0'
+- L
+- "<narrow> 313D"
+- ''
+- ''
+- ''
+- N
+- HALFWIDTH HANGUL LETTER LIEUL SIOS
+- ''
+- ''
+- ''
+- ''
+65454:
+- 65454
+- HALFWIDTH HANGUL LETTER RIEUL-THIEUTH
+- Lo
+- '0'
+- L
+- "<narrow> 313E"
+- ''
+- ''
+- ''
+- N
+- HALFWIDTH HANGUL LETTER LIEUL TIEUT
+- ''
+- ''
+- ''
+- ''
+65455:
+- 65455
+- HALFWIDTH HANGUL LETTER RIEUL-PHIEUPH
+- Lo
+- '0'
+- L
+- "<narrow> 313F"
+- ''
+- ''
+- ''
+- N
+- HALFWIDTH HANGUL LETTER LIEUL PIEUP
+- ''
+- ''
+- ''
+- ''
+65456:
+- 65456
+- HALFWIDTH HANGUL LETTER RIEUL-HIEUH
+- Lo
+- '0'
+- L
+- "<narrow> 3140"
+- ''
+- ''
+- ''
+- N
+- HALFWIDTH HANGUL LETTER LIEUL HIEUH
+- ''
+- ''
+- ''
+- ''
+65457:
+- 65457
+- HALFWIDTH HANGUL LETTER MIEUM
+- Lo
+- '0'
+- L
+- "<narrow> 3141"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65458:
+- 65458
+- HALFWIDTH HANGUL LETTER PIEUP
+- Lo
+- '0'
+- L
+- "<narrow> 3142"
+- ''
+- ''
+- ''
+- N
+- HALFWIDTH HANGUL LETTER BIEUB
+- ''
+- ''
+- ''
+- ''
+65459:
+- 65459
+- HALFWIDTH HANGUL LETTER SSANGPIEUP
+- Lo
+- '0'
+- L
+- "<narrow> 3143"
+- ''
+- ''
+- ''
+- N
+- HALFWIDTH HANGUL LETTER SSANG BIEUB
+- ''
+- ''
+- ''
+- ''
+65460:
+- 65460
+- HALFWIDTH HANGUL LETTER PIEUP-SIOS
+- Lo
+- '0'
+- L
+- "<narrow> 3144"
+- ''
+- ''
+- ''
+- N
+- HALFWIDTH HANGUL LETTER BIEUB SIOS
+- ''
+- ''
+- ''
+- ''
+65461:
+- 65461
+- HALFWIDTH HANGUL LETTER SIOS
+- Lo
+- '0'
+- L
+- "<narrow> 3145"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65462:
+- 65462
+- HALFWIDTH HANGUL LETTER SSANGSIOS
+- Lo
+- '0'
+- L
+- "<narrow> 3146"
+- ''
+- ''
+- ''
+- N
+- HALFWIDTH HANGUL LETTER SSANG SIOS
+- ''
+- ''
+- ''
+- ''
+65463:
+- 65463
+- HALFWIDTH HANGUL LETTER IEUNG
+- Lo
+- '0'
+- L
+- "<narrow> 3147"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65464:
+- 65464
+- HALFWIDTH HANGUL LETTER CIEUC
+- Lo
+- '0'
+- L
+- "<narrow> 3148"
+- ''
+- ''
+- ''
+- N
+- HALFWIDTH HANGUL LETTER JIEUJ
+- ''
+- ''
+- ''
+- ''
+65465:
+- 65465
+- HALFWIDTH HANGUL LETTER SSANGCIEUC
+- Lo
+- '0'
+- L
+- "<narrow> 3149"
+- ''
+- ''
+- ''
+- N
+- HALFWIDTH HANGUL LETTER SSANG JIEUJ
+- ''
+- ''
+- ''
+- ''
+65466:
+- 65466
+- HALFWIDTH HANGUL LETTER CHIEUCH
+- Lo
+- '0'
+- L
+- "<narrow> 314A"
+- ''
+- ''
+- ''
+- N
+- HALFWIDTH HANGUL LETTER CIEUC
+- ''
+- ''
+- ''
+- ''
+65467:
+- 65467
+- HALFWIDTH HANGUL LETTER KHIEUKH
+- Lo
+- '0'
+- L
+- "<narrow> 314B"
+- ''
+- ''
+- ''
+- N
+- HALFWIDTH HANGUL LETTER KIYEOK
+- ''
+- ''
+- ''
+- ''
+65468:
+- 65468
+- HALFWIDTH HANGUL LETTER THIEUTH
+- Lo
+- '0'
+- L
+- "<narrow> 314C"
+- ''
+- ''
+- ''
+- N
+- HALFWIDTH HANGUL LETTER TIEUT
+- ''
+- ''
+- ''
+- ''
+65469:
+- 65469
+- HALFWIDTH HANGUL LETTER PHIEUPH
+- Lo
+- '0'
+- L
+- "<narrow> 314D"
+- ''
+- ''
+- ''
+- N
+- HALFWIDTH HANGUL LETTER PIEUP
+- ''
+- ''
+- ''
+- ''
+65470:
+- 65470
+- HALFWIDTH HANGUL LETTER HIEUH
+- Lo
+- '0'
+- L
+- "<narrow> 314E"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65474:
+- 65474
+- HALFWIDTH HANGUL LETTER A
+- Lo
+- '0'
+- L
+- "<narrow> 314F"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65475:
+- 65475
+- HALFWIDTH HANGUL LETTER AE
+- Lo
+- '0'
+- L
+- "<narrow> 3150"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65476:
+- 65476
+- HALFWIDTH HANGUL LETTER YA
+- Lo
+- '0'
+- L
+- "<narrow> 3151"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65477:
+- 65477
+- HALFWIDTH HANGUL LETTER YAE
+- Lo
+- '0'
+- L
+- "<narrow> 3152"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65478:
+- 65478
+- HALFWIDTH HANGUL LETTER EO
+- Lo
+- '0'
+- L
+- "<narrow> 3153"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65479:
+- 65479
+- HALFWIDTH HANGUL LETTER E
+- Lo
+- '0'
+- L
+- "<narrow> 3154"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65482:
+- 65482
+- HALFWIDTH HANGUL LETTER YEO
+- Lo
+- '0'
+- L
+- "<narrow> 3155"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65483:
+- 65483
+- HALFWIDTH HANGUL LETTER YE
+- Lo
+- '0'
+- L
+- "<narrow> 3156"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65484:
+- 65484
+- HALFWIDTH HANGUL LETTER O
+- Lo
+- '0'
+- L
+- "<narrow> 3157"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65485:
+- 65485
+- HALFWIDTH HANGUL LETTER WA
+- Lo
+- '0'
+- L
+- "<narrow> 3158"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65486:
+- 65486
+- HALFWIDTH HANGUL LETTER WAE
+- Lo
+- '0'
+- L
+- "<narrow> 3159"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65487:
+- 65487
+- HALFWIDTH HANGUL LETTER OE
+- Lo
+- '0'
+- L
+- "<narrow> 315A"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65490:
+- 65490
+- HALFWIDTH HANGUL LETTER YO
+- Lo
+- '0'
+- L
+- "<narrow> 315B"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65491:
+- 65491
+- HALFWIDTH HANGUL LETTER U
+- Lo
+- '0'
+- L
+- "<narrow> 315C"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65492:
+- 65492
+- HALFWIDTH HANGUL LETTER WEO
+- Lo
+- '0'
+- L
+- "<narrow> 315D"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65493:
+- 65493
+- HALFWIDTH HANGUL LETTER WE
+- Lo
+- '0'
+- L
+- "<narrow> 315E"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65494:
+- 65494
+- HALFWIDTH HANGUL LETTER WI
+- Lo
+- '0'
+- L
+- "<narrow> 315F"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65495:
+- 65495
+- HALFWIDTH HANGUL LETTER YU
+- Lo
+- '0'
+- L
+- "<narrow> 3160"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65498:
+- 65498
+- HALFWIDTH HANGUL LETTER EU
+- Lo
+- '0'
+- L
+- "<narrow> 3161"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65499:
+- 65499
+- HALFWIDTH HANGUL LETTER YI
+- Lo
+- '0'
+- L
+- "<narrow> 3162"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65500:
+- 65500
+- HALFWIDTH HANGUL LETTER I
+- Lo
+- '0'
+- L
+- "<narrow> 3163"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65504:
+- 65504
+- FULLWIDTH CENT SIGN
+- Sc
+- '0'
+- ET
+- "<wide> 00A2"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65505:
+- 65505
+- FULLWIDTH POUND SIGN
+- Sc
+- '0'
+- ET
+- "<wide> 00A3"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65506:
+- 65506
+- FULLWIDTH NOT SIGN
+- Sm
+- '0'
+- 'ON'
+- "<wide> 00AC"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65507:
+- 65507
+- FULLWIDTH MACRON
+- Sk
+- '0'
+- 'ON'
+- "<wide> 00AF"
+- ''
+- ''
+- ''
+- N
+- FULLWIDTH SPACING MACRON
+- ''
+- ''
+- ''
+- ''
+65508:
+- 65508
+- FULLWIDTH BROKEN BAR
+- So
+- '0'
+- 'ON'
+- "<wide> 00A6"
+- ''
+- ''
+- ''
+- N
+- FULLWIDTH BROKEN VERTICAL BAR
+- ''
+- ''
+- ''
+- ''
+65509:
+- 65509
+- FULLWIDTH YEN SIGN
+- Sc
+- '0'
+- ET
+- "<wide> 00A5"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65510:
+- 65510
+- FULLWIDTH WON SIGN
+- Sc
+- '0'
+- ET
+- "<wide> 20A9"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65512:
+- 65512
+- HALFWIDTH FORMS LIGHT VERTICAL
+- So
+- '0'
+- 'ON'
+- "<narrow> 2502"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65513:
+- 65513
+- HALFWIDTH LEFTWARDS ARROW
+- Sm
+- '0'
+- 'ON'
+- "<narrow> 2190"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65514:
+- 65514
+- HALFWIDTH UPWARDS ARROW
+- Sm
+- '0'
+- 'ON'
+- "<narrow> 2191"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65515:
+- 65515
+- HALFWIDTH RIGHTWARDS ARROW
+- Sm
+- '0'
+- 'ON'
+- "<narrow> 2192"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65516:
+- 65516
+- HALFWIDTH DOWNWARDS ARROW
+- Sm
+- '0'
+- 'ON'
+- "<narrow> 2193"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65517:
+- 65517
+- HALFWIDTH BLACK SQUARE
+- So
+- '0'
+- 'ON'
+- "<narrow> 25A0"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65518:
+- 65518
+- HALFWIDTH WHITE CIRCLE
+- So
+- '0'
+- 'ON'
+- "<narrow> 25CB"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''

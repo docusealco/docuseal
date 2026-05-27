@@ -159,18 +159,18 @@ module ReplaceEmailVariables
   end
 
   def build_url_options_for(submitter, is_email: true)
-    if Docuseal.multitenant? &&
+    if Wabosign.multitenant? &&
        (config = AccountConfig.find_by(account_id: submitter.account_id, key: :custom_domain))
       { host: config.value, protocol: 'https' }
     elsif is_email && EMAIL_HOST.present?
       { host: EMAIL_HOST, protocol: ENV['FORCE_SSL'].present? ? 'https' : 'http' }
     else
-      Docuseal.default_url_options
+      Wabosign.default_url_options
     end
   end
 
   def build_submission_link(submission)
-    Rails.application.routes.url_helpers.submission_url(submission, **Docuseal.default_url_options)
+    Rails.application.routes.url_helpers.submission_url(submission, **Wabosign.default_url_options)
   end
 
   def build_submission_submitters(submission)

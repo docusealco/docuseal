@@ -1,0 +1,219 @@
+hy:
+  activerecord:
+    errors:
+      messages:
+        record_invalid: 'Ստուգումը ձախողվեց. %{errors}'
+        restrict_dependent_destroy:
+          has_one: Հնարավոր չէ ջնջել գրառումը, քանի որ կա կախյալ %{record}
+          has_many: Հնարավոր չէ ջնջել գրառումը, քանի որ կան կախյալ %{record}-ներ
+  date:
+    abbr_day_names:
+    - Կիր
+    - Երկ
+    - Երք
+    - Չոր
+    - Հնգ
+    - Ուրբ
+    - Շաբ
+    abbr_month_names:
+    -
+    - Հուն
+    - Փետ
+    - Մար
+    - Ապր
+    - Մայ
+    - Հուն
+    - Հուլ
+    - Օգս
+    - Սեպ
+    - Հոկ
+    - Նոյ
+    - Դեկ
+    day_names:
+    - Կիրակի
+    - Երկուշաբթի
+    - Երեքշաբթի
+    - Չորեքշաբթի
+    - Հինգշաբթի
+    - Ուրբաթ
+    - Շաբաթ
+    formats:
+      default: "%Y-%m-%d"
+      long: "%B %e, %Y"
+      short: "%b %e"
+    month_names:
+    -
+    - Հունվար
+    - Փետրվար
+    - Մարտ
+    - Ապրիլ
+    - Մայիս
+    - Հունիս
+    - Հուլիս
+    - Օգոստոս
+    - Սեպտեմբեր
+    - Հոկտեմբեր
+    - Նոյեմբեր
+    - Դեկտեմբեր
+    order:
+    - year
+    - month
+    - day
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: մոտ %{count} ժամ
+        other: մոտ %{count} ժամ
+      about_x_months:
+        one: մոտ %{count} ամիս
+        other: մոտ %{count} ամիս
+      about_x_years:
+        one: մոտ %{count} տարի
+        other: մոտ %{count} տարի
+      almost_x_years:
+        one: գրեթե %{count} տարի
+        other: գրեթե %{count} տարի
+      half_a_minute: կես րոպե
+      less_than_x_seconds:
+        one: քիչ քան %{count} վայրկյան
+        other: քիչ քան %{count} վայրկյան
+      less_than_x_minutes:
+        one: քիչ քան մեկ րոպե
+        other: քիչ քան %{count} րոպե
+      over_x_years:
+        one: ավելի քան %{count} տարի
+        other: ավելի քան %{count} տարի
+      x_seconds:
+        one: "%{count} վայրկյան"
+        other: "%{count} վայրկյան"
+      x_minutes:
+        one: "%{count} րոպե"
+        other: "%{count} րոպե"
+      x_days:
+        one: "%{count} օր"
+        other: "%{count} օր"
+      x_months:
+        one: "%{count} ամիս"
+        other: "%{count} ամիս"
+      x_years:
+        one: "%{count} տարի"
+        other: "%{count} տարի"
+    prompts:
+      second: Վայրկյաններ
+      minute: Րոպե
+      hour: Ժամ
+      day: Օր
+      month: Ամիս
+      year: Տարի
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      accepted: պետք է ընդունված լինի
+      blank: չի կարող դատարկ լինել
+      confirmation: չի համընկնում %{attribute}-ի հետ
+      empty: չի կարող դատարկ լինել
+      equal_to: պետք է հավասար լինի %{count}-ին
+      even: պետք է զույգ լինի
+      exclusion: արգելված է
+      greater_than: պետք է մեծ լինի %{count}-ից
+      greater_than_or_equal_to: պետք է մեծ կամ հավասար լինի %{count}-ին
+      in: պետք է լինի հետևյալներից. %{count}
+      inclusion: ներառված չէ ցանկում
+      invalid: անվավեր է
+      less_than: պետք է փոքր լինի %{count}-ից
+      less_than_or_equal_to: պետք է փոքր կամ հավասար լինի %{count}-ին
+      model_invalid: 'Ստուգումը ձախողվեց. %{errors}'
+      not_a_number: թիվ չէ
+      not_an_integer: պետք է ամբողջ թիվ լինի
+      odd: պետք է կենտ լինի
+      other_than: պետք է տարբեր լինի %{count}-ից
+      password_too_long: չափազանց երկար է
+      present: պետք է դատարկ լինի
+      required: պարտադիր է
+      taken: արդեն գոյություն ունի
+      too_long:
+        one: չափազանց երկար է (առավելագույնը %{count} նիշ)
+        other: չափազանց երկար է (առավելագույնը %{count} նիշ)
+      too_short:
+        one: չափազանց կարճ է (նվազագույնը %{count} նիշ)
+        other: չափազանց կարճ է (նվազագույնը %{count} նիշ)
+      wrong_length:
+        one: սխալ երկարություն է (պետք է լինի %{count} նիշ)
+        other: սխալ երկարություն է (պետք է լինի %{count} նիշ)
+    template:
+      body: 'Հետևյալ դաշտերում խնդիրներ կան.'
+      header:
+        one: "%{count} սխալ արգելեց այս %{model}-ի պահպանումը"
+        other: "%{count} սխալներ արգելեցին այս %{model}-ի պահպանումը"
+  helpers:
+    select:
+      prompt: Խնդրում ենք ընտրել
+    submit:
+      create: Ստեղծել %{model}
+      submit: Պահպանել %{model}
+      update: Թարմացնել %{model}
+  number:
+    currency:
+      format:
+        delimiter: ","
+        format: "%u%n"
+        negative_format: "-%u%n"
+        precision: 2
+        separator: "."
+        significant: false
+        strip_insignificant_zeros: false
+        unit: "$"
+    format:
+      delimiter: ","
+      precision: 3
+      round_mode: default
+      separator: "."
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion: Միլիարդ
+          million: Միլիոն
+          quadrillion: Քառյակ
+          thousand: Հազար
+          trillion: Տրիլիոն
+          unit: ''
+      format:
+        delimiter: ''
+        precision: 3
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: Բայթ
+            other: Բայթ
+          eb: ԷԲ
+          gb: ԳԲ
+          kb: ԿԲ
+          mb: ՄԲ
+          pb: ՊԲ
+          tb: ՏԲ
+          zb: ԶԲ
+    percentage:
+      format:
+        delimiter: ''
+        format: "%n%"
+    precision:
+      format:
+        delimiter: ''
+  support:
+    array:
+      last_word_connector: ", և "
+      two_words_connector: " և "
+      words_connector: ", "
+  time:
+    am: կեսօրից առաջ
+    formats:
+      default: "%a, %e %b %Y %H:%M:%S %z"
+      long: "%B %e, %Y %H:%M"
+      short: "%e %b %H:%M"
+    pm: կեսօրից հետո

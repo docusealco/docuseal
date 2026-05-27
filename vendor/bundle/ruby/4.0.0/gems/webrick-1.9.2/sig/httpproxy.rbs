@@ -1,0 +1,61 @@
+module WEBrick
+  NullReader: untyped
+
+  def self.read: (*untyped args) -> nil
+
+  alias self.gets self.read
+
+  FakeProxyURI: untyped
+
+  def self.method_missing: (untyped meth, *untyped args) -> (nil | untyped)
+
+  class HTTPProxyServer < HTTPServer
+    @via: untyped
+
+    def initialize: (?::Hash[untyped, untyped] config, ?untyped default) -> void
+
+    # :stopdoc:
+    def service: (HTTPRequest req, HTTPResponse res) -> untyped
+
+    def proxy_auth: (HTTPRequest req, HTTPResponse res) -> untyped
+
+    def proxy_uri: (HTTPRequest req, HTTPResponse res) -> untyped
+
+    def proxy_service: (HTTPRequest req, HTTPResponse res) -> untyped
+
+    def do_CONNECT: (HTTPRequest req, HTTPResponse res) -> untyped
+
+    def do_GET: (HTTPRequest req, HTTPResponse res) -> untyped
+
+    def do_HEAD: (HTTPRequest req, HTTPResponse res) -> untyped
+
+    def do_POST: (HTTPRequest req, HTTPResponse res) -> untyped
+
+    def do_OPTIONS: (HTTPRequest req, HTTPResponse res) -> untyped
+
+    private
+
+    # Some header fields should not be transferred.
+    HopByHop: ::Array["connection" | "keep-alive" | "proxy-authenticate" | "upgrade" | "proxy-authorization" | "te" | "trailers" | "transfer-encoding"]
+
+    ShouldNotTransfer: ::Array["set-cookie" | "proxy-connection"]
+
+    def split_field: (untyped f) -> (untyped | ::Array[untyped])
+
+    def choose_header: (untyped src, untyped dst) -> untyped
+
+    # Net::HTTP is stupid about the multiple header fields.
+    # Here is workaround:
+    def set_cookie: (untyped src, untyped dst) -> (untyped | nil)
+
+    def set_via: (untyped h) -> (untyped | nil)
+
+    def setup_proxy_header: (HTTPRequest req, HTTPResponse res) -> untyped
+
+    def setup_upstream_proxy_authentication: (HTTPRequest req, HTTPResponse res, untyped header) -> untyped
+
+    def create_net_http: (untyped uri, untyped upstream) -> untyped
+
+    def perform_proxy_request: (HTTPRequest req, HTTPResponse res, untyped req_class, ?untyped? body_stream) -> untyped
+  end
+end

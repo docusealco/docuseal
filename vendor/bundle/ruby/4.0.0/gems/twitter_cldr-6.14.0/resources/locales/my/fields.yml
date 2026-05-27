@@ -1,0 +1,179 @@
+--- 
+:my: 
+  :fields: 
+    :day: 
+      :display_name: ရက်
+      :relative: 
+        -1: မနေ့က
+        -2: တစ်နေ့က
+        0: ယနေ့
+        1: မနက်ဖြန်
+        2: သန်ဘက်ခါ
+      :relative_time: 
+        :future: 
+          :other: "{0} ရက်အတွင်း"
+        :past: 
+          :other: "ပြီးခဲ့သည့် {0} ရက်"
+    :dayOfYear: 
+      :display_name: "တစ်နှစ်အတွင်း ရက်ရေတွက်ပုံ"
+    :dayperiod: 
+      :display_name: နံနက်/ညနေ
+    :era: 
+      :display_name: ခေတ်
+    :fri: 
+      :relative: 
+        -1: "ပြီးခဲ့သည့် သောကြာနေ့"
+        0: ဤသောကြာနေ့
+        1: "လာမည့် သောကြာနေ့"
+      :relative_time: 
+        :future: 
+          :other: "သောကြာ {0} ပတ်အတွင်း"
+        :past: 
+          :other: "ပြီးခဲ့သည့် သောကြာ {0} ပတ်အတွင်း"
+    :hour: 
+      :display_name: နာရီ
+      :relative: 
+        0: ဤအချိန်
+      :relative_time: 
+        :future: 
+          :other: "{0} နာရီအတွင်း"
+        :past: 
+          :other: "ပြီးခဲ့သည့် {0} နာရီ"
+    :minute: 
+      :display_name: မိနစ်
+      :relative: 
+        0: ဤမိနစ်
+      :relative_time: 
+        :future: 
+          :other: "{0} မိနစ်အတွင်း"
+        :past: 
+          :other: "ပြီးခဲ့သည့် {0} မိနစ်"
+    :mon: 
+      :relative: 
+        -1: "ပြီးခဲ့သည့် တနင်္လာနေ့"
+        0: ဤတနင်္လာနေ့
+        1: "လာမည့် တနင်္လာနေ့"
+      :relative_time: 
+        :future: 
+          :other: "တနင်္လာ {0} ပတ်အတွင်း"
+        :past: 
+          :other: "ပြီးခဲ့သည့် တနင်္လာ {0} ပတ်"
+    :month: 
+      :display_name: လ
+      :relative: 
+        -1: ပြီးခဲ့သည့်လ
+        0: ယခုလ
+        1: လာမည့်လ
+      :relative_time: 
+        :future: 
+          :other: "{0} လအတွင်း"
+        :past: 
+          :other: "ပြီးခဲ့သည့် {0} လ"
+    :quarter: 
+      :display_name: သုံးလပတ်
+      :relative: 
+        -1: "ပြီးခဲ့သည့် သုံးလပတ်"
+        0: "ယခု သုံးလပတ်"
+        1: "လာမည့် သုံးလပတ်"
+      :relative_time: 
+        :future: 
+          :other: "သုံးလပတ်ကာလ {0} အတွင်း"
+        :past: 
+          :other: "ပြီးခဲ့သည့် သုံးလပတ်ကာလ {0} ခုအတွင်း"
+    :quarter-short: 
+      :relative: 
+        -1: ပြီးခဲ့သောသုံးလပတ်
+        0: ယခုသုံးလပတ်
+        1: နောက်လာမည့်သုံးလပတ်
+      :relative_time: 
+        :future: 
+          :other: "သုံးလပတ်ကာလ {0} ခုအတွင်း"
+    :sat: 
+      :relative: 
+        -1: "ပြီးခဲ့သည့် စနေနေ့"
+        0: ဤစနေနေ့
+        1: "လာမည့် စနေနေ့"
+      :relative_time: 
+        :future: 
+          :other: "စနေ {0} ပတ်အတွင်း"
+        :past: 
+          :other: "ပြီးခဲ့သည့် စနေ {0} ပတ်အတွင်း"
+    :second: 
+      :display_name: စက္ကန့်
+      :relative: 
+        0: ယခု
+      :relative_time: 
+        :future: 
+          :other: "{0} စက္ကန့်အတွင်း"
+        :past: 
+          :other: "ပြီးခဲ့သည့် {0} စက္ကန့်"
+    :sun: 
+      :relative: 
+        -1: "ပြီးခဲ့သည့် တနင်္ဂနွေနေ့"
+        0: ဤတနင်္ဂနွေနေ့
+        1: "လာမည့် တနင်္ဂနွေနေ့"
+      :relative_time: 
+        :future: 
+          :other: "တနင်္ဂနွေ {0} ပတ်အတွင်း"
+        :past: 
+          :other: "ပြီးခဲ့သည့် တနင်္ဂနွေ {0} ပတ်"
+    :thu: 
+      :relative: 
+        -1: "ပြီးခဲ့သည့် ကြာသပတေးနေ့"
+        0: ဤကြာသပတေးနေ့
+        1: "လာမည့် ကြာသပတေးနေ့"
+      :relative_time: 
+        :future: 
+          :other: "ကြာသပတေး {0} ပတ်အတွင်း"
+        :past: 
+          :other: "ပြီးခဲ့သည့် ကြာသပတေး {0} ပတ်"
+    :tue: 
+      :relative: 
+        -1: "ပြီးခဲ့သည့် အင်္ဂါနေ့"
+        0: ဤအင်္ဂါနေ့
+        1: "လာမည့် အင်္ဂါနေ့"
+      :relative_time: 
+        :future: 
+          :other: "အင်္ဂါ {0} ပတ်အတွင်း"
+        :past: 
+          :other: "ပြီးခဲ့သည့် အင်္ဂါ {0} ပတ်"
+    :wed: 
+      :relative: 
+        -1: "ပြီးခဲ့သည့် ဗုဒ္ဓဟူးနေ့"
+        0: ဤဗုဒ္ဓဟူးနေ့
+        1: "လာမည့် ဗုဒ္ဓဟူးနေ့"
+      :relative_time: 
+        :future: 
+          :other: "ဗုဒ္ဓဟူး {0} ပတ်အတွင်း"
+        :past: 
+          :other: "ပြီးခဲ့သည့် ဗုဒ္ဓဟူး {0} ပတ်"
+    :week: 
+      :display_name: ပတ်
+      :relative: 
+        -1: "ပြီးခဲ့သည့် သီတင်းပတ်"
+        0: "ယခု သီတင်းပတ်"
+        1: "လာမည့် သီတင်းပတ်"
+      :relative_time: 
+        :future: 
+          :other: "{0} ပတ်အတွင်း"
+        :past: 
+          :other: "ပြီးခဲ့သည့် {0} ပတ်"
+    :weekOfMonth: 
+      :display_name: တစ်လအတွင်းရှိသီတင်းပတ်
+    :weekday: 
+      :display_name: နေ့
+    :weekdayOfMonth: 
+      :display_name: တစ်လအတွင်းရှိအလုပ်ရက်
+    :year: 
+      :display_name: နှစ်
+      :relative: 
+        -1: ယမန်နှစ်
+        0: ယခုနှစ်
+        1: လာမည့်နှစ်
+      :relative_time: 
+        :future: 
+          :other: "{0} နှစ်အတွင်း"
+        :past: 
+          :other: "ပြီးခဲ့သည့် {0} နှစ်"
+    :zone: 
+      :display_name: ဇုန်

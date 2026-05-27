@@ -1,0 +1,9 @@
+services:
+  pg:
+    build:
+      context: .
+      args:
+        - http_proxy
+        - https_proxy
+    volumes:
+      - .:/pg

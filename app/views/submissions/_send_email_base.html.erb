@@ -22,7 +22,7 @@
       <% end %>
     </div>
   </div>
-  <% if !Docuseal.multitenant? && !can_send_emails %>
+  <% if !Wabosign.multitenant? && !can_send_emails %>
     <div class="alert my-4">
       <%= svg_icon('info_circle', class: 'w-6 h-6') %>
       <div>

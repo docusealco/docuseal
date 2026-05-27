@@ -1,0 +1,48 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - tlh-fonipa-t-tlh
+    :direction: forward
+    :rules: 
+      - "::NFC ;"
+      - "tlh > t͡ɬ ;"
+      - "aw > aʊ̯ ;"
+      - "ew > ɛʊ̯ ;"
+      - "Iw > ɪʊ̯ ;"
+      - "ay > aɪ̯ ;"
+      - "ey > eɪ̯ ;"
+      - "Iy > ɪː ;"
+      - "oy > oɪ̯ ;"
+      - "uy > uɪ̯ ;"
+      - "ch > t͡ʃ ;"
+      - "gh > ɣ ;"
+      - "ng > ŋ ;"
+      - "p > pʰ ;"
+      - "t > tʰ ;"
+      - "q > qʰ ;"
+      - "’ > ʔ ;"
+      - "\\' > ʔ ;"
+      - "b > b ;"
+      - "D > ɖ ;"
+      - "Q > q͡χ ;"
+      - "j > d͡ʒ ;"
+      - "S > ʂ ;"
+      - "H > x ;"
+      - "v > v ;"
+      - "m > m ;"
+      - "n > n ;"
+      - "r > r ;"
+      - "w > w ;"
+      - "l > l ;"
+      - "y > j ;"
+      - "a > ɑ ;"
+      - "e > ɛ ;"
+      - "I > ɪ ;"
+      - "o > o ;"
+      - "u > u ;"
+      - "\\- > ;"
+      - "::NFC ;"
+    :source: tlh
+    :target: tlh_FONIPA
+    :variant: ~

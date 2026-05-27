@@ -1,0 +1,16 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - Malayalam-Kannada
+      - und-Knda-t-und-mlym
+    :direction: forward
+    :rules: 
+      - "::[ം-ഃഅ-ഌഎ-ഐഒ-നപ-ഹാ-ൃെ-ൈൊ-്ൗൠ-ൡ൦-൯] ;"
+      - "::NFD ;"
+      - "::Malayalam-InterIndic ;"
+      - "::InterIndic-Kannada ;"
+      - "::NFC ;"
+    :source: Mlym
+    :target: Knda
+    :variant: ~

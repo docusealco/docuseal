@@ -1,0 +1,267 @@
+--- 
+:it-CH: 
+  :territories: 
+    :ac: "Isola Ascensione"
+    :ad: Andorra
+    :ae: "Emirati Arabi Uniti"
+    :af: Afghanistan
+    :ag: "Antigua e Barbuda"
+    :ai: Anguilla
+    :al: Albania
+    :am: Armenia
+    :ao: Angola
+    :aq: Antartide
+    :ar: Argentina
+    :as: "Samoa Americane"
+    :at: Austria
+    :au: Australia
+    :aw: Aruba
+    :ax: "Isole Åland"
+    :az: Azerbaigian
+    :ba: "Bosnia ed Erzegovina"
+    :bb: Barbados
+    :bd: Bangladesh
+    :be: Belgio
+    :bf: "Burkina Faso"
+    :bg: Bulgaria
+    :bh: Bahrein
+    :bi: Burundi
+    :bj: Benin
+    :bl: Saint-Barthélemy
+    :bm: Bermuda
+    :bn: Brunei
+    :bo: Bolivia
+    :bq: "Caraibi Olandesi"
+    :br: Brasile
+    :bs: Bahamas
+    :bt: Bhutan
+    :bv: "Isola Bouvet"
+    :bw: Botswana
+    :by: Bielorussia
+    :bz: Belize
+    :ca: Canada
+    :cc: "Isole Cocos (Keeling)"
+    :cd: "Congo - Kinshasa"
+    :cf: "Repubblica Centrafricana"
+    :cg: Congo-Brazzaville
+    :ch: Svizzera
+    :ci: "Costa d’Avorio"
+    :ck: "Isole Cook"
+    :cl: Cile
+    :cm: Camerun
+    :cn: Cina
+    :co: Colombia
+    :cp: "Isola di Clipperton"
+    :cr: "Costa Rica"
+    :cu: Cuba
+    :cv: "Capo Verde"
+    :cw: Curaçao
+    :cx: "Isola Christmas"
+    :cy: Cipro
+    :cz: Cechia
+    :de: Germania
+    :dg: "Diego Garcia"
+    :dj: Gibuti
+    :dk: Danimarca
+    :dm: Dominica
+    :do: "Repubblica Dominicana"
+    :dz: Algeria
+    :ea: "Ceuta e Melilla"
+    :ec: Ecuador
+    :ee: Estonia
+    :eg: Egitto
+    :eh: "Sahara Occidentale"
+    :er: Eritrea
+    :es: Spagna
+    :et: Etiopia
+    :eu: "Unione europea"
+    :ez: Eurozona
+    :fi: Finlandia
+    :fj: Figi
+    :fk: "Isole Falkland"
+    :fm: Micronesia
+    :fo: "Isole Fær Øer"
+    :fr: Francia
+    :ga: Gabon
+    :gb: "Regno Unito"
+    :gd: Grenada
+    :ge: Georgia
+    :gf: "Guyana Francese"
+    :gg: Guernsey
+    :gh: Ghana
+    :gi: Gibilterra
+    :gl: Groenlandia
+    :gm: Gambia
+    :gn: Guinea
+    :gp: Guadalupa
+    :gq: "Guinea Equatoriale"
+    :gr: Grecia
+    :gs: "Georgia del Sud e Sandwich Australi"
+    :gt: Guatemala
+    :gu: Guam
+    :gw: Guinea-Bissau
+    :gy: Guyana
+    :hk: "RAS di Hong Kong"
+    :hm: "Isole Heard e McDonald"
+    :hn: Honduras
+    :hr: Croazia
+    :ht: Haiti
+    :hu: Ungheria
+    :ic: "Isole Canarie"
+    :id: Indonesia
+    :ie: Irlanda
+    :il: Israele
+    :im: "Isola di Man"
+    :in: India
+    :io: "Territorio Britannico dell’Oceano Indiano"
+    :iq: Iraq
+    :ir: Iran
+    :is: Islanda
+    :it: Italia
+    :je: Jersey
+    :jm: Giamaica
+    :jo: Giordania
+    :jp: Giappone
+    :ke: Kenya
+    :kg: Kirghizistan
+    :kh: Cambogia
+    :ki: Kiribati
+    :km: Comore
+    :kn: "Saint Kitts e Nevis"
+    :kp: "Corea del Nord"
+    :kr: "Corea del Sud"
+    :kw: Kuwait
+    :ky: "Isole Cayman"
+    :kz: Kazakistan
+    :la: Laos
+    :lb: Libano
+    :lc: "Saint Lucia"
+    :li: Liechtenstein
+    :lk: "Sri Lanka"
+    :lr: Liberia
+    :ls: Lesotho
+    :lt: Lituania
+    :lu: Lussemburgo
+    :lv: Lettonia
+    :ly: Libia
+    :ma: Marocco
+    :mc: Monaco
+    :md: Moldavia
+    :me: Montenegro
+    :mf: "Saint Martin"
+    :mg: Madagascar
+    :mh: "Isole Marshall"
+    :mk: "Macedonia del Nord"
+    :ml: Mali
+    :mm: "Myanmar (Birmania)"
+    :mn: Mongolia
+    :mo: "RAS di Macao"
+    :mp: "Isole Marianne Settentrionali"
+    :mq: Martinica
+    :mr: Mauritania
+    :ms: Montserrat
+    :mt: Malta
+    :mu: Mauritius
+    :mv: Maldive
+    :mw: Malawi
+    :mx: Messico
+    :my: Malaysia
+    :mz: Mozambico
+    :na: Namibia
+    :nc: "Nuova Caledonia"
+    :ne: Niger
+    :nf: "Isola Norfolk"
+    :ng: Nigeria
+    :ni: Nicaragua
+    :nl: "Paesi Bassi"
+    ? !ruby/symbol "no"
+    : Norvegia
+    :np: Nepal
+    :nr: Nauru
+    :nu: Niue
+    :nz: "Nuova Zelanda"
+    :om: Oman
+    :pa: Panama
+    :pe: Perù
+    :pf: "Polinesia Francese"
+    :pg: "Papua Nuova Guinea"
+    :ph: Filippine
+    :pk: Pakistan
+    :pl: Polonia
+    :pm: "Saint-Pierre e Miquelon"
+    :pn: "Isole Pitcairn"
+    :pr: Portorico
+    :ps: "Territori Palestinesi"
+    :pt: Portogallo
+    :pw: Palau
+    :py: Paraguay
+    :qa: Qatar
+    :qo: "Oceania lontana"
+    :re: Riunione
+    :ro: Romania
+    :rs: Serbia
+    :ru: Russia
+    :rw: Ruanda
+    :sa: "Arabia Saudita"
+    :sb: "Isole Salomone"
+    :sc: Seychelles
+    :sd: Sudan
+    :se: Svezia
+    :sg: Singapore
+    :sh: Sant’Elena
+    :si: Slovenia
+    :sj: "Svalbard e Jan Mayen"
+    :sk: Slovacchia
+    :sl: "Sierra Leone"
+    :sm: "San Marino"
+    :sn: Senegal
+    :so: Somalia
+    :sr: Suriname
+    :ss: "Sud Sudan"
+    :st: "São Tomé e Príncipe"
+    :sv: "El Salvador"
+    :sx: "Sint Maarten"
+    :sy: Siria
+    :sz: Eswatini
+    :ta: "Tristan da Cunha"
+    :tc: "Isole Turks e Caicos"
+    :td: Ciad
+    :tf: "Terre Australi Francesi"
+    :tg: Togo
+    :th: Thailandia
+    :tj: Tagikistan
+    :tk: Tokelau
+    :tl: "Timor Est"
+    :tm: Turkmenistan
+    :tn: Tunisia
+    :to: Tonga
+    :tr: Turchia
+    :tt: "Trinidad e Tobago"
+    :tv: Tuvalu
+    :tw: Taiwan
+    :tz: Tanzania
+    :ua: Ucraina
+    :ug: Uganda
+    :um: "Isole Minori Esterne degli Stati Uniti"
+    :un: "Nazioni Unite"
+    :us: "Stati Uniti"
+    :uy: Uruguay
+    :uz: Uzbekistan
+    :va: "Città del Vaticano"
+    :vc: "Saint Vincent e Grenadine"
+    :ve: Venezuela
+    :vg: "Isole Vergini Britanniche"
+    :vi: "Isole Vergini Americane"
+    :vn: Vietnam
+    :vu: Vanuatu
+    :wf: "Wallis e Futuna"
+    :ws: Samoa
+    :xa: Pseudo-accenti
+    :xb: Pseudo-bidi
+    :xk: Kosovo
+    :ye: Yemen
+    :yt: Mayotte
+    :za: Sudafrica
+    :zm: Zambia
+    :zw: Zimbabwe
+    :zz: "Regione sconosciuta"

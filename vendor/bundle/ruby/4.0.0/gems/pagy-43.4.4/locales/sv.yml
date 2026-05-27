@@ -1,0 +1,24 @@
+# See https://ddnexus.github.io/pagy/resources/i18n
+
+sv:
+  pagy:
+    p11n: 'OneOther'
+    aria_label:
+      nav:
+        one: "Sida"
+        other: "Sidor"
+      previous: "Föregående"
+      next: "Nästa"
+    previous: "&lt;"
+    next: "&gt;"
+    gap: "&hellip;"
+    item_name:
+      one: "resultat"
+      other: "resultat"
+    info_tag:
+      no_count: "Sida %{page} av %{pages}"
+      no_items: "Inga %{item_name} hittade"
+      single_page: "Visar %{count} %{item_name}"
+      multiple_pages: "Visar %{item_name} %{from}-%{to} av %{count} totalt"
+    input_nav_js: "Sida %{page_input} av %{pages}"
+    limit_tag_js: "Visa %{limit_input} %{item_name} per sida"

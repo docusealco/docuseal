@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+title: oauth2
+message: >-
+  If you use this work and you want to cite it,
+  then you can use the metadata from this file.
+type: software
+authors:
+  - given-names: Peter Hurn
+    family-names: Boling
+    email: peter@railsbling.com
+    affiliation: railsbling.com
+    orcid: 'https://orcid.org/0009-0008-8519-441X'
+identifiers:
+  - type: url
+    value: 'https://github.com/ruby-oauth/oauth2'
+    description: oauth2
+repository-code: 'https://github.com/ruby-oauth/oauth2'
+abstract: >-
+  oauth2
+license: See license file

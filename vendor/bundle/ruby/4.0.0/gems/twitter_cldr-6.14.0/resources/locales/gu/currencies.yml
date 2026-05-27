@@ -1,0 +1,715 @@
+--- 
+:gu: 
+  :currencies: 
+    :AED: 
+      :name: "યુનાઈટેડ આરબ અમિરાત દિરહામ"
+      :one: "[UAE] દિરહામ"
+      :other: "[UAE] દિરહામ"
+    :AFN: 
+      :name: "અફ્ગાન અફ્ગાની"
+      :narrow_symbol: ؋
+      :one: "અફ્ગાન અફ્ગાની"
+      :symbol: ؋
+    :ALL: 
+      :name: "અલ્બેનિયન લેક"
+      :one: "અલ્બેનિયન લેક"
+    :AMD: 
+      :name: "અર્મેનિયન ડ્રેમ"
+      :narrow_symbol: ֏
+      :one: "અર્મેનિયન ડ્રેમ"
+      :symbol: ֏
+    :ANG: 
+      :name: "નેધરલેંડ એંટિલિન ગિલ્ડર"
+      :one: "નેધરલેંડ એંટિલિન ગિલ્ડર"
+    :AOA: 
+      :name: "અંગોલિયન ક્વાન્ઝા"
+      :narrow_symbol: Kz
+      :one: "અંગોલિયન ક્વાન્ઝા"
+      :symbol: Kz
+    :ARS: 
+      :name: "અર્જેન્ટીના પેસો"
+      :narrow_symbol: $
+      :one: "અર્જેન્ટીના પેસો"
+      :symbol: $
+    :AUD: 
+      :name: "ઑસ્ટ્રેલિયન ડૉલર"
+      :narrow_symbol: $
+      :one: "ઑસ્ટ્રેલિયન ડૉલર"
+      :symbol: A$
+    :AWG: 
+      :name: "અરુબન ફ્લોરિન"
+      :one: "અરુબન ફ્લોરિન"
+    :AZN: 
+      :name: "અઝરબૈજાની મનાત"
+      :narrow_symbol: ₼
+      :one: "અઝરબૈજાની મનાત"
+      :symbol: ₼
+    :BAM: 
+      :name: "બોસ્નિયા અને હર્ઝેગોવિના રૂપાંતર યોગ્ય માર્ક"
+      :narrow_symbol: KM
+      :one: "બોસ્નિયા અને હર્ઝેગોવિના રૂપાંતર યોગ્ય માર્ક"
+      :symbol: KM
+    :BBD: 
+      :name: "બાર્બાડિયન ડોલર"
+      :narrow_symbol: $
+      :one: "બાર્બાડિયન ડોલર"
+      :symbol: $
+    :BDT: 
+      :name: "બાંગ્લાદેશી ટાકા"
+      :narrow_symbol: ৳
+      :one: "બાંગ્લાદેશી ટાકા"
+      :other: "બાંગલાદેશી ટાકા"
+      :symbol: ৳
+    :BGN: 
+      :name: "બલ્ગેરીયન લેવ"
+      :one: "બલ્ગેરીયન લેવ"
+    :BHD: 
+      :name: "બેહરિની દિનાર"
+      :one: "બેહરિની દિનાર"
+    :BIF: 
+      :name: "બુરુન્ડિયન ફ્રેંક"
+      :one: "બુરુન્ડિયન ફ્રેંક"
+    :BMD: 
+      :name: "બર્મુડન ડોલર"
+      :narrow_symbol: $
+      :one: "બર્મુડન ડોલર"
+      :symbol: $
+    :BND: 
+      :name: "બ્રુનેઇ ડોલર"
+      :narrow_symbol: $
+      :one: "બ્રુનેઇ ડોલર"
+      :symbol: $
+    :BOB: 
+      :name: "બોલિવિયન બોલિવિયાનો"
+      :narrow_symbol: Bs
+      :one: "બોલિવિયન બોલિવિયાનો"
+      :symbol: Bs
+    :BRL: 
+      :name: "બ્રાઝિલીયન રિઆલ"
+      :narrow_symbol: R$
+      :one: "બ્રાઝિલીયન રિઆલ"
+      :symbol: R$
+    :BSD: 
+      :name: "બહામિયન ડોલર"
+      :narrow_symbol: $
+      :one: "બહામિયન ડોલર"
+      :symbol: $
+    :BTN: 
+      :name: "ભુતાનિઝ એંગુલ્ત્રમ"
+      :one: "ભુતાનિઝ એંગુલ્ત્રમ"
+    :BWP: 
+      :name: "બોત્સવાનન પુલા"
+      :narrow_symbol: P
+      :one: "બોત્સવાનન પુલા"
+      :symbol: P
+    :BYN: 
+      :name: "બેલારુશિયન રૂબલ"
+      :narrow_symbol: р.
+      :one: "બેલારુશિયન રૂબલ"
+      :symbol: р.
+    :BYR: 
+      :name: "બેલારુશિયન રૂબલ (2000–2016)"
+      :one: "બેલારુશિયન રૂબલ (2000–2016)"
+    :BZD: 
+      :name: "બેલિઝ ડોલર"
+      :narrow_symbol: $
+      :one: "બેલિઝ ડોલર"
+      :symbol: $
+    :CAD: 
+      :name: "કેનેડિયન ડૉલર"
+      :narrow_symbol: $
+      :one: "કેનેડિયન ડૉલર"
+      :symbol: CA$
+    :CDF: 
+      :name: "કોંગોલિઝ ફ્રેંક"
+      :one: "કોંગોલિઝ ફ્રેંક"
+    :CHF: 
+      :name: "સ્વિસ ફ્રેંક"
+      :one: "સ્વિસ ફ્રેંક"
+    :CLP: 
+      :name: "ચિલિઅન પેસો"
+      :narrow_symbol: $
+      :one: "ચિલિઅન પેસો"
+      :symbol: $
+    :CNH: 
+      :name: "ચાઇનીઝ યુઆન (ઑફશોર)"
+      :one: "ચાઇનીઝ યુઆન (ઑફશોર)"
+    :CNY: 
+      :name: "ચાઇનિઝ યુઆન"
+      :narrow_symbol: ¥
+      :one: "ચાઇનિઝ યુઆન"
+      :symbol: CN¥
+    :COP: 
+      :name: "કોલમ્બિયન પેસો"
+      :narrow_symbol: $
+      :one: "કોલમ્બિયન પેસો"
+      :symbol: $
+    :CRC: 
+      :name: "કોસ્ટા રિકન કોલોન"
+      :narrow_symbol: ₡
+      :one: "કોસ્ટા રિકન કોલોન"
+      :symbol: ₡
+    :CUC: 
+      :name: "ક્યુબન રૂપાંતર યોગ્ય પેસો"
+      :narrow_symbol: $
+      :one: "ક્યુબન રૂપાંતર યોગ્ય પેસો"
+      :symbol: $
+    :CUP: 
+      :name: "ક્યુબન પેસો"
+      :narrow_symbol: $
+      :one: "ક્યુબન પેસો"
+      :symbol: $
+    :CVE: 
+      :name: "કેપ વર્દિયન એસ્કુડો"
+      :one: "કેપ વર્દિયન એસ્કુડો"
+    :CZK: 
+      :name: "ચેક રીપબ્લિક કોરુના"
+      :narrow_symbol: Kč
+      :one: "ચેક રીપબ્લિક કોરુના"
+      :symbol: Kč
+    :DJF: 
+      :name: "જિબુટિયન ફ્રેંક"
+      :one: "જિબુટિયન ફ્રેંક"
+    :DKK: 
+      :name: "ડેનિશ ક્રોન"
+      :narrow_symbol: kr
+      :one: "ડેનિશ ક્રોન"
+      :symbol: kr
+    :DOP: 
+      :name: "ડોમિનિકન પેસો"
+      :narrow_symbol: $
+      :one: "ડોમિનિકન પેસો"
+      :symbol: $
+    :DZD: 
+      :name: "અલ્જિરિયન દિનાર"
+      :one: "અલ્જિરિયન દિનાર"
+    :EGP: 
+      :name: "ઇજિપ્તિયન પાઉન્ડ"
+      :narrow_symbol: E£
+      :one: "ઇજિપ્તિયન પાઉન્ડ"
+      :symbol: E£
+    :ERN: 
+      :name: "એરિટ્રેયન નક્ફા"
+      :one: "એરિટ્રેયન નક્ફા"
+    :ESP: 
+      :narrow_symbol: ₧
+      :symbol: ₧
+    :ETB: 
+      :name: "ઇથિયોપીયન બિર"
+      :one: "ઇથિયોપીયન બિર"
+    :EUR: 
+      :name: યુરો
+      :narrow_symbol: €
+      :one: યુરો
+      :symbol: €
+    :FJD: 
+      :name: "ફિજિઅન ડોલર"
+      :narrow_symbol: $
+      :one: "ફિજિઅન ડોલર"
+      :symbol: $
+    :FKP: 
+      :name: "ફૉકલેન્ડ આઇલેંડ્સ પાઉન્ડ"
+      :narrow_symbol: £
+      :one: "ફૉકલેન્ડ આઇલેંડ્સ પાઉન્ડ"
+      :symbol: £
+    :GBP: 
+      :name: "બ્રિટિશ પાઉન્ડ"
+      :narrow_symbol: £
+      :one: "બ્રિટિશ પાઉન્ડ"
+      :other: "બ્રિટિશ પાઉન્ડ્સ"
+      :symbol: £
+    :GEL: 
+      :name: "જ્યોર્જિઅન લારી"
+      :narrow_symbol: ₾
+      :one: "જ્યોર્જિઅન લારી"
+      :symbol: ₾
+    :GHS: 
+      :name: "ઘાનાઇયન સેડી"
+      :narrow_symbol: GH₵
+      :one: "ઘાનાઇયન સેડી"
+      :symbol: GH₵
+    :GIP: 
+      :name: "જીબ્રાલ્ટર પાઉન્ડ"
+      :narrow_symbol: £
+      :one: "જીબ્રાલ્ટર પાઉન્ડ"
+      :symbol: £
+    :GMD: 
+      :name: "ગેમ્બિયન દલાસી"
+      :one: "ગેમ્બિયન દલાસી"
+    :GNF: 
+      :name: "ગિનીયન ફ્રેંક"
+      :narrow_symbol: FG
+      :one: "ગિનીયન ફ્રેંક"
+      :symbol: FG
+    :GTQ: 
+      :name: "ગ્વાટેમાલા કુઇટ્ઝલ"
+      :narrow_symbol: Q
+      :one: "ગ્વાટેમાલા કુઇટ્ઝલ"
+      :symbol: Q
+    :GYD: 
+      :name: "ગયાનિઝ ડોલર"
+      :narrow_symbol: $
+      :one: "ગયાનિઝ ડોલર"
+      :symbol: $
+    :HKD: 
+      :name: "હોંગ કોંગ ડૉલર"
+      :narrow_symbol: $
+      :one: "હોંગ કોંગ ડૉલર"
+      :symbol: HK$
+    :HNL: 
+      :name: "હોન્ડ્યુરન લેમ્પિરા"
+      :narrow_symbol: L
+      :one: "હોન્ડ્યુરન લેમ્પિરા"
+      :symbol: L
+    :HRK: 
+      :name: "ક્રોએશિયન ક્યુના"
+      :narrow_symbol: kn
+      :one: "ક્રોએશિયન ક્યુના"
+      :symbol: kn
+    :HTG: 
+      :name: "હાઇટિઇન ગોર્ડ"
+      :one: "હાઇટિઇન ગોર્ડ"
+    :HUF: 
+      :name: "હંગેરીયન ફોરિન્ત"
+      :narrow_symbol: Ft
+      :one: "હંગેરીયન ફોરિન્ત"
+      :symbol: Ft
+    :IDR: 
+      :name: "ઇન્ડોનેશિયન રૂપિયા"
+      :narrow_symbol: Rp
+      :one: "ઇન્ડોનેશિયન રૂપિયા"
+      :symbol: Rp
+    :ILS: 
+      :name: "ઇઝરાયેલી ન્યુ શેકલ"
+      :narrow_symbol: ₪
+      :one: "ઇઝરાયેલી ન્યુ શેકલ"
+      :symbol: ₪
+    :INR: 
+      :name: "ભારતીય રૂપિયા"
+      :narrow_symbol: ₹
+      :one: "ભારતીય રૂપિયા"
+      :symbol: ₹
+    :IQD: 
+      :name: "ઇરાકી દિનાર"
+      :one: "ઇરાકી દિનાર"
+    :IRR: 
+      :name: "ઇરાનિયન રિયાલ"
+      :one: "ઇરાનિયન રિયાલ"
+    :ISK: 
+      :name: "આઇસલેન્ડિક ક્રોના"
+      :narrow_symbol: kr
+      :one: "આઇસલેન્ડિક ક્રોના"
+      :symbol: kr
+    :JMD: 
+      :name: "જમૈકિયન ડોલર"
+      :narrow_symbol: $
+      :one: "જમૈકિયન ડોલર"
+      :symbol: $
+    :JOD: 
+      :name: "જોર્ડનિયન દિનાર"
+      :one: "જોર્ડનિયન દિનાર"
+    :JPY: 
+      :name: "જાપાનીઝ યેન"
+      :narrow_symbol: ¥
+      :one: "જાપાનીઝ યેન"
+      :symbol: JP¥
+    :KES: 
+      :name: "કેન્યેન શિલિંગ"
+      :one: "કેન્યેન શિલિંગ"
+    :KGS: 
+      :name: "કિર્ગિસ્તાની સોમ"
+      :narrow_symbol: ⃀
+      :one: "કિર્ગિસ્તાની સોમ"
+      :symbol: ⃀
+    :KHR: 
+      :name: "કેમ્બોડિયન રીઅલ"
+      :narrow_symbol: ៛
+      :one: "કેમ્બોડિયન રીઅલ"
+      :symbol: ៛
+    :KMF: 
+      :name: "કોમોરિઅન ફ્રેંક"
+      :narrow_symbol: CF
+      :one: "કોમોરિઅન ફ્રેંક"
+      :symbol: CF
+    :KPW: 
+      :name: "ઉત્તર કોરિયન વન"
+      :narrow_symbol: ₩
+      :one: "ઉત્તર કોરિયન વન"
+      :symbol: ₩
+    :KRW: 
+      :name: "દક્ષિણ કોરિયન વન"
+      :narrow_symbol: ₩
+      :one: "દક્ષિણ કોરિયન વન"
+      :symbol: ₩
+    :KWD: 
+      :name: "કુવૈતી દિનાર"
+      :one: "કુવૈતી દિનાર"
+    :KYD: 
+      :name: "કેયમેન આઇલેંડ્સ ડોલર"
+      :narrow_symbol: $
+      :one: "કેયમેન આઇલેંડ્સ ડોલર"
+      :symbol: $
+    :KZT: 
+      :name: "કઝાકિસ્તાની ટેંગ"
+      :narrow_symbol: ₸
+      :one: "કઝાકિસ્તાની ટેંગ"
+      :symbol: ₸
+    :LAK: 
+      :name: "લાઓશિયન કિપ"
+      :narrow_symbol: ₭
+      :one: "લાઓશિયન કિપ"
+      :symbol: ₭
+    :LBP: 
+      :name: "લેબેનિઝ પાઉન્ડ"
+      :narrow_symbol: L£
+      :one: "લેબેનિઝ પાઉન્ડ"
+      :symbol: L£
+    :LKR: 
+      :name: "શ્રી લંકન રૂપી"
+      :narrow_symbol: Rs
+      :one: "શ્રી લંકન રૂપી"
+      :symbol: Rs
+    :LRD: 
+      :name: "લિબેરિયન ડોલર"
+      :narrow_symbol: $
+      :one: "લિબેરિયન ડોલર"
+      :symbol: $
+    :LSL: 
+      :name: "લેસોથો લોતી"
+      :one: "લેસોથો લોતી"
+    :LTL: 
+      :name: "લિથુએનિયન લિતાસ"
+      :narrow_symbol: Lt
+      :one: "લિથુએનિયન લિતાસ"
+      :symbol: Lt
+    :LVL: 
+      :name: "લાતવિયન લેત્સ"
+      :narrow_symbol: Ls
+      :one: "લાતવિયન લેત્સ"
+      :symbol: Ls
+    :LYD: 
+      :name: "લિબ્યન દિનાર"
+      :one: "લિબ્યન દિનાર"
+    :MAD: 
+      :name: "મોરોક્કન દિરહામ"
+      :one: "મોરોક્કન દિરહામ"
+    :MDL: 
+      :name: "મોલડોવેન લિયુ"
+      :one: "મોલડોવેન લિયુ"
+    :MGA: 
+      :name: "માલાગેસી અરીઆરી"
+      :narrow_symbol: Ar
+      :one: "માલાગેસી અરીઆરી"
+      :symbol: Ar
+    :MKD: 
+      :name: "મેસેડોનિયન દિનાર"
+      :one: "મેસેડોનિયન દિનાર"
+    :MMK: 
+      :name: "મ્યાંમાર ક્યાત"
+      :narrow_symbol: K
+      :one: "મ્યાંમાર ક્યાત"
+      :symbol: K
+    :MNT: 
+      :name: "મોંગોલિયન ટગરિક"
+      :narrow_symbol: ₮
+      :one: "મોંગોલિયન ટગરિક"
+      :symbol: ₮
+    :MOP: 
+      :name: "માકાનિઝ પતાકા"
+      :one: "માકાનિઝ પતાકા"
+    :MRO: 
+      :name: "મોરીશેનિયન ઓગુયા (1973–2017)"
+      :one: "મોરીશેનિયન ઓગુયા (1973–2017)"
+    :MRU: 
+      :name: "મોરીશેનિયન ઓગુયા"
+      :one: "મોરીશેનિયન ઓગુયા"
+    :MUR: 
+      :name: "મોરેશીઅન રૂપી"
+      :narrow_symbol: રૂ.
+      :one: "મોરેશીઅન રૂપી"
+      :symbol: રૂ.
+    :MVR: 
+      :name: "માલ્દિવિયન રુફિયા"
+      :one: "માલ્દિવિયન રુફિયા"
+    :MWK: 
+      :name: "માલાવિયન ક્વાચા"
+      :one: "માલાવિયન ક્વાચા"
+    :MXN: 
+      :name: "મેક્સિકન પેસો"
+      :narrow_symbol: $
+      :one: "મેક્સિકન પેસો"
+      :symbol: MX$
+    :MYR: 
+      :name: "મલેશિયન રિંગ્ગેટ"
+      :narrow_symbol: RM
+      :one: "મલેશિયન રિંગ્ગેટ"
+      :symbol: RM
+    :MZN: 
+      :name: "મોઝામ્બિકન મેટિકલ"
+      :one: "મોઝામ્બિકન મેટિકલ"
+    :NAD: 
+      :name: "નામિબિયન ડોલર"
+      :narrow_symbol: $
+      :one: "નામિબિયન ડોલર"
+      :symbol: $
+    :NGN: 
+      :name: "નાઇજીરિયન નૈરા"
+      :narrow_symbol: ₦
+      :one: "નાઇજીરિયન નૈરા"
+      :symbol: ₦
+    :NIO: 
+      :name: "નિકારાગુઅન કોર્ડોબા"
+      :narrow_symbol: C$
+      :one: "નિકારાગુઅન કોર્ડોબા"
+      :symbol: C$
+    :NOK: 
+      :name: "નૉર્વેજિયન ક્રોન"
+      :narrow_symbol: kr
+      :one: "નૉર્વેજિયન ક્રોન"
+      :symbol: kr
+    :NPR: 
+      :name: "નેપાલિઝ રૂપી"
+      :narrow_symbol: Rs
+      :one: "નેપાલિઝ રૂપી"
+      :symbol: Rs
+    :NZD: 
+      :name: "ન્યૂઝિલેંડ ડૉલર"
+      :narrow_symbol: $
+      :one: "ન્યૂઝિલેંડ ડૉલર"
+      :symbol: NZ$
+    :OMR: 
+      :name: "ઓમાની રિયાલ"
+      :one: "ઓમાની રિયાલ"
+    :PAB: 
+      :name: "પનામેનિયન બાલ્બોઆ"
+      :one: "પનામેનિયન બાલ્બોઆ"
+    :PEN: 
+      :name: "પેરુવિયન સોલ"
+      :one: "પેરુવિયન સોલ"
+    :PGK: 
+      :name: "પાપુઆ ન્યૂ ગિનીયન કિના"
+      :one: "પાપુઆ ન્યૂ ગિનીયન કિના"
+    :PHP: 
+      :name: "ફિલીપાઇન પેસો"
+      :narrow_symbol: ₱
+      :one: "ફિલીપાઇન પેસો"
+      :symbol: PHP
+    :PKR: 
+      :name: "પાકિસ્તાની રૂપી"
+      :narrow_symbol: Rs
+      :one: "પાકિસ્તાની રૂપી"
+      :symbol: Rs
+    :PLN: 
+      :name: "પોલિસ ઝ્લોટી"
+      :narrow_symbol: zł
+      :one: "પોલિસ ઝ્લોટી"
+      :symbol: zł
+    :PYG: 
+      :name: "પરાગ્વેયન ગુઆરાની"
+      :narrow_symbol: ₲
+      :one: "પરાગ્વેયન ગુઆરાની"
+      :symbol: ₲
+    :QAR: 
+      :name: "કતારી રિયાલ"
+      :one: "કતારી રિયાલ"
+    :RON: 
+      :name: "રોમાનિયન લેઉ"
+      :narrow_symbol: lei
+      :one: "રોમાનિયન લેઉ"
+      :symbol: lei
+    :RSD: 
+      :name: "સર્બિયન દિનાર"
+      :one: "સર્બિયન દિનાર"
+    :RUB: 
+      :name: "રશિયન રૂબલ"
+      :narrow_symbol: ₽
+      :one: "રશિયન રૂબલ"
+      :other: "રશિયન રૂબલ્સ"
+      :symbol: ₽
+    :RWF: 
+      :name: "રવાંડન ફ્રેંક"
+      :narrow_symbol: RF
+      :one: "રવાંડન ફ્રેંક"
+      :symbol: RF
+    :SAR: 
+      :name: "સાઉદી રિયાલ"
+      :one: "સાઉદી રિયાલ"
+    :SBD: 
+      :name: "સોલોમન આઇલેંડ્સ ડોલર"
+      :narrow_symbol: $
+      :one: "સોલોમન આઇલેંડ્સ ડોલર"
+      :symbol: $
+    :SCR: 
+      :name: "સેશેલોઈ રૂપી"
+      :one: "સેશેલોઈ રૂપી"
+    :SDG: 
+      :name: "સુદાનિઝ પાઉન્ડ"
+      :one: "સુદાનિઝ પાઉન્ડ"
+    :SEK: 
+      :name: "સ્વીડિશ ક્રોના"
+      :narrow_symbol: kr
+      :one: "સ્વીડિશ ક્રોના"
+      :symbol: kr
+    :SGD: 
+      :name: "સિંગાપુર ડૉલર"
+      :narrow_symbol: $
+      :one: "સિંગાપુર ડૉલર"
+      :symbol: $
+    :SHP: 
+      :name: "સેંટ હેલેના પાઉન્ડ"
+      :narrow_symbol: £
+      :one: "સેંટ હેલેના પાઉન્ડ"
+      :symbol: £
+    :SLE: 
+      :name: "સિએરા લિઓનિઅન લિઓન"
+      :one: "સિએરા લિઓનિઅન લિઓન"
+    :SLL: 
+      :name: "સિએરા લિઓનિઅન લિઓન (1964—2022)"
+      :one: "સિએરા લિઓનિઅન લિઓન (1964—2022)"
+    :SOS: 
+      :name: "સોમાલી શિલિંગ"
+      :one: "સોમાલી શિલિંગ"
+    :SRD: 
+      :name: "સૂરીનામિઝ ડોલર"
+      :narrow_symbol: $
+      :one: "સૂરીનામિઝ ડોલર"
+      :symbol: $
+    :SSP: 
+      :name: "દક્ષિણ સુદાનિઝ પાઉન્ડ"
+      :narrow_symbol: £
+      :one: "દક્ષિણ સુદાનિઝ પાઉન્ડ"
+      :symbol: £
+    :STD: 
+      :name: "સાઓ ટૉમ એન્ડ પ્રિંસાઇપ ડોબ્રા (1977–2017)"
+      :one: "સાઓ ટૉમ એન્ડ પ્રિંસાઇપ ડોબ્રા (1977–2017)"
+    :STN: 
+      :name: "સાઓ ટૉમ એન્ડ પ્રિંસાઇપ ડોબ્રા"
+      :narrow_symbol: Db
+      :one: "સાઓ ટૉમ એન્ડ પ્રિંસાઇપ ડોબ્રા"
+      :symbol: Db
+    :SYP: 
+      :name: "સાઇરિયન પાઉન્ડ"
+      :narrow_symbol: £
+      :one: "સાઇરિયન પાઉન્ડ"
+      :symbol: £
+    :SZL: 
+      :name: "સ્વાઝી લિલાન્ગેની"
+      :one: "સ્વાઝી લિલાન્ગેની"
+    :THB: 
+      :name: "થાઇ બાહ્ત"
+      :narrow_symbol: ฿
+      :one: "થાઇ બાહ્ત"
+      :symbol: ฿
+    :TJS: 
+      :name: "તાજિકિસ્તાની સોમોની"
+      :one: "તાજિકિસ્તાની સોમોની"
+    :TMT: 
+      :name: "તુર્કમેનિસ્તાની મનત"
+      :one: "તુર્કમેનિસ્તાની મનત"
+    :TND: 
+      :name: "ટ્યુનિશિયન દિનાર"
+      :one: "ટ્યુનિશિયન દિનાર"
+    :TOP: 
+      :name: "ટોંગન પ’અંગા"
+      :narrow_symbol: T$
+      :one: "ટોંગન પ’અંગા"
+      :symbol: T$
+    :TRY: 
+      :name: "તુર્કિશ લિરા"
+      :narrow_symbol: ₺
+      :one: "તુર્કિશ લિરા"
+      :symbol: ₺
+    :TTD: 
+      :name: "ત્રિનિદાદ અને ટોબેગો ડોલર"
+      :narrow_symbol: $
+      :one: "ત્રિનિદાદ અને ટોબેગો ડોલર"
+      :symbol: $
+    :TWD: 
+      :name: "ન્યુ તાઇવાન ડૉલર"
+      :narrow_symbol: NT$
+      :one: "ન્યુ તાઇવાન ડૉલર"
+      :symbol: NT$
+    :TZS: 
+      :name: "તાન્ઝાનિયન શિલિંગ"
+      :one: "તાન્ઝાનિયન શિલિંગ"
+    :UAH: 
+      :name: "યુક્રેનિયન હ્રિવિનિયા"
+      :narrow_symbol: ₴
+      :one: "યુક્રેનિયન હ્રિવિનિયા"
+      :symbol: ₴
+    :UGX: 
+      :name: "યુગાંડન શિલિંગ"
+      :one: "યુગાંડન શિલિંગ"
+    :USD: 
+      :name: "યુઍસ ડોલર"
+      :narrow_symbol: $
+      :one: "યુઍસ ડોલર"
+      :symbol: US$
+    :UYU: 
+      :name: "ઉરુગ્વેયન પેસો"
+      :narrow_symbol: $
+      :one: "ઉરુગ્વેયન પેસો"
+      :symbol: $
+    :UZS: 
+      :name: "ઉઝ્બેકિસ્તાન સોમ"
+      :one: "ઉઝ્બેકિસ્તાન સોમ"
+    :VEF: 
+      :name: "વેનેઝુએલન બોલિવર (2008–2018)"
+      :narrow_symbol: Bs
+      :one: "વેનેઝુએલન બોલિવર (2008–2018)"
+      :symbol: Bs
+    :VES: 
+      :name: "વેનેઝુએલન બોલિવર"
+      :one: "વેનેઝુએલન બોલિવર"
+    :VND: 
+      :name: "વિયેતનામીસ ડોંગ"
+      :narrow_symbol: ₫
+      :one: "વિયેતનામીસ ડોંગ"
+      :symbol: ₫
+    :VUV: 
+      :name: "વનૌતુ વાતુ"
+      :one: "વનૌતુ વાતુ"
+    :WST: 
+      :name: "સમોઅન તાલા"
+      :one: "સમોઅન તાલા"
+    :XAF: 
+      :name: "મધ્ય આફ્રિકન [CFA] ફ્રેંક"
+      :one: "મધ્ય આફ્રિકન [CFA] ફ્રેંક"
+      :other: "મધ્ય આફ્રિકન [CFA] ફ્રેંક્સ"
+      :symbol: FCFA
+    :XCD: 
+      :name: "ઇસ્ટ કેરિબિયન ડોલર"
+      :narrow_symbol: $
+      :one: "ઇસ્ટ કેરિબિયન ડોલર"
+      :symbol: EC$
+    :XCG: 
+      :symbol: Cg.
+    :XOF: 
+      :name: "પશ્ચિમી આફ્રિકન [CFA] ફ્રેંક"
+      :one: "પશ્ચિમી આફ્રિકન [CFA] ફ્રેંક"
+      :other: "પશ્ચિમી આફ્રિકન [CFA] ફ્રેંક્સ"
+      :symbol: F CFA
+    :XPF: 
+      :name: "[CFP] ફ્રેંક"
+      :one: "[CFP] ફ્રેંક"
+      :symbol: CFPF
+    :XXX: 
+      :name: "અજ્ઞાત ચલણ"
+      :one: "અજ્ઞાત ચલણ"
+      :symbol: ¤
+    :YER: 
+      :name: "યેમેની રિઆલ"
+      :one: "યેમેની રિઆલ"
+    :ZAR: 
+      :name: "દક્ષિણ આફ્રિકી રેંડ"
+      :narrow_symbol: R
+      :one: "દક્ષિણ આફ્રિકી રેંડ"
+      :symbol: R
+    :ZMK: 
+      :name: "ઝામ્બિયન ક્વાચા (1968–2012)"
+      :one: "ઝામ્બિયન ક્વાચા (1968–2012)"
+    :ZMW: 
+      :name: "ઝામ્બિયન ક્વાચા"
+      :narrow_symbol: ZK
+      :one: "ઝામ્બિયન ક્વાચા"
+      :symbol: ZK

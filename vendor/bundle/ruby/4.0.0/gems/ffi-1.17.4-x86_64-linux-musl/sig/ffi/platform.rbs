@@ -1,0 +1,49 @@
+module FFI
+  class PlatformError < LoadError
+  end
+
+  module Platform
+    OS: String
+
+    OSVERSION: Integer
+
+    CPU: String
+
+    ARCH: String
+
+    IS_GNU: bool
+    IS_LINUX: bool
+    IS_MAC: bool
+    IS_FREEBSD: bool
+    IS_NETBSD: bool
+    IS_OPENBSD: bool
+    IS_DRAGONFLYBSD: bool
+    IS_SOLARIS: bool
+    IS_WINDOWS: bool
+    IS_BSD: bool
+
+    NAME: String
+
+    CONF_DIR: String
+
+    LIBPREFIX: String
+
+    LIBSUFFIX: String
+
+    LIBC: String
+
+    LITTLE_ENDIAN: Integer
+
+    BIG_ENDIAN: Integer
+
+    def self.bsd?: () -> bool
+    def self.windows?: () -> bool
+    def self.mac?: () -> bool
+    def self.solaris?: () -> bool
+    def self.unix?: () -> bool
+
+    private
+
+    def self.is_os: (String os) -> bool
+  end
+end

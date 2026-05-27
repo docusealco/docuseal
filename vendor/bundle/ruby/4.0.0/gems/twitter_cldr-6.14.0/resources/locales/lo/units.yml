@@ -1,0 +1,647 @@
+--- 
+:lo: 
+  :units: 
+    :durationUnit: 
+      :hm: "h:mm"
+      :hms: "h:mm:ss"
+      :ms: "m:ss"
+    :unitLength: 
+      :long: 
+        :acceleration-g-force: 
+          :other: "{0} ແຮງຕົກຕາມລຳພັງ"
+        :acceleration-meter-per-square-second: 
+          :other: "{0} ແມັດຕໍ່ວິນາທີກໍາລັງສອງ"
+        :angle-arc-minute: 
+          :other: "{0} ນາທີ"
+        :angle-arc-second: 
+          :other: "{0} ວິນາທີ"
+        :angle-radian: 
+          :other: "{0} radians"
+        :area-hectare: 
+          :other: "{0} ເຮັກຕາ"
+        :area-square-centimeter: 
+          :other: "{0} ຊັງຕີຕາແມັດ"
+        :area-square-foot: 
+          :other: "{0} ຕາ​ຟຸດ"
+        :area-square-inch: 
+          :other: "{0} ຕາລາງນິ້ວ"
+        :area-square-kilometer: 
+          :other: "{0} ກິໂລຕາແມັດ"
+        :area-square-meter: 
+          :other: "{0} ຕາແມັດ"
+        :area-square-mile: 
+          :other: "{0} ຕາ​ລາງໄມລ໌"
+        :area-square-yard: 
+          :other: "{0} ຕາລາງຢາດ"
+        :concentr-karat: 
+          :other: "{0} ກະຣັດ"
+        :concentr-millimole-per-liter: 
+          :other: "{0} ມິລິໂມລຕໍ່ລິດ"
+        :concentr-mole: 
+          :other: "{0} ໂມ​ລ"
+        :concentr-percent: 
+          :other: "{0} ເປີເຊັນ"
+        :concentr-permille: 
+          :other: "{0} ຕໍ່ພັນ"
+        :concentr-permillion: 
+          :other: "{0} ພາດຕໍ່ລ້ານ"
+        :concentr-permyriad: 
+          :other: "{0} ເປີ​ມີ​ຣຽດ"
+        :concentr-portion-per-1e9: 
+          :other: "{0} ສ່ວນໃນພັນລ້ານສ່ວນ"
+        :consumption-liter-per-100-kilometer: 
+          :other: "{0} ລິດຕໍ່ 100 ກີໂລແມັດ"
+        :consumption-liter-per-kilometer: 
+          :other: "{0} ລິດຕໍ່ກິໂລແມັດ"
+        :consumption-mile-per-gallon: 
+          :other: "{0} ໄມລ໌ຕໍ່ແກລອນ"
+        :consumption-mile-per-gallon-imperial: 
+          :other: "{0} ໄມລ໌ຕໍ່ແກລລອນອັງກິດ"
+        :digital-petabyte: 
+          :other: "{0} ເພຕາໄບຕ໌"
+        :duration-century: 
+          :other: "{0} ສັດຕະວັດ"
+        :duration-hour: 
+          :other: "{0} ຊົ່ວໂມງ"
+        :duration-microsecond: 
+          :other: "{0} ໄມ​ໂຄຣ​ວິ​ນາ​ທີ"
+        :duration-millisecond: 
+          :other: "{0} ມິນລີວິນາທີ"
+        :duration-minute: 
+          :other: "{0} ນາທີ"
+        :duration-month: 
+          :other: "{0} ເດືອນ"
+        :duration-nanosecond: 
+          :other: "{0} ນາ​ໂນ​ວິ​ນາ​ທີ"
+        :duration-night: 
+          :other: "{0} ຄືນ"
+        :duration-second: 
+          :other: "{0} ວິນາທີ"
+        :duration-week: 
+          :other: "{0} ອາທິດ"
+        :energy-british-thermal-unit: 
+          :other: "{0} ຫົວ​ໜ່ວຍ​ວັດ​ແທກ​ປະ​ລິ​ມານ​ຄວາມ​ຮ້ອນ​ຂ​ອງ​ອັງ​ກິດ"
+        :energy-calorie: 
+          :other: "{0} ແຄລໍລີ່"
+        :energy-electronvolt: 
+          :other: "{0} ເອ​ເລັກ​ຕ​ຣົງ​ໂວນ"
+        :energy-foodcalorie: 
+          :other: "{0} ແຄລໍລີ່"
+        :force-kilowatt-hour-per-100-kilometer: 
+          :other: "{0} ກິໂລວັດໂມງຕໍ່ 100 ກິໂລແມັດ"
+        :force-newton: 
+          :other: "{0} ນິວ​ເຕິນ"
+        :force-pound-force: 
+          :other: "{0} ແຮງປ​ອນ"
+        :length-astronomical-unit: 
+          :other: "{0} astronomical units"
+        :length-centimeter: 
+          :other: "{0} ຊັງຕີແມັດ"
+        :length-decimeter: 
+          :other: "{0} ເດຊີແມັດ"
+        :length-foot: 
+          :other: "{0} ຟຸດ"
+        :length-inch: 
+          :other: "{0} ນິ້ວ"
+        :length-kilometer: 
+          :other: "{0} ກິໂລແມັດ"
+        :length-light-year: 
+          :other: "{0} ປີແສງ"
+        :length-meter: 
+          :other: "{0} ແມັດ"
+        :length-micrometer: 
+          :other: "{0} micrometers"
+        :length-mile: 
+          :other: "{0} ໄມລ໌"
+        :length-mile-scandinavian: 
+          :other: "{0} ໄມລ໌ສະກັງດີນາວຽນ"
+        :length-millimeter: 
+          :other: "{0} ມິນລິແມັດ"
+        :length-nanometer: 
+          :other: "{0} ນາໂນແມັດ"
+        :length-nautical-mile: 
+          :other: "{0} ໄມລ໌ທະເລ"
+        :length-parsec: 
+          :other: "{0} parsecs"
+        :length-picometer: 
+          :other: "{0} ປິໂກແມັດ"
+        :length-point: 
+          :other: "{0} ຈຸດ"
+        :length-solar-radius: 
+          :other: "{0} ລັດ​ສະ​ໝີ​ດວງ​ຕາ​ເວັນ"
+        :light-candela: 
+          :other: "{0} ແຄນເດລາ"
+        :light-lumen: 
+          :other: "{0} ລູເມນ"
+        :light-lux: 
+          :other: "{0} lux"
+        :light-solar-luminosity: 
+          :other: "{0} ຄວາມ​ແຈ້ງດວງ​ຕາ​ເວັນ"
+        :mass-dalton: 
+          :other: "{0} ດໍ​ຕັນ"
+        :mass-earth-mass: 
+          :other: "{0} ມວນ​ສານ​ໜ່ວຍ​ໂລກ"
+        :mass-grain: 
+          :other: "{0} ເກຣນ"
+        :mass-gram: 
+          :other: "{0} ກຣາມ"
+        :mass-kilogram: 
+          :other: "{0} ກິໂລກຣາມ"
+        :mass-milligram: 
+          :other: "{0} ມິນລີກຣາມ"
+        :mass-ounce: 
+          :other: "{0} ອອນສ"
+        :mass-pound: 
+          :other: "{0} ປອນ"
+        :mass-solar-mass: 
+          :other: "{0} ມວນ​ສານດວງ​ຕາ​ເວັນ"
+        :mass-stone: 
+          :other: "{0} stones"
+        :mass-ton: 
+          :other: "{0} ໂຕນ"
+        :power-horsepower: 
+          :other: "{0} ແຮງມ້າ"
+        :power-kilowatt: 
+          :other: "{0} ກິໂລວັດ"
+        :pressure-atmosphere: 
+          :other: "{0} atmospheres"
+        :pressure-hectopascal: 
+          :other: "{0} hectopascals"
+        :pressure-inch-ofhg: 
+          :other: "{0} ນິ້ວໃນບາຫຼອດ"
+        :pressure-kilopascal: 
+          :other: "{0} ກິ​ໂລ​ປາ​ສ​ການ"
+        :pressure-megapascal: 
+          :other: "{0} ເມ​ກາ​ປາ​ສ​ການ"
+        :pressure-millibar: 
+          :other: "{0} ມິນລິບາ"
+        :pressure-millimeter-ofhg: 
+          :other: "{0} ມິນລີແມັດໃນບາຫຼອດ"
+        :pressure-pound-force-per-square-inch: 
+          :other: "{0} ປອນຕໍ່ຕະລາງນິ້້ວ"
+        :speed-beaufort: 
+          :other: "{0} ໂບຝອດ"
+        :speed-kilometer-per-hour: 
+          :other: "{0} ກິໂລແມັດຕໍ່ຊົ່ວໂມງ"
+        :speed-knot: 
+          :other: "{0} ນ໋ອດ"
+        :speed-light-speed: 
+          :other: "{0} ແສງ"
+        :speed-meter-per-second: 
+          :other: "{0} ແມັດຕໍ່ວິນາທີ"
+        :speed-mile-per-hour: 
+          :other: "{0} ໄມລ໌ຕໍ່ຊົ່ວໂມງ"
+        :temperature-fahrenheit: 
+          :other: "{0} ອົງສາຟາເຣນຮາຍ"
+        :temperature-kelvin: 
+          :other: "{0} ອົງສາເຄວິນ"
+        :torque-newton-meter: 
+          :other: "{0} ນິວ​ເຕິນ​ແມັດ"
+        :torque-pound-force-foot: 
+          :other: "{0} ປອນ​-ຟຸດ"
+        :volume-barrel: 
+          :other: "{0} ບາ​ເຣວ"
+        :volume-cubic-kilometer: 
+          :other: "{0} ກິໂລແມັດກ້ອນ"
+        :volume-cubic-meter: 
+          :other: "{0} ແມັດກ້ອນ"
+        :volume-cubic-mile: 
+          :other: "{0} ໄມລ໌ກ້ອນ"
+        :volume-cup-metric: 
+          :other: "{0} metric cups"
+        :volume-dram: 
+          :other: "{0} ແດຣມ"
+        :volume-gallon-imperial: 
+          :other: "{0} ແກລລອນອັງກິດ"
+        :volume-liter: 
+          :other: "{0} ລິດ"
+        :volume-pint-metric: 
+          :other: "{0} metric pints"
+      :narrow: 
+        :angle-arc-minute: 
+          :other: "{0}′"
+        :angle-arc-second: 
+          :other: "{0}″"
+        :angle-degree: 
+          :other: "{0}°"
+        :area-acre: 
+          :other: "{0} ac"
+        :area-hectare: 
+          :other: "{0} ຮຕ"
+        :area-square-foot: 
+          :other: "{0} ft²"
+        :concentr-portion-per-1e9: 
+          :other: "{0}ppb"
+        :consumption-liter-per-100-kilometer: 
+          :other: "{0} ລ / 100 ກມ"
+        :consumption-mile-per-gallon-imperial: 
+          :other: "{0} m/gUK"
+        :duration-century: 
+          :other: "{0} ສຕວ"
+        :duration-day: 
+          :other: "{0} ມ."
+        :duration-night: 
+          :other: "{0} ຄືນ"
+        :duration-year: 
+          :other: "{0} ປ"
+        :energy-foodcalorie: 
+          :other: "{0}ຄລ"
+        :force-kilowatt-hour-per-100-kilometer: 
+          :other: "{0}kWh/100km"
+        :graphics-dot-per-centimeter: 
+          :other: "{0}dpcm"
+        :graphics-dot-per-inch: 
+          :other: "{0}dpi"
+        :mass-kilogram: 
+          :other: "{0} ກລ"
+        :power-kilowatt: 
+          :other: "{0} kW"
+        :speed-light-speed: 
+          :other: "{0} ແສງ"
+        :temperature-celsius: 
+          :other: "{0}°"
+        :temperature-fahrenheit: 
+          :other: "{0}°F"
+        :volume-dessert-spoon-imperial: 
+          :other: "{0}dsp-Imp"
+        :volume-fluid-ounce-imperial: 
+          :other: "{0} fl oz Im"
+        :volume-gallon-imperial: 
+          :other: "{0} galIm"
+        :volume-liter: 
+          :other: "{0}L"
+      :short: 
+        :acceleration-g-force: 
+          :other: "{0} G"
+        :acceleration-meter-per-square-second: 
+          :other: "{0} ມ/ວນທ²"
+        :angle-arc-minute: 
+          :other: "{0} arcmins"
+        :angle-arc-second: 
+          :other: "{0} arcsecs"
+        :angle-degree: 
+          :other: "{0} ອົງສາ"
+        :angle-radian: 
+          :other: "{0} rad"
+        :angle-revolution: 
+          :other: "{0} rev"
+        :area-acre: 
+          :other: "{0} ເອເຄີ"
+        :area-dunam: 
+          :other: "{0} ດູ​ນຳ"
+        :area-hectare: 
+          :other: "{0} ຮຕ."
+        :area-square-centimeter: 
+          :other: "{0} ຊມ²"
+        :area-square-foot: 
+          :other: "{0} ຟຸດ²"
+        :area-square-inch: 
+          :other: "{0} in²"
+        :area-square-kilometer: 
+          :other: "{0} ກມ²"
+        :area-square-meter: 
+          :other: "{0} ມ²"
+        :area-square-mile: 
+          :other: "{0} mi²"
+        :area-square-yard: 
+          :other: "{0} yd²"
+        :concentr-item: 
+          :other: "{0} ອັນ"
+        :concentr-karat: 
+          :other: "{0} kt"
+        :concentr-milligram-ofglucose-per-deciliter: 
+          :other: "{0} mg/dL"
+        :concentr-millimole-per-liter: 
+          :other: "{0} mmol/L"
+        :concentr-mole: 
+          :other: "{0} mol"
+        :concentr-percent: 
+          :other: "{0}%"
+        :concentr-permille: 
+          :other: "{0}‰"
+        :concentr-permillion: 
+          :other: "{0} ppm"
+        :concentr-permyriad: 
+          :other: "{0}‱"
+        :concentr-portion-per-1e9: 
+          :other: "{0} ppb"
+        :consumption-liter-per-100-kilometer: 
+          :other: "{0} L/100km"
+        :consumption-liter-per-kilometer: 
+          :other: "{0} ລ/ກມ"
+        :consumption-mile-per-gallon: 
+          :other: "{0} mpg"
+        :consumption-mile-per-gallon-imperial: 
+          :other: "{0} mpg Imp."
+        :digital-bit: 
+          :other: "{0} bit"
+        :digital-byte: 
+          :other: "{0} byte"
+        :digital-gigabit: 
+          :other: "{0} Gb"
+        :digital-gigabyte: 
+          :other: "{0} GB"
+        :digital-kilobit: 
+          :other: "{0} kb"
+        :digital-kilobyte: 
+          :other: "{0} kB"
+        :digital-megabit: 
+          :other: "{0} Mb"
+        :digital-megabyte: 
+          :other: "{0} MB"
+        :digital-petabyte: 
+          :other: "{0} PB"
+        :digital-terabit: 
+          :other: "{0} Tb"
+        :digital-terabyte: 
+          :other: "{0} TB"
+        :duration-century: 
+          :other: "{0} ສຕວ"
+        :duration-day: 
+          :other: "{0} ມື້"
+        :duration-decade: 
+          :other: "{0} ທົດສະວັດ"
+        :duration-hour: 
+          :other: "{0} ຊມ"
+        :duration-microsecond: 
+          :other: "{0} μວິ"
+        :duration-millisecond: 
+          :other: "{0} ມລວ"
+        :duration-minute: 
+          :other: "{0} ນທ"
+        :duration-month: 
+          :other: "{0} ດ."
+        :duration-nanosecond: 
+          :other: "{0} ນນ​ວິ"
+        :duration-night: 
+          :other: "{0} ຄືນ"
+        :duration-quarter: 
+          :other: "{0} ໄຕມາດ"
+        :duration-second: 
+          :other: "{0} ວິ"
+        :duration-week: 
+          :other: "{0} ອທ."
+        :duration-year: 
+          :other: "{0} ປີ"
+        :electric-ampere: 
+          :other: "{0} A"
+        :electric-milliampere: 
+          :other: "{0} mA"
+        :electric-ohm: 
+          :other: "{0} Ω"
+        :electric-volt: 
+          :other: "{0} ໂວລ"
+        :energy-british-thermal-unit: 
+          :other: "{0} Btu"
+        :energy-calorie: 
+          :other: "{0} ຄລ"
+        :energy-electronvolt: 
+          :other: "{0} eV"
+        :energy-foodcalorie: 
+          :other: "{0} ຄລ"
+        :energy-joule: 
+          :other: "{0} J"
+        :energy-kilocalorie: 
+          :other: "{0} ກິໂລແຄລໍລີ່"
+        :energy-kilojoule: 
+          :other: "{0} kJ"
+        :energy-kilowatt-hour: 
+          :other: "{0} kWh"
+        :energy-therm-us: 
+          :other: "{0} US therm"
+        :force-kilowatt-hour-per-100-kilometer: 
+          :other: "{0} kWh/100km"
+        :force-newton: 
+          :other: "{0} N"
+        :force-pound-force: 
+          :other: "{0} lbf"
+        :frequency-gigahertz: 
+          :other: "{0} GHz"
+        :frequency-hertz: 
+          :other: "{0} Hz"
+        :frequency-kilohertz: 
+          :other: "{0} kHz"
+        :frequency-megahertz: 
+          :other: "{0} MHz"
+        :graphics-dot: 
+          :other: "{0} ດັອດ"
+        :graphics-dot-per-centimeter: 
+          :other: "{0} dpcm"
+        :graphics-dot-per-inch: 
+          :other: "{0} dpi"
+        :graphics-em: 
+          :other: "{0} em"
+        :graphics-megapixel: 
+          :other: "{0} MP"
+        :graphics-pixel: 
+          :other: "{0} px"
+        :graphics-pixel-per-centimeter: 
+          :other: "{0} ppcm"
+        :graphics-pixel-per-inch: 
+          :other: "{0} ppi"
+        :length-astronomical-unit: 
+          :other: "{0} au"
+        :length-centimeter: 
+          :other: "{0} ຊມ"
+        :length-decimeter: 
+          :other: "{0} ດມ"
+        :length-earth-radius: 
+          :other: "{0} R⊕"
+        :length-fathom: 
+          :other: "{0} ftm"
+        :length-foot: 
+          :other: "{0} ຟ"
+        :length-furlong: 
+          :other: "{0} fur"
+        :length-inch: 
+          :other: "{0} ນິ"
+        :length-kilometer: 
+          :other: "{0} ກມ"
+        :length-light-year: 
+          :other: "{0} ປສ"
+        :length-meter: 
+          :other: "{0} ມ"
+        :length-micrometer: 
+          :other: "{0} μm"
+        :length-mile: 
+          :other: "{0} ໄມ"
+        :length-mile-scandinavian: 
+          :other: "{0} smi"
+        :length-millimeter: 
+          :other: "{0} ມມ"
+        :length-nanometer: 
+          :other: "{0} ນມ"
+        :length-nautical-mile: 
+          :other: "{0} nmi"
+        :length-parsec: 
+          :other: "{0} pc"
+        :length-picometer: 
+          :other: "{0} ປມ"
+        :length-point: 
+          :other: "{0} pt"
+        :length-solar-radius: 
+          :other: "{0} R☉"
+        :length-yard: 
+          :other: "{0} ຫລາ"
+        :light-candela: 
+          :other: "{0} cd"
+        :light-lumen: 
+          :other: "{0} lm"
+        :light-lux: 
+          :other: "{0} lx"
+        :light-solar-luminosity: 
+          :other: "{0} L☉"
+        :mass-carat: 
+          :other: "{0} CD"
+        :mass-dalton: 
+          :other: "{0} Da"
+        :mass-earth-mass: 
+          :other: "{0} M⊕"
+        :mass-grain: 
+          :other: "{0} gr"
+        :mass-gram: 
+          :other: "{0} ກຼ"
+        :mass-kilogram: 
+          :other: "{0} ກິໂລ"
+        :mass-microgram: 
+          :other: "{0} μg"
+        :mass-milligram: 
+          :other: "{0} ມກ"
+        :mass-ounce: 
+          :other: "{0} ອ"
+        :mass-ounce-troy: 
+          :other: "{0} oz t"
+        :mass-pound: 
+          :other: "{0} ປ"
+        :mass-solar-mass: 
+          :other: "{0} M☉"
+        :mass-stone: 
+          :other: "{0} st"
+        :mass-ton: 
+          :other: "{0} ຕ"
+        :mass-tonne: 
+          :other: "{0} t"
+        :power-gigawatt: 
+          :other: "{0} GW"
+        :power-horsepower: 
+          :other: "{0} hp"
+        :power-kilowatt: 
+          :other: "{0} ກລ. ວັດ"
+        :power-megawatt: 
+          :other: "{0} MW"
+        :power-milliwatt: 
+          :other: "{0} mW"
+        :power-watt: 
+          :other: "{0} ວັດ"
+        :pressure-atmosphere: 
+          :other: "{0} atm"
+        :pressure-bar: 
+          :other: "{0} bar"
+        :pressure-hectopascal: 
+          :other: "{0} hPA"
+        :pressure-inch-ofhg: 
+          :other: "{0} in Hg"
+        :pressure-kilopascal: 
+          :other: "{0} kPa"
+        :pressure-megapascal: 
+          :other: "{0} MPa"
+        :pressure-millibar: 
+          :other: "{0} mbar"
+        :pressure-millimeter-ofhg: 
+          :other: "{0} mm Hg"
+        :pressure-pascal: 
+          :other: "{0} Pa"
+        :pressure-pound-force-per-square-inch: 
+          :other: "{0} psi"
+        :speed-beaufort: 
+          :other: "{0} B"
+        :speed-kilometer-per-hour: 
+          :other: "{0} ກມ/ຊມ"
+        :speed-knot: 
+          :other: "{0} kn"
+        :speed-light-speed: 
+          :other: "{0} ແສງ"
+        :speed-meter-per-second: 
+          :other: "{0} ມ/ວ"
+        :speed-mile-per-hour: 
+          :other: "{0} ມ/ຊມ"
+        :temperature-celsius: 
+          :other: "{0} ອົງສາ ຊີ."
+        :temperature-fahrenheit: 
+          :other: "{0} ອົງສາ ຟ."
+        :temperature-generic: 
+          :other: "{0}°"
+        :temperature-kelvin: 
+          :other: "{0}°K"
+        :torque-newton-meter: 
+          :other: "{0} N⋅m"
+        :torque-pound-force-foot: 
+          :other: "{0} lbf⋅ft"
+        :volume-acre-foot: 
+          :other: "{0} ac ft"
+        :volume-barrel: 
+          :other: "{0} bbl"
+        :volume-bushel: 
+          :other: "{0} bu"
+        :volume-centiliter: 
+          :other: "{0} cL"
+        :volume-cubic-centimeter: 
+          :other: "{0} cm³"
+        :volume-cubic-foot: 
+          :other: "{0} ft³"
+        :volume-cubic-inch: 
+          :other: "{0} in³"
+        :volume-cubic-kilometer: 
+          :other: "{0} ກມ³"
+        :volume-cubic-meter: 
+          :other: "{0} ມ³"
+        :volume-cubic-mile: 
+          :other: "{0} mi³"
+        :volume-cubic-yard: 
+          :other: "{0} yd³"
+        :volume-cup: 
+          :other: "{0} c"
+        :volume-cup-metric: 
+          :other: "{0} mc"
+        :volume-deciliter: 
+          :other: "{0} dL"
+        :volume-dessert-spoon: 
+          :other: "{0} dstspn"
+        :volume-dessert-spoon-imperial: 
+          :other: "{0} dstspn Imp"
+        :volume-dram: 
+          :other: "{0} dr fl"
+        :volume-drop: 
+          :other: "{0} ຢອດ"
+        :volume-fluid-ounce: 
+          :other: "{0} fl oz"
+        :volume-fluid-ounce-imperial: 
+          :other: "{0} fl oz Imp."
+        :volume-gallon: 
+          :other: "{0} ແກລລອນ"
+        :volume-gallon-imperial: 
+          :other: "{0} gal Imp."
+        :volume-hectoliter: 
+          :other: "{0} hL"
+        :volume-jigger: 
+          :other: "{0} jigger"
+        :volume-liter: 
+          :other: "{0} L"
+        :volume-megaliter: 
+          :other: "{0} ML"
+        :volume-milliliter: 
+          :other: "{0} mL"
+        :volume-pinch: 
+          :other: "{0} ຢິບ"
+        :volume-pint: 
+          :other: "{0} pt"
+        :volume-pint-metric: 
+          :other: "{0} mpt"
+        :volume-quart: 
+          :other: "{0} qt"
+        :volume-quart-imperial: 
+          :other: "{0} qt Imp."
+        :volume-tablespoon: 
+          :other: "{0} tbsp"
+        :volume-teaspoon: 
+          :other: "{0} tsp"

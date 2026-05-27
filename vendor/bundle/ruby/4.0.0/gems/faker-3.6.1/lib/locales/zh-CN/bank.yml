@@ -1,0 +1,17 @@
+# Ref: https://pay.weixin.qq.com/docs/merchant/development/chart/bank-of-deposit.html
+zh-CN:
+  faker:
+    bank:
+      name:
+        - 工商银行
+        - 交通银行
+        - 招商银行
+        - 民生银行
+        - 中信银行
+        - 浦发银行
+        - 兴业银行
+        - 光大银行
+        - 广发银行
+        - 平安银行
+        - 建设银行
+        - 邮政储蓄银行

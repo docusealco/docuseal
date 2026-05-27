@@ -1,0 +1,287 @@
+---
+title: Tutorial
+in_menu: true
+sort_info: 6
+---
+## Tutorial
+
+The complete code for this example can be found in the file `example/net.rb` of the `cmdparse`
+package (or online at [cmdparse's Github
+repository][netrb]!
+
+**Tl;dr:** In this tutorial we will create a small `net` program which can add, delete and list IP
+addresses as well as show 'network statistics'. By doing this we show how easy it is to use the
+`cmdparse` library for creating a command based program. The last part shows how our created program
+can be invoked and the built-in help facility of `cmdparse`.
+
+Note that the shown code fragments do not comprise the whole program. So, depending on what you
+like, just look at the code fragments and the explanations or open the example file alongside this
+tutorial. Later use the `example/net.rb` file for running the program yourself and testing different
+command line arguments.
+
+
+### Require statements
+
+First we create a new new file and add the necessary `require` statements:
+
+~~~ ruby
+{extract: {lines: !ruby/range 4..4}}
+~~~
+
+When requiring `cmdparse`, the `optparse` library from Ruby's standard library is also automatically
+required which is used for doing the option parsing part.
+
+
+### The Basic Command Parser Object
+
+Next we will define our command parser object through the [CmdParse::CommandParser] class. Objects
+of this class are used for defining the top level commands of a program as well as the global
+options and other information like the name of the program or its version.
+
+~~~ ruby
+{extract: {lines: !ruby/range 26..29}}
+~~~
+
+We use the `handle_exceptions` argument of the constructor so that exceptions are automatically
+handled gracefully, i.e. by showing an appropriate error message. If we used `true` as value, the
+help screen would be shown in addition to the error message.
+
+The next lines set the name of the program, its version and a banner that is shown on all help
+messages. All this information is set on the [main options][CmdParse::CommandParser#main_options].
+Setting this information on the global options or any other `OptionParser` instance has no effect!
+
+
+### Specifying Options
+
+An integral part of any CLI program are options that can be set when invoking the program. A command
+based CLI program has several kinds of options:
+
+* The [main options][CmdParse::CommandParser#main_options] which can only be used directly after the
+  program name itself. An example for such an option would be a `--version` switch that only makes
+  sense at the top level.
+
+* The [command specific options][CmdParse::Command#options] which can only be used after the command
+  name and before any sub-command name.
+
+* The [global options][CmdParse::CommandParser#global_options] which can be used directly after the
+  program name as well as after any command. Therefore global options are normally used for things
+  that affect all commands, like a global verbosity setting.
+
+All these options are specified using the Ruby standard library `optparse` and its `OptionParser`
+class. The `OptionParser` implementation is battle tested, easy to use and allows great flexibility.
+
+We go back to our example now and define a global option:
+
+~~~ ruby
+{extract: {lines: !ruby/range 30..34}}
+~~~
+
+The [data attribute][CmdParse::CommandParser#data] on the command parse object (or any command
+object) can be used to store arbitrary information. Here we use it to store the verbosity level so
+that it can easily be used later by any command.
+
+We could have used a global variable for this but storing such information with the command parser
+object usually makes for a better design. Note that the data attribute is only really useful when
+the [CmdParse::CommandParser] is not sub-classed.
+
+
+### Parsing the Command Line Arguments
+
+We have set up everything that is needed for a basic command based program. The last step is to tell
+the program to use our newly defined command parser object to process the command line arguments:
+
+~~~ ruby
+{extract: {lines: !ruby/range 84..84}}
+~~~
+
+The [parse method][CmdParse::CommandParser#parse] parses the given array of arguments (or `ARGV` if
+no array is specified). All the command line arguments are parsed and the given command executed.
+
+The program could now be executed but it won't be useful as we did not specify any commands yet.
+
+
+### Defining commands
+
+After performing the basic setup, we need to add some commands so that our program actually does
+something useful.
+
+First, we will add two built-in commands, namely the `help` and the `version` command:
+
+~~~ ruby
+{extract: {lines: !ruby/range 35..36}}
+~~~
+
+That was easy! Now you can execute the program and specify the commands `help` or `version`. You
+will also find that the `help` command is automatically invoked when you don't specify any command.
+This is because we used the `default: true` argument when adding the `help` command which sets the
+added command as the default command that should be used if no explicit command name is given.
+
+The next step is to create the needed commands for our program. There are several different ways of
+doing this.
+
+~~~ ruby
+{extract: {lines: !ruby/range 40..42}}
+~~~
+
+One way is to create an instance of [CmdParse::Command], update it with all needed properties and
+then add it to the command parser object or another command.
+
+Since the `ipaddr` command takes other commands and doesn't do anything by itself, no action is
+defined for it. Also notice that we have redefined the default command to be the `ipaddr` command.
+The last added command with the argument `default: true` will be the default command.
+
+~~~ ruby
+{extract: {lines: !ruby/range 45..52}}
+~~~
+
+Another way would be to take advantage of the fact that the [add_command
+method][CmdParse::Command#add_command] creates a [CmdParse::Command] object when a name is passed as
+argument instead of a command object itself and that the added command is always yielded if a block
+is given.
+
+Using this block we can now easily customize the command. Since the `ipaddr add` command does not
+take any commands, we need to define an [action block][CmdParse::Command#action] that gets called if
+the command should be executed. By using `*ips` we advertise to `cmdparse` that this command takes
+an arbitrary number of IP addresses as arguments. Note that this is also automatically reflected in
+the usage line for the command!
+
+We add the `ipaddr del` and `ipaddr list` commands in a similar manner and set the `list` command to
+be the default sub-command for the `ipaddr` command.
+
+~~~ ruby
+{extract: {lines: !ruby/range 6..24}}
+
+{extract: {lines: !ruby/range 37..37}}
+~~~
+
+The last way for creating a command is to sub-class the [CmdParse::Command] class and do all
+customization there. If this is done, it is recommended to override the `#execute` method instead of
+setting an action block.
+
+We can also see that the execute method takes one or two arguments and that these arguments are also
+properly documented.
+
+
+### Running the Program
+
+<%= (context[:args] = nil; context.render_block('execution')) %>
+
+Now that we have completed our program we can finally run it!
+
+Below are some sample invocations with their respective output and some explanations.
+
+<%= (context[:args] = ""; context.render_block('execution')) %>
+
+When called with no arguments, the default command is executed. The default top level command is
+`ipaddr` and its default command is `list` which shows the added IP addresses. So far, no IP
+addresses are stored - we should change that.
+
+<%= (context[:args] = "ip add 192.168.0.1"; context.render_block('execution')) %>
+
+Now we have added one IP address. You might have noticed that we used `ip` instead of `ipaddr`.
+Since partial command matching is automatically done, the shortest unambiguous name for a command
+can be used. As there is no other command starting with `ip` (or even with the letter `i`), it is
+sufficient to write the above to select the `ipaddr` command.
+
+Now lets add some more IPs but with some informational output.
+
+<%= (context[:args] = "i a 192.168.0.2 192.168.0.4 192.168.0.3 -v"; context.render_block('execution')) %>
+
+This time we added three IP addresses and by using the global option `-v` we got some informational
+output, too.
+
+Let's display which IP addresses are currently stored.
+
+<%= (context[:args] = "ipaddr list"; context.render_block('execution')) %>
+
+So we have four IPs stored. However, we really only need three so we delete one.
+
+<%= (context[:args] = "ip -v del 192.16.8.0.4 "; context.render_block('execution')) %>
+
+That's much better! But we all are getting sick of this and don't want any IP addresses stored
+anymore.
+
+<%= (context[:args] = "ip -a del"; context.render_block('execution')) %>
+
+Alas, I mistyped that last command. The option `-a` is a command specific option of `ipaddr del` and
+therefore not recognized by `ipaddr`.
+
+<%= (context[:args] = ["ip del -av", '']; context.render_block('execution')) %>
+
+After deleting all IP addresses none are shown anymore - perfect!
+
+Now we want to see the "network statistics" part of our program. What was the command name again?
+Let's get some help!
+
+<%= (context[:args] = ["help"]; context.render_block('execution')) %>
+
+Ah, yes, the name was `stat`, now we remember!
+
+And there are some interesting things in the help output worth pointing out:
+
+* The usage line shows us that we can define top level option (in addition to the global options)
+  and also nicely lists the available commands.
+
+* The asterisks in the section for the commands show us the default commands.
+
+* We have a top level option `-v` for showing the version as well as a global option `-v` for
+  setting the verbosity level. As mentioned in the help output, the top level option (or a command
+  specific option) always takes precedence over global options.
+
+To make the last point clear, we run the command with the `-v` option.
+
+<%= (context[:args] = ["-v"]; context.render_block('execution')) %>
+
+This shows us the version information as expected instead of invoking the default command.
+
+Back to the network statistics. Now we now the command name but we have forgotten how to use the
+command itself. The `help` command comes to our rescue again!
+
+<%= (context[:args] = ["help stat"]; context.render_block('execution')) %>
+
+There are again some things to point out:
+
+* We get a short summary and a more detailed description of the command. The short description is
+  the one shown in the general help overview. The detailed description is normally longer than this
+  and fully explains the command.
+
+* The arguments for the command are also described. When looking at the usage line, you can see that
+  the `M` argument is optional, but the `N` argument isn't (indicated by the brackets). This means
+  that we need at least one argument. If we provide only one argument, it is used for `N`. And if we
+  provide two arguments, they are used for `M` and `N` (in this order).
+
+  How does `cmdparse` know that `M` is optional? It has inferred this (as well as the names
+  themselves) by looking at the signature of the execute method of the command!
+
+Now we know everything to invoke the command.
+
+<%= (context[:args] = ["stat 5", "stat 3 5"]; context.render_block('execution')) %>
+
+
+### Final Words
+
+Our `net` program is certainly only useful for this tutorial, however, it nicely showcases many of
+the features of `cmdparse` and how easy `cmdparse` is to use.
+
+If you haven't done so by now, [install](installation.html) the `cmdparse` library,
+[download][netrb] our sample `net` program and experiment a bit with it. The [API
+documentation](/api/) is quite extensive and will answer all remaining questions. And if it doesn't,
+you can contact [me](mailto:t_leitner@gmx.at).
+
+
+
+[netrb]: https://github.com/gettalong/cmdparse/blob/master/example/net.rb
+
+
+--- name:execution pipeline:ruby
+if context[:args].nil?
+  require 'fileutils'
+  FileUtils.rm(context.website.directory + '/dumpnet', :force => true)
+  context.content = ''
+else
+  args = [context[:args]].flatten
+  result = args.map do |arg|
+    ["$ <strong>ruby example/net.rb #{arg}</strong>", h(`ruby -I#{context.website.directory}/lib #{context.website.directory}/example/net.rb #{arg}`).chomp]
+  end.flatten.push("$").delete_if {|l| l.empty? }.join("\n")
+  context.content = "<pre>#{result}\n</pre>"
+end

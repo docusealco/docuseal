@@ -1,0 +1,378 @@
+--- 
+:sw: 
+  :calendars: 
+    :gregorian: 
+      :additional_formats: 
+        :Bh: "h B"
+        :Bhm: "h:mm B"
+        :Bhms: "h:mm:ss B"
+        :E: ccc
+        :EBhm: "E h:mm B"
+        :EBhms: "E h:mm:ss B"
+        :EHm: "E HH:mm"
+        :EHms: "E HH:mm:ss"
+        :Ed: "E d"
+        :Ehm: "E h:mm a"
+        :Ehms: "E h:mm:ss a"
+        :Gy: "y G"
+        :GyMMM: "MMM y G"
+        :GyMMMEd: "E, d MMM y G"
+        :GyMMMd: "d MMM y G"
+        :GyMd: "d/M/y GGGGG"
+        :H: HH
+        :Hm: "HH:mm"
+        :Hms: "HH:mm:ss"
+        :Hmsv: "HH:mm:ss v"
+        :Hmv: "HH:mm v"
+        :M: L
+        :MEd: "E, d/M"
+        :MMM: LLL
+        :MMMEd: "E, d MMM"
+        :MMMMEd: "E, d MMMM"
+        :MMMMW: "'wiki' W 'ya' MMMM"
+        :MMMMd: "d MMMM"
+        :MMMd: "d MMM"
+        :Md: d/M
+        :d: d
+        :h: h a
+        :hm: "h:mm a"
+        :hms: "h:mm:ss a"
+        :hmsv: "h:mm:ss a v"
+        :hmv: "h:mm a v"
+        :ms: "mm:ss"
+        ? !ruby/symbol "y"
+        : "y"
+        :yM: M/y
+        :yMEd: "E, d/M/y"
+        :yMMM: "MMM y"
+        :yMMMEd: "E, d MMM y"
+        :yMMMM: "MMMM y"
+        :yMMMd: "d MMM y"
+        :yMd: d/M/y
+        :yQQQ: "QQQ y"
+        :yQQQQ: "QQQQ y"
+        :yw: "'wiki' w 'ya' Y"
+      :days: 
+        :format: 
+          :abbreviated: 
+            :fri: Ijumaa
+            :mon: Jumatatu
+            :sat: Jumamosi
+            :sun: Jumapili
+            :thu: Alhamisi
+            :tue: Jumanne
+            :wed: Jumatano
+          :narrow: 
+            :fri: F
+            :mon: M
+            :sat: S
+            :sun: S
+            :thu: T
+            :tue: T
+            :wed: W
+          :short: 
+            :fri: Ijumaa
+            :mon: Jumatatu
+            :sat: Jumamosi
+            :sun: Jumapili
+            :thu: Alhamisi
+            :tue: Jumanne
+            :wed: Jumatano
+          :wide: 
+            :fri: Ijumaa
+            :mon: Jumatatu
+            :sat: Jumamosi
+            :sun: Jumapili
+            :thu: Alhamisi
+            :tue: Jumanne
+            :wed: Jumatano
+        :stand-alone: 
+          :abbreviated: 
+            :fri: Ijumaa
+            :mon: Jumatatu
+            :sat: Jumamosi
+            :sun: Jumapili
+            :thu: Alhamisi
+            :tue: Jumanne
+            :wed: Jumatano
+          :narrow: 
+            :fri: F
+            :mon: M
+            :sat: S
+            :sun: S
+            :thu: T
+            :tue: T
+            :wed: W
+          :short: 
+            :fri: Ijumaa
+            :mon: Jumatatu
+            :sat: Jumamosi
+            :sun: Jumapili
+            :thu: Alhamisi
+            :tue: Jumanne
+            :wed: Jumatano
+          :wide: 
+            :fri: Ijumaa
+            :mon: Jumatatu
+            :sat: Jumamosi
+            :sun: Jumapili
+            :thu: Alhamisi
+            :tue: Jumanne
+            :wed: Jumatano
+      :eras: 
+        :abbr: 
+          0: BCE
+          1: CE
+        :name: 
+          0: "Kabla ya Kristo"
+          1: "Baada ya Kristo"
+        :narrow: 
+          0: BCE
+          1: CE
+      :fields: 
+        :day: siku
+        :day-narrow: siku
+        :day-short: siku
+        :dayOfYear: "siku ya mwaka"
+        :dayOfYear-narrow: "siku ya mwaka"
+        :dayOfYear-short: "siku ya mwaka"
+        :dayperiod: AM/PM
+        :dayperiod-narrow: AM/PM
+        :dayperiod-short: AM/PM
+        :era: enzi
+        :era-narrow: enzi
+        :era-short: enzi
+        :hour: saa
+        :hour-narrow: Hour
+        :hour-short: saa
+        :minute: dakika
+        :minute-narrow: dak
+        :minute-short: dak
+        :month: mwezi
+        :month-narrow: mwezi
+        :month-short: mwezi
+        :quarter: robo
+        :quarter-narrow: robo
+        :quarter-short: robo
+        :second: sekunde
+        :second-narrow: sek
+        :second-short: sek
+        :week: wiki
+        :week-narrow: wiki
+        :week-short: wiki
+        :weekOfMonth: "wiki ya mwezi"
+        :weekOfMonth-narrow: "wiki ya mwezi"
+        :weekOfMonth-short: "wiki ya mwezi"
+        :weekday: "siku ya wiki"
+        :weekday-narrow: "siku ya wiki"
+        :weekday-short: "siku ya wiki"
+        :weekdayOfMonth: "siku ya mwezi"
+        :weekdayOfMonth-narrow: "siku ya mwezi"
+        :weekdayOfMonth-short: "siku ya mwezi"
+        :year: mwaka
+        :year-narrow: mwaka
+        :year-short: mwaka
+        :zone: "saa za eneo"
+        :zone-narrow: eneo
+        :zone-short: eneo
+      :formats: 
+        :date: 
+          :full: 
+            :pattern: "EEEE, d MMMM y"
+          :long: 
+            :pattern: "d MMMM y"
+          :medium: 
+            :pattern: "d MMM y"
+          :short: 
+            :pattern: dd/MM/y
+        :datetime: 
+          :full: 
+            :pattern: "{{date}}, {{time}}"
+          :long: 
+            :pattern: "{{date}}, {{time}}"
+          :medium: 
+            :pattern: "{{date}}, {{time}}"
+          :short: 
+            :pattern: "{{date}}, {{time}}"
+        :time: 
+          :full: 
+            :pattern: "HH:mm:ss zzzz"
+          :long: 
+            :pattern: "HH:mm:ss z"
+          :medium: 
+            :pattern: "HH:mm:ss"
+          :short: 
+            :pattern: "HH:mm"
+      :months: 
+        :format: 
+          :abbreviated: 
+            1: Jan
+            10: Okt
+            11: Nov
+            12: Des
+            2: Feb
+            3: Mac
+            4: Apr
+            5: Mei
+            6: Jun
+            7: Jul
+            8: Ago
+            9: Sep
+          :narrow: 
+            1: J
+            10: O
+            11: "N"
+            12: D
+            2: F
+            3: M
+            4: A
+            5: M
+            6: J
+            7: J
+            8: A
+            9: S
+          :wide: 
+            1: Januari
+            10: Oktoba
+            11: Novemba
+            12: Desemba
+            2: Februari
+            3: Machi
+            4: Aprili
+            5: Mei
+            6: Juni
+            7: Julai
+            8: Agosti
+            9: Septemba
+        :stand-alone: 
+          :abbreviated: 
+            1: Jan
+            10: Okt
+            11: Nov
+            12: Des
+            2: Feb
+            3: Mac
+            4: Apr
+            5: Mei
+            6: Jun
+            7: Jul
+            8: Ago
+            9: Sep
+          :narrow: 
+            1: J
+            10: O
+            11: "N"
+            12: D
+            2: F
+            3: M
+            4: A
+            5: M
+            6: J
+            7: J
+            8: A
+            9: S
+          :wide: 
+            1: Januari
+            10: Oktoba
+            11: Novemba
+            12: Desemba
+            2: Februari
+            3: Machi
+            4: Aprili
+            5: Mei
+            6: Juni
+            7: Julai
+            8: Agosti
+            9: Septemba
+      :periods: 
+        :format: 
+          :abbreviated: 
+            :afternoon1: mchana
+            :am: AM
+            :evening1: jioni
+            :midnight: "saa sita za usiku"
+            :morning1: alfajiri
+            :morning2: asubuhi
+            :night1: usiku
+            :noon: adhuhuri
+            :pm: PM
+          :narrow: 
+            :afternoon1: mchana
+            :am: am
+            :evening1: jioni
+            :midnight: usiku
+            :morning1: alfajiri
+            :morning2: asubuhi
+            :night1: usiku
+            :noon: mchana
+            :pm: pm
+          :wide: 
+            :afternoon1: mchana
+            :am: AM
+            :evening1: jioni
+            :midnight: "saa sita za usiku"
+            :morning1: alfajiri
+            :morning2: asubuhi
+            :night1: usiku
+            :noon: "saa sita za mchana"
+            :pm: PM
+        :stand-alone: 
+          :abbreviated: 
+            :afternoon1: alasiri
+            :am: AM
+            :evening1: jioni
+            :morning1: alfajiri
+            :morning2: asubuhi
+            :night1: usiku
+            :pm: PM
+          :narrow: 
+            :afternoon1: mchana
+            :am: AM
+            :evening1: jioni
+            :morning1: alfajiri
+            :morning2: asubuhi
+            :night1: usiku
+            :noon: "saa sita za mchana"
+            :pm: PM
+          :wide: 
+            :afternoon1: mchana
+            :am: AM
+            :evening1: jioni
+            :morning1: alfajiri
+            :morning2: asubuhi
+            :night1: usiku
+            :noon: "saa sita za mchana"
+            :pm: PM
+      :quarters: 
+        :format: 
+          :abbreviated: 
+            1: "Robo ya 1"
+            2: "Robo ya 2"
+            3: "Robo ya 3"
+            4: "Robo ya 4"
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: "Robo ya 1"
+            2: "Robo ya 2"
+            3: "Robo ya 3"
+            4: "Robo ya 4"
+        :stand-alone: 
+          :abbreviated: 
+            1: "Robo ya 1"
+            2: "Robo ya 2"
+            3: "Robo ya 3"
+            4: "Robo ya 4"
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: "Robo ya 1"
+            2: "Robo ya 2"
+            3: "Robo ya 3"
+            4: "Robo ya 4"

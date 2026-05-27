@@ -1,0 +1,83 @@
+.pagy {
+  /* PagyWand Generated Variables */
+  /* Copy from the PagyWand "CSS Override" field, and paste in YOUR own CSS to override the style */
+  --B: 1;
+  --H: 0;
+  --S: 0;
+  --L: 50;
+  --A: 1;
+  --spacing: 0.125rem;
+  --padding: 0.75rem;
+  --rounding: 1.75rem;
+  --border-width: 0rem;
+  --font-size: 0.875rem;
+  --font-weight: 600;
+  --line-height: 1.75;
+
+  /* Calculated Color Variables */
+  --text:               hsl(var(--H) var(--S) calc(var(--L) - (25 * var(--B))) / var(--A));
+  --text-hover:         hsl(var(--H) var(--S) calc(var(--L) - (30 * var(--B))) / var(--A));
+  --text-current:       hsl(var(--H) var(--S) calc(100 * (var(--B) + 1)) / var(--A));
+  --background:         hsl(var(--H) var(--S) calc(var(--L) + (30 * var(--B))) / var(--A));
+  --background-hover:   hsl(var(--H) var(--S) calc(var(--L) + (20 * var(--B))) / var(--A));
+  --background-current: hsl(var(--H) var(--S) var(--L) / var(--A));
+  --background-input:   hsl(var(--H) var(--S) calc(var(--L) + (45 * var(--B))) / var(--A));
+
+  /* Base Properties */
+  color: var(--text);
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  font-weight: var(--font-weight);
+  display: flex;
+}
+
+/* Element Rules */
+
+.pagy > :not([hidden]) ~ :not([hidden]) {
+  margin-inline-start: var(--spacing);
+}
+
+.pagy a:not([role="separator"]) { /* all but gaps */
+  display: block;
+  text-decoration: none;
+  background-color: var(--background);
+  padding: calc(var(--padding) / 3) var(--padding);
+  border: var(--border-width) solid var(--background-current);
+  border-radius: var(--rounding);
+  color: inherit;
+}
+
+.pagy a[href]:hover { /* all links on hover */
+  background-color: var(--background-hover);
+  color: var(--text-hover)
+}
+
+.pagy a:not([href]) { /* all but links */
+  cursor: default;
+}
+
+.pagy a[role="link"]:not([aria-current]) { /* disabled links */
+  opacity: .6;
+}
+
+.pagy a[aria-current] {  /* current page */
+  background-color: var(--background-current);
+  color: var(--text-current);
+  border-color: var(--text);
+}
+
+.pagy label {
+  white-space: nowrap;
+  display: inline-block;
+  border: var(--border-width) solid var(--background-current);
+  border-radius: var(--rounding);
+  background-color: var(--background);
+  padding: calc((var(--padding) / 3) - var(--border-width)) var(--padding);
+}
+
+.pagy label input {
+  all: unset;
+  border: var(--border-width) solid var(--background-current);
+  border-radius: calc(var(--rounding) / 2) !important;
+  background-color: var(--background-input);
+}

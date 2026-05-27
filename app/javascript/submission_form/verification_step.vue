@@ -124,7 +124,7 @@ export default {
         docId: this.eidEasyData.doc_id,
         language: this.locale,
         countryCode: this.countryCode,
-        sandbox: ['demo.docuseal.tech'].includes(location.host),
+        sandbox: ['demo.wabosign.tech'].includes(location.host),
         enabledMethods: {
           signature: this.eidEasyData.available_methods
         },

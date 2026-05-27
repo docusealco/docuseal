@@ -1,0 +1,423 @@
+# <!-- rdoc-file=lib/bigdecimal.rb -->
+# Core BigMath methods for BigDecimal (log, exp) are defined here. Other methods
+# (sin, cos, atan) are defined in 'bigdecimal/math.rb'.
+#
+# <!-- rdoc-file=lib/bigdecimal/math.rb -->
+# Provides mathematical functions.
+#
+# Example:
+#
+#     require "bigdecimal/math"
+#
+#     include BigMath
+#
+#     a = BigDecimal((PI(49)/2).to_s)
+#     puts sin(a,100) # => 0.9999999999...9999999986e0
+#
+module BigMath
+  # <!--
+  #   rdoc-file=lib/bigdecimal/math.rb
+  #   - E(numeric) -> BigDecimal
+  # -->
+  # Computes e (the base of natural logarithms) to the specified number of digits
+  # of precision, `numeric`.
+  #
+  #     BigMath.E(32).to_s
+  #     #=> "0.27182818284590452353602874713527e1"
+  #
+  def self?.E: (int prec) -> BigDecimal
+
+  # <!--
+  #   rdoc-file=lib/bigdecimal/math.rb
+  #   - PI(numeric) -> BigDecimal
+  # -->
+  # Computes the value of pi to the specified number of digits of precision,
+  # `numeric`.
+  #
+  #     BigMath.PI(32).to_s
+  #     #=> "0.31415926535897932384626433832795e1"
+  #
+  def self?.PI: (int prec) -> BigDecimal
+
+  # <!--
+  #   rdoc-file=lib/bigdecimal/math.rb
+  #   - acos(decimal, numeric) -> BigDecimal
+  # -->
+  # Computes the arccosine of `decimal` to the specified number of digits of
+  # precision, `numeric`.
+  #
+  # If `decimal` is NaN, returns NaN.
+  #
+  #     BigMath.acos(BigDecimal('0.5'), 32).to_s
+  #     #=> "0.10471975511965977461542144610932e1"
+  #
+  def self?.acos: (real | BigDecimal, int prec) -> BigDecimal
+
+  # <!--
+  #   rdoc-file=lib/bigdecimal/math.rb
+  #   - acosh(decimal, numeric) -> BigDecimal
+  # -->
+  # Computes the inverse hyperbolic cosine of `decimal` to the specified number of
+  # digits of precision, `numeric`.
+  #
+  # If `decimal` is NaN, returns NaN.
+  #
+  #     BigMath.acosh(BigDecimal('2'), 32).to_s
+  #     #=> "0.1316957896924816708625046347308e1"
+  #
+  def self?.acosh: (real | BigDecimal, int prec) -> BigDecimal
+
+  # <!--
+  #   rdoc-file=lib/bigdecimal/math.rb
+  #   - asin(decimal, numeric) -> BigDecimal
+  # -->
+  # Computes the arcsine of `decimal` to the specified number of digits of
+  # precision, `numeric`.
+  #
+  # If `decimal` is NaN, returns NaN.
+  #
+  #     BigMath.asin(BigDecimal('0.5'), 32).to_s
+  #     #=> "0.52359877559829887307710723054658e0"
+  #
+  def self?.asin: (real | BigDecimal, int prec) -> BigDecimal
+
+  # <!--
+  #   rdoc-file=lib/bigdecimal/math.rb
+  #   - asinh(decimal, numeric) -> BigDecimal
+  # -->
+  # Computes the inverse hyperbolic sine of `decimal` to the specified number of
+  # digits of precision, `numeric`.
+  #
+  # If `decimal` is NaN, returns NaN.
+  #
+  #     BigMath.asinh(BigDecimal('1'), 32).to_s
+  #     #=> "0.88137358701954302523260932497979e0"
+  #
+  def self?.asinh: (real | BigDecimal, int prec) -> BigDecimal
+
+  # <!--
+  #   rdoc-file=lib/bigdecimal/math.rb
+  #   - atan(decimal, numeric) -> BigDecimal
+  # -->
+  # Computes the arctangent of `decimal` to the specified number of digits of
+  # precision, `numeric`.
+  #
+  # If `decimal` is NaN, returns NaN.
+  #
+  #     BigMath.atan(BigDecimal('-1'), 32).to_s
+  #     #=> "-0.78539816339744830961566084581988e0"
+  #
+  def self?.atan: (real | BigDecimal x, int prec) -> BigDecimal
+
+  # <!--
+  #   rdoc-file=lib/bigdecimal/math.rb
+  #   - atan2(decimal, decimal, numeric) -> BigDecimal
+  # -->
+  # Computes the arctangent of y and x to the specified number of digits of
+  # precision, `numeric`.
+  #
+  #     BigMath.atan2(BigDecimal('-1'), BigDecimal('1'), 32).to_s
+  #     #=> "-0.78539816339744830961566084581988e0"
+  #
+  def self?.atan2: (real | BigDecimal, real | BigDecimal, int prec) -> BigDecimal
+
+  # <!--
+  #   rdoc-file=lib/bigdecimal/math.rb
+  #   - atanh(decimal, numeric) -> BigDecimal
+  # -->
+  # Computes the inverse hyperbolic tangent of `decimal` to the specified number
+  # of digits of precision, `numeric`.
+  #
+  # If `decimal` is NaN, returns NaN.
+  #
+  #     BigMath.atanh(BigDecimal('0.5'), 32).to_s
+  #     #=> "0.54930614433405484569762261846126e0"
+  #
+  def self?.atanh: (real | BigDecimal, int prec) -> BigDecimal
+
+  # <!--
+  #   rdoc-file=lib/bigdecimal/math.rb
+  #   - cbrt(decimal, numeric) -> BigDecimal
+  # -->
+  # Computes the cube root of `decimal` to the specified number of digits of
+  # precision, `numeric`.
+  #
+  #     BigMath.cbrt(BigDecimal('2'), 32).to_s
+  #     #=> "0.12599210498948731647672106072782e1"
+  #
+  def self?.cbrt: (real | BigDecimal, int prec) -> BigDecimal
+
+  # <!--
+  #   rdoc-file=lib/bigdecimal/math.rb
+  #   - cos(decimal, numeric) -> BigDecimal
+  # -->
+  # Computes the cosine of `decimal` to the specified number of digits of
+  # precision, `numeric`.
+  #
+  # If `decimal` is Infinity or NaN, returns NaN.
+  #
+  #     BigMath.cos(BigMath.PI(16), 32).to_s
+  #     #=> "-0.99999999999999999999999999999997e0"
+  #
+  def self?.cos: (real | BigDecimal x, int prec) -> BigDecimal
+
+  # <!--
+  #   rdoc-file=lib/bigdecimal/math.rb
+  #   - cosh(decimal, numeric) -> BigDecimal
+  # -->
+  # Computes the hyperbolic cosine of `decimal` to the specified number of digits
+  # of precision, `numeric`.
+  #
+  # If `decimal` is NaN, returns NaN.
+  #
+  #     BigMath.cosh(BigDecimal('1'), 32).to_s
+  #     #=> "0.15430806348152437784779056207571e1"
+  #
+  def self?.cosh: (real | BigDecimal, int prec) -> BigDecimal
+
+  # <!--
+  #   rdoc-file=lib/bigdecimal/math.rb
+  #   - erf(decimal, numeric) -> BigDecimal
+  # -->
+  # Computes the error function of `decimal` to the specified number of digits of
+  # precision, `numeric`.
+  #
+  # If `decimal` is NaN, returns NaN.
+  #
+  #     BigMath.erf(BigDecimal('1'), 32).to_s
+  #     #=> "0.84270079294971486934122063508261e0"
+  #
+  def self?.erf: (real | BigDecimal, int prec) -> BigDecimal
+
+  # <!--
+  #   rdoc-file=lib/bigdecimal/math.rb
+  #   - erfc(decimal, numeric) -> BigDecimal
+  # -->
+  # Computes the complementary error function of `decimal` to the specified number
+  # of digits of precision, `numeric`.
+  #
+  # If `decimal` is NaN, returns NaN.
+  #
+  #     BigMath.erfc(BigDecimal('10'), 32).to_s
+  #     #=> "0.20884875837625447570007862949578e-44"
+  #
+  def self?.erfc: (real | BigDecimal, int prec) -> BigDecimal
+
+  # <!--
+  #   rdoc-file=lib/bigdecimal.rb
+  #   - BigMath.exp(decimal, numeric)    -> BigDecimal
+  # -->
+  # Computes the value of e (the base of natural logarithms) raised to the power
+  # of `decimal`, to the specified number of digits of precision.
+  #
+  # If `decimal` is infinity, returns Infinity.
+  #
+  # If `decimal` is NaN, returns NaN.
+  #
+  def self?.exp: (real | BigDecimal, int prec) -> BigDecimal
+
+  # <!--
+  #   rdoc-file=lib/bigdecimal/math.rb
+  #   - BigMath.expm1(decimal, numeric)    -> BigDecimal
+  # -->
+  # Computes exp(decimal) - 1 to the specified number of digits of precision,
+  # `numeric`.
+  #
+  #     BigMath.expm1(BigDecimal('0.1'), 32).to_s
+  #     #=> "0.10517091807564762481170782649025e0"
+  #
+  def self?.expm1: (real | BigDecimal, int prec) -> BigDecimal
+
+  # <!--
+  #   rdoc-file=lib/bigdecimal/math.rb
+  #   - frexp(x) -> [BigDecimal, Integer]
+  # -->
+  # Decomposes `x` into a normalized fraction and an integral power of ten.
+  #
+  #     BigMath.frexp(BigDecimal(123.456))
+  #     #=> [0.123456e0, 3]
+  #
+  def self?.frexp: (real | BigDecimal x) -> [ BigDecimal, Integer ]
+
+  # <!--
+  #   rdoc-file=lib/bigdecimal/math.rb
+  #   - BigMath.gamma(decimal, numeric)    -> BigDecimal
+  # -->
+  # Computes the gamma function of `decimal` to the specified number of digits of
+  # precision, `numeric`.
+  #
+  #     BigMath.gamma(BigDecimal('0.5'), 32).to_s
+  #     #=> "0.17724538509055160272981674833411e1"
+  #
+  def self?.gamma: (real | BigDecimal, int prec) -> BigDecimal
+
+  # <!--
+  #   rdoc-file=lib/bigdecimal/math.rb
+  #   - hypot(x, y, numeric) -> BigDecimal
+  # -->
+  # Returns sqrt(x**2 + y**2) to the specified number of digits of precision,
+  # `numeric`.
+  #
+  #     BigMath.hypot(BigDecimal('1'), BigDecimal('2'), 32).to_s
+  #     #=> "0.22360679774997896964091736687313e1"
+  #
+  def self?.hypot: (real | BigDecimal, real | BigDecimal, int prec) -> BigDecimal
+
+  # <!--
+  #   rdoc-file=lib/bigdecimal/math.rb
+  #   - ldexp(fraction, exponent) -> BigDecimal
+  # -->
+  # Inverse of `frexp`. Returns the value of fraction * 10**exponent.
+  #
+  #     BigMath.ldexp(BigDecimal("0.123456e0"), 3)
+  #     #=> 0.123456e3
+  #
+  def self?.ldexp: (real | BigDecimal fraction, Integer exponent) -> BigDecimal
+
+  # <!--
+  #   rdoc-file=lib/bigdecimal/math.rb
+  #   - BigMath.lgamma(decimal, numeric)    -> [BigDecimal, Integer]
+  # -->
+  # Computes the natural logarithm of the absolute value of the gamma function of
+  # `decimal` to the specified number of digits of precision, `numeric` and its
+  # sign.
+  #
+  #     BigMath.lgamma(BigDecimal('0.5'), 32)
+  #     #=> [0.57236494292470008707171367567653e0, 1]
+  #
+  def self?.lgamma: (real | BigDecimal, int prec) -> [ BigDecimal, Integer ]
+
+  # <!--
+  #   rdoc-file=lib/bigdecimal.rb
+  #   - BigMath.log(decimal, numeric)    -> BigDecimal
+  # -->
+  # Computes the natural logarithm of `decimal` to the specified number of digits
+  # of precision, `numeric`.
+  #
+  # If `decimal` is zero or negative, raises Math::DomainError.
+  #
+  # If `decimal` is positive infinity, returns Infinity.
+  #
+  # If `decimal` is NaN, returns NaN.
+  #
+  def self?.log: (real | BigDecimal, int prec) -> BigDecimal
+
+  # <!--
+  #   rdoc-file=lib/bigdecimal/math.rb
+  #   - BigMath.log10(decimal, numeric)    -> BigDecimal
+  # -->
+  # Computes the base 10 logarithm of `decimal` to the specified number of digits
+  # of precision, `numeric`.
+  #
+  # If `decimal` is zero or negative, raises Math::DomainError.
+  #
+  # If `decimal` is positive infinity, returns Infinity.
+  #
+  # If `decimal` is NaN, returns NaN.
+  #
+  #     BigMath.log10(BigDecimal('3'), 32).to_s
+  #     #=> "0.47712125471966243729502790325512e0"
+  #
+  def self?.log10: (real | BigDecimal, int prec) -> BigDecimal
+
+  # <!--
+  #   rdoc-file=lib/bigdecimal/math.rb
+  #   - BigMath.log1p(decimal, numeric)    -> BigDecimal
+  # -->
+  # Computes log(1 + decimal) to the specified number of digits of precision,
+  # `numeric`.
+  #
+  #     BigMath.log1p(BigDecimal('0.1'), 32).to_s
+  #     #=> "0.95310179804324860043952123280765e-1"
+  #
+  def self?.log1p: (real | BigDecimal, int prec) -> BigDecimal
+
+  # <!--
+  #   rdoc-file=lib/bigdecimal/math.rb
+  #   - BigMath.log2(decimal, numeric)    -> BigDecimal
+  # -->
+  # Computes the base 2 logarithm of `decimal` to the specified number of digits
+  # of precision, `numeric`.
+  #
+  # If `decimal` is zero or negative, raises Math::DomainError.
+  #
+  # If `decimal` is positive infinity, returns Infinity.
+  #
+  # If `decimal` is NaN, returns NaN.
+  #
+  #     BigMath.log2(BigDecimal('3'), 32).to_s
+  #     #=> "0.15849625007211561814537389439478e1"
+  #
+  def self?.log2: (real | BigDecimal, int prec) -> BigDecimal
+
+  # <!--
+  #   rdoc-file=lib/bigdecimal/math.rb
+  #   - sin(decimal, numeric) -> BigDecimal
+  # -->
+  # Computes the sine of `decimal` to the specified number of digits of precision,
+  # `numeric`.
+  #
+  # If `decimal` is Infinity or NaN, returns NaN.
+  #
+  #     BigMath.sin(BigMath.PI(5)/4, 32).to_s
+  #     #=> "0.70710807985947359435812921837984e0"
+  #
+  def self?.sin: (real | BigDecimal x, int prec) -> BigDecimal
+
+  # <!--
+  #   rdoc-file=lib/bigdecimal/math.rb
+  #   - sinh(decimal, numeric) -> BigDecimal
+  # -->
+  # Computes the hyperbolic sine of `decimal` to the specified number of digits of
+  # precision, `numeric`.
+  #
+  # If `decimal` is NaN, returns NaN.
+  #
+  #     BigMath.sinh(BigDecimal('1'), 32).to_s
+  #     #=> "0.11752011936438014568823818505956e1"
+  #
+  def self?.sinh: (real | BigDecimal, int prec) -> BigDecimal
+
+  # <!--
+  #   rdoc-file=lib/bigdecimal/math.rb
+  #   - sqrt(decimal, numeric) -> BigDecimal
+  # -->
+  # Computes the square root of `decimal` to the specified number of digits of
+  # precision, `numeric`.
+  #
+  #     BigMath.sqrt(BigDecimal('2'), 32).to_s
+  #     #=> "0.14142135623730950488016887242097e1"
+  #
+  def self?.sqrt: (real | BigDecimal x, int prec) -> BigDecimal
+
+  # <!--
+  #   rdoc-file=lib/bigdecimal/math.rb
+  #   - tan(decimal, numeric) -> BigDecimal
+  # -->
+  # Computes the tangent of `decimal` to the specified number of digits of
+  # precision, `numeric`.
+  #
+  # If `decimal` is Infinity or NaN, returns NaN.
+  #
+  #     BigMath.tan(BigDecimal("0.0"), 4).to_s
+  #     #=> "0.0"
+  #
+  #     BigMath.tan(BigMath.PI(24) / 4, 32).to_s
+  #     #=> "0.99999999999999999999999830836025e0"
+  #
+  def self?.tan: (real | BigDecimal x, int prec) -> BigDecimal
+
+  # <!--
+  #   rdoc-file=lib/bigdecimal/math.rb
+  #   - tanh(decimal, numeric) -> BigDecimal
+  # -->
+  # Computes the hyperbolic tangent of `decimal` to the specified number of digits
+  # of precision, `numeric`.
+  #
+  # If `decimal` is NaN, returns NaN.
+  #
+  #     BigMath.tanh(BigDecimal('1'), 32).to_s
+  #     #=> "0.76159415595576488811945828260479e0"
+  #
+  def self?.tanh: (real | BigDecimal, int prec) -> BigDecimal
+end

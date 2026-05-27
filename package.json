@@ -1,5 +1,5 @@
 {
-  "name": "docuseal",
+  "name": "wabosign",
   "private": true,
   "dependencies": {
     "@babel/core": "7.21.8",

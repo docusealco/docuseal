@@ -1,0 +1,12 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - fa-t-am
+    :direction: forward
+    :rules: 
+      - "::am-am_FONIPA ;"
+      - "::und_FONIPA-fa ;"
+    :source: am
+    :target: fa
+    :variant: ~

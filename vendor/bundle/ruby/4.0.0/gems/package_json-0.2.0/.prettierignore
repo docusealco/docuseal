@@ -1,0 +1,6 @@
+/.bundle/
+/coverage/
+
+.idea/
+.vscode/
+/vendor/

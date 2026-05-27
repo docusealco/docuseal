@@ -1,0 +1,251 @@
+#ifndef _FBUFFER_H_
+#define _FBUFFER_H_
+
+#include "../json.h"
+#include "../vendor/jeaiii-ltoa.h"
+
+enum fbuffer_type {
+    FBUFFER_HEAP_ALLOCATED = 0,
+    FBUFFER_STACK_ALLOCATED = 1,
+};
+
+typedef struct FBufferStruct {
+    enum fbuffer_type type;
+    size_t initial_length;
+    size_t len;
+    size_t capa;
+#if JSON_DEBUG
+    size_t requested;
+#endif
+    char *ptr;
+    VALUE io;
+} FBuffer;
+
+#define FBUFFER_STACK_SIZE 512
+#define FBUFFER_IO_BUFFER_SIZE (16384 - 1)
+#define FBUFFER_INITIAL_LENGTH_DEFAULT 1024
+
+#define FBUFFER_PTR(fb) ((fb)->ptr)
+#define FBUFFER_LEN(fb) ((fb)->len)
+#define FBUFFER_CAPA(fb) ((fb)->capa)
+#define FBUFFER_PAIR(fb) FBUFFER_PTR(fb), FBUFFER_LEN(fb)
+
+static void fbuffer_free(FBuffer *fb);
+static void fbuffer_clear(FBuffer *fb);
+static void fbuffer_append(FBuffer *fb, const char *newstr, size_t len);
+static void fbuffer_append_long(FBuffer *fb, long number);
+static inline void fbuffer_append_char(FBuffer *fb, char newchr);
+static VALUE fbuffer_finalize(FBuffer *fb);
+
+static void fbuffer_stack_init(FBuffer *fb, size_t initial_length, char *stack_buffer, size_t stack_buffer_size)
+{
+    fb->initial_length = (initial_length > 0) ? initial_length : FBUFFER_INITIAL_LENGTH_DEFAULT;
+    if (stack_buffer) {
+        fb->type = FBUFFER_STACK_ALLOCATED;
+        fb->ptr = stack_buffer;
+        fb->capa = stack_buffer_size;
+    }
+#if JSON_DEBUG
+    fb->requested = 0;
+#endif
+}
+
+static inline void fbuffer_consumed(FBuffer *fb, size_t consumed)
+{
+#if JSON_DEBUG
+    if (consumed > fb->requested) {
+        rb_bug("fbuffer: Out of bound write");
+    }
+    fb->requested = 0;
+#endif
+    fb->len += consumed;
+}
+
+static void fbuffer_free(FBuffer *fb)
+{
+    if (fb->ptr && fb->type == FBUFFER_HEAP_ALLOCATED) {
+        ruby_xfree(fb->ptr);
+    }
+}
+
+static void fbuffer_clear(FBuffer *fb)
+{
+    fb->len = 0;
+}
+
+static void fbuffer_flush(FBuffer *fb)
+{
+    rb_io_write(fb->io, rb_utf8_str_new(fb->ptr, fb->len));
+    fbuffer_clear(fb);
+}
+
+static void fbuffer_realloc(FBuffer *fb, size_t required)
+{
+    if (required > fb->capa) {
+        if (fb->type == FBUFFER_STACK_ALLOCATED) {
+            const char *old_buffer = fb->ptr;
+            fb->ptr = ALLOC_N(char, required);
+            fb->type = FBUFFER_HEAP_ALLOCATED;
+            MEMCPY(fb->ptr, old_buffer, char, fb->len);
+        } else {
+            REALLOC_N(fb->ptr, char, required);
+        }
+        fb->capa = required;
+    }
+}
+
+static void fbuffer_do_inc_capa(FBuffer *fb, size_t requested)
+{
+    if (RB_UNLIKELY(fb->io)) {
+        if (fb->capa < FBUFFER_IO_BUFFER_SIZE) {
+            fbuffer_realloc(fb, FBUFFER_IO_BUFFER_SIZE);
+        } else {
+            fbuffer_flush(fb);
+        }
+
+        if (RB_LIKELY(requested < fb->capa)) {
+            return;
+        }
+    }
+
+    size_t required;
+
+    if (RB_UNLIKELY(!fb->ptr)) {
+        fb->ptr = ALLOC_N(char, fb->initial_length);
+        fb->capa = fb->initial_length;
+    }
+
+    for (required = fb->capa; requested > required - fb->len; required <<= 1);
+
+    fbuffer_realloc(fb, required);
+}
+
+static inline void fbuffer_inc_capa(FBuffer *fb, size_t requested)
+{
+#if JSON_DEBUG
+    fb->requested = requested;
+#endif
+
+    if (RB_UNLIKELY(requested > fb->capa - fb->len)) {
+        fbuffer_do_inc_capa(fb, requested);
+    }
+}
+
+static inline void fbuffer_append_reserved(FBuffer *fb, const char *newstr, size_t len)
+{
+    MEMCPY(fb->ptr + fb->len, newstr, char, len);
+    fbuffer_consumed(fb, len);
+}
+
+static inline void fbuffer_append(FBuffer *fb, const char *newstr, size_t len)
+{
+    if (len > 0) {
+        fbuffer_inc_capa(fb, len);
+        fbuffer_append_reserved(fb, newstr, len);
+    }
+}
+
+/* Appends a character into a buffer. The buffer needs to have sufficient capacity, via fbuffer_inc_capa(...). */
+static inline void fbuffer_append_reserved_char(FBuffer *fb, char chr)
+{
+#if JSON_DEBUG
+    if (fb->requested < 1) {
+        rb_bug("fbuffer: unreserved write");
+    }
+    fb->requested--;
+#endif
+
+    fb->ptr[fb->len] = chr;
+    fb->len++;
+}
+
+static void fbuffer_append_str(FBuffer *fb, VALUE str)
+{
+    const char *ptr;
+    size_t len;
+    RSTRING_GETMEM(str, ptr, len);
+
+    fbuffer_append(fb, ptr, len);
+    RB_GC_GUARD(str);
+}
+
+static void fbuffer_append_str_repeat(FBuffer *fb, VALUE str, size_t repeat)
+{
+    const char *ptr;
+    size_t len;
+    RSTRING_GETMEM(str, ptr, len);
+
+    fbuffer_inc_capa(fb, repeat * len);
+    while (repeat) {
+#if JSON_DEBUG
+        fb->requested = len;
+#endif
+        fbuffer_append_reserved(fb, ptr, len);
+        repeat--;
+    }
+    RB_GC_GUARD(str);
+}
+
+static inline void fbuffer_append_char(FBuffer *fb, char newchr)
+{
+    fbuffer_inc_capa(fb, 1);
+    *(fb->ptr + fb->len) = newchr;
+    fbuffer_consumed(fb, 1);
+}
+
+static inline char *fbuffer_cursor(FBuffer *fb)
+{
+    return fb->ptr + fb->len;
+}
+
+static inline void fbuffer_advance_to(FBuffer *fb, char *end)
+{
+    fbuffer_consumed(fb, (end - fb->ptr) - fb->len);
+}
+
+/*
+ * Appends the decimal string representation of \a number into the buffer.
+ */
+static void fbuffer_append_long(FBuffer *fb, long number)
+{
+    /*
+     * The jeaiii_ultoa() function produces digits left-to-right,
+     * allowing us to write directly into the buffer, but we don't know
+     * the number of resulting characters.
+     *
+     * We do know, however, that the `number` argument is always in the
+     * range 0xc000000000000000 to 0x3fffffffffffffff, or, in decimal,
+     * -4611686018427387904 to 4611686018427387903. The max number of chars
+     * generated is therefore 20 (including a potential sign character).
+     */
+
+    static const int MAX_CHARS_FOR_LONG = 20;
+
+    fbuffer_inc_capa(fb, MAX_CHARS_FOR_LONG);
+
+    if (number < 0) {
+        fbuffer_append_reserved_char(fb, '-');
+
+        /*
+         * Since number is always > LONG_MIN, `-number` will not overflow
+         * and is always the positive abs() value.
+         */
+        number = -number;
+    }
+
+    char *end = jeaiii_ultoa(fbuffer_cursor(fb), number);
+    fbuffer_advance_to(fb, end);
+}
+
+static VALUE fbuffer_finalize(FBuffer *fb)
+{
+    if (fb->io) {
+        fbuffer_flush(fb);
+        rb_io_flush(fb->io);
+        return fb->io;
+    } else {
+        return rb_utf8_str_new(FBUFFER_PTR(fb), FBUFFER_LEN(fb));
+    }
+}
+
+#endif // _FBUFFER_H_

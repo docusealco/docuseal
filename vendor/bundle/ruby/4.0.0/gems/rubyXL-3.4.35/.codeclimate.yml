@@ -1,0 +1,3 @@
+exclude_patterns:
+- "rdoc/*"
+- "spec/*"

@@ -50,7 +50,7 @@ WORKDIR /app
 
 RUN apk add --no-cache libpq vips redis onnxruntime
 
-RUN addgroup -g 2000 docuseal && adduser -u 2000 -G docuseal -s /bin/sh -D -h /home/docuseal docuseal
+RUN addgroup -g 2000 wabosign && adduser -u 2000 -G wabosign -s /bin/sh -D -h /home/wabosign wabosign
 
 RUN echo $'.include = /etc/ssl/openssl.cnf\n\
 \n\
@@ -64,35 +64,35 @@ activate = 1\n\
 [legacy_sect]\n\
 activate = 1' >> /etc/openssl_legacy.cnf
 
-COPY --chown=docuseal:docuseal ./Gemfile ./Gemfile.lock ./
+COPY --chown=wabosign:wabosign ./Gemfile ./Gemfile.lock ./
 
 RUN apk add --no-cache build-base git libpq-dev yaml-dev && bundle install && apk del --no-cache build-base git libpq-dev yaml-dev && rm -rf ~/.bundle /usr/local/bundle/cache && ruby -e "puts Dir['/usr/local/bundle/**/{spec,rdoc,resources/shared,resources/collation,resources/locales,resources/unicode_data/properties}'] + Dir['/usr/local/bundle/gems/*/{test,tests,examples,sample,misc,doc,docs}'] + Dir['/usr/local/bundle/gems/*/ext/**/*.{c,h,o,S}']" | xargs rm -rf && ln -sf /usr/lib/libonnxruntime.so.1 $(ruby -e "print Dir[Gem::Specification.find_by_name('onnxruntime').gem_dir + '/vendor/*.so'].first")
 
-COPY --chown=docuseal:docuseal ./bin ./bin
-COPY --chown=docuseal:docuseal ./app ./app
-COPY --chown=docuseal:docuseal ./config ./config
-COPY --chown=docuseal:docuseal ./db/migrate ./db/migrate
-COPY --chown=docuseal:docuseal ./log ./log
-COPY --chown=docuseal:docuseal ./lib ./lib
-COPY --chown=docuseal:docuseal ./public ./public
-COPY --chown=docuseal:docuseal ./tmp ./tmp
-COPY --chown=docuseal:docuseal LICENSE LICENSE_ADDITIONAL_TERMS README.md Rakefile config.ru .version ./
-COPY --chown=docuseal:docuseal .version ./public/version
+COPY --chown=wabosign:wabosign ./bin ./bin
+COPY --chown=wabosign:wabosign ./app ./app
+COPY --chown=wabosign:wabosign ./config ./config
+COPY --chown=wabosign:wabosign ./db/migrate ./db/migrate
+COPY --chown=wabosign:wabosign ./log ./log
+COPY --chown=wabosign:wabosign ./lib ./lib
+COPY --chown=wabosign:wabosign ./public ./public
+COPY --chown=wabosign:wabosign ./tmp ./tmp
+COPY --chown=wabosign:wabosign LICENSE LICENSE_ADDITIONAL_TERMS README.md Rakefile config.ru .version ./
+COPY --chown=wabosign:wabosign .version ./public/version
 
-COPY --chown=docuseal:docuseal --from=download /fonts/GoNotoKurrent-Regular.ttf /fonts/GoNotoKurrent-Bold.ttf /fonts/DancingScript-Regular.otf /fonts/OFL.txt /fonts/LICENSE /fonts/
+COPY --chown=wabosign:wabosign --from=download /fonts/GoNotoKurrent-Regular.ttf /fonts/GoNotoKurrent-Bold.ttf /fonts/DancingScript-Regular.otf /fonts/OFL.txt /fonts/LICENSE /fonts/
 COPY --from=download /pdfium-linux/lib/libpdfium.so /usr/lib/libpdfium.so
 COPY --from=download /pdfium-linux/licenses/pdfium.txt /usr/lib/libpdfium-LICENSE.txt
-COPY --chown=docuseal:docuseal --from=download /model.onnx /app/tmp/model.onnx
-COPY --chown=docuseal:docuseal --from=webpack /app/public/packs ./public/packs
+COPY --chown=wabosign:wabosign --from=download /model.onnx /app/tmp/model.onnx
+COPY --chown=wabosign:wabosign --from=webpack /app/public/packs ./public/packs
 
 RUN mkdir -p /app/public/fonts && ln -s /fonts/DancingScript-Regular.otf /app/public/fonts/ && \
     mkdir -p /usr/share/fonts/noto && ln -s /fonts/GoNotoKurrent-Regular.ttf /usr/share/fonts/noto/ && ln -s /fonts/GoNotoKurrent-Bold.ttf /usr/share/fonts/noto/ && fc-cache -f && \
     bundle exec bootsnap precompile -j 1 --gemfile app/ lib/ && \
-    chown -R docuseal:docuseal /app/tmp/cache
+    chown -R wabosign:wabosign /app/tmp/cache
 
-WORKDIR /data/docuseal
-ENV HOME=/home/docuseal
-ENV WORKDIR=/data/docuseal
+WORKDIR /data/wabosign
+ENV HOME=/home/wabosign
+ENV WORKDIR=/data/wabosign
 ENV VIPS_MAX_COORD=17000
 ENV VIPS_BLOCK_UNTRUSTED=1
 

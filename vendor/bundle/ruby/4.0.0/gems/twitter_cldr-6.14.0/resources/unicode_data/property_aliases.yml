@@ -1,0 +1,431 @@
+---
+cjkAccountingNumeric:
+  :long_name: kAccountingNumeric
+  :additional: []
+cjkOtherNumeric:
+  :long_name: kOtherNumeric
+  :additional: []
+cjkPrimaryNumeric:
+  :long_name: kPrimaryNumeric
+  :additional: []
+nv:
+  :long_name: Numeric_Value
+  :additional: []
+bmg:
+  :long_name: Bidi_Mirroring_Glyph
+  :additional: []
+bpb:
+  :long_name: Bidi_Paired_Bracket
+  :additional: []
+cf:
+  :long_name: Case_Folding
+  :additional: []
+cjkCompatibilityVariant:
+  :long_name: kCompatibilityVariant
+  :additional: []
+dm:
+  :long_name: Decomposition_Mapping
+  :additional: []
+EqUIdeo:
+  :long_name: Equivalent_Unified_Ideograph
+  :additional: []
+FC_NFKC:
+  :long_name: FC_NFKC_Closure
+  :additional: []
+lc:
+  :long_name: Lowercase_Mapping
+  :additional: []
+NFKC_CF:
+  :long_name: NFKC_Casefold
+  :additional: []
+NFKC_SCF:
+  :long_name: NFKC_Simple_Casefold
+  :additional: []
+scf:
+  :long_name: Simple_Case_Folding
+  :additional:
+  - sfc
+slc:
+  :long_name: Simple_Lowercase_Mapping
+  :additional: []
+stc:
+  :long_name: Simple_Titlecase_Mapping
+  :additional: []
+suc:
+  :long_name: Simple_Uppercase_Mapping
+  :additional: []
+tc:
+  :long_name: Titlecase_Mapping
+  :additional: []
+uc:
+  :long_name: Uppercase_Mapping
+  :additional: []
+cjkIICore:
+  :long_name: kIICore
+  :additional: []
+cjkIRG_GSource:
+  :long_name: kIRG_GSource
+  :additional: []
+cjkIRG_HSource:
+  :long_name: kIRG_HSource
+  :additional: []
+cjkIRG_JSource:
+  :long_name: kIRG_JSource
+  :additional: []
+cjkIRG_KPSource:
+  :long_name: kIRG_KPSource
+  :additional: []
+cjkIRG_KSource:
+  :long_name: kIRG_KSource
+  :additional: []
+cjkIRG_MSource:
+  :long_name: kIRG_MSource
+  :additional: []
+cjkIRG_SSource:
+  :long_name: kIRG_SSource
+  :additional: []
+cjkIRG_TSource:
+  :long_name: kIRG_TSource
+  :additional: []
+cjkIRG_UKSource:
+  :long_name: kIRG_UKSource
+  :additional: []
+cjkIRG_USource:
+  :long_name: kIRG_USource
+  :additional: []
+cjkIRG_VSource:
+  :long_name: kIRG_VSource
+  :additional: []
+cjkRSUnicode:
+  :long_name: kRSUnicode
+  :additional:
+  - Unicode_Radical_Stroke
+  - URS
+isc:
+  :long_name: ISO_Comment
+  :additional: []
+JSN:
+  :long_name: Jamo_Short_Name
+  :additional: []
+kEH_Cat:
+  :long_name: kEH_Cat
+  :additional: []
+kEH_Desc:
+  :long_name: kEH_Desc
+  :additional: []
+kEH_HG:
+  :long_name: kEH_HG
+  :additional: []
+kEH_IFAO:
+  :long_name: kEH_IFAO
+  :additional: []
+kEH_JSesh:
+  :long_name: kEH_JSesh
+  :additional: []
+na:
+  :long_name: Name
+  :additional: []
+na1:
+  :long_name: Unicode_1_Name
+  :additional: []
+Name_Alias:
+  :long_name: Name_Alias
+  :additional: []
+scx:
+  :long_name: Script_Extensions
+  :additional: []
+age:
+  :long_name: Age
+  :additional: []
+blk:
+  :long_name: Block
+  :additional: []
+sc:
+  :long_name: Script
+  :additional: []
+bc:
+  :long_name: Bidi_Class
+  :additional: []
+bpt:
+  :long_name: Bidi_Paired_Bracket_Type
+  :additional: []
+ccc:
+  :long_name: Canonical_Combining_Class
+  :additional: []
+dt:
+  :long_name: Decomposition_Type
+  :additional: []
+ea:
+  :long_name: East_Asian_Width
+  :additional: []
+gc:
+  :long_name: General_Category
+  :additional: []
+GCB:
+  :long_name: Grapheme_Cluster_Break
+  :additional: []
+hst:
+  :long_name: Hangul_Syllable_Type
+  :additional: []
+InCB:
+  :long_name: Indic_Conjunct_Break
+  :additional: []
+InPC:
+  :long_name: Indic_Positional_Category
+  :additional: []
+InSC:
+  :long_name: Indic_Syllabic_Category
+  :additional: []
+jg:
+  :long_name: Joining_Group
+  :additional: []
+jt:
+  :long_name: Joining_Type
+  :additional: []
+lb:
+  :long_name: Line_Break
+  :additional: []
+NFC_QC:
+  :long_name: NFC_Quick_Check
+  :additional: []
+NFD_QC:
+  :long_name: NFD_Quick_Check
+  :additional: []
+NFKC_QC:
+  :long_name: NFKC_Quick_Check
+  :additional: []
+NFKD_QC:
+  :long_name: NFKD_Quick_Check
+  :additional: []
+nt:
+  :long_name: Numeric_Type
+  :additional: []
+SB:
+  :long_name: Sentence_Break
+  :additional: []
+vo:
+  :long_name: Vertical_Orientation
+  :additional: []
+WB:
+  :long_name: Word_Break
+  :additional: []
+AHex:
+  :long_name: ASCII_Hex_Digit
+  :additional: []
+Alpha:
+  :long_name: Alphabetic
+  :additional: []
+Bidi_C:
+  :long_name: Bidi_Control
+  :additional: []
+Bidi_M:
+  :long_name: Bidi_Mirrored
+  :additional: []
+Cased:
+  :long_name: Cased
+  :additional: []
+CE:
+  :long_name: Composition_Exclusion
+  :additional: []
+CI:
+  :long_name: Case_Ignorable
+  :additional: []
+Comp_Ex:
+  :long_name: Full_Composition_Exclusion
+  :additional: []
+CWCF:
+  :long_name: Changes_When_Casefolded
+  :additional: []
+CWCM:
+  :long_name: Changes_When_Casemapped
+  :additional: []
+CWKCF:
+  :long_name: Changes_When_NFKC_Casefolded
+  :additional: []
+CWL:
+  :long_name: Changes_When_Lowercased
+  :additional: []
+CWT:
+  :long_name: Changes_When_Titlecased
+  :additional: []
+CWU:
+  :long_name: Changes_When_Uppercased
+  :additional: []
+Dash:
+  :long_name: Dash
+  :additional: []
+Dep:
+  :long_name: Deprecated
+  :additional: []
+DI:
+  :long_name: Default_Ignorable_Code_Point
+  :additional: []
+Dia:
+  :long_name: Diacritic
+  :additional: []
+EBase:
+  :long_name: Emoji_Modifier_Base
+  :additional: []
+EComp:
+  :long_name: Emoji_Component
+  :additional: []
+EMod:
+  :long_name: Emoji_Modifier
+  :additional: []
+Emoji:
+  :long_name: Emoji
+  :additional: []
+EPres:
+  :long_name: Emoji_Presentation
+  :additional: []
+Ext:
+  :long_name: Extender
+  :additional: []
+ExtPict:
+  :long_name: Extended_Pictographic
+  :additional: []
+Gr_Base:
+  :long_name: Grapheme_Base
+  :additional: []
+Gr_Ext:
+  :long_name: Grapheme_Extend
+  :additional: []
+Gr_Link:
+  :long_name: Grapheme_Link
+  :additional: []
+Hex:
+  :long_name: Hex_Digit
+  :additional: []
+Hyphen:
+  :long_name: Hyphen
+  :additional: []
+ID_Compat_Math_Continue:
+  :long_name: ID_Compat_Math_Continue
+  :additional: []
+ID_Compat_Math_Start:
+  :long_name: ID_Compat_Math_Start
+  :additional: []
+IDC:
+  :long_name: ID_Continue
+  :additional: []
+Ideo:
+  :long_name: Ideographic
+  :additional: []
+IDS:
+  :long_name: ID_Start
+  :additional: []
+IDSB:
+  :long_name: IDS_Binary_Operator
+  :additional: []
+IDST:
+  :long_name: IDS_Trinary_Operator
+  :additional: []
+IDSU:
+  :long_name: IDS_Unary_Operator
+  :additional: []
+Join_C:
+  :long_name: Join_Control
+  :additional: []
+kEH_NoMirror:
+  :long_name: kEH_NoMirror
+  :additional: []
+kEH_NoRotate:
+  :long_name: kEH_NoRotate
+  :additional: []
+LOE:
+  :long_name: Logical_Order_Exception
+  :additional: []
+Lower:
+  :long_name: Lowercase
+  :additional: []
+Math:
+  :long_name: Math
+  :additional: []
+MCM:
+  :long_name: Modifier_Combining_Mark
+  :additional: []
+NChar:
+  :long_name: Noncharacter_Code_Point
+  :additional: []
+OAlpha:
+  :long_name: Other_Alphabetic
+  :additional: []
+ODI:
+  :long_name: Other_Default_Ignorable_Code_Point
+  :additional: []
+OGr_Ext:
+  :long_name: Other_Grapheme_Extend
+  :additional: []
+OIDC:
+  :long_name: Other_ID_Continue
+  :additional: []
+OIDS:
+  :long_name: Other_ID_Start
+  :additional: []
+OLower:
+  :long_name: Other_Lowercase
+  :additional: []
+OMath:
+  :long_name: Other_Math
+  :additional: []
+OUpper:
+  :long_name: Other_Uppercase
+  :additional: []
+Pat_Syn:
+  :long_name: Pattern_Syntax
+  :additional: []
+Pat_WS:
+  :long_name: Pattern_White_Space
+  :additional: []
+PCM:
+  :long_name: Prepended_Concatenation_Mark
+  :additional: []
+QMark:
+  :long_name: Quotation_Mark
+  :additional: []
+Radical:
+  :long_name: Radical
+  :additional: []
+RI:
+  :long_name: Regional_Indicator
+  :additional: []
+SD:
+  :long_name: Soft_Dotted
+  :additional: []
+STerm:
+  :long_name: Sentence_Terminal
+  :additional: []
+Term:
+  :long_name: Terminal_Punctuation
+  :additional: []
+UIdeo:
+  :long_name: Unified_Ideograph
+  :additional: []
+Upper:
+  :long_name: Uppercase
+  :additional: []
+VS:
+  :long_name: Variation_Selector
+  :additional: []
+WSpace:
+  :long_name: White_Space
+  :additional:
+  - space
+XIDC:
+  :long_name: XID_Continue
+  :additional: []
+XIDS:
+  :long_name: XID_Start
+  :additional: []
+XO_NFC:
+  :long_name: Expands_On_NFC
+  :additional: []
+XO_NFD:
+  :long_name: Expands_On_NFD
+  :additional: []
+XO_NFKC:
+  :long_name: Expands_On_NFKC
+  :additional: []
+XO_NFKD:
+  :long_name: Expands_On_NFKD
+  :additional: []

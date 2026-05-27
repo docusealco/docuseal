@@ -1,0 +1,1327 @@
+--- 
+:ro: 
+  :units: 
+    :durationUnit: 
+      :hm: "h:mm"
+      :hms: "h:mm:ss"
+      :ms: "m:ss"
+    :unitLength: 
+      :long: 
+        :acceleration-g-force: 
+          :few: "{0} forță g"
+          :one: "unei forțe g"
+          :other: "{0} forță g"
+        :acceleration-meter-per-square-second: 
+          :few: "{0} metri pe secundă la pătrat"
+          :one: "unui metru pe secundă la pătrat"
+          :other: "{0} de metri pe secundă la pătrat"
+        :angle-arc-minute: 
+          :few: "{0} minute de arc"
+          :one: "unui minut de arc"
+          :other: "{0} de minute de arc"
+        :angle-arc-second: 
+          :few: "{0} secunde de arc"
+          :one: "unei secunde de arc"
+          :other: "{0} de secunde de arc"
+        :angle-degree: 
+          :few: "{0} grade"
+          :one: "unui grad"
+          :other: "{0} de grade"
+        :angle-radian: 
+          :few: "{0} radiani"
+          :one: "unui radian"
+          :other: "{0} de radiani"
+        :angle-revolution: 
+          :few: "{0} revoluții"
+          :one: "unei revoluții"
+          :other: "{0} de revoluții"
+        :area-acre: 
+          :few: "{0} acri"
+          :one: "{0} acru"
+          :other: "{0} de acri"
+        :area-dunam: 
+          :few: "{0} dunami"
+          :one: "{0} dunam"
+          :other: "{0} de dunami"
+        :area-hectare: 
+          :few: "{0} hectare"
+          :one: "unui hectar"
+          :other: "{0} de hectare"
+        :area-square-centimeter: 
+          :few: "{0} centimetri pătrați"
+          :one: "unui centimetru pătrat"
+          :other: "{0} de centimetri pătrați"
+        :area-square-foot: 
+          :few: "{0} picioare pătrate"
+          :one: "{0} picior pătrat"
+          :other: "{0} de picioare pătrate"
+        :area-square-inch: 
+          :few: "{0} inchi pătrați"
+          :one: "{0} inch pătrat"
+          :other: "{0} de inchi pătrați"
+        :area-square-kilometer: 
+          :few: "{0} kilometri pătrați"
+          :one: "unui kilometru pătrat"
+          :other: "{0} de kilometri pătrați"
+        :area-square-meter: 
+          :few: "{0} metri pătrați"
+          :one: "unui metru pătrat"
+          :other: "{0} de metri pătrați"
+        :area-square-mile: 
+          :few: "{0} mile pătrate"
+          :one: "{0} milă pătrată"
+          :other: "{0} de mile pătrate"
+        :area-square-yard: 
+          :few: "{0} iarzi pătrați"
+          :one: "{0} iard pătrat"
+          :other: "{0} de iarzi pătrați"
+        :concentr-item: 
+          :few: "{0} itemi"
+          :one: "unui item"
+          :other: "{0} de itemi"
+        :concentr-karat: 
+          :few: "{0} carate"
+          :one: "unui carat"
+          :other: "{0} de carate"
+        :concentr-milligram-ofglucose-per-deciliter: 
+          :few: "{0} miligrame pe decilitru"
+          :one: "unui miligram pe decilitru"
+          :other: "{0} de miligrame pe decilitru"
+        :concentr-millimole-per-liter: 
+          :few: "{0} milimoli pe litru"
+          :one: "unui milimol pe litru"
+          :other: "{0} de milimoli pe litru"
+        :concentr-mole: 
+          :few: "{0} moli"
+          :one: "unui mol"
+          :other: "{0} de moli"
+        :concentr-percent: 
+          :few: "{0} procente"
+          :one: "unui procent"
+          :other: "{0} de procente"
+        :concentr-permille: 
+          :few: "{0} promile"
+          :one: "unei promile"
+          :other: "{0} de promile"
+        :concentr-permillion: 
+          :few: "{0} părți pe milion"
+          :one: "unei părți pe milion"
+          :other: "{0} de părți pe milion"
+        :concentr-permyriad: 
+          :few: "{0} părți la zece mii"
+          :one: "unei părți la zece mii"
+          :other: "{0} de părți la zece mii"
+        :concentr-portion-per-1e9: 
+          :few: "{0} părți pe miliard"
+          :one: "unei părți pe miliard"
+          :other: "{0} de părți pe miliard"
+        :consumption-liter-per-100-kilometer: 
+          :few: "{0} litri la suta de kilometri"
+          :one: "unui litru la suta de kilometri"
+          :other: "{0} de litri la suta de kilometri"
+        :consumption-liter-per-kilometer: 
+          :few: "{0} litri pe kilometru"
+          :one: "unui litru pe kilometru"
+          :other: "{0} de litri pe kilometru"
+        :consumption-mile-per-gallon: 
+          :few: "{0} mile pe galon"
+          :one: "{0} milă pe galon"
+          :other: "{0} de mile pe galon"
+        :consumption-mile-per-gallon-imperial: 
+          :few: "{0} mile pe galon imperial"
+          :one: "{0} milă pe galon imperial"
+          :other: "{0} de mile pe galon imperial"
+        :digital-bit: 
+          :few: "{0} biți"
+          :one: "unui bit"
+          :other: "{0} de biți"
+        :digital-byte: 
+          :few: "{0} byți"
+          :one: "unui byte"
+          :other: "{0} de byți"
+        :digital-gigabit: 
+          :few: "{0} gigabiți"
+          :one: "unui gigabit"
+          :other: "{0} de gigabiți"
+        :digital-gigabyte: 
+          :few: "{0} gigabyți"
+          :one: "unui gigabyte"
+          :other: "{0} de gigabyți"
+        :digital-kilobit: 
+          :few: "{0} kilobiți"
+          :one: "unui kilobit"
+          :other: "{0} de kilobiți"
+        :digital-kilobyte: 
+          :few: "{0} kilobyți"
+          :one: "unui kilobyte"
+          :other: "{0} de kilobyți"
+        :digital-megabit: 
+          :few: "{0} megabiți"
+          :one: "unui megabit"
+          :other: "{0} de megabiți"
+        :digital-megabyte: 
+          :few: "{0} megabyți"
+          :one: "unui megabyte"
+          :other: "{0} de megabyți"
+        :digital-petabyte: 
+          :few: "{0} petabyți"
+          :one: "unui petabyte"
+          :other: "{0} de petabyți"
+        :digital-terabit: 
+          :few: "{0} terabiți"
+          :one: "unui terabit"
+          :other: "{0} de terabiți"
+        :digital-terabyte: 
+          :few: "{0} terabyți"
+          :one: "unui terabyte"
+          :other: "{0} de terabyți"
+        :duration-century: 
+          :few: "{0} secole"
+          :one: "unui secol"
+          :other: "{0} de secole"
+        :duration-day: 
+          :few: "{0} zile"
+          :one: "unei zile"
+          :other: "{0} de zile"
+        :duration-decade: 
+          :few: "{0} decenii"
+          :one: "unui deceniu"
+          :other: "{0} de decenii"
+        :duration-hour: 
+          :few: "{0} ore"
+          :one: "unei ore"
+          :other: "{0} de ore"
+        :duration-microsecond: 
+          :few: "{0} microsecunde"
+          :one: "unei microsecunde"
+          :other: "{0} de microsecunde"
+        :duration-millisecond: 
+          :few: "{0} milisecunde"
+          :one: "unei milisecunde"
+          :other: "{0} de milisecunde"
+        :duration-minute: 
+          :few: "{0} minute"
+          :one: "unui minut"
+          :other: "{0} de minute"
+        :duration-month: 
+          :few: "{0} luni"
+          :one: "unei luni"
+          :other: "{0} de luni"
+        :duration-nanosecond: 
+          :few: "{0} nanosecunde"
+          :one: "unei nanosecunde"
+          :other: "{0} de nanosecunde"
+        :duration-night: 
+          :few: "{0} nopți"
+          :one: "unei nopți"
+          :other: "{0} de nopți"
+        :duration-quarter: 
+          :few: "{0} trimestre"
+          :one: "unui trimestru"
+          :other: "{0} de trimestre"
+        :duration-second: 
+          :few: "{0} secunde"
+          :one: "unei secunde"
+          :other: "{0} de secunde"
+        :duration-week: 
+          :few: "{0} săptămâni"
+          :one: "unei săptămâni"
+          :other: "{0} de săptămâni"
+        :duration-year: 
+          :few: "{0} ani"
+          :one: "unui an"
+          :other: "{0} de ani"
+        :electric-ampere: 
+          :few: "{0} amperi"
+          :one: "unui amper"
+          :other: "{0} de amperi"
+        :electric-milliampere: 
+          :few: "{0} miliamperi"
+          :one: "unui miliamper"
+          :other: "{0} de miliamperi"
+        :electric-ohm: 
+          :few: "{0} ohmi"
+          :one: "unui ohm"
+          :other: "{0} de ohmi"
+        :electric-volt: 
+          :few: "{0} volți"
+          :one: "unui volt"
+          :other: "{0} de volți"
+        :energy-british-thermal-unit: 
+          :few: "{0} unități termice britanice"
+          :one: "{0} unitate termică britanică"
+          :other: "{0} de unități termice britanice"
+        :energy-calorie: 
+          :few: "{0} calorii"
+          :one: "unei calorii"
+          :other: "{0} de calorii"
+        :energy-electronvolt: 
+          :few: "{0} electronvolți"
+          :one: "{0} electronvolt"
+          :other: "{0} de electronvolți"
+        :energy-foodcalorie: 
+          :few: "{0} kilocalorii"
+          :one: "{0} kilocalorie"
+          :other: "{0} de kilocalorii"
+        :energy-joule: 
+          :few: "{0} jouli"
+          :one: "unui joule"
+          :other: "{0} de jouli"
+        :energy-kilocalorie: 
+          :few: "{0} kilocalorii"
+          :one: "unei kilocalorii"
+          :other: "{0} de kilocalorii"
+        :energy-kilojoule: 
+          :few: "{0} kilojouli"
+          :one: "unui kilojoule"
+          :other: "{0} de kilojouli"
+        :energy-kilowatt-hour: 
+          :few: "{0} kilowați-oră"
+          :one: "unui kilowatt-oră"
+          :other: "{0} de kilowați-oră"
+        :energy-therm-us: 
+          :few: "{0} thermi S.U.A."
+          :one: "{0} therm S.U.A."
+          :other: "{0} de thermi S.U.A."
+        :force-kilowatt-hour-per-100-kilometer: 
+          :few: "{0} kilowați-oră per 100 kilometri"
+          :one: "unui kilowatt-oră per 100 de kilometri"
+          :other: "{0} kilowați-oră per 100 kilometri"
+        :force-newton: 
+          :few: "{0} newtoni"
+          :one: "unui newton"
+          :other: "{0} de newtoni"
+        :force-pound-force: 
+          :few: "{0} livre-forță"
+          :one: "{0} livră-forță"
+          :other: "{0} de livre-forță"
+        :frequency-gigahertz: 
+          :few: "{0} gigahertzi"
+          :one: "unui gigahertz"
+          :other: "{0} de gigahertzi"
+        :frequency-hertz: 
+          :few: "{0} hertzi"
+          :one: "unui hertz"
+          :other: "{0} de hertzi"
+        :frequency-kilohertz: 
+          :few: "{0} kilohertzi"
+          :one: "unui kilohertz"
+          :other: "{0} de kilohertzi"
+        :frequency-megahertz: 
+          :few: "{0} megahertzi"
+          :one: "unui megahertz"
+          :other: "{0} de megahertzi"
+        :graphics-dot: 
+          :few: "{0} puncte"
+          :one: "{0} punct"
+          :other: "{0} de puncte"
+        :graphics-dot-per-centimeter: 
+          :few: "{0} puncte pe centimetru"
+          :one: "{0} punct pe centimetru"
+          :other: "{0} de puncte pe centimetru"
+        :graphics-dot-per-inch: 
+          :few: "{0} puncte pe inch"
+          :one: "{0} punct pe inch"
+          :other: "{0} de puncte pe inch"
+        :graphics-em: 
+          :few: "{0} em"
+          :one: "unui em"
+          :other: "{0} de em"
+        :graphics-megapixel: 
+          :few: "{0} megapixeli"
+          :one: "unui megapixel"
+          :other: "{0} de megapixeli"
+        :graphics-pixel: 
+          :few: "{0} pixeli"
+          :one: "unui pixel"
+          :other: "{0} de pixeli"
+        :graphics-pixel-per-centimeter: 
+          :few: "{0} pixeli pe centimetru"
+          :one: "unui pixel pe centimetru"
+          :other: "{0} de pixeli pe centimetru"
+        :graphics-pixel-per-inch: 
+          :few: "{0} pixeli pe inch"
+          :one: "{0} pixel pe inch"
+          :other: "{0} de pixeli pe inch"
+        :length-astronomical-unit: 
+          :few: "{0} unități astronomice"
+          :one: "{0} unitate astronomică"
+          :other: "{0} de unități astronomice"
+        :length-centimeter: 
+          :few: "{0} centimetri"
+          :one: "unui centimetru"
+          :other: "{0} de centimetri"
+        :length-decimeter: 
+          :few: "{0} decimetri"
+          :one: "unui decimetru"
+          :other: "{0} de decimetri"
+        :length-earth-radius: 
+          :few: "{0} raze terestre"
+          :one: "{0} rază terestră"
+          :other: "{0} de raze terestre"
+        :length-fathom: 
+          :few: "{0} fathomi"
+          :one: "{0} fathom"
+          :other: "{0} de fathomi"
+        :length-foot: 
+          :few: "{0} picioare"
+          :one: "{0} picior"
+          :other: "{0} de picioare"
+        :length-furlong: 
+          :few: "{0} furlongi"
+          :one: "{0} furlong"
+          :other: "{0} de furlongi"
+        :length-inch: 
+          :few: "{0} inchi"
+          :one: "{0} inch"
+          :other: "{0} de inchi"
+        :length-kilometer: 
+          :few: "{0} kilometri"
+          :one: "unui kilometru"
+          :other: "{0} de kilometri"
+        :length-light-year: 
+          :few: "{0} ani lumină"
+          :one: "{0} an lumină"
+          :other: "{0} de ani lumină"
+        :length-meter: 
+          :few: "{0} metri"
+          :one: "unui metru"
+          :other: "{0} de metri"
+        :length-micrometer: 
+          :few: "{0} micrometri"
+          :one: "unui micrometru"
+          :other: "{0} de micrometri"
+        :length-mile: 
+          :few: "{0} mile"
+          :one: "{0} milă"
+          :other: "{0} de mile"
+        :length-mile-scandinavian: 
+          :few: "{0} mile scandinave"
+          :one: "unei mile scandinave"
+          :other: "{0} de mile scandinave"
+        :length-millimeter: 
+          :few: "{0} milimetri"
+          :one: "unui milimetru"
+          :other: "{0} de milimetri"
+        :length-nanometer: 
+          :few: "{0} nanometri"
+          :one: "unui nanometru"
+          :other: "{0} de nanometri"
+        :length-nautical-mile: 
+          :few: "{0} mile nautice"
+          :one: "{0} milă nautică"
+          :other: "{0} de mile nautice"
+        :length-parsec: 
+          :few: "{0} parseci"
+          :one: "{0} parsec"
+          :other: "{0} de parseci"
+        :length-picometer: 
+          :few: "{0} picometri"
+          :one: "unui picometru"
+          :other: "{0} de picometri"
+        :length-point: 
+          :few: "{0} puncte tipografice"
+          :one: "unui punct tipografic"
+          :other: "{0} de puncte tipografice"
+        :length-solar-radius: 
+          :few: "{0} raze solare"
+          :one: "{0} rază solară"
+          :other: "{0} de raze solare"
+        :length-yard: 
+          :few: "{0} iarzi"
+          :one: "{0} iard"
+          :other: "{0} de iarzi"
+        :light-candela: 
+          :few: "{0} candele"
+          :one: "unei candele"
+          :other: "{0} de candele"
+        :light-lumen: 
+          :few: "{0} lumeni"
+          :one: "unui lumen"
+          :other: "{0} de lumeni"
+        :light-lux: 
+          :few: "{0} lucși"
+          :one: "unui lux"
+          :other: "{0} de lucși"
+        :light-solar-luminosity: 
+          :few: "{0} luminozități solare"
+          :one: "{0} luminozitate solară"
+          :other: "{0} de luminozități solare"
+        :mass-carat: 
+          :few: "{0} carate"
+          :one: "unui carat"
+          :other: "{0} de carate"
+        :mass-dalton: 
+          :few: "{0} daltoni"
+          :one: "{0} dalton"
+          :other: "{0} de daltoni"
+        :mass-earth-mass: 
+          :few: "{0} mase terestre"
+          :one: "{0} masă terestră"
+          :other: "{0} de mase terestre"
+        :mass-grain: 
+          :few: "{0} boabe"
+          :one: "{0} boabă"
+          :other: "{0} de boabe"
+        :mass-gram: 
+          :few: "{0} grame"
+          :one: "unui gram"
+          :other: "{0} de grame"
+        :mass-kilogram: 
+          :few: "{0} kilograme"
+          :one: "unui kilogram"
+          :other: "{0} de kilograme"
+        :mass-microgram: 
+          :few: "{0} micrograme"
+          :one: "unui microgram"
+          :other: "{0} de micrograme"
+        :mass-milligram: 
+          :few: "{0} miligrame"
+          :one: "unui miligram"
+          :other: "{0} de miligrame"
+        :mass-ounce: 
+          :few: "{0} uncii"
+          :one: "{0} uncie"
+          :other: "{0} de uncii"
+        :mass-ounce-troy: 
+          :few: "{0} uncii monetare"
+          :one: "{0} uncie monetară"
+          :other: "{0} de uncii monetare"
+        :mass-pound: 
+          :few: "{0} livre"
+          :one: "{0} livră"
+          :other: "{0} de livre"
+        :mass-solar-mass: 
+          :few: "{0} mase solare"
+          :one: "{0} masă solară"
+          :other: "{0} de mase solare"
+        :mass-stone: 
+          :few: "{0} stone"
+          :one: "{0} stone"
+          :other: "{0} de stone"
+        :mass-ton: 
+          :few: "{0} tone scurte"
+          :one: "{0} tonă scurtă"
+          :other: "{0} de tone scurte"
+        :mass-tonne: 
+          :few: "{0} tone metrice"
+          :one: "unei tone metrice"
+          :other: "{0} de tone metrice"
+        :power-gigawatt: 
+          :few: "{0} gigawați"
+          :one: "unui gigawatt"
+          :other: "{0} de gigawați"
+        :power-horsepower: 
+          :few: "{0} cai putere"
+          :one: "{0} cal putere"
+          :other: "{0} de cai putere"
+        :power-kilowatt: 
+          :few: "{0} kilowați"
+          :one: "unui kilowatt"
+          :other: "{0} de kilowați"
+        :power-megawatt: 
+          :few: "{0} megawați"
+          :one: "unui megawatt"
+          :other: "{0} de megawați"
+        :power-milliwatt: 
+          :few: "{0} miliwați"
+          :one: "unui miliwatt"
+          :other: "{0} de miliwați"
+        :power-watt: 
+          :few: "{0} wați"
+          :one: "unui watt"
+          :other: "{0} de wați"
+        :pressure-atmosphere: 
+          :few: "{0} atmosfere"
+          :one: "unei atmosfere"
+          :other: "{0} de atmosfere"
+        :pressure-bar: 
+          :few: "{0} bari"
+          :one: "unui bar"
+          :other: "{0} de bari"
+        :pressure-hectopascal: 
+          :few: "{0} hectopascali"
+          :one: "unui hectopascal"
+          :other: "{0} de hectopascali"
+        :pressure-inch-ofhg: 
+          :few: "{0} inchi coloană de mercur"
+          :one: "{0} inch coloană de mercur"
+          :other: "{0} de inchi coloană de mercur"
+        :pressure-kilopascal: 
+          :few: "{0} kilopascali"
+          :one: "unui kilopascal"
+          :other: "{0} de kilopascali"
+        :pressure-megapascal: 
+          :few: "{0} megapascali"
+          :one: "unui megapascal"
+          :other: "{0} de megapascali"
+        :pressure-millibar: 
+          :few: "{0} milibari"
+          :one: "unui milibar"
+          :other: "{0} de milibari"
+        :pressure-millimeter-ofhg: 
+          :few: "{0} milimetri coloană de mercur"
+          :one: "unui milimetru coloană de mercur"
+          :other: "{0} de milimetri coloană de mercur"
+        :pressure-pascal: 
+          :few: "{0} pascali"
+          :one: "unui pascal"
+          :other: "{0} de pascali"
+        :pressure-pound-force-per-square-inch: 
+          :few: "{0} livre pe inch pătrat"
+          :one: "{0} livră pe inch pătrat"
+          :other: "{0} de livre pe inch pătrat"
+        :speed-beaufort: 
+          :few: "Beaufort {0}"
+          :one: "Beaufort {0}"
+          :other: "Beaufort {0}"
+        :speed-kilometer-per-hour: 
+          :few: "{0} kilometri pe oră"
+          :one: "unui kilometru pe oră"
+          :other: "{0} de kilometri pe oră"
+        :speed-knot: 
+          :few: "{0} noduri"
+          :one: "{0} nod"
+          :other: "{0} de noduri"
+        :speed-light-speed: 
+          :few: "{0} lumină"
+          :one: "{0} lumină"
+          :other: "{0} lumină"
+        :speed-meter-per-second: 
+          :few: "{0} metri pe secundă"
+          :one: "unui metru pe secundă"
+          :other: "{0} de metri pe secundă"
+        :speed-mile-per-hour: 
+          :few: "{0} mile pe oră"
+          :one: "{0} milă pe oră"
+          :other: "{0} de mile pe oră"
+        :temperature-celsius: 
+          :few: "{0} grade Celsius"
+          :one: "unui grad Celsius"
+          :other: "{0} de grade Celsius"
+        :temperature-fahrenheit: 
+          :few: "{0} grade Fahrenheit"
+          :one: "{0} grad Fahrenheit"
+          :other: "{0} de grade Fahrenheit"
+        :temperature-generic: 
+          :few: "{0} grade"
+          :one: "unui grad"
+          :other: "{0} de grade"
+        :temperature-kelvin: 
+          :few: "{0} kelvini"
+          :one: "unui kelvin"
+          :other: "{0} de kelvini"
+        :torque-newton-meter: 
+          :few: "{0} newton metri"
+          :one: "unui newton metru"
+          :other: "{0} de newton metri"
+        :torque-pound-force-foot: 
+          :few: "{0} livră-forță picioare"
+          :one: "{0} livră-forță picior"
+          :other: "{0} de livră-forță picioare"
+        :volume-acre-foot: 
+          :few: "{0} acru-picioare"
+          :one: "{0} acru-picior"
+          :other: "{0} de acru-picioare"
+        :volume-barrel: 
+          :few: "{0} barili"
+          :one: "{0} baril"
+          :other: "{0} de barili"
+        :volume-bushel: 
+          :few: "{0} banițe"
+          :one: "{0} baniță"
+          :other: "{0} de banițe"
+        :volume-centiliter: 
+          :few: "{0} centilitri"
+          :one: "unui centilitru"
+          :other: "{0} de centilitri"
+        :volume-cubic-centimeter: 
+          :few: "{0} centimetri cubi"
+          :one: "unui centimetru cub"
+          :other: "{0} de centimetri cubi"
+        :volume-cubic-foot: 
+          :few: "{0} picioare cubice"
+          :one: "{0} picior cubic"
+          :other: "{0} de picioare cubice"
+        :volume-cubic-inch: 
+          :few: "{0} inchi cubici"
+          :one: "{0} inch cubic"
+          :other: "{0} de inchi cubici"
+        :volume-cubic-kilometer: 
+          :few: "{0} kilometri cubi"
+          :one: "unui kilometru cub"
+          :other: "{0} de kilometri cubi"
+        :volume-cubic-meter: 
+          :few: "{0} metri cubi"
+          :one: "unui metru cub"
+          :other: "{0} de metri cubi"
+        :volume-cubic-mile: 
+          :few: "{0} mile cubice"
+          :one: "{0} milă cubică"
+          :other: "{0} de mile cubice"
+        :volume-cubic-yard: 
+          :few: "{0} iarzi cubici"
+          :one: "{0} iard cubic"
+          :other: "{0} de iarzi cubici"
+        :volume-cup: 
+          :few: "{0} căni"
+          :one: "{0} cană"
+          :other: "{0} de căni"
+        :volume-cup-metric: 
+          :few: "{0} căni metrice"
+          :one: "unei căni metrice"
+          :other: "{0} de căni metrice"
+        :volume-deciliter: 
+          :few: "{0} decilitri"
+          :one: "unui decilitru"
+          :other: "{0} de decilitri"
+        :volume-dessert-spoon: 
+          :few: "{0} linguri de desert"
+          :one: "{0} lingură de desert"
+          :other: "{0} de linguri de desert"
+        :volume-dessert-spoon-imperial: 
+          :few: "{0} linguri de desert imperiale"
+          :one: "{0} lingură de desert imperială"
+          :other: "{0} de linguri de desert imperiale"
+        :volume-dram: 
+          :few: "{0} drami lichizi"
+          :one: "{0} dram lichid"
+          :other: "{0} de drami lichizi"
+        :volume-fluid-ounce: 
+          :few: "{0} uncii lichide"
+          :one: "{0} uncie lichidă"
+          :other: "{0} de uncii lichide"
+        :volume-fluid-ounce-imperial: 
+          :few: "{0} uncii lichide imperiale"
+          :one: "{0} uncie lichidă imperială"
+          :other: "{0} de uncii lichide imperiale"
+        :volume-gallon: 
+          :few: "{0} galoane"
+          :one: "{0} galon"
+          :other: "{0} de galoane"
+        :volume-gallon-imperial: 
+          :few: "{0} galoane imperiale"
+          :one: "{0} galon imperial"
+          :other: "{0} de galoane imperiale"
+        :volume-hectoliter: 
+          :few: "{0} hectolitri"
+          :one: "unui hectolitru"
+          :other: "{0} de hectolitri"
+        :volume-jigger: 
+          :few: "{0} jiggere"
+          :one: "{0} jigger"
+          :other: "{0} de jiggere"
+        :volume-liter: 
+          :few: "{0} litri"
+          :one: "unui litru"
+          :other: "{0} de litri"
+        :volume-megaliter: 
+          :few: "{0} megalitri"
+          :one: "unui megalitru"
+          :other: "{0} de megalitri"
+        :volume-milliliter: 
+          :few: "{0} mililitri"
+          :one: "unui mililitru"
+          :other: "{0} de mililitri"
+        :volume-pinch: 
+          :few: "{0} vârfuri de cuțit"
+          :one: "{0} vârf de cuțit"
+          :other: "{0} de vârfuri de cuțit"
+        :volume-pint: 
+          :few: "{0} pinte"
+          :one: "{0} pintă"
+          :other: "{0} de pinte"
+        :volume-pint-metric: 
+          :few: "{0} pinte metrice"
+          :one: "unei pinte metrice"
+          :other: "{0} de pinte metrice"
+        :volume-quart: 
+          :few: "{0} quarte"
+          :one: "{0} quart"
+          :other: "{0} de quarte"
+        :volume-quart-imperial: 
+          :few: "{0} quarte imperiale"
+          :one: "{0} quart imperial"
+          :other: "{0} de quarte imperiale"
+        :volume-tablespoon: 
+          :few: "{0} linguri"
+          :one: "{0} lingură"
+          :other: "{0} de linguri"
+        :volume-teaspoon: 
+          :few: "{0} lingurițe"
+          :one: "{0} linguriță"
+          :other: "{0} de lingurițe"
+      :narrow: 
+        :angle-arc-minute: 
+          :few: "{0}′"
+          :one: "{0}′"
+          :other: "{0}′"
+        :angle-arc-second: 
+          :few: "{0}″"
+          :one: "{0}″"
+          :other: "{0}″"
+        :concentr-item: 
+          :few: "{0} itemi"
+          :one: "{0} item"
+          :other: "{0} itemi"
+        :concentr-permille: 
+          :few: "{0} ‰"
+          :one: "{0} ‰"
+          :other: "{0} ‰"
+        :concentr-permyriad: 
+          :few: "{0} ‱"
+          :one: "{0} ‱"
+          :other: "{0} ‱"
+        :consumption-mile-per-gallon: 
+          :few: "{0} mi/gal"
+          :one: "{0} mi/gal"
+          :other: "{0} mi/gal"
+        :duration-day: 
+          :few: "{0} z"
+          :one: "{0} z"
+          :other: "{0} z"
+        :duration-hour: 
+          :few: "{0} h"
+          :one: "{0} h"
+          :other: "{0} h"
+        :duration-minute: 
+          :few: "{0} m"
+          :one: "{0} m"
+          :other: "{0} m"
+        :duration-month: 
+          :few: "{0} l"
+          :one: "{0} l"
+          :other: "{0} l"
+        :duration-night: 
+          :few: "{0} nopți"
+          :one: "{0} noapte"
+          :other: "{0} de nopți"
+        :duration-year: 
+          :few: "{0} a"
+          :one: "{0} a"
+          :other: "{0} a"
+        :force-kilowatt-hour-per-100-kilometer: 
+          :few: "{0} kWh/100 km"
+          :one: "{0}kWh/100 km"
+          :other: "{0}kWh/100 km"
+        :pressure-inch-ofhg: 
+          :few: "{0}″ Hg"
+          :one: "{0}″ Hg"
+          :other: "{0}″ Hg"
+        :pressure-millibar: 
+          :few: "{0} mb"
+          :one: "{0} mb"
+          :other: "{0} mb"
+        :speed-light-speed: 
+          :few: "{0} lumină"
+          :one: "{0} lumină"
+          :other: "{0} lumină"
+        :volume-dram: 
+          :few: "{0} dr fl"
+          :one: "{0} dr fl"
+          :other: "{0} dr fl"
+        :volume-drop: 
+          :few: "{0} pic."
+          :one: "{0} pic."
+          :other: "{0} pic."
+        :volume-fluid-ounce-imperial: 
+          :few: "{0} fl oz im"
+          :one: "{0} fl oz im"
+          :other: "{0} fl oz im"
+        :volume-gallon-imperial: 
+          :few: "{0} gal im"
+          :one: "{0} gal im"
+          :other: "{0} gal im"
+        :volume-pinch: 
+          :few: "{0} vf."
+          :one: "{0} vf."
+          :other: "{0} vf."
+        :volume-quart-imperial: 
+          :few: "{0} qt im"
+          :one: "{0} qt im"
+          :other: "{0} qt im"
+      :short: 
+        :acceleration-g-force: 
+          :other: "{0} G"
+        :acceleration-meter-per-square-second: 
+          :other: "{0} m/s²"
+        :angle-arc-minute: 
+          :few: "{0} arcmin"
+          :one: "{0} arcmin"
+          :other: "{0} arcmin"
+        :angle-arc-second: 
+          :few: "{0} arcsec"
+          :one: "{0} arcsec"
+          :other: "{0} arcsec"
+        :angle-degree: 
+          :other: "{0}°"
+        :angle-radian: 
+          :other: "{0} rad"
+        :angle-revolution: 
+          :few: "{0} rev."
+          :one: "{0} rev."
+          :other: "{0} rev."
+        :area-acre: 
+          :few: "{0} ac."
+          :one: "{0} ac."
+          :other: "{0} ac."
+        :area-dunam: 
+          :few: "{0} dunami"
+          :one: "{0} dunam"
+          :other: "{0} dunami"
+        :area-hectare: 
+          :other: "{0} ha"
+        :area-square-centimeter: 
+          :other: "{0} cm²"
+        :area-square-foot: 
+          :other: "{0} ft²"
+        :area-square-inch: 
+          :other: "{0} in²"
+        :area-square-kilometer: 
+          :other: "{0} km²"
+        :area-square-meter: 
+          :other: "{0} m²"
+        :area-square-mile: 
+          :other: "{0} mi²"
+        :area-square-yard: 
+          :other: "{0} yd²"
+        :concentr-item: 
+          :few: "{0} itemi"
+          :one: "{0} de itemi"
+          :other: "{0} de itemi"
+        :concentr-karat: 
+          :other: "{0} kt"
+        :concentr-milligram-ofglucose-per-deciliter: 
+          :few: "{0} mg/dl"
+          :one: "{0} mg/dl"
+          :other: "{0} mg/dl"
+        :concentr-millimole-per-liter: 
+          :few: "{0} mmol/l"
+          :one: "{0} mmol/l"
+          :other: "{0} mmol/l"
+        :concentr-mole: 
+          :few: "{0} moli"
+          :one: "{0} mol"
+          :other: "{0} moli"
+        :concentr-percent: 
+          :other: "{0}%"
+        :concentr-permille: 
+          :other: "{0}‰"
+        :concentr-permillion: 
+          :other: "{0} ppm"
+        :concentr-permyriad: 
+          :other: "{0}‱"
+        :concentr-portion-per-1e9: 
+          :other: "{0} ppb"
+        :consumption-liter-per-100-kilometer: 
+          :few: "{0} l/100 km"
+          :one: "{0} l/100 km"
+          :other: "{0} l/100 km"
+        :consumption-liter-per-kilometer: 
+          :few: "{0} l/km"
+          :one: "{0} l/km"
+          :other: "{0} l/km"
+        :consumption-mile-per-gallon: 
+          :few: "{0} mile/gal."
+          :one: "{0} milă/gal."
+          :other: "{0} mile/gal."
+        :consumption-mile-per-gallon-imperial: 
+          :few: "{0} mi/gal imp."
+          :one: "{0} mi/gal imp."
+          :other: "{0} mi/gal imp."
+        :digital-bit: 
+          :few: "{0} b"
+          :one: "{0} b"
+          :other: "{0} b"
+        :digital-byte: 
+          :few: "{0} B"
+          :one: "{0} B"
+          :other: "{0} B"
+        :digital-gigabit: 
+          :other: "{0} Gb"
+        :digital-gigabyte: 
+          :other: "{0} GB"
+        :digital-kilobit: 
+          :other: "{0} kb"
+        :digital-kilobyte: 
+          :other: "{0} kB"
+        :digital-megabit: 
+          :other: "{0} Mb"
+        :digital-megabyte: 
+          :other: "{0} MB"
+        :digital-petabyte: 
+          :other: "{0} PB"
+        :digital-terabit: 
+          :other: "{0} Tb"
+        :digital-terabyte: 
+          :other: "{0} TB"
+        :duration-century: 
+          :few: "{0} sec."
+          :one: "{0} sec."
+          :other: "{0} sec."
+        :duration-day: 
+          :few: "{0} zile"
+          :one: "{0} zi"
+          :other: "{0} zile"
+        :duration-decade: 
+          :few: "{0} dec."
+          :one: "{0} dec."
+          :other: "{0} dec."
+        :duration-hour: 
+          :few: "{0} ore"
+          :one: "{0} oră"
+          :other: "{0} ore"
+        :duration-microsecond: 
+          :other: "{0} μs"
+        :duration-millisecond: 
+          :other: "{0} ms"
+        :duration-minute: 
+          :few: "{0} min."
+          :one: "{0} min."
+          :other: "{0} min."
+        :duration-month: 
+          :few: "{0} luni"
+          :one: "{0} lună"
+          :other: "{0} luni"
+        :duration-nanosecond: 
+          :other: "{0} ns"
+        :duration-night: 
+          :few: "{0} nopți"
+          :one: "{0} noapte"
+          :other: "{0} de nopți"
+        :duration-quarter: 
+          :few: "{0} trim."
+          :one: "{0} trim."
+          :other: "{0} trim."
+        :duration-second: 
+          :other: "{0} s"
+        :duration-week: 
+          :few: "{0} săpt."
+          :one: "{0} săpt."
+          :other: "{0} săpt."
+        :duration-year: 
+          :few: "{0} ani"
+          :one: "{0} an"
+          :other: "{0} ani"
+        :electric-ampere: 
+          :other: "{0} A"
+        :electric-milliampere: 
+          :other: "{0} mA"
+        :electric-ohm: 
+          :other: "{0} Ω"
+        :electric-volt: 
+          :other: "{0} V"
+        :energy-british-thermal-unit: 
+          :few: "{0} BTU"
+          :one: "{0} BTU"
+          :other: "{0} BTU"
+        :energy-calorie: 
+          :other: "{0} cal"
+        :energy-electronvolt: 
+          :other: "{0} eV"
+        :energy-joule: 
+          :other: "{0} J"
+        :energy-kilocalorie: 
+          :other: "{0} kcal"
+        :energy-kilojoule: 
+          :other: "{0} kJ"
+        :energy-kilowatt-hour: 
+          :other: "{0} kWh"
+        :energy-therm-us: 
+          :few: "{0} thm"
+          :one: "{0} thm"
+          :other: "{0} thm"
+        :force-kilowatt-hour-per-100-kilometer: 
+          :few: "{0} kWh/100 km"
+          :one: "{0} kWh/100 km"
+          :other: "{0} kWh/100 km"
+        :force-newton: 
+          :other: "{0} N"
+        :force-pound-force: 
+          :other: "{0} lbf"
+        :frequency-gigahertz: 
+          :other: "{0} GHz"
+        :frequency-hertz: 
+          :other: "{0} Hz"
+        :frequency-kilohertz: 
+          :other: "{0} kHz"
+        :frequency-megahertz: 
+          :other: "{0} MHz"
+        :graphics-dot: 
+          :few: "{0} pct."
+          :one: "{0} pct"
+          :other: "{0} pct."
+        :graphics-dot-per-centimeter: 
+          :few: "{0} dpc"
+          :one: "{0} dpc"
+          :other: "{0} dpc"
+        :graphics-dot-per-inch: 
+          :few: "{0} dpi"
+          :one: "{0} dpi"
+          :other: "{0} dpi"
+        :graphics-em: 
+          :other: "{0} em"
+        :graphics-megapixel: 
+          :other: "{0} MP"
+        :graphics-pixel: 
+          :other: "{0} px"
+        :graphics-pixel-per-centimeter: 
+          :few: "{0} ppc"
+          :one: "{0} ppc"
+          :other: "{0} ppc"
+        :graphics-pixel-per-inch: 
+          :other: "{0} ppi"
+        :length-astronomical-unit: 
+          :few: "{0} ua"
+          :one: "{0} ua"
+          :other: "{0} ua"
+        :length-centimeter: 
+          :other: "{0} cm"
+        :length-decimeter: 
+          :other: "{0} dm"
+        :length-earth-radius: 
+          :other: "{0} R⊕"
+        :length-fathom: 
+          :other: "{0} fth"
+        :length-foot: 
+          :other: "{0} ft"
+        :length-furlong: 
+          :other: "{0} fur"
+        :length-inch: 
+          :other: "{0} in"
+        :length-kilometer: 
+          :other: "{0} km"
+        :length-light-year: 
+          :few: "{0} a.l."
+          :one: "{0} a.l."
+          :other: "{0} a.l."
+        :length-meter: 
+          :other: "{0} m"
+        :length-micrometer: 
+          :other: "{0} μm"
+        :length-mile: 
+          :other: "{0} mi"
+        :length-mile-scandinavian: 
+          :other: "{0} smi"
+        :length-millimeter: 
+          :other: "{0} mm"
+        :length-nanometer: 
+          :other: "{0} nm"
+        :length-nautical-mile: 
+          :few: "{0} mn"
+          :one: "{0} mn"
+          :other: "{0} mn"
+        :length-parsec: 
+          :other: "{0} pc"
+        :length-picometer: 
+          :other: "{0} pm"
+        :length-point: 
+          :other: "{0} pt"
+        :length-solar-radius: 
+          :other: "{0} R☉"
+        :length-yard: 
+          :other: "{0} yd"
+        :light-candela: 
+          :other: "{0} cd"
+        :light-lumen: 
+          :other: "{0} lm"
+        :light-lux: 
+          :other: "{0} lx"
+        :light-solar-luminosity: 
+          :other: "{0} L☉"
+        :mass-carat: 
+          :few: "{0} ct"
+          :one: "{0} ct"
+          :other: "{0} ct"
+        :mass-dalton: 
+          :other: "{0} Da"
+        :mass-earth-mass: 
+          :other: "{0} M⊕"
+        :mass-grain: 
+          :few: "{0} boabe"
+          :one: "{0} boabă"
+          :other: "{0} boabe"
+        :mass-gram: 
+          :other: "{0} g"
+        :mass-kilogram: 
+          :other: "{0} kg"
+        :mass-microgram: 
+          :other: "{0} μg"
+        :mass-milligram: 
+          :other: "{0} mg"
+        :mass-ounce: 
+          :other: "{0} oz"
+        :mass-ounce-troy: 
+          :other: "{0} oz t"
+        :mass-pound: 
+          :other: "{0} lb"
+        :mass-solar-mass: 
+          :other: "{0} M☉"
+        :mass-stone: 
+          :other: "{0} st"
+        :mass-ton: 
+          :few: "{0} t.s."
+          :one: "{0} t.s."
+          :other: "{0} t.s."
+        :mass-tonne: 
+          :other: "{0} t"
+        :power-gigawatt: 
+          :other: "{0} GW"
+        :power-horsepower: 
+          :few: "{0} CP"
+          :one: "{0} CP"
+          :other: "{0} CP"
+        :power-kilowatt: 
+          :other: "{0} kW"
+        :power-megawatt: 
+          :other: "{0} MW"
+        :power-milliwatt: 
+          :other: "{0} mW"
+        :power-watt: 
+          :other: "{0} W"
+        :pressure-atmosphere: 
+          :other: "{0} atm"
+        :pressure-bar: 
+          :other: "{0} bar"
+        :pressure-hectopascal: 
+          :other: "{0} hPa"
+        :pressure-inch-ofhg: 
+          :few: "{0} in Hg"
+          :one: "{0} in Hg"
+          :other: "{0} in Hg"
+        :pressure-kilopascal: 
+          :other: "{0} kPa"
+        :pressure-megapascal: 
+          :other: "{0} MPa"
+        :pressure-millibar: 
+          :other: "{0} mbar"
+        :pressure-millimeter-ofhg: 
+          :other: "{0} mm Hg"
+        :pressure-pascal: 
+          :other: "{0} Pa"
+        :pressure-pound-force-per-square-inch: 
+          :other: "{0} psi"
+        :speed-beaufort: 
+          :other: "B {0}"
+        :speed-kilometer-per-hour: 
+          :other: "{0} km/h"
+        :speed-knot: 
+          :other: "{0} kn"
+        :speed-light-speed: 
+          :few: "{0} lumină"
+          :one: "{0} lumină"
+          :other: "{0} lumină"
+        :speed-meter-per-second: 
+          :other: "{0} m/s"
+        :speed-mile-per-hour: 
+          :other: "{0} mi/h"
+        :temperature-celsius: 
+          :few: "{0} °C"
+          :one: "{0} °C"
+          :other: "{0} °C"
+        :temperature-fahrenheit: 
+          :few: "{0} °F"
+          :one: "{0} °F"
+          :other: "{0} °F"
+        :temperature-generic: 
+          :other: "{0}°"
+        :temperature-kelvin: 
+          :other: "{0} K"
+        :torque-newton-meter: 
+          :other: "{0} N⋅m"
+        :torque-pound-force-foot: 
+          :other: "{0} lbf⋅ft"
+        :volume-acre-foot: 
+          :other: "{0} ac ft"
+        :volume-barrel: 
+          :other: "{0} bbl"
+        :volume-bushel: 
+          :other: "{0} bu"
+        :volume-centiliter: 
+          :few: "{0} cl"
+          :one: "{0} cl"
+          :other: "{0} cl"
+        :volume-cubic-centimeter: 
+          :other: "{0} cm³"
+        :volume-cubic-foot: 
+          :other: "{0} ft³"
+        :volume-cubic-inch: 
+          :other: "{0} in³"
+        :volume-cubic-kilometer: 
+          :other: "{0} km³"
+        :volume-cubic-meter: 
+          :other: "{0} m³"
+        :volume-cubic-mile: 
+          :other: "{0} mi³"
+        :volume-cubic-yard: 
+          :other: "{0} yd³"
+        :volume-cup: 
+          :other: "{0} c"
+        :volume-cup-metric: 
+          :other: "{0} mc"
+        :volume-deciliter: 
+          :few: "{0} dl"
+          :one: "{0} dl"
+          :other: "{0} dl"
+        :volume-dessert-spoon: 
+          :other: "{0} dstspn"
+        :volume-dessert-spoon-imperial: 
+          :few: "{0} dsp im"
+          :one: "{0} dsp im"
+          :other: "{0} dsp im"
+        :volume-dram: 
+          :other: "{0} dram fl"
+        :volume-drop: 
+          :few: "{0} picături"
+          :one: "{0} picătură"
+          :other: "{0} de picături"
+        :volume-fluid-ounce: 
+          :few: "{0} fl oz"
+          :one: "{0} fl oz"
+          :other: "{0} fl oz"
+        :volume-fluid-ounce-imperial: 
+          :few: "{0} fl oz imp."
+          :one: "{0} fl oz imp."
+          :other: "{0} fl oz imp."
+        :volume-gallon: 
+          :few: "{0} gal"
+          :one: "{0} gal"
+          :other: "{0} gal"
+        :volume-gallon-imperial: 
+          :few: "{0} gal imp."
+          :one: "{0} gal imp."
+          :other: "{0} gal imp."
+        :volume-hectoliter: 
+          :few: "{0} hl"
+          :one: "{0} hl"
+          :other: "{0} hl"
+        :volume-jigger: 
+          :other: "{0} jigger"
+        :volume-liter: 
+          :other: "{0} l"
+        :volume-megaliter: 
+          :few: "{0} Ml"
+          :one: "{0} Ml"
+          :other: "{0} Ml"
+        :volume-milliliter: 
+          :few: "{0} ml"
+          :one: "{0} ml"
+          :other: "{0} ml"
+        :volume-pinch: 
+          :few: "{0} vârfuri"
+          :one: "{0} vârf"
+          :other: "{0} de vârfuri"
+        :volume-pint: 
+          :other: "{0} pt"
+        :volume-pint-metric: 
+          :other: "{0} mpt"
+        :volume-quart: 
+          :other: "{0} qt"
+        :volume-quart-imperial: 
+          :few: "{0} qt imp."
+          :one: "{0} qt imp."
+          :other: "{0} qt imp."
+        :volume-tablespoon: 
+          :other: "{0} tbsp"
+        :volume-teaspoon: 
+          :other: "{0} tsp"

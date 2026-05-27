@@ -1,0 +1,16 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - Devanagari-Gurmukhi
+      - und-Guru-t-und-deva
+    :direction: forward
+    :rules: 
+      - "::[ँ-ःऄअ-ह़-्ॐ-॔क़-९ॽ] ;"
+      - "::NFD ;"
+      - "::Devanagari-InterIndic ;"
+      - "::InterIndic-Gurmukhi ;"
+      - "::NFC ;"
+    :source: Deva
+    :target: Guru
+    :variant: ~

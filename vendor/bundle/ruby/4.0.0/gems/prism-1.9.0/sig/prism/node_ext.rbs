@@ -1,0 +1,149 @@
+module Prism
+  class Node
+    def deprecated: (*String replacements) -> void
+  end
+
+  class InterpolatedMatchLastLineNode < Node
+    def options: () -> Integer
+  end
+
+  class InterpolatedRegularExpressionNode < Node
+    def options: () -> Integer
+  end
+
+  class MatchLastLineNode < Node
+    def options: () -> Integer
+  end
+
+  class RegularExpressionNode < Node
+    def options: () -> Integer
+  end
+
+  class InterpolatedStringNode < Node
+    def heredoc?: () -> bool
+  end
+
+  class InterpolatedXStringNode < Node
+    def heredoc?: () -> bool
+  end
+
+  class StringNode < Node
+    def heredoc?: () -> bool
+    def to_interpolated: () -> InterpolatedStringNode
+  end
+
+  class XStringNode < Node
+    def heredoc?: () -> bool
+    def to_interpolated: () -> InterpolatedXStringNode
+  end
+
+  class ImaginaryNode < Node
+    def value: () -> Complex
+  end
+
+  class RationalNode < Node
+    def value: () -> Rational
+    def numeric: () -> (IntegerNode | FloatNode)
+  end
+
+  class ConstantReadNode < Node
+    def full_name_parts: () -> Array[Symbol]
+    def full_name: () -> String
+  end
+
+  class ConstantWriteNode < Node
+    def full_name_parts: () -> Array[Symbol]
+    def full_name: () -> String
+  end
+
+  class ConstantPathNode < Node
+    class DynamicPartsInConstantPathError < StandardError
+    end
+
+    class MissingNodesInConstantPathError < StandardError
+    end
+
+    def full_name_parts: () -> Array[Symbol]
+    def full_name: () -> String
+    def child: () -> (ConstantReadNode | MissingNode)
+  end
+
+  class ConstantPathTargetNode < Node
+    def full_name_parts: () -> Array[Symbol]
+    def full_name: () -> String
+    def child: () -> (ConstantReadNode | MissingNode)
+  end
+
+  class ConstantTargetNode < Node
+    def full_name_parts: () -> Array[Symbol]
+    def full_name: () -> String
+  end
+
+  class ParametersNode < Node
+    def signature: () -> Array[[Symbol, Symbol] | [Symbol]]
+  end
+
+  class CallNode < Node
+    def full_message_loc: () -> Location?
+  end
+
+  class CallOperatorWriteNode < Node
+    def operator: () -> Symbol
+    def operator_loc: () -> Location
+  end
+
+  class ClassVariableOperatorWriteNode < Node
+    def operator: () -> Symbol
+    def operator_loc: () -> Location
+  end
+
+  class ConstantOperatorWriteNode < Node
+    def operator: () -> Symbol
+    def operator_loc: () -> Location
+  end
+
+  class ConstantPathOperatorWriteNode < Node
+    def operator: () -> Symbol
+    def operator_loc: () -> Location
+  end
+
+  class GlobalVariableOperatorWriteNode < Node
+    def operator: () -> Symbol
+    def operator_loc: () -> Location
+  end
+
+  class IndexOperatorWriteNode < Node
+    def operator: () -> Symbol
+    def operator_loc: () -> Location
+  end
+
+  class InstanceVariableOperatorWriteNode < Node
+    def operator: () -> Symbol
+    def operator_loc: () -> Location
+  end
+
+  class LocalVariableOperatorWriteNode < Node
+    def operator: () -> Symbol
+    def operator_loc: () -> Location
+  end
+
+  class CaseMatchNode < Node
+    def consequent: () -> ElseNode?
+  end
+
+  class CaseNode < Node
+    def consequent: () -> ElseNode?
+  end
+
+  class IfNode < Node
+    def consequent: () -> (ElseNode | IfNode | nil)
+  end
+
+  class RescueNode < Node
+    def consequent: () -> RescueNode?
+  end
+
+  class UnlessNode < Node
+    def consequent: () -> ElseNode?
+  end
+end

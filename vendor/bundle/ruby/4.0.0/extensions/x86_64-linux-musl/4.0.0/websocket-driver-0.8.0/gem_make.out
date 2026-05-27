@@ -1,0 +1,18 @@
+current directory: /app/vendor/bundle/ruby/4.0.0/gems/websocket-driver-0.8.0/ext/websocket-driver
+/usr/local/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /app/vendor/bundle/ruby/4.0.0/gems/websocket-driver-0.8.0/ext/websocket-driver
+make -j4 DESTDIR\= sitearchdir\=./.gem.20260516-47-y7pn2r sitelibdir\=./.gem.20260516-47-y7pn2r clean
+
+current directory: /app/vendor/bundle/ruby/4.0.0/gems/websocket-driver-0.8.0/ext/websocket-driver
+make -j4 DESTDIR\= sitearchdir\=./.gem.20260516-47-y7pn2r sitelibdir\=./.gem.20260516-47-y7pn2r
+compiling websocket_mask.c
+linking shared-object websocket_mask.so
+
+current directory: /app/vendor/bundle/ruby/4.0.0/gems/websocket-driver-0.8.0/ext/websocket-driver
+make -j4 DESTDIR\= sitearchdir\=./.gem.20260516-47-y7pn2r sitelibdir\=./.gem.20260516-47-y7pn2r install
+/usr/bin/install -c -m 0755 websocket_mask.so ./.gem.20260516-47-y7pn2r
+
+current directory: /app/vendor/bundle/ruby/4.0.0/gems/websocket-driver-0.8.0/ext/websocket-driver
+make DESTDIR\= sitearchdir\=./.gem.20260516-47-y7pn2r sitelibdir\=./.gem.20260516-47-y7pn2r clean

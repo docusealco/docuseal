@@ -1,0 +1,25 @@
+module OAuth2
+  class AccessToken
+    def self.from_hash: (OAuth2::Client, Hash[untyped, untyped]) -> OAuth2::AccessToken
+    def self.from_kvform: (OAuth2::Client, String) -> OAuth2::AccessToken
+
+    def initialize: (OAuth2::Client, String, ?Hash[Symbol, untyped]) -> void
+    def []: (String | Symbol) -> untyped
+    def expires?: () -> bool
+    def expired?: () -> bool
+    def refresh: (?Hash[untyped, untyped], ?Hash[Symbol, untyped]) { (untyped) -> void } -> OAuth2::AccessToken
+    def revoke: (?Hash[Symbol, untyped]) { (untyped) -> void } -> OAuth2::Response
+    def to_hash: () -> Hash[Symbol, untyped]
+    def request: (Symbol, String, ?Hash[Symbol, untyped]) { (untyped) -> void } -> OAuth2::Response
+    def get: (String, ?Hash[Symbol, untyped]) { (untyped) -> void } -> OAuth2::Response
+    def post: (String, ?Hash[Symbol, untyped]) { (untyped) -> void } -> OAuth2::Response
+    def put: (String, ?Hash[Symbol, untyped]) { (untyped) -> void } -> OAuth2::Response
+    def patch: (String, ?Hash[Symbol, untyped]) { (untyped) -> void } -> OAuth2::Response
+    def delete: (String, ?Hash[Symbol, untyped]) { (untyped) -> void } -> OAuth2::Response
+    def headers: () -> Hash[String, String]
+    def configure_authentication!: (Hash[Symbol, untyped], Symbol) -> void
+    def convert_expires_at: (untyped) -> (Time | Integer | nil)
+
+    attr_accessor response: OAuth2::Response
+  end
+end

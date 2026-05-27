@@ -1,0 +1,5 @@
+module OAuth2
+  module Version
+    VERSION: String
+  end
+end

@@ -1,0 +1,734 @@
+--- 
+:ko: 
+  :rbnf: 
+    :grouping: 
+      - 
+        :ruleset: 
+          - 
+            :rules: 
+              - 
+                :rule: =0.0=;
+                :value: x.x
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 0
+            :type: spellout-numbering-year
+          - 
+            :rules: 
+              - 
+                :rule: <%spellout-cardinal-sinokorean<점>>>;
+                :value: 0.x
+              - 
+                :rule: <<점>>>;
+                :value: x.x
+              - 
+                :rule: 공;
+                :value: 0
+              - 
+                :rule: =%spellout-cardinal-sinokorean=;
+                :value: 1
+            :type: spellout-numbering
+          - 
+            :rules: 
+              - 
+                :rule: "마이너스 >>;"
+                :value: "-x"
+              - 
+                :rule: <<점>>>;
+                :value: x.x
+              - 
+                :rule: 영;
+                :value: 0
+              - 
+                :rule: 일;
+                :value: 1
+              - 
+                :rule: 이;
+                :value: 2
+              - 
+                :rule: 삼;
+                :value: 3
+              - 
+                :rule: 사;
+                :value: 4
+              - 
+                :rule: 오;
+                :value: 5
+              - 
+                :rule: 육;
+                :value: 6
+              - 
+                :rule: 칠;
+                :value: 7
+              - 
+                :rule: 팔;
+                :value: 8
+              - 
+                :rule: 구;
+                :value: 9
+              - 
+                :rule: "십[>>];"
+                :value: 10
+              - 
+                :rule: "<<십[>>];"
+                :value: 20
+              - 
+                :rule: "백[>>];"
+                :value: 100
+              - 
+                :rule: "<<백[>>];"
+                :value: 200
+              - 
+                :rule: "천[>>];"
+                :value: 1000
+              - 
+                :rule: "<<천[>>];"
+                :value: 2000
+              - 
+                :rule: "만[ >>];"
+                :value: 10000
+              - 
+                :rule: "<<만[ >>];"
+                :value: 20000
+              - 
+                :rule: "<<억[ >>];"
+                :value: 100000000
+              - 
+                :rule: "<<조[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<<경[ >>];"
+                :value: 10000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-sinokorean
+          - 
+            :rules: 
+              - 
+                :rule: "마이너스 >>;"
+                :value: "-x"
+              - 
+                :rule: =%spellout-cardinal-sinokorean=;
+                :value: x.x
+              - 
+                :rule: 영;
+                :value: 0
+              - 
+                :rule: 한;
+                :value: 1
+              - 
+                :rule: 두;
+                :value: 2
+              - 
+                :rule: 세;
+                :value: 3
+              - 
+                :rule: 네;
+                :value: 4
+              - 
+                :rule: 다섯;
+                :value: 5
+              - 
+                :rule: 여섯;
+                :value: 6
+              - 
+                :rule: 일곱;
+                :value: 7
+              - 
+                :rule: 여덟;
+                :value: 8
+              - 
+                :rule: 아홉;
+                :value: 9
+              - 
+                :rule: "열[>>];"
+                :value: 10
+              - 
+                :rule: 스무;
+                :value: 20
+              - 
+                :rule: "스물[>>];"
+                :value: 21
+              - 
+                :rule: "서른[>>];"
+                :value: 30
+              - 
+                :rule: "마흔[>>];"
+                :value: 40
+              - 
+                :rule: "쉰[>>];"
+                :value: 50
+              - 
+                :rule: "예순[>>];"
+                :value: 60
+              - 
+                :rule: "일흔[>>];"
+                :value: 70
+              - 
+                :rule: "여든[>>];"
+                :value: 80
+              - 
+                :rule: "아흔[>>];"
+                :value: 90
+              - 
+                :rule: "백[>>];"
+                :value: 100
+              - 
+                :rule: "<%spellout-cardinal-sinokorean<백[>>];"
+                :value: 200
+              - 
+                :rule: "천[>>];"
+                :value: 1000
+              - 
+                :rule: "<%spellout-cardinal-sinokorean<천[>>];"
+                :value: 2000
+              - 
+                :rule: "만[ >>];"
+                :value: 10000
+              - 
+                :rule: "<%spellout-cardinal-sinokorean<만[ >>];"
+                :value: 20000
+              - 
+                :rule: "<%spellout-cardinal-sinokorean<억[ >>];"
+                :value: 100000000
+              - 
+                :rule: "<%spellout-cardinal-sinokorean<조[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%spellout-cardinal-sinokorean<경[ >>];"
+                :value: 10000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-native-attributive
+          - 
+            :rules: 
+              - 
+                :rule: "마이너스 >>;"
+                :value: "-x"
+              - 
+                :rule: =%spellout-cardinal-sinokorean=;
+                :value: x.x
+              - 
+                :rule: 영;
+                :value: 0
+              - 
+                :rule: 하나;
+                :value: 1
+              - 
+                :rule: 둘;
+                :value: 2
+              - 
+                :rule: 셋;
+                :value: 3
+              - 
+                :rule: 넷;
+                :value: 4
+              - 
+                :rule: 다섯;
+                :value: 5
+              - 
+                :rule: 여섯;
+                :value: 6
+              - 
+                :rule: 일곱;
+                :value: 7
+              - 
+                :rule: 여덟;
+                :value: 8
+              - 
+                :rule: 아홉;
+                :value: 9
+              - 
+                :rule: "열[ >>];"
+                :value: 10
+              - 
+                :rule: "스물[>>];"
+                :value: 20
+              - 
+                :rule: "서른[>>];"
+                :value: 30
+              - 
+                :rule: "마흔[>>];"
+                :value: 40
+              - 
+                :rule: "쉰[>>];"
+                :value: 50
+              - 
+                :rule: "예순[>>];"
+                :value: 60
+              - 
+                :rule: "일흔[>>];"
+                :value: 70
+              - 
+                :rule: "여든[>>];"
+                :value: 80
+              - 
+                :rule: "아흔[>>];"
+                :value: 90
+              - 
+                :rule: =%spellout-cardinal-sinokorean=;
+                :value: 100
+            :type: spellout-cardinal-native
+          - 
+            :rules: 
+              - 
+                :rule: "마이너스 >>;"
+                :value: "-x"
+              - 
+                :rule: =%spellout-cardinal-sinokorean=;
+                :value: x.x
+              - 
+                :rule: 영;
+                :value: 0
+              - 
+                :rule: 일;
+                :value: 1
+              - 
+                :rule: 이;
+                :value: 2
+              - 
+                :rule: 삼;
+                :value: 3
+              - 
+                :rule: 사;
+                :value: 4
+              - 
+                :rule: 오;
+                :value: 5
+              - 
+                :rule: 육;
+                :value: 6
+              - 
+                :rule: 칠;
+                :value: 7
+              - 
+                :rule: 팔;
+                :value: 8
+              - 
+                :rule: 구;
+                :value: 9
+              - 
+                :rule: "<<십[>>];"
+                :value: 10
+              - 
+                :rule: "<<백[>>];"
+                :value: 100
+              - 
+                :rule: "<<천[>>];"
+                :value: 1000
+              - 
+                :rule: "<<만[>>];"
+                :value: 10000
+              - 
+                :rule: "<<억[>>];"
+                :value: 100000000
+              - 
+                :rule: "<<조[>>];"
+                :value: 1000000000000
+              - 
+                :rule: "<<경[>>];"
+                :value: 10000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-financial
+          - 
+            :rules: 
+              - 
+                :rule: "마이너스 >>;"
+                :value: "-x"
+              - 
+                :rule: "=#,##0.#=;"
+                :value: x.x
+              - 
+                :rule: "=%%spellout-ordinal-native-count-smaller= 번째;"
+                :value: 0
+              - 
+                :rule: "=%%spellout-ordinal-sinokorean-count-smaller= 번째;"
+                :value: 10
+            :type: spellout-ordinal-sinokorean-count
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: 영;
+                :value: 0
+              - 
+                :rule: 한;
+                :value: 1
+              - 
+                :rule: 두;
+                :value: 2
+              - 
+                :rule: 세;
+                :value: 3
+              - 
+                :rule: 네;
+                :value: 4
+              - 
+                :rule: 다섯;
+                :value: 5
+              - 
+                :rule: 여섯;
+                :value: 6
+              - 
+                :rule: 일곱;
+                :value: 7
+              - 
+                :rule: 여덟;
+                :value: 8
+              - 
+                :rule: 아홉;
+                :value: 9
+              - 
+                :rule: "열[>>];"
+                :value: 10
+              - 
+                :rule: 스무;
+                :value: 20
+              - 
+                :rule: "스물[>>];"
+                :value: 21
+              - 
+                :rule: "서른[>>];"
+                :value: 30
+              - 
+                :rule: "마흔[>>];"
+                :value: 40
+              - 
+                :rule: =%%spellout-ordinal-sinokorean-count-larger=;
+                :value: 50
+            :type: spellout-ordinal-sinokorean-count-smaller
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: 일;
+                :value: 1
+              - 
+                :rule: 이;
+                :value: 2
+              - 
+                :rule: 삼;
+                :value: 3
+              - 
+                :rule: 사;
+                :value: 4
+              - 
+                :rule: 오;
+                :value: 5
+              - 
+                :rule: 육;
+                :value: 6
+              - 
+                :rule: 칠;
+                :value: 7
+              - 
+                :rule: 팔;
+                :value: 8
+              - 
+                :rule: 구;
+                :value: 9
+              - 
+                :rule: "십[>>];"
+                :value: 10
+              - 
+                :rule: "<<십[>>];"
+                :value: 20
+              - 
+                :rule: "오십[>>];"
+                :value: 50
+              - 
+                :rule: "육십[>>];"
+                :value: 60
+              - 
+                :rule: "칠십[>>];"
+                :value: 70
+              - 
+                :rule: "팔십[>>];"
+                :value: 80
+              - 
+                :rule: "구십[>>];"
+                :value: 90
+              - 
+                :rule: "백[>>];"
+                :value: 100
+              - 
+                :rule: "<<백[>>];"
+                :value: 200
+              - 
+                :rule: "천[>>];"
+                :value: 1000
+              - 
+                :rule: "<<천[>>];"
+                :value: 2000
+              - 
+                :rule: "만[ >>];"
+                :value: 10000
+              - 
+                :rule: "<<만[ >>];"
+                :value: 20000
+              - 
+                :rule: "<<억[ >>];"
+                :value: 100000000
+              - 
+                :rule: "<<조[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<<경[ >>];"
+                :value: 10000000000000000
+            :type: spellout-ordinal-sinokorean-count-larger
+          - 
+            :rules: 
+              - 
+                :rule: "마이너스 >>;"
+                :value: "-x"
+              - 
+                :rule: "=#,##0.#=;"
+                :value: x.x
+              - 
+                :rule: "=%%spellout-ordinal-native-count-smaller= 번째;"
+                :value: 0
+            :type: spellout-ordinal-native-count
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: 영;
+                :value: 0
+              - 
+                :rule: 첫;
+                :value: 1
+              - 
+                :rule: =%spellout-cardinal-native-attributive=;
+                :value: 2
+              - 
+                :rule: =%%spellout-ordinal-native-count-larger=;
+                :value: 50
+            :type: spellout-ordinal-native-count-smaller
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: 영;
+                :value: 0
+              - 
+                :rule: 한;
+                :value: 1
+              - 
+                :rule: =%spellout-cardinal-native-attributive=;
+                :value: 2
+              - 
+                :rule: "서른[>>];"
+                :value: 30
+              - 
+                :rule: "마흔[>>];"
+                :value: 40
+              - 
+                :rule: "쉰[>%spellout-cardinal-native-attributive>];"
+                :value: 50
+              - 
+                :rule: "예순[>%spellout-cardinal-native-attributive>];"
+                :value: 60
+              - 
+                :rule: "일흔[>%spellout-cardinal-native-attributive>];"
+                :value: 70
+              - 
+                :rule: "여든[>%spellout-cardinal-native-attributive>];"
+                :value: 80
+              - 
+                :rule: "아흔[>%spellout-cardinal-native-attributive>];"
+                :value: 90
+              - 
+                :rule: "백[>>];"
+                :value: 100
+              - 
+                :rule: "<%spellout-cardinal-sinokorean<백[>>];"
+                :value: 200
+              - 
+                :rule: "천[>>];"
+                :value: 1000
+              - 
+                :rule: "<%spellout-cardinal-sinokorean<천[>>];"
+                :value: 2000
+              - 
+                :rule: "만[ >>];"
+                :value: 10000
+              - 
+                :rule: "<%spellout-cardinal-sinokorean<만[ >>];"
+                :value: 20000
+              - 
+                :rule: "<%spellout-cardinal-sinokorean<억[ >>];"
+                :value: 100000000
+              - 
+                :rule: "<%spellout-cardinal-sinokorean<조[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%spellout-cardinal-sinokorean<경[ >>];"
+                :value: 10000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-ordinal-native-count-larger
+          - 
+            :rules: 
+              - 
+                :rule: =%spellout-ordinal-native=;
+                :value: 0
+              - 
+                :rule: =%spellout-cardinal-sinokorean=째;
+                :value: 50
+              - 
+                :rule: =%%spellout-ordinal-sinokorean-count-larger=째;
+                :value: 100
+            :type: spellout-ordinal-sinokorean
+          - 
+            :rules: 
+              - 
+                :rule: "=#,##0.#=;"
+                :value: x.x
+              - 
+                :rule: "마이너스 >>;"
+                :value: "-x"
+              - 
+                :rule: =%%spellout-ordinal-native-priv=째;
+                :value: 0
+            :type: spellout-ordinal-native
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: 영;
+                :value: 0
+              - 
+                :rule: 첫;
+                :value: 1
+              - 
+                :rule: 둘;
+                :value: 2
+              - 
+                :rule: =%%spellout-ordinal-native-smaller=;
+                :value: 3
+            :type: spellout-ordinal-native-priv
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: ;
+                :value: 0
+              - 
+                :rule: 한;
+                :value: 1
+              - 
+                :rule: 두;
+                :value: 2
+              - 
+                :rule: 셋;
+                :value: 3
+              - 
+                :rule: 넷;
+                :value: 4
+              - 
+                :rule: 다섯;
+                :value: 5
+              - 
+                :rule: 여섯;
+                :value: 6
+              - 
+                :rule: 일곱;
+                :value: 7
+              - 
+                :rule: 여덟;
+                :value: 8
+              - 
+                :rule: 아홉;
+                :value: 9
+              - 
+                :rule: "열[>>];"
+                :value: 10
+              - 
+                :rule: 스무;
+                :value: 20
+              - 
+                :rule: "스물[>>];"
+                :value: 21
+              - 
+                :rule: "서른[>>];"
+                :value: 30
+              - 
+                :rule: "마흔[>>];"
+                :value: 40
+              - 
+                :rule: "쉰[>>];"
+                :value: 50
+              - 
+                :rule: "예순[>>];"
+                :value: 60
+              - 
+                :rule: "일흔[>>];"
+                :value: 70
+              - 
+                :rule: "여든[>>];"
+                :value: 80
+              - 
+                :rule: "아흔[>>];"
+                :value: 90
+              - 
+                :rule: "백[>%%spellout-ordinal-native-smaller-x02>];"
+                :value: 100
+              - 
+                :rule: "<%spellout-cardinal-sinokorean<백[>%%spellout-ordinal-native-smaller-x02>];"
+                :value: 200
+              - 
+                :rule: "천[>%%spellout-ordinal-native-smaller-x02>];"
+                :value: 1000
+              - 
+                :rule: "<%spellout-cardinal-sinokorean<천[>%%spellout-ordinal-native-smaller-x02>];"
+                :value: 2000
+              - 
+                :rule: "만[ >%%spellout-ordinal-native-smaller-x02>];"
+                :value: 10000
+              - 
+                :rule: "<%spellout-cardinal-sinokorean<만[ >%%spellout-ordinal-native-smaller-x02>];"
+                :value: 20000
+              - 
+                :rule: "<%spellout-cardinal-sinokorean<억[ >%%spellout-ordinal-native-smaller-x02>];"
+                :value: 100000000
+              - 
+                :rule: "<%spellout-cardinal-sinokorean<조[ >%%spellout-ordinal-native-smaller-x02>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%spellout-cardinal-sinokorean<경[ >%%spellout-ordinal-native-smaller-x02>];"
+                :value: 10000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-ordinal-native-smaller
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: =%%spellout-ordinal-native-smaller=;
+                :value: 0
+              - 
+                :rule: 둘;
+                :value: 2
+              - 
+                :rule: =%%spellout-ordinal-native-smaller=;
+                :value: 3
+            :type: spellout-ordinal-native-smaller-x02
+        :type: SpelloutRules
+      - 
+        :ruleset: 
+          - 
+            :rules: 
+              - 
+                :rule: −>>;
+                :value: "-x"
+              - 
+                :rule: "=#,##0=번째;"
+                :value: 0
+            :type: digits-ordinal
+        :type: OrdinalRules

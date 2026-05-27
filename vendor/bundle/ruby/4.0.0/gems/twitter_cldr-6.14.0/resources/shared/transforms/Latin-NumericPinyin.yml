@@ -1,0 +1,23 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - und-pinyin-t-d0-npinyin
+    :direction: both
+    :rules: 
+      - "::NFD (NFC) ;"
+      - "$tone = [̄́̌̀̆] ;"
+      - "e {($tone) r} > r &Pinyin-NumericPinyin($1) ;"
+      - "($tone) ( [i o n u {o n} {n g}]) > $2 &Pinyin-NumericPinyin($1) ;"
+      - "($tone) > &Pinyin-NumericPinyin($1) ;"
+      - "$vowel = [aAeEiIoOuU {ü} {Ü} vV] ;"
+      - "$consonant = [[a-z A-Z] - [$vowel]] ;"
+      - "$digit = [1-5] ;"
+      - "$1 &NumericPinyin-Pinyin($3) $2 < ([aAeE]) ($vowel* $consonant*) ($digit) ;"
+      - "$1 &NumericPinyin-Pinyin($3) $2 < ([oO]) ([$vowel-[aeAE]]* $consonant*) ($digit) ;"
+      - "$1 &NumericPinyin-Pinyin($3) $2 < ($vowel) ($consonant*) ($digit) ;"
+      - "&NumericPinyin-Pinyin($1) < [:Letter:] {($digit)} ;"
+      - "::NFC (NFD) ;"
+    :source: Latin
+    :target: NumericPinyin
+    :variant: ~

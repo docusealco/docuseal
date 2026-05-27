@@ -1,0 +1,18 @@
+module Seahorse
+  module Client
+    class AsyncBase < Base
+
+      def self.new: (?untyped options) -> instance
+
+      attr_reader connection: untyped
+
+      def operation_names: () -> Array[Symbol]
+
+      def close_connection: () -> Symbol
+
+      def new_connection: () -> untyped
+
+      def connection_errors: () -> Array[untyped]
+    end
+  end
+end

@@ -1,0 +1,225 @@
+--- 
+:eo: 
+  :territories: 
+    :ad: Andoro
+    :ae: "Unuiĝintaj Arabaj Emirlandoj"
+    :af: Afganujo
+    :ag: "Antigvo kaj Barbudo"
+    :ai: Angvilo
+    :al: Albanujo
+    :am: Armenujo
+    :ao: Angolo
+    :aq: Antarkto
+    :ar: Argentino
+    :at: Aŭstrujo
+    :au: Aŭstralio
+    :aw: Arubo
+    :az: Azerbajĝano
+    :ba: "Bosnujo kaj Hercegovino"
+    :bb: Barbado
+    :bd: Bangladeŝo
+    :be: Belgujo
+    :bf: Burkino
+    :bg: Bulgarujo
+    :bh: Barejno
+    :bi: Burundo
+    :bj: Benino
+    :bm: Bermudoj
+    :bn: Brunejo
+    :bo: Bolivio
+    :br: Brazilo
+    :bs: Bahamoj
+    :bt: Butano
+    :bw: Bocvano
+    :by: Belorusujo
+    :bz: Belizo
+    :ca: Kanado
+    :cf: "Centr-Afrika Respubliko"
+    :cg: "Kongo Brazavila"
+    :ch: Svisujo
+    :ci: Ebur-Bordo
+    :ck: Kukinsuloj
+    :cl: Ĉilio
+    :cm: Kameruno
+    :cn: Ĉinujo
+    :co: Kolombio
+    :cr: Kostariko
+    :cu: Kubo
+    :cv: Kaboverdo
+    :cy: Kipro
+    :cz: Ĉeĥujo
+    :de: Germanujo
+    :dj: Ĝibutio
+    :dk: Danujo
+    :dm: Dominiko
+    :do: Domingo
+    :dz: Alĝerio
+    :ec: Ekvadoro
+    :ee: Estonujo
+    :eg: Egiptujo
+    :eh: "Okcidenta Saharo"
+    :er: Eritreo
+    :es: Hispanujo
+    :et: Etiopujo
+    :fi: Finnlando
+    :fj: Fiĝoj
+    :fm: Mikronezio
+    :fo: Ferooj
+    :fr: Francujo
+    :ga: Gabono
+    :gb: "Unuiĝinta Reĝlando"
+    :gd: Grenado
+    :ge: Kartvelujo
+    :gf: "Franca Gviano"
+    :gh: Ganao
+    :gi: Ĝibraltaro
+    :gl: Gronlando
+    :gm: Gambio
+    :gn: Gvineo
+    :gp: Gvadelupo
+    :gq: "Ekvatora Gvineo"
+    :gr: Grekujo
+    :gs: "Sud-Georgio kaj Sud-Sandviĉinsuloj"
+    :gt: Gvatemalo
+    :gu: Gvamo
+    :gw: Gvineo-Bisaŭo
+    :gy: Gujano
+    :hm: "Herda kaj Makdonaldaj Insuloj"
+    :hn: Honduro
+    :hr: Kroatujo
+    :ht: Haitio
+    :hu: Hungarujo
+    :id: Indonezio
+    :ie: Irlando
+    :il: Israelo
+    :in: Hindujo
+    :iq: Irako
+    :ir: Irano
+    :is: Islando
+    :it: Italujo
+    :jm: Jamajko
+    :jo: Jordanio
+    :jp: Japanujo
+    :ke: Kenjo
+    :kg: Kirgizujo
+    :kh: Kamboĝo
+    :ki: Kiribato
+    :km: Komoroj
+    :kn: "Sankta Kristoforo kaj Neviso"
+    :kp: Nord-Koreo
+    :kr: Sud-Koreo
+    :kw: Kuvajto
+    :ky: Kejmanoj
+    :kz: Kazaĥujo
+    :la: Laoso
+    :lb: Libano
+    :lc: "Sankta Lucio"
+    :li: Liĥtenŝtejno
+    :lk: Srilanko
+    :lr: Liberio
+    :ls: Lesoto
+    :lt: Litovujo
+    :lu: Luksemburgo
+    :lv: Latvujo
+    :ly: Libio
+    :ma: Maroko
+    :mc: Monako
+    :md: Moldavujo
+    :mg: Madagaskaro
+    :mh: Marŝaloj
+    :ml: Malio
+    :mm: Birmo
+    :mn: Mongolujo
+    :mp: Nord-Marianoj
+    :mq: Martiniko
+    :mr: Maŭritanujo
+    :mt: Malto
+    :mu: Maŭricio
+    :mv: Maldivoj
+    :mw: Malavio
+    :mx: Meksiko
+    :my: Malajzio
+    :mz: Mozambiko
+    :na: Namibio
+    :nc: Nov-Kaledonio
+    :ne: Niĝero
+    :nf: Norfolkinsulo
+    :ng: Niĝerio
+    :ni: Nikaragvo
+    :nl: Nederlando
+    ? !ruby/symbol "no"
+    : Norvegujo
+    :np: Nepalo
+    :nr: Nauro
+    :nu: Niuo
+    :nz: Nov-Zelando
+    :om: Omano
+    :pa: Panamo
+    :pe: Peruo
+    :pf: "Franca Polinezio"
+    :pg: Papuo-Nov-Gvineo
+    :ph: Filipinoj
+    :pk: Pakistano
+    :pl: Pollando
+    :pm: "Sankta Piero kaj Mikelono"
+    :pn: "Pitkarna Insulo"
+    :pr: Puertoriko
+    :pt: Portugalujo
+    :pw: Palaŭo
+    :py: Paragvajo
+    :qa: Kataro
+    :re: Reunio
+    :ro: Rumanujo
+    :ru: Rusujo
+    :rw: Ruando
+    :sa: "Sauda Arabujo"
+    :sb: Salomonoj
+    :sc: Sejŝeloj
+    :sd: Sudano
+    :se: Svedujo
+    :sg: Singapuro
+    :sh: "Sankta Heleno"
+    :si: Slovenujo
+    :sj: "Svalbardo kaj Janmajeno"
+    :sk: Slovakujo
+    :sl: Sieraleono
+    :sm: Sanmarino
+    :sn: Senegalo
+    :so: Somalujo
+    :sr: Surinamo
+    :st: "Santomeo kaj Principeo"
+    :sv: Salvadoro
+    :sy: Sirio
+    :sz: Svazilando
+    :td: Ĉado
+    :tg: Togolando
+    :th: Tajlando
+    :tj: Taĝikujo
+    :tm: Turkmenujo
+    :tn: Tunizio
+    :to: Tongo
+    :tr: Turkujo
+    :tt: "Trinidado kaj Tobago"
+    :tv: Tuvalo
+    :tw: Tajvano
+    :tz: Tanzanio
+    :ua: Ukrainujo
+    :ug: Ugando
+    :um: "Usonaj malgrandaj insuloj"
+    :us: Usono
+    :uy: Urugvajo
+    :uz: Uzbekujo
+    :va: Vatikano
+    :vc: "Sankta Vincento kaj Grenadinoj"
+    :ve: Venezuelo
+    :vg: "Britaj Virgulininsuloj"
+    :vi: "Usonaj Virgulininsuloj"
+    :vn: Vjetnamo
+    :vu: Vanuatuo
+    :wf: "Valiso kaj Futuno"
+    :ws: Samoo
+    :ye: Jemeno
+    :yt: Majoto
+    :za: Sud-Afriko
+    :zm: Zambio
+    :zw: Zimbabvo

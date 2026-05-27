@@ -1,0 +1,49 @@
+module WEBrick
+  class HTTPRequest
+    @client_cert_chain: Array[OpenSSL::X509::Certificate]
+
+    attr_reader cipher: [String, String, Integer, Integer]?
+
+    attr_reader server_cert: OpenSSL::X509::Certificate
+
+    attr_reader client_cert: OpenSSL::X509::Certificate?
+
+    alias orig_parse parse
+
+    def parse: (?(TCPSocket | OpenSSL::SSL::SSLSocket)? socket) -> void
+             | ...
+
+    alias orig_parse_uri parse_uri
+
+    private
+
+    def parse_uri: (String str, ?::String scheme) -> URI::Generic
+                 | ...
+
+    public
+
+    alias orig_meta_vars meta_vars
+
+    def meta_vars: () -> Hash[String, String]
+                 | ...
+  end
+
+  class SNIRequest
+    attr_reader host: String?
+
+    attr_reader addr: [String, Integer, String, String]
+
+    attr_reader port: Integer
+
+    def initialize: (OpenSSL::SSL::SSLSocket sslsocket, ?String? hostname) -> void
+  end
+
+  class HTTPServer < ::WEBrick::GenericServer
+    def ssl_servername_callback: (OpenSSL::SSL::SSLSocket sslsocket, ?String? hostname) -> OpenSSL::SSL::SSLContext?
+
+    alias orig_virtual_host virtual_host
+
+    def virtual_host: (instance server) -> void
+                    | ...
+  end
+end

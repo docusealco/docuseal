@@ -1,0 +1,21 @@
+// first-order lag derivative term
+(*
+  Parameter K must be set to T / (T + T1)
+*)
+FUNCTION_BLOCK DT2
+
+VAR_INPUT
+  IN : REAL;
+  K : REAL;
+END_VAR
+VAR_OUTPUT
+  Q : REAL;
+END_VAR
+VAR
+  H : REAL := 0.0;
+END_VAR
+
+BEGIN
+  Q := IN - H;
+  H := H + K * Q;
+END_FUNCTION_BLOCK

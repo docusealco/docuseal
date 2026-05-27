@@ -1,0 +1,27 @@
+---
+:cy:
+  :cardinal:
+    :rule: 'lambda { |num, runtime| n = runtime.n(num); i = runtime.i(num); f = runtime.f(num);
+      t = runtime.t(num); v = runtime.v(num); w = runtime.w(num); e = runtime.e(num);
+      (n == 0 ? :zero : (n == 1 ? :one : (n == 2 ? :two : (n == 3 ? :few : (n == 6
+      ? :many : :other))))) }'
+    :names:
+    - :zero
+    - :one
+    - :two
+    - :few
+    - :many
+    - :other
+  :ordinal:
+    :rule: 'lambda { |num, runtime| n = runtime.n(num); i = runtime.i(num); f = runtime.f(num);
+      t = runtime.t(num); v = runtime.v(num); w = runtime.w(num); e = runtime.e(num);
+      (((n == 0) || (n == 7) || (n == 8) || (n == 9)) ? :zero : (n == 1 ? :one : (n
+      == 2 ? :two : (((n == 3) || (n == 4)) ? :few : (((n == 5) || (n == 6)) ? :many
+      : :other))))) }'
+    :names:
+    - :zero
+    - :one
+    - :two
+    - :few
+    - :many
+    - :other

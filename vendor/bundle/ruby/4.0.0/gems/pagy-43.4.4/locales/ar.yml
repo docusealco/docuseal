@@ -1,0 +1,32 @@
+# See https://ddnexus.github.io/pagy/resources/i18n
+
+ar:
+  pagy:
+    p11n: 'Arabic'
+    aria_label:
+      nav:
+        zero: "لا يوجد صفحات"
+        one: "صفحة"
+        two: "صفحتين"
+        few: "صفحات"
+        many: "صفحات"
+        other: "صفحات"
+      previous: "السابق"
+      next: "التالي"
+    previous: "&lt;"
+    next: "&gt;"
+    gap: "&hellip;"
+    item_name:
+      zero: "صفر"
+      one: "عنصر"
+      two: "عنصرين"
+      few: "قليل"
+      many: "كثير"
+      other: "عناصر"
+    info_tag:
+      no_count: "الصفحة %{page} من %{pages}"
+      no_items: "لا يوجد %{item_name}"
+      single_page: "عرض %{count} %{item_name}"
+      multiple_pages: "عرض %{item_name} %{from}-%{to} من اجمالي %{count}"
+    input_nav_js: "الصفحة %{page_input} من %{pages}"
+    limit_tag_js: "عرض %{limit_input} %{item_name} لكل صفحة"

@@ -1,0 +1,57 @@
+class PackageJson
+  module Managers
+    class Base
+      attr_reader binary: String
+
+      def initialize: (PackageJson package_json, binary_name: String) -> self
+
+      def version: () -> String
+
+      def install: (?frozen: bool) -> (bool | nil)
+
+      def install!: (?frozen: bool) -> void
+
+      def native_install_command: (?frozen: bool) -> Array[String]
+
+      def add: (Array[String] packages, ?type: :production | :dev | :optional, ?exact: bool) -> (bool | nil)
+
+      def add!: (Array[String] packages, ?type: :production | :dev | :optional, ?exact: bool) -> void
+
+      def remove: (Array[String] packages) -> (bool | nil)
+
+      def remove!: (Array[String] packages) -> void
+
+      def run: (
+          String script_name,
+          ?Array[String] args,
+          ?silent: bool
+        ) -> (bool | nil)
+
+      def run!: (
+          String script_name,
+          ?Array[String] args,
+          ?silent: bool
+        ) -> void
+
+      def native_run_command: (
+          String script_name,
+          ?Array[String] args,
+          ?silent: bool
+        ) -> Array[String]
+
+      def native_exec_command: (
+          String script_name,
+          ?Array[String] args
+        ) -> Array[String]
+
+      private
+
+      @binary: String
+      @package_json: PackageJson
+
+      def build_full_cmd: (String sub_cmd, Array[String] args) -> Array[String]
+
+      def raw: (String sub_cmd, Array[String] args) -> (bool | nil)
+    end
+  end
+end

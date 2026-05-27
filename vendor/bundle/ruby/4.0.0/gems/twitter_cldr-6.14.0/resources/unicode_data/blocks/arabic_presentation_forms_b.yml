@@ -1,0 +1,2257 @@
+---
+65136:
+- 65136
+- ARABIC FATHATAN ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 0020 064B"
+- ''
+- ''
+- ''
+- N
+- ARABIC SPACING FATHATAN
+- ''
+- ''
+- ''
+- ''
+65137:
+- 65137
+- ARABIC TATWEEL WITH FATHATAN ABOVE
+- Lo
+- '0'
+- AL
+- "<medial> 0640 064B"
+- ''
+- ''
+- ''
+- N
+- ARABIC FATHATAN ON TATWEEL
+- ''
+- ''
+- ''
+- ''
+65138:
+- 65138
+- ARABIC DAMMATAN ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 0020 064C"
+- ''
+- ''
+- ''
+- N
+- ARABIC SPACING DAMMATAN
+- ''
+- ''
+- ''
+- ''
+65139:
+- 65139
+- ARABIC TAIL FRAGMENT
+- Lo
+- '0'
+- AL
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65140:
+- 65140
+- ARABIC KASRATAN ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 0020 064D"
+- ''
+- ''
+- ''
+- N
+- ARABIC SPACING KASRATAN
+- ''
+- ''
+- ''
+- ''
+65142:
+- 65142
+- ARABIC FATHA ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 0020 064E"
+- ''
+- ''
+- ''
+- N
+- ARABIC SPACING FATHAH
+- ''
+- ''
+- ''
+- ''
+65143:
+- 65143
+- ARABIC FATHA MEDIAL FORM
+- Lo
+- '0'
+- AL
+- "<medial> 0640 064E"
+- ''
+- ''
+- ''
+- N
+- ARABIC FATHAH ON TATWEEL
+- ''
+- ''
+- ''
+- ''
+65144:
+- 65144
+- ARABIC DAMMA ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 0020 064F"
+- ''
+- ''
+- ''
+- N
+- ARABIC SPACING DAMMAH
+- ''
+- ''
+- ''
+- ''
+65145:
+- 65145
+- ARABIC DAMMA MEDIAL FORM
+- Lo
+- '0'
+- AL
+- "<medial> 0640 064F"
+- ''
+- ''
+- ''
+- N
+- ARABIC DAMMAH ON TATWEEL
+- ''
+- ''
+- ''
+- ''
+65146:
+- 65146
+- ARABIC KASRA ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 0020 0650"
+- ''
+- ''
+- ''
+- N
+- ARABIC SPACING KASRAH
+- ''
+- ''
+- ''
+- ''
+65147:
+- 65147
+- ARABIC KASRA MEDIAL FORM
+- Lo
+- '0'
+- AL
+- "<medial> 0640 0650"
+- ''
+- ''
+- ''
+- N
+- ARABIC KASRAH ON TATWEEL
+- ''
+- ''
+- ''
+- ''
+65148:
+- 65148
+- ARABIC SHADDA ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 0020 0651"
+- ''
+- ''
+- ''
+- N
+- ARABIC SPACING SHADDAH
+- ''
+- ''
+- ''
+- ''
+65149:
+- 65149
+- ARABIC SHADDA MEDIAL FORM
+- Lo
+- '0'
+- AL
+- "<medial> 0640 0651"
+- ''
+- ''
+- ''
+- N
+- ARABIC SHADDAH ON TATWEEL
+- ''
+- ''
+- ''
+- ''
+65150:
+- 65150
+- ARABIC SUKUN ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 0020 0652"
+- ''
+- ''
+- ''
+- N
+- ARABIC SPACING SUKUN
+- ''
+- ''
+- ''
+- ''
+65151:
+- 65151
+- ARABIC SUKUN MEDIAL FORM
+- Lo
+- '0'
+- AL
+- "<medial> 0640 0652"
+- ''
+- ''
+- ''
+- N
+- ARABIC SUKUN ON TATWEEL
+- ''
+- ''
+- ''
+- ''
+65152:
+- 65152
+- ARABIC LETTER HAMZA ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 0621"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR ISOLATE ARABIC HAMZAH
+- ''
+- ''
+- ''
+- ''
+65153:
+- 65153
+- ARABIC LETTER ALEF WITH MADDA ABOVE ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 0622"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR ISOLATE ARABIC MADDAH ON ALEF
+- ''
+- ''
+- ''
+- ''
+65154:
+- 65154
+- ARABIC LETTER ALEF WITH MADDA ABOVE FINAL FORM
+- Lo
+- '0'
+- AL
+- "<final> 0622"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR FINAL ARABIC MADDAH ON ALEF
+- ''
+- ''
+- ''
+- ''
+65155:
+- 65155
+- ARABIC LETTER ALEF WITH HAMZA ABOVE ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 0623"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR ISOLATE ARABIC HAMZAH ON ALEF
+- ''
+- ''
+- ''
+- ''
+65156:
+- 65156
+- ARABIC LETTER ALEF WITH HAMZA ABOVE FINAL FORM
+- Lo
+- '0'
+- AL
+- "<final> 0623"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR FINAL ARABIC HAMZAH ON ALEF
+- ''
+- ''
+- ''
+- ''
+65157:
+- 65157
+- ARABIC LETTER WAW WITH HAMZA ABOVE ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 0624"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR ISOLATE ARABIC HAMZAH ON WAW
+- ''
+- ''
+- ''
+- ''
+65158:
+- 65158
+- ARABIC LETTER WAW WITH HAMZA ABOVE FINAL FORM
+- Lo
+- '0'
+- AL
+- "<final> 0624"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR FINAL ARABIC HAMZAH ON WAW
+- ''
+- ''
+- ''
+- ''
+65159:
+- 65159
+- ARABIC LETTER ALEF WITH HAMZA BELOW ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 0625"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR ISOLATE ARABIC HAMZAH UNDER ALEF
+- ''
+- ''
+- ''
+- ''
+65160:
+- 65160
+- ARABIC LETTER ALEF WITH HAMZA BELOW FINAL FORM
+- Lo
+- '0'
+- AL
+- "<final> 0625"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR FINAL ARABIC HAMZAH UNDER ALEF
+- ''
+- ''
+- ''
+- ''
+65161:
+- 65161
+- ARABIC LETTER YEH WITH HAMZA ABOVE ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 0626"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR ISOLATE ARABIC HAMZAH ON YA
+- ''
+- ''
+- ''
+- ''
+65162:
+- 65162
+- ARABIC LETTER YEH WITH HAMZA ABOVE FINAL FORM
+- Lo
+- '0'
+- AL
+- "<final> 0626"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR FINAL ARABIC HAMZAH ON YA
+- ''
+- ''
+- ''
+- ''
+65163:
+- 65163
+- ARABIC LETTER YEH WITH HAMZA ABOVE INITIAL FORM
+- Lo
+- '0'
+- AL
+- "<initial> 0626"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR INITIAL ARABIC HAMZAH ON YA
+- ''
+- ''
+- ''
+- ''
+65164:
+- 65164
+- ARABIC LETTER YEH WITH HAMZA ABOVE MEDIAL FORM
+- Lo
+- '0'
+- AL
+- "<medial> 0626"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR MEDIAL ARABIC HAMZAH ON YA
+- ''
+- ''
+- ''
+- ''
+65165:
+- 65165
+- ARABIC LETTER ALEF ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 0627"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR ISOLATE ARABIC ALEF
+- ''
+- ''
+- ''
+- ''
+65166:
+- 65166
+- ARABIC LETTER ALEF FINAL FORM
+- Lo
+- '0'
+- AL
+- "<final> 0627"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR FINAL ARABIC ALEF
+- ''
+- ''
+- ''
+- ''
+65167:
+- 65167
+- ARABIC LETTER BEH ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 0628"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR ISOLATE ARABIC BAA
+- ''
+- ''
+- ''
+- ''
+65168:
+- 65168
+- ARABIC LETTER BEH FINAL FORM
+- Lo
+- '0'
+- AL
+- "<final> 0628"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR FINAL ARABIC BAA
+- ''
+- ''
+- ''
+- ''
+65169:
+- 65169
+- ARABIC LETTER BEH INITIAL FORM
+- Lo
+- '0'
+- AL
+- "<initial> 0628"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR INITIAL ARABIC BAA
+- ''
+- ''
+- ''
+- ''
+65170:
+- 65170
+- ARABIC LETTER BEH MEDIAL FORM
+- Lo
+- '0'
+- AL
+- "<medial> 0628"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR MEDIAL ARABIC BAA
+- ''
+- ''
+- ''
+- ''
+65171:
+- 65171
+- ARABIC LETTER TEH MARBUTA ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 0629"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR ISOLATE ARABIC TAA MARBUTAH
+- ''
+- ''
+- ''
+- ''
+65172:
+- 65172
+- ARABIC LETTER TEH MARBUTA FINAL FORM
+- Lo
+- '0'
+- AL
+- "<final> 0629"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR FINAL ARABIC TAA MARBUTAH
+- ''
+- ''
+- ''
+- ''
+65173:
+- 65173
+- ARABIC LETTER TEH ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 062A"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR ISOLATE ARABIC TAA
+- ''
+- ''
+- ''
+- ''
+65174:
+- 65174
+- ARABIC LETTER TEH FINAL FORM
+- Lo
+- '0'
+- AL
+- "<final> 062A"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR FINAL ARABIC TAA
+- ''
+- ''
+- ''
+- ''
+65175:
+- 65175
+- ARABIC LETTER TEH INITIAL FORM
+- Lo
+- '0'
+- AL
+- "<initial> 062A"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR INITIAL ARABIC TAA
+- ''
+- ''
+- ''
+- ''
+65176:
+- 65176
+- ARABIC LETTER TEH MEDIAL FORM
+- Lo
+- '0'
+- AL
+- "<medial> 062A"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR MEDIAL ARABIC TAA
+- ''
+- ''
+- ''
+- ''
+65177:
+- 65177
+- ARABIC LETTER THEH ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 062B"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR ISOLATE ARABIC THAA
+- ''
+- ''
+- ''
+- ''
+65178:
+- 65178
+- ARABIC LETTER THEH FINAL FORM
+- Lo
+- '0'
+- AL
+- "<final> 062B"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR FINAL ARABIC THAA
+- ''
+- ''
+- ''
+- ''
+65179:
+- 65179
+- ARABIC LETTER THEH INITIAL FORM
+- Lo
+- '0'
+- AL
+- "<initial> 062B"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR INITIAL ARABIC THAA
+- ''
+- ''
+- ''
+- ''
+65180:
+- 65180
+- ARABIC LETTER THEH MEDIAL FORM
+- Lo
+- '0'
+- AL
+- "<medial> 062B"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR MEDIAL ARABIC THAA
+- ''
+- ''
+- ''
+- ''
+65181:
+- 65181
+- ARABIC LETTER JEEM ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 062C"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR ISOLATE ARABIC JEEM
+- ''
+- ''
+- ''
+- ''
+65182:
+- 65182
+- ARABIC LETTER JEEM FINAL FORM
+- Lo
+- '0'
+- AL
+- "<final> 062C"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR FINAL ARABIC JEEM
+- ''
+- ''
+- ''
+- ''
+65183:
+- 65183
+- ARABIC LETTER JEEM INITIAL FORM
+- Lo
+- '0'
+- AL
+- "<initial> 062C"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR INITIAL ARABIC JEEM
+- ''
+- ''
+- ''
+- ''
+65184:
+- 65184
+- ARABIC LETTER JEEM MEDIAL FORM
+- Lo
+- '0'
+- AL
+- "<medial> 062C"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR MEDIAL ARABIC JEEM
+- ''
+- ''
+- ''
+- ''
+65185:
+- 65185
+- ARABIC LETTER HAH ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 062D"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR ISOLATE ARABIC HAA
+- ''
+- ''
+- ''
+- ''
+65186:
+- 65186
+- ARABIC LETTER HAH FINAL FORM
+- Lo
+- '0'
+- AL
+- "<final> 062D"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR FINAL ARABIC HAA
+- ''
+- ''
+- ''
+- ''
+65187:
+- 65187
+- ARABIC LETTER HAH INITIAL FORM
+- Lo
+- '0'
+- AL
+- "<initial> 062D"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR INITIAL ARABIC HAA
+- ''
+- ''
+- ''
+- ''
+65188:
+- 65188
+- ARABIC LETTER HAH MEDIAL FORM
+- Lo
+- '0'
+- AL
+- "<medial> 062D"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR MEDIAL ARABIC HAA
+- ''
+- ''
+- ''
+- ''
+65189:
+- 65189
+- ARABIC LETTER KHAH ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 062E"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR ISOLATE ARABIC KHAA
+- ''
+- ''
+- ''
+- ''
+65190:
+- 65190
+- ARABIC LETTER KHAH FINAL FORM
+- Lo
+- '0'
+- AL
+- "<final> 062E"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR FINAL ARABIC KHAA
+- ''
+- ''
+- ''
+- ''
+65191:
+- 65191
+- ARABIC LETTER KHAH INITIAL FORM
+- Lo
+- '0'
+- AL
+- "<initial> 062E"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR INITIAL ARABIC KHAA
+- ''
+- ''
+- ''
+- ''
+65192:
+- 65192
+- ARABIC LETTER KHAH MEDIAL FORM
+- Lo
+- '0'
+- AL
+- "<medial> 062E"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR MEDIAL ARABIC KHAA
+- ''
+- ''
+- ''
+- ''
+65193:
+- 65193
+- ARABIC LETTER DAL ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 062F"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR ISOLATE ARABIC DAL
+- ''
+- ''
+- ''
+- ''
+65194:
+- 65194
+- ARABIC LETTER DAL FINAL FORM
+- Lo
+- '0'
+- AL
+- "<final> 062F"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR FINAL ARABIC DAL
+- ''
+- ''
+- ''
+- ''
+65195:
+- 65195
+- ARABIC LETTER THAL ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 0630"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR ISOLATE ARABIC THAL
+- ''
+- ''
+- ''
+- ''
+65196:
+- 65196
+- ARABIC LETTER THAL FINAL FORM
+- Lo
+- '0'
+- AL
+- "<final> 0630"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR FINAL ARABIC THAL
+- ''
+- ''
+- ''
+- ''
+65197:
+- 65197
+- ARABIC LETTER REH ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 0631"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR ISOLATE ARABIC RA
+- ''
+- ''
+- ''
+- ''
+65198:
+- 65198
+- ARABIC LETTER REH FINAL FORM
+- Lo
+- '0'
+- AL
+- "<final> 0631"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR FINAL ARABIC RA
+- ''
+- ''
+- ''
+- ''
+65199:
+- 65199
+- ARABIC LETTER ZAIN ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 0632"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR ISOLATE ARABIC ZAIN
+- ''
+- ''
+- ''
+- ''
+65200:
+- 65200
+- ARABIC LETTER ZAIN FINAL FORM
+- Lo
+- '0'
+- AL
+- "<final> 0632"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR FINAL ARABIC ZAIN
+- ''
+- ''
+- ''
+- ''
+65201:
+- 65201
+- ARABIC LETTER SEEN ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 0633"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR ISOLATE ARABIC SEEN
+- ''
+- ''
+- ''
+- ''
+65202:
+- 65202
+- ARABIC LETTER SEEN FINAL FORM
+- Lo
+- '0'
+- AL
+- "<final> 0633"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR FINAL ARABIC SEEN
+- ''
+- ''
+- ''
+- ''
+65203:
+- 65203
+- ARABIC LETTER SEEN INITIAL FORM
+- Lo
+- '0'
+- AL
+- "<initial> 0633"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR INITIAL ARABIC SEEN
+- ''
+- ''
+- ''
+- ''
+65204:
+- 65204
+- ARABIC LETTER SEEN MEDIAL FORM
+- Lo
+- '0'
+- AL
+- "<medial> 0633"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR MEDIAL ARABIC SEEN
+- ''
+- ''
+- ''
+- ''
+65205:
+- 65205
+- ARABIC LETTER SHEEN ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 0634"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR ISOLATE ARABIC SHEEN
+- ''
+- ''
+- ''
+- ''
+65206:
+- 65206
+- ARABIC LETTER SHEEN FINAL FORM
+- Lo
+- '0'
+- AL
+- "<final> 0634"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR FINAL ARABIC SHEEN
+- ''
+- ''
+- ''
+- ''
+65207:
+- 65207
+- ARABIC LETTER SHEEN INITIAL FORM
+- Lo
+- '0'
+- AL
+- "<initial> 0634"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR INITIAL ARABIC SHEEN
+- ''
+- ''
+- ''
+- ''
+65208:
+- 65208
+- ARABIC LETTER SHEEN MEDIAL FORM
+- Lo
+- '0'
+- AL
+- "<medial> 0634"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR MEDIAL ARABIC SHEEN
+- ''
+- ''
+- ''
+- ''
+65209:
+- 65209
+- ARABIC LETTER SAD ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 0635"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR ISOLATE ARABIC SAD
+- ''
+- ''
+- ''
+- ''
+65210:
+- 65210
+- ARABIC LETTER SAD FINAL FORM
+- Lo
+- '0'
+- AL
+- "<final> 0635"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR FINAL ARABIC SAD
+- ''
+- ''
+- ''
+- ''
+65211:
+- 65211
+- ARABIC LETTER SAD INITIAL FORM
+- Lo
+- '0'
+- AL
+- "<initial> 0635"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR INITIAL ARABIC SAD
+- ''
+- ''
+- ''
+- ''
+65212:
+- 65212
+- ARABIC LETTER SAD MEDIAL FORM
+- Lo
+- '0'
+- AL
+- "<medial> 0635"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR MEDIAL ARABIC SAD
+- ''
+- ''
+- ''
+- ''
+65213:
+- 65213
+- ARABIC LETTER DAD ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 0636"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR ISOLATE ARABIC DAD
+- ''
+- ''
+- ''
+- ''
+65214:
+- 65214
+- ARABIC LETTER DAD FINAL FORM
+- Lo
+- '0'
+- AL
+- "<final> 0636"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR FINAL ARABIC DAD
+- ''
+- ''
+- ''
+- ''
+65215:
+- 65215
+- ARABIC LETTER DAD INITIAL FORM
+- Lo
+- '0'
+- AL
+- "<initial> 0636"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR INITIAL ARABIC DAD
+- ''
+- ''
+- ''
+- ''
+65216:
+- 65216
+- ARABIC LETTER DAD MEDIAL FORM
+- Lo
+- '0'
+- AL
+- "<medial> 0636"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR MEDIAL ARABIC DAD
+- ''
+- ''
+- ''
+- ''
+65217:
+- 65217
+- ARABIC LETTER TAH ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 0637"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR ISOLATE ARABIC TAH
+- ''
+- ''
+- ''
+- ''
+65218:
+- 65218
+- ARABIC LETTER TAH FINAL FORM
+- Lo
+- '0'
+- AL
+- "<final> 0637"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR FINAL ARABIC TAH
+- ''
+- ''
+- ''
+- ''
+65219:
+- 65219
+- ARABIC LETTER TAH INITIAL FORM
+- Lo
+- '0'
+- AL
+- "<initial> 0637"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR INITIAL ARABIC TAH
+- ''
+- ''
+- ''
+- ''
+65220:
+- 65220
+- ARABIC LETTER TAH MEDIAL FORM
+- Lo
+- '0'
+- AL
+- "<medial> 0637"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR MEDIAL ARABIC TAH
+- ''
+- ''
+- ''
+- ''
+65221:
+- 65221
+- ARABIC LETTER ZAH ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 0638"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR ISOLATE ARABIC DHAH
+- ''
+- ''
+- ''
+- ''
+65222:
+- 65222
+- ARABIC LETTER ZAH FINAL FORM
+- Lo
+- '0'
+- AL
+- "<final> 0638"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR FINAL ARABIC DHAH
+- ''
+- ''
+- ''
+- ''
+65223:
+- 65223
+- ARABIC LETTER ZAH INITIAL FORM
+- Lo
+- '0'
+- AL
+- "<initial> 0638"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR INITIAL ARABIC DHAH
+- ''
+- ''
+- ''
+- ''
+65224:
+- 65224
+- ARABIC LETTER ZAH MEDIAL FORM
+- Lo
+- '0'
+- AL
+- "<medial> 0638"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR MEDIAL ARABIC DHAH
+- ''
+- ''
+- ''
+- ''
+65225:
+- 65225
+- ARABIC LETTER AIN ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 0639"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR ISOLATE ARABIC AIN
+- ''
+- ''
+- ''
+- ''
+65226:
+- 65226
+- ARABIC LETTER AIN FINAL FORM
+- Lo
+- '0'
+- AL
+- "<final> 0639"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR FINAL ARABIC AIN
+- ''
+- ''
+- ''
+- ''
+65227:
+- 65227
+- ARABIC LETTER AIN INITIAL FORM
+- Lo
+- '0'
+- AL
+- "<initial> 0639"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR INITIAL ARABIC AIN
+- ''
+- ''
+- ''
+- ''
+65228:
+- 65228
+- ARABIC LETTER AIN MEDIAL FORM
+- Lo
+- '0'
+- AL
+- "<medial> 0639"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR MEDIAL ARABIC AIN
+- ''
+- ''
+- ''
+- ''
+65229:
+- 65229
+- ARABIC LETTER GHAIN ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 063A"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR ISOLATE ARABIC GHAIN
+- ''
+- ''
+- ''
+- ''
+65230:
+- 65230
+- ARABIC LETTER GHAIN FINAL FORM
+- Lo
+- '0'
+- AL
+- "<final> 063A"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR FINAL ARABIC GHAIN
+- ''
+- ''
+- ''
+- ''
+65231:
+- 65231
+- ARABIC LETTER GHAIN INITIAL FORM
+- Lo
+- '0'
+- AL
+- "<initial> 063A"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR INITIAL ARABIC GHAIN
+- ''
+- ''
+- ''
+- ''
+65232:
+- 65232
+- ARABIC LETTER GHAIN MEDIAL FORM
+- Lo
+- '0'
+- AL
+- "<medial> 063A"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR MEDIAL ARABIC GHAIN
+- ''
+- ''
+- ''
+- ''
+65233:
+- 65233
+- ARABIC LETTER FEH ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 0641"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR ISOLATE ARABIC FA
+- ''
+- ''
+- ''
+- ''
+65234:
+- 65234
+- ARABIC LETTER FEH FINAL FORM
+- Lo
+- '0'
+- AL
+- "<final> 0641"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR FINAL ARABIC FA
+- ''
+- ''
+- ''
+- ''
+65235:
+- 65235
+- ARABIC LETTER FEH INITIAL FORM
+- Lo
+- '0'
+- AL
+- "<initial> 0641"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR INITIAL ARABIC FA
+- ''
+- ''
+- ''
+- ''
+65236:
+- 65236
+- ARABIC LETTER FEH MEDIAL FORM
+- Lo
+- '0'
+- AL
+- "<medial> 0641"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR MEDIAL ARABIC FA
+- ''
+- ''
+- ''
+- ''
+65237:
+- 65237
+- ARABIC LETTER QAF ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 0642"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR ISOLATE ARABIC QAF
+- ''
+- ''
+- ''
+- ''
+65238:
+- 65238
+- ARABIC LETTER QAF FINAL FORM
+- Lo
+- '0'
+- AL
+- "<final> 0642"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR FINAL ARABIC QAF
+- ''
+- ''
+- ''
+- ''
+65239:
+- 65239
+- ARABIC LETTER QAF INITIAL FORM
+- Lo
+- '0'
+- AL
+- "<initial> 0642"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR INITIAL ARABIC QAF
+- ''
+- ''
+- ''
+- ''
+65240:
+- 65240
+- ARABIC LETTER QAF MEDIAL FORM
+- Lo
+- '0'
+- AL
+- "<medial> 0642"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR MEDIAL ARABIC QAF
+- ''
+- ''
+- ''
+- ''
+65241:
+- 65241
+- ARABIC LETTER KAF ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 0643"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR ISOLATE ARABIC CAF
+- ''
+- ''
+- ''
+- ''
+65242:
+- 65242
+- ARABIC LETTER KAF FINAL FORM
+- Lo
+- '0'
+- AL
+- "<final> 0643"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR FINAL ARABIC CAF
+- ''
+- ''
+- ''
+- ''
+65243:
+- 65243
+- ARABIC LETTER KAF INITIAL FORM
+- Lo
+- '0'
+- AL
+- "<initial> 0643"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR INITIAL ARABIC CAF
+- ''
+- ''
+- ''
+- ''
+65244:
+- 65244
+- ARABIC LETTER KAF MEDIAL FORM
+- Lo
+- '0'
+- AL
+- "<medial> 0643"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR MEDIAL ARABIC CAF
+- ''
+- ''
+- ''
+- ''
+65245:
+- 65245
+- ARABIC LETTER LAM ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 0644"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR ISOLATE ARABIC LAM
+- ''
+- ''
+- ''
+- ''
+65246:
+- 65246
+- ARABIC LETTER LAM FINAL FORM
+- Lo
+- '0'
+- AL
+- "<final> 0644"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR FINAL ARABIC LAM
+- ''
+- ''
+- ''
+- ''
+65247:
+- 65247
+- ARABIC LETTER LAM INITIAL FORM
+- Lo
+- '0'
+- AL
+- "<initial> 0644"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR INITIAL ARABIC LAM
+- ''
+- ''
+- ''
+- ''
+65248:
+- 65248
+- ARABIC LETTER LAM MEDIAL FORM
+- Lo
+- '0'
+- AL
+- "<medial> 0644"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR MEDIAL ARABIC LAM
+- ''
+- ''
+- ''
+- ''
+65249:
+- 65249
+- ARABIC LETTER MEEM ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 0645"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR ISOLATE ARABIC MEEM
+- ''
+- ''
+- ''
+- ''
+65250:
+- 65250
+- ARABIC LETTER MEEM FINAL FORM
+- Lo
+- '0'
+- AL
+- "<final> 0645"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR FINAL ARABIC MEEM
+- ''
+- ''
+- ''
+- ''
+65251:
+- 65251
+- ARABIC LETTER MEEM INITIAL FORM
+- Lo
+- '0'
+- AL
+- "<initial> 0645"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR INITIAL ARABIC MEEM
+- ''
+- ''
+- ''
+- ''
+65252:
+- 65252
+- ARABIC LETTER MEEM MEDIAL FORM
+- Lo
+- '0'
+- AL
+- "<medial> 0645"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR MEDIAL ARABIC MEEM
+- ''
+- ''
+- ''
+- ''
+65253:
+- 65253
+- ARABIC LETTER NOON ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 0646"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR ISOLATE ARABIC NOON
+- ''
+- ''
+- ''
+- ''
+65254:
+- 65254
+- ARABIC LETTER NOON FINAL FORM
+- Lo
+- '0'
+- AL
+- "<final> 0646"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR FINAL ARABIC NOON
+- ''
+- ''
+- ''
+- ''
+65255:
+- 65255
+- ARABIC LETTER NOON INITIAL FORM
+- Lo
+- '0'
+- AL
+- "<initial> 0646"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR INITIAL ARABIC NOON
+- ''
+- ''
+- ''
+- ''
+65256:
+- 65256
+- ARABIC LETTER NOON MEDIAL FORM
+- Lo
+- '0'
+- AL
+- "<medial> 0646"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR MEDIAL ARABIC NOON
+- ''
+- ''
+- ''
+- ''
+65257:
+- 65257
+- ARABIC LETTER HEH ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 0647"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR ISOLATE ARABIC HA
+- ''
+- ''
+- ''
+- ''
+65258:
+- 65258
+- ARABIC LETTER HEH FINAL FORM
+- Lo
+- '0'
+- AL
+- "<final> 0647"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR FINAL ARABIC HA
+- ''
+- ''
+- ''
+- ''
+65259:
+- 65259
+- ARABIC LETTER HEH INITIAL FORM
+- Lo
+- '0'
+- AL
+- "<initial> 0647"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR INITIAL ARABIC HA
+- ''
+- ''
+- ''
+- ''
+65260:
+- 65260
+- ARABIC LETTER HEH MEDIAL FORM
+- Lo
+- '0'
+- AL
+- "<medial> 0647"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR MEDIAL ARABIC HA
+- ''
+- ''
+- ''
+- ''
+65261:
+- 65261
+- ARABIC LETTER WAW ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 0648"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR ISOLATE ARABIC WAW
+- ''
+- ''
+- ''
+- ''
+65262:
+- 65262
+- ARABIC LETTER WAW FINAL FORM
+- Lo
+- '0'
+- AL
+- "<final> 0648"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR FINAL ARABIC WAW
+- ''
+- ''
+- ''
+- ''
+65263:
+- 65263
+- ARABIC LETTER ALEF MAKSURA ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 0649"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR ISOLATE ARABIC ALEF MAQSURAH
+- ''
+- ''
+- ''
+- ''
+65264:
+- 65264
+- ARABIC LETTER ALEF MAKSURA FINAL FORM
+- Lo
+- '0'
+- AL
+- "<final> 0649"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR FINAL ARABIC ALEF MAQSURAH
+- ''
+- ''
+- ''
+- ''
+65265:
+- 65265
+- ARABIC LETTER YEH ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 064A"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR ISOLATE ARABIC YA
+- ''
+- ''
+- ''
+- ''
+65266:
+- 65266
+- ARABIC LETTER YEH FINAL FORM
+- Lo
+- '0'
+- AL
+- "<final> 064A"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR FINAL ARABIC YA
+- ''
+- ''
+- ''
+- ''
+65267:
+- 65267
+- ARABIC LETTER YEH INITIAL FORM
+- Lo
+- '0'
+- AL
+- "<initial> 064A"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR INITIAL ARABIC YA
+- ''
+- ''
+- ''
+- ''
+65268:
+- 65268
+- ARABIC LETTER YEH MEDIAL FORM
+- Lo
+- '0'
+- AL
+- "<medial> 064A"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR MEDIAL ARABIC YA
+- ''
+- ''
+- ''
+- ''
+65269:
+- 65269
+- ARABIC LIGATURE LAM WITH ALEF WITH MADDA ABOVE ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 0644 0622"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR ISOLATE ARABIC MADDAH ON LIGATURE LAM ALEF
+- ''
+- ''
+- ''
+- ''
+65270:
+- 65270
+- ARABIC LIGATURE LAM WITH ALEF WITH MADDA ABOVE FINAL FORM
+- Lo
+- '0'
+- AL
+- "<final> 0644 0622"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR FINAL ARABIC MADDAH ON LIGATURE LAM ALEF
+- ''
+- ''
+- ''
+- ''
+65271:
+- 65271
+- ARABIC LIGATURE LAM WITH ALEF WITH HAMZA ABOVE ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 0644 0623"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR ISOLATE ARABIC HAMZAH ON LIGATURE LAM ALEF
+- ''
+- ''
+- ''
+- ''
+65272:
+- 65272
+- ARABIC LIGATURE LAM WITH ALEF WITH HAMZA ABOVE FINAL FORM
+- Lo
+- '0'
+- AL
+- "<final> 0644 0623"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR FINAL ARABIC HAMZAH ON LIGATURE LAM ALEF
+- ''
+- ''
+- ''
+- ''
+65273:
+- 65273
+- ARABIC LIGATURE LAM WITH ALEF WITH HAMZA BELOW ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 0644 0625"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR ISOLATE ARABIC HAMZAH UNDER LIGATURE LAM ALEF
+- ''
+- ''
+- ''
+- ''
+65274:
+- 65274
+- ARABIC LIGATURE LAM WITH ALEF WITH HAMZA BELOW FINAL FORM
+- Lo
+- '0'
+- AL
+- "<final> 0644 0625"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR FINAL ARABIC HAMZAH UNDER LIGATURE LAM ALEF
+- ''
+- ''
+- ''
+- ''
+65275:
+- 65275
+- ARABIC LIGATURE LAM WITH ALEF ISOLATED FORM
+- Lo
+- '0'
+- AL
+- "<isolated> 0644 0627"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR ISOLATE ARABIC LIGATURE LAM ALEF
+- ''
+- ''
+- ''
+- ''
+65276:
+- 65276
+- ARABIC LIGATURE LAM WITH ALEF FINAL FORM
+- Lo
+- '0'
+- AL
+- "<final> 0644 0627"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR FINAL ARABIC LIGATURE LAM ALEF
+- ''
+- ''
+- ''
+- ''
+65279:
+- 65279
+- ZERO WIDTH NO-BREAK SPACE
+- Cf
+- '0'
+- BN
+- ''
+- ''
+- ''
+- ''
+- N
+- BYTE ORDER MARK
+- ''
+- ''
+- ''
+- ''

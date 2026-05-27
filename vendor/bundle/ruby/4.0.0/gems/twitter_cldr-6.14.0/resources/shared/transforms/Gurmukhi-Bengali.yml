@@ -1,0 +1,16 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - Gurmukhi-Bengali
+      - und-Beng-t-und-guru
+    :direction: forward
+    :rules: 
+      - "::[।-॥ਁਂਅ-ਊਏ-ਐਓ-ਨਪ-ਰਲ-ਲ਼ਵ-ਸ਼ਸ-ਹ਼ਾ-ੂੇ-ੈੋ-੍ਖ਼-ੜਫ਼੦-ੴ] ;"
+      - "::NFD ;"
+      - "::Gurmukhi-InterIndic ;"
+      - "::InterIndic-Bengali ;"
+      - "::NFC ;"
+    :source: Guru
+    :target: Beng
+    :variant: ~

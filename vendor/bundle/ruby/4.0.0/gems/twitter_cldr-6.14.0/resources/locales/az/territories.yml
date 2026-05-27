@@ -1,0 +1,267 @@
+--- 
+:az: 
+  :territories: 
+    :ac: "Askenson adası"
+    :ad: Andorra
+    :ae: "Birləşmiş Ərəb Əmirlikləri"
+    :af: Əfqanıstan
+    :ag: "Antiqua və Barbuda"
+    :ai: Angilya
+    :al: Albaniya
+    :am: Ermənistan
+    :ao: Anqola
+    :aq: Antarktika
+    :ar: Argentina
+    :as: "Amerika Samoası"
+    :at: Avstriya
+    :au: Avstraliya
+    :aw: Aruba
+    :ax: "Aland adaları"
+    :az: Azərbaycan
+    :ba: "Bosniya və Herseqovina"
+    :bb: Barbados
+    :bd: Banqladeş
+    :be: Belçika
+    :bf: "Burkina Faso"
+    :bg: Bolqarıstan
+    :bh: Bəhreyn
+    :bi: Burundi
+    :bj: Benin
+    :bl: Sent-Bartelemi
+    :bm: "Bermud adaları"
+    :bn: Bruney
+    :bo: Boliviya
+    :bq: "Karib Niderlandı"
+    :br: Braziliya
+    :bs: "Baham adaları"
+    :bt: Butan
+    :bv: "Buve adası"
+    :bw: Botsvana
+    :by: Belarus
+    :bz: Beliz
+    :ca: Kanada
+    :cc: "Kokos (Kilinq) adaları"
+    :cd: "Konqo - Kinşasa"
+    :cf: "Mərkəzi Afrika Respublikası"
+    :cg: "Konqo - Brazzavil"
+    :ch: İsveçrə
+    :ci: Kotd’ivuar
+    :ck: "Kuk adaları"
+    :cl: Çili
+    :cm: Kamerun
+    :cn: Çin
+    :co: Kolumbiya
+    :cp: "Klipperton adası"
+    :cr: "Kosta Rika"
+    :cu: Kuba
+    :cv: Kabo-Verde
+    :cw: Kurasao
+    :cx: "Milad adası"
+    :cy: Kipr
+    :cz: Çexiya
+    :de: Almaniya
+    :dg: "Dieqo Qarsiya"
+    :dj: Cibuti
+    :dk: Danimarka
+    :dm: Dominika
+    :do: "Dominikan Respublikası"
+    :dz: Əlcəzair
+    :ea: "Seuta və Melilya"
+    :ec: Ekvador
+    :ee: Estoniya
+    :eg: Misir
+    :eh: "Qərbi Saxara"
+    :er: Eritreya
+    :es: İspaniya
+    :et: Efiopiya
+    :eu: "Avropa Birliyi"
+    :ez: Avrozona
+    :fi: Finlandiya
+    :fj: Fici
+    :fk: "Folklend adaları"
+    :fm: Mikroneziya
+    :fo: "Farer adaları"
+    :fr: Fransa
+    :ga: Qabon
+    :gb: "Birləşmiş Krallıq"
+    :gd: Qrenada
+    :ge: Gürcüstan
+    :gf: "Fransa Qvianası"
+    :gg: Gernsi
+    :gh: Qana
+    :gi: Cəbəllütariq
+    :gl: Qrenlandiya
+    :gm: Qambiya
+    :gn: Qvineya
+    :gp: Qvadelupa
+    :gq: "Ekvatorial Qvineya"
+    :gr: Yunanıstan
+    :gs: "Cənubi Corciya və Cənubi Sendviç adaları"
+    :gt: Qvatemala
+    :gu: Quam
+    :gw: Qvineya-Bisau
+    :gy: Qayana
+    :hk: "Honq Konq Xüsusi İnzibati Rayonu Çin"
+    :hm: "Herd və Makdonald adaları"
+    :hn: Honduras
+    :hr: Xorvatiya
+    :ht: Haiti
+    :hu: Macarıstan
+    :ic: "Kanar adaları"
+    :id: İndoneziya
+    :ie: İrlandiya
+    :il: İsrail
+    :im: "Men adası"
+    :in: Hindistan
+    :io: "Britaniyanın Hind Okeanı Ərazisi"
+    :iq: İraq
+    :ir: İran
+    :is: İslandiya
+    :it: İtaliya
+    :je: Cersi
+    :jm: Yamayka
+    :jo: İordaniya
+    :jp: Yaponiya
+    :ke: Keniya
+    :kg: Qırğızıstan
+    :kh: Kamboca
+    :ki: Kiribati
+    :km: "Komor adaları"
+    :kn: "Sent-Kits və Nevis"
+    :kp: "Şimali Koreya"
+    :kr: "Cənubi Koreya"
+    :kw: Küveyt
+    :ky: "Kayman adaları"
+    :kz: Qazaxıstan
+    :la: Laos
+    :lb: Livan
+    :lc: Sent-Lusiya
+    :li: Lixtenşteyn
+    :lk: Şri-Lanka
+    :lr: Liberiya
+    :ls: Lesoto
+    :lt: Litva
+    :lu: Lüksemburq
+    :lv: Latviya
+    :ly: Liviya
+    :ma: Mərakeş
+    :mc: Monako
+    :md: Moldova
+    :me: Monteneqro
+    :mf: "Sent Martin"
+    :mg: Madaqaskar
+    :mh: "Marşal adaları"
+    :mk: "Şimali Makedoniya"
+    :ml: Mali
+    :mm: Myanma
+    :mn: Monqolustan
+    :mo: "Makao XİR Çin"
+    :mp: "Şimali Marian adaları"
+    :mq: Martinik
+    :mr: Mavritaniya
+    :ms: Monserat
+    :mt: Malta
+    :mu: Mavriki
+    :mv: "Maldiv adaları"
+    :mw: Malavi
+    :mx: Meksika
+    :my: Malayziya
+    :mz: Mozambik
+    :na: Namibiya
+    :nc: "Yeni Kaledoniya"
+    :ne: Niger
+    :nf: "Norfolk adası"
+    :ng: Nigeriya
+    :ni: Nikaraqua
+    :nl: Niderland
+    ? !ruby/symbol "no"
+    : Norveç
+    :np: Nepal
+    :nr: Nauru
+    :nu: Niue
+    :nz: "Yeni Zelandiya"
+    :om: Oman
+    :pa: Panama
+    :pe: Peru
+    :pf: "Fransa Polineziyası"
+    :pg: "Papua-Yeni Qvineya"
+    :ph: Filippin
+    :pk: Pakistan
+    :pl: Polşa
+    :pm: "Müqəddəs Pyer və Mikelon"
+    :pn: "Pitkern adaları"
+    :pr: "Puerto Riko"
+    :ps: "Fələstin Əraziləri"
+    :pt: Portuqaliya
+    :pw: Palau
+    :py: Paraqvay
+    :qa: Qətər
+    :qo: "Uzaq Okeaniya"
+    :re: Reyunyon
+    :ro: Rumıniya
+    :rs: Serbiya
+    :ru: Rusiya
+    :rw: Ruanda
+    :sa: "Səudiyyə Ərəbistanı"
+    :sb: "Solomon adaları"
+    :sc: "Seyşel adaları"
+    :sd: Sudan
+    :se: İsveç
+    :sg: Sinqapur
+    :sh: "Müqəddəs Yelena"
+    :si: Sloveniya
+    :sj: "Svalbard və Yan-Mayen"
+    :sk: Slovakiya
+    :sl: Syerra-Leone
+    :sm: San-Marino
+    :sn: Seneqal
+    :so: Somali
+    :sr: Surinam
+    :ss: "Cənubi Sudan"
+    :st: "San-Tome və Prinsipi"
+    :sv: Salvador
+    :sx: Sint-Marten
+    :sy: Suriya
+    :sz: Esvatini
+    :ta: "Tristan da Kunya"
+    :tc: "Törks və Kaykos adaları"
+    :td: Çad
+    :tf: "Fransanın Cənub Əraziləri"
+    :tg: Toqo
+    :th: Tailand
+    :tj: Tacikistan
+    :tk: Tokelau
+    :tl: "Şərqi Timor"
+    :tm: Türkmənistan
+    :tn: Tunis
+    :to: Tonqa
+    :tr: Türkiyə
+    :tt: "Trinidad və Tobaqo"
+    :tv: Tuvalu
+    :tw: Tayvan
+    :tz: Tanzaniya
+    :ua: Ukrayna
+    :ug: Uqanda
+    :um: "ABŞ-a bağlı kiçik adacıqlar"
+    :un: "Birləşmiş Millətlər Təşkilatı"
+    :us: "Amerika Birləşmiş Ştatları"
+    :uy: Uruqvay
+    :uz: Özbəkistan
+    :va: Vatikan
+    :vc: "Sent-Vinsent və Qrenadinlər"
+    :ve: Venesuela
+    :vg: "Britaniyanın Virgin adaları"
+    :vi: "ABŞ Virgin adaları"
+    :vn: Vyetnam
+    :vu: Vanuatu
+    :wf: "Uollis və Futuna"
+    :ws: Samoa
+    :xa: Psevdo-Aksent
+    :xb: Psevdo-Bidi
+    :xk: Kosovo
+    :ye: Yəmən
+    :yt: Mayot
+    :za: "Cənub Afrika"
+    :zm: Zambiya
+    :zw: Zimbabve
+    :zz: "Naməlum Region"

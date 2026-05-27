@@ -1,0 +1,24 @@
+module Aws
+  module Telemetry
+    class SpanStatus
+
+      def self.unset: (?::String description) -> SpanStatus
+
+      def self.ok: (?::String description) -> SpanStatus
+
+      def self.error: (?::String description) -> SpanStatus
+
+      def initialize: (Integer code, ?description: ::String) -> void
+
+      attr_reader code: Integer
+
+      attr_reader description: String
+
+      OK: 0
+
+      UNSET: 1
+
+      ERROR: 2
+    end
+  end
+end

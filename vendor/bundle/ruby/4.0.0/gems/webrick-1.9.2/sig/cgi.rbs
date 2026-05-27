@@ -1,0 +1,92 @@
+module WEBrick
+  class CGI
+    @options: Array[untyped]
+
+    class CGIError < StandardError
+    end
+
+    attr_reader config: Hash[Symbol, untyped]
+
+    attr_reader logger: BasicLog
+
+    def initialize: (*untyped args) -> void
+
+    def []: (Symbol key) -> untyped
+
+    interface _Env
+      def []: (String) -> String?
+    end
+
+    def start: (?_Env env, ?IO stdin, ?IO stdout) -> void
+
+    def self.setup_header: () -> untyped
+
+    def self.status_line: () -> ""
+
+    def service: (HTTPRequest req, HTTPResponse res) -> void
+
+    class Socket
+      @config: Hash[Symbol, untyped]
+
+      @env: _Env
+
+      @header_part: StringIO
+
+      @body_part: IO
+
+      @out_port: IO
+
+      @server_addr: String
+
+      @server_name: String?
+
+      @server_port: String?
+
+      @remote_addr: String?
+
+      @remote_host: String?
+
+      @remote_port: (String | 0)
+
+      include Enumerable[String]
+
+      private
+
+      def initialize: (Hash[Symbol, untyped] config, _Env env, IO stdin, IO stdout) -> void
+
+      def request_line: () -> String
+
+      def setup_header: () -> void
+
+      def add_header: (String hdrname, String value) -> void
+
+      def input: () -> (IO | StringIO)
+
+      public
+
+      def peeraddr: () -> [nil, (String | 0), String?, String?]
+
+      def addr: () -> [nil, String?, String?, String]
+
+      def gets: (?String eol, ?Integer? size) -> String?
+
+      def read: (?Integer? size) -> String?
+
+      def each: () { (String) -> void } -> void
+
+      def eof?: () -> bool
+
+      def <<: (_ToS data) -> IO
+
+      def write: (_ToS data) -> Integer
+
+      def cert: () -> OpenSSL::X509::Certificate?
+
+      def peer_cert: () -> OpenSSL::X509::Certificate?
+
+      def peer_cert_chain: () -> Array[OpenSSL::X509::Certificate]?
+
+      def cipher: () -> [String?, String?, String?, String?]?
+    end
+  end
+end

@@ -1,0 +1,69 @@
+# WARNING ABOUT GENERATED CODE
+#
+# This file is generated. See the contributing guide for more information:
+# https://github.com/aws/aws-sdk-ruby/blob/version-3/CONTRIBUTING.md
+#
+# WARNING ABOUT GENERATED CODE
+
+module Aws
+  module S3
+    # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/BucketCors.html
+    class BucketCors
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/BucketCors.html#initialize-instance_method
+      def initialize: (String bucket_name, Hash[Symbol, untyped] options) -> void
+                    | (bucket_name: String, ?client: Client) -> void
+                    | (Hash[Symbol, untyped] args) -> void
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/BucketCors.html#bucket_name-instance_method
+      def bucket_name: () -> String
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/BucketCors.html#cors_rules-instance_method
+      def cors_rules: () -> ::Array[Types::CORSRule]
+
+      def client: () -> Client
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/BucketCors.html#load-instance_method
+      def load: () -> self
+      alias reload load
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/BucketCors.html#data-instance_method
+      def data: () -> Types::GetBucketCorsOutput
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/BucketCors.html#data_loaded?-instance_method
+      def data_loaded?: () -> bool
+
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/BucketCors.html#delete-instance_method
+      def delete: (
+                    ?expected_bucket_owner: ::String
+                  ) -> ::Aws::EmptyStructure
+                | (?Hash[Symbol, untyped]) -> ::Aws::EmptyStructure
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/BucketCors.html#put-instance_method
+      def put: (
+                 cors_configuration: {
+                   cors_rules: Array[
+                     {
+                       id: ::String?,
+                       allowed_headers: Array[::String]?,
+                       allowed_methods: Array[::String],
+                       allowed_origins: Array[::String],
+                       expose_headers: Array[::String]?,
+                       max_age_seconds: ::Integer?
+                     },
+                   ]
+                 },
+                 ?content_md5: ::String,
+                 ?checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME"),
+                 ?expected_bucket_owner: ::String
+               ) -> ::Aws::EmptyStructure
+             | (?Hash[Symbol, untyped]) -> ::Aws::EmptyStructure
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/BucketCors.html#bucket-instance_method
+      def bucket: () -> Bucket
+
+      class Collection < ::Aws::Resources::Collection[BucketCors]
+      end
+    end
+  end
+end

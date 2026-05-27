@@ -1,0 +1,24 @@
+<div class="col left">
+  <h1>
+    Letters
+    <span class="float-end">
+      <%= link_to letters_path, class: 'btn btn-primary refresh' do %>
+        Refresh
+      <% end %>
+      <%= link_to clear_letters_path, method: 'post', data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' do %>
+        Clear
+      <% end %>
+    </span>
+  </h1>
+    <div class="letter-opener" data-letters-path="<%= letters_path %>">
+      <ul class="list-group rounded-0 pt-2">
+        <% if first_letter = @letters.shift %>
+          <%= render partial: "item", locals: { letter: first_letter, active: true } %>
+        <% end %>
+        <%= render partial: "item", collection: @letters, as: :letter, locals: { active: false } %>
+      </ul>
+    </div>
+</div>
+<div class="col right">
+  <iframe name="mail" id="mail" src="<%= first_letter.present? ? letter_path(first_letter, style: first_letter.default_style) : 'about:blank' %>"></iframe>
+</div>
