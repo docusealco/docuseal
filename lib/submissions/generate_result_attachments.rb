@@ -151,6 +151,8 @@ module Submissions
       with_signature_id_reason =
         configs.find { |c| c.key == AccountConfig::WITH_SIGNATURE_ID_REASON_KEY }&.value != false
 
+      file_links_expire_at = Accounts.link_expires_at(submitter.account) if with_file_links
+
       pdfs_index = build_pdfs_index(submitter.submission, submitter:, flatten: is_flatten,
                                                           incremental: is_rotate_incremental)
 
@@ -198,12 +200,14 @@ module Submissions
                                                                       with_submitter_timezone:,
                                                                       with_file_links:,
                                                                       with_timestamp_seconds:,
-                                                                      with_signature_id_reason:)
+                                                                      with_signature_id_reason:,
+                                                                      file_links_expire_at:)
     end
 
     def fill_submitter_fields(submitter, account, pdfs_index, with_signature_id:, is_flatten:, with_headings: nil,
                               with_submitter_timezone: false, with_signature_id_reason: true,
-                              with_timestamp_seconds: false, with_file_links: nil)
+                              with_timestamp_seconds: false, with_file_links: nil,
+                              file_links_expire_at: Accounts.link_expires_at(account))
       cell_layouters = Hash.new do |hash, valign|
         hash[valign] = HexaPDF::Layout::TextLayouter.new(text_valign: valign.to_sym, text_align: :center)
       end
@@ -516,7 +520,7 @@ module Submissions
 
               url =
                 if with_file_links
-                  ActiveStorage::Blob.proxy_url(attachment.blob)
+                  ActiveStorage::Blob.proxy_url(attachment.blob, expires_at: file_links_expire_at)
                 else
                   r.submissions_preview_url(submission.slug, **Docuseal.default_url_options)
                 end

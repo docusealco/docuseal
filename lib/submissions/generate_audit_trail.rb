@@ -129,6 +129,8 @@ module Submissions
       with_submitter_timezone = configs.find { |c| c.key == AccountConfig::WITH_SUBMITTER_TIMEZONE_KEY }&.value == true
       with_timestamp_seconds = configs.find { |c| c.key == AccountConfig::WITH_TIMESTAMP_SECONDS_KEY }&.value == true
 
+      file_links_expire_at = Accounts.link_expires_at(submission.account) if with_file_links
+
       timezone = account.timezone
       timezone = last_submitter.timezone || account.timezone if with_submitter_timezone
 
@@ -408,7 +410,7 @@ module Submissions
 
                   link =
                     if with_file_links
-                      ActiveStorage::Blob.proxy_url(attachment.blob)
+                      ActiveStorage::Blob.proxy_url(attachment.blob, expires_at: file_links_expire_at)
                     else
                       r.submissions_preview_url(submission.slug, **Docuseal.default_url_options)
                     end
