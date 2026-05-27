@@ -101,11 +101,18 @@ class StartFormController < ApplicationController
   def load_resubmit_submitter
     @resubmit_submitter =
       if params[:resubmit].present? && !params[:resubmit].in?([true, 'true'])
-        Submitter.find_by(slug: params[:resubmit])
+        submitter = Submitter.find_by(slug: params[:resubmit])
+
+        submitter if submitter && can_resubmit?(submitter)
       end
   end
 
+  def can_resubmit?(submitter)
+    submitter.account.account_configs.find_or_initialize_by(key: AccountConfig::ALLOW_TO_RESUBMIT).value != false
+  end
+
   def authorize_start!
+    return redirect_to submit_form_path(@resubmit_submitter.slug) if @resubmit_submitter && @template.archived_at?
     return redirect_to start_form_path(@template.slug) if @template.archived_at?
 
     return if @resubmit_submitter
