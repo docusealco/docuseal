@@ -1,5 +1,0 @@
-<?hh // strict
-
-async function foo(): Awaitable<string> {
-  return await (() ==> 'Hello, world')();
-}

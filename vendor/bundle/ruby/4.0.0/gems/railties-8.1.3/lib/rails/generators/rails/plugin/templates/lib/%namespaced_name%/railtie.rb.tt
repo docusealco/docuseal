@@ -1,5 +1,0 @@
-<%= wrap_in_modules <<~rb
-  class Railtie < ::Rails::Railtie
-  end
-rb
-%>

@@ -1,5 +1,0 @@
-main_page: README.md
-op_dir: _site
-warn_missing_rdoc_ref: true
-title: URI Documentation
-visibility: :private

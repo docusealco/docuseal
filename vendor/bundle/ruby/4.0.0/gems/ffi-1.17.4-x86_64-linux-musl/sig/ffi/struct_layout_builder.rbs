@@ -1,5 +1,0 @@
-module FFI
-  class StructLayoutBuilder
-    #TODO
-  end
-end

@@ -1,8 +1,0 @@
-Description:
-    Explain the generator
-
-Example:
-    bin/rails generate <%= file_name %> Thing
-
-    This will create:
-        what/will/it/create

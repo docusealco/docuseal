@@ -1,9 +1,0 @@
-theme: jekyll-theme-slate
-
-title: ChunkyPNG
-email: willem@vanbergen.org
-description: Read/write access to PNG images in pure Ruby.
-url: "https://www.chunkypng.com"
-
-highlighter: rouge
-show_downloads: true

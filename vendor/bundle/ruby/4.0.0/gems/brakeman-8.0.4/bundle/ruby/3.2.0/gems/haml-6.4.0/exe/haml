@@ -1,6 +1,0 @@
-#!/usr/bin/env ruby
-
-$:.unshift File.expand_path('../lib', __dir__)
-require 'haml/cli'
-
-Haml::CLI.start(ARGV)

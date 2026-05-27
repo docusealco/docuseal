@@ -1,2 +1,0 @@
-escape.o: $(RUBY_EXTCONF_H)
-escape.o: escape.c

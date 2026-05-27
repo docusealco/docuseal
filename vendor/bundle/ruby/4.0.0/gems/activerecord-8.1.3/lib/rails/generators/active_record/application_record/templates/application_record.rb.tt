@@ -1,5 +1,0 @@
-<% module_namespacing do -%>
-class ApplicationRecord < ActiveRecord::Base
-  primary_abstract_class
-end
-<% end -%>

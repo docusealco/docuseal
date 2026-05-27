@@ -1,4 +1,0 @@
-module WEBrick
-  module HTTPServlet
-  end
-end

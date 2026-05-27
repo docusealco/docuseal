@@ -1,8 +1,0 @@
-.autotest
-History.rdoc
-Manifest.txt
-README.rdoc
-Rakefile
-bin/r2r_show
-lib/ruby2ruby.rb
-test/test_ruby2ruby.rb

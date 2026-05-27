@@ -1,5 +1,0 @@
-[tools]
-ruby = "3.4"
-
-[env]
-MAINTENANCE = "true"

@@ -1,6 +1,0 @@
----
-nb:
-  number:
-    nth:
-      ordinals: "."
-      ordinalized: "%{number}."

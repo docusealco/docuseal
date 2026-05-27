@@ -1,6 +1,0 @@
-*.gem
-.bundle
-.yardoc
-pkg/*
-coverage
-Gemfile.lock

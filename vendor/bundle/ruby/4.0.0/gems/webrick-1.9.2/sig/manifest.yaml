@@ -1,8 +1,0 @@
-dependencies:
-  - name: digest
-  - name: erb
-  - name: openssl
-  - name: singleton
-  - name: socket
-  - name: tempfile
-  - name: uri

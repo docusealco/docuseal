@@ -1,5 +1,0 @@
----
-main_page: README.md
-rdoc_include:
-- doc
-op_dir: html

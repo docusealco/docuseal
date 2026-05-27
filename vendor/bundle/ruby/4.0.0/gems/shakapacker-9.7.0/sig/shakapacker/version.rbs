@@ -1,4 +1,0 @@
-module Shakapacker
-  # The current version of Shakapacker
-  VERSION: String
-end

@@ -1,2 +1,0 @@
-require 'devise_two_factor/strategies/two_factor_authenticatable'
-require 'devise_two_factor/strategies/two_factor_backupable'

@@ -1,2 +1,0 @@
-# :stopdoc:
-module Kernel end

@@ -1,9 +1,0 @@
-module VersionGem
-  module Version
-    VERSION: String
-
-    # At runtime this module is extended with Basic via class_eval in lib/version_gem.rb
-    # Declare the intended extension so class methods are available in typing
-    extend VersionGem::Basic
-  end
-end

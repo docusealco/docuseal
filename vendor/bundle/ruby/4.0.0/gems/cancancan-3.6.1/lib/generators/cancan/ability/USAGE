@@ -1,4 +1,0 @@
-Description:
-  The cancan:ability generator creates an Ability class in the models
-  directory. You can move this file anywhere you want as long as it
-  is in the load path.

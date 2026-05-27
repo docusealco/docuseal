@@ -1,5 +1,0 @@
-fr:
-  faker:
-    phone_number:
-      country_code:
-        - '33'

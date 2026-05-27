@@ -1,4 +1,0 @@
-[Unit]
-Description=Snap Daemon
-Requires=snapd.socket
-OnFailure=snapd.failure.service

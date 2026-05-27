@@ -1,1 +1,0 @@
-exec "./bin/rails", "server", *ARGV

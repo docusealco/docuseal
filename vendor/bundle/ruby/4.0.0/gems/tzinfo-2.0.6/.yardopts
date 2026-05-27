@@ -1,9 +1,0 @@
---markup markdown
---no-private
---protected
---readme README.md
-lib/**/*.rb
--
-CHANGES.md
-LICENSE
-README.md

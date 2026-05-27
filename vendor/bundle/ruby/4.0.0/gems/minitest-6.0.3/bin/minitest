@@ -1,5 +1,0 @@
-#!/usr/bin/env -S ruby
-
-require_relative "../lib/minitest/sprint"
-
-Minitest::Sprint.run

@@ -1,9 +1,0 @@
-module OAuth2
-  OAUTH_DEBUG: bool
-
-  DEFAULT_CONFIG: untyped
-  @config: untyped
-
-  def self.config: () -> untyped
-  def self.configure: () { (untyped) -> void } -> void
-end

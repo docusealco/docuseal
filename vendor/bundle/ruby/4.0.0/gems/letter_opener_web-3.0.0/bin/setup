@@ -1,6 +1,0 @@
-#!/bin/bash
-set -euo pipefail
-
-bundle check || bundle install
-
-ln -sf "$(git rev-parse --show-toplevel)/script/pre-push" .git/hooks/pre-push

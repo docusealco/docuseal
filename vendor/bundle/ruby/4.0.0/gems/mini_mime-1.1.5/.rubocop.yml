@@ -1,5 +1,0 @@
-inherit_gem:
-  rubocop-discourse: default.yml
-inherit_mode:
-  merge:
-    - Exclude

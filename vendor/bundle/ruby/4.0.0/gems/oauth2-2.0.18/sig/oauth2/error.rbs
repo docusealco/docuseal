@@ -1,8 +1,0 @@
-module OAuth2
-  class Error < StandardError
-    def initialize: (OAuth2::Response) -> void
-    def code: () -> (String | Integer | nil)
-    def description: () -> (String | nil)
-    def response: () -> OAuth2::Response
-  end
-end

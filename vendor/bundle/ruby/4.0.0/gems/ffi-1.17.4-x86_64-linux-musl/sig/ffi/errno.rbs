@@ -1,8 +1,0 @@
-module FFI
-  module LastError
-    def self?.error: () -> Integer
-    def self?.error=: (Integer) -> Integer
-    def self?.winapi_error: () -> Integer?
-    def self?.winapi_error=: (Integer? error) -> void
-  end
-end

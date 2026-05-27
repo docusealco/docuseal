@@ -1,6 +1,0 @@
----
-de-AT:
-  number:
-    nth:
-      ordinals: "."
-      ordinalized: "%{number}."

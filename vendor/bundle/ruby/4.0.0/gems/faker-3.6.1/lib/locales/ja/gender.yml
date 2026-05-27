@@ -1,6 +1,0 @@
-ja:
-  faker:
-    gender:
-      binary_types:
-        - 女性
-        - 男性

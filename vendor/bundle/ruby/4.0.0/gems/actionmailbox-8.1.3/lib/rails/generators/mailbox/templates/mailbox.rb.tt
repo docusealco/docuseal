@@ -1,4 +1,0 @@
-class <%= class_name %>Mailbox < ApplicationMailbox
-  def process
-  end
-end

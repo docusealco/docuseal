@@ -1,7 +1,0 @@
---- spec/fixtures/four_lines	2025-01-31 12:13:45.476036544 +0100
-+++ spec/fixtures/empty	2025-01-31 12:14:52.856031635 +0100
-@@ -1,4 +0,0 @@
--one
--two
--three
--four

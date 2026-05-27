@@ -1,3 +1,0 @@
-(defn a-fun
-  "A function"
-  (do-something))

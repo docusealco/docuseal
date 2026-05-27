@@ -1,6 +1,0 @@
-module OAuth2
-  module FilteredAttributes
-    def self.included: (untyped) -> untyped
-    def filtered_attributes: (*String) -> void
-  end
-end

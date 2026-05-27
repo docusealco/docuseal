@@ -1,3 +1,0 @@
-// Create Distribution of Big Class
-dt = open( "$sample_data\big class.jmp" );
-dt << Distribution( Column( :age ), Histograms Only( 1 ) );

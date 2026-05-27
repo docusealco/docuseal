@@ -1,5 +1,0 @@
---title "ChunkyPNG - The pure Ruby PNG library"
-lib/**/*.rb -
-BENCHMARKING.rdoc
---no-private
---hide-void-return
