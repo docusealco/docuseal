@@ -747,7 +747,7 @@ module Submissions
       pdf.trailer.info[:Creator] = info_creator
 
       if Docuseal.pdf_format == 'pdf/a-3b'
-        pdf.task(:pdfa, level: '3b')
+        pdfa_listener = pdf.task(:pdfa, level: '3b')
         pdf.config['font.map'] = PDFA_FONT_MAP
       end
 
@@ -765,6 +765,8 @@ module Submissions
           pdf.sign(io, write_options: { validate: false }, **sign_params)
         rescue HexaPDF::Error, NoMethodError, TypeError => e
           Rollbar.error(e) if defined?(Rollbar)
+
+          pdf.instance_variable_get(:@listeners)[:complete_objects].delete(pdfa_listener) if pdfa_listener
 
           begin
             pdf.sign(io, write_options: { validate: false, incremental: false }, **sign_params)
