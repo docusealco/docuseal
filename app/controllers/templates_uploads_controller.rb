@@ -5,7 +5,9 @@ class TemplatesUploadsController < ApplicationController
 
   layout 'plain'
 
-  def show; end
+  def show
+    redirect_to root_path if params[:url].blank?
+  end
 
   def create
     url_params = create_file_params_from_url if params[:url].present?
