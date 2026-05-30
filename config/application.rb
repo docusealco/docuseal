@@ -25,6 +25,8 @@ module DocuSeal
 
     config.active_storage.draw_routes = ENV['MULTITENANT'] != 'true'
 
+    config.active_storage.analyzers = []
+
     config.active_storage.content_types_to_serve_as_binary += %w[
       application/javascript
       text/javascript
