@@ -264,9 +264,6 @@ GEM
       strscan (>= 3.1.2)
     i18n (1.14.8)
       concurrent-ruby (~> 1.0)
-    image_processing (1.14.0)
-      mini_magick (>= 4.9.5, < 6)
-      ruby-vips (>= 2.0.17, < 3)
     io-console (0.8.2)
     irb (1.18.0)
       pp (>= 0.6.0)
@@ -308,8 +305,6 @@ GEM
     marcel (1.1.0)
     matrix (0.4.3)
     method_source (1.1.0)
-    mini_magick (5.3.1)
-      logger
     mini_mime (1.1.5)
     minitest (6.0.6)
       drb (~> 2.0)
@@ -624,7 +619,6 @@ DEPENDENCIES
   foreman
   google-cloud-storage
   hexapdf
-  image_processing
   jwt
   letter_opener_web
   lograge
