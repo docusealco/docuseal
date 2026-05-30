@@ -40,6 +40,7 @@ module Submitters
         end
 
       logo = logo.resize([WIDTH / logo.width.to_f, HEIGHT / logo.height.to_f].min)
+      logo = logo.copy(interpretation: :srgb) if logo.interpretation == :multiband
 
       base_layer = Vips::Image.black(WIDTH, HEIGHT).new_from_image([255, 255, 255, 255]).copy(interpretation: :srgb)
 
