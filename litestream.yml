@@ -1,0 +1,13 @@
+# Litestream: replicate docuseal's SQLite db to R2 (same creds/bucket as attachments).
+dbs:
+  - path: /data/docuseal/db.sqlite3
+    replicas:
+      - type: s3
+        bucket: ${S3_ATTACHMENTS_BUCKET}
+        path: litestream/docuseal
+        endpoint: ${S3_ENDPOINT}
+        region: auto
+        access-key-id: ${AWS_ACCESS_KEY_ID}
+        secret-access-key: ${AWS_SECRET_ACCESS_KEY}
+        sync-interval: 60s
+        retention: 168h

@@ -40,6 +40,8 @@ COPY ./app/views ./app/views
 
 RUN echo "gem 'shakapacker'" > Gemfile && ./bin/shakapacker
 
+FROM litestream/litestream:0.5.11 AS litestream
+
 FROM ruby:4.0.1-alpine AS app
 
 ENV RAILS_ENV=production
@@ -95,5 +97,11 @@ ENV HOME=/home/docuseal
 ENV WORKDIR=/data/docuseal
 ENV VIPS_MAX_COORD=17000
 
+# Litestream: restore-on-boot + continuous replication of the SQLite db to R2.
+COPY --from=litestream /usr/local/bin/litestream /usr/local/bin/litestream
+COPY litestream.yml /etc/litestream.yml
+COPY scripts/start.sh /usr/local/bin/start.sh
+RUN chmod +x /usr/local/bin/start.sh
+
 EXPOSE 3000
-CMD ["/app/bin/bundle", "exec", "puma", "-C", "/app/config/puma.rb", "--dir", "/app"]
+CMD ["/usr/local/bin/start.sh"]
