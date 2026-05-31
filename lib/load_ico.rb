@@ -202,13 +202,13 @@ module LoadIco
 
     return nil unless pixel_data_string.bytesize == expected_bytes && expected_bytes.positive?
 
-    Vips::Image.new_from_memory(
+    Vips::Image.new_from_memory_copy(
       pixel_data_string,
       dib_width,
       image_pixel_height,
       4,
       :uchar
-    )
+    ).copy(interpretation: :srgb)
   end
   # rubocop:enable Metrics
 end

@@ -193,7 +193,7 @@ module Templates
 
       data, width, height = page.render_to_bitmap(size_key => size)
 
-      Vips::Image.new_from_memory(data, width, height, 4, :uchar)
+      Vips::Image.new_from_memory_copy(data, width, height, 4, :uchar)
     end
 
     def sort_fields(fields, y_threshold: 0.01)
