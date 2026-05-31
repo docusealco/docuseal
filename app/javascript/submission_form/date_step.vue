@@ -27,6 +27,7 @@
       </label>
       <button
         v-if="withToday"
+        type="button"
         class="btn btn-outline btn-sm !normal-case font-normal set-current-date-button"
         @click.prevent="[setCurrentDate(), $emit('focus')]"
       >
