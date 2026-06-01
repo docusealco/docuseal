@@ -48,7 +48,9 @@
 #
 class User < ApplicationRecord
   ROLES = [
-    ADMIN_ROLE = 'admin'
+    ADMIN_ROLE  = 'admin',
+    EDITOR_ROLE = 'editor',
+    VIEWER_ROLE = 'viewer'
   ].freeze
 
   EMAIL_REGEXP = /[^@;,<>\s]+@[^@;,<>\s]+/
@@ -97,6 +99,10 @@ class User < ApplicationRecord
 
     role == 'admin'
   end
+
+  def admin?  = role == ADMIN_ROLE
+  def editor? = role == EDITOR_ROLE
+  def viewer? = role == VIEWER_ROLE
 
   def self.sign_in_after_reset_password
     if PasswordsController::Current.user.present?
