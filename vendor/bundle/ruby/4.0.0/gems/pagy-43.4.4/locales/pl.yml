@@ -1,0 +1,28 @@
+# See https://ddnexus.github.io/pagy/resources/i18n
+
+pl:
+  pagy:
+    p11n: 'Polish'
+    aria_label:
+      nav:
+        one: "Strona"
+        few: "Strony"
+        many: "Stron"
+        other: "Strony"
+      previous: "Poprzednia"
+      next: "Następna"
+    previous: "&lt;"
+    next: "&gt;"
+    gap: "&hellip;"
+    item_name:
+      one: "element"
+      few: "elementy"
+      many: "elementów"
+      other: "elementów"
+    info_tag:
+      no_count: "Strona %{page} z %{pages}"
+      no_items: "Nie znaleziono %{item_name}"
+      single_page: "Wyświetlono %{count} %{item_name}"
+      multiple_pages: "Wyświetlono %{item_name} %{from}-%{to} z wszystkich %{count}"
+    input_nav_js: "Strona %{page_input} z %{pages}"
+    limit_tag_js: "Pokaż %{limit_input} %{item_name} na stronie"

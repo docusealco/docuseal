@@ -1,0 +1,40 @@
+current directory: /app/vendor/bundle/ruby/4.0.0/gems/better_html-2.2.0/ext/better_html_ext
+/usr/local/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /app/vendor/bundle/ruby/4.0.0/gems/better_html-2.2.0/ext/better_html_ext
+make -j4 DESTDIR\= sitearchdir\=./.gem.20260516-47-zv6c8c sitelibdir\=./.gem.20260516-47-zv6c8c clean
+
+current directory: /app/vendor/bundle/ruby/4.0.0/gems/better_html-2.2.0/ext/better_html_ext
+make -j4 DESTDIR\= sitearchdir\=./.gem.20260516-47-zv6c8c sitelibdir\=./.gem.20260516-47-zv6c8c
+compiling html_tokenizer.c
+compiling parser.c
+compiling tokenizer.c
+parser.c: In function 'parser_document_append':
+parser.c:499:9: warning: unused variable 'old' [-Wunused-variable]
+  499 |   void *old = parser->doc.data;
+      |         ^~~
+tokenizer.c: In function 'scan_tag_name':
+tokenizer.c:467:9: warning: variable 'old' set but not used [-Wunused-but-set-variable]
+  467 |   void *old;
+      |         ^~~
+tokenizer.c: In function 'tokenizer_set_scan_string':
+tokenizer.c:669:15: warning: unused variable 'old' [-Wunused-variable]
+  669 |   const char *old = tk->scan.string;
+      |               ^~~
+At top level:
+cc1: note: unrecognized command-line option '-Wno-self-assign' may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option '-Wno-parentheses-equality' may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option '-Wno-constant-logical-operand' may have been intended to silence earlier diagnostics
+At top level:
+cc1: note: unrecognized command-line option '-Wno-self-assign' may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option '-Wno-parentheses-equality' may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option '-Wno-constant-logical-operand' may have been intended to silence earlier diagnostics
+linking shared-object better_html_ext.so
+
+current directory: /app/vendor/bundle/ruby/4.0.0/gems/better_html-2.2.0/ext/better_html_ext
+make -j4 DESTDIR\= sitearchdir\=./.gem.20260516-47-zv6c8c sitelibdir\=./.gem.20260516-47-zv6c8c install
+/usr/bin/install -c -m 0755 better_html_ext.so ./.gem.20260516-47-zv6c8c
+
+current directory: /app/vendor/bundle/ruby/4.0.0/gems/better_html-2.2.0/ext/better_html_ext
+make DESTDIR\= sitearchdir\=./.gem.20260516-47-zv6c8c sitelibdir\=./.gem.20260516-47-zv6c8c clean

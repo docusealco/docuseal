@@ -1,0 +1,49 @@
+name: Dummy specs
+
+on:
+  push:
+    branches:
+      - "main"
+  pull_request:
+    paths:
+      - "spec/dummy/**"
+      - "lib/**"
+      - "**.rb"
+      - "**.js"
+      - "**.ts"
+      - "package.json"
+      - ".github/workflows/dummy.yml"
+  workflow_dispatch:
+
+concurrency:
+  # Pushing new changes to a branch will cancel any in-progress CI runs
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+          rubygems: latest
+      - name: Install dependencies
+        run: |
+          bundle install
+          yarn install --frozen-lockfile --production=false
+          npm install -g yalc
+          cd spec/dummy && npm install
+
+      - name: Build TypeScript
+        run: yarn build
+
+      - name: Run tests
+        run: bundle exec rake run_spec:dummy

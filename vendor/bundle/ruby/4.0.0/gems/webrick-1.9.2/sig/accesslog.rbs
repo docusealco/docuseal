@@ -1,0 +1,24 @@
+module WEBrick
+  module AccessLog
+    class AccessLogError < StandardError
+    end
+
+    CLF_TIME_FORMAT: String
+
+    COMMON_LOG_FORMAT: String
+
+    CLF: String
+
+    REFERER_LOG_FORMAT: String
+
+    AGENT_LOG_FORMAT: String
+
+    COMBINED_LOG_FORMAT: String
+
+    def self?.setup_params: (Hash[Symbol, untyped] config, HTTPRequest req, HTTPResponse res) -> Hash[String, untyped]
+
+    def self?.format: (String format_string, Hash[String, untyped] params) -> String
+
+    def self?.escape: (String data) -> String
+  end
+end

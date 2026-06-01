@@ -1,0 +1,103 @@
+--- 
+:bo: 
+  :formats: 
+    :fallback_formats: 
+      :generic: "{1} ({0})"
+    :gmt_formats: 
+      :generic: "GMT{0}"
+    :gmt_zero_formats: 
+      :generic: GMT
+    :hour_formats: 
+      :generic: "+HH:mm;-HH:mm"
+    :region_formats: 
+      :daylight: "{0} (+1)"
+      :generic: "{0}"
+      :standard: "{0} (+0)"
+  :timezones: 
+    :Africa/Asmera: 
+      :city: Asmara
+    :Africa/Sao_Tome: 
+      :city: "São Tomé"
+    :America/Asuncion: 
+      :city: Asunción
+    :America/Bahia_Banderas: 
+      :city: "Bahía de Banderas"
+    :America/Cancun: 
+      :city: Cancún
+    :America/Ciudad_Juarez: 
+      :city: "Ciudad Juárez"
+    :America/Coral_Harbour: 
+      :city: Atikokan
+    :America/Curacao: 
+      :city: Curaçao
+    :America/Godthab: 
+      :city: Nuuk
+    :America/Indiana/Knox: 
+      :city: "Knox, Indiana"
+    :America/Indiana/Marengo: 
+      :city: "Marengo, Indiana"
+    :America/Indiana/Petersburg: 
+      :city: "Petersburg, Indiana"
+    :America/Indiana/Tell_City: 
+      :city: "Tell City, Indiana"
+    :America/Indiana/Vevay: 
+      :city: "Vevay, Indiana"
+    :America/Indiana/Vincennes: 
+      :city: "Vincennes, Indiana"
+    :America/Indiana/Winamac: 
+      :city: "Winamac, Indiana"
+    :America/Kentucky/Monticello: 
+      :city: "Monticello, Kentucky"
+    :America/Lower_Princes: 
+      :city: "Lower Prince’s Quarter"
+    :America/Merida: 
+      :city: Mérida
+    :America/North_Dakota/Beulah: 
+      :city: "Beulah, North Dakota"
+    :America/North_Dakota/Center: 
+      :city: "Center, North Dakota"
+    :America/North_Dakota/New_Salem: 
+      :city: "New Salem, North Dakota"
+    :America/Scoresbysund: 
+      :city: Ittoqqortoormiit
+    :America/St_Barthelemy: 
+      :city: "St. Barthélemy"
+    :America/St_Johns: 
+      :city: "St. John’s"
+    :America/St_Kitts: 
+      :city: "St. Kitts"
+    :America/St_Lucia: 
+      :city: "St. Lucia"
+    :America/St_Thomas: 
+      :city: "St. Thomas"
+    :America/St_Vincent: 
+      :city: "St. Vincent"
+    :Antarctica/DumontDUrville: 
+      :city: "Dumont d’Urville"
+    :Asia/Calcutta: 
+      :city: Kolkata
+    :Asia/Katmandu: 
+      :city: Kathmandu
+    :Asia/Macau: 
+      :city: Macao
+    :Asia/Rangoon: 
+      :city: Yangon
+    :Asia/Saigon: 
+      :city: "Ho Chi Minh"
+    :Atlantic/Faeroe: 
+      :city: Faroe
+    :Atlantic/St_Helena: 
+      :city: "St. Helena"
+    :Etc/UTC: 
+      :short: 
+        :standard: UTC
+    :Etc/Unknown: 
+      :city: མ་རྟོགས་པ
+    :Europe/Kiev: 
+      :city: Kyiv
+    :Indian/Reunion: 
+      :city: Réunion
+    :Pacific/Ponape: 
+      :city: Pohnpei
+    :Pacific/Truk: 
+      :city: Chuuk

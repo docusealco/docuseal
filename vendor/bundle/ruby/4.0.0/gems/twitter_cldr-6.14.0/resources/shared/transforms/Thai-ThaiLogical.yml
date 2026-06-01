@@ -1,0 +1,16 @@
+--- 
+:transforms: 
+  - 
+    :aliases: ~
+    :direction: both
+    :rules: 
+      - "$thai = [[:Thai:] ก-ฺเ-๛] ;"
+      - "' '  < $thai { '; '  } $thai ;"
+      - "< $thai { ' ' } $thai ;"
+      - "$thai_reversing = [[:Logical_Order_Exception:] & $thai] ;"
+      - "$thai_non_reversing = [$thai - $thai_reversing ] ;"
+      - "( $thai_reversing ) ( $thai_non_reversing ) > $2 $1 ;"
+      - "$2 $1 < ( $thai_non_reversing ) ( $thai_reversing ) ;"
+    :source: Thai
+    :target: ThaiLogical
+    :variant: ~

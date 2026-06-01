@@ -36,7 +36,7 @@
               <p class="text-2xl font-semibold"><%= t('connect_to_docuseal_mcp') %></p>
               <p class="text-lg"><%= t('add_the_following_to_your_mcp_client_configuration') %>:</p>
               <div class="mockup-code overflow-hidden">
-                <% text = JSON.pretty_generate({ mcpServers: { wabosign: { type: 'http', url: "#{root_url(Wabosign.default_url_options)}mcp", headers: { Authorization: "Bearer #{@mcp_token.token}" } } } }).strip %>
+                <% text = CGI.escapeHTML(JSON.pretty_generate({ mcpServers: { wabosign: { type: 'http', url: "#{root_url(Wabosign.default_url_options)}mcp", headers: { Authorization: "Bearer #{@mcp_token.token}" } } } }).strip) %>
                 <span class="top-0 right-0 absolute">
                   <%= render 'shared/clipboard_copy', icon: 'copy', text:, class: 'btn btn-ghost text-white', icon_class: 'w-6 h-6 text-white', copy_title: t('copy'), copied_title: t('copied') %>
                 </span>

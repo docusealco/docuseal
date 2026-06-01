@@ -1,0 +1,1114 @@
+--- 
+:id: 
+  :currencies: 
+    :ADP: 
+      :name: "Peseta Andorra"
+      :one: "Peseta Andorra"
+    :AED: 
+      :name: "Dirham Uni Emirat Arab"
+      :one: "Dirham Uni Emirat Arab"
+    :AFA: 
+      :name: "Afgani Afganistan (1927–2002)"
+      :one: "Afgani Afganistan (1927–2002)"
+    :AFN: 
+      :name: "Afgani Afganistan"
+      :narrow_symbol: ؋
+      :one: "Afgani Afganistan"
+      :symbol: ؋
+    :ALL: 
+      :name: "Lek Albania"
+      :one: "Lek Albania"
+    :AMD: 
+      :name: "Dram Armenia"
+      :narrow_symbol: ֏
+      :one: "Dram Armenia"
+      :symbol: ֏
+    :ANG: 
+      :name: "Guilder Antilla Belanda"
+      :one: "Guilder Antilla Belanda"
+    :AOA: 
+      :name: "Kwanza Angola"
+      :narrow_symbol: Kz
+      :one: "Kwanza Angola"
+      :symbol: Kz
+    :AOK: 
+      :name: "Kwanza Angola (1977–1991)"
+      :one: "Kwanza Angola (1977–1991)"
+    :AON: 
+      :name: "Kwanza Baru Angola (1990–2000)"
+      :one: "Kwanza Baru Angola (1990–2000)"
+    :AOR: 
+      :name: "Kwanza Angola yang Disesuaikan Lagi (1995–1999)"
+      :one: "Kwanza Angola yang Disesuaikan Lagi (1995–1999)"
+    :ARA: 
+      :name: "Austral Argentina"
+      :one: "Austral Argentina"
+    :ARL: 
+      :name: "Peso Ley Argentina (1970–1983)"
+      :one: "Peso Ley Argentina (1970–1983)"
+    :ARM: 
+      :name: "Peso Argentina (1881–1970)"
+      :one: "Peso Argentina (1881–1970)"
+    :ARP: 
+      :name: "Peso Argentina (1983–1985)"
+      :one: "Peso Argentina (1983–1985)"
+    :ARS: 
+      :name: "Peso Argentina"
+      :narrow_symbol: $
+      :one: "Peso Argentina"
+      :symbol: $
+    :ATS: 
+      :name: "Schilling Austria"
+      :one: "Schilling Austria"
+    :AUD: 
+      :name: "Dolar Australia"
+      :narrow_symbol: $
+      :one: "Dolar Australia"
+      :symbol: AU$
+    :AWG: 
+      :name: "Florin Aruba"
+      :one: "Florin Aruba"
+    :AZM: 
+      :name: "Manat Azerbaijan (1993–2006)"
+      :one: "Manat Azerbaijan (1993–2006)"
+    :AZN: 
+      :name: "Manat Azerbaijan"
+      :narrow_symbol: ₼
+      :one: "Manat Azerbaijan"
+      :symbol: ₼
+    :BAD: 
+      :name: "Dinar Bosnia-Herzegovina (1992–1994)"
+      :one: "Dinar Bosnia-Herzegovina (1992–1994)"
+    :BAM: 
+      :name: "Mark Konvertibel Bosnia-Herzegovina"
+      :narrow_symbol: KM
+      :one: "Mark Konvertibel Bosnia-Herzegovina"
+      :symbol: KM
+    :BAN: 
+      :name: "Dinar Baru Bosnia-Herzegovina (1994–1997)"
+      :one: "Dinar Baru Bosnia-Herzegovina (1994–1997)"
+    :BBD: 
+      :name: "Dolar Barbados"
+      :narrow_symbol: $
+      :one: "Dolar Barbados"
+      :symbol: $
+    :BDT: 
+      :name: "Taka Bangladesh"
+      :narrow_symbol: ৳
+      :one: "Taka Bangladesh"
+      :symbol: ৳
+    :BEC: 
+      :name: "Franc Belgia (konvertibel)"
+      :one: "Franc Belgia (konvertibel)"
+    :BEF: 
+      :name: "Franc Belgia"
+      :one: "Franc Belgia"
+    :BEL: 
+      :name: "Franc Belgia (keuangan)"
+      :one: "Franc Belgia (keuangan)"
+    :BGL: 
+      :name: "Hard Lev Bulgaria"
+      :one: "Hard Lev Bulgaria"
+    :BGM: 
+      :name: "Socialist Lev Bulgaria"
+      :one: "Socialist Lev Bulgaria"
+    :BGN: 
+      :name: "Lev Bulgaria"
+      :one: "Lev Bulgaria"
+    :BGO: 
+      :name: "Lev Bulgaria (1879–1952)"
+      :one: "Lev Bulgaria (1879–1952)"
+    :BHD: 
+      :name: "Dinar Bahrain"
+      :one: "Dinar Bahrain"
+    :BIF: 
+      :name: "Franc Burundi"
+      :one: "Franc Burundi"
+    :BMD: 
+      :name: "Dolar Bermuda"
+      :narrow_symbol: $
+      :one: "Dolar Bermuda"
+      :symbol: $
+    :BND: 
+      :name: "Dolar Brunei"
+      :narrow_symbol: $
+      :one: "Dolar Brunei"
+      :symbol: $
+    :BOB: 
+      :name: Boliviano
+      :narrow_symbol: Bs
+      :one: Boliviano
+      :symbol: Bs
+    :BOL: 
+      :name: "Boliviano Bolivia (1863–1963)"
+      :one: "Boliviano Bolivia (1863–1963)"
+    :BOP: 
+      :name: "Peso Bolivia"
+      :one: "Peso Bolivia"
+    :BOV: 
+      :name: "Mvdol Bolivia"
+      :one: "Mvdol Bolivia"
+    :BRB: 
+      :name: "Cruzeiro Baru Brasil (1967–1986)"
+      :one: "Cruzeiro Baru Brasil (1967–1986)"
+    :BRC: 
+      :name: "Cruzado Brasil (1986–1989)"
+      :one: "Cruzado Brasil (1986–1989)"
+    :BRE: 
+      :name: "Cruzeiro Brasil (1990–1993)"
+      :one: "Cruzeiro Brasil (1990–1993)"
+    :BRL: 
+      :name: "Real Brasil"
+      :narrow_symbol: R$
+      :one: "Real Brasil"
+      :symbol: R$
+    :BRN: 
+      :name: "Cruzado Baru Brasil (1989–1990)"
+      :one: "Cruzado Baru Brasil (1989–1990)"
+    :BRR: 
+      :name: "Cruzeiro Brasil (1993–1994)"
+      :one: "Cruzeiro Brasil (1993–1994)"
+    :BRZ: 
+      :name: "Cruzeiro Brasil (1942–1967)"
+      :one: "Cruzeiro Brasil (1942–1967)"
+    :BSD: 
+      :name: "Dolar Bahama"
+      :narrow_symbol: $
+      :one: "Dolar Bahama"
+      :symbol: $
+    :BTN: 
+      :name: "Ngultrum Bhutan"
+      :one: "Ngultrum Bhutan"
+    :BUK: 
+      :name: "Kyat Burma"
+      :one: "Kyat Burma"
+    :BWP: 
+      :name: "Pula Botswana"
+      :narrow_symbol: P
+      :one: "Pula Botswana"
+      :symbol: P
+    :BYB: 
+      :name: "Rubel Baru Belarus (1994–1999)"
+      :one: "Rubel Baru Belarus (1994–1999)"
+    :BYN: 
+      :name: "Rubel Belarusia"
+      :narrow_symbol: р.
+      :one: "Rubel Belarusia"
+      :symbol: р.
+    :BYR: 
+      :name: "Rubel Belarusia (2000–2016)"
+      :one: "Rubel Belarusia (2000–2016)"
+    :BZD: 
+      :name: "Dolar Belize"
+      :narrow_symbol: $
+      :one: "Dolar Belize"
+      :symbol: $
+    :CAD: 
+      :name: "Dolar Kanada"
+      :narrow_symbol: $
+      :one: "Dolar Kanada"
+      :symbol: CA$
+    :CDF: 
+      :name: "Franc Kongo"
+      :one: "Franc Kongo"
+    :CHE: 
+      :name: "Euro WIR"
+      :one: "Euro WIR"
+    :CHF: 
+      :name: "Franc Swiss"
+      :one: "Franc Swiss"
+    :CHW: 
+      :name: "Franc WIR"
+      :one: "Franc WIR"
+    :CLE: 
+      :name: "Escudo Cile"
+      :one: "Escudo Cile"
+    :CLF: 
+      :name: "Satuan Hitung (UF) Cile"
+      :one: "Satuan Hitung (UF) Cile"
+    :CLP: 
+      :name: "Peso Cile"
+      :narrow_symbol: $
+      :one: "Peso Cile"
+      :symbol: $
+    :CNH: 
+      :name: "Yuan Tiongkok (luar negeri)"
+      :one: "Yuan Tiongkok (luar negeri)"
+    :CNY: 
+      :name: "Yuan Tiongkok"
+      :narrow_symbol: ¥
+      :one: "Yuan Tiongkok"
+      :symbol: CN¥
+    :COP: 
+      :name: "Peso Kolombia"
+      :narrow_symbol: $
+      :one: "Peso Kolombia"
+      :symbol: $
+    :COU: 
+      :name: "Unit Nilai Nyata Kolombia"
+      :one: "Unit Nilai Nyata Kolombia"
+    :CRC: 
+      :name: "Colon Kosta Rika"
+      :narrow_symbol: ₡
+      :one: "Colon Kosta Rika"
+      :symbol: ₡
+    :CSD: 
+      :name: "Dinar Serbia (2002–2006)"
+      :one: "Dinar Serbia (2002–2006)"
+    :CSK: 
+      :name: "Hard Koruna Cheska"
+      :one: "Hard Koruna Cheska"
+    :CUC: 
+      :name: "Peso Konvertibel Kuba"
+      :narrow_symbol: $
+      :one: "Peso Konvertibel Kuba"
+      :symbol: $
+    :CUP: 
+      :name: "Peso Kuba"
+      :narrow_symbol: $
+      :one: "Peso Kuba"
+      :symbol: $
+    :CVE: 
+      :name: "Escudo Tanjung Verde"
+      :one: "Escudo Tanjung Verde"
+    :CYP: 
+      :name: "Pound Siprus"
+      :one: "Pound Siprus"
+    :CZK: 
+      :name: "Koruna Ceko"
+      :narrow_symbol: Kč
+      :one: "Koruna Ceko"
+      :symbol: Kč
+    :DDM: 
+      :name: "Mark Jerman Timur"
+      :one: "Mark Jerman Timur"
+    :DEM: 
+      :name: "Mark Jerman"
+      :one: "Mark Jerman"
+    :DJF: 
+      :name: "Franc Jibuti"
+      :one: "Franc Jibuti"
+    :DKK: 
+      :name: "Krone Denmark"
+      :narrow_symbol: kr
+      :one: "Krone Denmark"
+      :symbol: kr
+    :DOP: 
+      :name: "Peso Dominika"
+      :narrow_symbol: $
+      :one: "Peso Dominika"
+      :symbol: $
+    :DZD: 
+      :name: "Dinar Aljazair"
+      :one: "Dinar Aljazair"
+    :ECS: 
+      :name: "Sucre Ekuador"
+      :one: "Sucre Ekuador"
+    :ECV: 
+      :name: "Satuan Nilai Tetap Ekuador"
+      :one: "Satuan Nilai Tetap Ekuador"
+    :EEK: 
+      :name: "Kroon Estonia"
+      :one: "Kroon Estonia"
+    :EGP: 
+      :name: "Pound Mesir"
+      :narrow_symbol: E£
+      :one: "Pound Mesir"
+      :symbol: E£
+    :ERN: 
+      :name: "Nakfa Eritrea"
+      :one: "Nakfa Eritrea"
+    :ESA: 
+      :name: "Peseta Spanyol (akun)"
+      :one: "Peseta Spanyol (akun)"
+    :ESB: 
+      :name: "Peseta Spanyol (konvertibel)"
+      :one: "Peseta Spanyol (konvertibel)"
+    :ESP: 
+      :name: "Peseta Spanyol"
+      :narrow_symbol: ₧
+      :one: "Peseta Spanyol"
+      :symbol: ₧
+    :ETB: 
+      :name: "Birr Etiopia"
+      :one: "Birr Etiopia"
+    :EUR: 
+      :name: Euro
+      :narrow_symbol: €
+      :one: Euro
+      :symbol: €
+    :FIM: 
+      :name: "Markka Finlandia"
+      :one: "Markka Finlandia"
+    :FJD: 
+      :name: "Dolar Fiji"
+      :narrow_symbol: $
+      :one: "Dolar Fiji"
+      :symbol: $
+    :FKP: 
+      :name: "Pound Kepulauan Falkland"
+      :narrow_symbol: £
+      :one: "Pound Kepulauan Falkland"
+      :symbol: £
+    :FRF: 
+      :name: "Franc Prancis"
+      :one: "Franc Prancis"
+    :GBP: 
+      :name: "Pound Inggris"
+      :narrow_symbol: £
+      :one: "Pound Inggris"
+      :symbol: £
+    :GEK: 
+      :name: "Kupon Larit Georgia"
+      :one: "Kupon Larit Georgia"
+    :GEL: 
+      :name: "Lari Georgia"
+      :narrow_symbol: ₾
+      :one: "Lari Georgia"
+      :symbol: ₾
+    :GHC: 
+      :name: "Cedi Ghana (1979–2007)"
+      :one: "Cedi Ghana (1979–2007)"
+    :GHS: 
+      :name: "Cedi Ghana"
+      :narrow_symbol: GH₵
+      :one: "Cedi Ghana"
+      :symbol: GH₵
+    :GIP: 
+      :name: "Pound Gibraltar"
+      :narrow_symbol: £
+      :one: "Pound Gibraltar"
+      :symbol: £
+    :GMD: 
+      :name: "Dalasi Gambia"
+      :one: "Dalasi Gambia"
+    :GNF: 
+      :name: "Franc Guinea"
+      :narrow_symbol: FG
+      :one: "Franc Guinea"
+      :symbol: FG
+    :GNS: 
+      :name: "Syli Guinea"
+      :one: "Syli Guinea"
+    :GQE: 
+      :name: "Ekuele Guinea Ekuatorial"
+      :one: "Ekuele Guinea Ekuatorial"
+    :GRD: 
+      :name: "Drachma Yunani"
+      :one: "Drachma Yunani"
+    :GTQ: 
+      :name: "Quetzal Guatemala"
+      :narrow_symbol: Q
+      :one: "Quetzal Guatemala"
+      :symbol: Q
+    :GWE: 
+      :name: "Escudo Guinea Portugal"
+      :one: "Escudo Guinea Portugal"
+    :GWP: 
+      :name: "Peso Guinea-Bissau"
+      :one: "Peso Guinea-Bissau"
+    :GYD: 
+      :name: "Dolar Guyana"
+      :narrow_symbol: $
+      :one: "Dolar Guyana"
+      :symbol: $
+    :HKD: 
+      :name: "Dolar Hong Kong"
+      :narrow_symbol: $
+      :one: "Dolar Hong Kong"
+      :symbol: HK$
+    :HNL: 
+      :name: "Lempira Honduras"
+      :narrow_symbol: L
+      :one: "Lempira Honduras"
+      :symbol: L
+    :HRD: 
+      :name: "Dinar Kroasia"
+      :one: "Dinar Kroasia"
+    :HRK: 
+      :name: "Kuna Kroasia"
+      :narrow_symbol: kn
+      :one: "Kuna Kroasia"
+      :symbol: kn
+    :HTG: 
+      :name: "Gourde Haiti"
+      :one: "Gourde Haiti"
+    :HUF: 
+      :name: "Forint Hungaria"
+      :narrow_symbol: Ft
+      :one: "Forint Hungaria"
+      :symbol: Ft
+    :IDR: 
+      :name: "Rupiah Indonesia"
+      :narrow_symbol: Rp
+      :one: "Rupiah Indonesia"
+      :symbol: Rp
+    :IEP: 
+      :name: "Pound Irlandia"
+      :one: "Pound Irlandia"
+    :ILP: 
+      :name: "Pound Israel"
+      :one: "Pound Israel"
+    :ILR: 
+      :name: "Shekel Israel"
+      :one: "Shekel Israel"
+      :other: "Shekel Israel (1980–1985)"
+    :ILS: 
+      :name: "Shekel Baru Israel"
+      :narrow_symbol: ₪
+      :one: "Shekel Baru Israel"
+      :symbol: ₪
+    :INR: 
+      :name: "Rupee India"
+      :narrow_symbol: ₹
+      :one: "Rupee India"
+      :symbol: Rs
+    :IQD: 
+      :name: "Dinar Irak"
+      :one: "Dinar Irak"
+    :IRR: 
+      :name: "Rial Iran"
+      :one: "Rial Iran"
+    :ISJ: 
+      :name: "Krona Islandia (1918–1981)"
+      :one: "Krona Islandia (1918–1981)"
+    :ISK: 
+      :name: "Krona Islandia"
+      :narrow_symbol: kr
+      :one: "Krona Islandia"
+      :symbol: kr
+    :ITL: 
+      :name: "Lira Italia"
+      :one: "Lira Italia"
+    :JMD: 
+      :name: "Dolar Jamaika"
+      :narrow_symbol: $
+      :one: "Dolar Jamaika"
+      :symbol: $
+    :JOD: 
+      :name: "Dinar Yordania"
+      :one: "Dinar Yordania"
+    :JPY: 
+      :name: "Yen Jepang"
+      :narrow_symbol: ¥
+      :one: "Yen Jepang"
+      :symbol: JP¥
+    :KES: 
+      :name: "Shilling Kenya"
+      :one: "Shilling Kenya"
+    :KGS: 
+      :name: "Som Kirgizstan"
+      :narrow_symbol: ⃀
+      :one: "Som Kirgizstan"
+      :symbol: ⃀
+    :KHR: 
+      :name: "Riel Kamboja"
+      :narrow_symbol: ៛
+      :one: "Riel Kamboja"
+      :symbol: ៛
+    :KMF: 
+      :name: "Franc Komoro"
+      :narrow_symbol: CF
+      :one: "Franc Komoro"
+      :symbol: CF
+    :KPW: 
+      :name: "Won Korea Utara"
+      :narrow_symbol: ₩
+      :one: "Won Korea Utara"
+      :symbol: ₩
+    :KRH: 
+      :name: "Hwan Korea Selatan (1953–1962)"
+      :one: "Hwan Korea Selatan (1953–1962)"
+    :KRO: 
+      :name: "Won Korea Selatan (1945–1953)"
+      :one: "Won Korea Selatan (1945–1953)"
+    :KRW: 
+      :name: "Won Korea Selatan"
+      :narrow_symbol: ₩
+      :one: "Won Korea Selatan"
+      :symbol: ₩
+    :KWD: 
+      :name: "Dinar Kuwait"
+      :one: "Dinar Kuwait"
+    :KYD: 
+      :name: "Dolar Kepulauan Cayman"
+      :narrow_symbol: $
+      :one: "Dolar Kepulauan Cayman"
+      :symbol: $
+    :KZT: 
+      :name: "Tenge Kazakhstan"
+      :narrow_symbol: ₸
+      :one: "Tenge Kazakhstan"
+      :symbol: ₸
+    :LAK: 
+      :name: "Kip Laos"
+      :narrow_symbol: ₭
+      :one: "Kip Laos"
+      :symbol: ₭
+    :LBP: 
+      :name: "Pound Lebanon"
+      :narrow_symbol: L£
+      :one: "Pound Lebanon"
+      :symbol: L£
+    :LKR: 
+      :name: "Rupee Sri Lanka"
+      :narrow_symbol: Rs
+      :one: "Rupee Sri Lanka"
+      :symbol: Rs
+    :LRD: 
+      :name: "Dolar Liberia"
+      :narrow_symbol: $
+      :one: "Dolar Liberia"
+      :symbol: $
+    :LSL: 
+      :name: "Loti Lesotho"
+      :one: "Loti Lesotho"
+    :LTL: 
+      :name: "Litas Lituania"
+      :narrow_symbol: Lt
+      :one: "Litas Lituania"
+      :symbol: Lt
+    :LTT: 
+      :name: "Talonas Lituania"
+      :one: "Talonas Lituania"
+    :LUC: 
+      :name: "Franc Konvertibel Luksemburg"
+      :one: "Franc Konvertibel Luksemburg"
+    :LUF: 
+      :name: "Franc Luksemburg"
+      :one: "Franc Luksemburg"
+    :LUL: 
+      :name: "Financial Franc Luksemburg"
+      :one: "Financial Franc Luksemburg"
+    :LVL: 
+      :name: "Lats Latvia"
+      :narrow_symbol: Ls
+      :one: "Lats Latvia"
+      :symbol: Ls
+    :LVR: 
+      :name: "Rubel Latvia"
+      :one: "Rubel Latvia"
+    :LYD: 
+      :name: "Dinar Libya"
+      :one: "Dinar Libya"
+    :MAD: 
+      :name: "Dirham Maroko"
+      :one: "Dirham Maroko"
+    :MAF: 
+      :name: "Franc Maroko"
+      :one: "Franc Maroko"
+    :MCF: 
+      :name: "Franc Monegasque"
+      :one: "Franc Monegasque"
+    :MDC: 
+      :name: "Cupon Moldova"
+      :one: "Cupon Moldova"
+    :MDL: 
+      :name: "Leu Moldova"
+      :one: "Leu Moldova"
+    :MGA: 
+      :name: "Ariary Madagaskar"
+      :narrow_symbol: Ar
+      :one: "Ariary Madagaskar"
+      :symbol: Ar
+    :MGF: 
+      :name: "Franc Malagasi"
+      :one: "Franc Malagasi"
+    :MKD: 
+      :name: "Denar Makedonia"
+      :one: "Denar Makedonia"
+    :MKN: 
+      :name: "Denar Makedonia (1992–1993)"
+      :one: "Denar Makedonia (1992–1993)"
+    :MLF: 
+      :name: "Franc Mali"
+      :one: "Franc Mali"
+    :MMK: 
+      :name: "Kyat Myanmar"
+      :narrow_symbol: K
+      :one: "Kyat Myanmar"
+      :symbol: K
+    :MNT: 
+      :name: "Tugrik Mongolia"
+      :narrow_symbol: ₮
+      :one: "Tugrik Mongolia"
+      :symbol: ₮
+    :MOP: 
+      :name: "Pataca Makau"
+      :one: "Pataca Makau"
+    :MRO: 
+      :name: "Ouguiya Mauritania (1973–2017)"
+      :one: "Ouguiya Mauritania (1973–2017)"
+    :MRU: 
+      :name: "Ouguiya Mauritania"
+      :one: "Ouguiya Mauritania"
+    :MTL: 
+      :name: "Lira Malta"
+      :one: "Lira Malta"
+    :MTP: 
+      :name: "Pound Malta"
+      :one: "Pound Malta"
+    :MUR: 
+      :name: "Rupee Mauritius"
+      :narrow_symbol: Rs
+      :one: "Rupee Mauritius"
+      :symbol: Rs
+    :MVP: 
+      :name: "Rufiyaa Maladewa (1947–1981)"
+      :one: "Rufiyaa Maladewa (1947–1981)"
+    :MVR: 
+      :name: "Rufiyaa Maladewa"
+      :one: "Rufiyaa Maladewa"
+    :MWK: 
+      :name: "Kwacha Malawi"
+      :one: "Kwacha Malawi"
+    :MXN: 
+      :name: "Peso Meksiko"
+      :narrow_symbol: $
+      :one: "Peso Meksiko"
+      :symbol: MX$
+    :MXP: 
+      :name: "Peso Silver Meksiko (1861–1992)"
+      :one: "Peso Silver Meksiko (1861–1992)"
+      :other: "Peso Perak Meksiko"
+    :MXV: 
+      :name: "Unit Investasi Meksiko"
+      :one: "Unit Investasi Meksiko"
+    :MYR: 
+      :name: "Ringgit Malaysia"
+      :narrow_symbol: RM
+      :one: "Ringgit Malaysia"
+      :symbol: RM
+    :MZE: 
+      :name: "Escudo Mozambik"
+      :one: "Escudo Mozambik"
+    :MZM: 
+      :name: "Metical Mozambik (1980–2006)"
+      :one: "Metical Mozambik (1980–2006)"
+    :MZN: 
+      :name: "Metical Mozambik"
+      :one: "Metical Mozambik"
+    :NAD: 
+      :name: "Dolar Namibia"
+      :narrow_symbol: $
+      :one: "Dolar Namibia"
+      :symbol: $
+    :NGN: 
+      :name: "Naira Nigeria"
+      :narrow_symbol: ₦
+      :one: "Naira Nigeria"
+      :symbol: ₦
+    :NIC: 
+      :name: "Cordoba Nikaragua (1988–1991)"
+      :one: "Cordoba Nikaragua (1988–1991)"
+    :NIO: 
+      :name: "Cordoba Nikaragua"
+      :narrow_symbol: C$
+      :one: "Cordoba Nikaragua"
+      :symbol: C$
+    :NLG: 
+      :name: "Guilder Belanda"
+      :one: "Guilder Belanda"
+    :NOK: 
+      :name: "Krone Norwegia"
+      :narrow_symbol: kr
+      :one: "Krone Norwegia"
+      :symbol: kr
+    :NPR: 
+      :name: "Rupee Nepal"
+      :narrow_symbol: Rs
+      :one: "Rupee Nepal"
+      :symbol: Rs
+    :NZD: 
+      :name: "Dolar Selandia Baru"
+      :narrow_symbol: $
+      :one: "Dolar Selandia Baru"
+      :symbol: NZ$
+    :OMR: 
+      :name: "Rial Oman"
+      :one: "Rial Oman"
+    :PAB: 
+      :name: "Balboa Panama"
+      :one: "Balboa Panama"
+    :PEI: 
+      :name: "Inti Peru"
+      :one: "Inti Peru"
+    :PEN: 
+      :name: "Sol Peru"
+      :one: "Sol Peru"
+    :PES: 
+      :name: "Sol Peru (1863–1965)"
+      :one: "Sol Peru (1863–1965)"
+    :PGK: 
+      :name: "Kina Papua Nugini"
+      :one: "Kina Papua Nugini"
+    :PHP: 
+      :name: "Peso Filipina"
+      :narrow_symbol: ₱
+      :one: "Peso Filipina"
+      :symbol: PHP
+    :PKR: 
+      :name: "Rupee Pakistan"
+      :narrow_symbol: Rs
+      :one: "Rupee Pakistan"
+      :symbol: Rs
+    :PLN: 
+      :name: "Zloty Polandia"
+      :narrow_symbol: zł
+      :one: "Zloty Polandia"
+      :symbol: zł
+    :PLZ: 
+      :name: "Zloty Polandia (1950–1995)"
+      :one: "Zloty Polandia (1950–1995)"
+    :PTE: 
+      :name: "Escudo Portugal"
+      :one: "Escudo Portugal"
+    :PYG: 
+      :name: "Guarani Paraguay"
+      :narrow_symbol: ₲
+      :one: "Guarani Paraguay"
+      :symbol: ₲
+    :QAR: 
+      :name: "Rial Qatar"
+      :one: "Rial Qatar"
+    :RHD: 
+      :name: "Dolar Rhodesia"
+      :one: "Dolar Rhodesia"
+    :ROL: 
+      :name: "Leu Rumania (1952–2006)"
+      :one: "Leu Rumania (1952–2006)"
+    :RON: 
+      :name: "Leu Rumania"
+      :narrow_symbol: lei
+      :one: "Leu Rumania"
+      :symbol: lei
+    :RSD: 
+      :name: "Dinar Serbia"
+      :one: "Dinar Serbia"
+    :RUB: 
+      :name: "Rubel Rusia"
+      :narrow_symbol: ₽
+      :one: "Rubel Rusia"
+      :symbol: ₽
+    :RUR: 
+      :name: "Rubel Rusia (1991–1998)"
+      :one: "Rubel Rusia (1991–1998)"
+    :RWF: 
+      :name: "Franc Rwanda"
+      :narrow_symbol: RF
+      :one: "Franc Rwanda"
+      :symbol: RF
+    :SAR: 
+      :name: "Riyal Arab Saudi"
+      :one: "Riyal Arab Saudi"
+    :SBD: 
+      :name: "Dolar Kepulauan Solomon"
+      :narrow_symbol: $
+      :one: "Dolar Kepulauan Solomon"
+      :symbol: $
+    :SCR: 
+      :name: "Rupee Seychelles"
+      :one: "Rupee Seychelles"
+    :SDD: 
+      :name: "Dinar Sudan (1992–2007)"
+      :one: "Dinar Sudan (1992–2007)"
+    :SDG: 
+      :name: "Pound Sudan"
+      :one: "Pound Sudan"
+    :SDP: 
+      :name: "Pound Sudan (1957–1998)"
+      :one: "Pound Sudan (1957–1998)"
+    :SEK: 
+      :name: "Krona Swedia"
+      :narrow_symbol: kr
+      :one: "Krona Swedia"
+      :symbol: kr
+    :SGD: 
+      :name: "Dolar Singapura"
+      :narrow_symbol: $
+      :one: "Dolar Singapura"
+      :symbol: $
+    :SHP: 
+      :name: "Pound Saint Helena"
+      :narrow_symbol: £
+      :one: "Pound Saint Helena"
+      :symbol: £
+    :SIT: 
+      :name: "Tolar Slovenia"
+      :one: "Tolar Slovenia"
+    :SKK: 
+      :name: "Koruna Slovakia"
+      :one: "Koruna Slovakia"
+    :SLE: 
+      :name: "Leone Sierra Leone"
+      :one: "Leone Sierra Leone"
+    :SLL: 
+      :name: "Leone Sierra Leone (1964—2022)"
+      :one: "Leone Sierra Leone (1964—2022)"
+    :SOS: 
+      :name: "Shilling Somalia"
+      :one: "Shilling Somalia"
+    :SRD: 
+      :name: "Dolar Suriname"
+      :narrow_symbol: $
+      :one: "Dolar Suriname"
+      :symbol: $
+    :SRG: 
+      :name: "Guilder Suriname"
+      :one: "Guilder Suriname"
+    :SSP: 
+      :name: "Pound Sudan Selatan"
+      :narrow_symbol: £
+      :one: "Pound Sudan Selatan"
+      :symbol: £
+    :STD: 
+      :name: "Dobra Sao Tome dan Principe (1977–2017)"
+      :one: "Dobra Sao Tome dan Principe (1977–2017)"
+    :STN: 
+      :name: "Dobra Sao Tome dan Principe"
+      :narrow_symbol: Db
+      :one: "Dobra Sao Tome dan Principe"
+      :symbol: Db
+    :SUR: 
+      :name: "Rubel Soviet"
+      :one: "Rubel Soviet"
+    :SVC: 
+      :name: "Colon El Savador"
+      :one: "Colon El Savador"
+    :SYP: 
+      :name: "Pound Suriah"
+      :narrow_symbol: £
+      :one: "Pound Suriah"
+      :symbol: £
+    :SZL: 
+      :name: "Lilangeni Swaziland"
+      :one: "Lilangeni Swaziland"
+    :THB: 
+      :name: "Baht Thailand"
+      :narrow_symbol: ฿
+      :one: "Baht Thailand"
+      :symbol: ฿
+    :TJR: 
+      :name: "Rubel Tajikistan"
+      :one: "Rubel Tajikistan"
+    :TJS: 
+      :name: "Somoni Tajikistan"
+      :one: "Somoni Tajikistan"
+    :TMM: 
+      :name: "Manat Turkmenistan (1993–2009)"
+      :one: "Manat Turkmenistan (1993–2009)"
+    :TMT: 
+      :name: "Manat Turkmenistan"
+      :one: "Manat Turkmenistan"
+    :TND: 
+      :name: "Dinar Tunisia"
+      :one: "Dinar Tunisia"
+    :TOP: 
+      :name: "Paʻanga Tonga"
+      :narrow_symbol: T$
+      :one: "Paʻanga Tonga"
+      :symbol: T$
+    :TPE: 
+      :name: "Escudo Timor"
+      :one: "Escudo Timor"
+    :TRL: 
+      :name: "Lira Turki (1922–2005)"
+      :one: "Lira Turki (1922–2005)"
+    :TRY: 
+      :name: "Lira Turki"
+      :narrow_symbol: ₺
+      :one: "Lira Turki"
+      :symbol: ₺
+    :TTD: 
+      :name: "Dolar Trinidad dan Tobago"
+      :narrow_symbol: $
+      :one: "Dolar Trinidad dan Tobago"
+      :symbol: $
+    :TWD: 
+      :name: "Dolar Baru Taiwan"
+      :narrow_symbol: NT$
+      :one: "Dolar Baru Taiwan"
+      :symbol: NT$
+    :TZS: 
+      :name: "Shilling Tanzania"
+      :one: "Shilling Tanzania"
+    :UAH: 
+      :name: "Hryvnia Ukraina"
+      :narrow_symbol: ₴
+      :one: "Hryvnia Ukraina"
+      :symbol: ₴
+    :UAK: 
+      :name: "Karbovanet Ukraina"
+      :one: "Karbovanet Ukraina"
+    :UGS: 
+      :name: "Shilling Uganda (1966–1987)"
+      :one: "Shilling Uganda (1966–1987)"
+    :UGX: 
+      :name: "Shilling Uganda"
+      :one: "Shilling Uganda"
+    :USD: 
+      :name: "Dolar Amerika Serikat"
+      :narrow_symbol: $
+      :one: "Dolar Amerika Serikat"
+      :symbol: US$
+    :USN: 
+      :name: "Dolar AS (Hari berikutnya)"
+      :one: "Dolar AS (Hari berikutnya)"
+    :USS: 
+      :name: "Dolar AS (Hari yang sama)"
+      :one: "Dolar AS (Hari yang sama)"
+    :UYI: 
+      :name: "Peso Uruguay (Unit Diindeks)"
+      :one: "Peso Uruguay (Unit Diindeks)"
+    :UYP: 
+      :name: "Peso Uruguay (1975–1993)"
+      :one: "Peso Uruguay (1975–1993)"
+    :UYU: 
+      :name: "Peso Uruguay"
+      :narrow_symbol: $
+      :one: "Peso Uruguay"
+      :symbol: $
+    :UZS: 
+      :name: "Som Uzbekistan"
+      :one: "Som Uzbekistan"
+    :VEB: 
+      :name: "Bolivar Venezuela (1871–2008)"
+      :one: "Bolivar Venezuela (1871–2008)"
+    :VEF: 
+      :name: "Bolivar Venezuela (2008–2018)"
+      :narrow_symbol: Bs
+      :one: "Bolivar Venezuela (2008–2018)"
+      :symbol: Bs
+    :VES: 
+      :name: "Bolivar Venezuela"
+      :one: "Bolivar Venezuela"
+    :VND: 
+      :name: "Dong Vietnam"
+      :narrow_symbol: ₫
+      :one: "Dong Vietnam"
+      :symbol: ₫
+    :VNN: 
+      :name: "Dong Vietnam (1978–1985)"
+      :one: "Dong Vietnam (1978–1985)"
+    :VUV: 
+      :name: "Vatu Vanuatu"
+      :one: "Vatu Vanuatu"
+    :WST: 
+      :name: "Tala Samoa"
+      :one: "Tala Samoa"
+    :XAF: 
+      :name: "Franc CFA Afrika Tengah"
+      :one: "Franc CFA Afrika Tengah"
+      :symbol: FCFA
+    :XAG: 
+      :name: Silver
+      :one: Silver
+    :XAU: 
+      :name: Emas
+      :one: Emas
+    :XBA: 
+      :name: "Unit Gabungan Eropa"
+      :one: "Unit Gabungan Eropa"
+    :XBB: 
+      :name: "Unit Keuangan Eropa"
+      :one: "Unit Keuangan Eropa"
+    :XBC: 
+      :name: "Satuan Hitung Eropa (XBC)"
+      :one: "Satuan Hitung Eropa (XBC)"
+    :XBD: 
+      :name: "Satuan Hitung Eropa (XBD)"
+      :one: "Satuan Hitung Eropa (XBD)"
+    :XCD: 
+      :name: "Dolar Karibia Timur"
+      :narrow_symbol: $
+      :one: "Dolar Karibia Timur"
+      :symbol: EC$
+    :XCG: 
+      :symbol: Cg.
+    :XDR: 
+      :name: "Hak Khusus Menggambar"
+      :one: "Hak Khusus Menggambar"
+    :XEU: 
+      :name: "Satuan Mata Uang Eropa"
+      :one: "Satuan Mata Uang Eropa"
+    :XFO: 
+      :name: "Franc Gold Perancis"
+      :one: "Franc Gold Perancis"
+    :XFU: 
+      :name: "Franc UIC Perancis"
+      :one: "Franc UIC Perancis"
+    :XOF: 
+      :name: "Franc CFA Afrika Barat"
+      :one: "Franc CFA Afrika Barat"
+      :symbol: F CFA
+    :XPD: 
+      :name: Palladium
+      :one: Palladium
+    :XPF: 
+      :name: "Franc CFP"
+      :one: "Franc CFP"
+      :symbol: CFPF
+    :XPT: 
+      :name: Platinum
+      :one: Platinum
+    :XRE: 
+      :name: "Dana RINET"
+      :one: "Dana RINET"
+    :XTS: 
+      :name: "Kode Mata Uang Pengujian"
+      :one: "Kode Mata Uang Pengujian"
+    :XXX: 
+      :name: "Mata Uang Tidak Dikenal"
+      :one: "Mata Uang Tidak Dikenal"
+      :other: "(mata uang tidak dikenal)"
+      :symbol: XXX
+    :YDD: 
+      :name: "Dinar Yaman"
+      :one: "Dinar Yaman"
+    :YER: 
+      :name: "Rial Yaman"
+      :one: "Rial Yaman"
+    :YUD: 
+      :name: "Hard Dinar Yugoslavia (1966–1990)"
+      :one: "Hard Dinar Yugoslavia (1966–1990)"
+      :other: "Dinar Keras Yugoslavia"
+    :YUM: 
+      :name: "Dinar Baru Yugoslavia (1994–2002)"
+      :one: "Dinar Baru Yugoslavia (1994–2002)"
+    :YUN: 
+      :name: "Dinar Konvertibel Yugoslavia (1990–1992)"
+      :one: "Dinar Konvertibel Yugoslavia (1990–1992)"
+    :YUR: 
+      :name: "Dinar Reformasi Yugoslavia (1992–1993)"
+      :one: "Dinar Reformasi Yugoslavia (1992–1993)"
+    :ZAL: 
+      :name: "Rand Afrika Selatan (Keuangan)"
+      :one: "Rand Afrika Selatan (Keuangan)"
+    :ZAR: 
+      :name: "Rand Afrika Selatan"
+      :narrow_symbol: R
+      :one: "Rand Afrika Selatan"
+      :symbol: R
+    :ZMK: 
+      :name: "Kwacha Zambia (1968–2012)"
+      :one: "Kwacha Zambia (1968–2012)"
+    :ZMW: 
+      :name: "Kwacha Zambia"
+      :narrow_symbol: ZK
+      :one: "Kwacha Zambia"
+      :symbol: ZK
+    :ZRN: 
+      :name: "Zaire Baru Zaire (1993–1998)"
+      :one: "Zaire Baru Zaire (1993–1998)"
+    :ZRZ: 
+      :name: "Zaire Zaire (1971–1993)"
+      :one: "Zaire Zaire (1971–1993)"
+    :ZWD: 
+      :name: "Dolar Zimbabwe (1980–2008)"
+      :one: "Dolar Zimbabwe (1980–2008)"
+    :ZWL: 
+      :name: "Dolar Zimbabwe (2009)"
+      :one: "Dolar Zimbabwe (2009)"
+    :ZWR: 
+      :name: "Dolar Zimbabwe (2008)"
+      :one: "Dolar Zimbabwe (2008)"

@@ -1,0 +1,185 @@
+--- 
+:zh: 
+  :fields: 
+    :day: 
+      :display_name: 日
+      :relative: 
+        -1: 昨天
+        -2: 前天
+        0: 今天
+        1: 明天
+        2: 后天
+      :relative_time: 
+        :future: 
+          :other: "{0}天后"
+        :past: 
+          :other: "{0}天前"
+    :dayOfYear: 
+      :display_name: 年中日
+    :dayperiod: 
+      :display_name: 上午/下午
+    :era: 
+      :display_name: 纪元
+    :fri: 
+      :relative: 
+        -1: 上周五
+        0: 本周五
+        1: 下周五
+      :relative_time: 
+        :future: 
+          :other: "{0}个周五后"
+        :past: 
+          :other: "{0}个周五前"
+    :hour: 
+      :display_name: 小时
+      :relative: 
+        0: "这一时间 / 此时"
+      :relative_time: 
+        :future: 
+          :other: "{0}小时后"
+        :past: 
+          :other: "{0}小时前"
+    :minute: 
+      :display_name: 分钟
+      :relative: 
+        0: 此刻
+      :relative_time: 
+        :future: 
+          :other: "{0}分钟后"
+        :past: 
+          :other: "{0}分钟前"
+    :minute-short: 
+      :display_name: 分
+    :mon: 
+      :relative: 
+        -1: 上周一
+        0: 本周一
+        1: 下周一
+      :relative_time: 
+        :future: 
+          :other: "{0}个周一后"
+        :past: 
+          :other: "{0}个周一前"
+    :month: 
+      :display_name: 月
+      :relative: 
+        -1: 上个月
+        0: 本月
+        1: 下个月
+      :relative_time: 
+        :future: 
+          :other: "{0}个月后"
+        :past: 
+          :other: "{0}个月前"
+    :quarter: 
+      :display_name: 季度
+      :relative: 
+        -1: 上季度
+        0: 本季度
+        1: 下季度
+      :relative_time: 
+        :future: 
+          :other: "{0}个季度后"
+        :past: 
+          :other: "{0}个季度前"
+    :quarter-short: 
+      :display_name: 季
+    :sat: 
+      :relative: 
+        -1: 上周六
+        0: 本周六
+        1: 下周六
+      :relative_time: 
+        :future: 
+          :other: "{0}个周六后"
+        :past: 
+          :other: "{0}个周六前"
+    :second: 
+      :display_name: 秒
+      :relative: 
+        0: 现在
+      :relative_time: 
+        :future: 
+          :other: "{0}秒钟后"
+        :past: 
+          :other: "{0}秒钟前"
+    :second-short: 
+      :relative_time: 
+        :future: 
+          :other: "{0}秒后"
+        :past: 
+          :other: "{0}秒前"
+    :sun: 
+      :relative: 
+        -1: 上周日
+        0: 本周日
+        1: 下周日
+      :relative_time: 
+        :future: 
+          :other: "{0}个周日后"
+        :past: 
+          :other: "{0}个周日前"
+    :thu: 
+      :relative: 
+        -1: 上周四
+        0: 本周四
+        1: 下周四
+      :relative_time: 
+        :future: 
+          :other: "{0}个周四后"
+        :past: 
+          :other: "{0}个周四前"
+    :tue: 
+      :relative: 
+        -1: 上周二
+        0: 本周二
+        1: 下周二
+      :relative_time: 
+        :future: 
+          :other: "{0}个周二后"
+        :past: 
+          :other: "{0}个周二前"
+    :wed: 
+      :relative: 
+        -1: 上周三
+        0: 本周三
+        1: 下周三
+      :relative_time: 
+        :future: 
+          :other: "{0}个周三后"
+        :past: 
+          :other: "{0}个周三前"
+    :week: 
+      :display_name: 周
+      :relative: 
+        -1: 上周
+        0: 本周
+        1: 下周
+      :relative_time: 
+        :future: 
+          :other: "{0}周后"
+        :past: 
+          :other: "{0}周前"
+    :weekOfMonth: 
+      :display_name: 月中周
+    :weekday: 
+      :display_name: 星期
+    :weekday-narrow: 
+      :display_name: 星期
+    :weekday-short: 
+      :display_name: 星期
+    :weekdayOfMonth: 
+      :display_name: 月中日
+    :year: 
+      :display_name: 年
+      :relative: 
+        -1: 去年
+        0: 今年
+        1: 明年
+      :relative_time: 
+        :future: 
+          :other: "{0}年后"
+        :past: 
+          :other: "{0}年前"
+    :zone: 
+      :display_name: 时区

@@ -1,0 +1,811 @@
+--- 
+:vi: 
+  :formats: 
+    :fallback_formats: 
+      :generic: "{1} ({0})"
+    :gmt_formats: 
+      :generic: "GMT{0}"
+    :gmt_zero_formats: 
+      :generic: GMT
+    :hour_formats: 
+      :generic: "+HH:mm;-HH:mm"
+    :region_formats: 
+      :daylight: "Giờ mùa hè {0}"
+      :generic: "Giờ {0}"
+      :standard: "Giờ chuẩn {0}"
+  :metazones: 
+    :Acre: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Acre"
+        :generic: "Giờ Acre"
+        :standard: "Giờ Chuẩn Acre"
+    :Afghanistan: 
+      :long: 
+        :standard: "Giờ Afghanistan"
+    :Africa_Central: 
+      :long: 
+        :standard: "Giờ Trung Phi"
+    :Africa_Eastern: 
+      :long: 
+        :standard: "Giờ Đông Phi"
+    :Africa_Southern: 
+      :long: 
+        :standard: "Giờ Chuẩn Nam Phi"
+    :Africa_Western: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Tây Phi"
+        :generic: "Giờ Tây Phi"
+        :standard: "Giờ Chuẩn Tây Phi"
+    :Alaska: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Alaska"
+        :generic: "Giờ Alaska"
+        :standard: "Giờ Chuẩn Alaska"
+      :short: 
+        :daylight: AKDT
+        :generic: AKT
+        :standard: AKST
+    :Almaty: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Almaty"
+        :generic: "Giờ Almaty"
+        :standard: "Giờ Chuẩn Almaty"
+    :Amazon: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Amazon"
+        :generic: "Giờ Amazon"
+        :standard: "Giờ Chuẩn Amazon"
+    :America_Central: 
+      :long: 
+        :daylight: "Giờ mùa hè miền Trung"
+        :generic: "Giờ miền Trung"
+        :standard: "Giờ chuẩn miền Trung"
+      :short: 
+        :daylight: CDT
+        :generic: CT
+        :standard: CST
+    :America_Eastern: 
+      :long: 
+        :daylight: "Giờ mùa hè miền Đông"
+        :generic: "Giờ miền Đông"
+        :standard: "Giờ chuẩn miền Đông"
+      :short: 
+        :daylight: EDT
+        :generic: ET
+        :standard: EST
+    :America_Mountain: 
+      :long: 
+        :daylight: "Giờ mùa hè miền núi"
+        :generic: "Giờ miền núi"
+        :standard: "Giờ chuẩn miền núi"
+      :short: 
+        :daylight: MDT
+        :generic: MT
+        :standard: MST
+    :America_Pacific: 
+      :long: 
+        :daylight: "Giờ mùa hè Thái Bình Dương"
+        :generic: "Giờ Thái Bình Dương"
+        :standard: "Giờ chuẩn Thái Bình Dương"
+      :short: 
+        :daylight: PDT
+        :generic: PT
+        :standard: PST
+    :Anadyr: 
+      :long: 
+        :daylight: "Giờ mùa hè Anadyr"
+        :generic: "Giờ Anadyr"
+        :standard: "Giờ Chuẩn Anadyr"
+    :Apia: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Apia"
+        :generic: "Giờ Apia"
+        :standard: "Giờ Chuẩn Apia"
+    :Aqtau: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Aqtau"
+        :generic: "Giờ Aqtau"
+        :standard: "Giờ Chuẩn Aqtau"
+    :Aqtobe: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Aqtobe"
+        :generic: "Giờ Aqtobe"
+        :standard: "Giờ Chuẩn Aqtobe"
+    :Arabian: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Ả Rập"
+        :generic: "Giờ Ả Rập"
+        :standard: "Giờ chuẩn Ả Rập"
+    :Argentina: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Argentina"
+        :generic: "Giờ Argentina"
+        :standard: "Giờ Chuẩn Argentina"
+    :Argentina_Western: 
+      :long: 
+        :daylight: "Giờ mùa hè miền tây Argentina"
+        :generic: "Giờ miền tây Argentina"
+        :standard: "Giờ chuẩn miền tây Argentina"
+    :Armenia: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Armenia"
+        :generic: "Giờ Armenia"
+        :standard: "Giờ Chuẩn Armenia"
+    :Atlantic: 
+      :long: 
+        :daylight: "Giờ mùa hè Đại Tây Dương"
+        :generic: "Giờ Đại Tây Dương"
+        :standard: "Giờ Chuẩn Đại Tây Dương"
+      :short: 
+        :daylight: ADT
+        :generic: AT
+        :standard: AST
+    :Australia_Central: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Miền Trung Australia"
+        :generic: "Giờ Miền Trung Australia"
+        :standard: "Giờ Chuẩn Miền Trung Australia"
+    :Australia_CentralWestern: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Miền Trung Tây Australia"
+        :generic: "Giờ Miền Trung Tây Australia"
+        :standard: "Giờ Chuẩn Miền Trung Tây Australia"
+    :Australia_Eastern: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Miền Đông Australia"
+        :generic: "Giờ Miền Đông Australia"
+        :standard: "Giờ Chuẩn Miền Đông Australia"
+    :Australia_Western: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Miền Tây Australia"
+        :generic: "Giờ Miền Tây Australia"
+        :standard: "Giờ Chuẩn Miền Tây Australia"
+    :Azerbaijan: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Azerbaijan"
+        :generic: "Giờ Azerbaijan"
+        :standard: "Giờ Chuẩn Azerbaijan"
+    :Azores: 
+      :long: 
+        :daylight: "Giờ mùa hè Azores"
+        :generic: "Giờ Azores"
+        :standard: "Giờ chuẩn Azores"
+    :Bangladesh: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Bangladesh"
+        :generic: "Giờ Bangladesh"
+        :standard: "Giờ Chuẩn Bangladesh"
+    :Bhutan: 
+      :long: 
+        :standard: "Giờ Bhutan"
+    :Bolivia: 
+      :long: 
+        :standard: "Giờ Bolivia"
+    :Brasilia: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Brasilia"
+        :generic: "Giờ Brasilia"
+        :standard: "Giờ Chuẩn Brasilia"
+    :Brunei: 
+      :long: 
+        :standard: "Giờ Brunei Darussalam"
+    :Cape_Verde: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Cape Verde"
+        :generic: "Giờ Cape Verde"
+        :standard: "Giờ Chuẩn Cape Verde"
+    :Casey: 
+      :long: 
+        :standard: "Giờ Casey"
+    :Chamorro: 
+      :long: 
+        :standard: "Giờ Chamorro"
+    :Chatham: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Chatham"
+        :generic: "Giờ Chatham"
+        :standard: "Giờ Chuẩn Chatham"
+    :Chile: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Chile"
+        :generic: "Giờ Chile"
+        :standard: "Giờ Chuẩn Chile"
+    :China: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Trung Quốc"
+        :generic: "Giờ Trung Quốc"
+        :standard: "Giờ Chuẩn Trung Quốc"
+    :Christmas: 
+      :long: 
+        :standard: "Giờ Đảo Christmas"
+    :Cocos: 
+      :long: 
+        :standard: "Giờ Quần Đảo Cocos"
+    :Colombia: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Colombia"
+        :generic: "Giờ Colombia"
+        :standard: "Giờ Chuẩn Colombia"
+    :Cook: 
+      :long: 
+        :daylight: "Giờ Nửa Mùa Hè Quần Đảo Cook"
+        :generic: "Giờ Quần Đảo Cook"
+        :standard: "Giờ Chuẩn Quần Đảo Cook"
+    :Cuba: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Cuba"
+        :generic: "Giờ Cuba"
+        :standard: "Giờ Chuẩn Cuba"
+    :Davis: 
+      :long: 
+        :standard: "Giờ Davis"
+    :DumontDUrville: 
+      :long: 
+        :standard: "Giờ Dumont-d’Urville"
+    :East_Timor: 
+      :long: 
+        :standard: "Giờ Đông Timor"
+    :Easter: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Đảo Phục Sinh"
+        :generic: "Giờ Đảo Phục Sinh"
+        :standard: "Giờ Chuẩn Đảo Phục Sinh"
+    :Ecuador: 
+      :long: 
+        :standard: "Giờ Ecuador"
+    :Europe_Central: 
+      :long: 
+        :daylight: "Giờ mùa hè Trung Âu"
+        :generic: "Giờ Trung Âu"
+        :standard: "Giờ chuẩn Trung Âu"
+    :Europe_Eastern: 
+      :long: 
+        :daylight: "Giờ mùa hè Đông Âu"
+        :generic: "Giờ Đông Âu"
+        :standard: "Giờ chuẩn Đông Âu"
+    :Europe_Further_Eastern: 
+      :long: 
+        :standard: "Giờ Viễn đông Châu Âu"
+    :Europe_Western: 
+      :long: 
+        :daylight: "Giờ mùa hè Tây Âu"
+        :generic: "Giờ Tây Âu"
+        :standard: "Giờ Chuẩn Tây Âu"
+    :Falkland: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Quần Đảo Falkland"
+        :generic: "Giờ Quần Đảo Falkland"
+        :standard: "Giờ Chuẩn Quần Đảo Falkland"
+    :Fiji: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Fiji"
+        :generic: "Giờ Fiji"
+        :standard: "Giờ Chuẩn Fiji"
+    :French_Guiana: 
+      :long: 
+        :standard: "Giờ Guiana thuộc Pháp"
+    :French_Southern: 
+      :long: 
+        :standard: "Giờ Nam Cực và Nam Nước Pháp"
+    :GMT: 
+      :long: 
+        :standard: "Giờ Trung bình Greenwich"
+    :Galapagos: 
+      :long: 
+        :standard: "Giờ Galapagos"
+    :Gambier: 
+      :long: 
+        :standard: "Giờ Gambier"
+    :Georgia: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Georgia"
+        :generic: "Giờ Georgia"
+        :standard: "Giờ Chuẩn Georgia"
+    :Gilbert_Islands: 
+      :long: 
+        :standard: "Giờ Quần Đảo Gilbert"
+    :Greenland_Eastern: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Miền Đông Greenland"
+        :generic: "Giờ Miền Đông Greenland"
+        :standard: "Giờ Chuẩn Miền Đông Greenland"
+    :Greenland_Western: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Miền Tây Greenland"
+        :generic: "Giờ Miền Tây Greenland"
+        :standard: "Giờ Chuẩn Miền Tây Greenland"
+    :Guam: 
+      :long: 
+        :standard: "Giờ Chuẩn Guam"
+    :Gulf: 
+      :long: 
+        :standard: "Giờ Chuẩn Vùng Vịnh"
+    :Guyana: 
+      :long: 
+        :standard: "Giờ Guyana"
+    :Hawaii_Aleutian: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Hawaii-Aleut"
+        :generic: "Giờ Hawaii-Aleut"
+        :standard: "Giờ Chuẩn Hawaii-Aleut"
+      :short: 
+        :daylight: HADT
+        :generic: HAT
+        :standard: HAST
+    :Hong_Kong: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Hồng Kông"
+        :generic: "Giờ Hồng Kông"
+        :standard: "Giờ Chuẩn Hồng Kông"
+    :Hovd: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Hovd"
+        :generic: "Giờ Hovd"
+        :standard: "Giờ Chuẩn Hovd"
+    :India: 
+      :long: 
+        :standard: "Giờ Chuẩn Ấn Độ"
+    :Indian_Ocean: 
+      :long: 
+        :standard: "Giờ Ấn Độ Dương"
+    :Indochina: 
+      :long: 
+        :standard: "Giờ Đông Dương"
+    :Indonesia_Central: 
+      :long: 
+        :standard: "Giờ Miền Trung Indonesia"
+    :Indonesia_Eastern: 
+      :long: 
+        :standard: "Giờ Miền Đông Indonesia"
+    :Indonesia_Western: 
+      :long: 
+        :standard: "Giờ Miền Tây Indonesia"
+    :Iran: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Iran"
+        :generic: "Giờ Iran"
+        :standard: "Giờ Chuẩn Iran"
+    :Irkutsk: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Irkutsk"
+        :generic: "Giờ Irkutsk"
+        :standard: "Giờ Chuẩn Irkutsk"
+    :Israel: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Israel"
+        :generic: "Giờ Israel"
+        :standard: "Giờ Chuẩn Israel"
+    :Japan: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Nhật Bản"
+        :generic: "Giờ Nhật Bản"
+        :standard: "Giờ Chuẩn Nhật Bản"
+    :Kamchatka: 
+      :long: 
+        :daylight: "Giờ mùa hè Petropavlovsk-Kamchatski"
+        :generic: "Giờ Petropavlovsk-Kamchatski"
+        :standard: "Giờ chuẩn Petropavlovsk-Kamchatski"
+    :Kazakhstan: 
+      :long: 
+        :standard: "Giờ Kazakhstan"
+    :Kazakhstan_Eastern: 
+      :long: 
+        :standard: "Giờ Miền Đông Kazakhstan"
+    :Kazakhstan_Western: 
+      :long: 
+        :standard: "Giờ Miền Tây Kazakhstan"
+    :Korea: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Hàn Quốc"
+        :generic: "Giờ Hàn Quốc"
+        :standard: "Giờ Chuẩn Hàn Quốc"
+    :Kosrae: 
+      :long: 
+        :standard: "Giờ Kosrae"
+    :Krasnoyarsk: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Krasnoyarsk"
+        :generic: "Giờ Krasnoyarsk"
+        :standard: "Giờ Chuẩn Krasnoyarsk"
+    :Kyrgystan: 
+      :long: 
+        :standard: "Giờ Kyrgystan"
+    :Lanka: 
+      :long: 
+        :standard: "Giờ Lanka"
+    :Line_Islands: 
+      :long: 
+        :standard: "Giờ Quần Đảo Line"
+    :Lord_Howe: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Lord Howe"
+        :generic: "Giờ Lord Howe"
+        :standard: "Giờ Chuẩn Lord Howe"
+    :Macau: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Ma Cao"
+        :generic: "Giờ Ma Cao"
+        :standard: "Giờ Chuẩn Ma Cao"
+    :Magadan: 
+      :long: 
+        :daylight: "Giờ mùa hè Magadan"
+        :generic: "Giờ Magadan"
+        :standard: "Giờ Chuẩn Magadan"
+    :Malaysia: 
+      :long: 
+        :standard: "Giờ Malaysia"
+    :Maldives: 
+      :long: 
+        :standard: "Giờ Maldives"
+    :Marquesas: 
+      :long: 
+        :standard: "Giờ Marquesas"
+    :Marshall_Islands: 
+      :long: 
+        :standard: "Giờ Quần Đảo Marshall"
+    :Mauritius: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Mauritius"
+        :generic: "Giờ Mauritius"
+        :standard: "Giờ Chuẩn Mauritius"
+    :Mawson: 
+      :long: 
+        :standard: "Giờ Mawson"
+    :Mexico_Pacific: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Thái Bình Dương Mexico"
+        :generic: "Giờ Thái Bình Dương Mexico"
+        :standard: "Giờ Chuẩn Thái Bình Dương Mexico"
+    :Mongolia: 
+      :long: 
+        :daylight: "Giờ mùa hè Ulan Bator"
+        :generic: "Giờ Ulan Bator"
+        :standard: "Giờ chuẩn Ulan Bator"
+    :Moscow: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Matxcơva"
+        :generic: "Giờ Matxcơva"
+        :standard: "Giờ Chuẩn Matxcơva"
+    :Myanmar: 
+      :long: 
+        :standard: "Giờ Myanmar"
+    :Nauru: 
+      :long: 
+        :standard: "Giờ Nauru"
+    :Nepal: 
+      :long: 
+        :standard: "Giờ Nepal"
+    :New_Caledonia: 
+      :long: 
+        :daylight: "Giờ Mùa Hè New Caledonia"
+        :generic: "Giờ New Caledonia"
+        :standard: "Giờ Chuẩn New Caledonia"
+    :New_Zealand: 
+      :long: 
+        :daylight: "Giờ Mùa Hè New Zealand"
+        :generic: "Giờ New Zealand"
+        :standard: "Giờ Chuẩn New Zealand"
+    :Newfoundland: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Newfoundland"
+        :generic: "Giờ Newfoundland"
+        :standard: "Giờ Chuẩn Newfoundland"
+    :Niue: 
+      :long: 
+        :standard: "Giờ Niue"
+    :Norfolk: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Đảo Norfolk"
+        :generic: "Giờ Đảo Norfolk"
+        :standard: "Giờ Chuẩn Đảo Norfolk"
+    :Noronha: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Fernando de Noronha"
+        :generic: "Giờ Fernando de Noronha"
+        :standard: "Giờ Chuẩn Fernando de Noronha"
+    :North_Mariana: 
+      :long: 
+        :standard: "Giờ Quần Đảo Bắc Mariana"
+    :Novosibirsk: 
+      :long: 
+        :daylight: "Giờ mùa hè Novosibirsk"
+        :generic: "Giờ Novosibirsk"
+        :standard: "Giờ chuẩn Novosibirsk"
+    :Omsk: 
+      :long: 
+        :daylight: "Giờ mùa hè Omsk"
+        :generic: "Giờ Omsk"
+        :standard: "Giờ chuẩn Omsk"
+    :Pakistan: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Pakistan"
+        :generic: "Giờ Pakistan"
+        :standard: "Giờ Chuẩn Pakistan"
+    :Palau: 
+      :long: 
+        :standard: "Giờ Palau"
+    :Papua_New_Guinea: 
+      :long: 
+        :standard: "Giờ Papua New Guinea"
+    :Paraguay: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Paraguay"
+        :generic: "Giờ Paraguay"
+        :standard: "Giờ Chuẩn Paraguay"
+    :Peru: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Peru"
+        :generic: "Giờ Peru"
+        :standard: "Giờ Chuẩn Peru"
+    :Philippines: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Philippin"
+        :generic: "Giờ Philippin"
+        :standard: "Giờ Chuẩn Philippin"
+    :Phoenix_Islands: 
+      :long: 
+        :standard: "Giờ Quần Đảo Phoenix"
+    :Pierre_Miquelon: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Saint Pierre và Miquelon"
+        :generic: "Giờ St. Pierre và Miquelon"
+        :standard: "Giờ Chuẩn St. Pierre và Miquelon"
+    :Pitcairn: 
+      :long: 
+        :standard: "Giờ Pitcairn"
+    :Ponape: 
+      :long: 
+        :standard: "Giờ Ponape"
+    :Pyongyang: 
+      :long: 
+        :standard: "Giờ Bình Nhưỡng"
+    :Qyzylorda: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Qyzylorda"
+        :generic: "Giờ Qyzylorda"
+        :standard: "Giờ Chuẩn Qyzylorda"
+    :Reunion: 
+      :long: 
+        :standard: "Giờ Reunion"
+    :Rothera: 
+      :long: 
+        :standard: "Giờ Rothera"
+    :Sakhalin: 
+      :long: 
+        :daylight: "Giờ mùa hè Sakhalin"
+        :generic: "Giờ Sakhalin"
+        :standard: "Giờ Chuẩn Sakhalin"
+    :Samara: 
+      :long: 
+        :daylight: "Giờ mùa hè Samara"
+        :generic: "Giờ Samara"
+        :standard: "Giờ Chuẩn Samara"
+    :Samoa: 
+      :long: 
+        :daylight: "Giờ ban ngày Samoa"
+        :generic: "Giờ Samoa"
+        :standard: "Giờ Chuẩn Samoa"
+    :Seychelles: 
+      :long: 
+        :standard: "Giờ Seychelles"
+    :Singapore: 
+      :long: 
+        :standard: "Giờ Singapore"
+    :Solomon: 
+      :long: 
+        :standard: "Giờ Quần Đảo Solomon"
+    :South_Georgia: 
+      :long: 
+        :standard: "Giờ Nam Georgia"
+    :Suriname: 
+      :long: 
+        :standard: "Giờ Suriname"
+    :Syowa: 
+      :long: 
+        :standard: "Giờ Syowa"
+    :Tahiti: 
+      :long: 
+        :standard: "Giờ Tahiti"
+    :Taipei: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Đài Bắc"
+        :generic: "Giờ Đài Bắc"
+        :standard: "Giờ Chuẩn Đài Bắc"
+    :Tajikistan: 
+      :long: 
+        :standard: "Giờ Tajikistan"
+    :Tokelau: 
+      :long: 
+        :standard: "Giờ Tokelau"
+    :Tonga: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Tonga"
+        :generic: "Giờ Tonga"
+        :standard: "Giờ Chuẩn Tonga"
+    :Truk: 
+      :long: 
+        :standard: "Giờ Chuuk"
+    :Turkmenistan: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Turkmenistan"
+        :generic: "Giờ Turkmenistan"
+        :standard: "Giờ Chuẩn Turkmenistan"
+    :Tuvalu: 
+      :long: 
+        :standard: "Giờ Tuvalu"
+    :Uruguay: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Uruguay"
+        :generic: "Giờ Uruguay"
+        :standard: "Giờ Chuẩn Uruguay"
+    :Uzbekistan: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Uzbekistan"
+        :generic: "Giờ Uzbekistan"
+        :standard: "Giờ Chuẩn Uzbekistan"
+    :Vanuatu: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Vanuatu"
+        :generic: "Giờ Vanuatu"
+        :standard: "Giờ Chuẩn Vanuatu"
+    :Venezuela: 
+      :long: 
+        :standard: "Giờ Venezuela"
+    :Vladivostok: 
+      :long: 
+        :daylight: "Giờ mùa hè Vladivostok"
+        :generic: "Giờ Vladivostok"
+        :standard: "Giờ Chuẩn Vladivostok"
+    :Volgograd: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Volgograd"
+        :generic: "Giờ Volgograd"
+        :standard: "Giờ Chuẩn Volgograd"
+    :Vostok: 
+      :long: 
+        :standard: "Giờ Vostok"
+    :Wake: 
+      :long: 
+        :standard: "Giờ Đảo Wake"
+    :Wallis: 
+      :long: 
+        :standard: "Giờ Wallis và Futuna"
+    :Yakutsk: 
+      :long: 
+        :daylight: "Giờ mùa hè Yakutsk"
+        :generic: "Giờ Yakutsk"
+        :standard: "Giờ Chuẩn Yakutsk"
+    :Yekaterinburg: 
+      :long: 
+        :daylight: "Giờ mùa hè Yekaterinburg"
+        :generic: "Giờ Yekaterinburg"
+        :standard: "Giờ Chuẩn Yekaterinburg"
+    :Yukon: 
+      :long: 
+        :standard: "Giờ Yukon"
+  :timezones: 
+    :Africa/Asmera: 
+      :city: Asmara
+    :Africa/Sao_Tome: 
+      :city: "São Tomé"
+    :America/Asuncion: 
+      :city: Asunción
+    :America/Bahia_Banderas: 
+      :city: "Bahia Banderas"
+    :America/Cancun: 
+      :city: Cancun
+    :America/Ciudad_Juarez: 
+      :city: "Ciudad Juárez"
+    :America/Coral_Harbour: 
+      :city: Atikokan
+    :America/Curacao: 
+      :city: Curaçao
+    :America/Godthab: 
+      :city: Nuuk
+    :America/Indiana/Knox: 
+      :city: "Knox, Indiana"
+    :America/Indiana/Marengo: 
+      :city: "Marengo, Indiana"
+    :America/Indiana/Petersburg: 
+      :city: "Petersburg, Indiana"
+    :America/Indiana/Tell_City: 
+      :city: "Tell City, Indiana"
+    :America/Indiana/Vevay: 
+      :city: "Vevay, Indiana"
+    :America/Indiana/Vincennes: 
+      :city: "Vincennes, Indiana"
+    :America/Indiana/Winamac: 
+      :city: "Winamac, Indiana"
+    :America/Kentucky/Monticello: 
+      :city: "Monticello, Kentucky"
+    :America/Lower_Princes: 
+      :city: "Lower Prince’s Quarter"
+    :America/Merida: 
+      :city: Merida
+    :America/North_Dakota/Beulah: 
+      :city: "Beulah, Bắc Dakota"
+    :America/North_Dakota/Center: 
+      :city: "Center, Bắc Dakota"
+    :America/North_Dakota/New_Salem: 
+      :city: "New Salem, Bắc Dakota"
+    :America/Scoresbysund: 
+      :city: Ittoqqortoormiit
+    :America/St_Barthelemy: 
+      :city: "St. Barthélemy"
+    :America/St_Johns: 
+      :city: "St. John’s"
+    :America/St_Kitts: 
+      :city: "St. Kitts"
+    :America/St_Lucia: 
+      :city: "St. Lucia"
+    :America/St_Thomas: 
+      :city: "St. Thomas"
+    :America/St_Vincent: 
+      :city: "St. Vincent"
+    :Antarctica/DumontDUrville: 
+      :city: "Dumont d’Urville"
+    :Asia/Calcutta: 
+      :city: Kolkata
+    :Asia/Hong_Kong: 
+      :city: "Hồng Kông"
+    :Asia/Katmandu: 
+      :city: Kathmandu
+    :Asia/Macau: 
+      :city: "Ma Cao"
+    :Asia/Pyongyang: 
+      :city: "Bình Nhưỡng"
+    :Asia/Qostanay: 
+      :city: Kostanay
+    :Asia/Rangoon: 
+      :city: Rangoon
+    :Asia/Saigon: 
+      :city: "TP Hồ Chí Minh"
+    :Asia/Shanghai: 
+      :city: "Thượng Hải"
+    :Asia/Taipei: 
+      :city: "Đài Bắc"
+    :Asia/Ulaanbaatar: 
+      :city: "Ulan Bator"
+    :Asia/Vientiane: 
+      :city: "Viêng Chăn"
+    :Atlantic/Faeroe: 
+      :city: Faroe
+    :Atlantic/South_Georgia: 
+      :city: "Nam Georgia"
+    :Atlantic/St_Helena: 
+      :city: "St. Helena"
+    :Etc/UTC: 
+      :long: 
+        :standard: "Giờ Phối hợp Quốc tế"
+      :short: 
+        :standard: UTC
+    :Etc/Unknown: 
+      :city: "Thành phố không xác định"
+    :Europe/Dublin: 
+      :long: 
+        :daylight: "Giờ chuẩn Ai-len"
+    :Europe/Isle_of_Man: 
+      :city: "Đảo Man"
+    :Europe/Kiev: 
+      :city: Kiev
+    :Europe/London: 
+      :long: 
+        :daylight: "Giờ Mùa Hè Anh"
+    :Europe/Moscow: 
+      :city: Mát-xcơ-va
+    :Europe/Prague: 
+      :city: Praha
+    :Indian/Reunion: 
+      :city: Réunion
+    :Pacific/Enderbury: 
+      :city: Enderbury
+    :Pacific/Honolulu: 
+      :city: Honolulu
+      :short: 
+        :daylight: HDT
+        :generic: "Giờ HST"
+        :standard: HST
+    :Pacific/Ponape: 
+      :city: Pohnpei
+    :Pacific/Truk: 
+      :city: Chuuk

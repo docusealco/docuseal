@@ -1,0 +1,723 @@
+--- 
+:fil: 
+  :formats: 
+    :fallback_formats: 
+      :generic: "{1} ({0})"
+    :gmt_formats: 
+      :generic: "GMT{0}"
+    :gmt_zero_formats: 
+      :generic: GMT
+    :hour_formats: 
+      :generic: "+HH:mm;-HH:mm"
+    :region_formats: 
+      :daylight: "Daylight Time ng {0}"
+      :generic: "Oras sa {0}"
+      :standard: "Standard na Oras sa {0}"
+  :metazones: 
+    :Afghanistan: 
+      :long: 
+        :standard: "Oras sa Afghanistan"
+    :Africa_Central: 
+      :long: 
+        :standard: "Oras sa Gitnang Africa"
+    :Africa_Eastern: 
+      :long: 
+        :standard: "Oras sa Silangang Africa"
+    :Africa_Southern: 
+      :long: 
+        :standard: "Oras sa Timog Africa"
+    :Africa_Western: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Kanlurang Africa"
+        :generic: "Oras sa Kanlurang Africa"
+        :standard: "Standard na Oras sa Kanlurang Africa"
+    :Alaska: 
+      :long: 
+        :daylight: "Daylight Time sa Alaska"
+        :generic: "Oras sa Alaska"
+        :standard: "Standard na Oras sa Alaska"
+    :Amazon: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Amazon"
+        :generic: "Oras sa Amazon"
+        :standard: "Standard na Oras sa Amazon"
+    :America_Central: 
+      :long: 
+        :daylight: "Sentral na Daylight na Oras sa North America"
+        :generic: "Sentral na Oras sa North America"
+        :standard: "Sentral na Standard na Oras sa North America"
+    :America_Eastern: 
+      :long: 
+        :daylight: "Daylight na Oras sa Silangan ng Hilagang Amerika"
+        :generic: "Oras sa Silangan ng Hilagang Amerika"
+        :standard: "Standard na Oras sa Silangan ng Hilangang Amerika"
+    :America_Mountain: 
+      :long: 
+        :daylight: "Daylight na Oras sa Bundok sa Hilagang Amerika"
+        :generic: "Oras sa Bundok sa Hilagang Amerika"
+        :standard: "Standard na Oras sa Bundok sa Hilagang Amerika"
+    :America_Pacific: 
+      :long: 
+        :daylight: "Daylight na Oras sa Pasipiko sa Hilagang Amerika"
+        :generic: "Oras sa Pasipiko sa HIlagang Amerika"
+        :standard: "Standard na Oras sa Pasipiko sa Hilagang Amerika"
+    :Anadyr: 
+      :long: 
+        :daylight: "Summer Time sa Anadyr"
+        :generic: "Oras sa Anadyr"
+        :standard: "Standard Time sa Anadyr"
+    :Apia: 
+      :long: 
+        :daylight: "Daylight Time sa Apia"
+        :generic: "Oras sa Apia"
+        :standard: "Standard na Oras sa Apia"
+    :Arabian: 
+      :long: 
+        :daylight: "Daylight Time sa Arabia"
+        :generic: "Oras sa Arabia"
+        :standard: "Standard na Oras sa Arabia"
+    :Argentina: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Argentina"
+        :generic: "Oras sa Argentina"
+        :standard: "Standard na Oras sa Argentina"
+    :Argentina_Western: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Kanlurang Argentina"
+        :generic: "Oras sa Kanlurang Argentina"
+        :standard: "Standard na Oras sa Kanlurang Argentina"
+    :Armenia: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Armenia"
+        :generic: "Oras sa Armenia"
+        :standard: "Standard na Oras sa Armenia"
+    :Atlantic: 
+      :long: 
+        :daylight: "Daylight na Oras sa Atlantiko"
+        :generic: "Oras sa Atlantiko"
+        :standard: "Standard na Oras sa Atlantiko"
+    :Australia_Central: 
+      :long: 
+        :daylight: "Daylight Time sa Gitnang Australya"
+        :generic: "Oras sa Gitnang Australya"
+        :standard: "Standard na Oras sa Gitnang Australya"
+    :Australia_CentralWestern: 
+      :long: 
+        :daylight: "Daylight Time sa Gitnang Kanlurang Australia"
+        :generic: "Oras ng Gitnang Kanluran ng Australia"
+        :standard: "Standard Time ng Gitnang Kanluran ng Australia"
+    :Australia_Eastern: 
+      :long: 
+        :daylight: "Daylight Time sa Silangang Australia"
+        :generic: "Oras sa Silangang Australia"
+        :standard: "Standard na Oras sa Silangang Australia"
+    :Australia_Western: 
+      :long: 
+        :daylight: "Daylight Time sa Kanlurang Australia"
+        :generic: "Oras sa Kanlurang Australia"
+        :standard: "Standard na Oras sa Kanlurang Australia"
+    :Azerbaijan: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Azerbaijan"
+        :generic: "Oras sa Azerbaijan"
+        :standard: "Standard na Oras sa Azerbaijan"
+    :Azores: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Azores"
+        :generic: "Oras sa Azores"
+        :standard: "Standard na Oras sa Azores"
+    :Bangladesh: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Bangladesh"
+        :generic: "Oras sa Bangladesh"
+        :standard: "Standard na Oras sa Bangladesh"
+    :Bhutan: 
+      :long: 
+        :standard: "Oras sa Bhutan"
+    :Bolivia: 
+      :long: 
+        :standard: "Oras sa Bolivia"
+    :Brasilia: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Brasilia"
+        :generic: "Oras sa Brasilia"
+        :standard: "Standard na Oras sa Brasilia"
+    :Brunei: 
+      :long: 
+        :standard: "Oras sa Brunei Darussalam"
+    :Cape_Verde: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Cape Verde"
+        :generic: "Oras sa Cape Verde"
+        :standard: "Standard na Oras sa Cape Verde"
+    :Chamorro: 
+      :long: 
+        :standard: "Standard na Oras sa Chamorro"
+    :Chatham: 
+      :long: 
+        :daylight: "Daylight Time sa Chatham"
+        :generic: "Oras sa Chatham"
+        :standard: "Standard na Oras sa Chatham"
+    :Chile: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Chile"
+        :generic: "Oras sa Chile"
+        :standard: "Standard na Oras sa Chile"
+    :China: 
+      :long: 
+        :daylight: "Daylight Time sa China"
+        :generic: "Oras sa China"
+        :standard: "Standard na Oras sa China"
+    :Christmas: 
+      :long: 
+        :standard: "Oras sa Christmas Island"
+    :Cocos: 
+      :long: 
+        :standard: "Oras sa Cocos Islands"
+    :Colombia: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Colombia"
+        :generic: "Oras sa Colombia"
+        :standard: "Standard na Oras sa Colombia"
+    :Cook: 
+      :long: 
+        :daylight: "Oras sa Kalahati ng Tag-init ng Cook Islands"
+        :generic: "Oras sa Cook Islands"
+        :standard: "Standard na Oras sa Cook Islands"
+    :Cuba: 
+      :long: 
+        :daylight: "Daylight na Oras sa Cuba"
+        :generic: "Oras sa Cuba"
+        :standard: "Standard na Oras sa Cuba"
+    :Davis: 
+      :long: 
+        :standard: "Oras sa Davis"
+    :DumontDUrville: 
+      :long: 
+        :standard: "Oras sa Dumont-d’Urville"
+    :East_Timor: 
+      :long: 
+        :standard: "Oras sa East Timor"
+    :Easter: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Easter Island"
+        :generic: "Oras sa Easter Island"
+        :standard: "Standard na Oras sa Easter Island"
+    :Ecuador: 
+      :long: 
+        :standard: "Oras sa Ecuador"
+    :Europe_Central: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Gitnang Europe"
+        :generic: "Oras sa Gitnang Europe"
+        :standard: "Standard na Oras sa Gitnang Europe"
+    :Europe_Eastern: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Silangang Europe"
+        :generic: "Oras sa Silangang Europe"
+        :standard: "Standard na Oras sa Silangang Europe"
+    :Europe_Further_Eastern: 
+      :long: 
+        :standard: "Oras sa Pinaka-silangang Europe"
+    :Europe_Western: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Kanlurang Europe"
+        :generic: "Oras sa Kanlurang Europe"
+        :standard: "Standard na Oras sa Kanlurang Europe"
+    :Falkland: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Falkland Islands"
+        :generic: "Oras sa Falkland Islands"
+        :standard: "Standard na Oras sa Falkland Islands"
+    :Fiji: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Fiji"
+        :generic: "Oras sa Fiji"
+        :standard: "Standard na Oras sa Fiji"
+    :French_Guiana: 
+      :long: 
+        :standard: "Oras sa French Guiana"
+    :French_Southern: 
+      :long: 
+        :standard: "Oras sa Katimugang France at Antartiko"
+    :GMT: 
+      :long: 
+        :standard: "Greenwich Mean Time"
+    :Galapagos: 
+      :long: 
+        :standard: "Oras sa Galapagos"
+    :Gambier: 
+      :long: 
+        :standard: "Oras sa Gambier"
+    :Georgia: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Georgia"
+        :generic: "Oras sa Georgia"
+        :standard: "Standard na Oras sa Georgia"
+    :Gilbert_Islands: 
+      :long: 
+        :standard: "Oras sa Gilbert Islands"
+    :Greenland_Eastern: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Silangang Greenland"
+        :generic: "Oras sa Silangang Greenland"
+        :standard: "Standard na Oras sa Silangang Greenland"
+    :Greenland_Western: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Kanlurang Greenland"
+        :generic: "Oras sa Kanlurang Greenland"
+        :standard: "Standard na Oras sa Kanlurang Greenland"
+    :Gulf: 
+      :long: 
+        :standard: "Oras sa Gulf"
+    :Guyana: 
+      :long: 
+        :standard: "Oras sa Guyana"
+    :Hawaii_Aleutian: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Hawaii-Aleutian"
+        :generic: "Oras sa Hawaii-Aleutian"
+        :standard: "Standard na Oras sa Hawaii-Aleutian"
+    :Hong_Kong: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Hong Kong"
+        :generic: "Oras sa Hong Kong"
+        :standard: "Standard na Oras sa Hong Kong"
+    :Hovd: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Hovd"
+        :generic: "Oras sa Hovd"
+        :standard: "Standard na Oras sa Hovd"
+    :India: 
+      :long: 
+        :standard: "Standard na Oras sa India"
+    :Indian_Ocean: 
+      :long: 
+        :standard: "Oras sa Indian Ocean"
+    :Indochina: 
+      :long: 
+        :standard: "Oras sa Indochina"
+    :Indonesia_Central: 
+      :long: 
+        :standard: "Oras sa Gitnang Indonesia"
+    :Indonesia_Eastern: 
+      :long: 
+        :standard: "Oras sa Silangang Indonesia"
+    :Indonesia_Western: 
+      :long: 
+        :standard: "Oras sa Kanlurang Indonesia"
+    :Iran: 
+      :long: 
+        :daylight: "Daylight Time sa Iran"
+        :generic: "Oras sa Iran"
+        :standard: "Standard na Oras sa Iran"
+    :Irkutsk: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Irkutsk"
+        :generic: "Oras sa Irkutsk"
+        :standard: "Standard na Oras sa Irkutsk"
+    :Israel: 
+      :long: 
+        :daylight: "Daylight Time sa Israel"
+        :generic: "Oras sa Israel"
+        :standard: "Standard na Oras sa Israel"
+    :Japan: 
+      :long: 
+        :daylight: "Daylight Time sa Japan"
+        :generic: "Oras sa Japan"
+        :standard: "Standard na Oras sa Japan"
+    :Kamchatka: 
+      :long: 
+        :daylight: "Summer Time sa Petropavlovsk-Kamchatski"
+        :generic: "Oras sa Petropavlovsk-Kamchatski"
+        :standard: "Standard Time sa Petropavlovsk-Kamchatski"
+    :Kazakhstan: 
+      :long: 
+        :standard: "Oras ng Kazakhstan"
+    :Kazakhstan_Eastern: 
+      :long: 
+        :standard: "Oras sa Silangang Kazakhstan"
+    :Kazakhstan_Western: 
+      :long: 
+        :standard: "Oras sa Kanlurang Kazakhstan"
+    :Korea: 
+      :long: 
+        :daylight: "Daylight Time sa Korea"
+        :generic: "Oras sa Korea"
+        :standard: "Standard na Oras sa Korea"
+    :Kosrae: 
+      :long: 
+        :standard: "Oras sa Kosrae"
+    :Krasnoyarsk: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Krasnoyarsk"
+        :generic: "Oras sa Krasnoyarsk"
+        :standard: "Standard na Oras sa Krasnoyarsk"
+    :Kyrgystan: 
+      :long: 
+        :standard: "Oras sa Kyrgystan"
+    :Line_Islands: 
+      :long: 
+        :standard: "Oras sa Line Islands"
+    :Lord_Howe: 
+      :long: 
+        :daylight: "Daylight Time sa Lorde Howe"
+        :generic: "Oras sa Lord Howe"
+        :standard: "Standard na Oras sa Lord Howe"
+    :Magadan: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Magadan"
+        :generic: "Oras sa Magadan"
+        :standard: "Standard na Oras sa Magadan"
+    :Malaysia: 
+      :long: 
+        :standard: "Oras sa Malaysia"
+    :Maldives: 
+      :long: 
+        :standard: "Oras sa Maldives"
+    :Marquesas: 
+      :long: 
+        :standard: "Oras sa Marquesas"
+    :Marshall_Islands: 
+      :long: 
+        :standard: "Oras sa Marshall Islands"
+    :Mauritius: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Mauritius"
+        :generic: "Oras sa Mauritius"
+        :standard: "Standard na Oras sa Mauritius"
+    :Mawson: 
+      :long: 
+        :standard: "Oras sa Mawson"
+    :Mexico_Pacific: 
+      :long: 
+        :daylight: "Daylight na Oras sa Pasipiko ng Mexico"
+        :generic: "Oras sa Pasipiko ng Mexico"
+        :standard: "Standard na Oras sa Pasipiko ng Mexico"
+    :Mongolia: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Ulan Bator"
+        :generic: "Oras sa Ulan Bator"
+        :standard: "Standard na Oras sa Ulan Bator"
+    :Moscow: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Moscow"
+        :generic: "Oras sa Moscow"
+        :standard: "Standard na Oras sa Moscow"
+    :Myanmar: 
+      :long: 
+        :standard: "Oras sa Myanmar"
+    :Nauru: 
+      :long: 
+        :standard: "Oras sa Nauru"
+    :Nepal: 
+      :long: 
+        :standard: "Oras sa Nepal"
+    :New_Caledonia: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng New Caledonia"
+        :generic: "Oras sa New Caledonia"
+        :standard: "Standard na Oras sa New Caledonia"
+    :New_Zealand: 
+      :long: 
+        :daylight: "Daylight Time sa New Zealand"
+        :generic: "Oras sa New Zealand"
+        :standard: "Standard na Oras sa New Zealand"
+    :Newfoundland: 
+      :long: 
+        :daylight: "Daylight na Oras sa Newfoundland"
+        :generic: "Oras sa Newfoundland"
+        :standard: "Standard na Oras sa Newfoundland"
+    :Niue: 
+      :long: 
+        :standard: "Oras sa Niue"
+    :Norfolk: 
+      :long: 
+        :daylight: "Daylight Time sa Norfolk Island"
+        :generic: "Oras sa Norfolk Island"
+        :standard: "Standard na Oras sa Norfolk Island"
+    :Noronha: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Fernando de Noronha"
+        :generic: "Oras sa Fernando de Noronha"
+        :standard: "Standard na Oras sa Fernando de Noronha"
+    :Novosibirsk: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Novosibirsk"
+        :generic: "Oras sa Novosibirsk"
+        :standard: "Standard na Oras sa Novosibirsk"
+    :Omsk: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Omsk"
+        :generic: "Oras sa Omsk"
+        :standard: "Standard na Oras sa Omsk"
+    :Pakistan: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Pakistan"
+        :generic: "Oras sa Pakistan"
+        :standard: "Standard na Oras sa Pakistan"
+    :Palau: 
+      :long: 
+        :standard: "Oras sa Palau"
+    :Papua_New_Guinea: 
+      :long: 
+        :standard: "Oras sa Papua New Guinea"
+    :Paraguay: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Paraguay"
+        :generic: "Oras sa Paraguay"
+        :standard: "Standard na Oras sa Paraguay"
+    :Peru: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Peru"
+        :generic: "Oras sa Peru"
+        :standard: "Standard na Oras sa Peru"
+    :Philippines: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Pilipinas"
+        :generic: "Oras sa Pilipinas"
+        :standard: "Standard na Oras sa Pilipinas"
+    :Phoenix_Islands: 
+      :long: 
+        :standard: "Oras sa Phoenix Islands"
+    :Pierre_Miquelon: 
+      :long: 
+        :daylight: "Daylight na Oras sa Saint Pierre & Miquelon"
+        :generic: "Oras sa Saint Pierre & Miquelon"
+        :standard: "Standard na Oras sa Saint Pierre & Miquelon"
+    :Pitcairn: 
+      :long: 
+        :standard: "Oras sa Pitcairn"
+    :Ponape: 
+      :long: 
+        :standard: "Oras sa Ponape"
+    :Pyongyang: 
+      :long: 
+        :standard: "Oras sa Pyongyang"
+    :Reunion: 
+      :long: 
+        :standard: "Oras sa Reunion"
+    :Rothera: 
+      :long: 
+        :standard: "Oras sa Rothera"
+    :Sakhalin: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Sakhalin"
+        :generic: "Oras sa Sakhalin"
+        :standard: "Standard na Oras sa Sakhalin"
+    :Samara: 
+      :long: 
+        :daylight: "Samara Daylight"
+        :generic: "Oras sa Samara"
+        :standard: "Standard Time sa Samara"
+    :Samoa: 
+      :long: 
+        :daylight: "Daylight Time sa Samoa"
+        :generic: "Oras sa Samoa"
+        :standard: "Standard na Oras sa Samoa"
+    :Seychelles: 
+      :long: 
+        :standard: "Oras sa Seychelles"
+    :Singapore: 
+      :long: 
+        :standard: "Standard na Oras sa Singapore"
+    :Solomon: 
+      :long: 
+        :standard: "Oras sa Solomon Islands"
+    :South_Georgia: 
+      :long: 
+        :standard: "Oras sa Timog Georgia"
+    :Suriname: 
+      :long: 
+        :standard: "Oras sa Suriname"
+    :Syowa: 
+      :long: 
+        :standard: "Oras sa Syowa"
+    :Tahiti: 
+      :long: 
+        :standard: "Oras sa Tahiti"
+    :Taipei: 
+      :long: 
+        :daylight: "Daylight Time sa Taipei"
+        :generic: "Oras sa Taipei"
+        :standard: "Standard na Oras sa Taipei"
+    :Tajikistan: 
+      :long: 
+        :standard: "Oras sa Tajikistan"
+    :Tokelau: 
+      :long: 
+        :standard: "Oras sa Tokelau"
+    :Tonga: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Tonga"
+        :generic: "Oras sa Tonga"
+        :standard: "Standard na Oras sa Tonga"
+    :Truk: 
+      :long: 
+        :standard: "Oras sa Chuuk"
+    :Turkmenistan: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Turkmenistan"
+        :generic: "Oras sa Turkmenistan"
+        :standard: "Standard na Oras sa Turkmenistan"
+    :Tuvalu: 
+      :long: 
+        :standard: "Oras sa Tuvalu"
+    :Uruguay: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Uruguay"
+        :generic: "Oras sa Uruguay"
+        :standard: "Standard na Oras sa Uruguay"
+    :Uzbekistan: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Uzbekistan"
+        :generic: "Oras sa Uzbekistan"
+        :standard: "Standard na Oras sa Uzbekistan"
+    :Vanuatu: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Vanuatu"
+        :generic: "Oras sa Vanuatu"
+        :standard: "Standard na Oras sa Vanuatu"
+    :Venezuela: 
+      :long: 
+        :standard: "Oras sa Venezuela"
+    :Vladivostok: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Vladivostok"
+        :generic: "Oras sa Vladivostok"
+        :standard: "Standard na Oras sa Vladivostok"
+    :Volgograd: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Volgograd"
+        :generic: "Oras sa Volgograd"
+        :standard: "Standard na Oras sa Volgograd"
+    :Vostok: 
+      :long: 
+        :standard: "Oras sa Vostok"
+    :Wake: 
+      :long: 
+        :standard: "Oras sa Wake Island"
+    :Wallis: 
+      :long: 
+        :standard: "Oras sa Wallis & Futuna"
+    :Yakutsk: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Yakutsk"
+        :generic: "Oras sa Yakutsk"
+        :standard: "Standard na Oras sa Yakutsk"
+    :Yekaterinburg: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Yekaterinburg"
+        :generic: "Oras sa Yekaterinburg"
+        :standard: "Standard na Oras sa Yekaterinburg"
+    :Yukon: 
+      :long: 
+        :standard: "Oras sa Yukon"
+  :timezones: 
+    :Africa/Asmera: 
+      :city: Asmara
+    :Africa/Sao_Tome: 
+      :city: "São Tomé"
+    :America/Asuncion: 
+      :city: Asunción
+    :America/Bahia_Banderas: 
+      :city: "Bahia Banderas"
+    :America/Cancun: 
+      :city: Cancun
+    :America/Ciudad_Juarez: 
+      :city: "Lungsod ng Juárez"
+    :America/Coral_Harbour: 
+      :city: Atikokan
+    :America/Curacao: 
+      :city: Curaçao
+    :America/Godthab: 
+      :city: Nuuk
+    :America/Indiana/Knox: 
+      :city: "Knox, Indiana"
+    :America/Indiana/Marengo: 
+      :city: "Marengo, Indiana"
+    :America/Indiana/Petersburg: 
+      :city: "Petersburg, Indiana"
+    :America/Indiana/Tell_City: 
+      :city: "Tell City, Indiana"
+    :America/Indiana/Vevay: 
+      :city: "Vevay, Indiana"
+    :America/Indiana/Vincennes: 
+      :city: "Vincennes, Indiana"
+    :America/Indiana/Winamac: 
+      :city: "Winamac, Indiana"
+    :America/Kentucky/Monticello: 
+      :city: "Monticello, Kentucky"
+    :America/Lower_Princes: 
+      :city: "Lower Prince’s Quarter"
+    :America/Merida: 
+      :city: Merida
+    :America/Mexico_City: 
+      :city: "Lungsod ng Mexico"
+    :America/North_Dakota/Beulah: 
+      :city: "Beulah, North Dakota"
+    :America/North_Dakota/Center: 
+      :city: "Center, North Dakota"
+    :America/North_Dakota/New_Salem: 
+      :city: "New Salem, North Dakota"
+    :America/Port_of_Spain: 
+      :city: "Puwerto ng Espanya"
+    :America/Rankin_Inlet: 
+      :city: "Makipot na Look ng Rankin"
+    :America/Scoresbysund: 
+      :city: Ittoqqortoormiit
+    :America/St_Barthelemy: 
+      :city: "St. Barthélemy"
+    :America/St_Johns: 
+      :city: "St. John’s"
+    :America/St_Kitts: 
+      :city: "St. Kitts"
+    :America/St_Lucia: 
+      :city: "St. Lucia"
+    :America/St_Thomas: 
+      :city: "St. Thomas"
+    :America/St_Vincent: 
+      :city: "St. Vincent"
+    :Antarctica/DumontDUrville: 
+      :city: "Dumont d’Urville"
+    :Asia/Calcutta: 
+      :city: Kolkata
+    :Asia/Katmandu: 
+      :city: Kathmandu
+    :Asia/Macau: 
+      :city: Macau
+    :Asia/Qostanay: 
+      :city: Kostanay
+    :Asia/Rangoon: 
+      :city: Yangon
+    :Asia/Saigon: 
+      :city: "Lungsod ng Ho Chi Minh"
+    :Atlantic/Faeroe: 
+      :city: Faroe
+    :Atlantic/St_Helena: 
+      :city: "St. Helena"
+    :Etc/UTC: 
+      :long: 
+        :standard: "Coordinated Universal Time"
+      :short: 
+        :standard: UTC
+    :Etc/Unknown: 
+      :city: "Di-kilalang Lungsod"
+    :Europe/Dublin: 
+      :long: 
+        :daylight: "Standard na Oras sa Ireland"
+    :Europe/Kiev: 
+      :city: Kiev
+    :Europe/London: 
+      :long: 
+        :daylight: "Oras sa Tag-init ng Britain"
+    :Indian/Reunion: 
+      :city: Réunion
+    :Pacific/Enderbury: 
+      :city: Enderbury
+    :Pacific/Honolulu: 
+      :city: Honolulu
+    :Pacific/Ponape: 
+      :city: Pohnpei
+    :Pacific/Truk: 
+      :city: Chuuk

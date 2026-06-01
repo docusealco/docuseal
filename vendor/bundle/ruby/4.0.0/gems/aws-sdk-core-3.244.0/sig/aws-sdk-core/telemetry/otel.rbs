@@ -1,0 +1,22 @@
+module Aws
+  module Telemetry
+    class OTelProvider < TelemetryProviderBase
+      def initialize: () -> void
+    end
+
+    class OTelTracerProvider < TracerProviderBase
+      def initialize: () -> void
+    end
+
+    class OTelTracer < TracerBase
+      def initialize: (untyped tracer) -> void
+    end
+
+    class OTelSpan < SpanBase
+      def initialize: (untyped span) -> void
+    end
+
+    class OTelContextManager < ContextManagerBase
+    end
+  end
+end

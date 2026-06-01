@@ -1,0 +1,5 @@
+module WEBrick
+  module HTMLUtils
+    def self?.escape: (String? string) -> String
+  end
+end

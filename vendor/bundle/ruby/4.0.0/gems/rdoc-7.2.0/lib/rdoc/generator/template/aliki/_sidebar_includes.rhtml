@@ -1,0 +1,25 @@
+<%- unless klass.includes.empty? then %>
+<div id="includes-section" class="nav-section">
+  <details class="nav-section-collapsible" open>
+    <summary class="nav-section-header">
+      <span class="nav-section-icon">
+        <svg><use href="#icon-includes"></use></svg>
+      </span>
+      <span class="nav-section-title">Included Modules</span>
+      <span class="nav-section-chevron">
+        <svg><use href="#icon-chevron"></use></svg>
+      </span>
+    </summary>
+
+    <ul class="nav-list">
+    <%- klass.includes.each do |inc| %>
+    <%- unless String === inc.module then %>
+      <li><a class="include" href="<%= klass.aref_to inc.module.path %>"><%= inc.module.full_name %></a></li>
+    <%- else %>
+      <li><span class="include"><%= inc.name %></span></li>
+    <%- end %>
+    <%- end %>
+    </ul>
+  </details>
+</div>
+<%- end %>

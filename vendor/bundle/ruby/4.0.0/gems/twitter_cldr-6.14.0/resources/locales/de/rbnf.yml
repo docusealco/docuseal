@@ -1,0 +1,598 @@
+--- 
+:de: 
+  :rbnf: 
+    :grouping: 
+      - 
+        :ruleset: 
+          - 
+            :rules: 
+              - 
+                :rule: "minus >>;"
+                :value: "-x"
+              - 
+                :rule: =0.0=;
+                :value: x.x
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 0
+              - 
+                :radix: 100
+                :rule: "<<­hundert[­>>];"
+                :value: 1100
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 2000
+            :type: spellout-numbering-year
+          - 
+            :rules: 
+              - 
+                :rule: "minus >>;"
+                :value: "-x"
+              - 
+                :rule: "<< Komma >>;"
+                :value: x.x
+              - 
+                :rule: null;
+                :value: 0
+              - 
+                :rule: eins;
+                :value: 1
+              - 
+                :rule: zwei;
+                :value: 2
+              - 
+                :rule: drei;
+                :value: 3
+              - 
+                :rule: vier;
+                :value: 4
+              - 
+                :rule: fünf;
+                :value: 5
+              - 
+                :rule: sechs;
+                :value: 6
+              - 
+                :rule: sieben;
+                :value: 7
+              - 
+                :rule: acht;
+                :value: 8
+              - 
+                :rule: neun;
+                :value: 9
+              - 
+                :rule: zehn;
+                :value: 10
+              - 
+                :rule: elf;
+                :value: 11
+              - 
+                :rule: zwölf;
+                :value: 12
+              - 
+                :rule: ">>zehn;"
+                :value: 13
+              - 
+                :rule: sechzehn;
+                :value: 16
+              - 
+                :rule: siebzehn;
+                :value: 17
+              - 
+                :rule: ">>zehn;"
+                :value: 18
+              - 
+                :rule: "[>%spellout-cardinal-masculine>­und­]zwanzig;"
+                :value: 20
+              - 
+                :rule: "[>%spellout-cardinal-masculine>­und­]dreißig;"
+                :value: 30
+              - 
+                :rule: "[>%spellout-cardinal-masculine>­und­]vierzig;"
+                :value: 40
+              - 
+                :rule: "[>%spellout-cardinal-masculine>­und­]fünfzig;"
+                :value: 50
+              - 
+                :rule: "[>%spellout-cardinal-masculine>­und­]sechzig;"
+                :value: 60
+              - 
+                :rule: "[>%spellout-cardinal-masculine>­und­]siebzig;"
+                :value: 70
+              - 
+                :rule: "[>%spellout-cardinal-masculine>­und­]achtzig;"
+                :value: 80
+              - 
+                :rule: "[>%spellout-cardinal-masculine>­und­]neunzig;"
+                :value: 90
+              - 
+                :rule: "<%spellout-cardinal-masculine<­hundert[­>>];"
+                :value: 100
+              - 
+                :rule: "<%spellout-cardinal-masculine<­tausend[­>>];"
+                :value: 1000
+              - 
+                :rule: "eine Million[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< Millionen[ >>];"
+                :value: 2000000
+              - 
+                :rule: "eine Milliarde[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< Milliarden[ >>];"
+                :value: 2000000000
+              - 
+                :rule: "eine Billion[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< Billionen[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "eine Billiarde[ >>];"
+                :value: 1000000000000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< Billiarden[ >>];"
+                :value: 2000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-numbering
+          - 
+            :rules: 
+              - 
+                :rule: =%spellout-cardinal-masculine=;
+                :value: 0
+            :type: spellout-cardinal-neuter
+          - 
+            :rules: 
+              - 
+                :rule: "minus >>;"
+                :value: "-x"
+              - 
+                :rule: "<< Komma >>;"
+                :value: x.x
+              - 
+                :rule: null;
+                :value: 0
+              - 
+                :rule: ein;
+                :value: 1
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 2
+              - 
+                :rule: "<%spellout-cardinal-masculine<­hundert[­>>];"
+                :value: 100
+              - 
+                :rule: "<%spellout-cardinal-masculine<­tausend[­>>];"
+                :value: 1000
+              - 
+                :rule: "eine Million[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< Millionen[ >>];"
+                :value: 2000000
+              - 
+                :rule: "eine Milliarde[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< Milliarden[ >>];"
+                :value: 2000000000
+              - 
+                :rule: "eine Billion[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< Billionen[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "eine Billiarde[ >>];"
+                :value: 1000000000000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< Billiarden[ >>];"
+                :value: 2000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-masculine
+          - 
+            :rules: 
+              - 
+                :rule: "minus >>;"
+                :value: "-x"
+              - 
+                :rule: "<< Komma >>;"
+                :value: x.x
+              - 
+                :rule: null;
+                :value: 0
+              - 
+                :rule: eine;
+                :value: 1
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 2
+              - 
+                :rule: "<%spellout-cardinal-masculine<­hundert[­>>];"
+                :value: 100
+              - 
+                :rule: "<%spellout-cardinal-masculine<­tausend[­>>];"
+                :value: 1000
+              - 
+                :rule: "eine Million[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< Millionen[ >>];"
+                :value: 2000000
+              - 
+                :rule: "eine Milliarde[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< Milliarden[ >>];"
+                :value: 2000000000
+              - 
+                :rule: "eine Billion[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< Billionen[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "eine Billiarde[ >>];"
+                :value: 1000000000000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< Billiarden[ >>];"
+                :value: 2000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-feminine
+          - 
+            :rules: 
+              - 
+                :rule: "minus >>;"
+                :value: "-x"
+              - 
+                :rule: "<< Komma >>;"
+                :value: x.x
+              - 
+                :rule: null;
+                :value: 0
+              - 
+                :rule: einen;
+                :value: 1
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 2
+              - 
+                :rule: "<%spellout-cardinal-masculine<­hundert[­>>];"
+                :value: 100
+              - 
+                :rule: "<%spellout-cardinal-masculine<­tausend[­>>];"
+                :value: 1000
+              - 
+                :rule: "eine Million[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< Millionen[ >>];"
+                :value: 2000000
+              - 
+                :rule: "eine Milliarde[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< Milliarden[ >>];"
+                :value: 2000000000
+              - 
+                :rule: "eine Billion[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< Billionen[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "eine Billiarde[ >>];"
+                :value: 1000000000000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< Billiarden[ >>];"
+                :value: 2000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-n
+          - 
+            :rules: 
+              - 
+                :rule: "minus >>;"
+                :value: "-x"
+              - 
+                :rule: "<< Komma >>;"
+                :value: x.x
+              - 
+                :rule: null;
+                :value: 0
+              - 
+                :rule: einer;
+                :value: 1
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 2
+              - 
+                :rule: "<%spellout-cardinal-masculine<­hundert[­>>];"
+                :value: 100
+              - 
+                :rule: "<%spellout-cardinal-masculine<­tausend[­>>];"
+                :value: 1000
+              - 
+                :rule: "eine Million[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< Millionen[ >>];"
+                :value: 2000000
+              - 
+                :rule: "eine Milliarde[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< Milliarden[ >>];"
+                :value: 2000000000
+              - 
+                :rule: "eine Billion[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< Billionen[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "eine Billiarde[ >>];"
+                :value: 1000000000000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< Billiarden[ >>];"
+                :value: 2000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-r
+          - 
+            :rules: 
+              - 
+                :rule: "minus >>;"
+                :value: "-x"
+              - 
+                :rule: "<< Komma >>;"
+                :value: x.x
+              - 
+                :rule: null;
+                :value: 0
+              - 
+                :rule: eines;
+                :value: 1
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 2
+              - 
+                :rule: "<%spellout-cardinal-masculine<­hundert[­>>];"
+                :value: 100
+              - 
+                :rule: "<%spellout-cardinal-masculine<­tausend[­>>];"
+                :value: 1000
+              - 
+                :rule: "eine Million[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< Millionen[ >>];"
+                :value: 2000000
+              - 
+                :rule: "eine Milliarde[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< Milliarden[ >>];"
+                :value: 2000000000
+              - 
+                :rule: "eine Billion[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< Billionen[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "eine Billiarde[ >>];"
+                :value: 1000000000000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< Billiarden[ >>];"
+                :value: 2000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-s
+          - 
+            :rules: 
+              - 
+                :rule: "minus >>;"
+                :value: "-x"
+              - 
+                :rule: "<< Komma >>;"
+                :value: x.x
+              - 
+                :rule: null;
+                :value: 0
+              - 
+                :rule: einem;
+                :value: 1
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 2
+              - 
+                :rule: "<%spellout-cardinal-masculine<­hundert[­>>];"
+                :value: 100
+              - 
+                :rule: "<%spellout-cardinal-masculine<­tausend[­>>];"
+                :value: 1000
+              - 
+                :rule: "eine Million[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< Millionen[ >>];"
+                :value: 2000000
+              - 
+                :rule: "eine Milliarde[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< Milliarden[ >>];"
+                :value: 2000000000
+              - 
+                :rule: "eine Billion[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< Billionen[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "eine Billiarde[ >>];"
+                :value: 1000000000000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< Billiarden[ >>];"
+                :value: 2000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-m
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: ste;
+                :value: 0
+              - 
+                :rule: ­=%spellout-ordinal=;
+                :value: 1
+            :type: ste
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: ste;
+                :value: 0
+              - 
+                :rule: " =%spellout-ordinal=;"
+                :value: 1
+            :type: ste2
+          - 
+            :rules: 
+              - 
+                :rule: "minus >>;"
+                :value: "-x"
+              - 
+                :rule: "=#,##0.#=;"
+                :value: x.x
+              - 
+                :rule: nullte;
+                :value: 0
+              - 
+                :rule: erste;
+                :value: 1
+              - 
+                :rule: zweite;
+                :value: 2
+              - 
+                :rule: dritte;
+                :value: 3
+              - 
+                :rule: vierte;
+                :value: 4
+              - 
+                :rule: fünfte;
+                :value: 5
+              - 
+                :rule: sechste;
+                :value: 6
+              - 
+                :rule: siebte;
+                :value: 7
+              - 
+                :rule: achte;
+                :value: 8
+              - 
+                :rule: =%spellout-numbering=te;
+                :value: 9
+              - 
+                :rule: =%spellout-numbering=ste;
+                :value: 20
+              - 
+                :rule: <%spellout-cardinal-masculine<­hundert>%%ste>;
+                :value: 100
+              - 
+                :rule: <%spellout-cardinal-masculine<­tausend>%%ste>;
+                :value: 1000
+              - 
+                :rule: "eine Million>%%ste2>;"
+                :value: 1000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< Millionen>%%ste2>;"
+                :value: 2000000
+              - 
+                :rule: "eine Milliarde>%%ste2>;"
+                :value: 1000000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< Milliarden>%%ste2>;"
+                :value: 2000000000
+              - 
+                :rule: "eine Billion>%%ste>;"
+                :value: 1000000000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< Billionen>%%ste2>;"
+                :value: 2000000000000
+              - 
+                :rule: "eine Billiarde>%%ste2>;"
+                :value: 1000000000000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< Billiarden>%%ste2>;"
+                :value: 2000000000000000
+              - 
+                :rule: "=#,##0=.;"
+                :value: 1000000000000000000
+            :type: spellout-ordinal
+          - 
+            :rules: 
+              - 
+                :rule: "minus >>;"
+                :value: "-x"
+              - 
+                :rule: "=#,##0.#=;"
+                :value: x.x
+              - 
+                :rule: =%spellout-ordinal=n;
+                :value: 0
+            :type: spellout-ordinal-n
+          - 
+            :rules: 
+              - 
+                :rule: "minus >>;"
+                :value: "-x"
+              - 
+                :rule: "=#,##0.#=;"
+                :value: x.x
+              - 
+                :rule: =%spellout-ordinal=r;
+                :value: 0
+            :type: spellout-ordinal-r
+          - 
+            :rules: 
+              - 
+                :rule: "minus >>;"
+                :value: "-x"
+              - 
+                :rule: "=#,##0.#=;"
+                :value: x.x
+              - 
+                :rule: =%spellout-ordinal=s;
+                :value: 0
+            :type: spellout-ordinal-s
+          - 
+            :rules: 
+              - 
+                :rule: "minus >>;"
+                :value: "-x"
+              - 
+                :rule: "=#,##0.#=;"
+                :value: x.x
+              - 
+                :rule: =%spellout-ordinal=m;
+                :value: 0
+            :type: spellout-ordinal-m
+        :type: SpelloutRules

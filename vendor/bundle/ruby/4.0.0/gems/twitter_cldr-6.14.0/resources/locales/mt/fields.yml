@@ -1,0 +1,344 @@
+--- 
+:mt: 
+  :fields: 
+    :day: 
+      :display_name: jum
+      :relative: 
+        -1: lbieraħ
+        0: illum
+        1: għada
+      :relative_time: 
+        :future: 
+          :few: "fi żmien {0} ġranet oħra"
+          :many: "fi żmien {0}-il ġurnata oħra"
+          :one: "fi żmien ġurnata"
+          :other: "fi żmien {0} ġurnata oħra"
+          :two: "fi żmien jumejn oħra"
+        :past: 
+          :few: "{0} ġranet ilu"
+          :many: "{0}-il ġurnata ilu"
+          :one: "ġurnata ilu"
+          :other: "{0} ġurnata ilu"
+          :two: "jumejn ilu"
+    :day-narrow: 
+      :relative_time: 
+        :future: 
+          :few: "fi żmien {0} ġurnata oħra"
+          :many: "fi żmien {0}-il ġurnata oħra"
+          :one: "fi żmien ġurnata"
+          :other: "fi żmien {0} ġurnata oħra"
+          :two: "fi żmien jumejn oħra"
+    :day-short: 
+      :display_name: Jum
+    :dayOfYear: 
+      :display_name: "jum tas-sena"
+    :dayperiod: 
+      :display_name: AM/PM
+    :hour: 
+      :display_name: siegħa
+      :relative: 
+        0: "din is-siegħa"
+      :relative_time: 
+        :future: 
+          :few: "fi żmien {0} sigħat"
+          :many: "fi żmien {0}-il siegħa"
+          :one: "fi żmien siegħa oħra"
+          :other: "fi żmien {0} siegħa"
+          :two: "fi żmien sagħtejn"
+        :past: 
+          :few: "{0} sigħat ilu"
+          :many: "{0}-il siegħa ilu"
+          :one: "siegħa ilu"
+          :other: "{0} siegħa ilu"
+          :two: "sagħtejn ilu"
+    :minute: 
+      :display_name: minuta
+      :relative: 
+        0: "din il-minuta"
+      :relative_time: 
+        :future: 
+          :few: "sa {0} minuti oħra"
+          :many: "sa {0}-il minuta oħra"
+          :one: "sa minuta oħra"
+          :other: "sa {0} minuta oħra"
+          :two: "sa {0} minuti oħra"
+        :past: 
+          :few: "{0} minuti ilu"
+          :many: "{0}-il minuta ilu"
+          :one: "minuta ilu"
+          :other: "{0} minuta ilu"
+          :two: "{0} minuti ilu"
+    :minute-narrow: 
+      :display_name: m
+      :relative_time: 
+        :future: 
+          :few: "sa {0} min. oħra"
+          :many: "sa {0}-il min"
+          :one: "sa min. oħra"
+          :other: "sa {0} min. oħra"
+          :two: "sa {0} min. oħra"
+    :minute-short: 
+      :display_name: min.
+      :relative_time: 
+        :future: 
+          :few: "sa {0} min. oħra"
+          :many: "sa {0}-il min. oħra"
+          :one: "sa min. oħra"
+          :other: "sa {0} min. oħra"
+          :two: "sa {0} min. oħra"
+        :past: 
+          :few: "{0} min. ilu"
+          :many: "{0}-il min. ilu"
+          :one: "min. ilu"
+          :other: "{0} min. ilu"
+          :two: "{0} min. ilu"
+    :mon: 
+      :relative: 
+        -1: "It-Tnejn li għadda"
+        0: "Dan It-Tnejn"
+        1: "It-Tnejn li ġej"
+    :mon-short: 
+      :relative: 
+        -1: "it-Tn. li għadda"
+        0: "it-Tn. li ġej"
+        1: "it-Tn. ta’ wara"
+    :month: 
+      :display_name: xahar
+      :relative: 
+        -1: "ix-xahar li għadda"
+        0: "dan ix-xahar"
+        1: "ix-xahar id-dieħel"
+      :relative_time: 
+        :future: 
+          :few: "fi {0} xhur oħra"
+          :many: "fi {0}-xahar oħra"
+          :one: "sa xahar ieħor"
+          :other: "fi {0} xahar oħra"
+          :two: "fi xahrejn oħra"
+        :past: 
+          :few: "{0} xhur ilu"
+          :many: "{0}-il xahar ilu"
+          :one: "xahar ilu"
+          :other: "{0} xahar ilu"
+          :two: "xahrejn ilu"
+    :month-narrow: 
+      :relative_time: 
+        :past: 
+          :few: "{0} xhur ilu"
+          :many: "{0}-il xahar ilu"
+          :one: "xahar ilu"
+          :other: "{0} xahar ilu"
+          :two: "xahrejn ilu"
+    :month-short: 
+      :display_name: Xahar
+      :relative_time: 
+        :future: 
+          :few: "sa {0} xhur oħra"
+          :many: "sa {0}-il xahar oħra"
+          :one: "sa xahar ieħor"
+          :other: "sa {0} xahar oħra"
+          :two: "sa xahrejn oħra"
+        :past: 
+          :few: "{0} xhur ilu"
+          :many: "{0}-il xahar ilu"
+          :one: "{0} xahar ilu"
+          :other: "{0} xahar ilu"
+          :two: "xahrejn ilu"
+    :quarter: 
+      :display_name: kwart
+      :relative: 
+        -1: "il-kwart ta’ sena li għadda"
+        0: "il-kwart ta’ sena li qegħdin fih"
+        1: "il-kwart li jmiss tas-sena"
+      :relative_time: 
+        :future: 
+          :few: "f’{0} kwarti ta’ sena oħrajn"
+          :many: "f’{0}-il kwart ta’ sena oħrajn"
+          :one: "f’{0} kwart ta’ sena oħrajn"
+          :other: "f’{0} kwart ta’ sena oħrajn"
+          :two: "f’{0} kwarti ta’ sena oħrajn"
+        :past: 
+          :few: "{0} kwarti ta’ sena li għaddew"
+          :many: "{0}-il kwart ta’ sena li għaddew"
+          :one: "il-kwart ta’ sena li għadda"
+          :other: "{0} kwart ta’ sena li għaddew"
+          :two: "{0} kwarti ta’ sena li għaddew"
+    :quarter-narrow: 
+      :display_name: "l-ewwel kwart tas-sena, it-tieni kwart tas-sena, it-tielet kwart tas-sena, ir-raba’ kwart tas-sena"
+      :relative_time: 
+        :future: 
+          :few: "f’{0} kwarti ta’ sena oħrajn"
+          :many: "f’{0}-il kwart ta’ sena oħrajn"
+          :one: "fi kwart ta’ sena ieħor"
+          :other: "f’{0} kwart ta’ sena oħrajn"
+          :two: "f’{0} kwarti ta’ sena oħrajn"
+    :quarter-short: 
+      :display_name: kwrt
+      :relative_time: 
+        :future: 
+          :few: "f’{0} kwarti ta’ sena oħrajn"
+          :many: "f’{0}-il kwart ta’ sena oħrajn"
+          :one: "fil-kwart tas-sena li ġej"
+          :other: "f’{0} kwart ta’ sena oħrajn"
+          :two: "f’{0} kwarti ta’ sena oħrajn"
+        :past: 
+          :few: "{0} kwarti ta’ sena ilu"
+          :many: "{0}-il kwart ta’ sena ilu"
+          :one: "fil-kwart tas-sena li għadda"
+          :other: "{0} kwart ta’ sena ilu"
+          :two: "{0} kwarti ta’ sena ilu"
+    :second: 
+      :display_name: sekonda
+      :relative: 
+        0: issa
+      :relative_time: 
+        :future: 
+          :few: "sa {0} sekondi oħra"
+          :many: "sa {0}-il sekonda oħra"
+          :one: "sa sekonda oħra"
+          :other: "sa {0} sekonda oħra"
+          :two: "sa {0} sekondi oħra"
+        :past: 
+          :few: "{0} sekondi ilu"
+          :many: "{0}-il sekonda ilu"
+          :one: "sekonda ilu"
+          :other: "{0} sekonda ilu"
+          :two: "{0} sekondi ilu"
+    :second-narrow: 
+      :display_name: s
+    :second-short: 
+      :display_name: sek.
+      :relative_time: 
+        :future: 
+          :few: "sa {0} sek. oħra"
+          :many: "sa {0}-il sek. oħra"
+          :one: "sa sek. oħra"
+          :other: "sa {0} sek. oħra"
+          :two: "sa {0} sek. oħra"
+        :past: 
+          :few: "{0} sek. ilu"
+          :many: "{0}-il sek. ilu"
+          :one: "sek. ilu"
+          :other: "{0} sek. ilu"
+          :two: "{0} sek. ilu"
+    :sun: 
+      :relative: 
+        -1: "Il-Ħadd li għadda"
+        0: "il-Ħadd li ġej"
+        1: "il-Ħadd ta’ wara"
+      :relative_time: 
+        :future: 
+          :few: "sa {0} Ħdud oħra"
+          :many: "sa {0}-il Ħadd oħra"
+          :one: "sa Ħadd ieħor"
+          :other: "sa {0} Ħadd oħra"
+          :two: "sa {0} Ħdud oħra"
+        :past: 
+          :few: "{0} Ħdud ilu"
+          :many: "{0}-il Ħadd ilu"
+          :one: "il-Ħadd li għadda"
+          :other: "{0} Ħadd ilu"
+          :two: "{0} Ħdud ilu"
+    :sun-narrow: 
+      :relative_time: 
+        :past: 
+          :few: "{0} Ħd. ilu"
+          :many: "{0}-il Ħd. ilu"
+          :one: "{0} Ħd. ilu"
+          :other: "{0} Ħd. ilu"
+          :two: "{0} Ħd. ilu"
+    :sun-short: 
+      :relative: 
+        -1: "il-Ħd. li għadda"
+        0: "il-Ħd. li ġej"
+        1: "il-Ħd. ta’ wara"
+      :relative_time: 
+        :future: 
+          :few: "sa {0} Ħd. oħra"
+          :many: "sa {0}-il Ħd. oħra"
+          :one: "sa Ħd. ieħor"
+          :other: "sa {0} Ħd. oħra"
+          :two: "sa {0} Ħd. oħra"
+        :past: 
+          :few: "{0} Ħd. ilu"
+          :many: "{0}-il Ħd. ilu"
+          :one: "il-Ħd. li għadda"
+          :other: "{0} Ħd. ilu"
+          :two: "{0} Ħd. ilu"
+    :tue: 
+      :relative: 
+        -1: "it-Tlieta li għaddiet"
+        0: "it-Tlieta li ġejja"
+        1: "it-Tlieta ta’ wara"
+    :week: 
+      :display_name: ġimgħa
+      :relative: 
+        -1: "il-ġimgħa li għaddiet"
+        0: "din il-ġimgħa"
+        1: "il-ġimgħa d-dieħla"
+      :relative_time: 
+        :future: 
+          :few: "sa {0} ġimgħat oħra"
+          :many: "sa {0}-il ġimgħa oħra"
+          :one: "sa ġimgħa oħra"
+          :other: "sa {0} ġimgħa oħra"
+          :two: "sa ġimagħtejn oħra"
+        :past: 
+          :few: "{0} ġimgħat ilu"
+          :many: "{0}-il ġimgħa ilu"
+          :one: "ġimgħa ilu"
+          :other: "{0} ġimgħa ilu"
+          :two: "ġimagħtejn ilu"
+    :week-narrow: 
+      :display_name: Ġimgħa
+    :week-short: 
+      :display_name: ġm
+    :weekOfMonth: 
+      :display_name: "ġimgħa tax-xahar"
+    :weekday: 
+      :display_name: "jum tal-ġimgħa"
+    :weekdayOfMonth: 
+      :display_name: "jum tax-xahar"
+    :weekdayOfMonth-narrow: 
+      :display_name: "Weekday Of Month"
+    :year: 
+      :display_name: Sena
+      :relative: 
+        -1: "is-sena l-oħra"
+        0: "din is-sena"
+        1: "is-sena d-dieħla"
+      :relative_time: 
+        :future: 
+          :few: "fi żmien {0} snin oħra"
+          :many: "fi żmien {0}-il sena oħra"
+          :one: "fi żmien sena"
+          :other: "fi żmien {0} sena oħra"
+          :two: "fi żmien sentejn oħra"
+        :past: 
+          :few: "{0} snin ilu"
+          :many: "{0}-il sena ilu"
+          :one: "sena ilu"
+          :other: "{0} sena ilu"
+          :two: "sentejn ilu"
+    :year-narrow: 
+      :display_name: Sena
+      :relative_time: 
+        :past: 
+          :few: "{0} snin ilu"
+          :many: "{0}-il sena ilu"
+          :one: "sena ilu"
+          :other: "{0} sena ilu"
+          :two: "sentejn ilu"
+    :year-short: 
+      :display_name: Sn
+      :relative_time: 
+        :past: 
+          :few: "{0} snin ilu"
+          :many: "{0}-il sena ilu"
+          :one: "sa sena ilu"
+          :other: "{0} sena ilu"
+          :two: "sentejn ilu"
+    :zone: 
+      :display_name: "żona tal-ħin"
+    :zone-short: 
+      :display_name: żona

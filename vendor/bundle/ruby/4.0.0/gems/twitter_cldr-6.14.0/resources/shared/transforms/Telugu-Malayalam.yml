@@ -1,0 +1,16 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - Telugu-Malayalam
+      - und-Mlym-t-und-telu
+    :direction: forward
+    :rules: 
+      - "::[ఁ-ఃఅ-ఌఎ-ఐఒ-నప-ళవ-హా-ౄె-ైొ-్ౕ-ౖౠ-ౡ౦-౯] ;"
+      - "::NFD ;"
+      - "::Telugu-InterIndic ;"
+      - "::InterIndic-Malayalam ;"
+      - "::NFC ;"
+    :source: Telu
+    :target: Mlym
+    :variant: ~

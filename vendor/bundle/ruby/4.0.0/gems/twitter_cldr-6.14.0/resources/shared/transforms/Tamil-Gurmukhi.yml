@@ -1,0 +1,16 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - Tamil-Gurmukhi
+      - und-Guru-t-und-taml
+    :direction: forward
+    :rules: 
+      - "::[\\u0BE6ஂ-ஃஅ-ஊஎ-ஐஒ-கங-சஜஞ-டண-தந-பம-வஷ-ஹா-ூெ-ைொ-்ௗ௧-௲ஶ] ;"
+      - "::NFD ;"
+      - "::Tamil-InterIndic ;"
+      - "::InterIndic-Gurmukhi ;"
+      - "::NFC ;"
+    :source: Taml
+    :target: Guru
+    :variant: ~

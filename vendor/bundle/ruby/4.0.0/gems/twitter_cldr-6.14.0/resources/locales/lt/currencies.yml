@@ -1,0 +1,1992 @@
+--- 
+:lt: 
+  :currencies: 
+    :ADP: 
+      :few: "Andoros pesetos"
+      :many: "Andoros pesetos"
+      :name: "Andoros peseta"
+      :one: "Andoros peseta"
+      :other: "Andoros pesetos"
+    :AED: 
+      :few: "JAE dirhamai"
+      :many: "JAE dirhamo"
+      :name: "Jungtinių Arabų Emyratų dirhamas"
+      :one: "JAE dirhamas"
+      :other: "JAE dirhamų"
+    :AFA: 
+      :few: "Afganistano afganiai (1927–2002)"
+      :many: "Afganistano afganio (1927–2002)"
+      :name: "Afganistano afganis (1927–2002)"
+      :one: "Afganistano afganis (1927–2002)"
+      :other: "Afganistano afganių (1927–2002)"
+    :AFN: 
+      :few: "Afganistano afganiai"
+      :many: "Afganistano afganio"
+      :name: "Afganistano afganis"
+      :narrow_symbol: ؋
+      :one: "Afganistano afganis"
+      :other: "Afganistano afganių"
+      :symbol: ؋
+    :ALK: 
+      :few: "Albanijos lekai (1946–1965)"
+      :many: "Albanijos leko (1946–1965)"
+      :name: "Albanijos lekas (1946–1965)"
+      :one: "Albanijos lekas (1946–1965)"
+      :other: "Albanijos lekų (1946–1965)"
+    :ALL: 
+      :few: "Albanijos lekai"
+      :many: "Albanijos leko"
+      :name: "Albanijos lekas"
+      :one: "Albanijos lekas"
+      :other: "Albanijos lekų"
+    :AMD: 
+      :few: "Armėnijos dramai"
+      :many: "Armėnijos dramo"
+      :name: "Armėnijos dramas"
+      :narrow_symbol: ֏
+      :one: "Armėnijos dramas"
+      :other: "Armėnijos dramų"
+      :symbol: ֏
+    :ANG: 
+      :few: "Olandijos Antilų guldenai"
+      :many: "Olandijos Antilų guldeno"
+      :name: "Olandijos Antilų guldenas"
+      :one: "Olandijos Antilų guldenas"
+      :other: "Olandijos Antilų guldenų"
+    :AOA: 
+      :few: "Angolos kvanzos"
+      :many: "Angolos kvanzos"
+      :name: "Angolos kvanza"
+      :narrow_symbol: Kz
+      :one: "Angolos kvanza"
+      :other: "Angolos kvanzų"
+      :symbol: Kz
+    :AOK: 
+      :few: "Angolos kvanzos (1977–1990)"
+      :many: "Angolos kvanzos (1977–1990)"
+      :name: "Angolos kvanza (1977–1990)"
+      :one: "Angolos kvanza (1977–1990)"
+      :other: "Angolos kvanzų (1977–1990)"
+    :AON: 
+      :few: "Angolos naujosios kvanzos (1990–2000)"
+      :many: "Angolos naujosios kvanzos (1990–2000)"
+      :name: "Angolos naujoji kvanza (1990–2000)"
+      :one: "Angolos naujoji kvanza (1990–2000)"
+      :other: "Angolos naujųjų kvanzų (1990–2000)"
+    :AOR: 
+      :few: "Angolos patikslintos kvanzos (1995–1999)"
+      :many: "Angolos patikslintos kvanzos (1995–1999)"
+      :name: "Angolos patikslinta kvanza (1995–1999)"
+      :one: "Angolos patikslinta kvanza (1995–1999)"
+      :other: "Angolos patikslintų kvanzų (1995–1999)"
+    :ARA: 
+      :few: "Argentinos australs"
+      :many: "Argentinos australs"
+      :name: "Argentinos australs"
+      :one: "Argentinos austral"
+      :other: "Argentinos australs"
+    :ARL: 
+      :name: "Argentinos pesos ley (1970–1983)"
+      :one: "Argentinos pesos ley (1970–1983)"
+    :ARM: 
+      :few: "Argentinos pesai (1881–1970)"
+      :many: "Argentinos peso (1881–1970)"
+      :name: "Argentinos pesai (1881–1970)"
+      :one: "Argentinos pesas (1881–1970)"
+      :other: "Argentinos pesų (1881–1970)"
+    :ARP: 
+      :few: "Argentinos pesai (1983–1985)"
+      :many: "Argentinos pesai (1983–1985)"
+      :name: "Argentinos pesas (1983–1985)"
+      :one: "Argentinos pesas (1983–1985)"
+      :other: "Argentinos pesai (1983–1985)"
+    :ARS: 
+      :few: "Argentinos pesai"
+      :many: "Argentinos peso"
+      :name: "Argentinos pesas"
+      :narrow_symbol: $
+      :one: "Argentinos pesas"
+      :other: "Argentinos pesų"
+      :symbol: $
+    :ATS: 
+      :few: "Austrijos šilingai"
+      :many: "Austrijos šilingo"
+      :name: "Austrijos šilingas"
+      :one: "Austrijos šilingas"
+      :other: "Austrijos šilingų"
+    :AUD: 
+      :few: "Australijos doleriai"
+      :many: "Australijos dolerio"
+      :name: "Australijos doleris"
+      :narrow_symbol: $
+      :one: "Australijos doleris"
+      :other: "Australijos dolerių"
+      :symbol: AUD
+    :AWG: 
+      :few: "Arubos guldenai"
+      :many: "Arubos guldeno"
+      :name: "Arubos guldenas"
+      :one: "Arubos guldenas"
+      :other: "Arubos guldenų"
+    :AZM: 
+      :few: "Azerbaidžano manatai (1993–2006)"
+      :many: "Azerbaidžano manato (1993–2006)"
+      :name: "Azerbaidžano manatas (1993–2006)"
+      :one: "Azerbaidžano manatas (1993–2006)"
+      :other: "Azerbaidžano manatų (1993–2006)"
+    :AZN: 
+      :few: "Azerbaidžano manatai"
+      :many: "Azerbaidžano manato"
+      :name: "Azerbaidžano manatas"
+      :narrow_symbol: ₼
+      :one: "Azerbaidžano manatas"
+      :other: "Azerbaidžano manatų"
+      :symbol: ₼
+    :BAD: 
+      :few: "Bosnijos ir Hercegovinos dinarai (1992–1994)"
+      :many: "Bosnijos ir Hercegovinos dinaro (1992–1994)"
+      :name: "Bosnijos ir Hercegovinos dinaras (1992–1994)"
+      :one: "Bosnijos ir Hercegovinos dinaras (1992–1994)"
+      :other: "Bosnijos ir Hercegovinos dinarų (1992–1994)"
+    :BAM: 
+      :few: "Bosnijos ir Hercegovinos konvertuojamosios markės"
+      :many: "Bosnijos ir Hercegovinos konvertuojamosios markės"
+      :name: "Bosnijos ir Hercegovinos konvertuojamoji markė"
+      :narrow_symbol: KM
+      :one: "Bosnijos ir Hercegovinos konvertuojamoji markė"
+      :other: "Bosnijos ir Hercegovinos konvertuojamųjų markių"
+      :symbol: KM
+    :BAN: 
+      :few: "Bosnijos ir Hercegovinos naujieji dinarai (1994–1997)"
+      :many: "Bosnijos ir Hercegovinos naujojo dinaro (1994–1997)"
+      :name: "Bosnijos ir Hercegovinos naujasis dinaras (1994–1997)"
+      :one: "Bosnijos ir Hercegovinos naujasis dinaras (1994–1997)"
+      :other: "Bosnijos ir Hercegovinos naujųjų dinarų (1994–1997)"
+    :BBD: 
+      :few: "Barbadoso doleriai"
+      :many: "Barbadoso dolerio"
+      :name: "Barbadoso doleris"
+      :narrow_symbol: $
+      :one: "Barbadoso doleris"
+      :other: "Barbadoso dolerių"
+      :symbol: $
+    :BDT: 
+      :few: "Bangladešo takos"
+      :many: "Bangladešo takos"
+      :name: "Bangladešo taka"
+      :narrow_symbol: BDT
+      :one: "Bangladešo taka"
+      :other: "Bangladešo takų"
+      :symbol: BDT
+    :BEC: 
+      :few: "Belgijos frankai (konvertuojami)"
+      :many: "Belgijos franko (konvertuojamo)"
+      :name: "Belgijos frankas (konvertuojamas)"
+      :one: "Belgijos frankas (konvertuojamas)"
+      :other: "Belgijos frankų (konvertuojamų)"
+    :BEF: 
+      :few: "Belgijos frankai"
+      :many: "Belgijos franko"
+      :name: "Belgijos frankas"
+      :one: "Belgijos frankas"
+      :other: "Belgijos frankų"
+    :BEL: 
+      :few: "Belgijos frankai (finansiniai)"
+      :many: "Belgijos franko (finansinio)"
+      :name: "Belgijos frankas (finansinis)"
+      :one: "Belgijos frankas (finansinis)"
+      :other: "Belgijos frankų (finansinių)"
+    :BGL: 
+      :few: "Bulgarijos levai (1962–1999)"
+      :many: "Bulgarijos levo (1962–1999)"
+      :name: "Bulgarijos levas (1962–1999)"
+      :one: "Bulgarijos levas (1962–1999)"
+      :other: "Bulgarijos levų (1962–1999)"
+    :BGM: 
+      :few: "Bulgarų socialistų leva"
+      :many: "Bulgarų socialistų leva"
+      :name: "Bulgarų socialistų leva"
+      :one: "Bulgarų socialistų lev"
+      :other: "Bulgarų socialistų leva"
+    :BGN: 
+      :few: "Bulgarijos levai"
+      :many: "Bulgarijos levo"
+      :name: "Bulgarijos levas"
+      :one: "Bulgarijos levas"
+      :other: "Bulgarijos levų"
+    :BGO: 
+      :few: "Bulgarijos levai (1879–1952)"
+      :many: "Bulgarijos levo (1879–1952)"
+      :name: "Bulgarijos levas (1879–1952)"
+      :one: "Bulgarijos levas (1879–1952)"
+      :other: "Bulgarijos levų (1879–1952)"
+    :BHD: 
+      :few: "Bahreino dinarai"
+      :many: "Bahreino dinaro"
+      :name: "Bahreino dinaras"
+      :one: "Bahreino dinaras"
+      :other: "Bahreino dinarų"
+    :BIF: 
+      :few: "Burundžio frankai"
+      :many: "Burundžio franko"
+      :name: "Burundžio frankas"
+      :one: "Burundžio frankas"
+      :other: "Burundžio frankų"
+    :BMD: 
+      :few: "Bermudos doleriai"
+      :many: "Bermudos dolerio"
+      :name: "Bermudos doleris"
+      :narrow_symbol: $
+      :one: "Bermudos doleris"
+      :other: "Bermudos dolerių"
+      :symbol: $
+    :BND: 
+      :few: "Brunėjaus doleriai"
+      :many: "Brunėjaus dolerio"
+      :name: "Brunėjaus doleris"
+      :narrow_symbol: $
+      :one: "Brunėjaus doleris"
+      :other: "Brunėjaus dolerių"
+      :symbol: $
+    :BOB: 
+      :few: "Bolivijos bolivijanai"
+      :many: "Bolivijos bolivijano"
+      :name: "Bolivijos bolivijanas"
+      :narrow_symbol: Bs
+      :one: "Bolivijos bolivijanas"
+      :other: "Bolivijos bolivijanų"
+      :symbol: Bs
+    :BOL: 
+      :few: "Bolivijos bolivijanai (1863–1963)"
+      :many: "Bolivijos bolivijano (1863–1963)"
+      :name: "Bolivijos bolivijanas (1863–1963)"
+      :one: "Bolivijos bolivijanas (1863–1963)"
+      :other: "Bolivijos bolivijanų (1863–1963)"
+    :BOP: 
+      :few: "Bolivijos pesai"
+      :many: "Bolivijos peso"
+      :name: "Bolivijos pesas"
+      :one: "Bolivijos pesas"
+      :other: "Bolivijos pesų"
+    :BOV: 
+      :few: "Boliviečių mvdols"
+      :many: "Bolivijos mvdol"
+      :name: "Bolivijos mvdol"
+      :one: "Bolivijos mvdol"
+      :other: "Bolivijos mvdol"
+    :BRB: 
+      :few: "Brazilijos naujieji kruzeirai (1967–1986)"
+      :many: "Brazilijos naujasis kruzeiro (1967–1986)"
+      :name: "Brazilijos naujieji kruzeirai (1967–1986)"
+      :one: "Brazilijos naujasis kruzeiras (1967–1986)"
+      :other: "Brazilijos naujųjų kruzeirų (1967–1986)"
+    :BRC: 
+      :few: "Brazilijos kruzadai (1986–1989)"
+      :many: "Brazilijos kruzado (1986–1989)"
+      :name: "Brazilijos kruzadai (1986–1989)"
+      :one: "Brazilijos kruzadas (1986–1989)"
+      :other: "Brazilijos kruzadų (1986–1989)"
+    :BRE: 
+      :few: "Brazilijos kruzeirai (1990–1993)"
+      :many: "Brazilijos kruzeirai (1990–1993)"
+      :name: "Brazilijos kruzeiras (1990–1993)"
+      :one: "Brazilijos kruzeiras (1990–1993)"
+      :other: "Brazilijos kruzeirai (1990–1993)"
+    :BRL: 
+      :few: "Brazilijos realai"
+      :many: "Brazilijos realo"
+      :name: "Brazilijos realas"
+      :narrow_symbol: R$
+      :one: "Brazilijos realas"
+      :other: "Brazilijos realų"
+      :symbol: BRL
+    :BRN: 
+      :few: "Brazilijos naujieji kruzadai (1989–1990)"
+      :many: "Brazilijos naujojo kruzado (1989–1990)"
+      :name: "Brazilijos naujiejis kruzadai (1989–1990)"
+      :one: "Brazilijos naujasis kruzadas (1989–1990)"
+      :other: "Brazilijos naujųjų kruzadų (1989–1990)"
+    :BRR: 
+      :few: "Brazilijos kruzeirai (1993–1994)"
+      :many: "Brazilijos kruzeiro (1993–1994)"
+      :name: "Brazilijos kruzeiras (1993–1994)"
+      :one: "Brazilijos kruzeiras (1993–1994)"
+      :other: "Brazilijos kruzeirų (1993–1994)"
+    :BRZ: 
+      :few: "Brazilijos kruzeirai (1942–1967)"
+      :many: "Brazilijos kruzeiro (1942–1967)"
+      :name: "Brazilijos kruzeirai (1942–1967)"
+      :one: "Brazilijos kruzeiras (1942–1967)"
+      :other: "Brazilijos kruzeirų (1942–1967)"
+    :BSD: 
+      :few: "Bahamų doleriai"
+      :many: "Bahamų dolerio"
+      :name: "Bahamų doleris"
+      :narrow_symbol: $
+      :one: "Bahamų doleris"
+      :other: "Bahamų dolerių"
+      :symbol: $
+    :BTN: 
+      :few: "Butano ngultrumai"
+      :many: "Butano ngultrumo"
+      :name: "Butano ngultrumas"
+      :one: "Butano ngultrumas"
+      :other: "Butano ngultrumų"
+    :BUK: 
+      :few: "Birmos kijatai"
+      :many: "Birmos kijato"
+      :name: "Birmos kijatas"
+      :one: "Birmos kijatas"
+      :other: "Birmos kijatų"
+    :BWP: 
+      :few: "Botsvanos pulos"
+      :many: "Botsvanos pulos"
+      :name: "Botsvanos pula"
+      :narrow_symbol: P
+      :one: "Botsvanos pula"
+      :other: "Botsvanos pulų"
+      :symbol: P
+    :BYB: 
+      :few: "Baltarusijos naujieji rubliai (1994–1999)"
+      :many: "Baltarusijos naujojo rublio (1994–1999)"
+      :name: "Baltarusijos naujasis rublis (1994–1999)"
+      :one: "Baltarusijos naujasis rublis (1994–1999)"
+      :other: "Baltarusijos naujųjų rublių"
+    :BYN: 
+      :few: "Baltarusijos rubliai"
+      :many: "Baltarusijos rublio"
+      :name: "Baltarusijos rublis"
+      :narrow_symbol: Br
+      :one: "Baltarusijos rublis"
+      :other: "Baltarusijos rublių"
+      :symbol: Br
+    :BYR: 
+      :few: "Baltarusijos rubliai (2000–2016)"
+      :many: "Baltarusijos rublio (2000–2016)"
+      :name: "Baltarusijos rublis (2000–2016)"
+      :one: "Baltarusijos rublis (2000–2016)"
+      :other: "Baltarusijos rublių (2000–2016)"
+    :BZD: 
+      :few: "Belizo doleriai"
+      :many: "Belizo dolerio"
+      :name: "Belizo doleris"
+      :narrow_symbol: $
+      :one: "Belizo doleris"
+      :other: "Belizo dolerių"
+      :symbol: $
+    :CAD: 
+      :few: "Kanados doleriai"
+      :many: "Kanados dolerio"
+      :name: "Kanados doleris"
+      :narrow_symbol: $
+      :one: "Kanados doleris"
+      :other: "Kanados dolerių"
+      :symbol: CAD
+    :CDF: 
+      :few: "Kongo frankai"
+      :many: "Kongo franko"
+      :name: "Kongo frankas"
+      :one: "Kongo frankas"
+      :other: "Kongo frankų"
+    :CHE: 
+      :few: "WIR eurai"
+      :many: "WIR euro"
+      :name: "WIR eurai"
+      :one: "WIR euras"
+      :other: "WIR eurų"
+    :CHF: 
+      :few: "Šveicarijos frankai"
+      :many: "Šveicarijos franko"
+      :name: "Šveicarijos frankas"
+      :one: "Šveicarijos frankas"
+      :other: "Šveicarijos frankų"
+    :CHW: 
+      :few: "WIR frankai"
+      :many: "WIR franko"
+      :name: "WIR frankas"
+      :one: "WIR frankas"
+      :other: "WIR frankų"
+    :CLE: 
+      :few: "Čilės eskudai"
+      :many: "Čilės eskudo"
+      :name: "Čilės eskudai"
+      :one: "Čilės eskudas"
+      :other: "Čilės eskudų"
+    :CLF: 
+      :name: "Čiliečių unidades de fomentos"
+      :one: "Čiliečių unidades de fomentos"
+    :CLP: 
+      :few: "Čilės pesai"
+      :many: "Čilės peso"
+      :name: "Čilės pesas"
+      :narrow_symbol: $
+      :one: "Čilės pesas"
+      :other: "Čilės pesų"
+      :symbol: $
+    :CNH: 
+      :few: "Kinijos Užsienio juaniai"
+      :many: "Kinijos Užsienio juanio"
+      :name: "Kinijos Užsienio juanis"
+      :one: "Kinijos Užsienio juanis"
+      :other: "Kinijos Užsienio juanių"
+    :CNX: 
+      :few: "Kinijos \"People\" banko doleriai"
+      :many: "Kinijos \"People\" banko dolerio"
+      :name: "Kinijos \"People\" banko doleris"
+      :one: "Kinijos \"People\" banko doleris"
+      :other: "Kinijos \"People\" banko dolerių"
+    :CNY: 
+      :few: "Kinijos ženminbi juaniai"
+      :many: "Kinijos ženminbi juanio"
+      :name: "Kinijos ženminbi juanis"
+      :narrow_symbol: ¥
+      :one: "Kinijos ženminbi juanis"
+      :other: "Kinijos ženminbi juanių"
+      :symbol: CNY
+    :COP: 
+      :few: "Kolumbijos pesai"
+      :many: "Kolumbijos peso"
+      :name: "Kolumbijos pesas"
+      :narrow_symbol: $
+      :one: "Kolumbijos pesas"
+      :other: "Kolumbijos pesų"
+      :symbol: $
+    :COU: 
+      :few: "unidad de valor realai"
+      :many: "unidad de valor realai"
+      :name: "unidad de valor realai"
+      :one: "unidad de valor realas"
+      :other: "unidad de valor realai"
+    :CRC: 
+      :few: "Kosta Rikos kolonai"
+      :many: "Kosta Rikos kolono"
+      :name: "Kosta Rikos kolonas"
+      :narrow_symbol: ₡
+      :one: "Kosta Rikos kolonas"
+      :other: "Kosta Rikos kolonų"
+      :symbol: ₡
+    :CSD: 
+      :few: "Serbijos dinarai (2002–2006)"
+      :many: "Serbijos dinaro (2002–2006)"
+      :name: "Serbijos dinaras (2002–2006)"
+      :one: "Serbijos dinaras (2002–2006)"
+      :other: "Serbijos dinarų (2002–2006)"
+    :CSK: 
+      :few: "Čekoslovakų sunkieji korunai"
+      :many: "Čekoslovakų sunkiejio koruno"
+      :name: "Čekoslovakų sunkusis korunas"
+      :one: "Čekoslovakų sunkusis korunas"
+      :other: "Čekoslovakų sunkiejių korunų"
+    :CUC: 
+      :few: "Kubos konvertuojamieji pesai"
+      :many: "Kubos konvertuojamojo peso"
+      :name: "Kubos konvertuojamasis pesas"
+      :narrow_symbol: $
+      :one: "Kubos konvertuojamasis pesas"
+      :other: "Kubos konvertuojamųjų pesų"
+      :symbol: $
+    :CUP: 
+      :few: "Kubos pesai"
+      :many: "Kubos peso"
+      :name: "Kubos pesas"
+      :narrow_symbol: $
+      :one: "Kubos pesas"
+      :other: "Kubos pesų"
+      :symbol: $
+    :CVE: 
+      :few: "Žaliojo Kyšulio eskudai"
+      :many: "Žaliojo Kyšulio eskudo"
+      :name: "Žaliojo Kyšulio eskudas"
+      :one: "Žaliojo Kyšulio eskudas"
+      :other: "Žaliojo Kyšulio eskudų"
+    :CYP: 
+      :few: "Kipro svarai"
+      :many: "Kipro svaro"
+      :name: "Kipro svaras"
+      :one: "Kipro svaras"
+      :other: "Kipro svarų"
+    :CZK: 
+      :few: "Čekijos kronos"
+      :many: "Čekijos kronos"
+      :name: "Čekijos krona"
+      :narrow_symbol: Kč
+      :one: "Čekijos krona"
+      :other: "Čekijos kronų"
+      :symbol: Kč
+    :DDM: 
+      :few: "Rytų Vokietijos markės"
+      :many: "Rytų Vokietijos markės"
+      :name: "Rytų Vokietijos markė"
+      :one: "Rytų Vokietijos markė"
+      :other: "Rytų Vokietijos markės"
+    :DEM: 
+      :few: "Vokietijos markės"
+      :many: "Vokietijos markės"
+      :name: "Vokietijos markė"
+      :one: "Vokietijos markė"
+      :other: "Vokietijos markės"
+    :DJF: 
+      :few: "Džibučio frankai"
+      :many: "Džibučio franko"
+      :name: "Džibučio frankas"
+      :one: "Džibučio frankas"
+      :other: "Džibučio frankų"
+    :DKK: 
+      :few: "Danijos kronos"
+      :many: "Danijos kronos"
+      :name: "Danijos krona"
+      :narrow_symbol: kr
+      :one: "Danijos krona"
+      :other: "Danijos kronų"
+      :symbol: kr
+    :DOP: 
+      :few: "Dominikos pesai"
+      :many: "Dominikos peso"
+      :name: "Dominikos pesas"
+      :narrow_symbol: $
+      :one: "Dominikos pesas"
+      :other: "Dominikos pesų"
+      :symbol: $
+    :DZD: 
+      :few: "Alžyro dinarai"
+      :many: "Alžyro dinaro"
+      :name: "Alžyro dinaras"
+      :one: "Alžyro dinaras"
+      :other: "Alžyro dinarų"
+    :ECS: 
+      :few: "Ekvadoro sucres"
+      :many: "Ekvadoro sucres"
+      :name: "Ekvadoro sukrė"
+      :one: "Ekvadoro sucre"
+      :other: "Ekvadoro sucres"
+    :ECV: 
+      :few: "Ekvadoro unidads de narsa Constante (UVC)"
+      :many: "Ekvadoro unidads de narsa Constante (UVC)"
+      :name: "Ekvadoro constante (UVC)"
+      :one: "Ekvadoro unidads de narsa Constante (UVC)"
+      :other: "Ekvadoro unidads de narsa Constante (UVC)"
+    :EEK: 
+      :few: "Estijos kronos"
+      :many: "Estijos kronos"
+      :name: "Estijos krona"
+      :one: "Estijos krona"
+      :other: "Estijos kronų"
+    :EGP: 
+      :few: "Egipto svarai"
+      :many: "Egipto svaro"
+      :name: "Egipto svaras"
+      :narrow_symbol: E£
+      :one: "Egipto svaras"
+      :other: "Egipto svarų"
+      :symbol: E£
+    :ERN: 
+      :few: "Eritrėjos nakfos"
+      :many: "Eritrėjos nakfos"
+      :name: "Eritrėjos nakfa"
+      :one: "Eritrėjos nakfa"
+      :other: "Eritrėjos nakfų"
+    :ESA: 
+      :few: "Ispanų pesetai (A sąskaita)"
+      :many: "Ispanų pesetai (A sąskaita)"
+      :name: "Ispanų pesetai (A sąskaita)"
+      :one: "Ispanų pesetas (A sąskaita)"
+      :other: "Ispanų pesetai (A sąskaita)"
+    :ESB: 
+      :few: "Ispanų pesetai (konvertuojama sąskaita)"
+      :many: "Ispanų pesetai (konvertuojama sąskaita)"
+      :name: "Ispanų pesetai (konvertuojama sąskaita)"
+      :one: "Ispanų pesetas (konvertuojama sąskaita)"
+      :other: "Ispanų pesetai (konvertuojama sąskaita)"
+    :ESP: 
+      :few: "Ispanų pesetai"
+      :many: "Ispanų pesetai"
+      :name: "Ispanijos peseta"
+      :narrow_symbol: ₧
+      :one: "Ispanų pesetas"
+      :other: "Ispanų pesetai"
+      :symbol: ₧
+    :ETB: 
+      :few: "Etiopijos birai"
+      :many: "Etiopijos biro"
+      :name: "Etiopijos biras"
+      :one: "Etiopijos biras"
+      :other: "Etiopijos birų"
+    :EUR: 
+      :few: eurai
+      :many: euro
+      :name: Euras
+      :narrow_symbol: €
+      :one: euras
+      :other: eurų
+      :symbol: €
+    :FIM: 
+      :few: "Suomijos markės"
+      :many: "Suomijos markės"
+      :name: "Suomijos markė"
+      :one: "Suomijos markė"
+      :other: "Suomijos markės"
+    :FJD: 
+      :few: "Fidžio doleriai"
+      :many: "Fidžio dolerio"
+      :name: "Fidžio doleris"
+      :narrow_symbol: $
+      :one: "Fidžio doleris"
+      :other: "Fidžio dolerių"
+      :symbol: $
+    :FKP: 
+      :few: "Falklando salų svarai"
+      :many: "Falklando salų svaro"
+      :name: "Falklando salų svaras"
+      :narrow_symbol: £
+      :one: "Falklando salų svaras"
+      :other: "Falklando salų svarų"
+      :symbol: £
+    :FRF: 
+      :few: "Prancūzijos frankai"
+      :many: "Prancūzijos franko"
+      :name: "Prancūzijos frankas"
+      :one: "Prancūzijos frankas"
+      :other: "Prancūzijos frankų"
+    :GBP: 
+      :few: "Didžiosios Britanijos svarai"
+      :many: "Didžiosios Britanijos svaro"
+      :name: "Didžiosios Britanijos svaras"
+      :narrow_symbol: £
+      :one: "Didžiosios Britanijos svaras"
+      :other: "Didžiosios Britanijos svarų"
+      :symbol: GBP
+    :GEK: 
+      :few: "Gruzinų kupon larits"
+      :many: "Gruzinų kupon larits"
+      :name: "Gruzinų kupon larits"
+      :one: "Gruzinų kupon larit"
+      :other: "Gruzinų kupon larits"
+    :GEL: 
+      :few: "Gruzijos lariai"
+      :many: "Gruzijos lario"
+      :name: "Gruzijos laris"
+      :narrow_symbol: ₾
+      :one: "Gruzijos laris"
+      :other: "Gruzijos larių"
+      :symbol: ₾
+    :GHC: 
+      :few: "Ganos sedžiai (1979–2007)"
+      :many: "Ganos sedžio (1979–2007)"
+      :name: "Ganos sedis (1979–2007)"
+      :one: "Ganos sedis (1979–2007)"
+      :other: "Ganos sedžių (1979–2007)"
+    :GHS: 
+      :few: "Ganos sedžiai"
+      :many: "Ganos sedžio"
+      :name: "Ganos sedis"
+      :narrow_symbol: GH₵
+      :one: "Ganos sedis"
+      :other: "Ganos sedžių"
+      :symbol: GH₵
+    :GIP: 
+      :few: "Gibraltaro svarai"
+      :many: "Gibraltaro svaro"
+      :name: "Gibraltaro svaras"
+      :narrow_symbol: £
+      :one: "Gibraltaro svaras"
+      :other: "Gibraltaro svarų"
+      :symbol: £
+    :GMD: 
+      :few: "Gambijos dalasiai"
+      :many: "Gambijos dalasio"
+      :name: "Gambijos dalasis"
+      :one: "Gambijos dalasis"
+      :other: "Gambijos dalasių"
+    :GNF: 
+      :few: "Gvinėjos frankai"
+      :many: "Gvinėjos franko"
+      :name: "Gvinėjos frankas"
+      :narrow_symbol: FG
+      :one: "Gvinėjos frankas"
+      :other: "Gvinėjos frankų"
+      :symbol: FG
+    :GNS: 
+      :few: "Gvinėjos syliai"
+      :many: "Gvinėjos sylio"
+      :name: "Guinean sylis"
+      :one: "Gvinėjos sylis"
+      :other: "Gvinėjos sylio"
+    :GQE: 
+      :name: "Pusiaujo Guinean ekwele"
+      :one: "Pusiaujo Guinean ekwele"
+    :GRD: 
+      :few: "Graikijos drachmos"
+      :many: "Graikijos drachmos"
+      :name: "Graikijos drachma"
+      :one: "Graikijos drachma"
+      :other: "Graikijos drachmos"
+    :GTQ: 
+      :few: "Gvatemalos ketcaliai"
+      :many: "Gvatemalos ketcalio"
+      :name: "Gvatemalos ketcalis"
+      :narrow_symbol: Q
+      :one: "Gvatemalos ketcalis"
+      :other: "Gvatemalos ketcalių"
+      :symbol: Q
+    :GWE: 
+      :few: "Portugalijos Gvinėjos eskudai"
+      :many: "Portugalijos Gvinėjos eskudo"
+      :name: "Portugalų Gvinėjos eskudas"
+      :one: "Portugalijos Gvinėjos eskudas"
+      :other: "Portugalijos Gvinėjos eskudų"
+    :GWP: 
+      :few: "Bisau Gvinėjos pesai"
+      :many: "Bisau Gvinėjos peso"
+      :name: "Gvinėjos-Bisau pesas"
+      :one: "Bisau Gvinėjos pesas"
+      :other: "Bisau Gvinėjos pesai"
+    :GYD: 
+      :few: "Gajanos doleriai"
+      :many: "Gajanos dolerio"
+      :name: "Gajanos doleris"
+      :narrow_symbol: $
+      :one: "Gajanos doleris"
+      :other: "Gajanos dolerių"
+      :symbol: $
+    :HKD: 
+      :few: "Honkongo doleriai"
+      :many: "Honkongo dolerio"
+      :name: "Honkongo doleris"
+      :narrow_symbol: $
+      :one: "Honkongo doleris"
+      :other: "Honkongo dolerių"
+      :symbol: HKD
+    :HNL: 
+      :few: "Hondūro lempiros"
+      :many: "Hondūro lempiros"
+      :name: "Hondūro lempira"
+      :narrow_symbol: L
+      :one: "Hondūro lempira"
+      :other: "Hondūro lempirų"
+      :symbol: L
+    :HRD: 
+      :few: "Krotaijos dinarai"
+      :many: "Kroatijos dinaro"
+      :name: "Kroatijos dinaras"
+      :one: "Kroatijos dinaras"
+      :other: "Kroatijos dinarų"
+    :HRK: 
+      :few: "Kroatijos kunos"
+      :many: "Kroatijos kunos"
+      :name: "Kroatijos kuna"
+      :narrow_symbol: kn
+      :one: "Kroatijos kuna"
+      :other: "Kroatijos kunų"
+      :symbol: kn
+    :HTG: 
+      :few: "Haičio gurdai"
+      :many: "Haičio gurdo"
+      :name: "Haičio gurdas"
+      :one: "Haičio gurdas"
+      :other: "Haičio gurdų"
+    :HUF: 
+      :few: "Vengrijos forintai"
+      :many: "Vengrijos forinto"
+      :name: "Vengrijos forintas"
+      :narrow_symbol: Ft
+      :one: "Vengrijos forintas"
+      :other: "Vengrijos forintų"
+      :symbol: Ft
+    :IDR: 
+      :few: "Indonezijos rupijos"
+      :many: "Indonezijos rupijos"
+      :name: "Indonezijos rupija"
+      :narrow_symbol: Rp
+      :one: "Indonezijos rupija"
+      :other: "Indonezijos rupijų"
+      :symbol: Rp
+    :IEP: 
+      :few: "Airijos svarai"
+      :many: "Airijos svaro"
+      :name: "Airijos svaras"
+      :one: "Airijos svaras"
+      :other: "Airijos svarų"
+    :ILP: 
+      :few: "Izraelio svarai"
+      :many: "Izraelio svaro"
+      :name: "Izraelio svaras"
+      :one: "Izraelio svaras"
+      :other: "Izraelio svarų"
+    :ILR: 
+      :few: "Izraelio šekeliai (1980–1985)"
+      :many: "Izraelio šekelio (1980–1985)"
+      :name: "Izraelio šekelis (1980–1985)"
+      :one: "Izraelio šekelis (1980–1985)"
+      :other: "Izraelio šekelių (1980–1985)"
+    :ILS: 
+      :few: "Izraelio naujieji šekeliai"
+      :many: "Izraelio naujojo šekelio"
+      :name: "Izraelio naujasis šekelis"
+      :narrow_symbol: ILS
+      :one: "Izraelio naujasis šekelis"
+      :other: "Izraelio naujųjų šekelių"
+      :symbol: ILS
+    :INR: 
+      :few: "Indijos rupijos"
+      :many: "Indijos rupijos"
+      :name: "Indijos rupija"
+      :narrow_symbol: INR
+      :one: "Indijos rupija"
+      :other: "Indijos rupijų"
+      :symbol: INR
+    :IQD: 
+      :few: "Irako dinarai"
+      :many: "Irako dinaro"
+      :name: "Irako dinaras"
+      :one: "Irako dinaras"
+      :other: "Irako dinarų"
+    :IRR: 
+      :few: "Irano rialai"
+      :many: "Irano rialo"
+      :name: "Irano rialas"
+      :one: "Irano rialas"
+      :other: "Irano rialų"
+    :ISJ: 
+      :few: "Islandijos kronos (1918–1981)"
+      :many: "Islandijos kronos (1918–1981)"
+      :name: "Islandijos krona (1918–1981)"
+      :one: "Islandijos krona (1918–1981)"
+      :other: "Islandijos kronų (1918–1981)"
+    :ISK: 
+      :few: "Islandijos kronos"
+      :many: "Islandijos kronos"
+      :name: "Islandijos krona"
+      :narrow_symbol: kr
+      :one: "Islandijos krona"
+      :other: "Islandijos kronų"
+      :symbol: kr
+    :ITL: 
+      :few: "Italijos liros"
+      :many: "Italijos liros"
+      :name: "Italijos lira"
+      :one: "Italijos lira"
+      :other: "Italijos lirų"
+    :JMD: 
+      :few: "Jamaikos doleriai"
+      :many: "Jamaikos dolerio"
+      :name: "Jamaikos doleris"
+      :narrow_symbol: $
+      :one: "Jamaikos doleris"
+      :other: "Jamaikos dolerių"
+      :symbol: $
+    :JOD: 
+      :few: "Jordanijos dinarai"
+      :many: "Jordanijos dinaro"
+      :name: "Jordanijos dinaras"
+      :one: "Jordanijos dinaras"
+      :other: "Jordanijos dinarų"
+    :JPY: 
+      :few: "Japonijos jenos"
+      :many: "Japonijos jenos"
+      :name: "Japonijos jena"
+      :narrow_symbol: ¥
+      :one: "Japonijos jena"
+      :other: "Japonijos jenų"
+      :symbol: JPY
+    :KES: 
+      :few: "Kenijos šilingai"
+      :many: "Kenijos šilingo"
+      :name: "Kenijos šilingas"
+      :one: "Kenijos šilingas"
+      :other: "Kenijos šilingų"
+    :KGS: 
+      :few: "Kirgizijos somai"
+      :many: "Kirgizijos somo"
+      :name: "Kirgizijos somas"
+      :narrow_symbol: ⃀
+      :one: "Kirgizijos somas"
+      :other: "Kirgizijos somų"
+      :symbol: ⃀
+    :KHR: 
+      :few: "Kambodžos rieliai"
+      :many: "Kambodžos rielio"
+      :name: "Kambodžos rielis"
+      :narrow_symbol: KHR
+      :one: "Kambodžos rielis"
+      :other: "Kambodžos rielių"
+      :symbol: KHR
+    :KMF: 
+      :few: "Komoro frankai"
+      :many: "Komoro franko"
+      :name: "Komoro frankas"
+      :narrow_symbol: CF
+      :one: "Komoro frankas"
+      :other: "Komoro frankų"
+      :symbol: CF
+    :KPW: 
+      :few: "Šiaurės Korėjos vonai"
+      :many: "Šiaurės Korėjos vono"
+      :name: "Šiaurės Korėjos vonas"
+      :narrow_symbol: ₩
+      :one: "Šiaurės Korėjos vonas"
+      :other: "Šiaurės Korėjos vonų"
+      :symbol: ₩
+    :KRH: 
+      :few: "Pietų Korėjos hwanai (1953–1962)"
+      :many: "Pietų Korėjos hwano (1953–1962)"
+      :name: "Pietų Korėjos hwanas (1953–1962)"
+      :one: "Pietų Korėjos hwanas (1953–1962)"
+      :other: "Pietų Korėjos hwanų (1953–1962)"
+    :KRO: 
+      :few: "Pietų Korėjos vonai (1945–1953)"
+      :many: "Pietų Korėjos vono (1945–1953)"
+      :name: "Pietų Korėjos vonas (1945–1953)"
+      :one: "Pietų Korėjos vonas (1945–1953)"
+      :other: "Pietų Korėjos vonų (1945–1953)"
+    :KRW: 
+      :few: "Pietų Korėjos vonai"
+      :many: "Pietų Korėjos vono"
+      :name: "Pietų Korėjos vonas"
+      :narrow_symbol: ₩
+      :one: "Pietų Korėjos vonas"
+      :other: "Pietų Korėjos vonų"
+      :symbol: KRW
+    :KWD: 
+      :few: "Kuveito dinarai"
+      :many: "Kuveito dinaro"
+      :name: "Kuveito dinaras"
+      :one: "Kuveito dinaras"
+      :other: "Kuveito dinarų"
+    :KYD: 
+      :few: "Kaimanų salų doleriai"
+      :many: "Kaimanų salų dolerio"
+      :name: "Kaimanų salų doleris"
+      :narrow_symbol: $
+      :one: "Kaimanų salų doleris"
+      :other: "Kaimanų salų dolerių"
+      :symbol: $
+    :KZT: 
+      :few: "Kazachstano tengės"
+      :many: "Kazachstano tengės"
+      :name: "Kazachstano tengė"
+      :narrow_symbol: ₸
+      :one: "Kazachstano tengė"
+      :other: "Kazachstano tengių"
+      :symbol: ₸
+    :LAK: 
+      :few: "Laoso kipai"
+      :many: "Laoso kipo"
+      :name: "Laoso kipas"
+      :narrow_symbol: LAK
+      :one: "Laoso kipas"
+      :other: "Laoso kipų"
+      :symbol: LAK
+    :LBP: 
+      :few: "Libano svarai"
+      :many: "Libano svaro"
+      :name: "Libano svaras"
+      :narrow_symbol: L£
+      :one: "Libano svaras"
+      :other: "Libano svarų"
+      :symbol: L£
+    :LKR: 
+      :few: "Šri Lankos rupijos"
+      :many: "Šri Lankos rupijos"
+      :name: "Šri Lankos rupija"
+      :narrow_symbol: Rs
+      :one: "Šri Lankos rupija"
+      :other: "Šri Lankos rupijų"
+      :symbol: Rs
+    :LRD: 
+      :few: "Liberijos doleriai"
+      :many: "Liberijos dolerio"
+      :name: "Liberijos doleris"
+      :narrow_symbol: $
+      :one: "Liberijos doleris"
+      :other: "Liberijos dolerių"
+      :symbol: $
+    :LSL: 
+      :name: "Lesoto lotis"
+      :one: "Lesoto lotis"
+    :LTL: 
+      :few: "Lietuvos litai"
+      :many: "Lietuvos lito"
+      :name: "Lietuvos litas"
+      :narrow_symbol: Lt
+      :one: "Lietuvos litas"
+      :other: "Lietuvos litų"
+      :symbol: Lt
+    :LTT: 
+      :few: "Lietuvos talonai"
+      :many: "Lietuvos talonai"
+      :name: "Lietuvos talonas"
+      :one: "Lietuvos talonas"
+      :other: "Lietuvos talonai"
+    :LUC: 
+      :few: "Liuksemburgo konvertuojami frankai"
+      :many: "Liuksemburgo konvertuojamo franko"
+      :name: "Liuksemburgo konvertuojamas frankas"
+      :one: "Liuksemburgo konvertuojas frankas"
+      :other: "Liuksemburgo konvertuojamų frankų"
+    :LUF: 
+      :few: "Liuksemburgo frankai"
+      :many: "Liuksemburgo franko"
+      :name: "Liuksemburgo frankas"
+      :one: "Liuksemburgo frankas"
+      :other: "Liuksemburgo frankų"
+    :LUL: 
+      :few: "Liuksemburgo finansiniai frankai"
+      :many: "Liuksemburgo finansinio franko"
+      :name: "Liuksemburgo finansinis frankas"
+      :one: "Liuksemburgo finansinis frankas"
+      :other: "Liuksemburgo finansinių frankų"
+    :LVL: 
+      :few: "Latvijos latai"
+      :many: "Latvijos lato"
+      :name: "Latvijos latas"
+      :narrow_symbol: Ls
+      :one: "Latvijos latas"
+      :other: "Latvijos latų"
+      :symbol: Ls
+    :LVR: 
+      :few: "Latvijos rubliai"
+      :many: "Latvijos rublio"
+      :name: "Latvijos rublis"
+      :one: "Latvijos rublis"
+      :other: "Latvijos rublių"
+    :LYD: 
+      :few: "Libijos dinarai"
+      :many: "Libijos dinaro"
+      :name: "Libijos dinaras"
+      :one: "Libijos dinaras"
+      :other: "Libijos dinarų"
+    :MAD: 
+      :few: "Maroko dirhamai"
+      :many: "Maroko dirhamo"
+      :name: "Maroko dirhamas"
+      :one: "Maroko dirhamas"
+      :other: "Maroko dirhamų"
+    :MAF: 
+      :few: "Maroko frankai"
+      :many: "Maroko franko"
+      :name: "Maroko frankas"
+      :one: "Maroko frankas"
+      :other: "Maroko frankų"
+    :MCF: 
+      :few: "Monegasque frankai"
+      :many: "Monegasque franko"
+      :name: "Monegasque frankas"
+      :one: "Monegasque frankas"
+      :other: "Monegasque frankų"
+    :MDC: 
+      :name: "Moldovų cupon"
+      :one: "Moldovų cupon"
+    :MDL: 
+      :few: "Moldovos lėjos"
+      :many: "Moldovos lėjos"
+      :name: "Moldovos lėja"
+      :one: "Moldovos lėja"
+      :other: "Moldovos lėjų"
+    :MGA: 
+      :few: "Madagaskaro ariariai"
+      :many: "Madagaskaro ariario"
+      :name: "Madagaskaro ariaris"
+      :narrow_symbol: Ar
+      :one: "Madagaskaro ariaris"
+      :other: "Madagaskaro ariarių"
+      :symbol: Ar
+    :MGF: 
+      :few: "Madagaskaro frankai"
+      :many: "Madagaskaro franko"
+      :name: "Madagaskaro frankas"
+      :one: "Madagaskaro frankas"
+      :other: "Madagaskaro frankų"
+    :MKD: 
+      :few: "Makedonijos denarai"
+      :many: "Makedonijos denaro"
+      :name: "Makedonijos denaras"
+      :one: "Makedonijos denaras"
+      :other: "Makedonijos denarų"
+    :MKN: 
+      :few: "Makedonijos denarai (1992–1993)"
+      :many: "Makedonijos denaro (1992–1993)"
+      :name: "Makedonijos denaras (1992–1993)"
+      :one: "Makedonijos denaras (1992–1993)"
+      :other: "Makedonijos denarų (1992–1993)"
+    :MLF: 
+      :few: "Malio frankai"
+      :many: "Malio franko"
+      :name: "Malio frankas"
+      :one: "Malio frankas"
+      :other: "Malio frankų"
+    :MMK: 
+      :few: "Mianmaro kijatai"
+      :many: "Mianmaro kijato"
+      :name: "Mianmaro kijatas"
+      :narrow_symbol: K
+      :one: "Mianmaro kijatas"
+      :other: "Mianmaro kijatų"
+      :symbol: K
+    :MNT: 
+      :few: "Mongolijos tugrikai"
+      :many: "Mongolijos tugriko"
+      :name: "Mongolijos tugrikas"
+      :narrow_symbol: MNT
+      :one: "Mongolijos tugrikas"
+      :other: "Mongolijos tugrikų"
+      :symbol: MNT
+    :MOP: 
+      :few: "Makao patakos"
+      :many: "Makao patakos"
+      :name: "Makao pataka"
+      :one: "Makao pataka"
+      :other: "Makao patakų"
+    :MRO: 
+      :few: "Mauritanijos ugijos (1973–2017)"
+      :many: "Mauritanijos ugijos (1973–2017)"
+      :name: "Mauritanijos ugija (1973–2017)"
+      :one: "Mauritanijos ugija (1973–2017)"
+      :other: "Mauritanijos ugijų (1973–2017)"
+    :MRU: 
+      :few: "Mauritanijos ugijos"
+      :many: "Mauritanijos ugijos"
+      :name: "Mauritanijos ugija"
+      :one: "Mauritanijos ugija"
+      :other: "Mauritanijos ugijų"
+    :MTL: 
+      :name: "Maltos lira"
+      :one: "Maltos lira"
+    :MTP: 
+      :few: "Maltos svarai"
+      :many: "Maltos svaro"
+      :name: "Maltos svaras"
+      :one: "Maltos svaras"
+      :other: "Maltos svarų"
+    :MUR: 
+      :few: "Mauricijaus rupijos"
+      :many: "Mauricijaus rupijos"
+      :name: "Mauricijaus rupija"
+      :narrow_symbol: Rs
+      :one: "Mauricijaus rupija"
+      :other: "Mauricijaus rupijų"
+      :symbol: Rs
+    :MVP: 
+      :few: "Maldyvų rupijos"
+      :many: "Maldyvų rupijos"
+      :name: "Maldyvų rupija"
+      :one: "Maldyvų rupija"
+      :other: "Maldyvų rupijos"
+    :MVR: 
+      :few: "Maldyvų rufijos"
+      :many: "Maldyvų rufijos"
+      :name: "Maldyvų rufija"
+      :one: "Maldyvų rufija"
+      :other: "Maldyvų rufijų"
+    :MWK: 
+      :few: "Malavio kvačos"
+      :many: "Malavio kvačos"
+      :name: "Malavio kvača"
+      :one: "Malavio kvača"
+      :other: "Malavio kvačų"
+    :MXN: 
+      :few: "Meksikos pesai"
+      :many: "Meksikos peso"
+      :name: "Meksikos pesas"
+      :narrow_symbol: $
+      :one: "Meksikos pesas"
+      :other: "Meksikos pesų"
+      :symbol: MXN
+    :MXP: 
+      :few: "Meksikos sidabriniai pesai (1861–1992)"
+      :many: "Meksikos sidabrino peso (1861–1992)"
+      :name: "Meksikos sidabrinis pesas (1861–1992)"
+      :one: "Meksikos sidabrinis pesas (1861–1992)"
+      :other: "Meksikos sidabrinių pesų (1861–1992)"
+    :MXV: 
+      :few: "Meksikos unidads de inversija (UDI)"
+      :many: "Meksikos unidads de inversija (UDI)"
+      :name: "Meksikos United de Inversion (UDI)"
+      :one: "Meksikos unidad de inversija (UDI)"
+      :other: "Meksikos unidads de inversija (UDI)"
+    :MYR: 
+      :few: "Malaizijos ringitai"
+      :many: "Malaizijos ringito"
+      :name: "Malaizijos ringitas"
+      :narrow_symbol: RM
+      :one: "Malaizijos ringitas"
+      :other: "Malaizijos ringitų"
+      :symbol: RM
+    :MZE: 
+      :few: "Mozambiko eskudai"
+      :many: "Mozambiko eskudo"
+      :name: "Mozambiko eskudas"
+      :one: "Mozambiko eskudas"
+      :other: "Mozambiko eskudų"
+    :MZM: 
+      :few: "Mozambiko metikaliai (1980–2006)"
+      :many: "Mozambiko metikalio (1980–2006)"
+      :name: "Mozambiko metikalis (1980–2006)"
+      :one: "Mozambiko metikalis (1980–2006)"
+      :other: "Mozambiko metikalių (1980–2006)"
+    :MZN: 
+      :few: "Mozambiko metikaliai"
+      :many: "Mozambiko metikalio"
+      :name: "Mozambiko metikalis"
+      :one: "Mozambiko metikalis"
+      :other: "Mozambiko metikalių"
+    :NAD: 
+      :few: "Namibijos doleriai"
+      :many: "Namibijos dolerio"
+      :name: "Namibijos doleris"
+      :narrow_symbol: $
+      :one: "Namibijos doleris"
+      :other: "Namibijos dolerių"
+      :symbol: $
+    :NGN: 
+      :few: "Nigerijos nairos"
+      :many: "Nigerijos nairos"
+      :name: "Nigerijos naira"
+      :narrow_symbol: ₦
+      :one: "Nigerijos naira"
+      :other: "Nigerijos nairų"
+      :symbol: ₦
+    :NIC: 
+      :few: "Nikaragvos kordobai (1988–1991)"
+      :many: "Nikaragvos kordobos (1988–1991)"
+      :name: "Nikaragvos kardoba (1988–1991)"
+      :one: "Nikaragvos kordoba (1988–1991)"
+      :other: "Nikaragvos kordobų (1988–1991)"
+    :NIO: 
+      :few: "Nikaragvos kordobos"
+      :many: "Nikaragvos kordobos"
+      :name: "Nikaragvos kordoba"
+      :narrow_symbol: C$
+      :one: "Nikaragvos kordoba"
+      :other: "Nikaragvos kordobų"
+      :symbol: C$
+    :NLG: 
+      :few: "Nyderlandų guldenai"
+      :many: "Nyderlandų guldeno"
+      :name: "Nyderlandų guldenas"
+      :one: "Nyderlandų guldenas"
+      :other: "Nyderlandų guldenų"
+    :NOK: 
+      :few: "Norvegijos kronos"
+      :many: "Norvegijos kronos"
+      :name: "Norvegijos krona"
+      :narrow_symbol: kr
+      :one: "Norvegijos krona"
+      :other: "Norvegijos kronų"
+      :symbol: kr
+    :NPR: 
+      :few: "Nepalo rupijos"
+      :many: "Nepalo rupijos"
+      :name: "Nepalo rupija"
+      :narrow_symbol: Rs
+      :one: "Nepalo rupija"
+      :other: "Nepalo rupijų"
+      :symbol: Rs
+    :NZD: 
+      :few: "Naujosios Zelandijos doleriai"
+      :many: "Naujosios Zelandijos dolerio"
+      :name: "Naujosios Zelandijos doleris"
+      :narrow_symbol: $
+      :one: "Naujosios Zelandijos doleris"
+      :other: "Naujosios Zelandijos dolerių"
+      :symbol: NZD
+    :OMR: 
+      :few: "Omano rialai"
+      :many: "Omano rialo"
+      :name: "Omano rialas"
+      :one: "Omano rialas"
+      :other: "Omano rialų"
+    :PAB: 
+      :few: "Panamos balbojos"
+      :many: "Panamos balbojos"
+      :name: "Panamos balboja"
+      :one: "Panamos balboja"
+      :other: "Panamos balbojų"
+    :PEI: 
+      :few: "Peru intis"
+      :many: "Peru intis"
+      :name: "Peru intis"
+      :one: "Peru inti"
+      :other: "Peru intis"
+    :PEN: 
+      :few: "Peru soliai"
+      :many: "Peru solio"
+      :name: "Peru solis"
+      :one: "Peru solis"
+      :other: "Peru solių"
+    :PES: 
+      :few: "Peru soliai (1863–1965)"
+      :many: "Peru solio (1863–1965)"
+      :name: "Peru solis (1863–1965)"
+      :one: "Peru solis (1863–1965)"
+      :other: "Peru solių (1863–1965)"
+    :PGK: 
+      :few: "Papua Naujosios Gvinėjos kinos"
+      :many: "Papua Naujosios Gvinėjos kinos"
+      :name: "Papua Naujosios Gvinėjos kina"
+      :one: "Papua Naujosios Gvinėjos kina"
+      :other: "Papua Naujosios Gvinėjos kinų"
+    :PHP: 
+      :few: "Filipinų pesai"
+      :many: "Filipinų peso"
+      :name: "Filipinų pesas"
+      :narrow_symbol: ₱
+      :one: "Filipinų pesas"
+      :other: "Filipinų pesų"
+      :symbol: PHP
+    :PKR: 
+      :few: "Pakistano rupijos"
+      :many: "Pakistano rupijos"
+      :name: "Pakistano rupija"
+      :narrow_symbol: Rs
+      :one: "Pakistano rupija"
+      :other: "Pakistano rupijų"
+      :symbol: Rs
+    :PLN: 
+      :few: "Lenkijos zlotai"
+      :many: "Lenkijos zloto"
+      :name: "Lenkijos zlotas"
+      :narrow_symbol: zl
+      :one: "Lenkijos zlotas"
+      :other: "Lenkijos zlotų"
+      :symbol: zl
+    :PLZ: 
+      :few: "Lenkijos zlotai (1950–1995)"
+      :many: "Lenkijos zloto (1950–1995)"
+      :name: "Lenkijos zlotas (1950–1995)"
+      :one: "Lenkijos zlotas (1950–1995)"
+      :other: "Lenkijos zlotų (1950–1995)"
+    :PTE: 
+      :few: "Portugalijos eskudai"
+      :many: "Portugalijos eskudo"
+      :name: "Portugalijos eskudas"
+      :one: "Portugalijos eskudas"
+      :other: "Portugalijos eskudų"
+    :PYG: 
+      :few: "Paragvajaus guaraniai"
+      :many: "Paragvajaus guaranio"
+      :name: "Paragvajaus guaranis"
+      :narrow_symbol: Gs
+      :one: "Paragvajaus guaranis"
+      :other: "Paragvajaus guaranių"
+      :symbol: Gs
+    :QAR: 
+      :few: "Kataro rialai"
+      :many: "Kataro rialo"
+      :name: "Kataro rialas"
+      :one: "Kataro rialas"
+      :other: "Kataro rialų"
+    :RHD: 
+      :few: "Rodezijos doleriai"
+      :many: "Rodezijos dolerio"
+      :name: "Rodezijos doleris"
+      :one: "Rodezijos doleris"
+      :other: "Rodezijos dolerių"
+    :ROL: 
+      :few: "Rumunijos lėjos (1952–2006)"
+      :many: "Rumunijos lėjos (1952–2006)"
+      :name: "Rumunijos lėja (1952–2006)"
+      :one: "Rumunijos lėja (1952–2006)"
+      :other: "Rumunijos lėjų (1952–2006)"
+    :RON: 
+      :few: "Rumunijos lėjos"
+      :many: "Rumunijos lėjos"
+      :name: "Rumunijos lėja"
+      :narrow_symbol: lei
+      :one: "Rumunijos lėja"
+      :other: "Rumunijos lėjų"
+      :symbol: lei
+    :RSD: 
+      :few: "Serbijos dinarai"
+      :many: "Serbijos dinaro"
+      :name: "Serbijos dinaras"
+      :one: "Serbijos dinaras"
+      :other: "Serbijos dinarų"
+    :RUB: 
+      :few: "Rusijos rubliai"
+      :many: "Rusijos rublio"
+      :name: "Rusijos rublis"
+      :narrow_symbol: rb
+      :one: "Rusijos rublis"
+      :other: "Rusijos rublių"
+      :symbol: rb
+    :RUR: 
+      :few: "Rusijos rubliai (1991–1998)"
+      :many: "Rusijos rublio (1991–1998)"
+      :name: "Rusijos rublis (1991–1998)"
+      :one: "Rusijos rublis (1991–1998)"
+      :other: "Rusijos rublių (1991–1998)"
+    :RWF: 
+      :few: "Ruandos frankai"
+      :many: "Ruandos franko"
+      :name: "Ruandos frankas"
+      :narrow_symbol: RF
+      :one: "Ruandos frankas"
+      :other: "Ruandos frankų"
+      :symbol: RF
+    :SAR: 
+      :few: "Saudo Arabijos rijalai"
+      :many: "Saudo Arabijos rijalo"
+      :name: "Saudo Arabijos rijalas"
+      :one: "Saudo Arabijos rijalas"
+      :other: "Saudo Arabijos rijalų"
+    :SBD: 
+      :few: "Saliamono salų doleriai"
+      :many: "Saliamono salų dolerio"
+      :name: "Saliamono salų doleris"
+      :narrow_symbol: $
+      :one: "Saliamono salų doleris"
+      :other: "Saliamono salų dolerių"
+      :symbol: $
+    :SCR: 
+      :few: "Seišelių rupijos"
+      :many: "Seišelių rupijos"
+      :name: "Seišelių rupija"
+      :one: "Seišelių rupija"
+      :other: "Seišelių rupijų"
+    :SDD: 
+      :few: "Sudano dinarai (1992–2007)"
+      :many: "Sudano dinaro (1992–2007)"
+      :name: "Sudano dinaras (1992–2007)"
+      :one: "Sudano dinaras (1992–2007)"
+      :other: "Sudano dinarų (1992–2007)"
+    :SDG: 
+      :few: "Sudano svarai"
+      :many: "Sudano svaro"
+      :name: "Sudano svaras"
+      :one: "Sudano svaras"
+      :other: "Sudano svarų"
+    :SDP: 
+      :few: "Sudano svarai (1957–1998)"
+      :many: "Sudano svaro (1957–1998)"
+      :name: "Sudano svaras (1957–1998)"
+      :one: "Sudano svaras (1957–1998)"
+      :other: "Sudano svarų (1957–1998)"
+    :SEK: 
+      :few: "Švedijos kronos"
+      :many: "Švedijos kronos"
+      :name: "Švedijos krona"
+      :narrow_symbol: kr
+      :one: "Švedijos krona"
+      :other: "Švedijos kronų"
+      :symbol: kr
+    :SGD: 
+      :few: "Singapūro doleriai"
+      :many: "Singapūro dolerio"
+      :name: "Singapūro doleris"
+      :narrow_symbol: $
+      :one: "Singapūro doleris"
+      :other: "Singapūro dolerių"
+      :symbol: $
+    :SHP: 
+      :few: "Šv. Elenos salų svarai"
+      :many: "Šv. Elenos salų svaro"
+      :name: "Šv. Elenos salų svaras"
+      :narrow_symbol: £
+      :one: "Šv. Elenos salų svaras"
+      :other: "Šv. Elenos salų svarų"
+      :symbol: £
+    :SIT: 
+      :few: "Slovėnijos tolars"
+      :many: "Slovėnijos tolar"
+      :name: "Slovėnijos tolaras"
+      :one: "Slovėnijos tolars"
+      :other: "Slovėnijos tolar"
+    :SKK: 
+      :few: "Slovakijos kronos"
+      :many: "Slovakijos kronos"
+      :name: "Slovakijos krona"
+      :one: "Slovakijos krona"
+      :other: "Slovakijos kronų"
+    :SLE: 
+      :few: "Siera Leonės leonės"
+      :many: "Siera Leonės leonės"
+      :name: "Siera Leonės leonė"
+      :one: "Siera Leonės leonė"
+      :other: "Siera Leonės leonių"
+    :SLL: 
+      :few: "Siera Leonės leonės (1964—2022)"
+      :many: "Siera Leonės leonės (1964—2022)"
+      :name: "Siera Leonės leonė (1964—2022)"
+      :one: "Siera Leonės leonė (1964—2022)"
+      :other: "Siera Leonės leonių (1964—2022)"
+    :SOS: 
+      :few: "Somalio šilingai"
+      :many: "Somalio šilingo"
+      :name: "Somalio šilingas"
+      :one: "Somalio šilingas"
+      :other: "Somalio šilingų"
+    :SRD: 
+      :few: "Surimano doleriai"
+      :many: "Surimano dolerio"
+      :name: "Surimano doleris"
+      :narrow_symbol: $
+      :one: "Surimano doleris"
+      :other: "Surimano dolerių"
+      :symbol: $
+    :SRG: 
+      :few: "Surimano guldenai"
+      :many: "Surimano guldeno"
+      :name: "Surimano guldenas"
+      :one: "Surimano guldenas"
+      :other: "Surimano guldenų"
+    :SSP: 
+      :few: "Pietų Sudano svarai"
+      :many: "Pietų Sudano svaro"
+      :name: "Pietų Sudano svaras"
+      :narrow_symbol: £
+      :one: "Pietų Sudano svaras"
+      :other: "Pietų Sudano svarų"
+      :symbol: £
+    :STD: 
+      :few: "San Tomės ir Principės dobros (1977–2017)"
+      :many: "San Tomės ir Principės dobros (1977–2017)"
+      :name: "San Tomės ir Principės dobra (1977–2017)"
+      :one: "San Tomės ir Principės dobra (1977–2017)"
+      :other: "Sao Tomės ir Principės dobrų (1977–2017)"
+    :STN: 
+      :few: "San Tomės ir Principės dobros"
+      :many: "San Tomės ir Principės dobros"
+      :name: "San Tomės ir Principės dobra"
+      :narrow_symbol: Db
+      :one: "San Tomės ir Principės dobra"
+      :other: "Sao Tomės ir Principės dobrų"
+      :symbol: Db
+    :SUR: 
+      :few: "Sovietų rubliai"
+      :many: "Sovietų rublio"
+      :name: "Sovietų rublis"
+      :one: "Sovietų rublis"
+      :other: "Sovietų rublių"
+    :SVC: 
+      :few: "Salvadoro kolonai"
+      :many: "Salvadoro kolonai"
+      :name: "Salvadoro kolonas"
+      :one: "Salvadoro kolonas"
+      :other: "Salvadoro kolonai"
+    :SYP: 
+      :few: "Sirijos svarai"
+      :many: "Sirijos svaro"
+      :name: "Sirijos svaras"
+      :narrow_symbol: £
+      :one: "Sirijos svaras"
+      :other: "Sirijos svarų"
+      :symbol: £
+    :SZL: 
+      :few: "Svazilando lilangeniai"
+      :many: "Svazilendo lilangenio"
+      :name: "Svazilando lilangenis"
+      :one: "Svazilando lilangenis"
+      :other: "Svazilendo lilangenių"
+    :THB: 
+      :few: "Tailando batai"
+      :many: "Tailando bato"
+      :name: "Tailando batas"
+      :narrow_symbol: ฿
+      :one: "Tailando batas"
+      :other: "Tailando batų"
+      :symbol: ฿
+    :TJR: 
+      :few: "Tadžikistano rubliai"
+      :many: "Tadžikistano rublio"
+      :name: "Tadžikistano rublis"
+      :one: "Tadžikistano rublis"
+      :other: "Tadžikistano rublių"
+    :TJS: 
+      :few: "Tadžikistano somoniai"
+      :many: "Tadžikistano somonio"
+      :name: "Tadžikistano somonis"
+      :one: "Tadžikistano somonis"
+      :other: "Tadžikistano somonių"
+    :TMM: 
+      :few: "Turkmėnistano manatai (1993–2009)"
+      :many: "Turkmėnistano manato (1993–2009)"
+      :name: "Turkmėnistano manatas (1993–2009)"
+      :one: "Turkmėnistano manatas (1993–2009)"
+      :other: "Turkmėnistano manatų (1993–2009)"
+    :TMT: 
+      :few: "Turkmėnistano manatai"
+      :many: "Turkmėnistano manato"
+      :name: "Turkmėnistano manatas"
+      :one: "Turkmėnistano manatas"
+      :other: "Turkmėnistano manatų"
+    :TND: 
+      :few: "Tuniso dinarai"
+      :many: "Tuniso dinaro"
+      :name: "Tuniso dinaras"
+      :one: "Tuniso dinaras"
+      :other: "Tuniso dinarų"
+    :TOP: 
+      :few: "Tongo paangos"
+      :many: "Tongo paangos"
+      :name: "Tongo paanga"
+      :narrow_symbol: T$
+      :one: "Tongo paanga"
+      :other: "Tongo paangų"
+      :symbol: T$
+    :TPE: 
+      :few: "Timoro eskudai"
+      :many: "Timoro eskudo"
+      :name: "Timoro eskudas"
+      :one: "Timoro eskudas"
+      :other: "Timoro eskudų"
+    :TRL: 
+      :few: "Turkijos liros (1922–2005)"
+      :many: "Turkijos liros (1922–2005)"
+      :name: "Turkijos lira (1922–2005)"
+      :one: "Turkijos lira (1922–2005)"
+      :other: "Turkijos lirų (1922–2005)"
+    :TRY: 
+      :few: "Turkijos liros"
+      :many: "Turkijos liros"
+      :name: "Turkijos lira"
+      :narrow_symbol: ₺
+      :one: "Turkijos lira"
+      :other: "Turkijos lirų"
+      :symbol: ₺
+    :TTD: 
+      :few: "Trinidado ir Tobago doleriai"
+      :many: "Trinidado ir Tobago dolerio"
+      :name: "Trinidado ir Tobago doleris"
+      :narrow_symbol: $
+      :one: "Trinidado ir Tobago doleris"
+      :other: "Trinidado ir Tobago dolerių"
+      :symbol: $
+    :TWD: 
+      :few: "Taivano naujieji doleriai"
+      :many: "Taivano naujojo dolerio"
+      :name: "Taivano naujasis doleris"
+      :narrow_symbol: $
+      :one: "Taivano naujasis doleris"
+      :other: "Taivano naujųjų dolerių"
+      :symbol: TWD
+    :TZS: 
+      :few: "Tanzanijos šilingai"
+      :many: "Tanzanijos šilingo"
+      :name: "Tanzanijos šilingas"
+      :one: "Tanzanijos šilingas"
+      :other: "Tanzanijos šilingų"
+    :UAH: 
+      :few: "Ukrainos grivinos"
+      :many: "Ukrainos grivinos"
+      :name: "Ukrainos grivina"
+      :narrow_symbol: ₴
+      :one: "Ukrainos grivina"
+      :other: "Ukrainos grivinų"
+      :symbol: ₴
+    :UAK: 
+      :few: "Ukrainos karbovantsiv"
+      :many: "Ukrainos karbovantsiv"
+      :name: "Ukrainos karbovanecas"
+      :one: "Ukrainos karbovanets"
+      :other: "Ukrainos karbovantsiv"
+    :UGS: 
+      :few: "Ugandos šilingai (1966–1987)"
+      :many: "Ugandos šilingo (1966–1987)"
+      :name: "Ugandos šilingas (1966–1987)"
+      :one: "Ugandos šilingas (1966–1987)"
+      :other: "Ugandos šilingų (1966–1987)"
+    :UGX: 
+      :few: "Ugandos šilingai"
+      :many: "Ugandos šilingo"
+      :name: "Ugandos šilingas"
+      :one: "Ugandos šilingas"
+      :other: "Ugandos šilingų"
+    :USD: 
+      :few: "JAV doleriai"
+      :many: "JAV dolerio"
+      :name: "JAV doleris"
+      :narrow_symbol: $
+      :one: "JAV doleris"
+      :other: "JAV dolerių"
+      :symbol: USD
+    :USN: 
+      :few: "JAV doleriai (kitą dieną)"
+      :many: "JAV dolerio (kitą dieną)"
+      :name: "JAV doleris (kitos dienos)"
+      :one: "JAV doleris (kitą dieną)"
+      :other: "JAV dolerių (kitą dieną)"
+    :USS: 
+      :few: "JAV doleriai (tą pačią dieną)"
+      :many: "JAV dolerio (tą pačią dieną)"
+      :name: "JAV doleris (šios dienos)"
+      :one: "JAV doleris (tą pačią dieną)"
+      :other: "JAV dolerių (tą pačią dieną)"
+    :UYI: 
+      :few: "Uragvajaus pesai en unidades indexadas"
+      :many: "Urugvajaus pesai en unidades indexadas"
+      :name: "Urugvajaus pesai en unidades indexadas"
+      :one: "Urugvajaus pesas en unidades indexadas"
+      :other: "Urugvajaus pesai en unidades indexadas"
+    :UYP: 
+      :few: "Urugvajaus pesai (1975–1993)"
+      :many: "Urugvajaus peso (1975–1993)"
+      :name: "Urugvajaus pesas (1975–1993)"
+      :one: "Urugvajaus pesas (1975–1993)"
+      :other: "Urugvajaus pesų (1975–1993)"
+    :UYU: 
+      :few: "Urugvajaus pesai"
+      :many: "Urugvajaus peso"
+      :name: "Urugvajaus pesas"
+      :narrow_symbol: $
+      :one: "Urugvajaus pesas"
+      :other: "Urugvajaus pesų"
+      :symbol: $
+    :UZS: 
+      :few: "Uzbekistano sumai"
+      :many: "Uzbekistano sumo"
+      :name: "Uzbekistano sumas"
+      :one: "Uzbekistano sumas"
+      :other: "Uzbekistano sumų"
+    :VEB: 
+      :few: "Venesuelos bolivarai (1871–2008)"
+      :many: "Venesuelos bolivaro (1871–2008)"
+      :name: "Venesuelos bolivaras (1871–2008)"
+      :one: "Venesuelos bolivaras (1871–2008)"
+      :other: "Venesuelos bolivarų (1871–2008)"
+    :VEF: 
+      :few: "Venesuelos bolivarai (2008–2018)"
+      :many: "Venesuelos bolivaro (2008–2018)"
+      :name: "Venesuelos bolivaras (2008–2018)"
+      :narrow_symbol: Bs
+      :one: "Venesuelos bolivaras (2008–2018)"
+      :other: "Venesuelos bolivarų (2008–2018)"
+      :symbol: Bs
+    :VES: 
+      :few: "Venesuelos bolivarai"
+      :many: "Venesuelos bolivaro"
+      :name: "Venesuelos bolivaras"
+      :one: "Venesuelos bolivaras"
+      :other: "Venesuelos bolivarų"
+    :VND: 
+      :few: "Vietnamo dongai"
+      :many: "Vietnamo dongo"
+      :name: "Vietnamo dongas"
+      :narrow_symbol: VND
+      :one: "Vietnamo dongas"
+      :other: "Vietnamo dongų"
+      :symbol: VND
+    :VNN: 
+      :few: "Vietnamo dongai (1978–1985)"
+      :many: "Vietnamo dongo (1978–1985)"
+      :name: "Vietnamo dongas (1978–1985)"
+      :one: "Vietnamo dongas (1978–1985)"
+      :other: "Vietnamo dongų (1978–1985)"
+    :VUV: 
+      :few: "Vanuatu vatai"
+      :many: "Vanuatu vato"
+      :name: "Vanuatu vatas"
+      :one: "Vanuatu vatas"
+      :other: "Vanuatu vatų"
+    :WST: 
+      :few: "Samoa talos"
+      :many: "Samoa talos"
+      :name: "Samoa tala"
+      :one: "Samoa tala"
+      :other: "Samoa talų"
+    :XAF: 
+      :few: "CFA BEAC frankai"
+      :many: "CFA BEAC franko"
+      :name: "CFA BEAC frankas"
+      :one: "CFA BEAC frankas"
+      :other: "CFA BEAC frankų"
+      :symbol: XAF
+    :XAG: 
+      :name: Sidabras
+      :one: Sidabras
+    :XAU: 
+      :name: Auksas
+      :one: Auksas
+    :XBA: 
+      :few: "Europos suvestinės vienetai"
+      :many: "Europos suvestinės vienetai"
+      :name: "Europos suvestinės vienetas"
+      :one: "Europos suvestinės vienetas"
+      :other: "Europos suvestinės vienetai"
+    :XBB: 
+      :few: "Europos piniginiai vienetai"
+      :many: "Europos piniginiai vienetai"
+      :name: "Europos piniginis vienetas"
+      :one: "Europos piniginis vienetas"
+      :other: "Europos piniginiai vienetai"
+    :XBC: 
+      :few: "Europos valiutos / apskaitos vienetai (XBC)"
+      :many: "Europos valiutos / apskaitos vienetai (XBC)"
+      :name: "Europos valiutos / apskaitos vienetas (XBC)"
+      :one: "Europos valiutos / apskaitos vienetas (XBC)"
+      :other: "Europos valiutos / apskaitos vienetai (XBC)"
+    :XBD: 
+      :few: "Europos valiutos / apskaitos vienetas (XBD)"
+      :many: "Europos valiutos / apskaitos vienetai (XBD)"
+      :name: "Europos valiutos / apskaitos vienetas (XBD)"
+      :one: "Europos valiutos / apskaitos vienetas (XBD)"
+      :other: "Europos valiutos / apskaitos vienetai (XBD)"
+    :XCD: 
+      :few: "Rytų Karibų doleriai"
+      :many: "Rytų Karibų dolerio"
+      :name: "Rytų Karibų doleris"
+      :narrow_symbol: $
+      :one: "Rytų Karibų doleris"
+      :other: "Rytų Karibų dolerių"
+      :symbol: XCD
+    :XCG: 
+      :symbol: Cg.
+    :XDR: 
+      :name: "SDR tarptautinis valiutos fondas"
+      :one: "SDR tarptautinis valiutos fondas"
+    :XEU: 
+      :name: "Europos piniginis vienetas (1993–1999)"
+      :one: "Europos piniginis vienetas (1993–1999)"
+    :XFO: 
+      :few: "Aukso frankai"
+      :many: "Aukso franko"
+      :name: "Aukso frankas"
+      :one: "Aukso frankas"
+      :other: "Aukso frankų"
+    :XFU: 
+      :few: "Prancūzijos UIC - frankai"
+      :many: "Prancūzijos UIC - franko"
+      :name: "Prancūzijos UIC - frankas"
+      :one: "Prancūzijos UIC - frankas"
+      :other: "Prancūzijos UIC - frankų"
+    :XOF: 
+      :few: "CFA BCEAO frankai"
+      :many: "CFA BCEAO franko"
+      :name: "CFA BCEAO frankas"
+      :one: "CFA BCEAO frankas"
+      :other: "CFA BCEAO frankų"
+      :symbol: XOF
+    :XPD: 
+      :name: Paladis
+      :one: Paladis
+    :XPF: 
+      :few: "CFP frankai"
+      :many: "CFP franko"
+      :name: "CFP frankas"
+      :one: "CFP frankas"
+      :other: "CFP frankų"
+      :symbol: XPF
+    :XPT: 
+      :name: Platina
+      :one: Platina
+    :XRE: 
+      :few: "RINET fondai"
+      :many: "RINET fondai"
+      :name: "RINET fondai"
+      :one: "RINET fondas"
+      :other: "RINET fondai"
+    :XSU: 
+      :few: Sukrės
+      :many: Sukrės
+      :name: Sukrė
+      :one: Sukrė
+      :other: Sukrių
+    :XTS: 
+      :name: "Tikrinamas valiutos kodas"
+      :one: "Tikrinamas valiutos kodas"
+    :XUA: 
+      :few: "Azijos plėtros banko apskaitos vienetai"
+      :many: "Azijos plėtros banko apskaitos vieneto"
+      :name: "Azijos plėtros banko apskaitos vienetas"
+      :one: "Azijos plėtros banko apskaitos vienetas"
+      :other: "Azijos plėtros banko apskaitos vienetų"
+    :XXX: 
+      :few: "(nežinoma valiuta)"
+      :many: "(nežinoma valiuta)"
+      :name: "nežinoma valiuta"
+      :one: "(nežinoma valiuta)"
+      :other: "(nežinoma valiuta)"
+      :symbol: ¤
+    :YDD: 
+      :few: "Jemeno dinarai"
+      :many: "Jemeno dinaro"
+      :name: "Jemeno dinaras"
+      :one: "Jemeno dinaras"
+      :other: "Jemeno dinarų"
+    :YER: 
+      :few: "Jemeno rialai"
+      :many: "Jemeno rialo"
+      :name: "Jemeno rialas"
+      :one: "Jemeno rialas"
+      :other: "Jemeno rialų"
+    :YUD: 
+      :few: "Jugoslavijos kietieji dinarai (1966–1990)"
+      :many: "Jugoslavijos kietiejo dinaro (1966–1990)"
+      :name: "Jugoslavijos kietasis dinaras (1966–1990)"
+      :one: "Jugoslavijos kietasis dinaras (1966–1990)"
+      :other: "Jugoslavijos kietiejų dinarų (1966–1990)"
+    :YUM: 
+      :few: "Jugoslavijos naujieji dinarai (1994–2002)"
+      :many: "Jugoslavijos naujojo dinaro (1994–2002)"
+      :name: "Jugoslavijos naujasis dinaras (1994–2002)"
+      :one: "Jugoslavijos naujasis dinaras (1994–2002)"
+      :other: "Jugoslavijos naujųjų dinarų (1994–2002)"
+    :YUN: 
+      :few: "Jugoslavijos konvertuojami dinarai (1990–1992)"
+      :many: "Jugoslavijos konvertuojamo dinaro (1990–1992)"
+      :name: "Jugoslavijos konvertuojamas dinaras (1990–1992)"
+      :one: "Jugoslavijos konvertuojamas dinaras (1990–1992)"
+      :other: "Jugoslavijos konvertuojamų dinarų (1990–1992)"
+    :YUR: 
+      :few: "Jugoslavijos reformuoti dinarai (1992–1993)"
+      :many: "Jugoslavijos reformuoto dinaro (1992–1993)"
+      :name: "Jugoslavijos reformuotas dinaras (1992–1993)"
+      :one: "Jugoslavijos reformuotas dinaras (1992–1993)"
+      :other: "Jugoslavijos reformuotų dinarų (1992–1993)"
+    :ZAL: 
+      :few: "Pietų Afrikos randai (finansinis)"
+      :many: "Pietų Afrikos rando (finansinis)"
+      :name: "Pietų Afrikos finansinis randas"
+      :one: "Pietų Afrikos randas (finansinis)"
+      :other: "Pietų Afrikos randų (finansinis)"
+    :ZAR: 
+      :few: "Pietų Afrikos Respublikos randai"
+      :many: "Pietų Afrikos Respublikos rando"
+      :name: "Pietų Afrikos Respublikos randas"
+      :narrow_symbol: R
+      :one: "Pietų Afrikos Respublikos randas"
+      :other: "Pietų Afrikos Respublikos randų"
+      :symbol: R
+    :ZMK: 
+      :few: "Zambijos kvačos (1968–2012)"
+      :many: "Zambijos kvačos (1968–2012)"
+      :name: "Zambijos kvača (1968–2012)"
+      :one: "Zambijos kvača (1968–2012)"
+      :other: "Zambijos kvačų (1968–2012)"
+    :ZMW: 
+      :few: "Zambijos kvačos"
+      :many: "Zambijos kvačos"
+      :name: "Zambijos kvača"
+      :narrow_symbol: ZK
+      :one: "Zambijos kvača"
+      :other: "Zambijos kvačų"
+      :symbol: ZK
+    :ZRN: 
+      :few: "Zairo naujieji zairai (1993–1998)"
+      :many: "Zairo naujojo zairo (1993–1998)"
+      :name: "Zairo naujasis zairas (1993–1998)"
+      :one: "Zairo naujasis zairas (1993–1998)"
+      :other: "Zairo naujųjų zairų (1993–1998)"
+    :ZRZ: 
+      :few: "Zairo zairai (1971–1993)"
+      :many: "Zairo zairo (1971–1993)"
+      :name: "Zairo zairas (1971–1993)"
+      :one: "Zairo zairas (1971–1993)"
+      :other: "Zairo zairų (1971–1993)"
+    :ZWD: 
+      :few: "Zimbabvės doleriai (1980–2008)"
+      :many: "Zimbabvės dolerio (1980–2008)"
+      :name: "Zimbabvės doleris (1980–2008)"
+      :one: "Zimbabvės doleris (1980–2008)"
+      :other: "Zimbabvės dolerių (1980–2008)"
+    :ZWL: 
+      :few: "Zimbabvės doleriai (2009)"
+      :many: "Zimbabvės dolerio (2009)"
+      :name: "Zimbabvės doleris (2009)"
+      :one: "Zimbabvės doleris (2009)"
+      :other: "Zimbabvės dolerių (2009)"
+    :ZWR: 
+      :few: "Zimbabvės doleriai (2008)"
+      :many: "Zimbabvės dolerio (2008)"
+      :name: "Zimbabvės doleris (2008)"
+      :one: "Zimbabvės doleris (2008)"
+      :other: "Zimbabvės dolerių (2008)"

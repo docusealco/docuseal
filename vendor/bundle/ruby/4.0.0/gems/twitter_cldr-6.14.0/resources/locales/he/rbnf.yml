@@ -1,0 +1,949 @@
+--- 
+:he: 
+  :rbnf: 
+    :grouping: 
+      - 
+        :ruleset: 
+          - 
+            :rules: 
+              - 
+                :rule: =0.0=;
+                :value: x.x
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 0
+            :type: spellout-numbering-year
+          - 
+            :rules: 
+              - 
+                :rule: "מינוס >>;"
+                :value: "-x"
+              - 
+                :rule: "<< נקודה >>;"
+                :value: x.x
+              - 
+                :rule: אפס;
+                :value: 0
+              - 
+                :rule: אחת;
+                :value: 1
+              - 
+                :rule: שתיים;
+                :value: 2
+              - 
+                :rule: שלוש;
+                :value: 3
+              - 
+                :rule: ארבע;
+                :value: 4
+              - 
+                :rule: חמש;
+                :value: 5
+              - 
+                :rule: שש;
+                :value: 6
+              - 
+                :rule: שבע;
+                :value: 7
+              - 
+                :rule: שמונה;
+                :value: 8
+              - 
+                :rule: תשע;
+                :value: 9
+              - 
+                :rule: עשר;
+                :value: 10
+              - 
+                :rule: "אחת עשרה;"
+                :value: 11
+              - 
+                :rule: "שתים עשרה;"
+                :value: 12
+              - 
+                :rule: ">> עשרה;"
+                :value: 13
+              - 
+                :rule: "עשרים[ >%%and-feminine>];"
+                :value: 20
+              - 
+                :rule: "שלושים[ >%%and-feminine>];"
+                :value: 30
+              - 
+                :rule: "ארבעים[ >%%and-feminine>];"
+                :value: 40
+              - 
+                :rule: "חמישים[ >%%and-feminine>];"
+                :value: 50
+              - 
+                :rule: "שישים[ >%%and-feminine>];"
+                :value: 60
+              - 
+                :rule: "שבעים[ >%%and-feminine>];"
+                :value: 70
+              - 
+                :rule: "שמונים[ >%%and-feminine>];"
+                :value: 80
+              - 
+                :rule: "תשעים[ >%%and-feminine>];"
+                :value: 90
+              - 
+                :rule: "מאה[ >%%and-feminine>];"
+                :value: 100
+              - 
+                :rule: "מאתיים[ >%%and-feminine>];"
+                :value: 200
+              - 
+                :rule: "<%spellout-numbering< מאות[ >%%and-feminine>];"
+                :value: 300
+              - 
+                :rule: "אלף[ >%%and-feminine>];"
+                :value: 1000
+              - 
+                :rule: "אלפיים[ >%%and-feminine>];"
+                :value: 2000
+              - 
+                :rule: "<%%thousands< אלפים[ >%%and-feminine>];"
+                :value: 3000
+              - 
+                :radix: 1000
+                :rule: "<%%spellout-numbering-m< אלף[ >%%and-feminine>];"
+                :value: 11000
+              - 
+                :rule: "מיליון[ >%%and-feminine>];"
+                :value: 1000000
+              - 
+                :rule: "שני מיליון[ >%%and-feminine>];"
+                :value: 2000000
+              - 
+                :rule: "<%%spellout-numbering-m< מיליון[ >%%and-feminine>];"
+                :value: 3000000
+              - 
+                :rule: "מיליארד[ >%%and-feminine>];"
+                :value: 1000000000
+              - 
+                :rule: "שני מיליארד[ >%%and-feminine>];"
+                :value: 2000000000
+              - 
+                :rule: "<%%spellout-numbering-m< מיליארד[ >%%and-feminine>];"
+                :value: 3000000000
+              - 
+                :rule: "ביליון[ >%%and-feminine>];"
+                :value: 1000000000000
+              - 
+                :rule: "שני ביליון[ >%%and-feminine>];"
+                :value: 2000000000000
+              - 
+                :rule: "<%%spellout-numbering-m< ביליון[ >%%and-feminine>];"
+                :value: 3000000000000
+              - 
+                :rule: "טריליון[ >%%and-feminine>];"
+                :value: 1000000000000000
+              - 
+                :rule: "שני טריליון[ >%%and-feminine>];"
+                :value: 2000000000000000
+              - 
+                :rule: "<%%spellout-numbering-m< טריליון[ >%%and-feminine>];"
+                :value: 3000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-numbering
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: ERROR-=0=;
+                :value: 1
+              - 
+                :rule: =%spellout-numbering=ת;
+                :value: 3
+              - 
+                :rule: שמונת;
+                :value: 8
+              - 
+                :rule: =%spellout-numbering=ת;
+                :value: 9
+              - 
+                :rule: ERROR-=0=;
+                :value: 11
+            :type: thousands
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: ו=%%spellout-numbering-m=;
+                :value: 1
+              - 
+                :rule: עשרים;
+                :value: 20
+              - 
+                :rule: "עשרים >>;"
+                :value: 21
+              - 
+                :rule: שלושים;
+                :value: 30
+              - 
+                :rule: "שלושים >>;"
+                :value: 31
+              - 
+                :rule: ארבעים;
+                :value: 40
+              - 
+                :rule: "ארבעים >>;"
+                :value: 41
+              - 
+                :rule: חמישים;
+                :value: 50
+              - 
+                :rule: "חמישים >>;"
+                :value: 51
+              - 
+                :rule: שישים;
+                :value: 60
+              - 
+                :rule: "שישים >>;"
+                :value: 61
+              - 
+                :rule: שבעים;
+                :value: 70
+              - 
+                :rule: "שבעים >>;"
+                :value: 71
+              - 
+                :rule: שמונים;
+                :value: 80
+              - 
+                :rule: "שמונים >>;"
+                :value: 81
+              - 
+                :rule: תשעים;
+                :value: 90
+              - 
+                :rule: "תשעים >>;"
+                :value: 91
+              - 
+                :rule: מאה;
+                :value: 100
+              - 
+                :rule: "מאה >>;"
+                :value: 101
+              - 
+                :rule: מאתיים;
+                :value: 200
+              - 
+                :rule: "מאתיים >>;"
+                :value: 201
+              - 
+                :rule: "שלוש מאות;"
+                :value: 300
+              - 
+                :rule: "שלוש מאות >>;"
+                :value: 301
+              - 
+                :rule: "ארבע מאות;"
+                :value: 400
+              - 
+                :rule: "ארבע מאות >>;"
+                :value: 401
+              - 
+                :rule: "חמש מאות;"
+                :value: 500
+              - 
+                :rule: "חמש מאות >>;"
+                :value: 501
+              - 
+                :rule: "שש מאות;"
+                :value: 600
+              - 
+                :rule: "שש מאות >>;"
+                :value: 601
+              - 
+                :rule: "שבע מאות;"
+                :value: 700
+              - 
+                :rule: "שבע מאות >>;"
+                :value: 701
+              - 
+                :rule: "שמונה מאות;"
+                :value: 800
+              - 
+                :rule: "שמונה מאות >>;"
+                :value: 801
+              - 
+                :rule: "תשע מאות;"
+                :value: 900
+              - 
+                :rule: "תשע מאות >>;"
+                :value: 901
+              - 
+                :rule: "אלף[ >>];"
+                :value: 1000
+              - 
+                :rule: "אלפיים[ >>];"
+                :value: 2000
+              - 
+                :rule: "ו<%%thousands< אלפים[ >>];"
+                :value: 3000
+              - 
+                :radix: 1000
+                :rule: "<%%and-masculine< אלף[ >>];"
+                :value: 11000
+              - 
+                :rule: "מיליון[ >>];"
+                :value: 1000000
+              - 
+                :rule: "שני מיליון[ >>];"
+                :value: 2000000
+              - 
+                :rule: "<%%and-masculine< מיליון[ >>];"
+                :value: 3000000
+              - 
+                :rule: "מיליארד[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "שני מיליארד[ >>];"
+                :value: 2000000000
+              - 
+                :rule: "<%%and-masculine< מיליארד[ >>];"
+                :value: 3000000000
+              - 
+                :rule: "ביליון[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "שני ביליון[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "<%%and-masculine< ביליון[ >>];"
+                :value: 3000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: and-masculine
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: אפס;
+                :value: 0
+              - 
+                :rule: אחד;
+                :value: 1
+              - 
+                :rule: שניים;
+                :value: 2
+              - 
+                :rule: שלושה;
+                :value: 3
+              - 
+                :rule: ארבעה;
+                :value: 4
+              - 
+                :rule: חמישה;
+                :value: 5
+              - 
+                :rule: שישה;
+                :value: 6
+              - 
+                :rule: שבעה;
+                :value: 7
+              - 
+                :rule: שמונה;
+                :value: 8
+              - 
+                :rule: תשעה;
+                :value: 9
+              - 
+                :rule: עשרה;
+                :value: 10
+              - 
+                :rule: "אחד עשר;"
+                :value: 11
+              - 
+                :rule: "שניים עשר;"
+                :value: 12
+              - 
+                :rule: ">> עשר;"
+                :value: 13
+              - 
+                :rule: "עשרים[ >%%and-masculine>];"
+                :value: 20
+              - 
+                :rule: "שלושים[ >%%and-masculine>];"
+                :value: 30
+              - 
+                :rule: "ארבעים[ >%%and-masculine>];"
+                :value: 40
+              - 
+                :rule: "חמישים[ >%%and-masculine>];"
+                :value: 50
+              - 
+                :rule: "שישים[ >%%and-masculine>];"
+                :value: 60
+              - 
+                :rule: "שבעים[ >%%and-masculine>];"
+                :value: 70
+              - 
+                :rule: "שמונים[ >%%and-masculine>];"
+                :value: 80
+              - 
+                :rule: "תשעים[ >%%and-masculine>];"
+                :value: 90
+              - 
+                :rule: "מאה[ >%%and-masculine>];"
+                :value: 100
+              - 
+                :rule: "מאתיים[ >%%and-masculine>];"
+                :value: 200
+              - 
+                :rule: "<%spellout-numbering< מאות[ >%%and-masculine>];"
+                :value: 300
+              - 
+                :rule: "אלף[ >%%and-masculine>];"
+                :value: 1000
+              - 
+                :rule: "אלפיים[ >%%and-masculine>];"
+                :value: 2000
+              - 
+                :rule: "<%%thousands< אלפים[ >%%and-masculine>];"
+                :value: 3000
+              - 
+                :radix: 1000
+                :rule: "<%%spellout-numbering-m< אלף[ >%%and-masculine>];"
+                :value: 11000
+              - 
+                :rule: "מיליון[ >%%and-masculine>];"
+                :value: 1000000
+              - 
+                :rule: "שני מיליון[ >%%and-masculine>];"
+                :value: 2000000
+              - 
+                :rule: "<%%spellout-numbering-m< מיליון[ >%%and-masculine>];"
+                :value: 3000000
+              - 
+                :rule: "מיליארד[ >%%and-masculine>];"
+                :value: 1000000000
+              - 
+                :rule: "שני מיליארד[ >%%and-masculine>];"
+                :value: 2000000000
+              - 
+                :rule: "<%%spellout-numbering-m< מיליארד[ >%%and-masculine>];"
+                :value: 3000000000
+              - 
+                :rule: "ביליון[ >%%and-masculine>];"
+                :value: 1000000000000
+              - 
+                :rule: "שני ביליון[ >%%and-masculine>];"
+                :value: 2000000000000
+              - 
+                :rule: "<%%spellout-numbering-m< ביליון[ >%%and-masculine>];"
+                :value: 3000000000000
+              - 
+                :rule: "טריליון[ >%%and-masculine>];"
+                :value: 1000000000000000
+              - 
+                :rule: "שני טריליון[ >%%and-masculine>];"
+                :value: 2000000000000000
+              - 
+                :rule: "<%%spellout-numbering-m< טריליון[ >%%and-masculine>];"
+                :value: 3000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-numbering-m
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: ו=%spellout-numbering=;
+                :value: 1
+              - 
+                :rule: ושתיים;
+                :value: 2
+              - 
+                :rule: ו=%spellout-numbering=;
+                :value: 3
+              - 
+                :rule: עשרים;
+                :value: 20
+              - 
+                :rule: "עשרים >>;"
+                :value: 21
+              - 
+                :rule: שלושים;
+                :value: 30
+              - 
+                :rule: "שלושים >>;"
+                :value: 31
+              - 
+                :rule: ארבעים;
+                :value: 40
+              - 
+                :rule: "ארבעים >>;"
+                :value: 41
+              - 
+                :rule: חמישים;
+                :value: 50
+              - 
+                :rule: "חמישים >>;"
+                :value: 51
+              - 
+                :rule: שישים;
+                :value: 60
+              - 
+                :rule: "שישים >>;"
+                :value: 61
+              - 
+                :rule: שבעים;
+                :value: 70
+              - 
+                :rule: "שבעים >>;"
+                :value: 71
+              - 
+                :rule: שמונים;
+                :value: 80
+              - 
+                :rule: "שמונים >>;"
+                :value: 81
+              - 
+                :rule: תשעים;
+                :value: 90
+              - 
+                :rule: "תשעים >>;"
+                :value: 91
+              - 
+                :rule: מאה;
+                :value: 100
+              - 
+                :rule: "מאה >>;"
+                :value: 101
+              - 
+                :rule: מאתיים;
+                :value: 200
+              - 
+                :rule: "מאתיים >>;"
+                :value: 201
+              - 
+                :rule: "שלוש מאות;"
+                :value: 300
+              - 
+                :rule: "שלוש מאות >>;"
+                :value: 301
+              - 
+                :rule: "ארבע מאות;"
+                :value: 400
+              - 
+                :rule: "ארבע מאות >>;"
+                :value: 401
+              - 
+                :rule: "חמש מאות;"
+                :value: 500
+              - 
+                :rule: "חמש מאות >>;"
+                :value: 501
+              - 
+                :rule: "שש מאות;"
+                :value: 600
+              - 
+                :rule: "שש מאות >>;"
+                :value: 601
+              - 
+                :rule: "שבע מאות;"
+                :value: 700
+              - 
+                :rule: "שבע מאות >>;"
+                :value: 701
+              - 
+                :rule: "שמונה מאות;"
+                :value: 800
+              - 
+                :rule: "שמונה מאות >>;"
+                :value: 801
+              - 
+                :rule: "תשע מאות;"
+                :value: 900
+              - 
+                :rule: "תשע מאות >>;"
+                :value: 901
+              - 
+                :rule: "אלף[ >>];"
+                :value: 1000
+              - 
+                :rule: "אלפיים[ >>];"
+                :value: 2000
+              - 
+                :rule: "ו<%%thousands< אלפים[ >>];"
+                :value: 3000
+              - 
+                :radix: 1000
+                :rule: "<%%and-masculine< אלף[ >>];"
+                :value: 11000
+              - 
+                :rule: "מיליון[ >>];"
+                :value: 1000000
+              - 
+                :rule: "שני מיליון[ >>];"
+                :value: 2000000
+              - 
+                :rule: "<%%and-masculine< מיליון[ >>];"
+                :value: 3000000
+              - 
+                :rule: "מיליארד[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "שני מיליארד[ >>];"
+                :value: 2000000000
+              - 
+                :rule: "<%%and-masculine< מיליארד[ >>];"
+                :value: 3000000000
+              - 
+                :rule: "ביליון[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "שני ביליון[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "<%%and-masculine< ביליון[ >>];"
+                :value: 3000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: and-feminine
+          - 
+            :rules: 
+              - 
+                :rule: "מינוס >>;"
+                :value: "-x"
+              - 
+                :rule: "<%%spellout-numbering-m< נקודה >> ;"
+                :value: x.x
+              - 
+                :rule: אפס;
+                :value: 0
+              - 
+                :rule: אחד;
+                :value: 1
+              - 
+                :rule: שני;
+                :value: 2
+              - 
+                :rule: שלושה;
+                :value: 3
+              - 
+                :rule: ארבעה;
+                :value: 4
+              - 
+                :rule: חמישה;
+                :value: 5
+              - 
+                :rule: שישה;
+                :value: 6
+              - 
+                :rule: שבעה;
+                :value: 7
+              - 
+                :rule: שמונה;
+                :value: 8
+              - 
+                :rule: תשעה;
+                :value: 9
+              - 
+                :rule: עשרה;
+                :value: 10
+              - 
+                :rule: "אחד עשר;"
+                :value: 11
+              - 
+                :rule: "שניים עשר;"
+                :value: 12
+              - 
+                :rule: ">> עשר;"
+                :value: 13
+              - 
+                :rule: "עשרים[ >%%and-masculine>];"
+                :value: 20
+              - 
+                :rule: "שלושים[ >%%and-masculine>];"
+                :value: 30
+              - 
+                :rule: "ארבעים[ >%%and-masculine>];"
+                :value: 40
+              - 
+                :rule: "חמישים[ >%%and-masculine>];"
+                :value: 50
+              - 
+                :rule: "שישים[ >%%and-masculine>];"
+                :value: 60
+              - 
+                :rule: "שבעים[ >%%and-masculine>];"
+                :value: 70
+              - 
+                :rule: "שמונים[ >%%and-masculine>];"
+                :value: 80
+              - 
+                :rule: "תשעים[ >%%and-masculine>];"
+                :value: 90
+              - 
+                :rule: "מאה[ >%%and-masculine>];"
+                :value: 100
+              - 
+                :rule: "מאתיים[ >%%and-masculine>];"
+                :value: 200
+              - 
+                :rule: "<%spellout-numbering< מאות[ >%%and-masculine>];"
+                :value: 300
+              - 
+                :rule: "אלף[ >%%and-masculine>];"
+                :value: 1000
+              - 
+                :rule: "אלפיים[ >%%and-masculine>];"
+                :value: 2000
+              - 
+                :rule: "<%%thousands< אלפים[ >%%and-masculine>];"
+                :value: 3000
+              - 
+                :radix: 1000
+                :rule: "<%%spellout-numbering-m< אלף[ >%%and-masculine>];"
+                :value: 11000
+              - 
+                :rule: "מיליון[ >%%and-masculine>];"
+                :value: 1000000
+              - 
+                :rule: "שני מיליון[ >%%and-masculine>];"
+                :value: 2000000
+              - 
+                :rule: "<%%spellout-numbering-m< מיליון[ >%%and-masculine>];"
+                :value: 3000000
+              - 
+                :rule: "מיליארד[ >%%and-masculine>];"
+                :value: 1000000000
+              - 
+                :rule: "שני מיליארד[ >%%and-masculine>];"
+                :value: 2000000000
+              - 
+                :rule: "<%%spellout-numbering-m< מיליארד[ >%%and-masculine>];"
+                :value: 3000000000
+              - 
+                :rule: "ביליון[ >%%and-masculine>];"
+                :value: 1000000000000
+              - 
+                :rule: "שני ביליון[ >%%and-masculine>];"
+                :value: 2000000000000
+              - 
+                :rule: "<%%spellout-numbering-m< ביליון[ >%%and-masculine>];"
+                :value: 3000000000000
+              - 
+                :rule: "טריליון[ >%%and-masculine>];"
+                :value: 1000000000000000
+              - 
+                :rule: "שני טריליון[ >%%and-masculine>];"
+                :value: 2000000000000000
+              - 
+                :rule: "<%%spellout-numbering-m< טריליון[ >%%and-masculine>];"
+                :value: 3000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-masculine
+          - 
+            :rules: 
+              - 
+                :rule: "מינוס >>;"
+                :value: "-x"
+              - 
+                :rule: "<< נקודה >>;"
+                :value: x.x
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 0
+              - 
+                :rule: שתי;
+                :value: 2
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 3
+            :type: spellout-cardinal-feminine
+          - 
+            :rules: 
+              - 
+                :rule: "מינוס >>;"
+                :value: "-x"
+              - 
+                :rule: "<%%spellout-numbering-m< נקודה >> ;"
+                :value: x.x
+              - 
+                :rule: =%spellout-cardinal-masculine=;
+                :value: 0
+              - 
+                :rule: שניים;
+                :value: 2
+              - 
+                :rule: =%spellout-cardinal-masculine=;
+                :value: 3
+            :type: spellout-cardinal-masculine-standalone
+          - 
+            :rules: 
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 0
+            :type: spellout-cardinal-feminine-standalone
+          - 
+            :rules: 
+              - 
+                :rule: "מינוס >>;"
+                :value: "-x"
+              - 
+                :rule: =%spellout-cardinal-masculine=;
+                :value: 0
+              - 
+                :rule: אחד;
+                :value: 1
+              - 
+                :rule: שני;
+                :value: 2
+              - 
+                :rule: שלושת;
+                :value: 3
+              - 
+                :rule: ארבעת;
+                :value: 4
+              - 
+                :rule: חמשת;
+                :value: 5
+              - 
+                :rule: ששת;
+                :value: 6
+              - 
+                :rule: שבעת;
+                :value: 7
+              - 
+                :rule: שמונת;
+                :value: 8
+              - 
+                :rule: תשעת;
+                :value: 9
+              - 
+                :rule: עשרת;
+                :value: 10
+              - 
+                :rule: =%spellout-cardinal-masculine=;
+                :value: 11
+            :type: spellout-construct-masculine
+          - 
+            :rules: 
+              - 
+                :rule: "מינוס >>;"
+                :value: "-x"
+              - 
+                :rule: =%spellout-cardinal-feminine=;
+                :value: 0
+              - 
+                :rule: שתי;
+                :value: 2
+              - 
+                :rule: =%spellout-cardinal-feminine=;
+                :value: 3
+            :type: spellout-construct-feminine
+          - 
+            :rules: 
+              - 
+                :rule: "מינוס >>;"
+                :value: "-x"
+              - 
+                :rule: "=#,##0.#=;"
+                :value: x.x
+              - 
+                :rule: "מספר אפס;"
+                :value: 0
+              - 
+                :rule: ראשון;
+                :value: 1
+              - 
+                :rule: שני;
+                :value: 2
+              - 
+                :rule: שלישי;
+                :value: 3
+              - 
+                :rule: רביעי;
+                :value: 4
+              - 
+                :rule: חמישי;
+                :value: 5
+              - 
+                :rule: שישי;
+                :value: 6
+              - 
+                :rule: שביעי;
+                :value: 7
+              - 
+                :rule: שמיני;
+                :value: 8
+              - 
+                :rule: תשיעי;
+                :value: 9
+              - 
+                :rule: עשירי;
+                :value: 10
+              - 
+                :rule: =%%spellout-numbering-m=;
+                :value: 11
+            :type: spellout-ordinal-masculine
+          - 
+            :rules: 
+              - 
+                :rule: "מינוס >>;"
+                :value: "-x"
+              - 
+                :rule: "=#,##0.#=;"
+                :value: x.x
+              - 
+                :rule: "מספר אפס;"
+                :value: 0
+              - 
+                :rule: ראשונה;
+                :value: 1
+              - 
+                :rule: שניה;
+                :value: 2
+              - 
+                :rule: שלישית;
+                :value: 3
+              - 
+                :rule: רביעית;
+                :value: 4
+              - 
+                :rule: חמישית;
+                :value: 5
+              - 
+                :rule: שישית;
+                :value: 6
+              - 
+                :rule: שביעית;
+                :value: 7
+              - 
+                :rule: שמינית;
+                :value: 8
+              - 
+                :rule: תשיעית;
+                :value: 9
+              - 
+                :rule: עשירית;
+                :value: 10
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 11
+            :type: spellout-ordinal-feminine
+        :type: SpelloutRules
+      - 
+        :ruleset: 
+          - 
+            :rules: 
+              - 
+                :rule: −>>;
+                :value: "-x"
+              - 
+                :rule: "=#,##0=;"
+                :value: 0
+            :type: digits-ordinal
+        :type: OrdinalRules

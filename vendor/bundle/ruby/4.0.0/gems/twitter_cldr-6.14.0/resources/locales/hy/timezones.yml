@@ -1,0 +1,1448 @@
+--- 
+:hy: 
+  :formats: 
+    :fallback_formats: 
+      :generic: "{1} ({0})"
+    :gmt_formats: 
+      :generic: "GMT{0}"
+    :gmt_zero_formats: 
+      :generic: GMT
+    :hour_formats: 
+      :generic: "+HH:mm;-HH:mm"
+    :region_formats: 
+      :daylight: "{0} (+1)"
+      :generic: "{0}"
+      :standard: "{0} (+0)"
+  :metazones: 
+    :Afghanistan: 
+      :long: 
+        :standard: "Աֆղանստանի ժամանակ"
+    :Africa_Central: 
+      :long: 
+        :standard: "Կենտրոնական Աֆրիկայի ժամանակ"
+    :Africa_Eastern: 
+      :long: 
+        :standard: "Արևելյան Աֆրիկայի ժամանակ"
+    :Africa_Southern: 
+      :long: 
+        :standard: "Հարավային Աֆրիկայի ժամանակ"
+    :Africa_Western: 
+      :long: 
+        :daylight: "Արևմտյան Աֆրիկայի ամառային ժամանակ"
+        :generic: "Արևմտյան Աֆրիկայի ժամանակ"
+        :standard: "Արևմտյան Աֆրիկայի ստանդարտ ժամանակ"
+    :Alaska: 
+      :long: 
+        :daylight: "Ալյասկայի ամառային ժամանակ"
+        :generic: "Ալյասկայի ժամանակ"
+        :standard: "Ալյասկայի ստանդարտ ժամանակ"
+    :Amazon: 
+      :long: 
+        :daylight: "Ամազոնյան ամառային ժամանակ"
+        :generic: "Ամազոնյան ժամանակ"
+        :standard: "Ամազոնյան ստանդարտ ժամանակ"
+    :America_Central: 
+      :long: 
+        :daylight: "Կենտրոնական Ամերիկայի ամառային ժամանակ"
+        :generic: "Կենտրոնական Ամերիկայի ժամանակ"
+        :standard: "Կենտրոնական Ամերիկայի ստանդարտ ժամանակ"
+    :America_Eastern: 
+      :long: 
+        :daylight: "Արևելյան Ամերիկայի ամառային ժամանակ"
+        :generic: "Արևելյան Ամերիկայի ժամանակ"
+        :standard: "Արևելյան Ամերիկայի ստանդարտ ժամանակ"
+    :America_Mountain: 
+      :long: 
+        :daylight: "Լեռնային ամառային ժամանակ (ԱՄՆ)"
+        :generic: "Լեռնային ժամանակ (ԱՄՆ)"
+        :standard: "Լեռնային ստանդարտ ժամանակ (ԱՄՆ)"
+    :America_Pacific: 
+      :long: 
+        :daylight: "Խաղաղօվկիանոսյան ամառային ժամանակ"
+        :generic: "Խաղաղօվկիանոսյան ժամանակ"
+        :standard: "Խաղաղօվկիանոսյան ստանդարտ ժամանակ"
+    :Apia: 
+      :long: 
+        :daylight: "Ապիայի ամառային ժամանակ"
+        :generic: "Ապիայի ժամանակ"
+        :standard: "Ապիայի ստանդարտ ժամանակ"
+    :Arabian: 
+      :long: 
+        :daylight: "Սաուդյան Արաբիայի ամառային ժամանակ"
+        :generic: "Սաուդյան Արաբիայի ժամանակ"
+        :standard: "Սաուդյան Արաբիայի ստանդարտ ժամանակ"
+    :Argentina: 
+      :long: 
+        :daylight: "Արգենտինայի ամառային ժամանակ"
+        :generic: "Արգենտինայի ժամանակ"
+        :standard: "Արգենտինայի ստնադարտ ժամանակ"
+    :Argentina_Western: 
+      :long: 
+        :daylight: "Արևմտյան Արգենտինայի ամառային ժամանակ"
+        :generic: "Արևմտյան Արգենտինայի ժամանակ"
+        :standard: "Արևմտյան Արգենտինայի ստնադարտ ժամանակ"
+    :Armenia: 
+      :long: 
+        :daylight: "Հայաստանի ամառային ժամանակ"
+        :generic: "Հայաստանի ժամանակ"
+        :standard: "Հայաստանի ստանդարտ ժամանակ"
+    :Atlantic: 
+      :long: 
+        :daylight: "Ատլանտյան ամառային ժամանակ"
+        :generic: "Ատլանտյան ժամանակ"
+        :standard: "Ատլանտյան ստանդարտ ժամանակ"
+    :Australia_Central: 
+      :long: 
+        :daylight: "Կենտրոնական Ավստրալիայի ամառային ժամանակ"
+        :generic: "Կենտրոնական Ավստրալիայի ժամանակ"
+        :standard: "Կենտրոնական Ավստրալիայի ստանդարտ ժամանակ"
+    :Australia_CentralWestern: 
+      :long: 
+        :daylight: "Կենտրոնական Ավստրալիայի արևմտյան ամառային ժամանակ"
+        :generic: "Կենտրոնական Ավստրալիայի արևմտյան ժամանակ"
+        :standard: "Կենտրոնական Ավստրալիայի արևմտյան ստանդարտ ժամանակ"
+    :Australia_Eastern: 
+      :long: 
+        :daylight: "Արևելյան Ավստրալիայի ամառային ժամանակ"
+        :generic: "Արևելյան Ավստրալիայի ժամանակ"
+        :standard: "Արևելյան Ավստրալիայի ստանդարտ ժամանակ"
+    :Australia_Western: 
+      :long: 
+        :daylight: "Արևմտյան Ավստրալիայի ամառային ժամանակ"
+        :generic: "Արևմտյան Ավստրալիայի ժամանակ"
+        :standard: "Արևմտյան Ավստրալիայի ստանդարտ ժամանակ"
+    :Azerbaijan: 
+      :long: 
+        :daylight: "Ադրբեջանի ամառային ժամանակ"
+        :generic: "Ադրբեջանի ժամանակ"
+        :standard: "Ադրբեջանի ստանդարտ ժամանակ"
+    :Azores: 
+      :long: 
+        :daylight: "Ազորյան կղզիների ամառային ժամանակ"
+        :generic: "Ազորյան կղզիների ժամանակ"
+        :standard: "Ազորյան կղզիների ստանդարտ ժամանակ"
+    :Bangladesh: 
+      :long: 
+        :daylight: "Բանգլադեշի ամառային ժամանակ"
+        :generic: "Բանգլադեշի ժամանակ"
+        :standard: "Բանգլադեշի ստանդարտ ժամանակ"
+    :Bhutan: 
+      :long: 
+        :standard: "Բութանի ժամանակ"
+    :Bolivia: 
+      :long: 
+        :standard: "Բոլիվիայի ժամանակ"
+    :Brasilia: 
+      :long: 
+        :daylight: "Բրազիլիայի ամառային ժամանակ"
+        :generic: "Բրազիլիայի ժամանակ"
+        :standard: "Բրազիլիայի ստանդարտ ժամանակ"
+    :Brunei: 
+      :long: 
+        :standard: "Բրունեյի ժամանակ"
+    :Cape_Verde: 
+      :long: 
+        :daylight: "Կաբո Վերդեի ամառային ժամանակ"
+        :generic: "Կաբո Վերդեի ժամանակ"
+        :standard: "Կաբո Վերդեի ստանդարտ ժամանակ"
+    :Chamorro: 
+      :long: 
+        :standard: "Չամոռոյի ժամանակ"
+    :Chatham: 
+      :long: 
+        :daylight: "Չաթեմ կղզու ամառային ժամանակ"
+        :generic: "Չաթեմ կղզու ժամանակ"
+        :standard: "Չաթեմ կղզու ստանդարտ ժամանակ"
+    :Chile: 
+      :long: 
+        :daylight: "Չիլիի ամառային ժամանակ"
+        :generic: "Չիլիի ժամանակ"
+        :standard: "Չիլիի ստանդարտ ժամանակ"
+    :China: 
+      :long: 
+        :daylight: "Չինաստանի ամառային ժամանակ"
+        :generic: "Չինաստանի ժամանակ"
+        :standard: "Չինաստանի ստանդարտ ժամանակ"
+    :Christmas: 
+      :long: 
+        :standard: "Սուրբ Ծննդյան կղզու ժամանակ"
+    :Cocos: 
+      :long: 
+        :standard: "Կոկոսյան կղզիների ժամանակ"
+    :Colombia: 
+      :long: 
+        :daylight: "Կոլումբիայի ամառային ժամանակ"
+        :generic: "Կոլումբիայի ժամանակ"
+        :standard: "Կոլումբիայի ստանդարտ ժամանակ"
+    :Cook: 
+      :long: 
+        :daylight: "Կուկի կղզիների կիսաամառային ժամանակ"
+        :generic: "Կուկի կղզիների ժամանակ"
+        :standard: "Կուկի կղզիների ստանդարտ ժամանակ"
+    :Cuba: 
+      :long: 
+        :daylight: "Կուբայի ամառային ժամանակ"
+        :generic: "Կուբայի ժամանակ"
+        :standard: "Կուբայի ստանդարտ ժամանակ"
+    :Davis: 
+      :long: 
+        :standard: "Դեյվիսի ժամանակ"
+    :DumontDUrville: 
+      :long: 
+        :standard: "Դյումոն դ’Յուրվիլի ժամանակ"
+    :East_Timor: 
+      :long: 
+        :standard: "Արևելյան Թիմորի ժամանակ"
+    :Easter: 
+      :long: 
+        :daylight: "Զատկի կղզու ամառային ժամանակ"
+        :generic: "Զատկի կղզու ժամանակ"
+        :standard: "Զատկի կղզու ստանդարտ ժամանակ"
+    :Ecuador: 
+      :long: 
+        :standard: "Էկվադորի ժամանակ"
+    :Europe_Central: 
+      :long: 
+        :daylight: "Կենտրոնական Եվրոպայի ամառային ժամանակ"
+        :generic: "Կենտրոնական Եվրոպայի ժամանակ"
+        :standard: "Կենտրոնական Եվրոպայի ստանդարտ ժամանակ"
+    :Europe_Eastern: 
+      :long: 
+        :daylight: "Արևելյան Եվրոպայի ամառային ժամանակ"
+        :generic: "Արևելյան Եվրոպայի ժամանակ"
+        :standard: "Արևելյան Եվրոպայի ստանդարտ ժամանակ"
+    :Europe_Further_Eastern: 
+      :long: 
+        :standard: "Մինսկի ժամանակ"
+    :Europe_Western: 
+      :long: 
+        :daylight: "Արևմտյան Եվրոպայի ամառային ժամանակ"
+        :generic: "Արևմտյան Եվրոպայի ժամանակ"
+        :standard: "Արևմտյան Եվրոպայի ստանդարտ ժամանակ"
+    :Falkland: 
+      :long: 
+        :daylight: "Ֆոլքլենդյան կղզիների ամառային ժամանակ"
+        :generic: "Ֆոլքլենդյան կղզիների ժամանակ"
+        :standard: "Ֆոլքլենդյան կղզիների ստանդարտ ժամանակ"
+    :Fiji: 
+      :long: 
+        :daylight: "Ֆիջիի ամառային ժամանակ"
+        :generic: "Ֆիջիի ժամանակ"
+        :standard: "Ֆիջիի ստանդարտ ժամանակ"
+    :French_Guiana: 
+      :long: 
+        :standard: "Ֆրանսիական Գվիանայի ժամանակ"
+    :French_Southern: 
+      :long: 
+        :standard: "Ֆրանսիական հարավային և անտարկտիդյան ժամանակ"
+    :GMT: 
+      :long: 
+        :standard: "Գրինվիչի ժամանակ"
+    :Galapagos: 
+      :long: 
+        :standard: "Գալապագոսյան կղզիների ժամանակ"
+    :Gambier: 
+      :long: 
+        :standard: "Գամբյե կղզիների ժամանակ"
+    :Georgia: 
+      :long: 
+        :daylight: "Վրաստանի ամառային ժամանակ"
+        :generic: "Վրաստանի ժամանակ"
+        :standard: "Վրաստանի ստանդարտ ժամանակ"
+    :Gilbert_Islands: 
+      :long: 
+        :standard: "Ջիլբերթի կղզիների ժամանակ"
+    :Greenland_Eastern: 
+      :long: 
+        :daylight: "Արևելյան Գրենլանդիայի ամառային ժամանակ"
+        :generic: "Արևելյան Գրենլանդիայի ժամանակ"
+        :standard: "Արևելյան Գրենլանդիայի ստանդարտ ժամանակ"
+    :Greenland_Western: 
+      :long: 
+        :daylight: "Արևմտյան Գրենլանդիայի ամառային ժամանակ"
+        :generic: "Արևմտյան Գրենլանդիայի ժամանակ"
+        :standard: "Արևմտյան Գրենլանդիայի ստանդարտ ժամանակ"
+    :Gulf: 
+      :long: 
+        :standard: "Պարսից ծոցի ստանդարտ ժամանակ"
+    :Guyana: 
+      :long: 
+        :standard: "Գայանայի ժամանակ"
+    :Hawaii_Aleutian: 
+      :long: 
+        :daylight: "Հավայան-ալեության ամառային ժամանակ"
+        :generic: "Հավայան-ալեության ժամանակ"
+        :standard: "Հավայան-ալեության ստանդարտ ժամանակ"
+    :Hong_Kong: 
+      :long: 
+        :daylight: "Հոնկոնգի ամառային ժամանակ"
+        :generic: "Հոնկոնգի ժամանակ"
+        :standard: "Հոնկոնգի ստանդարտ ժամանակ"
+    :Hovd: 
+      :long: 
+        :daylight: "Հովդի ամառային ժամանակ"
+        :generic: "Հովդի ժամանակ"
+        :standard: "Հովդի ստանդարտ ժամանակ"
+    :India: 
+      :long: 
+        :standard: "Հնդկաստանի ստանդարտ ժամանակ"
+    :Indian_Ocean: 
+      :long: 
+        :standard: "Հնդկական օվկիանոսի ժամանակ"
+    :Indochina: 
+      :long: 
+        :standard: "Հնդկաչինական ժամանակ"
+    :Indonesia_Central: 
+      :long: 
+        :standard: "Կենտրոնական Ինդոնեզիայի ժամանակ"
+    :Indonesia_Eastern: 
+      :long: 
+        :standard: "Արևելյան Ինդոնեզիայի ժամանակ"
+    :Indonesia_Western: 
+      :long: 
+        :standard: "Արևմտյան Ինդոնեզիայի ժամանակ"
+    :Iran: 
+      :long: 
+        :daylight: "Իրանի ամառային ժամանակ"
+        :generic: "Իրանի ժամանակ"
+        :standard: "Իրանի ստանդարտ ժամանակ"
+    :Irkutsk: 
+      :long: 
+        :daylight: "Իրկուտսկի ամառային ժամանակ"
+        :generic: "Իրկուտսկի ժամանակ"
+        :standard: "Իրկուտսկի ստանդարտ ժամանակ"
+    :Israel: 
+      :long: 
+        :daylight: "Իսրայելի ամառային ժամանակ"
+        :generic: "Իսրայելի ժամանակ"
+        :standard: "Իսրայելի ստանդարտ ժամանակ"
+    :Japan: 
+      :long: 
+        :daylight: "Ճապոնիայի ամառային ժամանակ"
+        :generic: "Ճապոնիայի ժամանակ"
+        :standard: "Ճապոնիայի ստանդարտ ժամանակ"
+    :Kazakhstan: 
+      :long: 
+        :standard: "Ղազախստանի ժամանակ"
+    :Kazakhstan_Eastern: 
+      :long: 
+        :standard: "Արևելյան Ղազախստանի ժամանակ"
+    :Kazakhstan_Western: 
+      :long: 
+        :standard: "Արևմտյան Ղազախստանի ժամանակ"
+    :Korea: 
+      :long: 
+        :daylight: "Կորեայի ամառային ժամանակ"
+        :generic: "Կորեայի ժամանակ"
+        :standard: "Կորեայի ստանդարտ ժամանակ"
+    :Kosrae: 
+      :long: 
+        :standard: "Կոսրաեյի ժամանակ"
+    :Krasnoyarsk: 
+      :long: 
+        :daylight: "Կրասնոյարսկի ամառային ժամանակ"
+        :generic: "Կրասնոյարսկի ժամանակ"
+        :standard: "Կրասնոյարսկի ստանդարտ ժամանակ"
+    :Kyrgystan: 
+      :long: 
+        :standard: "Ղրղզստանի ժամանակ"
+    :Line_Islands: 
+      :long: 
+        :standard: "Լայն կղզիների ժամանակ"
+    :Lord_Howe: 
+      :long: 
+        :daylight: "Լորդ Հաուի ամառային ժամանակ"
+        :generic: "Լորդ Հաուի ժամանակ"
+        :standard: "Լորդ Հաուի ստանդարտ ժամանակ"
+    :Magadan: 
+      :long: 
+        :daylight: "Մագադանի ամառային ժամանակ"
+        :generic: "Մագադանի ժամանակ"
+        :standard: "Մագադանի ստանդարտ ժամանակ"
+    :Malaysia: 
+      :long: 
+        :standard: "Մալայզիայի ժամանակ"
+    :Maldives: 
+      :long: 
+        :standard: "Մալդիվների ժամանակ"
+    :Marquesas: 
+      :long: 
+        :standard: "Մարկիզյան կղզիների ժամանակ"
+    :Marshall_Islands: 
+      :long: 
+        :standard: "Մարշալյան կղզիների ժամանակ"
+    :Mauritius: 
+      :long: 
+        :daylight: "Մավրիկիոսի ամառային ժամանակ"
+        :generic: "Մավրիկիոսի ժամանակ"
+        :standard: "Մավրիկիոսի ստանդարտ ժամանակ"
+    :Mawson: 
+      :long: 
+        :standard: "Մոուսոնի ժամանակ"
+    :Mexico_Pacific: 
+      :long: 
+        :daylight: "Մեքսիկայի խաղաղօվկիանոսյան ամառային ժամանակ"
+        :generic: "Մեքսիկայի խաղաղօվկիանոսյան ժամանակ"
+        :standard: "Մեքսիկայի խաղաղօվկիանոսյան ստանդարտ ժամանակ"
+    :Mongolia: 
+      :long: 
+        :daylight: "Ուլան Բատորի ամառային ժամանակ"
+        :generic: "Ուլան Բատորի ժամանակ"
+        :standard: "Ուլան Բատորի ստանդարտ ժամանակ"
+    :Moscow: 
+      :long: 
+        :daylight: "Մոսկվայի ամառային ժամանակ"
+        :generic: "Մոսկվայի ժամանակ"
+        :standard: "Մոսկվայի ստանդարտ ժամանակ"
+    :Myanmar: 
+      :long: 
+        :standard: "Մյանմայի ժամանակ"
+    :Nauru: 
+      :long: 
+        :standard: "Նաուրուի ժամանակ"
+    :Nepal: 
+      :long: 
+        :standard: "Նեպալի ժամանակ"
+    :New_Caledonia: 
+      :long: 
+        :daylight: "Նոր Կալեդոնիայի ամառային ժամանակ"
+        :generic: "Նոր Կալեդոնիայի ժամանակ"
+        :standard: "Նոր Կալեդոնիայի ստանդարտ ժամանակ"
+    :New_Zealand: 
+      :long: 
+        :daylight: "Նոր Զելանդիայի ամառային ժամանակ"
+        :generic: "Նոր Զելանդիայի ժամանակ"
+        :standard: "Նոր Զելանդիայի ստանդարտ ժամանակ"
+    :Newfoundland: 
+      :long: 
+        :daylight: "Նյուֆաունդլենդի ամառային ժամանակ"
+        :generic: "Նյուֆաունդլենդի ժամանակ"
+        :standard: "Նյուֆաունդլենդի ստանդարտ ժամանակ"
+    :Niue: 
+      :long: 
+        :standard: "Նիուեյի ժամանակ"
+    :Norfolk: 
+      :long: 
+        :daylight: "Նորֆոլկ կղզու ամառային ժամանակ"
+        :generic: "Նորֆոլկ կղզու ժամանակ"
+        :standard: "Նորֆոլկ կղզու ստանդարտ ժամանակ"
+    :Noronha: 
+      :long: 
+        :daylight: "Ֆերնանդու դի Նորոնյայի ամառային ժամանակ"
+        :generic: "Ֆերնանդու դի Նորոնյայի ժամանակ"
+        :standard: "Ֆերնանդու դի Նորոնյայի ստանդարտ ժամանակ"
+    :Novosibirsk: 
+      :long: 
+        :daylight: "Նովոսիբիրսկի ամառային ժամանակ"
+        :generic: "Նովոսիբիրսկի ժամանակ"
+        :standard: "Նովոսիբիրսկի ստանդարտ ժամանակ"
+    :Omsk: 
+      :long: 
+        :daylight: "Օմսկի ամառային ժամանակ"
+        :generic: "Օմսկի ժամանակ"
+        :standard: "Օմսկի ստանդարտ ժամանակ"
+    :Pakistan: 
+      :long: 
+        :daylight: "Պակիստանի ամառային ժամանակ"
+        :generic: "Պակիստանի ժամանակ"
+        :standard: "Պակիստանի ստանդարտ ժամանակ"
+    :Palau: 
+      :long: 
+        :standard: "Պալաույի ժամանակ"
+    :Papua_New_Guinea: 
+      :long: 
+        :standard: "Պապուա Նոր Գվինեայի ժամանակ"
+    :Paraguay: 
+      :long: 
+        :daylight: "Պարագվայի ամառային ժամանակ"
+        :generic: "Պարագվայի ժամանակ"
+        :standard: "Պարագվայի ստանդարտ ժամանակ"
+    :Peru: 
+      :long: 
+        :daylight: "Պերուի ամառային ժամանակ"
+        :generic: "Պերուի ժամանակ"
+        :standard: "Պերուի ստանդարտ ժամանակ"
+    :Philippines: 
+      :long: 
+        :daylight: "Ֆիլիպինների ամառային ժամանակ"
+        :generic: "Ֆիլիպինների ժամանակ"
+        :standard: "Ֆիլիպինների ստանդարտ ժամանակ"
+    :Phoenix_Islands: 
+      :long: 
+        :standard: "Ֆինիքս կղզիների ժամանակ"
+    :Pierre_Miquelon: 
+      :long: 
+        :daylight: "Սեն Պիեռ և Միքելոնի ամառային ժամանակ"
+        :generic: "Սեն Պիեռ և Միքելոնի ժամանակ"
+        :standard: "Սեն Պիեռ և Միքելոնի ստանդարտ ժամանակ"
+    :Pitcairn: 
+      :long: 
+        :standard: "Պիտկեռնի ժամանակ"
+    :Ponape: 
+      :long: 
+        :standard: "Պոնապե կղզու ժամանակ"
+    :Pyongyang: 
+      :long: 
+        :standard: "Փխենյանի ժամանակ"
+    :Reunion: 
+      :long: 
+        :standard: "Ռեյունիոնի ժամանակ"
+    :Rothera: 
+      :long: 
+        :standard: "Ռոտերայի ժամանակ"
+    :Sakhalin: 
+      :long: 
+        :daylight: "Սախալինի ամառային ժամանակ"
+        :generic: "Սախալինի ժամանակ"
+        :standard: "Սախալինի ստանդարտ ժամանակ"
+    :Samoa: 
+      :long: 
+        :daylight: "Սամոայի ամառային ժամանակ"
+        :generic: "Սամոայի ժամանակ"
+        :standard: "Սամոայի ստանդարտ ժամանակ"
+    :Seychelles: 
+      :long: 
+        :standard: "Սեյշելյան կղզիների ժամանակ"
+    :Singapore: 
+      :long: 
+        :standard: "Սինգապուրի ժամանակ"
+    :Solomon: 
+      :long: 
+        :standard: "Սողոմոնի կղզիների ժամանակ"
+    :South_Georgia: 
+      :long: 
+        :standard: "Հարավային Ջորջիայի ժամանակ"
+    :Suriname: 
+      :long: 
+        :standard: "Սուրինամի ժամանակ"
+    :Syowa: 
+      :long: 
+        :standard: "Սյովայի ժամանակ"
+    :Tahiti: 
+      :long: 
+        :standard: "Թաիթիի ժամանակ"
+    :Taipei: 
+      :long: 
+        :daylight: "Թայպեյի ամառային ժամանակ"
+        :generic: "Թայպեյի ժամանակ"
+        :standard: "Թայպեյի ստանդարտ ժամանակ"
+    :Tajikistan: 
+      :long: 
+        :standard: "Տաջիկստանի ժամանակ"
+    :Tokelau: 
+      :long: 
+        :standard: "Տոկելաույի ժամանակ"
+    :Tonga: 
+      :long: 
+        :daylight: "Տոնգայի ամառային ժամանակ"
+        :generic: "Տոնգայի ժամանակ"
+        :standard: "Տոնգայի ստանդարտ ժամանակ"
+    :Truk: 
+      :long: 
+        :standard: "Տրուկի ժամանակ"
+    :Turkmenistan: 
+      :long: 
+        :daylight: "Թուրքմենստանի ամառային ժամանակ"
+        :generic: "Թուրքմենստանի ժամանակ"
+        :standard: "Թուրքմենստանի ստանդարտ ժամանակ"
+    :Tuvalu: 
+      :long: 
+        :standard: "Տուվալույի ժամանակ"
+    :Uruguay: 
+      :long: 
+        :daylight: "Ուրուգվայի ամառային ժամանակ"
+        :generic: "Ուրուգվայի ժամանակ"
+        :standard: "Ուրուգվայի ստանդարտ ժամանակ"
+    :Uzbekistan: 
+      :long: 
+        :daylight: "Ուզբեկստանի ամառային ժամանակ"
+        :generic: "Ուզբեկստանի ժամանակ"
+        :standard: "Ուզբեկստանի ստանդարտ ժամանակ"
+    :Vanuatu: 
+      :long: 
+        :daylight: "Վանուատույի ամառային ժամանակ"
+        :generic: "Վանուատույի ժամանակ"
+        :standard: "Վանուատույի ստանդարտ ժամանակ"
+    :Venezuela: 
+      :long: 
+        :standard: "Վենեսուելայի ժամանակ"
+    :Vladivostok: 
+      :long: 
+        :daylight: "Վլադիվոստոկի ամառային ժամանակ"
+        :generic: "Վլադիվոստոկի ժամանակ"
+        :standard: "Վլադիվոստոկի ստանդարտ ժամանակ"
+    :Volgograd: 
+      :long: 
+        :daylight: "Վոլգոգրադի ամառային ժամանակ"
+        :generic: "Վոլգոգրադի ժամանակ"
+        :standard: "Վոլգոգրադի ստանդարտ ժամանակ"
+    :Vostok: 
+      :long: 
+        :standard: "Վոստոկի ժամանակ"
+    :Wake: 
+      :long: 
+        :standard: "Ուեյք կղզու ժամանակ"
+    :Wallis: 
+      :long: 
+        :standard: "Ուոլիս և Ֆուտունայի ժամանակ"
+    :Yakutsk: 
+      :long: 
+        :daylight: "Յակուտսկի ամառային ժամանակ"
+        :generic: "Յակուտսկի ժամանակ"
+        :standard: "Յակուտսկի ստանդարտ ժամանակ"
+    :Yekaterinburg: 
+      :long: 
+        :daylight: "Եկատերինբուրգի ամառային ժամանակ"
+        :generic: "Եկատերինբուրգի ժամանակ"
+        :standard: "Եկատերինբուրգի ստանդարտ ժամանակ"
+    :Yukon: 
+      :long: 
+        :standard: "Յուկոնի ժամանակ"
+  :timezones: 
+    :Africa/Abidjan: 
+      :city: Աբիջան
+    :Africa/Accra: 
+      :city: Աքրա
+    :Africa/Addis_Ababa: 
+      :city: "Ադիս Աբեբա"
+    :Africa/Algiers: 
+      :city: Ալժիր
+    :Africa/Asmera: 
+      :city: Ասմերա
+    :Africa/Bamako: 
+      :city: Բամակո
+    :Africa/Bangui: 
+      :city: Բանգի
+    :Africa/Banjul: 
+      :city: Բանժուլ
+    :Africa/Bissau: 
+      :city: Բիսաու
+    :Africa/Blantyre: 
+      :city: Բլանթայր
+    :Africa/Brazzaville: 
+      :city: Բրազավիլ
+    :Africa/Bujumbura: 
+      :city: Բուժումբուրա
+    :Africa/Cairo: 
+      :city: Կահիրե
+    :Africa/Casablanca: 
+      :city: Կասաբլանկա
+    :Africa/Ceuta: 
+      :city: Սեուտա
+    :Africa/Conakry: 
+      :city: Կոնակրի
+    :Africa/Dakar: 
+      :city: Դաքար
+    :Africa/Dar_es_Salaam: 
+      :city: Դար-Էս-Սալամ
+    :Africa/Djibouti: 
+      :city: Ջիբութի
+    :Africa/Douala: 
+      :city: Դուալա
+    :Africa/El_Aaiun: 
+      :city: "Էլ Այուն"
+    :Africa/Freetown: 
+      :city: Ֆրիթաուն
+    :Africa/Gaborone: 
+      :city: Գաբորոնե
+    :Africa/Harare: 
+      :city: Հարարե
+    :Africa/Johannesburg: 
+      :city: Յոհանեսբուրգ
+    :Africa/Juba: 
+      :city: Ջուբա
+    :Africa/Kampala: 
+      :city: Կամպալա
+    :Africa/Khartoum: 
+      :city: Խարթում
+    :Africa/Kigali: 
+      :city: Կիգալի
+    :Africa/Kinshasa: 
+      :city: Կինշասա
+    :Africa/Lagos: 
+      :city: Լագոս
+    :Africa/Libreville: 
+      :city: Լիբրևիլ
+    :Africa/Lome: 
+      :city: Լոմե
+    :Africa/Luanda: 
+      :city: Լուանդա
+    :Africa/Lubumbashi: 
+      :city: Լուբումբաշի
+    :Africa/Lusaka: 
+      :city: Լուսակա
+    :Africa/Malabo: 
+      :city: Մալաբո
+    :Africa/Maputo: 
+      :city: Մապուտու
+    :Africa/Maseru: 
+      :city: Մասերու
+    :Africa/Mbabane: 
+      :city: Մբաբանե
+    :Africa/Mogadishu: 
+      :city: Մոգադիշո
+    :Africa/Monrovia: 
+      :city: Մոնրովիա
+    :Africa/Nairobi: 
+      :city: Նայրոբի
+    :Africa/Ndjamena: 
+      :city: Նջամենա
+    :Africa/Niamey: 
+      :city: Նիամեյ
+    :Africa/Nouakchott: 
+      :city: Նուակշոտ
+    :Africa/Ouagadougou: 
+      :city: Ուագադուգու
+    :Africa/Porto-Novo: 
+      :city: "Պորտո Նովո"
+    :Africa/Sao_Tome: 
+      :city: "Սան Տոմե"
+    :Africa/Tripoli: 
+      :city: Տրիպոլի
+    :Africa/Tunis: 
+      :city: Թունիս
+    :Africa/Windhoek: 
+      :city: Վինդհուկ
+    :America/Adak: 
+      :city: "Ադակ կղզի"
+    :America/Anchorage: 
+      :city: Անքորիջ
+    :America/Anguilla: 
+      :city: Անգուիլա
+    :America/Antigua: 
+      :city: Անտիգուա
+    :America/Araguaina: 
+      :city: Արագուաինա
+    :America/Argentina/La_Rioja: 
+      :city: "Լա Ռիոխա"
+    :America/Argentina/Rio_Gallegos: 
+      :city: "Ռիո Գալյեգոս"
+    :America/Argentina/Salta: 
+      :city: Սալտա
+    :America/Argentina/San_Juan: 
+      :city: "Սան Խուան"
+    :America/Argentina/San_Luis: 
+      :city: "Սան Լուիս"
+    :America/Argentina/Tucuman: 
+      :city: Տուկուման
+    :America/Argentina/Ushuaia: 
+      :city: Ուշուայա
+    :America/Aruba: 
+      :city: Արուբա
+    :America/Asuncion: 
+      :city: Ասունսյոն
+    :America/Bahia: 
+      :city: Բաիյա
+    :America/Bahia_Banderas: 
+      :city: "Բաիյա Բանդերաս"
+    :America/Barbados: 
+      :city: Բարբադոս
+    :America/Belem: 
+      :city: Բելեմ
+    :America/Belize: 
+      :city: Բելիզ
+    :America/Blanc-Sablon: 
+      :city: Բլանկ-Սաբլոն
+    :America/Boa_Vista: 
+      :city: "Բոա Վիստա"
+    :America/Bogota: 
+      :city: Բոգոտա
+    :America/Boise: 
+      :city: Բոյսե
+    :America/Buenos_Aires: 
+      :city: "Բուենոս Այրես"
+    :America/Cambridge_Bay: 
+      :city: "Քեմբրիջ Բեյ"
+    :America/Campo_Grande: 
+      :city: "Կամպու Գրանդի"
+    :America/Cancun: 
+      :city: Կանկուն
+    :America/Caracas: 
+      :city: Կարակաս
+    :America/Catamarca: 
+      :city: Կատամարկա
+    :America/Cayenne: 
+      :city: Կայեն
+    :America/Cayman: 
+      :city: "Կայման կղզիներ"
+    :America/Chicago: 
+      :city: Չիկագո
+    :America/Chihuahua: 
+      :city: Չիուաուա
+    :America/Ciudad_Juarez: 
+      :city: "Սյուդադ Խուարես"
+    :America/Coral_Harbour: 
+      :city: Ատիկոկան
+    :America/Cordoba: 
+      :city: Կորդովա
+    :America/Costa_Rica: 
+      :city: "Կոստա Ռիկա"
+    :America/Creston: 
+      :city: Քրեսթոն
+    :America/Cuiaba: 
+      :city: Կույաբա
+    :America/Curacao: 
+      :city: Կյուրասաո
+    :America/Danmarkshavn: 
+      :city: Դենմարքսհավն
+    :America/Dawson: 
+      :city: Դոուսոն
+    :America/Dawson_Creek: 
+      :city: "Դոուսոն Քրիք"
+    :America/Denver: 
+      :city: Դենվեր
+    :America/Detroit: 
+      :city: Դետրոյթ
+    :America/Dominica: 
+      :city: Դոմինիկա
+    :America/Edmonton: 
+      :city: Էդմոնտոն
+    :America/Eirunepe: 
+      :city: Էյրունեպե
+    :America/El_Salvador: 
+      :city: Սալվադոր
+    :America/Fort_Nelson: 
+      :city: "Ֆորտ Նելսոն"
+    :America/Fortaleza: 
+      :city: Ֆորտալեզա
+    :America/Glace_Bay: 
+      :city: "Գլեյս Բեյ"
+    :America/Godthab: 
+      :city: Նուուկ
+    :America/Goose_Bay: 
+      :city: "Գուս Բեյ"
+    :America/Grand_Turk: 
+      :city: "Գրանդ Տյորք"
+    :America/Grenada: 
+      :city: Գրենադա
+    :America/Guadeloupe: 
+      :city: Գվադելուպա
+    :America/Guatemala: 
+      :city: Գվատեմալա
+    :America/Guayaquil: 
+      :city: Գուայակիլ
+    :America/Guyana: 
+      :city: Գայանա
+    :America/Halifax: 
+      :city: Հալիֆաքս
+    :America/Havana: 
+      :city: Հավանա
+    :America/Hermosillo: 
+      :city: Էրմոսիլյո
+    :America/Indiana/Knox: 
+      :city: "Նոքս, Ինդիանա"
+    :America/Indiana/Marengo: 
+      :city: "Մարենգո, Ինդիանա"
+    :America/Indiana/Petersburg: 
+      :city: "Պետերսբուրգ, Ինդիանա"
+    :America/Indiana/Tell_City: 
+      :city: "Թել Սիթի, Ինդիանա"
+    :America/Indiana/Vevay: 
+      :city: "Վիվեյ, Ինդիանա"
+    :America/Indiana/Vincennes: 
+      :city: "Վինսենս, Ինդիանա"
+    :America/Indiana/Winamac: 
+      :city: "Վինամակ, Ինդիանա"
+    :America/Indianapolis: 
+      :city: Ինդիանապոլիս
+    :America/Inuvik: 
+      :city: Ինուվիկ
+    :America/Iqaluit: 
+      :city: Իկալուիտ
+    :America/Jamaica: 
+      :city: Ճամայկա
+    :America/Jujuy: 
+      :city: Ժուժույ
+    :America/Juneau: 
+      :city: Ջունո
+    :America/Kentucky/Monticello: 
+      :city: "Մոնտիսելո, Կենտուկի"
+    :America/Kralendijk: 
+      :city: Կրալենդեյկ
+    :America/La_Paz: 
+      :city: "Լա Պաս"
+    :America/Lima: 
+      :city: Լիմա
+    :America/Los_Angeles: 
+      :city: "Լոս Անջելես"
+    :America/Louisville: 
+      :city: Լուիսվիլ
+    :America/Lower_Princes: 
+      :city: "Լոուեր Պրինսես Քվորթեր"
+    :America/Maceio: 
+      :city: Մասեյո
+    :America/Managua: 
+      :city: Մանագուա
+    :America/Manaus: 
+      :city: Մանաուս
+    :America/Marigot: 
+      :city: Մարիգո
+    :America/Martinique: 
+      :city: Մարտինիկա
+    :America/Matamoros: 
+      :city: Մատամորոս
+    :America/Mazatlan: 
+      :city: Մազաթլան
+    :America/Mendoza: 
+      :city: Մենդոսա
+    :America/Menominee: 
+      :city: Մենոմինի
+    :America/Merida: 
+      :city: Մերիդա
+    :America/Metlakatla: 
+      :city: Մետլակատլա
+    :America/Mexico_City: 
+      :city: Մեխիկո
+    :America/Miquelon: 
+      :city: Միքելոն
+    :America/Moncton: 
+      :city: Մոնկտոն
+    :America/Monterrey: 
+      :city: Մոնտեռեյ
+    :America/Montevideo: 
+      :city: Մոնտեվիդեո
+    :America/Montserrat: 
+      :city: Մոնսեռատ
+    :America/Nassau: 
+      :city: Նասաու
+    :America/New_York: 
+      :city: "Նյու Յորք"
+    :America/Nome: 
+      :city: Նոմ
+    :America/Noronha: 
+      :city: Նորոնյա
+    :America/North_Dakota/Beulah: 
+      :city: "Բոյլա, Հյուսիսային Դակոտա"
+    :America/North_Dakota/Center: 
+      :city: "Հյուսիսային Դակոտա - Կենտրոն"
+    :America/North_Dakota/New_Salem: 
+      :city: "Նյու Սալեմ, Հյուսիսային Դակոտա"
+    :America/Ojinaga: 
+      :city: Օխինագա
+    :America/Panama: 
+      :city: Պանամա
+    :America/Paramaribo: 
+      :city: Պարամարիբո
+    :America/Phoenix: 
+      :city: Ֆինիքս
+    :America/Port-au-Prince: 
+      :city: Պորտ-օ-Պրենս
+    :America/Port_of_Spain: 
+      :city: Պորտ-օֆ-Սփեյն
+    :America/Porto_Velho: 
+      :city: "Պորտու Վելյու"
+    :America/Puerto_Rico: 
+      :city: "Պուերտո Ռիկո"
+    :America/Punta_Arenas: 
+      :city: "Պունտա Արենաս"
+    :America/Rankin_Inlet: 
+      :city: "Ռանկին Ինլեթ"
+    :America/Recife: 
+      :city: Ռեսիֆի
+    :America/Regina: 
+      :city: Ռեջայնա
+    :America/Resolute: 
+      :city: Ռեզոլյուտ
+    :America/Rio_Branco: 
+      :city: "Ռիու Բրանկու"
+    :America/Santarem: 
+      :city: Սանտարեմ
+    :America/Santiago: 
+      :city: Սանտյագո
+    :America/Santo_Domingo: 
+      :city: "Սանտո Դոմինգո"
+    :America/Sao_Paulo: 
+      :city: "Սան Պաուլու"
+    :America/Scoresbysund: 
+      :city: Սկորսբիսուն
+    :America/Sitka: 
+      :city: Սիտկա
+    :America/St_Barthelemy: 
+      :city: "Սեն Բարտելմի"
+    :America/St_Johns: 
+      :city: "Սենթ Ջոնս"
+    :America/St_Kitts: 
+      :city: "Սենթ Քիտս"
+    :America/St_Lucia: 
+      :city: "Սենթ Լյուսիա"
+    :America/St_Thomas: 
+      :city: "Սենթ Թոմաս"
+    :America/St_Vincent: 
+      :city: "Սենթ Վինսենթ"
+    :America/Swift_Current: 
+      :city: "Սվիֆթ Քարենթ"
+    :America/Tegucigalpa: 
+      :city: Տեգուսիգալպա
+    :America/Thule: 
+      :city: Տուլե
+    :America/Tijuana: 
+      :city: Տիխուանա
+    :America/Toronto: 
+      :city: Տորոնտո
+    :America/Tortola: 
+      :city: Թորթոլա
+    :America/Vancouver: 
+      :city: Վանկուվեր
+    :America/Whitehorse: 
+      :city: Ուայթհորս
+    :America/Winnipeg: 
+      :city: Վինիպեգ
+    :America/Yakutat: 
+      :city: Յակուտատ
+    :Antarctica/Casey: 
+      :city: Քեյսի
+    :Antarctica/Davis: 
+      :city: Դեյվիս
+    :Antarctica/DumontDUrville: 
+      :city: "Դյումոն դ’Յուրվիլ"
+    :Antarctica/Macquarie: 
+      :city: "Մակկուորի կղզի"
+    :Antarctica/Mawson: 
+      :city: Մոուսոն
+    :Antarctica/McMurdo: 
+      :city: Մակ-Մերդո
+    :Antarctica/Palmer: 
+      :city: Պալմեր
+    :Antarctica/Rothera: 
+      :city: Ռոտերա
+    :Antarctica/Syowa: 
+      :city: Սյովա
+    :Antarctica/Troll: 
+      :city: Տրոլլ
+    :Antarctica/Vostok: 
+      :city: Վոստոկ
+    :Arctic/Longyearbyen: 
+      :city: Լոնգյիր
+    :Asia/Aden: 
+      :city: Ադեն
+    :Asia/Almaty: 
+      :city: Ալմաթի
+    :Asia/Amman: 
+      :city: Ամման
+    :Asia/Anadyr: 
+      :city: Անադիր
+    :Asia/Aqtau: 
+      :city: Ակտաու
+    :Asia/Aqtobe: 
+      :city: Ակտոբե
+    :Asia/Ashgabat: 
+      :city: Աշխաբադ
+    :Asia/Atyrau: 
+      :city: Ատիրաու
+    :Asia/Baghdad: 
+      :city: Բաղդադ
+    :Asia/Bahrain: 
+      :city: Բահրեյն
+    :Asia/Baku: 
+      :city: Բաքու
+    :Asia/Bangkok: 
+      :city: Բանգկոկ
+    :Asia/Barnaul: 
+      :city: Բառնաուլ
+    :Asia/Beirut: 
+      :city: Բեյրութ
+    :Asia/Bishkek: 
+      :city: Բիշքեկ
+    :Asia/Brunei: 
+      :city: Բրունեյ
+    :Asia/Calcutta: 
+      :city: Կալկուտա
+    :Asia/Chita: 
+      :city: Չիտա
+    :Asia/Colombo: 
+      :city: Կոլոմբո
+    :Asia/Damascus: 
+      :city: Դամասկոս
+    :Asia/Dhaka: 
+      :city: Դաքքա
+    :Asia/Dili: 
+      :city: Դիլի
+    :Asia/Dubai: 
+      :city: Դուբայ
+    :Asia/Dushanbe: 
+      :city: Դուշանբե
+    :Asia/Famagusta: 
+      :city: Ֆամագուստա
+    :Asia/Gaza: 
+      :city: Գազա
+    :Asia/Hebron: 
+      :city: Հեբրոն
+    :Asia/Hong_Kong: 
+      :city: Հոնկոնգ
+    :Asia/Hovd: 
+      :city: Հովդ
+    :Asia/Irkutsk: 
+      :city: Իրկուտսկ
+    :Asia/Jakarta: 
+      :city: Ջակարտա
+    :Asia/Jayapura: 
+      :city: Ջայպուրա
+    :Asia/Jerusalem: 
+      :city: Երուսաղեմ
+    :Asia/Kabul: 
+      :city: Քաբուլ
+    :Asia/Kamchatka: 
+      :city: Կամչատկա
+    :Asia/Karachi: 
+      :city: Կարաչի
+    :Asia/Katmandu: 
+      :city: Կատմանդու
+    :Asia/Khandyga: 
+      :city: Խանդիգա
+    :Asia/Krasnoyarsk: 
+      :city: Կրասնոյարսկ
+    :Asia/Kuala_Lumpur: 
+      :city: "Կուալա Լումպուր"
+    :Asia/Kuching: 
+      :city: Կուչինգ
+    :Asia/Kuwait: 
+      :city: Քուվեյթ
+    :Asia/Macau: 
+      :city: Մակաո
+    :Asia/Magadan: 
+      :city: Մագադան
+    :Asia/Makassar: 
+      :city: Մակասար
+    :Asia/Manila: 
+      :city: Մանիլա
+    :Asia/Muscat: 
+      :city: Մասկատ
+    :Asia/Nicosia: 
+      :city: Նիկոսիա
+    :Asia/Novokuznetsk: 
+      :city: Նովոկուզնեցկ
+    :Asia/Novosibirsk: 
+      :city: Նովոսիբիրսկ
+    :Asia/Omsk: 
+      :city: Օմսկ
+    :Asia/Oral: 
+      :city: Ուրալսկ
+    :Asia/Phnom_Penh: 
+      :city: Պնոմպեն
+    :Asia/Pontianak: 
+      :city: Պոնտիանակ
+    :Asia/Pyongyang: 
+      :city: Փխենյան
+    :Asia/Qatar: 
+      :city: Կատար
+    :Asia/Qostanay: 
+      :city: Կոստանայ
+    :Asia/Qyzylorda: 
+      :city: Կիզիլորդա
+    :Asia/Rangoon: 
+      :city: Ռանգուն
+    :Asia/Riyadh: 
+      :city: "Էր Ռիադ"
+    :Asia/Saigon: 
+      :city: Հոշիմին
+    :Asia/Sakhalin: 
+      :city: Սախալին
+    :Asia/Samarkand: 
+      :city: Սամարղանդ
+    :Asia/Seoul: 
+      :city: Սեուլ
+    :Asia/Shanghai: 
+      :city: Շանհայ
+    :Asia/Singapore: 
+      :city: Սինգապուր
+    :Asia/Srednekolymsk: 
+      :city: Սրեդնեկոլիմսկ
+    :Asia/Taipei: 
+      :city: Թայպեյ
+    :Asia/Tashkent: 
+      :city: Տաշքենդ
+    :Asia/Tbilisi: 
+      :city: Թբիլիսի
+    :Asia/Tehran: 
+      :city: Թեհրան
+    :Asia/Thimphu: 
+      :city: Տհիմպհու
+    :Asia/Tokyo: 
+      :city: Տոկիո
+    :Asia/Tomsk: 
+      :city: Տոմսկ
+    :Asia/Ulaanbaatar: 
+      :city: "Ուլան Բատոր"
+    :Asia/Urumqi: 
+      :city: Ուրումչի
+    :Asia/Ust-Nera: 
+      :city: Ուստ-Ներա
+    :Asia/Vientiane: 
+      :city: Վյենտյան
+    :Asia/Vladivostok: 
+      :city: Վլադիվոստոկ
+    :Asia/Yakutsk: 
+      :city: Յակուտսկ
+    :Asia/Yekaterinburg: 
+      :city: Եկատերինբուրգ
+    :Asia/Yerevan: 
+      :city: Երևան
+    :Atlantic/Azores: 
+      :city: "Ազորյան կղզիներ"
+    :Atlantic/Bermuda: 
+      :city: Բերմուդներ
+    :Atlantic/Canary: 
+      :city: "Կանարյան կղզիներ"
+    :Atlantic/Cape_Verde: 
+      :city: "Կաբո Վերդե"
+    :Atlantic/Faeroe: 
+      :city: "Ֆարերյան կղզիներ"
+    :Atlantic/Madeira: 
+      :city: Մադեյրա
+    :Atlantic/Reykjavik: 
+      :city: Ռեյկյավիկ
+    :Atlantic/South_Georgia: 
+      :city: "Հարավային Ջորջիա"
+    :Atlantic/St_Helena: 
+      :city: "Սուրբ Հեղինեի կղզի"
+    :Atlantic/Stanley: 
+      :city: Սթենլի
+    :Australia/Adelaide: 
+      :city: Ադելաիդա
+    :Australia/Brisbane: 
+      :city: Բրիսբեն
+    :Australia/Broken_Hill: 
+      :city: "Բրոքեն Հիլ"
+    :Australia/Darwin: 
+      :city: Դարվին
+    :Australia/Eucla: 
+      :city: Յուկլա
+    :Australia/Hobart: 
+      :city: Հոբարտ
+    :Australia/Lindeman: 
+      :city: Լինդեման
+    :Australia/Lord_Howe: 
+      :city: "Լորդ Հաու կղզի"
+    :Australia/Melbourne: 
+      :city: Մելբուրն
+    :Australia/Perth: 
+      :city: Պերթ
+    :Australia/Sydney: 
+      :city: Սիդնեյ
+    :Etc/UTC: 
+      :long: 
+        :standard: "Համաշխարհային կոորդինացված ժամանակ"
+      :short: 
+        :standard: UTC
+    :Etc/Unknown: 
+      :city: "Անհայտ քաղաք"
+    :Europe/Amsterdam: 
+      :city: Ամստերդամ
+    :Europe/Andorra: 
+      :city: Անդորրա
+    :Europe/Astrakhan: 
+      :city: Աստրախան
+    :Europe/Athens: 
+      :city: Աթենք
+    :Europe/Belgrade: 
+      :city: Բելգրադ
+    :Europe/Berlin: 
+      :city: Բեռլին
+    :Europe/Bratislava: 
+      :city: Բրատիսլավա
+    :Europe/Brussels: 
+      :city: Բրյուսել
+    :Europe/Bucharest: 
+      :city: Բուխարեստ
+    :Europe/Budapest: 
+      :city: Բուդապեշտ
+    :Europe/Busingen: 
+      :city: Բյուզինգեն
+    :Europe/Chisinau: 
+      :city: Քիշնև
+    :Europe/Copenhagen: 
+      :city: Կոպենհագեն
+    :Europe/Dublin: 
+      :city: Դուբլին
+      :long: 
+        :daylight: "Իռլանդական ստանդարտ ժամանակ"
+    :Europe/Gibraltar: 
+      :city: Ջիբրալթար
+    :Europe/Guernsey: 
+      :city: Գերնսի
+    :Europe/Helsinki: 
+      :city: Հելսինկի
+    :Europe/Isle_of_Man: 
+      :city: "Մեն կղզի"
+    :Europe/Istanbul: 
+      :city: Ստամբուլ
+    :Europe/Jersey: 
+      :city: Ջերսի
+    :Europe/Kaliningrad: 
+      :city: Կալինինգրադ
+    :Europe/Kiev: 
+      :city: Կիև
+    :Europe/Kirov: 
+      :city: Կիրով
+    :Europe/Lisbon: 
+      :city: Լիսաբոն
+    :Europe/Ljubljana: 
+      :city: Լյուբլյանա
+    :Europe/London: 
+      :city: Լոնդոն
+      :long: 
+        :daylight: "Բրիտանական ամառային ժամանակ"
+    :Europe/Luxembourg: 
+      :city: Լյուքսեմբուրգ
+    :Europe/Madrid: 
+      :city: Մադրիդ
+    :Europe/Malta: 
+      :city: Մալթա
+    :Europe/Mariehamn: 
+      :city: Մարիեհամն
+    :Europe/Minsk: 
+      :city: Մինսկ
+    :Europe/Monaco: 
+      :city: Մոնակո
+    :Europe/Moscow: 
+      :city: Մոսկվա
+    :Europe/Oslo: 
+      :city: Օսլո
+    :Europe/Paris: 
+      :city: Փարիզ
+    :Europe/Podgorica: 
+      :city: Պոդգորիցա
+    :Europe/Prague: 
+      :city: Պրահա
+    :Europe/Riga: 
+      :city: Ռիգա
+    :Europe/Rome: 
+      :city: Հռոմ
+    :Europe/Samara: 
+      :city: Սամարա
+    :Europe/San_Marino: 
+      :city: "Սան Մարինո"
+    :Europe/Sarajevo: 
+      :city: Սարաևո
+    :Europe/Saratov: 
+      :city: Սարատով
+    :Europe/Simferopol: 
+      :city: Սիմֆերոպոլ
+    :Europe/Skopje: 
+      :city: Սկոպյե
+    :Europe/Sofia: 
+      :city: Սոֆիա
+    :Europe/Stockholm: 
+      :city: Ստոկհոլմ
+    :Europe/Tallinn: 
+      :city: Տալլին
+    :Europe/Tirane: 
+      :city: Տիրանա
+    :Europe/Ulyanovsk: 
+      :city: Ուլյանովսկ
+    :Europe/Vaduz: 
+      :city: Վադուց
+    :Europe/Vatican: 
+      :city: Վատիկան
+    :Europe/Vienna: 
+      :city: Վիեննա
+    :Europe/Vilnius: 
+      :city: Վիլնյուս
+    :Europe/Volgograd: 
+      :city: Վոլգոգրադ
+    :Europe/Warsaw: 
+      :city: Վարշավա
+    :Europe/Zagreb: 
+      :city: Զագրեբ
+    :Europe/Zurich: 
+      :city: Ցյուրիխ
+    :Indian/Antananarivo: 
+      :city: Անտանանարիվու
+    :Indian/Chagos: 
+      :city: Չագոս
+    :Indian/Christmas: 
+      :city: "Սուրբ Ծննդյան կղզի"
+    :Indian/Cocos: 
+      :city: "Կոկոսյան կղզիներ"
+    :Indian/Comoro: 
+      :city: "Կոմորյան կղզիներ"
+    :Indian/Kerguelen: 
+      :city: Կերգելեն
+    :Indian/Mahe: 
+      :city: Մաէ
+    :Indian/Maldives: 
+      :city: Մալդիվներ
+    :Indian/Mauritius: 
+      :city: Մավրիկիոս
+    :Indian/Mayotte: 
+      :city: Մայոթ
+    :Indian/Reunion: 
+      :city: Ռեյունիոն
+    :Pacific/Apia: 
+      :city: Ապիա
+    :Pacific/Auckland: 
+      :city: Օքլենդ
+    :Pacific/Bougainville: 
+      :city: Բուգենվիլ
+    :Pacific/Chatham: 
+      :city: "Չաթեմ կղզի"
+    :Pacific/Easter: 
+      :city: "Զատկի կղզի"
+    :Pacific/Efate: 
+      :city: Էֆատե
+    :Pacific/Enderbury: 
+      :city: "Էնդերբերի կղզի"
+    :Pacific/Fakaofo: 
+      :city: Ֆակաոֆո
+    :Pacific/Fiji: 
+      :city: Ֆիջի
+    :Pacific/Funafuti: 
+      :city: Ֆունաֆուտի
+    :Pacific/Galapagos: 
+      :city: "Գալապագոսյան կղզիներ"
+    :Pacific/Gambier: 
+      :city: "Գամբյե կղզիներ"
+    :Pacific/Guadalcanal: 
+      :city: Գուադալկանալ
+    :Pacific/Guam: 
+      :city: Գուամ
+    :Pacific/Honolulu: 
+      :city: Հոնոլուլու
+    :Pacific/Kanton: 
+      :city: Կանտոն
+    :Pacific/Kiritimati: 
+      :city: Կիրիտիմատի
+    :Pacific/Kosrae: 
+      :city: Կոսրաե
+    :Pacific/Kwajalein: 
+      :city: Քվաջալեյն
+    :Pacific/Majuro: 
+      :city: Մաջուրո
+    :Pacific/Marquesas: 
+      :city: "Մարկիզյան կղզիներ"
+    :Pacific/Midway: 
+      :city: "Միդուեյ կղզի"
+    :Pacific/Nauru: 
+      :city: Նաուրու
+    :Pacific/Niue: 
+      :city: Նիուե
+    :Pacific/Norfolk: 
+      :city: Նորֆոլկ
+    :Pacific/Noumea: 
+      :city: Նումեա
+    :Pacific/Pago_Pago: 
+      :city: "Պագո Պագո"
+    :Pacific/Palau: 
+      :city: Պալաու
+    :Pacific/Pitcairn: 
+      :city: Պիտկեռն
+    :Pacific/Ponape: 
+      :city: Պոնպեի
+    :Pacific/Port_Moresby: 
+      :city: "Պորտ Մորսբի"
+    :Pacific/Rarotonga: 
+      :city: Ռարոտոնգա
+    :Pacific/Saipan: 
+      :city: Սայպան
+    :Pacific/Tahiti: 
+      :city: Թաիթի
+    :Pacific/Tarawa: 
+      :city: Տարավա
+    :Pacific/Tongatapu: 
+      :city: Տոնգատապու
+    :Pacific/Truk: 
+      :city: Չուուկ
+    :Pacific/Wake: 
+      :city: "Ուեյք կղզի"
+    :Pacific/Wallis: 
+      :city: Ուոլիս

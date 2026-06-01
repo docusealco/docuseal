@@ -1,0 +1,769 @@
+---
+10176:
+- 10176
+- THREE DIMENSIONAL ANGLE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10177:
+- 10177
+- WHITE TRIANGLE CONTAINING SMALL WHITE TRIANGLE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10178:
+- 10178
+- PERPENDICULAR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10179:
+- 10179
+- OPEN SUBSET
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10180:
+- 10180
+- OPEN SUPERSET
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10181:
+- 10181
+- LEFT S-SHAPED BAG DELIMITER
+- Ps
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10182:
+- 10182
+- RIGHT S-SHAPED BAG DELIMITER
+- Pe
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10183:
+- 10183
+- OR WITH DOT INSIDE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10184:
+- 10184
+- REVERSE SOLIDUS PRECEDING SUBSET
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10185:
+- 10185
+- SUPERSET PRECEDING SOLIDUS
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10186:
+- 10186
+- VERTICAL BAR WITH HORIZONTAL STROKE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10187:
+- 10187
+- MATHEMATICAL RISING DIAGONAL
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10188:
+- 10188
+- LONG DIVISION
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10189:
+- 10189
+- MATHEMATICAL FALLING DIAGONAL
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10190:
+- 10190
+- SQUARED LOGICAL AND
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10191:
+- 10191
+- SQUARED LOGICAL OR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10192:
+- 10192
+- WHITE DIAMOND WITH CENTRED DOT
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10193:
+- 10193
+- AND WITH DOT
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10194:
+- 10194
+- ELEMENT OF OPENING UPWARDS
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10195:
+- 10195
+- LOWER RIGHT CORNER WITH DOT
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10196:
+- 10196
+- UPPER LEFT CORNER WITH DOT
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10197:
+- 10197
+- LEFT OUTER JOIN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10198:
+- 10198
+- RIGHT OUTER JOIN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10199:
+- 10199
+- FULL OUTER JOIN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10200:
+- 10200
+- LARGE UP TACK
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10201:
+- 10201
+- LARGE DOWN TACK
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10202:
+- 10202
+- LEFT AND RIGHT DOUBLE TURNSTILE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10203:
+- 10203
+- LEFT AND RIGHT TACK
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10204:
+- 10204
+- LEFT MULTIMAP
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10205:
+- 10205
+- LONG RIGHT TACK
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10206:
+- 10206
+- LONG LEFT TACK
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10207:
+- 10207
+- UP TACK WITH CIRCLE ABOVE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10208:
+- 10208
+- LOZENGE DIVIDED BY HORIZONTAL RULE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10209:
+- 10209
+- WHITE CONCAVE-SIDED DIAMOND
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10210:
+- 10210
+- WHITE CONCAVE-SIDED DIAMOND WITH LEFTWARDS TICK
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10211:
+- 10211
+- WHITE CONCAVE-SIDED DIAMOND WITH RIGHTWARDS TICK
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10212:
+- 10212
+- WHITE SQUARE WITH LEFTWARDS TICK
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10213:
+- 10213
+- WHITE SQUARE WITH RIGHTWARDS TICK
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10214:
+- 10214
+- MATHEMATICAL LEFT WHITE SQUARE BRACKET
+- Ps
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10215:
+- 10215
+- MATHEMATICAL RIGHT WHITE SQUARE BRACKET
+- Pe
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10216:
+- 10216
+- MATHEMATICAL LEFT ANGLE BRACKET
+- Ps
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10217:
+- 10217
+- MATHEMATICAL RIGHT ANGLE BRACKET
+- Pe
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10218:
+- 10218
+- MATHEMATICAL LEFT DOUBLE ANGLE BRACKET
+- Ps
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10219:
+- 10219
+- MATHEMATICAL RIGHT DOUBLE ANGLE BRACKET
+- Pe
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10220:
+- 10220
+- MATHEMATICAL LEFT WHITE TORTOISE SHELL BRACKET
+- Ps
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10221:
+- 10221
+- MATHEMATICAL RIGHT WHITE TORTOISE SHELL BRACKET
+- Pe
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10222:
+- 10222
+- MATHEMATICAL LEFT FLATTENED PARENTHESIS
+- Ps
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10223:
+- 10223
+- MATHEMATICAL RIGHT FLATTENED PARENTHESIS
+- Pe
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''

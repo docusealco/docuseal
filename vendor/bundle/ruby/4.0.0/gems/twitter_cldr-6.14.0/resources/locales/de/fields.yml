@@ -1,0 +1,440 @@
+--- 
+:de: 
+  :fields: 
+    :day: 
+      :display_name: Tag
+      :relative: 
+        -1: gestern
+        -2: vorgestern
+        0: heute
+        1: morgen
+        2: übermorgen
+      :relative_time: 
+        :future: 
+          :one: "in {0} Tag"
+          :other: "in {0} Tagen"
+        :past: 
+          :one: "vor {0} Tag"
+          :other: "vor {0} Tagen"
+    :dayOfYear: 
+      :display_name: "Tag des Jahres"
+    :dayOfYear-narrow: 
+      :display_name: T/J
+    :dayperiod: 
+      :display_name: Tageshälfte
+    :dayperiod-narrow: 
+      :display_name: Tagesh.
+    :era: 
+      :display_name: Epoche
+    :era-narrow: 
+      :display_name: E
+    :era-short: 
+      :display_name: Ep.
+    :fri: 
+      :relative: 
+        -1: "letzten Freitag"
+        0: "diesen Freitag"
+        1: "nächsten Freitag"
+      :relative_time: 
+        :future: 
+          :one: "Freitag in {0} Woche"
+          :other: "Freitag in {0} Wochen"
+        :past: 
+          :one: "Freitag vor {0} Woche"
+          :other: "Freitag vor {0} Wochen"
+    :fri-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "Fr. in {0} W."
+          :other: "Fr. in {0} W."
+        :past: 
+          :one: "Fr. vor {0} W."
+          :other: "Fr. vor {0} W."
+    :fri-short: 
+      :relative: 
+        -1: "letzten Fr."
+        0: "diesen Fr."
+        1: "nächsten Fr."
+      :relative_time: 
+        :future: 
+          :one: "Fr. in {0} Woche"
+          :other: "Fr. in {0} Wochen"
+        :past: 
+          :one: "Fr. vor {0} Woche"
+          :other: "Fr. vor {0} Wochen"
+    :hour: 
+      :display_name: Stunde
+      :relative: 
+        0: "in dieser Stunde"
+      :relative_time: 
+        :future: 
+          :one: "in {0} Stunde"
+          :other: "in {0} Stunden"
+        :past: 
+          :one: "vor {0} Stunde"
+          :other: "vor {0} Stunden"
+    :hour-short: 
+      :display_name: Std.
+      :relative_time: 
+        :future: 
+          :one: "in {0} Std."
+          :other: "in {0} Std."
+        :past: 
+          :one: "vor {0} Std."
+          :other: "vor {0} Std."
+    :minute: 
+      :relative: 
+        0: "in dieser Minute"
+      :relative_time: 
+        :future: 
+          :one: "in {0} Minute"
+          :other: "in {0} Minuten"
+        :past: 
+          :one: "vor {0} Minute"
+          :other: "vor {0} Minuten"
+    :minute-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "in {0} m"
+          :other: "in {0} m"
+        :past: 
+          :one: "vor {0} m"
+          :other: "vor {0} m"
+    :minute-short: 
+      :display_name: Min.
+      :relative_time: 
+        :future: 
+          :one: "in {0} Min."
+          :other: "in {0} Min."
+        :past: 
+          :one: "vor {0} Min."
+          :other: "vor {0} Min."
+    :mon: 
+      :relative: 
+        -1: "letzten Montag"
+        0: "diesen Montag"
+        1: "nächsten Montag"
+      :relative_time: 
+        :future: 
+          :one: "Montag in {0} Woche"
+          :other: "Montag in {0} Wochen"
+        :past: 
+          :one: "Montag vor {0} Woche"
+          :other: "Montag vor {0} Wochen"
+    :mon-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "Mo. in {0} W."
+          :other: "Mo. in {0} W."
+        :past: 
+          :one: "Mo. vor {0} W."
+          :other: "Mo. vor {0} W."
+    :mon-short: 
+      :relative: 
+        -1: "letzten Mo."
+        0: "diesen Mo."
+        1: "nächsten Mo."
+      :relative_time: 
+        :future: 
+          :one: "Mo. in {0} Woche"
+          :other: "Mo. in {0} Wochen"
+        :past: 
+          :one: "Mo. vor {0} Woche"
+          :other: "Mo. vor {0} Wochen"
+    :month: 
+      :display_name: Monat
+      :relative: 
+        -1: "letzten Monat"
+        0: "diesen Monat"
+        1: "nächsten Monat"
+      :relative_time: 
+        :future: 
+          :one: "in {0} Monat"
+          :other: "in {0} Monaten"
+        :past: 
+          :one: "vor {0} Monat"
+          :other: "vor {0} Monaten"
+    :month-narrow: 
+      :display_name: M
+      :relative_time: 
+        :past: 
+          :one: "vor {0} Monat"
+          :other: "vor {0} Monaten"
+    :month-short: 
+      :display_name: Mon.
+      :relative_time: 
+        :past: 
+          :one: "vor {0} Monat"
+          :other: "vor {0} Monaten"
+    :quarter: 
+      :display_name: Quartal
+      :relative: 
+        -1: "letztes Quartal"
+        0: "dieses Quartal"
+        1: "nächstes Quartal"
+      :relative_time: 
+        :future: 
+          :one: "in {0} Quartal"
+          :other: "in {0} Quartalen"
+        :past: 
+          :one: "vor {0} Quartal"
+          :other: "vor {0} Quartalen"
+    :quarter-narrow: 
+      :display_name: Q
+      :relative_time: 
+        :future: 
+          :one: "in {0} Q"
+          :other: "in {0} Q"
+        :past: 
+          :one: "vor {0} Q"
+          :other: "vor {0} Q"
+    :quarter-short: 
+      :display_name: Quart.
+      :relative_time: 
+        :future: 
+          :one: "in {0} Quart."
+          :other: "in {0} Quart."
+        :past: 
+          :one: "vor {0} Quart."
+          :other: "vor {0} Quart."
+    :sat: 
+      :relative: 
+        -1: "letzten Samstag"
+        0: "diesen Samstag"
+        1: "nächsten Samstag"
+      :relative_time: 
+        :future: 
+          :one: "Samstag in {0} Woche"
+          :other: "Samstag in {0} Wochen"
+        :past: 
+          :one: "Samstag vor {0} Woche"
+          :other: "Samstag vor {0} Wochen"
+    :sat-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "Sa. in {0} W."
+          :other: "Sa. in {0} W."
+        :past: 
+          :one: "Sa. vor {0} W."
+          :other: "Sa. vor {0} W."
+    :sat-short: 
+      :relative: 
+        -1: "letzten Sa."
+        0: "diesen Sa."
+        1: "nächsten Sa."
+      :relative_time: 
+        :future: 
+          :one: "Sa. in {0} Woche"
+          :other: "Sa. in {0} Wochen"
+        :past: 
+          :one: "Sa. vor {0} Woche"
+          :other: "Sa. vor {0} Wochen"
+    :second: 
+      :display_name: Sekunde
+      :relative: 
+        0: jetzt
+      :relative_time: 
+        :future: 
+          :one: "in {0} Sekunde"
+          :other: "in {0} Sekunden"
+        :past: 
+          :one: "vor {0} Sekunde"
+          :other: "vor {0} Sekunden"
+    :second-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "in {0} s"
+          :other: "in {0} s"
+        :past: 
+          :one: "vor {0} s"
+          :other: "vor {0} s"
+    :second-short: 
+      :display_name: Sek.
+      :relative_time: 
+        :future: 
+          :one: "in {0} Sek."
+          :other: "in {0} Sek."
+        :past: 
+          :one: "vor {0} Sek."
+          :other: "vor {0} Sek."
+    :sun: 
+      :relative: 
+        -1: "letzten Sonntag"
+        0: "diesen Sonntag"
+        1: "nächsten Sonntag"
+      :relative_time: 
+        :future: 
+          :one: "Sonntag in {0} Woche"
+          :other: "Sonntag in {0} Wochen"
+        :past: 
+          :one: "Sonntag vor {0} Woche"
+          :other: "Sonntag vor {0} Wochen"
+    :sun-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "So. in {0} W."
+          :other: "So. in {0} W."
+        :past: 
+          :one: "So. vor {0} W."
+          :other: "So. vor {0} W."
+    :sun-short: 
+      :relative: 
+        -1: "letzten So."
+        0: "diesen So."
+        1: "nächsten So."
+      :relative_time: 
+        :future: 
+          :one: "So. in {0} Woche"
+          :other: "So. in {0} Wochen"
+        :past: 
+          :one: "So. vor {0} Woche"
+          :other: "So. vor {0} Wochen"
+    :thu: 
+      :relative: 
+        -1: "letzten Donnerstag"
+        0: "diesen Donnerstag"
+        1: "nächsten Donnerstag"
+      :relative_time: 
+        :future: 
+          :one: "Donnerstag in {0} Woche"
+          :other: "Donnerstag in {0} Wochen"
+        :past: 
+          :one: "Donnerstag vor {0} Woche"
+          :other: "Donnerstag vor {0} Wochen"
+    :thu-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "Do. in {0} W."
+          :other: "Do. in {0} W."
+        :past: 
+          :one: "Do. vor {0} W."
+          :other: "Do. vor {0} W."
+    :thu-short: 
+      :relative: 
+        -1: "letzten Do."
+        0: "diesen Do."
+        1: "nächsten Do."
+      :relative_time: 
+        :future: 
+          :one: "Do. in {0} Woche"
+          :other: "Do. in {0} Wochen"
+        :past: 
+          :one: "Do. vor {0} Woche"
+          :other: "Do. vor {0} Wochen"
+    :tue: 
+      :relative: 
+        -1: "letzten Dienstag"
+        0: "diesen Dienstag"
+        1: "nächsten Dienstag"
+      :relative_time: 
+        :future: 
+          :one: "Dienstag in {0} Woche"
+          :other: "Dienstag in {0} Wochen"
+        :past: 
+          :one: "Dienstag vor {0} Woche"
+          :other: "Dienstag vor {0} Wochen"
+    :tue-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "Di. in {0} W."
+          :other: "Di. in {0} W."
+        :past: 
+          :one: "Di. vor {0} W."
+          :other: "Di. vor {0} W."
+    :tue-short: 
+      :relative: 
+        -1: "letzten Di."
+        0: "diesen Di."
+        1: "nächsten Di."
+      :relative_time: 
+        :future: 
+          :one: "Di. in {0} Woche"
+          :other: "Di. in {0} Wochen"
+        :past: 
+          :one: "Di. vor {0} Woche"
+          :other: "Di. vor {0} Wochen"
+    :wed: 
+      :relative: 
+        -1: "letzten Mittwoch"
+        0: "diesen Mittwoch"
+        1: "nächsten Mittwoch"
+      :relative_time: 
+        :future: 
+          :one: "Mittwoch in {0} Woche"
+          :other: "Mittwoch in {0} Wochen"
+        :past: 
+          :one: "Mittwoch vor {0} Woche"
+          :other: "Mittwoch vor {0} Wochen"
+    :wed-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "Mi. in {0} W."
+          :other: "Mi. in {0} W."
+        :past: 
+          :one: "Mi. vor {0} W."
+          :other: "Mi. vor {0} W."
+    :wed-short: 
+      :relative: 
+        -1: "letzten Mi."
+        0: "diesen Mi."
+        1: "nächsten Mi."
+      :relative_time: 
+        :future: 
+          :one: "Mi. in {0} Woche"
+          :other: "Mi. in {0} Wochen"
+        :past: 
+          :one: "Mi. vor {0} Woche"
+          :other: "Mi. vor {0} Wochen"
+    :week: 
+      :display_name: Woche
+      :relative: 
+        -1: "letzte Woche"
+        0: "diese Woche"
+        1: "nächste Woche"
+      :relative_time: 
+        :future: 
+          :one: "in {0} Woche"
+          :other: "in {0} Wochen"
+        :past: 
+          :one: "vor {0} Woche"
+          :other: "vor {0} Wochen"
+    :week-narrow: 
+      :display_name: W
+      :relative_time: 
+        :future: 
+          :one: "in {0} Wo."
+          :other: "in {0} Wo."
+        :past: 
+          :one: "vor {0} Wo."
+          :other: "vor {0} Wo."
+    :weekOfMonth: 
+      :display_name: "Woche des Monats"
+    :weekOfMonth-short: 
+      :display_name: W/M
+    :weekday: 
+      :display_name: Wochentag
+    :weekday-narrow: 
+      :display_name: Wochent.
+    :weekdayOfMonth: 
+      :display_name: Wochentag
+    :weekdayOfMonth-narrow: 
+      :display_name: WT
+    :year: 
+      :display_name: Jahr
+      :relative: 
+        -1: "letztes Jahr"
+        0: "dieses Jahr"
+        1: "nächstes Jahr"
+      :relative_time: 
+        :future: 
+          :one: "in {0} Jahr"
+          :other: "in {0} Jahren"
+        :past: 
+          :one: "vor {0} Jahr"
+          :other: "vor {0} Jahren"
+    :year-narrow: 
+      :display_name: J
+    :zone: 
+      :display_name: Zeitzone
+    :zone-narrow: 
+      :display_name: Zeitz.

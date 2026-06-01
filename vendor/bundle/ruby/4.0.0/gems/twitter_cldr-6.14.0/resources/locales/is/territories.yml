@@ -1,0 +1,267 @@
+--- 
+:is: 
+  :territories: 
+    :ac: Ascension-eyja
+    :ad: Andorra
+    :ae: "Sameinuðu arabísku furstadæmin"
+    :af: Afganistan
+    :ag: "Antígva og Barbúda"
+    :ai: Angvilla
+    :al: Albanía
+    :am: Armenía
+    :ao: Angóla
+    :aq: Suðurskautslandið
+    :ar: Argentína
+    :as: "Bandaríska Samóa"
+    :at: Austurríki
+    :au: Ástralía
+    :aw: Arúba
+    :ax: Álandseyjar
+    :az: Aserbaídsjan
+    :ba: "Bosnía og Hersegóvína"
+    :bb: Barbados
+    :bd: Bangladess
+    :be: Belgía
+    :bf: "Búrkína Fasó"
+    :bg: Búlgaría
+    :bh: Barein
+    :bi: Búrúndí
+    :bj: Benín
+    :bl: "Sankti Bartólómeusareyjar"
+    :bm: Bermúdaeyjar
+    :bn: Brúnei
+    :bo: Bólivía
+    :bq: "Karíbahafshluti Hollands"
+    :br: Brasilía
+    :bs: Bahamaeyjar
+    :bt: Bútan
+    :bv: Bouveteyja
+    :bw: Botsvana
+    :by: Hvíta-Rússland
+    :bz: Belís
+    :ca: Kanada
+    :cc: "Kókoseyjar (Keeling)"
+    :cd: Kongó-Kinshasa
+    :cf: Mið-Afríkulýðveldið
+    :cg: Kongó-Brazzaville
+    :ch: Sviss
+    :ci: Fílabeinsströndin
+    :ck: Cooks-eyjar
+    :cl: Síle
+    :cm: Kamerún
+    :cn: Kína
+    :co: Kólumbía
+    :cp: Clipperton-eyja
+    :cr: Kostaríka
+    :cu: Kúba
+    :cv: Grænhöfðaeyjar
+    :cw: Curacao
+    :cx: Jólaey
+    :cy: Kýpur
+    :cz: Tékkland
+    :de: Þýskaland
+    :dg: "Diego Garcia"
+    :dj: Djíbútí
+    :dk: Danmörk
+    :dm: Dóminíka
+    :do: "Dóminíska lýðveldið"
+    :dz: Alsír
+    :ea: "Ceuta og Melilla"
+    :ec: Ekvador
+    :ee: Eistland
+    :eg: Egyptaland
+    :eh: Vestur-Sahara
+    :er: Erítrea
+    :es: Spánn
+    :et: Eþíópía
+    :eu: Evrópusambandið
+    :ez: Evrusvæðið
+    :fi: Finnland
+    :fj: Fídjíeyjar
+    :fk: Falklandseyjar
+    :fm: Míkrónesía
+    :fo: Færeyjar
+    :fr: Frakkland
+    :ga: Gabon
+    :gb: Bretland
+    :gd: Grenada
+    :ge: Georgía
+    :gf: "Franska Gvæjana"
+    :gg: Guernsey
+    :gh: Gana
+    :gi: Gíbraltar
+    :gl: Grænland
+    :gm: Gambía
+    :gn: Gínea
+    :gp: Gvadelúpeyjar
+    :gq: Miðbaugs-Gínea
+    :gr: Grikkland
+    :gs: "Suður-Georgía og Suður-Sandvíkureyjar"
+    :gt: Gvatemala
+    :gu: Gvam
+    :gw: Gínea-Bissá
+    :gy: Gvæjana
+    :hk: "sérstjórnarsvæðið Hong Kong"
+    :hm: "Heard og McDonaldseyjar"
+    :hn: Hondúras
+    :hr: Króatía
+    :ht: Haítí
+    :hu: Ungverjaland
+    :ic: Kanaríeyjar
+    :id: Indónesía
+    :ie: Írland
+    :il: Ísrael
+    :im: Mön
+    :in: Indland
+    :io: "Bresku Indlandshafseyjar"
+    :iq: Írak
+    :ir: Íran
+    :is: Ísland
+    :it: Ítalía
+    :je: Jersey
+    :jm: Jamaíka
+    :jo: Jórdanía
+    :jp: Japan
+    :ke: Kenía
+    :kg: Kirgistan
+    :kh: Kambódía
+    :ki: Kíribatí
+    :km: Kómoreyjar
+    :kn: "Sankti Kitts og Nevis"
+    :kp: Norður-Kórea
+    :kr: Suður-Kórea
+    :kw: Kúveit
+    :ky: Caymaneyjar
+    :kz: Kasakstan
+    :la: Laos
+    :lb: Líbanon
+    :lc: "Sankti Lúsía"
+    :li: Liechtenstein
+    :lk: "Srí Lanka"
+    :lr: Líbería
+    :ls: Lesótó
+    :lt: Litháen
+    :lu: Lúxemborg
+    :lv: Lettland
+    :ly: Líbía
+    :ma: Marokkó
+    :mc: Mónakó
+    :md: Moldóva
+    :me: Svartfjallaland
+    :mf: Saint-Martin
+    :mg: Madagaskar
+    :mh: Marshalleyjar
+    :mk: Norður-Makedónía
+    :ml: Malí
+    :mm: "Mjanmar (Búrma)"
+    :mn: Mongólía
+    :mo: "sérstjórnarsvæðið Makaó"
+    :mp: Norður-Maríanaeyjar
+    :mq: Martiník
+    :mr: Máritanía
+    :ms: Montserrat
+    :mt: Malta
+    :mu: Máritíus
+    :mv: Maldíveyjar
+    :mw: Malaví
+    :mx: Mexíkó
+    :my: Malasía
+    :mz: Mósambík
+    :na: Namibía
+    :nc: Nýja-Kaledónía
+    :ne: Níger
+    :nf: Norfolkeyja
+    :ng: Nígería
+    :ni: Níkaragva
+    :nl: Holland
+    ? !ruby/symbol "no"
+    : Noregur
+    :np: Nepal
+    :nr: Nárú
+    :nu: Niue
+    :nz: Nýja-Sjáland
+    :om: Óman
+    :pa: Panama
+    :pe: Perú
+    :pf: "Franska Pólýnesía"
+    :pg: "Papúa Nýja-Gínea"
+    :ph: Filippseyjar
+    :pk: Pakistan
+    :pl: Pólland
+    :pm: "Sankti Pierre og Miquelon"
+    :pn: Pitcairn-eyjar
+    :pr: "Púertó Ríkó"
+    :ps: "Heimastjórnarsvæði Palestínumanna"
+    :pt: Portúgal
+    :pw: Palá
+    :py: Paragvæ
+    :qa: Katar
+    :qo: "Ytri Eyjaálfa"
+    :re: Réunion
+    :ro: Rúmenía
+    :rs: Serbía
+    :ru: Rússland
+    :rw: Rúanda
+    :sa: Sádi-Arabía
+    :sb: Salómonseyjar
+    :sc: Seychelles-eyjar
+    :sd: Súdan
+    :se: Svíþjóð
+    :sg: Singapúr
+    :sh: "Sankti Helena"
+    :si: Slóvenía
+    :sj: "Svalbarði og Jan Mayen"
+    :sk: Slóvakía
+    :sl: "Síerra Leóne"
+    :sm: "San Marínó"
+    :sn: Senegal
+    :so: Sómalía
+    :sr: Súrínam
+    :ss: Suður-Súdan
+    :st: "Saó Tóme og Prinsípe"
+    :sv: "El Salvador"
+    :sx: "Sint Maarten"
+    :sy: Sýrland
+    :sz: Esvatíní
+    :ta: "Tristan da Cunha"
+    :tc: "Turks- og Caicoseyjar"
+    :td: Tsjad
+    :tf: "Frönsku suðlægu landsvæðin"
+    :tg: Tógó
+    :th: Taíland
+    :tj: Tadsíkistan
+    :tk: Tókelá
+    :tl: Tímor-Leste
+    :tm: Túrkmenistan
+    :tn: Túnis
+    :to: Tonga
+    :tr: Tyrkland
+    :tt: "Trínidad og Tóbagó"
+    :tv: Túvalú
+    :tw: Taívan
+    :tz: Tansanía
+    :ua: Úkraína
+    :ug: Úganda
+    :um: "Smáeyjar Bandaríkjanna"
+    :un: "Sameinuðu þjóðirnar"
+    :us: Bandaríkin
+    :uy: Úrúgvæ
+    :uz: Úsbekistan
+    :va: Vatíkanið
+    :vc: "Sankti Vinsent og Grenadíneyjar"
+    :ve: Venesúela
+    :vg: "Bresku Jómfrúaeyjar"
+    :vi: "Bandarísku Jómfrúaeyjar"
+    :vn: Víetnam
+    :vu: Vanúatú
+    :wf: "Wallis- og Fútúnaeyjar"
+    :ws: Samóa
+    :xa: gervihreimur
+    :xb: gervistaður
+    :xk: Kósóvó
+    :ye: Jemen
+    :yt: Mayotte
+    :za: Suður-Afríka
+    :zm: Sambía
+    :zw: Simbabve
+    :zz: "Óþekkt svæði"

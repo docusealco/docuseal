@@ -1,0 +1,92 @@
+--- 
+:es-AR: 
+  :default: 
+    :am: 
+      :before: 
+        :hour: 12
+        :min: 0
+      :from: 
+        :hour: 0
+        :min: 0
+    :evening1: 
+      :before: 
+        :hour: 20
+        :min: 0
+      :from: 
+        :hour: 12
+        :min: 0
+    :morning1: 
+      :before: 
+        :hour: 6
+        :min: 0
+      :from: 
+        :hour: 0
+        :min: 0
+    :morning2: 
+      :before: 
+        :hour: 12
+        :min: 0
+      :from: 
+        :hour: 6
+        :min: 0
+    :night1: 
+      :before: 
+        :hour: 24
+        :min: 0
+      :from: 
+        :hour: 20
+        :min: 0
+    :noon: 
+      :at: 
+        :hour: 12
+        :min: 0
+    :pm: 
+      :before: 
+        :hour: 24
+        :min: 0
+      :from: 
+        :hour: 12
+        :min: 0
+  :selection: 
+    :am: 
+      :before: 
+        :hour: 12
+        :min: 0
+      :from: 
+        :hour: 0
+        :min: 0
+    :evening1: 
+      :before: 
+        :hour: 20
+        :min: 0
+      :from: 
+        :hour: 12
+        :min: 0
+    :morning1: 
+      :before: 
+        :hour: 6
+        :min: 0
+      :from: 
+        :hour: 0
+        :min: 0
+    :morning2: 
+      :before: 
+        :hour: 12
+        :min: 0
+      :from: 
+        :hour: 6
+        :min: 0
+    :night1: 
+      :before: 
+        :hour: 24
+        :min: 0
+      :from: 
+        :hour: 20
+        :min: 0
+    :pm: 
+      :before: 
+        :hour: 24
+        :min: 0
+      :from: 
+        :hour: 12
+        :min: 0

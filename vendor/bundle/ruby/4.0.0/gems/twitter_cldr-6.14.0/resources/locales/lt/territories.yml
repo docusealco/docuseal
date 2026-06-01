@@ -1,0 +1,267 @@
+--- 
+:lt: 
+  :territories: 
+    :ac: "Dangun Žengimo sala"
+    :ad: Andora
+    :ae: "Jungtiniai Arabų Emyratai"
+    :af: Afganistanas
+    :ag: "Antigva ir Barbuda"
+    :ai: Angilija
+    :al: Albanija
+    :am: Armėnija
+    :ao: Angola
+    :aq: Antarktida
+    :ar: Argentina
+    :as: "Amerikos Samoa"
+    :at: Austrija
+    :au: Australija
+    :aw: Aruba
+    :ax: "Alandų Salos"
+    :az: Azerbaidžanas
+    :ba: "Bosnija ir Hercegovina"
+    :bb: Barbadosas
+    :bd: Bangladešas
+    :be: Belgija
+    :bf: "Burkina Fasas"
+    :bg: Bulgarija
+    :bh: Bahreinas
+    :bi: Burundis
+    :bj: Beninas
+    :bl: "Sen Bartelemi"
+    :bm: Bermuda
+    :bn: Brunėjus
+    :bo: Bolivija
+    :bq: "Karibų Nyderlandai"
+    :br: Brazilija
+    :bs: Bahamos
+    :bt: Butanas
+    :bv: "Buvė Sala"
+    :bw: Botsvana
+    :by: Baltarusija
+    :bz: Belizas
+    :ca: Kanada
+    :cc: "Kokosų (Kilingo) Salos"
+    :cd: Kongas-Kinšasa
+    :cf: "Centrinės Afrikos Respublika"
+    :cg: Kongas-Brazavilis
+    :ch: Šveicarija
+    :ci: "Dramblio Kaulo Krantas"
+    :ck: "Kuko Salos"
+    :cl: Čilė
+    :cm: Kamerūnas
+    :cn: Kinija
+    :co: Kolumbija
+    :cp: "Klipertono sala"
+    :cr: "Kosta Rika"
+    :cu: Kuba
+    :cv: "Žaliasis Kyšulys"
+    :cw: Kiurasao
+    :cx: "Kalėdų Sala"
+    :cy: Kipras
+    :cz: Čekija
+    :de: Vokietija
+    :dg: "Diego Garsija"
+    :dj: Džibutis
+    :dk: Danija
+    :dm: Dominika
+    :do: "Dominikos Respublika"
+    :dz: Alžyras
+    :ea: "Seuta ir Melila"
+    :ec: Ekvadoras
+    :ee: Estija
+    :eg: Egiptas
+    :eh: "Vakarų Sachara"
+    :er: Eritrėja
+    :es: Ispanija
+    :et: Etiopija
+    :eu: "Europos Sąjunga"
+    :ez: "euro zona"
+    :fi: Suomija
+    :fj: Fidžis
+    :fk: "Folklando Salos"
+    :fm: Mikronezija
+    :fo: "Farerų Salos"
+    :fr: Prancūzija
+    :ga: Gabonas
+    :gb: "Jungtinė Karalystė"
+    :gd: Grenada
+    :ge: Gruzija
+    :gf: "Prancūzijos Gviana"
+    :gg: Gernsis
+    :gh: Gana
+    :gi: Gibraltaras
+    :gl: Grenlandija
+    :gm: Gambija
+    :gn: Gvinėja
+    :gp: Gvadelupa
+    :gq: "Pusiaujo Gvinėja"
+    :gr: Graikija
+    :gs: "Pietų Džordžija ir Pietų Sandvičo salos"
+    :gt: Gvatemala
+    :gu: Guamas
+    :gw: "Bisau Gvinėja"
+    :gy: Gajana
+    :hk: "Ypatingasis Administracinis Kinijos Regionas Honkongas"
+    :hm: "Herdo ir Makdonaldo Salos"
+    :hn: Hondūras
+    :hr: Kroatija
+    :ht: Haitis
+    :hu: Vengrija
+    :ic: "Kanarų salos"
+    :id: Indonezija
+    :ie: Airija
+    :il: Izraelis
+    :im: "Meno Sala"
+    :in: Indija
+    :io: "Indijos Vandenyno Britų Sritis"
+    :iq: Irakas
+    :ir: Iranas
+    :is: Islandija
+    :it: Italija
+    :je: Džersis
+    :jm: Jamaika
+    :jo: Jordanija
+    :jp: Japonija
+    :ke: Kenija
+    :kg: Kirgizija
+    :kh: Kambodža
+    :ki: Kiribatis
+    :km: Komorai
+    :kn: "Sent Kitsas ir Nevis"
+    :kp: "Šiaurės Korėja"
+    :kr: "Pietų Korėja"
+    :kw: Kuveitas
+    :ky: "Kaimanų Salos"
+    :kz: Kazachstanas
+    :la: Laosas
+    :lb: Libanas
+    :lc: "Sent Lusija"
+    :li: Lichtenšteinas
+    :lk: "Šri Lanka"
+    :lr: Liberija
+    :ls: Lesotas
+    :lt: Lietuva
+    :lu: Liuksemburgas
+    :lv: Latvija
+    :ly: Libija
+    :ma: Marokas
+    :mc: Monakas
+    :md: Moldova
+    :me: Juodkalnija
+    :mf: "Sen Martenas"
+    :mg: Madagaskaras
+    :mh: "Maršalo Salos"
+    :mk: "Šiaurės Makedonija"
+    :ml: Malis
+    :mm: "Mianmaras (Birma)"
+    :mn: Mongolija
+    :mo: "Ypatingasis Administracinis Kinijos Regionas Makao"
+    :mp: "Marianos Šiaurinės Salos"
+    :mq: Martinika
+    :mr: Mauritanija
+    :ms: Montseratas
+    :mt: Malta
+    :mu: Mauricijus
+    :mv: Maldyvai
+    :mw: Malavis
+    :mx: Meksika
+    :my: Malaizija
+    :mz: Mozambikas
+    :na: Namibija
+    :nc: "Naujoji Kaledonija"
+    :ne: Nigeris
+    :nf: "Norfolko sala"
+    :ng: Nigerija
+    :ni: Nikaragva
+    :nl: Nyderlandai
+    ? !ruby/symbol "no"
+    : Norvegija
+    :np: Nepalas
+    :nr: Nauru
+    :nu: Niujė
+    :nz: "Naujoji Zelandija"
+    :om: Omanas
+    :pa: Panama
+    :pe: Peru
+    :pf: "Prancūzijos Polinezija"
+    :pg: "Papua Naujoji Gvinėja"
+    :ph: Filipinai
+    :pk: Pakistanas
+    :pl: Lenkija
+    :pm: "Sen Pjeras ir Mikelonas"
+    :pn: "Pitkerno salos"
+    :pr: "Puerto Rikas"
+    :ps: "Palestinos teritorija"
+    :pt: Portugalija
+    :pw: Palau
+    :py: Paragvajus
+    :qa: Kataras
+    :qo: "Nuošali Okeanija"
+    :re: Reunjonas
+    :ro: Rumunija
+    :rs: Serbija
+    :ru: Rusija
+    :rw: Ruanda
+    :sa: "Saudo Arabija"
+    :sb: "Saliamono Salos"
+    :sc: Seišeliai
+    :sd: Sudanas
+    :se: Švedija
+    :sg: Singapūras
+    :sh: "Šv. Elenos Sala"
+    :si: Slovėnija
+    :sj: "Svalbardas ir Janas Majenas"
+    :sk: Slovakija
+    :sl: "Siera Leonė"
+    :sm: "San Marinas"
+    :sn: Senegalas
+    :so: Somalis
+    :sr: Surinamas
+    :ss: "Pietų Sudanas"
+    :st: "San Tomė ir Prinsipė"
+    :sv: Salvadoras
+    :sx: "Sint Martenas"
+    :sy: Sirija
+    :sz: Svazilandas
+    :ta: "Tristano da Kunjos"
+    :tc: "Terkso ir Kaikoso Salos"
+    :td: Čadas
+    :tf: "Prancūzijos Pietų sritys"
+    :tg: Togas
+    :th: Tailandas
+    :tj: Tadžikija
+    :tk: Tokelau
+    :tl: "Rytų Timoras"
+    :tm: Turkmėnistanas
+    :tn: Tunisas
+    :to: Tonga
+    :tr: Turkija
+    :tt: "Trinidadas ir Tobagas"
+    :tv: Tuvalu
+    :tw: Taivanas
+    :tz: Tanzanija
+    :ua: Ukraina
+    :ug: Uganda
+    :um: "Jungtinių Valstijų Mažosios Tolimosios Salos"
+    :un: "Jungtinės Tautos"
+    :us: "Jungtinės Valstijos"
+    :uy: Urugvajus
+    :uz: Uzbekistanas
+    :va: "Vatikano Miesto Valstybė"
+    :vc: "Šventasis Vincentas ir Grenadinai"
+    :ve: Venesuela
+    :vg: "Didžiosios Britanijos Mergelių Salos"
+    :vi: "Jungtinių Valstijų Mergelių Salos"
+    :vn: Vietnamas
+    :vu: Vanuatu
+    :wf: "Volisas ir Futūna"
+    :ws: Samoa
+    :xa: "pseudo A"
+    :xb: "pseudo B"
+    :xk: Kosovas
+    :ye: Jemenas
+    :yt: Majotas
+    :za: "Pietų Afrika"
+    :zm: Zambija
+    :zw: Zimbabvė
+    :zz: "nežinoma sritis"

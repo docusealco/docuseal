@@ -1,0 +1,22 @@
+o:!TwitterCldr::Utils::RangeSet:@ranges[o:
+Range:	exclF:
+begini=	:endi=	o;;F;	iΩ	;
+iΩ	o;;F;	iΩ
+;
+iΩ
+o;;F;	i=;
+i=o;;F;	i=;
+i=o;;F;	iΩ;
+iΩo;;F;	i=;
+i=o;;F;	iÖ;
+iÖo;;F;	i‹;
+i‹o;;F;	i∫;
+i∫o;;F;	i¡;
+i¡o;;F;	i=;
+i=o;;F;	i∑;
+i∑o;;F;	iG;
+iGo;;F;	iƒ;
+iƒo;;F;	i·;
+i·o;;F;	iù;
+iùo;;F;	i@;
+i@

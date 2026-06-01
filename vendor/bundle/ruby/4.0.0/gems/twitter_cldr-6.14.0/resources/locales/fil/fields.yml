@@ -1,0 +1,360 @@
+--- 
+:fil: 
+  :fields: 
+    :day: 
+      :display_name: araw
+      :relative: 
+        -1: kahapon
+        -2: "Araw bago ang kahapon"
+        0: "ngayong araw"
+        1: bukas
+        2: Samakalawa
+      :relative_time: 
+        :future: 
+          :one: "sa {0} araw"
+          :other: "sa {0} araw"
+        :past: 
+          :one: "{0} araw ang nakalipas"
+          :other: "{0} araw ang nakalipas"
+    :day-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "sa {0} araw"
+          :other: "sa {0} araw"
+        :past: 
+          :one: "{0} araw ang nakalipas"
+          :other: "{0} araw ang nakalipas"
+    :day-short: 
+      :relative_time: 
+        :future: 
+          :one: "sa {0} (na) araw"
+          :other: "sa {0} araw"
+        :past: 
+          :one: "{0} araw ang nakalipas"
+          :other: "{0} (na) araw ang nakalipas"
+    :dayOfYear: 
+      :display_name: "araw ng taon"
+    :dayperiod: 
+      :display_name: AM/PM
+    :era: 
+      :display_name: panahon
+    :fri: 
+      :relative: 
+        -1: "nakaraang Biyernes"
+        0: "ngayong Biyernes"
+        1: "susunod na Biyernes"
+      :relative_time: 
+        :future: 
+          :one: "sa {0} Biyernes"
+          :other: "sa {0} (na) Biyernes"
+        :past: 
+          :one: "{0} Biyernes ang nakalipas"
+          :other: "{0} (na) Biyernes ang nakalipas"
+    :fri-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "sa {0} Biy."
+          :other: "sa {0} Biy"
+        :past: 
+          :one: "sa {0} (na) Biy ang nakalipas"
+          :other: "{0} (na) Biy ang nakalipas"
+    :fri-short: 
+      :relative: 
+        -1: "nakaraang Biy."
+        0: "ngayong Biy."
+        1: "susunod na Biy."
+      :relative_time: 
+        :past: 
+          :one: "{0} Biy. ang nakalipas"
+          :other: "{0} (na) Biyernes ang nakalipas"
+    :hour: 
+      :display_name: oras
+      :relative: 
+        0: "ngayong oras"
+      :relative_time: 
+        :future: 
+          :one: "sa {0} oras"
+          :other: "sa {0} oras"
+        :past: 
+          :one: "{0} oras ang nakalipas"
+          :other: "{0} oras ang nakalipas"
+    :hour-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "sa {0} oras"
+          :other: "sa {0} oras"
+    :hour-short: 
+      :relative_time: 
+        :future: 
+          :one: "sa {0} oras"
+          :other: "sa {0} (na) oras"
+    :minute: 
+      :display_name: minuto
+      :relative: 
+        0: "sa minutong ito"
+      :relative_time: 
+        :future: 
+          :one: "sa {0} minuto"
+          :other: "sa {0} minuto"
+        :past: 
+          :one: "{0} minuto ang nakalipas"
+          :other: "{0} minuto ang nakalipas"
+    :minute-short: 
+      :display_name: min.
+      :relative_time: 
+        :future: 
+          :one: "sa {0} min."
+          :other: "sa {0} min."
+        :past: 
+          :one: "{0} min. ang nakalipas"
+          :other: "{0} min. ang nakalipas"
+    :mon: 
+      :relative: 
+        -1: "nakaraang Lunes"
+        0: "ngayong Lunes"
+        1: "susunod na Lunes"
+      :relative_time: 
+        :future: 
+          :one: "sa {0} Lunes"
+          :other: "sa {0} (na) Lunes"
+        :past: 
+          :one: "{0} Lunes ang nakalipas"
+          :other: "{0} (na) Lunes ang nakalipas"
+    :mon-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "sa {0} Lunes"
+          :other: "sa {0} Lunes"
+    :mon-short: 
+      :relative: 
+        -1: "nakaraang Lun."
+        0: "ngayong Lun."
+        1: "susunod na Lun."
+      :relative_time: 
+        :future: 
+          :one: "sa {0} Lun."
+          :other: "sa {0} (na) Lunes"
+        :past: 
+          :one: "{0} Lun. ang nakalipas"
+          :other: "{0} (na) Lunes ang nakalipas"
+    :month: 
+      :display_name: buwan
+      :relative: 
+        -1: "nakaraang buwan"
+        0: "ngayong buwan"
+        1: "susunod na buwan"
+      :relative_time: 
+        :future: 
+          :one: "sa {0} buwan"
+          :other: "sa {0} buwan"
+        :past: 
+          :one: "{0} buwan ang nakalipas"
+          :other: "{0} buwan ang nakalipas"
+    :quarter: 
+      :display_name: quarter
+      :relative: 
+        -1: "nakaraang quarter"
+        0: "ngayong quarter"
+        1: "susunod na quarter"
+      :relative_time: 
+        :future: 
+          :one: "sa {0} quarter"
+          :other: "sa {0} quarter"
+        :past: 
+          :one: "{0} quarter ang nakalipas"
+          :other: "{0} quarter ang nakalipas"
+    :quarter-short: 
+      :display_name: qtr.
+    :sat: 
+      :relative: 
+        -1: "nakaraang Sabado"
+        0: "ngayong Sabado"
+        1: "susunod na Sabado"
+      :relative_time: 
+        :future: 
+          :one: "sa {0} Sabado"
+          :other: "sa {0} (na) Sabado"
+        :past: 
+          :one: "{0} Sabado ang nakalipas"
+          :other: "{0} (na) Sabado ang nakalipas"
+    :sat-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "sa {0} Sab."
+          :other: "sa {0} (na) Sabado ang nakalipas"
+    :sat-short: 
+      :relative: 
+        -1: "nakaraang Sab."
+        0: "ngayong Sab."
+        1: "susunod na Sab."
+      :relative_time: 
+        :future: 
+          :one: "sa {0} Sab."
+          :other: "sa {0} (na) Sabado"
+        :past: 
+          :one: "{0} Sab. ang nakalipas"
+          :other: "{0} (na) Sabado ang nakalipas"
+    :second: 
+      :display_name: segundo
+      :relative: 
+        0: ngayon
+      :relative_time: 
+        :future: 
+          :one: "sa {0} segundo"
+          :other: "sa {0} segundo"
+        :past: 
+          :one: "{0} segundo ang nakalipas"
+          :other: "{0} segundo ang nakalipas"
+    :second-short: 
+      :display_name: seg.
+      :relative_time: 
+        :future: 
+          :one: "sa {0} seg."
+          :other: "sa {0} seg."
+        :past: 
+          :one: "{0} seg. ang nakalipas"
+          :other: "{0} seg. ang nakalipas"
+    :sun: 
+      :relative: 
+        -1: "nakaraang linggo"
+        0: "sa Linggo"
+        1: "susunod na Linggo"
+      :relative_time: 
+        :future: 
+          :one: "sa {0} Linggo"
+          :other: "sa {0} Linggo"
+        :past: 
+          :one: "{0} Linggo ang nakalipas"
+          :other: "{0} (na) Linggo ang nakalipas"
+    :sun-short: 
+      :relative: 
+        -1: "nakaraang Lin."
+        0: "ngayong Lin."
+        1: "susunod na Lin."
+      :relative_time: 
+        :future: 
+          :one: "sa {0} Lin."
+          :other: "sa {0} (na) Linggo"
+        :past: 
+          :one: "{0} Lin. ang nakalipas"
+          :other: "{0} (na) Linggo ang nakalipas"
+    :thu: 
+      :relative: 
+        -1: "nakaraang Huwebes"
+        0: "ngayong Huwebes"
+        1: "susunod na Huwebes"
+      :relative_time: 
+        :future: 
+          :one: "sa {0} Huwebes"
+          :other: "sa {0} (na) Huwebes"
+        :past: 
+          :one: "{0} Huwebes ang nakalipas"
+          :other: "{0} (na) Huwebes ang nakalipas"
+    :thu-short: 
+      :relative: 
+        -1: "nakaraang Huw."
+        0: "ngayong Huw."
+        1: "susunod na Huw."
+      :relative_time: 
+        :future: 
+          :one: "sa {0} Huw."
+          :other: "sa {0} (na) Huwebes"
+        :past: 
+          :one: "{0} Huw. ang nakalipas"
+          :other: "{0} (na) Huwebes ang nakalipas"
+    :tue: 
+      :relative: 
+        -1: "nakaraang Martes"
+        0: "ngayong Martes"
+        1: "susunod na Martes"
+      :relative_time: 
+        :future: 
+          :one: "sa {0} Martes"
+          :other: "sa {0} (na) Martes"
+        :past: 
+          :one: "{0} Martes ang nakalipas"
+          :other: "{0} (na) Martes ang nakalipas"
+    :tue-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "sa {0} Martes"
+          :other: "sa {0} (na) Martes ang nakalipas"
+    :tue-short: 
+      :relative: 
+        -1: "nakaraang Mar."
+        0: "ngayong Mar."
+        1: "susunod na Mar."
+    :wed: 
+      :relative: 
+        -1: "nakaraang Miyerkules"
+        0: "ngayong Miyerkules"
+        1: "susunod na Miyerkules"
+      :relative_time: 
+        :future: 
+          :one: "sa {0} Miyerkules"
+          :other: "sa {0} (na) Miyerkules"
+        :past: 
+          :one: "{0} Miyerkules ang nakalipas"
+          :other: "{0} (na) Miyerkules ang nakalipas"
+    :wed-short: 
+      :relative: 
+        -1: "nakaraang Miy."
+        0: "ngayong Miy."
+        1: "susunod na Miy."
+      :relative_time: 
+        :future: 
+          :one: "sa {0} Miy."
+          :other: "sa {0} (na) Miyerkules"
+        :past: 
+          :one: "{0} Miy. ang nakalipas"
+          :other: "{0} (na) Miyerkules ang nakalipas"
+    :week: 
+      :display_name: linggo
+      :relative: 
+        -1: "nakalipas na linggo"
+        0: "sa linggong ito"
+        1: "susunod na linggo"
+      :relative_time: 
+        :future: 
+          :one: "sa {0} linggo"
+          :other: "sa {0} linggo"
+        :past: 
+          :one: "{0} linggo ang nakalipas"
+          :other: "{0} linggo ang nakalipas"
+    :week-narrow: 
+      :relative_time: 
+        :past: 
+          :one: "{0} linggo ang nakalipas"
+          :other: "{0} linggo ang nakalipas"
+    :week-short: 
+      :relative: 
+        -1: "nakaraang linggo"
+        0: "ngayong linggo"
+        1: "susunod na linggo"
+      :relative_time: 
+        :past: 
+          :one: "{0} linggo ang nakalipas"
+          :other: "{0} (na) linggo ang nakalipas"
+    :weekOfMonth: 
+      :display_name: "linggo ng buwan"
+    :weekday: 
+      :display_name: "araw ng linggo"
+    :weekdayOfMonth: 
+      :display_name: "karaniwang araw ng buwan"
+    :year: 
+      :display_name: taon
+      :relative: 
+        -1: "nakaraang taon"
+        0: "ngayong taon"
+        1: "susunod na taon"
+      :relative_time: 
+        :future: 
+          :one: "sa {0} taon"
+          :other: "sa {0} taon"
+        :past: 
+          :one: "{0} taon ang nakalipas"
+          :other: "{0} taon ang nakalipas"
+    :zone: 
+      :display_name: "time zone"
+    :zone-short: 
+      :display_name: zone

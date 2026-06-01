@@ -1,0 +1,324 @@
+--- 
+:ka: 
+  :fields: 
+    :day: 
+      :display_name: დღე
+      :relative: 
+        -1: გუშინ
+        -2: გუშინწინ
+        0: დღეს
+        1: ხვალ
+        2: ზეგ
+      :relative_time: 
+        :future: 
+          :one: "{0} დღეში"
+          :other: "{0} დღეში"
+        :past: 
+          :one: "{0} დღის წინ"
+          :other: "{0} დღის წინ"
+    :dayOfYear: 
+      :display_name: "წლის დღე"
+    :dayOfYear-short: 
+      :display_name: "წლ. დღე"
+    :dayperiod: 
+      :display_name: "დღის ნახევარი"
+    :dayperiod-short: 
+      :display_name: "დღ. ნახევარი"
+    :era: 
+      :display_name: ეპოქა
+    :fri: 
+      :relative: 
+        -1: "გასულ პარასკევს"
+        0: "ამ პარასკევს"
+        1: "მომავალ პარასკევს"
+      :relative_time: 
+        :future: 
+          :one: "{0} პარასკევში"
+          :other: "{0} პარასკევში"
+        :past: 
+          :one: "{0} პარასკევის წინ"
+          :other: "{0} პარასკევის წინ"
+    :fri-narrow: 
+      :relative: 
+        -1: "წინა პა."
+        0: "ამ პა."
+        1: "მომ. პა."
+    :fri-short: 
+      :relative: 
+        -1: "წინა პარ."
+        0: "ამ პარ."
+        1: "მომ. პარ."
+    :hour: 
+      :display_name: საათი
+      :relative: 
+        0: "ამ საათში"
+      :relative_time: 
+        :future: 
+          :one: "{0} საათში"
+          :other: "{0} საათში"
+        :past: 
+          :one: "{0} საათის წინ"
+          :other: "{0} საათის წინ"
+    :hour-short: 
+      :display_name: სთ.
+      :relative_time: 
+        :past: 
+          :one: "{0} სთ წინ"
+          :other: "{0} სთ წინ"
+    :minute: 
+      :display_name: წუთი
+      :relative: 
+        0: "ამ წუთში"
+      :relative_time: 
+        :future: 
+          :one: "{0} წუთში"
+          :other: "{0} წუთში"
+        :past: 
+          :one: "{0} წუთის წინ"
+          :other: "{0} წუთის წინ"
+    :minute-short: 
+      :display_name: წთ.
+      :relative_time: 
+        :past: 
+          :one: "{0} წთ წინ"
+          :other: "{0} წთ წინ"
+    :mon: 
+      :relative: 
+        -1: "გასულ ორშაბათს"
+        0: "ამ ორშაბათს"
+        1: "მომავალ ორშაბათს"
+      :relative_time: 
+        :future: 
+          :one: "{0} ორშაბათში"
+          :other: "{0} ორშაბათში"
+        :past: 
+          :one: "{0} ორშაბათის წინ"
+          :other: "{0} ორშაბათის წინ"
+    :mon-narrow: 
+      :relative: 
+        -1: "გას. ორ."
+        0: "ამ ორ."
+        1: "მომ. ორ."
+    :mon-short: 
+      :relative: 
+        -1: "წინა ორშ."
+        0: "ამ ორშ."
+        1: "მომ. ორშ."
+    :month: 
+      :display_name: თვე
+      :relative: 
+        -1: "გასულ თვეს"
+        0: "ამ თვეში"
+        1: "მომავალ თვეს"
+      :relative_time: 
+        :future: 
+          :one: "{0} თვეში"
+          :other: "{0} თვეში"
+        :past: 
+          :one: "{0} თვის წინ"
+          :other: "{0} თვის წინ"
+    :quarter: 
+      :display_name: კვარტალი
+      :relative: 
+        -1: "გასულ კვარტალში"
+        0: "ამ კვარტალში"
+        1: "შემდეგ კვარტალში"
+      :relative_time: 
+        :future: 
+          :one: "{0} კვარტალში"
+          :other: "{0} კვარტალში"
+        :past: 
+          :one: "{0} კვარტალის წინ"
+          :other: "{0} კვარტალის წინ"
+    :quarter-short: 
+      :display_name: კვარტ.
+      :relative_time: 
+        :past: 
+          :one: "{0} კვარტ. წინ"
+          :other: "{0} კვარტ. წინ"
+    :sat: 
+      :relative: 
+        -1: "გასულ შაბათს"
+        0: "ამ შაბათს"
+        1: "მომავალ შაბათს"
+      :relative_time: 
+        :future: 
+          :one: "{0} შაბათში"
+          :other: "{0} შაბათში"
+        :past: 
+          :one: "{0} შაბათის წინ"
+          :other: "{0} შაბათის წინ"
+    :sat-narrow: 
+      :relative: 
+        -1: "წინა შბ."
+        0: "ამ შა."
+        1: "მომ. შბ."
+    :sat-short: 
+      :relative: 
+        -1: "წინა შაბ."
+        0: "ამ შაბ."
+        1: "მომ. შაბ."
+    :second: 
+      :display_name: წამი
+      :relative: 
+        0: ახლა
+      :relative_time: 
+        :future: 
+          :one: "{0} წამში"
+          :other: "{0} წამში"
+        :past: 
+          :one: "{0} წამის წინ"
+          :other: "{0} წამის წინ"
+    :second-short: 
+      :display_name: წმ.
+      :relative_time: 
+        :past: 
+          :one: "{0} წმ წინ"
+          :other: "{0} წმ წინ"
+    :sun: 
+      :relative: 
+        -1: "გასულ კვირას"
+        0: "ამ კვირას"
+        1: "მომავალ კვირას"
+      :relative_time: 
+        :future: 
+          :one: "{0} კვირაში"
+          :other: "{0} კვირაში"
+        :past: 
+          :one: "{0} კვირის წინ"
+          :other: "{0} კვირი წინ"
+    :sun-narrow: 
+      :relative_time: 
+        :past: 
+          :one: "{0} კვირის წინ"
+          :other: "{0} კვირი წინ"
+    :sun-short: 
+      :relative_time: 
+        :past: 
+          :one: "{0} კვირის წინ"
+          :other: "{0} კვირის წინ"
+    :thu: 
+      :relative: 
+        -1: "გასულ ხუთშაბათს"
+        0: "ამ ხუთშაბათს"
+        1: "მომავალ ხუთშაბათს"
+      :relative_time: 
+        :future: 
+          :one: "{0} ხუთშაბათში"
+          :other: "{0} ხუთშაბათში"
+        :past: 
+          :one: "{0} ხუთშაბათის წინ"
+          :other: "{0} ხუთშაბათის წინ"
+    :thu-narrow: 
+      :relative: 
+        -1: "წინა ხთ."
+        0: "ამ ხთ."
+        1: "მომ. ხთ."
+    :thu-short: 
+      :relative: 
+        -1: "წინა ხუთ."
+        0: "ამ ხუთ."
+        1: "მომ. ხუთ."
+    :tue: 
+      :relative: 
+        -1: "გასულ სამშაბათს"
+        0: "ამ სამშაბათს"
+        1: "მომავალ სამშაბათს"
+      :relative_time: 
+        :future: 
+          :one: "{0} სამშაბათში"
+          :other: "{0} სამშაბათში"
+        :past: 
+          :one: "{0} სამშაბათის წინ"
+          :other: "{0} სამშაბათის წინ"
+    :tue-narrow: 
+      :relative: 
+        -1: "წინ სა."
+        0: "ამ სა."
+        1: "მომმ სა."
+    :tue-short: 
+      :relative: 
+        -1: "წინა სამ."
+        0: "ამ სამ."
+        1: "მომ. სამ."
+    :wed: 
+      :relative: 
+        -1: "გასულ ოთხშაბათს"
+        0: "ამ ოთხშაბათს"
+        1: "მომავალ ოთხშაბათს"
+      :relative_time: 
+        :future: 
+          :one: "{0} ოთხშაბათში"
+          :other: "{0} ოთხშაბათში"
+        :past: 
+          :one: "{0} ოთხშაბათის წინ"
+          :other: "{0} ოთხშაბათის წინ"
+    :wed-narrow: 
+      :relative: 
+        -1: "წინა ოთ."
+        0: "ამ ოთ."
+        1: "მომ. ოთ."
+    :wed-short: 
+      :relative: 
+        -1: "წინა ოთხ."
+        0: "ამ ოთხ."
+        1: "მომ. ოთხ."
+    :week: 
+      :display_name: კვირა
+      :relative: 
+        -1: "გასულ კვირაში"
+        0: "ამ კვირაში"
+        1: "მომავალ კვირაში"
+      :relative_time: 
+        :future: 
+          :one: "{0} კვირაში"
+          :other: "{0} კვირაში"
+        :past: 
+          :one: "{0} კვირის წინ"
+          :other: "{0} კვირის წინ"
+    :week-narrow: 
+      :relative_time: 
+        :past: 
+          :one: "{0} კვირის წინ"
+          :other: "{0} კვირის წინ"
+    :week-short: 
+      :display_name: კვ.
+      :relative_time: 
+        :past: 
+          :one: "{0} კვ. წინ"
+          :other: "{0} კვ. წინ"
+    :weekOfMonth: 
+      :display_name: "თვის კვირა"
+    :weekOfMonth-short: 
+      :display_name: "თვ. კვირა"
+    :weekday: 
+      :display_name: "კვირის დღე"
+    :weekday-short: 
+      :display_name: "კვ. დღე"
+    :weekdayOfMonth: 
+      :display_name: "კვირის დღე თვეში"
+    :weekdayOfMonth-short: 
+      :display_name: "კვ. დღე თვეში"
+    :year: 
+      :display_name: წელი
+      :relative: 
+        -1: "გასულ წელს"
+        0: "ამ წელს"
+        1: "მომავალ წელს"
+      :relative_time: 
+        :future: 
+          :one: "{0} წელიწადში"
+          :other: "{0} წელიწადში"
+        :past: 
+          :one: "{0} წლის წინ"
+          :other: "{0} წლის წინ"
+    :year-short: 
+      :display_name: წ.
+      :relative_time: 
+        :future: 
+          :one: "{0} წელში"
+          :other: "{0} წელში"
+    :zone: 
+      :display_name: "დროის სარტყელი"
+    :zone-short: 
+      :display_name: "დროის სარტყ."

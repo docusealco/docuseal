@@ -1,0 +1,24 @@
+# See https://ddnexus.github.io/pagy/resources/i18n
+
+nl:
+  pagy:
+    p11n: 'OneOther'
+    aria_label:
+      nav:
+        one: "Pagina"
+        other: "Pagina's"
+      previous: "Vorige"
+      next: "Volgende"
+    previous: "&lt;"
+    next: "&gt;"
+    gap: "&hellip;"
+    item_name:
+      one: "stuk"
+      other: "stuks"
+    info_tag:
+      no_count: "Pagina %{page} van %{pages}"
+      no_items: "Geen %{item_name} gevonden"
+      single_page: "Toont %{count} %{item_name}"
+      multiple_pages: "Toont %{from}-%{to} %{item_name} van %{count} in totaal"
+    input_nav_js: "Pagina %{page_input} van %{pages}"
+    limit_tag_js: "Toont %{limit_input} %{item_name} per pagina"

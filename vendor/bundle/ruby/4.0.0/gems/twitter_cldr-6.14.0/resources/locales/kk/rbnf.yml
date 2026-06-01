@@ -1,0 +1,307 @@
+--- 
+:kk: 
+  :rbnf: 
+    :grouping: 
+      - 
+        :ruleset: 
+          - 
+            :rules: 
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 0
+            :type: spellout-numbering-year
+          - 
+            :rules: 
+              - 
+                :rule: =%spellout-cardinal=;
+                :value: 0
+            :type: spellout-numbering
+          - 
+            :rules: 
+              - 
+                :rule: "минус >>;"
+                :value: "-x"
+              - 
+                :rule: "<< бүтін >%%fractions>;"
+                :value: x.x
+              - 
+                :rule: нөл;
+                :value: 0
+              - 
+                :rule: бір;
+                :value: 1
+              - 
+                :rule: екі;
+                :value: 2
+              - 
+                :rule: үш;
+                :value: 3
+              - 
+                :rule: төрт;
+                :value: 4
+              - 
+                :rule: бес;
+                :value: 5
+              - 
+                :rule: алты;
+                :value: 6
+              - 
+                :rule: жеті;
+                :value: 7
+              - 
+                :rule: сегіз;
+                :value: 8
+              - 
+                :rule: тоғыз;
+                :value: 9
+              - 
+                :rule: "он[ >>];"
+                :value: 10
+              - 
+                :rule: "жиырма[ >>];"
+                :value: 20
+              - 
+                :rule: "отыз[ >>];"
+                :value: 30
+              - 
+                :rule: "қырық[ >>];"
+                :value: 40
+              - 
+                :rule: "елу[ >>];"
+                :value: 50
+              - 
+                :rule: "алпыс[ >>];"
+                :value: 60
+              - 
+                :rule: "жетпіс[ >>];"
+                :value: 70
+              - 
+                :rule: "сексен[ >>];"
+                :value: 80
+              - 
+                :rule: "тоқсан[ >>];"
+                :value: 90
+              - 
+                :rule: "жүз[ >>];"
+                :value: 100
+              - 
+                :rule: "<< жүз[ >>];"
+                :value: 200
+              - 
+                :rule: "мың[ >>];"
+                :value: 1000
+              - 
+                :rule: "<< мың[ >>];"
+                :value: 2000
+              - 
+                :rule: "миллион[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<< миллион[ >>];"
+                :value: 2000000
+              - 
+                :rule: "миллиард[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<< миллиард[ >>];"
+                :value: 2000000000
+              - 
+                :rule: "триллион[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<< триллион[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "квадриллион[ >>];"
+                :value: 1000000000000000
+              - 
+                :rule: "<< квадриллион[ >>];"
+                :value: 2000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: "оннан <%spellout-cardinal<;"
+                :value: 10
+              - 
+                :rule: "жүзден <%spellout-cardinal<;"
+                :value: 100
+              - 
+                :rule: "мыңнан <%spellout-cardinal<;"
+                :value: 1000
+              - 
+                :rule: "он мыңнан <%spellout-cardinal<;"
+                :value: 10000
+              - 
+                :rule: "жүз мыңнан <%spellout-cardinal<;"
+                :value: 100000
+              - 
+                :rule: "миллионнан <%spellout-cardinal<;"
+                :value: 1000000
+              - 
+                :rule: "он миллионнан <%spellout-cardinal<;"
+                :value: 10000000
+              - 
+                :rule: "жүз миллионнан <%spellout-cardinal<;"
+                :value: 100000000
+              - 
+                :rule: "миллиардтан <%spellout-cardinal<;"
+                :value: 1000000000
+              - 
+                :rule: "он миллиардтан <%spellout-cardinal<;"
+                :value: 10000000000
+              - 
+                :rule: "жүз миллиардтан <%spellout-cardinal<;"
+                :value: 100000000000
+              - 
+                :rule: <0<;
+                :value: 1000000000000
+            :type: fractions
+          - 
+            :rules: 
+              - 
+                :rule: "минус >>;"
+                :value: "-x"
+              - 
+                :rule: "<< бүтін >>;"
+                :value: x.x
+              - 
+                :rule: нөлінші;
+                :value: 0
+              - 
+                :rule: бірінші;
+                :value: 1
+              - 
+                :rule: екінші;
+                :value: 2
+              - 
+                :rule: үшінші;
+                :value: 3
+              - 
+                :rule: төртінші;
+                :value: 4
+              - 
+                :rule: бесінші;
+                :value: 5
+              - 
+                :rule: алтыншы;
+                :value: 6
+              - 
+                :rule: жетінші;
+                :value: 7
+              - 
+                :rule: сегізінші;
+                :value: 8
+              - 
+                :rule: тоғызыншы;
+                :value: 9
+              - 
+                :rule: оныншы;
+                :value: 10
+              - 
+                :rule: он>%%ordinal-yeru-suffix>;
+                :value: 11
+              - 
+                :rule: жиырмасыншы;
+                :value: 20
+              - 
+                :rule: "жиырма >>;"
+                :value: 21
+              - 
+                :rule: отыз>%%ordinal-yeru-suffix>;
+                :value: 30
+              - 
+                :rule: қырық>%%ordinal-yeru-suffix>;
+                :value: 40
+              - 
+                :rule: елу>%%ordinal-i-suffix>;
+                :value: 50
+              - 
+                :rule: алпыс>%%ordinal-yeru-suffix>;
+                :value: 60
+              - 
+                :rule: жетпіс>%%ordinal-i-suffix>;
+                :value: 70
+              - 
+                :rule: сексен>%%ordinal-i-suffix>;
+                :value: 80
+              - 
+                :rule: тоқсан>%%ordinal-yeru-suffix>;
+                :value: 90
+              - 
+                :rule: жүз>%%ordinal-i-suffix>;
+                :value: 100
+              - 
+                :rule: "<%spellout-cardinal< жүз>%%ordinal-i-suffix>;"
+                :value: 200
+              - 
+                :rule: мың>%%ordinal-yeru-suffix>;
+                :value: 1000
+              - 
+                :rule: "<%spellout-cardinal< мың>%%ordinal-yeru-suffix>;"
+                :value: 2000
+              - 
+                :rule: миллион>%%ordinal-yeru-suffix>;
+                :value: 1000000
+              - 
+                :rule: "<%spellout-cardinal< миллион>%%ordinal-yeru-suffix>;"
+                :value: 2000000
+              - 
+                :rule: миллиард>%%ordinal-yeru-suffix>;
+                :value: 1000000000
+              - 
+                :rule: "<%spellout-cardinal< миллиард>%%ordinal-yeru-suffix>;"
+                :value: 2000000000
+              - 
+                :rule: триллион>%%ordinal-yeru-suffix>;
+                :value: 1000000000000
+              - 
+                :rule: "<%spellout-cardinal< триллион>%%ordinal-yeru-suffix>;"
+                :value: 2000000000000
+              - 
+                :rule: квадриллион>%%ordinal-yeru-suffix>;
+                :value: 1000000000000000
+              - 
+                :rule: "<%spellout-cardinal< квадриллион>%%ordinal-yeru-suffix>;"
+                :value: 2000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-ordinal
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: інші;
+                :value: 0
+              - 
+                :rule: " =%spellout-ordinal=;"
+                :value: 1
+            :type: ordinal-i-suffix
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: ыншы;
+                :value: 0
+              - 
+                :rule: " =%spellout-ordinal=;"
+                :value: 1
+            :type: ordinal-yeru-suffix
+        :type: SpelloutRules
+      - 
+        :ruleset: 
+          - 
+            :rules: 
+              - 
+                :rule: −>>;
+                :value: "-x"
+              - 
+                :rule: "=#,##0=-$(ordinal,many{шы}other{ші})$;"
+                :value: 0
+            :type: digits-ordinal
+        :type: OrdinalRules

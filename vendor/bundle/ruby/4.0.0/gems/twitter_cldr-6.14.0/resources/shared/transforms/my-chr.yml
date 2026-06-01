@@ -1,0 +1,12 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - chr-t-my
+    :direction: forward
+    :rules: 
+      - "::my-my_FONIPA ;"
+      - "::und_FONIPA-chr ;"
+    :source: my
+    :target: chr
+    :variant: ~

@@ -1,0 +1,180 @@
+name: Test Both Bundlers
+
+on:
+  pull_request:
+    paths:
+      - "spec/dummy/**"
+      - "lib/**"
+      - "**.rb"
+      - "**.js"
+      - "**.ts"
+      - "package.json"
+      - "yarn.lock"
+      - ".github/workflows/test-bundlers.yml"
+  push:
+    branches: [master, main]
+  workflow_dispatch:
+
+jobs:
+  test-webpack:
+    name: Test with Webpack
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: spec/dummy
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: true
+          working-directory: spec/dummy
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "yarn"
+          cache-dependency-path: spec/dummy/yarn.lock
+
+      - name: Install yalc
+        run: npm install -g yalc
+
+      - name: Build TypeScript
+        run: |
+          cd ../..
+          yarn install --frozen-lockfile --production=false
+          yarn build
+
+      - name: Publish shakapacker to yalc
+        run: |
+          cd ../..
+          yalc publish
+
+      - name: Install dependencies
+        run: |
+          yalc link shakapacker
+          yarn install
+
+      - name: Switch to Webpack
+        run: bin/test-bundler webpack
+
+      - name: Build with Webpack
+        run: bin/shakapacker
+
+      - name: Run tests with Webpack
+        run: |
+          bundle exec rspec
+
+  test-rspack:
+    name: Test with RSpack
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: spec/dummy
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: true
+          working-directory: spec/dummy
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "yarn"
+          cache-dependency-path: spec/dummy/yarn.lock
+
+      - name: Install yalc
+        run: npm install -g yalc
+
+      - name: Build TypeScript
+        run: |
+          cd ../..
+          yarn install --frozen-lockfile --production=false
+          yarn build
+
+      - name: Publish shakapacker to yalc
+        run: |
+          cd ../..
+          yalc publish
+
+      - name: Install dependencies
+        run: |
+          yalc link shakapacker
+          yarn install
+
+      - name: Switch to RSpack
+        run: bin/test-bundler rspack
+
+      - name: Build with RSpack
+        run: bin/shakapacker
+
+      - name: Run tests with RSpack
+        run: |
+          bundle exec rspec
+
+  test-switching:
+    name: Test Bundler Switching
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: spec/dummy
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: true
+          working-directory: spec/dummy
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "yarn"
+          cache-dependency-path: spec/dummy/yarn.lock
+
+      - name: Install yalc
+        run: npm install -g yalc
+
+      - name: Build TypeScript
+        run: |
+          cd ../..
+          yarn install --frozen-lockfile --production=false
+          yarn build
+
+      - name: Publish shakapacker to yalc
+        run: |
+          cd ../..
+          yalc publish
+
+      - name: Install dependencies
+        run: |
+          yalc link shakapacker
+          yarn install
+
+      - name: Test switching between bundlers
+        run: |
+          # Start with webpack
+          bin/test-bundler webpack
+          bin/shakapacker
+
+          # Switch to rspack
+          bin/test-bundler rspack
+          bin/shakapacker
+
+          # Switch back to webpack
+          bin/test-bundler webpack
+          bin/shakapacker

@@ -1,0 +1,45 @@
+<header>
+  <div class="container">
+    <div class="navbar-header" data-navbar="static">
+      <button type="button" class="btn navbar-toggle" data-toggle="navbar-menu" data-target="#navbar-menu">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <div class="navbar-livereload">
+        <%= erb :_poll_link %>
+        <% if config.app_url %>
+          <a class="btn btn-inverse" href="<%= config.app_url %>"><%= t('BackToApp') %></a>
+        <% end %>
+      </div>
+      <a class="navbar-brand" href="<%= root_path %>">
+        <%= Sidekiq::NAME %>
+      </a>
+    </div>
+
+    <div class="navbar-collapse" role="navigation" id="navbar-menu">
+      <ul class="nav" data-navbar="static">
+        <% config.tabs.each do |title, url| %>
+          <% if url == '' %>
+            <li class="<%= current_path == url ? 'active' : '' %>">
+              <a href="<%= root_path %><%= url %>"><%= t(title) %></a>
+            </li>
+          <% else %>
+            <li class="<%= current_path.start_with?(url) ? 'active' : '' %>">
+              <a href="<%= root_path %><%= url %>"><%= t(title) %></a>
+            </li>
+          <% end %>
+        <% end %>
+
+        <li class="navbar-livereload">
+          <div class="poll-wrapper">
+            <%= erb :_poll_link %>
+            <% if config.app_url %>
+              <a class="btn btn-inverse" href="<%= config.app_url %>"><%= t('BackToApp') %></a>
+            <% end %>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>

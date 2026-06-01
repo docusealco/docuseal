@@ -1,0 +1,167 @@
+module WEBrick
+  class HTTPRequest
+    @config: Hash[Symbol, untyped]
+
+    @buffer_size: Integer
+
+    @logger: Log
+
+    @query: Hash[String, HTTPUtils::FormData]?
+
+    @body: String
+
+    @remaining_size: Integer?
+
+    @socket: TCPSocket?
+
+    @forwarded_proto: String?
+
+    @host: String?
+
+    @port: Integer?
+
+    @body_tmp: Array[String]
+
+    @body_rd: Fiber
+
+    @request_bytes: Integer
+
+    @forwarded_server: String?
+
+    @forwarded_host: String?
+
+    @forwarded_port: Integer?
+
+    @forwarded_for: String?
+
+    BODY_CONTAINABLE_METHODS: Array[String]
+
+    attr_reader request_line: String?
+
+    attr_reader request_method: String?
+
+    attr_reader unparsed_uri: String?
+
+    attr_reader http_version: HTTPVersion?
+
+    attr_reader request_uri: URI::Generic?
+
+    attr_reader path: String?
+
+    attr_accessor script_name: String?
+
+    attr_accessor path_info: String?
+
+    attr_accessor query_string: String?
+
+    attr_reader raw_header: Array[String]
+
+    attr_reader header: Hash[String, Array[String]]?
+
+    attr_reader cookies: Array[Cookie]
+
+    attr_reader accept: Array[String]
+
+    attr_reader accept_charset: Array[String]
+
+    attr_reader accept_encoding: Array[String]
+
+    attr_reader accept_language: Array[String]
+
+    attr_accessor user: String?
+
+    attr_reader addr: ([String, Integer, String, String] | [])
+
+    attr_reader peeraddr: ([String, Integer, String, String] | [])
+
+    attr_reader attributes: Hash[untyped, untyped]
+
+    attr_reader keep_alive: bool
+
+    attr_reader request_time: Time?
+
+    def initialize: (Hash[Symbol, untyped] config) -> void
+
+    def parse: (?TCPSocket? socket) -> void
+
+    def continue: () -> void
+
+    type body_chunk_block = ^(String body_chunk) -> void
+
+    def body: () ?{ (String body_chunk) -> void } -> String
+
+    def body_reader: () -> self
+
+    # for IO.copy_stream.
+    def readpartial: (Integer size, ?String buf) -> String
+
+    def query: () -> Hash[String, HTTPUtils::FormData]
+
+    def content_length: () -> Integer
+
+    def content_type: () -> String?
+
+    def []: (String header_name) -> String?
+
+    def each: [T] () { (String, String) -> T } -> T?
+
+    def host: () -> String?
+
+    def port: () -> Integer?
+
+    def server_name: () -> String?
+
+    def remote_ip: () -> String?
+
+    def ssl?: () -> bool
+
+    def keep_alive?: () -> bool
+
+    def to_s: () -> String
+
+    def fixup: () -> void
+
+    def meta_vars: () -> Hash[String, String]
+
+    private
+
+    MAX_URI_LENGTH: Integer
+
+    # same as Mongrel, Thin and Puma
+    MAX_HEADER_LENGTH: Integer
+
+    def read_request_line: (IO socket) -> void
+
+    def read_header: (IO socket) -> void
+
+    def parse_uri: (String str, ?String scheme) -> URI::Generic
+
+    HOST_PATTERN: Regexp
+
+    def parse_host_request_line: (String host) -> [String, String]
+
+    def read_body: (IO socket, body_chunk_block block) -> String
+                 | (nil socket, top block) -> nil
+
+    def read_chunk_size: (IO socket) -> [Integer, String?]
+
+    def read_chunked: (IO socket, body_chunk_block block) -> void
+
+    def _read_data: (IO io, Symbol method, *untyped arg) -> String?
+
+    def read_line: (IO io, ?Integer size) -> String?
+
+    def read_data: (IO io, Integer size) -> String?
+
+    def parse_query: () -> void
+
+    PrivateNetworkRegexp: Regexp
+
+    # It's said that all X-Forwarded-* headers will contain more than one
+    # (comma-separated) value if the original request already contained one of
+    # these headers. Since we could use these values as Host header, we choose
+    # the initial(first) value. (apr_table_mergen() adds new value after the
+    # existing value with ", " prefix)
+    def setup_forwarded_info: () -> void
+  end
+end

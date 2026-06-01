@@ -1,0 +1,716 @@
+--- 
+:km: 
+  :currencies: 
+    :AED: 
+      :name: ឌៀរហាំ​អារ៉ាប់រួម
+      :one: ឌៀរហាំ​អារ៉ាប់រួម
+    :AFN: 
+      :name: អាហ្វហ្គានី​អាហ្វហ្គានីស្ថាន
+      :narrow_symbol: ؋
+      :one: អាហ្វហ្គានី​អាហ្វហ្គានីស្ថាន
+      :symbol: ؋
+    :ALL: 
+      :name: លិក​អាល់បានី
+      :one: លិក​អាល់បានី
+    :AMD: 
+      :name: ដ្រាំ​អាមេនី
+      :narrow_symbol: ֏
+      :one: ដ្រាំ​អាមេនី
+      :symbol: ֏
+    :ANG: 
+      :name: ហ្គីឌិន​ហុល្លង់​អង់ទីលៀន
+      :one: ហ្គីឌិន​ហុល្លង់​អង់ទីលៀន
+    :AOA: 
+      :name: ក្វាន់ហ្សា​អង់ហ្គោឡា
+      :narrow_symbol: Kz
+      :one: ក្វាន់ហ្សា​អង់ហ្គោឡា
+      :symbol: Kz
+    :ARS: 
+      :name: ប៉េសួអាហ្សង់ទីន
+      :narrow_symbol: $
+      :one: ប៉េសួអាហ្សង់ទីន
+      :other: ប៉េសូអាហ្សង់ទីន
+      :symbol: $
+    :AUD: 
+      :name: ដុល្លារ​អូស្ត្រាលី
+      :narrow_symbol: $
+      :one: ដុល្លារ​អូស្ត្រាលី
+      :symbol: A$
+    :AWG: 
+      :name: ហ្វ្រ័ររិញ​អារ៉ូបា
+      :one: ហ្វ្រ័ររិញ​អារ៉ូបា
+    :AZN: 
+      :name: ម៉ាណាត​អាស៊ែបៃហ្សង់
+      :narrow_symbol: ₼
+      :one: ម៉ាណាត​អាស៊ែបៃហ្សង់
+      :symbol: ₼
+    :BAM: 
+      :name: ម៉ាក​អាច​បម្លែង​បាន​បូស្នី
+      :narrow_symbol: KM
+      :one: ម៉ាក​អាច​បម្លែង​បាន​បូស្នី
+      :symbol: KM
+    :BBD: 
+      :name: ដុល្លារ​បាបាដុស
+      :narrow_symbol: $
+      :one: ដុល្លារ​បាបាដុស
+      :symbol: $
+    :BDT: 
+      :name: តាកា​បង់ក្លាដែស
+      :narrow_symbol: ৳
+      :one: តាកា​បង់ក្លាដែស
+      :symbol: ৳
+    :BGN: 
+      :name: លីវ​ប៊ុលហ្គារី
+      :one: លីវ​ប៊ុលហ្គារី
+    :BHD: 
+      :name: ឌីណា​បារ៉ែន
+      :one: ឌីណា​បារ៉ែន
+    :BIF: 
+      :name: ហ្វ្រង់​ប៊ូរុនឌី
+      :one: ហ្វ្រង់​ប៊ូរុនឌី
+    :BMD: 
+      :name: ដុល្លារ​ប៊ឺមុយដា
+      :narrow_symbol: $
+      :one: ដុល្លារ​ប៊ឺមុយដា
+      :symbol: $
+    :BND: 
+      :name: ដុល្លារព្រុយណេ
+      :narrow_symbol: $
+      :one: ដុល្លារព្រុយណេ
+      :symbol: $
+    :BOB: 
+      :name: បូលីវីណូ​បូលីវី
+      :narrow_symbol: Bs
+      :one: បូលីវីណូ​បូលីវី
+      :symbol: Bs
+    :BRL: 
+      :name: រៀល​ប្រេស៊ីល
+      :narrow_symbol: R$
+      :one: រៀល​ប្រេស៊ីល
+      :symbol: R$
+    :BSD: 
+      :name: ដុល្លារ​បាហាម៉ា
+      :narrow_symbol: $
+      :one: ដុល្លារ​បាហាម៉ា
+      :symbol: $
+    :BTN: 
+      :name: ញូលត្រឹម​ប៊ូតាន
+      :one: ញូលត្រឹម​ប៊ូតាន
+    :BWP: 
+      :name: ពូឡា​បុតស្វាណា
+      :narrow_symbol: P
+      :one: ពូឡា​បុតស្វាណា
+      :symbol: P
+    :BYN: 
+      :name: រ៉ូបល​បេឡារុស
+      :narrow_symbol: р.
+      :one: រ៉ូបល​បេឡារុស
+      :symbol: р.
+    :BYR: 
+      :name: "រ៉ូបល​បេឡារុស (2000–2016)"
+      :one: "រ៉ូបល​បេឡារុស (2000–2016)"
+    :BZD: 
+      :name: ដុល្លារ​បេលី
+      :narrow_symbol: $
+      :one: ដុល្លារ​បេលី
+      :symbol: $
+    :CAD: 
+      :name: ដុល្លារ​កាណាដា
+      :narrow_symbol: $
+      :one: ដុល្លារ​កាណាដា
+      :symbol: CA$
+    :CDF: 
+      :name: ហ្វ្រង់​កុងហ្គោ
+      :one: ហ្វ្រង់​កុងហ្គោ
+    :CHF: 
+      :name: ហ្វ្រង់ស្វីស
+      :one: ហ្វ្រង់ស្វីស
+    :CLP: 
+      :name: ប៉េសូឈីលី
+      :narrow_symbol: $
+      :one: ប៉េសូឈីលី
+      :symbol: $
+    :CNH: 
+      :name: "យ័នចិន (ក្រៅប្រទេស)"
+      :one: "យ័នចិន (ក្រៅប្រទេស)"
+    :CNY: 
+      :name: យ័នចិន
+      :narrow_symbol: ¥
+      :one: យ័នចិន
+      :symbol: CN¥
+    :COP: 
+      :name: ប៉េសូកូឡុំប៊ី
+      :narrow_symbol: $
+      :one: ប៉េសូកូឡុំប៊ី
+      :symbol: $
+    :CRC: 
+      :name: កូឡុង​កូស្តារីកា
+      :narrow_symbol: ₡
+      :one: កូឡុង​កូស្តារីកា
+      :symbol: ₡
+    :CUC: 
+      :name: ប៉េសូ​គុយបាអាច​បម្លែង​បាន
+      :narrow_symbol: $
+      :one: ប៉េសូ​គុយបាអាច​បម្លែង​បាន
+      :symbol: $
+    :CUP: 
+      :name: ប៉េសូគុយបា
+      :narrow_symbol: $
+      :one: ប៉េសូគុយបា
+      :symbol: $
+    :CVE: 
+      :name: អ៊ីស្កូឌូ​កាប់វែរ
+      :one: អ៊ីស្កូឌូ​កាប់វែរ
+    :CZK: 
+      :name: កូរុណា​សាធារណៈ​ឆេក
+      :narrow_symbol: Kč
+      :one: កូរុណា​សាធារណៈ​ឆេក
+      :symbol: Kč
+    :DJF: 
+      :name: ហ្វ្រង់​ជីប៊ូទី
+      :one: ហ្វ្រង់​ជីប៊ូទី
+    :DKK: 
+      :name: ក្រូណេ​ដាណាម៉ាក់
+      :narrow_symbol: kr
+      :one: ក្រូណេ​ដាណាម៉ាក់
+      :symbol: kr
+    :DOP: 
+      :name: ប៉េសូដូមីនីក
+      :narrow_symbol: $
+      :one: ប៉េសូដូមីនីក
+      :symbol: $
+    :DZD: 
+      :name: ឌីណា​អាល់ស៊េរី
+      :one: ឌីណា​អាល់ស៊េរី
+    :EGP: 
+      :name: ផោនអេហ្ស៊ីប
+      :narrow_symbol: E£
+      :one: ផោនអេហ្ស៊ីប
+      :symbol: E£
+    :ERN: 
+      :name: ណាក់ហ្វាអេរីទ្រា
+      :one: ណាក់ហ្វាអេរីទ្រា
+    :ESP: 
+      :narrow_symbol: ₧
+      :symbol: ₧
+    :ETB: 
+      :name: ប៊័រ​អេត្យូពី
+      :one: ប៊័រ​អេត្យូពី
+    :EUR: 
+      :name: អឺរ៉ូ
+      :narrow_symbol: €
+      :one: អឺរ៉ូ
+      :symbol: €
+    :FJD: 
+      :name: ដុល្លារ​ហ្វីជី
+      :narrow_symbol: $
+      :one: ដុល្លារ​ហ្វីជី
+      :symbol: $
+    :FKP: 
+      :name: ផោន​កោះ​ហ្វក់ឡែន
+      :narrow_symbol: £
+      :one: ផោន​កោះ​ហ្វក់ឡែន
+      :symbol: £
+    :GBP: 
+      :name: ផោនចក្រភពអង់គ្លេស
+      :narrow_symbol: £
+      :one: ផោនចក្រភពអង់គ្លេស
+      :symbol: £
+    :GEL: 
+      :name: ឡារី​​ហ្សកហ្ស៊ី
+      :narrow_symbol: ₾
+      :one: ឡារី​​ហ្សកហ្ស៊ី
+      :symbol: ₾
+    :GHS: 
+      :name: ស៊ីឌី​ហ្គាណា
+      :narrow_symbol: GH₵
+      :one: ស៊ីឌី​ហ្គាណា
+      :symbol: GH₵
+    :GIP: 
+      :name: ផោន​ហ្ស៊ីប្រាល់តា
+      :narrow_symbol: £
+      :one: ផោន​ហ្ស៊ីប្រាល់តា
+      :symbol: £
+    :GMD: 
+      :name: ដាឡាស៊ី​ហ្គាំប៊ី
+      :one: ដាឡាស៊ី​ហ្គាំប៊ី
+    :GNF: 
+      :name: ហ្វ្រង់​ហ្គីណេ
+      :narrow_symbol: FG
+      :one: ហ្វ្រង់​ហ្គីណេ
+      :other: "ហ្វ្រង់ ហ្គីណេ"
+      :symbol: FG
+    :GTQ: 
+      :name: ហ្គីស្សាល​ក្វាតេម៉ាឡា
+      :narrow_symbol: Q
+      :one: ហ្គីស្សាល​ក្វាតេម៉ាឡា
+      :symbol: Q
+    :GYD: 
+      :name: ដុល្លារ​ហ្គីយ៉ាន
+      :narrow_symbol: $
+      :one: ដុល្លារ​ហ្គីយ៉ាន
+      :symbol: $
+    :HKD: 
+      :name: ដុល្លារ​ហុងកុង
+      :narrow_symbol: $
+      :one: ដុល្លារ​ហុងកុង
+      :symbol: HK$
+    :HNL: 
+      :name: លិមពីរ៉ា​ហុងឌូរ៉ាស
+      :narrow_symbol: L
+      :one: លិមពីរ៉ា​ហុងឌូរ៉ាស
+      :symbol: L
+    :HRK: 
+      :name: គូណា​ក្រូអាត
+      :narrow_symbol: kn
+      :one: គូណា​ក្រូអាត
+      :symbol: kn
+    :HTG: 
+      :name: គោឌី​ហៃទី
+      :one: គោឌី​ហៃទី
+    :HUF: 
+      :name: ហ្វូរីន​ហុងគ្រី
+      :narrow_symbol: Ft
+      :one: ហ្វូរីន​ហុងគ្រី
+      :symbol: Ft
+    :IDR: 
+      :name: រូពីឥណ្ឌូណេស៊ី
+      :narrow_symbol: Rp
+      :one: រូពីឥណ្ឌូណេស៊ី
+      :symbol: Rp
+    :ILS: 
+      :name: ស៊ីគែលថ្មីអ៊ីស្រាអែល
+      :narrow_symbol: ₪
+      :one: ស៊ីគែលថ្មីអ៊ីស្រាអែល
+      :symbol: ₪
+    :INR: 
+      :name: រូពីឥណ្ឌា
+      :narrow_symbol: ₹
+      :one: រូពីឥណ្ឌា
+      :symbol: ₹
+    :IQD: 
+      :name: ឌីណា​អ៊ីរ៉ាក់
+      :one: ឌីណា​អ៊ីរ៉ាក់
+    :IRR: 
+      :name: រៀល​អ៊ីរ៉ង់
+      :one: រៀល​អ៊ីរ៉ង់
+      :other: "រៀល អ៊ីរ៉ង់"
+    :ISK: 
+      :name: ក្រូណា​អ៊ីស្លង់
+      :narrow_symbol: kr
+      :one: ក្រូណា​អ៊ីស្លង់
+      :symbol: kr
+    :JMD: 
+      :name: ដុល្លារ​ហ្សាម៉ាអ៊ីក
+      :narrow_symbol: $
+      :one: ដុល្លារ​ហ្សាម៉ាអ៊ីក
+      :symbol: $
+    :JOD: 
+      :name: ឌីណា​ហ្ស៊កដានី
+      :one: ឌីណា​ហ្ស៊កដានី
+    :JPY: 
+      :name: យេន​ជប៉ុន
+      :narrow_symbol: ¥
+      :one: យេន​ជប៉ុន
+      :symbol: JP¥
+    :KES: 
+      :name: ស៊ីលិញ​កេនយ៉ា
+      :one: ស៊ីលិញ​កេនយ៉ា
+    :KGS: 
+      :name: សុម​កៀហ្ស៊ីស៊ីស្ថាន
+      :narrow_symbol: ⃀
+      :one: សុម​កៀហ្ស៊ីស៊ីស្ថាន
+      :symbol: ⃀
+    :KHR: 
+      :name: រៀល​កម្ពុជា
+      :narrow_symbol: ៛
+      :one: រៀល​កម្ពុជា
+      :symbol: ៛
+    :KMF: 
+      :name: ហ្វ្រង់​កូម័រ
+      :narrow_symbol: CF
+      :one: ហ្វ្រង់​កូម័រ
+      :symbol: CF
+    :KPW: 
+      :name: វ៉ុនកូរ៉េខាងជើង
+      :narrow_symbol: ₩
+      :one: វ៉ុនកូរ៉េខាងជើង
+      :symbol: ₩
+    :KRW: 
+      :name: វ៉ុនកូរ៉េខាងត្បូង
+      :narrow_symbol: ₩
+      :one: វ៉ុនកូរ៉េខាងត្បូង
+      :symbol: ₩
+    :KWD: 
+      :name: ឌីណា​គុយវ៉ែត
+      :one: ឌីណា​គុយវ៉ែត
+    :KYD: 
+      :name: ដុល្លារ​កោះ​កៃម៉ែន
+      :narrow_symbol: $
+      :one: ដុល្លារ​កោះ​កៃម៉ែន
+      :symbol: $
+    :KZT: 
+      :name: តង់ហ្គី​កាហ្សាក់ស្ថាន
+      :narrow_symbol: ₸
+      :one: តង់ហ្គី​កាហ្សាក់ស្ថាន
+      :symbol: ₸
+    :LAK: 
+      :name: គីប​ឡាវ
+      :narrow_symbol: ₭
+      :one: គីប​ឡាវ
+      :symbol: ₭
+    :LBP: 
+      :name: ផោន​លីបង់
+      :narrow_symbol: L£
+      :one: ផោន​លីបង់
+      :symbol: L£
+    :LKR: 
+      :name: រូពីស្រីលង្កា
+      :narrow_symbol: Rs
+      :one: រូពីស្រីលង្កា
+      :symbol: Rs
+    :LRD: 
+      :name: ដុល្លារ​លីប៊ី
+      :narrow_symbol: $
+      :one: ដុល្លារ​លីប៊ី
+      :symbol: $
+    :LSL: 
+      :name: ឡូទីឡេសូតូ
+      :one: ឡូទីឡេសូតូ
+      :symbol: ឡូទី
+    :LTL: 
+      :name: លីតា​លីទុយអានី
+      :narrow_symbol: Lt
+      :one: លីតា​លីទុយអានី
+      :symbol: Lt
+    :LVL: 
+      :name: ឡាត់​ឡេតូនី
+      :narrow_symbol: Ls
+      :one: ឡាត់​ឡេតូនី
+      :symbol: Ls
+    :LYD: 
+      :name: ឌីណា​លីប៊ី
+      :one: ឌីណា​លីប៊ី
+    :MAD: 
+      :name: ឌៀរហាំ​ម៉ារ៉ុក
+      :one: ឌៀរហាំ​ម៉ារ៉ុក
+    :MDL: 
+      :name: លូ​ម៉ុលដាវី
+      :one: លូ​ម៉ុលដាវី
+    :MGA: 
+      :name: អារៀរី​ម៉ាឡាហ្គាស៊ី
+      :narrow_symbol: Ar
+      :one: អារៀរី​ម៉ាឡាហ្គាស៊ី
+      :symbol: Ar
+    :MKD: 
+      :name: ឌីណាម៉ាសេដូនី
+      :one: ឌីណាម៉ាសេដូនី
+    :MMK: 
+      :name: គីយ៉ាត​ភូមា
+      :narrow_symbol: K
+      :one: គីយ៉ាត​ភូមា
+      :symbol: K
+    :MNT: 
+      :name: ទូរីក​ម៉ុងហ្គោលី
+      :narrow_symbol: ₮
+      :one: ទូរីក​ម៉ុងហ្គោលី
+      :symbol: ₮
+    :MOP: 
+      :name: ប៉ាតាកា​ម៉ាកាវ
+      :one: ប៉ាតាកា​ម៉ាកាវ
+    :MRO: 
+      :name: "អ៊ូហ្គីយ៉ា​ម៉ូរីតានី (1973–2017)"
+      :one: "អ៊ូហ្គីយ៉ា​ម៉ូរីតានី (1973–2017)"
+    :MRU: 
+      :name: អ៊ូហ្គីយ៉ា​ម៉ូរីតានី
+      :one: អ៊ូហ្គីយ៉ា​ម៉ូរីតានី
+    :MUR: 
+      :name: រូពីម៉ូរីតានី
+      :narrow_symbol: Rs
+      :one: រូពីម៉ូរីតានី
+      :symbol: Rs
+    :MVR: 
+      :name: រ៉ូហ្វីយ៉ា​ម៉ាល់ឌីវ
+      :one: រ៉ូហ្វីយ៉ា​ម៉ាល់ឌីវ
+    :MWK: 
+      :name: ក្វាចា​ម៉ាឡាវី
+      :one: ក្វាចា​ម៉ាឡាវី
+    :MXN: 
+      :name: ប៉េសូម៉ិកសិក
+      :narrow_symbol: $
+      :one: ប៉េសូម៉ិកសិក
+      :symbol: MX$
+    :MYR: 
+      :name: រីងហ្គីត​ម៉ាឡេស៊ី
+      :narrow_symbol: RM
+      :one: រីងហ្គីត​ម៉ាឡេស៊ី
+      :symbol: RM
+    :MZN: 
+      :name: មីទីខល​ម៉ូសំប៊ិក
+      :one: មីទីខល​ម៉ូសំប៊ិក
+    :NAD: 
+      :name: ដុល្លារ​ណាមីប៊ី
+      :narrow_symbol: $
+      :one: ដុល្លារ​ណាមីប៊ី
+      :symbol: $
+    :NGN: 
+      :name: ណៃរ៉ា​នីហ្សេរីយ៉ា
+      :narrow_symbol: ₦
+      :one: ណៃរ៉ា​នីហ្សេរីយ៉ា
+      :symbol: ₦
+    :NIO: 
+      :name: ខឌូបា​នីការ៉ាហ្កា
+      :narrow_symbol: C$
+      :one: ខឌូបា​នីការ៉ាហ្កា
+      :symbol: C$
+    :NOK: 
+      :name: ក្រូណេ​ន័រវ៉េ
+      :narrow_symbol: kr
+      :one: ក្រូណេ​ន័រវ៉េ
+      :symbol: kr
+    :NPR: 
+      :name: រូពីនេប៉ាល់
+      :narrow_symbol: Rs
+      :one: រូពីនេប៉ាល់
+      :symbol: Rs
+    :NZD: 
+      :name: ដុល្លារ​នូវែលសេឡង់
+      :narrow_symbol: $
+      :one: ដុល្លារ​នូវែលសេឡង់
+      :symbol: NZ$
+    :OMR: 
+      :name: រៀល​រូម៉ានី
+      :one: រៀល​រូម៉ានី
+    :PAB: 
+      :name: បាល់ប៉ៅ​ប៉ាណាម៉ា
+      :one: បាល់ប៉ៅ​ប៉ាណាម៉ា
+    :PEN: 
+      :name: ញូវ៉ូសូល​ប៉េរូ
+      :one: ញូវ៉ូសូល​ប៉េរូ
+      :other: "ញូវ៉ូសូល ប៉េរូ"
+    :PGK: 
+      :name: គីណាប៉ាពួញូហ្គីណេ
+      :one: គីណាប៉ាពួញូហ្គីណេ
+    :PHP: 
+      :name: ប៉េសូហ្វីលីពីន
+      :narrow_symbol: ₱
+      :one: ប៉េសូហ្វីលីពីន
+      :symbol: PHP
+    :PKR: 
+      :name: រូពីប៉ាគីស្ថាន
+      :narrow_symbol: Rs
+      :one: រូពីប៉ាគីស្ថាន
+      :symbol: Rs
+    :PLN: 
+      :name: ហ្សូទី​ប៉ូឡូញ
+      :narrow_symbol: zł
+      :one: ហ្សូទី​ប៉ូឡូញ
+      :symbol: zł
+    :PYG: 
+      :name: ហ្គូរីនី​ប៉ារ៉ាហ្គាយ
+      :narrow_symbol: ₲
+      :one: ហ្គូរីនី​ប៉ារ៉ាហ្គាយ
+      :symbol: ₲
+    :QAR: 
+      :name: រីយ៉ាលកាតា
+      :one: រីយ៉ាលកាតា
+      :other: រីយ៉ាលកាតា
+    :RON: 
+      :name: លូ​រូម៉ានី
+      :narrow_symbol: lei
+      :one: លូ​រូម៉ានី
+      :symbol: lei
+    :RSD: 
+      :name: ឌីណាស៊ែប
+      :one: ឌីណាស៊ែប
+    :RUB: 
+      :name: រ៉ូបល​រុស្ស៊ី
+      :narrow_symbol: ₽
+      :one: រ៉ូបល​រុស្ស៊ី
+      :symbol: ₽
+    :RWF: 
+      :name: ហ្វ្រង់​រវ៉ាន់ដា
+      :narrow_symbol: RF
+      :one: ហ្វ្រង់​រវ៉ាន់ដា
+      :symbol: RF
+    :SAR: 
+      :name: រីយ៉ាល​អារ៉ាប៊ីសាអូឌីត
+      :one: រីយ៉ាល​អារ៉ាប៊ីសាអូឌីត
+    :SBD: 
+      :name: ដុល្លារ​កោះ​សូឡូម៉ុង
+      :narrow_symbol: $
+      :one: ដុល្លារ​កោះ​សូឡូម៉ុង
+      :symbol: $
+    :SCR: 
+      :name: រូពី​សីស្ហែល
+      :one: រូពី​សីស្ហែល
+    :SDG: 
+      :name: ផោន​ស៊ូដង់
+      :one: ផោន​ស៊ូដង់
+    :SEK: 
+      :name: ក្រូណា​ស៊ុយអែត
+      :narrow_symbol: kr
+      :one: ក្រូណា​ស៊ុយអែត
+      :symbol: kr
+    :SGD: 
+      :name: ដុល្លារ​​សិង្ហបូរី
+      :narrow_symbol: $
+      :one: ដុល្លារ​​សិង្ហបូរី
+      :symbol: $
+    :SHP: 
+      :name: ផោន​សាំងហេឡេណា
+      :narrow_symbol: £
+      :one: ផោន​សាំងហេឡេណា
+      :symbol: £
+    :SLE: 
+      :name: លីអ៊ុន​សៀរ៉ាឡេអូន
+      :one: លីអ៊ុន​សៀរ៉ាឡេអូន
+    :SLL: 
+      :name: "លីអ៊ុន​សៀរ៉ាឡេអូន (1964—2022)"
+      :one: "លីអ៊ុន​សៀរ៉ាឡេអូន (1964—2022)"
+    :SOS: 
+      :name: ស៊ីលិញ​សូម៉ាលី
+      :one: ស៊ីលិញ​សូម៉ាលី
+    :SRD: 
+      :name: ដុល្លារ​សូរីណាម
+      :narrow_symbol: $
+      :one: ដុល្លារ​សូរីណាម
+      :symbol: $
+    :SSP: 
+      :name: ផោន​ស៊ូដង់​ខាង​ត្បូង
+      :narrow_symbol: £
+      :one: ផោន​ស៊ូដង់​ខាង​ត្បូង
+      :symbol: £
+    :STD: 
+      :name: "ឌូប្រា​សៅតូម៉េ និងប្រាំងស៊ីប (1977–2017)"
+      :one: "ឌូប្រា​សៅតូម៉េ និងប្រាំងស៊ីប (1977–2017)"
+    :STN: 
+      :name: "ឌូប្រា​សៅតូម៉េ និងប្រាំងស៊ីប"
+      :narrow_symbol: Db
+      :one: "ឌូប្រា​សៅតូម៉េ និងប្រាំងស៊ីប"
+      :symbol: Db
+    :SYP: 
+      :name: ផោន​ស៊ីរី
+      :narrow_symbol: £
+      :one: ផោន​ស៊ីរី
+      :symbol: £
+    :SZL: 
+      :name: លីឡាងហ្គីនី​ស្វាស៊ីឡង់
+      :one: លីឡាងហ្គីនី​ស្វាស៊ីឡង់
+    :THB: 
+      :name: បាត​ថៃ
+      :narrow_symbol: ฿
+      :one: បាត​ថៃ
+      :symbol: ฿
+    :TJS: 
+      :name: សូមុនី​តាហ្ស៊ីគីស្ថាន
+      :one: សូមុនី​តាហ្ស៊ីគីស្ថាន
+    :TMT: 
+      :name: ម៉ាណាត​តួកម៉េនីស្ថាន
+      :one: ម៉ាណាត​តួកម៉េនីស្ថាន
+    :TND: 
+      :name: ឌីណាទុយនេស៊ី
+      :one: ឌីណាទុយនេស៊ី
+    :TOP: 
+      :name: ប៉ាអង់កា​តុងហ្គា
+      :narrow_symbol: T$
+      :one: ប៉ាអង់កា​តុងហ្គា
+      :symbol: T$
+    :TRY: 
+      :name: លីរ៉ាទួរគី
+      :narrow_symbol: ₺
+      :one: លីរ៉ាទួរគី
+      :symbol: ₺
+    :TTD: 
+      :name: "ដុល្លារ​ទ្រីនីដាដ និងតូបាហ្គោ"
+      :narrow_symbol: $
+      :one: "ដុល្លារ​ទ្រីនីដាដ និងតូបាហ្គោ"
+      :symbol: $
+    :TWD: 
+      :name: ដុល្លារ​តៃវ៉ាន់
+      :narrow_symbol: NT$
+      :one: ដុល្លារ​តៃវ៉ាន់
+      :symbol: NT$
+    :TZS: 
+      :name: ស៊ីលិញ​តង់សានី
+      :one: ស៊ីលិញ​តង់សានី
+    :UAH: 
+      :name: ហ៊ូនីយ៉ា​អ៊ុយក្រែន
+      :narrow_symbol: ₴
+      :one: ហ៊ូនីយ៉ា​អ៊ុយក្រែន
+      :symbol: ₴
+    :UGX: 
+      :name: ស៊ីលិញ​អ៊ូហ្គង់ដា
+      :one: ស៊ីលិញ​អ៊ូហ្គង់ដា
+    :USD: 
+      :name: ដុល្លារ​អាមេរិក
+      :narrow_symbol: $
+      :one: ដុល្លារ​អាមេរិក
+      :symbol: $
+    :UYU: 
+      :name: ប៉េសូអ៊ុយរូហ្គាយ
+      :narrow_symbol: $
+      :one: ប៉េសូអ៊ុយរូហ្គាយ
+      :symbol: $
+    :UZS: 
+      :name: សុមអ៊ូបេគីស្ថាន
+      :one: សុមអ៊ូបេគីស្ថាន
+    :VEF: 
+      :name: "ប៊ូលីវ៉ា​វ៉េណេស៊ុយអេឡា (2008–2018)"
+      :narrow_symbol: Bs
+      :one: "ប៊ូលីវ៉ា​វ៉េណេស៊ុយអេឡា (2008–2018)"
+      :symbol: Bs
+    :VES: 
+      :name: ប៊ូលីវ៉ា​វ៉េណេស៊ុយអេឡា
+      :one: ប៊ូលីវ៉ា​វ៉េណេស៊ុយអេឡា
+    :VND: 
+      :name: ដុង​វៀតណាម
+      :narrow_symbol: ₫
+      :one: ដុង​វៀតណាម
+      :symbol: ₫
+    :VUV: 
+      :name: វ៉ាទូវ៉ានូអាទូ
+      :one: វ៉ាទូវ៉ានូអាទូ
+    :WST: 
+      :name: តាឡា​សាម័រ
+      :one: តាឡា​សាម័រ
+    :XAF: 
+      :name: "ហ្វ្រង់ CFA អាហ្វ្រិកកណ្តាល"
+      :one: "ហ្វ្រង់ CFA អាហ្វ្រិកកណ្តាល"
+      :symbol: FCFA
+    :XCD: 
+      :name: ដុល្លារ​ការ៉ាប៊ីន​ខាង​កើត
+      :narrow_symbol: $
+      :one: ដុល្លារ​ការ៉ាប៊ីន​ខាង​កើត
+      :symbol: EC$
+    :XCG: 
+      :symbol: Cg.
+    :XOF: 
+      :name: "ហ្វ្រង់ CFA អាហ្វ្រិកខាងលិច"
+      :one: "ហ្វ្រង់ CFA អាហ្វ្រិកខាងលិច"
+      :symbol: F CFA
+    :XPF: 
+      :name: "ហ្វ្រង់ CFP"
+      :one: "ហ្វ្រង់ CFP"
+      :symbol: CFPF
+    :XXX: 
+      :name: រូបិយប័ណ្ណ​មិនស្គាល់
+      :one: រូបិយប័ណ្ណ​មិនស្គាល់
+      :other: (រូបិយប័ណ្ណ​មិនស្គាល់)
+      :symbol: ¤
+    :YER: 
+      :name: រៀល​យេម៉ែន
+      :one: រៀល​យេម៉ែន
+    :ZAR: 
+      :name: រ៉ង់អាហ្វ្រិកខាងត្បូង
+      :narrow_symbol: R
+      :one: រ៉ង់អាហ្វ្រិកខាងត្បូង
+      :symbol: R
+    :ZMK: 
+      :name: "ក្វាចា សំប៊ី (1968–2012)"
+      :one: "ក្វាចា សំប៊ី (1968–2012)"
+    :ZMW: 
+      :name: ក្វាចាហ្សំប៊ី
+      :narrow_symbol: ZK
+      :one: ក្វាចាហ្សំប៊ី
+      :symbol: ZK

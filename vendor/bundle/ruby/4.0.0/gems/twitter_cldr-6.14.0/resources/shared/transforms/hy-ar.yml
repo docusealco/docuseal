@@ -1,0 +1,12 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - ar-t-hy
+    :direction: forward
+    :rules: 
+      - "::hy-hy_FONIPA ;"
+      - "::und_FONIPA-ar ;"
+    :source: hy
+    :target: ar
+    :variant: ~

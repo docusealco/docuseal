@@ -1,0 +1,267 @@
+--- 
+:da: 
+  :territories: 
+    :ac: Ascensionøen
+    :ad: Andorra
+    :ae: "De Forenede Arabiske Emirater"
+    :af: Afghanistan
+    :ag: "Antigua og Barbuda"
+    :ai: Anguilla
+    :al: Albanien
+    :am: Armenien
+    :ao: Angola
+    :aq: Antarktis
+    :ar: Argentina
+    :as: "Amerikansk Samoa"
+    :at: Østrig
+    :au: Australien
+    :aw: Aruba
+    :ax: Åland
+    :az: Aserbajdsjan
+    :ba: Bosnien-Hercegovina
+    :bb: Barbados
+    :bd: Bangladesh
+    :be: Belgien
+    :bf: "Burkina Faso"
+    :bg: Bulgarien
+    :bh: Bahrain
+    :bi: Burundi
+    :bj: Benin
+    :bl: "Saint Barthélemy"
+    :bm: Bermuda
+    :bn: Brunei
+    :bo: Bolivia
+    :bq: "De tidligere Nederlandske Antiller"
+    :br: Brasilien
+    :bs: Bahamas
+    :bt: Bhutan
+    :bv: Bouvetøen
+    :bw: Botswana
+    :by: Belarus
+    :bz: Belize
+    :ca: Canada
+    :cc: Cocosøerne
+    :cd: Congo-Kinshasa
+    :cf: "Den Centralafrikanske Republik"
+    :cg: Congo-Brazzaville
+    :ch: Schweiz
+    :ci: Elfenbenskysten
+    :ck: Cookøerne
+    :cl: Chile
+    :cm: Cameroun
+    :cn: Kina
+    :co: Colombia
+    :cp: Clippertonøen
+    :cr: "Costa Rica"
+    :cu: Cuba
+    :cv: "Kap Verde"
+    :cw: Curaçao
+    :cx: Juleøen
+    :cy: Cypern
+    :cz: Tjekkiet
+    :de: Tyskland
+    :dg: "Diego Garcia"
+    :dj: Djibouti
+    :dk: Danmark
+    :dm: Dominica
+    :do: "Den Dominikanske Republik"
+    :dz: Algeriet
+    :ea: "Ceuta og Melilla"
+    :ec: Ecuador
+    :ee: Estland
+    :eg: Egypten
+    :eh: Vestsahara
+    :er: Eritrea
+    :es: Spanien
+    :et: Etiopien
+    :eu: "Den Europæiske Union"
+    :ez: eurozonen
+    :fi: Finland
+    :fj: Fiji
+    :fk: Falklandsøerne
+    :fm: Mikronesien
+    :fo: Færøerne
+    :fr: Frankrig
+    :ga: Gabon
+    :gb: Storbritannien
+    :gd: Grenada
+    :ge: Georgien
+    :gf: "Fransk Guyana"
+    :gg: Guernsey
+    :gh: Ghana
+    :gi: Gibraltar
+    :gl: Grønland
+    :gm: Gambia
+    :gn: Guinea
+    :gp: Guadeloupe
+    :gq: Ækvatorialguinea
+    :gr: Grækenland
+    :gs: "South Georgia og De Sydlige Sandwichøer"
+    :gt: Guatemala
+    :gu: Guam
+    :gw: Guinea-Bissau
+    :gy: Guyana
+    :hk: "SAR Hongkong"
+    :hm: "Heard Island og McDonald Islands"
+    :hn: Honduras
+    :hr: Kroatien
+    :ht: Haiti
+    :hu: Ungarn
+    :ic: "Kanariske øer"
+    :id: Indonesien
+    :ie: Irland
+    :il: Israel
+    :im: "Isle of Man"
+    :in: Indien
+    :io: "Det Britiske Territorium i Det Indiske Ocean"
+    :iq: Irak
+    :ir: Iran
+    :is: Island
+    :it: Italien
+    :je: Jersey
+    :jm: Jamaica
+    :jo: Jordan
+    :jp: Japan
+    :ke: Kenya
+    :kg: Kirgisistan
+    :kh: Cambodja
+    :ki: Kiribati
+    :km: Comorerne
+    :kn: "Saint Kitts og Nevis"
+    :kp: Nordkorea
+    :kr: Sydkorea
+    :kw: Kuwait
+    :ky: Caymanøerne
+    :kz: Kasakhstan
+    :la: Laos
+    :lb: Libanon
+    :lc: "Saint Lucia"
+    :li: Liechtenstein
+    :lk: "Sri Lanka"
+    :lr: Liberia
+    :ls: Lesotho
+    :lt: Litauen
+    :lu: Luxembourg
+    :lv: Letland
+    :ly: Libyen
+    :ma: Marokko
+    :mc: Monaco
+    :md: Moldova
+    :me: Montenegro
+    :mf: "Saint Martin"
+    :mg: Madagaskar
+    :mh: Marshalløerne
+    :mk: Nordmakedonien
+    :ml: Mali
+    :mm: "Myanmar (Burma)"
+    :mn: Mongoliet
+    :mo: "SAR Macao"
+    :mp: Nordmarianerne
+    :mq: Martinique
+    :mr: Mauretanien
+    :ms: Montserrat
+    :mt: Malta
+    :mu: Mauritius
+    :mv: Maldiverne
+    :mw: Malawi
+    :mx: Mexico
+    :my: Malaysia
+    :mz: Mozambique
+    :na: Namibia
+    :nc: "Ny Kaledonien"
+    :ne: Niger
+    :nf: "Norfolk Island"
+    :ng: Nigeria
+    :ni: Nicaragua
+    :nl: Nederlandene
+    ? !ruby/symbol "no"
+    : Norge
+    :np: Nepal
+    :nr: Nauru
+    :nu: Niue
+    :nz: "New Zealand"
+    :om: Oman
+    :pa: Panama
+    :pe: Peru
+    :pf: "Fransk Polynesien"
+    :pg: "Papua Ny Guinea"
+    :ph: Filippinerne
+    :pk: Pakistan
+    :pl: Polen
+    :pm: "Saint Pierre og Miquelon"
+    :pn: Pitcairn
+    :pr: "Puerto Rico"
+    :ps: "De palæstinensiske områder"
+    :pt: Portugal
+    :pw: Palau
+    :py: Paraguay
+    :qa: Qatar
+    :qo: "Ydre Oceanien"
+    :re: Réunion
+    :ro: Rumænien
+    :rs: Serbien
+    :ru: Rusland
+    :rw: Rwanda
+    :sa: Saudi-Arabien
+    :sb: Salomonøerne
+    :sc: Seychellerne
+    :sd: Sudan
+    :se: Sverige
+    :sg: Singapore
+    :sh: "St. Helena"
+    :si: Slovenien
+    :sj: "Svalbard og Jan Mayen"
+    :sk: Slovakiet
+    :sl: "Sierra Leone"
+    :sm: "San Marino"
+    :sn: Senegal
+    :so: Somalia
+    :sr: Surinam
+    :ss: Sydsudan
+    :st: "São Tomé og Príncipe"
+    :sv: "El Salvador"
+    :sx: "Sint Maarten"
+    :sy: Syrien
+    :sz: Eswatini
+    :ta: "Tristan da Cunha"
+    :tc: "Turks- og Caicosøerne"
+    :td: Tchad
+    :tf: "De Franske Besiddelser i Det Sydlige Indiske Ocean og Antarktis"
+    :tg: Togo
+    :th: Thailand
+    :tj: Tadsjikistan
+    :tk: Tokelau
+    :tl: Timor-Leste
+    :tm: Turkmenistan
+    :tn: Tunesien
+    :to: Tonga
+    :tr: Tyrkiet
+    :tt: "Trinidad og Tobago"
+    :tv: Tuvalu
+    :tw: Taiwan
+    :tz: Tanzania
+    :ua: Ukraine
+    :ug: Uganda
+    :um: "Amerikanske oversøiske øer"
+    :un: "De Forenede Nationer"
+    :us: USA
+    :uy: Uruguay
+    :uz: Usbekistan
+    :va: Vatikanstaten
+    :vc: "Saint Vincent og Grenadinerne"
+    :ve: Venezuela
+    :vg: "De Britiske Jomfruøer"
+    :vi: "De Amerikanske Jomfruøer"
+    :vn: Vietnam
+    :vu: Vanuatu
+    :wf: "Wallis og Futuna"
+    :ws: Samoa
+    :xa: pseudo-accenter
+    :xb: pseudo-bidi
+    :xk: Kosovo
+    :ye: Yemen
+    :yt: Mayotte
+    :za: Sydafrika
+    :zm: Zambia
+    :zw: Zimbabwe
+    :zz: "Ukendt område"

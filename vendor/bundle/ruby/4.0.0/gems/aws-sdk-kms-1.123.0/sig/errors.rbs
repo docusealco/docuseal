@@ -1,0 +1,160 @@
+# WARNING ABOUT GENERATED CODE
+#
+# This file is generated. See the contributing guide for more information:
+# https://github.com/aws/aws-sdk-ruby/blob/version-3/CONTRIBUTING.md
+#
+# WARNING ABOUT GENERATED CODE
+
+module Aws
+  module KMS
+    module Errors
+      class ServiceError < ::Aws::Errors::ServiceError
+      end
+
+      class AlreadyExistsException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class CloudHsmClusterInUseException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class CloudHsmClusterInvalidConfigurationException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class CloudHsmClusterNotActiveException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class CloudHsmClusterNotFoundException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class CloudHsmClusterNotRelatedException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class ConflictException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class CustomKeyStoreHasCMKsException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class CustomKeyStoreInvalidStateException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class CustomKeyStoreNameInUseException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class CustomKeyStoreNotFoundException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class DependencyTimeoutException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class DisabledException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class DryRunOperationException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class ExpiredImportTokenException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class IncorrectKeyException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class IncorrectKeyMaterialException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class IncorrectTrustAnchorException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class InvalidAliasNameException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class InvalidArnException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class InvalidCiphertextException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class InvalidGrantIdException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class InvalidGrantTokenException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class InvalidImportTokenException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class InvalidKeyUsageException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class InvalidMarkerException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class KMSInternalException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class KMSInvalidMacException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class KMSInvalidSignatureException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class KMSInvalidStateException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class KeyUnavailableException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class LimitExceededException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class MalformedPolicyDocumentException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class NotFoundException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class TagException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class UnsupportedOperationException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class XksKeyAlreadyInUseException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class XksKeyInvalidConfigurationException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class XksKeyNotFoundException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class XksProxyIncorrectAuthenticationCredentialException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class XksProxyInvalidConfigurationException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class XksProxyInvalidResponseException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class XksProxyUriEndpointInUseException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class XksProxyUriInUseException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class XksProxyUriUnreachableException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class XksProxyVpcEndpointServiceInUseException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class XksProxyVpcEndpointServiceInvalidConfigurationException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class XksProxyVpcEndpointServiceNotFoundException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+    end
+  end
+end

@@ -1,0 +1,16 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - Kannada-Telugu
+      - und-Telu-t-und-knda
+    :direction: forward
+    :rules: 
+      - "::[ಂ-ಃಅ-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼ಽಾ-ೄೆ-ೈೊ-್ೕ-ೖೞೠ-ೡ೦-೯] ;"
+      - "::NFD ;"
+      - "::Kannada-InterIndic ;"
+      - "::InterIndic-Telugu ;"
+      - "::NFC ;"
+    :source: Knda
+    :target: Telu
+    :variant: ~

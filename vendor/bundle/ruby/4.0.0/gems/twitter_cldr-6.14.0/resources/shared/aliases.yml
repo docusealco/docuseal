@@ -1,0 +1,1598 @@
+--- 
+:aliases: 
+  :language: 
+    :bibliographic: 
+      :alb: sq
+      :arm: hy
+      :baq: eu
+      :bur: my
+      :chi: zh
+      :cze: cs
+      :dut: nl
+      :fre: fr
+      :geo: ka
+      :ger: de
+      :gre: el
+      :ice: is
+      :mac: mk
+      :mao: mi
+      :may: ms
+      :per: fa
+      :rum: ro
+      :slo: sk
+      :tib: bo
+      :wel: cy
+    :deprecated: 
+      :aa_saaho: ssy
+      :aam: aas
+      :adp: dz
+      :agp: apf
+      :ais: ami
+      :ajp: apc
+      :ajt: aeb
+      :art_lojban: jbo
+      :asd: snz
+      :aue: ktz
+      :ayx: nun
+      :baz: nvo
+      :bgm: bcg
+      :bhk: fbl
+      :bic: bir
+      :bjd: drl
+      :bjq: bzc
+      :bkb: ebk
+      :blg: iba
+      :btb: beb
+      :ccq: rki
+      :cjr: mom
+      :cka: cmr
+      :cmk: xch
+      :coy: pij
+      :cqu: quh
+      :daf: dnj
+      :dap: njz
+      :dit: dif
+      :djl: dze
+      :dkl: aqd
+      :drh: mn
+      :drr: kzk
+      :drw: fa_AF
+      :dud: uth
+      :duj: dwu
+      :dwl: dbt
+      :elp: amq
+      :en_GB_oed: en_GB_oxendict
+      :gav: dev
+      :gbc: wny
+      :gfx: vaj
+      :ggn: gvr
+      :ggo: esg
+      :ggr: gtu
+      :gio: aou
+      :gli: kzk
+      :gti: nyc
+      :guv: duz
+      :hrr: jal
+      :hy_arevmda: hyw
+      :i_ami: ami
+      :i_bnn: bnn
+      :i_hak: hak
+      :i_klingon: tlh
+      :i_lux: lb
+      :i_navajo: nv
+      :i_pwn: pwn
+      :i_tao: tao
+      :i_tay: tay
+      :i_tsu: tsu
+      :ibi: opa
+      :ill: ilm
+      :ilw: gal
+      :in: id
+      :iw: he
+      :izi: eza
+      :jar: jgk
+      :jeg: oyb
+      :ji: yi
+      :jw: jv
+      :kdv: zkd
+      :kgc: tdf
+      :kgd: ncq
+      :kgh: kml
+      :kgm: plu
+      :koj: kwv
+      :kpp: jkm
+      :krm: bmf
+      :ktr: dtp
+      :kvs: gdj
+      :kwq: yam
+      :kxe: tvd
+      :kxl: kru
+      :kzh: dgl
+      :kzj: dtp
+      :kzt: dtp
+      :lak: ksp
+      :leg: enl
+      :lii: raq
+      :llo: ngt
+      :lmm: rmx
+      :meg: cir
+      :mgx: jbk
+      :mnt: wnn
+      :mo: ro
+      :mof: xnt
+      :mst: mry
+      :mwd: dmw
+      :mwj: vaj
+      :myd: aog
+      :myt: mry
+      :nad: xny
+      :nbf: nru
+      :nbx: ekc
+      :ncp: kdz
+      :nln: azd
+      :nlr: nrk
+      :nns: nbr
+      :nnx: ngv
+      :no_bok: nb
+      :no_bokmal: nb
+      :no_nyn: nn
+      :no_nynorsk: nn
+      :nom: cbr
+      :noo: dtd
+      :nts: pij
+      :nxu: bpp
+      :oun: vaj
+      :pat: kxr
+      :pcr: adx
+      :pmc: huw
+      :pmk: crr
+      :pmu: phr
+      :ppa: bfy
+      :ppr: lcq
+      :prp: gu
+      :pry: prt
+      :puz: pub
+      :rmr: emx
+      :sap: aqt
+      :sca: hle
+      :scc: sr
+      :scr: hr
+      :sgl: isk
+      :sgn_BE_FR: sfb
+      :sgn_BE_NL: vgt
+      :sgn_BR: bzs
+      :sgn_CH_DE: sgg
+      :sgn_CO: csn
+      :sgn_DE: gsg
+      :sgn_DK: dsl
+      :sgn_ES: ssp
+      :sgn_FR: fsl
+      :sgn_GB: bfi
+      :sgn_GR: gss
+      :sgn_IE: isg
+      :sgn_IT: ise
+      :sgn_JP: jsl
+      :sgn_MX: mfs
+      :sgn_NI: ncs
+      :sgn_NL: dse
+      :sgn_NO: nsi
+      :sgn_PT: psr
+      :sgn_SE: swl
+      :sgn_US: ase
+      :sgn_ZA: sfs
+      :skk: oyb
+      :smd: kmb
+      :snb: iba
+      :sul: sgd
+      :sum: ulw
+      :szd: umi
+      :tdu: dtp
+      :tgg: bjp
+      :thc: tpo
+      :thw: ola
+      :thx: oyb
+      :tid: itd
+      :tie: ras
+      :tkk: twm
+      :tlw: weo
+      :tmk: tdg
+      :tmp: tyj
+      :tne: kak
+      :tnf: fa_AF
+      :tpw: tpn
+      :tsf: taj
+      :und_aaland: und_AX
+      :und_arevela: und
+      :und_arevmda: und
+      :und_bokmal: und
+      :und_hakka: und
+      :und_hepburn_heploc: und_alalc97
+      :und_lojban: und
+      :und_nynorsk: und
+      :und_saaho: und
+      :und_xiang: und
+      :unp: wro
+      :uok: ema
+      :wgw: wgb
+      :wit: nol
+      :wiw: nwo
+      :xba: cax
+      :xia: acn
+      :xkh: waw
+      :xrq: dmw
+      :xsj: suj
+      :xss: zko
+      :ybd: rki
+      :yen: ynq
+      :yiy: yrm
+      :yma: lrr
+      :ymt: mtm
+      :yos: zom
+      :yuu: yug
+      :zh_cmn: zh
+      :zh_cmn_Hans: zh_Hans
+      :zh_cmn_Hant: zh_Hant
+      :zh_gan: gan
+      :zh_guoyu: zh
+      :zh_hakka: hak
+      :zh_min_nan: nan
+      :zh_wuu: wuu
+      :zh_xiang: hsn
+      :zh_yue: yue
+      :zir: scv
+      :zkb: kjh
+    :legacy: 
+      :cel_gaulish: xtg
+      :cnr: sr_ME
+      :i_default: en_x_i_default
+      :i_enochian: und_x_i_enochian
+      :i_mingo: see_x_i_mingo
+      :sh: sr_Latn
+      :tl: fil
+      :zh_min: nan_x_zh_min
+    :macrolanguage: 
+      :aju: jrb
+      :als: sq
+      :arb: ar
+      :ayr: ay
+      :azj: az
+      :bcc: bal
+      :bcl: bik
+      :bh: bho
+      :bxk: luy
+      :bxr: bua
+      :cld: syr
+      :cmn: zh
+      :cwd: cr
+      :dgo: doi
+      :dhd: mwr
+      :dik: din
+      :diq: zza
+      :ekk: et
+      :emk: man
+      :esk: ik
+      :fat: ak
+      :fuc: ff
+      :gaz: om
+      :gbo: grb
+      :gno: gon
+      :gom: kok
+      :gug: gn
+      :gya: gba
+      :hdn: hai
+      :hea: hmn
+      :him: srx
+      :ike: iu
+      :khk: mn
+      :kmr: ku
+      :knc: kr
+      :kng: kg
+      :kpv: kv
+      :lbk: bnc
+      :lvs: lv
+      :mhr: chm
+      :mnk: man
+      :mup: raj
+      :npi: ne
+      :ojg: oj
+      :ory: or
+      :pbu: ps
+      :pes: fa
+      :plt: mg
+      :pnb: lah
+      :quz: qu
+      :rmy: rom
+      :spy: kln
+      :src: sc
+      :swh: sw
+      :ttq: tmh
+      :tw: ak
+      :umu: del
+      :uzn: uz
+      :xpe: kpe
+      :xsl: den
+      :ydd: yi
+      :zai: zap
+      :zsm: ms
+      :zyb: za
+    :overlong: 
+      :aar: aa
+      :abk: ab
+      :afr: af
+      :aka: ak
+      :amh: am
+      :ara: ar
+      :arg: an
+      :asm: as
+      :ava: av
+      :ave: ae
+      :aym: ay
+      :aze: az
+      :bak: ba
+      :bam: bm
+      :bel: be
+      :ben: bn
+      :bih: bho
+      :bis: bi
+      :bod: bo
+      :bos: bs
+      :bre: br
+      :bul: bg
+      :cat: ca
+      :ces: cs
+      :cha: ch
+      :che: ce
+      :chu: cu
+      :chv: cv
+      :cor: kw
+      :cos: co
+      :cre: cr
+      :cym: cy
+      :dan: da
+      :deu: de
+      :div: dv
+      :dzo: dz
+      :ell: el
+      :eng: en
+      :epo: eo
+      :est: et
+      :eus: eu
+      :ewe: ee
+      :fao: fo
+      :fas: fa
+      :fij: fj
+      :fin: fi
+      :fra: fr
+      :fry: fy
+      :ful: ff
+      :gla: gd
+      :gle: ga
+      :glg: gl
+      :glv: gv
+      :grn: gn
+      :guj: gu
+      :hat: ht
+      :hau: ha
+      :hbs: sr_Latn
+      :heb: he
+      :her: hz
+      :hin: hi
+      :hmo: ho
+      :hrv: hr
+      :hun: hu
+      :hye: hy
+      :ibo: ig
+      :ido: io
+      :iii: ii
+      :iku: iu
+      :ile: ie
+      :ina: ia
+      :ind: id
+      :ipk: ik
+      :isl: is
+      :ita: it
+      :jav: jv
+      :jpn: ja
+      :kal: kl
+      :kan: kn
+      :kas: ks
+      :kat: ka
+      :kau: kr
+      :kaz: kk
+      :khm: km
+      :kik: ki
+      :kin: rw
+      :kir: ky
+      :kom: kv
+      :kon: kg
+      :kor: ko
+      :kua: kj
+      :kur: ku
+      :lao: lo
+      :lat: la
+      :lav: lv
+      :lim: li
+      :lin: ln
+      :lit: lt
+      :ltz: lb
+      :lub: lu
+      :lug: lg
+      :mah: mh
+      :mal: ml
+      :mar: mr
+      :mkd: mk
+      :mlg: mg
+      :mlt: mt
+      :mol: ro
+      :mon: mn
+      :mri: mi
+      :msa: ms
+      :mya: my
+      :nau: na
+      :nav: nv
+      :nbl: nr
+      :nde: nd
+      :ndo: ng
+      :nep: ne
+      :nld: nl
+      :nno: nn
+      :nob: nb
+      :nor: "no"
+      :nya: ny
+      :oci: oc
+      :oji: oj
+      :ori: or
+      :orm: om
+      :oss: os
+      :pan: pa
+      :pli: pi
+      :pol: pl
+      :por: pt
+      :prs: fa_AF
+      :pus: ps
+      :que: qu
+      :roh: rm
+      :ron: ro
+      :run: rn
+      :rus: ru
+      :sag: sg
+      :san: sa
+      :sin: si
+      :slk: sk
+      :slv: sl
+      :sme: se
+      :smo: sm
+      :sna: sn
+      :snd: sd
+      :som: so
+      :sot: st
+      :spa: es
+      :sqi: sq
+      :srd: sc
+      :srp: sr
+      :ssw: ss
+      :sun: su
+      :swa: sw
+      :swc: sw_CD
+      :swe: sv
+      :tah: ty
+      :tam: ta
+      :tat: tt
+      :tel: te
+      :tgk: tg
+      :tgl: fil
+      :tha: th
+      :tir: ti
+      :ton: to
+      :tsn: tn
+      :tso: ts
+      :tuk: tk
+      :tur: tr
+      :twi: ak
+      :uig: ug
+      :ukr: uk
+      :urd: ur
+      :uzb: uz
+      :ven: ve
+      :vie: vi
+      :vol: vo
+      :wln: wa
+      :wol: wo
+      :xho: xh
+      :yid: yi
+      :yor: yo
+      :zha: za
+      :zho: zh
+      :zul: zu
+  :territory: 
+    :deprecated: 
+      ? !ruby/symbol "062"
+      : 
+        - "034"
+        - "143"
+      ? !ruby/symbol "172"
+      : 
+        - RU
+        - AM
+        - AZ
+        - BY
+        - GE
+        - KG
+        - KZ
+        - MD
+        - TJ
+        - TM
+        - UA
+        - UZ
+      ? !ruby/symbol "200"
+      : 
+        - CZ
+        - SK
+      ? !ruby/symbol "230"
+      : ET
+      ? !ruby/symbol "280"
+      : DE
+      ? !ruby/symbol "532"
+      : 
+        - CW
+        - SX
+        - BQ
+      ? !ruby/symbol "582"
+      : 
+        - FM
+        - MH
+        - MP
+        - PW
+      ? !ruby/symbol "736"
+      : SD
+      ? !ruby/symbol "830"
+      : 
+        - JE
+        - GG
+      ? !ruby/symbol "886"
+      : YE
+      ? !ruby/symbol "890"
+      : 
+        - RS
+        - ME
+        - SI
+        - HR
+        - MK
+        - BA
+      :AN: 
+        - CW
+        - SX
+        - BQ
+      :BU: MM
+      :CS: 
+        - RS
+        - ME
+      :CT: KI
+      :DD: DE
+      :DY: BJ
+      :FQ: 
+        - AQ
+        - TF
+      :FX: FR
+      :HV: BF
+      :JT: UM
+      :MI: UM
+      :NH: VU
+      :NQ: AQ
+      :NT: 
+        - SA
+        - IQ
+      :PC: 
+        - FM
+        - MH
+        - MP
+        - PW
+      :PU: UM
+      :PZ: PA
+      :QU: EU
+      :RH: ZW
+      :SU: 
+        - RU
+        - AM
+        - AZ
+        - BY
+        - EE
+        - GE
+        - KZ
+        - KG
+        - LV
+        - LT
+        - MD
+        - TJ
+        - TM
+        - UA
+        - UZ
+      :TP: TL
+      :UK: GB
+      :VD: VN
+      :WK: UM
+      :YD: YE
+      :YU: 
+        - RS
+        - ME
+      :ZR: CD
+    :overlong: 
+      ? !ruby/symbol "004"
+      : AF
+      :008: AL
+      ? !ruby/symbol "010"
+      : AQ
+      ? !ruby/symbol "012"
+      : DZ
+      ? !ruby/symbol "016"
+      : AS
+      ? !ruby/symbol "020"
+      : AD
+      ? !ruby/symbol "024"
+      : AO
+      :028: AG
+      ? !ruby/symbol "031"
+      : AZ
+      ? !ruby/symbol "032"
+      : AR
+      ? !ruby/symbol "036"
+      : AU
+      ? !ruby/symbol "040"
+      : AT
+      ? !ruby/symbol "044"
+      : BS
+      :048: BH
+      ? !ruby/symbol "050"
+      : BD
+      ? !ruby/symbol "051"
+      : AM
+      ? !ruby/symbol "052"
+      : BB
+      ? !ruby/symbol "056"
+      : BE
+      ? !ruby/symbol "060"
+      : BM
+      ? !ruby/symbol "064"
+      : BT
+      :068: BO
+      ? !ruby/symbol "070"
+      : BA
+      ? !ruby/symbol "072"
+      : BW
+      ? !ruby/symbol "074"
+      : BV
+      ? !ruby/symbol "076"
+      : BR
+      :084: BZ
+      :086: IO
+      :090: SB
+      :092: VG
+      :096: BN
+      ? !ruby/symbol "100"
+      : BG
+      ? !ruby/symbol "104"
+      : MM
+      ? !ruby/symbol "108"
+      : BI
+      ? !ruby/symbol "112"
+      : BY
+      ? !ruby/symbol "116"
+      : KH
+      ? !ruby/symbol "120"
+      : CM
+      ? !ruby/symbol "124"
+      : CA
+      ? !ruby/symbol "132"
+      : CV
+      ? !ruby/symbol "136"
+      : KY
+      ? !ruby/symbol "140"
+      : CF
+      ? !ruby/symbol "144"
+      : LK
+      ? !ruby/symbol "148"
+      : TD
+      ? !ruby/symbol "152"
+      : CL
+      ? !ruby/symbol "156"
+      : CN
+      ? !ruby/symbol "158"
+      : TW
+      ? !ruby/symbol "162"
+      : CX
+      ? !ruby/symbol "166"
+      : CC
+      ? !ruby/symbol "170"
+      : CO
+      ? !ruby/symbol "174"
+      : KM
+      ? !ruby/symbol "175"
+      : YT
+      ? !ruby/symbol "178"
+      : CG
+      ? !ruby/symbol "180"
+      : CD
+      ? !ruby/symbol "184"
+      : CK
+      ? !ruby/symbol "188"
+      : CR
+      ? !ruby/symbol "191"
+      : HR
+      ? !ruby/symbol "192"
+      : CU
+      ? !ruby/symbol "196"
+      : CY
+      ? !ruby/symbol "203"
+      : CZ
+      ? !ruby/symbol "204"
+      : BJ
+      ? !ruby/symbol "208"
+      : DK
+      ? !ruby/symbol "212"
+      : DM
+      ? !ruby/symbol "214"
+      : DO
+      ? !ruby/symbol "218"
+      : EC
+      ? !ruby/symbol "222"
+      : SV
+      ? !ruby/symbol "226"
+      : GQ
+      ? !ruby/symbol "231"
+      : ET
+      ? !ruby/symbol "232"
+      : ER
+      ? !ruby/symbol "233"
+      : EE
+      ? !ruby/symbol "234"
+      : FO
+      ? !ruby/symbol "238"
+      : FK
+      ? !ruby/symbol "239"
+      : GS
+      ? !ruby/symbol "242"
+      : FJ
+      ? !ruby/symbol "246"
+      : FI
+      ? !ruby/symbol "248"
+      : AX
+      ? !ruby/symbol "249"
+      : FR
+      ? !ruby/symbol "250"
+      : FR
+      ? !ruby/symbol "254"
+      : GF
+      ? !ruby/symbol "258"
+      : PF
+      ? !ruby/symbol "260"
+      : TF
+      ? !ruby/symbol "262"
+      : DJ
+      ? !ruby/symbol "266"
+      : GA
+      ? !ruby/symbol "268"
+      : GE
+      ? !ruby/symbol "270"
+      : GM
+      ? !ruby/symbol "275"
+      : PS
+      ? !ruby/symbol "276"
+      : DE
+      ? !ruby/symbol "278"
+      : DE
+      ? !ruby/symbol "288"
+      : GH
+      ? !ruby/symbol "292"
+      : GI
+      ? !ruby/symbol "296"
+      : KI
+      ? !ruby/symbol "300"
+      : GR
+      ? !ruby/symbol "304"
+      : GL
+      ? !ruby/symbol "308"
+      : GD
+      ? !ruby/symbol "312"
+      : GP
+      ? !ruby/symbol "316"
+      : GU
+      ? !ruby/symbol "320"
+      : GT
+      ? !ruby/symbol "324"
+      : GN
+      ? !ruby/symbol "328"
+      : GY
+      ? !ruby/symbol "332"
+      : HT
+      ? !ruby/symbol "334"
+      : HM
+      ? !ruby/symbol "336"
+      : VA
+      ? !ruby/symbol "340"
+      : HN
+      ? !ruby/symbol "344"
+      : HK
+      ? !ruby/symbol "348"
+      : HU
+      ? !ruby/symbol "352"
+      : IS
+      ? !ruby/symbol "356"
+      : IN
+      ? !ruby/symbol "360"
+      : ID
+      ? !ruby/symbol "364"
+      : IR
+      ? !ruby/symbol "368"
+      : IQ
+      ? !ruby/symbol "372"
+      : IE
+      ? !ruby/symbol "376"
+      : IL
+      ? !ruby/symbol "380"
+      : IT
+      ? !ruby/symbol "384"
+      : CI
+      ? !ruby/symbol "388"
+      : JM
+      ? !ruby/symbol "392"
+      : JP
+      ? !ruby/symbol "398"
+      : KZ
+      ? !ruby/symbol "400"
+      : JO
+      ? !ruby/symbol "404"
+      : KE
+      ? !ruby/symbol "408"
+      : KP
+      ? !ruby/symbol "410"
+      : KR
+      ? !ruby/symbol "414"
+      : KW
+      ? !ruby/symbol "417"
+      : KG
+      ? !ruby/symbol "418"
+      : LA
+      ? !ruby/symbol "422"
+      : LB
+      ? !ruby/symbol "426"
+      : LS
+      ? !ruby/symbol "428"
+      : LV
+      ? !ruby/symbol "430"
+      : LR
+      ? !ruby/symbol "434"
+      : LY
+      ? !ruby/symbol "438"
+      : LI
+      ? !ruby/symbol "440"
+      : LT
+      ? !ruby/symbol "442"
+      : LU
+      ? !ruby/symbol "446"
+      : MO
+      ? !ruby/symbol "450"
+      : MG
+      ? !ruby/symbol "454"
+      : MW
+      ? !ruby/symbol "458"
+      : MY
+      ? !ruby/symbol "462"
+      : MV
+      ? !ruby/symbol "466"
+      : ML
+      ? !ruby/symbol "470"
+      : MT
+      ? !ruby/symbol "474"
+      : MQ
+      ? !ruby/symbol "478"
+      : MR
+      ? !ruby/symbol "480"
+      : MU
+      ? !ruby/symbol "484"
+      : MX
+      ? !ruby/symbol "492"
+      : MC
+      ? !ruby/symbol "496"
+      : MN
+      ? !ruby/symbol "498"
+      : MD
+      ? !ruby/symbol "499"
+      : ME
+      ? !ruby/symbol "500"
+      : MS
+      ? !ruby/symbol "504"
+      : MA
+      ? !ruby/symbol "508"
+      : MZ
+      ? !ruby/symbol "512"
+      : OM
+      ? !ruby/symbol "516"
+      : NA
+      ? !ruby/symbol "520"
+      : NR
+      ? !ruby/symbol "524"
+      : NP
+      ? !ruby/symbol "528"
+      : NL
+      ? !ruby/symbol "530"
+      : 
+        - CW
+        - SX
+        - BQ
+      ? !ruby/symbol "531"
+      : CW
+      ? !ruby/symbol "533"
+      : AW
+      ? !ruby/symbol "534"
+      : SX
+      ? !ruby/symbol "535"
+      : BQ
+      ? !ruby/symbol "536"
+      : 
+        - SA
+        - IQ
+      ? !ruby/symbol "540"
+      : NC
+      ? !ruby/symbol "548"
+      : VU
+      ? !ruby/symbol "554"
+      : NZ
+      ? !ruby/symbol "558"
+      : NI
+      ? !ruby/symbol "562"
+      : NE
+      ? !ruby/symbol "566"
+      : NG
+      ? !ruby/symbol "570"
+      : NU
+      ? !ruby/symbol "574"
+      : NF
+      ? !ruby/symbol "578"
+      : "NO"
+      ? !ruby/symbol "580"
+      : MP
+      ? !ruby/symbol "581"
+      : UM
+      ? !ruby/symbol "583"
+      : FM
+      ? !ruby/symbol "584"
+      : MH
+      ? !ruby/symbol "585"
+      : PW
+      ? !ruby/symbol "586"
+      : PK
+      ? !ruby/symbol "591"
+      : PA
+      ? !ruby/symbol "598"
+      : PG
+      ? !ruby/symbol "600"
+      : PY
+      ? !ruby/symbol "604"
+      : PE
+      ? !ruby/symbol "608"
+      : PH
+      ? !ruby/symbol "612"
+      : PN
+      ? !ruby/symbol "616"
+      : PL
+      ? !ruby/symbol "620"
+      : PT
+      ? !ruby/symbol "624"
+      : GW
+      ? !ruby/symbol "626"
+      : TL
+      ? !ruby/symbol "630"
+      : PR
+      ? !ruby/symbol "634"
+      : QA
+      ? !ruby/symbol "638"
+      : RE
+      ? !ruby/symbol "642"
+      : RO
+      ? !ruby/symbol "643"
+      : RU
+      ? !ruby/symbol "646"
+      : RW
+      ? !ruby/symbol "652"
+      : BL
+      ? !ruby/symbol "654"
+      : SH
+      ? !ruby/symbol "659"
+      : KN
+      ? !ruby/symbol "660"
+      : AI
+      ? !ruby/symbol "662"
+      : LC
+      ? !ruby/symbol "663"
+      : MF
+      ? !ruby/symbol "666"
+      : PM
+      ? !ruby/symbol "670"
+      : VC
+      ? !ruby/symbol "674"
+      : SM
+      ? !ruby/symbol "678"
+      : ST
+      ? !ruby/symbol "682"
+      : SA
+      ? !ruby/symbol "686"
+      : SN
+      ? !ruby/symbol "688"
+      : RS
+      ? !ruby/symbol "690"
+      : SC
+      ? !ruby/symbol "694"
+      : SL
+      ? !ruby/symbol "702"
+      : SG
+      ? !ruby/symbol "703"
+      : SK
+      ? !ruby/symbol "704"
+      : VN
+      ? !ruby/symbol "705"
+      : SI
+      ? !ruby/symbol "706"
+      : SO
+      ? !ruby/symbol "710"
+      : ZA
+      ? !ruby/symbol "716"
+      : ZW
+      ? !ruby/symbol "720"
+      : YE
+      ? !ruby/symbol "724"
+      : ES
+      ? !ruby/symbol "728"
+      : SS
+      ? !ruby/symbol "729"
+      : SD
+      ? !ruby/symbol "732"
+      : EH
+      ? !ruby/symbol "740"
+      : SR
+      ? !ruby/symbol "744"
+      : SJ
+      ? !ruby/symbol "748"
+      : SZ
+      ? !ruby/symbol "752"
+      : SE
+      ? !ruby/symbol "756"
+      : CH
+      ? !ruby/symbol "760"
+      : SY
+      ? !ruby/symbol "762"
+      : TJ
+      ? !ruby/symbol "764"
+      : TH
+      ? !ruby/symbol "768"
+      : TG
+      ? !ruby/symbol "772"
+      : TK
+      ? !ruby/symbol "776"
+      : TO
+      ? !ruby/symbol "780"
+      : TT
+      ? !ruby/symbol "784"
+      : AE
+      ? !ruby/symbol "788"
+      : TN
+      ? !ruby/symbol "792"
+      : TR
+      ? !ruby/symbol "795"
+      : TM
+      ? !ruby/symbol "796"
+      : TC
+      ? !ruby/symbol "798"
+      : TV
+      ? !ruby/symbol "800"
+      : UG
+      ? !ruby/symbol "804"
+      : UA
+      ? !ruby/symbol "807"
+      : MK
+      ? !ruby/symbol "810"
+      : 
+        - RU
+        - AM
+        - AZ
+        - BY
+        - EE
+        - GE
+        - KZ
+        - KG
+        - LV
+        - LT
+        - MD
+        - TJ
+        - TM
+        - UA
+        - UZ
+      ? !ruby/symbol "818"
+      : EG
+      ? !ruby/symbol "826"
+      : GB
+      ? !ruby/symbol "831"
+      : GG
+      ? !ruby/symbol "832"
+      : JE
+      ? !ruby/symbol "833"
+      : IM
+      ? !ruby/symbol "834"
+      : TZ
+      ? !ruby/symbol "840"
+      : US
+      ? !ruby/symbol "850"
+      : VI
+      ? !ruby/symbol "854"
+      : BF
+      ? !ruby/symbol "858"
+      : UY
+      ? !ruby/symbol "860"
+      : UZ
+      ? !ruby/symbol "862"
+      : VE
+      ? !ruby/symbol "876"
+      : WF
+      ? !ruby/symbol "882"
+      : WS
+      ? !ruby/symbol "887"
+      : YE
+      ? !ruby/symbol "891"
+      : 
+        - RS
+        - ME
+      ? !ruby/symbol "894"
+      : ZM
+      ? !ruby/symbol "958"
+      : AA
+      ? !ruby/symbol "959"
+      : QM
+      ? !ruby/symbol "960"
+      : QN
+      ? !ruby/symbol "962"
+      : QP
+      ? !ruby/symbol "963"
+      : QQ
+      ? !ruby/symbol "964"
+      : QR
+      ? !ruby/symbol "965"
+      : QS
+      ? !ruby/symbol "966"
+      : QT
+      ? !ruby/symbol "967"
+      : EU
+      ? !ruby/symbol "968"
+      : QV
+      ? !ruby/symbol "969"
+      : QW
+      ? !ruby/symbol "970"
+      : QX
+      ? !ruby/symbol "971"
+      : QY
+      ? !ruby/symbol "972"
+      : QZ
+      ? !ruby/symbol "973"
+      : XA
+      ? !ruby/symbol "974"
+      : XB
+      ? !ruby/symbol "975"
+      : XC
+      ? !ruby/symbol "976"
+      : XD
+      ? !ruby/symbol "977"
+      : XE
+      ? !ruby/symbol "978"
+      : XF
+      ? !ruby/symbol "979"
+      : XG
+      ? !ruby/symbol "980"
+      : XH
+      ? !ruby/symbol "981"
+      : XI
+      ? !ruby/symbol "982"
+      : XJ
+      ? !ruby/symbol "983"
+      : XK
+      ? !ruby/symbol "984"
+      : XL
+      ? !ruby/symbol "985"
+      : XM
+      ? !ruby/symbol "986"
+      : XN
+      ? !ruby/symbol "987"
+      : XO
+      ? !ruby/symbol "988"
+      : XP
+      ? !ruby/symbol "989"
+      : XQ
+      ? !ruby/symbol "990"
+      : XR
+      ? !ruby/symbol "991"
+      : XS
+      ? !ruby/symbol "992"
+      : XT
+      ? !ruby/symbol "993"
+      : XU
+      ? !ruby/symbol "994"
+      : XV
+      ? !ruby/symbol "995"
+      : XW
+      ? !ruby/symbol "996"
+      : XX
+      ? !ruby/symbol "997"
+      : XY
+      ? !ruby/symbol "998"
+      : XZ
+      ? !ruby/symbol "999"
+      : ZZ
+      :AAA: AA
+      :ABW: AW
+      :AFG: AF
+      :AGO: AO
+      :AIA: AI
+      :ALA: AX
+      :ALB: AL
+      :AND: AD
+      :ANT: 
+        - CW
+        - SX
+        - BQ
+      :ARE: AE
+      :ARG: AR
+      :ARM: AM
+      :ASC: AC
+      :ASM: AS
+      :ATA: AQ
+      :ATF: TF
+      :ATG: AG
+      :AUS: AU
+      :AUT: AT
+      :AZE: AZ
+      :BDI: BI
+      :BEL: BE
+      :BEN: BJ
+      :BES: BQ
+      :BFA: BF
+      :BGD: BD
+      :BGR: BG
+      :BHR: BH
+      :BHS: BS
+      :BIH: BA
+      :BLM: BL
+      :BLR: BY
+      :BLZ: BZ
+      :BMU: BM
+      :BOL: BO
+      :BRA: BR
+      :BRB: BB
+      :BRN: BN
+      :BTN: BT
+      :BUR: MM
+      :BVT: BV
+      :BWA: BW
+      :CAF: CF
+      :CAN: CA
+      :CCK: CC
+      :CHE: CH
+      :CHL: CL
+      :CHN: CN
+      :CIV: CI
+      :CMR: CM
+      :COD: CD
+      :COG: CG
+      :COK: CK
+      :COL: CO
+      :COM: KM
+      :CPT: CP
+      :CPV: CV
+      :CRI: CR
+      :CUB: CU
+      :CUW: CW
+      :CXR: CX
+      :CYM: KY
+      :CYP: CY
+      :CZE: CZ
+      :DDR: DE
+      :DEU: DE
+      :DGA: DG
+      :DJI: DJ
+      :DMA: DM
+      :DNK: DK
+      :DOM: DO
+      :DZA: DZ
+      :ECU: EC
+      :EGY: EG
+      :ERI: ER
+      :ESH: EH
+      :ESP: ES
+      :EST: EE
+      :ETH: ET
+      :FIN: FI
+      :FJI: FJ
+      :FLK: FK
+      :FRA: FR
+      :FRO: FO
+      :FSM: FM
+      :FXX: FR
+      :GAB: GA
+      :GBR: GB
+      :GEO: GE
+      :GGY: GG
+      :GHA: GH
+      :GIB: GI
+      :GIN: GN
+      :GLP: GP
+      :GMB: GM
+      :GNB: GW
+      :GNQ: GQ
+      :GRC: GR
+      :GRD: GD
+      :GRL: GL
+      :GTM: GT
+      :GUF: GF
+      :GUM: GU
+      :GUY: GY
+      :HKG: HK
+      :HMD: HM
+      :HND: HN
+      :HRV: HR
+      :HTI: HT
+      :HUN: HU
+      :IDN: ID
+      :IMN: IM
+      :IND: IN
+      :IOT: IO
+      :IRL: IE
+      :IRN: IR
+      :IRQ: IQ
+      :ISL: IS
+      :ISR: IL
+      :ITA: IT
+      :JAM: JM
+      :JEY: JE
+      :JOR: JO
+      :JPN: JP
+      :KAZ: KZ
+      :KEN: KE
+      :KGZ: KG
+      :KHM: KH
+      :KIR: KI
+      :KNA: KN
+      :KOR: KR
+      :KWT: KW
+      :LAO: LA
+      :LBN: LB
+      :LBR: LR
+      :LBY: LY
+      :LCA: LC
+      :LIE: LI
+      :LKA: LK
+      :LSO: LS
+      :LTU: LT
+      :LUX: LU
+      :LVA: LV
+      :MAC: MO
+      :MAF: MF
+      :MAR: MA
+      :MCO: MC
+      :MDA: MD
+      :MDG: MG
+      :MDV: MV
+      :MEX: MX
+      :MHL: MH
+      :MKD: MK
+      :MLI: ML
+      :MLT: MT
+      :MMR: MM
+      :MNE: ME
+      :MNG: MN
+      :MNP: MP
+      :MOZ: MZ
+      :MRT: MR
+      :MSR: MS
+      :MTQ: MQ
+      :MUS: MU
+      :MWI: MW
+      :MYS: MY
+      :MYT: YT
+      :NAM: NA
+      :NCL: NC
+      :NER: NE
+      :NFK: NF
+      :NGA: NG
+      :NIC: NI
+      :NIU: NU
+      :NLD: NL
+      :NOR: "NO"
+      :NPL: NP
+      :NRU: NR
+      :NTZ: 
+        - SA
+        - IQ
+      :NZL: NZ
+      :OMN: OM
+      :PAK: PK
+      :PAN: PA
+      :PCN: PN
+      :PER: PE
+      :PHL: PH
+      :PLW: PW
+      :PNG: PG
+      :POL: PL
+      :PRI: PR
+      :PRK: KP
+      :PRT: PT
+      :PRY: PY
+      :PSE: PS
+      :PYF: PF
+      :QAT: QA
+      :QMM: QM
+      :QNN: QN
+      :QPP: QP
+      :QQQ: QQ
+      :QRR: QR
+      :QSS: QS
+      :QTT: QT
+      :QUU: EU
+      :QVV: QV
+      :QWW: QW
+      :QXX: QX
+      :QYY: QY
+      :QZZ: QZ
+      :REU: RE
+      :ROU: RO
+      :RUS: RU
+      :RWA: RW
+      :SAU: SA
+      :SCG: 
+        - RS
+        - ME
+      :SDN: SD
+      :SEN: SN
+      :SGP: SG
+      :SGS: GS
+      :SHN: SH
+      :SJM: SJ
+      :SLB: SB
+      :SLE: SL
+      :SLV: SV
+      :SMR: SM
+      :SOM: SO
+      :SPM: PM
+      :SRB: RS
+      :SSD: SS
+      :STP: ST
+      :SUN: 
+        - RU
+        - AM
+        - AZ
+        - BY
+        - EE
+        - GE
+        - KZ
+        - KG
+        - LV
+        - LT
+        - MD
+        - TJ
+        - TM
+        - UA
+        - UZ
+      :SUR: SR
+      :SVK: SK
+      :SVN: SI
+      :SWE: SE
+      :SWZ: SZ
+      :SXM: SX
+      :SYC: SC
+      :SYR: SY
+      :TAA: TA
+      :TCA: TC
+      :TCD: TD
+      :TGO: TG
+      :THA: TH
+      :TJK: TJ
+      :TKL: TK
+      :TKM: TM
+      :TLS: TL
+      :TMP: TL
+      :TON: TO
+      :TTO: TT
+      :TUN: TN
+      :TUR: TR
+      :TUV: TV
+      :TWN: TW
+      :TZA: TZ
+      :UGA: UG
+      :UKR: UA
+      :UMI: UM
+      :URY: UY
+      :USA: US
+      :UZB: UZ
+      :VAT: VA
+      :VCT: VC
+      :VEN: VE
+      :VGB: VG
+      :VIR: VI
+      :VNM: VN
+      :VUT: VU
+      :WLF: WF
+      :WSM: WS
+      :XAA: XA
+      :XBB: XB
+      :XCC: XC
+      :XDD: XD
+      :XEE: XE
+      :XFF: XF
+      :XGG: XG
+      :XHH: XH
+      :XII: XI
+      :XJJ: XJ
+      :XKK: XK
+      :XLL: XL
+      :XMM: XM
+      :XNN: XN
+      :XOO: XO
+      :XPP: XP
+      :XQQ: XQ
+      :XRR: XR
+      :XSS: XS
+      :XTT: XT
+      :XUU: XU
+      :XVV: XV
+      :XWW: XW
+      :XXX: XX
+      :XYY: XY
+      :XZZ: XZ
+      :YEM: YE
+      :YMD: YE
+      :YUG: 
+        - RS
+        - ME
+      :ZAF: ZA
+      :ZAR: CD
+      :ZMB: ZM
+      :ZWE: ZW
+      :ZZZ: ZZ
+  :zone: 
+    :deprecated: 
+      :Africa/Timbuktu: Africa/Bamako
+      :America/Montreal: America/Toronto
+      :America/Nipigon: America/Toronto
+      :America/Pangnirtung: America/Iqaluit
+      :America/Rainy_River: America/Winnipeg
+      :America/Santa_Isabel: America/Tijuana
+      :America/Shiprock: America/Denver
+      :America/Thunder_Bay: America/Toronto
+      :America/Yellowknife: America/Edmonton
+      :Antarctica/South_Pole: Pacific/Auckland
+      :Asia/Choibalsan: Asia/Ulaanbaatar
+      :Asia/Chongqing: Asia/Shanghai
+      :Asia/Harbin: Asia/Shanghai
+      :Asia/Kashgar: Asia/Urumqi
+      :Atlantic/Jan_Mayen: Europe/Oslo
+      :Australia/Currie: Australia/Hobart
+      :CST6CDT: America/Chicago
+      :EST: America/Panama
+      :EST5EDT: America/New_York
+      :Europe/Belfast: Europe/London
+      :Europe/Uzhgorod: Europe/Kiev
+      :Europe/Zaporozhye: Europe/Kiev
+      :HST: Pacific/Honolulu
+      :MST: America/Phoenix
+      :MST7MDT: America/Denver
+      :PST8PDT: America/Los_Angeles
+      :Pacific/Johnston: Pacific/Honolulu
+      :Pacific/Yap: Pacific/Truk
+      :SystemV/AST4: America/Puerto_Rico
+      :SystemV/AST4ADT: America/Halifax
+      :SystemV/CST6: America/Regina
+      :SystemV/CST6CDT: America/Chicago
+      :SystemV/EST5: America/Indianapolis
+      :SystemV/EST5EDT: America/New_York
+      :SystemV/HST10: Pacific/Honolulu
+      :SystemV/MST7: America/Phoenix
+      :SystemV/MST7MDT: America/Denver
+      :SystemV/PST8: Pacific/Pitcairn
+      :SystemV/PST8PDT: America/Los_Angeles
+      :SystemV/YST9: Pacific/Gambier
+      :SystemV/YST9YDT: America/Anchorage

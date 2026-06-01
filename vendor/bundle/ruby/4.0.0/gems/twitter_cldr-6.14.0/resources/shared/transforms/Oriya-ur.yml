@@ -1,0 +1,15 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - ur-t-und-orya
+    :direction: forward
+    :rules: 
+      - "::[ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୃେ-ୈୋ-୍ୖ-ୗଡ଼-ଢ଼ୟ-ୡ୦-ୱ] ;"
+      - "::NFD ;"
+      - "::Oriya-InterIndic ;"
+      - "::InterIndic-ur ;"
+      - "::NFC ;"
+    :source: Orya
+    :target: ur
+    :variant: ~

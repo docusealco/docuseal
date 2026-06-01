@@ -1,0 +1,20 @@
+# See https://ddnexus.github.io/pagy/resources/i18n
+
+ckb:
+  pagy:
+    p11n: 'Other'
+    item_name: "بابەت"
+    aria_label:
+      nav: "پەڕەکان"
+      previous: "پاش"
+      next: "پێش"
+    previous: "&lt;"
+    next: "&gt;"
+    gap: "&hellip;"
+    info_tag:
+      no_count: "پەڕی %{page} لە %{pages}"
+      no_items: "هیچ %{item_name}ێک نەدۆزرایەوە"
+      single_page: "پیشاندانی %{count} %{item_name}"
+      multiple_pages: "پشاندانی %{item_name}ی %{from}-%{to} لە کۆی %{count} بە گشتی"
+    input_nav_js: "پەڕی %{page_input} لە %{pages}"
+    limit_tag_js: "نیشاندانی %{limit_input} %{item_name} لە هەر پەڕێک"

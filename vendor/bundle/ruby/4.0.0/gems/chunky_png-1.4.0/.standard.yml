@@ -1,0 +1,16 @@
+# ChunkyPNG uses and enforces standard.rb as code style (see https://github.com/testdouble/standard).
+# For backwards compatilibity and idiosyncratic preferences of the main author,
+# there are some minor differences listed in here.
+
+ruby_version: 2.2
+
+ignore:
+- lib/chunky_png/**/*.rb:
+  # We allow `for` loops in the codebase, especially in hot paths,
+  # because they perform better than `each` blocks.
+  - "Style/For"
+
+- spec/chunky_png/**/*.rb:
+  # In RSpec, having to follow this rule will cause expectations to
+  # be less readable, specifically blocks for the `change` matcher.
+  - "Lint/AmbiguousBlockAssociation"

@@ -1,0 +1,1793 @@
+---
+8592:
+- 8592
+- LEFTWARDS ARROW
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- LEFT ARROW
+- ''
+- ''
+- ''
+- ''
+8593:
+- 8593
+- UPWARDS ARROW
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- UP ARROW
+- ''
+- ''
+- ''
+- ''
+8594:
+- 8594
+- RIGHTWARDS ARROW
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- RIGHT ARROW
+- ''
+- ''
+- ''
+- ''
+8595:
+- 8595
+- DOWNWARDS ARROW
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- DOWN ARROW
+- ''
+- ''
+- ''
+- ''
+8596:
+- 8596
+- LEFT RIGHT ARROW
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8597:
+- 8597
+- UP DOWN ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8598:
+- 8598
+- NORTH WEST ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- UPPER LEFT ARROW
+- ''
+- ''
+- ''
+- ''
+8599:
+- 8599
+- NORTH EAST ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- UPPER RIGHT ARROW
+- ''
+- ''
+- ''
+- ''
+8600:
+- 8600
+- SOUTH EAST ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- LOWER RIGHT ARROW
+- ''
+- ''
+- ''
+- ''
+8601:
+- 8601
+- SOUTH WEST ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- LOWER LEFT ARROW
+- ''
+- ''
+- ''
+- ''
+8602:
+- 8602
+- LEFTWARDS ARROW WITH STROKE
+- Sm
+- '0'
+- 'ON'
+- 2190 0338
+- ''
+- ''
+- ''
+- N
+- LEFT ARROW WITH STROKE
+- ''
+- ''
+- ''
+- ''
+8603:
+- 8603
+- RIGHTWARDS ARROW WITH STROKE
+- Sm
+- '0'
+- 'ON'
+- 2192 0338
+- ''
+- ''
+- ''
+- N
+- RIGHT ARROW WITH STROKE
+- ''
+- ''
+- ''
+- ''
+8604:
+- 8604
+- LEFTWARDS WAVE ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- LEFT WAVE ARROW
+- ''
+- ''
+- ''
+- ''
+8605:
+- 8605
+- RIGHTWARDS WAVE ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- RIGHT WAVE ARROW
+- ''
+- ''
+- ''
+- ''
+8606:
+- 8606
+- LEFTWARDS TWO HEADED ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- LEFT TWO HEADED ARROW
+- ''
+- ''
+- ''
+- ''
+8607:
+- 8607
+- UPWARDS TWO HEADED ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- UP TWO HEADED ARROW
+- ''
+- ''
+- ''
+- ''
+8608:
+- 8608
+- RIGHTWARDS TWO HEADED ARROW
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- RIGHT TWO HEADED ARROW
+- ''
+- ''
+- ''
+- ''
+8609:
+- 8609
+- DOWNWARDS TWO HEADED ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- DOWN TWO HEADED ARROW
+- ''
+- ''
+- ''
+- ''
+8610:
+- 8610
+- LEFTWARDS ARROW WITH TAIL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- LEFT ARROW WITH TAIL
+- ''
+- ''
+- ''
+- ''
+8611:
+- 8611
+- RIGHTWARDS ARROW WITH TAIL
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- RIGHT ARROW WITH TAIL
+- ''
+- ''
+- ''
+- ''
+8612:
+- 8612
+- LEFTWARDS ARROW FROM BAR
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- LEFT ARROW FROM BAR
+- ''
+- ''
+- ''
+- ''
+8613:
+- 8613
+- UPWARDS ARROW FROM BAR
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- UP ARROW FROM BAR
+- ''
+- ''
+- ''
+- ''
+8614:
+- 8614
+- RIGHTWARDS ARROW FROM BAR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- RIGHT ARROW FROM BAR
+- ''
+- ''
+- ''
+- ''
+8615:
+- 8615
+- DOWNWARDS ARROW FROM BAR
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- DOWN ARROW FROM BAR
+- ''
+- ''
+- ''
+- ''
+8616:
+- 8616
+- UP DOWN ARROW WITH BASE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8617:
+- 8617
+- LEFTWARDS ARROW WITH HOOK
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- LEFT ARROW WITH HOOK
+- ''
+- ''
+- ''
+- ''
+8618:
+- 8618
+- RIGHTWARDS ARROW WITH HOOK
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- RIGHT ARROW WITH HOOK
+- ''
+- ''
+- ''
+- ''
+8619:
+- 8619
+- LEFTWARDS ARROW WITH LOOP
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- LEFT ARROW WITH LOOP
+- ''
+- ''
+- ''
+- ''
+8620:
+- 8620
+- RIGHTWARDS ARROW WITH LOOP
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- RIGHT ARROW WITH LOOP
+- ''
+- ''
+- ''
+- ''
+8621:
+- 8621
+- LEFT RIGHT WAVE ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8622:
+- 8622
+- LEFT RIGHT ARROW WITH STROKE
+- Sm
+- '0'
+- 'ON'
+- 2194 0338
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8623:
+- 8623
+- DOWNWARDS ZIGZAG ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- DOWN ZIGZAG ARROW
+- ''
+- ''
+- ''
+- ''
+8624:
+- 8624
+- UPWARDS ARROW WITH TIP LEFTWARDS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- UP ARROW WITH TIP LEFT
+- ''
+- ''
+- ''
+- ''
+8625:
+- 8625
+- UPWARDS ARROW WITH TIP RIGHTWARDS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- UP ARROW WITH TIP RIGHT
+- ''
+- ''
+- ''
+- ''
+8626:
+- 8626
+- DOWNWARDS ARROW WITH TIP LEFTWARDS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- DOWN ARROW WITH TIP LEFT
+- ''
+- ''
+- ''
+- ''
+8627:
+- 8627
+- DOWNWARDS ARROW WITH TIP RIGHTWARDS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- DOWN ARROW WITH TIP RIGHT
+- ''
+- ''
+- ''
+- ''
+8628:
+- 8628
+- RIGHTWARDS ARROW WITH CORNER DOWNWARDS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- RIGHT ARROW WITH CORNER DOWN
+- ''
+- ''
+- ''
+- ''
+8629:
+- 8629
+- DOWNWARDS ARROW WITH CORNER LEFTWARDS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- DOWN ARROW WITH CORNER LEFT
+- ''
+- ''
+- ''
+- ''
+8630:
+- 8630
+- ANTICLOCKWISE TOP SEMICIRCLE ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8631:
+- 8631
+- CLOCKWISE TOP SEMICIRCLE ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8632:
+- 8632
+- NORTH WEST ARROW TO LONG BAR
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- UPPER LEFT ARROW TO LONG BAR
+- ''
+- ''
+- ''
+- ''
+8633:
+- 8633
+- LEFTWARDS ARROW TO BAR OVER RIGHTWARDS ARROW TO BAR
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- LEFT ARROW TO BAR OVER RIGHT ARROW TO BAR
+- ''
+- ''
+- ''
+- ''
+8634:
+- 8634
+- ANTICLOCKWISE OPEN CIRCLE ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8635:
+- 8635
+- CLOCKWISE OPEN CIRCLE ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8636:
+- 8636
+- LEFTWARDS HARPOON WITH BARB UPWARDS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- LEFT HARPOON WITH BARB UP
+- ''
+- ''
+- ''
+- ''
+8637:
+- 8637
+- LEFTWARDS HARPOON WITH BARB DOWNWARDS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- LEFT HARPOON WITH BARB DOWN
+- ''
+- ''
+- ''
+- ''
+8638:
+- 8638
+- UPWARDS HARPOON WITH BARB RIGHTWARDS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- UP HARPOON WITH BARB RIGHT
+- ''
+- ''
+- ''
+- ''
+8639:
+- 8639
+- UPWARDS HARPOON WITH BARB LEFTWARDS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- UP HARPOON WITH BARB LEFT
+- ''
+- ''
+- ''
+- ''
+8640:
+- 8640
+- RIGHTWARDS HARPOON WITH BARB UPWARDS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- RIGHT HARPOON WITH BARB UP
+- ''
+- ''
+- ''
+- ''
+8641:
+- 8641
+- RIGHTWARDS HARPOON WITH BARB DOWNWARDS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- RIGHT HARPOON WITH BARB DOWN
+- ''
+- ''
+- ''
+- ''
+8642:
+- 8642
+- DOWNWARDS HARPOON WITH BARB RIGHTWARDS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- DOWN HARPOON WITH BARB RIGHT
+- ''
+- ''
+- ''
+- ''
+8643:
+- 8643
+- DOWNWARDS HARPOON WITH BARB LEFTWARDS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- DOWN HARPOON WITH BARB LEFT
+- ''
+- ''
+- ''
+- ''
+8644:
+- 8644
+- RIGHTWARDS ARROW OVER LEFTWARDS ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- RIGHT ARROW OVER LEFT ARROW
+- ''
+- ''
+- ''
+- ''
+8645:
+- 8645
+- UPWARDS ARROW LEFTWARDS OF DOWNWARDS ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- UP ARROW LEFT OF DOWN ARROW
+- ''
+- ''
+- ''
+- ''
+8646:
+- 8646
+- LEFTWARDS ARROW OVER RIGHTWARDS ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- LEFT ARROW OVER RIGHT ARROW
+- ''
+- ''
+- ''
+- ''
+8647:
+- 8647
+- LEFTWARDS PAIRED ARROWS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- LEFT PAIRED ARROWS
+- ''
+- ''
+- ''
+- ''
+8648:
+- 8648
+- UPWARDS PAIRED ARROWS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- UP PAIRED ARROWS
+- ''
+- ''
+- ''
+- ''
+8649:
+- 8649
+- RIGHTWARDS PAIRED ARROWS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- RIGHT PAIRED ARROWS
+- ''
+- ''
+- ''
+- ''
+8650:
+- 8650
+- DOWNWARDS PAIRED ARROWS
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- DOWN PAIRED ARROWS
+- ''
+- ''
+- ''
+- ''
+8651:
+- 8651
+- LEFTWARDS HARPOON OVER RIGHTWARDS HARPOON
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- LEFT HARPOON OVER RIGHT HARPOON
+- ''
+- ''
+- ''
+- ''
+8652:
+- 8652
+- RIGHTWARDS HARPOON OVER LEFTWARDS HARPOON
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- RIGHT HARPOON OVER LEFT HARPOON
+- ''
+- ''
+- ''
+- ''
+8653:
+- 8653
+- LEFTWARDS DOUBLE ARROW WITH STROKE
+- So
+- '0'
+- 'ON'
+- 21D0 0338
+- ''
+- ''
+- ''
+- N
+- LEFT DOUBLE ARROW WITH STROKE
+- ''
+- ''
+- ''
+- ''
+8654:
+- 8654
+- LEFT RIGHT DOUBLE ARROW WITH STROKE
+- Sm
+- '0'
+- 'ON'
+- 21D4 0338
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8655:
+- 8655
+- RIGHTWARDS DOUBLE ARROW WITH STROKE
+- Sm
+- '0'
+- 'ON'
+- 21D2 0338
+- ''
+- ''
+- ''
+- N
+- RIGHT DOUBLE ARROW WITH STROKE
+- ''
+- ''
+- ''
+- ''
+8656:
+- 8656
+- LEFTWARDS DOUBLE ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- LEFT DOUBLE ARROW
+- ''
+- ''
+- ''
+- ''
+8657:
+- 8657
+- UPWARDS DOUBLE ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- UP DOUBLE ARROW
+- ''
+- ''
+- ''
+- ''
+8658:
+- 8658
+- RIGHTWARDS DOUBLE ARROW
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- RIGHT DOUBLE ARROW
+- ''
+- ''
+- ''
+- ''
+8659:
+- 8659
+- DOWNWARDS DOUBLE ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- DOWN DOUBLE ARROW
+- ''
+- ''
+- ''
+- ''
+8660:
+- 8660
+- LEFT RIGHT DOUBLE ARROW
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8661:
+- 8661
+- UP DOWN DOUBLE ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8662:
+- 8662
+- NORTH WEST DOUBLE ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- UPPER LEFT DOUBLE ARROW
+- ''
+- ''
+- ''
+- ''
+8663:
+- 8663
+- NORTH EAST DOUBLE ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- UPPER RIGHT DOUBLE ARROW
+- ''
+- ''
+- ''
+- ''
+8664:
+- 8664
+- SOUTH EAST DOUBLE ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- LOWER RIGHT DOUBLE ARROW
+- ''
+- ''
+- ''
+- ''
+8665:
+- 8665
+- SOUTH WEST DOUBLE ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- LOWER LEFT DOUBLE ARROW
+- ''
+- ''
+- ''
+- ''
+8666:
+- 8666
+- LEFTWARDS TRIPLE ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- LEFT TRIPLE ARROW
+- ''
+- ''
+- ''
+- ''
+8667:
+- 8667
+- RIGHTWARDS TRIPLE ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- RIGHT TRIPLE ARROW
+- ''
+- ''
+- ''
+- ''
+8668:
+- 8668
+- LEFTWARDS SQUIGGLE ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- LEFT SQUIGGLE ARROW
+- ''
+- ''
+- ''
+- ''
+8669:
+- 8669
+- RIGHTWARDS SQUIGGLE ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- RIGHT SQUIGGLE ARROW
+- ''
+- ''
+- ''
+- ''
+8670:
+- 8670
+- UPWARDS ARROW WITH DOUBLE STROKE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- UP ARROW WITH DOUBLE STROKE
+- ''
+- ''
+- ''
+- ''
+8671:
+- 8671
+- DOWNWARDS ARROW WITH DOUBLE STROKE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- DOWN ARROW WITH DOUBLE STROKE
+- ''
+- ''
+- ''
+- ''
+8672:
+- 8672
+- LEFTWARDS DASHED ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- LEFT DASHED ARROW
+- ''
+- ''
+- ''
+- ''
+8673:
+- 8673
+- UPWARDS DASHED ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- UP DASHED ARROW
+- ''
+- ''
+- ''
+- ''
+8674:
+- 8674
+- RIGHTWARDS DASHED ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- RIGHT DASHED ARROW
+- ''
+- ''
+- ''
+- ''
+8675:
+- 8675
+- DOWNWARDS DASHED ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- DOWN DASHED ARROW
+- ''
+- ''
+- ''
+- ''
+8676:
+- 8676
+- LEFTWARDS ARROW TO BAR
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- LEFT ARROW TO BAR
+- ''
+- ''
+- ''
+- ''
+8677:
+- 8677
+- RIGHTWARDS ARROW TO BAR
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- RIGHT ARROW TO BAR
+- ''
+- ''
+- ''
+- ''
+8678:
+- 8678
+- LEFTWARDS WHITE ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- WHITE LEFT ARROW
+- ''
+- ''
+- ''
+- ''
+8679:
+- 8679
+- UPWARDS WHITE ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- WHITE UP ARROW
+- ''
+- ''
+- ''
+- ''
+8680:
+- 8680
+- RIGHTWARDS WHITE ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- WHITE RIGHT ARROW
+- ''
+- ''
+- ''
+- ''
+8681:
+- 8681
+- DOWNWARDS WHITE ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- WHITE DOWN ARROW
+- ''
+- ''
+- ''
+- ''
+8682:
+- 8682
+- UPWARDS WHITE ARROW FROM BAR
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- WHITE UP ARROW FROM BAR
+- ''
+- ''
+- ''
+- ''
+8683:
+- 8683
+- UPWARDS WHITE ARROW ON PEDESTAL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8684:
+- 8684
+- UPWARDS WHITE ARROW ON PEDESTAL WITH HORIZONTAL BAR
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8685:
+- 8685
+- UPWARDS WHITE ARROW ON PEDESTAL WITH VERTICAL BAR
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8686:
+- 8686
+- UPWARDS WHITE DOUBLE ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8687:
+- 8687
+- UPWARDS WHITE DOUBLE ARROW ON PEDESTAL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8688:
+- 8688
+- RIGHTWARDS WHITE ARROW FROM WALL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8689:
+- 8689
+- NORTH WEST ARROW TO CORNER
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8690:
+- 8690
+- SOUTH EAST ARROW TO CORNER
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8691:
+- 8691
+- UP DOWN WHITE ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8692:
+- 8692
+- RIGHT ARROW WITH SMALL CIRCLE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8693:
+- 8693
+- DOWNWARDS ARROW LEFTWARDS OF UPWARDS ARROW
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8694:
+- 8694
+- THREE RIGHTWARDS ARROWS
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8695:
+- 8695
+- LEFTWARDS ARROW WITH VERTICAL STROKE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8696:
+- 8696
+- RIGHTWARDS ARROW WITH VERTICAL STROKE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8697:
+- 8697
+- LEFT RIGHT ARROW WITH VERTICAL STROKE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8698:
+- 8698
+- LEFTWARDS ARROW WITH DOUBLE VERTICAL STROKE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8699:
+- 8699
+- RIGHTWARDS ARROW WITH DOUBLE VERTICAL STROKE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8700:
+- 8700
+- LEFT RIGHT ARROW WITH DOUBLE VERTICAL STROKE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8701:
+- 8701
+- LEFTWARDS OPEN-HEADED ARROW
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8702:
+- 8702
+- RIGHTWARDS OPEN-HEADED ARROW
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8703:
+- 8703
+- LEFT RIGHT OPEN-HEADED ARROW
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''

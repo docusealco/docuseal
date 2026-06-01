@@ -1,0 +1,19 @@
+module WEBrick
+  module Config
+    SSL: Hash[Symbol, untyped]
+  end
+
+  module Utils
+    def self?.create_self_signed_cert: (untyped bits, untyped cn, untyped comment) -> ::Array[untyped]
+  end
+
+  class GenericServer
+    @ssl_context: OpenSSL::SSL::SSLContext?
+
+    def ssl_context: () -> OpenSSL::SSL::SSLContext?
+
+    def setup_ssl_context: (Hash[Symbol, untyped] config) -> OpenSSL::SSL::SSLContext
+
+    def ssl_servername_callback: (untyped sslsocket, ?untyped? hostname) -> untyped
+  end
+end

@@ -1,0 +1,98 @@
+# View helper methods for rendering asset tags
+module Shakapacker::Helper
+  # Returns the current Shakapacker instance
+  def current_shakapacker_instance: () -> Instance
+
+  # Computes the relative path for a given Shakapacker asset
+  def asset_pack_path: (String name, **untyped options) -> String
+
+  # Computes the absolute path for a given Shakapacker asset
+  def asset_pack_url: (String name, **untyped options) -> String
+
+  # Computes the relative path for a given Shakapacker image
+  def image_pack_path: (String name, **untyped options) -> String
+
+  # Computes the absolute path for a given Shakapacker image
+  def image_pack_url: (String name, **untyped options) -> String
+
+  # Creates an image tag that references the named pack file
+  def image_pack_tag: (String name, **untyped options) -> ActiveSupport::SafeBuffer
+
+  # Creates a link tag for a favicon that references the named pack file
+  def favicon_pack_tag: (String name, **untyped options) -> ActiveSupport::SafeBuffer
+
+  # Creates script tags that reference the js chunks from entrypoints
+  def javascript_pack_tag: (
+    *String names,
+    ?defer: bool,
+    ?async: bool,
+    ?early_hints: (Hash[String | Symbol, String] | String | bool)?,
+    **untyped options
+  ) -> ActiveSupport::SafeBuffer
+
+  # Creates a link tag for preloading that references a given Shakapacker asset
+  def preload_pack_asset: (String name, **untyped options) -> ActiveSupport::SafeBuffer
+
+  # Sends HTTP 103 Early Hints for specified packs
+  def send_pack_early_hints: (Hash[String | Symbol, Hash[String | Symbol, String | bool]] config) -> nil
+
+  # Creates link tags that reference the css chunks from entrypoints
+  def stylesheet_pack_tag: (
+    *String names,
+    ?early_hints: (Hash[String | Symbol, String] | String | bool)?,
+    **untyped options
+  ) -> ActiveSupport::SafeBuffer
+
+  # Appends stylesheet pack names to the queue
+  def append_stylesheet_pack_tag: (*String names) -> nil
+
+  # Appends javascript pack names to the queue
+  def append_javascript_pack_tag: (*String names, ?defer: bool, ?async: bool) -> nil
+
+  # Prepends javascript pack names to the queue
+  def prepend_javascript_pack_tag: (*String names, ?defer: bool, ?async: bool) -> nil
+
+  private
+
+  def update_javascript_pack_tag_queue: (defer: bool, async: bool) { (Symbol) -> void } -> nil
+
+  def javascript_pack_tag_queue: () -> Hash[Symbol, Array[String]]
+
+  def sources_from_manifest_entrypoints: (Array[String | Symbol] names, type: Symbol) -> Array[String]
+
+  def available_sources_from_manifest_entrypoints: (Array[String | Symbol] names, type: Symbol) -> Array[String]
+
+  def resolve_path_to_image: (String name, **untyped options) -> String
+
+  def lookup_integrity: (String | Hash[String, untyped] source) -> String?
+
+  def lookup_source: (String | Hash[String, untyped] source) -> String
+
+  def render_tags: (Array[String] sources, Symbol type, Hash[Symbol, untyped] options) -> nil
+
+  def early_hints_supported?: () -> bool
+
+  def early_hints_enabled?: () -> bool
+
+  def early_hints_debug_enabled?: () -> bool
+
+  def resolve_early_hints_value: ((Hash[String | Symbol, String] | String | bool)? early_hints, Symbol asset_type) -> String
+
+  def normalize_pack_hints: (Array[String] packs, Hash[String | Symbol, String] | String | bool early_hints) -> Hash[String, String]
+
+  def normalize_hint_value: (String | bool | nil value) -> String
+
+  def early_hints_skip_reason: () -> String
+
+  def build_link_header: (String source_path, String | Hash[String, untyped] source, as: String, ?rel: String) -> String
+
+  def early_hints_store: () -> Hash[String, untyped]
+
+  def send_early_hints_internal: (Hash[String, String] config, type: Symbol) -> void
+
+  def flush_early_hints: () -> void
+
+  def send_javascript_early_hints_internal: (Hash[String, String] config) -> void
+
+  def send_stylesheet_early_hints_internal: (Hash[String, String] config) -> void
+end

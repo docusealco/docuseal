@@ -1,0 +1,170 @@
+--- 
+:vi: 
+  :rbnf: 
+    :grouping: 
+      - 
+        :ruleset: 
+          - 
+            :rules: 
+              - 
+                :rule: =0.0=;
+                :value: x.x
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 0
+            :type: spellout-numbering-year
+          - 
+            :rules: 
+              - 
+                :rule: =%spellout-cardinal=;
+                :value: 0
+            :type: spellout-numbering
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: =%spellout-cardinal=;
+                :value: 0
+              - 
+                :rule: lăm;
+                :value: 5
+              - 
+                :rule: =%spellout-cardinal=;
+                :value: 6
+            :type: teen
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: =%spellout-cardinal=;
+                :value: 0
+              - 
+                :rule: mốt;
+                :value: 1
+              - 
+                :rule: =%%teen=;
+                :value: 2
+              - 
+                :rule: tư;
+                :value: 4
+              - 
+                :rule: =%%teen=;
+                :value: 5
+            :type: x-ty
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: "lẻ =%spellout-cardinal=;"
+                :value: 0
+              - 
+                :rule: =%spellout-cardinal=;
+                :value: 10
+            :type: after-hundred
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: "không trăm =%%after-hundred=;"
+                :value: 0
+              - 
+                :rule: =%spellout-cardinal=;
+                :value: 100
+            :type: after-thousand-or-more
+          - 
+            :rules: 
+              - 
+                :rule: "âm >>;"
+                :value: "-x"
+              - 
+                :rule: "<< phẩy >>;"
+                :value: x.x
+              - 
+                :rule: không;
+                :value: 0
+              - 
+                :rule: một;
+                :value: 1
+              - 
+                :rule: hai;
+                :value: 2
+              - 
+                :rule: ba;
+                :value: 3
+              - 
+                :rule: bốn;
+                :value: 4
+              - 
+                :rule: năm;
+                :value: 5
+              - 
+                :rule: sáu;
+                :value: 6
+              - 
+                :rule: bảy;
+                :value: 7
+              - 
+                :rule: tám;
+                :value: 8
+              - 
+                :rule: chín;
+                :value: 9
+              - 
+                :rule: "mười[ >%%teen>];"
+                :value: 10
+              - 
+                :rule: "<< mươi[ >%%x-ty>];"
+                :value: 20
+              - 
+                :rule: "<< trăm[ >%%after-hundred>];"
+                :value: 100
+              - 
+                :rule: "<< nghìn[ >%%after-thousand-or-more>];"
+                :value: 1000
+              - 
+                :rule: "<< triệu[ >%%after-hundred>];"
+                :value: 1000000
+              - 
+                :rule: "<< tỷ[ >%%after-hundred>];"
+                :value: 1000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal
+          - 
+            :rules: 
+              - 
+                :rule: "=#,##0.#=;"
+                :value: x.x
+              - 
+                :rule: "thứ =%spellout-cardinal=;"
+                :value: 0
+              - 
+                :rule: "thứ nhất;"
+                :value: 1
+              - 
+                :rule: "thứ nhì;"
+                :value: 2
+              - 
+                :rule: "thứ =%spellout-cardinal=;"
+                :value: 3
+              - 
+                :rule: "thứ tư;"
+                :value: 4
+              - 
+                :rule: "thứ =%spellout-cardinal=;"
+                :value: 5
+            :type: spellout-ordinal
+        :type: SpelloutRules
+      - 
+        :ruleset: 
+          - 
+            :rules: 
+              - 
+                :rule: −>>;
+                :value: "-x"
+              - 
+                :rule: "thứ =#,##0=;"
+                :value: 0
+            :type: digits-ordinal
+        :type: OrdinalRules

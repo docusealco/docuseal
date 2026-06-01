@@ -1,0 +1,3201 @@
+---
+127232:
+- 127232
+- DIGIT ZERO FULL STOP
+- 'No'
+- '0'
+- EN
+- "<compat> 0030 002E"
+- ''
+- '0'
+- '0'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127233:
+- 127233
+- DIGIT ZERO COMMA
+- 'No'
+- '0'
+- EN
+- "<compat> 0030 002C"
+- ''
+- '0'
+- '0'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127234:
+- 127234
+- DIGIT ONE COMMA
+- 'No'
+- '0'
+- EN
+- "<compat> 0031 002C"
+- ''
+- '1'
+- '1'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127235:
+- 127235
+- DIGIT TWO COMMA
+- 'No'
+- '0'
+- EN
+- "<compat> 0032 002C"
+- ''
+- '2'
+- '2'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127236:
+- 127236
+- DIGIT THREE COMMA
+- 'No'
+- '0'
+- EN
+- "<compat> 0033 002C"
+- ''
+- '3'
+- '3'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127237:
+- 127237
+- DIGIT FOUR COMMA
+- 'No'
+- '0'
+- EN
+- "<compat> 0034 002C"
+- ''
+- '4'
+- '4'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127238:
+- 127238
+- DIGIT FIVE COMMA
+- 'No'
+- '0'
+- EN
+- "<compat> 0035 002C"
+- ''
+- '5'
+- '5'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127239:
+- 127239
+- DIGIT SIX COMMA
+- 'No'
+- '0'
+- EN
+- "<compat> 0036 002C"
+- ''
+- '6'
+- '6'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127240:
+- 127240
+- DIGIT SEVEN COMMA
+- 'No'
+- '0'
+- EN
+- "<compat> 0037 002C"
+- ''
+- '7'
+- '7'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127241:
+- 127241
+- DIGIT EIGHT COMMA
+- 'No'
+- '0'
+- EN
+- "<compat> 0038 002C"
+- ''
+- '8'
+- '8'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127242:
+- 127242
+- DIGIT NINE COMMA
+- 'No'
+- '0'
+- EN
+- "<compat> 0039 002C"
+- ''
+- '9'
+- '9'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127243:
+- 127243
+- DINGBAT CIRCLED SANS-SERIF DIGIT ZERO
+- 'No'
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- '0'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127244:
+- 127244
+- DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT ZERO
+- 'No'
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- '0'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127245:
+- 127245
+- CIRCLED ZERO WITH SLASH
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127246:
+- 127246
+- CIRCLED ANTICLOCKWISE ARROW
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127247:
+- 127247
+- CIRCLED DOLLAR SIGN WITH OVERLAID BACKSLASH
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127248:
+- 127248
+- PARENTHESIZED LATIN CAPITAL LETTER A
+- So
+- '0'
+- L
+- "<compat> 0028 0041 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127249:
+- 127249
+- PARENTHESIZED LATIN CAPITAL LETTER B
+- So
+- '0'
+- L
+- "<compat> 0028 0042 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127250:
+- 127250
+- PARENTHESIZED LATIN CAPITAL LETTER C
+- So
+- '0'
+- L
+- "<compat> 0028 0043 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127251:
+- 127251
+- PARENTHESIZED LATIN CAPITAL LETTER D
+- So
+- '0'
+- L
+- "<compat> 0028 0044 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127252:
+- 127252
+- PARENTHESIZED LATIN CAPITAL LETTER E
+- So
+- '0'
+- L
+- "<compat> 0028 0045 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127253:
+- 127253
+- PARENTHESIZED LATIN CAPITAL LETTER F
+- So
+- '0'
+- L
+- "<compat> 0028 0046 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127254:
+- 127254
+- PARENTHESIZED LATIN CAPITAL LETTER G
+- So
+- '0'
+- L
+- "<compat> 0028 0047 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127255:
+- 127255
+- PARENTHESIZED LATIN CAPITAL LETTER H
+- So
+- '0'
+- L
+- "<compat> 0028 0048 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127256:
+- 127256
+- PARENTHESIZED LATIN CAPITAL LETTER I
+- So
+- '0'
+- L
+- "<compat> 0028 0049 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127257:
+- 127257
+- PARENTHESIZED LATIN CAPITAL LETTER J
+- So
+- '0'
+- L
+- "<compat> 0028 004A 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127258:
+- 127258
+- PARENTHESIZED LATIN CAPITAL LETTER K
+- So
+- '0'
+- L
+- "<compat> 0028 004B 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127259:
+- 127259
+- PARENTHESIZED LATIN CAPITAL LETTER L
+- So
+- '0'
+- L
+- "<compat> 0028 004C 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127260:
+- 127260
+- PARENTHESIZED LATIN CAPITAL LETTER M
+- So
+- '0'
+- L
+- "<compat> 0028 004D 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127261:
+- 127261
+- PARENTHESIZED LATIN CAPITAL LETTER N
+- So
+- '0'
+- L
+- "<compat> 0028 004E 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127262:
+- 127262
+- PARENTHESIZED LATIN CAPITAL LETTER O
+- So
+- '0'
+- L
+- "<compat> 0028 004F 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127263:
+- 127263
+- PARENTHESIZED LATIN CAPITAL LETTER P
+- So
+- '0'
+- L
+- "<compat> 0028 0050 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127264:
+- 127264
+- PARENTHESIZED LATIN CAPITAL LETTER Q
+- So
+- '0'
+- L
+- "<compat> 0028 0051 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127265:
+- 127265
+- PARENTHESIZED LATIN CAPITAL LETTER R
+- So
+- '0'
+- L
+- "<compat> 0028 0052 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127266:
+- 127266
+- PARENTHESIZED LATIN CAPITAL LETTER S
+- So
+- '0'
+- L
+- "<compat> 0028 0053 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127267:
+- 127267
+- PARENTHESIZED LATIN CAPITAL LETTER T
+- So
+- '0'
+- L
+- "<compat> 0028 0054 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127268:
+- 127268
+- PARENTHESIZED LATIN CAPITAL LETTER U
+- So
+- '0'
+- L
+- "<compat> 0028 0055 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127269:
+- 127269
+- PARENTHESIZED LATIN CAPITAL LETTER V
+- So
+- '0'
+- L
+- "<compat> 0028 0056 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127270:
+- 127270
+- PARENTHESIZED LATIN CAPITAL LETTER W
+- So
+- '0'
+- L
+- "<compat> 0028 0057 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127271:
+- 127271
+- PARENTHESIZED LATIN CAPITAL LETTER X
+- So
+- '0'
+- L
+- "<compat> 0028 0058 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127272:
+- 127272
+- PARENTHESIZED LATIN CAPITAL LETTER Y
+- So
+- '0'
+- L
+- "<compat> 0028 0059 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127273:
+- 127273
+- PARENTHESIZED LATIN CAPITAL LETTER Z
+- So
+- '0'
+- L
+- "<compat> 0028 005A 0029"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127274:
+- 127274
+- TORTOISE SHELL BRACKETED LATIN CAPITAL LETTER S
+- So
+- '0'
+- L
+- "<compat> 3014 0053 3015"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127275:
+- 127275
+- CIRCLED ITALIC LATIN CAPITAL LETTER C
+- So
+- '0'
+- L
+- "<circle> 0043"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127276:
+- 127276
+- CIRCLED ITALIC LATIN CAPITAL LETTER R
+- So
+- '0'
+- L
+- "<circle> 0052"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127277:
+- 127277
+- CIRCLED CD
+- So
+- '0'
+- L
+- "<circle> 0043 0044"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127278:
+- 127278
+- CIRCLED WZ
+- So
+- '0'
+- L
+- "<circle> 0057 005A"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127279:
+- 127279
+- COPYLEFT SYMBOL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127280:
+- 127280
+- SQUARED LATIN CAPITAL LETTER A
+- So
+- '0'
+- L
+- "<square> 0041"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127281:
+- 127281
+- SQUARED LATIN CAPITAL LETTER B
+- So
+- '0'
+- L
+- "<square> 0042"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127282:
+- 127282
+- SQUARED LATIN CAPITAL LETTER C
+- So
+- '0'
+- L
+- "<square> 0043"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127283:
+- 127283
+- SQUARED LATIN CAPITAL LETTER D
+- So
+- '0'
+- L
+- "<square> 0044"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127284:
+- 127284
+- SQUARED LATIN CAPITAL LETTER E
+- So
+- '0'
+- L
+- "<square> 0045"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127285:
+- 127285
+- SQUARED LATIN CAPITAL LETTER F
+- So
+- '0'
+- L
+- "<square> 0046"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127286:
+- 127286
+- SQUARED LATIN CAPITAL LETTER G
+- So
+- '0'
+- L
+- "<square> 0047"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127287:
+- 127287
+- SQUARED LATIN CAPITAL LETTER H
+- So
+- '0'
+- L
+- "<square> 0048"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127288:
+- 127288
+- SQUARED LATIN CAPITAL LETTER I
+- So
+- '0'
+- L
+- "<square> 0049"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127289:
+- 127289
+- SQUARED LATIN CAPITAL LETTER J
+- So
+- '0'
+- L
+- "<square> 004A"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127290:
+- 127290
+- SQUARED LATIN CAPITAL LETTER K
+- So
+- '0'
+- L
+- "<square> 004B"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127291:
+- 127291
+- SQUARED LATIN CAPITAL LETTER L
+- So
+- '0'
+- L
+- "<square> 004C"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127292:
+- 127292
+- SQUARED LATIN CAPITAL LETTER M
+- So
+- '0'
+- L
+- "<square> 004D"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127293:
+- 127293
+- SQUARED LATIN CAPITAL LETTER N
+- So
+- '0'
+- L
+- "<square> 004E"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127294:
+- 127294
+- SQUARED LATIN CAPITAL LETTER O
+- So
+- '0'
+- L
+- "<square> 004F"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127295:
+- 127295
+- SQUARED LATIN CAPITAL LETTER P
+- So
+- '0'
+- L
+- "<square> 0050"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127296:
+- 127296
+- SQUARED LATIN CAPITAL LETTER Q
+- So
+- '0'
+- L
+- "<square> 0051"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127297:
+- 127297
+- SQUARED LATIN CAPITAL LETTER R
+- So
+- '0'
+- L
+- "<square> 0052"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127298:
+- 127298
+- SQUARED LATIN CAPITAL LETTER S
+- So
+- '0'
+- L
+- "<square> 0053"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127299:
+- 127299
+- SQUARED LATIN CAPITAL LETTER T
+- So
+- '0'
+- L
+- "<square> 0054"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127300:
+- 127300
+- SQUARED LATIN CAPITAL LETTER U
+- So
+- '0'
+- L
+- "<square> 0055"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127301:
+- 127301
+- SQUARED LATIN CAPITAL LETTER V
+- So
+- '0'
+- L
+- "<square> 0056"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127302:
+- 127302
+- SQUARED LATIN CAPITAL LETTER W
+- So
+- '0'
+- L
+- "<square> 0057"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127303:
+- 127303
+- SQUARED LATIN CAPITAL LETTER X
+- So
+- '0'
+- L
+- "<square> 0058"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127304:
+- 127304
+- SQUARED LATIN CAPITAL LETTER Y
+- So
+- '0'
+- L
+- "<square> 0059"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127305:
+- 127305
+- SQUARED LATIN CAPITAL LETTER Z
+- So
+- '0'
+- L
+- "<square> 005A"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127306:
+- 127306
+- SQUARED HV
+- So
+- '0'
+- L
+- "<square> 0048 0056"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127307:
+- 127307
+- SQUARED MV
+- So
+- '0'
+- L
+- "<square> 004D 0056"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127308:
+- 127308
+- SQUARED SD
+- So
+- '0'
+- L
+- "<square> 0053 0044"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127309:
+- 127309
+- SQUARED SS
+- So
+- '0'
+- L
+- "<square> 0053 0053"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127310:
+- 127310
+- SQUARED PPV
+- So
+- '0'
+- L
+- "<square> 0050 0050 0056"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127311:
+- 127311
+- SQUARED WC
+- So
+- '0'
+- L
+- "<square> 0057 0043"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127312:
+- 127312
+- NEGATIVE CIRCLED LATIN CAPITAL LETTER A
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127313:
+- 127313
+- NEGATIVE CIRCLED LATIN CAPITAL LETTER B
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127314:
+- 127314
+- NEGATIVE CIRCLED LATIN CAPITAL LETTER C
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127315:
+- 127315
+- NEGATIVE CIRCLED LATIN CAPITAL LETTER D
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127316:
+- 127316
+- NEGATIVE CIRCLED LATIN CAPITAL LETTER E
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127317:
+- 127317
+- NEGATIVE CIRCLED LATIN CAPITAL LETTER F
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127318:
+- 127318
+- NEGATIVE CIRCLED LATIN CAPITAL LETTER G
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127319:
+- 127319
+- NEGATIVE CIRCLED LATIN CAPITAL LETTER H
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127320:
+- 127320
+- NEGATIVE CIRCLED LATIN CAPITAL LETTER I
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127321:
+- 127321
+- NEGATIVE CIRCLED LATIN CAPITAL LETTER J
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127322:
+- 127322
+- NEGATIVE CIRCLED LATIN CAPITAL LETTER K
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127323:
+- 127323
+- NEGATIVE CIRCLED LATIN CAPITAL LETTER L
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127324:
+- 127324
+- NEGATIVE CIRCLED LATIN CAPITAL LETTER M
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127325:
+- 127325
+- NEGATIVE CIRCLED LATIN CAPITAL LETTER N
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127326:
+- 127326
+- NEGATIVE CIRCLED LATIN CAPITAL LETTER O
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127327:
+- 127327
+- NEGATIVE CIRCLED LATIN CAPITAL LETTER P
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127328:
+- 127328
+- NEGATIVE CIRCLED LATIN CAPITAL LETTER Q
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127329:
+- 127329
+- NEGATIVE CIRCLED LATIN CAPITAL LETTER R
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127330:
+- 127330
+- NEGATIVE CIRCLED LATIN CAPITAL LETTER S
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127331:
+- 127331
+- NEGATIVE CIRCLED LATIN CAPITAL LETTER T
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127332:
+- 127332
+- NEGATIVE CIRCLED LATIN CAPITAL LETTER U
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127333:
+- 127333
+- NEGATIVE CIRCLED LATIN CAPITAL LETTER V
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127334:
+- 127334
+- NEGATIVE CIRCLED LATIN CAPITAL LETTER W
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127335:
+- 127335
+- NEGATIVE CIRCLED LATIN CAPITAL LETTER X
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127336:
+- 127336
+- NEGATIVE CIRCLED LATIN CAPITAL LETTER Y
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127337:
+- 127337
+- NEGATIVE CIRCLED LATIN CAPITAL LETTER Z
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127338:
+- 127338
+- RAISED MC SIGN
+- So
+- '0'
+- 'ON'
+- "<super> 004D 0043"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127339:
+- 127339
+- RAISED MD SIGN
+- So
+- '0'
+- 'ON'
+- "<super> 004D 0044"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127340:
+- 127340
+- RAISED MR SIGN
+- So
+- '0'
+- 'ON'
+- "<super> 004D 0052"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127341:
+- 127341
+- CIRCLED CC
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127342:
+- 127342
+- CIRCLED C WITH OVERLAID BACKSLASH
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127343:
+- 127343
+- CIRCLED HUMAN FIGURE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127344:
+- 127344
+- NEGATIVE SQUARED LATIN CAPITAL LETTER A
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127345:
+- 127345
+- NEGATIVE SQUARED LATIN CAPITAL LETTER B
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127346:
+- 127346
+- NEGATIVE SQUARED LATIN CAPITAL LETTER C
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127347:
+- 127347
+- NEGATIVE SQUARED LATIN CAPITAL LETTER D
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127348:
+- 127348
+- NEGATIVE SQUARED LATIN CAPITAL LETTER E
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127349:
+- 127349
+- NEGATIVE SQUARED LATIN CAPITAL LETTER F
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127350:
+- 127350
+- NEGATIVE SQUARED LATIN CAPITAL LETTER G
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127351:
+- 127351
+- NEGATIVE SQUARED LATIN CAPITAL LETTER H
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127352:
+- 127352
+- NEGATIVE SQUARED LATIN CAPITAL LETTER I
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127353:
+- 127353
+- NEGATIVE SQUARED LATIN CAPITAL LETTER J
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127354:
+- 127354
+- NEGATIVE SQUARED LATIN CAPITAL LETTER K
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127355:
+- 127355
+- NEGATIVE SQUARED LATIN CAPITAL LETTER L
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127356:
+- 127356
+- NEGATIVE SQUARED LATIN CAPITAL LETTER M
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127357:
+- 127357
+- NEGATIVE SQUARED LATIN CAPITAL LETTER N
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127358:
+- 127358
+- NEGATIVE SQUARED LATIN CAPITAL LETTER O
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127359:
+- 127359
+- NEGATIVE SQUARED LATIN CAPITAL LETTER P
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127360:
+- 127360
+- NEGATIVE SQUARED LATIN CAPITAL LETTER Q
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127361:
+- 127361
+- NEGATIVE SQUARED LATIN CAPITAL LETTER R
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127362:
+- 127362
+- NEGATIVE SQUARED LATIN CAPITAL LETTER S
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127363:
+- 127363
+- NEGATIVE SQUARED LATIN CAPITAL LETTER T
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127364:
+- 127364
+- NEGATIVE SQUARED LATIN CAPITAL LETTER U
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127365:
+- 127365
+- NEGATIVE SQUARED LATIN CAPITAL LETTER V
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127366:
+- 127366
+- NEGATIVE SQUARED LATIN CAPITAL LETTER W
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127367:
+- 127367
+- NEGATIVE SQUARED LATIN CAPITAL LETTER X
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127368:
+- 127368
+- NEGATIVE SQUARED LATIN CAPITAL LETTER Y
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127369:
+- 127369
+- NEGATIVE SQUARED LATIN CAPITAL LETTER Z
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127370:
+- 127370
+- CROSSED NEGATIVE SQUARED LATIN CAPITAL LETTER P
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127371:
+- 127371
+- NEGATIVE SQUARED IC
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127372:
+- 127372
+- NEGATIVE SQUARED PA
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127373:
+- 127373
+- NEGATIVE SQUARED SA
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127374:
+- 127374
+- NEGATIVE SQUARED AB
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127375:
+- 127375
+- NEGATIVE SQUARED WC
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127376:
+- 127376
+- SQUARE DJ
+- So
+- '0'
+- L
+- "<square> 0044 004A"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127377:
+- 127377
+- SQUARED CL
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127378:
+- 127378
+- SQUARED COOL
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127379:
+- 127379
+- SQUARED FREE
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127380:
+- 127380
+- SQUARED ID
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127381:
+- 127381
+- SQUARED NEW
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127382:
+- 127382
+- SQUARED NG
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127383:
+- 127383
+- SQUARED OK
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127384:
+- 127384
+- SQUARED SOS
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127385:
+- 127385
+- SQUARED UP WITH EXCLAMATION MARK
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127386:
+- 127386
+- SQUARED VS
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127387:
+- 127387
+- SQUARED THREE D
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127388:
+- 127388
+- SQUARED SECOND SCREEN
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127389:
+- 127389
+- SQUARED TWO K
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127390:
+- 127390
+- SQUARED FOUR K
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127391:
+- 127391
+- SQUARED EIGHT K
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127392:
+- 127392
+- SQUARED FIVE POINT ONE
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127393:
+- 127393
+- SQUARED SEVEN POINT ONE
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127394:
+- 127394
+- SQUARED TWENTY-TWO POINT TWO
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127395:
+- 127395
+- SQUARED SIXTY P
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127396:
+- 127396
+- SQUARED ONE HUNDRED TWENTY P
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127397:
+- 127397
+- SQUARED LATIN SMALL LETTER D
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127398:
+- 127398
+- SQUARED HC
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127399:
+- 127399
+- SQUARED HDR
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127400:
+- 127400
+- SQUARED HI-RES
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127401:
+- 127401
+- SQUARED LOSSLESS
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127402:
+- 127402
+- SQUARED SHV
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127403:
+- 127403
+- SQUARED UHD
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127404:
+- 127404
+- SQUARED VOD
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127405:
+- 127405
+- MASK WORK SYMBOL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127462:
+- 127462
+- REGIONAL INDICATOR SYMBOL LETTER A
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127463:
+- 127463
+- REGIONAL INDICATOR SYMBOL LETTER B
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127464:
+- 127464
+- REGIONAL INDICATOR SYMBOL LETTER C
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127465:
+- 127465
+- REGIONAL INDICATOR SYMBOL LETTER D
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127466:
+- 127466
+- REGIONAL INDICATOR SYMBOL LETTER E
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127467:
+- 127467
+- REGIONAL INDICATOR SYMBOL LETTER F
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127468:
+- 127468
+- REGIONAL INDICATOR SYMBOL LETTER G
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127469:
+- 127469
+- REGIONAL INDICATOR SYMBOL LETTER H
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127470:
+- 127470
+- REGIONAL INDICATOR SYMBOL LETTER I
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127471:
+- 127471
+- REGIONAL INDICATOR SYMBOL LETTER J
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127472:
+- 127472
+- REGIONAL INDICATOR SYMBOL LETTER K
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127473:
+- 127473
+- REGIONAL INDICATOR SYMBOL LETTER L
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127474:
+- 127474
+- REGIONAL INDICATOR SYMBOL LETTER M
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127475:
+- 127475
+- REGIONAL INDICATOR SYMBOL LETTER N
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127476:
+- 127476
+- REGIONAL INDICATOR SYMBOL LETTER O
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127477:
+- 127477
+- REGIONAL INDICATOR SYMBOL LETTER P
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127478:
+- 127478
+- REGIONAL INDICATOR SYMBOL LETTER Q
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127479:
+- 127479
+- REGIONAL INDICATOR SYMBOL LETTER R
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127480:
+- 127480
+- REGIONAL INDICATOR SYMBOL LETTER S
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127481:
+- 127481
+- REGIONAL INDICATOR SYMBOL LETTER T
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127482:
+- 127482
+- REGIONAL INDICATOR SYMBOL LETTER U
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127483:
+- 127483
+- REGIONAL INDICATOR SYMBOL LETTER V
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127484:
+- 127484
+- REGIONAL INDICATOR SYMBOL LETTER W
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127485:
+- 127485
+- REGIONAL INDICATOR SYMBOL LETTER X
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127486:
+- 127486
+- REGIONAL INDICATOR SYMBOL LETTER Y
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+127487:
+- 127487
+- REGIONAL INDICATOR SYMBOL LETTER Z
+- So
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''

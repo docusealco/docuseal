@@ -1,0 +1,770 @@
+--- 
+:ms: 
+  :formats: 
+    :fallback_formats: 
+      :generic: "{1} ({0})"
+    :gmt_formats: 
+      :generic: "GMT{0}"
+    :gmt_zero_formats: 
+      :generic: GMT
+    :hour_formats: 
+      :generic: "+HH:mm;-HH:mm"
+    :region_formats: 
+      :daylight: "Waktu Siang {0}"
+      :generic: "Waktu {0}"
+      :standard: "Waktu Piawai {0}"
+  :metazones: 
+    :Acre: 
+      :long: 
+        :daylight: "Waktu Musim Panas Acre"
+        :generic: "Waktu Acre"
+        :standard: "Waktu Piawai Acre"
+    :Afghanistan: 
+      :long: 
+        :standard: "Waktu Afghanistan"
+    :Africa_Central: 
+      :long: 
+        :standard: "Waktu Afrika Tengah"
+    :Africa_Eastern: 
+      :long: 
+        :standard: "Waktu Afrika Timur"
+    :Africa_Southern: 
+      :long: 
+        :standard: "Waktu Piawai Afrika Selatan"
+    :Africa_Western: 
+      :long: 
+        :daylight: "Waktu Musim Panas Afrika Barat"
+        :generic: "Waktu Afrika Barat"
+        :standard: "Waktu Piawai Afrika Barat"
+    :Alaska: 
+      :long: 
+        :daylight: "Waktu Siang Alaska"
+        :generic: "Waktu Alaska"
+        :standard: "Waktu Piawai Alaska"
+    :Almaty: 
+      :long: 
+        :daylight: "Waktu Musim Panas Almaty"
+        :generic: "Waktu Almaty"
+        :standard: "Waktu Piawai Almaty"
+    :Amazon: 
+      :long: 
+        :daylight: "Waktu Musim Panas Amazon"
+        :generic: "Waktu Amazon"
+        :standard: "Waktu Piawai Amazon"
+    :America_Central: 
+      :long: 
+        :daylight: "Waktu Siang Tengah"
+        :generic: "Waktu Pusat"
+        :standard: "Waktu Piawai Pusat"
+    :America_Eastern: 
+      :long: 
+        :daylight: "Waktu Siang Timur"
+        :generic: "Waktu Timur"
+        :standard: "Waktu Piawai Timur"
+    :America_Mountain: 
+      :long: 
+        :daylight: "Waktu Siang Pergunungan"
+        :generic: "Waktu Pergunungan"
+        :standard: "Waktu Piawai Pergunungan"
+    :America_Pacific: 
+      :long: 
+        :daylight: "Waktu Siang Pasifik"
+        :generic: "Waktu Pasifik"
+        :standard: "Waktu Piawai Pasifik"
+    :Anadyr: 
+      :long: 
+        :daylight: "Waktu Musim Panas Anadyr"
+        :generic: "Waktu Anadyr"
+        :standard: "Waktu Piawai Anadyr"
+    :Apia: 
+      :long: 
+        :daylight: "Waktu Siang Apia"
+        :generic: "Waktu Apia"
+        :standard: "Waktu Piawai Apia"
+    :Aqtau: 
+      :long: 
+        :daylight: "Waktu Musim Panas Aqtau"
+        :generic: "Waktu Aqtau"
+        :standard: "Waktu Standard Aqtau"
+    :Aqtobe: 
+      :long: 
+        :daylight: "Waktu Musim Panas Aqtobe"
+        :generic: "Waktu Aqtobe"
+        :standard: "Waktu Piawai Aqtobe"
+    :Arabian: 
+      :long: 
+        :daylight: "Waktu Siang Arab"
+        :generic: "Waktu Arab"
+        :standard: "Waktu Piawai Arab"
+    :Argentina: 
+      :long: 
+        :daylight: "Waktu Musim Panas Argentina"
+        :generic: "Waktu Argentina"
+        :standard: "Waktu Piawai Argentina"
+    :Argentina_Western: 
+      :long: 
+        :daylight: "Waktu Musim Panas Argentina Barat"
+        :generic: "Waktu Argentina Barat"
+        :standard: "Waktu Piawai Argentina Barat"
+    :Armenia: 
+      :long: 
+        :daylight: "Waktu Musim Panas Armenia"
+        :generic: "Waktu Armenia"
+        :standard: "Waktu Piawai Armenia"
+    :Atlantic: 
+      :long: 
+        :daylight: "Waktu Siang Atlantik"
+        :generic: "Waktu Atlantik"
+        :standard: "Waktu Piawai Atlantik"
+    :Australia_Central: 
+      :long: 
+        :daylight: "Waktu Siang Australia Tengah"
+        :generic: "Waktu Australia Tengah"
+        :standard: "Waktu Piawai Australia Tengah"
+    :Australia_CentralWestern: 
+      :long: 
+        :daylight: "Waktu Siang Barat Tengah Australia"
+        :generic: "Waktu Barat Tengah Australia"
+        :standard: "Waktu Piawai Barat Tengah Australia"
+    :Australia_Eastern: 
+      :long: 
+        :daylight: "Waktu Siang Australia Timur"
+        :generic: "Waktu Australia Timur"
+        :standard: "Waktu Piawai Timur Australia"
+    :Australia_Western: 
+      :long: 
+        :daylight: "Waktu Siang Australia Barat"
+        :generic: "Waktu Australia Barat"
+        :standard: "Waktu Piawai Australia Barat"
+    :Azerbaijan: 
+      :long: 
+        :daylight: "Waktu Musim Panas Azerbaijan"
+        :generic: "Waktu Azerbaijan"
+        :standard: "Waktu Piawai Azerbaijan"
+    :Azores: 
+      :long: 
+        :daylight: "Waktu Musim Panas Azores"
+        :generic: "Waktu Azores"
+        :standard: "Waktu Piawai Azores"
+    :Bangladesh: 
+      :long: 
+        :daylight: "Waktu Musim Panas Bangladesh"
+        :generic: "Waktu Bangladesh"
+        :standard: "Waktu Piawai Bangladesh"
+    :Bhutan: 
+      :long: 
+        :standard: "Waktu Bhutan"
+    :Bolivia: 
+      :long: 
+        :standard: "Waktu Bolivia"
+    :Brasilia: 
+      :long: 
+        :daylight: "Waktu Musim Panas Brasilia"
+        :generic: "Waktu Brasilia"
+        :standard: "Waktu Piawai Brasilia"
+    :Brunei: 
+      :long: 
+        :standard: "Waktu Brunei Darussalam"
+    :Cape_Verde: 
+      :long: 
+        :daylight: "Waktu Musim Panas Tanjung Verde"
+        :generic: "Waktu Tanjung Verde"
+        :standard: "Waktu Piawai Tanjung Verde"
+    :Chamorro: 
+      :long: 
+        :standard: "Waktu Piawai Chamorro"
+    :Chatham: 
+      :long: 
+        :daylight: "Waktu Siang Chatham"
+        :generic: "Waktu Chatham"
+        :standard: "Waktu Piawai Chatham"
+    :Chile: 
+      :long: 
+        :daylight: "Waktu Musim Panas Chile"
+        :generic: "Waktu Chile"
+        :standard: "Waktu Piawai Chile"
+    :China: 
+      :long: 
+        :daylight: "Waktu Siang China"
+        :generic: "Waktu China"
+        :standard: "Waktu Piawai China"
+    :Christmas: 
+      :long: 
+        :standard: "Waktu Pulau Christmas"
+    :Cocos: 
+      :long: 
+        :standard: "Waktu Kepulauan Cocos"
+    :Colombia: 
+      :long: 
+        :daylight: "Waktu Musim Panas Colombia"
+        :generic: "Waktu Colombia"
+        :standard: "Waktu Piawai Colombia"
+    :Cook: 
+      :long: 
+        :daylight: "Waktu Musim Panas Separuh Kepulauan Cook"
+        :generic: "Waktu Kepulauan Cook"
+        :standard: "Waktu Piawai Kepulauan Cook"
+    :Cuba: 
+      :long: 
+        :daylight: "Waktu Siang Cuba"
+        :generic: "Waktu Cuba"
+        :standard: "Waktu Piawai Cuba"
+    :Davis: 
+      :long: 
+        :standard: "Waktu Davis"
+    :DumontDUrville: 
+      :long: 
+        :standard: "Waktu Dumont-d’Urville"
+    :East_Timor: 
+      :long: 
+        :standard: "Waktu Timor Timur"
+    :Easter: 
+      :long: 
+        :daylight: "Waktu Musim Panas Pulau Easter"
+        :generic: "Waktu Pulau Easter"
+        :standard: "Waktu Piawai Pulau Easter"
+    :Ecuador: 
+      :long: 
+        :standard: "Waktu Ecuador"
+    :Europe_Central: 
+      :long: 
+        :daylight: "Waktu Musim Panas Eropah Tengah"
+        :generic: "Waktu Eropah Tengah"
+        :standard: "Waktu Piawai Eropah Tengah"
+    :Europe_Eastern: 
+      :long: 
+        :daylight: "Waktu Musim Panas Eropah Timur"
+        :generic: "Waktu Eropah Timur"
+        :standard: "Waktu Piawai Eropah Timur"
+    :Europe_Further_Eastern: 
+      :long: 
+        :standard: "Waktu Eropah ceruk timur"
+    :Europe_Western: 
+      :long: 
+        :daylight: "Waktu Musim Panas Eropah Barat"
+        :generic: "Waktu Eropah Barat"
+        :standard: "Waktu Piawai Eropah Barat"
+    :Falkland: 
+      :long: 
+        :daylight: "Waktu Musim Panas Kepulauan Falkland"
+        :generic: "Waktu Kepulauan Falkland"
+        :standard: "Waktu Piawai Kepulauan Falkland"
+    :Fiji: 
+      :long: 
+        :daylight: "Waktu Musim Panas Fiji"
+        :generic: "Waktu Fiji"
+        :standard: "Waktu Piawai Fiji"
+    :French_Guiana: 
+      :long: 
+        :standard: "Waktu Guyana Perancis"
+    :French_Southern: 
+      :long: 
+        :standard: "Waktu Perancis Selatan dan Antartika"
+    :GMT: 
+      :long: 
+        :standard: "Waktu Min Greenwich"
+      :short: 
+        :standard: GMT
+    :Galapagos: 
+      :long: 
+        :standard: "Waktu Galapagos"
+    :Gambier: 
+      :long: 
+        :standard: "Waktu Gambier"
+    :Georgia: 
+      :long: 
+        :daylight: "Waktu Musim Panas Georgia"
+        :generic: "Waktu Georgia"
+        :standard: "Waktu Piawai Georgia"
+    :Gilbert_Islands: 
+      :long: 
+        :standard: "Waktu Kepulauan Gilbert"
+    :Greenland_Eastern: 
+      :long: 
+        :daylight: "Waktu Musim Panas Greenland Timur"
+        :generic: "Waktu Greenland Timur"
+        :standard: "Waktu Piawai Greenland Timur"
+    :Greenland_Western: 
+      :long: 
+        :daylight: "Waktu Musim Panas Greenland Barat"
+        :generic: "Waktu Greenland Barat"
+        :standard: "Waktu Piawai Greenland Barat"
+    :Gulf: 
+      :long: 
+        :standard: "Waktu Piawai Teluk"
+    :Guyana: 
+      :long: 
+        :standard: "Waktu Guyana"
+    :Hawaii_Aleutian: 
+      :long: 
+        :daylight: "Waktu Siang Hawaii-Aleutian"
+        :generic: "Waktu Hawaii-Aleutian"
+        :standard: "Waktu Piawai Hawaii-Aleutian"
+    :Hong_Kong: 
+      :long: 
+        :daylight: "Waktu Musim Panas Hong Kong"
+        :generic: "Waktu Hong Kong"
+        :standard: "Waktu Piawai Hong Kong"
+    :Hovd: 
+      :long: 
+        :daylight: "Waktu Musim Panas Hovd"
+        :generic: "Waktu Hovd"
+        :standard: "Waktu Piawai Hovd"
+    :India: 
+      :long: 
+        :standard: "Waktu Piawai India"
+    :Indian_Ocean: 
+      :long: 
+        :standard: "Waktu Lautan Hindi"
+    :Indochina: 
+      :long: 
+        :standard: "Waktu Indochina"
+    :Indonesia_Central: 
+      :long: 
+        :standard: "Waktu Indonesia Tengah"
+    :Indonesia_Eastern: 
+      :long: 
+        :standard: "Waktu Indonesia Timur"
+    :Indonesia_Western: 
+      :long: 
+        :standard: "Waktu Indonesia Barat"
+    :Iran: 
+      :long: 
+        :daylight: "Waktu Siang Iran"
+        :generic: "Waktu Iran"
+        :standard: "Waktu Piawai Iran"
+    :Irkutsk: 
+      :long: 
+        :daylight: "Waktu Musim Panas Irkutsk"
+        :generic: "Waktu Irkutsk"
+        :standard: "Waktu Piawai Irkutsk"
+    :Israel: 
+      :long: 
+        :daylight: "Waktu Siang Israel"
+        :generic: "Waktu Israel"
+        :standard: "Waktu Piawai Israel"
+    :Japan: 
+      :long: 
+        :daylight: "Waktu Siang Jepun"
+        :generic: "Waktu Jepun"
+        :standard: "Waktu Piawai Jepun"
+    :Kamchatka: 
+      :long: 
+        :daylight: "Waktu Musim Panas Petropavlovsk-Kamchatski"
+        :generic: "Waktu Petropavlovsk-Kamchatski"
+        :standard: "Waktu Piawai Petropavlovsk-Kamchatski"
+    :Kazakhstan: 
+      :long: 
+        :standard: "Waktu Kazakhstan"
+    :Kazakhstan_Eastern: 
+      :long: 
+        :standard: "Waktu Kazakhstan Timur"
+    :Kazakhstan_Western: 
+      :long: 
+        :standard: "Waktu Kazakhstan Barat"
+    :Korea: 
+      :long: 
+        :daylight: "Waktu Siang Korea"
+        :generic: "Waktu Korea"
+        :standard: "Waktu Piawai Korea"
+    :Kosrae: 
+      :long: 
+        :standard: "Waktu Kosrae"
+    :Krasnoyarsk: 
+      :long: 
+        :daylight: "Waktu Musim Panas Krasnoyarsk"
+        :generic: "Waktu Krasnoyarsk"
+        :standard: "Waktu Piawai Krasnoyarsk"
+    :Kyrgystan: 
+      :long: 
+        :standard: "Waktu Kyrgystan"
+    :Line_Islands: 
+      :long: 
+        :standard: "Waktu Kepulauan Line"
+    :Lord_Howe: 
+      :long: 
+        :daylight: "Waktu Siang Lord Howe"
+        :generic: "Waktu Lord Howe"
+        :standard: "Waktu Piawai Lord Howe"
+    :Macau: 
+      :long: 
+        :daylight: "Waktu Musim Panas Macao"
+        :generic: "Waktu Macao"
+        :standard: "Waktu Piawai Macao"
+    :Magadan: 
+      :long: 
+        :daylight: "Waktu Musim Panas Magadan"
+        :generic: "Waktu Magadan"
+        :standard: "Waktu Piawai Magadan"
+    :Malaysia: 
+      :long: 
+        :standard: "Waktu Malaysia"
+      :short: 
+        :standard: MYT
+    :Maldives: 
+      :long: 
+        :standard: "Waktu Maldives"
+    :Marquesas: 
+      :long: 
+        :standard: "Waktu Marquesas"
+    :Marshall_Islands: 
+      :long: 
+        :standard: "Waktu Kepulauan Marshall"
+    :Mauritius: 
+      :long: 
+        :daylight: "Waktu Musim Panas Mauritius"
+        :generic: "Waktu Mauritius"
+        :standard: "Waktu Piawai Mauritius"
+    :Mawson: 
+      :long: 
+        :standard: "Waktu Mawson"
+    :Mexico_Pacific: 
+      :long: 
+        :daylight: "Waktu Siang Pasifik Mexico"
+        :generic: "Waktu Pasifik Mexico"
+        :standard: "Waktu Piawai Pasifik Mexico"
+    :Mongolia: 
+      :long: 
+        :daylight: "Waktu Musim Panas Ulan Bator"
+        :generic: "Waktu Ulan Bator"
+        :standard: "Waktu Piawai Ulan Bator"
+    :Moscow: 
+      :long: 
+        :daylight: "Waktu Musim Panas Moscow"
+        :generic: "Waktu Moscow"
+        :standard: "Waktu Piawai Moscow"
+    :Myanmar: 
+      :long: 
+        :standard: "Waktu Myanmar"
+    :Nauru: 
+      :long: 
+        :standard: "Waktu Nauru"
+    :Nepal: 
+      :long: 
+        :standard: "Waktu Nepal"
+    :New_Caledonia: 
+      :long: 
+        :daylight: "Waktu Musim Panas New Caledonia"
+        :generic: "Waktu New Caledonia"
+        :standard: "Waktu Piawai New Caledonia"
+    :New_Zealand: 
+      :long: 
+        :daylight: "Waktu Siang New Zealand"
+        :generic: "Waktu New Zealand"
+        :standard: "Waktu Piawai New Zealand"
+    :Newfoundland: 
+      :long: 
+        :daylight: "Waktu Siang Newfoundland"
+        :generic: "Waktu Newfoundland"
+        :standard: "Waktu Piawai Newfoundland"
+    :Niue: 
+      :long: 
+        :standard: "Waktu Niue"
+    :Norfolk: 
+      :long: 
+        :daylight: "Waktu Siang Kepulauan Norfolk"
+        :generic: "Waktu Kepulauan Norfolk"
+        :standard: "Waktu Piawai Kepulauan Norfolk"
+    :Noronha: 
+      :long: 
+        :daylight: "Waktu Musim Panas Fernando de Noronha"
+        :generic: "Waktu Fernando de Noronha"
+        :standard: "Waktu Piawai Fernando de Noronha"
+    :North_Mariana: 
+      :long: 
+        :standard: "Waktu Kepulauan Mariana Utara"
+    :Novosibirsk: 
+      :long: 
+        :daylight: "Waktu Musim Panas Novosibirsk"
+        :generic: "Waktu Novosibirsk"
+        :standard: "Waktu Piawai Novosibirsk"
+    :Omsk: 
+      :long: 
+        :daylight: "Waktu Musim Panas Omsk"
+        :generic: "Waktu Omsk"
+        :standard: "Waktu Piawai Omsk"
+    :Pakistan: 
+      :long: 
+        :daylight: "Waktu Musim Panas Pakistan"
+        :generic: "Waktu Pakistan"
+        :standard: "Waktu Piawai Pakistan"
+    :Palau: 
+      :long: 
+        :standard: "Waktu Palau"
+    :Papua_New_Guinea: 
+      :long: 
+        :standard: "Waktu Papua New Guinea"
+    :Paraguay: 
+      :long: 
+        :daylight: "Waktu Musim Panas Paraguay"
+        :generic: "Waktu Paraguay"
+        :standard: "Waktu Piawai Paraguay"
+    :Peru: 
+      :long: 
+        :daylight: "Waktu Musim Panas Peru"
+        :generic: "Waktu Peru"
+        :standard: "Waktu Piawai Peru"
+    :Philippines: 
+      :long: 
+        :daylight: "Waktu Musim Panas Filipina"
+        :generic: "Waktu Filipina"
+        :standard: "Waktu Piawai Filipina"
+    :Phoenix_Islands: 
+      :long: 
+        :standard: "Waktu Kepulauan Phoenix"
+    :Pierre_Miquelon: 
+      :long: 
+        :daylight: "Waktu Siang Saint Pierre dan Miquelon"
+        :generic: "Waktu Saint Pierre dan Miquelon"
+        :standard: "Waktu Piawai Saint Pierre dan Miquelon"
+    :Pitcairn: 
+      :long: 
+        :standard: "Waktu Pitcairn"
+    :Ponape: 
+      :long: 
+        :standard: "Waktu Ponape"
+    :Pyongyang: 
+      :long: 
+        :standard: "Waktu Pyongyang"
+    :Qyzylorda: 
+      :long: 
+        :daylight: "Waktu Musim Panas Qyzylorda"
+        :generic: "Waktu Qyzylorda"
+        :standard: "Waktu Piawai Qyzylorda"
+    :Reunion: 
+      :long: 
+        :standard: "Waktu Reunion"
+    :Rothera: 
+      :long: 
+        :standard: "Waktu Rothera"
+    :Sakhalin: 
+      :long: 
+        :daylight: "Waktu Musim Panas Sakhalin"
+        :generic: "Waktu Sakhalin"
+        :standard: "Waktu Piawai Sakhalin"
+    :Samara: 
+      :long: 
+        :daylight: "Waktu Musim Panas Samara"
+        :generic: "Waktu Samara"
+        :standard: "Waktu Piawai Samara"
+    :Samoa: 
+      :long: 
+        :daylight: "Waktu Musim Panas Samoa"
+        :generic: "Waktu Samoa"
+        :standard: "Waktu Piawai Samoa"
+    :Seychelles: 
+      :long: 
+        :standard: "Waktu Seychelles"
+    :Singapore: 
+      :long: 
+        :standard: "Waktu Piawai Singapura"
+      :short: 
+        :standard: SGT
+    :Solomon: 
+      :long: 
+        :standard: "Waktu Kepulauan Solomon"
+    :South_Georgia: 
+      :long: 
+        :standard: "Waktu Georgia Selatan"
+    :Suriname: 
+      :long: 
+        :standard: "Waktu Suriname"
+    :Syowa: 
+      :long: 
+        :standard: "Waktu Syowa"
+    :Tahiti: 
+      :long: 
+        :standard: "Waktu Tahiti"
+    :Taipei: 
+      :long: 
+        :daylight: "Waktu Siang Taipei"
+        :generic: "Waktu Taipei"
+        :standard: "Waktu Piawai Taipei"
+    :Tajikistan: 
+      :long: 
+        :standard: "Waktu Tajikistan"
+    :Tokelau: 
+      :long: 
+        :standard: "Waktu Tokelau"
+    :Tonga: 
+      :long: 
+        :daylight: "Waktu Musim Panas Tonga"
+        :generic: "Waktu Tonga"
+        :standard: "Waktu Piawai Tonga"
+    :Truk: 
+      :long: 
+        :standard: "Waktu Chuuk"
+    :Turkmenistan: 
+      :long: 
+        :daylight: "Waktu Musim Panas Turkmenistan"
+        :generic: "Waktu Turkmenistan"
+        :standard: "Waktu Piawai Turkmenistan"
+    :Tuvalu: 
+      :long: 
+        :standard: "Waktu Tuvalu"
+    :Uruguay: 
+      :long: 
+        :daylight: "Waktu Musim Panas Uruguay"
+        :generic: "Waktu Uruguay"
+        :standard: "Waktu Piawai Uruguay"
+    :Uzbekistan: 
+      :long: 
+        :daylight: "Waktu Musim Panas Uzbekistan"
+        :generic: "Waktu Uzbekistan"
+        :standard: "Waktu Piawai Uzbekistan"
+    :Vanuatu: 
+      :long: 
+        :daylight: "Waktu Musim Panas Vanuatu"
+        :generic: "Waktu Vanuatu"
+        :standard: "Waktu Piawai Vanuatu"
+    :Venezuela: 
+      :long: 
+        :standard: "Waktu Venezuela"
+    :Vladivostok: 
+      :long: 
+        :daylight: "Waktu Musim Panas Vladivostok"
+        :generic: "Waktu Vladivostok"
+        :standard: "Waktu Piawai Vladivostok"
+    :Volgograd: 
+      :long: 
+        :daylight: "Waktu Musim Panas Volgograd"
+        :generic: "Waktu Volgograd"
+        :standard: "Waktu Piawai Volgograd"
+    :Vostok: 
+      :long: 
+        :standard: "Waktu Vostok"
+    :Wake: 
+      :long: 
+        :standard: "Waktu Pulau Wake"
+    :Wallis: 
+      :long: 
+        :standard: "Waktu Wallis dan Futuna"
+    :Yakutsk: 
+      :long: 
+        :daylight: "Waktu Musim Panas Yakutsk"
+        :generic: "Waktu Yakutsk"
+        :standard: "Waktu Piawai Yakutsk"
+    :Yekaterinburg: 
+      :long: 
+        :daylight: "Waktu Musim Panas Yekaterinburg"
+        :generic: "Waktu Yekaterinburg"
+        :standard: "Waktu Piawai Yekaterinburg"
+    :Yukon: 
+      :long: 
+        :standard: "Masa Yukon"
+  :timezones: 
+    :Africa/Asmera: 
+      :city: Asmara
+    :Africa/Cairo: 
+      :city: Kaherah
+    :Africa/Sao_Tome: 
+      :city: "São Tomé"
+    :America/Asuncion: 
+      :city: Asunción
+    :America/Bahia_Banderas: 
+      :city: "Bahia Banderas"
+    :America/Cambridge_Bay: 
+      :city: "Teluk Cambridge"
+    :America/Cancun: 
+      :city: Cancun
+    :America/Ciudad_Juarez: 
+      :city: "Ciudad Juárez"
+    :America/Coral_Harbour: 
+      :city: Atikokan
+    :America/Curacao: 
+      :city: Curaçao
+    :America/Glace_Bay: 
+      :city: "Teluk Glace"
+    :America/Godthab: 
+      :city: Nuuk
+    :America/Goose_Bay: 
+      :city: "Teluk Goose"
+    :America/Indiana/Knox: 
+      :city: "Knox, Indiana"
+    :America/Indiana/Marengo: 
+      :city: "Marengo, Indiana"
+    :America/Indiana/Petersburg: 
+      :city: "Petersburg, Indiana"
+    :America/Indiana/Tell_City: 
+      :city: "Tell City, Indiana"
+    :America/Indiana/Vevay: 
+      :city: "Vevay, Indiana"
+    :America/Indiana/Vincennes: 
+      :city: "Vincennes, Indiana"
+    :America/Indiana/Winamac: 
+      :city: "Winamac, Indiana"
+    :America/Kentucky/Monticello: 
+      :city: "Monticello, Kentucky"
+    :America/Lower_Princes: 
+      :city: "Lower Prince’s Quarter"
+    :America/Merida: 
+      :city: Merida
+    :America/North_Dakota/Beulah: 
+      :city: "Beulah, North Dakota"
+    :America/North_Dakota/Center: 
+      :city: "Center, North Dakota"
+    :America/North_Dakota/New_Salem: 
+      :city: "New Salem, North Dakota"
+    :America/Scoresbysund: 
+      :city: Ittoqqortoormiit
+    :America/St_Barthelemy: 
+      :city: "Saint Barthelemy"
+    :America/St_Johns: 
+      :city: "St. John’s"
+    :America/St_Kitts: 
+      :city: "St. Kitts"
+    :America/St_Lucia: 
+      :city: "St. Lucia"
+    :America/St_Thomas: 
+      :city: "St. Thomas"
+    :America/St_Vincent: 
+      :city: "St. Vincent"
+    :Antarctica/DumontDUrville: 
+      :city: "Dumont d’Urville"
+    :Asia/Calcutta: 
+      :city: Kolkata
+    :Asia/Damascus: 
+      :city: Damsyik
+    :Asia/Jerusalem: 
+      :city: Baitulmuqaddis
+    :Asia/Katmandu: 
+      :city: Kathmandu
+    :Asia/Macau: 
+      :city: Macau
+    :Asia/Qostanay: 
+      :city: Kostanay
+    :Asia/Rangoon: 
+      :city: Yangon
+    :Asia/Saigon: 
+      :city: "Ho Chi Minh"
+    :Asia/Singapore: 
+      :city: Singapura
+    :Atlantic/Faeroe: 
+      :city: Faroe
+    :Atlantic/St_Helena: 
+      :city: "St. Helena"
+    :Etc/UTC: 
+      :long: 
+        :standard: "Waktu Universal Selaras"
+      :short: 
+        :standard: UTC
+    :Etc/Unknown: 
+      :city: "Bandar Tidak Diketahui"
+    :Europe/Dublin: 
+      :long: 
+        :daylight: "Waktu Piawai Ireland"
+    :Europe/Kiev: 
+      :city: Kiev
+    :Europe/London: 
+      :long: 
+        :daylight: "Waktu Musim Panas British"
+    :Indian/Reunion: 
+      :city: Réunion
+    :Pacific/Enderbury: 
+      :city: Enderbury
+    :Pacific/Honolulu: 
+      :city: Honolulu
+    :Pacific/Ponape: 
+      :city: Pohnpei
+    :Pacific/Truk: 
+      :city: Chuuk

@@ -1,0 +1,31 @@
+<%= render "layouts/letter_opener_web/js/jquery" %>
+<%= render "layouts/letter_opener_web/js/favcount" %>
+
+<script nonce="<%= content_security_policy_nonce %>">
+function update_favicon(favicon) {
+    favicon.set($('.letter-opener a').length);
+}
+
+jQuery(function($) {
+    var favicon = new Favcount($('link[rel="icon"]').attr('href'));
+    update_favicon(favicon);
+
+    $('.letter-opener').on('click', 'a', function() {
+        var $this = $(this);
+        $('iframe').attr('src', $this.attr('href'));
+        $this.parents('.list-group').find('.active').removeClass('active');
+        $this.parent().addClass('active');
+    });
+
+    $('.refresh').click(function(e) {
+        e.preventDefault();
+
+        var wrapper = $('.letter-opener');
+        wrapper.find('div').text('Loading...');
+        wrapper.load(wrapper.data('letters-path') + ' .letter-opener', function() {
+            $('iframe').attr('src', $('.letter-opener a:first-child()').attr('href'));
+            update_favicon(favicon);
+        });
+    });
+});
+</script>

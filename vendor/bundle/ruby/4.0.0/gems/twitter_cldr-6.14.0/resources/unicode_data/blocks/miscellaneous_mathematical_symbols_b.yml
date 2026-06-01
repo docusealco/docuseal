@@ -1,0 +1,2049 @@
+---
+10624:
+- 10624
+- TRIPLE VERTICAL BAR DELIMITER
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10625:
+- 10625
+- Z NOTATION SPOT
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10626:
+- 10626
+- Z NOTATION TYPE COLON
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10627:
+- 10627
+- LEFT WHITE CURLY BRACKET
+- Ps
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10628:
+- 10628
+- RIGHT WHITE CURLY BRACKET
+- Pe
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10629:
+- 10629
+- LEFT WHITE PARENTHESIS
+- Ps
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10630:
+- 10630
+- RIGHT WHITE PARENTHESIS
+- Pe
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10631:
+- 10631
+- Z NOTATION LEFT IMAGE BRACKET
+- Ps
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10632:
+- 10632
+- Z NOTATION RIGHT IMAGE BRACKET
+- Pe
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10633:
+- 10633
+- Z NOTATION LEFT BINDING BRACKET
+- Ps
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10634:
+- 10634
+- Z NOTATION RIGHT BINDING BRACKET
+- Pe
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10635:
+- 10635
+- LEFT SQUARE BRACKET WITH UNDERBAR
+- Ps
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10636:
+- 10636
+- RIGHT SQUARE BRACKET WITH UNDERBAR
+- Pe
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10637:
+- 10637
+- LEFT SQUARE BRACKET WITH TICK IN TOP CORNER
+- Ps
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10638:
+- 10638
+- RIGHT SQUARE BRACKET WITH TICK IN BOTTOM CORNER
+- Pe
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10639:
+- 10639
+- LEFT SQUARE BRACKET WITH TICK IN BOTTOM CORNER
+- Ps
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10640:
+- 10640
+- RIGHT SQUARE BRACKET WITH TICK IN TOP CORNER
+- Pe
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10641:
+- 10641
+- LEFT ANGLE BRACKET WITH DOT
+- Ps
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10642:
+- 10642
+- RIGHT ANGLE BRACKET WITH DOT
+- Pe
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10643:
+- 10643
+- LEFT ARC LESS-THAN BRACKET
+- Ps
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10644:
+- 10644
+- RIGHT ARC GREATER-THAN BRACKET
+- Pe
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10645:
+- 10645
+- DOUBLE LEFT ARC GREATER-THAN BRACKET
+- Ps
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10646:
+- 10646
+- DOUBLE RIGHT ARC LESS-THAN BRACKET
+- Pe
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10647:
+- 10647
+- LEFT BLACK TORTOISE SHELL BRACKET
+- Ps
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10648:
+- 10648
+- RIGHT BLACK TORTOISE SHELL BRACKET
+- Pe
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10649:
+- 10649
+- DOTTED FENCE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10650:
+- 10650
+- VERTICAL ZIGZAG LINE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10651:
+- 10651
+- MEASURED ANGLE OPENING LEFT
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10652:
+- 10652
+- RIGHT ANGLE VARIANT WITH SQUARE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10653:
+- 10653
+- MEASURED RIGHT ANGLE WITH DOT
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10654:
+- 10654
+- ANGLE WITH S INSIDE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10655:
+- 10655
+- ACUTE ANGLE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10656:
+- 10656
+- SPHERICAL ANGLE OPENING LEFT
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10657:
+- 10657
+- SPHERICAL ANGLE OPENING UP
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10658:
+- 10658
+- TURNED ANGLE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10659:
+- 10659
+- REVERSED ANGLE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10660:
+- 10660
+- ANGLE WITH UNDERBAR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10661:
+- 10661
+- REVERSED ANGLE WITH UNDERBAR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10662:
+- 10662
+- OBLIQUE ANGLE OPENING UP
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10663:
+- 10663
+- OBLIQUE ANGLE OPENING DOWN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10664:
+- 10664
+- MEASURED ANGLE WITH OPEN ARM ENDING IN ARROW POINTING UP AND RIGHT
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10665:
+- 10665
+- MEASURED ANGLE WITH OPEN ARM ENDING IN ARROW POINTING UP AND LEFT
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10666:
+- 10666
+- MEASURED ANGLE WITH OPEN ARM ENDING IN ARROW POINTING DOWN AND RIGHT
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10667:
+- 10667
+- MEASURED ANGLE WITH OPEN ARM ENDING IN ARROW POINTING DOWN AND LEFT
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10668:
+- 10668
+- MEASURED ANGLE WITH OPEN ARM ENDING IN ARROW POINTING RIGHT AND UP
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10669:
+- 10669
+- MEASURED ANGLE WITH OPEN ARM ENDING IN ARROW POINTING LEFT AND UP
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10670:
+- 10670
+- MEASURED ANGLE WITH OPEN ARM ENDING IN ARROW POINTING RIGHT AND DOWN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10671:
+- 10671
+- MEASURED ANGLE WITH OPEN ARM ENDING IN ARROW POINTING LEFT AND DOWN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10672:
+- 10672
+- REVERSED EMPTY SET
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10673:
+- 10673
+- EMPTY SET WITH OVERBAR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10674:
+- 10674
+- EMPTY SET WITH SMALL CIRCLE ABOVE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10675:
+- 10675
+- EMPTY SET WITH RIGHT ARROW ABOVE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10676:
+- 10676
+- EMPTY SET WITH LEFT ARROW ABOVE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10677:
+- 10677
+- CIRCLE WITH HORIZONTAL BAR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10678:
+- 10678
+- CIRCLED VERTICAL BAR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10679:
+- 10679
+- CIRCLED PARALLEL
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10680:
+- 10680
+- CIRCLED REVERSE SOLIDUS
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10681:
+- 10681
+- CIRCLED PERPENDICULAR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10682:
+- 10682
+- CIRCLE DIVIDED BY HORIZONTAL BAR AND TOP HALF DIVIDED BY VERTICAL BAR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10683:
+- 10683
+- CIRCLE WITH SUPERIMPOSED X
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10684:
+- 10684
+- CIRCLED ANTICLOCKWISE-ROTATED DIVISION SIGN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10685:
+- 10685
+- UP ARROW THROUGH CIRCLE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10686:
+- 10686
+- CIRCLED WHITE BULLET
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10687:
+- 10687
+- CIRCLED BULLET
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10688:
+- 10688
+- CIRCLED LESS-THAN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10689:
+- 10689
+- CIRCLED GREATER-THAN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10690:
+- 10690
+- CIRCLE WITH SMALL CIRCLE TO THE RIGHT
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10691:
+- 10691
+- CIRCLE WITH TWO HORIZONTAL STROKES TO THE RIGHT
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10692:
+- 10692
+- SQUARED RISING DIAGONAL SLASH
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10693:
+- 10693
+- SQUARED FALLING DIAGONAL SLASH
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10694:
+- 10694
+- SQUARED ASTERISK
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10695:
+- 10695
+- SQUARED SMALL CIRCLE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10696:
+- 10696
+- SQUARED SQUARE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10697:
+- 10697
+- TWO JOINED SQUARES
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10698:
+- 10698
+- TRIANGLE WITH DOT ABOVE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10699:
+- 10699
+- TRIANGLE WITH UNDERBAR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10700:
+- 10700
+- S IN TRIANGLE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10701:
+- 10701
+- TRIANGLE WITH SERIFS AT BOTTOM
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10702:
+- 10702
+- RIGHT TRIANGLE ABOVE LEFT TRIANGLE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10703:
+- 10703
+- LEFT TRIANGLE BESIDE VERTICAL BAR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10704:
+- 10704
+- VERTICAL BAR BESIDE RIGHT TRIANGLE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10705:
+- 10705
+- BOWTIE WITH LEFT HALF BLACK
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10706:
+- 10706
+- BOWTIE WITH RIGHT HALF BLACK
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10707:
+- 10707
+- BLACK BOWTIE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10708:
+- 10708
+- TIMES WITH LEFT HALF BLACK
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10709:
+- 10709
+- TIMES WITH RIGHT HALF BLACK
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10710:
+- 10710
+- WHITE HOURGLASS
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10711:
+- 10711
+- BLACK HOURGLASS
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10712:
+- 10712
+- LEFT WIGGLY FENCE
+- Ps
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10713:
+- 10713
+- RIGHT WIGGLY FENCE
+- Pe
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10714:
+- 10714
+- LEFT DOUBLE WIGGLY FENCE
+- Ps
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10715:
+- 10715
+- RIGHT DOUBLE WIGGLY FENCE
+- Pe
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10716:
+- 10716
+- INCOMPLETE INFINITY
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10717:
+- 10717
+- TIE OVER INFINITY
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10718:
+- 10718
+- INFINITY NEGATED WITH VERTICAL BAR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10719:
+- 10719
+- DOUBLE-ENDED MULTIMAP
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10720:
+- 10720
+- SQUARE WITH CONTOURED OUTLINE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10721:
+- 10721
+- INCREASES AS
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10722:
+- 10722
+- SHUFFLE PRODUCT
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10723:
+- 10723
+- EQUALS SIGN AND SLANTED PARALLEL
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10724:
+- 10724
+- EQUALS SIGN AND SLANTED PARALLEL WITH TILDE ABOVE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10725:
+- 10725
+- IDENTICAL TO AND SLANTED PARALLEL
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10726:
+- 10726
+- GLEICH STARK
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10727:
+- 10727
+- THERMODYNAMIC
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10728:
+- 10728
+- DOWN-POINTING TRIANGLE WITH LEFT HALF BLACK
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10729:
+- 10729
+- DOWN-POINTING TRIANGLE WITH RIGHT HALF BLACK
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10730:
+- 10730
+- BLACK DIAMOND WITH DOWN ARROW
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10731:
+- 10731
+- BLACK LOZENGE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10732:
+- 10732
+- WHITE CIRCLE WITH DOWN ARROW
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10733:
+- 10733
+- BLACK CIRCLE WITH DOWN ARROW
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10734:
+- 10734
+- ERROR-BARRED WHITE SQUARE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10735:
+- 10735
+- ERROR-BARRED BLACK SQUARE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10736:
+- 10736
+- ERROR-BARRED WHITE DIAMOND
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10737:
+- 10737
+- ERROR-BARRED BLACK DIAMOND
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10738:
+- 10738
+- ERROR-BARRED WHITE CIRCLE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10739:
+- 10739
+- ERROR-BARRED BLACK CIRCLE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10740:
+- 10740
+- RULE-DELAYED
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10741:
+- 10741
+- REVERSE SOLIDUS OPERATOR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10742:
+- 10742
+- SOLIDUS WITH OVERBAR
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10743:
+- 10743
+- REVERSE SOLIDUS WITH HORIZONTAL STROKE
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10744:
+- 10744
+- BIG SOLIDUS
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10745:
+- 10745
+- BIG REVERSE SOLIDUS
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10746:
+- 10746
+- DOUBLE PLUS
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10747:
+- 10747
+- TRIPLE PLUS
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10748:
+- 10748
+- LEFT-POINTING CURVED ANGLE BRACKET
+- Ps
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10749:
+- 10749
+- RIGHT-POINTING CURVED ANGLE BRACKET
+- Pe
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- ''
+- ''
+- ''
+- ''
+- ''
+10750:
+- 10750
+- TINY
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+10751:
+- 10751
+- MINY
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''

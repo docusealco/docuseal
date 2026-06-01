@@ -1,0 +1,21 @@
+usage: opensource
+
+integration:
+  name: minitest
+
+includes:
+  - lib
+  - test
+
+requires:
+  - multi_xml
+  - mutant/minitest/coverage
+
+matcher:
+  subjects:
+    - MultiXML*
+  ignore:
+    # Platform-specific code path: only triggers on TruffleRuby. Mutant
+    # runs on MRI, so any mutation that touches the RUBY_ENGINE check
+    # produces the same observable behavior as the original.
+    - MultiXML::ParserResolution#skip_on_platform?

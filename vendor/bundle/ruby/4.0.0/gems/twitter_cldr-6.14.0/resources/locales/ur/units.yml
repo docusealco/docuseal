@@ -1,0 +1,1018 @@
+--- 
+:ur: 
+  :units: 
+    :durationUnit: 
+      :hm: "h:mm"
+      :hms: "h:mm:ss"
+      :ms: "m:ss"
+    :unitLength: 
+      :long: 
+        :acceleration-g-force: 
+          :one: "{0} جی-فورس"
+          :other: "{0} جی-فورس"
+        :acceleration-meter-per-square-second: 
+          :one: "{0} میٹر فی مربع سیکنڈ"
+          :other: "{0} میٹر فی مربع سیکنڈ"
+        :angle-radian: 
+          :one: "{0} ریڈین"
+          :other: "{0} ریڈینس"
+        :angle-revolution: 
+          :one: "{0} گردش"
+          :other: "{0} گردش"
+        :area-dunam: 
+          :one: "{0} دُنام"
+          :other: "{0} دُنامز"
+        :area-square-centimeter: 
+          :one: "{0} مربع سینٹی میٹر"
+          :other: "{0} مربع سینٹی میٹر"
+        :area-square-foot: 
+          :one: "{0} مربع فٹ"
+          :other: "{0} مربع فٹ"
+        :area-square-inch: 
+          :one: "{0} مربع انچ"
+          :other: "{0} مربع انچ"
+        :area-square-kilometer: 
+          :one: "{0} مربع کلو میٹر"
+          :other: "{0} مربع کلو میٹر"
+        :area-square-meter: 
+          :one: "{0} مربع میٹر"
+          :other: "{0} مربع میٹر"
+        :area-square-mile: 
+          :one: "{0} مربع میل"
+          :other: "{0} مربع میل"
+        :area-square-yard: 
+          :one: "{0} مربع گز"
+          :other: "{0} مربع گز"
+        :concentr-karat: 
+          :one: "{0} قیراط"
+          :other: "{0} قیراط"
+        :concentr-milligram-ofglucose-per-deciliter: 
+          :one: "{0} ملی گرام فی ڈیسی لیٹر"
+          :other: "{0} ملی گرام فی ڈیسی لیٹر"
+        :concentr-millimole-per-liter: 
+          :one: "{0} ملی مول فی لیٹر"
+          :other: "{0} ملی مول فی لیٹر"
+        :concentr-mole: 
+          :one: "{0} مول"
+          :other: "{0} مولز"
+        :concentr-percent: 
+          :one: "{0} فیصد"
+          :other: "{0} فیصد"
+        :concentr-permille: 
+          :one: "{0} فی ہزار"
+          :other: "{0} فی ہزار"
+        :concentr-permillion: 
+          :one: "{0} فی ملین حصے"
+          :other: "{0} فی ملین حصے"
+        :concentr-permyriad: 
+          :one: "{0} پرمرئیڈ"
+          :other: "{0} پرمرئیڈ"
+        :concentr-portion-per-1e9: 
+          :one: "{0} جزو فی بلین"
+          :other: "{0} اجزا فی بلین"
+        :consumption-liter-per-100-kilometer: 
+          :one: "{0} لیٹر فی 100 کلو میٹر"
+          :other: "{0} لیٹر فی 100 کلو میٹر"
+        :consumption-liter-per-kilometer: 
+          :one: "{0} لیٹر فی کلومیٹر"
+          :other: "{0} لیٹر فی کلومیٹر"
+        :consumption-mile-per-gallon: 
+          :one: "{0} میل فی گیلن"
+          :other: "{0} میل فی گیلن"
+        :consumption-mile-per-gallon-imperial: 
+          :one: "{0} میل فی امپیریل گیلن"
+          :other: "{0} میل فی امپیریل گیلن"
+        :digital-bit: 
+          :one: "{0} بٹ"
+          :other: "{0} بٹس"
+        :digital-byte: 
+          :one: "{0} بائٹ"
+          :other: "{0} بائٹس"
+        :digital-gigabit: 
+          :one: "{0} گیگابٹ"
+          :other: "{0} گیگابٹس"
+        :digital-gigabyte: 
+          :one: "{0} گیگابائٹ"
+          :other: "{0} گیگابائٹ"
+        :digital-kilobit: 
+          :one: "{0} کلوبٹ"
+          :other: "{0} کلوبٹس"
+        :digital-kilobyte: 
+          :one: "{0} کلوبائٹ"
+          :other: "{0} کلوبائٹس"
+        :digital-megabit: 
+          :one: "{0} میگابٹ"
+          :other: "{0} میگابٹس"
+        :digital-megabyte: 
+          :one: "{0} میگابائٹ"
+          :other: "{0} ميگابائٹس"
+        :digital-petabyte: 
+          :one: "{0} پیٹا بائٹ"
+          :other: "{0} پیٹا بائٹس"
+        :digital-terabit: 
+          :one: "{0} ٹیرابٹ"
+          :other: "{0} ٹیرابٹس"
+        :digital-terabyte: 
+          :one: "{0} ٹیرابائٹ"
+          :other: "{0} ٹیرابائٹ"
+        :duration-decade: 
+          :one: "{0} دہائی"
+          :other: "{0} دہائیاں"
+        :duration-microsecond: 
+          :one: "{0} مائیکرو سیکنڈ"
+          :other: "{0} مائیکرو سیکنڈز"
+        :duration-night: 
+          :one: "{0} رات"
+          :other: "{0} راتیں"
+        :electric-ampere: 
+          :one: "{0} ایمپیئر"
+          :other: "{0} ایمپیئر"
+        :electric-milliampere: 
+          :one: "{0} ملی ایمپیئر"
+          :other: "{0} ملی ایمپیئر"
+        :electric-ohm: 
+          :one: "{0} اوہم"
+          :other: "{0} اوہم"
+        :electric-volt: 
+          :one: "{0} وولٹ"
+          :other: "{0} وولٹ"
+        :energy-british-thermal-unit: 
+          :one: "{0} برطانوی تھرمل اکائی"
+          :other: "{0} برطانوی تھرمل اکائیاں"
+        :energy-calorie: 
+          :one: "{0} کیلوری"
+          :other: "{0} کیلوریز"
+        :energy-electronvolt: 
+          :one: "{0} الیکٹرون وولٹ"
+          :other: "{0} الیکٹرون وولٹس"
+        :energy-foodcalorie: 
+          :one: "{0} کیلوری"
+          :other: "{0} کیلوریز"
+        :energy-joule: 
+          :one: "{0} جول"
+          :other: "{0} جول"
+        :energy-kilocalorie: 
+          :one: "{0} کلو کیلوری"
+          :other: "{0} کلو کیلوریز"
+        :energy-kilojoule: 
+          :one: "{0} کلو جول"
+          :other: "{0} کلو جول"
+        :energy-kilowatt-hour: 
+          :one: "{0} کلو واٹ آور"
+          :other: "{0} کلو واٹ آور"
+        :force-kilowatt-hour-per-100-kilometer: 
+          :one: "{0} کلو واٹ گھنٹہ فی 100 کلومیٹر"
+          :other: "{0} کلو واٹ گھنٹے فی 100 کلومیٹر"
+        :force-newton: 
+          :one: "{0} نیوٹن"
+          :other: "{0} نیوٹنز"
+        :force-pound-force: 
+          :one: "{0} پاؤنڈ قوت"
+          :other: "{0} پاؤنڈز قوت"
+        :frequency-gigahertz: 
+          :one: "{0} گیگاہرٹز"
+          :other: "{0} گیگاہرٹز"
+        :frequency-hertz: 
+          :one: "{0} ہرٹز"
+          :other: "{0} ہرٹز"
+        :frequency-kilohertz: 
+          :one: "{0} کلوہرٹز"
+          :other: "{0} کلوہرٹز"
+        :frequency-megahertz: 
+          :one: "{0} میگاہرٹز"
+          :other: "{0} میگاہرٹز"
+        :graphics-dot-per-centimeter: 
+          :one: "{0} ڈاٹ فی سینٹی میٹر"
+          :other: "{0} ڈاٹس فی سینٹی میٹر"
+        :graphics-dot-per-inch: 
+          :one: "{0} ڈاٹ فی انچ"
+          :other: "{0} ڈاٹس فی انچ"
+        :graphics-em: 
+          :one: "{0} em"
+          :other: "{0} ems"
+        :graphics-megapixel: 
+          :one: "{0} میگا پکسل"
+          :other: "{0} میگا پکسلز"
+        :graphics-pixel: 
+          :one: "{0} پکسل"
+          :other: "{0} پکسلز"
+        :graphics-pixel-per-centimeter: 
+          :one: "{0} پکسل فی سینٹی میٹر"
+          :other: "{0} پکسلز فی سینٹی میٹر"
+        :graphics-pixel-per-inch: 
+          :one: "{0} پکسل فی انچ"
+          :other: "{0} پکسلز فی انچ"
+        :length-astronomical-unit: 
+          :one: "{0} ایسٹرونومیکل یونٹ"
+          :other: "{0} ایسٹرونومیکل یونٹس"
+        :length-decimeter: 
+          :one: "{0} ڈیسی میٹر"
+          :other: "{0} ڈیسی میٹر"
+        :length-earth-radius: 
+          :one: "{0} زمینی رداس"
+          :other: "{0} زمینی رداس"
+        :length-fathom: 
+          :one: "{0} فیدم"
+          :other: "{0} فیدمز"
+        :length-furlong: 
+          :one: "{0} فرلانگ"
+          :other: "{0} فرلانگز"
+        :length-inch: 
+          :one: "{0} انچ"
+          :other: "{0} انچ"
+        :length-light-year: 
+          :one: "{0} نوری سال"
+          :other: "{0} نوری سال"
+        :length-micrometer: 
+          :one: "{0} مائیکرو میٹر"
+          :other: "{0} مائیکرو میٹر"
+        :length-mile-scandinavian: 
+          :one: "{0} اسکینڈی نیویائی میل"
+          :other: "{0} اسکینڈی نیویائی میل"
+        :length-nanometer: 
+          :one: "{0} نینو میٹر"
+          :other: "{0} نینو میٹر"
+        :length-nautical-mile: 
+          :one: "{0} بحری میل"
+          :other: "{0} بحری میل"
+        :length-parsec: 
+          :one: "{0} پارسیک"
+          :other: "{0} پارسیک"
+        :length-point: 
+          :one: "{0} پوائنٹ"
+          :other: "{0} پوائنٹس"
+        :length-solar-radius: 
+          :one: "{0} شمسی رداس"
+          :other: "{0} شمسی رداس"
+        :light-candela: 
+          :one: "{0} کنڈیلا"
+          :other: "{0} کنڈیلا"
+        :light-lumen: 
+          :one: "{0} لیومِن"
+          :other: "{0} لیومِن"
+        :light-lux: 
+          :one: "{0} lux"
+          :other: "{0} lux"
+        :light-solar-luminosity: 
+          :one: "{0} شمسی چمک"
+          :other: "{0} شمسی چمک"
+        :mass-carat: 
+          :one: "{0} قیراط"
+          :other: "{0} قیراط"
+        :mass-dalton: 
+          :one: "{0} ڈالٹن"
+          :other: "{0} ڈالٹنز"
+        :mass-earth-mass: 
+          :one: "{0} زمینی کمیت"
+          :other: "{0} زمینی کمیتیں"
+        :mass-gram: 
+          :one: "{0} گرام"
+          :other: "{0} گرام"
+        :mass-kilogram: 
+          :one: "{0} کلو گرام"
+          :other: "{0} کلو گرام"
+        :mass-microgram: 
+          :one: "{0} مائکرو گرام"
+          :other: "{0} مائکرو گرام"
+        :mass-milligram: 
+          :one: "{0} ملی گرام"
+          :other: "{0} ملی گرام"
+        :mass-ounce: 
+          :one: "{0} اونس"
+          :other: "{0} اونس"
+        :mass-ounce-troy: 
+          :one: "{0} ٹرائے اونس"
+          :other: "{0} ٹرائے اونس"
+        :mass-pound: 
+          :one: "{0} پونڈ"
+          :other: "{0} پونڈ"
+        :mass-solar-mass: 
+          :one: "{0} شمسی کمیت"
+          :other: "{0} شمسی کمیتیں"
+        :mass-stone: 
+          :one: "{0} اسٹون"
+          :other: "{0} اسٹونز"
+        :mass-ton: 
+          :one: "{0} ٹن"
+          :other: "{0} ٹن"
+        :mass-tonne: 
+          :one: "{0} میٹرک ٹن"
+          :other: "{0} میٹرک ٹن"
+        :power-gigawatt: 
+          :one: "{0} گیگا واٹ"
+          :other: "{0} گیگا واٹ"
+        :power-horsepower: 
+          :one: "{0} ہارس پاور"
+          :other: "{0} ہارس پاور"
+        :power-megawatt: 
+          :one: "{0} میگا واٹ"
+          :other: "{0} میگا واٹ"
+        :power-milliwatt: 
+          :one: "{0} ملی واٹ"
+          :other: "{0} ملی واٹ"
+        :pressure-atmosphere: 
+          :one: "{0} ماحول"
+          :other: "{0} ماحول"
+        :pressure-hectopascal: 
+          :one: "{0} ہیکٹو پاسکل"
+          :other: "{0} ہیکٹو پاسکل"
+        :pressure-inch-ofhg: 
+          :one: "{0} انچ مرکری"
+          :other: "{0} انچ مرکری"
+        :pressure-kilopascal: 
+          :one: "{0} کلو پاسکل"
+          :other: "{0} کلو پاسکلز"
+        :pressure-megapascal: 
+          :one: "{0} میگا پاسکل"
+          :other: "{0} میگا پاسکلز"
+        :pressure-millibar: 
+          :one: "{0} ملی بار"
+          :other: "{0} ملی بار"
+        :pressure-millimeter-ofhg: 
+          :one: "{0} ملی میٹر مرکری"
+          :other: "{0} ملی میٹر مرکری"
+        :pressure-pascal: 
+          :one: "{0} پاسکل"
+          :other: "{0} پاسکل"
+        :pressure-pound-force-per-square-inch: 
+          :one: "{0} پاؤنڈ فی مربع انچ"
+          :other: "{0} پاؤنڈز فی مربع انچ"
+        :speed-beaufort: 
+          :one: "{0} بیوفورٹ"
+          :other: "{0} بیوفورٹ"
+        :speed-kilometer-per-hour: 
+          :one: "{0} کلومیٹر فی گھنٹہ"
+          :other: "{0} کلومیٹر فی گھنٹہ"
+        :speed-knot: 
+          :one: "{0} ناٹ"
+          :other: "{0} ناٹس"
+        :speed-light-speed: 
+          :one: "{0} روشنی"
+          :other: "{0} روشنی"
+        :speed-meter-per-second: 
+          :one: "{0} میٹر فی سیکنڈ"
+          :other: "{0} میٹر فی سیکنڈ"
+        :speed-mile-per-hour: 
+          :one: "{0} میل فی گھنٹہ"
+          :other: "{0} میل فی گھنٹہ"
+        :temperature-celsius: 
+          :one: "{0} ڈگری سیلسیس"
+          :other: "{0} ڈگری سیلسیس"
+        :temperature-fahrenheit: 
+          :one: "{0} ڈگری فارن ہائیٹ"
+          :other: "{0} ڈگری فارن ہائیٹ"
+        :temperature-kelvin: 
+          :one: "{0} کیلون"
+          :other: "{0} کیلون"
+        :torque-newton-meter: 
+          :one: "{0} نیوٹن میٹر"
+          :other: "{0} نیوٹن میٹر"
+        :torque-pound-force-foot: 
+          :one: "{0} پاؤنڈ فورس فوٹ"
+          :other: "{0} پاؤنڈ فٹ"
+        :volume-acre-foot: 
+          :one: "{0} ایکڑ فٹ"
+          :other: "{0} ایکڑ فٹ"
+        :volume-barrel: 
+          :one: "{0} بیرل"
+          :other: "{0} بیرلز"
+        :volume-bushel: 
+          :one: "{0} بُشل"
+          :other: "{0} بُشلز"
+        :volume-centiliter: 
+          :one: "{0} سینٹی لیٹر"
+          :other: "{0} سینٹی لیٹر"
+        :volume-cubic-centimeter: 
+          :one: "{0} کیوبک سینٹی میٹر"
+          :other: "{0} کیوبک سینٹی میٹر"
+        :volume-cubic-foot: 
+          :one: "{0} کیوبک فٹ"
+          :other: "{0} کیوبک فٹ"
+        :volume-cubic-inch: 
+          :one: "{0} کیوبک انچ"
+          :other: "{0} کیوبک انچ"
+        :volume-cubic-kilometer: 
+          :one: "{0} کیوبک کلو میٹر"
+          :other: "{0} کیوبک کلو میٹر"
+        :volume-cubic-meter: 
+          :one: "{0} کیوبک میٹر"
+          :other: "{0} کیوبک میٹر"
+        :volume-cubic-yard: 
+          :one: "{0} کیوبک گز"
+          :other: "{0} کیوبک گز"
+        :volume-cup: 
+          :one: "{0} کپ"
+          :other: "{0} کپ"
+        :volume-cup-metric: 
+          :one: "{0} میٹرک کپ"
+          :other: "{0} میٹرک کپ"
+        :volume-deciliter: 
+          :one: "{0} ڈیسی لیٹر"
+          :other: "{0} ڈیسی لیٹر"
+        :volume-dessert-spoon: 
+          :one: "{0} ڈیزرٹ اسپون"
+          :other: "{0} ڈیزرٹ اسپون"
+        :volume-dessert-spoon-imperial: 
+          :one: "{0} امپیریئل ڈیزرٹ اسپون"
+          :other: "{0} امپیریئل ڈیزرٹ اسپون"
+        :volume-dram: 
+          :one: "{0} ڈرام"
+          :other: "{0} ڈرام"
+        :volume-fluid-ounce: 
+          :one: "{0} فلوئڈ اونس"
+          :other: "{0} فلوئڈ اونس"
+        :volume-fluid-ounce-imperial: 
+          :one: "{0} امپیریئل فلوئڈ اونس"
+          :other: "{0} امپیریئل فلوئڈ اونس"
+        :volume-gallon: 
+          :one: "{0} گیلن"
+          :other: "{0} گیلن"
+        :volume-gallon-imperial: 
+          :one: "{0} امپیریل گیلن"
+          :other: "{0} امپیریل گیلن"
+        :volume-hectoliter: 
+          :one: "{0} ہیکٹو لیٹر"
+          :other: "{0} ہیکٹو لیٹر"
+        :volume-megaliter: 
+          :one: "{0} میگا لیٹر"
+          :other: "{0} میگا لیٹر"
+        :volume-milliliter: 
+          :one: "{0} ملی لیٹر"
+          :other: "{0} ملی لیٹر"
+        :volume-pint: 
+          :one: "{0} پائنٹ"
+          :other: "{0} پائنٹ"
+        :volume-pint-metric: 
+          :one: "{0} میٹرک پائنٹ"
+          :other: "{0} میٹرک پائنٹ"
+        :volume-quart: 
+          :one: "{0} کوارٹ"
+          :other: "{0} کوارٹ"
+        :volume-quart-imperial: 
+          :one: "{0} امپیریئل کوارٹ"
+          :other: "{0} امپیریئل کوارٹ"
+        :volume-tablespoon: 
+          :one: "{0} ٹیبل سپون"
+          :other: "{0} ٹیبل سپون"
+        :volume-teaspoon: 
+          :one: "{0} ٹی سپون"
+          :other: "{0} ٹی سپون"
+      :narrow: 
+        :acceleration-g-force: 
+          :one: "{0}g"
+          :other: "{0}g"
+        :angle-arc-minute: 
+          :one: "{0}′"
+          :other: "{0}′"
+        :angle-arc-second: 
+          :one: "{0}″"
+          :other: "{0}″"
+        :area-square-foot: 
+          :one: "{0}ft²"
+          :other: "{0}ft²"
+        :area-square-mile: 
+          :one: "{0}mi²"
+          :other: "{0}mi²"
+        :concentr-portion-per-1e9: 
+          :one: "{0}ppb"
+          :other: "{0}ppb"
+        :consumption-liter-per-100-kilometer: 
+          :one: "{0}L/100km"
+          :other: "{0}L/100km"
+        :consumption-mile-per-gallon-imperial: 
+          :one: "{0}m/gUK"
+          :other: "{0}m/gUK"
+        :digital-byte: 
+          :one: "{0}B"
+          :other: "{0}B"
+        :duration-microsecond: 
+          :one: "{0}μs"
+          :other: "{0}μs"
+        :duration-millisecond: 
+          :one: "{0} ms"
+          :other: "{0} ms"
+        :duration-night: 
+          :one: "{0} رات"
+          :other: "{0} راتیں"
+        :duration-quarter: 
+          :one: "{0}q"
+          :other: "{0}q"
+        :length-centimeter: 
+          :one: "{0}cm"
+          :other: "{0}cm"
+        :length-foot: 
+          :one: "{0}′"
+          :other: "{0}′"
+        :length-inch: 
+          :one: "{0} انچ"
+          :other: "{0} انچ"
+        :length-light-year: 
+          :one: "{0}ly"
+          :other: "{0}ly"
+        :length-millimeter: 
+          :one: "{0} ملی میٹر"
+          :other: "{0}ملی میٹر"
+        :length-picometer: 
+          :one: "{0}pm"
+          :other: "{0}pm"
+        :mass-grain: 
+          :one: "{0}gr"
+          :other: "{0}gr"
+        :mass-gram: 
+          :one: "{0} گرام"
+          :other: "{0} گرام"
+        :mass-kilogram: 
+          :one: "{0}kg"
+          :other: "{0}kg"
+        :mass-ounce: 
+          :one: "{0} ونس"
+          :other: "{0} ونس"
+        :mass-pound: 
+          :one: "{0} پونڈ"
+          :other: "{0} پونڈ"
+        :power-horsepower: 
+          :one: "{0}hp"
+          :other: "{0}hp"
+        :power-kilowatt: 
+          :one: "{0}kW"
+          :other: "{0}kW"
+        :pressure-hectopascal: 
+          :one: "{0}hPa"
+          :other: "{0}hPa"
+        :pressure-inch-ofhg: 
+          :one: "{0} انچ مرکری"
+          :other: "{0} انچ مرکری"
+        :pressure-millibar: 
+          :one: "{0}mb"
+          :other: "{0}mb"
+        :speed-kilometer-per-hour: 
+          :one: "{0}kph"
+          :other: "{0}kph"
+        :speed-light-speed: 
+          :one: "{0} روشنی"
+          :other: "{0} روشنی"
+        :speed-meter-per-second: 
+          :one: "{0}m/s"
+          :other: "{0}m/s"
+        :speed-mile-per-hour: 
+          :one: "{0}mph"
+          :other: "{0}mph"
+        :temperature-celsius: 
+          :one: "{0}‎°"
+          :other: "{0}‎°"
+        :volume-cubic-kilometer: 
+          :one: "{0}km³"
+          :other: "{0}km³"
+        :volume-cubic-mile: 
+          :one: "{0}mi³"
+          :other: "{0}mi³"
+        :volume-dessert-spoon: 
+          :one: "{0}dsp"
+          :other: "{0}dsp"
+        :volume-dessert-spoon-imperial: 
+          :one: "{0}dsp-Imp"
+          :other: "{0}dsp-Imp"
+        :volume-dram: 
+          :one: "{0}fl.dr."
+          :other: "{0}fl.dr."
+        :volume-fluid-ounce-imperial: 
+          :one: "{0}fl oz Im"
+          :other: "{0}fl oz Im"
+        :volume-gallon-imperial: 
+          :one: "{0}galIm"
+          :other: "{0}galIm"
+      :short: 
+        :acceleration-g-force: 
+          :other: "{0} G"
+        :acceleration-meter-per-square-second: 
+          :other: "{0} m/s²"
+        :angle-arc-minute: 
+          :one: "{0} آرک منٹ"
+          :other: "{0} آرک منٹ"
+        :angle-arc-second: 
+          :one: "{0} آرک سیکنڈ"
+          :other: "{0} آرک سیکنڈ"
+        :angle-degree: 
+          :one: "{0} ڈگری"
+          :other: "{0} ڈگری"
+        :angle-radian: 
+          :other: "{0} rad"
+        :angle-revolution: 
+          :other: "{0} rev"
+        :area-acre: 
+          :one: "{0} ایکڑ"
+          :other: "{0} ایکڑ"
+        :area-dunam: 
+          :one: "{0} دُنام"
+          :other: "{0} دُنام"
+        :area-hectare: 
+          :one: "{0} ہیکٹر"
+          :other: "{0} ہیکٹر"
+        :area-square-centimeter: 
+          :other: "{0} cm²"
+        :area-square-foot: 
+          :one: "{0} sq ft"
+          :other: "{0} sq ft"
+        :area-square-inch: 
+          :other: "{0} in²"
+        :area-square-kilometer: 
+          :other: "{0} km²"
+        :area-square-meter: 
+          :other: "{0} m²"
+        :area-square-mile: 
+          :one: "{0} sq mi"
+          :other: "{0} sq mi"
+        :area-square-yard: 
+          :other: "{0} yd²"
+        :concentr-item: 
+          :one: "{0} آئٹم"
+          :other: "{0} آئٹمز"
+        :concentr-karat: 
+          :other: "{0} kt"
+        :concentr-milligram-ofglucose-per-deciliter: 
+          :other: "{0} mg/dL"
+        :concentr-millimole-per-liter: 
+          :other: "{0} mmol/L"
+        :concentr-mole: 
+          :one: "{0} مول"
+          :other: "{0} مول"
+        :concentr-percent: 
+          :other: "{0}%"
+        :concentr-permille: 
+          :other: "{0}‰"
+        :concentr-permillion: 
+          :other: "{0} ppm"
+        :concentr-permyriad: 
+          :other: "{0}‱"
+        :concentr-portion-per-1e9: 
+          :other: "{0} ppb"
+        :consumption-liter-per-100-kilometer: 
+          :other: "{0} L/100km"
+        :consumption-liter-per-kilometer: 
+          :other: "{0} L/km"
+        :consumption-mile-per-gallon: 
+          :one: "{0} mpg"
+          :other: "{0} mpg"
+        :consumption-mile-per-gallon-imperial: 
+          :other: "{0} mpg Imp."
+        :digital-bit: 
+          :other: "{0} bit"
+        :digital-byte: 
+          :other: "{0} byte"
+        :digital-gigabit: 
+          :other: "{0} Gb"
+        :digital-gigabyte: 
+          :other: "{0} GB"
+        :digital-kilobit: 
+          :other: "{0} kb"
+        :digital-kilobyte: 
+          :other: "{0} kB"
+        :digital-megabit: 
+          :other: "{0} Mb"
+        :digital-megabyte: 
+          :other: "{0} MB"
+        :digital-petabyte: 
+          :one: "{0} پی بی"
+          :other: "{0} پی بی"
+        :digital-terabit: 
+          :other: "{0} Tb"
+        :digital-terabyte: 
+          :other: "{0} TB"
+        :duration-century: 
+          :one: "{0} صدی"
+          :other: "{0} صدیاں"
+        :duration-day: 
+          :one: "{0} دن"
+          :other: "{0} دن"
+        :duration-decade: 
+          :one: "{0} دہائی"
+          :other: "{0} دہائی"
+        :duration-hour: 
+          :one: "{0} گھنٹہ"
+          :other: "{0} گھنٹے"
+        :duration-microsecond: 
+          :one: "{0} مائیکرو سیکنڈ"
+          :other: "{0} مائیکرو سیکنڈ"
+        :duration-millisecond: 
+          :one: "{0} ملی سیکنڈ"
+          :other: "{0} ملی سیکنڈ"
+        :duration-minute: 
+          :one: "{0} منٹ"
+          :other: "{0} منٹ"
+        :duration-month: 
+          :one: "{0} مہینہ"
+          :other: "{0} مہینے"
+        :duration-nanosecond: 
+          :one: "{0} نینو سیکنڈ"
+          :other: "{0} نینو سیکنڈ"
+        :duration-night: 
+          :one: "{0} رات"
+          :other: "{0} راتیں"
+        :duration-quarter: 
+          :one: "{0} کوارٹر"
+          :other: "{0} کوارٹرز"
+        :duration-second: 
+          :one: "{0} سیکنڈ"
+          :other: "{0} سیکنڈ"
+        :duration-week: 
+          :one: "{0} ہفتہ"
+          :other: "{0} ہفتے"
+        :duration-year: 
+          :one: "{0} سال"
+          :other: "{0} سال"
+        :electric-ampere: 
+          :other: "{0} A"
+        :electric-milliampere: 
+          :other: "{0} mA"
+        :electric-ohm: 
+          :other: "{0} Ω"
+        :electric-volt: 
+          :other: "{0} V"
+        :energy-british-thermal-unit: 
+          :other: "{0} Btu"
+        :energy-calorie: 
+          :other: "{0} cal"
+        :energy-electronvolt: 
+          :other: "{0} eV"
+        :energy-foodcalorie: 
+          :one: "{0} Cal"
+          :other: "{0} Cal"
+        :energy-joule: 
+          :other: "{0} J"
+        :energy-kilocalorie: 
+          :other: "{0} kcal"
+        :energy-kilojoule: 
+          :other: "{0} kJ"
+        :energy-kilowatt-hour: 
+          :other: "{0} kWh"
+        :energy-therm-us: 
+          :one: "{0} امریکی تھرم"
+          :other: "{0} امریکی تھرمز"
+        :force-kilowatt-hour-per-100-kilometer: 
+          :other: "{0} kWh/100km"
+        :force-newton: 
+          :other: "{0} N"
+        :force-pound-force: 
+          :other: "{0} lbf"
+        :frequency-gigahertz: 
+          :other: "{0} GHz"
+        :frequency-hertz: 
+          :other: "{0} Hz"
+        :frequency-kilohertz: 
+          :other: "{0} kHz"
+        :frequency-megahertz: 
+          :other: "{0} MHz"
+        :graphics-dot: 
+          :one: "{0} ڈاٹ"
+          :other: "{0} ڈاٹ"
+        :graphics-dot-per-centimeter: 
+          :one: "{0} dpcm"
+          :other: "{0} dpcm"
+        :graphics-dot-per-inch: 
+          :one: "{0} dpi"
+          :other: "{0} dpi"
+        :graphics-em: 
+          :other: "{0} em"
+        :graphics-megapixel: 
+          :other: "{0} MP"
+        :graphics-pixel: 
+          :other: "{0} px"
+        :graphics-pixel-per-centimeter: 
+          :other: "{0} ppcm"
+        :graphics-pixel-per-inch: 
+          :other: "{0} ppi"
+        :length-astronomical-unit: 
+          :other: "{0} au"
+        :length-centimeter: 
+          :one: "{0} سینٹی میٹر"
+          :other: "{0} سینٹی میٹر"
+        :length-decimeter: 
+          :other: "{0} dm"
+        :length-earth-radius: 
+          :other: "{0} R⊕"
+        :length-fathom: 
+          :one: "{0} فیدم"
+          :other: "{0} فیدم"
+        :length-foot: 
+          :one: "{0} فیٹ"
+          :other: "{0} فیٹ"
+        :length-furlong: 
+          :one: "{0} فرلانگ"
+          :other: "{0} فرلانگ"
+        :length-inch: 
+          :one: "{0} انچ"
+          :other: "{0} in"
+        :length-kilometer: 
+          :one: "{0} کلو میٹر"
+          :other: "{0} کلو میٹر"
+        :length-light-year: 
+          :other: "{0} ly"
+        :length-meter: 
+          :one: "{0} میٹر"
+          :other: "{0} میٹر"
+        :length-micrometer: 
+          :other: "{0} μm"
+        :length-mile: 
+          :one: "{0} میل"
+          :other: "{0} میل"
+        :length-mile-scandinavian: 
+          :other: "{0} smi"
+        :length-millimeter: 
+          :one: "{0} ملی میٹر"
+          :other: "{0} ملیمیٹر"
+        :length-nanometer: 
+          :other: "{0} nm"
+        :length-nautical-mile: 
+          :other: "{0} nmi"
+        :length-parsec: 
+          :other: "{0} pc"
+        :length-picometer: 
+          :one: "{0} پیکو میٹر"
+          :other: "{0} پیکو میٹر"
+        :length-point: 
+          :other: "{0} pt"
+        :length-solar-radius: 
+          :other: "{0} R☉"
+        :length-yard: 
+          :one: "{0} یارڈ"
+          :other: "{0} یارڈ"
+        :light-candela: 
+          :other: "{0} cd"
+        :light-lumen: 
+          :other: "{0} lm"
+        :light-lux: 
+          :other: "{0} lx"
+        :light-solar-luminosity: 
+          :other: "{0} L☉"
+        :mass-carat: 
+          :other: "{0} CD"
+        :mass-dalton: 
+          :other: "{0} Da"
+        :mass-earth-mass: 
+          :other: "{0} M⊕"
+        :mass-grain: 
+          :one: "{0} گرین"
+          :other: "{0} گرین"
+        :mass-gram: 
+          :other: "{0} g"
+        :mass-kilogram: 
+          :other: "{0} kg"
+        :mass-microgram: 
+          :other: "{0} μg"
+        :mass-milligram: 
+          :other: "{0} mg"
+        :mass-ounce: 
+          :other: "{0} oz"
+        :mass-ounce-troy: 
+          :other: "{0} oz t"
+        :mass-pound: 
+          :other: "{0} lb"
+        :mass-solar-mass: 
+          :other: "{0} M☉"
+        :mass-stone: 
+          :other: "{0} st"
+        :mass-ton: 
+          :other: "{0} tn"
+        :mass-tonne: 
+          :other: "{0} t"
+        :power-gigawatt: 
+          :other: "{0} GW"
+        :power-horsepower: 
+          :other: "{0} hp"
+        :power-kilowatt: 
+          :one: "{0} کلو واٹ"
+          :other: "{0} کلو واٹ"
+        :power-megawatt: 
+          :other: "{0} MW"
+        :power-milliwatt: 
+          :other: "{0} mW"
+        :power-watt: 
+          :one: "{0} واٹ"
+          :other: "{0} واٹ"
+        :pressure-atmosphere: 
+          :other: "{0} atm"
+        :pressure-bar: 
+          :one: "{0} بار"
+          :other: "{0} بارز"
+        :pressure-hectopascal: 
+          :other: "{0} hPa"
+        :pressure-inch-ofhg: 
+          :other: "{0} inHg"
+        :pressure-kilopascal: 
+          :other: "{0} kPa"
+        :pressure-megapascal: 
+          :other: "{0} MPa"
+        :pressure-millibar: 
+          :other: "{0} mbar"
+        :pressure-millimeter-ofhg: 
+          :other: "{0} mm Hg"
+        :pressure-pascal: 
+          :other: "{0} Pa"
+        :pressure-pound-force-per-square-inch: 
+          :other: "{0} psi"
+        :speed-beaufort: 
+          :other: "B {0}"
+        :speed-kilometer-per-hour: 
+          :one: "{0} kph"
+          :other: "{0} kph"
+        :speed-knot: 
+          :other: "{0} kn"
+        :speed-light-speed: 
+          :one: "{0} روشنی"
+          :other: "{0} روشنی"
+        :speed-meter-per-second: 
+          :other: "{0} m/s"
+        :speed-mile-per-hour: 
+          :one: "{0} mph"
+          :other: "{0} mph"
+        :temperature-celsius: 
+          :one: "{0}‎°C"
+          :other: "{0}‎°C"
+        :temperature-fahrenheit: 
+          :one: "{0}‎°F"
+          :other: "{0}‎°F"
+        :temperature-generic: 
+          :other: "{0}°"
+        :temperature-kelvin: 
+          :other: "{0} K"
+        :torque-newton-meter: 
+          :other: "{0} N⋅m"
+        :torque-pound-force-foot: 
+          :other: "{0} lbf⋅ft"
+        :volume-acre-foot: 
+          :other: "{0} ac ft"
+        :volume-barrel: 
+          :other: "{0} bbl"
+        :volume-bushel: 
+          :one: "{0} بو"
+          :other: "{0} بو"
+        :volume-centiliter: 
+          :other: "{0} cL"
+        :volume-cubic-centimeter: 
+          :other: "{0} cm³"
+        :volume-cubic-foot: 
+          :other: "{0} ft³"
+        :volume-cubic-inch: 
+          :other: "{0} in³"
+        :volume-cubic-kilometer: 
+          :other: "{0} km³"
+        :volume-cubic-meter: 
+          :other: "{0} m³"
+        :volume-cubic-mile: 
+          :one: "{0} کیوبک میل"
+          :other: "{0} کیوبک میل"
+        :volume-cubic-yard: 
+          :other: "{0} yd³"
+        :volume-cup: 
+          :other: "{0} c"
+        :volume-cup-metric: 
+          :other: "{0} mc"
+        :volume-deciliter: 
+          :other: "{0} dL"
+        :volume-dessert-spoon: 
+          :other: "{0} dstspn"
+        :volume-dessert-spoon-imperial: 
+          :other: "{0} dstspn Imp"
+        :volume-dram: 
+          :one: "{0} ڈرام فلوئیڈ"
+          :other: "{0} ڈرام فلوئیڈ"
+        :volume-drop: 
+          :one: "{0} قطرہ"
+          :other: "{0} قطرہ"
+        :volume-fluid-ounce: 
+          :one: "{0} fl oz"
+          :other: "{0} fl oz"
+        :volume-fluid-ounce-imperial: 
+          :other: "{0} fl oz Imp."
+        :volume-gallon: 
+          :one: "{0} gal"
+          :other: "{0} gal"
+        :volume-gallon-imperial: 
+          :other: "{0} gal Imp."
+        :volume-hectoliter: 
+          :other: "{0} hL"
+        :volume-jigger: 
+          :one: "{0} جگر"
+          :other: "{0} جگر"
+        :volume-liter: 
+          :one: "{0} لیٹر"
+          :other: "{0} لیٹر"
+        :volume-megaliter: 
+          :other: "{0} ML"
+        :volume-milliliter: 
+          :other: "{0} mL"
+        :volume-pinch: 
+          :one: "{0} چٹکی"
+          :other: "{0} چٹکی"
+        :volume-pint: 
+          :other: "{0} pt"
+        :volume-pint-metric: 
+          :other: "{0} mpt"
+        :volume-quart: 
+          :other: "{0} qt"
+        :volume-quart-imperial: 
+          :other: "{0} qt Imp."
+        :volume-tablespoon: 
+          :other: "{0} tbsp"
+        :volume-teaspoon: 
+          :other: "{0} tsp"

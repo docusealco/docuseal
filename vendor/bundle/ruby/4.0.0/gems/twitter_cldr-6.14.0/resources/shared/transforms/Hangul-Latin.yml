@@ -1,0 +1,15 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - Hangul-Latin
+      - und-Latn-t-und-hang
+    :direction: forward
+    :rules: 
+      - "::['ᄀ-하-ᅵᆨ-ᇂㄱ-ㄿㅁ-ㅃㅅ-ㅣ㈀-㈜㉠-㉻가-힣＇ﾡ-ﾯﾱ-ﾳﾵ-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ] ;"
+      - "::NFKD ;"
+      - "::ConjoiningJamo-Latin ;"
+      - "::NFC ;"
+    :source: Hang
+    :target: Latn
+    :variant: ~

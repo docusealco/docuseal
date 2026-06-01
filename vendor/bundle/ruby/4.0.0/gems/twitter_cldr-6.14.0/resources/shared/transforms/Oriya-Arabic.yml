@@ -1,0 +1,16 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - Oriya-Arabic
+      - und-Arab-t-und-orya
+    :direction: forward
+    :rules: 
+      - "::[ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୃେ-ୈୋ-୍ୖ-ୗଡ଼-ଢ଼ୟ-ୡ୦-ୱ] ;"
+      - "::NFD ;"
+      - "::Oriya-InterIndic ;"
+      - "::InterIndic-Arabic ;"
+      - "::NFC ;"
+    :source: Orya
+    :target: Arab
+    :variant: ~

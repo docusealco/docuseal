@@ -1,0 +1,20 @@
+---
+inherit_from: .rubocop_todo.yml
+
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.1
+  Exclude:
+    - "spec/dummy/bin/**/*"
+    - "tmp/**/*"
+    - "vendor/**/*"
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*_spec.rb
+
+Layout/LineLength:
+  Max: 120
+
+Style/HashSyntax:
+  EnforcedShorthandSyntax: either

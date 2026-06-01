@@ -1,0 +1,10 @@
+targetScope = 'subscription' // To create a resource group
+
+@description('The Azure region to create the resources in.')
+param location string
+
+// Create a resource group
+resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
+  name: 'rg-sample'
+  location: location
+}

@@ -1,0 +1,1490 @@
+--- 
+:lo: 
+  :formats: 
+    :fallback_formats: 
+      :generic: "{1} ({0})"
+    :gmt_formats: 
+      :generic: "GMT{0}"
+    :gmt_zero_formats: 
+      :generic: GMT
+    :hour_formats: 
+      :generic: "+HH:mm;-HH:mm"
+    :region_formats: 
+      :daylight: "ເວລາກາງເວັນ {0}"
+      :generic: "ເວລາ {0}"
+      :standard: "ເວລາມາດຕະຖານ {0}"
+  :metazones: 
+    :Acre: 
+      :long: 
+        :daylight: ເວລາລະດູຮ້ອນຂອງອາເກຣ
+        :generic: ເວລາຂອງອາເກຣ
+        :standard: ເວລາມາດຕະຖານຂອງອາເກຣ
+    :Afghanistan: 
+      :long: 
+        :standard: "ເວລາ ອັຟການິສຖານ"
+    :Africa_Central: 
+      :long: 
+        :standard: ເວ​ລາ​ອາ​ຟຣິ​ກາ​ກາງ
+    :Africa_Eastern: 
+      :long: 
+        :standard: ເວ​ລາ​ອາ​ຟຣິ​ກາ​ຕາ​ເວັນ​ອອກ
+    :Africa_Southern: 
+      :long: 
+        :standard: ເວ​ລາ​ອາ​ຟຣິ​ກາ​ໃຕ້
+    :Africa_Western: 
+      :long: 
+        :daylight: ເວ​ລາ​ລະ​ດູ​ຮ້ອນ​ອາ​ຟຣິ​ກາ​ຕາ​ເວັນ​ຕົກ
+        :generic: ເວ​ລາ​ອາ​ຟຣິ​ກາ​ຕາ​ເວັນ​ຕົກ
+        :standard: ເວ​ລາ​ມາດ​ຕະ​ຖານ​ອາ​ຟຣິ​ກາ​ຕາ​ເວັນ​ຕົກ
+    :Alaska: 
+      :long: 
+        :daylight: ເວລາກາງເວັນອະລັສກາ
+        :generic: ເວລາອະລັສກາ
+        :standard: ເວລາມາດຕະຖານອະລັສກາ
+    :Almaty: 
+      :long: 
+        :daylight: ເວລາລະດູຮ້ອນອໍມາຕີ
+        :generic: ເວລາອໍມາຕີ
+        :standard: ເວລາມາດຕະຖານອໍມາຕີ
+    :Amazon: 
+      :long: 
+        :daylight: ເວ​ລາ​ລະ​ດູ​ຮ້ອນອາ​ເມ​ຊອນ
+        :generic: ເວລາຕາມເຂດອາເມຊອນ
+        :standard: ເວ​ລາ​ມາດ​ຕະ​ຖານອາ​ເມ​ຊອນ
+    :America_Central: 
+      :long: 
+        :daylight: ເວລາກາງເວັນກາງ
+        :generic: ເວລາກາງ
+        :standard: ເວລາມາດຕະຖານກາງ
+    :America_Eastern: 
+      :long: 
+        :daylight: ເວລາກາງເວັນຕາເວັນອອກ
+        :generic: ເວລາຕາເວັນອອກ
+        :standard: ເວລາມາດຕະຖານຕາເວັນອອກ
+    :America_Mountain: 
+      :long: 
+        :daylight: ເວລາກາງເວັນແຖບພູເຂົາ
+        :generic: ເວລາແຖບພູເຂົາ
+        :standard: ເວລາມາດຕະຖານແຖບພູເຂົາ
+    :America_Pacific: 
+      :long: 
+        :daylight: ເວລາກາງເວັນແປຊິຟິກ
+        :generic: ເວລາແປຊິຟິກ
+        :standard: ເວລາມາດຕະຖານແປຊິຟິກ
+    :Apia: 
+      :long: 
+        :daylight: ເວລາກາງເວັນອາເພຍ
+        :generic: ເວລາເອເພຍ
+        :standard: ເວລາມາດຕະຖານເອເພຍ
+    :Aqtau: 
+      :long: 
+        :daylight: ເວລາລະດູຮ້ອນອັດຕາອູ
+        :generic: ເວລາອັດຕາອູ
+        :standard: ເວລາມາດຕະຖານອັດຕາອູ
+    :Aqtobe: 
+      :long: 
+        :daylight: ເວລາລະດູຮ້ອນອັດໂຕເບ
+        :generic: ເວລາອັດໂຕເບ
+        :standard: ເວລາມາດຕະຖານອັດໂຕເບ
+    :Arabian: 
+      :long: 
+        :daylight: ເວລາກາງເວັນອາຣາບຽນ
+        :generic: ເວ​ລາ​ອາ​ຣາ​ບຽນ
+        :standard: ເວ​ລາ​ມາດ​ຕະ​ຖານອາ​ຣາ​ບຽນ
+    :Argentina: 
+      :long: 
+        :daylight: ​ເວ​ລາ​ລະ​ດູ​ຮ້ອນ​ອາ​ເຈນ​ທິ​ນາ
+        :generic: ເວ​ລາ​ອາ​ເຈ​ທິ​ນາ
+        :standard: ​ເວ​ລາ​ມາດ​ຕະ​ຖານອາ​ເຈນ​ທິ​ນາ
+    :Argentina_Western: 
+      :long: 
+        :daylight: ເວ​ລາ​ລະ​ດູ​ຮ້ອນເວ​ສ​ເທິນອາ​ເຈນ​ທິ​ນາ
+        :generic: ເວ​ລາ​ເວ​ສ​ເທິນອາ​ເຈນ​ທິ​ນາ
+        :standard: ເວ​ລາ​ມາດ​ຕະ​ຖານເວ​ສ​ເທິນອາ​ເຈນ​ທິ​ນາ
+    :Armenia: 
+      :long: 
+        :daylight: ເວລາລະດູຮ້ອນອາເມເນຍ
+        :generic: ເວລາອາເມເນຍ
+        :standard: ເວລາມາດຕະຖານອາເມເນຍ
+    :Atlantic: 
+      :long: 
+        :daylight: ເວລາກາງເວັນຂອງອາແລນຕິກ
+        :generic: ເວລາຂອງອາແລນຕິກ
+        :standard: ເວລາມາດຕະຖານຂອງອາແລນຕິກ
+    :Australia_Central: 
+      :long: 
+        :daylight: ເວ​ລາ​ຕອນ​ທ່ຽງ​ອອສ​ເຕຣ​ເລຍ​ກາງ
+        :generic: ເວ​ລາອອ​ສ​ເຕຣ​ເລຍ​ກາງ
+        :standard: ເວ​ລາມາດ​ຕະ​ຖານອອ​ສ​ເຕຣ​ເລຍ​ກ​າງ
+    :Australia_CentralWestern: 
+      :long: 
+        :daylight: ເວ​ລາ​ຕອນ​ທ່ຽງ​ອອສ​ເຕຣ​ລຽນ​ກາງ​ຕາ​ເວັນ​ຕົກ
+        :generic: ເວ​ລາອອສ​ເຕຣ​ລຽນ​ກາງ​ຕາ​ເວັນ​ຕົກ
+        :standard: ເວ​ລາ​ມາດ​ຕະ​ຖານອອສ​ເຕຣ​ລຽນ​ກາງ​ຕາ​ເວັນ​ຕົກ
+    :Australia_Eastern: 
+      :long: 
+        :daylight: ເວ​ລາ​ຕອນ​ທ່ຽງ​ອອສ​ເຕຣ​ລຽນ​ຕາ​ເວັນ​ອອກ
+        :generic: ເວ​ລາອອສ​ເຕຣ​ລຽນ​ຕາ​ເວັນ​ອອກ
+        :standard: ເວ​ລາ​ມາດຕະຖານ​​​ອອສ​ເຕຣ​ລຽນ​ຕາ​ເວັນ​ອອກ
+    :Australia_Western: 
+      :long: 
+        :daylight: ເວ​ລາ​ຕອນ​ທ່ຽງ​ອອສ​ເຕຣ​ລຽນ​ຕາ​ເວັນ​ຕົກ
+        :generic: ເວ​ລາ​ອອສ​ເຕຣ​ເລຍ​ຕາ​ເວັນ​ຕົກ
+        :standard: ເວ​ລາ​ມາ​ດ​ຕະ​ຖານອອສ​ເຕຣ​ລຽນ​ຕາ​ເວັນ​ຕົກ
+    :Azerbaijan: 
+      :long: 
+        :daylight: ເວລາລະດູຮ້ອນອັສເຊີໄບຈັນ
+        :generic: ເວລາອັສເຊີໄບຈັນ
+        :standard: ເວລາມາດຕະຖານອັສເຊີໄບຈັນ
+    :Azores: 
+      :long: 
+        :daylight: ເວ​ລາ​ລະ​ດູ​ຮ້ອນອາ​ໂຊ​ເຣ​ສ
+        :generic: ເວ​ລາ​ອາ​ໂຊ​ເຣ​ສ
+        :standard: ເວ​ລາ​ມາດ​ຕະ​ຖານອາ​ໂຊ​ເຣ​ສ
+    :Bangladesh: 
+      :long: 
+        :daylight: "ເວລາ ລະດູຮ້ອນ ບັງກະລາເທດ"
+        :generic: "ເວລາ ບັງກະລາເທດ"
+        :standard: "ເວລາມາດຕະຖານ ບັງກະລາເທດ"
+    :Bhutan: 
+      :long: 
+        :standard: ເວ​ລາ​ພູ​ຖານ
+    :Bolivia: 
+      :long: 
+        :standard: ເວ​ລາ​ໂບ​ລິ​ເວຍ
+    :Brasilia: 
+      :long: 
+        :daylight: ເວລາຕາມເຂດລະດູຮ້ອນຕາມເຂດບຣາຊີເລຍ
+        :generic: ເວລາຕາມເຂດບຣາຊິເລຍ
+        :standard: ເວລາມາດຕາຖານເບຣຊີເລຍ
+    :Brunei: 
+      :long: 
+        :standard: ​ເວ​ລາບຣູ​ໄນດາ​ຣຸສ​ຊາ​ລາມ
+    :Cape_Verde: 
+      :long: 
+        :daylight: ເວ​ລາ​ລະ​ດູ​ຮ້ອນ​ເຄບ​ເວີດ
+        :generic: ເວ​ລາ​ເຄບ​ເວີດ
+        :standard: ​ເວ​ລາ​ມາດ​ຕະ​ຖານ​ເຄບ​ເວີດ
+    :Casey: 
+      :long: 
+        :standard: ເວລາເຄຊີ
+    :Chamorro: 
+      :long: 
+        :standard: ເວ​ລາ​ຈາ​ໂມ​ໂຣ
+    :Chatham: 
+      :long: 
+        :daylight: ເວ​ລາ​ຕອນ​ທ່ຽງ​ຊາ​ທາມ
+        :generic: ເວ​ລາ​ຊາ​ທາມ
+        :standard: ເວ​ລາ​ມາດ​ຕະ​ຖານ​ຊາ​ທາມ
+    :Chile: 
+      :long: 
+        :daylight: ເວ​ລາ​ລະ​ດູ​ຮ້ອນຊິ​ລີ
+        :generic: ເວ​ລາ​ຊິ​ລີ
+        :standard: ເວ​ລາ​ມາດ​ຕະ​ຖານຊິ​ລີ
+    :China: 
+      :long: 
+        :daylight: ​ເວ​ລາ​ຕອນ​ທ່ຽງ​ຈີນ
+        :generic: ເວ​ລາ​ຈີນ
+        :standard: ເວລາມາດຕະຖານຈີນ
+    :Christmas: 
+      :long: 
+        :standard: ເວ​ລາ​ເກາະ​ຄ​ຣິສ​ມາສ
+    :Cocos: 
+      :long: 
+        :standard: ເວລາຫມູ່ເກາະໂກໂກສ
+    :Colombia: 
+      :long: 
+        :daylight: ເວລາລະດູຮ້ອນໂຄລໍາເບຍ
+        :generic: ເວລາໂຄລໍາເບຍ
+        :standard: ເວລາມາດຕະຖານໂຄລຳເບຍ
+    :Cook: 
+      :long: 
+        :daylight: ເວ​ລາ​ເຄິ່ງ​ລະ​ດູ​ຮ້ອນ​ໝູ່​ເກາະ​ຄຸກ
+        :generic: ເວລາຫມູ່ເກາະຄຸກ
+        :standard: ເວລາມາດຕະຖານຫມູ່ເກາະຄຸກ
+    :Cuba: 
+      :long: 
+        :daylight: ເວລາກາງເວັນຄິວບາ
+        :generic: ເວລາຄິວບາ
+        :standard: ເວລາມາດຕະຖານຂອງຄິວບາ
+    :Davis: 
+      :long: 
+        :standard: ເວລາເດວິດ
+    :DumontDUrville: 
+      :long: 
+        :standard: ເວລາດູມອງດູວິລ
+    :East_Timor: 
+      :long: 
+        :standard: ເວລາຕີມໍຕາເວັນອອກ
+    :Easter: 
+      :long: 
+        :daylight: ເວ​ລາ​ລະ​ດູ​ຮ້ອນເກາະ​ອີ​ສ​ເຕີ
+        :generic: ເວ​ລາ​ເກາະ​ອີ​ສ​ເຕີ
+        :standard: ເວ​ລາ​ມາດ​ຕະ​ຖານເກາະ​ອີ​ສ​ເຕີ
+    :Ecuador: 
+      :long: 
+        :standard: ເວ​ລາ​ເອ​ກົວ​ດໍ
+    :Europe_Central: 
+      :long: 
+        :daylight: ​ເວ​ລາ​ລະ​ດູ​ຮ້ອນ​ຢູ​ໂຣບ​ກາງ
+        :generic: ເວ​ລາ​ຢູ​ໂຣບ​ກາງ
+        :standard: ເວ​ລາ​ມາດ​ຕະ​ຖານ​ຢູ​ໂຣບກາງ
+    :Europe_Eastern: 
+      :long: 
+        :daylight: ເວ​ລາ​ລະ​ດູ​ຮ້ອນຢູ​ໂຣບ​ຕາ​ເວັນ​ອອກ
+        :generic: ເວ​ລາ​ຢູ​ໂຣບ​ຕາ​ເວັນ​ອອກ
+        :standard: ເວ​ລາ​ມາ​ດ​ຕະ​ຖານ​ຢູ​ໂຣບ​ຕາ​ເວັນ​ອອກ
+    :Europe_Further_Eastern: 
+      :long: 
+        :standard: ເວ​ລາ​​ຢູ​ໂຣ​ປຽນ​ຕາ​ເວັນ​ອອກ​ໄກ
+    :Europe_Western: 
+      :long: 
+        :daylight: ເວ​ລາ​ລະ​ດູ​ຮ້ອນຢູ​ໂຣບ​ຕາ​ເວັນ​ຕົກ
+        :generic: ເວ​ລາ​ຢູ​ໂຣບ​ຕາ​ເວັນ​ຕົກ
+        :standard: ເວ​ລາ​ມາດ​ຕະ​ຖານຢູ​ໂຣບ​ຕາ​ເວັນ​ຕົກ
+    :Falkland: 
+      :long: 
+        :daylight: ​ເວ​ລາ​ລະ​ດູ​ຮ້ອນໝູ່​ເກາະ​ຟອ​ລ໌ກ​ແລນ
+        :generic: ​ເວ​ລາ​ໝູ່​ເກາະ​ຟອ​ລ໌ກ​ແລນ
+        :standard: ​ເວ​ລາ​ມາດ​ຕະ​ຖານໝູ່​ເກາະ​ຟອ​ລ໌ກ​ແລນ
+    :Fiji: 
+      :long: 
+        :daylight: ເວລາລະດູຮ້ອນຟິຈິ
+        :generic: ເວລາຟິຈິ
+        :standard: ເວລາມາດຕະຖານຟິຈິ
+    :French_Guiana: 
+      :long: 
+        :standard: ເວ​ລາ​ເຟ​ຣນ​ຊ໌​ເກຍ​ນາ
+    :French_Southern: 
+      :long: 
+        :standard: "ເວລາຝຣັ່ງຕອນໃຕ້ ແລະ ແອນຕາກຕິກ"
+    :GMT: 
+      :long: 
+        :standard: ເວ​ລາກຣີນ​ວິ​ຊ
+    :Galapagos: 
+      :long: 
+        :standard: ເວ​ລາ​ກາ​ລາ​ປາ​ກອ​ສ
+    :Gambier: 
+      :long: 
+        :standard: ເວລາແກມເບຍ
+    :Georgia: 
+      :long: 
+        :daylight: ເວລາລະດູຮ້ອນຈໍເຈຍ
+        :generic: ເວລາຈໍເຈຍ
+        :standard: ເວລາມາດຕະຖານຈໍເຈຍ
+    :Gilbert_Islands: 
+      :long: 
+        :standard: ເວລາຫມູ່ເກາະກິລເບີດ
+    :Greenland_Eastern: 
+      :long: 
+        :daylight: ເວລາລະດູຮ້ອນກຣີນແລນຕາເວັນອອກ
+        :generic: ເວລາຕາເວັນອອກຂອງກຣີນແລນ
+        :standard: ເວລາມາດຕະຖານຕາເວັນອອກກຣີນແລນ
+    :Greenland_Western: 
+      :long: 
+        :daylight: ເວລາຕອນທ່ຽງກຣີນແລນຕາເວັນຕົກ
+        :generic: ເວລາກຣີນແລນຕາເວັນຕົກ
+        :standard: ເວລາມາດຕະຖານກຣີນແລນຕາເວັນຕົກ
+    :Guam: 
+      :long: 
+        :standard: ເວລາກວມ
+    :Gulf: 
+      :long: 
+        :standard: ເວ​ລາ​ກູ​ລ​໌ຟ
+    :Guyana: 
+      :long: 
+        :standard: ເວລາກາຍອານາ
+    :Hawaii_Aleutian: 
+      :long: 
+        :daylight: ເວລາຕອນທ່ຽງຮາວາຍ-ເອລູທຽນ
+        :generic: ເວລາຮາວາຍ-ເອລູທຽນ
+        :standard: ເວລາມາດຕະຖານຮາວາຍ-ເອລູທຽນ
+    :Hong_Kong: 
+      :long: 
+        :daylight: ​ເວ​ລາ​ລະ​ດູ​ຮ້ອນ​ຮອງ​ກົງ
+        :generic: ເວ​ລາ​ຮອງ​ກົງ
+        :standard: ເວ​ລາ​ມາດ​ຕະ​ຖານ​ຮອງ​ກົງ
+    :Hovd: 
+      :long: 
+        :daylight: ​ເວ​ລາ​ລະ​ດູ​ຮ້ອນ​ຮອບ​ດ໌
+        :generic: ເວ​ລາ​ຮອບ​ດ໌
+        :standard: ​ເວ​ລາ​ມາດ​ຕະ​ຖານ​ຮອບ​ດ໌
+    :India: 
+      :long: 
+        :standard: "ເວລາ ອິນເດຍ"
+    :Indian_Ocean: 
+      :long: 
+        :standard: ເວລາມະຫາສະຫມຸດອິນເດຍ
+    :Indochina: 
+      :long: 
+        :standard: ເວລາອິນດູຈີນ
+    :Indonesia_Central: 
+      :long: 
+        :standard: ເວ​ລາ​ອິນ​ໂດ​ເນ​ເຊຍ​ກາງ
+    :Indonesia_Eastern: 
+      :long: 
+        :standard: ເວ​ລາ​ອິນ​ໂດ​ເນ​ເຊຍ​ຕາ​ເວັນ​ອອກ
+    :Indonesia_Western: 
+      :long: 
+        :standard: ເວ​ລາ​ອິນ​ໂດ​ເນ​ເຊຍ​ຕາ​ເວັນ​ຕົກ
+    :Iran: 
+      :long: 
+        :daylight: ເວ​ລາ​ຕອນ​ທ່ຽງ​ອີ​ຣາ​ນ
+        :generic: ເວ​ລາ​ອີ​ຣານ
+        :standard: ເວ​ລາ​ມາດ​ຕະ​ຖານອີ​ຣານ
+    :Irkutsk: 
+      :long: 
+        :daylight: ເວ​ລາລະ​ດູ​ຮ້ອນອີ​ຄຸດ​ສ​ຄ໌
+        :generic: ເວ​ລ​າອີ​ຄຸດ​ສ​ຄ໌
+        :standard: ເວ​ລາມາດ​ຕະ​ຖານອີ​ຄຸດ​ສ​ຄ໌
+    :Israel: 
+      :long: 
+        :daylight: ເວລາກາງເວັນອິສຣາເອວ
+        :generic: ເວ​ລາ​ອິ​ສ​ຣາ​ເອວ
+        :standard: ເວ​ລາ​ມາດ​ຕະ​ຖານອິ​ສ​ຣາ​ເອວ
+    :Japan: 
+      :long: 
+        :daylight: ເວ​ລາ​ຕອນ​ທ່ຽງ​ຍີ່​ປຸ່ນ
+        :generic: ເວ​ລາ​ຍີ່​ປຸ່ນ
+        :standard: ເວ​ລາ​ມາດ​ຕະ​ຖານ​ຍີ່​ປຸ່ນ
+    :Kazakhstan: 
+      :long: 
+        :standard: ເວລາຄາຊັກສຖານ
+    :Kazakhstan_Eastern: 
+      :long: 
+        :standard: ເວ​ລາ​ຄາ​ຊັກ​ສ​ຖານ​ຕາ​ເວັນ​ອອກ
+    :Kazakhstan_Western: 
+      :long: 
+        :standard: ເວ​ລາ​ຄາ​ຊັກ​ສ​ຖານ​ຕາ​ເວັນ​ຕົກ
+    :Korea: 
+      :long: 
+        :daylight: ເວ​ລາ​ຕອນ​ທ່ຽງ​ເກົາ​ຫລີ
+        :generic: ເວລາເກົາຫຼີ
+        :standard: ເວ​ລາ​ມາດ​ຕະ​ຖານ​ເກົາ​ຫລີ
+    :Kosrae: 
+      :long: 
+        :standard: ເວລາຄອສແຣ
+    :Krasnoyarsk: 
+      :long: 
+        :daylight: ເວ​ລາ​ລະ​ດູ​ຮ້ອນຄຣັສ​ໂນ​ຢາ​ສ​ຄ໌
+        :generic: ເວ​ລາ​ຄຣັສ​ໂນ​ຢາ​ສ​ຄ໌
+        :standard: ເວ​ລາ​ມາດ​ຕະ​ຖານຄຣັສ​ໂນ​ຢາ​ສ​ຄ໌
+    :Kyrgystan: 
+      :long: 
+        :standard: ເວລາເຄຍກິສຖານ
+    :Lanka: 
+      :long: 
+        :standard: ເວລາລັງກາ
+    :Line_Islands: 
+      :long: 
+        :standard: ເວ​ລາ​ໝູ່​ເກາະ​ລາຍ
+    :Lord_Howe: 
+      :long: 
+        :daylight: ​ເວ​ລ​ສາ​ຕອນ​​ທ່ຽງ​ລອດ​ເຮົາ​
+        :generic: ເວ​ລາ​ລອດ​ເຮົາ
+        :standard: ເວ​ລາ​ມາດ​ຕະ​ຖານ​ລອດ​ເຮົາ
+    :Macau: 
+      :long: 
+        :daylight: ເວລາລະດູຮ້ອນມາເກົາ
+        :generic: ເວລາມາເກົາ
+        :standard: ເວລາມາດຕະຖານມາເກົາ
+    :Magadan: 
+      :long: 
+        :daylight: ເວລາລະດູຮ້ອນເມັກກາເດນ
+        :generic: ເວລາເມັກກາເດນ
+        :standard: ເວລາມາດຕະຖານເມັກກາເດນ
+    :Malaysia: 
+      :long: 
+        :standard: ເວ​ລາ​ມາ​ເລ​ເຊຍ
+    :Maldives: 
+      :long: 
+        :standard: ເວລາມັລດີຟ
+    :Marquesas: 
+      :long: 
+        :standard: ເວລາມາເຄີຊັສ
+    :Marshall_Islands: 
+      :long: 
+        :standard: ເວ​ລາ​ໝູ່​ເກາະ​ມາ​ແຊວ
+    :Mauritius: 
+      :long: 
+        :daylight: ​ເວ​ລາ​ລະ​ດູ​ຮ້ອນ​ເມົາ​ຣິ​ທຽ​ສ
+        :generic: ເວ​ລາ​ເມົາ​ຣິ​ທຽ​ສ
+        :standard: ເວ​ລາ​ມາດ​ຕະ​ຖານເມົາ​ຣິ​ທຽ​ສ
+    :Mawson: 
+      :long: 
+        :standard: ເວລາມໍສັນ
+    :Mexico_Pacific: 
+      :long: 
+        :daylight: ເວລາກາງເວັນແປຊິຟິກເມັກຊິກັນ
+        :generic: ເວລາແປຊິຟິກເມັກຊິກັນ
+        :standard: ເວລາມາດຕະຖານແປຊິຟິກເມັກຊິກັນ
+    :Mongolia: 
+      :long: 
+        :daylight: ເວລາລະດູຮ້ອນອູລານບາເຕີ
+        :generic: "ເວລາ ອູລານບາເຕີ"
+        :standard: "ເວລາມາດຕະຖານ ອູລານບາເຕີ"
+    :Moscow: 
+      :long: 
+        :daylight: ເວ​ລາ​ລະ​ດູ​ຮ້ອນມອ​ສ​ໂຄ
+        :generic: ເວ​ລາ​ມອ​ສ​ໂຄ
+        :standard: ເວ​ລາ​ມາດ​ຕະ​ຖານມອ​ສ​ໂຄ
+    :Myanmar: 
+      :long: 
+        :standard: ເວລາມຽນມາ
+    :Nauru: 
+      :long: 
+        :standard: ເວ​ລາ​ນາ​ອູ​ຣຸ
+    :Nepal: 
+      :long: 
+        :standard: ​ເວ​ລາ​ເນ​ປານ
+    :New_Caledonia: 
+      :long: 
+        :daylight: ເວລາລະດູຮ້ອນນິວແຄລິໂດເນຍ
+        :generic: ເວລານິວແຄລິໂດເນຍ
+        :standard: ເວລາມາດຕະຖານນິວແຄລິໂດເນຍ
+    :New_Zealand: 
+      :long: 
+        :daylight: ເວ​ລາ​ຕອນ​ທ່ຽງ​ນິວ​ຊີ​ແລນ
+        :generic: ເວ​ລາ​ນິວ​ຊີ​ແລນ
+        :standard: ເວ​ລາ​ມາດ​ຕະ​ຖານນິວ​ຊີ​ແລນ
+    :Newfoundland: 
+      :long: 
+        :daylight: ເວລາກາງເວັນນິວຟາວແລນ
+        :generic: ເວ​ລາ​ນິວ​ຟາວ​ແລນ
+        :standard: ເວ​ລາ​ມາດ​ຕະ​ຖານ​ນິວ​ຟາວ​ແລນ
+    :Niue: 
+      :long: 
+        :standard: ເວລານິອູເອ
+    :Norfolk: 
+      :long: 
+        :daylight: ເວ​ລາ​ລະ​ດູ​ຮ້ອນເກາະ​ນໍ​ຟອ​ລ໌ກ
+        :generic: ເວ​ລາ​ເກາະ​ນໍ​ຟອ​ລ໌ກ
+        :standard: ເວ​ລາ​ມາດ​ຕະ​ຖານເກາະ​ນໍ​ຟອ​ລ໌ກ
+    :Noronha: 
+      :long: 
+        :daylight: ເວລາລະດູຮ້ອນເຟນັນໂດເດໂນຮອນຮາ
+        :generic: ເວລາເຟນັນໂດເດໂນຮອນຮາ
+        :standard: ເວລາມາດຕະຖານເຟນັນໂດເດໂນຮອນຮາ
+    :North_Mariana: 
+      :long: 
+        :standard: ເວລາຫມູ່ເກາະມາເຣຍນາເຫນືອ
+    :Novosibirsk: 
+      :long: 
+        :daylight: ເວ​ລາ​ລະ​ດູ​ຮ້ອນໂນ​ໂບ​ຊິ​ບິ​ສ​ຄ໌
+        :generic: ເວ​ລາ​ໂນ​ໂບ​ຊິ​ບິ​ສ​ຄ໌
+        :standard: ເວ​ລາ​ມາດ​ຕະ​ຖານໂນ​ໂບ​ຊິ​ບິ​ສ​ຄ໌
+    :Omsk: 
+      :long: 
+        :daylight: ເວ​ລາ​ລະ​ດູ​ຮ້ອນອອມ​ສ​ຄ໌
+        :generic: ​ເວ​ລາອອມ​ສ​ຄ໌
+        :standard: ເວ​ລາ​ມາດ​ຕະ​ຖານອອມ​ສ​ຄ໌
+    :Pakistan: 
+      :long: 
+        :daylight: ເວ​ລາ​ລະ​ດູ​ຮ້ອນ​ປາ​ກີ​ສ​ຖານ
+        :generic: ເວ​ລາ​ປາ​ກີສຖານ
+        :standard: ເວ​ລາ​ມາດ​ຕະ​ຖານ​ປາ​ກີສຖານ
+    :Palau: 
+      :long: 
+        :standard: ເວລາປາເລົາ
+    :Papua_New_Guinea: 
+      :long: 
+        :standard: ເວລາປາປົວກິນີ
+    :Paraguay: 
+      :long: 
+        :daylight: ເວ​ລາ​ລະ​ດູ​ຮ້ອນ​ປາ​ຣາ​ກວຍ
+        :generic: ເວ​ລາ​ປາ​ຣາ​ກວຍ
+        :standard: ເວ​ລາ​ມາດ​ຕະ​ຖານ​ປາ​ຣາ​ກວຍ
+    :Peru: 
+      :long: 
+        :daylight: ເວ​ລາ​ລະ​ດູ​ຮ້ອນ​ເປ​ຣູ
+        :generic: ເວ​ລາ​ເປ​ຣູ
+        :standard: ເວ​ລາ​​ມາ​ດ​ຕະ​ຖານເປ​ຣູ
+    :Philippines: 
+      :long: 
+        :daylight: ເວ​ລາ​ລະ​ດູ​ຮ້ອນ​ຟິ​ລິບ​ປິນ
+        :generic: ​ເວ​ລາ​ຟິ​ລິບ​ປິນ
+        :standard: ເວ​ລາ​ມາດ​ຕະ​ຖານ​ຟິ​ລິບ​ປິນ
+    :Phoenix_Islands: 
+      :long: 
+        :standard: ເວລາຫມູ່ເກາະຟີນິກ
+    :Pierre_Miquelon: 
+      :long: 
+        :daylight: "​ເວ​ລາຕອນ​ທ່ຽງເຊນ​ປີ​ແອ ແລະ​ມິ​ກົວ​ລອນ"
+        :generic: "​ເວ​ລາເຊນ​ປີ​ແອ ແລະ​ມິ​ກົວ​ລອນ"
+        :standard: "​ເວ​ລາມາດ​ຕະ​ຖານເຊນ​ປີ​ແອ ແລະ​ມິ​ກົວ​ລອນ"
+    :Pitcairn: 
+      :long: 
+        :standard: ເວລາພິດແຄຣ໌ນ
+    :Ponape: 
+      :long: 
+        :standard: ເວລາໂປເນບ
+    :Pyongyang: 
+      :long: 
+        :standard: ເວລາປຽງຢາງ
+    :Qyzylorda: 
+      :long: 
+        :daylight: ເວລາລະດູຮ້ອນຄີວລໍດາ
+        :generic: ເວລາຄີວລໍດາ
+        :standard: ເວລາມາດຕະຖານຄີວລໍດາ
+    :Reunion: 
+      :long: 
+        :standard: ເວ​ລາ​ເຣ​ອູ​ນິ​ຢົງ
+    :Rothera: 
+      :long: 
+        :standard: "ເວລາ ໂຣທີຕາ"
+    :Sakhalin: 
+      :long: 
+        :daylight: ເວ​ລາ​ລະ​ດູ​ຮ້ອນຊາ​ຮາ​ລິນ
+        :generic: ເວ​ລາ​ຊາ​ຮາ​ລິນ
+        :standard: ເວ​ລາ​ມາດ​ຕະ​ຖານຊາ​ຮາ​ລິນ
+    :Samoa: 
+      :long: 
+        :daylight: ເວລາລະດູຮ້ອນຊາມົວ
+        :generic: ເວລາຊາມົວ
+        :standard: ເວລາມາດຕະຖານຊາມົວ
+    :Seychelles: 
+      :long: 
+        :standard: ເວ​ລາ​ເຊ​ເຊ​ລ​ສ໌
+    :Singapore: 
+      :long: 
+        :standard: ເວ​ລາ​ສິງ​ກະ​ໂປ
+    :Solomon: 
+      :long: 
+        :standard: ເວລາຫມູ່ເກາະໂຊໂລມອນ
+    :South_Georgia: 
+      :long: 
+        :standard: ເວລາຈໍເຈຍໃຕ້
+    :Suriname: 
+      :long: 
+        :standard: ເວ​ລາ​ຊຸ​ຣິ​ນາມ
+    :Syowa: 
+      :long: 
+        :standard: "ເວລາ ໂຊວາ"
+    :Tahiti: 
+      :long: 
+        :standard: ເວລາທາຮິຕິ
+    :Taipei: 
+      :long: 
+        :daylight: ເວ​ລາ​ຕອນ​ທ່​ຽງ​ໄທ​ເປ
+        :generic: ເວ​ລາ​ໄທ​ເປ
+        :standard: ເວ​ລາ​ມາດ​ຕະ​ຖານ​ໄທ​ເປ
+    :Tajikistan: 
+      :long: 
+        :standard: ເວລາທາຈິກິສຖານ
+    :Tokelau: 
+      :long: 
+        :standard: ເວລາໂຕເກເລົາ
+    :Tonga: 
+      :long: 
+        :daylight: ເວລາລະດູຮ້ອນຕອງກາ
+        :generic: ເວລາຕອງກາ
+        :standard: ເວລາມາດຕະຖານຕອງກາ
+    :Truk: 
+      :long: 
+        :standard: ເວລາຊຸກ
+    :Turkmenistan: 
+      :long: 
+        :daylight: ເວລາລະດູຮ້ອນຕວກເມນິສຖານ
+        :generic: ເວລາຕວກເມນິສຖານ
+        :standard: ເວລາມາດຕະຖານຕວກເມນິສຖານ
+    :Tuvalu: 
+      :long: 
+        :standard: ເວລາຕູວາລູ
+    :Uruguay: 
+      :long: 
+        :daylight: ເວ​ລາ​ລະ​ດູ​ຮ້ອນ​ອູ​ຣູ​ກວຍ
+        :generic: ​ເວ​ລາ​ອູ​ຣູ​ກວຍ
+        :standard: ເວ​ລາ​ມາດ​ຕະ​ຖານ​ອູ​ຣູ​ກວຍ
+    :Uzbekistan: 
+      :long: 
+        :daylight: ເວລາລະດູຮ້ອນອຸສເບກິດສະຖານ
+        :generic: ເວລາອຸສເບກິດສະຖານ
+        :standard: ເວລາມາດຕະຖານອຸສເບກິດສະຖານ
+    :Vanuatu: 
+      :long: 
+        :daylight: ເວລາລະດູຮ້ອນວານູອາຕູ
+        :generic: ເວລາວານູອາຕູ
+        :standard: ເວລາມາດຕະຖານວານູອາຕູ
+    :Venezuela: 
+      :long: 
+        :standard: ເວ​ລາ​ເວ​ເນ​ຊູ​ເອ​ລາ
+    :Vladivostok: 
+      :long: 
+        :daylight: ເວລາລະດູຮ້ອນລາດີໂວສຕົກ
+        :generic: ເວລາລາດີໂວສຕົກ
+        :standard: ເວລາມາດຕະຖານລາດີໂວສຕົກ
+    :Volgograd: 
+      :long: 
+        :daylight: ເວລາລະດູຮ້ອນໂວໂກກຣາດ
+        :generic: ເວລາໂວໂກກຣາດ
+        :standard: ເວລາມາດຕະຖານໂວໂກກຣາດ
+    :Vostok: 
+      :long: 
+        :standard: "ເວລາ ວອສໂຕກ"
+    :Wake: 
+      :long: 
+        :standard: ເວລາເກາະເວກ
+    :Wallis: 
+      :long: 
+        :standard: "ເວລາວາລລິສ ແລະ ຟູຕູນາ"
+    :Yakutsk: 
+      :long: 
+        :daylight: ເວລາລະດູຮ້ອນຢາກູດສ
+        :generic: ເວລາຢາກູດສ
+        :standard: ເວລາມາດຕະຖານຢາກູດສ
+    :Yekaterinburg: 
+      :long: 
+        :daylight: ເວລາລະດູຮ້ອນເຢກາເຕລິນເບີກ
+        :generic: ເວລາເຢກາເຕລິນເບີກ
+        :standard: ເວລາມາດຕະຖານເຢກາເຕລິນເບີກ
+    :Yukon: 
+      :long: 
+        :standard: ເວລາຢູຄອນ
+  :timezones: 
+    :Africa/Abidjan: 
+      :city: ອາບິດແຈນ
+    :Africa/Accra: 
+      :city: ອັກຄຣາ
+    :Africa/Addis_Ababa: 
+      :city: "ແອດດິສ ອະບາບາ"
+    :Africa/Algiers: 
+      :city: ແອວເຈຍ
+    :Africa/Asmera: 
+      :city: ອັສມາຣາ
+    :Africa/Bamako: 
+      :city: ບາມາໂກ
+    :Africa/Bangui: 
+      :city: ບັງກຸຍ
+    :Africa/Banjul: 
+      :city: ບານຈູ
+    :Africa/Bissau: 
+      :city: ບິສເຊົາ
+    :Africa/Blantyre: 
+      :city: ແບລນໄທຣ໌
+    :Africa/Brazzaville: 
+      :city: ບຣາຊາວິວ
+    :Africa/Bujumbura: 
+      :city: ບູຈູມບູຣາ
+    :Africa/Cairo: 
+      :city: ໄຄໂຣ
+    :Africa/Casablanca: 
+      :city: ຄາຊາບລັງກາ
+    :Africa/Ceuta: 
+      :city: ຊີວຕາ
+    :Africa/Conakry: 
+      :city: ໂຄນາຄຣີ
+    :Africa/Dakar: 
+      :city: ດາກາ
+    :Africa/Dar_es_Salaam: 
+      :city: ດາເອສສະລາມ
+    :Africa/Djibouti: 
+      :city: ຈີບູຕິ
+    :Africa/Douala: 
+      :city: ດູອາລາ
+    :Africa/El_Aaiun: 
+      :city: "ເອວ ອາຢູນ"
+    :Africa/Freetown: 
+      :city: ຟຣີທາວ
+    :Africa/Gaborone: 
+      :city: ກາບໍໂຣນ
+    :Africa/Harare: 
+      :city: ຮາຣາເຣ
+    :Africa/Johannesburg: 
+      :city: ໂຈຮັນເນດສເບີກ
+    :Africa/Juba: 
+      :city: ຈູບາ
+    :Africa/Kampala: 
+      :city: ຄຳປາລາ
+    :Africa/Khartoum: 
+      :city: ຄາທູມ
+    :Africa/Kigali: 
+      :city: ຄີກາລີ
+    :Africa/Kinshasa: 
+      :city: ກິນຊາຊາ
+    :Africa/Lagos: 
+      :city: ລາໂກສ
+    :Africa/Libreville: 
+      :city: ລິເບຼີວິວ
+    :Africa/Lome: 
+      :city: ໂລເມ
+    :Africa/Luanda: 
+      :city: ລວນດາ
+    :Africa/Lubumbashi: 
+      :city: ລູບຳບາຊິ
+    :Africa/Lusaka: 
+      :city: ລູຊາກາ
+    :Africa/Malabo: 
+      :city: ມາລາໂບ
+    :Africa/Maputo: 
+      :city: ມາປູໂຕ
+    :Africa/Maseru: 
+      :city: ມາເຊຣູ
+    :Africa/Mbabane: 
+      :city: ອຳບາບາເນ
+    :Africa/Mogadishu: 
+      :city: ໂມກາດີຊູ
+    :Africa/Monrovia: 
+      :city: ມອນໂຣເວຍ
+    :Africa/Nairobi: 
+      :city: ໄນໂຣບີ
+    :Africa/Ndjamena: 
+      :city: ເອນຈາເມນ່າ
+    :Africa/Niamey: 
+      :city: ນີອາເມ
+    :Africa/Nouakchott: 
+      :city: ນູແອກຊອດ
+    :Africa/Ouagadougou: 
+      :city: ອູກາດູກູ
+    :Africa/Porto-Novo: 
+      :city: ປໍໂຕ-ໂນໂວ
+    :Africa/Sao_Tome: 
+      :city: ຊາວໂຕເມ
+    :Africa/Tripoli: 
+      :city: ທຣິໂພລິ
+    :Africa/Tunis: 
+      :city: ຕູນິສ
+    :Africa/Windhoek: 
+      :city: ວີນຮູດ
+    :America/Adak: 
+      :city: ອາແດກ
+    :America/Anchorage: 
+      :city: ແອນເຄີເຣກ
+    :America/Anguilla: 
+      :city: ແອນກິນລາ
+    :America/Antigua: 
+      :city: ແອນທິກົວ
+    :America/Araguaina: 
+      :city: ອາຣາກົວນາ
+    :America/Argentina/La_Rioja: 
+      :city: "ລາ ຣິໂອຈາ"
+    :America/Argentina/Rio_Gallegos: 
+      :city: "ຣິໂກ ແກວເລກອສ"
+    :America/Argentina/Salta: 
+      :city: ຊານຕາ
+    :America/Argentina/San_Juan: 
+      :city: ແຊນຮວນ
+    :America/Argentina/San_Luis: 
+      :city: ແຊນລຸຍສ໌
+    :America/Argentina/Tucuman: 
+      :city: ຕູຄູແມນ
+    :America/Argentina/Ushuaia: 
+      :city: ອູຊູເອຍ
+    :America/Aruba: 
+      :city: ອາຣູບາ
+    :America/Asuncion: 
+      :city: ອະຊຸນຊິອອງ
+    :America/Bahia: 
+      :city: ບາເຢຍ
+    :America/Bahia_Banderas: 
+      :city: "ບາເຮຍ ແບນເດີຣາສ"
+    :America/Barbados: 
+      :city: ບາເບດອສ
+    :America/Belem: 
+      :city: ບີເລມ
+    :America/Belize: 
+      :city: ເບລີຊ
+    :America/Blanc-Sablon: 
+      :city: ບລານ-ຊາບລອນ
+    :America/Boa_Vista: 
+      :city: "ບົວ ວິສຕາ"
+    :America/Bogota: 
+      :city: ໂບໂກຕາ
+    :America/Boise: 
+      :city: ບອຍຊ໌
+    :America/Buenos_Aires: 
+      :city: "ບົວໂນສ ໄອເຣສ"
+    :America/Cambridge_Bay: 
+      :city: "ແຄມບຣິດ ເບ"
+    :America/Campo_Grande: 
+      :city: ກັງປູຣັງຈີ
+    :America/Cancun: 
+      :city: ແຄນກຸນ
+    :America/Caracas: 
+      :city: ຄາຣາກັສ
+    :America/Catamarca: 
+      :city: ຄາຕາມາກາ
+    :America/Cayenne: 
+      :city: ຄາເຢນ
+    :America/Cayman: 
+      :city: ເຄແມນ
+    :America/Chicago: 
+      :city: ຊິຄາໂກ
+    :America/Chihuahua: 
+      :city: ຊິວາວາ
+    :America/Ciudad_Juarez: 
+      :city: "ຊີອູດັດ ຄົວເຣຊ"
+    :America/Coral_Harbour: 
+      :city: ອາທິໂຄຄານ
+    :America/Cordoba: 
+      :city: ຄໍໂດບາ
+    :America/Costa_Rica: 
+      :city: ຄອສຕາຣິກາ
+    :America/Creston: 
+      :city: ເຄຣສຕັນ
+    :America/Cuiaba: 
+      :city: ກຸຢາບາ
+    :America/Curacao: 
+      :city: ກືຣາເຊົາ
+    :America/Danmarkshavn: 
+      :city: ເດນມາກແຊນ
+    :America/Dawson: 
+      :city: ດໍສັນ
+    :America/Dawson_Creek: 
+      :city: "ດໍສັນ ຄຣີກ"
+    :America/Denver: 
+      :city: ເດັນເວີ
+    :America/Detroit: 
+      :city: ດີທຣອຍ
+    :America/Dominica: 
+      :city: ໂດມິນິກາ
+    :America/Edmonton: 
+      :city: ເອດມອນຕອນ
+    :America/Eirunepe: 
+      :city: ເອຣຸເນປີ
+    :America/El_Salvador: 
+      :city: "ເອວ ຊາວາດໍ"
+    :America/Fort_Nelson: 
+      :city: "ຟອດ ເນວສັນ"
+    :America/Fortaleza: 
+      :city: ຟໍຕາເລຊາ
+    :America/Glace_Bay: 
+      :city: ເກລດເບ
+    :America/Godthab: 
+      :city: ນູກ
+    :America/Goose_Bay: 
+      :city: ກູສເບ
+    :America/Grand_Turk: 
+      :city: "ແກຣນ ເທີກ"
+    :America/Grenada: 
+      :city: ເກຣນາດາ
+    :America/Guadeloupe: 
+      :city: ກາວເດລູບ
+    :America/Guatemala: 
+      :city: ກົວເຕມາລາ
+    :America/Guayaquil: 
+      :city: ກົວຢາກິລ
+    :America/Guyana: 
+      :city: ກູຢານາ
+    :America/Halifax: 
+      :city: ຮາລິແຟັກ
+    :America/Havana: 
+      :city: ຮາວານາ
+    :America/Hermosillo: 
+      :city: ເອໂມຊິໂຢ
+    :America/Indiana/Knox: 
+      :city: "ນ໋ອກ, ອິນເດຍນາ"
+    :America/Indiana/Marengo: 
+      :city: "ມາເຣນໂກ, ອິນເດຍນາ"
+    :America/Indiana/Petersburg: 
+      :city: "ປີເຕີສເປີກ, ອິນເດຍນາ"
+    :America/Indiana/Tell_City: 
+      :city: "ເທວ ຊິຕີ, ອິນເດຍນາ"
+    :America/Indiana/Vevay: 
+      :city: "ວີເວ, ອິນເດຍນາ"
+    :America/Indiana/Vincennes: 
+      :city: "ວິນເຊນເນສ, ອິນເດຍນາ"
+    :America/Indiana/Winamac: 
+      :city: "ວິນາແມັກ, ອິນເດຍນາ"
+    :America/Indianapolis: 
+      :city: ອິນດີເອນາໂພລິສ
+    :America/Inuvik: 
+      :city: ອີນູວິກ
+    :America/Iqaluit: 
+      :city: ອີກົວລິດ
+    :America/Jamaica: 
+      :city: ຈາໄມກາ
+    :America/Jujuy: 
+      :city: ຈູຈຸຍ
+    :America/Juneau: 
+      :city: ຈູໂນ
+    :America/Kentucky/Monticello: 
+      :city: "ມອນຕີເຊວໂລ, ເຄນທັກກີ"
+    :America/Kralendijk: 
+      :city: ຄຣາເລນດິກ
+    :America/La_Paz: 
+      :city: ລາປາສ
+    :America/Lima: 
+      :city: ລີມາ
+    :America/Los_Angeles: 
+      :city: ລອສແອນເຈລີສ
+    :America/Louisville: 
+      :city: ຫລຸຍວິວ
+    :America/Lower_Princes: 
+      :city: "ໂລເວີ ພຣິນຊ໌ ຄວດເຕີ"
+    :America/Maceio: 
+      :city: ມາເຊໂອ
+    :America/Managua: 
+      :city: ມານາກົວ
+    :America/Manaus: 
+      :city: ມາເນົາສ໌
+    :America/Marigot: 
+      :city: ມາຣີໂກດ
+    :America/Martinique: 
+      :city: ມາທີນິກ
+    :America/Matamoros: 
+      :city: ມາຕາໂມຣອສ
+    :America/Mazatlan: 
+      :city: ມາຊາດລານ
+    :America/Mendoza: 
+      :city: ເມັນໂດຊ່າ
+    :America/Menominee: 
+      :city: ເມໂນມິນີ
+    :America/Merida: 
+      :city: ເມີຣິດາ
+    :America/Metlakatla: 
+      :city: ເມັດລາກັດລາ
+    :America/Mexico_City: 
+      :city: "ເມັກຊິໂກ ຊິຕີ"
+    :America/Miquelon: 
+      :city: ມິກົວລອນ
+    :America/Moncton: 
+      :city: ມອນຕັນ
+    :America/Monterrey: 
+      :city: ມອນເຕີເຣຍ
+    :America/Montevideo: 
+      :city: ມອນເຕວິເດໂອ
+    :America/Montserrat: 
+      :city: ມອນເຊີຣັດ
+    :America/Nassau: 
+      :city: ແນສຊໍ
+    :America/New_York: 
+      :city: ນິວຢອກ
+    :America/Nome: 
+      :city: ນອມ
+    :America/Noronha: 
+      :city: ນໍຣອນຮາ
+    :America/North_Dakota/Beulah: 
+      :city: "ເບີລາ, ນອດ ດາໂກຕາ"
+    :America/North_Dakota/Center: 
+      :city: "ເຊັນເຈີ, ນອດ ດາໂກຕາ"
+    :America/North_Dakota/New_Salem: 
+      :city: "ນິວ ຊາເລມ, ນອດ ດາໂກຕາ"
+    :America/Ojinaga: 
+      :city: ໂອຈິນາກາ
+    :America/Panama: 
+      :city: ພານາມາ
+    :America/Paramaribo: 
+      :city: ພາຣາມາຣິໂບ
+    :America/Phoenix: 
+      :city: ຟິນິກ
+    :America/Port-au-Prince: 
+      :city: ປໍໂຕແປຣງ
+    :America/Port_of_Spain: 
+      :city: ພອດອອບສະເປນ
+    :America/Porto_Velho: 
+      :city: "ປໍຕູ ເວວຢູ"
+    :America/Puerto_Rico: 
+      :city: ເປີໂທຣິໂກ
+    :America/Punta_Arenas: 
+      :city: "ພຸນທາ ອະຣີນາສ໌"
+    :America/Rankin_Inlet: 
+      :city: "ແຣນກິນ ອິນເລັດ"
+    :America/Recife: 
+      :city: ເຣຊິເຟ
+    :America/Regina: 
+      :city: ເຣຈິນາ
+    :America/Resolute: 
+      :city: ເຣໂຊລຸດ
+    :America/Rio_Branco: 
+      :city: "ຣິໂອ ບຣັນໂກ"
+    :America/Santarem: 
+      :city: ຊັນຕາເຣມ
+    :America/Santiago: 
+      :city: ຊັນຕີອາໂກ
+    :America/Santo_Domingo: 
+      :city: ຊານໂຕໂດມິນໂກ
+    :America/Sao_Paulo: 
+      :city: "ເຊົາ ເປົາໂລ"
+    :America/Scoresbysund: 
+      :city: ອິໂຕຄໍທົວມິດ
+    :America/Sitka: 
+      :city: ຊິດກາ
+    :America/St_Barthelemy: 
+      :city: ເຊນບາເທເລມີ
+    :America/St_Johns: 
+      :city: "ເຊນ ຈອນ"
+    :America/St_Kitts: 
+      :city: "ເຊນ ຄິດສ໌"
+    :America/St_Lucia: 
+      :city: "ເຊນ ລູເຊຍ"
+    :America/St_Thomas: 
+      :city: "ເຊນ ໂທມັສ"
+    :America/St_Vincent: 
+      :city: "ເຊນ ວິນເຊນ"
+    :America/Swift_Current: 
+      :city: "ສະວິຟ ເຄີເຣນ"
+    :America/Tegucigalpa: 
+      :city: ເຕກູຊີການປາ
+    :America/Thule: 
+      :city: ທູເລ
+    :America/Tijuana: 
+      :city: ທີຈົວນາ
+    :America/Toronto: 
+      :city: ໂທຣອນໂຕ
+    :America/Tortola: 
+      :city: ທໍໂຕລາ
+    :America/Vancouver: 
+      :city: ແວນຄູເວີ
+    :America/Whitehorse: 
+      :city: ໄວທ໌ຮອສ
+    :America/Winnipeg: 
+      :city: ວິນນີເພກ
+    :America/Yakutat: 
+      :city: ຢາຄູຕັດ
+    :Antarctica/Casey: 
+      :city: ເຄຊີ
+    :Antarctica/Davis: 
+      :city: ດາວີສ
+    :Antarctica/DumontDUrville: 
+      :city: ດູມອນດີຍູວີວສ໌
+    :Antarctica/Macquarie: 
+      :city: ແມັກຄົວຣີ
+    :Antarctica/Mawson: 
+      :city: ເມົາຊັນ
+    :Antarctica/McMurdo: 
+      :city: ແມັກມົວໂດ
+    :Antarctica/Palmer: 
+      :city: ພາມເມີ
+    :Antarctica/Rothera: 
+      :city: ໂຣເທຣາ
+    :Antarctica/Syowa: 
+      :city: ເຊຍວາ
+    :Antarctica/Troll: 
+      :city: ໂທຣລ໌
+    :Antarctica/Vostok: 
+      :city: ວໍສະຕອກ
+    :Arctic/Longyearbyen: 
+      :city: ລອງເຢຍບຽນ
+    :Asia/Aden: 
+      :city: ເອເດັນ
+    :Asia/Almaty: 
+      :city: ອໍມາຕີ
+    :Asia/Amman: 
+      :city: ອຳມານ
+    :Asia/Anadyr: 
+      :city: ອານາດີ
+    :Asia/Aqtau: 
+      :city: ອັດຕາອູ
+    :Asia/Aqtobe: 
+      :city: ອັດໂທບີ
+    :Asia/Ashgabat: 
+      :city: ອາດຊ໌ກາບັດ
+    :Asia/Atyrau: 
+      :city: ອັດທີເຣົາ
+    :Asia/Baghdad: 
+      :city: ແບກແດດ
+    :Asia/Bahrain: 
+      :city: ບາເຣນ
+    :Asia/Baku: 
+      :city: ບາກູ
+    :Asia/Bangkok: 
+      :city: ບາງກອກ
+    :Asia/Barnaul: 
+      :city: ບານົວ
+    :Asia/Beirut: 
+      :city: ເບຣຸດ
+    :Asia/Bishkek: 
+      :city: ບິດຊ໌ເຄກ
+    :Asia/Brunei: 
+      :city: ບຣູໄນ
+    :Asia/Calcutta: 
+      :city: ໂກລກາຕາ
+    :Asia/Chita: 
+      :city: ຊີຕ່າ
+    :Asia/Colombo: 
+      :city: ໂຄລຳໂບ
+    :Asia/Damascus: 
+      :city: ດາມາສຄັສ
+    :Asia/Dhaka: 
+      :city: ດາຫ໌ກາ
+    :Asia/Dili: 
+      :city: ດີລີ
+    :Asia/Dubai: 
+      :city: ດູໄບ
+    :Asia/Dushanbe: 
+      :city: ດູຊານເບ
+    :Asia/Famagusta: 
+      :city: ຟາມາກັສທາ
+    :Asia/Gaza: 
+      :city: ກາຊາ
+    :Asia/Hebron: 
+      :city: ເຮບຣອນ
+    :Asia/Hong_Kong: 
+      :city: ຮ່ອງກົງ
+    :Asia/Hovd: 
+      :city: ຮອບ
+    :Asia/Irkutsk: 
+      :city: ອີຄຸສຄ໌
+    :Asia/Jakarta: 
+      :city: ຈາກາຕາ
+    :Asia/Jayapura: 
+      :city: ຈາຢາປູຣະ
+    :Asia/Jerusalem: 
+      :city: ເຢຣູຊາເລມ
+    :Asia/Kabul: 
+      :city: ຄາບູ
+    :Asia/Kamchatka: 
+      :city: ຄາມຊາດກາ
+    :Asia/Karachi: 
+      :city: ກາຣາຈີ
+    :Asia/Katmandu: 
+      :city: ຄັດມັນດູ
+    :Asia/Khandyga: 
+      :city: ແຄນດີກາ
+    :Asia/Krasnoyarsk: 
+      :city: ຄຣັສໂນຢາສຄ໌
+    :Asia/Kuala_Lumpur: 
+      :city: ກົວລາລຳເປີ
+    :Asia/Kuching: 
+      :city: ກູຊີງ
+    :Asia/Kuwait: 
+      :city: ຄູເວດ
+    :Asia/Macau: 
+      :city: ມາເກົາ
+    :Asia/Magadan: 
+      :city: ມາກາແດນ
+    :Asia/Makassar: 
+      :city: ມາກາສຊາ
+    :Asia/Manila: 
+      :city: ມານີລາ
+    :Asia/Muscat: 
+      :city: ມາສຄັດ
+    :Asia/Nicosia: 
+      :city: ນິໂຄເຊຍ
+    :Asia/Novokuznetsk: 
+      :city: ໂນໂວຄຸສເນັດ
+    :Asia/Novosibirsk: 
+      :city: ໂນໂວຊີບີສຄ໌
+    :Asia/Omsk: 
+      :city: ອອມສຄ໌
+    :Asia/Oral: 
+      :city: ອໍຣໍ
+    :Asia/Phnom_Penh: 
+      :city: ພະນົມເປັນ
+    :Asia/Pontianak: 
+      :city: ພອນເທຍນັກ
+    :Asia/Pyongyang: 
+      :city: ປຽງຢາງ
+    :Asia/Qatar: 
+      :city: ກາຕາຣ໌
+    :Asia/Qostanay: 
+      :city: ຄອສຕາເນ
+    :Asia/Qyzylorda: 
+      :city: ໄຄຊີລໍດາ
+    :Asia/Rangoon: 
+      :city: ຢາງກອນ
+    :Asia/Riyadh: 
+      :city: ຣີຢາດ
+    :Asia/Saigon: 
+      :city: ໂຮຈິມິນ
+    :Asia/Sakhalin: 
+      :city: ຊາຄາລິນ
+    :Asia/Samarkand: 
+      :city: ຊາມາແຄນ
+    :Asia/Seoul: 
+      :city: ໂຊລ໌
+    :Asia/Shanghai: 
+      :city: ຊ່ຽງໄຮ້
+    :Asia/Singapore: 
+      :city: ສິງກະໂປ
+    :Asia/Srednekolymsk: 
+      :city: ສຣິລເນັກໂກລີດ
+    :Asia/Taipei: 
+      :city: ໄທເປ
+    :Asia/Tashkent: 
+      :city: ທາດສ໌ເຄນ
+    :Asia/Tbilisi: 
+      :city: ທິບີລີຊີ
+    :Asia/Tehran: 
+      :city: ເຕຣານ
+    :Asia/Thimphu: 
+      :city: ທິມພູ
+    :Asia/Tokyo: 
+      :city: ໂຕກຽວ
+    :Asia/Tomsk: 
+      :city: ທອມສກ໌
+    :Asia/Ulaanbaatar: 
+      :city: ອູລານບາຕາຣ໌
+    :Asia/Urumqi: 
+      :city: ອູຣຸມຊີ
+    :Asia/Ust-Nera: 
+      :city: "ອຸສ ເນຣາ"
+    :Asia/Vientiane: 
+      :city: ວຽງຈັນ
+    :Asia/Vladivostok: 
+      :city: ວີລາດິໂວສຕອກ
+    :Asia/Yakutsk: 
+      :city: ຢາຄຸທຊ໌
+    :Asia/Yekaterinburg: 
+      :city: ເຢຄາເຕີຣິນເບີກ
+    :Asia/Yerevan: 
+      :city: ເຍເຣວານ
+    :Atlantic/Azores: 
+      :city: ອາ​ໂຊ​ເຣ​ສ
+    :Atlantic/Bermuda: 
+      :city: ເບີມິວດາ
+    :Atlantic/Canary: 
+      :city: ຄານາຣີ
+    :Atlantic/Cape_Verde: 
+      :city: ເຄບເວີດ
+    :Atlantic/Faeroe: 
+      :city: ແຟໂຣ
+    :Atlantic/Madeira: 
+      :city: ມາເດຣາ
+    :Atlantic/Reykjavik: 
+      :city: ເຣກຢາວິກ
+    :Atlantic/South_Georgia: 
+      :city: ເຊົາຈໍເຈຍ
+    :Atlantic/St_Helena: 
+      :city: "ເຊນ ເຮເລນາ"
+    :Atlantic/Stanley: 
+      :city: ສະແຕນເລ
+    :Australia/Adelaide: 
+      :city: ເອດີແລດ
+    :Australia/Brisbane: 
+      :city: ບຣິສເບນ
+    :Australia/Broken_Hill: 
+      :city: "ໂບຣກເຄນ ຮິວ"
+    :Australia/Darwin: 
+      :city: ດາວິນ
+    :Australia/Eucla: 
+      :city: ຢູຄລາ
+    :Australia/Hobart: 
+      :city: ໂຮບາດ
+    :Australia/Lindeman: 
+      :city: ລິນດີແມນ
+    :Australia/Lord_Howe: 
+      :city: ໂລດໂຮວີ
+    :Australia/Melbourne: 
+      :city: ເມວເບິນ
+    :Australia/Perth: 
+      :city: ເພີດ
+    :Australia/Sydney: 
+      :city: ຊິດນີ
+    :Etc/UTC: 
+      :long: 
+        :standard: ເວລາສາກົນເຊີງພິກັດ
+      :short: 
+        :standard: UTC
+    :Etc/Unknown: 
+      :city: ບໍ່ຮູ້ຊື່ເມືອງ
+    :Europe/Amsterdam: 
+      :city: ອາມສເຕີດຳ
+    :Europe/Andorra: 
+      :city: ອິນດໍຣາ
+    :Europe/Astrakhan: 
+      :city: ອາສຕຣາຄານ
+    :Europe/Athens: 
+      :city: ເອເທນສ໌
+    :Europe/Belgrade: 
+      :city: ເບວເກຣດ
+    :Europe/Berlin: 
+      :city: ເບີລິນ
+    :Europe/Bratislava: 
+      :city: ບຣາທິສລາວາ
+    :Europe/Brussels: 
+      :city: ບຣັສເຊວ
+    :Europe/Bucharest: 
+      :city: ບູຄາເຣສຕ໌
+    :Europe/Budapest: 
+      :city: ບູດາເປສຕ໌
+    :Europe/Busingen: 
+      :city: ບັດຊິນເກນ
+    :Europe/Chisinau: 
+      :city: ຄີຊີເນົາ
+    :Europe/Copenhagen: 
+      :city: ໂຄເປນເຮເກນ
+    :Europe/Dublin: 
+      :city: ດັບບລິນ
+      :long: 
+        :daylight: ເວ​ລາ​ມາດ​ຕະ​ຖານ​ໄອ​ຣິ​ຊ
+    :Europe/Gibraltar: 
+      :city: ກິບຣອລທາ
+    :Europe/Guernsey: 
+      :city: ເກີນຊີ
+    :Europe/Helsinki: 
+      :city: ເຮວຊິນກິ
+    :Europe/Isle_of_Man: 
+      :city: ເກາະແມນ
+    :Europe/Istanbul: 
+      :city: ອິສຕັນບູລ໌
+    :Europe/Jersey: 
+      :city: ເຈີຊີ
+    :Europe/Kaliningrad: 
+      :city: ຄາລິນິນກຣາດ
+    :Europe/Kiev: 
+      :city: ຂຽບ
+    :Europe/Kirov: 
+      :city: ກິໂຣບ
+    :Europe/Lisbon: 
+      :city: ລິສບອນ
+    :Europe/Ljubljana: 
+      :city: ລູບລີຍານາ
+    :Europe/London: 
+      :city: ລອນດອນ
+      :long: 
+        :daylight: ເວ​ລາ​ລະ​ດູ​ຮ້ອນ​ອັງ​ກິດ
+    :Europe/Luxembourg: 
+      :city: ລັກເຊັມເບີກ
+    :Europe/Madrid: 
+      :city: ມາດຣິດ
+    :Europe/Malta: 
+      :city: ມອລຕາ
+    :Europe/Mariehamn: 
+      :city: ມາຣີແຮມນ໌
+    :Europe/Minsk: 
+      :city: ມິນສກ໌
+    :Europe/Monaco: 
+      :city: ໂມນາໂຄ
+    :Europe/Moscow: 
+      :city: ມອສໂຄ
+    :Europe/Oslo: 
+      :city: ອອສໂລ
+    :Europe/Paris: 
+      :city: ປາຣີສ
+    :Europe/Podgorica: 
+      :city: ພອດກໍຣີກາ
+    :Europe/Prague: 
+      :city: ປຣາກ
+    :Europe/Riga: 
+      :city: ຣິກາ
+    :Europe/Rome: 
+      :city: ໂຣມ
+    :Europe/Samara: 
+      :city: ຊາມາຣາ
+    :Europe/San_Marino: 
+      :city: ຊານມາຣີໂນ
+    :Europe/Sarajevo: 
+      :city: ຊາຣາເຢໂວ
+    :Europe/Saratov: 
+      :city: ຊາຣາທອບ
+    :Europe/Simferopol: 
+      :city: ຊີມເຟໂລໂປ
+    :Europe/Skopje: 
+      :city: ສະໂກເປຍ
+    :Europe/Sofia: 
+      :city: ໂຊເຟຍ
+    :Europe/Stockholm: 
+      :city: ສະຕອກໂຮມ
+    :Europe/Tallinn: 
+      :city: ທາລລິນນ໌
+    :Europe/Tirane: 
+      :city: ທິຣານ
+    :Europe/Ulyanovsk: 
+      :city: ອູລີອານອບສຄ໌
+    :Europe/Vaduz: 
+      :city: ວາດາຊ
+    :Europe/Vatican: 
+      :city: ວາຕິກັນ
+    :Europe/Vienna: 
+      :city: ວຽນນາ
+    :Europe/Vilnius: 
+      :city: ວິລນິອຸສ
+    :Europe/Volgograd: 
+      :city: ວອລໂກກຣາດ
+    :Europe/Warsaw: 
+      :city: ວໍຊໍ
+    :Europe/Zagreb: 
+      :city: ຊາເກຣບ
+    :Europe/Zurich: 
+      :city: ຊູຣິກ
+    :Indian/Antananarivo: 
+      :city: ອັນຕານານາຣິໂວ
+    :Indian/Chagos: 
+      :city: ຊາໂກສ
+    :Indian/Christmas: 
+      :city: ຄຣິດສະມາດ
+    :Indian/Cocos: 
+      :city: ໂຄໂຄສ
+    :Indian/Comoro: 
+      :city: ໂຄໂມໂຣ
+    :Indian/Kerguelen: 
+      :city: ແກເກີເລນ
+    :Indian/Mahe: 
+      :city: ມາເຮ
+    :Indian/Maldives: 
+      :city: ມັລດີຟ
+    :Indian/Mauritius: 
+      :city: ເມົາຣິທຽສ
+    :Indian/Mayotte: 
+      :city: ມາຢັອດເຕ
+    :Indian/Reunion: 
+      :city: ເຣອູນິຢົງ
+    :Pacific/Apia: 
+      :city: ເອປີອາ
+    :Pacific/Auckland: 
+      :city: ອັກແລນ
+    :Pacific/Bougainville: 
+      :city: ເວລາຕາມເຂດບູນກຽນວິວ
+    :Pacific/Chatham: 
+      :city: ແຊແທມ
+    :Pacific/Easter: 
+      :city: ເອສເຕີ
+    :Pacific/Efate: 
+      :city: ເອຟາເຕ
+    :Pacific/Enderbury: 
+      :city: ເອັນເດີເບີລີ
+    :Pacific/Fakaofo: 
+      :city: ຟາກາວໂຟ
+    :Pacific/Fiji: 
+      :city: ຟູຈິ
+    :Pacific/Funafuti: 
+      :city: ຟູນະຟູຕິ
+    :Pacific/Galapagos: 
+      :city: ກາລາປາກອສ
+    :Pacific/Gambier: 
+      :city: ແກມເບຍ
+    :Pacific/Guadalcanal: 
+      :city: ກົວດັລຄະແນລ
+    :Pacific/Guam: 
+      :city: ກວມ
+    :Pacific/Honolulu: 
+      :city: ໂຮໂນລູລູ
+    :Pacific/Kanton: 
+      :city: ແຄນຕອນ
+    :Pacific/Kiritimati: 
+      :city: ຄີຣິທີມາຕີ
+    :Pacific/Kosrae: 
+      :city: ຄໍສແຣ
+    :Pacific/Kwajalein: 
+      :city: ຄວາຈາເລນ
+    :Pacific/Majuro: 
+      :city: ມາຈູໂຣ
+    :Pacific/Marquesas: 
+      :city: ມາຄິວຊາສ
+    :Pacific/Midway: 
+      :city: ມິດເວ
+    :Pacific/Nauru: 
+      :city: ນາອູຣູ
+    :Pacific/Niue: 
+      :city: ນີອູເອ
+    :Pacific/Norfolk: 
+      :city: ນໍຟອລ໌ກ
+    :Pacific/Noumea: 
+      :city: ນູເມອາ
+    :Pacific/Pago_Pago: 
+      :city: ປາໂກປາໂກ
+    :Pacific/Palau: 
+      :city: ປາເລົາ
+    :Pacific/Pitcairn: 
+      :city: ພິດແຄນ
+    :Pacific/Ponape: 
+      :city: ປົນເປີຍ
+    :Pacific/Port_Moresby: 
+      :city: "ພອດ ມໍເຣສບີ"
+    :Pacific/Rarotonga: 
+      :city: ຣາໂຣຕອງກາ
+    :Pacific/Saipan: 
+      :city: ໄຊປານ
+    :Pacific/Tahiti: 
+      :city: ທາຮີຕິ
+    :Pacific/Tarawa: 
+      :city: ຕາຣາວາ
+    :Pacific/Tongatapu: 
+      :city: ຕອງກາຕາປູ
+    :Pacific/Truk: 
+      :city: ຈັກ
+    :Pacific/Wake: 
+      :city: ເວກ
+    :Pacific/Wallis: 
+      :city: ວາລິດ

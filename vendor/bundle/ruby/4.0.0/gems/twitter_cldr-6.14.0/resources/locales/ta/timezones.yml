@@ -1,0 +1,1504 @@
+--- 
+:ta: 
+  :formats: 
+    :fallback_formats: 
+      :generic: "{1} ({0})"
+    :gmt_formats: 
+      :generic: "GMT{0}"
+    :gmt_zero_formats: 
+      :generic: GMT
+    :hour_formats: 
+      :generic: "+HH:mm;-HH:mm"
+    :region_formats: 
+      :daylight: "{0} பகலொளி நேரம்"
+      :generic: "{0} நேரம்"
+      :standard: "{0} நிலையான நேரம்"
+  :metazones: 
+    :Acre: 
+      :long: 
+        :daylight: "அக்ரே கோடை நேரம்"
+        :generic: "அக்ரே நேரம்"
+        :standard: "அக்ரே தர நேரம்"
+    :Afghanistan: 
+      :long: 
+        :standard: "ஆஃப்கானிஸ்தான் நேரம்"
+    :Africa_Central: 
+      :long: 
+        :standard: "மத்திய ஆப்பிரிக்க நேரம்"
+    :Africa_Eastern: 
+      :long: 
+        :standard: "கிழக்கு ஆப்பிரிக்க நேரம்"
+    :Africa_Southern: 
+      :long: 
+        :standard: "தென் ஆப்பிரிக்க நிலையான நேரம்"
+    :Africa_Western: 
+      :long: 
+        :daylight: "மேற்கு ஆப்பிரிக்க கோடை நேரம்"
+        :generic: "மேற்கு ஆப்பிரிக்க நேரம்"
+        :standard: "மேற்கு ஆப்பிரிக்க நிலையான நேரம்"
+    :Alaska: 
+      :long: 
+        :daylight: "அலாஸ்கா பகலொளி நேரம்"
+        :generic: "அலாஸ்கா நேரம்"
+        :standard: "அலாஸ்கா நிலையான நேரம்"
+    :Almaty: 
+      :long: 
+        :daylight: "அல்மாடி கோடை நேரம்"
+        :generic: "அல்மாடி நேரம்"
+        :standard: "அல்மாடி தர நேரம்"
+    :Amazon: 
+      :long: 
+        :daylight: "அமேசான் கோடை நேரம்"
+        :generic: "அமேசான் நேரம்"
+        :standard: "அமேசான் நிலையான நேரம்"
+    :America_Central: 
+      :long: 
+        :daylight: "மத்திய பகலொளி நேரம்"
+        :generic: "மத்திய நேரம்"
+        :standard: "மத்திய நிலையான நேரம்"
+    :America_Eastern: 
+      :long: 
+        :daylight: "கிழக்கத்திய பகலொளி நேரம்"
+        :generic: "கிழக்கத்திய நேரம்"
+        :standard: "கிழக்கத்திய நிலையான நேரம்"
+    :America_Mountain: 
+      :long: 
+        :daylight: "மவுன்டைன் பகலொளி நேரம்"
+        :generic: "மவுன்டைன் நேரம்"
+        :standard: "மவுன்டைன் நிலையான நேரம்"
+    :America_Pacific: 
+      :long: 
+        :daylight: "பசிபிக் பகலொளி நேரம்"
+        :generic: "பசிபிக் நேரம்"
+        :standard: "பசிபிக் நிலையான நேரம்"
+    :Anadyr: 
+      :long: 
+        :daylight: "அனாடையர் கோடை நேரம்"
+        :generic: "அனடீர் நேரம்"
+        :standard: "அனாடையர் தர நேரம்"
+    :Apia: 
+      :long: 
+        :daylight: "ஏபியா பகலொளி நேரம்"
+        :generic: "ஏபியா நேரம்"
+        :standard: "ஏபியா நிலையான நேரம்"
+    :Aqtau: 
+      :long: 
+        :daylight: "அட்டௌ கோடை நேரம்"
+        :generic: "அட்டௌ நேரம்"
+        :standard: "அட்டௌ தர நேரம்"
+    :Aqtobe: 
+      :long: 
+        :daylight: "அட்டோபே கோடை நேரம்"
+        :generic: "அட்டோபே நேரம்"
+        :standard: "அட்டோபே தர நேரம்"
+    :Arabian: 
+      :long: 
+        :daylight: "அரேபிய பகலொளி நேரம்"
+        :generic: "அரேபிய நேரம்"
+        :standard: "அரேபிய நிலையான நேரம்"
+    :Argentina: 
+      :long: 
+        :daylight: "அர்ஜென்டினா கோடை நேரம்"
+        :generic: "அர்ஜென்டினா நேரம்"
+        :standard: "அர்ஜென்டினா நிலையான நேரம்"
+    :Argentina_Western: 
+      :long: 
+        :daylight: "மேற்கத்திய அர்ஜென்டினா கோடை நேரம்"
+        :generic: "மேற்கத்திய அர்ஜென்டினா நேரம்"
+        :standard: "மேற்கத்திய அர்ஜென்டினா நிலையான நேரம்"
+    :Armenia: 
+      :long: 
+        :daylight: "ஆர்மேனிய கோடை நேரம்"
+        :generic: "ஆர்மேனிய நேரம்"
+        :standard: "ஆர்மேனிய நிலையான நேரம்"
+    :Atlantic: 
+      :long: 
+        :daylight: "அட்லாண்டிக் பகலொளி நேரம்"
+        :generic: "அட்லாண்டிக் நேரம்"
+        :standard: "அட்லாண்டிக் நிலையான நேரம்"
+    :Australia_Central: 
+      :long: 
+        :daylight: "ஆஸ்திரேலியன் மத்திய பகலொளி நேரம்"
+        :generic: "மத்திய ஆஸ்திரேலிய நேரம்"
+        :standard: "ஆஸ்திரேலியன் மத்திய நிலையான நேரம்"
+    :Australia_CentralWestern: 
+      :long: 
+        :daylight: "ஆஸ்திரேலியன் மத்திய மேற்கத்திய பகலொளி நேரம்"
+        :generic: "ஆஸ்திரேலியன் மத்திய மேற்கத்திய நேரம்"
+        :standard: "ஆஸ்திரேலியன் மத்திய மேற்கத்திய நிலையான நேரம்"
+    :Australia_Eastern: 
+      :long: 
+        :daylight: "ஆஸ்திரேலியன் கிழக்கத்திய பகலொளி நேரம்"
+        :generic: "கிழக்கத்திய ஆஸ்திரேலிய நேரம்"
+        :standard: "ஆஸ்திரேலியன் கிழக்கத்திய நிலையான நேரம்"
+    :Australia_Western: 
+      :long: 
+        :daylight: "ஆஸ்திரேலியன் மேற்கத்திய பகலொளி நேரம்"
+        :generic: "மேற்கத்திய ஆஸ்திரேலிய நேரம்"
+        :standard: "ஆஸ்திரேலியன் மேற்கத்திய நிலையான நேரம்"
+    :Azerbaijan: 
+      :long: 
+        :daylight: "அசர்பைஜான் கோடை நேரம்"
+        :generic: "அசர்பைஜான் நேரம்"
+        :standard: "அசர்பைஜான் நிலையான நேரம்"
+    :Azores: 
+      :long: 
+        :daylight: "அசோர்ஸ் கோடை நேரம்"
+        :generic: "அசோரஸ் நேரம்"
+        :standard: "அசோரஸ் நிலையான நேரம்"
+    :Bangladesh: 
+      :long: 
+        :daylight: "வங்கதேச கோடை நேரம்"
+        :generic: "வங்கதேச நேரம்"
+        :standard: "வங்கதேச நிலையான நேரம்"
+    :Bhutan: 
+      :long: 
+        :standard: "பூடான் நேரம்"
+    :Bolivia: 
+      :long: 
+        :standard: "பொலிவியா நேரம்"
+    :Brasilia: 
+      :long: 
+        :daylight: "பிரேசிலியா கோடை நேரம்"
+        :generic: "பிரேசிலியா நேரம்"
+        :standard: "பிரேசிலியா நிலையான நேரம்"
+    :Brunei: 
+      :long: 
+        :standard: "புருனே டருஸ்ஸலாம் நேரம்"
+    :Cape_Verde: 
+      :long: 
+        :daylight: "கேப் வெர்டே கோடை நேரம்"
+        :generic: "கேப் வெர்டே நேரம்"
+        :standard: "கேப் வெர்டே நிலையான நேரம்"
+    :Chamorro: 
+      :long: 
+        :standard: "சாமோரோ நிலையான நேரம்"
+    :Chatham: 
+      :long: 
+        :daylight: "சத்தாம் பகலொளி நேரம்"
+        :generic: "சத்தாம் நேரம்"
+        :standard: "சத்தாம் நிலையான நேரம்"
+    :Chile: 
+      :long: 
+        :daylight: "சிலி கோடை நேரம்"
+        :generic: "சிலி நேரம்"
+        :standard: "சிலி நிலையான நேரம்"
+    :China: 
+      :long: 
+        :daylight: "சீன பகலொளி நேரம்"
+        :generic: "சீன நேரம்"
+        :standard: "சீன நிலையான நேரம்"
+    :Christmas: 
+      :long: 
+        :standard: "கிறிஸ்துமஸ் தீவு நேரம்"
+    :Cocos: 
+      :long: 
+        :standard: "கோகோஸ் தீவுகள் நேரம்"
+    :Colombia: 
+      :long: 
+        :daylight: "கொலம்பியா கோடை நேரம்"
+        :generic: "கொலம்பியா நேரம்"
+        :standard: "கொலம்பியா நிலையான நேரம்"
+    :Cook: 
+      :long: 
+        :daylight: "குக் தீவுகள் அரை கோடை நேரம்"
+        :generic: "குக் தீவுகள் நேரம்"
+        :standard: "குக் தீவுகள் நிலையான நேரம்"
+    :Cuba: 
+      :long: 
+        :daylight: "கியூபா பகலொளி நேரம்"
+        :generic: "கியூபா நேரம்"
+        :standard: "கியூபா நிலையான நேரம்"
+    :Davis: 
+      :long: 
+        :standard: "டேவிஸ் நேரம்"
+    :DumontDUrville: 
+      :long: 
+        :standard: "டுமோண்ட்-டி உர்வில்லே நேரம்"
+    :East_Timor: 
+      :long: 
+        :standard: "கிழக்கு திமோர் நேரம்"
+    :Easter: 
+      :long: 
+        :daylight: "ஈஸ்டர் தீவு கோடை நேரம்"
+        :generic: "ஈஸ்டர் தீவு நேரம்"
+        :standard: "ஈஸ்டர் தீவு நிலையான நேரம்"
+    :Ecuador: 
+      :long: 
+        :standard: "ஈக்வடார் நேரம்"
+    :Europe_Central: 
+      :long: 
+        :daylight: "மத்திய ஐரோப்பிய கோடை நேரம்"
+        :generic: "மத்திய ஐரோப்பிய நேரம்"
+        :standard: "மத்திய ஐரோப்பிய நிலையான நேரம்"
+    :Europe_Eastern: 
+      :long: 
+        :daylight: "கிழக்கத்திய ஐரோப்பிய கோடை நேரம்"
+        :generic: "கிழக்கத்திய ஐரோப்பிய நேரம்"
+        :standard: "கிழக்கத்திய ஐரோப்பிய நிலையான நேரம்"
+    :Europe_Further_Eastern: 
+      :long: 
+        :standard: "தூர-கிழக்கு ஐரோப்பிய நேரம்"
+    :Europe_Western: 
+      :long: 
+        :daylight: "மேற்கத்திய ஐரோப்பிய கோடை நேரம்"
+        :generic: "மேற்கத்திய ஐரோப்பிய நேரம்"
+        :standard: "மேற்கத்திய ஐரோப்பிய நிலையான நேரம்"
+    :Falkland: 
+      :long: 
+        :daylight: "ஃபாக்லாந்து தீவுகள் கோடை நேரம்"
+        :generic: "ஃபாக்லாந்து தீவுகள் நேரம்"
+        :standard: "ஃபாக்லாந்து தீவுகள் நிலையான நேரம்"
+    :Fiji: 
+      :long: 
+        :daylight: "ஃபிஜி கோடை நேரம்"
+        :generic: "ஃபிஜி நேரம்"
+        :standard: "ஃபிஜி நிலையான நேரம்"
+    :French_Guiana: 
+      :long: 
+        :standard: "ஃபிரஞ்சு கயானா நேரம்"
+    :French_Southern: 
+      :long: 
+        :standard: "பிரெஞ்சு தெற்கத்திய & அண்டார்டிக் நேரம்"
+    :GMT: 
+      :long: 
+        :standard: "கிரீன்விச் சராசரி நேரம்"
+    :Galapagos: 
+      :long: 
+        :standard: "கலபகோஸ் நேரம்"
+    :Gambier: 
+      :long: 
+        :standard: "கேம்பியர் நேரம்"
+    :Georgia: 
+      :long: 
+        :daylight: "ஜார்ஜியா கோடை நேரம்"
+        :generic: "ஜார்ஜியா நேரம்"
+        :standard: "ஜார்ஜியா நிலையான நேரம்"
+    :Gilbert_Islands: 
+      :long: 
+        :standard: "கில்பர்ட் தீவுகள் நேரம்"
+    :Greenland_Eastern: 
+      :long: 
+        :daylight: "கிழக்கு கிரீன்லாந்து கோடை நேரம்"
+        :generic: "கிழக்கு கிரீன்லாந்து நேரம்"
+        :standard: "கிழக்கு கிரீன்லாந்து நிலையான நேரம்"
+    :Greenland_Western: 
+      :long: 
+        :daylight: "மேற்கு கிரீன்லாந்து கோடை நேரம்"
+        :generic: "மேற்கு கிரீன்லாந்து நேரம்"
+        :standard: "மேற்கு கிரீன்லாந்து நிலையான நேரம்"
+    :Guam: 
+      :long: 
+        :standard: "கம் தர நேரம்"
+    :Gulf: 
+      :long: 
+        :standard: "வளைகுடா நிலையான நேரம்"
+    :Guyana: 
+      :long: 
+        :standard: "கயானா நேரம்"
+    :Hawaii_Aleutian: 
+      :long: 
+        :daylight: "ஹவாய்-அலேஷியன் பகலொளி நேரம்"
+        :generic: "ஹவாய்-அலேஷியன் நேரம்"
+        :standard: "ஹவாய்-அலேஷியன் நிலையான நேரம்"
+    :Hong_Kong: 
+      :long: 
+        :daylight: "ஹாங்காங் கோடை நேரம்"
+        :generic: "ஹாங்காங் நேரம்"
+        :standard: "ஹாங்காங் நிலையான நேரம்"
+    :Hovd: 
+      :long: 
+        :daylight: "ஹோவ்த் கோடை நேரம்"
+        :generic: "ஹோவ்த் நேரம்"
+        :standard: "ஹோவ்த் நிலையான நேரம்"
+    :India: 
+      :long: 
+        :standard: "இந்திய நிலையான நேரம்"
+      :short: 
+        :standard: IST
+    :Indian_Ocean: 
+      :long: 
+        :standard: "இந்தியப் பெருங்கடல் நேரம்"
+    :Indochina: 
+      :long: 
+        :standard: "இந்தோசீன நேரம்"
+    :Indonesia_Central: 
+      :long: 
+        :standard: "மத்திய இந்தோனேசிய நேரம்"
+    :Indonesia_Eastern: 
+      :long: 
+        :standard: "கிழக்கத்திய இந்தோனேசிய நேரம்"
+    :Indonesia_Western: 
+      :long: 
+        :standard: "மேற்கத்திய இந்தோனேசிய நேரம்"
+    :Iran: 
+      :long: 
+        :daylight: "ஈரான் பகலொளி நேரம்"
+        :generic: "ஈரான் நேரம்"
+        :standard: "ஈரான் நிலையான நேரம்"
+    :Irkutsk: 
+      :long: 
+        :daylight: "இர்குட்ஸ்க் கோடை நேரம்"
+        :generic: "இர்குட்ஸ்க் நேரம்"
+        :standard: "இர்குட்ஸ்க் நிலையான நேரம்"
+    :Israel: 
+      :long: 
+        :daylight: "இஸ்ரேல் பகலொளி நேரம்"
+        :generic: "இஸ்ரேல் நேரம்"
+        :standard: "இஸ்ரேல் நிலையான நேரம்"
+    :Japan: 
+      :long: 
+        :daylight: "ஜப்பான் பகலொளி நேரம்"
+        :generic: "ஜப்பான் நேரம்"
+        :standard: "ஜப்பான் நிலையான நேரம்"
+    :Kamchatka: 
+      :long: 
+        :daylight: "பெட்ரோபவ்லோவ்ஸ்க் கம்சட்ஸ்கி கோடை நேரம்"
+        :generic: "பெட்ரோபவ்லோவ்ஸ்க் கம்சட்ஸ்கி நேரம்"
+        :standard: "பெட்ரோபவ்லோவ்ஸ்க் கம்சட்ஸ்கி தர நேரம்"
+    :Kazakhstan: 
+      :long: 
+        :standard: "கஜகஸ்தான் நேரம்"
+    :Kazakhstan_Eastern: 
+      :long: 
+        :standard: "கிழக்கு கஜகஸ்தான் நேரம்"
+    :Kazakhstan_Western: 
+      :long: 
+        :standard: "மேற்கு கஜகஸ்தான் நேரம்"
+    :Korea: 
+      :long: 
+        :daylight: "கொரிய பகலொளி நேரம்"
+        :generic: "கொரிய நேரம்"
+        :standard: "கொரிய நிலையான நேரம்"
+    :Kosrae: 
+      :long: 
+        :standard: "கோஸ்ரே நேரம்"
+    :Krasnoyarsk: 
+      :long: 
+        :daylight: "க்ரஸ்னோயார்ஸ்க் கோடை நேரம்"
+        :generic: "க்ரஸ்னோயார்ஸ்க் நேரம்"
+        :standard: "க்ரஸ்னோயார்ஸ்க் நிலையான நேரம்"
+    :Kyrgystan: 
+      :long: 
+        :standard: "கிர்கிஸ்தான் நேரம்"
+    :Lanka: 
+      :long: 
+        :standard: "லங்கா நேரம்"
+    :Line_Islands: 
+      :long: 
+        :standard: "லைன் தீவுகள் நேரம்"
+    :Lord_Howe: 
+      :long: 
+        :daylight: "லார்ட் ஹோவ் பகலொளி நேரம்"
+        :generic: "லார்ட் ஹோவ் நேரம்"
+        :standard: "லார்ட் ஹோவ் நிலையான நேரம்"
+    :Macau: 
+      :long: 
+        :daylight: "மக்காவ் கோடை நேரம்"
+        :generic: "மக்காவ் நேரம்"
+        :standard: "மக்காவ் தர நேரம்"
+    :Magadan: 
+      :long: 
+        :daylight: "மகதன் கோடை நேரம்"
+        :generic: "மகதன் நேரம்"
+        :standard: "மகதன் நிலையான நேரம்"
+    :Malaysia: 
+      :long: 
+        :standard: "மலேஷிய நேரம்"
+    :Maldives: 
+      :long: 
+        :standard: "மாலத்தீவுகள் நேரம்"
+    :Marquesas: 
+      :long: 
+        :standard: "மார்கியூசாஸ் நேரம்"
+    :Marshall_Islands: 
+      :long: 
+        :standard: "மார்ஷல் தீவுகள் நேரம்"
+    :Mauritius: 
+      :long: 
+        :daylight: "மொரிஷியஸ் கோடை நேரம்"
+        :generic: "மொரிஷியஸ் நேரம்"
+        :standard: "மொரிஷியஸ் நிலையான நேரம்"
+    :Mawson: 
+      :long: 
+        :standard: "மாசன் நேரம்"
+    :Mexico_Pacific: 
+      :long: 
+        :daylight: "மெக்ஸிகன் பசிபிக் பகலொளி நேரம்"
+        :generic: "மெக்ஸிகன் பசிபிக் நேரம்"
+        :standard: "மெக்ஸிகன் பசிபிக் நிலையான நேரம்"
+    :Mongolia: 
+      :long: 
+        :daylight: "உலன் பாடர் கோடை நேரம்"
+        :generic: "உலன் பாடர் நேரம்"
+        :standard: "உலன் பாடர் நிலையான நேரம்"
+    :Moscow: 
+      :long: 
+        :daylight: "மாஸ்கோ கோடை நேரம்"
+        :generic: "மாஸ்கோ நேரம்"
+        :standard: "மாஸ்கோ நிலையான நேரம்"
+    :Myanmar: 
+      :long: 
+        :standard: "மியான்மர் நேரம்"
+    :Nauru: 
+      :long: 
+        :standard: "நவ்ரூ நேரம்"
+    :Nepal: 
+      :long: 
+        :standard: "நேபாள நேரம்"
+    :New_Caledonia: 
+      :long: 
+        :daylight: "நியூ கலிடோனியா கோடை நேரம்"
+        :generic: "நியூ கலிடோனியா நேரம்"
+        :standard: "நியூ கலிடோனியா நிலையான நேரம்"
+    :New_Zealand: 
+      :long: 
+        :daylight: "நியூசிலாந்து பகலொளி நேரம்"
+        :generic: "நியூசிலாந்து நேரம்"
+        :standard: "நியூசிலாந்து நிலையான நேரம்"
+    :Newfoundland: 
+      :long: 
+        :daylight: "நியூஃபவுண்ட்லாந்து பகலொளி நேரம்"
+        :generic: "நியூஃபவுண்ட்லாந்து நேரம்"
+        :standard: "நியூஃபவுண்ட்லாந்து நிலையான நேரம்"
+    :Niue: 
+      :long: 
+        :standard: "நியு நேரம்"
+    :Norfolk: 
+      :long: 
+        :daylight: "நார்ஃபோக் தீவு பகலொளி நேரம்"
+        :generic: "நார்ஃபோக் தீவு நேரம்"
+        :standard: "நார்ஃபோக் தீவு நிலையான நேரம்"
+    :Noronha: 
+      :long: 
+        :daylight: "பெர்னான்டோ டி நோரோன்ஹா கோடை நேரம்"
+        :generic: "பெர்னாண்டோ டி நோரன்ஹா நேரம்"
+        :standard: "பெர்னான்டோ டி நோரோன்ஹா நிலையான நேரம்"
+    :North_Mariana: 
+      :long: 
+        :standard: "வடக்கு மரினா தீவுகள் நேரம்"
+    :Novosibirsk: 
+      :long: 
+        :daylight: "நோவோசிபிரிஸ்க் கோடை நேரம்"
+        :generic: "நோவோசிபிரிஸ்க் நேரம்"
+        :standard: "நோவோசிபிரிஸ்க் நிலையான நேரம்"
+    :Omsk: 
+      :long: 
+        :daylight: "ஓம்ஸ்க் கோடை நேரம்"
+        :generic: "ஓம்ஸ்க் நேரம்"
+        :standard: "ஓம்ஸ்க் நிலையான நேரம்"
+    :Pakistan: 
+      :long: 
+        :daylight: "பாகிஸ்தான் கோடை நேரம்"
+        :generic: "பாகிஸ்தான் நேரம்"
+        :standard: "பாகிஸ்தான் நிலையான நேரம்"
+    :Palau: 
+      :long: 
+        :standard: "பாலவ் நேரம்"
+    :Papua_New_Guinea: 
+      :long: 
+        :standard: "பபுவா நியூ கினியா நேரம்"
+    :Paraguay: 
+      :long: 
+        :daylight: "பராகுவே கோடை நேரம்"
+        :generic: "பராகுவே நேரம்"
+        :standard: "பராகுவே நிலையான நேரம்"
+    :Peru: 
+      :long: 
+        :daylight: "பெரு கோடை நேரம்"
+        :generic: "பெரு நேரம்"
+        :standard: "பெரு நிலையான நேரம்"
+    :Philippines: 
+      :long: 
+        :daylight: "பிலிப்பைன் கோடை நேரம்"
+        :generic: "பிலிப்பைன் நேரம்"
+        :standard: "பிலிப்பைன் நிலையான நேரம்"
+    :Phoenix_Islands: 
+      :long: 
+        :standard: "ஃபோனிக்ஸ் தீவுகள் நேரம்"
+    :Pierre_Miquelon: 
+      :long: 
+        :daylight: "செயின்ட் பியரி & மிக்குயிலான் பகலொளி நேரம்"
+        :generic: "செயின்ட் பியரி & மிக்குயிலான் நேரம்"
+        :standard: "செயின்ட் பியரி & மிக்குயிலான் நிலையான நேரம்"
+    :Pitcairn: 
+      :long: 
+        :standard: "பிட்கெய்ர்ன் நேரம்"
+    :Ponape: 
+      :long: 
+        :standard: "போனாபே நேரம்"
+    :Pyongyang: 
+      :long: 
+        :standard: "பியாங்யாங் நேரம்"
+    :Qyzylorda: 
+      :long: 
+        :daylight: "கைஜைலோர்டா கோடை நேரம்"
+        :generic: "கைஜைலோர்டா நேரம்"
+        :standard: "கைஜைலோர்டா தர நேரம்"
+    :Reunion: 
+      :long: 
+        :standard: "ரீயூனியன் நேரம்"
+    :Rothera: 
+      :long: 
+        :standard: "ரோதேரா நேரம்"
+    :Sakhalin: 
+      :long: 
+        :daylight: "சகலின் கோடை நேரம்"
+        :generic: "சகலின் நேரம்"
+        :standard: "சகலின் நிலையான நேரம்"
+    :Samara: 
+      :long: 
+        :daylight: "சமரா கோடை நேரம்"
+        :generic: "சமரா நேரம்"
+        :standard: "சமரா தர நேரம்"
+    :Samoa: 
+      :long: 
+        :daylight: "சமோவா பகலொளி நேரம்"
+        :generic: "சமோவா நேரம்"
+        :standard: "சமோவா நிலையான நேரம்"
+    :Seychelles: 
+      :long: 
+        :standard: "சீசெல்ஸ் நேரம்"
+    :Singapore: 
+      :long: 
+        :standard: "சிங்கப்பூர் நிலையான நேரம்"
+    :Solomon: 
+      :long: 
+        :standard: "சாலமன் தீவுகள் நேரம்"
+    :South_Georgia: 
+      :long: 
+        :standard: "தெற்கு ஜார்ஜியா நேரம்"
+    :Suriname: 
+      :long: 
+        :standard: "சுரினாம் நேரம்"
+    :Syowa: 
+      :long: 
+        :standard: "ஸ்யோவா நேரம்"
+    :Tahiti: 
+      :long: 
+        :standard: "தஹிதி நேரம்"
+    :Taipei: 
+      :long: 
+        :daylight: "தாய்பே பகலொளி நேரம்"
+        :generic: "தாய்பே நேரம்"
+        :standard: "தாய்பே நிலையான நேரம்"
+    :Tajikistan: 
+      :long: 
+        :standard: "தஜிகிஸ்தான் நேரம்"
+    :Tokelau: 
+      :long: 
+        :standard: "டோக்கெலாவ் நேரம்"
+    :Tonga: 
+      :long: 
+        :daylight: "டோங்கா கோடை நேரம்"
+        :generic: "டோங்கா நேரம்"
+        :standard: "டோங்கா நிலையான நேரம்"
+    :Truk: 
+      :long: 
+        :standard: "சுக் நேரம்"
+    :Turkmenistan: 
+      :long: 
+        :daylight: "துர்க்மெனிஸ்தான் கோடை நேரம்"
+        :generic: "துர்க்மெனிஸ்தான் நேரம்"
+        :standard: "துர்க்மெனிஸ்தான் நிலையான நேரம்"
+    :Tuvalu: 
+      :long: 
+        :standard: "துவாலு நேரம்"
+    :Uruguay: 
+      :long: 
+        :daylight: "உருகுவே கோடை நேரம்"
+        :generic: "உருகுவே நேரம்"
+        :standard: "உருகுவே நிலையான நேரம்"
+    :Uzbekistan: 
+      :long: 
+        :daylight: "உஸ்பெகிஸ்தான் கோடை நேரம்"
+        :generic: "உஸ்பெகிஸ்தான் நேரம்"
+        :standard: "உஸ்பெகிஸ்தான் நிலையான நேரம்"
+    :Vanuatu: 
+      :long: 
+        :daylight: "வனுவாட்டு கோடை நேரம்"
+        :generic: "வனுவாட்டு நேரம்"
+        :standard: "வனுவாட்டு நிலையான நேரம்"
+    :Venezuela: 
+      :long: 
+        :standard: "வெனிசுலா நேரம்"
+    :Vladivostok: 
+      :long: 
+        :daylight: "விளாடிவோஸ்டோக் கோடை நேரம்"
+        :generic: "விளாடிவோஸ்டோக் நேரம்"
+        :standard: "விளாடிவோஸ்டோக் நிலையான நேரம்"
+    :Volgograd: 
+      :long: 
+        :daylight: "வோல்கோக்ராட் கோடை நேரம்"
+        :generic: "வோல்கோக்ராட் நேரம்"
+        :standard: "வோல்கோக்ராட் நிலையான நேரம்"
+    :Vostok: 
+      :long: 
+        :standard: "வோஸ்டோக் நேரம்"
+    :Wake: 
+      :long: 
+        :standard: "வேக் தீவு நேரம்"
+    :Wallis: 
+      :long: 
+        :standard: "வாலிஸ் மற்றும் ஃப்யூடுனா நேரம்"
+    :Yakutsk: 
+      :long: 
+        :daylight: "யகுட்ஸ்க் கோடை நேரம்"
+        :generic: "யகுட்ஸ்க் நேரம்"
+        :standard: "யகுட்ஸ்க் நிலையான நேரம்"
+    :Yekaterinburg: 
+      :long: 
+        :daylight: "யேகாடெரின்பர்க் கோடை நேரம்"
+        :generic: "யேகாடெரின்பர்க் நேரம்"
+        :standard: "யேகாடெரின்பர்க் நிலையான நேரம்"
+    :Yukon: 
+      :long: 
+        :standard: "யூகோன் நேரம்"
+  :timezones: 
+    :Africa/Abidjan: 
+      :city: அபிட்ஜான்
+    :Africa/Accra: 
+      :city: அக்ரா
+    :Africa/Addis_Ababa: 
+      :city: "அடிஸ் அபாபா"
+    :Africa/Algiers: 
+      :city: அல்ஜியர்ஸ்
+    :Africa/Asmera: 
+      :city: அஸ்மாரா
+    :Africa/Bamako: 
+      :city: பமாகோ
+    :Africa/Bangui: 
+      :city: பாங்குயீ
+    :Africa/Banjul: 
+      :city: பஞ்சுல்
+    :Africa/Bissau: 
+      :city: பிஸாவ்
+    :Africa/Blantyre: 
+      :city: பிளான்டையர்
+    :Africa/Brazzaville: 
+      :city: பிராஸாவில்லி
+    :Africa/Bujumbura: 
+      :city: புஜும்புரா
+    :Africa/Cairo: 
+      :city: கெய்ரோ
+    :Africa/Casablanca: 
+      :city: காஸாபிளான்கா
+    :Africa/Ceuta: 
+      :city: சியூட்டா
+    :Africa/Conakry: 
+      :city: கோனக்ரே
+    :Africa/Dakar: 
+      :city: டாகர்
+    :Africa/Dar_es_Salaam: 
+      :city: "தார் எஸ் சலாம்"
+    :Africa/Djibouti: 
+      :city: ஜிபௌட்டி
+    :Africa/Douala: 
+      :city: தவுலா
+    :Africa/El_Aaiun: 
+      :city: "எல் ஆயுன்"
+    :Africa/Freetown: 
+      :city: ஃப்ரீடவுன்
+    :Africa/Gaborone: 
+      :city: கபோரோன்
+    :Africa/Harare: 
+      :city: ஹராரே
+    :Africa/Johannesburg: 
+      :city: ஜோஹன்னஸ்பெர்க்
+    :Africa/Juba: 
+      :city: ஜுபா
+    :Africa/Kampala: 
+      :city: கம்பாலா
+    :Africa/Khartoum: 
+      :city: கார்டோம்
+    :Africa/Kigali: 
+      :city: கிகலி
+    :Africa/Kinshasa: 
+      :city: கின்ஷசா
+    :Africa/Lagos: 
+      :city: லாகோஸ்
+    :Africa/Libreville: 
+      :city: லிப்ரேவில்லே
+    :Africa/Lome: 
+      :city: லோம்
+    :Africa/Luanda: 
+      :city: லுவான்டா
+    :Africa/Lubumbashi: 
+      :city: லுபும்பாஷி
+    :Africa/Lusaka: 
+      :city: லுசாகா
+    :Africa/Malabo: 
+      :city: மாலபோ
+    :Africa/Maputo: 
+      :city: மபுடோ
+    :Africa/Maseru: 
+      :city: மசேரு
+    :Africa/Mbabane: 
+      :city: பபான்
+    :Africa/Mogadishu: 
+      :city: மொகாதிஷு
+    :Africa/Monrovia: 
+      :city: மான்ரோவியா
+    :Africa/Nairobi: 
+      :city: நைரோபி
+    :Africa/Ndjamena: 
+      :city: ஜமேனா
+    :Africa/Niamey: 
+      :city: நியாமே
+    :Africa/Nouakchott: 
+      :city: நோவாக்சோட்
+    :Africa/Ouagadougou: 
+      :city: அவுகடவ்கு
+    :Africa/Porto-Novo: 
+      :city: போர்ட்டோ-நோவோ
+    :Africa/Sao_Tome: 
+      :city: "சாவோ டோமே"
+    :Africa/Tripoli: 
+      :city: த்ரிபோலி
+    :Africa/Tunis: 
+      :city: டுனிஸ்
+    :Africa/Windhoek: 
+      :city: வைண்ட்ஹோக்
+    :America/Adak: 
+      :city: அடக்
+    :America/Anchorage: 
+      :city: அங்கோரேஜ்
+    :America/Anguilla: 
+      :city: அங்குயுலா
+    :America/Antigua: 
+      :city: ஆன்டிகுவா
+    :America/Araguaina: 
+      :city: அரகுவாய்னா
+    :America/Argentina/La_Rioja: 
+      :city: "லா ரியோஜா"
+    :America/Argentina/Rio_Gallegos: 
+      :city: "ரியோ கேலெகோஸ்"
+    :America/Argentina/Salta: 
+      :city: சால்டா
+    :America/Argentina/San_Juan: 
+      :city: "சான் ஜுவான்"
+    :America/Argentina/San_Luis: 
+      :city: "சான் லூயிஸ்"
+    :America/Argentina/Tucuman: 
+      :city: டுகுமன்
+    :America/Argentina/Ushuaia: 
+      :city: உஷுவாயா
+    :America/Aruba: 
+      :city: அரூபா
+    :America/Asuncion: 
+      :city: அஸன்சியன்
+    :America/Bahia: 
+      :city: பாஹியா
+    :America/Bahia_Banderas: 
+      :city: "பஹியா பந்தேராஸ்"
+    :America/Barbados: 
+      :city: பார்படாஸ்
+    :America/Belem: 
+      :city: பெலெம்
+    :America/Belize: 
+      :city: பெலிஸ்
+    :America/Blanc-Sablon: 
+      :city: ப்லாங்க்-சப்லான்
+    :America/Boa_Vista: 
+      :city: "போவா விஸ்டா"
+    :America/Bogota: 
+      :city: போகோடா
+    :America/Boise: 
+      :city: போய்ஸ்
+    :America/Buenos_Aires: 
+      :city: "ப்யூனோஸ் ஏர்ஸ்"
+    :America/Cambridge_Bay: 
+      :city: "கேம்பிரிட்ஜ் வளைகுடா"
+    :America/Campo_Grande: 
+      :city: "கேம்போ கிராண்டே"
+    :America/Cancun: 
+      :city: கன்குன்
+    :America/Caracas: 
+      :city: கரகாஸ்
+    :America/Catamarca: 
+      :city: கடமார்கா
+    :America/Cayenne: 
+      :city: கெய்ன்
+    :America/Cayman: 
+      :city: கேமன்
+    :America/Chicago: 
+      :city: சிகாகோ
+    :America/Chihuahua: 
+      :city: சுவாவா
+    :America/Ciudad_Juarez: 
+      :city: "சியுடாட் வாரஸ்"
+    :America/Coral_Harbour: 
+      :city: அடிகோகன்
+    :America/Cordoba: 
+      :city: கார்டோபா
+    :America/Costa_Rica: 
+      :city: "கோஸ்டா ரிகா"
+    :America/Creston: 
+      :city: க்ரெஸ்டான்
+    :America/Cuiaba: 
+      :city: குயாபே
+    :America/Curacao: 
+      :city: க்யூராகோ
+    :America/Danmarkshavn: 
+      :city: டென்மார்க்ஷாவ்ன்
+    :America/Dawson: 
+      :city: டாவ்சன்
+    :America/Dawson_Creek: 
+      :city: "டாவ்சன் கிரீக்"
+    :America/Denver: 
+      :city: டென்வர்
+    :America/Detroit: 
+      :city: டெட்ராய்ட்
+    :America/Dominica: 
+      :city: டொமினிகா
+    :America/Edmonton: 
+      :city: எட்மான்டான்
+    :America/Eirunepe: 
+      :city: ஈருனெபே
+    :America/El_Salvador: 
+      :city: "எல் சால்வடோர்"
+    :America/Fort_Nelson: 
+      :city: "ஃபோர்ட் நெல்சன்"
+    :America/Fortaleza: 
+      :city: ஃபோர்டாலெசா
+    :America/Glace_Bay: 
+      :city: "கிலேஸ் வளைகுடா"
+    :America/Godthab: 
+      :city: நூக்
+    :America/Goose_Bay: 
+      :city: "கூஸ் பே"
+    :America/Grand_Turk: 
+      :city: "கிராண்ட் டர்க்"
+    :America/Grenada: 
+      :city: கிரனடா
+    :America/Guadeloupe: 
+      :city: கவுடேலூப்
+    :America/Guatemala: 
+      :city: கவுதமாலா
+    :America/Guayaquil: 
+      :city: குவாயகில்
+    :America/Guyana: 
+      :city: கயானா
+    :America/Halifax: 
+      :city: ஹலிஃபேக்ஸ்
+    :America/Havana: 
+      :city: ஹவானா
+    :America/Hermosillo: 
+      :city: ஹெர்மோசிலோ
+    :America/Indiana/Knox: 
+      :city: "நாக்ஸ், இண்டியானா"
+    :America/Indiana/Marengo: 
+      :city: "மரென்கோ, இண்டியானா"
+    :America/Indiana/Petersburg: 
+      :city: "பீட்டர்ஸ்பெர்க், இண்டியானா"
+    :America/Indiana/Tell_City: 
+      :city: "டெல் சிட்டி, இண்டியானா"
+    :America/Indiana/Vevay: 
+      :city: "வேவே, இண்டியானா"
+    :America/Indiana/Vincennes: 
+      :city: "வின்செனேஸ், இண்டியானா"
+    :America/Indiana/Winamac: 
+      :city: "வினாமேக், இண்டியானா"
+    :America/Indianapolis: 
+      :city: இண்டியானாபொலிஸ்
+    :America/Inuvik: 
+      :city: இனுவிக்
+    :America/Iqaluit: 
+      :city: இகாலூயித்
+    :America/Jamaica: 
+      :city: ஜமைக்கா
+    :America/Jujuy: 
+      :city: ஜூஜுய்
+    :America/Juneau: 
+      :city: ஜுனியூ
+    :America/Kentucky/Monticello: 
+      :city: "மான்டிசெல்லோ, கென்டகி"
+    :America/Kralendijk: 
+      :city: கிரெலன்டிஜ்
+    :America/La_Paz: 
+      :city: "லா பாஸ்"
+    :America/Lima: 
+      :city: லிமா
+    :America/Los_Angeles: 
+      :city: "லாஸ் ஏஞ்சல்ஸ்"
+    :America/Louisville: 
+      :city: லூயிஸ்வில்லே
+    :America/Lower_Princes: 
+      :city: "லோயர் பிரின்ஸஸ் குவார்ட்டர்"
+    :America/Maceio: 
+      :city: மேசியோ
+    :America/Managua: 
+      :city: மானாகுவா
+    :America/Manaus: 
+      :city: மனாஸ்
+    :America/Marigot: 
+      :city: மாரிகாட்
+    :America/Martinique: 
+      :city: மார்ட்டினிக்
+    :America/Matamoros: 
+      :city: மடமோராஸ்
+    :America/Mazatlan: 
+      :city: மஸட்லன்
+    :America/Mendoza: 
+      :city: மென்டோஸா
+    :America/Menominee: 
+      :city: மெனோமினி
+    :America/Merida: 
+      :city: மெரிடா
+    :America/Metlakatla: 
+      :city: மெட்லகட்லா
+    :America/Mexico_City: 
+      :city: "மெக்ஸிகோ நகரம்"
+    :America/Miquelon: 
+      :city: மிக்யூலன்
+    :America/Moncton: 
+      :city: மாங்டான்
+    :America/Monterrey: 
+      :city: மான்டெர்ரே
+    :America/Montevideo: 
+      :city: மான்டேவீடியோ
+    :America/Montserrat: 
+      :city: மான்செரேட்
+    :America/Nassau: 
+      :city: நசவ்
+    :America/New_York: 
+      :city: நியூயார்க்
+    :America/Nome: 
+      :city: நோம்
+    :America/Noronha: 
+      :city: நோரன்ஹா
+    :America/North_Dakota/Beulah: 
+      :city: "பெவுலா, வடக்கு டகோட்டா"
+    :America/North_Dakota/Center: 
+      :city: "சென்டர், வடக்கு டகோடா"
+    :America/North_Dakota/New_Salem: 
+      :city: "நியூ சலேம், வடக்கு டகோடா"
+    :America/Ojinaga: 
+      :city: ஒஜினகா
+    :America/Panama: 
+      :city: பனாமா
+    :America/Paramaribo: 
+      :city: பரமரிபோ
+    :America/Phoenix: 
+      :city: ஃபோனிக்ஸ்
+    :America/Port-au-Prince: 
+      :city: போர்ட்-அவ்-பிரின்ஸ்
+    :America/Port_of_Spain: 
+      :city: "போர்ட் ஆஃப் ஸ்பெயின்"
+    :America/Porto_Velho: 
+      :city: "போர்ட்டோ வெல்ஹோ"
+    :America/Puerto_Rico: 
+      :city: "பியூர்டோ ரிகோ"
+    :America/Punta_Arenas: 
+      :city: "புன்டா அரீனாஸ்"
+    :America/Rankin_Inlet: 
+      :city: "ரான்கின் இன்லெட்"
+    :America/Recife: 
+      :city: ரெஸிஃபி
+    :America/Regina: 
+      :city: ரெஜினா
+    :America/Resolute: 
+      :city: ரெசலூட்
+    :America/Rio_Branco: 
+      :city: "ரியோ பிரான்கோ"
+    :America/Santarem: 
+      :city: சான்டரெம்
+    :America/Santiago: 
+      :city: சாண்டியாகோ
+    :America/Santo_Domingo: 
+      :city: "சாண்டோ டோமிங்கோ"
+    :America/Sao_Paulo: 
+      :city: "சாவோ பவுலோ"
+    :America/Scoresbysund: 
+      :city: இடோகோர்டோர்மிட்
+    :America/Sitka: 
+      :city: சிட்கா
+    :America/St_Barthelemy: 
+      :city: "செயின்ட் பார்தேலெமி"
+    :America/St_Johns: 
+      :city: "செயின்ட் ஜான்ஸ்"
+    :America/St_Kitts: 
+      :city: "செயின்ட் கீட்ஸ்"
+    :America/St_Lucia: 
+      :city: "செயின்ட் லூசியா"
+    :America/St_Thomas: 
+      :city: "செயின்ட் தாமஸ்"
+    :America/St_Vincent: 
+      :city: "செயின்ட் வின்சென்ட்"
+    :America/Swift_Current: 
+      :city: "ஸ்விஃப்ட் கரண்ட்"
+    :America/Tegucigalpa: 
+      :city: தெகுசிகல்பா
+    :America/Thule: 
+      :city: துலே
+    :America/Tijuana: 
+      :city: டிஜுவானா
+    :America/Toronto: 
+      :city: டொரொன்டோ
+    :America/Tortola: 
+      :city: டோர்டோலா
+    :America/Vancouver: 
+      :city: வான்கூவர்
+    :America/Whitehorse: 
+      :city: வொயிட்ஹார்ஸ்
+    :America/Winnipeg: 
+      :city: வின்னிபெக்
+    :America/Yakutat: 
+      :city: யகுடட்
+    :Antarctica/Casey: 
+      :city: கேஸி
+    :Antarctica/Davis: 
+      :city: டேவிஸ்
+    :Antarctica/DumontDUrville: 
+      :city: "டுமோண்ட்-டி உர்வில்லே"
+    :Antarctica/Macquarie: 
+      :city: மாக்கியூரி
+    :Antarctica/Mawson: 
+      :city: மாசன்
+    :Antarctica/McMurdo: 
+      :city: மெக்மர்டோ
+    :Antarctica/Palmer: 
+      :city: பால்மர்
+    :Antarctica/Rothera: 
+      :city: ரோதேரா
+    :Antarctica/Syowa: 
+      :city: ஸ்யோவா
+    :Antarctica/Troll: 
+      :city: ட்ரோல்
+    :Antarctica/Vostok: 
+      :city: வோஸ்டோக்
+    :Arctic/Longyearbyen: 
+      :city: லாங்இயர்பியன்
+    :Asia/Aden: 
+      :city: ஏடன்
+    :Asia/Almaty: 
+      :city: அல்மாதி
+    :Asia/Amman: 
+      :city: அம்மான்
+    :Asia/Anadyr: 
+      :city: அனடீர்
+    :Asia/Aqtau: 
+      :city: அக்தவ்
+    :Asia/Aqtobe: 
+      :city: அக்டோப்
+    :Asia/Ashgabat: 
+      :city: அஷ்காபாத்
+    :Asia/Atyrau: 
+      :city: அடிரா
+    :Asia/Baghdad: 
+      :city: பாக்தாத்
+    :Asia/Bahrain: 
+      :city: பஹ்ரைன்
+    :Asia/Baku: 
+      :city: பாக்கூ
+    :Asia/Bangkok: 
+      :city: பாங்காக்
+    :Asia/Barnaul: 
+      :city: பார்னால்
+    :Asia/Beirut: 
+      :city: பெய்ரூட்
+    :Asia/Bishkek: 
+      :city: பிஷ்கெக்
+    :Asia/Brunei: 
+      :city: புருனே
+    :Asia/Calcutta: 
+      :city: கொல்கத்தா
+    :Asia/Chita: 
+      :city: சிடா
+    :Asia/Colombo: 
+      :city: கொழும்பு
+    :Asia/Damascus: 
+      :city: டமாஸ்கஸ்
+    :Asia/Dhaka: 
+      :city: டாக்கா
+    :Asia/Dili: 
+      :city: டிலி
+    :Asia/Dubai: 
+      :city: துபாய்
+    :Asia/Dushanbe: 
+      :city: துஷன்பே
+    :Asia/Famagusta: 
+      :city: ஃபாமகுஸ்டா
+    :Asia/Gaza: 
+      :city: காஸா
+    :Asia/Hebron: 
+      :city: ஹெப்ரான்
+    :Asia/Hong_Kong: 
+      :city: ஹாங்காங்
+    :Asia/Hovd: 
+      :city: ஹோவ்த்
+    :Asia/Irkutsk: 
+      :city: இர்குட்ஸ்க்
+    :Asia/Jakarta: 
+      :city: ஜகார்த்தா
+    :Asia/Jayapura: 
+      :city: ஜெயபூரா
+    :Asia/Jerusalem: 
+      :city: ஜெருசலேம்
+    :Asia/Kabul: 
+      :city: காபூல்
+    :Asia/Kamchatka: 
+      :city: காம்சட்கா
+    :Asia/Karachi: 
+      :city: கராச்சி
+    :Asia/Katmandu: 
+      :city: காத்மாண்டு
+    :Asia/Khandyga: 
+      :city: கான்டிகா
+    :Asia/Krasnoyarsk: 
+      :city: கிராஸ்னோயார்க்ஸ்
+    :Asia/Kuala_Lumpur: 
+      :city: கோலாலம்பூர்
+    :Asia/Kuching: 
+      :city: குசிங்
+    :Asia/Kuwait: 
+      :city: குவைத்
+    :Asia/Macau: 
+      :city: மகாவு
+    :Asia/Magadan: 
+      :city: மகதன்
+    :Asia/Makassar: 
+      :city: மக்கஸர்
+    :Asia/Manila: 
+      :city: மணிலா
+    :Asia/Muscat: 
+      :city: மஸ்கட்
+    :Asia/Nicosia: 
+      :city: நிகோசியா
+    :Asia/Novokuznetsk: 
+      :city: நோவோகுஸ்நெட்ஸ்க்
+    :Asia/Novosibirsk: 
+      :city: நோவோசீபிர்ஸ்க்
+    :Asia/Omsk: 
+      :city: ஓம்ஸ்க்
+    :Asia/Oral: 
+      :city: ஓரல்
+    :Asia/Phnom_Penh: 
+      :city: "ஃப்னோம் பென்"
+    :Asia/Pontianak: 
+      :city: போன்டியானாக்
+    :Asia/Pyongyang: 
+      :city: பியாங்யாங்
+    :Asia/Qatar: 
+      :city: கத்தார்
+    :Asia/Qostanay: 
+      :city: கோஸ்டானே
+    :Asia/Qyzylorda: 
+      :city: கிஸிலோர்டா
+    :Asia/Rangoon: 
+      :city: ரங்கூன்
+    :Asia/Riyadh: 
+      :city: ரியாத்
+    :Asia/Saigon: 
+      :city: "ஹோ சி மின் சிட்டி"
+    :Asia/Sakhalin: 
+      :city: சகலின்
+    :Asia/Samarkand: 
+      :city: சமார்கண்ட்
+    :Asia/Seoul: 
+      :city: சியோல்
+    :Asia/Shanghai: 
+      :city: ஷாங்காய்
+    :Asia/Singapore: 
+      :city: சிங்கப்பூர்
+    :Asia/Srednekolymsk: 
+      :city: ஸ்ரெட்நிகோலிம்ஸ்க்
+    :Asia/Taipei: 
+      :city: தாய்பே
+    :Asia/Tashkent: 
+      :city: தாஷ்கண்ட்
+    :Asia/Tbilisi: 
+      :city: த்பிலிசி
+    :Asia/Tehran: 
+      :city: டெஹ்ரான்
+    :Asia/Thimphu: 
+      :city: திம்பு
+    :Asia/Tokyo: 
+      :city: டோக்கியோ
+    :Asia/Tomsk: 
+      :city: டாம்ஸ்க்
+    :Asia/Ulaanbaatar: 
+      :city: உலான்பாட்டர்
+    :Asia/Urumqi: 
+      :city: உரும்கி
+    :Asia/Ust-Nera: 
+      :city: உஸ்ட்-நேரா
+    :Asia/Vientiane: 
+      :city: வியன்டியன்
+    :Asia/Vladivostok: 
+      :city: விளாடிவொஸ்தோக்
+    :Asia/Yakutsk: 
+      :city: யகுட்ஸ்க்
+    :Asia/Yekaterinburg: 
+      :city: யெகாடிரின்பர்க்
+    :Asia/Yerevan: 
+      :city: ஏரேவன்
+    :Atlantic/Azores: 
+      :city: அசோரஸ்
+    :Atlantic/Bermuda: 
+      :city: பெர்முடா
+    :Atlantic/Canary: 
+      :city: கேனரி
+    :Atlantic/Cape_Verde: 
+      :city: "கேப் வெர்டே"
+    :Atlantic/Faeroe: 
+      :city: ஃபரோ
+    :Atlantic/Madeira: 
+      :city: மடிரா
+    :Atlantic/Reykjavik: 
+      :city: ரேக்ஜாவிக்
+    :Atlantic/South_Georgia: 
+      :city: "தெற்கு ஜார்ஜியா"
+    :Atlantic/St_Helena: 
+      :city: "செயின்ட் ஹெலெனா"
+    :Atlantic/Stanley: 
+      :city: ஸ்டேன்லி
+    :Australia/Adelaide: 
+      :city: அடிலெய்ட்
+    :Australia/Brisbane: 
+      :city: பிரிஸ்பேன்
+    :Australia/Broken_Hill: 
+      :city: "புரோக்கன் ஹில்"
+    :Australia/Darwin: 
+      :city: டார்வின்
+    :Australia/Eucla: 
+      :city: யூக்லா
+    :Australia/Hobart: 
+      :city: ஹோபர்ட்
+    :Australia/Lindeman: 
+      :city: லின்டெமன்
+    :Australia/Lord_Howe: 
+      :city: "லார்ட் ஹோவே"
+    :Australia/Melbourne: 
+      :city: மெல்போர்ன்
+    :Australia/Perth: 
+      :city: பெர்த்
+    :Australia/Sydney: 
+      :city: சிட்னி
+    :Etc/UTC: 
+      :long: 
+        :standard: "ஒருங்கிணைந்த சர்வதேச நேரம்"
+      :short: 
+        :standard: UTC
+    :Etc/Unknown: 
+      :city: "தெரியாத நகரம்"
+    :Europe/Amsterdam: 
+      :city: ஆம்ஸ்ட்ரடாம்
+    :Europe/Andorra: 
+      :city: அண்டோரா
+    :Europe/Astrakhan: 
+      :city: அஸ்ட்ராகான்
+    :Europe/Athens: 
+      :city: ஏதன்ஸ்
+    :Europe/Belgrade: 
+      :city: பெல்கிரேட்
+    :Europe/Berlin: 
+      :city: பெர்லின்
+    :Europe/Bratislava: 
+      :city: பிரடிஸ்லாவா
+    :Europe/Brussels: 
+      :city: புரூசல்ஸ்
+    :Europe/Bucharest: 
+      :city: புசாரெஸ்ட்
+    :Europe/Budapest: 
+      :city: புடாபெஸ்ட்
+    :Europe/Busingen: 
+      :city: பசிங்ஜென்
+    :Europe/Chisinau: 
+      :city: சிசினவ்
+    :Europe/Copenhagen: 
+      :city: கோபன்ஹேகன்
+    :Europe/Dublin: 
+      :city: டப்ளின்
+      :long: 
+        :daylight: "ஐரிஷ் நிலையான நேரம்"
+    :Europe/Gibraltar: 
+      :city: ஜிப்ரால்டர்
+    :Europe/Guernsey: 
+      :city: கர்னஸே
+    :Europe/Helsinki: 
+      :city: ஹெல்சிங்கி
+    :Europe/Isle_of_Man: 
+      :city: "ஐல் ஆஃப் மேன்"
+    :Europe/Istanbul: 
+      :city: இஸ்தான்புல்
+    :Europe/Jersey: 
+      :city: ஜெர்சி
+    :Europe/Kaliningrad: 
+      :city: கலினின்கிராட்
+    :Europe/Kiev: 
+      :city: கீவ்
+    :Europe/Kirov: 
+      :city: கிரோவ்
+    :Europe/Lisbon: 
+      :city: லிஸ்பன்
+    :Europe/Ljubljana: 
+      :city: ஜுப்லானா
+    :Europe/London: 
+      :city: லண்டன்
+      :long: 
+        :daylight: "பிரிட்டிஷ் கோடை நேரம்"
+    :Europe/Luxembourg: 
+      :city: லக்சம்பர்க்
+    :Europe/Madrid: 
+      :city: மேட்ரிட்
+    :Europe/Malta: 
+      :city: மால்டா
+    :Europe/Mariehamn: 
+      :city: மரிஹம்
+    :Europe/Minsk: 
+      :city: மின்ஸ்க்
+    :Europe/Monaco: 
+      :city: மொனாக்கோ
+    :Europe/Moscow: 
+      :city: மாஸ்கோ
+    :Europe/Oslo: 
+      :city: ஓஸ்லோ
+    :Europe/Paris: 
+      :city: பாரீஸ்
+    :Europe/Podgorica: 
+      :city: போட்கோரிகா
+    :Europe/Prague: 
+      :city: ப்ராக்
+    :Europe/Riga: 
+      :city: ரிகா
+    :Europe/Rome: 
+      :city: ரோம்
+    :Europe/Samara: 
+      :city: சமாரா
+    :Europe/San_Marino: 
+      :city: "சான் மரினோ"
+    :Europe/Sarajevo: 
+      :city: சரயேவோ
+    :Europe/Saratov: 
+      :city: சரடோவ்
+    :Europe/Simferopol: 
+      :city: சிம்ஃபெரோபோல்
+    :Europe/Skopje: 
+      :city: ஸ்கோப்ஜே
+    :Europe/Sofia: 
+      :city: சோஃபியா
+    :Europe/Stockholm: 
+      :city: ஸ்டாக்ஹோம்
+    :Europe/Tallinn: 
+      :city: டலின்
+    :Europe/Tirane: 
+      :city: திரானே
+    :Europe/Ulyanovsk: 
+      :city: உல்யானோஸ்க்
+    :Europe/Vaduz: 
+      :city: வதுஸ்
+    :Europe/Vatican: 
+      :city: வாடிகன்
+    :Europe/Vienna: 
+      :city: வியன்னா
+    :Europe/Vilnius: 
+      :city: வில்னியஸ்
+    :Europe/Volgograd: 
+      :city: வோல்கோகிராட்
+    :Europe/Warsaw: 
+      :city: வார்ஸா
+    :Europe/Zagreb: 
+      :city: ஸக்ரெப்
+    :Europe/Zurich: 
+      :city: ஜூரிச்
+    :Indian/Antananarivo: 
+      :city: ஆண்டனநரிவோ
+    :Indian/Chagos: 
+      :city: சாகோஸ்
+    :Indian/Christmas: 
+      :city: கிறிஸ்துமஸ்
+    :Indian/Cocos: 
+      :city: கோகோஸ்
+    :Indian/Comoro: 
+      :city: கொமரோ
+    :Indian/Kerguelen: 
+      :city: கெர்யூலென்
+    :Indian/Mahe: 
+      :city: மாஹே
+    :Indian/Maldives: 
+      :city: மாலத்தீவுகள்
+    :Indian/Mauritius: 
+      :city: மொரிஷியஸ்
+    :Indian/Mayotte: 
+      :city: மயோட்டி
+    :Indian/Reunion: 
+      :city: ரீயூனியன்
+    :Pacific/Apia: 
+      :city: அபியா
+    :Pacific/Auckland: 
+      :city: ஆக்லாந்து
+    :Pacific/Bougainville: 
+      :city: போகெய்ன்வில்லே
+    :Pacific/Chatham: 
+      :city: சத்தாம்
+    :Pacific/Easter: 
+      :city: ஈஸ்டர்
+    :Pacific/Efate: 
+      :city: ஈஃபேட்
+    :Pacific/Enderbury: 
+      :city: எண்டர்பரி
+    :Pacific/Fakaofo: 
+      :city: ஃபகாஃபோ
+    :Pacific/Fiji: 
+      :city: ஃபிஜி
+    :Pacific/Funafuti: 
+      :city: ஃபுனாஃபுடி
+    :Pacific/Galapagos: 
+      :city: கலபகோஸ்
+    :Pacific/Gambier: 
+      :city: கேம்பியர்
+    :Pacific/Guadalcanal: 
+      :city: க்வாடால்கேனல்
+    :Pacific/Guam: 
+      :city: குவாம்
+    :Pacific/Honolulu: 
+      :city: ஹோனோலூலூ
+    :Pacific/Kanton: 
+      :city: கேன்டன்
+    :Pacific/Kiritimati: 
+      :city: கிரிடிமாட்டி
+    :Pacific/Kosrae: 
+      :city: கோஸ்ரே
+    :Pacific/Kwajalein: 
+      :city: க்வாஜாலீயன்
+    :Pacific/Majuro: 
+      :city: மஜுரோ
+    :Pacific/Marquesas: 
+      :city: மார்கியூசாஸ்
+    :Pacific/Midway: 
+      :city: மிட்வே
+    :Pacific/Nauru: 
+      :city: நவ்ரூ
+    :Pacific/Niue: 
+      :city: நியு
+    :Pacific/Norfolk: 
+      :city: நார்ஃபோக்
+    :Pacific/Noumea: 
+      :city: நோவுமியா
+    :Pacific/Pago_Pago: 
+      :city: "பேகோ பேகோ"
+    :Pacific/Palau: 
+      :city: பாலவ்
+    :Pacific/Pitcairn: 
+      :city: பிட்கெய்ர்ன்
+    :Pacific/Ponape: 
+      :city: ஃபோன்பெய்
+    :Pacific/Port_Moresby: 
+      :city: "போர்ட் மோர்ஸ்பை"
+    :Pacific/Rarotonga: 
+      :city: ரரோடோங்கா
+    :Pacific/Saipan: 
+      :city: சைபன்
+    :Pacific/Tahiti: 
+      :city: தஹிதி
+    :Pacific/Tarawa: 
+      :city: தராவா
+    :Pacific/Tongatapu: 
+      :city: டோன்கடப்பு
+    :Pacific/Truk: 
+      :city: சுக்
+    :Pacific/Wake: 
+      :city: வேக்
+    :Pacific/Wallis: 
+      :city: வாலிஸ்

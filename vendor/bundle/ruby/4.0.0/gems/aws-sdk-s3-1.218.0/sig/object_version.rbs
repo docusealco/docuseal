@@ -1,0 +1,143 @@
+# WARNING ABOUT GENERATED CODE
+#
+# This file is generated. See the contributing guide for more information:
+# https://github.com/aws/aws-sdk-ruby/blob/version-3/CONTRIBUTING.md
+#
+# WARNING ABOUT GENERATED CODE
+
+module Aws
+  module S3
+    # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectVersion.html
+    class ObjectVersion
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectVersion.html#initialize-instance_method
+      def initialize: (String bucket_name, String object_key, String id, Hash[Symbol, untyped] options) -> void
+                    | (bucket_name: String, object_key: String, id: String, ?client: Client) -> void
+                    | (Hash[Symbol, untyped] args) -> void
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectVersion.html#bucket_name-instance_method
+      def bucket_name: () -> String
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectVersion.html#object_key-instance_method
+      def object_key: () -> String
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectVersion.html#id-instance_method
+      def id: () -> String
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectVersion.html#etag-instance_method
+      def etag: () -> ::String
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectVersion.html#checksum_algorithm-instance_method
+      def checksum_algorithm: () -> ::Array[("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")]
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectVersion.html#checksum_type-instance_method
+      def checksum_type: () -> ("COMPOSITE" | "FULL_OBJECT")
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectVersion.html#size-instance_method
+      def size: () -> ::Integer
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectVersion.html#storage_class-instance_method
+      def storage_class: () -> ("STANDARD")
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectVersion.html#key-instance_method
+      def key: () -> ::String
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectVersion.html#version_id-instance_method
+      def version_id: () -> ::String
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectVersion.html#is_latest-instance_method
+      def is_latest: () -> bool
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectVersion.html#last_modified-instance_method
+      def last_modified: () -> ::Time
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectVersion.html#owner-instance_method
+      def owner: () -> Types::Owner
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectVersion.html#restore_status-instance_method
+      def restore_status: () -> Types::RestoreStatus
+
+      def client: () -> Client
+
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectVersion.html#data-instance_method
+      def data: () -> Types::ObjectVersion
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectVersion.html#data_loaded?-instance_method
+      def data_loaded?: () -> bool
+
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectVersion.html#delete-instance_method
+      def delete: (
+                    ?mfa: ::String,
+                    ?request_payer: ("requester"),
+                    ?bypass_governance_retention: bool,
+                    ?expected_bucket_owner: ::String,
+                    ?if_match: ::String,
+                    ?if_match_last_modified_time: ::Time,
+                    ?if_match_size: ::Integer
+                  ) -> Types::DeleteObjectOutput
+                | (?Hash[Symbol, untyped]) -> Types::DeleteObjectOutput
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectVersion.html#get-instance_method
+      def get: (
+                 ?if_match: ::String,
+                 ?if_modified_since: ::Time,
+                 ?if_none_match: ::String,
+                 ?if_unmodified_since: ::Time,
+                 ?range: ::String,
+                 ?response_cache_control: ::String,
+                 ?response_content_disposition: ::String,
+                 ?response_content_encoding: ::String,
+                 ?response_content_language: ::String,
+                 ?response_content_type: ::String,
+                 ?response_expires: ::Time,
+                 ?sse_customer_algorithm: ::String,
+                 ?sse_customer_key: ::String,
+                 ?sse_customer_key_md5: ::String,
+                 ?request_payer: ("requester"),
+                 ?part_number: ::Integer,
+                 ?expected_bucket_owner: ::String,
+                 ?checksum_mode: ("ENABLED")
+               ) -> Types::GetObjectOutput
+             | (?Hash[Symbol, untyped]) -> Types::GetObjectOutput
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectVersion.html#head-instance_method
+      def head: (
+                  ?if_match: ::String,
+                  ?if_modified_since: ::Time,
+                  ?if_none_match: ::String,
+                  ?if_unmodified_since: ::Time,
+                  ?range: ::String,
+                  ?response_cache_control: ::String,
+                  ?response_content_disposition: ::String,
+                  ?response_content_encoding: ::String,
+                  ?response_content_language: ::String,
+                  ?response_content_type: ::String,
+                  ?response_expires: ::Time,
+                  ?sse_customer_algorithm: ::String,
+                  ?sse_customer_key: ::String,
+                  ?sse_customer_key_md5: ::String,
+                  ?request_payer: ("requester"),
+                  ?part_number: ::Integer,
+                  ?expected_bucket_owner: ::String,
+                  ?checksum_mode: ("ENABLED")
+                ) -> Types::HeadObjectOutput
+              | (?Hash[Symbol, untyped]) -> Types::HeadObjectOutput
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/ObjectVersion.html#object-instance_method
+      def object: () -> Object
+
+      class Collection < ::Aws::Resources::Collection[ObjectVersion]
+
+        def batch_delete!: (
+                             ?mfa: ::String,
+                             ?request_payer: ("requester"),
+                             ?bypass_governance_retention: bool,
+                             ?expected_bucket_owner: ::String,
+                             ?checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+                           ) -> void
+                       | (?Hash[Symbol, untyped]) -> void
+      end
+    end
+  end
+end

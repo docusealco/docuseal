@@ -1,0 +1,636 @@
+--- 
+:eo: 
+  :units: 
+    :durationUnit: 
+      :hm: "h:mm"
+      :hms: "h:mm:ss"
+      :ms: "m:ss"
+    :unitLength: 
+      :long: 
+        :area-acre: 
+          :one: "{0} akreo"
+          :other: "{0} akreoj"
+        :area-hectare: 
+          :one: "{0} hektaro"
+          :other: "{0} hektaroj"
+        :area-square-centimeter: 
+          :one: "{0} kvadrata centimetro"
+          :other: "{0} kvadrataj centimetroj"
+        :area-square-foot: 
+          :one: "{0} kvadrata futo"
+          :other: "{0} kvadrataj futoj"
+        :area-square-inch: 
+          :one: "{0} kvadrata colo"
+          :other: "{0} kvadrataj coloj"
+        :area-square-kilometer: 
+          :one: "{0} kvadrata kilometro"
+          :other: "{0} kvadrataj kilometroj"
+        :area-square-meter: 
+          :one: "{0} kvadrata metro"
+          :other: "{0} kvadrataj metroj"
+        :area-square-mile: 
+          :one: "{0} kvadrata mejlo"
+          :other: "{0} kvadrataj mejloj"
+        :area-square-yard: 
+          :one: "{0} kvadrata jardo"
+          :other: "{0} kvadrataj jardoj"
+        :digital-bit: 
+          :one: "{0} bito"
+          :other: "{0} bitoj"
+        :digital-byte: 
+          :one: "{0} bajto"
+          :other: "{0} bajtoj"
+        :digital-gigabit: 
+          :one: "{0} gigabito"
+          :other: "{0} gigabitoj"
+        :digital-gigabyte: 
+          :one: "{0} gigabajto"
+          :other: "{0} gigabajtoj"
+        :digital-kilobit: 
+          :one: "{0} kilobito"
+          :other: "{0} kilobitoj"
+        :digital-kilobyte: 
+          :one: "{0} kilobajto"
+          :other: "{0} kilobajtoj"
+        :digital-megabit: 
+          :one: "{0} megabito"
+          :other: "{0} megabitoj"
+        :digital-megabyte: 
+          :one: "{0} megabajto"
+          :other: "{0} megabajtoj"
+        :digital-terabit: 
+          :one: "{0} terabito"
+          :other: "{0} terabitoj"
+        :digital-terabyte: 
+          :one: "{0} terabajto"
+          :other: "{0} terabajtoj"
+        :duration-century: 
+          :one: "{0} jarcento"
+          :other: "{0} jarcentoj"
+        :duration-day: 
+          :one: "{0} tago"
+          :other: "{0} tagoj"
+        :duration-decade: 
+          :one: "{0} jardeko"
+          :other: "{0} jardekoj"
+        :duration-hour: 
+          :one: "{0} horo"
+          :other: "{0} horoj"
+        :duration-millisecond: 
+          :one: "{0} milisekundo"
+          :other: "{0} milisekundoj"
+        :duration-minute: 
+          :one: "{0} minuto"
+          :other: "{0} minutoj"
+        :duration-month: 
+          :one: "{0} monato"
+          :other: "{0} monatoj"
+        :duration-night: 
+          :one: "{0} nokto"
+          :other: "{0} noktoj"
+        :duration-second: 
+          :one: "{0} sekundo"
+          :other: "{0} sekundoj"
+        :duration-week: 
+          :one: "{0} semajno"
+          :other: "{0} semajnoj"
+        :duration-year: 
+          :one: "{0} jaro"
+          :other: "{0} jaroj"
+        :length-astronomical-unit: 
+          :one: "{0} astronomia unuo"
+          :other: "{0} astronomiaj unuoj"
+        :length-centimeter: 
+          :one: "{0} centimetro"
+          :other: "{0} centimetroj"
+        :length-decimeter: 
+          :one: "{0} decimetro"
+          :other: "{0} decimetroj"
+        :length-fathom: 
+          :one: "{0} klafto"
+          :other: "{0} klaftoj"
+        :length-foot: 
+          :one: "{0} futo"
+          :other: "{0} futoj"
+        :length-furlong: 
+          :one: "{0} stadio"
+          :other: "{0} stadioj"
+        :length-inch: 
+          :one: "{0} colo"
+          :other: "{0} coloj"
+        :length-kilometer: 
+          :one: "{0} kilometro"
+          :other: "{0} kilometroj"
+        :length-light-year: 
+          :one: "{0} lumjaro"
+          :other: "{0} lumjaroj"
+        :length-meter: 
+          :one: "{0} metro"
+          :other: "{0} metroj"
+        :length-micrometer: 
+          :one: "{0} mikrometro"
+          :other: "{0} mikrometroj"
+        :length-mile: 
+          :one: "{0} mejlo"
+          :other: "{0} mejloj"
+        :length-millimeter: 
+          :one: "{0} milimetro"
+          :other: "{0} milimetroj"
+        :length-nanometer: 
+          :one: "{0} nanometro"
+          :other: "{0} nanometroj"
+        :length-nautical-mile: 
+          :one: "{0} marmejlo"
+          :other: "{0} marmejloj"
+        :length-parsec: 
+          :one: "{0} parseko"
+          :other: "{0} parsekoj"
+        :length-picometer: 
+          :one: "{0} pikometro"
+          :other: "{0} pikometroj"
+        :length-yard: 
+          :one: "{0} jardo"
+          :other: "{0} jardoj"
+        :mass-gram: 
+          :one: "{0} gramo"
+          :other: "{0} gramoj"
+        :mass-kilogram: 
+          :one: "{0} kilogramo"
+          :other: "{0} kilogramoj"
+        :speed-kilometer-per-hour: 
+          :one: "{0} kilometro en horo"
+          :other: "{0} kilometroj en horo"
+        :temperature-celsius: 
+          :one: "{0} grado celsia"
+          :other: "{0} gradoj celsiaj"
+        :volume-liter: 
+          :one: "{0} litro"
+          :other: "{0} litroj"
+      :narrow: 
+        :area-hectare: 
+          :one: "{0}ha"
+          :other: "{0}ha"
+        :area-square-centimeter: 
+          :one: "{0}cm²"
+          :other: "{0}cm²"
+        :area-square-kilometer: 
+          :one: "{0}km²"
+          :other: "{0}km²"
+        :area-square-meter: 
+          :one: "{0}m²"
+          :other: "{0}m²"
+        :duration-century: 
+          :one: "{0} jc."
+          :other: "{0} jc."
+        :duration-day: 
+          :one: "{0}t."
+          :other: "{0}t."
+        :duration-decade: 
+          :one: "{0} jd."
+          :other: "{0} jd."
+        :duration-hour: 
+          :one: "{0}h."
+          :other: "{0}h."
+        :duration-millisecond: 
+          :one: "{0}ms."
+          :other: "{0}ms."
+        :duration-minute: 
+          :one: "{0}m."
+          :other: "{0}m."
+        :duration-night: 
+          :one: "{0} n."
+          :other: "{0} n."
+        :duration-second: 
+          :one: "{0}s."
+          :other: "{0}s."
+        :duration-year: 
+          :one: "{0} a"
+          :other: "{0} a"
+        :length-astronomical-unit: 
+          :one: "{0}au"
+          :other: "{0}au"
+        :length-centimeter: 
+          :one: "{0}cm"
+          :other: "{0}cm"
+        :length-decimeter: 
+          :one: "{0}dm"
+          :other: "{0}dm"
+        :length-kilometer: 
+          :one: "{0}km"
+          :other: "{0}km"
+        :length-light-year: 
+          :one: "{0}lj"
+          :other: "{0}lj"
+        :length-meter: 
+          :one: "{0}m"
+          :other: "{0}m"
+        :length-micrometer: 
+          :one: "{0}μm"
+          :other: "{0}μm"
+        :length-millimeter: 
+          :one: "{0}mm"
+          :other: "{0}mm"
+        :length-nanometer: 
+          :one: "{0}nm"
+          :other: "{0}nm"
+        :length-parsec: 
+          :one: "{0}pc"
+          :other: "{0}pc"
+        :length-picometer: 
+          :one: "{0}pm"
+          :other: "{0}pm"
+        :mass-gram: 
+          :one: "{0}g"
+          :other: "{0}g"
+        :mass-kilogram: 
+          :one: "{0}kg"
+          :other: "{0}kg"
+        :speed-kilometer-per-hour: 
+          :one: "{0}km/h"
+          :other: "{0}km/h"
+        :temperature-celsius: 
+          :one: "{0}°C"
+          :other: "{0}°C"
+        :volume-liter: 
+          :one: "{0}L"
+          :other: "{0}L"
+      :short: 
+        :acceleration-g-force: 
+          :other: "{0} G"
+        :acceleration-meter-per-square-second: 
+          :other: "{0} m/s²"
+        :angle-arc-minute: 
+          :other: "{0}′"
+        :angle-arc-second: 
+          :other: "{0}″"
+        :angle-degree: 
+          :other: "{0}°"
+        :angle-radian: 
+          :other: "{0} rad"
+        :angle-revolution: 
+          :other: "{0} rev"
+        :area-acre: 
+          :other: "{0} ac"
+        :area-dunam: 
+          :other: "{0} dunam"
+        :area-hectare: 
+          :other: "{0} ha"
+        :area-square-centimeter: 
+          :other: "{0} cm²"
+        :area-square-foot: 
+          :other: "{0} ft²"
+        :area-square-inch: 
+          :other: "{0} in²"
+        :area-square-kilometer: 
+          :other: "{0} km²"
+        :area-square-meter: 
+          :other: "{0} m²"
+        :area-square-mile: 
+          :other: "{0} mi²"
+        :area-square-yard: 
+          :other: "{0} yd²"
+        :concentr-item: 
+          :other: "{0} item"
+        :concentr-karat: 
+          :other: "{0} kt"
+        :concentr-milligram-ofglucose-per-deciliter: 
+          :other: "{0} mg/dL"
+        :concentr-millimole-per-liter: 
+          :other: "{0} mmol/L"
+        :concentr-mole: 
+          :other: "{0} mol"
+        :concentr-percent: 
+          :other: "{0}%"
+        :concentr-permille: 
+          :other: "{0}‰"
+        :concentr-permillion: 
+          :other: "{0} ppm"
+        :concentr-permyriad: 
+          :other: "{0}‱"
+        :concentr-portion-per-1e9: 
+          :other: "{0} ppb"
+        :consumption-liter-per-100-kilometer: 
+          :other: "{0} L/100km"
+        :consumption-liter-per-kilometer: 
+          :other: "{0} L/km"
+        :consumption-mile-per-gallon: 
+          :other: "{0} mpg US"
+        :consumption-mile-per-gallon-imperial: 
+          :other: "{0} mpg Imp."
+        :digital-bit: 
+          :other: "{0} bit"
+        :digital-byte: 
+          :other: "{0} byte"
+        :digital-gigabit: 
+          :other: "{0} Gb"
+        :digital-gigabyte: 
+          :other: "{0} GB"
+        :digital-kilobit: 
+          :other: "{0} kb"
+        :digital-kilobyte: 
+          :other: "{0} kB"
+        :digital-megabit: 
+          :other: "{0} Mb"
+        :digital-megabyte: 
+          :other: "{0} MB"
+        :digital-petabyte: 
+          :other: "{0} PB"
+        :digital-terabit: 
+          :other: "{0} Tb"
+        :digital-terabyte: 
+          :other: "{0} TB"
+        :duration-century: 
+          :one: "{0} jarcent."
+          :other: "{0} jarcent."
+        :duration-day: 
+          :one: "{0} t."
+          :other: "{0} t."
+        :duration-decade: 
+          :one: "{0} jardek."
+          :other: "{0} jardek."
+        :duration-hour: 
+          :one: "{0} h."
+          :other: "{0} h."
+        :duration-microsecond: 
+          :other: "{0} μs"
+        :duration-millisecond: 
+          :one: "{0} ms."
+          :other: "{0} ms."
+        :duration-minute: 
+          :one: "{0} m."
+          :other: "{0} m."
+        :duration-month: 
+          :one: "{0} mon."
+          :other: "{0} mon."
+        :duration-nanosecond: 
+          :other: "{0} ns"
+        :duration-night: 
+          :one: "{0} nokt."
+          :other: "{0} nokt."
+        :duration-quarter: 
+          :other: "{0} q"
+        :duration-second: 
+          :one: "{0} s."
+          :other: "{0} s."
+        :duration-week: 
+          :other: "{0} w"
+        :duration-year: 
+          :one: "{0} j."
+          :other: "{0} j."
+        :electric-ampere: 
+          :other: "{0} A"
+        :electric-milliampere: 
+          :other: "{0} mA"
+        :electric-ohm: 
+          :other: "{0} Ω"
+        :electric-volt: 
+          :other: "{0} V"
+        :energy-british-thermal-unit: 
+          :other: "{0} Btu"
+        :energy-calorie: 
+          :other: "{0} cal"
+        :energy-electronvolt: 
+          :other: "{0} eV"
+        :energy-joule: 
+          :other: "{0} J"
+        :energy-kilocalorie: 
+          :other: "{0} kcal"
+        :energy-kilojoule: 
+          :other: "{0} kJ"
+        :energy-kilowatt-hour: 
+          :other: "{0} kWh"
+        :energy-therm-us: 
+          :other: "{0} US therm"
+        :force-kilowatt-hour-per-100-kilometer: 
+          :other: "{0} kWh/100km"
+        :force-newton: 
+          :other: "{0} N"
+        :force-pound-force: 
+          :other: "{0} lbf"
+        :frequency-gigahertz: 
+          :other: "{0} GHz"
+        :frequency-hertz: 
+          :other: "{0} Hz"
+        :frequency-kilohertz: 
+          :other: "{0} kHz"
+        :frequency-megahertz: 
+          :other: "{0} MHz"
+        :graphics-em: 
+          :other: "{0} em"
+        :graphics-megapixel: 
+          :other: "{0} MP"
+        :graphics-pixel: 
+          :other: "{0} px"
+        :graphics-pixel-per-centimeter: 
+          :other: "{0} ppcm"
+        :graphics-pixel-per-inch: 
+          :other: "{0} ppi"
+        :length-astronomical-unit: 
+          :other: "{0} au"
+        :length-centimeter: 
+          :other: "{0} cm"
+        :length-decimeter: 
+          :other: "{0} dm"
+        :length-earth-radius: 
+          :other: "{0} R⊕"
+        :length-fathom: 
+          :other: "{0} fth"
+        :length-foot: 
+          :other: "{0} ft"
+        :length-furlong: 
+          :other: "{0} fur"
+        :length-inch: 
+          :other: "{0} in"
+        :length-kilometer: 
+          :other: "{0} km"
+        :length-light-year: 
+          :one: "{0} lj"
+          :other: "{0} lj"
+        :length-meter: 
+          :other: "{0} m"
+        :length-micrometer: 
+          :other: "{0} μm"
+        :length-mile: 
+          :other: "{0} mi"
+        :length-mile-scandinavian: 
+          :other: "{0} smi"
+        :length-millimeter: 
+          :other: "{0} mm"
+        :length-nanometer: 
+          :other: "{0} nm"
+        :length-nautical-mile: 
+          :other: "{0} nmi"
+        :length-parsec: 
+          :other: "{0} pc"
+        :length-picometer: 
+          :other: "{0} pm"
+        :length-point: 
+          :other: "{0} pt"
+        :length-solar-radius: 
+          :other: "{0} R☉"
+        :length-yard: 
+          :other: "{0} yd"
+        :light-candela: 
+          :other: "{0} cd"
+        :light-lumen: 
+          :other: "{0} lm"
+        :light-lux: 
+          :other: "{0} lx"
+        :light-solar-luminosity: 
+          :other: "{0} L☉"
+        :mass-carat: 
+          :other: "{0} CD"
+        :mass-dalton: 
+          :other: "{0} Da"
+        :mass-earth-mass: 
+          :other: "{0} M⊕"
+        :mass-grain: 
+          :other: "{0} grain"
+        :mass-gram: 
+          :other: "{0} g"
+        :mass-kilogram: 
+          :other: "{0} kg"
+        :mass-microgram: 
+          :other: "{0} μg"
+        :mass-milligram: 
+          :other: "{0} mg"
+        :mass-ounce: 
+          :other: "{0} oz"
+        :mass-ounce-troy: 
+          :other: "{0} oz t"
+        :mass-pound: 
+          :other: "{0} lb"
+        :mass-solar-mass: 
+          :other: "{0} M☉"
+        :mass-stone: 
+          :other: "{0} st"
+        :mass-ton: 
+          :other: "{0} tn"
+        :mass-tonne: 
+          :other: "{0} t"
+        :power-gigawatt: 
+          :other: "{0} GW"
+        :power-horsepower: 
+          :other: "{0} hp"
+        :power-kilowatt: 
+          :other: "{0} kW"
+        :power-megawatt: 
+          :other: "{0} MW"
+        :power-milliwatt: 
+          :other: "{0} mW"
+        :power-watt: 
+          :other: "{0} W"
+        :pressure-atmosphere: 
+          :other: "{0} atm"
+        :pressure-bar: 
+          :other: "{0} bar"
+        :pressure-hectopascal: 
+          :other: "{0} hPa"
+        :pressure-inch-ofhg: 
+          :other: "{0} inHg"
+        :pressure-kilopascal: 
+          :other: "{0} kPa"
+        :pressure-megapascal: 
+          :other: "{0} MPa"
+        :pressure-millibar: 
+          :other: "{0} mbar"
+        :pressure-millimeter-ofhg: 
+          :other: "{0} mm Hg"
+        :pressure-pascal: 
+          :other: "{0} Pa"
+        :pressure-pound-force-per-square-inch: 
+          :other: "{0} psi"
+        :speed-beaufort: 
+          :other: "B {0}"
+        :speed-kilometer-per-hour: 
+          :other: "{0} km/h"
+        :speed-knot: 
+          :other: "{0} kn"
+        :speed-light-speed: 
+          :other: "{0} light"
+        :speed-meter-per-second: 
+          :other: "{0} m/s"
+        :speed-mile-per-hour: 
+          :other: "{0} mi/h"
+        :temperature-celsius: 
+          :one: "{0} °C"
+          :other: "{0} °C"
+        :temperature-fahrenheit: 
+          :other: "{0}°F"
+        :temperature-generic: 
+          :other: "{0}°"
+        :temperature-kelvin: 
+          :other: "{0} K"
+        :torque-newton-meter: 
+          :other: "{0} N⋅m"
+        :torque-pound-force-foot: 
+          :other: "{0} lbf⋅ft"
+        :volume-acre-foot: 
+          :other: "{0} ac ft"
+        :volume-barrel: 
+          :other: "{0} bbl"
+        :volume-bushel: 
+          :other: "{0} bu"
+        :volume-centiliter: 
+          :other: "{0} cL"
+        :volume-cubic-centimeter: 
+          :other: "{0} cm³"
+        :volume-cubic-foot: 
+          :other: "{0} ft³"
+        :volume-cubic-inch: 
+          :other: "{0} in³"
+        :volume-cubic-kilometer: 
+          :other: "{0} km³"
+        :volume-cubic-meter: 
+          :other: "{0} m³"
+        :volume-cubic-mile: 
+          :other: "{0} mi³"
+        :volume-cubic-yard: 
+          :other: "{0} yd³"
+        :volume-cup: 
+          :other: "{0} c"
+        :volume-cup-metric: 
+          :other: "{0} mc"
+        :volume-deciliter: 
+          :other: "{0} dL"
+        :volume-dessert-spoon: 
+          :other: "{0} dstspn"
+        :volume-dessert-spoon-imperial: 
+          :other: "{0} dstspn Imp"
+        :volume-dram: 
+          :other: "{0} dram fl"
+        :volume-drop: 
+          :other: "{0} drop"
+        :volume-fluid-ounce: 
+          :other: "{0} fl oz US"
+        :volume-fluid-ounce-imperial: 
+          :other: "{0} fl oz Imp."
+        :volume-gallon: 
+          :other: "{0} gal US"
+        :volume-gallon-imperial: 
+          :other: "{0} gal Imp."
+        :volume-hectoliter: 
+          :other: "{0} hL"
+        :volume-jigger: 
+          :other: "{0} jigger"
+        :volume-liter: 
+          :one: "{0} L"
+          :other: "{0} L"
+        :volume-megaliter: 
+          :other: "{0} ML"
+        :volume-milliliter: 
+          :other: "{0} mL"
+        :volume-pinch: 
+          :other: "{0} pinch"
+        :volume-pint: 
+          :other: "{0} pt"
+        :volume-pint-metric: 
+          :other: "{0} mpt"
+        :volume-quart: 
+          :other: "{0} qt"
+        :volume-quart-imperial: 
+          :other: "{0} qt Imp."
+        :volume-tablespoon: 
+          :other: "{0} tbsp"
+        :volume-teaspoon: 
+          :other: "{0} tsp"

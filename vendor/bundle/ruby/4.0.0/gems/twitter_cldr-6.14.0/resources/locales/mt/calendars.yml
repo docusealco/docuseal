@@ -1,0 +1,339 @@
+--- 
+:mt: 
+  :calendars: 
+    :gregorian: 
+      :additional_formats: 
+        :Bh: "h B"
+        :Bhm: "h:mm B"
+        :Bhms: "h:mm:ss B"
+        :E: ccc
+        :EBhm: "E h:mm B"
+        :EBhms: "E h:mm:ss B"
+        :EHm: "E HH:mm"
+        :EHms: "E HH:mm:ss"
+        :Ed: "d, E"
+        :Ehm: "E h:mm a"
+        :Ehms: "E h:mm:ss a"
+        :Gy: "G y"
+        :GyMMM: "MMM y G"
+        :GyMMMEd: "E, d 'ta'’ MMM, y G"
+        :GyMMMd: "d MMM, y G"
+        :GyMd: "GGGGG y-MM-dd"
+        :H: HH
+        :Hm: "HH:mm"
+        :Hms: "HH:mm:ss"
+        :Hmsv: "HH:mm:ss v"
+        :Hmv: "HH:mm v"
+        :M: L
+        :MEd: "E, M-d"
+        :MMM: LLL
+        :MMMEd: "E, d 'ta'’ MMM"
+        :MMMMW: "W 'ġimgħa' 'ta''' MMMM"
+        :MMMMd: "d 'ta'’ MMMM"
+        :MMMd: "MMM d"
+        :Md: MM-dd
+        :d: d
+        :h: h a
+        :hm: "h:mm a"
+        :hms: "h:mm:ss a"
+        :hmsv: "h:mm:ss a v"
+        :hmv: "h:mm a v"
+        :ms: "mm:ss"
+        ? !ruby/symbol "y"
+        : "y"
+        :yM: y-MM
+        :yMEd: "E, d/M/y"
+        :yMMM: "MMM y"
+        :yMMMEd: "E, d 'ta'’ MMM, y"
+        :yMMMM: "MMMM y"
+        :yMMMd: "d 'ta'’ MMM, y"
+        :yMd: M/d/y
+        :yQQQ: "QQQ - y"
+        :yQQQQ: "QQQQ - y"
+        :yw: "w 'ġimgħa' 'ta''' Y"
+      :days: 
+        :format: 
+          :abbreviated: 
+            :fri: Ġim
+            :mon: Tne
+            :sat: Sib
+            :sun: Ħad
+            :thu: Ħam
+            :tue: Tli
+            :wed: Erb
+          :narrow: 
+            :fri: Ġm
+            :mon: T
+            :sat: Sb
+            :sun: Ħd
+            :thu: Ħm
+            :tue: Tl
+            :wed: Er
+          :short: 
+            :fri: Ġim
+            :mon: Tne
+            :sat: Sib
+            :sun: Ħad
+            :thu: Ħam
+            :tue: Tli
+            :wed: Erb
+          :wide: 
+            :fri: Il-Ġimgħa
+            :mon: It-Tnejn
+            :sat: Is-Sibt
+            :sun: Il-Ħadd
+            :thu: Il-Ħamis
+            :tue: It-Tlieta
+            :wed: L-Erbgħa
+        :stand-alone: 
+          :abbreviated: 
+            :fri: Ġim
+            :mon: Tne
+            :sat: Sib
+            :sun: Ħad
+            :thu: Ħam
+            :tue: Tli
+            :wed: Erb
+          :narrow: 
+            :fri: Ġm
+            :mon: Tn
+            :sat: Sb
+            :sun: Ħd
+            :thu: Ħm
+            :tue: Tl
+            :wed: Er
+          :short: 
+            :fri: Ġim
+            :mon: Tne
+            :sat: Sib
+            :sun: Ħad
+            :thu: Ħam
+            :tue: Tli
+            :wed: Erb
+          :wide: 
+            :fri: Il-Ġimgħa
+            :mon: It-Tnejn
+            :sat: Is-Sibt
+            :sun: Il-Ħadd
+            :thu: Il-Ħamis
+            :tue: It-Tlieta
+            :wed: L-Erbgħa
+      :eras: 
+        :abbr: 
+          0: QEK
+          1: EK
+        :name: 
+          0: "Qabel Kristu"
+          1: "Wara Kristu"
+        :narrow: 
+          0: BCE
+          1: CE
+      :fields: 
+        :day: jum
+        :day-narrow: Day
+        :day-short: Jum
+        :dayOfYear: "jum tas-sena"
+        :dayOfYear-narrow: "jum tas-sena"
+        :dayOfYear-short: "jum tas-sena"
+        :dayperiod: AM/PM
+        :dayperiod-narrow: AM/PM
+        :dayperiod-short: AM/PM
+        :era: Era
+        :era-narrow: Era
+        :era-short: Era
+        :hour: siegħa
+        :hour-narrow: siegħa
+        :hour-short: siegħa
+        :minute: minuta
+        :minute-narrow: m
+        :minute-short: min.
+        :month: xahar
+        :month-narrow: Month
+        :month-short: Xahar
+        :quarter: kwart
+        :quarter-narrow: "l-ewwel kwart tas-sena, it-tieni kwart tas-sena, it-tielet kwart tas-sena, ir-raba’ kwart tas-sena"
+        :quarter-short: kwrt
+        :second: sekonda
+        :second-narrow: s
+        :second-short: sek.
+        :week: ġimgħa
+        :week-narrow: Ġimgħa
+        :week-short: ġm
+        :weekOfMonth: "ġimgħa tax-xahar"
+        :weekOfMonth-narrow: "ġimgħa tax-xahar"
+        :weekOfMonth-short: "ġimgħa tax-xahar"
+        :weekday: "jum tal-ġimgħa"
+        :weekday-narrow: "jum tal-ġimgħa"
+        :weekday-short: "jum tal-ġimgħa"
+        :weekdayOfMonth: "jum tax-xahar"
+        :weekdayOfMonth-narrow: "Weekday Of Month"
+        :weekdayOfMonth-short: "jum tax-xahar"
+        :year: Sena
+        :year-narrow: Sena
+        :year-short: Sn
+        :zone: "żona tal-ħin"
+        :zone-narrow: żona
+        :zone-short: żona
+      :formats: 
+        :date: 
+          :full: 
+            :pattern: "EEEE, d 'ta'’ MMMM y"
+          :long: 
+            :pattern: "d 'ta'’ MMMM y"
+          :medium: 
+            :pattern: "dd MMM y"
+          :short: 
+            :pattern: dd/MM/y
+        :datetime: 
+          :full: 
+            :pattern: "{{date}} {{time}}"
+          :long: 
+            :pattern: "{{date}} {{time}}"
+          :medium: 
+            :pattern: "{{date}} {{time}}"
+          :short: 
+            :pattern: "{{date}} {{time}}"
+        :time: 
+          :full: 
+            :pattern: "HH:mm:ss zzzz"
+          :long: 
+            :pattern: "HH:mm:ss z"
+          :medium: 
+            :pattern: "HH:mm:ss"
+          :short: 
+            :pattern: "HH:mm"
+      :months: 
+        :format: 
+          :abbreviated: 
+            1: Jan
+            10: Ott
+            11: Nov
+            12: Diċ
+            2: Fra
+            3: Mar
+            4: Apr
+            5: Mej
+            6: Ġun
+            7: Lul
+            8: Aww
+            9: Set
+          :narrow: 
+            1: J
+            10: O
+            11: "N"
+            12: D
+            2: F
+            3: M
+            4: A
+            5: M
+            6: Ġ
+            7: L
+            8: A
+            9: S
+          :wide: 
+            1: Jannar
+            10: Ottubru
+            11: Novembru
+            12: Diċembru
+            2: Frar
+            3: Marzu
+            4: April
+            5: Mejju
+            6: Ġunju
+            7: Lulju
+            8: Awwissu
+            9: Settembru
+        :stand-alone: 
+          :abbreviated: 
+            1: Jan
+            10: Ott
+            11: Nov
+            12: Diċ
+            2: Fra
+            3: Mar
+            4: Apr
+            5: Mej
+            6: Ġun
+            7: Lul
+            8: Aww
+            9: Set
+          :narrow: 
+            1: Jn
+            10: Ob
+            11: Nv
+            12: Dċ
+            2: Fr
+            3: Mz
+            4: Ap
+            5: Mj
+            6: Ġn
+            7: Lj
+            8: Aw
+            9: St
+          :wide: 
+            1: Jannar
+            10: Ottubru
+            11: Novembru
+            12: Diċembru
+            2: Frar
+            3: Marzu
+            4: April
+            5: Mejju
+            6: Ġunju
+            7: Lulju
+            8: Awwissu
+            9: Settembru
+      :periods: 
+        :format: 
+          :abbreviated: 
+            :am: AM
+            :pm: PM
+          :narrow: 
+            :am: am
+            :pm: pm
+          :wide: 
+            :am: AM
+            :pm: PM
+        :stand-alone: 
+          :abbreviated: 
+            :am: AM
+            :pm: PM
+          :narrow: 
+            :am: am
+            :pm: pm
+          :wide: 
+            :am: AM
+            :pm: PM
+      :quarters: 
+        :format: 
+          :abbreviated: 
+            1: K1
+            2: K2
+            3: K3
+            4: K4
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: "1el kwart"
+            2: "2ni kwart"
+            3: "3et kwart"
+            4: "4ba’ kwart"
+        :stand-alone: 
+          :abbreviated: 
+            1: K1
+            2: K2
+            3: K3
+            4: K4
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: "1el kwart"
+            2: "2ni kwart"
+            3: "3et kwart"
+            4: "4ba’ kwart"

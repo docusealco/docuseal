@@ -1,0 +1,66 @@
+# Shakapacker is a Ruby gem that integrates webpack and rspack with Rails applications,
+# providing a modern asset pipeline for JavaScript, CSS, and other web assets.
+#
+# The main Shakapacker module provides singleton-style access to configuration,
+# compilation, and asset manifest functionality.
+module Shakapacker : _Singleton
+  # Default environment when RAILS_ENV is not set
+  DEFAULT_ENV: String
+
+  # Environments that use their RAILS_ENV value for NODE_ENV
+  DEV_TEST_ENVS: Array[String]
+
+  # Returns the shared Shakapacker instance
+  def self.instance: () -> Instance
+
+  # Sets the shared Shakapacker instance
+  def self.instance=: (Instance instance) -> Instance
+
+  # Temporarily overrides NODE_ENV for the duration of the block
+  def self.with_node_env: [T] (String env) { () -> T } -> T
+
+  # Sets NODE_ENV based on RAILS_ENV if not already set
+  def self.ensure_node_env!: () -> String
+
+  # Temporarily redirects Shakapacker logging to STDOUT
+  def self.ensure_log_goes_to_stdout: [T] () { () -> T } -> T
+
+  # Returns the logger instance used by Shakapacker
+  def self.logger: () -> ActiveSupport::TaggedLogging
+
+  # Sets the logger instance used by Shakapacker
+  def self.logger=: (ActiveSupport::TaggedLogging logger) -> ActiveSupport::TaggedLogging
+
+  # Returns the current Rails environment as an ActiveSupport::StringInquirer
+  def self.env: () -> ActiveSupport::StringInquirer
+
+  # Returns whether CSS inlining is enabled
+  def self.inlining_css?: () -> bool
+
+  # Returns the Shakapacker configuration object
+  def self.config: () -> Configuration
+
+  # Returns the compiler instance for compiling assets
+  def self.compiler: () -> Compiler
+
+  # Returns the manifest instance for looking up compiled assets
+  def self.manifest: () -> Manifest
+
+  # Returns the commands instance for build operations
+  def self.commands: () -> Commands
+
+  # Returns the dev server instance for querying server status
+  def self.dev_server: () -> DevServer
+
+  # Creates the default configuration files and directory structure
+  def self.bootstrap: () -> void
+
+  # Removes old compiled packs, keeping the most recent versions
+  def self.clean: (?Integer, ?Integer) -> bool
+
+  # Removes all compiled packs
+  def self.clobber: () -> void
+
+  # Compiles all webpack/rspack packs
+  def self.compile: () -> bool
+end

@@ -1,0 +1,24 @@
+#!/bin/zsh
+# Wrapper script to run commands in Conductor with proper tool versions
+# Usage: bin/conductor-exec <command> [args...]
+#
+# This is needed because Conductor (and other non-interactive shells) don't
+# source .zshrc, so version manager PATH configuration isn't active by default.
+#
+# - If mise is available: uses `mise exec` for correct tool versions
+# - Otherwise: falls back to direct execution (for asdf/rbenv/nvm users)
+#
+# Examples:
+#   bin/conductor-exec ruby --version       # Uses correct Ruby version
+#   bin/conductor-exec bundle exec rubocop  # Correct Ruby for linting
+#   bin/conductor-exec git commit -m "msg"  # Pre-commit hooks work correctly
+#   bin/conductor-exec yarn install         # Uses correct Node version
+#
+# See: https://github.com/shakacode/react_on_rails-demos/issues/105
+
+if command -v mise &> /dev/null; then
+  exec mise exec -- "$@"
+else
+  # Fall back to direct execution for non-mise users
+  exec "$@"
+fi

@@ -1,0 +1,28 @@
+# See https://ddnexus.github.io/pagy/resources/i18n
+
+sr:
+  pagy:
+    p11n: 'EastSlavic'
+    aria_label:
+      nav:
+        one: "Страница"
+        few: "Странице"
+        many: "Страница"
+        other: "Странице"
+      previous: "Претходна"
+      next: "Следећa "
+    previous: "&lt;"
+    next: "&gt;"
+    gap: "&hellip;"
+    item_name:
+      one: "ставка"
+      few: "ставкe"
+      many: "ставки"
+      other: "ставки"
+    info_tag:
+      no_count: "Страниca %{page} од %{pages}"
+      no_items: "Нema пронађених %{item_name}"
+      single_page: "Приказује се %{count} %{item_name}"
+      multiple_pages: "Приказ %{item_name} %{from}-%{to} од %{count} укупно"
+    input_nav_js: "Страниca %{page_input} од %{pages}"
+    limit_tag_js: "Прикажи %{limit_input} %{item_name} по страниcи"

@@ -1,0 +1,26 @@
+# Yalc-specific ignore file
+# Unlike .gitignore, we want to include generated JS files for yalc publish
+
+# Ignore source TypeScript files since we're publishing compiled JS
+package/**/*.ts
+!package/**/*.d.ts
+
+# Ignore map files
+package/**/*.js.map
+package/**/*.d.ts.map
+
+# Ignore test files
+**/*.test.js
+**/*.spec.js
+**/__tests__
+**/__mocks__
+
+# Ignore config and build files
+.github
+.vscode
+.idea
+*.log
+node_modules
+tmp
+coverage
+.DS_Store

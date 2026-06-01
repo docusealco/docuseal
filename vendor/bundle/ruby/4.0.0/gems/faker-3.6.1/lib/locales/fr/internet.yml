@@ -1,0 +1,15 @@
+fr:
+  faker:
+    internet:
+      domain_suffix:
+        - com
+        - fr
+        - eu
+        - info
+        - name
+        - net
+        - org
+        - immo
+        - paris
+        - alsace
+        - bzh

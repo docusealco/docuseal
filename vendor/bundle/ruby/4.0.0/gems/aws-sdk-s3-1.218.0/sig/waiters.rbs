@@ -1,0 +1,95 @@
+# WARNING ABOUT GENERATED CODE
+#
+# This file is generated. See the contributing guide for more information:
+# https://github.com/aws/aws-sdk-ruby/blob/version-3/CONTRIBUTING.md
+#
+# WARNING ABOUT GENERATED CODE
+
+module Aws
+  module S3
+    module Waiters
+
+      class BucketExists
+        def initialize: (?client: Client, ?max_attempts: Integer, ?delay: Integer, ?before_attempt: Proc, ?before_wait: Proc) -> void
+                      | (?Hash[Symbol, untyped]) -> void
+
+        def wait: (
+                    bucket: ::String,
+                    ?expected_bucket_owner: ::String
+                  ) -> Client::_HeadBucketResponseSuccess
+                | (Hash[Symbol, untyped]) -> Client::_HeadBucketResponseSuccess
+      end
+
+      class BucketNotExists
+        def initialize: (?client: Client, ?max_attempts: Integer, ?delay: Integer, ?before_attempt: Proc, ?before_wait: Proc) -> void
+                      | (?Hash[Symbol, untyped]) -> void
+
+        def wait: (
+                    bucket: ::String,
+                    ?expected_bucket_owner: ::String
+                  ) -> Client::_HeadBucketResponseSuccess
+                | (Hash[Symbol, untyped]) -> Client::_HeadBucketResponseSuccess
+      end
+
+      class ObjectExists
+        def initialize: (?client: Client, ?max_attempts: Integer, ?delay: Integer, ?before_attempt: Proc, ?before_wait: Proc) -> void
+                      | (?Hash[Symbol, untyped]) -> void
+
+        def wait: (
+                    bucket: ::String,
+                    ?if_match: ::String,
+                    ?if_modified_since: ::Time,
+                    ?if_none_match: ::String,
+                    ?if_unmodified_since: ::Time,
+                    key: ::String,
+                    ?range: ::String,
+                    ?response_cache_control: ::String,
+                    ?response_content_disposition: ::String,
+                    ?response_content_encoding: ::String,
+                    ?response_content_language: ::String,
+                    ?response_content_type: ::String,
+                    ?response_expires: ::Time,
+                    ?version_id: ::String,
+                    ?sse_customer_algorithm: ::String,
+                    ?sse_customer_key: ::String,
+                    ?sse_customer_key_md5: ::String,
+                    ?request_payer: ("requester"),
+                    ?part_number: ::Integer,
+                    ?expected_bucket_owner: ::String,
+                    ?checksum_mode: ("ENABLED")
+                  ) -> Client::_HeadObjectResponseSuccess
+                | (Hash[Symbol, untyped]) -> Client::_HeadObjectResponseSuccess
+      end
+
+      class ObjectNotExists
+        def initialize: (?client: Client, ?max_attempts: Integer, ?delay: Integer, ?before_attempt: Proc, ?before_wait: Proc) -> void
+                      | (?Hash[Symbol, untyped]) -> void
+
+        def wait: (
+                    bucket: ::String,
+                    ?if_match: ::String,
+                    ?if_modified_since: ::Time,
+                    ?if_none_match: ::String,
+                    ?if_unmodified_since: ::Time,
+                    key: ::String,
+                    ?range: ::String,
+                    ?response_cache_control: ::String,
+                    ?response_content_disposition: ::String,
+                    ?response_content_encoding: ::String,
+                    ?response_content_language: ::String,
+                    ?response_content_type: ::String,
+                    ?response_expires: ::Time,
+                    ?version_id: ::String,
+                    ?sse_customer_algorithm: ::String,
+                    ?sse_customer_key: ::String,
+                    ?sse_customer_key_md5: ::String,
+                    ?request_payer: ("requester"),
+                    ?part_number: ::Integer,
+                    ?expected_bucket_owner: ::String,
+                    ?checksum_mode: ("ENABLED")
+                  ) -> Client::_HeadObjectResponseSuccess
+                | (Hash[Symbol, untyped]) -> Client::_HeadObjectResponseSuccess
+      end
+    end
+  end
+end

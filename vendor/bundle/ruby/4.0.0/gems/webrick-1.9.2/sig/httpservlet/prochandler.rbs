@@ -1,0 +1,21 @@
+module WEBrick
+  module HTTPServlet
+    class ProcHandler < AbstractServlet
+      interface _Callable
+        def call: (WEBrick::HTTPRequest, WEBrick::HTTPResponse) -> void
+      end
+
+      @proc: _Callable
+
+      def get_instance: (HTTPServer server, *untyped options) -> self
+
+      def initialize: (_Callable proc) -> void
+
+      def do_GET: (HTTPRequest request, HTTPResponse response) -> void
+
+      alias do_POST do_GET
+
+      alias do_PUT do_GET
+    end
+  end
+end

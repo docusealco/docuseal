@@ -3,14 +3,49 @@
 class SmsSettingsController < ApplicationController
   before_action :load_encrypted_config
   authorize_resource :encrypted_config, only: :index
-  authorize_resource :encrypted_config, parent: false, except: :index
+  authorize_resource :encrypted_config, parent: false, only: %i[create test_message]
 
   def index; end
+
+  def create
+    new_value = build_sms_value
+
+    if @encrypted_config.update(value: new_value)
+      redirect_to settings_sms_path, notice: I18n.t('changes_have_been_saved')
+    else
+      render :index, status: :unprocessable_content
+    end
+  rescue StandardError => e
+    flash[:alert] = e.message
+    render :index, status: :unprocessable_content
+  end
+
+  def test_message
+    to = params[:phone].to_s.strip
+    if to.blank?
+      flash[:alert] = 'Enter a phone number to test against.'
+      return redirect_to(settings_sms_path)
+    end
+
+    Sms.send_message(account: current_account,
+                     to: to,
+                     text: "Test SMS from #{Wabosign.branded_product_name(current_account)}.")
+
+    redirect_to settings_sms_path, notice: "Test SMS dispatched to #{to}."
+  rescue Sms::Error => e
+    redirect_to settings_sms_path, alert: "Test failed: #{e.message}"
+  rescue StandardError => e
+    redirect_to settings_sms_path, alert: "Unexpected error: #{e.message}"
+  end
 
   private
 
   def load_encrypted_config
     @encrypted_config =
       EncryptedConfig.find_or_initialize_by(account: current_account, key: 'sms_configs')
+  end
+
+  def build_sms_value
+    params.require(:encrypted_config).permit(:provider, :account_sid, :auth_token, :from_number, :bulkvs_api_key, :bulkvs_sender_id, :signalwire_app_id, :signalwire_app_token, :signalwire_url, :signalwire_message_profile_id, :twilio_sid, :twilio_token, :twilio_from_number, :voipms_user, :voipms_pass, :voipms_sender_id)[:encrypted_config]
   end
 end

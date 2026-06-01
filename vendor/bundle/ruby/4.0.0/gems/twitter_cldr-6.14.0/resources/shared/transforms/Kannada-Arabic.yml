@@ -1,0 +1,16 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - Kannada-Arabic
+      - und-Arab-t-und-knda
+    :direction: forward
+    :rules: 
+      - "::[ಂ-ಃಅ-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹ಼ಽಾ-ೄೆ-ೈೊ-್ೕ-ೖೞೠ-ೡ೦-೯] ;"
+      - "::NFD ;"
+      - "::Kannada-InterIndic ;"
+      - "::InterIndic-Arabic ;"
+      - "::NFC ;"
+    :source: Knda
+    :target: Arab
+    :variant: ~

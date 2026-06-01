@@ -1,0 +1,191 @@
+--- 
+:ka: 
+  :rbnf: 
+    :grouping: 
+      - 
+        :ruleset: 
+          - 
+            :rules: 
+              - 
+                :rule: =0.0=;
+                :value: x.x
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 0
+            :type: spellout-numbering-year
+          - 
+            :rules: 
+              - 
+                :rule: =%spellout-cardinal=;
+                :value: 0
+            :type: spellout-numbering
+          - 
+            :rules: 
+              - 
+                :rule: "მინუს >>;"
+                :value: "-x"
+              - 
+                :rule: "<< მძიმე >>;"
+                :value: x.x
+              - 
+                :rule: ნული;
+                :value: 0
+              - 
+                :rule: ერთი;
+                :value: 1
+              - 
+                :rule: ორი;
+                :value: 2
+              - 
+                :rule: სამი;
+                :value: 3
+              - 
+                :rule: ოთხი;
+                :value: 4
+              - 
+                :rule: ხუთი;
+                :value: 5
+              - 
+                :rule: ექვსი;
+                :value: 6
+              - 
+                :rule: შვიდი;
+                :value: 7
+              - 
+                :rule: რვა;
+                :value: 8
+              - 
+                :rule: ცხრა;
+                :value: 9
+              - 
+                :rule: ათი;
+                :value: 10
+              - 
+                :rule: თერთმეტი;
+                :value: 11
+              - 
+                :rule: თორმეტი;
+                :value: 12
+              - 
+                :rule: ცამეტი;
+                :value: 13
+              - 
+                :rule: თოთხმეტი;
+                :value: 14
+              - 
+                :rule: თხუთმეტი;
+                :value: 15
+              - 
+                :rule: თექვსმეტი;
+                :value: 16
+              - 
+                :rule: ჩვიდმეტი;
+                :value: 17
+              - 
+                :rule: თრვამეტი;
+                :value: 18
+              - 
+                :rule: ცხრამეტი;
+                :value: 19
+              - 
+                :radix: 20
+                :rule: ოცი;
+                :value: 20
+              - 
+                :radix: 20
+                :rule: ოცდა­>>;
+                :value: 21
+              - 
+                :radix: 20
+                :rule: ორმოცი;
+                :value: 40
+              - 
+                :radix: 20
+                :rule: ორმოცდა­>>;
+                :value: 41
+              - 
+                :radix: 20
+                :rule: სამოცი;
+                :value: 60
+              - 
+                :radix: 20
+                :rule: სამოცდა­>>;
+                :value: 61
+              - 
+                :radix: 20
+                :rule: ოთხმოცი;
+                :value: 80
+              - 
+                :radix: 20
+                :rule: ოთხმოცდა­>>;
+                :value: 81
+              - 
+                :rule: ას>%%hundred>;
+                :value: 100
+              - 
+                :rule: ორას>%%hundred>;
+                :value: 200
+              - 
+                :rule: სამას>%%hundred>;
+                :value: 300
+              - 
+                :rule: ოთხას>%%hundred>;
+                :value: 400
+              - 
+                :rule: ხუთას>%%hundred>;
+                :value: 500
+              - 
+                :rule: ექვსას>%%hundred>;
+                :value: 600
+              - 
+                :rule: შვიდას>%%hundred>;
+                :value: 700
+              - 
+                :rule: რვაას>%%hundred>;
+                :value: 800
+              - 
+                :rule: ცხრაას>%%hundred>;
+                :value: 900
+              - 
+                :rule: ათას>%%th>;
+                :value: 1000
+              - 
+                :rule: "<< ათას>%%th>;"
+                :value: 2000
+              - 
+                :rule: "<< მილიონ>%%th>;"
+                :value: 1000000
+              - 
+                :rule: "<< მილიარდ>%%th>;"
+                :value: 1000000000
+              - 
+                :rule: "<< ბილიონ>%%th>;"
+                :value: 1000000000000
+              - 
+                :rule: "<< ბილიარდ>%%th>;"
+                :value: 1000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: ი;
+                :value: 0
+              - 
+                :rule: ­=%spellout-cardinal=;
+                :value: 1
+            :type: hundred
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: ი;
+                :value: 0
+              - 
+                :rule: " =%spellout-cardinal=;"
+                :value: 1
+            :type: th
+        :type: SpelloutRules

@@ -1,0 +1,961 @@
+---
+8528:
+- 8528
+- VULGAR FRACTION ONE SEVENTH
+- 'No'
+- '0'
+- 'ON'
+- "<fraction> 0031 2044 0037"
+- ''
+- ''
+- 1/7
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8529:
+- 8529
+- VULGAR FRACTION ONE NINTH
+- 'No'
+- '0'
+- 'ON'
+- "<fraction> 0031 2044 0039"
+- ''
+- ''
+- 1/9
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8530:
+- 8530
+- VULGAR FRACTION ONE TENTH
+- 'No'
+- '0'
+- 'ON'
+- "<fraction> 0031 2044 0031 0030"
+- ''
+- ''
+- 1/10
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8531:
+- 8531
+- VULGAR FRACTION ONE THIRD
+- 'No'
+- '0'
+- 'ON'
+- "<fraction> 0031 2044 0033"
+- ''
+- ''
+- 1/3
+- N
+- FRACTION ONE THIRD
+- ''
+- ''
+- ''
+- ''
+8532:
+- 8532
+- VULGAR FRACTION TWO THIRDS
+- 'No'
+- '0'
+- 'ON'
+- "<fraction> 0032 2044 0033"
+- ''
+- ''
+- 2/3
+- N
+- FRACTION TWO THIRDS
+- ''
+- ''
+- ''
+- ''
+8533:
+- 8533
+- VULGAR FRACTION ONE FIFTH
+- 'No'
+- '0'
+- 'ON'
+- "<fraction> 0031 2044 0035"
+- ''
+- ''
+- 1/5
+- N
+- FRACTION ONE FIFTH
+- ''
+- ''
+- ''
+- ''
+8534:
+- 8534
+- VULGAR FRACTION TWO FIFTHS
+- 'No'
+- '0'
+- 'ON'
+- "<fraction> 0032 2044 0035"
+- ''
+- ''
+- 2/5
+- N
+- FRACTION TWO FIFTHS
+- ''
+- ''
+- ''
+- ''
+8535:
+- 8535
+- VULGAR FRACTION THREE FIFTHS
+- 'No'
+- '0'
+- 'ON'
+- "<fraction> 0033 2044 0035"
+- ''
+- ''
+- 3/5
+- N
+- FRACTION THREE FIFTHS
+- ''
+- ''
+- ''
+- ''
+8536:
+- 8536
+- VULGAR FRACTION FOUR FIFTHS
+- 'No'
+- '0'
+- 'ON'
+- "<fraction> 0034 2044 0035"
+- ''
+- ''
+- 4/5
+- N
+- FRACTION FOUR FIFTHS
+- ''
+- ''
+- ''
+- ''
+8537:
+- 8537
+- VULGAR FRACTION ONE SIXTH
+- 'No'
+- '0'
+- 'ON'
+- "<fraction> 0031 2044 0036"
+- ''
+- ''
+- 1/6
+- N
+- FRACTION ONE SIXTH
+- ''
+- ''
+- ''
+- ''
+8538:
+- 8538
+- VULGAR FRACTION FIVE SIXTHS
+- 'No'
+- '0'
+- 'ON'
+- "<fraction> 0035 2044 0036"
+- ''
+- ''
+- 5/6
+- N
+- FRACTION FIVE SIXTHS
+- ''
+- ''
+- ''
+- ''
+8539:
+- 8539
+- VULGAR FRACTION ONE EIGHTH
+- 'No'
+- '0'
+- 'ON'
+- "<fraction> 0031 2044 0038"
+- ''
+- ''
+- 1/8
+- N
+- FRACTION ONE EIGHTH
+- ''
+- ''
+- ''
+- ''
+8540:
+- 8540
+- VULGAR FRACTION THREE EIGHTHS
+- 'No'
+- '0'
+- 'ON'
+- "<fraction> 0033 2044 0038"
+- ''
+- ''
+- 3/8
+- N
+- FRACTION THREE EIGHTHS
+- ''
+- ''
+- ''
+- ''
+8541:
+- 8541
+- VULGAR FRACTION FIVE EIGHTHS
+- 'No'
+- '0'
+- 'ON'
+- "<fraction> 0035 2044 0038"
+- ''
+- ''
+- 5/8
+- N
+- FRACTION FIVE EIGHTHS
+- ''
+- ''
+- ''
+- ''
+8542:
+- 8542
+- VULGAR FRACTION SEVEN EIGHTHS
+- 'No'
+- '0'
+- 'ON'
+- "<fraction> 0037 2044 0038"
+- ''
+- ''
+- 7/8
+- N
+- FRACTION SEVEN EIGHTHS
+- ''
+- ''
+- ''
+- ''
+8543:
+- 8543
+- FRACTION NUMERATOR ONE
+- 'No'
+- '0'
+- 'ON'
+- "<fraction> 0031 2044"
+- ''
+- ''
+- '1'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8544:
+- 8544
+- ROMAN NUMERAL ONE
+- Nl
+- '0'
+- L
+- "<compat> 0049"
+- ''
+- ''
+- '1'
+- N
+- ''
+- ''
+- ''
+- '2170'
+- ''
+8545:
+- 8545
+- ROMAN NUMERAL TWO
+- Nl
+- '0'
+- L
+- "<compat> 0049 0049"
+- ''
+- ''
+- '2'
+- N
+- ''
+- ''
+- ''
+- '2171'
+- ''
+8546:
+- 8546
+- ROMAN NUMERAL THREE
+- Nl
+- '0'
+- L
+- "<compat> 0049 0049 0049"
+- ''
+- ''
+- '3'
+- N
+- ''
+- ''
+- ''
+- '2172'
+- ''
+8547:
+- 8547
+- ROMAN NUMERAL FOUR
+- Nl
+- '0'
+- L
+- "<compat> 0049 0056"
+- ''
+- ''
+- '4'
+- N
+- ''
+- ''
+- ''
+- '2173'
+- ''
+8548:
+- 8548
+- ROMAN NUMERAL FIVE
+- Nl
+- '0'
+- L
+- "<compat> 0056"
+- ''
+- ''
+- '5'
+- N
+- ''
+- ''
+- ''
+- '2174'
+- ''
+8549:
+- 8549
+- ROMAN NUMERAL SIX
+- Nl
+- '0'
+- L
+- "<compat> 0056 0049"
+- ''
+- ''
+- '6'
+- N
+- ''
+- ''
+- ''
+- '2175'
+- ''
+8550:
+- 8550
+- ROMAN NUMERAL SEVEN
+- Nl
+- '0'
+- L
+- "<compat> 0056 0049 0049"
+- ''
+- ''
+- '7'
+- N
+- ''
+- ''
+- ''
+- '2176'
+- ''
+8551:
+- 8551
+- ROMAN NUMERAL EIGHT
+- Nl
+- '0'
+- L
+- "<compat> 0056 0049 0049 0049"
+- ''
+- ''
+- '8'
+- N
+- ''
+- ''
+- ''
+- '2177'
+- ''
+8552:
+- 8552
+- ROMAN NUMERAL NINE
+- Nl
+- '0'
+- L
+- "<compat> 0049 0058"
+- ''
+- ''
+- '9'
+- N
+- ''
+- ''
+- ''
+- '2178'
+- ''
+8553:
+- 8553
+- ROMAN NUMERAL TEN
+- Nl
+- '0'
+- L
+- "<compat> 0058"
+- ''
+- ''
+- '10'
+- N
+- ''
+- ''
+- ''
+- '2179'
+- ''
+8554:
+- 8554
+- ROMAN NUMERAL ELEVEN
+- Nl
+- '0'
+- L
+- "<compat> 0058 0049"
+- ''
+- ''
+- '11'
+- N
+- ''
+- ''
+- ''
+- 217A
+- ''
+8555:
+- 8555
+- ROMAN NUMERAL TWELVE
+- Nl
+- '0'
+- L
+- "<compat> 0058 0049 0049"
+- ''
+- ''
+- '12'
+- N
+- ''
+- ''
+- ''
+- 217B
+- ''
+8556:
+- 8556
+- ROMAN NUMERAL FIFTY
+- Nl
+- '0'
+- L
+- "<compat> 004C"
+- ''
+- ''
+- '50'
+- N
+- ''
+- ''
+- ''
+- 217C
+- ''
+8557:
+- 8557
+- ROMAN NUMERAL ONE HUNDRED
+- Nl
+- '0'
+- L
+- "<compat> 0043"
+- ''
+- ''
+- '100'
+- N
+- ''
+- ''
+- ''
+- 217D
+- ''
+8558:
+- 8558
+- ROMAN NUMERAL FIVE HUNDRED
+- Nl
+- '0'
+- L
+- "<compat> 0044"
+- ''
+- ''
+- '500'
+- N
+- ''
+- ''
+- ''
+- 217E
+- ''
+8559:
+- 8559
+- ROMAN NUMERAL ONE THOUSAND
+- Nl
+- '0'
+- L
+- "<compat> 004D"
+- ''
+- ''
+- '1000'
+- N
+- ''
+- ''
+- ''
+- 217F
+- ''
+8560:
+- 8560
+- SMALL ROMAN NUMERAL ONE
+- Nl
+- '0'
+- L
+- "<compat> 0069"
+- ''
+- ''
+- '1'
+- N
+- ''
+- ''
+- '2160'
+- ''
+- '2160'
+8561:
+- 8561
+- SMALL ROMAN NUMERAL TWO
+- Nl
+- '0'
+- L
+- "<compat> 0069 0069"
+- ''
+- ''
+- '2'
+- N
+- ''
+- ''
+- '2161'
+- ''
+- '2161'
+8562:
+- 8562
+- SMALL ROMAN NUMERAL THREE
+- Nl
+- '0'
+- L
+- "<compat> 0069 0069 0069"
+- ''
+- ''
+- '3'
+- N
+- ''
+- ''
+- '2162'
+- ''
+- '2162'
+8563:
+- 8563
+- SMALL ROMAN NUMERAL FOUR
+- Nl
+- '0'
+- L
+- "<compat> 0069 0076"
+- ''
+- ''
+- '4'
+- N
+- ''
+- ''
+- '2163'
+- ''
+- '2163'
+8564:
+- 8564
+- SMALL ROMAN NUMERAL FIVE
+- Nl
+- '0'
+- L
+- "<compat> 0076"
+- ''
+- ''
+- '5'
+- N
+- ''
+- ''
+- '2164'
+- ''
+- '2164'
+8565:
+- 8565
+- SMALL ROMAN NUMERAL SIX
+- Nl
+- '0'
+- L
+- "<compat> 0076 0069"
+- ''
+- ''
+- '6'
+- N
+- ''
+- ''
+- '2165'
+- ''
+- '2165'
+8566:
+- 8566
+- SMALL ROMAN NUMERAL SEVEN
+- Nl
+- '0'
+- L
+- "<compat> 0076 0069 0069"
+- ''
+- ''
+- '7'
+- N
+- ''
+- ''
+- '2166'
+- ''
+- '2166'
+8567:
+- 8567
+- SMALL ROMAN NUMERAL EIGHT
+- Nl
+- '0'
+- L
+- "<compat> 0076 0069 0069 0069"
+- ''
+- ''
+- '8'
+- N
+- ''
+- ''
+- '2167'
+- ''
+- '2167'
+8568:
+- 8568
+- SMALL ROMAN NUMERAL NINE
+- Nl
+- '0'
+- L
+- "<compat> 0069 0078"
+- ''
+- ''
+- '9'
+- N
+- ''
+- ''
+- '2168'
+- ''
+- '2168'
+8569:
+- 8569
+- SMALL ROMAN NUMERAL TEN
+- Nl
+- '0'
+- L
+- "<compat> 0078"
+- ''
+- ''
+- '10'
+- N
+- ''
+- ''
+- '2169'
+- ''
+- '2169'
+8570:
+- 8570
+- SMALL ROMAN NUMERAL ELEVEN
+- Nl
+- '0'
+- L
+- "<compat> 0078 0069"
+- ''
+- ''
+- '11'
+- N
+- ''
+- ''
+- 216A
+- ''
+- 216A
+8571:
+- 8571
+- SMALL ROMAN NUMERAL TWELVE
+- Nl
+- '0'
+- L
+- "<compat> 0078 0069 0069"
+- ''
+- ''
+- '12'
+- N
+- ''
+- ''
+- 216B
+- ''
+- 216B
+8572:
+- 8572
+- SMALL ROMAN NUMERAL FIFTY
+- Nl
+- '0'
+- L
+- "<compat> 006C"
+- ''
+- ''
+- '50'
+- N
+- ''
+- ''
+- 216C
+- ''
+- 216C
+8573:
+- 8573
+- SMALL ROMAN NUMERAL ONE HUNDRED
+- Nl
+- '0'
+- L
+- "<compat> 0063"
+- ''
+- ''
+- '100'
+- N
+- ''
+- ''
+- 216D
+- ''
+- 216D
+8574:
+- 8574
+- SMALL ROMAN NUMERAL FIVE HUNDRED
+- Nl
+- '0'
+- L
+- "<compat> 0064"
+- ''
+- ''
+- '500'
+- N
+- ''
+- ''
+- 216E
+- ''
+- 216E
+8575:
+- 8575
+- SMALL ROMAN NUMERAL ONE THOUSAND
+- Nl
+- '0'
+- L
+- "<compat> 006D"
+- ''
+- ''
+- '1000'
+- N
+- ''
+- ''
+- 216F
+- ''
+- 216F
+8576:
+- 8576
+- ROMAN NUMERAL ONE THOUSAND C D
+- Nl
+- '0'
+- L
+- ''
+- ''
+- ''
+- '1000'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8577:
+- 8577
+- ROMAN NUMERAL FIVE THOUSAND
+- Nl
+- '0'
+- L
+- ''
+- ''
+- ''
+- '5000'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8578:
+- 8578
+- ROMAN NUMERAL TEN THOUSAND
+- Nl
+- '0'
+- L
+- ''
+- ''
+- ''
+- '10000'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8579:
+- 8579
+- ROMAN NUMERAL REVERSED ONE HUNDRED
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- '2184'
+- ''
+8580:
+- 8580
+- LATIN SMALL LETTER REVERSED C
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- '2183'
+- ''
+- '2183'
+8581:
+- 8581
+- ROMAN NUMERAL SIX LATE FORM
+- Nl
+- '0'
+- L
+- ''
+- ''
+- ''
+- '6'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8582:
+- 8582
+- ROMAN NUMERAL FIFTY EARLY FORM
+- Nl
+- '0'
+- L
+- ''
+- ''
+- ''
+- '50'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8583:
+- 8583
+- ROMAN NUMERAL FIFTY THOUSAND
+- Nl
+- '0'
+- L
+- ''
+- ''
+- ''
+- '50000'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8584:
+- 8584
+- ROMAN NUMERAL ONE HUNDRED THOUSAND
+- Nl
+- '0'
+- L
+- ''
+- ''
+- ''
+- '100000'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8585:
+- 8585
+- VULGAR FRACTION ZERO THIRDS
+- 'No'
+- '0'
+- 'ON'
+- "<fraction> 0030 2044 0033"
+- ''
+- ''
+- '0'
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8586:
+- 8586
+- TURNED DIGIT TWO
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8587:
+- 8587
+- TURNED DIGIT THREE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''

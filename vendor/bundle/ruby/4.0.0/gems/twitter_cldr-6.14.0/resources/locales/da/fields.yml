@@ -1,0 +1,444 @@
+--- 
+:da: 
+  :fields: 
+    :day: 
+      :display_name: dag
+      :relative: 
+        -1: "i går"
+        -2: "i forgårs"
+        0: "i dag"
+        1: "i morgen"
+        2: "i overmorgen"
+      :relative_time: 
+        :future: 
+          :one: "om {0} dag"
+          :other: "om {0} dage"
+        :past: 
+          :one: "for {0} dag siden"
+          :other: "for {0} dage siden"
+    :day-short: 
+      :relative_time: 
+        :past: 
+          :one: "{0} dag siden"
+          :other: "{0} dage siden"
+    :dayOfYear: 
+      :display_name: "dag i året"
+    :dayperiod: 
+      :display_name: AM/PM
+    :era: 
+      :display_name: æra
+    :fri: 
+      :relative: 
+        -1: "sidste fredag"
+        0: "på fredag"
+        1: "på fredag"
+      :relative_time: 
+        :future: 
+          :one: "om {0} fredag"
+          :other: "om {0} fredage"
+        :past: 
+          :one: "for {0} fredag siden"
+          :other: "for {0} fredage siden"
+    :fri-narrow: 
+      :relative: 
+        -1: "sidste fr."
+        0: "på fr."
+        1: "på fr."
+      :relative_time: 
+        :future: 
+          :one: "om {0} fr."
+          :other: "om {0} fr."
+        :past: 
+          :one: "{0} fr. siden"
+          :other: "{0} fr. siden"
+    :fri-short: 
+      :relative: 
+        -1: "sidste fre."
+        0: "på fre."
+        1: "på fre."
+      :relative_time: 
+        :future: 
+          :one: "om {0} fre."
+          :other: "om {0} fre."
+        :past: 
+          :one: "{0} fre. siden"
+          :other: "{0} fre. siden"
+    :hour: 
+      :display_name: time
+      :relative: 
+        0: "denne time"
+      :relative_time: 
+        :future: 
+          :one: "om {0} time"
+          :other: "om {0} timer"
+        :past: 
+          :one: "for {0} time siden"
+          :other: "for {0} timer siden"
+    :hour-short: 
+      :display_name: t.
+      :relative_time: 
+        :past: 
+          :one: "{0} time siden"
+          :other: "{0} timer siden"
+    :minute: 
+      :display_name: minut
+      :relative: 
+        0: "dette minut"
+      :relative_time: 
+        :future: 
+          :one: "om {0} minut"
+          :other: "om {0} minutter"
+        :past: 
+          :one: "for {0} minut siden"
+          :other: "for {0} minutter siden"
+    :minute-short: 
+      :display_name: min.
+      :relative: 
+        0: "dette min."
+      :relative_time: 
+        :future: 
+          :one: "om {0} min."
+          :other: "om {0} min."
+        :past: 
+          :one: "{0} min. siden"
+          :other: "{0} min. siden"
+    :mon: 
+      :relative: 
+        -1: "sidste mandag"
+        0: "på mandag"
+        1: "på mandag"
+      :relative_time: 
+        :future: 
+          :one: "om {0} mandag"
+          :other: "om {0} mandage"
+        :past: 
+          :one: "for {0} mandag siden"
+          :other: "for {0} mandage siden"
+    :mon-narrow: 
+      :relative: 
+        -1: "sidste ma."
+        0: "på ma."
+        1: "på ma."
+      :relative_time: 
+        :future: 
+          :one: "om {0} ma."
+          :other: "om {0} ma."
+        :past: 
+          :one: "{0} ma. siden"
+          :other: "{0} ma. siden"
+    :mon-short: 
+      :relative: 
+        -1: "sidste man."
+        0: "på man."
+        1: "på man."
+      :relative_time: 
+        :future: 
+          :one: "om {0} man."
+          :other: "om {0} man."
+        :past: 
+          :one: "{0} man. siden"
+          :other: "{0} man. siden"
+    :month: 
+      :display_name: måned
+      :relative: 
+        -1: "sidste måned"
+        0: "denne måned"
+        1: "næste måned"
+      :relative_time: 
+        :future: 
+          :one: "om {0} måned"
+          :other: "om {0} måneder"
+        :past: 
+          :one: "for {0} måned siden"
+          :other: "for {0} måneder siden"
+    :month-short: 
+      :display_name: md.
+      :relative: 
+        -1: "sidste md."
+        0: "denne md."
+        1: "næste md."
+      :relative_time: 
+        :future: 
+          :one: "om {0} md."
+          :other: "om {0} mdr."
+        :past: 
+          :one: "{0} md. siden"
+          :other: "{0} mdr. siden"
+    :quarter: 
+      :display_name: kvartal
+      :relative: 
+        -1: "sidste kvartal"
+        0: "dette kvartal"
+        1: "næste kvartal"
+      :relative_time: 
+        :future: 
+          :one: "om {0} kvartal"
+          :other: "om {0} kvartaler"
+        :past: 
+          :one: "for {0} kvartal siden"
+          :other: "for {0} kvartaler siden"
+    :quarter-short: 
+      :display_name: kvt.
+      :relative: 
+        -1: "sidste kvt."
+        0: "dette kvt."
+        1: "næste kvt."
+      :relative_time: 
+        :future: 
+          :one: "om {0} kvt."
+          :other: "om {0} kvt."
+        :past: 
+          :one: "{0} kvt. siden"
+          :other: "{0} kvt. siden"
+    :sat: 
+      :relative: 
+        -1: "sidste lørdag"
+        0: "på lørdag"
+        1: "på lørdag"
+      :relative_time: 
+        :future: 
+          :one: "om {0} lørdag"
+          :other: "om {0} lørdage"
+        :past: 
+          :one: "for {0} lørdag siden"
+          :other: "for {0} lørdage siden"
+    :sat-narrow: 
+      :relative: 
+        -1: "sidste lø."
+        0: "på lø."
+        1: "på lø."
+      :relative_time: 
+        :future: 
+          :one: "om {0} lø."
+          :other: "om {0} lø."
+        :past: 
+          :one: "{0} lø. siden"
+          :other: "{0} lø. siden"
+    :sat-short: 
+      :relative: 
+        -1: "sidste lør."
+        0: "på lør."
+        1: "på lør."
+      :relative_time: 
+        :future: 
+          :one: "om {0} lør."
+          :other: "om {0} lør."
+        :past: 
+          :one: "{0} lør. siden"
+          :other: "{0} lør. siden"
+    :second: 
+      :display_name: sekund
+      :relative: 
+        0: nu
+      :relative_time: 
+        :future: 
+          :one: "om {0} sekund"
+          :other: "om {0} sekunder"
+        :past: 
+          :one: "for {0} sekund siden"
+          :other: "for {0} sekunder siden"
+    :second-narrow: 
+      :display_name: s
+    :second-short: 
+      :display_name: sek.
+      :relative_time: 
+        :future: 
+          :one: "om {0} sek."
+          :other: "om {0} sek."
+        :past: 
+          :one: "{0} sek. siden"
+          :other: "{0} sek. siden"
+    :sun: 
+      :relative: 
+        -1: "sidste søndag"
+        0: "på søndag"
+        1: "på søndag"
+      :relative_time: 
+        :future: 
+          :one: "om {0} søndag"
+          :other: "om {0} søndage"
+        :past: 
+          :one: "for {0} søndag siden"
+          :other: "for {0} søndage siden"
+    :sun-narrow: 
+      :relative: 
+        -1: "sidste sø."
+        0: "på sø."
+        1: "på sø."
+      :relative_time: 
+        :future: 
+          :one: "om {0} sø."
+          :other: "om {0} sø."
+        :past: 
+          :one: "{0} sø. siden"
+          :other: "{0} sø. siden"
+    :sun-short: 
+      :relative: 
+        -1: "sidste søn."
+        0: "på søn."
+        1: "på søn."
+      :relative_time: 
+        :future: 
+          :one: "om {0} søn."
+          :other: "om {0} søn."
+        :past: 
+          :one: "{0} søn. siden"
+          :other: "{0} søn. siden"
+    :thu: 
+      :relative: 
+        -1: "sidste torsdag"
+        0: "på torsdag"
+        1: "på torsdag"
+      :relative_time: 
+        :future: 
+          :one: "om {0} torsdag"
+          :other: "om {0} torsdage"
+        :past: 
+          :one: "for {0} torsdag siden"
+          :other: "for {0} torsdage siden"
+    :thu-narrow: 
+      :relative: 
+        -1: "sidste to."
+        0: "på to."
+        1: "på to."
+      :relative_time: 
+        :future: 
+          :one: "om {0} to."
+          :other: "om {0} to."
+        :past: 
+          :one: "{0} to. siden"
+          :other: "{0} to. siden"
+    :thu-short: 
+      :relative: 
+        -1: "sidste tor."
+        0: "på tor."
+        1: "på tor."
+      :relative_time: 
+        :future: 
+          :one: "om {0} tor."
+          :other: "om {0} tor."
+        :past: 
+          :one: "{0} tor. siden"
+          :other: "{0} tor. siden"
+    :tue: 
+      :relative: 
+        -1: "sidste tirsdag"
+        0: "på tirsdag"
+        1: "på tirsdag"
+      :relative_time: 
+        :future: 
+          :one: "om {0} tirsdag"
+          :other: "om {0} tirsdage"
+        :past: 
+          :one: "for {0} tirsdag siden"
+          :other: "for {0} tirsdage siden"
+    :tue-narrow: 
+      :relative: 
+        -1: "sidste ti."
+        0: "på ti."
+        1: "på ti."
+      :relative_time: 
+        :future: 
+          :one: "om {0} ti."
+          :other: "om {0} ti."
+        :past: 
+          :one: "{0} ti. siden"
+          :other: "{0} ti. siden"
+    :tue-short: 
+      :relative: 
+        -1: "sidste tir."
+        0: "på tir."
+        1: "på tir."
+      :relative_time: 
+        :future: 
+          :one: "om {0} tir."
+          :other: "om {0} tir."
+        :past: 
+          :one: "{0} tir. siden"
+          :other: "{0} tir. siden"
+    :wed: 
+      :relative: 
+        -1: "sidste onsdag"
+        0: "på onsdag"
+        1: "på onsdag"
+      :relative_time: 
+        :future: 
+          :one: "om {0} onsdag"
+          :other: "om {0} onsdage"
+        :past: 
+          :one: "for {0} onsdag siden"
+          :other: "for {0} onsdage siden"
+    :wed-narrow: 
+      :relative: 
+        -1: "sidste on."
+        0: "på on."
+        1: "på on."
+      :relative_time: 
+        :future: 
+          :one: "om {0} on."
+          :other: "om {0} on."
+        :past: 
+          :one: "{0} on. siden"
+          :other: "{0} on. siden"
+    :wed-short: 
+      :relative: 
+        -1: "sidste ons."
+        0: "på ons."
+        1: "på ons."
+      :relative_time: 
+        :future: 
+          :one: "om {0} ons."
+          :other: "om {0} ons."
+        :past: 
+          :one: "{0} ons. siden"
+          :other: "{0} ons. siden"
+    :week: 
+      :display_name: uge
+      :relative: 
+        -1: "sidste uge"
+        0: "denne uge"
+        1: "næste uge"
+      :relative_time: 
+        :future: 
+          :one: "om {0} uge"
+          :other: "om {0} uger"
+        :past: 
+          :one: "for {0} uge siden"
+          :other: "for {0} uger siden"
+    :week-short: 
+      :relative_time: 
+        :past: 
+          :one: "{0} uge siden"
+          :other: "{0} uger siden"
+    :weekOfMonth: 
+      :display_name: "uge i måneden"
+    :weekOfMonth-short: 
+      :display_name: "uge i md."
+    :weekday: 
+      :display_name: ugedag
+    :weekdayOfMonth: 
+      :display_name: "ugedag i måneden"
+    :weekdayOfMonth-short: 
+      :display_name: "ugedag i md."
+    :year: 
+      :display_name: år
+      :relative: 
+        -1: "sidste år"
+        0: "i år"
+        1: "næste år"
+      :relative_time: 
+        :future: 
+          :one: "om {0} år"
+          :other: "om {0} år"
+        :past: 
+          :one: "for {0} år siden"
+          :other: "for {0} år siden"
+    :year-short: 
+      :relative_time: 
+        :past: 
+          :one: "{0} år siden"
+          :other: "{0} år siden"
+    :zone: 
+      :display_name: tidszone
+    :zone-short: 
+      :display_name: zone

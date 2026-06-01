@@ -1,0 +1,739 @@
+--- 
+:ur: 
+  :currencies: 
+    :AED: 
+      :name: "متحدہ عرب اماراتی درہم"
+      :one: "متحدہ عرب اماراتی درہم"
+    :AFN: 
+      :name: "افغان افغانی"
+      :narrow_symbol: ؋
+      :one: "افغان افغانی"
+      :symbol: ؋
+    :ALL: 
+      :name: "البانیا کا لیک"
+      :one: "البانیا کا لیک"
+    :AMD: 
+      :name: "آرمینیائی ڈرم"
+      :narrow_symbol: ֏
+      :one: "آرمینیائی ڈرم"
+      :symbol: ֏
+    :ANG: 
+      :name: "نیدر لینڈز انٹیلیئن گلڈر"
+      :one: "نیدر لینڈز انٹیلیئن گلڈر"
+    :AOA: 
+      :name: "انگولا کا کوانزا"
+      :narrow_symbol: Kz
+      :one: "انگولا کا کوانزا"
+      :symbol: Kz
+    :ARS: 
+      :name: "ارجنٹائن پیسہ"
+      :narrow_symbol: $
+      :one: "ارجنٹائن پیسہ"
+      :symbol: $
+    :AUD: 
+      :name: "آسٹریلین ڈالر"
+      :narrow_symbol: $
+      :one: "آسٹریلین ڈالر"
+      :symbol: A$
+    :AWG: 
+      :name: "اروبن فلورِن"
+      :one: "اروبن فلورِن"
+    :AZN: 
+      :name: "آذربائجانی منات"
+      :narrow_symbol: ₼
+      :one: "آذربائجانی منات"
+      :symbol: ₼
+    :BAM: 
+      :name: "بوسنیا ہرزیگووینا کا قابل منتقلی نشان"
+      :narrow_symbol: KM
+      :one: "بوسنیا ہرزیگووینا کا قابل منتقلی نشان"
+      :symbol: KM
+    :BBD: 
+      :name: "باربیڈین ڈالر"
+      :narrow_symbol: $
+      :one: "باربیڈین ڈالر"
+      :symbol: $
+    :BDT: 
+      :name: "بنگلہ دیشی ٹکا"
+      :narrow_symbol: ৳
+      :one: "بنگلہ دیشی ٹکا"
+      :symbol: ৳
+    :BGN: 
+      :name: "بلغارین لیو"
+      :one: "بلغارین لیو"
+    :BHD: 
+      :name: "بحرینی دینار"
+      :one: "بحرینی دینار"
+    :BIF: 
+      :name: "برونڈیئن فرانک"
+      :one: "برونڈیئن فرانک"
+    :BMD: 
+      :name: "برموڈا ڈالر"
+      :narrow_symbol: $
+      :one: "برموڈا ڈالر"
+      :symbol: $
+    :BND: 
+      :name: "برونئی ڈالر"
+      :narrow_symbol: $
+      :one: "برونئی ڈالر"
+      :symbol: $
+    :BOB: 
+      :name: "بولیوین بولیویانو"
+      :narrow_symbol: Bs
+      :one: "بولیوین بولیویانو"
+      :symbol: Bs
+    :BRL: 
+      :name: "برازیلی ریئل"
+      :narrow_symbol: R$
+      :one: "برازیلی ریئل"
+      :symbol: R$
+    :BSD: 
+      :name: "بہامانی ڈالر"
+      :narrow_symbol: $
+      :one: "بہامانی ڈالر"
+      :symbol: $
+    :BTN: 
+      :name: "بھوٹانی گُلٹرم"
+      :one: "بھوٹانی گُلٹرم"
+    :BWP: 
+      :name: "بوتسوانا کا پولا"
+      :narrow_symbol: P
+      :one: "بوتسوانا کا پولا"
+      :symbol: P
+    :BYN: 
+      :name: "بیلاروسی روبل"
+      :narrow_symbol: р.
+      :one: "بیلاروسی روبل"
+      :symbol: р.
+    :BYR: 
+      :name: "بیلاروسی روبل (۲۰۰۰–۲۰۱۶)"
+      :one: "بیلاروسی روبل (۲۰۰۰–۲۰۱۶)"
+    :BZD: 
+      :name: "بیلیز ڈالر"
+      :narrow_symbol: $
+      :one: "بیلیز ڈالر"
+      :other: "بیلیز ڈالرز"
+      :symbol: $
+    :CAD: 
+      :name: "کنیڈین ڈالر"
+      :narrow_symbol: $
+      :one: "کنیڈین ڈالر"
+      :symbol: CA$
+    :CDF: 
+      :name: "کانگولیز فرانک"
+      :one: "کانگولیز فرانک"
+    :CHF: 
+      :name: "سوئس فرانکس"
+      :one: "سوئس فرانکس"
+    :CLP: 
+      :name: "چلّین پیسہ"
+      :narrow_symbol: $
+      :one: "چلّین پیسہ"
+      :symbol: $
+    :CNH: 
+      :name: "چینی یوآن (آف شور)"
+      :one: "چینی یوآن (آف شور)"
+    :CNY: 
+      :name: "چینی یوآن"
+      :narrow_symbol: ¥
+      :one: "چینی یوآن"
+      :symbol: CN¥
+    :COP: 
+      :name: "کولمبین پیسہ"
+      :narrow_symbol: $
+      :one: "کولمبین پیسہ"
+      :symbol: $
+    :CRC: 
+      :name: "کوسٹا ریکا کا کولن"
+      :narrow_symbol: ₡
+      :one: "کوسٹا ریکا کا کولن"
+      :symbol: ₡
+    :CUC: 
+      :name: "کیوبا کا قابل منتقلی پیسو"
+      :narrow_symbol: $
+      :one: "کیوبا کا قابل منتقلی پیسو"
+      :symbol: $
+    :CUP: 
+      :name: "کیوبا کا پیسو"
+      :narrow_symbol: $
+      :one: "کیوبا کا پیسو"
+      :symbol: $
+    :CVE: 
+      :name: "کیپ ورڈی کا اسکیوڈو"
+      :one: "کیپ ورڈی کا اسکیوڈو"
+    :CZK: 
+      :name: "چیک کرونا"
+      :narrow_symbol: Kč
+      :one: "چیک کرونا"
+      :other: "چیک کروناز"
+      :symbol: Kč
+    :DEM: 
+      :name: "ڈچ مارکس"
+      :one: "ڈچ مارکس"
+    :DJF: 
+      :name: "جبوتی فرانک"
+      :one: "جبوتی فرانک"
+    :DKK: 
+      :name: "ڈنمارک کرون"
+      :narrow_symbol: kr
+      :one: "ڈنمارک کرون"
+      :symbol: kr
+    :DOP: 
+      :name: "ڈومنیکن پیسو"
+      :narrow_symbol: $
+      :one: "ڈومنیکن پیسو"
+      :symbol: $
+    :DZD: 
+      :name: "الجیریائی دینار"
+      :one: "الجیریائی دینار"
+    :EEK: 
+      :name: "ایسٹونین کرون"
+      :one: "ایسٹونین کرون"
+    :EGP: 
+      :name: "مصری پاؤنڈ"
+      :narrow_symbol: E£
+      :one: "مصری پاؤنڈ"
+      :symbol: E£
+    :ERN: 
+      :name: "اریٹیریائی ناکفا"
+      :one: "اریٹیریائی ناکفا"
+    :ESP: 
+      :narrow_symbol: ₧
+      :symbol: ₧
+    :ETB: 
+      :name: "ایتھوپیائی بِرّ"
+      :one: "ایتھوپیائی بِرّ"
+    :EUR: 
+      :name: یورو
+      :narrow_symbol: €
+      :one: یورو
+      :symbol: €
+    :FJD: 
+      :name: "فجی کا ڈالر"
+      :narrow_symbol: $
+      :one: "فجی کا ڈالر"
+      :symbol: $
+    :FKP: 
+      :name: "فاکلینڈ آئلینڈز پونڈ"
+      :narrow_symbol: £
+      :one: "فاکلینڈ آئلینڈز پونڈ"
+      :symbol: £
+    :FRF: 
+      :name: "فرانسیسی فرانک"
+      :one: "فرانسیسی فرانک"
+    :GBP: 
+      :name: "برطانوی پاؤنڈ"
+      :narrow_symbol: £
+      :one: "برطانوی پاؤنڈ"
+      :symbol: £
+    :GEL: 
+      :name: "جارجیائی لاری"
+      :narrow_symbol: ₾
+      :one: "جارجیائی لاری"
+      :symbol: ₾
+    :GHS: 
+      :name: "گھانا کا سیڈی"
+      :narrow_symbol: GH₵
+      :one: "گھانا کا سیڈی"
+      :symbol: GH₵
+    :GIP: 
+      :name: "جبل الطارق پونڈ"
+      :narrow_symbol: £
+      :one: "جبل الطارق پونڈ"
+      :symbol: £
+    :GMD: 
+      :name: "گامبیا کا ڈلاسی"
+      :one: "گامبیا کا ڈلاسی"
+    :GNF: 
+      :name: "گنی فرانک"
+      :narrow_symbol: FG
+      :one: "گنی فرانک"
+      :symbol: FG
+    :GTQ: 
+      :name: "گواٹے مالا کا کوئٹزل"
+      :narrow_symbol: Q
+      :one: "گواٹے مالا کا کوئٹزل"
+      :symbol: Q
+    :GYD: 
+      :name: "گویانیز ڈالر"
+      :narrow_symbol: $
+      :one: "گویانیز ڈالر"
+      :symbol: $
+    :HKD: 
+      :name: "ھانگ کانگ ڈالر"
+      :narrow_symbol: $
+      :one: "ھانگ کانگ ڈالر"
+      :symbol: HK$
+    :HNL: 
+      :name: "ہونڈوران لیمپیرا"
+      :narrow_symbol: L
+      :one: "ہونڈوران لیمپیرا"
+      :symbol: L
+    :HRK: 
+      :name: "کروشین کونا"
+      :narrow_symbol: kn
+      :one: "کروشین کونا"
+      :symbol: kn
+    :HTG: 
+      :name: "ہیتی کا گؤرڈی"
+      :one: "ہیتی کا گؤرڈی"
+    :HUF: 
+      :name: "ہنگرین فورنٹ"
+      :narrow_symbol: Ft
+      :one: "ہنگرین فورنٹ"
+      :symbol: Ft
+    :IDR: 
+      :name: "انڈونیشین روپیہ"
+      :narrow_symbol: Rp
+      :one: "انڈونیشین روپیہ"
+      :symbol: Rp
+    :ILS: 
+      :name: "اسرائیلی نیا شیکل"
+      :narrow_symbol: ₪
+      :one: "اسرائیلی نیا شیکل"
+      :other: "اسرائیلی نیا شیکلز"
+      :symbol: ₪
+    :INR: 
+      :name: "بھارتی روپیہ"
+      :narrow_symbol: ₹
+      :one: "بھارتی روپیہ"
+      :other: "بھارتی روپے"
+      :symbol: ₹
+    :IQD: 
+      :name: "عراقی دینار"
+      :one: "عراقی دینار"
+    :IRR: 
+      :name: "ایرانی ریال"
+      :one: "ایرانی ریال"
+    :ISK: 
+      :name: "آئس لينڈی کرونا"
+      :narrow_symbol: kr
+      :one: "آئس لينڈی کرونا"
+      :other: "آئس لينڈی کرونوں"
+      :symbol: kr
+    :JMD: 
+      :name: "جمائیکن ڈالر"
+      :narrow_symbol: $
+      :one: "جمائیکن ڈالر"
+      :symbol: $
+    :JOD: 
+      :name: "اردنی دینار"
+      :one: "اردنی دینار"
+    :JPY: 
+      :name: "جاپانی ین"
+      :narrow_symbol: ¥
+      :one: "جاپانی ین"
+      :symbol: JP¥
+    :KES: 
+      :name: "کینیائی شلنگ"
+      :one: "کینیائی شلنگ"
+    :KGS: 
+      :name: "کرغستانی سوم"
+      :narrow_symbol: ⃀
+      :one: "کرغستانی سوم"
+      :symbol: ⃀
+    :KHR: 
+      :name: "کمبوڈیائی ریئل"
+      :narrow_symbol: ៛
+      :one: "کمبوڈیائی ریئل"
+      :symbol: ៛
+    :KMF: 
+      :name: "کوموریئن فرانک"
+      :narrow_symbol: CF
+      :one: "کوموریئن فرانک"
+      :symbol: CF
+    :KPW: 
+      :name: "شمالی کوریائی وون"
+      :narrow_symbol: ₩
+      :one: "شمالی کوریائی وون"
+      :symbol: ₩
+    :KRW: 
+      :name: "جنوبی کوریائی وون"
+      :narrow_symbol: ₩
+      :one: "جنوبی کوریائی وون"
+      :symbol: ₩
+    :KWD: 
+      :name: "کویتی دینار"
+      :one: "کویتی دینار"
+    :KYD: 
+      :name: "کیمین آئلینڈز ڈالر"
+      :narrow_symbol: $
+      :one: "کیمین آئلینڈز ڈالر"
+      :symbol: $
+    :KZT: 
+      :name: "قزاخستانی ٹینگ"
+      :narrow_symbol: ₸
+      :one: "قزاخستانی ٹینگ"
+      :symbol: ₸
+    :LAK: 
+      :name: "لاؤشیائی کِپ"
+      :narrow_symbol: ₭
+      :one: "لاؤشیائی کِپ"
+      :symbol: ₭
+    :LBP: 
+      :name: "لبنانی پونڈ"
+      :narrow_symbol: L£
+      :one: "لبنانی پونڈ"
+      :symbol: L£
+    :LKR: 
+      :name: "سری لنکائی روپیہ"
+      :narrow_symbol: Rs
+      :one: "سری لنکائی روپیہ"
+      :symbol: Rs
+    :LRD: 
+      :name: "لائبریائی ڈالر"
+      :narrow_symbol: $
+      :one: "لائبریائی ڈالر"
+      :symbol: $
+    :LSL: 
+      :name: "لیسوتھو لوتی"
+      :one: "لیسوتھو لوتی"
+    :LTL: 
+      :name: "لیتھوینیائی لیٹاس"
+      :narrow_symbol: Lt
+      :one: "لیتھوینیائی لیٹاس"
+      :symbol: Lt
+    :LVL: 
+      :name: "لاتویائی لیٹس"
+      :narrow_symbol: Ls
+      :one: "لاتویائی لیٹس"
+      :symbol: Ls
+    :LYD: 
+      :name: "لیبیائی دینار"
+      :one: "لیبیائی دینار"
+    :MAD: 
+      :name: "مراکشی درہم"
+      :one: "مراکشی درہم"
+    :MDL: 
+      :name: "مالدووی لیو"
+      :one: "مالدووی لیو"
+    :MGA: 
+      :name: "ملاگاسی اریاری"
+      :narrow_symbol: Ar
+      :one: "ملاگاسی اریاری"
+      :symbol: Ar
+    :MKD: 
+      :name: "مقدونیائی دینار"
+      :one: "مقدونیائی دینار"
+    :MMK: 
+      :name: "میانمار کیاٹ"
+      :narrow_symbol: K
+      :one: "میانمار کیاٹ"
+      :symbol: K
+    :MNT: 
+      :name: "منگولیائی ٹگرِ"
+      :narrow_symbol: ₮
+      :one: "منگولیائی ٹگرِ"
+      :symbol: ₮
+    :MOP: 
+      :name: "میکانیز پٹاکا"
+      :one: "میکانیز پٹاکا"
+    :MRO: 
+      :name: "موریطانیائی اوگوئیا (1973–2017)"
+      :one: "موریطانیائی اوگوئیا (1973–2017)"
+    :MRU: 
+      :name: "موریطانیائی اوگوئیا"
+      :one: "موریطانیائی اوگوئیا"
+    :MUR: 
+      :name: "ماریشس کا روپیہ"
+      :narrow_symbol: Rs
+      :one: "ماریشس کا روپیہ"
+      :symbol: Rs
+    :MVR: 
+      :name: "مالدیپ کا روفیہ"
+      :one: "مالدیپ کا روفیہ"
+    :MWK: 
+      :name: "ملاوی کواچا"
+      :one: "ملاوی کواچا"
+    :MXN: 
+      :name: "میکسیکی پیسہ"
+      :narrow_symbol: $
+      :one: "میکسیکی پیسہ"
+      :symbol: MX$
+    :MYR: 
+      :name: "ملیشیائی رنگِٹ"
+      :narrow_symbol: RM
+      :one: "ملیشیائی رنگِٹ"
+      :symbol: RM
+    :MZN: 
+      :name: "موزامبیقی میٹیکل"
+      :one: "موزامبیقی میٹیکل"
+      :other: "موزامبیقی میٹیکلز"
+    :NAD: 
+      :name: "نامیبیائی ڈالر"
+      :narrow_symbol: $
+      :one: "نامیبیائی ڈالر"
+      :symbol: $
+    :NGN: 
+      :name: "نائیجیریائی نائرا"
+      :narrow_symbol: ₦
+      :one: "نائیجیریائی نائرا"
+      :symbol: ₦
+    :NIO: 
+      :name: "نکارا گوا کا کورڈوبا"
+      :narrow_symbol: C$
+      :one: "نکارا گوا کا کورڈوبا"
+      :symbol: C$
+    :NOK: 
+      :name: "ناروے کرون"
+      :narrow_symbol: kr
+      :one: "ناروے کرون"
+      :symbol: kr
+    :NPR: 
+      :name: "نیپالی روپیہ"
+      :narrow_symbol: Rs
+      :one: "نیپالی روپیہ"
+      :symbol: Rs
+    :NZD: 
+      :name: "نیوزی لینڈ ڈالر"
+      :narrow_symbol: $
+      :one: "نیوزی لینڈ ڈالر"
+      :symbol: NZ$
+    :OMR: 
+      :name: "عمانی ریال"
+      :one: "عمانی ریال"
+    :PAB: 
+      :name: "پنامہ کا بالبوآ"
+      :one: "پنامہ کا بالبوآ"
+    :PEN: 
+      :name: "پیروویئن سول"
+      :one: "پیروویئن سول"
+    :PGK: 
+      :name: "پاپوآ نیو گنی کا کینا"
+      :one: "پاپوآ نیو گنی کا کینا"
+    :PHP: 
+      :name: "فلپائینی پیسہ"
+      :narrow_symbol: ₱
+      :one: "فلپائینی پیسہ"
+      :other: "فلپائنی پیسو"
+      :symbol: PHP
+    :PKR: 
+      :name: "پاکستانی روپیہ"
+      :narrow_symbol: Rs
+      :one: "پاکستانی روپیہ"
+      :symbol: Rs
+    :PLN: 
+      :name: "پولش زلوٹی"
+      :narrow_symbol: zł
+      :one: "پولش زلوٹی"
+      :symbol: zł
+    :PYG: 
+      :name: "پیراگوئے کا گوآرنی"
+      :narrow_symbol: ₲
+      :one: "پیراگوئے کا گوآرنی"
+      :symbol: ₲
+    :QAR: 
+      :name: "قطری ریال"
+      :one: "قطری ریال"
+    :RON: 
+      :name: "رومانیائی لیو"
+      :narrow_symbol: lei
+      :one: "رومانیائی لیو"
+      :other: "رومانیائی لی"
+      :symbol: lei
+    :RSD: 
+      :name: "سربین دینار"
+      :one: "سربین دینار"
+    :RUB: 
+      :name: "روسی روبل"
+      :narrow_symbol: ₽
+      :one: "روسی روبل"
+      :symbol: ₽
+    :RWF: 
+      :name: "روانڈا کا فرانک"
+      :narrow_symbol: RF
+      :one: "روانڈا کا فرانک"
+      :symbol: RF
+    :SAR: 
+      :name: "سعودی ریال"
+      :one: "سعودی ریال"
+    :SBD: 
+      :name: "سولومن آئلینڈز ڈالر"
+      :narrow_symbol: $
+      :one: "سولومن آئلینڈز ڈالر"
+      :symbol: $
+    :SCR: 
+      :name: "سشلی کا روپیہ"
+      :one: "سشلی کا روپیہ"
+    :SDG: 
+      :name: "سوڈانی پاؤنڈ"
+      :one: "سوڈانی پاؤنڈ"
+    :SEK: 
+      :name: "سویڈن کرونا"
+      :narrow_symbol: kr
+      :one: "سویڈن کرونا"
+      :other: "سویڈن کرونر"
+      :symbol: kr
+    :SGD: 
+      :name: "سنگا پور ڈالر"
+      :narrow_symbol: $
+      :one: "سنگا پور ڈالر"
+      :symbol: $
+    :SHP: 
+      :name: "سینٹ ہیلینا پاؤنڈ"
+      :narrow_symbol: £
+      :one: "سینٹ ہیلینا پاؤنڈ"
+      :symbol: £
+    :SIT: 
+      :name: "سلوانین ٹولر"
+      :one: "سلوانین ٹولر"
+    :SKK: 
+      :name: "سلووک کرونا"
+      :one: "سلووک کرونا"
+    :SLE: 
+      :name: "سیئرا لیونین لیون"
+      :one: "سیئرا لیونین لیون"
+    :SLL: 
+      :name: "سیئرا لیونین لیون - 1964-2022"
+      :one: "سیئرا لیونین لیون - 1964-2022"
+    :SOS: 
+      :name: "صومالی شلنگ"
+      :one: "صومالی شلنگ"
+    :SRD: 
+      :name: "سورینامی ڈالر"
+      :narrow_symbol: $
+      :one: "سورینامی ڈالر"
+      :symbol: $
+    :SSP: 
+      :name: "جنوبی سوڈانی پاؤنڈ"
+      :narrow_symbol: £
+      :one: "جنوبی سوڈانی پاؤنڈ"
+      :other: "جنوبی سوڈانی پاؤنڈز"
+      :symbol: £
+    :STD: 
+      :name: "ساؤ ٹوم اور پرنسپے ڈوبرا (1977–2017)"
+      :one: "ساؤ ٹوم اور پرنسپے ڈوبرا (1977–2017)"
+    :STN: 
+      :name: "ساؤ ٹومے اور پرنسپے ڈوبرا"
+      :narrow_symbol: Db
+      :one: "ساؤ ٹومے اور پرنسپے ڈوبرا"
+      :symbol: Db
+    :SYP: 
+      :name: "شامی پونڈ"
+      :narrow_symbol: £
+      :one: "شامی پونڈ"
+      :symbol: £
+    :SZL: 
+      :name: "سوازی لیلانجینی"
+      :one: "سوازی لیلانجینی"
+    :THB: 
+      :name: "تھائی باہت"
+      :narrow_symbol: ฿
+      :one: "تھائی باہت"
+      :symbol: ฿
+    :TJS: 
+      :name: "تاجکستانی سومونی"
+      :one: "تاجکستانی سومونی"
+    :TMT: 
+      :name: "ترکمانستانی منات"
+      :one: "ترکمانستانی منات"
+    :TND: 
+      :name: "تیونیسیائی دینار"
+      :one: "تیونیسیائی دینار"
+    :TOP: 
+      :name: "ٹونگن پانگا"
+      :narrow_symbol: T$
+      :one: "ٹونگن پانگا"
+      :symbol: T$
+    :TRY: 
+      :name: "ترکی لیرا"
+      :narrow_symbol: ₺
+      :one: "ترکی لیرا"
+      :symbol: ₺
+    :TTD: 
+      :name: "ترینیداد اور ٹوباگو کا ڈالر"
+      :narrow_symbol: $
+      :one: "ترینیداد اور ٹوباگو کا ڈالر"
+      :symbol: $
+    :TWD: 
+      :name: "نیو تائیوان ڈالر"
+      :narrow_symbol: NT$
+      :one: "نیو تائیوان ڈالر"
+      :symbol: NT$
+    :TZS: 
+      :name: "تنزانیائی شلنگ"
+      :one: "تنزانیائی شلنگ"
+    :UAH: 
+      :name: "یوکرینیائی ہریونیا"
+      :narrow_symbol: ₴
+      :one: "یوکرینیائی ہریونیا"
+      :symbol: ₴
+    :UGX: 
+      :name: "یوگانڈا شلنگ"
+      :one: "یوگانڈا شلنگ"
+    :USD: 
+      :name: "امریکی ڈالر"
+      :narrow_symbol: $
+      :one: "امریکی ڈالر"
+      :symbol: $
+    :UYU: 
+      :name: "یوروگویان پیسو"
+      :narrow_symbol: $
+      :one: "یوروگویان پیسو"
+      :symbol: $
+    :UZS: 
+      :name: "ازبکستانی سوم"
+      :one: "ازبکستانی سوم"
+    :VEB: 
+      :name: "وینزویلا بولیور (1871–2008)"
+      :one: "وینزویلا بولیور (1871–2008)"
+    :VEF: 
+      :name: "وینزویلا بولیور (2008–2018)"
+      :narrow_symbol: Bs
+      :one: "وینزویلا بولیور (2008–2018)"
+      :symbol: Bs
+    :VES: 
+      :name: "وینزویلا بولیور"
+      :one: "وینزویلا بولیور"
+    :VND: 
+      :name: "ویتنامی ڈانگ"
+      :narrow_symbol: ₫
+      :one: "ویتنامی ڈانگ"
+      :symbol: ₫
+    :VUV: 
+      :name: "وینوواتو واتو"
+      :one: "وینوواتو واتو"
+    :WST: 
+      :name: "ساموآ کا ٹالا"
+      :one: "ساموآ کا ٹالا"
+    :XAF: 
+      :name: "وسطی افریقی [CFA] فرانک"
+      :one: "وسطی افریقی [CFA] فرانک"
+      :symbol: FCFA
+    :XCD: 
+      :name: "مشرقی کریبیا کا ڈالر"
+      :narrow_symbol: $
+      :one: "مشرقی کریبیا کا ڈالر"
+      :symbol: EC$
+    :XCG: 
+      :symbol: Cg.
+    :XOF: 
+      :name: "مغربی افریقی [CFA] فرانک"
+      :one: "مغربی افریقی [CFA] فرانک"
+      :symbol: F CFA
+    :XPF: 
+      :name: "CFP فرانک"
+      :one: "CFP فرانک"
+      :other: "CFP فرانکس"
+      :symbol: CFPF
+    :XXX: 
+      :name: "نامعلوم کرنسی"
+      :one: "(کرنسی کی نامعلوم یونٹ)"
+      :other: "(نامعلوم کرنسی)"
+      :symbol: ¤
+    :YER: 
+      :name: "یمنی ریال"
+      :one: "یمنی ریال"
+    :ZAR: 
+      :name: "جنوبی افریقی رانڈ"
+      :narrow_symbol: R
+      :one: "جنوبی افریقی رانڈ"
+      :symbol: R
+    :ZMK: 
+      :name: "زامبیائی کواچا (1968–2012)"
+      :one: "زامبیائی کواچا (1968–2012)"
+    :ZMW: 
+      :name: "زامبیائی کواچا"
+      :narrow_symbol: ZK
+      :one: "زامبیائی کواچا"
+      :symbol: ZK

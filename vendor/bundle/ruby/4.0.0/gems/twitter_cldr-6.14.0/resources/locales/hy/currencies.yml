@@ -1,0 +1,717 @@
+--- 
+:hy: 
+  :currencies: 
+    :AED: 
+      :name: "Արաբական Միացյալ Էմիրությունների դիրհամ"
+      :one: "ԱՄԷ դիրհամ"
+      :other: "ԱՄԷ դիրհամ"
+    :AFN: 
+      :name: "աֆղանական աֆղանի"
+      :narrow_symbol: ؋
+      :one: "աֆղանական աֆղանի"
+      :symbol: ؋
+    :ALL: 
+      :name: "ալբանական լեկ"
+      :one: "ալբանական լեկ"
+    :AMD: 
+      :name: "հայկական դրամ"
+      :narrow_symbol: ֏
+      :one: "հայկական դրամ"
+      :symbol: ֏
+    :ANG: 
+      :name: "նիդեռլանդական անտիլյան գուլդեն"
+      :one: "նիդեռլանդական անտիլյան գուլդեն"
+    :AOA: 
+      :name: "անգոլական կվանզա"
+      :narrow_symbol: Kz
+      :one: "անգոլական կվանզա"
+      :symbol: Kz
+    :ARS: 
+      :name: "արգենտինական պեսո"
+      :narrow_symbol: $
+      :one: "արգենտինական պեսո"
+      :symbol: $
+    :AUD: 
+      :name: "ավստրալիական դոլար"
+      :narrow_symbol: $
+      :one: "ավստրալիական դոլար"
+      :symbol: A$
+    :AWG: 
+      :name: "արուբական ֆլորին"
+      :one: "արուբական ֆլորին"
+    :AZN: 
+      :name: "ադրբեջանական մանաթ"
+      :narrow_symbol: ₼
+      :one: "ադրբեջանական մանաթ"
+      :symbol: ₼
+    :BAM: 
+      :name: "Բոսնիա և Հերցեգովինայի փոխարկվող մարկ"
+      :narrow_symbol: KM
+      :one: "Բոսնիա և Հերցեգովինայի փոխարկվող մարկ"
+      :symbol: KM
+    :BBD: 
+      :name: "բարբադոսյան դոլար"
+      :narrow_symbol: $
+      :one: "բարբադոսյան դոլար"
+      :symbol: $
+    :BDT: 
+      :name: "Բանգլադեշի տակա"
+      :narrow_symbol: ৳
+      :one: "Բանգլադեշի տակա"
+      :symbol: ৳
+    :BGN: 
+      :name: "բուլղարական լև"
+      :one: "բուլղարական լև"
+    :BHD: 
+      :name: "Բահրեյնի դինար"
+      :one: "Բահրեյնի դինար"
+    :BIF: 
+      :name: "բուրունդիական ֆրանկ"
+      :one: "բուրունդիական ֆրանկ"
+    :BMD: 
+      :name: "բերմուդյան դոլար"
+      :narrow_symbol: $
+      :one: "բերմուդյան դոլար"
+      :symbol: $
+    :BND: 
+      :name: "Բրունեյի դոլար"
+      :narrow_symbol: $
+      :one: "Բրունեյի դոլար"
+      :symbol: $
+    :BOB: 
+      :name: "բոլիվիական բոլիվիանո"
+      :narrow_symbol: Bs
+      :one: "բոլիվիական բոլիվիանո"
+      :symbol: Bs
+    :BRL: 
+      :name: "բրազիլական ռեալ"
+      :narrow_symbol: R$
+      :one: "բրազիլական ռեալ"
+      :symbol: R$
+    :BSD: 
+      :name: "բահամյան դոլար"
+      :narrow_symbol: $
+      :one: "բահամյան դոլար"
+      :symbol: $
+    :BTN: 
+      :name: "բութանական նգուլտրում"
+      :one: "բութանական նգուլտրում"
+    :BWP: 
+      :name: "բոտսվանական պուլա"
+      :narrow_symbol: P
+      :one: "բոտսվանական պուլա"
+      :other: "բոտսվանական պուլա"
+      :symbol: P
+    :BYN: 
+      :name: "բելառուսական ռուբլի"
+      :narrow_symbol: р.
+      :one: "բելառուսական ռուբլի"
+      :symbol: р.
+    :BYR: 
+      :name: "Բելառուսական ռուբլի (2000–2016)"
+      :one: "բելառուսական ռուբլի (2000–2016)"
+      :other: "բելառուսական ռուբլի (2000–2016)"
+    :BZD: 
+      :name: "Բելիզի դոլար"
+      :narrow_symbol: $
+      :one: "Բելիզի դոլար"
+      :symbol: $
+    :CAD: 
+      :name: "կանադական դոլար"
+      :narrow_symbol: $
+      :one: "կանադական դոլար"
+      :symbol: CA$
+    :CDF: 
+      :name: "Կոնգոյի ֆրանկ"
+      :one: "Կոնգոյի ֆրանկ"
+    :CHF: 
+      :name: "շվեյցարական ֆրանկ"
+      :one: "շվեյցարական ֆրանկ"
+    :CLP: 
+      :name: "չիլիական պեսո"
+      :narrow_symbol: $
+      :one: "չիլիական պեսո"
+      :symbol: $
+    :CNH: 
+      :name: "չինական օֆշորային յուան"
+      :one: "չինական օֆշորային յուան"
+    :CNY: 
+      :name: "չինական յուան"
+      :narrow_symbol: ¥
+      :one: "չինական յուան"
+      :symbol: CN¥
+    :COP: 
+      :name: "կոլումբիական պեսո"
+      :narrow_symbol: $
+      :one: "կոլումբիական պեսո"
+      :symbol: $
+    :CRC: 
+      :name: "Կոստա Ռիկայի կոլոն"
+      :narrow_symbol: ₡
+      :one: "Կոստա Ռիկայի կոլոն"
+      :symbol: ₡
+    :CUC: 
+      :name: "կուբայական փոխարկվող պեսո"
+      :narrow_symbol: $
+      :one: "կուբայական փոխարկվող պեսո"
+      :symbol: $
+    :CUP: 
+      :name: "կուբայական պեսո"
+      :narrow_symbol: $
+      :one: "կուբայական պեսո"
+      :symbol: $
+    :CVE: 
+      :name: "Կաբո Վերդեի էսկուդո"
+      :one: "Կաբո Վերդեի էսկուդո"
+    :CZK: 
+      :name: "չեխական կրոնա"
+      :narrow_symbol: Kč
+      :one: "չեխական կրոնա"
+      :other: "չեխական կրոնա"
+      :symbol: Kč
+    :DJF: 
+      :name: "Ջիբութիի ֆրանկ"
+      :one: "Ջիբութիի ֆրանկ"
+    :DKK: 
+      :name: "դանիական կրոն"
+      :narrow_symbol: kr
+      :one: "դանիական կրոն"
+      :symbol: kr
+    :DOP: 
+      :name: "դոմինիկյան պեսո"
+      :narrow_symbol: $
+      :one: "դոմինիկյան պեսո"
+      :symbol: $
+    :DZD: 
+      :name: "ալժիրական դինար"
+      :one: "ալժիրական դինար"
+    :EGP: 
+      :name: "եգիպտական ֆունտ"
+      :narrow_symbol: E£
+      :one: "եգիպտական ֆունտ"
+      :symbol: E£
+    :ERN: 
+      :name: "էրիթրեական նակվա"
+      :one: "էրիթրեական նակֆա"
+      :other: "էրիթրեական նակֆա"
+    :ESP: 
+      :narrow_symbol: ₧
+      :symbol: ₧
+    :ETB: 
+      :name: "եթովպիական բիր"
+      :one: "եթովպիական բիր"
+    :EUR: 
+      :name: եվրո
+      :narrow_symbol: €
+      :one: եվրո
+      :symbol: €
+    :FJD: 
+      :name: "ֆիջիական դոլար"
+      :narrow_symbol: $
+      :one: "ֆիջիական դոլար"
+      :symbol: $
+    :FKP: 
+      :name: "Ֆոլքլենդյան կղզիների ֆունտ"
+      :narrow_symbol: £
+      :one: "Ֆոլքլենդյան կղզիների ֆունտ"
+      :symbol: £
+    :GBP: 
+      :name: "բրիտանական ֆունտ ստերլինգ"
+      :narrow_symbol: £
+      :one: "բրիտանական ֆունտ ստերլինգ"
+      :symbol: £
+    :GEL: 
+      :name: "վրացական լարի"
+      :narrow_symbol: ₾
+      :one: "վրացական լարի"
+      :symbol: ₾
+    :GHS: 
+      :name: "գայանական սեդի"
+      :narrow_symbol: GH₵
+      :one: "գանայական սեդի"
+      :other: "գանայական սեդի"
+      :symbol: GH₵
+    :GIP: 
+      :name: "Ջիբրալթարի ֆունտ"
+      :narrow_symbol: £
+      :one: "Ջիբրալթարի ֆունտ"
+      :symbol: £
+    :GMD: 
+      :name: "գամբիական դալասի"
+      :one: "գամբիական դալասի"
+    :GNF: 
+      :name: "գվինեական ֆրանկ"
+      :narrow_symbol: FG
+      :one: "գվինեական ֆրանկ"
+      :symbol: FG
+    :GTQ: 
+      :name: "գվատեմալական կետսալ"
+      :narrow_symbol: Q
+      :one: "գվատեմալական կետսալ"
+      :symbol: Q
+    :GYD: 
+      :name: "գայանական դոլար"
+      :narrow_symbol: $
+      :one: "գայանական դոլար"
+      :symbol: $
+    :HKD: 
+      :name: "Հոնկոնգի դոլար"
+      :narrow_symbol: $
+      :one: "Հոնկոնգի դոլար"
+      :symbol: HK$
+    :HNL: 
+      :name: "հոնդուրասական լեմպիրա"
+      :narrow_symbol: L
+      :one: "հոնդուրասական լեմպիրա"
+      :symbol: L
+    :HRK: 
+      :name: "խորվաթական կունա"
+      :narrow_symbol: kn
+      :one: "խորվաթական կունա"
+      :symbol: kn
+    :HTG: 
+      :name: "հայիթյան գուրդ"
+      :one: "հայիթյան գուրդ"
+    :HUF: 
+      :name: "հունգարական ֆորինտ"
+      :narrow_symbol: Ft
+      :one: "հունգարական ֆորինտ"
+      :symbol: Ft
+    :IDR: 
+      :name: "ինդոնեզիական ռուփի"
+      :narrow_symbol: Rp
+      :one: "ինդոնեզիական ռուփի"
+      :symbol: Rp
+    :ILS: 
+      :name: "Իսրայելի նոր շեկել"
+      :narrow_symbol: ₪
+      :one: "Իսրայելի նոր շեկել"
+      :symbol: ₪
+    :INR: 
+      :name: "հնդկական ռուփի"
+      :narrow_symbol: ₹
+      :one: "հնդկական ռուփի"
+      :symbol: ₹
+    :IQD: 
+      :name: "իրաքյան դինար"
+      :one: "իրաքյան դինար"
+    :IRR: 
+      :name: "իրանական ռիալ"
+      :one: "իրանական ռիալ"
+    :ISK: 
+      :name: "իսլանդական կրոն"
+      :narrow_symbol: kr
+      :one: "իսլանդական կրոն"
+      :symbol: kr
+    :JMD: 
+      :name: "Ճամայկայի դոլար"
+      :narrow_symbol: $
+      :one: "Ճամայկայի դոլար"
+      :symbol: $
+    :JOD: 
+      :name: "հորդանանյան դինար"
+      :one: "հորդանանյան դինար"
+    :JPY: 
+      :name: "ճապոնական իեն"
+      :narrow_symbol: ¥
+      :one: "ճապոնական իեն"
+      :symbol: JP¥
+    :KES: 
+      :name: "քենիական շիլինգ"
+      :one: "քենիական շիլինգ"
+    :KGS: 
+      :name: "ղրղզական սոմ"
+      :narrow_symbol: ⃀
+      :one: "ղրղզական սոմ"
+      :symbol: ⃀
+    :KHR: 
+      :name: "կամբոջական ռիել"
+      :narrow_symbol: ៛
+      :one: "կամբոջական ռիել"
+      :symbol: ៛
+    :KMF: 
+      :name: "կոմորյան ֆրանկ"
+      :narrow_symbol: CF
+      :one: "կոմորյան ֆրանկ"
+      :symbol: CF
+    :KPW: 
+      :name: "հյուսիսկորեական վոն"
+      :narrow_symbol: ₩
+      :one: "հյուսիսկորեական վոն"
+      :symbol: ₩
+    :KRW: 
+      :name: "հարավկորեական վոն"
+      :narrow_symbol: ₩
+      :one: "հարավկորեական վոն"
+      :symbol: ₩
+    :KWD: 
+      :name: "Քուվեյթի դինար"
+      :one: "Քուվեյթի դինար"
+    :KYD: 
+      :name: "Կայմանյան կղզիների դոլար"
+      :narrow_symbol: $
+      :one: "Կայմանյան կղզիների դոլար"
+      :symbol: $
+    :KZT: 
+      :name: "ղազախական տենգե"
+      :narrow_symbol: ₸
+      :one: "ղազախական տենգե"
+      :symbol: ₸
+    :LAK: 
+      :name: "լաոսական կիպ"
+      :narrow_symbol: ₭
+      :one: "լաոսական կիպ"
+      :symbol: ₭
+    :LBP: 
+      :name: "լիբանանյան ֆունտ"
+      :narrow_symbol: L£
+      :one: "լիբանանյան ֆունտ"
+      :symbol: L£
+    :LKR: 
+      :name: "Շրի Լանկայի ռուփի"
+      :narrow_symbol: Rs
+      :one: "Շրի Լանկայի ռուփի"
+      :symbol: Rs
+    :LRD: 
+      :name: "լիբերիական դոլար"
+      :narrow_symbol: $
+      :one: "լիբերիական դոլար"
+      :symbol: $
+    :LSL: 
+      :name: "լեսոթոյական լոտի"
+      :one: "լեսոթոյական լոտի"
+    :LTL: 
+      :name: "Լիտվական լիտ"
+      :narrow_symbol: Lt
+      :one: "Լիտվական լիտ"
+      :symbol: Lt
+    :LVL: 
+      :name: "Լատվիական լատ"
+      :narrow_symbol: Ls
+      :one: "Լատվիական լատ"
+      :symbol: Ls
+    :LYD: 
+      :name: "լիբիական դինար"
+      :one: "լիբիական դինար"
+    :MAD: 
+      :name: "Մարոկկոյի դիրհամ"
+      :one: "Մարոկկոյի դիրհամ"
+    :MDL: 
+      :name: "մոլդովական լեյ"
+      :one: "մոլդովական լեյ"
+    :MGA: 
+      :name: "Մադագասկարի արիարի"
+      :narrow_symbol: Ar
+      :one: "Մադագասկարի արիարի"
+      :symbol: Ar
+    :MKD: 
+      :name: "մակեդոնական դենար"
+      :one: "մակեդոնական դենար"
+    :MMK: 
+      :name: "Մյանմայի կյատ"
+      :narrow_symbol: K
+      :one: "Մյանմայի կյատ"
+      :symbol: K
+    :MNT: 
+      :name: "մոնղոլական տուգրիկ"
+      :narrow_symbol: ₮
+      :one: "մոնղոլական տուգրիկ"
+      :symbol: ₮
+    :MOP: 
+      :name: "Մակաոյի պատակա"
+      :one: "Մակաոյի պատակա"
+    :MRO: 
+      :name: "մավրիտանական ուգիյա (1973–2017)"
+      :one: "մավրիտանական ուգիյա (1973–2017)"
+    :MRU: 
+      :name: "մավրիտանական ուգիյա"
+      :one: "մավրիտանական ուգիյա"
+    :MUR: 
+      :name: "մավրիկյան ռուփի"
+      :narrow_symbol: Rs
+      :one: "մավրիկյան ռուփի"
+      :symbol: Rs
+    :MVR: 
+      :name: "մալդիվյան ռուֆիյա"
+      :one: "մալդիվյան ռուֆիյա"
+    :MWK: 
+      :name: "մալավիական կվաչա"
+      :one: "մալավիական կվաչա"
+    :MXN: 
+      :name: "մեքսիկական պեսո"
+      :narrow_symbol: $
+      :one: "մեքսիկական պեսո"
+      :symbol: MX$
+    :MYR: 
+      :name: "մալայզիական ռինգիտ"
+      :narrow_symbol: RM
+      :one: "մալայզիական ռինգիտ"
+      :symbol: RM
+    :MZN: 
+      :name: "մոզամբիկյան մետիկալ"
+      :one: "մոզամբիկյան մետիկալ"
+    :NAD: 
+      :name: "նամիբիական դոլար"
+      :narrow_symbol: $
+      :one: "նամիբիական դոլար"
+      :symbol: $
+    :NGN: 
+      :name: "նիգերիական նայրա"
+      :narrow_symbol: ₦
+      :one: "նիգերիական նայրա"
+      :symbol: ₦
+    :NIO: 
+      :name: "նիկարագուական կորդոբա"
+      :narrow_symbol: C$
+      :one: "նիկարագուական կորդոբա"
+      :symbol: C$
+    :NOK: 
+      :name: "նորվեգական կրոն"
+      :narrow_symbol: kr
+      :one: "նորվեգական կրոն"
+      :symbol: kr
+    :NPR: 
+      :name: "Նեպալի ռուփի"
+      :narrow_symbol: Rs
+      :one: "Նեպալի ռուփի"
+      :symbol: Rs
+    :NZD: 
+      :name: "նորզելանդական դոլար"
+      :narrow_symbol: $
+      :one: "նորզելանդական դոլար"
+      :symbol: NZ$
+    :OMR: 
+      :name: "Օմանի ռիալ"
+      :one: "Օմանի ռիալ"
+    :PAB: 
+      :name: "պանամական բալբոա"
+      :one: "պանամական բալբոա"
+    :PEN: 
+      :name: "Պերուի սոլ"
+      :one: "Պերուի սոլ"
+    :PGK: 
+      :name: "Պապուա Նոր Գվինեայի կինա"
+      :one: "Պապուա Նոր Գվինեայի կինա"
+    :PHP: 
+      :name: "ֆիլիպինյան պեսո"
+      :narrow_symbol: ₱
+      :one: "ֆիլիպինյան պեսո"
+      :symbol: PHP
+    :PKR: 
+      :name: "պակիստանյան ռուփի"
+      :narrow_symbol: Rs
+      :one: "պակիստանյան ռուփի"
+      :symbol: Rs
+    :PLN: 
+      :name: "լեհական զլոտի"
+      :narrow_symbol: zł
+      :one: "լեհական զլոտի"
+      :symbol: zł
+    :PYG: 
+      :name: "պարագվայական գուարանի"
+      :narrow_symbol: ₲
+      :one: "պարագվայական գուարանի"
+      :symbol: ₲
+    :QAR: 
+      :name: "Կատարի ռիալ"
+      :one: "Կատարի ռիալ"
+    :RON: 
+      :name: "ռումինական լեյ"
+      :narrow_symbol: lei
+      :one: "ռումինական լեյ"
+      :symbol: lei
+    :RSD: 
+      :name: "սերբական դինար"
+      :one: "սերբական դինար"
+    :RUB: 
+      :name: "ռուսական ռուբլի"
+      :narrow_symbol: ₽
+      :one: "ռուսական ռուբլի"
+      :symbol: ₽
+    :RWF: 
+      :name: "ռուանդական ֆրանկ"
+      :narrow_symbol: RF
+      :one: "ռուանդական ֆրանկ"
+      :symbol: RF
+    :SAR: 
+      :name: "Սաուդյան Արաբիայի ռիալ"
+      :one: "Սաուդյան Արաբիայի ռիալ"
+    :SBD: 
+      :name: "Սողոմոնյան կղզիների դոլար"
+      :narrow_symbol: $
+      :one: "Սողոմոնյան կղզիների դոլար"
+      :symbol: $
+    :SCR: 
+      :name: "սեյշելյան ռուփի"
+      :one: "սեյշելյան ռուփի"
+    :SDG: 
+      :name: "սուդանական ֆունտ"
+      :one: "սուդանական ֆունտ"
+    :SEK: 
+      :name: "շվեդական կրոն"
+      :narrow_symbol: kr
+      :one: "շվեդական կրոն"
+      :symbol: kr
+    :SGD: 
+      :name: "Սինգապուրի դոլար"
+      :narrow_symbol: $
+      :one: "Սինգապուրի դոլար"
+      :symbol: $
+    :SHP: 
+      :name: "Սուրբ Հեղինեի ֆունտ"
+      :narrow_symbol: £
+      :one: "Սուրբ Հեղինեի ֆունտ"
+      :symbol: £
+    :SLE: 
+      :name: "Սիեռա Լեոնեի լեոնե"
+      :one: "Սիեռա Լեոնեի լեոնե"
+    :SLL: 
+      :name: "Սիեռա Լեոնեի լեոնե (1964—2022)"
+      :one: "Սիեռա Լեոնեի լեոնե (1964—2022)"
+    :SOS: 
+      :name: "սոմալիական շիլինգ"
+      :one: "սոմալիական շիլինգ"
+    :SRD: 
+      :name: "սուրինամական դոլար"
+      :narrow_symbol: $
+      :one: "սուրինամական դոլար"
+      :symbol: $
+    :SSP: 
+      :name: "հարավսուդանական ֆունտ"
+      :narrow_symbol: £
+      :one: "հարավսուդանական ֆունտ"
+      :symbol: £
+    :STD: 
+      :name: "Սան Տոմե և Փրինսիպիի դոբրա (1977–2017)"
+      :one: "Սան Տոմե և Փրինսիպիի դոբրա (1977–2017)"
+    :STN: 
+      :name: "Սան Տոմե և Փրինսիպիի դոբրա"
+      :narrow_symbol: Db
+      :one: "Սան Տոմե և Փրինսիպիի դոբրա"
+      :symbol: Db
+    :SYP: 
+      :name: "սիրիական ֆունտ"
+      :narrow_symbol: £
+      :one: "սիրիական ֆունտ"
+      :symbol: £
+    :SZL: 
+      :name: "սվազիլենդական լիլանգենի"
+      :one: "սվազիլենդական լիլանգենի"
+    :THB: 
+      :name: "թաիլանդական բահտ"
+      :narrow_symbol: ฿
+      :one: "թաիլանդական բահտ"
+      :other: "թաիլանդական բահտ"
+      :symbol: ฿
+    :TJS: 
+      :name: "տաջիկական սոմոնի"
+      :one: "տաջիկական սոմոնի"
+    :TMT: 
+      :name: "թուրքմենական մանաթ"
+      :one: "թուրքմենական մանաթ"
+    :TND: 
+      :name: "թունիսյան դինար"
+      :one: "թունիսյան դինար"
+    :TOP: 
+      :name: "Տոնգայի պաանգա"
+      :narrow_symbol: T$
+      :one: "Տոնգայի պաանգա"
+      :symbol: T$
+    :TRY: 
+      :name: "թուրքական լիրա"
+      :narrow_symbol: ₺
+      :one: "թուրքական լիրա"
+      :symbol: ₺
+    :TTD: 
+      :name: "Տրինիդադ և Տոբագոյի դոլար"
+      :narrow_symbol: $
+      :one: "Տրինիդադ և Տոբագոյի դոլար"
+      :symbol: $
+    :TWD: 
+      :name: "թայվանական նոր դոլար"
+      :narrow_symbol: NT$
+      :one: "թայվանական նոր դոլար"
+      :symbol: NT$
+    :TZS: 
+      :name: "տանզանիական շիլինգ"
+      :one: "տանզանիական շիլինգ"
+    :UAH: 
+      :name: "ուկրաինական գրիվնա"
+      :narrow_symbol: ₴
+      :one: "ուկրաինական գրիվնա"
+      :symbol: ₴
+    :UGX: 
+      :name: "ուգանդական շիլինգ"
+      :one: "ուգանդական շիլինգ"
+    :USD: 
+      :name: "ԱՄՆ դոլար"
+      :narrow_symbol: $
+      :one: "ԱՄՆ դոլար"
+      :symbol: $
+    :UYU: 
+      :name: "ուրուգվայական պեսո"
+      :narrow_symbol: $
+      :one: "ուրուգվայական պեսո"
+      :symbol: $
+    :UZS: 
+      :name: "ուզբեկական սոմ"
+      :one: "ուզբեկական սոմ"
+    :VEF: 
+      :name: "վենեսուելական բոլիվար (2008–2018)"
+      :narrow_symbol: Bs
+      :one: "վենեսուելական բոլիվար (2008–2018)"
+      :symbol: Bs
+    :VES: 
+      :name: "վենեսուելական բոլիվար"
+      :one: "վենեսուելական բոլիվար"
+    :VND: 
+      :name: "վիետնամական դոնգ"
+      :narrow_symbol: ₫
+      :one: "վիետնամական դոնգ"
+      :symbol: ₫
+    :VUV: 
+      :name: "Վանուատուի վատու"
+      :one: "Վանուատուի վատու"
+    :WST: 
+      :name: "սամոական տալա"
+      :one: "սամոական տալա"
+    :XAF: 
+      :name: "Կենտրոնական Աֆրիկայի ԿՖԱ ֆրանկ"
+      :one: "Կենտրոնական Աֆրիկայի ԿՖԱ ֆրանկ"
+      :symbol: FCFA
+    :XCD: 
+      :name: "արևելակարիբյան դոլար"
+      :narrow_symbol: $
+      :one: "արևելակարիբյան դոլար"
+      :symbol: EC$
+    :XCG: 
+      :symbol: Cg.
+    :XOF: 
+      :name: "Արևմտյան Աֆրիկայի ԿՖԱ ֆրանկ"
+      :one: "Արևմտյան Աֆրիկայի ԿՖԱ ֆրանկ"
+      :symbol: F CFA
+    :XPF: 
+      :name: "ԿՊՖ ֆրանկ"
+      :one: "ԿՊՖ ֆրանկ"
+      :symbol: CFPF
+    :XXX: 
+      :name: "անհայտ արժույթ"
+      :one: "(անհայտ արժույթ)"
+      :other: "(անհայտ արժույթ)"
+      :symbol: ¤
+    :YER: 
+      :name: "եմենական ռիալ"
+      :one: "եմենական ռիալ"
+    :ZAR: 
+      :name: "հարավաֆրիկյան ռանդ"
+      :narrow_symbol: R
+      :one: "հարավաֆրիկյան ռանդ"
+      :symbol: R
+    :ZMK: 
+      :name: "Զամբիական կվաչա (1968–2012)"
+      :one: "Զամբիական կվաչա (1968–2012)"
+    :ZMW: 
+      :name: "զամբիական կվաչա"
+      :narrow_symbol: ZK
+      :one: "զամբիական կվաչա"
+      :symbol: ZK

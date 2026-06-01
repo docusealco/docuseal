@@ -1,0 +1,1126 @@
+--- 
+:hu: 
+  :currencies: 
+    :ADP: 
+      :name: "Andorrai peseta"
+      :one: "Andorrai peseta"
+    :AED: 
+      :name: EAE-dirham
+      :one: EAE-dirham
+    :AFA: 
+      :name: "afgán afghani (1927–2002)"
+      :one: "afgán afghani (1927–2002)"
+    :AFN: 
+      :name: "afgán afghani"
+      :narrow_symbol: ؋
+      :one: "afgán afghani"
+      :symbol: ؋
+    :ALK: 
+      :name: "albán lek (1946–1965)"
+      :one: "albán lek (1946–1965)"
+    :ALL: 
+      :name: "albán lek"
+      :one: "albán lek"
+    :AMD: 
+      :name: "örmény dram"
+      :narrow_symbol: ֏
+      :one: "örmény dram"
+      :symbol: ֏
+    :ANG: 
+      :name: "holland antilláki forint"
+      :one: "holland antilláki forint"
+    :AOA: 
+      :name: "angolai kwanza"
+      :narrow_symbol: Kz
+      :one: "angolai kwanza"
+      :symbol: Kz
+    :AOK: 
+      :name: "Angolai kwanza (1977–1990)"
+      :one: "Angolai kwanza (1977–1990)"
+    :AON: 
+      :name: "Angolai új kwanza (1990–2000)"
+      :one: "Angolai új kwanza (1990–2000)"
+    :AOR: 
+      :name: "Angolai kwanza reajustado (1995–1999)"
+      :one: "Angolai kwanza reajustado (1995–1999)"
+    :ARA: 
+      :name: "Argentín austral"
+      :one: "Argentin austral"
+      :other: "Argentin austral"
+    :ARP: 
+      :name: "Argentín peso (1983–1985)"
+      :one: "Argentín peso (1983–1985)"
+    :ARS: 
+      :name: "argentin peso"
+      :narrow_symbol: $
+      :one: "argentin peso"
+      :symbol: $
+    :ATS: 
+      :name: "Osztrák schilling"
+      :one: "Osztrák schilling"
+    :AUD: 
+      :name: "ausztrál dollár"
+      :narrow_symbol: $
+      :one: "ausztrál dollár"
+      :symbol: AUD
+    :AWG: 
+      :name: "arubai florin"
+      :one: "arubai florin"
+    :AZM: 
+      :name: "azerbajdzsáni manat (1993–2006)"
+      :one: "azerbajdzsáni manat (1993–2006)"
+    :AZN: 
+      :name: "azerbajdzsáni manat"
+      :narrow_symbol: ₼
+      :one: "azerbajdzsáni manat"
+      :symbol: ₼
+    :BAD: 
+      :name: "Bosznia-hercegovinai dínár (1992–1994)"
+      :one: "Bosznia-hercegovinai dínár (1992–1994)"
+    :BAM: 
+      :name: "bosznia-hercegovinai konvertibilis márka"
+      :narrow_symbol: KM
+      :one: "bosznia-hercegovinai konvertibilis márka"
+      :symbol: KM
+    :BAN: 
+      :name: "bosznia-hercegovinai új dínár (1994–1997)"
+      :one: "bosznia-hercegovinai új dínár (1994–1997)"
+    :BBD: 
+      :name: "barbadosi dollár"
+      :narrow_symbol: $
+      :one: "barbadosi dollár"
+      :symbol: $
+    :BDT: 
+      :name: "bangladesi taka"
+      :narrow_symbol: ৳
+      :one: "bangladesi taka"
+      :symbol: ৳
+    :BEC: 
+      :name: "Belga frank (konvertibilis)"
+      :one: "Belga frank (konvertibilis)"
+    :BEF: 
+      :name: "Belga frank"
+      :one: "Belga frank"
+    :BEL: 
+      :name: "Belga frank (pénzügyi)"
+      :one: "Belga frank (pénzügyi)"
+    :BGL: 
+      :name: "Bolgár kemény leva"
+      :one: "Bolgár kemény leva"
+    :BGM: 
+      :name: "bolgár szocialista leva"
+      :one: "bolgár szocialista leva"
+    :BGN: 
+      :name: "bolgár új leva"
+      :one: "bolgár új leva"
+    :BGO: 
+      :name: "bolgár leva (1879–1952)"
+      :one: "bolgár leva (1879–1952)"
+    :BHD: 
+      :name: "bahreini dinár"
+      :one: "bahreini dinár"
+    :BIF: 
+      :name: "burundi frank"
+      :one: "burundi frank"
+    :BMD: 
+      :name: "bermudai dollár"
+      :narrow_symbol: $
+      :one: "bermudai dollár"
+      :symbol: $
+    :BND: 
+      :name: "brunei dollár"
+      :narrow_symbol: $
+      :one: "brunei dollár"
+      :symbol: $
+    :BOB: 
+      :name: "bolíviai boliviano"
+      :narrow_symbol: Bs
+      :one: "bolíviai boliviano"
+      :symbol: Bs
+    :BOP: 
+      :name: "Bolíviai peso"
+      :one: "Bolíviai peso"
+    :BOV: 
+      :name: "Bolíviai mvdol"
+      :one: "Bolíviai mvdol"
+    :BRB: 
+      :name: "Brazi cruzeiro novo (1967–1986)"
+      :one: "Brazi cruzeiro novo (1967–1986)"
+    :BRC: 
+      :name: "Brazi cruzado (1986–1989)"
+      :one: "Brazi cruzado (1986–1989)"
+    :BRE: 
+      :name: "Brazil cruzeiro (1990–1993)"
+      :one: "Brazil cruzeiro (1990–1993)"
+    :BRL: 
+      :name: "brazil real"
+      :narrow_symbol: R$
+      :one: "brazil real"
+      :symbol: BRL
+    :BRN: 
+      :name: "Brazil cruzado novo (1989–1990)"
+      :one: "Brazil cruzado novo (1989–1990)"
+    :BRR: 
+      :name: "Brazil cruzeiro (1993–1994)"
+      :one: "Brazil cruzeiro (1993–1994)"
+    :BSD: 
+      :name: "bahamai dollár"
+      :narrow_symbol: $
+      :one: "bahamai dollár"
+      :symbol: $
+    :BTN: 
+      :name: "bhutáni ngultrum"
+      :one: "bhutáni ngultrum"
+    :BUK: 
+      :name: "Burmai kyat"
+      :one: "burmai kjap"
+      :other: "burmai kjap"
+    :BWP: 
+      :name: "botswanai pula"
+      :narrow_symbol: P
+      :one: "botswanai pula"
+      :symbol: P
+    :BYB: 
+      :name: "Fehérorosz új rubel (1994–1999)"
+      :one: "fehérorosz új rubel (1994–1999)"
+      :other: "fehérorosz új rubel (1994–1999)"
+    :BYN: 
+      :name: "belarusz rubel"
+      :narrow_symbol: р.
+      :one: "belarusz rubel"
+      :symbol: р.
+    :BYR: 
+      :name: "fehérorosz rubel (2000–2016)"
+      :one: "fehérorosz rubel (2000–2016)"
+    :BZD: 
+      :name: "belize-i dollár"
+      :narrow_symbol: $
+      :one: "belize-i dollár"
+      :symbol: $
+    :CAD: 
+      :name: "kanadai dollár"
+      :narrow_symbol: $
+      :one: "kanadai dollár"
+      :symbol: CAD
+    :CDF: 
+      :name: "kongói frank"
+      :one: "kongói frank"
+    :CHE: 
+      :name: "WIR euro"
+      :one: "WIR euro"
+    :CHF: 
+      :name: "svájci frank"
+      :one: "svájci frank"
+    :CHW: 
+      :name: "WIR frank"
+      :one: "WIR frank"
+    :CLF: 
+      :name: "Chilei unidades de fomento"
+      :one: "Chilei unidades de fomento"
+    :CLP: 
+      :name: "chilei peso"
+      :narrow_symbol: $
+      :one: "chilei peso"
+      :symbol: $
+    :CNH: 
+      :name: "kínai jüan (offshore)"
+      :one: "kínai jüan (offshore)"
+    :CNY: 
+      :name: "kínai jüan"
+      :narrow_symbol: ¥
+      :one: "kínai jüan"
+      :symbol: CNY
+    :COP: 
+      :name: "kolumbiai peso"
+      :narrow_symbol: $
+      :one: "kolumbiai peso"
+      :symbol: $
+    :COU: 
+      :name: "Unidad de Valor Real"
+      :one: "Unidad de Valor Real"
+    :CRC: 
+      :name: "Costa Rica-i colon"
+      :narrow_symbol: ₡
+      :one: "Costa Rica-i colon"
+      :symbol: ₡
+    :CSD: 
+      :name: "szerb dinár (2002–2006)"
+      :one: "szerb dinár (2002–2006)"
+      :other: "szerb dinár (2002–2006)"
+    :CSK: 
+      :name: "Csehszlovák kemény korona"
+      :one: "csehszlovák kemény korona"
+      :other: "csehszlovák kemény korona"
+    :CUC: 
+      :name: "kubai konvertibilis peso"
+      :narrow_symbol: $
+      :one: "kubai konvertibilis peso"
+      :symbol: $
+    :CUP: 
+      :name: "kubai peso"
+      :narrow_symbol: $
+      :one: "kubai peso"
+      :symbol: $
+    :CVE: 
+      :name: "Zöld-foki escudo"
+      :one: "Zöld-foki escudo"
+    :CYP: 
+      :name: "Ciprusi font"
+      :one: "Ciprusi font"
+    :CZK: 
+      :name: "cseh korona"
+      :narrow_symbol: Kč
+      :one: "cseh korona"
+      :symbol: Kč
+    :DDM: 
+      :name: "Kelet-Német márka"
+      :one: "Kelet-Német márka"
+    :DEM: 
+      :name: "Német márka"
+      :one: "Német márka"
+    :DJF: 
+      :name: "dzsibuti frank"
+      :one: "dzsibuti frank"
+    :DKK: 
+      :name: "dán korona"
+      :narrow_symbol: kr
+      :one: "dán korona"
+      :symbol: kr
+    :DOP: 
+      :name: "dominikai peso"
+      :narrow_symbol: $
+      :one: "dominikai peso"
+      :symbol: $
+    :DZD: 
+      :name: "algériai dínár"
+      :one: "algériai dínár"
+    :ECS: 
+      :name: "Ecuadori sucre"
+      :one: "Ecuadori sucre"
+    :ECV: 
+      :name: "Ecuadori Unidad de Valor Constante (UVC)"
+      :one: "Ecuadori Unidad de Valor Constante (UVC)"
+    :EEK: 
+      :name: "Észt korona"
+      :one: "észt korona"
+      :other: "észt korona"
+    :EGP: 
+      :name: "egyiptomi font"
+      :narrow_symbol: E£
+      :one: "egyiptomi font"
+      :symbol: E£
+    :ERN: 
+      :name: "eritreai nakfa"
+      :one: "eritreai nakfa"
+    :ESA: 
+      :name: "spanyol peseta (A–kontó)"
+      :one: "spanyol peseta (A–kontó)"
+    :ESB: 
+      :name: "spanyol peseta (konvertibilis kontó)"
+      :one: "spanyol peseta (konvertibilis kontó)"
+    :ESP: 
+      :name: "Spanyol peseta"
+      :narrow_symbol: ₧
+      :one: "spanyol peseta"
+      :other: "spanyol peseta"
+      :symbol: ₧
+    :ETB: 
+      :name: "etiópiai birr"
+      :one: "etiópiai birr"
+    :EUR: 
+      :name: euró
+      :narrow_symbol: €
+      :one: euró
+      :symbol: EUR
+    :FIM: 
+      :name: "Finn markka"
+      :one: "Finn markka"
+    :FJD: 
+      :name: "fidzsi dollár"
+      :narrow_symbol: $
+      :one: "fidzsi dollár"
+      :symbol: $
+    :FKP: 
+      :name: "falkland-szigeteki font"
+      :narrow_symbol: £
+      :one: "falkland-szigeteki font"
+      :symbol: £
+    :FRF: 
+      :name: "Francia frank"
+      :one: "Francia frank"
+    :GBP: 
+      :name: "angol font"
+      :narrow_symbol: £
+      :one: "angol font"
+      :symbol: GBP
+    :GEK: 
+      :name: "Grúz kupon larit"
+      :one: "Grúz kupon larit"
+    :GEL: 
+      :name: "grúz lari"
+      :narrow_symbol: ₾
+      :one: "grúz lari"
+      :symbol: ₾
+    :GHC: 
+      :name: "Ghánai cedi (1979–2007)"
+      :one: "Ghánai cedi (1979–2007)"
+    :GHS: 
+      :name: "ghánai cedi"
+      :narrow_symbol: GH₵
+      :one: "ghánai cedi"
+      :symbol: GH₵
+    :GIP: 
+      :name: "gibraltári font"
+      :narrow_symbol: £
+      :one: "gibraltári font"
+      :symbol: £
+    :GMD: 
+      :name: "gambiai dalasi"
+      :one: "gambiai dalasi"
+    :GNF: 
+      :name: "guineai frank"
+      :narrow_symbol: FG
+      :one: "guineai frank"
+      :symbol: FG
+    :GNS: 
+      :name: "Guineai syli"
+      :one: "Guineai syli"
+    :GQE: 
+      :name: "Egyenlítői-guineai ekwele guineana"
+      :one: "Egyenlítői-guineai ekwele"
+      :other: "Egyenlítői-guineai ekwele"
+    :GRD: 
+      :name: "Görög drachma"
+      :one: "görög drachma"
+      :other: "görög drachma"
+    :GTQ: 
+      :name: "guatemalai quetzal"
+      :narrow_symbol: Q
+      :one: "guatemalai quetzal"
+      :symbol: Q
+    :GWE: 
+      :name: "Portugál guinea escudo"
+      :one: "Portugál guinea escudo"
+    :GWP: 
+      :name: "Guinea-Bissaui peso"
+      :one: "Guinea-Bissaui peso"
+    :GYD: 
+      :name: "guyanai dollár"
+      :narrow_symbol: $
+      :one: "guyanai dollár"
+      :symbol: $
+    :HKD: 
+      :name: "hongkongi dollár"
+      :narrow_symbol: $
+      :one: "hongkongi dollár"
+      :symbol: HKD
+    :HNL: 
+      :name: "hondurasi lempira"
+      :narrow_symbol: L
+      :one: "hondurasi lempira"
+      :other: "hondurasi lempira"
+      :symbol: L
+    :HRD: 
+      :name: "Horvát dínár"
+      :one: "horvát dínár"
+      :other: "horvát dínár"
+    :HRK: 
+      :name: "horvát kuna"
+      :narrow_symbol: kn
+      :one: "horvát kuna"
+      :symbol: kn
+    :HTG: 
+      :name: "haiti gourde"
+      :one: "haiti gourde"
+    :HUF: 
+      :name: "magyar forint"
+      :narrow_symbol: Ft
+      :one: "magyar forint"
+      :symbol: Ft
+    :IDR: 
+      :name: "indonéz rúpia"
+      :narrow_symbol: Rp
+      :one: "indonéz rúpia"
+      :symbol: Rp
+    :IEP: 
+      :name: "Ír font"
+      :one: "Ír font"
+    :ILP: 
+      :name: "Izraeli font"
+      :one: "Izraeli font"
+    :ILS: 
+      :name: "izraeli új sékel"
+      :narrow_symbol: ₪
+      :one: "izraeli új sékel"
+      :symbol: ILS
+    :INR: 
+      :name: "indiai rúpia"
+      :narrow_symbol: ₹
+      :one: "indiai rúpia"
+      :symbol: INR
+    :IQD: 
+      :name: "iraki dínár"
+      :one: "iraki dínár"
+    :IRR: 
+      :name: "iráni riál"
+      :one: "iráni riál"
+      :other: "iráni riál"
+    :ISK: 
+      :name: "izlandi korona"
+      :narrow_symbol: kr
+      :one: "izlandi korona"
+      :symbol: kr
+    :ITL: 
+      :name: "Olasz líra"
+      :one: "olasz líra"
+      :other: "olasz líra"
+    :JMD: 
+      :name: "jamaicai dollár"
+      :narrow_symbol: $
+      :one: "jamaicai dollár"
+      :symbol: $
+    :JOD: 
+      :name: "jordániai dínár"
+      :one: "jordániai dínár"
+    :JPY: 
+      :name: "japán jen"
+      :narrow_symbol: ¥
+      :one: "japán jen"
+      :symbol: ¥
+    :KES: 
+      :name: "kenyai shilling"
+      :one: "kenyai shilling"
+    :KGS: 
+      :name: "kirgizisztáni szom"
+      :narrow_symbol: ⃀
+      :one: "kirgizisztáni szom"
+      :symbol: ⃀
+    :KHR: 
+      :name: "kambodzsai riel"
+      :narrow_symbol: ៛
+      :one: "kambodzsai riel"
+      :symbol: ៛
+    :KMF: 
+      :name: "comorei frank"
+      :narrow_symbol: CF
+      :one: "comorei frank"
+      :symbol: CF
+    :KPW: 
+      :name: "észak-koreai won"
+      :narrow_symbol: ₩
+      :one: "észak-koreai won"
+      :symbol: ₩
+    :KRW: 
+      :name: "dél-koreai won"
+      :narrow_symbol: ₩
+      :one: "dél-koreai won"
+      :symbol: KRW
+    :KWD: 
+      :name: "kuvaiti dínár"
+      :one: "kuvaiti dínár"
+    :KYD: 
+      :name: "kajmán-szigeteki dollár"
+      :narrow_symbol: $
+      :one: "kajmán-szigeteki dollár"
+      :symbol: $
+    :KZT: 
+      :name: "kazahsztáni tenge"
+      :narrow_symbol: ₸
+      :one: "kazahsztáni tenge"
+      :symbol: ₸
+    :LAK: 
+      :name: "laoszi kip"
+      :narrow_symbol: ₭
+      :one: "laoszi kip"
+      :symbol: ₭
+    :LBP: 
+      :name: "libanoni font"
+      :narrow_symbol: L£
+      :one: "libanoni font"
+      :symbol: L£
+    :LKR: 
+      :name: "Srí Lanka-i rúpia"
+      :narrow_symbol: Rs
+      :one: "Srí Lanka-i rúpia"
+      :symbol: Rs
+    :LRD: 
+      :name: "libériai dollár"
+      :narrow_symbol: $
+      :one: "libériai dollár"
+      :symbol: $
+    :LSL: 
+      :name: "lesothoi loti"
+      :one: "lesothoi loti"
+    :LTL: 
+      :name: "litvániai litas"
+      :narrow_symbol: Lt
+      :one: "litvániai litas"
+      :symbol: Lt
+    :LTT: 
+      :name: "Litvániai talonas"
+      :one: "Litvániai talonas"
+    :LUC: 
+      :name: "luxemburgi konvertibilis frank"
+      :one: "luxemburgi konvertibilis frank"
+    :LUF: 
+      :name: "Luxemburgi frank"
+      :one: "Luxemburgi frank"
+    :LUL: 
+      :name: "luxemburgi pénzügyi frank"
+      :one: "luxemburgi pénzügyi frank"
+    :LVL: 
+      :name: "lett lats"
+      :narrow_symbol: Ls
+      :one: "lett lats"
+      :symbol: Ls
+    :LVR: 
+      :name: "Lett rubel"
+      :one: "Lett rubel"
+    :LYD: 
+      :name: "líbiai dínár"
+      :one: "líbiai dínár"
+    :MAD: 
+      :name: "marokkói dirham"
+      :one: "marokkói dirham"
+    :MAF: 
+      :name: "Marokkói frank"
+      :one: "Marokkói frank"
+    :MDC: 
+      :name: "moldáv kupon"
+      :one: "moldáv kupon"
+    :MDL: 
+      :name: "moldován lei"
+      :one: "moldován lei"
+    :MGA: 
+      :name: "madagaszkári ariary"
+      :narrow_symbol: Ar
+      :one: "madagaszkári ariary"
+      :symbol: Ar
+    :MGF: 
+      :name: "Madagaszkári frank"
+      :one: "Madagaszkári frank"
+    :MKD: 
+      :name: "macedón dénár"
+      :one: "macedón dénár"
+      :other: "macedón dénár"
+    :MKN: 
+      :name: "macedón dénár (1992–1993)"
+      :one: "macedón dénár (1992–1993)"
+    :MLF: 
+      :name: "Mali frank"
+      :one: "Mali frank"
+    :MMK: 
+      :name: "mianmari kyat"
+      :narrow_symbol: K
+      :one: "mianmari kyat"
+      :symbol: K
+    :MNT: 
+      :name: "mongóliai tugrik"
+      :narrow_symbol: ₮
+      :one: "mongóliai tugrik"
+      :symbol: ₮
+    :MOP: 
+      :name: "makaói pataca"
+      :one: "makaói pataca"
+    :MRO: 
+      :name: "mauritániai ouguiya (1973–2017)"
+      :one: "mauritániai ouguiya (1973–2017)"
+    :MRU: 
+      :name: "mauritániai ouguiya"
+      :one: "mauritániai ouguiya"
+    :MTL: 
+      :name: "Máltai líra"
+      :one: "máltai líra"
+      :other: "máltai líra"
+    :MTP: 
+      :name: "Máltai font"
+      :one: "máltai font"
+      :other: "máltai font"
+    :MUR: 
+      :name: "mauritiusi rúpia"
+      :narrow_symbol: Rs
+      :one: "mauritiusi rúpia"
+      :symbol: Rs
+    :MVR: 
+      :name: "maldív-szigeteki rufiyaa"
+      :one: "maldív-szigeteki rufiyaa"
+    :MWK: 
+      :name: "malawi kwacha"
+      :one: "malawi kwacha"
+    :MXN: 
+      :name: "mexikói peso"
+      :narrow_symbol: $
+      :one: "mexikói peso"
+      :symbol: MXN
+    :MXP: 
+      :name: "Mexikói ezüst peso (1861–1992)"
+      :one: "mexikói ezüst peso (1861–1992)"
+      :other: "mexikói ezüst peso (1861–1992)"
+    :MXV: 
+      :name: "Mexikói Unidad de Inversion (UDI)"
+      :one: "mexikói befektetési egység (UDI)"
+      :other: "mexikói befektetési egység (UDI)"
+    :MYR: 
+      :name: "malajziai ringgit"
+      :narrow_symbol: RM
+      :one: "malajziai ringgit"
+      :symbol: RM
+    :MZE: 
+      :name: "Mozambik escudo"
+      :one: "Mozambik escudo"
+    :MZM: 
+      :name: "Mozambik metical"
+      :one: "Mozambik metical"
+    :MZN: 
+      :name: "mozambiki metikális"
+      :one: "mozambiki metikális"
+    :NAD: 
+      :name: "namíbiai dollár"
+      :narrow_symbol: $
+      :one: "namíbiai dollár"
+      :symbol: $
+    :NGN: 
+      :name: "nigériai naira"
+      :narrow_symbol: ₦
+      :one: "nigériai naira"
+      :symbol: ₦
+    :NIC: 
+      :name: "Nikaraguai cordoba"
+      :one: "nicaraguai córdoba (1988–1911)"
+      :other: "nicaraguai córdoba (1988–1911)"
+    :NIO: 
+      :name: "nicaraguai córdoba"
+      :narrow_symbol: C$
+      :one: "nicaraguai córdoba"
+      :symbol: C$
+    :NLG: 
+      :name: "Holland forint"
+      :one: "Holland forint"
+    :NOK: 
+      :name: "norvég korona"
+      :narrow_symbol: kr
+      :one: "norvég korona"
+      :symbol: kr
+    :NPR: 
+      :name: "nepáli rúpia"
+      :narrow_symbol: Rs
+      :one: "nepáli rúpia"
+      :symbol: Rs
+    :NZD: 
+      :name: "új-zélandi dollár"
+      :narrow_symbol: $
+      :one: "új-zélandi dollár"
+      :symbol: NZD
+    :OMR: 
+      :name: "ománi riál"
+      :one: "ománi riál"
+      :other: "ománi riál"
+    :PAB: 
+      :name: "panamai balboa"
+      :one: "panamai balboa"
+    :PEI: 
+      :name: "perui inti"
+      :one: "perui inti"
+    :PEN: 
+      :name: "perui sol"
+      :one: "perui sol"
+    :PES: 
+      :name: "perui sol (1863–1965)"
+      :one: "perui sol (1863–1965)"
+    :PGK: 
+      :name: "pápua új-guineai kina"
+      :one: "pápua új-guineai kina"
+    :PHP: 
+      :name: "fülöp-szigeteki peso"
+      :narrow_symbol: ₱
+      :one: "fülöp-szigeteki peso"
+      :symbol: PHP
+    :PKR: 
+      :name: "pakisztáni rúpia"
+      :narrow_symbol: Rs
+      :one: "pakisztáni rúpia"
+      :symbol: Rs
+    :PLN: 
+      :name: "lengyel zloty"
+      :narrow_symbol: zł
+      :one: "lengyel zloty"
+      :symbol: zł
+    :PLZ: 
+      :name: "Lengyel zloty (1950–1995)"
+      :one: "lengyel zloty (PLZ)"
+      :other: "lengyel zloty (PLZ)"
+    :PTE: 
+      :name: "Portugál escudo"
+      :one: "portugál escudo"
+      :other: "portugál escudo"
+    :PYG: 
+      :name: "paraguayi guarani"
+      :narrow_symbol: ₲
+      :one: "paraguayi guarani"
+      :symbol: ₲
+    :QAR: 
+      :name: "katari riál"
+      :one: "katari riál"
+      :other: "katari riál"
+    :RHD: 
+      :name: "rhodéziai dollár"
+      :one: "Rhodéziai dollár"
+      :other: "Rhodéziai dollár"
+    :ROL: 
+      :name: "román lej (1952–2006)"
+      :one: "román lej (1952–2006)"
+    :RON: 
+      :name: "román lej"
+      :narrow_symbol: lei
+      :one: "román lej"
+      :symbol: lei
+    :RSD: 
+      :name: "szerb dinár"
+      :one: "szerb dinár"
+      :other: "szerb dinár"
+    :RUB: 
+      :name: "orosz rubel"
+      :narrow_symbol: ₽
+      :one: "orosz rubel"
+      :symbol: ₽
+    :RUR: 
+      :name: "orosz rubel (1991–1998)"
+      :one: "orosz rubel (1991–1998)"
+    :RWF: 
+      :name: "ruandai frank"
+      :narrow_symbol: RF
+      :one: "ruandai frank"
+      :symbol: RF
+    :SAR: 
+      :name: "szaúdi riál"
+      :one: "szaúdi riál"
+      :other: "szaúdi riál"
+    :SBD: 
+      :name: "salamon-szigeteki dollár"
+      :narrow_symbol: $
+      :one: "salamon-szigeteki dollár"
+      :symbol: $
+    :SCR: 
+      :name: "seychelle-szigeteki rúpia"
+      :one: "seychelle-szigeteki rúpia"
+    :SDD: 
+      :name: "Szudáni dínár (1992–2007)"
+      :one: "Szudáni dínár (1992–2007)"
+    :SDG: 
+      :name: "szudáni font"
+      :one: "szudáni font"
+    :SDP: 
+      :name: "Szudáni font (1957–1998)"
+      :one: "Szudáni font (1957–1998)"
+    :SEK: 
+      :name: "svéd korona"
+      :narrow_symbol: kr
+      :one: "svéd korona"
+      :symbol: kr
+    :SGD: 
+      :name: "szingapúri dollár"
+      :narrow_symbol: $
+      :one: "szingapúri dollár"
+      :symbol: $
+    :SHP: 
+      :name: "Szent Ilona-i font"
+      :narrow_symbol: £
+      :one: "Szent Ilona-i font"
+      :symbol: £
+    :SIT: 
+      :name: "Szlovén tolar"
+      :one: "szlovén tolár"
+      :other: "szlovén tolár"
+    :SKK: 
+      :name: "Szlovák korona"
+      :one: "szlovák korona"
+      :other: "szlovák korona"
+    :SLE: 
+      :name: "Sierra Leone-i leone"
+      :one: "Sierra Leone-i leone"
+    :SLL: 
+      :name: "Sierra Leone-i leone (1964–2022)"
+      :one: "Sierra Leone-i leone (1964–2022)"
+      :other: "Sierra Leone-i leone (1964–2022)"
+    :SOS: 
+      :name: "szomáli shilling"
+      :one: "szomáli shilling"
+    :SRD: 
+      :name: "suriname-i dollár"
+      :narrow_symbol: $
+      :one: "suriname-i dollár"
+      :symbol: $
+    :SRG: 
+      :name: "Suriname-i gulden"
+      :one: "Suriname-i gulden"
+    :SSP: 
+      :name: "dél-szudáni font"
+      :narrow_symbol: £
+      :one: "dél-szudáni font"
+      :symbol: £
+    :STD: 
+      :name: "São Tomé és Príncipe-i dobra (1977–2017)"
+      :one: "São Tomé és Príncipe-i dobra (1977–2017)"
+    :STN: 
+      :name: "São Tomé és Príncipe-i dobra"
+      :narrow_symbol: Db
+      :one: "São Tomé és Príncipe-i dobra"
+      :symbol: Db
+    :SUR: 
+      :name: "Szovjet rubel"
+      :one: "szovjet rubel"
+      :other: "szovjet rubel"
+    :SVC: 
+      :name: "Salvadori colón"
+      :one: "salvadori colón"
+      :other: "salvadori colón"
+    :SYP: 
+      :name: "szíriai font"
+      :narrow_symbol: £
+      :one: "szíriai font"
+      :symbol: £
+    :SZL: 
+      :name: "szvázi lilangeni"
+      :one: "szvázi lilangeni"
+    :THB: 
+      :name: "thai baht"
+      :narrow_symbol: ฿
+      :one: "thai baht"
+      :symbol: ฿
+    :TJR: 
+      :name: "Tádzsikisztáni rubel"
+      :one: "Tádzsikisztáni rubel"
+    :TJS: 
+      :name: "tádzsikisztáni somoni"
+      :one: "tádzsikisztáni somoni"
+    :TMM: 
+      :name: "türkmenisztáni manat (1993–2009)"
+      :one: "türkmenisztáni manat (1993–2009)"
+    :TMT: 
+      :name: "türkmenisztáni manat"
+      :one: "türkmenisztáni manat"
+    :TND: 
+      :name: "tunéziai dínár"
+      :one: "tunéziai dínár"
+    :TOP: 
+      :name: "tongai paanga"
+      :narrow_symbol: T$
+      :one: "tongai paanga"
+      :symbol: T$
+    :TPE: 
+      :name: "Timori escudo"
+      :one: "timori escudo"
+      :other: "timori escudo"
+    :TRL: 
+      :name: "török líra (1922–2005)"
+      :one: "török líra (1922–2005)"
+    :TRY: 
+      :name: "török líra"
+      :narrow_symbol: ₺
+      :one: "török líra"
+      :symbol: ₺
+    :TTD: 
+      :name: "Trinidad és Tobago-i dollár"
+      :narrow_symbol: $
+      :one: "Trinidad és Tobago-i dollár"
+      :symbol: $
+    :TWD: 
+      :name: "tajvani új dollár"
+      :narrow_symbol: NT$
+      :one: "tajvani új dollár"
+      :symbol: TWD
+    :TZS: 
+      :name: "tanzániai shilling"
+      :one: "tanzániai shilling"
+    :UAH: 
+      :name: "ukrán hrivnya"
+      :narrow_symbol: ₴
+      :one: "ukrán hrivnya"
+      :symbol: ₴
+    :UAK: 
+      :name: "Ukrán karbovanec"
+      :one: "ukrán karbovanec"
+      :other: "ukrán karbovanec"
+    :UGS: 
+      :name: "Ugandai shilling (1966–1987)"
+      :one: "Ugandai shilling (1966–1987)"
+    :UGX: 
+      :name: "ugandai shilling"
+      :one: "ugandai shilling"
+    :USD: 
+      :name: USA-dollár
+      :narrow_symbol: $
+      :one: USA-dollár
+      :symbol: USD
+    :USN: 
+      :name: "USA dollár (következő napi)"
+      :one: "USA-dollár (következő napi)"
+      :other: "USA-dollár (következő napi)"
+    :USS: 
+      :name: "USA dollár (aznapi)"
+      :one: "USA-dollár (aznapi)"
+      :other: "USA-dollár (aznapi)"
+    :UYI: 
+      :name: "Uruguayi peso en unidades indexadas"
+      :one: "Uruguayi peso en unidades indexadas"
+    :UYP: 
+      :name: "Uruguay-i peso (1975–1993)"
+      :one: "Uruguayi peso (1975–1993)"
+      :other: "Uruguayi peso (1975–1993)"
+    :UYU: 
+      :name: "uruguayi peso"
+      :narrow_symbol: $
+      :one: "uruguayi peso"
+      :other: "uruguayi peso"
+      :symbol: $
+    :UZS: 
+      :name: "üzbegisztáni szom"
+      :one: "üzbegisztáni szom"
+      :other: "üzbegisztáni szom"
+    :VEB: 
+      :name: "Venezuelai bolivar (1871–2008)"
+      :one: "Venezuelai bolivar (1871–2008)"
+    :VEF: 
+      :name: "venezuelai bolivar (2008–2018)"
+      :narrow_symbol: Bs
+      :one: "venezuelai bolivar (2008–2018)"
+      :symbol: Bs
+    :VES: 
+      :name: "venezuelai bolivar"
+      :one: "venezuelai bolivar"
+    :VND: 
+      :name: "vietnámi dong"
+      :narrow_symbol: ₫
+      :one: "vietnámi dong"
+      :symbol: VND
+    :VNN: 
+      :name: "vietnámi dong (1978–1985)"
+      :one: "vietnámi dong (1978–1985)"
+    :VUV: 
+      :name: "vanuatui vatu"
+      :one: "vanuatui vatu"
+    :WST: 
+      :name: "nyugat-szamoai tala"
+      :one: "nyugat-szamoai tala"
+    :XAF: 
+      :name: "CFA frank BEAC"
+      :one: "CFA frank BEAC"
+      :symbol: FCFA
+    :XAG: 
+      :name: Ezüst
+      :one: Ezüst
+    :XAU: 
+      :name: Arany
+      :one: Arany
+    :XBA: 
+      :name: "Európai kompozit egység"
+      :one: "Európai kompozit egység"
+    :XBB: 
+      :name: "Európai monetáris egység"
+      :one: "Európai monetáris egység"
+    :XBC: 
+      :name: "Európai kontó egység (XBC)"
+      :one: "Európai kontó egység (XBC)"
+    :XBD: 
+      :name: "Európai kontó egység (XBD)"
+      :one: "Európai kontó egység (XBD)"
+    :XCD: 
+      :name: "kelet-karibi dollár"
+      :narrow_symbol: $
+      :one: "kelet-karibi dollár"
+      :symbol: XCD
+    :XCG: 
+      :symbol: Cg.
+    :XDR: 
+      :name: "Special Drawing Rights"
+      :one: "Special Drawing Rights"
+    :XEU: 
+      :name: "európai pénznemegység"
+      :one: "Európai pénznemegység"
+      :other: "Európai pénznemegység"
+    :XFO: 
+      :name: "Francia arany frank"
+      :one: "Francia arany frank"
+    :XFU: 
+      :name: "Francia UIC-frank"
+      :one: "Francia UIC-frank"
+    :XOF: 
+      :name: "CFA frank BCEAO"
+      :one: "CFA frank BCEAO"
+      :symbol: F CFA
+    :XPD: 
+      :name: palládium
+      :one: Palládium
+      :other: Palládium
+    :XPF: 
+      :name: "csendes-óceáni valutaközösségi frank"
+      :one: "csendes-óceáni valutaközösségi frank"
+      :symbol: CFPF
+    :XPT: 
+      :name: platina
+      :one: Platina
+      :other: Platina
+    :XRE: 
+      :name: "RINET tőke"
+      :one: "RINET tőke"
+    :XTS: 
+      :name: "Tesztelési pénznemkód"
+      :one: "Tesztelési pénznemkód"
+    :XXX: 
+      :name: "ismeretlen pénznem"
+      :one: "(ismeretlen pénznem)"
+      :other: "(ismeretlen pénznem)"
+      :symbol: ¤
+    :YDD: 
+      :name: "Jemeni dínár"
+      :one: "Jemeni dínár"
+    :YER: 
+      :name: "jemeni riál"
+      :one: "jemeni riál"
+      :other: "jemeni riál"
+    :YUD: 
+      :name: "Jugoszláv kemény dínár"
+      :one: "jugoszláv kemény dinár (1966–1990)"
+      :other: "jugoszláv kemény dinár (1966–1990)"
+    :YUM: 
+      :name: "Jugoszláv új dínár"
+      :one: "jugoszláv új dinár (1994–2002)"
+      :other: "jugoszláv új dinár (1994–2002)"
+    :YUN: 
+      :name: "Jugoszláv konvertibilis dínár"
+      :one: "jugoszláv konvertibilis dinár (1990–1992)"
+      :other: "jugoszláv konvertibilis dinár (1990–1992)"
+    :YUR: 
+      :name: "jugoszláv reformált dinár (1992–1993)"
+      :one: "jugoszláv reformált dinár (1992–1993)"
+    :ZAL: 
+      :name: "Dél-afrikai rand (pénzügyi)"
+      :one: "Dél-afrikai rand (pénzügyi)"
+    :ZAR: 
+      :name: "dél-afrikai rand"
+      :narrow_symbol: R
+      :one: "dél-afrikai rand"
+      :symbol: R
+    :ZMK: 
+      :name: "Zambiai kwacha (1968–2012)"
+      :one: "Zambiai kwacha (1968–2012)"
+    :ZMW: 
+      :name: "zambiai kwacha"
+      :narrow_symbol: ZK
+      :one: "zambiai kwacha"
+      :symbol: ZK
+    :ZRN: 
+      :name: "Zairei új zaire"
+      :one: "Zairei új zaire"
+    :ZRZ: 
+      :name: "Zairei zaire"
+      :one: "Zairei zaire"
+    :ZWD: 
+      :name: "Zimbabwei dollár (1980–2008)"
+      :one: "Zimbabwei dollár (1980–2008)"
+    :ZWL: 
+      :name: "Zimbabwei dollár (2009)"
+      :one: "Zimbabwei dollár (2009)"
+    :ZWR: 
+      :name: "Zimbabwei dollár (2008)"
+      :one: "Zimbabwei dollár (2008)"

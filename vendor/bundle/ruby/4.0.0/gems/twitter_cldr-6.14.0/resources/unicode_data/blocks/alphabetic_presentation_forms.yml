@@ -1,0 +1,929 @@
+---
+64256:
+- 64256
+- LATIN SMALL LIGATURE FF
+- Ll
+- '0'
+- L
+- "<compat> 0066 0066"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64257:
+- 64257
+- LATIN SMALL LIGATURE FI
+- Ll
+- '0'
+- L
+- "<compat> 0066 0069"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64258:
+- 64258
+- LATIN SMALL LIGATURE FL
+- Ll
+- '0'
+- L
+- "<compat> 0066 006C"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64259:
+- 64259
+- LATIN SMALL LIGATURE FFI
+- Ll
+- '0'
+- L
+- "<compat> 0066 0066 0069"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64260:
+- 64260
+- LATIN SMALL LIGATURE FFL
+- Ll
+- '0'
+- L
+- "<compat> 0066 0066 006C"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64261:
+- 64261
+- LATIN SMALL LIGATURE LONG S T
+- Ll
+- '0'
+- L
+- "<compat> 017F 0074"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64262:
+- 64262
+- LATIN SMALL LIGATURE ST
+- Ll
+- '0'
+- L
+- "<compat> 0073 0074"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64275:
+- 64275
+- ARMENIAN SMALL LIGATURE MEN NOW
+- Ll
+- '0'
+- L
+- "<compat> 0574 0576"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64276:
+- 64276
+- ARMENIAN SMALL LIGATURE MEN ECH
+- Ll
+- '0'
+- L
+- "<compat> 0574 0565"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64277:
+- 64277
+- ARMENIAN SMALL LIGATURE MEN INI
+- Ll
+- '0'
+- L
+- "<compat> 0574 056B"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64278:
+- 64278
+- ARMENIAN SMALL LIGATURE VEW NOW
+- Ll
+- '0'
+- L
+- "<compat> 057E 0576"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64279:
+- 64279
+- ARMENIAN SMALL LIGATURE MEN XEH
+- Ll
+- '0'
+- L
+- "<compat> 0574 056D"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64285:
+- 64285
+- HEBREW LETTER YOD WITH HIRIQ
+- Lo
+- '0'
+- R
+- 05D9 05B4
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64286:
+- 64286
+- HEBREW POINT JUDEO-SPANISH VARIKA
+- Mn
+- '26'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- HEBREW POINT VARIKA
+- ''
+- ''
+- ''
+- ''
+64287:
+- 64287
+- HEBREW LIGATURE YIDDISH YOD YOD PATAH
+- Lo
+- '0'
+- R
+- 05F2 05B7
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64288:
+- 64288
+- HEBREW LETTER ALTERNATIVE AYIN
+- Lo
+- '0'
+- R
+- "<font> 05E2"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64289:
+- 64289
+- HEBREW LETTER WIDE ALEF
+- Lo
+- '0'
+- R
+- "<font> 05D0"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64290:
+- 64290
+- HEBREW LETTER WIDE DALET
+- Lo
+- '0'
+- R
+- "<font> 05D3"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64291:
+- 64291
+- HEBREW LETTER WIDE HE
+- Lo
+- '0'
+- R
+- "<font> 05D4"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64292:
+- 64292
+- HEBREW LETTER WIDE KAF
+- Lo
+- '0'
+- R
+- "<font> 05DB"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64293:
+- 64293
+- HEBREW LETTER WIDE LAMED
+- Lo
+- '0'
+- R
+- "<font> 05DC"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64294:
+- 64294
+- HEBREW LETTER WIDE FINAL MEM
+- Lo
+- '0'
+- R
+- "<font> 05DD"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64295:
+- 64295
+- HEBREW LETTER WIDE RESH
+- Lo
+- '0'
+- R
+- "<font> 05E8"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64296:
+- 64296
+- HEBREW LETTER WIDE TAV
+- Lo
+- '0'
+- R
+- "<font> 05EA"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64297:
+- 64297
+- HEBREW LETTER ALTERNATIVE PLUS SIGN
+- Sm
+- '0'
+- ES
+- "<font> 002B"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64298:
+- 64298
+- HEBREW LETTER SHIN WITH SHIN DOT
+- Lo
+- '0'
+- R
+- 05E9 05C1
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64299:
+- 64299
+- HEBREW LETTER SHIN WITH SIN DOT
+- Lo
+- '0'
+- R
+- 05E9 05C2
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64300:
+- 64300
+- HEBREW LETTER SHIN WITH DAGESH AND SHIN DOT
+- Lo
+- '0'
+- R
+- FB49 05C1
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64301:
+- 64301
+- HEBREW LETTER SHIN WITH DAGESH AND SIN DOT
+- Lo
+- '0'
+- R
+- FB49 05C2
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64302:
+- 64302
+- HEBREW LETTER ALEF WITH PATAH
+- Lo
+- '0'
+- R
+- 05D0 05B7
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64303:
+- 64303
+- HEBREW LETTER ALEF WITH QAMATS
+- Lo
+- '0'
+- R
+- 05D0 05B8
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64304:
+- 64304
+- HEBREW LETTER ALEF WITH MAPIQ
+- Lo
+- '0'
+- R
+- 05D0 05BC
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64305:
+- 64305
+- HEBREW LETTER BET WITH DAGESH
+- Lo
+- '0'
+- R
+- 05D1 05BC
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64306:
+- 64306
+- HEBREW LETTER GIMEL WITH DAGESH
+- Lo
+- '0'
+- R
+- 05D2 05BC
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64307:
+- 64307
+- HEBREW LETTER DALET WITH DAGESH
+- Lo
+- '0'
+- R
+- 05D3 05BC
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64308:
+- 64308
+- HEBREW LETTER HE WITH MAPIQ
+- Lo
+- '0'
+- R
+- 05D4 05BC
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64309:
+- 64309
+- HEBREW LETTER VAV WITH DAGESH
+- Lo
+- '0'
+- R
+- 05D5 05BC
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64310:
+- 64310
+- HEBREW LETTER ZAYIN WITH DAGESH
+- Lo
+- '0'
+- R
+- 05D6 05BC
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64312:
+- 64312
+- HEBREW LETTER TET WITH DAGESH
+- Lo
+- '0'
+- R
+- 05D8 05BC
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64313:
+- 64313
+- HEBREW LETTER YOD WITH DAGESH
+- Lo
+- '0'
+- R
+- 05D9 05BC
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64314:
+- 64314
+- HEBREW LETTER FINAL KAF WITH DAGESH
+- Lo
+- '0'
+- R
+- 05DA 05BC
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64315:
+- 64315
+- HEBREW LETTER KAF WITH DAGESH
+- Lo
+- '0'
+- R
+- 05DB 05BC
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64316:
+- 64316
+- HEBREW LETTER LAMED WITH DAGESH
+- Lo
+- '0'
+- R
+- 05DC 05BC
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64318:
+- 64318
+- HEBREW LETTER MEM WITH DAGESH
+- Lo
+- '0'
+- R
+- 05DE 05BC
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64320:
+- 64320
+- HEBREW LETTER NUN WITH DAGESH
+- Lo
+- '0'
+- R
+- 05E0 05BC
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64321:
+- 64321
+- HEBREW LETTER SAMEKH WITH DAGESH
+- Lo
+- '0'
+- R
+- 05E1 05BC
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64323:
+- 64323
+- HEBREW LETTER FINAL PE WITH DAGESH
+- Lo
+- '0'
+- R
+- 05E3 05BC
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64324:
+- 64324
+- HEBREW LETTER PE WITH DAGESH
+- Lo
+- '0'
+- R
+- 05E4 05BC
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64326:
+- 64326
+- HEBREW LETTER TSADI WITH DAGESH
+- Lo
+- '0'
+- R
+- 05E6 05BC
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64327:
+- 64327
+- HEBREW LETTER QOF WITH DAGESH
+- Lo
+- '0'
+- R
+- 05E7 05BC
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64328:
+- 64328
+- HEBREW LETTER RESH WITH DAGESH
+- Lo
+- '0'
+- R
+- 05E8 05BC
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64329:
+- 64329
+- HEBREW LETTER SHIN WITH DAGESH
+- Lo
+- '0'
+- R
+- 05E9 05BC
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64330:
+- 64330
+- HEBREW LETTER TAV WITH DAGESH
+- Lo
+- '0'
+- R
+- 05EA 05BC
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64331:
+- 64331
+- HEBREW LETTER VAV WITH HOLAM
+- Lo
+- '0'
+- R
+- 05D5 05B9
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64332:
+- 64332
+- HEBREW LETTER BET WITH RAFE
+- Lo
+- '0'
+- R
+- 05D1 05BF
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64333:
+- 64333
+- HEBREW LETTER KAF WITH RAFE
+- Lo
+- '0'
+- R
+- 05DB 05BF
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64334:
+- 64334
+- HEBREW LETTER PE WITH RAFE
+- Lo
+- '0'
+- R
+- 05E4 05BF
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+64335:
+- 64335
+- HEBREW LIGATURE ALEF LAMED
+- Lo
+- '0'
+- R
+- "<compat> 05D0 05DC"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''

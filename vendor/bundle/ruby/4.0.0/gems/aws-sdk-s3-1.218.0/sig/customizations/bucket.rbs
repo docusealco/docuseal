@@ -1,0 +1,19 @@
+module Aws
+  module S3
+    class Bucket
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Bucket.html#clear!-instance_method
+      def clear!: () -> void
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Bucket.html#delete!-instance_method
+      def delete!: (?max_attempts: ::Integer, ?initial_wait: ::Float) -> void
+                 | (?Hash[Symbol, untyped]) -> void
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Bucket.html#url-instance_method
+      def url: (?virtual_host: boolish, ?secure: boolish) -> String
+             | (?Hash[Symbol, untyped]) -> String
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Bucket.html#presigned_post-instance_method
+      def presigned_post: (Hash[Symbol, untyped]) -> untyped
+    end
+  end
+end

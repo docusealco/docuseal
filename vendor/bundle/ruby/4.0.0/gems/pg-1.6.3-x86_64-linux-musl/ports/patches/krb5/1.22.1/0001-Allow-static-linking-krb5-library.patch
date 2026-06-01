@@ -1,0 +1,30 @@
+From e82c1b395162ea71279ea2170259383082e41ab0 Mon Sep 17 00:00:00 2001
+From: Lars Kanis <lars@greiz-reinsdorf.de>
+Date: Sat, 12 Jul 2025 10:55:17 +0200
+Subject: [PATCH] Allow static linking krb5 library
+
+Otherwise it fails with:
+  Undefined symbols for architecture arm64:
+    "_krb5int_c_mit_des_zeroblock", referenced from:
+      _krb5int_des3_cbc_encrypt in libk5crypto.a(d3_aead.o)
+      _krb5int_des3_cbc_decrypt in libk5crypto.a(d3_aead.o)
+---
+ src/lib/crypto/builtin/des/des_int.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/lib/crypto/builtin/des/des_int.h b/src/lib/crypto/builtin/des/des_int.h
+index 46fed7dbd..114e48ebd 100644
+--- a/lib/crypto/builtin/des/des_int.h
++++ b/lib/crypto/builtin/des/des_int.h
+@@ -159,7 +159,7 @@ mit_des_cbc_encrypt(const mit_des_cblock *in, mit_des_cblock *out,
+                     const mit_des_cblock ivec, int enc);
+ 
+ #define mit_des_zeroblock krb5int_c_mit_des_zeroblock
+-extern const mit_des_cblock mit_des_zeroblock;
++const mit_des_cblock mit_des_zeroblock;
+ 
+ /* fin_rndkey.c */
+ krb5_error_code mit_des_finish_random_key(const krb5_encrypt_block *,
+-- 
+2.43.0
+

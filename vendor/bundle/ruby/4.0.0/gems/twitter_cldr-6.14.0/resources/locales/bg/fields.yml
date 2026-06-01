@@ -1,0 +1,537 @@
+--- 
+:bg: 
+  :fields: 
+    :day: 
+      :display_name: ден
+      :relative: 
+        -1: вчера
+        -2: "онзи ден"
+        0: днес
+        1: утре
+        2: вдругиден
+      :relative_time: 
+        :future: 
+          :one: "след {0} ден"
+          :other: "след {0} дни"
+        :past: 
+          :one: "преди {0} ден"
+          :other: "преди {0} дни"
+    :day-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "сл. {0} д"
+          :other: "сл. {0} д"
+        :past: 
+          :one: "пр. {0} д"
+          :other: "пр. {0} д"
+    :day-short: 
+      :display_name: д
+    :dayOfYear: 
+      :display_name: "ден от годината"
+    :dayOfYear-short: 
+      :display_name: "ден от г."
+    :dayperiod: 
+      :display_name: пр.об./сл.об.
+    :era: 
+      :display_name: ера
+    :fri: 
+      :relative: 
+        -1: "предходният петък"
+        0: "този петък"
+        1: "следващият петък"
+      :relative_time: 
+        :future: 
+          :one: "след {0} петък"
+          :other: "след {0} петъка"
+        :past: 
+          :one: "преди {0} петък"
+          :other: "преди {0} петъка"
+    :fri-narrow: 
+      :relative: 
+        -1: "предх. пт"
+        0: "този пт"
+        1: "следв. пт"
+      :relative_time: 
+        :future: 
+          :one: "сл. {0} пт"
+          :other: "сл. {0} пт"
+        :past: 
+          :one: "пр. {0} пт"
+          :other: "пр. {0} пт"
+    :fri-short: 
+      :relative: 
+        -1: "предходният пт"
+        0: "този пт"
+        1: "следващият пт"
+      :relative_time: 
+        :future: 
+          :one: "след {0} пт"
+          :other: "след {0} пт"
+        :past: 
+          :one: "преди {0} пт"
+          :other: "преди {0} пт"
+    :hour: 
+      :display_name: час
+      :relative: 
+        0: "в този час"
+      :relative_time: 
+        :future: 
+          :one: "след {0} час"
+          :other: "след {0} часа"
+        :past: 
+          :one: "преди {0} час"
+          :other: "преди {0} часа"
+    :hour-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "сл. {0} ч"
+          :other: "сл. {0} ч"
+        :past: 
+          :one: "пр. {0} ч"
+          :other: "пр. {0} ч"
+    :hour-short: 
+      :display_name: ч
+      :relative_time: 
+        :future: 
+          :one: "след {0} ч"
+          :other: "след {0} ч"
+        :past: 
+          :one: "преди {0} ч"
+          :other: "преди {0} ч"
+    :minute: 
+      :display_name: минута
+      :relative: 
+        0: "в тази минута"
+      :relative_time: 
+        :future: 
+          :one: "след {0} минута"
+          :other: "след {0} минути"
+        :past: 
+          :one: "преди {0} минута"
+          :other: "преди {0} минути"
+    :minute-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "сл. {0} мин"
+          :other: "сл. {0} мин"
+        :past: 
+          :one: "пр. {0} мин"
+          :other: "пр. {0} мин"
+    :minute-short: 
+      :display_name: мин
+      :relative_time: 
+        :future: 
+          :one: "след {0} мин"
+          :other: "след {0} мин"
+        :past: 
+          :one: "преди {0} мин"
+          :other: "преди {0} мин"
+    :mon: 
+      :relative: 
+        -1: "предходният понеделник"
+        0: "този понеделник"
+        1: "следващият понеделник"
+      :relative_time: 
+        :future: 
+          :one: "след {0} понеделник"
+          :other: "след {0} понеделника"
+        :past: 
+          :one: "преди {0} понеделник"
+          :other: "преди {0} понеделника"
+    :mon-narrow: 
+      :relative: 
+        -1: "предх. пн"
+        0: "този пн"
+        1: "следв. пн"
+      :relative_time: 
+        :future: 
+          :one: "сл. {0} пн"
+          :other: "сл. {0} пн"
+        :past: 
+          :one: "пр. {0} пн"
+          :other: "пр. {0} пн"
+    :mon-short: 
+      :relative: 
+        -1: "предходният пн"
+        0: "този пн"
+        1: "следващият пн"
+      :relative_time: 
+        :future: 
+          :one: "след {0} пн"
+          :other: "след {0} пн"
+        :past: 
+          :one: "преди {0} пн"
+          :other: "преди {0} пн"
+    :month: 
+      :display_name: месец
+      :relative: 
+        -1: "предходен месец"
+        0: "този месец"
+        1: "следващ месец"
+      :relative_time: 
+        :future: 
+          :one: "след {0} месец"
+          :other: "след {0} месеца"
+        :past: 
+          :one: "преди {0} месец"
+          :other: "преди {0} месеца"
+    :month-narrow: 
+      :relative: 
+        -1: "мин. м."
+        0: "т. м."
+        1: "сл. м."
+      :relative_time: 
+        :future: 
+          :one: "сл. {0} м."
+          :other: "сл. {0} м."
+        :past: 
+          :one: "пр. {0} м."
+          :other: "пр. {0} м."
+    :month-short: 
+      :display_name: мес.
+      :relative: 
+        -1: "мин. мес."
+        0: "този мес."
+        1: "следв. мес."
+      :relative_time: 
+        :future: 
+          :one: "след {0} м."
+          :other: "след {0} м."
+        :past: 
+          :one: "преди {0} м."
+          :other: "преди {0} м."
+    :quarter: 
+      :display_name: тримесечие
+      :relative: 
+        -1: "предходно тримесечие"
+        0: "това тримесечие"
+        1: "следващо тримесечие"
+      :relative_time: 
+        :future: 
+          :one: "след {0} тримесечие"
+          :other: "след {0} тримесечия"
+        :past: 
+          :one: "преди {0} тримесечие"
+          :other: "преди {0} тримесечия"
+    :quarter-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "сл. {0} трим."
+          :other: "сл. {0} трим."
+        :past: 
+          :one: "пр. {0} трим."
+          :other: "пр. {0} трим."
+    :quarter-short: 
+      :display_name: трим.
+      :relative: 
+        -1: "мин. трим."
+        0: "това трим."
+        1: "следв. трим."
+      :relative_time: 
+        :future: 
+          :one: "след {0} трим."
+          :other: "след {0} трим."
+        :past: 
+          :one: "преди {0} трим."
+          :other: "преди {0} трим."
+    :sat: 
+      :relative: 
+        -1: "предходната събота"
+        0: "тази събота"
+        1: "следващата събота"
+      :relative_time: 
+        :future: 
+          :one: "след {0} събота"
+          :other: "след {0} съботи"
+        :past: 
+          :one: "преди {0} събота"
+          :other: "преди {0} съботи"
+    :sat-narrow: 
+      :relative: 
+        -1: "предх. сб"
+        0: "тази сб"
+        1: "следв. сб"
+      :relative_time: 
+        :future: 
+          :one: "сл. {0} сб"
+          :other: "сл. {0} сб"
+        :past: 
+          :one: "пр. {0} сб"
+          :other: "пр. {0} сб"
+    :sat-short: 
+      :relative: 
+        -1: "предходната сб"
+        0: "тази сб"
+        1: "следващата сб"
+      :relative_time: 
+        :future: 
+          :one: "след {0} сб"
+          :other: "след {0} сб"
+        :past: 
+          :one: "преди {0} сб"
+          :other: "преди {0} сб"
+    :second: 
+      :display_name: секунда
+      :relative: 
+        0: сега
+      :relative_time: 
+        :future: 
+          :one: "след {0} секунда"
+          :other: "след {0} секунди"
+        :past: 
+          :one: "преди {0} секунда"
+          :other: "преди {0} секунди"
+    :second-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "сл. {0} сек"
+          :other: "сл. {0} сек"
+        :past: 
+          :one: "пр. {0} сек"
+          :other: "пр. {0} сек"
+    :second-short: 
+      :display_name: сек
+      :relative_time: 
+        :future: 
+          :one: "след {0} сек"
+          :other: "след {0} сек"
+        :past: 
+          :one: "преди {0} сек"
+          :other: "преди {0} сек"
+    :sun: 
+      :relative: 
+        -1: "предходната неделя"
+        0: "тази неделя"
+        1: "следващата неделя"
+      :relative_time: 
+        :future: 
+          :one: "след {0} неделя"
+          :other: "след {0} недели"
+        :past: 
+          :one: "преди {0} неделя"
+          :other: "преди {0} недели"
+    :sun-narrow: 
+      :relative: 
+        -1: "предх. нд"
+        0: "тази нд"
+        1: "следв. нд"
+      :relative_time: 
+        :future: 
+          :one: "сл. {0} нд"
+          :other: "сл. {0} нд"
+        :past: 
+          :one: "пр. {0} нд"
+          :other: "пр. {0} нд"
+    :sun-short: 
+      :relative: 
+        -1: "предходната нд"
+        0: "тази нд"
+        1: "следващата нд"
+      :relative_time: 
+        :future: 
+          :one: "след {0} нд"
+          :other: "след {0} нд"
+        :past: 
+          :one: "преди {0} нд"
+          :other: "преди {0} нд"
+    :thu: 
+      :relative: 
+        -1: "предходният четвъртък"
+        0: "този четвъртък"
+        1: "следващият четвъртък"
+      :relative_time: 
+        :future: 
+          :one: "след {0} четвъртък"
+          :other: "след {0} четвъртъка"
+        :past: 
+          :one: "преди {0} четвъртък"
+          :other: "преди {0} четвъртъка"
+    :thu-narrow: 
+      :relative: 
+        -1: "предх. чт"
+        0: "този чт"
+        1: "следв. чт"
+      :relative_time: 
+        :future: 
+          :one: "след {0} четвъртък"
+          :other: "след {0} четвъртъка"
+        :past: 
+          :one: "пр. {0} чт"
+          :other: "пр. {0} чт"
+    :thu-short: 
+      :relative: 
+        -1: "предходният чт"
+        0: "този чт"
+        1: "следващият чт"
+      :relative_time: 
+        :future: 
+          :one: "след {0} чт"
+          :other: "след {0} чт"
+        :past: 
+          :one: "преди {0} чт"
+          :other: "преди {0} чт"
+    :tue: 
+      :relative: 
+        -1: "предходният вторник"
+        0: "този вторник"
+        1: "следващият вторник"
+      :relative_time: 
+        :future: 
+          :one: "след {0} вторник"
+          :other: "след {0} вторника"
+        :past: 
+          :one: "преди {0} вторник"
+          :other: "преди {0} вторника"
+    :tue-narrow: 
+      :relative: 
+        -1: "предх. вт"
+        0: "този вт"
+        1: "следв. вт"
+      :relative_time: 
+        :future: 
+          :one: "сл. {0} вт"
+          :other: "сл. {0} вт"
+        :past: 
+          :one: "пр. {0} вт"
+          :other: "пр. {0} вт"
+    :tue-short: 
+      :relative: 
+        -1: "предходният вт"
+        0: "този вт"
+        1: "следващият вт"
+      :relative_time: 
+        :future: 
+          :one: "след {0} вт"
+          :other: "след {0} вт"
+        :past: 
+          :one: "преди {0} вт"
+          :other: "преди {0} вт"
+    :wed: 
+      :relative: 
+        -1: "предходната сряда"
+        0: "тази сряда"
+        1: "следващата сряда"
+      :relative_time: 
+        :future: 
+          :one: "след {0} сряда"
+          :other: "след {0} среди"
+        :past: 
+          :one: "преди {0} сряда"
+          :other: "преди {0} среди"
+    :wed-narrow: 
+      :relative: 
+        -1: "предх. ср"
+        0: "тази ср"
+        1: "следв. ср"
+      :relative_time: 
+        :future: 
+          :one: "сл. {0} ср"
+          :other: "сл. {0} ср"
+        :past: 
+          :one: "пр. {0} ср"
+          :other: "пр. {0} ср"
+    :wed-short: 
+      :relative: 
+        -1: "предходната ср"
+        0: "тази ср"
+        1: "следващата ср"
+      :relative_time: 
+        :future: 
+          :one: "след {0} ср"
+          :other: "след {0} ср"
+        :past: 
+          :one: "преди {0} ср"
+          :other: "преди {0} ср"
+    :week: 
+      :display_name: седмица
+      :relative: 
+        -1: "предходната седмица"
+        0: "тази седмица"
+        1: "следващата седмица"
+      :relative_time: 
+        :future: 
+          :one: "след {0} седмица"
+          :other: "след {0} седмици"
+        :past: 
+          :one: "преди {0} седмица"
+          :other: "преди {0} седмици"
+    :week-narrow: 
+      :relative: 
+        -1: "мин. седм."
+        0: "тази седм."
+        1: "сл. седм."
+      :relative_time: 
+        :future: 
+          :one: "сл. {0} седм."
+          :other: "сл. {0} седм."
+        :past: 
+          :one: "пр. {0} седм."
+          :other: "пр. {0} седм."
+    :week-short: 
+      :display_name: седм.
+      :relative: 
+        -1: "мин. седм."
+        0: "тази седм."
+        1: "следв. седм."
+      :relative_time: 
+        :future: 
+          :one: "след {0} седм."
+          :other: "след {0} седм."
+        :past: 
+          :one: "преди {0} седм."
+          :other: "преди {0} седм."
+    :weekOfMonth: 
+      :display_name: "седмица от месеца"
+    :weekOfMonth-short: 
+      :display_name: "седм. от мес."
+    :weekday: 
+      :display_name: "ден от седмицата"
+    :weekday-short: 
+      :display_name: "ден от седм."
+    :weekdayOfMonth: 
+      :display_name: "работен ден от месеца"
+    :weekdayOfMonth-short: 
+      :display_name: "раб. ден от мес."
+    :year: 
+      :display_name: година
+      :relative: 
+        -1: "миналата година"
+        0: "тази година"
+        1: "следващата година"
+      :relative_time: 
+        :future: 
+          :one: "след {0} година"
+          :other: "след {0} години"
+        :past: 
+          :one: "преди {0} година"
+          :other: "преди {0} години"
+    :year-narrow: 
+      :display_name: г.
+      :relative: 
+        -1: "мин. г."
+        0: "т. г."
+        1: "сл. г."
+      :relative_time: 
+        :future: 
+          :one: "сл. {0} г."
+          :other: "сл. {0} г."
+        :past: 
+          :one: "пр. {0} г."
+          :other: "пр. {0} г."
+    :year-short: 
+      :display_name: год.
+      :relative: 
+        -1: "мин. г."
+        0: "т. г."
+        1: "следв. г."
+      :relative_time: 
+        :future: 
+          :one: "след {0} г."
+          :other: "след {0} г."
+        :past: 
+          :one: "преди {0} г."
+          :other: "преди {0} г."
+    :zone: 
+      :display_name: "часова зона"
+    :zone-short: 
+      :display_name: "час. зона"

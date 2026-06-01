@@ -1,0 +1,290 @@
+--- 
+:numbering_systems: 
+  :adlm: 
+    :digits: 𞥐𞥑𞥒𞥓𞥔𞥕𞥖𞥗𞥘𞥙
+    :type: numeric
+  :ahom: 
+    :digits: 𑜰𑜱𑜲𑜳𑜴𑜵𑜶𑜷𑜸𑜹
+    :type: numeric
+  :arab: 
+    :digits: ٠١٢٣٤٥٦٧٨٩
+    :type: numeric
+  :arabext: 
+    :digits: ۰۱۲۳۴۵۶۷۸۹
+    :type: numeric
+  :armn: 
+    :rules: armenian-upper
+    :type: algorithmic
+  :armnlow: 
+    :rules: armenian-lower
+    :type: algorithmic
+  :bali: 
+    :digits: ᭐᭑᭒᭓᭔᭕᭖᭗᭘᭙
+    :type: numeric
+  :beng: 
+    :digits: ০১২৩৪৫৬৭৮৯
+    :type: numeric
+  :bhks: 
+    :digits: 𑱐𑱑𑱒𑱓𑱔𑱕𑱖𑱗𑱘𑱙
+    :type: numeric
+  :brah: 
+    :digits: 𑁦𑁧𑁨𑁩𑁪𑁫𑁬𑁭𑁮𑁯
+    :type: numeric
+  :cakm: 
+    :digits: 𑄶𑄷𑄸𑄹𑄺𑄻𑄼𑄽𑄾𑄿
+    :type: numeric
+  :cham: 
+    :digits: ꩐꩑꩒꩓꩔꩕꩖꩗꩘꩙
+    :type: numeric
+  :cyrl: 
+    :rules: cyrillic-lower
+    :type: algorithmic
+  :deva: 
+    :digits: ०१२३४५६७८९
+    :type: numeric
+  :diak: 
+    :digits: 𑥐𑥑𑥒𑥓𑥔𑥕𑥖𑥗𑥘𑥙
+    :type: numeric
+  :ethi: 
+    :rules: ethiopic
+    :type: algorithmic
+  :fullwide: 
+    :digits: ０１２３４５６７８９
+    :type: numeric
+  :gara: 
+    :digits: 𐵀𐵁𐵂𐵃𐵄𐵅𐵆𐵇𐵈𐵉
+    :type: numeric
+  :geor: 
+    :rules: georgian
+    :type: algorithmic
+  :gong: 
+    :digits: 𑶠𑶡𑶢𑶣𑶤𑶥𑶦𑶧𑶨𑶩
+    :type: numeric
+  :gonm: 
+    :digits: 𑵐𑵑𑵒𑵓𑵔𑵕𑵖𑵗𑵘𑵙
+    :type: numeric
+  :grek: 
+    :rules: greek-upper
+    :type: algorithmic
+  :greklow: 
+    :rules: greek-lower
+    :type: algorithmic
+  :gujr: 
+    :digits: ૦૧૨૩૪૫૬૭૮૯
+    :type: numeric
+  :gukh: 
+    :digits: 𖄰𖄱𖄲𖄳𖄴𖄵𖄶𖄷𖄸𖄹
+    :type: numeric
+  :guru: 
+    :digits: ੦੧੨੩੪੫੬੭੮੯
+    :type: numeric
+  :hanidays: 
+    :rules: zh/SpelloutRules/spellout-numbering-days
+    :type: algorithmic
+  :hanidec: 
+    :digits: 〇一二三四五六七八九
+    :type: numeric
+  :hans: 
+    :rules: zh/SpelloutRules/spellout-cardinal
+    :type: algorithmic
+  :hansfin: 
+    :rules: zh/SpelloutRules/spellout-cardinal-financial
+    :type: algorithmic
+  :hant: 
+    :rules: zh_Hant/SpelloutRules/spellout-cardinal
+    :type: algorithmic
+  :hantfin: 
+    :rules: zh_Hant/SpelloutRules/spellout-cardinal-financial
+    :type: algorithmic
+  :hebr: 
+    :rules: hebrew
+    :type: algorithmic
+  :hmng: 
+    :digits: 𖭐𖭑𖭒𖭓𖭔𖭕𖭖𖭗𖭘𖭙
+    :type: numeric
+  :hmnp: 
+    :digits: 𞅀𞅁𞅂𞅃𞅄𞅅𞅆𞅇𞅈𞅉
+    :type: numeric
+  :java: 
+    :digits: ꧐꧑꧒꧓꧔꧕꧖꧗꧘꧙
+    :type: numeric
+  :jpan: 
+    :rules: ja/SpelloutRules/spellout-cardinal
+    :type: algorithmic
+  :jpanfin: 
+    :rules: ja/SpelloutRules/spellout-cardinal-financial
+    :type: algorithmic
+  :jpanyear: 
+    :rules: ja/SpelloutRules/spellout-numbering-year-latn
+    :type: algorithmic
+  :kali: 
+    :digits: ꤀꤁꤂꤃꤄꤅꤆꤇꤈꤉
+    :type: numeric
+  :kawi: 
+    :digits: 𑽐𑽑𑽒𑽓𑽔𑽕𑽖𑽗𑽘𑽙
+    :type: numeric
+  :khmr: 
+    :digits: ០១២៣៤៥៦៧៨៩
+    :type: numeric
+  :knda: 
+    :digits: ೦೧೨೩೪೫೬೭೮೯
+    :type: numeric
+  :krai: 
+    :digits: 𖵰𖵱𖵲𖵳𖵴𖵵𖵶𖵷𖵸𖵹
+    :type: numeric
+  :lana: 
+    :digits: ᪀᪁᪂᪃᪄᪅᪆᪇᪈᪉
+    :type: numeric
+  :lanatham: 
+    :digits: ᪐᪑᪒᪓᪔᪕᪖᪗᪘᪙
+    :type: numeric
+  :laoo: 
+    :digits: ໐໑໒໓໔໕໖໗໘໙
+    :type: numeric
+  :latn: 
+    :digits: 0123456789
+    :type: numeric
+  :lepc: 
+    :digits: ᱀᱁᱂᱃᱄᱅᱆᱇᱈᱉
+    :type: numeric
+  :limb: 
+    :digits: ᥆᥇᥈᥉᥊᥋᥌᥍᥎᥏
+    :type: numeric
+  :mathbold: 
+    :digits: 𝟎𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗
+    :type: numeric
+  :mathdbl: 
+    :digits: 𝟘𝟙𝟚𝟛𝟜𝟝𝟞𝟟𝟠𝟡
+    :type: numeric
+  :mathmono: 
+    :digits: 𝟶𝟷𝟸𝟹𝟺𝟻𝟼𝟽𝟾𝟿
+    :type: numeric
+  :mathsanb: 
+    :digits: 𝟬𝟭𝟮𝟯𝟰𝟱𝟲𝟳𝟴𝟵
+    :type: numeric
+  :mathsans: 
+    :digits: 𝟢𝟣𝟤𝟥𝟦𝟧𝟨𝟩𝟪𝟫
+    :type: numeric
+  :mlym: 
+    :digits: ൦൧൨൩൪൫൬൭൮൯
+    :type: numeric
+  :modi: 
+    :digits: 𑙐𑙑𑙒𑙓𑙔𑙕𑙖𑙗𑙘𑙙
+    :type: numeric
+  :mong: 
+    :digits: ᠐᠑᠒᠓᠔᠕᠖᠗᠘᠙
+    :type: numeric
+  :mroo: 
+    :digits: 𖩠𖩡𖩢𖩣𖩤𖩥𖩦𖩧𖩨𖩩
+    :type: numeric
+  :mtei: 
+    :digits: ꯰꯱꯲꯳꯴꯵꯶꯷꯸꯹
+    :type: numeric
+  :mymr: 
+    :digits: ၀၁၂၃၄၅၆၇၈၉
+    :type: numeric
+  :mymrepka: 
+    :digits: 𑛚𑛛𑛜𑛝𑛞𑛟𑛠𑛡𑛢𑛣
+    :type: numeric
+  :mymrpao: 
+    :digits: 𑛐𑛑𑛒𑛓𑛔𑛕𑛖𑛗𑛘𑛙
+    :type: numeric
+  :mymrshan: 
+    :digits: ႐႑႒႓႔႕႖႗႘႙
+    :type: numeric
+  :mymrtlng: 
+    :digits: ꧰꧱꧲꧳꧴꧵꧶꧷꧸꧹
+    :type: numeric
+  :nagm: 
+    :digits: 𞓰𞓱𞓲𞓳𞓴𞓵𞓶𞓷𞓸𞓹
+    :type: numeric
+  :newa: 
+    :digits: 𑑐𑑑𑑒𑑓𑑔𑑕𑑖𑑗𑑘𑑙
+    :type: numeric
+  :nkoo: 
+    :digits: ߀߁߂߃߄߅߆߇߈߉
+    :type: numeric
+  :olck: 
+    :digits: ᱐᱑᱒᱓᱔᱕᱖᱗᱘᱙
+    :type: numeric
+  :onao: 
+    :digits: 𞗱𞗲𞗳𞗴𞗵𞗶𞗷𞗸𞗹𞗺
+    :type: numeric
+  :orya: 
+    :digits: ୦୧୨୩୪୫୬୭୮୯
+    :type: numeric
+  :osma: 
+    :digits: 𐒠𐒡𐒢𐒣𐒤𐒥𐒦𐒧𐒨𐒩
+    :type: numeric
+  :outlined: 
+    :digits: 𜳰𜳱𜳲𜳳𜳴𜳵𜳶𜳷𜳸𜳹
+    :type: numeric
+  :rohg: 
+    :digits: 𐴰𐴱𐴲𐴳𐴴𐴵𐴶𐴷𐴸𐴹
+    :type: numeric
+  :roman: 
+    :rules: roman-upper
+    :type: algorithmic
+  :romanlow: 
+    :rules: roman-lower
+    :type: algorithmic
+  :saur: 
+    :digits: ꣐꣑꣒꣓꣔꣕꣖꣗꣘꣙
+    :type: numeric
+  :segment: 
+    :digits: 🯰🯱🯲🯳🯴🯵🯶🯷🯸🯹
+    :type: numeric
+  :shrd: 
+    :digits: 𑇐𑇑𑇒𑇓𑇔𑇕𑇖𑇗𑇘𑇙
+    :type: numeric
+  :sind: 
+    :digits: 𑋰𑋱𑋲𑋳𑋴𑋵𑋶𑋷𑋸𑋹
+    :type: numeric
+  :sinh: 
+    :digits: ෦෧෨෩෪෫෬෭෮෯
+    :type: numeric
+  :sora: 
+    :digits: 𑃰𑃱𑃲𑃳𑃴𑃵𑃶𑃷𑃸𑃹
+    :type: numeric
+  :sund: 
+    :digits: ᮰᮱᮲᮳᮴᮵᮶᮷᮸᮹
+    :type: numeric
+  :sunu: 
+    :digits: 𑯰𑯱𑯲𑯳𑯴𑯵𑯶𑯷𑯸𑯹
+    :type: numeric
+  :takr: 
+    :digits: 𑛀𑛁𑛂𑛃𑛄𑛅𑛆𑛇𑛈𑛉
+    :type: numeric
+  :talu: 
+    :digits: ᧐᧑᧒᧓᧔᧕᧖᧗᧘᧙
+    :type: numeric
+  :taml: 
+    :rules: tamil
+    :type: algorithmic
+  :tamldec: 
+    :digits: ௦௧௨௩௪௫௬௭௮௯
+    :type: numeric
+  :telu: 
+    :digits: ౦౧౨౩౪౫౬౭౮౯
+    :type: numeric
+  :thai: 
+    :digits: ๐๑๒๓๔๕๖๗๘๙
+    :type: numeric
+  :tibt: 
+    :digits: ༠༡༢༣༤༥༦༧༨༩
+    :type: numeric
+  :tirh: 
+    :digits: 𑓐𑓑𑓒𑓓𑓔𑓕𑓖𑓗𑓘𑓙
+    :type: numeric
+  :tnsa: 
+    :digits: 𖫀𖫁𖫂𖫃𖫄𖫅𖫆𖫇𖫈𖫉
+    :type: numeric
+  :vaii: 
+    :digits: ꘠꘡꘢꘣꘤꘥꘦꘧꘨꘩
+    :type: numeric
+  :wara: 
+    :digits: 𑣠𑣡𑣢𑣣𑣤𑣥𑣦𑣧𑣨𑣩
+    :type: numeric
+  :wcho: 
+    :digits: 𞋰𞋱𞋲𞋳𞋴𞋵𞋶𞋷𞋸𞋹
+    :type: numeric

@@ -1,0 +1,848 @@
+--- 
+:xh: 
+  :currencies: 
+    :AED: 
+      :name: "I-Dirham yase-UAE"
+      :one: "I-dirham yase-UAE"
+      :other: "Ii-dirham zase-UAE"
+    :AFN: 
+      :name: "I-Afghani yase-Afghanistan"
+      :narrow_symbol: ؋
+      :one: "I-Afghani yase-Afghanistan"
+      :other: "Ii-Afghani zase-Afghanistan"
+      :symbol: ؋
+    :ALL: 
+      :name: "I-Lek yase-Albania"
+      :one: "I-lek yase-Albania"
+      :other: "Ii-lekë zase-Albania"
+    :AMD: 
+      :name: "I-Dram yase Armenia"
+      :narrow_symbol: ֏
+      :one: "I-dram yase-Armenia"
+      :other: "Ii-dram zase-Armenia"
+      :symbol: ֏
+    :ANG: 
+      :name: "Netherlands Antillean Guilder"
+      :one: "Netherlands Antillean guilder"
+      :other: "Netherlands Antillean guilders"
+    :AOA: 
+      :name: "IKwanza yaseAngola"
+      :narrow_symbol: Kz
+      :one: "Ikwanza yaseAngola"
+      :other: "Iikwanza zaseAngola"
+      :symbol: Kz
+    :ARS: 
+      :name: "IPeso yase-Argentina"
+      :narrow_symbol: $
+      :one: "Ipeso yase-Argentina"
+      :other: "Iipeso zase-Argentina"
+      :symbol: $
+    :AUD: 
+      :name: "IDola yase-Australia"
+      :narrow_symbol: $
+      :one: "Idola yase-Australia"
+      :other: "Iidola zase-Australia"
+      :symbol: A$
+    :AWG: 
+      :name: "Aruban Florin"
+      :one: "Aruban florin"
+      :other: "Aruban florin"
+    :AZN: 
+      :name: "I-Manat yase-Azerbeijan"
+      :narrow_symbol: ₼
+      :one: "I-manat yase-Azerbaijan"
+      :other: "Ii-manat zase-Azerbaijan"
+      :symbol: ₼
+    :BAM: 
+      :name: "I-Convertible Mark yaseBosnia-Herzegovina"
+      :narrow_symbol: KM
+      :one: "I-convertible mark yaseBosnia-Herzegovina"
+      :other: "Ii-convertible mark zaseBosnia-Herzegovina"
+      :symbol: KM
+    :BBD: 
+      :name: "Barbadian Dollar"
+      :narrow_symbol: $
+      :one: "Barbadian dollar"
+      :other: "Barbadian dollars"
+      :symbol: $
+    :BDT: 
+      :name: "I-Taka yaseBangladesh"
+      :narrow_symbol: ৳
+      :one: "I-taka yaseBangladesh"
+      :other: "Ii-taka yaseBanglaesh"
+      :symbol: ৳
+    :BGN: 
+      :name: "I-Lev yaseBulgaria"
+      :one: "I-lev yaseBulgaria"
+      :other: "Ii-leva zaseBulgaria"
+    :BHD: 
+      :name: "I-Dinar yaseBahrain"
+      :one: "I-dinar yaseBahrain"
+      :other: "Ii-dinar zaseBahrain"
+    :BIF: 
+      :name: "I-Franc yaseBurundi"
+      :one: "I-franc yaseBurundi"
+      :other: "Ii-franc zaseBurundi"
+    :BMD: 
+      :name: "Bermudan Dollar"
+      :narrow_symbol: $
+      :one: "Bermudan dollar"
+      :other: "Bermudan dollars"
+      :symbol: $
+    :BND: 
+      :name: "IDola yaseBrunei"
+      :narrow_symbol: $
+      :one: "Idola yaseBrunei"
+      :other: "Iidola zaseBrunei"
+      :symbol: $
+    :BOB: 
+      :name: "I-Boliviano yaseBolivia"
+      :narrow_symbol: Bs
+      :one: "I-boliviano yaseBolivia"
+      :other: "I-bolivianos yaseBolivia"
+      :symbol: Bs
+    :BRL: 
+      :name: "I-Real yaseBrazil"
+      :narrow_symbol: R$
+      :one: "I-real yaseBrazil"
+      :other: "Ii-reals zaseBrazil"
+      :symbol: R$
+    :BSD: 
+      :name: "Bahamian Dollar"
+      :narrow_symbol: $
+      :one: "Bahamian dollar"
+      :other: "Bahamian dollars"
+      :symbol: $
+    :BTN: 
+      :name: "I-Ngultrum yaseBhutan"
+      :one: "I-ngultrum yaseBhutan"
+      :other: "Ii-ngultrum zaseBhutan"
+    :BWP: 
+      :name: "I-Pula yaseBotswana"
+      :narrow_symbol: P
+      :one: "I-pula yaseBotswana"
+      :other: "I-Pula yaseBotswana"
+      :symbol: P
+    :BYN: 
+      :name: "I-Ruble yaseBelarus"
+      :one: "I-ruble yaseBelarus"
+      :other: "Ii-ruble zaseBelarus"
+    :BZD: 
+      :name: "Belize Dollar"
+      :narrow_symbol: $
+      :one: "Belize dollar"
+      :other: "Belize dollars"
+      :symbol: $
+    :CAD: 
+      :name: "Canadian Dollar"
+      :narrow_symbol: $
+      :one: "Canadian dollar"
+      :other: "Canadian dollars"
+      :symbol: CA$
+    :CDF: 
+      :name: "IFranc yaseCongo"
+      :one: "Ifranc yaseCongo"
+      :other: "Iifranc zaseCongo"
+    :CHF: 
+      :name: "IFranc yaseSwirtzeland"
+      :one: "Ifranc yaseSwitzerland"
+      :other: "Iifranc zaseSwitzerland"
+    :CLP: 
+      :name: "I-Peso yaseChile"
+      :narrow_symbol: $
+      :one: "I-peso yaseChile"
+      :other: "Ii-pesos zaseChile"
+      :symbol: $
+    :CNH: 
+      :name: "I-Chinese Yuan (offshore)"
+      :one: "I-Chinese yuan (offshore)"
+      :other: "I-Chinese yuan (offshore)"
+      :symbol: I-CNH
+    :CNY: 
+      :name: "I-Yuan yaseTshayina"
+      :narrow_symbol: ¥
+      :one: "I-yuan yaseTshayina"
+      :other: "I-yuan yaseTshayina"
+      :symbol: CN¥
+    :COP: 
+      :name: "I-Peso yaseColombia"
+      :narrow_symbol: $
+      :one: "I-peso yaseColombia"
+      :other: "Ii-peso zaseColombia"
+      :symbol: $
+    :CRC: 
+      :name: "Costa Rican Colón"
+      :narrow_symbol: ₡
+      :one: "Costa Rican colón"
+      :other: "Costa Rican colóns"
+      :symbol: ₡
+    :CUC: 
+      :name: "Cuban Convertible Peso"
+      :narrow_symbol: $
+      :one: "Cuban convertible peso"
+      :other: "Cuban convertible pesos"
+      :symbol: $
+    :CUP: 
+      :name: "Cuban Peso"
+      :narrow_symbol: $
+      :one: "Cuban peso"
+      :other: "Cuban pesos"
+      :symbol: $
+    :CVE: 
+      :name: "Cape Verdean Escudo"
+      :one: "I-escudo yaseCape Verde"
+      :other: "Ii-escudo zaseCape Verde"
+    :CZK: 
+      :name: "I-Koruna yaseCzech"
+      :narrow_symbol: Kč
+      :one: "I-koruna yaseCzech"
+      :other: "Ii-koruna zaseCzech"
+      :symbol: Kč
+    :DJF: 
+      :name: "I-Franc yaseDjibouti"
+      :one: "I-franc yaseDjibouti"
+      :other: "Ii-franc zaseDjibouti"
+    :DKK: 
+      :name: "I-Krone yaseDenmark"
+      :narrow_symbol: kr
+      :one: "I-krone yaseDenmark"
+      :other: "I-kroner yaseDenmark"
+      :symbol: kr
+    :DOP: 
+      :name: "Dominican Peso"
+      :narrow_symbol: $
+      :one: "Dominican peso"
+      :other: "Dominican pesos"
+      :symbol: $
+    :DZD: 
+      :name: "I-Dinar yase-Algeria"
+      :one: "I-dinar yase-Algeria"
+      :other: "Ii-dinar zase-Algeria"
+    :EGP: 
+      :name: "IPonti yase-Egypt"
+      :narrow_symbol: E£
+      :one: "Iponti yase-Egypt"
+      :other: "Iiponti zaseYiputa"
+      :symbol: E£
+    :ERN: 
+      :name: "I-Nakfa yase-Eritria"
+      :one: "I-nakfa yase-Eritria"
+      :other: "Ii-nakfa zase-Eritria"
+    :ESP: 
+      :narrow_symbol: ₧
+      :symbol: ₧
+    :ETB: 
+      :name: "I-Birr yase-Ethopia"
+      :one: "I-birr yase-Ethopia"
+      :other: "Ii-birr zase-Ethopia"
+    :EUR: 
+      :name: I-Euro
+      :narrow_symbol: €
+      :one: i-euro
+      :other: ii-euro
+      :symbol: €
+    :FJD: 
+      :name: "IDola yaseFiji"
+      :narrow_symbol: $
+      :one: "Idola yaseFiji"
+      :other: "Iidola zaseFiji"
+      :symbol: $
+    :FKP: 
+      :name: "IPonti yaseFalkland Islands"
+      :narrow_symbol: £
+      :one: "IPonti yaseFalkland Islands"
+      :other: "Iiponti zaseFalkland Islands"
+      :symbol: £
+    :GBP: 
+      :name: "IPonti yaseBritane"
+      :narrow_symbol: £
+      :one: "Iponti yaseBritane"
+      :other: "Iiponti zaseBritane"
+      :symbol: £
+    :GEL: 
+      :name: "I-Lari yaseGeorgia"
+      :narrow_symbol: ₾
+      :one: "I-lari yaseGeorgia"
+      :other: "Ii-lari zaseGeorgia"
+      :symbol: ₾
+    :GHS: 
+      :name: "ICedi yaseGhana"
+      :narrow_symbol: GH₵
+      :one: "Icedi yaseGhana"
+      :other: "Iicedi zaseGhana"
+      :symbol: GH₵
+    :GIP: 
+      :name: "IPonti yaseGilbraltar"
+      :narrow_symbol: £
+      :one: "Iponti yaseGibraltar"
+      :other: "Iiponti zaseGibraltar"
+      :symbol: £
+    :GMD: 
+      :name: "IDalasi yaseGambia"
+      :one: "Idalasi yaseGambia"
+      :other: "Iidalasi zaseGambia"
+    :GNF: 
+      :name: "IFranc yaseGuinea"
+      :narrow_symbol: FG
+      :one: "ifranc yaseGuinea"
+      :other: "Iifranc zaseGuinea"
+      :symbol: FG
+    :GTQ: 
+      :name: "Guatemalan Quetzal"
+      :narrow_symbol: Q
+      :one: "Guatemalan quetzal"
+      :other: "Guatemalan quetzals"
+      :symbol: Q
+    :GYD: 
+      :name: "IDola yaseGuyana"
+      :narrow_symbol: $
+      :one: "Idola yaseGuyana"
+      :other: "Iidola zaseGuyana"
+      :symbol: $
+    :HKD: 
+      :name: "IDola yaseHong Kong"
+      :narrow_symbol: $
+      :one: "Idola yaseHong Kong"
+      :other: "Iidola zaseHong Kong"
+      :symbol: HK$
+    :HNL: 
+      :name: "Honduran Lempira"
+      :narrow_symbol: L
+      :one: "Honduran lempira"
+      :other: "Honduran lempiras"
+      :symbol: L
+    :HRK: 
+      :name: "I-Kuna yaseCrotia"
+      :narrow_symbol: kn
+      :one: "I-kuna yaseCroatia"
+      :other: "Ii-kuna zaseCroatia"
+      :symbol: kn
+    :HTG: 
+      :name: "Haitian Gourde"
+      :one: "Haitian gourde"
+      :other: "Haitian gourdes"
+    :HUF: 
+      :name: "I-Forint yaseHungay"
+      :narrow_symbol: Ft
+      :one: "I-forint yaseHungary"
+      :other: "Ii-forint zaseHungary"
+      :symbol: Ft
+    :IDR: 
+      :name: "I-Rupiah yase-Indonesia"
+      :narrow_symbol: Rp
+      :one: "I-rupiah yase-Indonesia"
+      :other: "Ii-rupiah zase-Indonesia"
+      :symbol: Rp
+    :ILS: 
+      :name: "I-New Shekel yase-Israel"
+      :narrow_symbol: ₪
+      :one: "I-new shekel yase-Israel"
+      :other: "Ii-new shekel zase-Israel"
+      :symbol: ₪
+    :INR: 
+      :name: "I-Rupee yase-Indiya"
+      :narrow_symbol: ₹
+      :one: "I-rupee yase-Indiya"
+      :other: "Ii-rupee zase-Indiya"
+      :symbol: ₹
+    :IQD: 
+      :name: "I-Dinar yase-Iraq"
+      :one: "I-dinar yase-Iraq"
+      :other: "Ii-dinar zase-Iraq"
+    :IRR: 
+      :name: "I-Rial yase-Iran"
+      :one: "I-rial yase-Iran"
+      :other: "Ii-rial zase-Iran"
+    :ISK: 
+      :name: "IKróna yaseIceland"
+      :narrow_symbol: kr
+      :one: "Ikróna yaseIceland"
+      :other: "Iikrónur zaseIceland"
+      :symbol: kr
+    :JMD: 
+      :name: "Jamaican Dollar"
+      :narrow_symbol: $
+      :one: "Jamaican dollar"
+      :other: "Jamaican dollars"
+      :symbol: $
+    :JOD: 
+      :name: "I-Dinar yaseJordan"
+      :one: "I-dinar yaseJordan"
+      :other: "Ii-dinar zaseJordan"
+    :JPY: 
+      :name: "I-Yen yaseJapan"
+      :narrow_symbol: ¥
+      :one: "I-yen yaseJapan"
+      :other: "I-yen yaseJapan"
+      :symbol: ¥
+    :KES: 
+      :name: "I-Shilling yaseKenya"
+      :one: "I-shilling yaseKenya"
+      :other: "Iis-shilling zaseKenya"
+    :KGS: 
+      :name: "I-Som yaseKyrgystan"
+      :narrow_symbol: ⃀
+      :one: "I-som yaseKyrgystan"
+      :other: "Ii-som zaseKyrgystan"
+      :symbol: ⃀
+    :KHR: 
+      :name: "I-Riel yaseCambodia"
+      :narrow_symbol: ៛
+      :one: "I-riel yaseCambodia"
+      :other: "Ii-riel zaseCambodia"
+      :symbol: ៛
+    :KMF: 
+      :name: "I-Franc yaseComoros"
+      :narrow_symbol: CF
+      :one: "I-franc yaseComoros"
+      :other: "Ii-franc zaseComoros"
+      :symbol: CF
+    :KPW: 
+      :name: "I-Won yaseNorth Korea"
+      :narrow_symbol: ₩
+      :one: "I-won yaseNorth Korea"
+      :other: "I-won yaseNorth Korea"
+      :symbol: ₩
+    :KRW: 
+      :name: "I-Won yaseSouth Korea"
+      :narrow_symbol: ₩
+      :one: "I-won yaseSouth Korea"
+      :other: "I-won yaseSouth Korean"
+      :symbol: ₩
+    :KWD: 
+      :name: "I-Dinar yaseKuwait"
+      :one: "I-dinar yaseKuwait"
+      :other: "Ii-dinar zaseKuwait"
+    :KYD: 
+      :name: "Cayman Islands Dollar"
+      :narrow_symbol: $
+      :one: "Cayman Islands dollar"
+      :other: "Cayman Islands dollars"
+      :symbol: $
+    :KZT: 
+      :name: "I-Tenge yaseKhazakhstan"
+      :narrow_symbol: ₸
+      :one: "I-tenge yaseKhazakhstan"
+      :other: "Ii-tenge zaseKhazakhstan"
+      :symbol: ₸
+    :LAK: 
+      :name: "I-Kip yaseLaos"
+      :narrow_symbol: ₭
+      :one: "I-kip yaseLaos"
+      :other: "Ii-kip zaseLaos"
+      :symbol: ₭
+    :LBP: 
+      :name: "IPonti yaseLebanon"
+      :narrow_symbol: L£
+      :one: "Iponti yaseLebanon"
+      :other: "Iiponti zaseLebanon"
+      :symbol: L£
+    :LKR: 
+      :name: "I-Rupee yaseSri Lanka"
+      :narrow_symbol: Rs
+      :one: "I-rupee yaseSri Lanka"
+      :other: "Ii-rupee zaseSri Lanka"
+      :symbol: Rs
+    :LRD: 
+      :name: "IDola yaseLiberia"
+      :narrow_symbol: $
+      :one: "Idola yaseLiberia"
+      :other: "Iidola zaseLiberia"
+      :symbol: $
+    :LSL: 
+      :name: "I-Loti yaseLesotho"
+      :one: "I-loti yaseLesotho"
+      :other: "Ii-loti zaseLesotho"
+    :LTL: 
+      :narrow_symbol: Lt
+      :symbol: Lt
+    :LVL: 
+      :narrow_symbol: Ls
+      :symbol: Ls
+    :LYD: 
+      :name: "Libyan Dinar"
+      :one: "I-dinar yaseLibya"
+      :other: "Ii-dinar zaseLibya"
+    :MAD: 
+      :name: "Moroccan Dirham"
+      :one: "I-dirham yaseMorocco"
+      :other: "Ii-dirham zaseMorocco"
+    :MDL: 
+      :name: "Moldovan Leu"
+      :one: "I-leu yaseMoldova"
+      :other: "I-lei yaseMoldova"
+    :MGA: 
+      :name: "I-Ariary yaseMadagascar"
+      :narrow_symbol: Ar
+      :one: "I-ariary yaseMadagascar"
+      :other: "Ii-ariary zaseMadagascar"
+      :symbol: Ar
+    :MKD: 
+      :name: "Macedonian Denar"
+      :one: "I-denar yaseMacedonia"
+      :other: "Ii-denar zaseMacedonia"
+    :MMK: 
+      :name: "I-Kyat yaseMyanmar"
+      :narrow_symbol: K
+      :one: "I-kyat yaseMyanmar"
+      :other: "Ii-kyat zaseMyanmar"
+      :symbol: K
+    :MNT: 
+      :name: "I-Tugrik yaseMongolia"
+      :narrow_symbol: ₮
+      :one: "I-tugrik yaseMongolia"
+      :other: "Ii-tugrik zaseMongolia"
+      :symbol: ₮
+    :MOP: 
+      :name: "I-Pataca yaseMacao"
+      :one: "I-pataca yaseMacao"
+      :other: "Ii-pataca zaseMacao"
+    :MRU: 
+      :name: "I-Ouguiya yaseMauritania"
+      :one: "I-ouguiya yaseMauritania"
+      :other: "Ii-ouguiya zaseMauritania"
+    :MUR: 
+      :name: "I-Rupee yaseMauritius"
+      :narrow_symbol: Rs
+      :one: "I-rupee yaseMauritius"
+      :other: "Ii-rupee zaseMaritius"
+      :symbol: Rs
+    :MVR: 
+      :name: "I-Rufiyaa yaseMaldives"
+      :one: "I-rufiyaa yaseMaldives"
+      :other: "Ii-rufiyaa zaseMaldives"
+    :MWK: 
+      :name: "I-Kwacha yaseMalawi"
+      :one: "I-kwacha yaseMalawi"
+      :other: "Ii-kwacha zaseMalawi"
+    :MXN: 
+      :name: "Mexican Peso"
+      :narrow_symbol: $
+      :one: "Mexican peso"
+      :other: "Mexican pesos"
+      :symbol: MX$
+    :MYR: 
+      :name: "I-Ringgit yaseMalysia"
+      :narrow_symbol: RM
+      :one: "I-ringgit yaseMalaysia"
+      :other: "Ii-ringgit zaseMalaysia"
+      :symbol: RM
+    :MZN: 
+      :name: "I-Metical yaseMozambique"
+      :one: "I-metical yaseMozambique"
+      :other: "Ii-metical zaseMozambique"
+    :NAD: 
+      :name: "IDola yaseNamibia"
+      :narrow_symbol: $
+      :one: "Idola yaseNamibia"
+      :other: "Iidola zaseNamibia"
+      :symbol: $
+    :NGN: 
+      :name: "INaira yaseNigeria"
+      :narrow_symbol: ₦
+      :one: "Inaira yaseNigeria"
+      :other: "Iinaira zaseNigeria"
+      :symbol: ₦
+    :NIO: 
+      :name: "Nicaraguan Córdoba"
+      :narrow_symbol: C$
+      :one: "Nicaraguan córdoba"
+      :other: "Nicaraguan córdobas"
+      :symbol: C$
+    :NOK: 
+      :name: "IKrone yaseNorway"
+      :narrow_symbol: kr
+      :one: "Ikrone yaseNorway"
+      :other: "Iikroner zaseNorway"
+      :symbol: kr
+    :NPR: 
+      :name: "I-Rupee yaseNepal"
+      :narrow_symbol: Rs
+      :one: "I-rupee yaseNepal"
+      :other: "Ii-rupee zaseNepal"
+      :symbol: Rs
+    :NZD: 
+      :name: "IDola yaseNew Zealand"
+      :narrow_symbol: $
+      :one: "Idola yaseNew Zealand"
+      :other: "Iidola zaseNew Zealand"
+      :symbol: NZ$
+    :OMR: 
+      :name: "I-Rial yase-Oman"
+      :one: "I-rial yase-Oman"
+      :other: "Ii-rial zase-Oman"
+    :PAB: 
+      :name: "Panamanian Balboa"
+      :one: "Panamanian balboa"
+      :other: "Panamanian balboas"
+    :PEN: 
+      :name: "I-Sol yasePeruvia"
+      :one: "I-sol yasePeruvia"
+      :other: "Ii-sol zasePeruvia"
+    :PGK: 
+      :name: "I-Kina yasePapua New Guinea"
+      :one: "I-kina yasePapua New Guinea"
+      :other: "I-kina yasePapua New Guinea"
+    :PHP: 
+      :name: "I-Peso yasePhilippines"
+      :narrow_symbol: ₱
+      :one: "I-peso yasePhilippiines"
+      :other: "Ii-peso zasePhilippines"
+      :symbol: ₱
+    :PKR: 
+      :name: "I-Rupee yasePakistan"
+      :narrow_symbol: Rs
+      :one: "I-rupee yasePakistan"
+      :other: "Ii-rupee zasePakistan"
+      :symbol: Rs
+    :PLN: 
+      :name: "Polish Zloty"
+      :narrow_symbol: zł
+      :one: "I-zloty yasePoland"
+      :other: "Ii-zloty zasePoland"
+      :symbol: zł
+    :PYG: 
+      :name: "I-Guarani yaseParaguay"
+      :narrow_symbol: ₲
+      :one: "I-guarani yaseParaguay"
+      :other: "Ii-guarani zaseParaguay"
+      :symbol: ₲
+    :QAR: 
+      :name: "I-Riyal yaseQatar"
+      :one: "I-riyal yaseQatar"
+      :other: "Ii-riyal zaseQatar"
+    :RON: 
+      :name: "I-Leu yaseRomania"
+      :narrow_symbol: lei
+      :one: "I-leu yaseRomania"
+      :other: "Ii-lei zaseRomania"
+      :symbol: lei
+    :RSD: 
+      :name: "I-Dinar yaseSerbia"
+      :one: "I-dinar yaseSerbia"
+      :other: "Ii-dinars zaseSerbia"
+    :RUB: 
+      :name: "I-Ruble yaseRashiya"
+      :narrow_symbol: ₽
+      :one: "I-ruble yaseRashiya"
+      :other: "Ii-ruble zaseRashiya"
+      :symbol: ₽
+    :RWF: 
+      :name: "I-Franc yaseRwanda"
+      :narrow_symbol: RF
+      :one: "I-franc yaseRwanda"
+      :other: "Ii-franc zaseRwanda"
+      :symbol: RF
+    :SAR: 
+      :name: "I-Riyal yaseSaudi"
+      :one: "I-riyal yaseSaudi"
+      :other: "Ii-riyal zaseSaudi"
+    :SBD: 
+      :name: "IDola yaseSolomon Islands"
+      :narrow_symbol: $
+      :one: "Idola yaseSolomon Islands"
+      :other: "Iidola zaseSolomon Islands"
+      :symbol: $
+    :SCR: 
+      :name: "I-Rupee yaseSeychelles"
+      :one: "I-rupee yaseSeychelles"
+      :other: "Ii-rupee zaseSeychelles"
+    :SDG: 
+      :name: "Sudanese Pound"
+      :one: "Iponti yaseSudan"
+      :other: "Iiponti zaseSudan"
+    :SEK: 
+      :name: "IKrona yaseSweden"
+      :narrow_symbol: kr
+      :one: "Ikrona yaseSweden"
+      :other: "Iikronor zaseSweden"
+      :symbol: kr
+    :SGD: 
+      :name: "IDola yaseSingapore"
+      :narrow_symbol: $
+      :one: "Idola yaseSingapore"
+      :other: "Iidola zaseSingapore"
+      :symbol: $
+    :SHP: 
+      :name: "IPonti yaseSt. Helena"
+      :narrow_symbol: £
+      :one: "Iponti yaseSt. Helena"
+      :other: "Iiponti zaseSt. Helena"
+      :symbol: £
+    :SLE: 
+      :name: "I-Loeone yaseSierra Leone"
+      :one: "I-leone yaseSierra Leone"
+      :other: "Ii-leones zaseSierra Leone"
+    :SLL: 
+      :name: "I-Loeone yaseSierra Leone (1964—2022)"
+      :one: "I-leone yaseSierra Leone (1964—2022)"
+      :other: "Ii-leones zaseSierra Leone (1964—2022)"
+    :SOS: 
+      :name: "I-Shilling yaseSomalia"
+      :one: "I-shilling yaseSomalia"
+      :other: "Ii-shilling zaseSomalia"
+    :SRD: 
+      :name: "IDola yaseSuriname"
+      :narrow_symbol: $
+      :one: "Idola yaseSuriname"
+      :other: "Iidola zaseSuriname"
+      :symbol: $
+    :SSP: 
+      :name: "IPonti yaseSouth Sudan"
+      :narrow_symbol: £
+      :one: "Iponti yaseSouth Sudan"
+      :other: "Iiponti zaseSouth Sudan"
+      :symbol: £
+    :STN: 
+      :name: "IDobra yaseSão Tomé & Príncipe"
+      :narrow_symbol: Db
+      :one: "Idobra yaseSão Tomé & Príncipe"
+      :other: "Iidobra zaseSão Tomé & Príncipe"
+      :symbol: Db
+    :SYP: 
+      :name: "IPonti yaseSiriya"
+      :narrow_symbol: £
+      :one: "Iponti yaseSiriya"
+      :other: "Iiponti zaseSiriya"
+      :symbol: £
+    :SZL: 
+      :name: "I-Lilangeni yase-Eswatini"
+      :one: "I-lilangeni yase-Eswatini"
+      :other: "I-emalangeni yase-Eswatini"
+    :THB: 
+      :name: "I-Baht yaseThailand"
+      :narrow_symbol: ฿
+      :one: "I-baht yaseThailand"
+      :other: "I-baht yaseThailand"
+      :symbol: ฿
+    :TJS: 
+      :name: "I-Somoni yaseTajikistan"
+      :one: "I-somoni yaseTajikistan"
+      :other: "Ii-somonis zaseTajikistan"
+    :TMT: 
+      :name: "I-Manat yaseTurkmenistan"
+      :one: "I-manat yaseTurkmenistan"
+      :other: "I-manat yaseTurkmenistan"
+    :TND: 
+      :name: "Tunisian Dinar"
+      :one: "I-dinar yaseTunisia"
+      :other: "Ii-dinar zaseTunisia"
+    :TOP: 
+      :name: "I-Paʻanga yaseTonga"
+      :narrow_symbol: T$
+      :one: "I-paʻanga yaseTonga"
+      :other: "I-paʻanga yaseTonga"
+      :symbol: T$
+    :TRY: 
+      :name: "I-Lira yaseTurkey"
+      :narrow_symbol: ₺
+      :one: "I-lira yaseTurkey"
+      :other: "I-Lira yaseTurkey"
+      :symbol: ₺
+    :TTD: 
+      :name: "Trinidad & Tobago Dollar"
+      :narrow_symbol: $
+      :one: "Trinidad & Tobago dollar"
+      :other: "Trinidad & Tobago dollars"
+      :symbol: $
+    :TWD: 
+      :name: "IDola yaseNew Taiwan"
+      :narrow_symbol: $
+      :one: "Idola yaseNew Taiwan"
+      :other: "Iidola zaseNew Taiwan"
+      :symbol: NT$
+    :TZS: 
+      :name: "I-Shilling yaseTanzania"
+      :one: "I-shilling yaseTanzania"
+      :other: "Ii-shilling zaseTanzania"
+    :UAH: 
+      :name: "I-Hryvnia yase-Ukraine"
+      :narrow_symbol: ₴
+      :one: "I-hryvnia yase-Ukraine"
+      :other: "Ii-hryvnias zase-Ukraine"
+      :symbol: ₴
+    :UGX: 
+      :name: "I-Shilling yase-Uganda"
+      :one: "I-shilling yase-Uganda"
+      :other: "Ii-shilling zase-Uganda"
+    :USD: 
+      :name: "US Dollar"
+      :narrow_symbol: $
+      :one: "US dollar"
+      :other: "US dollars"
+      :symbol: $
+    :UYU: 
+      :name: "I-Peso yase-Uruguay"
+      :narrow_symbol: $
+      :one: "I-peso yase-Uruguay"
+      :other: "Ii-peso zase-Uruguay"
+      :symbol: $
+    :UZS: 
+      :name: "I-Som yase-Uzbekistan"
+      :one: "I-som yase-Uzbekistan"
+      :other: "I-som yase-Uzbekistan"
+    :VEF: 
+      :narrow_symbol: Bs
+      :symbol: Bs
+    :VES: 
+      :name: "I-Bolívar yaseVenezuela"
+      :one: "I-bolivar yaseVenezuela"
+      :other: "Ii-bolivar zaseVenezuela"
+    :VND: 
+      :name: "I-Dong yaseVietnam"
+      :narrow_symbol: ₫
+      :one: "I-dong yaseVietnam"
+      :other: "I-dong yaseVietnam"
+      :symbol: ₫
+    :VUV: 
+      :name: "I-Vatu yaseVanuatu"
+      :one: "I-vatu yaseVanuatu"
+      :other: "Ii-vatu zaseVanuatu"
+    :WST: 
+      :name: "I-Tala yaseSamoa"
+      :one: "I-tala yaseSamoa"
+      :other: "I-tala yaseSamoa"
+    :XAF: 
+      :name: "ICFA Franc yaseCentral Africa"
+      :one: "ICFA franc yaseCentral Africa"
+      :other: "IiCFA franc zaseCentral Africa"
+      :symbol: FCFA
+    :XCD: 
+      :name: "East Caribbean Dollar"
+      :narrow_symbol: $
+      :one: "East Caribbean dollar"
+      :other: "East Caribbean dollars"
+      :symbol: EC$
+    :XCG: 
+      :symbol: Cg.
+    :XOF: 
+      :name: "ICFA Franc yaseWest Africa"
+      :one: "ICFA franc yaseWest Africa"
+      :other: "IiCFA franc zaseWest Africa"
+      :symbol: F CFA
+    :XPF: 
+      :name: "I-Franc yaseCFP"
+      :one: "I-franc yaseCFP"
+      :other: "Ii-franc zaseCFP"
+      :symbol: CFPF
+    :XXX: 
+      :name: "Ikharensi Engaziwayo"
+      :one: "ikharensi engaziwayo"
+      :other: "(ikharensi engaziwayo)"
+      :symbol: ¤
+    :YER: 
+      :name: "I-Rial yaseYemen"
+      :one: "I-rial yaseYemen"
+      :other: "Ii-rial zaseYemen"
+    :ZAR: 
+      :name: "IRandi yaseMzantsi Afrika"
+      :narrow_symbol: R
+      :one: "Irandi yaseMzantsi Afrika"
+      :other: "Irandi yaseMzantsi Afrika"
+      :symbol: R
+    :ZMW: 
+      :name: "I-Kwacha yaseZambi"
+      :narrow_symbol: ZK
+      :one: "I-kwacha yaseZambia"
+      :other: "I-kwacha yaseZambia"
+      :symbol: ZK

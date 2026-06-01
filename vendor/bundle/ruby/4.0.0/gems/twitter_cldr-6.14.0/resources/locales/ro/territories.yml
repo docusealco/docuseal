@@ -1,0 +1,267 @@
+--- 
+:ro: 
+  :territories: 
+    :ac: "Insula Ascension"
+    :ad: Andorra
+    :ae: "Emiratele Arabe Unite"
+    :af: Afganistan
+    :ag: "Antigua și Barbuda"
+    :ai: Anguilla
+    :al: Albania
+    :am: Armenia
+    :ao: Angola
+    :aq: Antarctica
+    :ar: Argentina
+    :as: "Samoa Americană"
+    :at: Austria
+    :au: Australia
+    :aw: Aruba
+    :ax: "Insulele Åland"
+    :az: Azerbaidjan
+    :ba: "Bosnia și Herțegovina"
+    :bb: Barbados
+    :bd: Bangladesh
+    :be: Belgia
+    :bf: "Burkina Faso"
+    :bg: Bulgaria
+    :bh: Bahrain
+    :bi: Burundi
+    :bj: Benin
+    :bl: Saint-Barthélemy
+    :bm: Bermuda
+    :bn: Brunei
+    :bo: Bolivia
+    :bq: "Insulele Caraibe Olandeze"
+    :br: Brazilia
+    :bs: Bahamas
+    :bt: Bhutan
+    :bv: "Insula Bouvet"
+    :bw: Botswana
+    :by: Belarus
+    :bz: Belize
+    :ca: Canada
+    :cc: "Insulele Cocos (Keeling)"
+    :cd: "Congo - Kinshasa"
+    :cf: "Republica Centrafricană"
+    :cg: "Congo - Brazzaville"
+    :ch: Elveția
+    :ci: "Côte d’Ivoire"
+    :ck: "Insulele Cook"
+    :cl: Chile
+    :cm: Camerun
+    :cn: China
+    :co: Columbia
+    :cp: "Insula Clipperton"
+    :cr: "Costa Rica"
+    :cu: Cuba
+    :cv: "Capul Verde"
+    :cw: Curaçao
+    :cx: "Insula Christmas"
+    :cy: Cipru
+    :cz: Cehia
+    :de: Germania
+    :dg: "Diego Garcia"
+    :dj: Djibouti
+    :dk: Danemarca
+    :dm: Dominica
+    :do: "Republica Dominicană"
+    :dz: Algeria
+    :ea: "Ceuta și Melilla"
+    :ec: Ecuador
+    :ee: Estonia
+    :eg: Egipt
+    :eh: "Sahara Occidentală"
+    :er: Eritreea
+    :es: Spania
+    :et: Etiopia
+    :eu: "Uniunea Europeană"
+    :ez: "Zona euro"
+    :fi: Finlanda
+    :fj: Fiji
+    :fk: "Insulele Falkland"
+    :fm: Micronezia
+    :fo: "Insulele Feroe"
+    :fr: Franța
+    :ga: Gabon
+    :gb: "Regatul Unit"
+    :gd: Grenada
+    :ge: Georgia
+    :gf: "Guyana Franceză"
+    :gg: Guernsey
+    :gh: Ghana
+    :gi: Gibraltar
+    :gl: Groenlanda
+    :gm: Gambia
+    :gn: Guineea
+    :gp: Guadelupa
+    :gq: "Guineea Ecuatorială"
+    :gr: Grecia
+    :gs: "Georgia de Sud și Insulele Sandwich de Sud"
+    :gt: Guatemala
+    :gu: Guam
+    :gw: Guineea-Bissau
+    :gy: Guyana
+    :hk: "R.A.S. Hong Kong, China"
+    :hm: "Insula Heard și Insulele McDonald"
+    :hn: Honduras
+    :hr: Croația
+    :ht: Haiti
+    :hu: Ungaria
+    :ic: "Insulele Canare"
+    :id: Indonezia
+    :ie: Irlanda
+    :il: Israel
+    :im: "Insula Man"
+    :in: India
+    :io: "Teritoriul Britanic din Oceanul Indian"
+    :iq: Irak
+    :ir: Iran
+    :is: Islanda
+    :it: Italia
+    :je: Jersey
+    :jm: Jamaica
+    :jo: Iordania
+    :jp: Japonia
+    :ke: Kenya
+    :kg: Kârgâzstan
+    :kh: Cambodgia
+    :ki: Kiribati
+    :km: Comore
+    :kn: "Saint Kitts și Nevis"
+    :kp: "Coreea de Nord"
+    :kr: "Coreea de Sud"
+    :kw: Kuweit
+    :ky: "Insulele Cayman"
+    :kz: Kazahstan
+    :la: Laos
+    :lb: Liban
+    :lc: "Sfânta Lucia"
+    :li: Liechtenstein
+    :lk: "Sri Lanka"
+    :lr: Liberia
+    :ls: Lesotho
+    :lt: Lituania
+    :lu: Luxemburg
+    :lv: Letonia
+    :ly: Libia
+    :ma: Maroc
+    :mc: Monaco
+    :md: "Republica Moldova"
+    :me: Muntenegru
+    :mf: "Sfântul Martin"
+    :mg: Madagascar
+    :mh: "Insulele Marshall"
+    :mk: "Macedonia de Nord"
+    :ml: Mali
+    :mm: "Myanmar (Birmania)"
+    :mn: Mongolia
+    :mo: "R.A.S. Macao, China"
+    :mp: "Insulele Mariane de Nord"
+    :mq: Martinica
+    :mr: Mauritania
+    :ms: Montserrat
+    :mt: Malta
+    :mu: Mauritius
+    :mv: Maldive
+    :mw: Malawi
+    :mx: Mexic
+    :my: Malaysia
+    :mz: Mozambic
+    :na: Namibia
+    :nc: "Noua Caledonie"
+    :ne: Niger
+    :nf: "Insula Norfolk"
+    :ng: Nigeria
+    :ni: Nicaragua
+    :nl: "Țările de Jos"
+    ? !ruby/symbol "no"
+    : Norvegia
+    :np: Nepal
+    :nr: Nauru
+    :nu: Niue
+    :nz: "Noua Zeelandă"
+    :om: Oman
+    :pa: Panama
+    :pe: Peru
+    :pf: "Polinezia Franceză"
+    :pg: "Papua-Noua Guinee"
+    :ph: Filipine
+    :pk: Pakistan
+    :pl: Polonia
+    :pm: "Saint-Pierre și Miquelon"
+    :pn: "Insulele Pitcairn"
+    :pr: "Puerto Rico"
+    :ps: "Teritoriile Palestiniene"
+    :pt: Portugalia
+    :pw: Palau
+    :py: Paraguay
+    :qa: Qatar
+    :qo: "Oceania Periferică"
+    :re: Réunion
+    :ro: România
+    :rs: Serbia
+    :ru: Rusia
+    :rw: Rwanda
+    :sa: "Arabia Saudită"
+    :sb: "Insulele Solomon"
+    :sc: Seychelles
+    :sd: Sudan
+    :se: Suedia
+    :sg: Singapore
+    :sh: "Sfânta Elena"
+    :si: Slovenia
+    :sj: "Svalbard și Jan Mayen"
+    :sk: Slovacia
+    :sl: "Sierra Leone"
+    :sm: "San Marino"
+    :sn: Senegal
+    :so: Somalia
+    :sr: Suriname
+    :ss: "Sudanul de Sud"
+    :st: "São Tomé și Príncipe"
+    :sv: "El Salvador"
+    :sx: Sint-Maarten
+    :sy: Siria
+    :sz: Eswatini
+    :ta: "Tristan da Cunha"
+    :tc: "Insulele Turks și Caicos"
+    :td: Ciad
+    :tf: "Teritoriile Australe și Antarctice Franceze"
+    :tg: Togo
+    :th: Thailanda
+    :tj: Tadjikistan
+    :tk: Tokelau
+    :tl: Timor-Leste
+    :tm: Turkmenistan
+    :tn: Tunisia
+    :to: Tonga
+    :tr: Turcia
+    :tt: "Trinidad și Tobago"
+    :tv: Tuvalu
+    :tw: Taiwan
+    :tz: Tanzania
+    :ua: Ucraina
+    :ug: Uganda
+    :um: "Insulele Îndepărtate ale S.U.A."
+    :un: "Națiunile Unite"
+    :us: "Statele Unite ale Americii"
+    :uy: Uruguay
+    :uz: Uzbekistan
+    :va: "Statul Cetății Vaticanului"
+    :vc: "Saint Vincent și Grenadinele"
+    :ve: Venezuela
+    :vg: "Insulele Virgine Britanice"
+    :vi: "Insulele Virgine Americane"
+    :vn: Vietnam
+    :vu: Vanuatu
+    :wf: "Wallis și Futuna"
+    :ws: Samoa
+    :xa: Pseudo-accente
+    :xb: Pseudo-Bidi
+    :xk: Kosovo
+    :ye: Yemen
+    :yt: Mayotte
+    :za: "Africa de Sud"
+    :zm: Zambia
+    :zw: Zimbabwe
+    :zz: "Regiune necunoscută"

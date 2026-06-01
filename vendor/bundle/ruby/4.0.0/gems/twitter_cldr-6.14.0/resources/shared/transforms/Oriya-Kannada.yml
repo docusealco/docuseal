@@ -1,0 +1,16 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - Oriya-Kannada
+      - und-Knda-t-und-orya
+    :direction: forward
+    :rules: 
+      - "::[ଁ-ଃଅ-ଌଏ-ଐଓ-ନପ-ରଲ-ଳଵ-ହ଼-ୃେ-ୈୋ-୍ୖ-ୗଡ଼-ଢ଼ୟ-ୡ୦-ୱ] ;"
+      - "::NFD ;"
+      - "::Oriya-InterIndic ;"
+      - "::InterIndic-Kannada ;"
+      - "::NFC ;"
+    :source: Orya
+    :target: Knda
+    :variant: ~

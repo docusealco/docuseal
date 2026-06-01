@@ -1,0 +1,324 @@
+--- 
+:bo: 
+  :currencies: 
+    :AFN: 
+      :narrow_symbol: ؋
+      :symbol: ؋
+    :AMD: 
+      :narrow_symbol: ֏
+      :symbol: ֏
+    :AOA: 
+      :narrow_symbol: Kz
+      :symbol: Kz
+    :ARS: 
+      :narrow_symbol: $
+      :symbol: $
+    :AUD: 
+      :narrow_symbol: $
+      :symbol: A$
+    :AZN: 
+      :narrow_symbol: ₼
+      :symbol: ₼
+    :BAM: 
+      :narrow_symbol: KM
+      :symbol: KM
+    :BBD: 
+      :narrow_symbol: $
+      :symbol: $
+    :BDT: 
+      :narrow_symbol: ৳
+      :symbol: ৳
+    :BMD: 
+      :narrow_symbol: $
+      :symbol: $
+    :BND: 
+      :narrow_symbol: $
+      :symbol: $
+    :BOB: 
+      :narrow_symbol: Bs
+      :symbol: Bs
+    :BRL: 
+      :narrow_symbol: R$
+      :symbol: R$
+    :BSD: 
+      :narrow_symbol: $
+      :symbol: $
+    :BWP: 
+      :narrow_symbol: P
+      :symbol: P
+    :BZD: 
+      :narrow_symbol: $
+      :symbol: $
+    :CAD: 
+      :narrow_symbol: $
+      :symbol: CA$
+    :CLP: 
+      :narrow_symbol: $
+      :symbol: $
+    :CNY: 
+      :name: ཡུ་ཨན་
+      :narrow_symbol: ¥
+      :one: ཡུ་ཨན་
+      :symbol: ¥
+    :COP: 
+      :narrow_symbol: $
+      :symbol: $
+    :CRC: 
+      :narrow_symbol: ₡
+      :symbol: ₡
+    :CUC: 
+      :narrow_symbol: $
+      :symbol: $
+    :CUP: 
+      :narrow_symbol: $
+      :symbol: $
+    :CZK: 
+      :narrow_symbol: Kč
+      :symbol: Kč
+    :DKK: 
+      :narrow_symbol: kr
+      :symbol: kr
+    :DOP: 
+      :narrow_symbol: $
+      :symbol: $
+    :EGP: 
+      :narrow_symbol: E£
+      :symbol: E£
+    :ESP: 
+      :narrow_symbol: ₧
+      :symbol: ₧
+    :EUR: 
+      :narrow_symbol: €
+      :symbol: €
+    :FJD: 
+      :narrow_symbol: $
+      :symbol: $
+    :FKP: 
+      :narrow_symbol: £
+      :symbol: £
+    :GBP: 
+      :narrow_symbol: £
+      :symbol: £
+    :GEL: 
+      :narrow_symbol: ₾
+      :symbol: ₾
+    :GHS: 
+      :narrow_symbol: GH₵
+      :symbol: GH₵
+    :GIP: 
+      :narrow_symbol: £
+      :symbol: £
+    :GNF: 
+      :narrow_symbol: FG
+      :symbol: FG
+    :GTQ: 
+      :narrow_symbol: Q
+      :symbol: Q
+    :GYD: 
+      :narrow_symbol: $
+      :symbol: $
+    :HKD: 
+      :narrow_symbol: $
+      :symbol: HK$
+    :HNL: 
+      :narrow_symbol: L
+      :symbol: L
+    :HRK: 
+      :narrow_symbol: kn
+      :symbol: kn
+    :HUF: 
+      :narrow_symbol: Ft
+      :symbol: Ft
+    :IDR: 
+      :narrow_symbol: Rp
+      :symbol: Rp
+    :ILS: 
+      :narrow_symbol: ₪
+      :symbol: ₪
+    :INR: 
+      :name: རྒྱ་གར་སྒོར་
+      :narrow_symbol: ₹
+      :one: རྒྱ་གར་སྒོར་
+      :symbol: ₹
+    :ISK: 
+      :narrow_symbol: kr
+      :symbol: kr
+    :JMD: 
+      :narrow_symbol: $
+      :symbol: $
+    :JPY: 
+      :narrow_symbol: ¥
+      :symbol: JP¥
+    :KGS: 
+      :narrow_symbol: ⃀
+      :symbol: ⃀
+    :KHR: 
+      :narrow_symbol: ៛
+      :symbol: ៛
+    :KMF: 
+      :narrow_symbol: CF
+      :symbol: CF
+    :KPW: 
+      :narrow_symbol: ₩
+      :symbol: ₩
+    :KRW: 
+      :narrow_symbol: ₩
+      :symbol: ₩
+    :KYD: 
+      :narrow_symbol: $
+      :symbol: $
+    :KZT: 
+      :narrow_symbol: ₸
+      :symbol: ₸
+    :LAK: 
+      :narrow_symbol: ₭
+      :symbol: ₭
+    :LBP: 
+      :narrow_symbol: L£
+      :symbol: L£
+    :LKR: 
+      :narrow_symbol: Rs
+      :symbol: Rs
+    :LRD: 
+      :narrow_symbol: $
+      :symbol: $
+    :LTL: 
+      :narrow_symbol: Lt
+      :symbol: Lt
+    :LVL: 
+      :narrow_symbol: Ls
+      :symbol: Ls
+    :MGA: 
+      :narrow_symbol: Ar
+      :symbol: Ar
+    :MMK: 
+      :narrow_symbol: K
+      :symbol: K
+    :MNT: 
+      :narrow_symbol: ₮
+      :symbol: ₮
+    :MUR: 
+      :narrow_symbol: Rs
+      :symbol: Rs
+    :MXN: 
+      :narrow_symbol: $
+      :symbol: MX$
+    :MYR: 
+      :narrow_symbol: RM
+      :symbol: RM
+    :NAD: 
+      :narrow_symbol: $
+      :symbol: $
+    :NGN: 
+      :narrow_symbol: ₦
+      :symbol: ₦
+    :NIO: 
+      :narrow_symbol: C$
+      :symbol: C$
+    :NOK: 
+      :narrow_symbol: kr
+      :symbol: kr
+    :NPR: 
+      :narrow_symbol: Rs
+      :symbol: Rs
+    :NZD: 
+      :narrow_symbol: $
+      :symbol: NZ$
+    :PHP: 
+      :narrow_symbol: ₱
+      :symbol: ₱
+    :PKR: 
+      :narrow_symbol: Rs
+      :symbol: Rs
+    :PLN: 
+      :narrow_symbol: zł
+      :symbol: zł
+    :PYG: 
+      :narrow_symbol: ₲
+      :symbol: ₲
+    :RON: 
+      :narrow_symbol: lei
+      :symbol: lei
+    :RUB: 
+      :narrow_symbol: ₽
+      :symbol: ₽
+    :RWF: 
+      :narrow_symbol: RF
+      :symbol: RF
+    :SBD: 
+      :narrow_symbol: $
+      :symbol: $
+    :SEK: 
+      :narrow_symbol: kr
+      :symbol: kr
+    :SGD: 
+      :narrow_symbol: $
+      :symbol: $
+    :SHP: 
+      :narrow_symbol: £
+      :symbol: £
+    :SRD: 
+      :narrow_symbol: $
+      :symbol: $
+    :SSP: 
+      :narrow_symbol: £
+      :symbol: £
+    :STN: 
+      :narrow_symbol: Db
+      :symbol: Db
+    :SYP: 
+      :narrow_symbol: £
+      :symbol: £
+    :THB: 
+      :narrow_symbol: ฿
+      :symbol: ฿
+    :TOP: 
+      :narrow_symbol: T$
+      :symbol: T$
+    :TRY: 
+      :narrow_symbol: ₺
+      :symbol: ₺
+    :TTD: 
+      :narrow_symbol: $
+      :symbol: $
+    :TWD: 
+      :narrow_symbol: $
+      :symbol: NT$
+    :UAH: 
+      :narrow_symbol: ₴
+      :symbol: ₴
+    :USD: 
+      :name: ཨ་རིའི་སྒོར་
+      :narrow_symbol: $
+      :one: ཨ་རིའི་སྒོར་
+      :symbol: US$
+    :UYU: 
+      :narrow_symbol: $
+      :symbol: $
+    :VEF: 
+      :narrow_symbol: Bs
+      :symbol: Bs
+    :VND: 
+      :narrow_symbol: ₫
+      :symbol: ₫
+    :XAF: 
+      :symbol: FCFA
+    :XCD: 
+      :narrow_symbol: $
+      :symbol: EC$
+    :XCG: 
+      :symbol: Cg.
+    :XOF: 
+      :symbol: F CFA
+    :XPF: 
+      :symbol: CFPF
+    :XXX: 
+      :name: མ་རྟོགས་པའི་ནུས་མེད་དངུལ་ལོར
+      :one: མ་རྟོགས་པའི་ནུས་མེད་དངུལ་ལོར
+      :symbol: ¤
+    :ZAR: 
+      :narrow_symbol: R
+      :symbol: R
+    :ZMW: 
+      :narrow_symbol: ZK
+      :symbol: ZK

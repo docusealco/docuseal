@@ -1,0 +1,339 @@
+--- 
+:eo: 
+  :calendars: 
+    :gregorian: 
+      :additional_formats: 
+        :Bh: "h B"
+        :Bhm: "h:mm B"
+        :Bhms: "h:mm:ss B"
+        :E: ccc
+        :EBhm: "E h:mm B"
+        :EBhms: "E h:mm:ss B"
+        :EHm: "E HH:mm"
+        :EHms: "E HH:mm:ss"
+        :Ed: "d, E"
+        :Ehm: "E h:mm a"
+        :Ehms: "E h:mm:ss a"
+        :Gy: "y G"
+        :GyMMM: "MMM y G"
+        :GyMMMEd: "E, d MMM y G"
+        :GyMMMd: "d MMM y G"
+        :GyMd: "d MMM y G"
+        :H: HH
+        :Hm: "HH:mm"
+        :Hms: "HH:mm:ss"
+        :Hmsv: "HH:mm:ss v"
+        :Hmv: "HH:mm v"
+        :M: L
+        :MEd: "E, MM-dd"
+        :MMM: MMM
+        :MMMEd: "E, d MMM"
+        :MMMMW: "W-'a' 'semajno' 'de' MMMM"
+        :MMMMd: "d MMMM"
+        :MMMd: "d MMM"
+        :Md: MM-dd
+        :d: d
+        :h: h a
+        :hm: "h:mm a"
+        :hms: "h:mm:ss a"
+        :hmsv: "h:mm:ss a v"
+        :hmv: "h:mm a v"
+        :ms: "mm:ss"
+        ? !ruby/symbol "y"
+        : "y"
+        :yM: y-MM
+        :yMEd: "E, y-MM-dd"
+        :yMMM: "MMM y"
+        :yMMMEd: "E, d MMM y"
+        :yMMMM: "MMMM y"
+        :yMMMd: "d MMM y"
+        :yMd: y-MM-dd
+        :yQQQ: "QQQ y"
+        :yQQQQ: "QQQQ 'de' y"
+        :yw: "w-'a' 'semajno' 'de' Y"
+      :days: 
+        :format: 
+          :abbreviated: 
+            :fri: ve
+            :mon: lu
+            :sat: sa
+            :sun: di
+            :thu: ĵa
+            :tue: ma
+            :wed: me
+          :narrow: 
+            :fri: v
+            :mon: l
+            :sat: s
+            :sun: d
+            :thu: ĵ
+            :tue: m
+            :wed: m
+          :short: 
+            :fri: ve
+            :mon: lu
+            :sat: sa
+            :sun: di
+            :thu: ĵa
+            :tue: ma
+            :wed: me
+          :wide: 
+            :fri: vendredo
+            :mon: lundo
+            :sat: sabato
+            :sun: dimanĉo
+            :thu: ĵaŭdo
+            :tue: mardo
+            :wed: merkredo
+        :stand-alone: 
+          :abbreviated: 
+            :fri: ve
+            :mon: lu
+            :sat: sa
+            :sun: di
+            :thu: ĵa
+            :tue: ma
+            :wed: me
+          :narrow: 
+            :fri: v
+            :mon: l
+            :sat: s
+            :sun: d
+            :thu: ĵ
+            :tue: m
+            :wed: m
+          :short: 
+            :fri: ve
+            :mon: lu
+            :sat: sa
+            :sun: di
+            :thu: ĵa
+            :tue: ma
+            :wed: me
+          :wide: 
+            :fri: vendredo
+            :mon: lundo
+            :sat: sabato
+            :sun: dimanĉo
+            :thu: ĵaŭdo
+            :tue: mardo
+            :wed: merkredo
+      :eras: 
+        :abbr: 
+          0: a.K.
+          1: p.K.
+        :name: 
+          0: "antaŭ Kristo"
+          1: "post Kristo"
+        :narrow: 
+          0: BCE
+          1: CE
+      :fields: 
+        :day: tago
+        :day-narrow: t.
+        :day-short: tago
+        :dayOfYear: "tago de jaro"
+        :dayOfYear-narrow: "t. de j."
+        :dayOfYear-short: "tago de jaro"
+        :dayperiod: "mateno / posttagmezo / vespero"
+        :dayperiod-narrow: tagotempo
+        :dayperiod-short: tagotempo
+        :era: erao
+        :era-narrow: erao
+        :era-short: erao
+        :hour: horo
+        :hour-narrow: h
+        :hour-short: horo
+        :minute: minuto
+        :minute-narrow: min
+        :minute-short: min.
+        :month: monato
+        :month-narrow: mon.
+        :month-short: mon.
+        :quarter: jarkvarono
+        :quarter-narrow: jk.
+        :quarter-short: jarkvarono
+        :second: sekundo
+        :second-narrow: s
+        :second-short: sek.
+        :week: semajno
+        :week-narrow: Week
+        :week-short: sem.
+        :weekOfMonth: "semajno de monato"
+        :weekOfMonth-narrow: "sem. de mon."
+        :weekOfMonth-short: "sem. de mon."
+        :weekday: "tago de semajno"
+        :weekday-narrow: st.
+        :weekday-short: semajntago
+        :weekdayOfMonth: "semajntago de monato"
+        :weekdayOfMonth-narrow: "st. de monato"
+        :weekdayOfMonth-short: "st. de monato"
+        :year: jaro
+        :year-narrow: Year
+        :year-short: jaro
+        :zone: horzono
+        :zone-narrow: zono
+        :zone-short: horzono
+      :formats: 
+        :date: 
+          :full: 
+            :pattern: "EEEE, 'la' d-'a' 'de' MMMM y"
+          :long: 
+            :pattern: y-MMMM-dd
+          :medium: 
+            :pattern: y-MMM-dd
+          :short: 
+            :pattern: yy-MM-dd
+        :datetime: 
+          :full: 
+            :pattern: "{{date}} 'je' {{time}}"
+          :long: 
+            :pattern: "{{date}} 'je' {{time}}"
+          :medium: 
+            :pattern: "{{date}} {{time}}"
+          :short: 
+            :pattern: "{{date}} {{time}}"
+        :time: 
+          :full: 
+            :pattern: "HH:mm:ss zzzz"
+          :long: 
+            :pattern: "HH:mm:ss z"
+          :medium: 
+            :pattern: "HH:mm:ss"
+          :short: 
+            :pattern: "HH:mm"
+      :months: 
+        :format: 
+          :abbreviated: 
+            1: Jan
+            10: Okt
+            11: Nov
+            12: Dec
+            2: Feb
+            3: Mar
+            4: Apr
+            5: Maj
+            6: Jun
+            7: Jul
+            8: Aŭg
+            9: Sep
+          :narrow: 
+            1: J
+            10: O
+            11: "N"
+            12: D
+            2: F
+            3: M
+            4: A
+            5: M
+            6: J
+            7: J
+            8: A
+            9: S
+          :wide: 
+            1: Januaro
+            10: Oktobro
+            11: Novembro
+            12: Decembro
+            2: Februaro
+            3: Marto
+            4: Aprilo
+            5: Majo
+            6: Junio
+            7: Julio
+            8: Aŭgusto
+            9: Septembro
+        :stand-alone: 
+          :abbreviated: 
+            1: Jan
+            10: Okt
+            11: Nov
+            12: Dec
+            2: Feb
+            3: Mar
+            4: Apr
+            5: Maj
+            6: Jun
+            7: Jul
+            8: Aŭg
+            9: Sep
+          :narrow: 
+            1: J
+            10: O
+            11: "N"
+            12: D
+            2: F
+            3: M
+            4: A
+            5: M
+            6: J
+            7: J
+            8: A
+            9: S
+          :wide: 
+            1: Januaro
+            10: Oktobro
+            11: Novembro
+            12: Decembro
+            2: Februaro
+            3: Marto
+            4: Aprilo
+            5: Majo
+            6: Junio
+            7: Julio
+            8: Aŭgusto
+            9: Septembro
+      :periods: 
+        :format: 
+          :abbreviated: 
+            :am: atm
+            :pm: ptm
+          :narrow: 
+            :am: a
+            :pm: p
+          :wide: 
+            :am: atm
+            :pm: ptm
+        :stand-alone: 
+          :abbreviated: 
+            :am: atm
+            :pm: ptm
+          :narrow: 
+            :am: a
+            :pm: p
+          :wide: 
+            :am: atm
+            :pm: ptm
+      :quarters: 
+        :format: 
+          :abbreviated: 
+            1: "1. jk."
+            2: "2. jk."
+            3: "3. jk."
+            4: "4. jk."
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: "1-a jarkvarono"
+            2: "2-a jarkvarono"
+            3: "3-a jarkvarono"
+            4: "4-a jarkvarono"
+        :stand-alone: 
+          :abbreviated: 
+            1: "1. jk."
+            2: "2. jk."
+            3: "3. jk."
+            4: "4. jk."
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: "1-a jarkvarono"
+            2: "2-a jarkvarono"
+            3: "3-a jarkvarono"
+            4: "4-a jarkvarono"

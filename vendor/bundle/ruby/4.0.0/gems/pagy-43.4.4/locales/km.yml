@@ -1,0 +1,20 @@
+# See https://ddnexus.github.io/pagy/resources/i18n
+
+km:
+  pagy:
+    p11n: 'Other'
+    aria_label:
+      nav: "ទំព័រ"
+      previous: "មុន"
+      next: "បន្ទាប់"
+    previous: "&lt;"
+    next: "&gt;"
+    gap: "&hellip;"
+    item_name: "ធាតុ"
+    info_tag:
+      no_count: "ទំព័រ %{page} នៃ %{pages}"
+      no_items: "មិនមាន %{item_name} ទេ"
+      single_page: "បង្ហាញ %{count} %{item_name}"
+      multiple_pages: "បង្ហាញ %{item_name} %{from}-%{to} នៃ %{count} ជាចំនួនសរុប"
+    input_nav_js: "ទំព័រ %{page_input} នៃ %{pages}"
+    limit_tag_js: "បង្ហាញ %{limit_input} %{item_name} ក្នុង ១ ទំព័រ"

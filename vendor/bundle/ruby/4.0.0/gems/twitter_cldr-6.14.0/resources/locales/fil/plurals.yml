@@ -1,0 +1,18 @@
+---
+:fil:
+  :cardinal:
+    :rule: 'lambda { |num, runtime| n = runtime.n(num); i = runtime.i(num); f = runtime.f(num);
+      t = runtime.t(num); v = runtime.v(num); w = runtime.w(num); e = runtime.e(num);
+      (((((((v == 0) && (((i == 1) || (i == 2) || (i == 3))))) || (((v == 0) && (((i
+      % 10 != 4) && (i % 10 != 6) && (i % 10 != 9))))))) || (((v != 0) && (((f % 10
+      != 4) && (f % 10 != 6) && (f % 10 != 9)))))) ? :one : :other) }'
+    :names:
+    - :one
+    - :other
+  :ordinal:
+    :rule: 'lambda { |num, runtime| n = runtime.n(num); i = runtime.i(num); f = runtime.f(num);
+      t = runtime.t(num); v = runtime.v(num); w = runtime.w(num); e = runtime.e(num);
+      (n == 1 ? :one : :other) }'
+    :names:
+    - :one
+    - :other

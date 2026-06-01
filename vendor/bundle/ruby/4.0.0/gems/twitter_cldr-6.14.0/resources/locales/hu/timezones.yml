@@ -1,0 +1,1059 @@
+--- 
+:hu: 
+  :formats: 
+    :fallback_formats: 
+      :generic: "{1} ({0})"
+    :gmt_formats: 
+      :generic: "GMT{0}"
+    :gmt_zero_formats: 
+      :generic: GMT
+    :hour_formats: 
+      :generic: "+HH:mm;-HH:mm"
+    :region_formats: 
+      :daylight: "{0} nyári idő"
+      :generic: "{0} idő"
+      :standard: "{0} zónaidő"
+  :metazones: 
+    :Acre: 
+      :long: 
+        :daylight: "Acre nyári idő"
+        :generic: "Acre idő"
+        :standard: "Acre zónaidő"
+    :Afghanistan: 
+      :long: 
+        :standard: "afganisztáni idő"
+    :Africa_Central: 
+      :long: 
+        :standard: "közép-afrikai téli idő"
+    :Africa_Eastern: 
+      :long: 
+        :standard: "kelet-afrikai téli idő"
+    :Africa_Southern: 
+      :long: 
+        :standard: "dél-afrikai téli idő"
+    :Africa_Western: 
+      :long: 
+        :daylight: "nyugat-afrikai nyári idő"
+        :generic: "nyugat-afrikai időzóna"
+        :standard: "nyugat-afrikai téli idő"
+    :Alaska: 
+      :long: 
+        :daylight: "alaszkai nyári idő"
+        :generic: "alaszkai idő"
+        :standard: "alaszkai zónaidő"
+    :Almaty: 
+      :long: 
+        :daylight: "Almati nyári idő"
+        :generic: "Almati idő"
+        :standard: "Almati zónaidő"
+    :Amazon: 
+      :long: 
+        :daylight: "amazóniai nyári idő"
+        :generic: "amazóniai idő"
+        :standard: "amazóniai téli idő"
+    :America_Central: 
+      :long: 
+        :daylight: "középső államokbeli nyári idő"
+        :generic: "középső államokbeli idő"
+        :standard: "középső államokbeli zónaidő"
+    :America_Eastern: 
+      :long: 
+        :daylight: "keleti államokbeli nyári idő"
+        :generic: "keleti államokbeli idő"
+        :standard: "keleti államokbeli zónaidő"
+    :America_Mountain: 
+      :long: 
+        :daylight: "hegyvidéki nyári idő"
+        :generic: "hegyvidéki idő"
+        :standard: "hegyvidéki zónaidő"
+    :America_Pacific: 
+      :long: 
+        :daylight: "csendes-óceáni nyári idő"
+        :generic: "csendes-óceáni idő"
+        :standard: "csendes-óceáni zónaidő"
+    :Anadyr: 
+      :long: 
+        :daylight: "Anadíri nyári idő"
+        :generic: "Anadiri idő"
+        :standard: "Anadíri zónaidő"
+    :Apia: 
+      :long: 
+        :daylight: "apiai nyári idő"
+        :generic: "apiai idő"
+        :standard: "apiai téli idő"
+    :Aqtau: 
+      :long: 
+        :daylight: "Aqtaui nyári idő"
+        :generic: "Aqtaui idő"
+        :standard: "Aqtaui zónaidő"
+    :Aqtobe: 
+      :long: 
+        :daylight: "Aqtobei nyári idő"
+        :generic: "Aqtobei idő"
+        :standard: "Aqtobei zónaidő"
+    :Arabian: 
+      :long: 
+        :daylight: "arab nyári idő"
+        :generic: "arab idő"
+        :standard: "arab téli idő"
+    :Argentina: 
+      :long: 
+        :daylight: "argentínai nyári idő"
+        :generic: "argentínai idő"
+        :standard: "argentínai téli idő"
+    :Argentina_Western: 
+      :long: 
+        :daylight: "nyugat-argentínai nyári idő"
+        :generic: "nyugat-argentínai időzóna"
+        :standard: "nyugat-argentínai téli idő"
+    :Armenia: 
+      :long: 
+        :daylight: "örményországi nyári idő"
+        :generic: "örményországi idő"
+        :standard: "örményországi téli idő"
+    :Atlantic: 
+      :long: 
+        :daylight: "atlanti-óceáni nyári idő"
+        :generic: "atlanti-óceáni idő"
+        :standard: "atlanti-óceáni zónaidő"
+    :Australia_Central: 
+      :long: 
+        :daylight: "közép-ausztráliai nyári idő"
+        :generic: "közép-ausztráliai idő"
+        :standard: "közép-ausztráliai téli idő"
+    :Australia_CentralWestern: 
+      :long: 
+        :daylight: "közép-nyugat-ausztráliai nyári idő"
+        :generic: "közép-nyugat-ausztráliai idő"
+        :standard: "közép-nyugat-ausztráliai téli idő"
+    :Australia_Eastern: 
+      :long: 
+        :daylight: "kelet-ausztráliai nyári idő"
+        :generic: "kelet-ausztráliai idő"
+        :standard: "kelet-ausztráliai téli idő"
+    :Australia_Western: 
+      :long: 
+        :daylight: "nyugat-ausztráliai nyári idő"
+        :generic: "nyugat-ausztráliai idő"
+        :standard: "nyugat-ausztráliai téli idő"
+    :Azerbaijan: 
+      :long: 
+        :daylight: "azerbajdzsáni nyári idő"
+        :generic: "azerbajdzsáni idő"
+        :standard: "azerbajdzsáni téli idő"
+    :Azores: 
+      :long: 
+        :daylight: "azori nyári idő"
+        :generic: "azori időzóna"
+        :standard: "azori téli idő"
+    :Bangladesh: 
+      :long: 
+        :daylight: "bangladesi nyári idő"
+        :generic: "bangladesi idő"
+        :standard: "bangladesi téli idő"
+    :Bhutan: 
+      :long: 
+        :standard: "butáni idő"
+    :Bolivia: 
+      :long: 
+        :standard: "bolíviai téli idő"
+    :Brasilia: 
+      :long: 
+        :daylight: "brazíliai nyári idő"
+        :generic: "brazíliai idő"
+        :standard: "brazíliai téli idő"
+    :Brunei: 
+      :long: 
+        :standard: "Brunei Darussalam-i idő"
+    :Cape_Verde: 
+      :long: 
+        :daylight: "zöld-foki-szigeteki nyári idő"
+        :generic: "zöld-foki-szigeteki időzóna"
+        :standard: "zöld-foki-szigeteki téli idő"
+    :Casey: 
+      :long: 
+        :standard: "casey-i idő"
+    :Chamorro: 
+      :long: 
+        :standard: "chamorrói téli idő"
+    :Chatham: 
+      :long: 
+        :daylight: "chathami nyári idő"
+        :generic: "chathami idő"
+        :standard: "chathami téli idő"
+    :Chile: 
+      :long: 
+        :daylight: "chilei nyári idő"
+        :generic: "chilei időzóna"
+        :standard: "chilei téli idő"
+    :China: 
+      :long: 
+        :daylight: "kínai nyári idő"
+        :generic: "kínai idő"
+        :standard: "kínai téli idő"
+    :Christmas: 
+      :long: 
+        :standard: "karácsony-szigeti idő"
+    :Cocos: 
+      :long: 
+        :standard: "kókusz-szigeteki téli idő"
+    :Colombia: 
+      :long: 
+        :daylight: "kolumbiai nyári idő"
+        :generic: "kolumbiai idő"
+        :standard: "kolumbiai téli idő"
+    :Cook: 
+      :long: 
+        :daylight: "cook-szigeteki fél nyári idő"
+        :generic: "cook-szigeteki idő"
+        :standard: "cook-szigeteki téli idő"
+    :Cuba: 
+      :long: 
+        :daylight: "kubai nyári idő"
+        :generic: "kubai időzóna"
+        :standard: "kubai téli idő"
+    :Davis: 
+      :long: 
+        :standard: "davisi idő"
+    :DumontDUrville: 
+      :long: 
+        :standard: "dumont-d’Urville-i idő"
+    :East_Timor: 
+      :long: 
+        :standard: "kelet-timori téli idő"
+    :Easter: 
+      :long: 
+        :daylight: "húsvét-szigeti nyári idő"
+        :generic: "húsvét-szigeti időzóna"
+        :standard: "húsvét-szigeti téli idő"
+    :Ecuador: 
+      :long: 
+        :standard: "ecuadori téli idő"
+    :Europe_Central: 
+      :long: 
+        :daylight: "közép-európai nyári idő"
+        :generic: "közép-európai időzóna"
+        :standard: "közép-európai téli idő"
+      :short: 
+        :daylight: CEST
+        :generic: CET
+        :standard: CET
+    :Europe_Eastern: 
+      :long: 
+        :daylight: "kelet-európai nyári idő"
+        :generic: "kelet-európai időzóna"
+        :standard: "kelet-európai téli idő"
+      :short: 
+        :daylight: EEST
+        :generic: EET
+        :standard: EET
+    :Europe_Further_Eastern: 
+      :long: 
+        :standard: "minszki idő"
+    :Europe_Western: 
+      :long: 
+        :daylight: "nyugat-európai nyári idő"
+        :generic: "nyugat-európai időzóna"
+        :standard: "nyugat-európai téli idő"
+      :short: 
+        :daylight: WEST
+        :generic: WET
+        :standard: WET
+    :Falkland: 
+      :long: 
+        :daylight: "falkland-szigeteki nyári idő"
+        :generic: "falkland-szigeteki idő"
+        :standard: "falkland-szigeteki téli idő"
+    :Fiji: 
+      :long: 
+        :daylight: "fidzsi nyári idő"
+        :generic: "fidzsi idő"
+        :standard: "fidzsi téli idő"
+    :French_Guiana: 
+      :long: 
+        :standard: "francia-guyanai idő"
+    :French_Southern: 
+      :long: 
+        :standard: "francia déli és antarktiszi idő"
+    :GMT: 
+      :long: 
+        :standard: "greenwichi középidő, téli idő"
+      :short: 
+        :standard: GMT
+    :Galapagos: 
+      :long: 
+        :standard: "galápagosi téli idő"
+    :Gambier: 
+      :long: 
+        :standard: "gambieri idő"
+    :Georgia: 
+      :long: 
+        :daylight: "grúziai nyári idő"
+        :generic: "grúziai idő"
+        :standard: "grúziai téli idő"
+    :Gilbert_Islands: 
+      :long: 
+        :standard: "gilbert-szigeteki idő"
+    :Greenland_Eastern: 
+      :long: 
+        :daylight: "kelet-grönlandi nyári idő"
+        :generic: "kelet-grönlandi időzóna"
+        :standard: "kelet-grönlandi téli idő"
+    :Greenland_Western: 
+      :long: 
+        :daylight: "nyugat-grönlandi nyári idő"
+        :generic: "nyugat-grönlandi időzóna"
+        :standard: "nyugat-grönlandi téli idő"
+    :Guam: 
+      :long: 
+        :standard: "Guami zónaidő"
+    :Gulf: 
+      :long: 
+        :standard: "öbölbeli téli idő"
+    :Guyana: 
+      :long: 
+        :standard: "guyanai téli idő"
+    :Hawaii_Aleutian: 
+      :long: 
+        :daylight: "hawaii-aleuti nyári idő"
+        :generic: "hawaii-aleuti időzóna"
+        :standard: "hawaii-aleuti téli idő"
+    :Hong_Kong: 
+      :long: 
+        :daylight: "hongkongi nyári idő"
+        :generic: "hongkongi időzóna"
+        :standard: "hongkongi téli idő"
+    :Hovd: 
+      :long: 
+        :daylight: "hovdi nyári idő"
+        :generic: "hovdi idő"
+        :standard: "hovdi téli idő"
+    :India: 
+      :long: 
+        :standard: "indiai téli idő"
+    :Indian_Ocean: 
+      :long: 
+        :standard: "indiai-óceáni idő"
+    :Indochina: 
+      :long: 
+        :standard: "indokínai idő"
+    :Indonesia_Central: 
+      :long: 
+        :standard: "közép-indonéziai idő"
+    :Indonesia_Eastern: 
+      :long: 
+        :standard: "kelet-indonéziai idő"
+    :Indonesia_Western: 
+      :long: 
+        :standard: "nyugat-indonéziai téli idő"
+    :Iran: 
+      :long: 
+        :daylight: "iráni nyári idő"
+        :generic: "iráni idő"
+        :standard: "iráni téli idő"
+    :Irkutsk: 
+      :long: 
+        :daylight: "irkutszki nyári idő"
+        :generic: "irkutszki idő"
+        :standard: "irkutszki téli idő"
+    :Israel: 
+      :long: 
+        :daylight: "izraeli nyári idő"
+        :generic: "izraeli idő"
+        :standard: "izraeli téli idő"
+    :Japan: 
+      :long: 
+        :daylight: "japán nyári idő"
+        :generic: "japán idő"
+        :standard: "japán téli idő"
+    :Kamchatka: 
+      :long: 
+        :daylight: "Petropavlovszk-kamcsatkai nyári idő"
+        :generic: "Petropavlovszk-kamcsatkai idő"
+        :standard: "Petropavlovszk-kamcsatkai zónaidő"
+    :Kazakhstan: 
+      :long: 
+        :standard: "kazahsztáni idő"
+    :Kazakhstan_Eastern: 
+      :long: 
+        :standard: "kelet-kazahsztáni idő"
+    :Kazakhstan_Western: 
+      :long: 
+        :standard: "nyugat-kazahsztáni idő"
+    :Korea: 
+      :long: 
+        :daylight: "koreai nyári idő"
+        :generic: "koreai idő"
+        :standard: "koreai téli idő"
+    :Kosrae: 
+      :long: 
+        :standard: "kosraei idő"
+    :Krasnoyarsk: 
+      :long: 
+        :daylight: "krasznojarszki nyári idő"
+        :generic: "krasznojarszki idő"
+        :standard: "krasznojarszki téli idő"
+    :Kyrgystan: 
+      :long: 
+        :standard: "kirgizisztáni idő"
+    :Lanka: 
+      :long: 
+        :standard: "Lankai idő"
+    :Line_Islands: 
+      :long: 
+        :standard: "sor-szigeteki idő"
+    :Lord_Howe: 
+      :long: 
+        :daylight: "Lord Howe-szigeti nyári idő"
+        :generic: "Lord Howe-szigeti idő"
+        :standard: "Lord Howe-szigeti téli idő"
+    :Macau: 
+      :long: 
+        :daylight: "Macaui nyári idő"
+        :generic: "Macaui idő"
+        :standard: "Macaui zónaidő"
+    :Magadan: 
+      :long: 
+        :daylight: "magadáni nyári idő"
+        :generic: "magadáni idő"
+        :standard: "magadani téli idő"
+    :Malaysia: 
+      :long: 
+        :standard: "malajziai idő"
+    :Maldives: 
+      :long: 
+        :standard: "maldív-szigeteki idő"
+    :Marquesas: 
+      :long: 
+        :standard: "marquises-szigeteki idő"
+    :Marshall_Islands: 
+      :long: 
+        :standard: "marshall-szigeteki idő"
+    :Mauritius: 
+      :long: 
+        :daylight: "mauritiusi nyári idő"
+        :generic: "mauritiusi időzóna"
+        :standard: "mauritiusi téli idő"
+    :Mawson: 
+      :long: 
+        :standard: "mawsoni idő"
+    :Mexico_Pacific: 
+      :long: 
+        :daylight: "mexikói csendes-óceáni nyári idő"
+        :generic: "mexikói csendes-óceáni idő"
+        :standard: "mexikói csendes-óceáni zónaidő"
+    :Mongolia: 
+      :long: 
+        :daylight: "ulánbátori nyári idő"
+        :generic: "ulánbátori idő"
+        :standard: "ulánbátori téli idő"
+    :Moscow: 
+      :long: 
+        :daylight: "moszkvai nyári idő"
+        :generic: "moszkvai idő"
+        :standard: "moszkvai téli idő"
+    :Myanmar: 
+      :long: 
+        :standard: "mianmari idő"
+    :Nauru: 
+      :long: 
+        :standard: "naurui idő"
+    :Nepal: 
+      :long: 
+        :standard: "nepáli idő"
+    :New_Caledonia: 
+      :long: 
+        :daylight: "új-kaledóniai nyári idő"
+        :generic: "új-kaledóniai idő"
+        :standard: "új-kaledóniai téli idő"
+    :New_Zealand: 
+      :long: 
+        :daylight: "új-zélandi nyári idő"
+        :generic: "új-zélandi idő"
+        :standard: "új-zélandi téli idő"
+    :Newfoundland: 
+      :long: 
+        :daylight: "új-fundlandi nyári idő"
+        :generic: "új-fundlandi idő"
+        :standard: "új-fundlandi zónaidő"
+    :Niue: 
+      :long: 
+        :standard: "niuei idő"
+    :Norfolk: 
+      :long: 
+        :daylight: "norfolk-szigeteki nyári idő"
+        :generic: "norfolk-szigeteki idő"
+        :standard: "norfolk-szigeteki téli idő"
+    :Noronha: 
+      :long: 
+        :daylight: "Fernando de Noronha-i nyári idő"
+        :generic: "Fernando de Noronha-i idő"
+        :standard: "Fernando de Noronha-i téli idő"
+    :North_Mariana: 
+      :long: 
+        :standard: "Észak-mariana-szigeteki idő"
+    :Novosibirsk: 
+      :long: 
+        :daylight: "novoszibirszki nyári idő"
+        :generic: "novoszibirszki idő"
+        :standard: "novoszibirszki téli idő"
+    :Omsk: 
+      :long: 
+        :daylight: "omszki nyári idő"
+        :generic: "omszki idő"
+        :standard: "omszki téli idő"
+    :Pakistan: 
+      :long: 
+        :daylight: "pakisztáni nyári idő"
+        :generic: "pakisztáni idő"
+        :standard: "pakisztáni téli idő"
+    :Palau: 
+      :long: 
+        :standard: "palaui idő"
+    :Papua_New_Guinea: 
+      :long: 
+        :standard: "pápua új-guineai idő"
+    :Paraguay: 
+      :long: 
+        :daylight: "paraguayi nyári idő"
+        :generic: "paraguayi idő"
+        :standard: "paraguayi téli idő"
+    :Peru: 
+      :long: 
+        :daylight: "perui nyári idő"
+        :generic: "perui idő"
+        :standard: "perui téli idő"
+    :Philippines: 
+      :long: 
+        :daylight: "fülöp-szigeteki nyári idő"
+        :generic: "fülöp-szigeteki idő"
+        :standard: "fülöp-szigeteki téli idő"
+    :Phoenix_Islands: 
+      :long: 
+        :standard: "phoenix-szigeteki téli idő"
+    :Pierre_Miquelon: 
+      :long: 
+        :daylight: "Saint-Pierre és Miquelon-i nyári idő"
+        :generic: "Saint-Pierre és Miquelon-i idő"
+        :standard: "Saint-Pierre és Miquelon-i zónaidő"
+    :Pitcairn: 
+      :long: 
+        :standard: "pitcairn-szigeteki idő"
+    :Ponape: 
+      :long: 
+        :standard: "ponape-szigeti idő"
+    :Pyongyang: 
+      :long: 
+        :standard: "phenjani idő"
+    :Qyzylorda: 
+      :long: 
+        :daylight: "Qyzylordai nyári idő"
+        :generic: "Qyzylordai idő"
+        :standard: "Qyzylordai zónaidő"
+    :Reunion: 
+      :long: 
+        :standard: "réunioni idő"
+    :Rothera: 
+      :long: 
+        :standard: "rotherai idő"
+    :Sakhalin: 
+      :long: 
+        :daylight: "szahalini nyári idő"
+        :generic: "szahalini idő"
+        :standard: "szahalini téli idő"
+    :Samara: 
+      :long: 
+        :daylight: "Szamarai nyári idő"
+        :generic: "Szamarai idő"
+        :standard: "Szamarai zónaidő"
+    :Samoa: 
+      :long: 
+        :daylight: "szamoai nyári idő"
+        :generic: "szamoai idő"
+        :standard: "szamoai téli idő"
+    :Seychelles: 
+      :long: 
+        :standard: "seychelle-szigeteki idő"
+    :Singapore: 
+      :long: 
+        :standard: "szingapúri téli idő"
+    :Solomon: 
+      :long: 
+        :standard: "salamon-szigeteki idő"
+    :South_Georgia: 
+      :long: 
+        :standard: "déli-georgiai idő"
+    :Suriname: 
+      :long: 
+        :standard: "szurinámi idő"
+    :Syowa: 
+      :long: 
+        :standard: "syowai idő"
+    :Tahiti: 
+      :long: 
+        :standard: "tahiti idő"
+    :Taipei: 
+      :long: 
+        :daylight: "taipei nyári idő"
+        :generic: "taipei idő"
+        :standard: "taipei téli idő"
+    :Tajikistan: 
+      :long: 
+        :standard: "tádzsikisztáni idő"
+    :Tokelau: 
+      :long: 
+        :standard: "tokelaui idő"
+    :Tonga: 
+      :long: 
+        :daylight: "tongai nyári idő"
+        :generic: "tongai idő"
+        :standard: "tongai téli idő"
+    :Truk: 
+      :long: 
+        :standard: "truki idő"
+    :Turkmenistan: 
+      :long: 
+        :daylight: "türkmenisztáni nyári idő"
+        :generic: "türkmenisztáni idő"
+        :standard: "türkmenisztáni téli idő"
+    :Tuvalu: 
+      :long: 
+        :standard: "tuvalui idő"
+    :Uruguay: 
+      :long: 
+        :daylight: "uruguayi nyári idő"
+        :generic: "uruguayi idő"
+        :standard: "uruguayi téli idő"
+    :Uzbekistan: 
+      :long: 
+        :daylight: "üzbegisztáni nyári idő"
+        :generic: "üzbegisztáni idő"
+        :standard: "üzbegisztáni téli idő"
+    :Vanuatu: 
+      :long: 
+        :daylight: "vanuatui nyári idő"
+        :generic: "vanuatui idő"
+        :standard: "vanuatui téli idő"
+    :Venezuela: 
+      :long: 
+        :standard: "venezuelai idő"
+    :Vladivostok: 
+      :long: 
+        :daylight: "vlagyivosztoki nyári idő"
+        :generic: "vlagyivosztoki idő"
+        :standard: "vlagyivosztoki téli idő"
+    :Volgograd: 
+      :long: 
+        :daylight: "volgográdi nyári idő"
+        :generic: "volgográdi idő"
+        :standard: "volgográdi téli idő"
+    :Vostok: 
+      :long: 
+        :standard: "vosztoki idő"
+    :Wake: 
+      :long: 
+        :standard: "wake-szigeti idő"
+    :Wallis: 
+      :long: 
+        :standard: "Wallis és Futuna-i idő"
+    :Yakutsk: 
+      :long: 
+        :daylight: "jakutszki nyári idő"
+        :generic: "jakutszki idő"
+        :standard: "jakutszki téli idő"
+    :Yekaterinburg: 
+      :long: 
+        :daylight: "jekatyerinburgi nyári idő"
+        :generic: "jekatyerinburgi idő"
+        :standard: "jekatyerinburgi téli idő"
+    :Yukon: 
+      :long: 
+        :standard: "yukoni idő"
+  :timezones: 
+    :Africa/Addis_Ababa: 
+      :city: Addisz-Abeba
+    :Africa/Algiers: 
+      :city: Algír
+    :Africa/Asmera: 
+      :city: Aszmara
+    :Africa/Cairo: 
+      :city: Kairó
+    :Africa/Dar_es_Salaam: 
+      :city: "Dar es-Salaam"
+    :Africa/Djibouti: 
+      :city: Dzsibuti
+    :Africa/El_Aaiun: 
+      :city: El-Ajún
+    :Africa/Khartoum: 
+      :city: Kartúm
+    :Africa/Malabo: 
+      :city: Malabó
+    :Africa/Sao_Tome: 
+      :city: "São Tomé"
+    :Africa/Tunis: 
+      :city: Tunisz
+    :America/Araguaina: 
+      :city: Araguaína
+    :America/Argentina/Rio_Gallegos: 
+      :city: "Río Gallegos"
+    :America/Argentina/Tucuman: 
+      :city: Tucumán
+    :America/Asuncion: 
+      :city: Asunción
+    :America/Bahia_Banderas: 
+      :city: "Bahia Banderas"
+    :America/Belem: 
+      :city: Belém
+    :America/Bogota: 
+      :city: Bogotá
+    :America/Cancun: 
+      :city: Cancún
+    :America/Cayman: 
+      :city: Kajmán-szigetek
+    :America/Ciudad_Juarez: 
+      :city: "Ciudad Juárez"
+    :America/Coral_Harbour: 
+      :city: Atikokan
+    :America/Cordoba: 
+      :city: Córdoba
+    :America/Cuiaba: 
+      :city: Cuiabá
+    :America/Curacao: 
+      :city: Curaçao
+    :America/Dominica: 
+      :city: Dominika
+    :America/Eirunepe: 
+      :city: Eirunepé
+    :America/El_Salvador: 
+      :city: Salvador
+    :America/Godthab: 
+      :city: Nuuk
+    :America/Havana: 
+      :city: Havanna
+    :America/Indiana/Knox: 
+      :city: "Knox, Indiana"
+    :America/Indiana/Marengo: 
+      :city: "Marengo, Indiana"
+    :America/Indiana/Petersburg: 
+      :city: "Petersburg, Indiana"
+    :America/Indiana/Tell_City: 
+      :city: "Tell City, Indiana"
+    :America/Indiana/Vevay: 
+      :city: "Vevay, Indiana"
+    :America/Indiana/Vincennes: 
+      :city: "Vincennes, Indiana"
+    :America/Indiana/Winamac: 
+      :city: "Winamac, Indiana"
+    :America/Kentucky/Monticello: 
+      :city: "Monticello, Kentucky"
+    :America/Lower_Princes: 
+      :city: "Lower Prince’s Quarter"
+    :America/Maceio: 
+      :city: Maceió
+    :America/Mazatlan: 
+      :city: Mazatlán
+    :America/Merida: 
+      :city: Mérida
+    :America/Mexico_City: 
+      :city: Mexikóváros
+    :America/North_Dakota/Beulah: 
+      :city: "Beulah, Észak-Dakota"
+    :America/North_Dakota/Center: 
+      :city: "Center, Észak-Dakota"
+    :America/North_Dakota/New_Salem: 
+      :city: "New Salem, Észak-Dakota"
+    :America/Rio_Branco: 
+      :city: "Río Branco"
+    :America/Sao_Paulo: 
+      :city: "São Paulo"
+    :America/Scoresbysund: 
+      :city: Ittoqqortoormiit
+    :America/St_Barthelemy: 
+      :city: Saint-Barthélemy
+    :America/St_Johns: 
+      :city: "St. John’s"
+    :America/St_Kitts: 
+      :city: "St. Kitts"
+    :America/St_Lucia: 
+      :city: "St. Lucia"
+    :America/St_Thomas: 
+      :city: "St. Thomas"
+    :America/St_Vincent: 
+      :city: "St. Vincent"
+    :Antarctica/DumontDUrville: 
+      :city: "Dumont d’Urville"
+    :Antarctica/Vostok: 
+      :city: Vosztok
+    :Asia/Aden: 
+      :city: Áden
+    :Asia/Almaty: 
+      :city: Alma-Ata
+    :Asia/Amman: 
+      :city: Ammán
+    :Asia/Anadyr: 
+      :city: Anadir
+    :Asia/Aqtau: 
+      :city: Aktau
+    :Asia/Aqtobe: 
+      :city: Aktöbe
+    :Asia/Ashgabat: 
+      :city: Asgabat
+    :Asia/Atyrau: 
+      :city: Atirau
+    :Asia/Baghdad: 
+      :city: Bagdad
+    :Asia/Bahrain: 
+      :city: Bahrein
+    :Asia/Beirut: 
+      :city: Bejrút
+    :Asia/Bishkek: 
+      :city: Biskek
+    :Asia/Calcutta: 
+      :city: Kalkutta
+    :Asia/Chita: 
+      :city: Csita
+    :Asia/Damascus: 
+      :city: Damaszkusz
+    :Asia/Dhaka: 
+      :city: Dakka
+    :Asia/Dubai: 
+      :city: Dubaj
+    :Asia/Dushanbe: 
+      :city: Dusanbe
+    :Asia/Gaza: 
+      :city: Gáza
+    :Asia/Hong_Kong: 
+      :city: Hongkong
+    :Asia/Irkutsk: 
+      :city: Irkutszk
+    :Asia/Jerusalem: 
+      :city: Jeruzsálem
+    :Asia/Kamchatka: 
+      :city: Kamcsatka
+    :Asia/Karachi: 
+      :city: Karacsi
+    :Asia/Katmandu: 
+      :city: Katmandu
+    :Asia/Khandyga: 
+      :city: Handiga
+    :Asia/Krasnoyarsk: 
+      :city: Krasznojarszk
+    :Asia/Kuching: 
+      :city: Kucseng
+    :Asia/Kuwait: 
+      :city: Kuvait
+    :Asia/Macau: 
+      :city: Makaó
+    :Asia/Magadan: 
+      :city: Magadán
+    :Asia/Makassar: 
+      :city: Makasar
+    :Asia/Muscat: 
+      :city: Maszkat
+    :Asia/Novokuznetsk: 
+      :city: Novokuznyeck
+    :Asia/Novosibirsk: 
+      :city: Novoszibirszk
+    :Asia/Omsk: 
+      :city: Omszk
+    :Asia/Pyongyang: 
+      :city: Phenjan
+    :Asia/Qatar: 
+      :city: Katar
+    :Asia/Qostanay: 
+      :city: Kosztanaj
+    :Asia/Qyzylorda: 
+      :city: Kizilorda
+    :Asia/Rangoon: 
+      :city: Yangon
+    :Asia/Riyadh: 
+      :city: Rijád
+    :Asia/Saigon: 
+      :city: "Ho Si Minh-város"
+    :Asia/Sakhalin: 
+      :city: Szahalin
+    :Asia/Samarkand: 
+      :city: Szamarkand
+    :Asia/Seoul: 
+      :city: Szöul
+    :Asia/Shanghai: 
+      :city: Sanghaj
+    :Asia/Singapore: 
+      :city: Szingapúr
+    :Asia/Srednekolymsk: 
+      :city: Szrednekolimszk
+    :Asia/Taipei: 
+      :city: Tajpej
+    :Asia/Tashkent: 
+      :city: Taskent
+    :Asia/Tbilisi: 
+      :city: Tbiliszi
+    :Asia/Tehran: 
+      :city: Teherán
+    :Asia/Thimphu: 
+      :city: Timpu
+    :Asia/Tokyo: 
+      :city: Tokió
+    :Asia/Tomsk: 
+      :city: Tomszk
+    :Asia/Ulaanbaatar: 
+      :city: Ulánbátor
+    :Asia/Urumqi: 
+      :city: Ürümcsi
+    :Asia/Ust-Nera: 
+      :city: Uszty-Nyera
+    :Asia/Vientiane: 
+      :city: Vientián
+    :Asia/Vladivostok: 
+      :city: Vlagyivosztok
+    :Asia/Yakutsk: 
+      :city: Jakutszk
+    :Asia/Yekaterinburg: 
+      :city: Jekatyerinburg
+    :Asia/Yerevan: 
+      :city: Jereván
+    :Atlantic/Azores: 
+      :city: Azori-szigetek
+    :Atlantic/Canary: 
+      :city: Kanári-szigetek
+    :Atlantic/Cape_Verde: 
+      :city: "Zöld-foki szigetek"
+    :Atlantic/Faeroe: 
+      :city: Feröer
+    :Atlantic/Reykjavik: 
+      :city: Reykjavík
+    :Atlantic/South_Georgia: 
+      :city: Déli-Georgia
+    :Atlantic/St_Helena: 
+      :city: "Szent Ilona"
+    :Etc/UTC: 
+      :long: 
+        :standard: "koordinált világidő"
+      :short: 
+        :standard: UTC
+    :Etc/Unknown: 
+      :city: "Ismeretlen város"
+    :Europe/Amsterdam: 
+      :city: Amszterdam
+    :Europe/Astrakhan: 
+      :city: Asztrahán
+    :Europe/Athens: 
+      :city: Athén
+    :Europe/Belgrade: 
+      :city: Belgrád
+    :Europe/Bratislava: 
+      :city: Pozsony
+    :Europe/Brussels: 
+      :city: Brüsszel
+    :Europe/Bucharest: 
+      :city: Bukarest
+    :Europe/Busingen: 
+      :city: Büsingen
+    :Europe/Copenhagen: 
+      :city: Koppenhága
+    :Europe/Dublin: 
+      :long: 
+        :daylight: "ír nyári idő"
+    :Europe/Gibraltar: 
+      :city: Gibraltár
+    :Europe/Isle_of_Man: 
+      :city: Man-sziget
+    :Europe/Istanbul: 
+      :city: Isztanbul
+    :Europe/Kaliningrad: 
+      :city: Kalinyingrád
+    :Europe/Kiev: 
+      :city: Kijev
+    :Europe/Lisbon: 
+      :city: Lisszabon
+    :Europe/London: 
+      :long: 
+        :daylight: "brit nyári idő"
+    :Europe/Luxembourg: 
+      :city: Luxemburg
+    :Europe/Malta: 
+      :city: Málta
+    :Europe/Minsk: 
+      :city: Minszk
+    :Europe/Moscow: 
+      :city: Moszkva
+    :Europe/Paris: 
+      :city: Párizs
+    :Europe/Prague: 
+      :city: Prága
+    :Europe/Rome: 
+      :city: Róma
+    :Europe/Samara: 
+      :city: Szamara
+    :Europe/Sarajevo: 
+      :city: Szarajevó
+    :Europe/Saratov: 
+      :city: Szaratov
+    :Europe/Simferopol: 
+      :city: Szimferopol
+    :Europe/Skopje: 
+      :city: Szkopje
+    :Europe/Sofia: 
+      :city: Szófia
+    :Europe/Tallinn: 
+      :city: Tallin
+    :Europe/Tirane: 
+      :city: Tirana
+    :Europe/Ulyanovsk: 
+      :city: Uljanovszk
+    :Europe/Vatican: 
+      :city: Vatikán
+    :Europe/Vienna: 
+      :city: Bécs
+    :Europe/Volgograd: 
+      :city: Volgográd
+    :Europe/Warsaw: 
+      :city: Varsó
+    :Europe/Zagreb: 
+      :city: Zágráb
+    :Europe/Zurich: 
+      :city: Zürich
+    :Indian/Christmas: 
+      :city: Karácsony-sziget
+    :Indian/Cocos: 
+      :city: Kókusz-sziget
+    :Indian/Comoro: 
+      :city: Komoró
+    :Indian/Maldives: 
+      :city: Maldív-szigetek
+    :Indian/Reunion: 
+      :city: Réunion
+    :Pacific/Chatham: 
+      :city: Chatham-szigetek
+    :Pacific/Easter: 
+      :city: Húsvét-szigetek
+    :Pacific/Enderbury: 
+      :city: Enderbury
+    :Pacific/Fiji: 
+      :city: Fidzsi
+    :Pacific/Galapagos: 
+      :city: Galapagos-szigetek
+    :Pacific/Gambier: 
+      :city: Gambier-szigetek
+    :Pacific/Honolulu: 
+      :city: Honolulu
+    :Pacific/Kiritimati: 
+      :city: Kiritimati-sziget
+    :Pacific/Kosrae: 
+      :city: Kosrae-szigetek
+    :Pacific/Kwajalein: 
+      :city: Kwajalein-zátony
+    :Pacific/Majuro: 
+      :city: Majuro-zátony
+    :Pacific/Marquesas: 
+      :city: Marquesas-szigetek
+    :Pacific/Midway: 
+      :city: Midway-szigetek
+    :Pacific/Pitcairn: 
+      :city: Pitcairn-szigetek
+    :Pacific/Ponape: 
+      :city: Ponape-szigetek
+    :Pacific/Truk: 
+      :city: Truk
+    :Pacific/Wake: 
+      :city: Wake-sziget

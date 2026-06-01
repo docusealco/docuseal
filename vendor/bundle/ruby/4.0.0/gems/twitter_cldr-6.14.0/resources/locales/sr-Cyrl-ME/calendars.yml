@@ -1,0 +1,374 @@
+--- 
+:sr-Cyrl-ME: 
+  :calendars: 
+    :gregorian: 
+      :additional_formats: 
+        :Bh: "h B"
+        :Bhm: "hh:mm B"
+        :Bhms: "hh:mm:ss B"
+        :E: E
+        :EBhm: "E h:mm B"
+        :EBhms: "E, hh:mm:ss B"
+        :EHm: "E HH:mm"
+        :EHms: "E HH:mm:ss"
+        :Ed: "E d."
+        :Ehm: "E h:mm a"
+        :Ehms: "E h:mm:ss a"
+        :Gy: "y. G"
+        :GyMMM: "MMM y. G"
+        :GyMMMEd: "E, d. MMM y. G"
+        :GyMMMd: "d. MMM y. G"
+        :GyMd: "d.MM.y. GGGGG"
+        :H: HH
+        :Hm: "HH:mm"
+        :Hms: "HH:mm:ss"
+        :Hmsv: "HH:mm:ss v"
+        :Hmv: "HH:mm v"
+        :M: L
+        :MEd: "E, d. M."
+        :MMM: LLL
+        :MMMEd: "E d. MMM"
+        :MMMMEd: "E, d. MMMM"
+        :MMMMW: "W. 'сједмица' 'у' MMMM"
+        :MMMMd: "d. MMMM"
+        :MMMd: "d. MMM"
+        :MMMdd: dd.MMM
+        :MMdd: dd.MM.
+        :Md: "d. M."
+        :d: d
+        :h: h a
+        :hm: "h:mm a"
+        :hms: "h:mm:ss a"
+        :hmsv: "h:mm:ss a v"
+        :hmv: "h:mm a v"
+        :ms: "mm:ss"
+        ? !ruby/symbol "y"
+        : y.
+        :yM: "M. y."
+        :yMEd: "E, d. M. y."
+        :yMM: MM.y.
+        :yMMM: "MMM y."
+        :yMMMEd: "E, d. MMM y."
+        :yMMMM: "MMMM y."
+        :yMMMd: "d. MMM y."
+        :yMMdd: dd.MM.y.
+        :yMd: "d. M. y."
+        :yQQQ: "QQQ y."
+        :yQQQQ: "QQQQ y."
+        :yw: "w. 'сједмица' 'у' Y."
+      :days: 
+        :format: 
+          :abbreviated: 
+            :fri: пет
+            :mon: пон
+            :sat: суб
+            :sun: нед
+            :thu: чет
+            :tue: уто
+            :wed: сре
+          :narrow: 
+            :fri: п
+            :mon: п
+            :sat: с
+            :sun: н
+            :thu: ч
+            :tue: у
+            :wed: с
+          :short: 
+            :fri: пе
+            :mon: по
+            :sat: су
+            :sun: не
+            :thu: че
+            :tue: ут
+            :wed: ср
+          :wide: 
+            :fri: петак
+            :mon: понедељак
+            :sat: субота
+            :sun: недјеља
+            :thu: четвртак
+            :tue: уторак
+            :wed: сриједа
+        :stand-alone: 
+          :abbreviated: 
+            :fri: пет
+            :mon: пон
+            :sat: суб
+            :sun: нед
+            :thu: чет
+            :tue: уто
+            :wed: сре
+          :narrow: 
+            :fri: п
+            :mon: п
+            :sat: с
+            :sun: н
+            :thu: ч
+            :tue: у
+            :wed: с
+          :short: 
+            :fri: пе
+            :mon: по
+            :sat: су
+            :sun: не
+            :thu: че
+            :tue: ут
+            :wed: ср
+          :wide: 
+            :fri: петак
+            :mon: понедељак
+            :sat: субота
+            :sun: недјеља
+            :thu: четвртак
+            :tue: уторак
+            :wed: сриједа
+      :eras: 
+        :abbr: 
+          0: "п. н. е."
+          1: "н. е."
+        :name: 
+          0: "пре наше ере"
+          1: "наше ере"
+        :narrow: 
+          0: п.н.е.
+          1: н.е.
+      :fields: 
+        :day: дан
+        :day-narrow: д.
+        :day-short: д.
+        :dayOfYear: "дан у години"
+        :dayOfYear-narrow: "дан у год."
+        :dayOfYear-short: "дан у год."
+        :dayperiod: AM/PM
+        :dayperiod-narrow: "пре подне/по подне"
+        :dayperiod-short: "пре подне/по подне"
+        :era: ера
+        :era-narrow: ера
+        :era-short: ера
+        :hour: сат
+        :hour-narrow: ч.
+        :hour-short: ч.
+        :minute: минут
+        :minute-narrow: мин.
+        :minute-short: мин.
+        :month: месец
+        :month-narrow: Month
+        :month-short: мес.
+        :quarter: квартал
+        :quarter-narrow: кв.
+        :quarter-short: кв.
+        :second: секунд
+        :second-narrow: с
+        :second-short: сек.
+        :week: недеља
+        :week-narrow: Week
+        :week-short: нед.
+        :weekOfMonth: "недеља у месецу"
+        :weekOfMonth-narrow: "нед. у мес."
+        :weekOfMonth-short: "нед. у мес."
+        :weekday: "дан у недељи"
+        :weekday-narrow: "дан у недељи"
+        :weekday-short: "дан у недељи"
+        :weekdayOfMonth: "дан у месецу"
+        :weekdayOfMonth-narrow: "дан у месецу"
+        :weekdayOfMonth-short: "дан у месецу"
+        :year: година
+        :year-narrow: г.
+        :year-short: год.
+        :zone: "временска зона"
+        :zone-narrow: "временска зона"
+        :zone-short: "временска зона"
+      :formats: 
+        :date: 
+          :full: 
+            :pattern: "EEEE, d. MMMM y."
+          :long: 
+            :pattern: "d. MMMM y."
+          :medium: 
+            :pattern: "d. M. y."
+          :short: 
+            :pattern: "d. M. y."
+        :datetime: 
+          :full: 
+            :pattern: "{{date}} {{time}}"
+          :long: 
+            :pattern: "{{date}} {{time}}"
+          :medium: 
+            :pattern: "{{date}} {{time}}"
+          :short: 
+            :pattern: "{{date}} {{time}}"
+        :time: 
+          :full: 
+            :pattern: "HH:mm:ss zzzz"
+          :long: 
+            :pattern: "HH:mm:ss z"
+          :medium: 
+            :pattern: "HH:mm:ss"
+          :short: 
+            :pattern: "HH:mm"
+      :months: 
+        :format: 
+          :abbreviated: 
+            1: јан
+            10: окт
+            11: нов
+            12: дец
+            2: феб
+            3: март
+            4: апр
+            5: мај
+            6: јун
+            7: јул
+            8: авг
+            9: септ
+          :narrow: 
+            1: ј
+            10: о
+            11: н
+            12: д
+            2: ф
+            3: м
+            4: а
+            5: м
+            6: ј
+            7: ј
+            8: а
+            9: с
+          :wide: 
+            1: јануар
+            10: октобар
+            11: новембар
+            12: децембар
+            2: фебруар
+            3: март
+            4: април
+            5: мај
+            6: јун
+            7: јул
+            8: август
+            9: септембар
+        :stand-alone: 
+          :abbreviated: 
+            1: јан
+            10: окт
+            11: нов
+            12: дец
+            2: феб
+            3: март
+            4: апр
+            5: мај
+            6: јун
+            7: јул
+            8: авг
+            9: септ
+          :narrow: 
+            1: ј
+            10: о
+            11: н
+            12: д
+            2: ф
+            3: м
+            4: а
+            5: м
+            6: ј
+            7: ј
+            8: а
+            9: с
+          :wide: 
+            1: јануар
+            10: октобар
+            11: новембар
+            12: децембар
+            2: фебруар
+            3: март
+            4: април
+            5: мај
+            6: јун
+            7: јул
+            8: август
+            9: септембар
+      :periods: 
+        :format: 
+          :abbreviated: 
+            :afternoon1: "по под."
+            :am: прије подне
+            :evening1: вече
+            :midnight: поноћ
+            :morning1: јутро
+            :night1: ноћу
+            :noon: подне
+            :pm: по подне
+          :narrow: 
+            :afternoon1: "по под."
+            :am: AM
+            :evening1: вече
+            :midnight: поноћ
+            :morning1: јутро
+            :night1: ноћ
+            :noon: подне
+            :pm: PM
+          :wide: 
+            :afternoon1: "по подне"
+            :am: "прије подне"
+            :evening1: увече
+            :midnight: поноћ
+            :morning1: ујутру
+            :night1: ноћу
+            :noon: подне
+            :pm: "по подне"
+        :stand-alone: 
+          :abbreviated: 
+            :afternoon1: поподне
+            :am: AM
+            :evening1: вече
+            :morning1: јутро
+            :night1: ноћ
+            :pm: PM
+          :narrow: 
+            :afternoon1: поподне
+            :am: a
+            :evening1: вече
+            :morning1: јутро
+            :night1: ноћ
+            :pm: p
+          :wide: 
+            :afternoon1: поподне
+            :am: "прије подне"
+            :evening1: вече
+            :morning1: јутро
+            :night1: ноћ
+            :pm: "по подне"
+      :quarters: 
+        :format: 
+          :abbreviated: 
+            1: "1. кв."
+            2: "2. кв."
+            3: "3. кв."
+            4: "4. кв."
+          :narrow: 
+            1: "1."
+            2: "2."
+            3: "3."
+            4: "4."
+          :wide: 
+            1: "први квартал"
+            2: "други квартал"
+            3: "трећи квартал"
+            4: "четврти квартал"
+        :stand-alone: 
+          :abbreviated: 
+            1: "1. кв."
+            2: "2. кв."
+            3: "3. кв."
+            4: "4. кв."
+          :narrow: 
+            1: "1."
+            2: "2."
+            3: "3."
+            4: "4."
+          :wide: 
+            1: "први квартал"
+            2: "други квартал"
+            3: "трећи квартал"
+            4: "четврти квартал"

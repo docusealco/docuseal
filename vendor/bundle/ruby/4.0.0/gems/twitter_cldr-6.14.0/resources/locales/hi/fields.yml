@@ -1,0 +1,339 @@
+--- 
+:hi: 
+  :fields: 
+    :day: 
+      :display_name: दिन
+      :relative: 
+        -1: कल
+        -2: परसों
+        0: आज
+        1: कल
+        2: परसों
+      :relative_time: 
+        :future: 
+          :one: "{0} दिन में"
+          :other: "{0} दिन में"
+        :past: 
+          :one: "{0} दिन पहले"
+          :other: "{0} दिन पहले"
+    :day-short: 
+      :relative: 
+        -1: "बीता कल"
+        0: आज
+        1: "आने वाला कल"
+    :dayOfYear: 
+      :display_name: "वर्ष का दिन"
+    :dayperiod: 
+      :display_name: पूर्वाह्न/अपराह्न
+    :dayperiod-short: 
+      :display_name: पू/अ
+    :era: 
+      :display_name: युग
+    :fri: 
+      :relative: 
+        -1: "पिछला शुक्रवार"
+        0: "इस शुक्रवार"
+        1: "अगला शुक्रवार"
+      :relative_time: 
+        :future: 
+          :one: "{0} शुक्रवार में"
+          :other: "{0} शुक्रवार में"
+        :past: 
+          :one: "{0} शुक्रवार पूर्व"
+          :other: "{0} शुक्रवार पूर्व"
+    :fri-short: 
+      :relative: 
+        -1: "पिछला शुक्र॰"
+        0: "इस शुक्र॰"
+        1: "अगला शुक्र॰"
+      :relative_time: 
+        :future: 
+          :one: "{0} शुक्र॰ में"
+          :other: "{0} शुक्र॰ में"
+        :past: 
+          :one: "{0} शुक्र॰ पूर्व"
+          :other: "{0} शुक्र॰ पूर्व"
+    :hour: 
+      :display_name: घंटा
+      :relative: 
+        0: "यह घंटा"
+      :relative_time: 
+        :future: 
+          :one: "{0} घंटे में"
+          :other: "{0} घंटे में"
+        :past: 
+          :one: "{0} घंटे पहले"
+          :other: "{0} घंटे पहले"
+    :hour-short: 
+      :display_name: घं॰
+      :relative_time: 
+        :future: 
+          :one: "{0} घं॰ में"
+          :other: "{0} घं॰ में"
+        :past: 
+          :one: "{0} घं॰ पहले"
+          :other: "{0} घं॰ पहले"
+    :minute: 
+      :display_name: मिनट
+      :relative: 
+        0: "यह मिनट"
+      :relative_time: 
+        :future: 
+          :one: "{0} मिनट में"
+          :other: "{0} मिनट में"
+        :past: 
+          :one: "{0} मिनट पहले"
+          :other: "{0} मिनट पहले"
+    :minute-short: 
+      :display_name: मि॰
+      :relative_time: 
+        :future: 
+          :one: "{0} मि॰ में"
+          :other: "{0} मि॰ में"
+        :past: 
+          :one: "{0} मि॰ पहले"
+          :other: "{0} मि॰ पहले"
+    :mon: 
+      :relative: 
+        -1: "पिछला सोमवार"
+        0: "इस सोमवार"
+        1: "अगला सोमवार"
+      :relative_time: 
+        :future: 
+          :one: "{0} सोमवार में"
+          :other: "{0} सोमवार में"
+        :past: 
+          :one: "{0} सोमवार पूर्व"
+          :other: "{0} सोमवार पूर्व"
+    :mon-short: 
+      :relative: 
+        -1: "पिछला सोम॰"
+        0: "इस सोम॰"
+        1: "अगला सोम॰"
+      :relative_time: 
+        :future: 
+          :one: "{0} सोम॰ में"
+          :other: "{0} सोम॰ में"
+        :past: 
+          :one: "{0} सोम॰ पूर्व"
+          :other: "{0} सोम॰ पूर्व"
+    :month: 
+      :display_name: माह
+      :relative: 
+        -1: "पिछला माह"
+        0: "इस माह"
+        1: "अगला माह"
+      :relative_time: 
+        :future: 
+          :one: "{0} माह में"
+          :other: "{0} माह में"
+        :past: 
+          :one: "{0} माह पहले"
+          :other: "{0} माह पहले"
+    :quarter: 
+      :display_name: तिमाही
+      :relative: 
+        -1: "अंतिम तिमाही"
+        0: "इस तिमाही"
+        1: "अगली तिमाही"
+      :relative_time: 
+        :future: 
+          :one: "{0} तिमाही में"
+          :other: "{0} तिमाहियों में"
+        :past: 
+          :one: "{0} तिमाही पहले"
+          :other: "{0} तिमाही पहले"
+    :quarter-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "{0} ति॰ में"
+          :other: "{0} ति॰ में"
+        :past: 
+          :one: "{0} ति॰ पहले"
+          :other: "{0} ति॰ पहले"
+    :quarter-short: 
+      :relative_time: 
+        :past: 
+          :one: "{0} तिमाही पहले"
+          :other: "{0} तिमाहियों पहले"
+    :sat: 
+      :relative: 
+        -1: "पिछला शनिवार"
+        0: "इस शनिवार"
+        1: "अगला शनिवार"
+      :relative_time: 
+        :future: 
+          :one: "{0} शनिवार में"
+          :other: "{0} शनिवार में"
+        :past: 
+          :one: "{0} शनिवार पूर्व"
+          :other: "{0} शनिवार पूर्व"
+    :sat-short: 
+      :relative: 
+        -1: "पिछला शनि॰"
+        0: "इस शनि॰"
+        1: "अगला शनि॰"
+      :relative_time: 
+        :future: 
+          :one: "{0} शनि॰ में"
+          :other: "{0} शनि॰ में"
+        :past: 
+          :one: "{0} शनि॰ पूर्व"
+          :other: "{0} शनि॰ पूर्व"
+    :second: 
+      :display_name: सेकंड
+      :relative: 
+        0: अब
+      :relative_time: 
+        :future: 
+          :one: "{0} सेकंड में"
+          :other: "{0} सेकंड में"
+        :past: 
+          :one: "{0} सेकंड पहले"
+          :other: "{0} सेकंड पहले"
+    :second-short: 
+      :display_name: से॰
+      :relative_time: 
+        :future: 
+          :one: "{0} से॰ में"
+          :other: "{0} से॰ में"
+        :past: 
+          :one: "{0} से॰ पहले"
+          :other: "{0} से॰ पहले"
+    :sun: 
+      :relative: 
+        -1: "पिछला रविवार"
+        0: "इस रविवार"
+        1: "अगला रविवार"
+      :relative_time: 
+        :future: 
+          :one: "{0} रविवार में"
+          :other: "{0} रविवार में"
+        :past: 
+          :one: "{0} रविवार पूर्व"
+          :other: "{0} रविवार पूर्व"
+    :sun-short: 
+      :relative: 
+        -1: "पिछला रवि॰"
+        0: "इस रवि॰"
+        1: "अगला रवि॰"
+      :relative_time: 
+        :future: 
+          :one: "{0} रवि॰ में"
+          :other: "{0} रवि॰ में"
+        :past: 
+          :one: "{0} रवि॰ पूर्व"
+          :other: "{0} रवि॰ पूर्व"
+    :thu: 
+      :relative: 
+        -1: "पिछला गुरुवार"
+        0: "इस गुरुवार"
+        1: "अगला गुरुवार"
+      :relative_time: 
+        :future: 
+          :one: "{0} गुरुवार में"
+          :other: "{0} गुरुवार में"
+        :past: 
+          :one: "{0} गुरुवार पूर्व"
+          :other: "{0} गुरुवार पूर्व"
+    :thu-short: 
+      :relative: 
+        -1: "पिछला गुरु॰"
+        0: "इस गुरु॰"
+        1: "अगला गुरु॰"
+      :relative_time: 
+        :future: 
+          :one: "{0} गुरु॰ में"
+          :other: "{0} गुरु॰ में"
+        :past: 
+          :one: "{0} गुरु॰ पूर्व"
+          :other: "{0} गुरु॰ पूर्व"
+    :tue: 
+      :relative: 
+        -1: "पिछला मंगलवार"
+        0: "इस मंगलवार"
+        1: "अगला मंगलवार"
+      :relative_time: 
+        :future: 
+          :one: "{0} मंगलवार में"
+          :other: "{0} मंगलवार में"
+        :past: 
+          :one: "{0} मंगलवार पूर्व"
+          :other: "{0} मंगलवार पूर्व"
+    :tue-short: 
+      :relative: 
+        -1: "पिछला मंगल॰"
+        0: "इस मंगल॰"
+        1: "अगला मंगल॰"
+      :relative_time: 
+        :future: 
+          :one: "{0} मंगल॰ में"
+          :other: "{0} मंगल॰ में"
+        :past: 
+          :one: "{0} मंगल॰ पूर्व"
+          :other: "{0} मंगल॰ पूर्व"
+    :wed: 
+      :relative: 
+        -1: "पिछला बुधवार"
+        0: "इस बुधवार"
+        1: "अगला बुधवार"
+      :relative_time: 
+        :future: 
+          :one: "{0} बुधवार में"
+          :other: "{0} बुधवार में"
+        :past: 
+          :one: "{0} बुधवार पूर्व"
+          :other: "{0} बुधवार पूर्व"
+    :wed-short: 
+      :relative: 
+        -1: "पिछला बुध॰"
+        0: "इस बुध॰"
+        1: "अगला बुध॰"
+      :relative_time: 
+        :future: 
+          :one: "{0} बुध॰ में"
+          :other: "{0} बुध॰ में"
+        :past: 
+          :one: "{0} बुध॰ पूर्व"
+          :other: "{0} बुध॰ पूर्व"
+    :week: 
+      :display_name: सप्ताह
+      :relative: 
+        -1: "पिछला सप्ताह"
+        0: "इस सप्ताह"
+        1: "अगला सप्ताह"
+      :relative_time: 
+        :future: 
+          :one: "{0} सप्ताह में"
+          :other: "{0} सप्ताह में"
+        :past: 
+          :one: "{0} सप्ताह पहले"
+          :other: "{0} सप्ताह पहले"
+    :weekOfMonth: 
+      :display_name: "माह का सप्ताह"
+    :weekday: 
+      :display_name: "सप्ताह का दिन"
+    :weekdayOfMonth: 
+      :display_name: "माह के कार्यदिवस"
+    :year: 
+      :display_name: वर्ष
+      :relative: 
+        -1: "पिछला वर्ष"
+        0: "इस वर्ष"
+        1: "अगला वर्ष"
+      :relative_time: 
+        :future: 
+          :one: "{0} वर्ष में"
+          :other: "{0} वर्ष में"
+        :past: 
+          :one: "{0} वर्ष पहले"
+          :other: "{0} वर्ष पहले"
+    :year-narrow: 
+      :relative: 
+        -1: "पिछले साल"
+        0: "इस साल"
+        1: "अगले साल"
+    :zone: 
+      :display_name: "समय क्षेत्र"
+    :zone-short: 
+      :display_name: क्षेत्र

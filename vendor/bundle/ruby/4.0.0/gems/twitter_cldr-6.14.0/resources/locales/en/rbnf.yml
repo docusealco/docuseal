@@ -1,0 +1,553 @@
+--- 
+:en: 
+  :rbnf: 
+    :grouping: 
+      - 
+        :ruleset: 
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: hundred;
+                :value: 0
+              - 
+                :rule: oh-=%spellout-numbering=;
+                :value: 1
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 10
+            :type: 2d-year
+          - 
+            :rules: 
+              - 
+                :rule: "minus >>;"
+                :value: "-x"
+              - 
+                :rule: "=#,##0.#=;"
+                :value: x.x
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 0
+              - 
+                :radix: 100
+                :rule: "<< >%%2d-year>;"
+                :value: 1010
+              - 
+                :radix: 100
+                :rule: "<< >%%2d-year>;"
+                :value: 1100
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 2000
+              - 
+                :radix: 100
+                :rule: "<< >%%2d-year>;"
+                :value: 2010
+              - 
+                :radix: 100
+                :rule: "<< >%%2d-year>;"
+                :value: 2100
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 3000
+              - 
+                :radix: 100
+                :rule: "<< >%%2d-year>;"
+                :value: 3010
+              - 
+                :radix: 100
+                :rule: "<< >%%2d-year>;"
+                :value: 3100
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 4000
+              - 
+                :radix: 100
+                :rule: "<< >%%2d-year>;"
+                :value: 4010
+              - 
+                :radix: 100
+                :rule: "<< >%%2d-year>;"
+                :value: 4100
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 5000
+              - 
+                :radix: 100
+                :rule: "<< >%%2d-year>;"
+                :value: 5010
+              - 
+                :radix: 100
+                :rule: "<< >%%2d-year>;"
+                :value: 5100
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 6000
+              - 
+                :radix: 100
+                :rule: "<< >%%2d-year>;"
+                :value: 6010
+              - 
+                :radix: 100
+                :rule: "<< >%%2d-year>;"
+                :value: 6100
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 7000
+              - 
+                :radix: 100
+                :rule: "<< >%%2d-year>;"
+                :value: 7010
+              - 
+                :radix: 100
+                :rule: "<< >%%2d-year>;"
+                :value: 7100
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 8000
+              - 
+                :radix: 100
+                :rule: "<< >%%2d-year>;"
+                :value: 8010
+              - 
+                :radix: 100
+                :rule: "<< >%%2d-year>;"
+                :value: 8100
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 9000
+              - 
+                :radix: 100
+                :rule: "<< >%%2d-year>;"
+                :value: 9010
+              - 
+                :radix: 100
+                :rule: "<< >%%2d-year>;"
+                :value: 9100
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 10000
+            :type: spellout-numbering-year
+          - 
+            :rules: 
+              - 
+                :rule: "minus >>;"
+                :value: "-x"
+              - 
+                :rule: infinity;
+                :value: Inf
+              - 
+                :rule: "not a number;"
+                :value: NaN
+              - 
+                :rule: =%spellout-cardinal=;
+                :value: 0
+            :type: spellout-numbering
+          - 
+            :rules: 
+              - 
+                :rule: "minus >>;"
+                :value: "-x"
+              - 
+                :rule: infinity;
+                :value: Inf
+              - 
+                :rule: "not a number;"
+                :value: NaN
+              - 
+                :rule: =%spellout-cardinal-verbose=;
+                :value: 0
+            :type: spellout-numbering-verbose
+          - 
+            :rules: 
+              - 
+                :rule: "minus >>;"
+                :value: "-x"
+              - 
+                :rule: "<< point >>;"
+                :value: x.x
+              - 
+                :rule: infinite;
+                :value: Inf
+              - 
+                :rule: "not a number;"
+                :value: NaN
+              - 
+                :rule: zero;
+                :value: 0
+              - 
+                :rule: one;
+                :value: 1
+              - 
+                :rule: two;
+                :value: 2
+              - 
+                :rule: three;
+                :value: 3
+              - 
+                :rule: four;
+                :value: 4
+              - 
+                :rule: five;
+                :value: 5
+              - 
+                :rule: six;
+                :value: 6
+              - 
+                :rule: seven;
+                :value: 7
+              - 
+                :rule: eight;
+                :value: 8
+              - 
+                :rule: nine;
+                :value: 9
+              - 
+                :rule: ten;
+                :value: 10
+              - 
+                :rule: eleven;
+                :value: 11
+              - 
+                :rule: twelve;
+                :value: 12
+              - 
+                :rule: thirteen;
+                :value: 13
+              - 
+                :rule: fourteen;
+                :value: 14
+              - 
+                :rule: fifteen;
+                :value: 15
+              - 
+                :rule: sixteen;
+                :value: 16
+              - 
+                :rule: seventeen;
+                :value: 17
+              - 
+                :rule: eighteen;
+                :value: 18
+              - 
+                :rule: nineteen;
+                :value: 19
+              - 
+                :rule: "twenty[->>];"
+                :value: 20
+              - 
+                :rule: "thirty[->>];"
+                :value: 30
+              - 
+                :rule: "forty[->>];"
+                :value: 40
+              - 
+                :rule: "fifty[->>];"
+                :value: 50
+              - 
+                :rule: "sixty[->>];"
+                :value: 60
+              - 
+                :rule: "seventy[->>];"
+                :value: 70
+              - 
+                :rule: "eighty[->>];"
+                :value: 80
+              - 
+                :rule: "ninety[->>];"
+                :value: 90
+              - 
+                :rule: "<< hundred[ >>];"
+                :value: 100
+              - 
+                :rule: "<< thousand[ >>];"
+                :value: 1000
+              - 
+                :rule: "<< million[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<< billion[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<< trillion[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<< quadrillion[ >>];"
+                :value: 1000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: " and =%spellout-cardinal-verbose=;"
+                :value: 1
+              - 
+                :rule: " =%spellout-cardinal-verbose=;"
+                :value: 100
+            :type: and
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: " and =%spellout-cardinal-verbose=;"
+                :value: 1
+              - 
+                :rule: ", =%spellout-cardinal-verbose=;"
+                :value: 100
+              - 
+                :rule: ", <%spellout-cardinal-verbose< thousand[>%%commas>];"
+                :value: 1000
+              - 
+                :rule: ", =%spellout-cardinal-verbose=;"
+                :value: 1000000
+            :type: commas
+          - 
+            :rules: 
+              - 
+                :rule: "minus >>;"
+                :value: "-x"
+              - 
+                :rule: "<< point >>;"
+                :value: x.x
+              - 
+                :rule: infinite;
+                :value: Inf
+              - 
+                :rule: "not a number;"
+                :value: NaN
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 0
+              - 
+                :rule: "<< hundred[>%%and>];"
+                :value: 100
+              - 
+                :rule: "<< thousand[>%%and>];"
+                :value: 1000
+              - 
+                :radix: 1000
+                :rule: "<< thousand[>%%commas>];"
+                :value: 100000
+              - 
+                :rule: "<< million[>%%commas>];"
+                :value: 1000000
+              - 
+                :rule: "<< billion[>%%commas>];"
+                :value: 1000000000
+              - 
+                :rule: "<< trillion[>%%commas>];"
+                :value: 1000000000000
+              - 
+                :rule: "<< quadrillion[>%%commas>];"
+                :value: 1000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-verbose
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: tieth;
+                :value: 0
+              - 
+                :rule: ty-=%spellout-ordinal=;
+                :value: 1
+            :type: tieth
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: th;
+                :value: 0
+              - 
+                :rule: " =%spellout-ordinal=;"
+                :value: 1
+            :type: th
+          - 
+            :rules: 
+              - 
+                :rule: "minus >>;"
+                :value: "-x"
+              - 
+                :rule: "=#,##0.#=;"
+                :value: x.x
+              - 
+                :rule: infinitieth;
+                :value: Inf
+              - 
+                :rule: zeroth;
+                :value: 0
+              - 
+                :rule: first;
+                :value: 1
+              - 
+                :rule: second;
+                :value: 2
+              - 
+                :rule: third;
+                :value: 3
+              - 
+                :rule: fourth;
+                :value: 4
+              - 
+                :rule: fifth;
+                :value: 5
+              - 
+                :rule: sixth;
+                :value: 6
+              - 
+                :rule: seventh;
+                :value: 7
+              - 
+                :rule: eighth;
+                :value: 8
+              - 
+                :rule: ninth;
+                :value: 9
+              - 
+                :rule: tenth;
+                :value: 10
+              - 
+                :rule: eleventh;
+                :value: 11
+              - 
+                :rule: twelfth;
+                :value: 12
+              - 
+                :rule: =%spellout-numbering=th;
+                :value: 13
+              - 
+                :rule: twen>%%tieth>;
+                :value: 20
+              - 
+                :rule: thir>%%tieth>;
+                :value: 30
+              - 
+                :rule: for>%%tieth>;
+                :value: 40
+              - 
+                :rule: fif>%%tieth>;
+                :value: 50
+              - 
+                :rule: six>%%tieth>;
+                :value: 60
+              - 
+                :rule: seven>%%tieth>;
+                :value: 70
+              - 
+                :rule: eigh>%%tieth>;
+                :value: 80
+              - 
+                :rule: nine>%%tieth>;
+                :value: 90
+              - 
+                :rule: "<%spellout-numbering< hundred>%%th>;"
+                :value: 100
+              - 
+                :rule: "<%spellout-numbering< thousand>%%th>;"
+                :value: 1000
+              - 
+                :rule: "<%spellout-numbering< million>%%th>;"
+                :value: 1000000
+              - 
+                :rule: "<%spellout-numbering< billion>%%th>;"
+                :value: 1000000000
+              - 
+                :rule: "<%spellout-numbering< trillion>%%th>;"
+                :value: 1000000000000
+              - 
+                :rule: "<%spellout-numbering< quadrillion>%%th>;"
+                :value: 1000000000000000
+              - 
+                :rule: "=#,##0=$(ordinal,one{st}two{nd}few{rd}other{th})$;"
+                :value: 1000000000000000000
+            :type: spellout-ordinal
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: th;
+                :value: 0
+              - 
+                :rule: " and =%spellout-ordinal-verbose=;"
+                :value: 1
+              - 
+                :rule: " =%spellout-ordinal-verbose=;"
+                :value: 100
+            :type: and-o
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: th;
+                :value: 0
+              - 
+                :rule: " and =%spellout-ordinal-verbose=;"
+                :value: 1
+              - 
+                :rule: ", =%spellout-ordinal-verbose=;"
+                :value: 100
+              - 
+                :rule: ", <%spellout-cardinal-verbose< thousand>%%commas-o>;"
+                :value: 1000
+              - 
+                :rule: ", =%spellout-ordinal-verbose=;"
+                :value: 1000000
+            :type: commas-o
+          - 
+            :rules: 
+              - 
+                :rule: "minus >>;"
+                :value: "-x"
+              - 
+                :rule: "=#,##0.#=;"
+                :value: x.x
+              - 
+                :rule: infinitieth;
+                :value: Inf
+              - 
+                :rule: =%spellout-ordinal=;
+                :value: 0
+              - 
+                :rule: "<%spellout-numbering-verbose< hundred>%%and-o>;"
+                :value: 100
+              - 
+                :rule: "<%spellout-numbering-verbose< thousand>%%and-o>;"
+                :value: 1000
+              - 
+                :radix: 1000
+                :rule: "<%spellout-numbering-verbose< thousand>%%commas-o>;"
+                :value: 100000
+              - 
+                :rule: "<%spellout-numbering-verbose< million>%%commas-o>;"
+                :value: 1000000
+              - 
+                :rule: "<%spellout-numbering-verbose< billion>%%commas-o>;"
+                :value: 1000000000
+              - 
+                :rule: "<%spellout-numbering-verbose< trillion>%%commas-o>;"
+                :value: 1000000000000
+              - 
+                :rule: "<%spellout-numbering-verbose< quadrillion>%%commas-o>;"
+                :value: 1000000000000000
+              - 
+                :rule: "=#,##0=$(ordinal,one{st}two{nd}few{rd}other{th})$;"
+                :value: 1000000000000000000
+            :type: spellout-ordinal-verbose
+        :type: SpelloutRules
+      - 
+        :ruleset: 
+          - 
+            :rules: 
+              - 
+                :rule: −>>;
+                :value: "-x"
+              - 
+                :rule: "=#,##0=$(ordinal,one{st}two{nd}few{rd}other{th})$;"
+                :value: 0
+            :type: digits-ordinal
+        :type: OrdinalRules

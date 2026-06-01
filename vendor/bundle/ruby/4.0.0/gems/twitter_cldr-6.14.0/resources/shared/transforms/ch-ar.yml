@@ -1,0 +1,12 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - ar-t-ch
+    :direction: forward
+    :rules: 
+      - "::ch-ch_FONIPA ;"
+      - "::und_FONIPA-ar ;"
+    :source: ch
+    :target: ar
+    :variant: ~

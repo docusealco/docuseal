@@ -1,0 +1,15 @@
+module Aws
+  module Telemetry
+    module SpanKind
+      INTERNAL: :internal
+
+      SERVER: :server
+
+      CLIENT: :client
+
+      CONSUMER: :consumer
+
+      PRODUCER: :producer
+    end
+  end
+end

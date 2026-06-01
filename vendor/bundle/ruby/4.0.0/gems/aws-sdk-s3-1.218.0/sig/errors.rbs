@@ -1,0 +1,46 @@
+# WARNING ABOUT GENERATED CODE
+#
+# This file is generated. See the contributing guide for more information:
+# https://github.com/aws/aws-sdk-ruby/blob/version-3/CONTRIBUTING.md
+#
+# WARNING ABOUT GENERATED CODE
+
+module Aws
+  module S3
+    module Errors
+      class ServiceError < ::Aws::Errors::ServiceError
+      end
+
+      class AccessDenied < ::Aws::Errors::ServiceError
+      end
+      class BucketAlreadyExists < ::Aws::Errors::ServiceError
+      end
+      class BucketAlreadyOwnedByYou < ::Aws::Errors::ServiceError
+      end
+      class EncryptionTypeMismatch < ::Aws::Errors::ServiceError
+      end
+      class IdempotencyParameterMismatch < ::Aws::Errors::ServiceError
+      end
+      class InvalidObjectState < ::Aws::Errors::ServiceError
+        def storage_class: () -> ::String
+        def access_tier: () -> ::String
+      end
+      class InvalidRequest < ::Aws::Errors::ServiceError
+      end
+      class InvalidWriteOffset < ::Aws::Errors::ServiceError
+      end
+      class NoSuchBucket < ::Aws::Errors::ServiceError
+      end
+      class NoSuchKey < ::Aws::Errors::ServiceError
+      end
+      class NoSuchUpload < ::Aws::Errors::ServiceError
+      end
+      class ObjectAlreadyInActiveTierError < ::Aws::Errors::ServiceError
+      end
+      class ObjectNotInActiveTierError < ::Aws::Errors::ServiceError
+      end
+      class TooManyParts < ::Aws::Errors::ServiceError
+      end
+    end
+  end
+end

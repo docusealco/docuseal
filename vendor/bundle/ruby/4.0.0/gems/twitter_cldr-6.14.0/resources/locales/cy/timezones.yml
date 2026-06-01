@@ -1,0 +1,779 @@
+--- 
+:cy: 
+  :formats: 
+    :fallback_formats: 
+      :generic: "{1} ({0})"
+    :gmt_formats: 
+      :generic: "GMT{0}"
+    :gmt_zero_formats: 
+      :generic: GMT
+    :hour_formats: 
+      :generic: "+HH:mm;-HH:mm"
+    :region_formats: 
+      :daylight: "Amser Haf {0}"
+      :generic: "Amser {0}"
+      :standard: "Amser Safonol {0}"
+  :metazones: 
+    :Afghanistan: 
+      :long: 
+        :standard: "Amser Afghanistan"
+    :Africa_Central: 
+      :long: 
+        :standard: "Amser Canolbarth Affrica"
+    :Africa_Eastern: 
+      :long: 
+        :standard: "Amser Dwyrain Affrica"
+    :Africa_Southern: 
+      :long: 
+        :standard: "Amser Safonol De Affrica"
+    :Africa_Western: 
+      :long: 
+        :daylight: "Amser Haf Gorllewin Affrica"
+        :generic: "Amser Gorllewin Affrica"
+        :standard: "Amser Safonol Gorllewin Affrica"
+    :Alaska: 
+      :long: 
+        :daylight: "Amser Haf Alaska"
+        :generic: "Amser Alaska"
+        :standard: "Amser Safonol Alaska"
+    :Amazon: 
+      :long: 
+        :daylight: "Amser Haf Amazonas"
+        :generic: "Amser Amazonas"
+        :standard: "Amser Safonol Amazonas"
+    :America_Central: 
+      :long: 
+        :daylight: "Amser Haf Canolbarth Gogledd America"
+        :generic: "Amser Canolbarth Gogledd America"
+        :standard: "Amser Safonol Canolbarth Gogledd America"
+    :America_Eastern: 
+      :long: 
+        :daylight: "Amser Haf Dwyrain Gogledd America"
+        :generic: "Amser Dwyrain Gogledd America"
+        :standard: "Amser Safonol Dwyrain Gogledd America"
+    :America_Mountain: 
+      :long: 
+        :daylight: "Amser Haf Mynyddoedd Gogledd America"
+        :generic: "Amser Mynyddoedd Gogledd America"
+        :standard: "Amser Safonol Mynyddoedd Gogledd America"
+    :America_Pacific: 
+      :long: 
+        :daylight: "Amser Haf Cefnfor Tawel Gogledd America"
+        :generic: "Amser Cefnfor Tawel Gogledd America"
+        :standard: "Amser Safonol Cefnfor Tawel Gogledd America"
+    :Apia: 
+      :long: 
+        :daylight: "Amser Haf Apia"
+        :generic: "Amser Apia"
+        :standard: "Amser Safonol Apia"
+    :Arabian: 
+      :long: 
+        :daylight: "Amser Haf Arabaidd"
+        :generic: "Amser Arabaidd"
+        :standard: "Amser Safonol Arabaidd"
+    :Argentina: 
+      :long: 
+        :daylight: "Amser Haf Ariannin"
+        :generic: "Amser yr Ariannin"
+        :standard: "Amser Safonol Ariannin"
+    :Argentina_Western: 
+      :long: 
+        :daylight: "Amser Haf Gorllewin Ariannin"
+        :generic: "Amser Gorllewin Ariannin"
+        :standard: "Amser Safonol Gorllewin Ariannin"
+    :Armenia: 
+      :long: 
+        :daylight: "Amser Haf Armenia"
+        :generic: "Amser Armenia"
+        :standard: "Amser Safonol Armenia"
+    :Atlantic: 
+      :long: 
+        :daylight: "Amser Haf Cefnfor yr Iwerydd"
+        :generic: "Amser Cefnfor yr Iwerydd"
+        :standard: "Amser Safonol Cefnfor yr Iwerydd"
+    :Australia_Central: 
+      :long: 
+        :daylight: "Amser Haf Canolbarth Awstralia"
+        :generic: "Amser Canolbarth Awstralia"
+        :standard: "Amser Safonol Canolbarth Awstralia"
+    :Australia_CentralWestern: 
+      :long: 
+        :daylight: "Amser Haf Canolbarth Gorllewin Awstralia"
+        :generic: "Amser Canolbarth Gorllewin Awstralia"
+        :standard: "Amser Safonol Canolbarth Gorllewin Awstralia"
+    :Australia_Eastern: 
+      :long: 
+        :daylight: "Amser Haf Dwyrain Awstralia"
+        :generic: "Amser Dwyrain Awstralia"
+        :standard: "Amser Safonol Dwyrain Awstralia"
+    :Australia_Western: 
+      :long: 
+        :daylight: "Amser Haf Gorllewin Awstralia"
+        :generic: "Amser Gorllewin Awstralia"
+        :standard: "Amser Safonol Gorllewin Awstralia"
+    :Azerbaijan: 
+      :long: 
+        :daylight: "Amser Haf Aserbaijan"
+        :generic: "Amser Aserbaijan"
+        :standard: "Amser Safonol Aserbaijan"
+    :Azores: 
+      :long: 
+        :daylight: "Amser Haf yr Azores"
+        :generic: "Amser yr Azores"
+        :standard: "Amser Safonol yr Azores"
+    :Bangladesh: 
+      :long: 
+        :daylight: "Amser Haf Bangladesh"
+        :generic: "Amser Bangladesh"
+        :standard: "Amser Safonol Bangladesh"
+    :Bhutan: 
+      :long: 
+        :standard: "Amser Bhutan"
+    :Bolivia: 
+      :long: 
+        :standard: "Amser Bolifia"
+    :Brasilia: 
+      :long: 
+        :daylight: "Amser Haf Brasília"
+        :generic: "Amser Brasília"
+        :standard: "Amser Safonol Brasília"
+    :Brunei: 
+      :long: 
+        :standard: "Amser Brunei Darussalam"
+    :Cape_Verde: 
+      :long: 
+        :daylight: "Amser Haf Cabo Verde"
+        :generic: "Amser Cabo Verde"
+        :standard: "Amser Safonol Cabo Verde"
+    :Chamorro: 
+      :long: 
+        :standard: "Amser Chamorro"
+    :Chatham: 
+      :long: 
+        :daylight: "Amser Haf Chatham"
+        :generic: "Amser Chatham"
+        :standard: "Amser Safonol Chatham"
+    :Chile: 
+      :long: 
+        :daylight: "Amser Haf Chile"
+        :generic: "Amser Chile"
+        :standard: "Amser Safonol Chile"
+    :China: 
+      :long: 
+        :daylight: "Amser Haf Tsieina"
+        :generic: "Amser Tsieina"
+        :standard: "Amser Safonol Tsieina"
+    :Christmas: 
+      :long: 
+        :standard: "Amser Ynys Y Nadolig"
+    :Cocos: 
+      :long: 
+        :standard: "Amser Ynysoedd Cocos"
+    :Colombia: 
+      :long: 
+        :daylight: "Amser Haf Colombia"
+        :generic: "Amser Colombia"
+        :standard: "Amser Safonol Colombia"
+    :Cook: 
+      :long: 
+        :daylight: "Amser Hanner Haf Ynysoedd Cook"
+        :generic: "Amser Ynysoedd Cook"
+        :standard: "Amser Safonol Ynysoedd Cook"
+    :Cuba: 
+      :long: 
+        :daylight: "Amser Haf Ciwa"
+        :generic: "Amser Ciwba"
+        :standard: "Amser Safonol Ciwba"
+    :Davis: 
+      :long: 
+        :standard: "Amser Davis"
+    :DumontDUrville: 
+      :long: 
+        :standard: "Amser Dumont-d’Urville"
+    :East_Timor: 
+      :long: 
+        :standard: "Amser Dwyrain Timor"
+    :Easter: 
+      :long: 
+        :daylight: "Amser Haf Ynys y Pasg"
+        :generic: "Amser Ynys y Pasg"
+        :standard: "Amser Safonol Ynys y Pasg"
+    :Ecuador: 
+      :long: 
+        :standard: "Amser Ecuador"
+    :Europe_Central: 
+      :long: 
+        :daylight: "Amser Haf Canolbarth Ewrop"
+        :generic: "Amser Canolbarth Ewrop"
+        :standard: "Amser Safonol Canolbarth Ewrop"
+      :short: 
+        :daylight: CEST
+        :generic: CET
+        :standard: CET
+    :Europe_Eastern: 
+      :long: 
+        :daylight: "Amser Haf Dwyrain Ewrop"
+        :generic: "Amser Dwyrain Ewrop"
+        :standard: "Amser Safonol Dwyrain Ewrop"
+      :short: 
+        :daylight: EEST
+        :generic: EET
+        :standard: EET
+    :Europe_Further_Eastern: 
+      :long: 
+        :standard: "Amser Dwyrain Pell Ewrop"
+    :Europe_Western: 
+      :long: 
+        :daylight: "Amser Haf Gorllewin Ewrop"
+        :generic: "Amser Gorllewin Ewrop"
+        :standard: "Amser Safonol Gorllewin Ewrop"
+      :short: 
+        :daylight: WEST
+        :generic: WET
+        :standard: WET
+    :Falkland: 
+      :long: 
+        :daylight: "Amser Haf Ynysoedd Falklands/Malvinas"
+        :generic: "Amser Ynysoedd Falklands/Malvinas"
+        :standard: "Amser Safonol Ynysoedd Falklands/Malvinas"
+    :Fiji: 
+      :long: 
+        :daylight: "Amser Haf Fiji"
+        :generic: "Amser Fiji"
+        :standard: "Amser Safonol Fiji"
+    :French_Guiana: 
+      :long: 
+        :standard: "Amser Guyane Ffrengig"
+    :French_Southern: 
+      :long: 
+        :standard: "Amser Tiroedd Ffrainc yn y De a’r Antarctig"
+    :GMT: 
+      :long: 
+        :standard: "Amser Safonol Greenwich"
+      :short: 
+        :standard: GMT
+    :Galapagos: 
+      :long: 
+        :standard: "Amser Galapagos"
+    :Gambier: 
+      :long: 
+        :standard: "Amser Gambier"
+    :Georgia: 
+      :long: 
+        :daylight: "Amser Haf Georgia"
+        :generic: "Amser Georgia"
+        :standard: "Amser Safonol Georgia"
+    :Gilbert_Islands: 
+      :long: 
+        :standard: "Amser Ynysoedd Gilbert"
+    :Greenland_Eastern: 
+      :long: 
+        :daylight: "Amser Haf Dwyrain yr Ynys Las"
+        :generic: "Amser Dwyrain yr Ynys Las"
+        :standard: "Amser Safonol Dwyrain yr Ynys Las"
+    :Greenland_Western: 
+      :long: 
+        :daylight: "Amser Haf Gorllewin yr Ynys Las"
+        :generic: "Amser Gorllewin yr Ynys Las"
+        :standard: "Amser Safonol Gorllewin yr Ynys Las"
+    :Gulf: 
+      :long: 
+        :standard: "Amser Safonol y Gwlff"
+    :Guyana: 
+      :long: 
+        :standard: "Amser Guyana"
+    :Hawaii_Aleutian: 
+      :long: 
+        :daylight: "Amser Haf Hawaii-Aleutian"
+        :generic: "Amser Hawaii-Aleutian"
+        :standard: "Amser Safonol Hawaii-Aleutian"
+    :Hong_Kong: 
+      :long: 
+        :daylight: "Amser Haf Hong Kong"
+        :generic: "Amser Hong Kong"
+        :standard: "Amser Safonol Hong Kong"
+    :Hovd: 
+      :long: 
+        :daylight: "Amser Haf Hovd"
+        :generic: "Amser Hovd"
+        :standard: "Amser Safonol Hovd"
+    :India: 
+      :long: 
+        :standard: "Amser India"
+    :Indian_Ocean: 
+      :long: 
+        :standard: "Amser Cefnfor India"
+    :Indochina: 
+      :long: 
+        :standard: "Amser Indo-Tsieina"
+    :Indonesia_Central: 
+      :long: 
+        :standard: "Amser Canolbarth Indonesia"
+    :Indonesia_Eastern: 
+      :long: 
+        :standard: "Amser Dwyrain Indonesia"
+    :Indonesia_Western: 
+      :long: 
+        :standard: "Amser Gorllewin Indonesia"
+    :Iran: 
+      :long: 
+        :daylight: "Amser Haf Iran"
+        :generic: "Amser Iran"
+        :standard: "Amser Safonol Iran"
+    :Irkutsk: 
+      :long: 
+        :daylight: "Amser Haf Irkutsk"
+        :generic: "Amser Irkutsk"
+        :standard: "Amser Safonol Irkutsk"
+    :Israel: 
+      :long: 
+        :daylight: "Amser Haf Israel"
+        :generic: "Amser Israel"
+        :standard: "Amser Safonol Israel"
+    :Japan: 
+      :long: 
+        :daylight: "Amser Haf Japan"
+        :generic: "Amser Japan"
+        :standard: "Amser Safonol Japan"
+    :Kazakhstan: 
+      :long: 
+        :standard: "Amser Kazakhstan"
+    :Kazakhstan_Eastern: 
+      :long: 
+        :standard: "Amser Dwyrain Kazakhstan"
+    :Kazakhstan_Western: 
+      :long: 
+        :standard: "Amser Gorllewin Kazakhstan"
+    :Korea: 
+      :long: 
+        :daylight: "Amser Haf Corea"
+        :generic: "Amser Corea"
+        :standard: "Amser Safonol Corea"
+    :Kosrae: 
+      :long: 
+        :standard: "Amser Kosrae"
+    :Krasnoyarsk: 
+      :long: 
+        :daylight: "Amser Haf Krasnoyarsk"
+        :generic: "Amser Krasnoyarsk"
+        :standard: "Amser Safonol Krasnoyarsk"
+    :Kyrgystan: 
+      :long: 
+        :standard: "Amser Kyrgyzstan"
+    :Line_Islands: 
+      :long: 
+        :standard: "Amser Ynysoedd Line"
+    :Lord_Howe: 
+      :long: 
+        :daylight: "Amser Haf yr Arglwydd Howe"
+        :generic: "Amser yr Arglwydd Howe"
+        :standard: "Amser Safonol yr Arglwydd Howe"
+    :Magadan: 
+      :long: 
+        :daylight: "Amser Haf Magadan"
+        :generic: "Amser Magadan"
+        :standard: "Amser Safonol Magadan"
+    :Malaysia: 
+      :long: 
+        :standard: "Amser Malaysia"
+    :Maldives: 
+      :long: 
+        :standard: "Amser Y Maldives"
+    :Marquesas: 
+      :long: 
+        :standard: "Amser Marquises"
+    :Marshall_Islands: 
+      :long: 
+        :standard: "Amser Ynysoedd Marshall"
+    :Mauritius: 
+      :long: 
+        :daylight: "Amser Haf Mauritius"
+        :generic: "Amser Mauritius"
+        :standard: "Amser Safonol Mauritius"
+    :Mawson: 
+      :long: 
+        :standard: "Amser Mawson"
+    :Mexico_Pacific: 
+      :long: 
+        :daylight: "Amser Haf Pasiffig Mecsico"
+        :generic: "Amser Pasiffig Mecsico"
+        :standard: "Amser Safonol Pasiffig Mecsico"
+    :Mongolia: 
+      :long: 
+        :daylight: "Amser Haf Ulan Bator"
+        :generic: "Amser Ulan Bator"
+        :standard: "Amser Safonol Ulan Bator"
+    :Moscow: 
+      :long: 
+        :daylight: "Amser Haf Moscfa"
+        :generic: "Amser Moscfa"
+        :standard: "Amser Safonol Moscfa"
+    :Myanmar: 
+      :long: 
+        :standard: "Amser Myanmar"
+    :Nauru: 
+      :long: 
+        :standard: "Amser Nauru"
+    :Nepal: 
+      :long: 
+        :standard: "Amser Nepal"
+    :New_Caledonia: 
+      :long: 
+        :daylight: "Amser Haf Caledonia Newydd"
+        :generic: "Amser Caledonia Newydd"
+        :standard: "Amser Safonol Caledonia Newydd"
+    :New_Zealand: 
+      :long: 
+        :daylight: "Amser Haf Seland Newydd"
+        :generic: "Amser Seland Newydd"
+        :standard: "Amser Safonol Seland Newydd"
+    :Newfoundland: 
+      :long: 
+        :daylight: "Amser Haf Newfoundland"
+        :generic: "Amser Newfoundland"
+        :standard: "Amser Safonol Newfoundland"
+    :Niue: 
+      :long: 
+        :standard: "Amser Niue"
+    :Norfolk: 
+      :long: 
+        :daylight: "Amser Haf Ynys Norfolk"
+        :generic: "Amser Ynys Norfolk"
+        :standard: "Amser Safonol Ynys Norfolk"
+    :Noronha: 
+      :long: 
+        :daylight: "Amser Haf Fernando de Noronha"
+        :generic: "Amser Fernando de Noronha"
+        :standard: "Amser Safonol Fernando de Noronha"
+    :Novosibirsk: 
+      :long: 
+        :daylight: "Amser Haf Novosibirsk"
+        :generic: "Amser Novosibirsk"
+        :standard: "Amser Safonol Novosibirsk"
+    :Omsk: 
+      :long: 
+        :daylight: "Amser Haf Omsk"
+        :generic: "Amser Omsk"
+        :standard: "Amser Safonol Omsk"
+    :Pakistan: 
+      :long: 
+        :daylight: "Amser Haf Pakistan"
+        :generic: "Amser Pakistan"
+        :standard: "Amser Safonol Pakistan"
+    :Palau: 
+      :long: 
+        :standard: "Amser Palau"
+    :Papua_New_Guinea: 
+      :long: 
+        :standard: "Amser Papua Guinea Newydd"
+    :Paraguay: 
+      :long: 
+        :daylight: "Amser Haf Paraguay"
+        :generic: "Amser Paraguay"
+        :standard: "Amser Safonol Paraguay"
+    :Peru: 
+      :long: 
+        :daylight: "Amser Haf Periw"
+        :generic: "Amser Periw"
+        :standard: "Amser Safonol Periw"
+    :Philippines: 
+      :long: 
+        :daylight: "Amser Haf Pilipinas"
+        :generic: "Amser Pilipinas"
+        :standard: "Amser Safonol Pilipinas"
+    :Phoenix_Islands: 
+      :long: 
+        :standard: "Amser Ynysoedd Phoenix"
+    :Pierre_Miquelon: 
+      :long: 
+        :daylight: "Amser Haf Saint-Pierre-et-Miquelon"
+        :generic: "Amser Saint-Pierre-et-Miquelon"
+        :standard: "Amser Safonol Saint-Pierre-et-Miquelon"
+    :Pitcairn: 
+      :long: 
+        :standard: "Amser Pitcairn"
+    :Ponape: 
+      :long: 
+        :standard: "Amser Pohnpei"
+    :Pyongyang: 
+      :long: 
+        :standard: "Amser Pyongyang"
+    :Reunion: 
+      :long: 
+        :standard: "Amser Réunion"
+    :Rothera: 
+      :long: 
+        :standard: "Amser Rothera"
+    :Sakhalin: 
+      :long: 
+        :daylight: "Amser Haf Sakhalin"
+        :generic: "Amser Sakhalin"
+        :standard: "Amser Safonol Sakhalin"
+    :Samara: 
+      :long: 
+        :daylight: "Amser Haf Samara"
+        :generic: "Amser Samara"
+        :standard: "Amser Safonol Samara"
+    :Samoa: 
+      :long: 
+        :daylight: "Amser Haf Samoa"
+        :generic: "Amser Samoa"
+        :standard: "Amser Safonol Samoa"
+    :Seychelles: 
+      :long: 
+        :standard: "Amser Seychelles"
+    :Singapore: 
+      :long: 
+        :standard: "Amser Singapore"
+    :Solomon: 
+      :long: 
+        :standard: "Amser Ynysoedd Solomon"
+    :South_Georgia: 
+      :long: 
+        :standard: "Amser De Georgia"
+    :Suriname: 
+      :long: 
+        :standard: "Amser Suriname"
+    :Syowa: 
+      :long: 
+        :standard: "Amser Syowa"
+    :Tahiti: 
+      :long: 
+        :standard: "Amser Tahiti"
+    :Taipei: 
+      :long: 
+        :daylight: "Amser Haf Taipei"
+        :generic: "Amser Taipei"
+        :standard: "Amser Safonol Taipei"
+    :Tajikistan: 
+      :long: 
+        :standard: "Amser Tajicistan"
+    :Tokelau: 
+      :long: 
+        :standard: "Amser Tokelau"
+    :Tonga: 
+      :long: 
+        :daylight: "Amser Haf Tonga"
+        :generic: "Amser Tonga"
+        :standard: "Amser Safonol Tonga"
+    :Truk: 
+      :long: 
+        :standard: "Amser Chuuk"
+    :Turkmenistan: 
+      :long: 
+        :daylight: "Amser Haf Tyrcmenistan"
+        :generic: "Amser Tyrcmenistan"
+        :standard: "Amser Safonol Tyrcmenistan"
+    :Tuvalu: 
+      :long: 
+        :standard: "Amser Tuvalu"
+    :Uruguay: 
+      :long: 
+        :daylight: "Amser Haf Uruguay"
+        :generic: "Amser Uruguay"
+        :standard: "Amser Safonol Uruguay"
+    :Uzbekistan: 
+      :long: 
+        :daylight: "Amser Haf Uzbekistan"
+        :generic: "Amser Uzbekistan"
+        :standard: "Amser Safonol Uzbekistan"
+    :Vanuatu: 
+      :long: 
+        :daylight: "Amser Haf Vanuatu"
+        :generic: "Amser Vanuatu"
+        :standard: "Amser Safonol Vanuatu"
+    :Venezuela: 
+      :long: 
+        :standard: "Amser Venezuela"
+    :Vladivostok: 
+      :long: 
+        :daylight: "Amser Haf Vladivostok"
+        :generic: "Amser Vladivostok"
+        :standard: "Amser Safonol Vladivostok"
+    :Volgograd: 
+      :long: 
+        :daylight: "Amser Haf Volgograd"
+        :generic: "Amser Volgograd"
+        :standard: "Amser Safonol Volgograd"
+    :Vostok: 
+      :long: 
+        :standard: "Amser Vostok"
+    :Wake: 
+      :long: 
+        :standard: "Amser Ynys Wake"
+    :Wallis: 
+      :long: 
+        :standard: "Amser Wallis a Futuna"
+    :Yakutsk: 
+      :long: 
+        :daylight: "Amser Haf Yakutsk"
+        :generic: "Amser Yakutsk"
+        :standard: "Amser Safonol Yakutsk"
+    :Yekaterinburg: 
+      :long: 
+        :daylight: "Amser Haf Yekaterinburg"
+        :generic: "Amser Yekaterinburg"
+        :standard: "Amser Safonol Yekaterinburg"
+    :Yukon: 
+      :long: 
+        :standard: "Amser Yukon"
+  :timezones: 
+    :Africa/Algiers: 
+      :city: Alger
+    :Africa/Asmera: 
+      :city: Asmara
+    :Africa/Sao_Tome: 
+      :city: "São Tomé"
+    :America/Argentina/Tucuman: 
+      :city: Tucumán
+    :America/Asuncion: 
+      :city: Asunción
+    :America/Bahia_Banderas: 
+      :city: "Bae Banderas"
+    :America/Belem: 
+      :city: Belém
+    :America/Bogota: 
+      :city: Bogotá
+    :America/Cambridge_Bay: 
+      :city: "Bae Cambridge"
+    :America/Cancun: 
+      :city: Cancún
+    :America/Ciudad_Juarez: 
+      :city: "Ciudad Juárez"
+    :America/Coral_Harbour: 
+      :city: Atikokan
+    :America/Cuiaba: 
+      :city: Cuiabá
+    :America/Curacao: 
+      :city: Curaçao
+    :America/Eirunepe: 
+      :city: Eirunepé
+    :America/Godthab: 
+      :city: Nuuk
+    :America/Indiana/Knox: 
+      :city: "Knox, Indiana"
+    :America/Indiana/Marengo: 
+      :city: "Marengo, Indiana"
+    :America/Indiana/Petersburg: 
+      :city: "Petersburg, Indiana"
+    :America/Indiana/Tell_City: 
+      :city: "Dinas Tell, Indiana"
+    :America/Indiana/Vevay: 
+      :city: "Vevay, Indiana"
+    :America/Indiana/Vincennes: 
+      :city: "Vincennes, Indiana"
+    :America/Indiana/Winamac: 
+      :city: "Winamac, Indiana"
+    :America/Kentucky/Monticello: 
+      :city: "Monticello, Kentucky"
+    :America/Lower_Princes: 
+      :city: "Lower Prince’s Quarter"
+    :America/Merida: 
+      :city: Merida
+    :America/Mexico_City: 
+      :city: "Dinas Mecsico"
+    :America/New_York: 
+      :city: "Efrog Newydd"
+    :America/North_Dakota/Beulah: 
+      :city: "Beulah, Gogledd Dakota"
+    :America/North_Dakota/Center: 
+      :city: "Center, Gogledd Dakota"
+    :America/North_Dakota/New_Salem: 
+      :city: "New Salem, Gogledd Dakota"
+    :America/Scoresbysund: 
+      :city: Ittoqqortoormiit
+    :America/St_Barthelemy: 
+      :city: "St. Barthélemy"
+    :America/St_Johns: 
+      :city: "St. John’s"
+    :America/St_Kitts: 
+      :city: "St. Kitts"
+    :America/St_Lucia: 
+      :city: "St. Lucia"
+    :America/St_Thomas: 
+      :city: "St. Thomas"
+    :America/St_Vincent: 
+      :city: "St. Vincent"
+    :Antarctica/DumontDUrville: 
+      :city: "Dumont d’Urville"
+    :Asia/Calcutta: 
+      :city: Kolkata
+    :Asia/Gaza: 
+      :city: Gasa
+    :Asia/Jerusalem: 
+      :city: Jerwsalem
+    :Asia/Katmandu: 
+      :city: Kathmandu
+    :Asia/Macau: 
+      :city: Macau
+    :Asia/Qostanay: 
+      :city: Kostanay
+    :Asia/Rangoon: 
+      :city: Yangon
+    :Asia/Saigon: 
+      :city: "Dinas Hô Chi Minh"
+    :Asia/Tbilisi: 
+      :city: Tiflis
+    :Asia/Ulaanbaatar: 
+      :city: "Ulan Bator"
+    :Atlantic/Canary: 
+      :city: "Yr Ynysoedd Dedwydd"
+    :Atlantic/Faeroe: 
+      :city: Ffaro
+    :Atlantic/Reykjavik: 
+      :city: Reykjavík
+    :Atlantic/South_Georgia: 
+      :city: "De Georgia"
+    :Atlantic/St_Helena: 
+      :city: "St. Helena"
+    :Etc/UTC: 
+      :long: 
+        :standard: "Amser Cyffredniol Cydlynol"
+      :short: 
+        :standard: UTC
+    :Etc/Unknown: 
+      :city: "Dinas Anhysbys"
+    :Europe/Brussels: 
+      :city: Brwsel
+    :Europe/Bucharest: 
+      :city: Bwcarést
+    :Europe/Dublin: 
+      :city: Dulyn
+      :long: 
+        :daylight: "Amser Safonol Iwerddon"
+    :Europe/Guernsey: 
+      :city: "Ynys y Garn"
+    :Europe/Isle_of_Man: 
+      :city: "Ynys Manaw"
+    :Europe/Istanbul: 
+      :city: Caergystennin
+    :Europe/Kiev: 
+      :city: Kiev
+    :Europe/London: 
+      :city: Llundain
+      :long: 
+        :daylight: "Amser Haf Prydain"
+    :Europe/Luxembourg: 
+      :city: Lwcsembwrg
+    :Europe/Prague: 
+      :city: Prag
+    :Europe/Rome: 
+      :city: Rhufain
+    :Europe/Vatican: 
+      :city: "Y Fatican"
+    :Europe/Vienna: 
+      :city: Fienna
+    :Indian/Christmas: 
+      :city: "Ynys y Nadolig"
+    :Indian/Reunion: 
+      :city: Réunion
+    :Pacific/Easter: 
+      :city: "Ynys y Pasg"
+    :Pacific/Enderbury: 
+      :city: Enderbury
+    :Pacific/Honolulu: 
+      :city: Honolulu
+    :Pacific/Ponape: 
+      :city: Pohnpei
+    :Pacific/Truk: 
+      :city: Chuuk

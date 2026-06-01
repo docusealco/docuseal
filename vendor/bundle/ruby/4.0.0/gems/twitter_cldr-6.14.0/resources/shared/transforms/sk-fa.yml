@@ -1,0 +1,12 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - fa-t-sk
+    :direction: forward
+    :rules: 
+      - "::sk-sk_FONIPA ;"
+      - "::und_FONIPA-fa ;"
+    :source: sk
+    :target: fa
+    :variant: ~

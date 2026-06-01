@@ -1,0 +1,446 @@
+--- 
+:ta: 
+  :fields: 
+    :day: 
+      :display_name: நாள்
+      :relative: 
+        -1: நேற்று
+        -2: "நேற்று முன் தினம்"
+        0: இன்று
+        1: நாளை
+        2: "நாளை மறுநாள்"
+      :relative_time: 
+        :future: 
+          :one: "{0} நாளில்"
+          :other: "{0} நாட்களில்"
+        :past: 
+          :one: "{0} நாளுக்கு முன்"
+          :other: "{0} நாட்களுக்கு முன்"
+    :day-narrow: 
+      :display_name: நா.
+      :relative_time: 
+        :future: 
+          :one: "{0} நா."
+          :other: "{0} நா."
+        :past: 
+          :one: "{0} நா. முன்"
+          :other: "{0} நா. முன்"
+    :dayOfYear: 
+      :display_name: "வருடத்தின் நாள்"
+    :dayOfYear-short: 
+      :display_name: "வருட. நாள்"
+    :dayperiod: 
+      :display_name: முற்பகல்/பிற்பகல்
+    :dayperiod-short: 
+      :display_name: முற்./பிற்.
+    :era: 
+      :display_name: காலம்
+    :fri: 
+      :relative: 
+        -1: "கடந்த வெள்ளி"
+        0: "இந்த வெள்ளி"
+        1: "அடுத்த வெள்ளி"
+      :relative_time: 
+        :future: 
+          :one: "{0} வெள்ளியில்"
+          :other: "{0} வெள்ளிகளில்"
+        :past: 
+          :one: "{0} வெள்ளிக்கு முன்"
+          :other: "{0} வெள்ளிகளுக்கு முன்"
+    :fri-short: 
+      :relative: 
+        -1: "கடந்த வெள்."
+        0: "இந்த வெள்."
+        1: "அடுத்த வெள்."
+      :relative_time: 
+        :future: 
+          :one: "{0} வெள்."
+          :other: "{0} வெள்."
+        :past: 
+          :one: "{0} வெள். முன்"
+          :other: "{0} வெள். முன்"
+    :hour: 
+      :display_name: மணி
+      :relative: 
+        0: "இந்த ஒரு மணிநேரத்தில்"
+      :relative_time: 
+        :future: 
+          :one: "{0} மணிநேரத்தில்"
+          :other: "{0} மணிநேரத்தில்"
+        :past: 
+          :one: "{0} மணிநேரம் முன்"
+          :other: "{0} மணிநேரம் முன்"
+    :hour-narrow: 
+      :display_name: ம.
+      :relative_time: 
+        :future: 
+          :one: "{0} ம."
+          :other: "{0} ம."
+        :past: 
+          :one: "{0} ம. முன்"
+          :other: "{0} ம. முன்"
+    :hour-short: 
+      :display_name: மணி.
+      :relative_time: 
+        :future: 
+          :one: "{0} மணி."
+          :other: "{0} மணி."
+        :past: 
+          :one: "{0} மணி. முன்"
+          :other: "{0} மணி. முன்"
+    :minute: 
+      :display_name: நிமிடம்
+      :relative: 
+        0: "இந்த ஒரு நிமிடத்தில்"
+      :relative_time: 
+        :future: 
+          :one: "{0} நிமிடத்தில்"
+          :other: "{0} நிமிடங்களில்"
+        :past: 
+          :one: "{0} நிமிடத்திற்கு முன்"
+          :other: "{0} நிமிடங்களுக்கு முன்"
+    :minute-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "{0} நி."
+          :other: "{0} நி."
+        :past: 
+          :one: "{0} நி. முன்"
+          :other: "{0} நி. முன்"
+    :minute-short: 
+      :display_name: நிமி.
+      :relative_time: 
+        :future: 
+          :one: "{0} நிமி."
+          :other: "{0} நிமி."
+        :past: 
+          :one: "{0} நிமி. முன்"
+          :other: "{0} நிமி. முன்"
+    :mon: 
+      :relative: 
+        -1: "கடந்த திங்கள்"
+        0: "இந்த திங்கள்"
+        1: "அடுத்த திங்கள்"
+      :relative_time: 
+        :future: 
+          :one: "{0} திங்களில்"
+          :other: "{0} திங்கள்களில்"
+        :past: 
+          :one: "{0} திங்களுக்கு முன்"
+          :other: "{0} திங்கள்களுக்கு முன்"
+    :mon-short: 
+      :relative: 
+        -1: "கடந்த திங்."
+        0: "இந்த திங்."
+        1: "அடுத்த திங்."
+      :relative_time: 
+        :future: 
+          :one: "{0} திங்."
+          :other: "{0} திங்."
+        :past: 
+          :one: "{0} திங். முன்"
+          :other: "{0} திங். முன்"
+    :month: 
+      :display_name: மாதம்
+      :relative: 
+        -1: "கடந்த மாதம்"
+        0: "இந்த மாதம்"
+        1: "அடுத்த மாதம்"
+      :relative_time: 
+        :future: 
+          :one: "{0} மாதத்தில்"
+          :other: "{0} மாதங்களில்"
+        :past: 
+          :one: "{0} மாதத்துக்கு முன்"
+          :other: "{0} மாதங்களுக்கு முன்"
+    :month-narrow: 
+      :display_name: மா.
+      :relative_time: 
+        :future: 
+          :one: "{0} மா."
+          :other: "{0} மா."
+        :past: 
+          :one: "{0} மா. முன்"
+          :other: "{0} மா. முன்"
+    :month-short: 
+      :display_name: மாத.
+      :relative_time: 
+        :future: 
+          :one: "{0} மாத."
+          :other: "{0} மாத."
+        :past: 
+          :one: "{0} மாத. முன்"
+          :other: "{0} மாத. முன்"
+    :quarter: 
+      :display_name: காலாண்டு
+      :relative: 
+        -1: "கடந்த காலாண்டு"
+        0: "இந்த காலாண்டு"
+        1: "அடுத்த காலாண்டு"
+      :relative_time: 
+        :future: 
+          :one: "+{0} காலாண்டில்"
+          :other: "{0} காலாண்டுகளில்"
+        :past: 
+          :one: "{0} காலாண்டுக்கு முன்"
+          :other: "{0} காலாண்டுகளுக்கு முன்"
+    :quarter-narrow: 
+      :display_name: கா.
+      :relative_time: 
+        :future: 
+          :one: "{0} கா."
+          :other: "{0} கா."
+        :past: 
+          :one: "{0} கா. முன்"
+          :other: "{0} கா. முன்"
+    :quarter-short: 
+      :display_name: காலா.
+      :relative: 
+        -1: "இறுதி காலாண்டு"
+        0: "இந்த காலாண்டு"
+        1: "அடுத்த காலாண்டு"
+      :relative_time: 
+        :future: 
+          :one: "{0} காலா."
+          :other: "{0} காலா."
+        :past: 
+          :one: "{0} காலா. முன்"
+          :other: "{0} காலா. முன்"
+    :sat: 
+      :relative: 
+        -1: "கடந்த சனி"
+        0: "இந்த சனி"
+        1: "அடுத்த சனி"
+      :relative_time: 
+        :future: 
+          :one: "{0} சனியில்"
+          :other: "{0} சனிகளில்"
+        :past: 
+          :one: "{0} சனிக்கு முன்"
+          :other: "{0} சனிகளுக்கு முன்"
+    :sat-short: 
+      :relative_time: 
+        :future: 
+          :one: "{0} சனி."
+          :other: "{0} சனி."
+        :past: 
+          :one: "{0} சனி. முன்"
+          :other: "{0} சனி. முன்"
+    :second: 
+      :display_name: விநாடி
+      :relative: 
+        0: இப்போது
+      :relative_time: 
+        :future: 
+          :one: "{0} விநாடியில்"
+          :other: "{0} விநாடிகளில்"
+        :past: 
+          :one: "{0} விநாடிக்கு முன்"
+          :other: "{0} விநாடிகளுக்கு முன்"
+    :second-narrow: 
+      :display_name: வி.
+      :relative_time: 
+        :future: 
+          :one: "{0} வி."
+          :other: "{0} வி."
+        :past: 
+          :one: "{0} வி. முன்"
+          :other: "{0} வி. முன்"
+    :second-short: 
+      :display_name: விநா.
+      :relative_time: 
+        :future: 
+          :one: "{0} விநா."
+          :other: "{0} விநா."
+        :past: 
+          :one: "{0} விநா. முன்"
+          :other: "{0} விநா. முன்"
+    :sun: 
+      :relative: 
+        -1: "கடந்த ஞாயிறு"
+        0: "இந்த ஞாயிறு"
+        1: "அடுத்த ஞாயிறு"
+      :relative_time: 
+        :future: 
+          :one: "{0} ஞாயிறில்"
+          :other: "{0} ஞாயிறுகளில்"
+        :past: 
+          :one: "{0} ஞாயிறுக்கு முன்பு"
+          :other: "{0} ஞாயிறுகளுக்கு முன்பு"
+    :sun-narrow: 
+      :relative: 
+        -1: "கடந்த ஞா."
+        0: "இந்த ஞா."
+        1: "அடுத்த ஞா."
+      :relative_time: 
+        :future: 
+          :one: "{0} ஞா."
+          :other: "{0} ஞா."
+        :past: 
+          :one: "{0} ஞா. முன்"
+          :other: "{0} ஞா. முன்"
+    :sun-short: 
+      :relative: 
+        -1: "கடந்த ஞாயி."
+        0: "இந்த ஞாயி."
+        1: "அடுத்த ஞாயி."
+      :relative_time: 
+        :future: 
+          :one: "{0} ஞாயி."
+          :other: "{0} ஞாயி."
+        :past: 
+          :one: "{0} ஞாயி. முன்"
+          :other: "{0} ஞாயி. முன்"
+    :thu: 
+      :relative: 
+        -1: "கடந்த வியாழன்"
+        0: "இந்த வியாழன்"
+        1: "அடுத்த வியாழன்"
+      :relative_time: 
+        :future: 
+          :one: "{0} வியாழனில்"
+          :other: "{0} வியாழன்களில்"
+        :past: 
+          :one: "{0} வியாழனுக்கு முன்"
+          :other: "{0} வியாழன்களுக்கு முன்"
+    :thu-short: 
+      :relative: 
+        -1: "கடந்த வியா."
+        0: "இந்த வியா."
+        1: "அடுத்த வியா."
+      :relative_time: 
+        :future: 
+          :one: "{0} வியா."
+          :other: "{0} வியா."
+        :past: 
+          :one: "{0} வியா. முன்"
+          :other: "{0} வியா. முன்"
+    :tue: 
+      :relative: 
+        -1: "கடந்த செவ்வாய்"
+        0: "இந்த செவ்வாய்"
+        1: "அடுத்த செவ்வாய்"
+      :relative_time: 
+        :future: 
+          :one: "{0} செவ்வாயில்"
+          :other: "{0} செவ்வாய்களில்"
+        :past: 
+          :one: "{0} செவ்வாய் முன்பு"
+          :other: "{0} செவ்வாய்கள் முன்பு"
+    :tue-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "{0} செவ்."
+          :other: "{0} செவ்வாய்களில்"
+        :past: 
+          :one: "செவ். முன்பு"
+          :other: "{0} செவ். முன்பு"
+    :tue-short: 
+      :relative: 
+        -1: "கடந்த செவ்."
+        0: "இந்த செவ்."
+        1: "அடுத்த செவ்."
+      :relative_time: 
+        :future: 
+          :one: "{0} செவ்."
+          :other: "{0} செவ்."
+        :past: 
+          :one: "{0} செவ்வாய்களுக்கு முன்"
+          :other: "{0} செவ்வாய்களுக்கு முன்"
+    :wed: 
+      :relative: 
+        -1: "கடந்த புதன்"
+        0: "இந்த புதன்"
+        1: "அடுத்த புதன்"
+      :relative_time: 
+        :future: 
+          :one: "{0} புதனில்"
+          :other: "{0} புதன்களில்"
+        :past: 
+          :one: "{0} புதனுக்கு முன்"
+          :other: "{0} புதன்களுக்கு முன்"
+    :wed-narrow: 
+      :relative_time: 
+        :past: 
+          :one: "{0} புத. முன்"
+          :other: "{0} புத. முன்"
+    :wed-short: 
+      :relative: 
+        -1: "கடந்த புத."
+        0: "இந்த புத."
+        1: "அடுத்த புத."
+      :relative_time: 
+        :future: 
+          :one: "{0} புத."
+          :other: "{0} புத."
+        :past: 
+          :one: "{0} புதன்களுக்கு முன்"
+          :other: "{0} புதன்களுக்கு முன்"
+    :week: 
+      :display_name: வாரம்
+      :relative: 
+        -1: "கடந்த வாரம்"
+        0: "இந்த வாரம்"
+        1: "அடுத்த வாரம்"
+      :relative_time: 
+        :future: 
+          :one: "{0} வாரத்தில்"
+          :other: "{0} வாரங்களில்"
+        :past: 
+          :one: "{0} வாரத்திற்கு முன்"
+          :other: "{0} வாரங்களுக்கு முன்"
+    :week-narrow: 
+      :display_name: வா.
+      :relative_time: 
+        :future: 
+          :one: "{0} வா."
+          :other: "{0} வா."
+        :past: 
+          :one: "{0} வா. முன்"
+          :other: "{0} வா. முன்"
+    :week-short: 
+      :relative_time: 
+        :future: 
+          :one: "{0} வார."
+          :other: "{0} வார."
+        :past: 
+          :one: "{0} வார. முன்"
+          :other: "{0} வார. முன்"
+    :weekOfMonth: 
+      :display_name: "மாதத்தின் வாரம்"
+    :weekOfMonth-short: 
+      :display_name: "மாத. வாரம்"
+    :weekday: 
+      :display_name: "வாரத்தின் நாள்"
+    :weekday-short: 
+      :display_name: "வார. நாள்"
+    :weekdayOfMonth: 
+      :display_name: "மாதத்தின் வாரநாள்"
+    :weekdayOfMonth-short: 
+      :display_name: "மாத. வாரநாள்"
+    :year: 
+      :display_name: ஆண்டு
+      :relative: 
+        -1: "கடந்த ஆண்டு"
+        0: "இந்த ஆண்டு"
+        1: "அடுத்த ஆண்டு"
+      :relative_time: 
+        :future: 
+          :one: "{0} ஆண்டில்"
+          :other: "{0} ஆண்டுகளில்"
+        :past: 
+          :one: "{0} ஆண்டிற்கு முன்"
+          :other: "{0} ஆண்டுகளுக்கு முன்"
+    :year-narrow: 
+      :display_name: ஆ.
+      :relative_time: 
+        :future: 
+          :one: "{0} ஆ."
+          :other: "{0} ஆ."
+        :past: 
+          :one: "{0} ஆ. முன்"
+          :other: "{0} ஆ. முன்"
+    :zone: 
+      :display_name: "நேர மண்டலம்"
+    :zone-short: 
+      :display_name: மண்டலம்

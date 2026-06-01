@@ -1,0 +1,46 @@
+module Aws
+  module Telemetry
+    class TelemetryProviderBase
+      def initialize: (?tracer_provider: TracerProviderBase, ?context_manager: ContextManagerBase) -> void
+      attr_reader tracer_provider: TracerProviderBase
+
+      attr_reader context_manager: ContextManagerBase
+    end
+
+    class TracerProviderBase
+      def tracer: (?String name) -> TracerBase
+    end
+
+    class TracerBase
+      def start_span: (String name, ?untyped with_parent, ?Hash[String, untyped] attributes, ?SpanKind kind) -> SpanBase
+
+      def in_span: (String name, ?Hash[String, untyped] attributes, ?SpanKind kind) -> SpanBase
+
+      def current_span: () -> SpanBase
+    end
+
+    class SpanBase
+      def set_attribute: (String key, untyped value) -> self
+      alias []= set_attribute
+
+      def add_attributes: (Hash[String, untyped] attributes) -> self
+
+      def add_event: (String name, ?Hash[String, untyped] attributes) -> self
+
+      def status=: (SpanStatus status) -> void
+
+      def finish: (?Time end_timestamp) -> self
+
+      def record_exception: (untyped exception, ?Hash[String, untyped] attributes) -> void
+    end
+
+    class ContextManagerBase
+      def current: () -> untyped
+
+      def attach: (untyped context) -> untyped
+
+      def detach: (untyped token) -> bool
+    end
+
+  end
+end

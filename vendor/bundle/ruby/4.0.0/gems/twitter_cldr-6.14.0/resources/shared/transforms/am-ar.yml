@@ -1,0 +1,13 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - ar-t-am
+    :direction: forward
+    :rules: 
+      - "::am-am_FONIPA ;"
+      - "ɨ > ə ;"
+      - "::und_FONIPA-ar ;"
+    :source: am
+    :target: ar
+    :variant: ~

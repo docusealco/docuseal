@@ -1,0 +1,31 @@
+module WEBrick
+  module HTTPAuth
+    class Htdigest
+      @path: String
+
+      @mtime: Time
+
+      @digest: Hash[String, Hash[String, String]]
+
+      @mutex: Thread::Mutex
+
+      @auth_type: String
+
+      include UserDB
+
+      def initialize: (String path) -> void
+
+      def reload: () -> void
+
+      def flush: (?String? output) -> void
+
+      def get_passwd: (String realm, String user, bool reload_db) -> String?
+
+      def set_passwd: (String realm, String user, String pass) -> String
+
+      def delete_passwd: (String realm, String user) -> String?
+
+      def each: () { (String user, String realm, String password_hash) -> void } -> void
+    end
+  end
+end

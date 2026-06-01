@@ -1,0 +1,28 @@
+# See https://ddnexus.github.io/pagy/resources/i18n
+
+be:
+  pagy:
+    p11n: 'EastSlavic'
+    aria_label:
+      nav:
+        one: "Старонка"
+        few: "Старонкi"
+        many: "Старонкi"
+        other: "Старонкi"
+      previous: "Назад"
+      next: "Наперад"
+    previous: "&lt;"
+    next: "&gt;"
+    gap: "&hellip;"
+    item_name:
+      one: "запіс"
+      few: "запісы"
+      many: "запісаў"
+      other: "запісаў"
+    info_tag:
+      no_count: "Старонка %{page} з %{pages}"
+      no_items: "Пакуль %{item_name} няма"
+      single_page: "%{count} %{item_name}"
+      multiple_pages: "Усяго %{count} %{item_name}, паказаны з %{from} па %{to}"
+    input_nav_js: "Старонка %{page_input} з %{pages}"
+    limit_tag_js: "Паказаць %{limit_input} %{item_name} на старонцы"

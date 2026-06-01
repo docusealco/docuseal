@@ -1,0 +1,16 @@
+module Seahorse
+  module Client
+    # This module provides the ability to add handlers to a class or
+    # module.  The including class or extending module must respond to
+    # `#handlers`, returning a {HandlerList}.
+    module HandlerBuilder
+      def handle_request: (*untyped) { (untyped context) -> void } -> untyped
+
+      def handle_response: (*untyped) { (untyped resp) -> void } -> untyped
+
+      def handle: (*untyped) ?{ (untyped context) -> void } -> untyped
+
+      alias handler handle
+    end
+  end
+end

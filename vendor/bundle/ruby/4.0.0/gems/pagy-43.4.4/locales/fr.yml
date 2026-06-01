@@ -1,0 +1,24 @@
+# See https://ddnexus.github.io/pagy/resources/i18n
+
+fr:
+  pagy:
+    p11n: 'OneUptoTwoOther'
+    aria_label:
+      nav:
+        one: "Page"
+        other: "Pages"
+      previous: "Précédent"
+      next: "Suivant"
+    previous: "&lt;"
+    next: "&gt;"
+    gap: "&hellip;"
+    item_name:
+      one: "élément"
+      other: "éléments"
+    info_tag:
+      no_count: "Page %{page} sur %{pages}"
+      no_items: "Aucun %{item_name} trouvé"
+      single_page: "Affichage de %{count} %{item_name}"
+      multiple_pages: "Affichage des %{item_name} %{from} à %{to} sur %{count} au total"
+    input_nav_js: "Page %{page_input} sur %{pages}"
+    limit_tag_js: "Afficher %{limit_input} %{item_name} par page"

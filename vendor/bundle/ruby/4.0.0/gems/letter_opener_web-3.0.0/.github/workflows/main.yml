@@ -1,0 +1,40 @@
+---
+name: Run tests
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ruby-version:
+          - "3.1"
+          - "3.2"
+          - "3.3"
+          - truffleruby-head
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Ruby ${{ matrix.ruby-version }}
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby-version }}
+          bundler-cache: true
+
+      - name: Install dependencies
+        run: bundle install
+
+      - name: Lint with Rubocop
+        run: bin/rubocop
+
+      - name: Run tests
+        run: bin/rspec
+
+      - name: Build gem
+        run: bin/rake build

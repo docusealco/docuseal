@@ -1,0 +1,2049 @@
+---
+128:
+- 128
+- "<control>"
+- Cc
+- '0'
+- BN
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+129:
+- 129
+- "<control>"
+- Cc
+- '0'
+- BN
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+130:
+- 130
+- "<control>"
+- Cc
+- '0'
+- BN
+- ''
+- ''
+- ''
+- ''
+- N
+- BREAK PERMITTED HERE
+- ''
+- ''
+- ''
+- ''
+131:
+- 131
+- "<control>"
+- Cc
+- '0'
+- BN
+- ''
+- ''
+- ''
+- ''
+- N
+- NO BREAK HERE
+- ''
+- ''
+- ''
+- ''
+132:
+- 132
+- "<control>"
+- Cc
+- '0'
+- BN
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+133:
+- 133
+- "<control>"
+- Cc
+- '0'
+- B
+- ''
+- ''
+- ''
+- ''
+- N
+- NEXT LINE (NEL)
+- ''
+- ''
+- ''
+- ''
+134:
+- 134
+- "<control>"
+- Cc
+- '0'
+- BN
+- ''
+- ''
+- ''
+- ''
+- N
+- START OF SELECTED AREA
+- ''
+- ''
+- ''
+- ''
+135:
+- 135
+- "<control>"
+- Cc
+- '0'
+- BN
+- ''
+- ''
+- ''
+- ''
+- N
+- END OF SELECTED AREA
+- ''
+- ''
+- ''
+- ''
+136:
+- 136
+- "<control>"
+- Cc
+- '0'
+- BN
+- ''
+- ''
+- ''
+- ''
+- N
+- CHARACTER TABULATION SET
+- ''
+- ''
+- ''
+- ''
+137:
+- 137
+- "<control>"
+- Cc
+- '0'
+- BN
+- ''
+- ''
+- ''
+- ''
+- N
+- CHARACTER TABULATION WITH JUSTIFICATION
+- ''
+- ''
+- ''
+- ''
+138:
+- 138
+- "<control>"
+- Cc
+- '0'
+- BN
+- ''
+- ''
+- ''
+- ''
+- N
+- LINE TABULATION SET
+- ''
+- ''
+- ''
+- ''
+139:
+- 139
+- "<control>"
+- Cc
+- '0'
+- BN
+- ''
+- ''
+- ''
+- ''
+- N
+- PARTIAL LINE FORWARD
+- ''
+- ''
+- ''
+- ''
+140:
+- 140
+- "<control>"
+- Cc
+- '0'
+- BN
+- ''
+- ''
+- ''
+- ''
+- N
+- PARTIAL LINE BACKWARD
+- ''
+- ''
+- ''
+- ''
+141:
+- 141
+- "<control>"
+- Cc
+- '0'
+- BN
+- ''
+- ''
+- ''
+- ''
+- N
+- REVERSE LINE FEED
+- ''
+- ''
+- ''
+- ''
+142:
+- 142
+- "<control>"
+- Cc
+- '0'
+- BN
+- ''
+- ''
+- ''
+- ''
+- N
+- SINGLE SHIFT TWO
+- ''
+- ''
+- ''
+- ''
+143:
+- 143
+- "<control>"
+- Cc
+- '0'
+- BN
+- ''
+- ''
+- ''
+- ''
+- N
+- SINGLE SHIFT THREE
+- ''
+- ''
+- ''
+- ''
+144:
+- 144
+- "<control>"
+- Cc
+- '0'
+- BN
+- ''
+- ''
+- ''
+- ''
+- N
+- DEVICE CONTROL STRING
+- ''
+- ''
+- ''
+- ''
+145:
+- 145
+- "<control>"
+- Cc
+- '0'
+- BN
+- ''
+- ''
+- ''
+- ''
+- N
+- PRIVATE USE ONE
+- ''
+- ''
+- ''
+- ''
+146:
+- 146
+- "<control>"
+- Cc
+- '0'
+- BN
+- ''
+- ''
+- ''
+- ''
+- N
+- PRIVATE USE TWO
+- ''
+- ''
+- ''
+- ''
+147:
+- 147
+- "<control>"
+- Cc
+- '0'
+- BN
+- ''
+- ''
+- ''
+- ''
+- N
+- SET TRANSMIT STATE
+- ''
+- ''
+- ''
+- ''
+148:
+- 148
+- "<control>"
+- Cc
+- '0'
+- BN
+- ''
+- ''
+- ''
+- ''
+- N
+- CANCEL CHARACTER
+- ''
+- ''
+- ''
+- ''
+149:
+- 149
+- "<control>"
+- Cc
+- '0'
+- BN
+- ''
+- ''
+- ''
+- ''
+- N
+- MESSAGE WAITING
+- ''
+- ''
+- ''
+- ''
+150:
+- 150
+- "<control>"
+- Cc
+- '0'
+- BN
+- ''
+- ''
+- ''
+- ''
+- N
+- START OF GUARDED AREA
+- ''
+- ''
+- ''
+- ''
+151:
+- 151
+- "<control>"
+- Cc
+- '0'
+- BN
+- ''
+- ''
+- ''
+- ''
+- N
+- END OF GUARDED AREA
+- ''
+- ''
+- ''
+- ''
+152:
+- 152
+- "<control>"
+- Cc
+- '0'
+- BN
+- ''
+- ''
+- ''
+- ''
+- N
+- START OF STRING
+- ''
+- ''
+- ''
+- ''
+153:
+- 153
+- "<control>"
+- Cc
+- '0'
+- BN
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+154:
+- 154
+- "<control>"
+- Cc
+- '0'
+- BN
+- ''
+- ''
+- ''
+- ''
+- N
+- SINGLE CHARACTER INTRODUCER
+- ''
+- ''
+- ''
+- ''
+155:
+- 155
+- "<control>"
+- Cc
+- '0'
+- BN
+- ''
+- ''
+- ''
+- ''
+- N
+- CONTROL SEQUENCE INTRODUCER
+- ''
+- ''
+- ''
+- ''
+156:
+- 156
+- "<control>"
+- Cc
+- '0'
+- BN
+- ''
+- ''
+- ''
+- ''
+- N
+- STRING TERMINATOR
+- ''
+- ''
+- ''
+- ''
+157:
+- 157
+- "<control>"
+- Cc
+- '0'
+- BN
+- ''
+- ''
+- ''
+- ''
+- N
+- OPERATING SYSTEM COMMAND
+- ''
+- ''
+- ''
+- ''
+158:
+- 158
+- "<control>"
+- Cc
+- '0'
+- BN
+- ''
+- ''
+- ''
+- ''
+- N
+- PRIVACY MESSAGE
+- ''
+- ''
+- ''
+- ''
+159:
+- 159
+- "<control>"
+- Cc
+- '0'
+- BN
+- ''
+- ''
+- ''
+- ''
+- N
+- APPLICATION PROGRAM COMMAND
+- ''
+- ''
+- ''
+- ''
+160:
+- 160
+- NO-BREAK SPACE
+- Zs
+- '0'
+- CS
+- "<noBreak> 0020"
+- ''
+- ''
+- ''
+- N
+- NON-BREAKING SPACE
+- ''
+- ''
+- ''
+- ''
+161:
+- 161
+- INVERTED EXCLAMATION MARK
+- Po
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+162:
+- 162
+- CENT SIGN
+- Sc
+- '0'
+- ET
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+163:
+- 163
+- POUND SIGN
+- Sc
+- '0'
+- ET
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+164:
+- 164
+- CURRENCY SIGN
+- Sc
+- '0'
+- ET
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+165:
+- 165
+- YEN SIGN
+- Sc
+- '0'
+- ET
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+166:
+- 166
+- BROKEN BAR
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- BROKEN VERTICAL BAR
+- ''
+- ''
+- ''
+- ''
+167:
+- 167
+- SECTION SIGN
+- Po
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+168:
+- 168
+- DIAERESIS
+- Sk
+- '0'
+- 'ON'
+- "<compat> 0020 0308"
+- ''
+- ''
+- ''
+- N
+- SPACING DIAERESIS
+- ''
+- ''
+- ''
+- ''
+169:
+- 169
+- COPYRIGHT SIGN
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+170:
+- 170
+- FEMININE ORDINAL INDICATOR
+- Lo
+- '0'
+- L
+- "<super> 0061"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+171:
+- 171
+- LEFT-POINTING DOUBLE ANGLE QUOTATION MARK
+- Pi
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- LEFT POINTING GUILLEMET
+- ''
+- ''
+- ''
+- ''
+172:
+- 172
+- NOT SIGN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+173:
+- 173
+- SOFT HYPHEN
+- Cf
+- '0'
+- BN
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+174:
+- 174
+- REGISTERED SIGN
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- REGISTERED TRADE MARK SIGN
+- ''
+- ''
+- ''
+- ''
+175:
+- 175
+- MACRON
+- Sk
+- '0'
+- 'ON'
+- "<compat> 0020 0304"
+- ''
+- ''
+- ''
+- N
+- SPACING MACRON
+- ''
+- ''
+- ''
+- ''
+176:
+- 176
+- DEGREE SIGN
+- So
+- '0'
+- ET
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+177:
+- 177
+- PLUS-MINUS SIGN
+- Sm
+- '0'
+- ET
+- ''
+- ''
+- ''
+- ''
+- N
+- PLUS-OR-MINUS SIGN
+- ''
+- ''
+- ''
+- ''
+178:
+- 178
+- SUPERSCRIPT TWO
+- 'No'
+- '0'
+- EN
+- "<super> 0032"
+- ''
+- '2'
+- '2'
+- N
+- SUPERSCRIPT DIGIT TWO
+- ''
+- ''
+- ''
+- ''
+179:
+- 179
+- SUPERSCRIPT THREE
+- 'No'
+- '0'
+- EN
+- "<super> 0033"
+- ''
+- '3'
+- '3'
+- N
+- SUPERSCRIPT DIGIT THREE
+- ''
+- ''
+- ''
+- ''
+180:
+- 180
+- ACUTE ACCENT
+- Sk
+- '0'
+- 'ON'
+- "<compat> 0020 0301"
+- ''
+- ''
+- ''
+- N
+- SPACING ACUTE
+- ''
+- ''
+- ''
+- ''
+181:
+- 181
+- MICRO SIGN
+- Ll
+- '0'
+- L
+- "<compat> 03BC"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- '039C'
+- ''
+- '039C'
+182:
+- 182
+- PILCROW SIGN
+- Po
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- PARAGRAPH SIGN
+- ''
+- ''
+- ''
+- ''
+183:
+- 183
+- MIDDLE DOT
+- Po
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+184:
+- 184
+- CEDILLA
+- Sk
+- '0'
+- 'ON'
+- "<compat> 0020 0327"
+- ''
+- ''
+- ''
+- N
+- SPACING CEDILLA
+- ''
+- ''
+- ''
+- ''
+185:
+- 185
+- SUPERSCRIPT ONE
+- 'No'
+- '0'
+- EN
+- "<super> 0031"
+- ''
+- '1'
+- '1'
+- N
+- SUPERSCRIPT DIGIT ONE
+- ''
+- ''
+- ''
+- ''
+186:
+- 186
+- MASCULINE ORDINAL INDICATOR
+- Lo
+- '0'
+- L
+- "<super> 006F"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+187:
+- 187
+- RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK
+- Pf
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- Y
+- RIGHT POINTING GUILLEMET
+- ''
+- ''
+- ''
+- ''
+188:
+- 188
+- VULGAR FRACTION ONE QUARTER
+- 'No'
+- '0'
+- 'ON'
+- "<fraction> 0031 2044 0034"
+- ''
+- ''
+- 1/4
+- N
+- FRACTION ONE QUARTER
+- ''
+- ''
+- ''
+- ''
+189:
+- 189
+- VULGAR FRACTION ONE HALF
+- 'No'
+- '0'
+- 'ON'
+- "<fraction> 0031 2044 0032"
+- ''
+- ''
+- 1/2
+- N
+- FRACTION ONE HALF
+- ''
+- ''
+- ''
+- ''
+190:
+- 190
+- VULGAR FRACTION THREE QUARTERS
+- 'No'
+- '0'
+- 'ON'
+- "<fraction> 0033 2044 0034"
+- ''
+- ''
+- 3/4
+- N
+- FRACTION THREE QUARTERS
+- ''
+- ''
+- ''
+- ''
+191:
+- 191
+- INVERTED QUESTION MARK
+- Po
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+192:
+- 192
+- LATIN CAPITAL LETTER A WITH GRAVE
+- Lu
+- '0'
+- L
+- 0041 0300
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER A GRAVE
+- ''
+- ''
+- 00E0
+- ''
+193:
+- 193
+- LATIN CAPITAL LETTER A WITH ACUTE
+- Lu
+- '0'
+- L
+- 0041 0301
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER A ACUTE
+- ''
+- ''
+- 00E1
+- ''
+194:
+- 194
+- LATIN CAPITAL LETTER A WITH CIRCUMFLEX
+- Lu
+- '0'
+- L
+- 0041 0302
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER A CIRCUMFLEX
+- ''
+- ''
+- 00E2
+- ''
+195:
+- 195
+- LATIN CAPITAL LETTER A WITH TILDE
+- Lu
+- '0'
+- L
+- 0041 0303
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER A TILDE
+- ''
+- ''
+- 00E3
+- ''
+196:
+- 196
+- LATIN CAPITAL LETTER A WITH DIAERESIS
+- Lu
+- '0'
+- L
+- 0041 0308
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER A DIAERESIS
+- ''
+- ''
+- 00E4
+- ''
+197:
+- 197
+- LATIN CAPITAL LETTER A WITH RING ABOVE
+- Lu
+- '0'
+- L
+- 0041 030A
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER A RING
+- ''
+- ''
+- 00E5
+- ''
+198:
+- 198
+- LATIN CAPITAL LETTER AE
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER A E
+- ''
+- ''
+- 00E6
+- ''
+199:
+- 199
+- LATIN CAPITAL LETTER C WITH CEDILLA
+- Lu
+- '0'
+- L
+- 0043 0327
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER C CEDILLA
+- ''
+- ''
+- 00E7
+- ''
+200:
+- 200
+- LATIN CAPITAL LETTER E WITH GRAVE
+- Lu
+- '0'
+- L
+- 0045 0300
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER E GRAVE
+- ''
+- ''
+- 00E8
+- ''
+201:
+- 201
+- LATIN CAPITAL LETTER E WITH ACUTE
+- Lu
+- '0'
+- L
+- 0045 0301
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER E ACUTE
+- ''
+- ''
+- 00E9
+- ''
+202:
+- 202
+- LATIN CAPITAL LETTER E WITH CIRCUMFLEX
+- Lu
+- '0'
+- L
+- 0045 0302
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER E CIRCUMFLEX
+- ''
+- ''
+- 00EA
+- ''
+203:
+- 203
+- LATIN CAPITAL LETTER E WITH DIAERESIS
+- Lu
+- '0'
+- L
+- 0045 0308
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER E DIAERESIS
+- ''
+- ''
+- 00EB
+- ''
+204:
+- 204
+- LATIN CAPITAL LETTER I WITH GRAVE
+- Lu
+- '0'
+- L
+- '0049 0300'
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER I GRAVE
+- ''
+- ''
+- 00EC
+- ''
+205:
+- 205
+- LATIN CAPITAL LETTER I WITH ACUTE
+- Lu
+- '0'
+- L
+- '0049 0301'
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER I ACUTE
+- ''
+- ''
+- 00ED
+- ''
+206:
+- 206
+- LATIN CAPITAL LETTER I WITH CIRCUMFLEX
+- Lu
+- '0'
+- L
+- '0049 0302'
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER I CIRCUMFLEX
+- ''
+- ''
+- 00EE
+- ''
+207:
+- 207
+- LATIN CAPITAL LETTER I WITH DIAERESIS
+- Lu
+- '0'
+- L
+- '0049 0308'
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER I DIAERESIS
+- ''
+- ''
+- 00EF
+- ''
+208:
+- 208
+- LATIN CAPITAL LETTER ETH
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 00F0
+- ''
+209:
+- 209
+- LATIN CAPITAL LETTER N WITH TILDE
+- Lu
+- '0'
+- L
+- 004E 0303
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER N TILDE
+- ''
+- ''
+- 00F1
+- ''
+210:
+- 210
+- LATIN CAPITAL LETTER O WITH GRAVE
+- Lu
+- '0'
+- L
+- 004F 0300
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER O GRAVE
+- ''
+- ''
+- 00F2
+- ''
+211:
+- 211
+- LATIN CAPITAL LETTER O WITH ACUTE
+- Lu
+- '0'
+- L
+- 004F 0301
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER O ACUTE
+- ''
+- ''
+- 00F3
+- ''
+212:
+- 212
+- LATIN CAPITAL LETTER O WITH CIRCUMFLEX
+- Lu
+- '0'
+- L
+- 004F 0302
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER O CIRCUMFLEX
+- ''
+- ''
+- 00F4
+- ''
+213:
+- 213
+- LATIN CAPITAL LETTER O WITH TILDE
+- Lu
+- '0'
+- L
+- 004F 0303
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER O TILDE
+- ''
+- ''
+- 00F5
+- ''
+214:
+- 214
+- LATIN CAPITAL LETTER O WITH DIAERESIS
+- Lu
+- '0'
+- L
+- 004F 0308
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER O DIAERESIS
+- ''
+- ''
+- 00F6
+- ''
+215:
+- 215
+- MULTIPLICATION SIGN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+216:
+- 216
+- LATIN CAPITAL LETTER O WITH STROKE
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER O SLASH
+- ''
+- ''
+- 00F8
+- ''
+217:
+- 217
+- LATIN CAPITAL LETTER U WITH GRAVE
+- Lu
+- '0'
+- L
+- 0055 0300
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER U GRAVE
+- ''
+- ''
+- 00F9
+- ''
+218:
+- 218
+- LATIN CAPITAL LETTER U WITH ACUTE
+- Lu
+- '0'
+- L
+- 0055 0301
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER U ACUTE
+- ''
+- ''
+- 00FA
+- ''
+219:
+- 219
+- LATIN CAPITAL LETTER U WITH CIRCUMFLEX
+- Lu
+- '0'
+- L
+- 0055 0302
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER U CIRCUMFLEX
+- ''
+- ''
+- 00FB
+- ''
+220:
+- 220
+- LATIN CAPITAL LETTER U WITH DIAERESIS
+- Lu
+- '0'
+- L
+- 0055 0308
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER U DIAERESIS
+- ''
+- ''
+- 00FC
+- ''
+221:
+- 221
+- LATIN CAPITAL LETTER Y WITH ACUTE
+- Lu
+- '0'
+- L
+- '0059 0301'
+- ''
+- ''
+- ''
+- N
+- LATIN CAPITAL LETTER Y ACUTE
+- ''
+- ''
+- 00FD
+- ''
+222:
+- 222
+- LATIN CAPITAL LETTER THORN
+- Lu
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- 00FE
+- ''
+223:
+- 223
+- LATIN SMALL LETTER SHARP S
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+224:
+- 224
+- LATIN SMALL LETTER A WITH GRAVE
+- Ll
+- '0'
+- L
+- 0061 0300
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER A GRAVE
+- ''
+- 00C0
+- ''
+- 00C0
+225:
+- 225
+- LATIN SMALL LETTER A WITH ACUTE
+- Ll
+- '0'
+- L
+- 0061 0301
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER A ACUTE
+- ''
+- 00C1
+- ''
+- 00C1
+226:
+- 226
+- LATIN SMALL LETTER A WITH CIRCUMFLEX
+- Ll
+- '0'
+- L
+- 0061 0302
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER A CIRCUMFLEX
+- ''
+- 00C2
+- ''
+- 00C2
+227:
+- 227
+- LATIN SMALL LETTER A WITH TILDE
+- Ll
+- '0'
+- L
+- 0061 0303
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER A TILDE
+- ''
+- 00C3
+- ''
+- 00C3
+228:
+- 228
+- LATIN SMALL LETTER A WITH DIAERESIS
+- Ll
+- '0'
+- L
+- 0061 0308
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER A DIAERESIS
+- ''
+- 00C4
+- ''
+- 00C4
+229:
+- 229
+- LATIN SMALL LETTER A WITH RING ABOVE
+- Ll
+- '0'
+- L
+- 0061 030A
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER A RING
+- ''
+- 00C5
+- ''
+- 00C5
+230:
+- 230
+- LATIN SMALL LETTER AE
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER A E
+- ''
+- 00C6
+- ''
+- 00C6
+231:
+- 231
+- LATIN SMALL LETTER C WITH CEDILLA
+- Ll
+- '0'
+- L
+- 0063 0327
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER C CEDILLA
+- ''
+- 00C7
+- ''
+- 00C7
+232:
+- 232
+- LATIN SMALL LETTER E WITH GRAVE
+- Ll
+- '0'
+- L
+- 0065 0300
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER E GRAVE
+- ''
+- 00C8
+- ''
+- 00C8
+233:
+- 233
+- LATIN SMALL LETTER E WITH ACUTE
+- Ll
+- '0'
+- L
+- 0065 0301
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER E ACUTE
+- ''
+- 00C9
+- ''
+- 00C9
+234:
+- 234
+- LATIN SMALL LETTER E WITH CIRCUMFLEX
+- Ll
+- '0'
+- L
+- 0065 0302
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER E CIRCUMFLEX
+- ''
+- 00CA
+- ''
+- 00CA
+235:
+- 235
+- LATIN SMALL LETTER E WITH DIAERESIS
+- Ll
+- '0'
+- L
+- 0065 0308
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER E DIAERESIS
+- ''
+- 00CB
+- ''
+- 00CB
+236:
+- 236
+- LATIN SMALL LETTER I WITH GRAVE
+- Ll
+- '0'
+- L
+- '0069 0300'
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER I GRAVE
+- ''
+- 00CC
+- ''
+- 00CC
+237:
+- 237
+- LATIN SMALL LETTER I WITH ACUTE
+- Ll
+- '0'
+- L
+- '0069 0301'
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER I ACUTE
+- ''
+- 00CD
+- ''
+- 00CD
+238:
+- 238
+- LATIN SMALL LETTER I WITH CIRCUMFLEX
+- Ll
+- '0'
+- L
+- '0069 0302'
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER I CIRCUMFLEX
+- ''
+- 00CE
+- ''
+- 00CE
+239:
+- 239
+- LATIN SMALL LETTER I WITH DIAERESIS
+- Ll
+- '0'
+- L
+- '0069 0308'
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER I DIAERESIS
+- ''
+- 00CF
+- ''
+- 00CF
+240:
+- 240
+- LATIN SMALL LETTER ETH
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 00D0
+- ''
+- 00D0
+241:
+- 241
+- LATIN SMALL LETTER N WITH TILDE
+- Ll
+- '0'
+- L
+- 006E 0303
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER N TILDE
+- ''
+- 00D1
+- ''
+- 00D1
+242:
+- 242
+- LATIN SMALL LETTER O WITH GRAVE
+- Ll
+- '0'
+- L
+- 006F 0300
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER O GRAVE
+- ''
+- 00D2
+- ''
+- 00D2
+243:
+- 243
+- LATIN SMALL LETTER O WITH ACUTE
+- Ll
+- '0'
+- L
+- 006F 0301
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER O ACUTE
+- ''
+- 00D3
+- ''
+- 00D3
+244:
+- 244
+- LATIN SMALL LETTER O WITH CIRCUMFLEX
+- Ll
+- '0'
+- L
+- 006F 0302
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER O CIRCUMFLEX
+- ''
+- 00D4
+- ''
+- 00D4
+245:
+- 245
+- LATIN SMALL LETTER O WITH TILDE
+- Ll
+- '0'
+- L
+- 006F 0303
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER O TILDE
+- ''
+- 00D5
+- ''
+- 00D5
+246:
+- 246
+- LATIN SMALL LETTER O WITH DIAERESIS
+- Ll
+- '0'
+- L
+- 006F 0308
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER O DIAERESIS
+- ''
+- 00D6
+- ''
+- 00D6
+247:
+- 247
+- DIVISION SIGN
+- Sm
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+248:
+- 248
+- LATIN SMALL LETTER O WITH STROKE
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER O SLASH
+- ''
+- 00D8
+- ''
+- 00D8
+249:
+- 249
+- LATIN SMALL LETTER U WITH GRAVE
+- Ll
+- '0'
+- L
+- 0075 0300
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER U GRAVE
+- ''
+- 00D9
+- ''
+- 00D9
+250:
+- 250
+- LATIN SMALL LETTER U WITH ACUTE
+- Ll
+- '0'
+- L
+- 0075 0301
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER U ACUTE
+- ''
+- 00DA
+- ''
+- 00DA
+251:
+- 251
+- LATIN SMALL LETTER U WITH CIRCUMFLEX
+- Ll
+- '0'
+- L
+- 0075 0302
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER U CIRCUMFLEX
+- ''
+- 00DB
+- ''
+- 00DB
+252:
+- 252
+- LATIN SMALL LETTER U WITH DIAERESIS
+- Ll
+- '0'
+- L
+- 0075 0308
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER U DIAERESIS
+- ''
+- 00DC
+- ''
+- 00DC
+253:
+- 253
+- LATIN SMALL LETTER Y WITH ACUTE
+- Ll
+- '0'
+- L
+- '0079 0301'
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER Y ACUTE
+- ''
+- 00DD
+- ''
+- 00DD
+254:
+- 254
+- LATIN SMALL LETTER THORN
+- Ll
+- '0'
+- L
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- 00DE
+- ''
+- 00DE
+255:
+- 255
+- LATIN SMALL LETTER Y WITH DIAERESIS
+- Ll
+- '0'
+- L
+- '0079 0308'
+- ''
+- ''
+- ''
+- N
+- LATIN SMALL LETTER Y DIAERESIS
+- ''
+- '0178'
+- ''
+- '0178'

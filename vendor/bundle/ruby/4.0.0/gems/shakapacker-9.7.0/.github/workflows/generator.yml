@@ -1,0 +1,86 @@
+name: Generator specs
+
+on:
+  push:
+    branches:
+      - "main"
+  pull_request:
+    paths:
+      - "lib/install/**"
+      - "lib/generators/**"
+      - "spec/generator_specs/**"
+      - "**.rb"
+      - "**.gemspec"
+      - "Gemfile"
+      - "gemfiles/**"
+      - "package.json"
+      - "**.js"
+      - "**.ts"
+      - ".github/workflows/generator.yml"
+  workflow_dispatch:
+
+concurrency:
+  # Pushing new changes to a branch will cancel any in-progress CI runs
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Generator specs
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        ruby: ["2.7", "3.0", "3.1", "3.2", "3.3", "3.4"]
+        gemfile:
+          - gemfiles/Gemfile-rails.7.0.x
+          - gemfiles/Gemfile-rails.7.1.x
+          - gemfiles/Gemfile-rails.7.2.x
+          - gemfiles/Gemfile-rails.8.0.x
+          # Uncomment the following line only to ensure compatibility with the
+          # upcomming Rails versions, maybe before a release.
+          #- gemfiles/Gemfile-rails-edge
+        exclude:
+          - ruby: "2.7"
+            gemfile: gemfiles/Gemfile-rails.7.2.x
+          - ruby: "2.7"
+            gemfile: gemfiles/Gemfile-rails.8.0.x
+          - ruby: "3.0"
+            gemfile: gemfiles/Gemfile-rails.7.2.x
+          - ruby: "3.0"
+            gemfile: gemfiles/Gemfile-rails.8.0.x
+          - ruby: "3.1"
+            gemfile: gemfiles/Gemfile-rails.8.0.x
+          - ruby: "3.4"
+            gemfile: gemfiles/Gemfile-rails.7.0.x
+
+    env:
+      BUNDLE_GEMFILE: ${{ matrix.gemfile }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          rubygems: latest
+          bundler-cache: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: yarn
+
+      - name: Install Node dependencies
+        run: yarn install --frozen-lockfile --production=false
+
+      - name: Build TypeScript
+        run: yarn build
+
+      - name: Pack npm package for testing
+        run: |
+          TARBALL=$(npm pack)
+          echo "SHAKAPACKER_NPM_PACKAGE=$(pwd)/$TARBALL" >> $GITHUB_ENV
+          echo "Created package: $TARBALL"
+
+      - run: bundle exec rake run_spec:generator

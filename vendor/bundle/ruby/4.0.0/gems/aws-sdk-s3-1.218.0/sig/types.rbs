@@ -1,0 +1,2937 @@
+# WARNING ABOUT GENERATED CODE
+#
+# This file is generated. See the contributing guide for more information:
+# https://github.com/aws/aws-sdk-ruby/blob/version-3/CONTRIBUTING.md
+#
+# WARNING ABOUT GENERATED CODE
+
+module Aws::S3
+  module Types
+
+    class AbacStatus
+      attr_accessor status: ("Enabled" | "Disabled")
+      SENSITIVE: []
+    end
+
+    class AbortIncompleteMultipartUpload
+      attr_accessor days_after_initiation: ::Integer
+      SENSITIVE: []
+    end
+
+    class AbortMultipartUploadOutput
+      attr_accessor request_charged: ("requester")
+      SENSITIVE: []
+    end
+
+    class AbortMultipartUploadRequest
+      attr_accessor bucket: ::String
+      attr_accessor key: ::String
+      attr_accessor upload_id: ::String
+      attr_accessor request_payer: ("requester")
+      attr_accessor expected_bucket_owner: ::String
+      attr_accessor if_match_initiated_time: ::Time
+      SENSITIVE: []
+    end
+
+    class AccelerateConfiguration
+      attr_accessor status: ("Enabled" | "Suspended")
+      SENSITIVE: []
+    end
+
+    class AccessControlPolicy
+      attr_accessor grants: ::Array[Types::Grant]
+      attr_accessor owner: Types::Owner
+      SENSITIVE: []
+    end
+
+    class AccessControlTranslation
+      attr_accessor owner: ("Destination")
+      SENSITIVE: []
+    end
+
+    class AccessDenied < Aws::EmptyStructure
+    end
+
+    class AnalyticsAndOperator
+      attr_accessor prefix: ::String
+      attr_accessor tags: ::Array[Types::Tag]
+      SENSITIVE: []
+    end
+
+    class AnalyticsConfiguration
+      attr_accessor id: ::String
+      attr_accessor filter: Types::AnalyticsFilter
+      attr_accessor storage_class_analysis: Types::StorageClassAnalysis
+      SENSITIVE: []
+    end
+
+    class AnalyticsExportDestination
+      attr_accessor s3_bucket_destination: Types::AnalyticsS3BucketDestination
+      SENSITIVE: []
+    end
+
+    class AnalyticsFilter
+      attr_accessor prefix: ::String
+      attr_accessor tag: Types::Tag
+      attr_accessor and: Types::AnalyticsAndOperator
+      SENSITIVE: []
+    end
+
+    class AnalyticsS3BucketDestination
+      attr_accessor format: ("CSV")
+      attr_accessor bucket_account_id: ::String
+      attr_accessor bucket: ::String
+      attr_accessor prefix: ::String
+      SENSITIVE: []
+    end
+
+    class BlockedEncryptionTypes
+      attr_accessor encryption_type: ::Array[("NONE" | "SSE-C")]
+      SENSITIVE: []
+    end
+
+    class Bucket
+      attr_accessor name: ::String
+      attr_accessor creation_date: ::Time
+      attr_accessor bucket_region: ::String
+      attr_accessor bucket_arn: ::String
+      SENSITIVE: []
+    end
+
+    class BucketAlreadyExists < Aws::EmptyStructure
+    end
+
+    class BucketAlreadyOwnedByYou < Aws::EmptyStructure
+    end
+
+    class BucketInfo
+      attr_accessor data_redundancy: ("SingleAvailabilityZone" | "SingleLocalZone")
+      attr_accessor type: ("Directory")
+      SENSITIVE: []
+    end
+
+    class BucketLifecycleConfiguration
+      attr_accessor rules: ::Array[Types::LifecycleRule]
+      SENSITIVE: []
+    end
+
+    class BucketLoggingStatus
+      attr_accessor logging_enabled: Types::LoggingEnabled
+      SENSITIVE: []
+    end
+
+    class CORSConfiguration
+      attr_accessor cors_rules: ::Array[Types::CORSRule]
+      SENSITIVE: []
+    end
+
+    class CORSRule
+      attr_accessor id: ::String
+      attr_accessor allowed_headers: ::Array[::String]
+      attr_accessor allowed_methods: ::Array[::String]
+      attr_accessor allowed_origins: ::Array[::String]
+      attr_accessor expose_headers: ::Array[::String]
+      attr_accessor max_age_seconds: ::Integer
+      SENSITIVE: []
+    end
+
+    class CSVInput
+      attr_accessor file_header_info: ("USE" | "IGNORE" | "NONE")
+      attr_accessor comments: ::String
+      attr_accessor quote_escape_character: ::String
+      attr_accessor record_delimiter: ::String
+      attr_accessor field_delimiter: ::String
+      attr_accessor quote_character: ::String
+      attr_accessor allow_quoted_record_delimiter: bool
+      SENSITIVE: []
+    end
+
+    class CSVOutput
+      attr_accessor quote_fields: ("ALWAYS" | "ASNEEDED")
+      attr_accessor quote_escape_character: ::String
+      attr_accessor record_delimiter: ::String
+      attr_accessor field_delimiter: ::String
+      attr_accessor quote_character: ::String
+      SENSITIVE: []
+    end
+
+    class Checksum
+      attr_accessor checksum_crc32: ::String
+      attr_accessor checksum_crc32c: ::String
+      attr_accessor checksum_crc64nvme: ::String
+      attr_accessor checksum_sha1: ::String
+      attr_accessor checksum_sha256: ::String
+      attr_accessor checksum_type: ("COMPOSITE" | "FULL_OBJECT")
+      SENSITIVE: []
+    end
+
+    class CloudFunctionConfiguration
+      attr_accessor id: ::String
+      attr_accessor event: ("s3:ReducedRedundancyLostObject" | "s3:ObjectCreated:*" | "s3:ObjectCreated:Put" | "s3:ObjectCreated:Post" | "s3:ObjectCreated:Copy" | "s3:ObjectCreated:CompleteMultipartUpload" | "s3:ObjectRemoved:*" | "s3:ObjectRemoved:Delete" | "s3:ObjectRemoved:DeleteMarkerCreated" | "s3:ObjectRestore:*" | "s3:ObjectRestore:Post" | "s3:ObjectRestore:Completed" | "s3:Replication:*" | "s3:Replication:OperationFailedReplication" | "s3:Replication:OperationNotTracked" | "s3:Replication:OperationMissedThreshold" | "s3:Replication:OperationReplicatedAfterThreshold" | "s3:ObjectRestore:Delete" | "s3:LifecycleTransition" | "s3:IntelligentTiering" | "s3:ObjectAcl:Put" | "s3:LifecycleExpiration:*" | "s3:LifecycleExpiration:Delete" | "s3:LifecycleExpiration:DeleteMarkerCreated" | "s3:ObjectTagging:*" | "s3:ObjectTagging:Put" | "s3:ObjectTagging:Delete")
+      attr_accessor events: ::Array[("s3:ReducedRedundancyLostObject" | "s3:ObjectCreated:*" | "s3:ObjectCreated:Put" | "s3:ObjectCreated:Post" | "s3:ObjectCreated:Copy" | "s3:ObjectCreated:CompleteMultipartUpload" | "s3:ObjectRemoved:*" | "s3:ObjectRemoved:Delete" | "s3:ObjectRemoved:DeleteMarkerCreated" | "s3:ObjectRestore:*" | "s3:ObjectRestore:Post" | "s3:ObjectRestore:Completed" | "s3:Replication:*" | "s3:Replication:OperationFailedReplication" | "s3:Replication:OperationNotTracked" | "s3:Replication:OperationMissedThreshold" | "s3:Replication:OperationReplicatedAfterThreshold" | "s3:ObjectRestore:Delete" | "s3:LifecycleTransition" | "s3:IntelligentTiering" | "s3:ObjectAcl:Put" | "s3:LifecycleExpiration:*" | "s3:LifecycleExpiration:Delete" | "s3:LifecycleExpiration:DeleteMarkerCreated" | "s3:ObjectTagging:*" | "s3:ObjectTagging:Put" | "s3:ObjectTagging:Delete")]
+      attr_accessor cloud_function: ::String
+      attr_accessor invocation_role: ::String
+      SENSITIVE: []
+    end
+
+    class CommonPrefix
+      attr_accessor prefix: ::String
+      SENSITIVE: []
+    end
+
+    class CompleteMultipartUploadOutput
+      attr_accessor location: ::String
+      attr_accessor bucket: ::String
+      attr_accessor key: ::String
+      attr_accessor expiration: ::String
+      attr_accessor etag: ::String
+      attr_accessor checksum_crc32: ::String
+      attr_accessor checksum_crc32c: ::String
+      attr_accessor checksum_crc64nvme: ::String
+      attr_accessor checksum_sha1: ::String
+      attr_accessor checksum_sha256: ::String
+      attr_accessor checksum_type: ("COMPOSITE" | "FULL_OBJECT")
+      attr_accessor server_side_encryption: ("AES256" | "aws:fsx" | "aws:kms" | "aws:kms:dsse")
+      attr_accessor version_id: ::String
+      attr_accessor ssekms_key_id: ::String
+      attr_accessor bucket_key_enabled: bool
+      attr_accessor request_charged: ("requester")
+      SENSITIVE: [:ssekms_key_id]
+    end
+
+    class CompleteMultipartUploadRequest
+      attr_accessor bucket: ::String
+      attr_accessor key: ::String
+      attr_accessor multipart_upload: Types::CompletedMultipartUpload
+      attr_accessor upload_id: ::String
+      attr_accessor checksum_crc32: ::String
+      attr_accessor checksum_crc32c: ::String
+      attr_accessor checksum_crc64nvme: ::String
+      attr_accessor checksum_sha1: ::String
+      attr_accessor checksum_sha256: ::String
+      attr_accessor checksum_type: ("COMPOSITE" | "FULL_OBJECT")
+      attr_accessor mpu_object_size: ::Integer
+      attr_accessor request_payer: ("requester")
+      attr_accessor expected_bucket_owner: ::String
+      attr_accessor if_match: ::String
+      attr_accessor if_none_match: ::String
+      attr_accessor sse_customer_algorithm: ::String
+      attr_accessor sse_customer_key: ::String
+      attr_accessor sse_customer_key_md5: ::String
+      SENSITIVE: [:sse_customer_key]
+    end
+
+    class CompletedMultipartUpload
+      attr_accessor parts: ::Array[Types::CompletedPart]
+      SENSITIVE: []
+    end
+
+    class CompletedPart
+      attr_accessor etag: ::String
+      attr_accessor checksum_crc32: ::String
+      attr_accessor checksum_crc32c: ::String
+      attr_accessor checksum_crc64nvme: ::String
+      attr_accessor checksum_sha1: ::String
+      attr_accessor checksum_sha256: ::String
+      attr_accessor part_number: ::Integer
+      SENSITIVE: []
+    end
+
+    class Condition
+      attr_accessor http_error_code_returned_equals: ::String
+      attr_accessor key_prefix_equals: ::String
+      SENSITIVE: []
+    end
+
+    class ContinuationEvent
+      attr_accessor event_type: untyped
+      SENSITIVE: []
+    end
+
+    class CopyObjectOutput
+      attr_accessor copy_object_result: Types::CopyObjectResult
+      attr_accessor expiration: ::String
+      attr_accessor copy_source_version_id: ::String
+      attr_accessor version_id: ::String
+      attr_accessor server_side_encryption: ("AES256" | "aws:fsx" | "aws:kms" | "aws:kms:dsse")
+      attr_accessor sse_customer_algorithm: ::String
+      attr_accessor sse_customer_key_md5: ::String
+      attr_accessor ssekms_key_id: ::String
+      attr_accessor ssekms_encryption_context: ::String
+      attr_accessor bucket_key_enabled: bool
+      attr_accessor request_charged: ("requester")
+      SENSITIVE: [:ssekms_key_id, :ssekms_encryption_context]
+    end
+
+    class CopyObjectRequest
+      attr_accessor acl: ("private" | "public-read" | "public-read-write" | "authenticated-read" | "aws-exec-read" | "bucket-owner-read" | "bucket-owner-full-control")
+      attr_accessor bucket: ::String
+      attr_accessor cache_control: ::String
+      attr_accessor checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+      attr_accessor content_disposition: ::String
+      attr_accessor content_encoding: ::String
+      attr_accessor content_language: ::String
+      attr_accessor content_type: ::String
+      attr_accessor copy_source: ::String
+      attr_accessor copy_source_if_match: ::String
+      attr_accessor copy_source_if_modified_since: ::Time
+      attr_accessor copy_source_if_none_match: ::String
+      attr_accessor copy_source_if_unmodified_since: ::Time
+      attr_accessor expires: ::Time
+      attr_accessor grant_full_control: ::String
+      attr_accessor grant_read: ::String
+      attr_accessor grant_read_acp: ::String
+      attr_accessor grant_write_acp: ::String
+      attr_accessor if_match: ::String
+      attr_accessor if_none_match: ::String
+      attr_accessor key: ::String
+      attr_accessor metadata: ::Hash[::String, ::String]
+      attr_accessor metadata_directive: ("COPY" | "REPLACE")
+      attr_accessor tagging_directive: ("COPY" | "REPLACE")
+      attr_accessor server_side_encryption: ("AES256" | "aws:fsx" | "aws:kms" | "aws:kms:dsse")
+      attr_accessor storage_class: ("STANDARD" | "REDUCED_REDUNDANCY" | "STANDARD_IA" | "ONEZONE_IA" | "INTELLIGENT_TIERING" | "GLACIER" | "DEEP_ARCHIVE" | "OUTPOSTS" | "GLACIER_IR" | "SNOW" | "EXPRESS_ONEZONE" | "FSX_OPENZFS" | "FSX_ONTAP")
+      attr_accessor website_redirect_location: ::String
+      attr_accessor sse_customer_algorithm: ::String
+      attr_accessor sse_customer_key: ::String
+      attr_accessor sse_customer_key_md5: ::String
+      attr_accessor ssekms_key_id: ::String
+      attr_accessor ssekms_encryption_context: ::String
+      attr_accessor bucket_key_enabled: bool
+      attr_accessor copy_source_sse_customer_algorithm: ::String
+      attr_accessor copy_source_sse_customer_key: ::String
+      attr_accessor copy_source_sse_customer_key_md5: ::String
+      attr_accessor request_payer: ("requester")
+      attr_accessor tagging: ::String
+      attr_accessor object_lock_mode: ("GOVERNANCE" | "COMPLIANCE")
+      attr_accessor object_lock_retain_until_date: ::Time
+      attr_accessor object_lock_legal_hold_status: ("ON" | "OFF")
+      attr_accessor expected_bucket_owner: ::String
+      attr_accessor expected_source_bucket_owner: ::String
+      SENSITIVE: [:sse_customer_key, :ssekms_key_id, :ssekms_encryption_context, :copy_source_sse_customer_key]
+    end
+
+    class CopyObjectResult
+      attr_accessor etag: ::String
+      attr_accessor last_modified: ::Time
+      attr_accessor checksum_type: ("COMPOSITE" | "FULL_OBJECT")
+      attr_accessor checksum_crc32: ::String
+      attr_accessor checksum_crc32c: ::String
+      attr_accessor checksum_crc64nvme: ::String
+      attr_accessor checksum_sha1: ::String
+      attr_accessor checksum_sha256: ::String
+      SENSITIVE: []
+    end
+
+    class CopyPartResult
+      attr_accessor etag: ::String
+      attr_accessor last_modified: ::Time
+      attr_accessor checksum_crc32: ::String
+      attr_accessor checksum_crc32c: ::String
+      attr_accessor checksum_crc64nvme: ::String
+      attr_accessor checksum_sha1: ::String
+      attr_accessor checksum_sha256: ::String
+      SENSITIVE: []
+    end
+
+    class CreateBucketConfiguration
+      attr_accessor location_constraint: ("af-south-1" | "ap-east-1" | "ap-northeast-1" | "ap-northeast-2" | "ap-northeast-3" | "ap-south-1" | "ap-south-2" | "ap-southeast-1" | "ap-southeast-2" | "ap-southeast-3" | "ap-southeast-4" | "ap-southeast-5" | "ca-central-1" | "cn-north-1" | "cn-northwest-1" | "EU" | "eu-central-1" | "eu-central-2" | "eu-north-1" | "eu-south-1" | "eu-south-2" | "eu-west-1" | "eu-west-2" | "eu-west-3" | "il-central-1" | "me-central-1" | "me-south-1" | "sa-east-1" | "us-east-2" | "us-gov-east-1" | "us-gov-west-1" | "us-west-1" | "us-west-2")
+      attr_accessor location: Types::LocationInfo
+      attr_accessor bucket: Types::BucketInfo
+      attr_accessor tags: ::Array[Types::Tag]
+      SENSITIVE: []
+    end
+
+    class CreateBucketMetadataConfigurationRequest
+      attr_accessor bucket: ::String
+      attr_accessor content_md5: ::String
+      attr_accessor checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+      attr_accessor metadata_configuration: Types::MetadataConfiguration
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class CreateBucketMetadataTableConfigurationRequest
+      attr_accessor bucket: ::String
+      attr_accessor content_md5: ::String
+      attr_accessor checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+      attr_accessor metadata_table_configuration: Types::MetadataTableConfiguration
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class CreateBucketOutput
+      attr_accessor location: ::String
+      attr_accessor bucket_arn: ::String
+      SENSITIVE: []
+    end
+
+    class CreateBucketRequest
+      attr_accessor acl: ("private" | "public-read" | "public-read-write" | "authenticated-read")
+      attr_accessor bucket: ::String
+      attr_accessor create_bucket_configuration: Types::CreateBucketConfiguration
+      attr_accessor grant_full_control: ::String
+      attr_accessor grant_read: ::String
+      attr_accessor grant_read_acp: ::String
+      attr_accessor grant_write: ::String
+      attr_accessor grant_write_acp: ::String
+      attr_accessor object_lock_enabled_for_bucket: bool
+      attr_accessor object_ownership: ("BucketOwnerPreferred" | "ObjectWriter" | "BucketOwnerEnforced")
+      attr_accessor bucket_namespace: ("account-regional" | "global")
+      SENSITIVE: []
+    end
+
+    class CreateMultipartUploadOutput
+      attr_accessor abort_date: ::Time
+      attr_accessor abort_rule_id: ::String
+      attr_accessor bucket: ::String
+      attr_accessor key: ::String
+      attr_accessor upload_id: ::String
+      attr_accessor server_side_encryption: ("AES256" | "aws:fsx" | "aws:kms" | "aws:kms:dsse")
+      attr_accessor sse_customer_algorithm: ::String
+      attr_accessor sse_customer_key_md5: ::String
+      attr_accessor ssekms_key_id: ::String
+      attr_accessor ssekms_encryption_context: ::String
+      attr_accessor bucket_key_enabled: bool
+      attr_accessor request_charged: ("requester")
+      attr_accessor checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+      attr_accessor checksum_type: ("COMPOSITE" | "FULL_OBJECT")
+      SENSITIVE: [:ssekms_key_id, :ssekms_encryption_context]
+    end
+
+    class CreateMultipartUploadRequest
+      attr_accessor acl: ("private" | "public-read" | "public-read-write" | "authenticated-read" | "aws-exec-read" | "bucket-owner-read" | "bucket-owner-full-control")
+      attr_accessor bucket: ::String
+      attr_accessor cache_control: ::String
+      attr_accessor content_disposition: ::String
+      attr_accessor content_encoding: ::String
+      attr_accessor content_language: ::String
+      attr_accessor content_type: ::String
+      attr_accessor expires: ::Time
+      attr_accessor grant_full_control: ::String
+      attr_accessor grant_read: ::String
+      attr_accessor grant_read_acp: ::String
+      attr_accessor grant_write_acp: ::String
+      attr_accessor key: ::String
+      attr_accessor metadata: ::Hash[::String, ::String]
+      attr_accessor server_side_encryption: ("AES256" | "aws:fsx" | "aws:kms" | "aws:kms:dsse")
+      attr_accessor storage_class: ("STANDARD" | "REDUCED_REDUNDANCY" | "STANDARD_IA" | "ONEZONE_IA" | "INTELLIGENT_TIERING" | "GLACIER" | "DEEP_ARCHIVE" | "OUTPOSTS" | "GLACIER_IR" | "SNOW" | "EXPRESS_ONEZONE" | "FSX_OPENZFS" | "FSX_ONTAP")
+      attr_accessor website_redirect_location: ::String
+      attr_accessor sse_customer_algorithm: ::String
+      attr_accessor sse_customer_key: ::String
+      attr_accessor sse_customer_key_md5: ::String
+      attr_accessor ssekms_key_id: ::String
+      attr_accessor ssekms_encryption_context: ::String
+      attr_accessor bucket_key_enabled: bool
+      attr_accessor request_payer: ("requester")
+      attr_accessor tagging: ::String
+      attr_accessor object_lock_mode: ("GOVERNANCE" | "COMPLIANCE")
+      attr_accessor object_lock_retain_until_date: ::Time
+      attr_accessor object_lock_legal_hold_status: ("ON" | "OFF")
+      attr_accessor expected_bucket_owner: ::String
+      attr_accessor checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+      attr_accessor checksum_type: ("COMPOSITE" | "FULL_OBJECT")
+      SENSITIVE: [:sse_customer_key, :ssekms_key_id, :ssekms_encryption_context]
+    end
+
+    class CreateSessionOutput
+      attr_accessor server_side_encryption: ("AES256" | "aws:fsx" | "aws:kms" | "aws:kms:dsse")
+      attr_accessor ssekms_key_id: ::String
+      attr_accessor ssekms_encryption_context: ::String
+      attr_accessor bucket_key_enabled: bool
+      attr_accessor credentials: Types::SessionCredentials
+      SENSITIVE: [:ssekms_key_id, :ssekms_encryption_context]
+    end
+
+    class CreateSessionRequest
+      attr_accessor session_mode: ("ReadOnly" | "ReadWrite")
+      attr_accessor bucket: ::String
+      attr_accessor server_side_encryption: ("AES256" | "aws:fsx" | "aws:kms" | "aws:kms:dsse")
+      attr_accessor ssekms_key_id: ::String
+      attr_accessor ssekms_encryption_context: ::String
+      attr_accessor bucket_key_enabled: bool
+      SENSITIVE: [:ssekms_key_id, :ssekms_encryption_context]
+    end
+
+    class DefaultRetention
+      attr_accessor mode: ("GOVERNANCE" | "COMPLIANCE")
+      attr_accessor days: ::Integer
+      attr_accessor years: ::Integer
+      SENSITIVE: []
+    end
+
+    class Delete
+      attr_accessor objects: ::Array[Types::ObjectIdentifier]
+      attr_accessor quiet: bool
+      SENSITIVE: []
+    end
+
+    class DeleteBucketAnalyticsConfigurationRequest
+      attr_accessor bucket: ::String
+      attr_accessor id: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class DeleteBucketCorsRequest
+      attr_accessor bucket: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class DeleteBucketEncryptionRequest
+      attr_accessor bucket: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class DeleteBucketIntelligentTieringConfigurationRequest
+      attr_accessor bucket: ::String
+      attr_accessor id: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class DeleteBucketInventoryConfigurationRequest
+      attr_accessor bucket: ::String
+      attr_accessor id: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class DeleteBucketLifecycleRequest
+      attr_accessor bucket: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class DeleteBucketMetadataConfigurationRequest
+      attr_accessor bucket: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class DeleteBucketMetadataTableConfigurationRequest
+      attr_accessor bucket: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class DeleteBucketMetricsConfigurationRequest
+      attr_accessor bucket: ::String
+      attr_accessor id: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class DeleteBucketOwnershipControlsRequest
+      attr_accessor bucket: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class DeleteBucketPolicyRequest
+      attr_accessor bucket: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class DeleteBucketReplicationRequest
+      attr_accessor bucket: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class DeleteBucketRequest
+      attr_accessor bucket: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class DeleteBucketTaggingRequest
+      attr_accessor bucket: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class DeleteBucketWebsiteRequest
+      attr_accessor bucket: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class DeleteMarkerEntry
+      attr_accessor owner: Types::Owner
+      attr_accessor key: ::String
+      attr_accessor version_id: ::String
+      attr_accessor is_latest: bool
+      attr_accessor last_modified: ::Time
+      SENSITIVE: []
+    end
+
+    class DeleteMarkerReplication
+      attr_accessor status: ("Enabled" | "Disabled")
+      SENSITIVE: []
+    end
+
+    class DeleteObjectOutput
+      attr_accessor delete_marker: bool
+      attr_accessor version_id: ::String
+      attr_accessor request_charged: ("requester")
+      SENSITIVE: []
+    end
+
+    class DeleteObjectRequest
+      attr_accessor bucket: ::String
+      attr_accessor key: ::String
+      attr_accessor mfa: ::String
+      attr_accessor version_id: ::String
+      attr_accessor request_payer: ("requester")
+      attr_accessor bypass_governance_retention: bool
+      attr_accessor expected_bucket_owner: ::String
+      attr_accessor if_match: ::String
+      attr_accessor if_match_last_modified_time: ::Time
+      attr_accessor if_match_size: ::Integer
+      SENSITIVE: []
+    end
+
+    class DeleteObjectTaggingOutput
+      attr_accessor version_id: ::String
+      SENSITIVE: []
+    end
+
+    class DeleteObjectTaggingRequest
+      attr_accessor bucket: ::String
+      attr_accessor key: ::String
+      attr_accessor version_id: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class DeleteObjectsOutput
+      attr_accessor deleted: ::Array[Types::DeletedObject]
+      attr_accessor request_charged: ("requester")
+      attr_accessor errors: ::Array[Types::Error]
+      SENSITIVE: []
+    end
+
+    class DeleteObjectsRequest
+      attr_accessor bucket: ::String
+      attr_accessor delete: Types::Delete
+      attr_accessor mfa: ::String
+      attr_accessor request_payer: ("requester")
+      attr_accessor bypass_governance_retention: bool
+      attr_accessor expected_bucket_owner: ::String
+      attr_accessor checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+      SENSITIVE: []
+    end
+
+    class DeletePublicAccessBlockRequest
+      attr_accessor bucket: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class DeletedObject
+      attr_accessor key: ::String
+      attr_accessor version_id: ::String
+      attr_accessor delete_marker: bool
+      attr_accessor delete_marker_version_id: ::String
+      SENSITIVE: []
+    end
+
+    class Destination
+      attr_accessor bucket: ::String
+      attr_accessor account: ::String
+      attr_accessor storage_class: ("STANDARD" | "REDUCED_REDUNDANCY" | "STANDARD_IA" | "ONEZONE_IA" | "INTELLIGENT_TIERING" | "GLACIER" | "DEEP_ARCHIVE" | "OUTPOSTS" | "GLACIER_IR" | "SNOW" | "EXPRESS_ONEZONE" | "FSX_OPENZFS" | "FSX_ONTAP")
+      attr_accessor access_control_translation: Types::AccessControlTranslation
+      attr_accessor encryption_configuration: Types::EncryptionConfiguration
+      attr_accessor replication_time: Types::ReplicationTime
+      attr_accessor metrics: Types::Metrics
+      SENSITIVE: []
+    end
+
+    class DestinationResult
+      attr_accessor table_bucket_type: ("aws" | "customer")
+      attr_accessor table_bucket_arn: ::String
+      attr_accessor table_namespace: ::String
+      SENSITIVE: []
+    end
+
+    class Encryption
+      attr_accessor encryption_type: ("AES256" | "aws:fsx" | "aws:kms" | "aws:kms:dsse")
+      attr_accessor kms_key_id: ::String
+      attr_accessor kms_context: ::String
+      SENSITIVE: [:kms_key_id]
+    end
+
+    class EncryptionConfiguration
+      attr_accessor replica_kms_key_id: ::String
+      SENSITIVE: []
+    end
+
+    class EncryptionTypeMismatch < Aws::EmptyStructure
+    end
+
+    class EndEvent
+      attr_accessor event_type: untyped
+      SENSITIVE: []
+    end
+
+    class Error
+      attr_accessor key: ::String
+      attr_accessor version_id: ::String
+      attr_accessor code: ::String
+      attr_accessor message: ::String
+      SENSITIVE: []
+    end
+
+    class ErrorDetails
+      attr_accessor error_code: ::String
+      attr_accessor error_message: ::String
+      SENSITIVE: []
+    end
+
+    class ErrorDocument
+      attr_accessor key: ::String
+      SENSITIVE: []
+    end
+
+    class EventBridgeConfiguration < Aws::EmptyStructure
+    end
+
+    class ExistingObjectReplication
+      attr_accessor status: ("Enabled" | "Disabled")
+      SENSITIVE: []
+    end
+
+    class FilterRule
+      attr_accessor name: ("prefix" | "suffix")
+      attr_accessor value: ::String
+      SENSITIVE: []
+    end
+
+    class GetBucketAbacOutput
+      attr_accessor abac_status: Types::AbacStatus
+      SENSITIVE: []
+    end
+
+    class GetBucketAbacRequest
+      attr_accessor bucket: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class GetBucketAccelerateConfigurationOutput
+      attr_accessor status: ("Enabled" | "Suspended")
+      attr_accessor request_charged: ("requester")
+      SENSITIVE: []
+    end
+
+    class GetBucketAccelerateConfigurationRequest
+      attr_accessor bucket: ::String
+      attr_accessor expected_bucket_owner: ::String
+      attr_accessor request_payer: ("requester")
+      SENSITIVE: []
+    end
+
+    class GetBucketAclOutput
+      attr_accessor owner: Types::Owner
+      attr_accessor grants: ::Array[Types::Grant]
+      SENSITIVE: []
+    end
+
+    class GetBucketAclRequest
+      attr_accessor bucket: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class GetBucketAnalyticsConfigurationOutput
+      attr_accessor analytics_configuration: Types::AnalyticsConfiguration
+      SENSITIVE: []
+    end
+
+    class GetBucketAnalyticsConfigurationRequest
+      attr_accessor bucket: ::String
+      attr_accessor id: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class GetBucketCorsOutput
+      attr_accessor cors_rules: ::Array[Types::CORSRule]
+      SENSITIVE: []
+    end
+
+    class GetBucketCorsRequest
+      attr_accessor bucket: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class GetBucketEncryptionOutput
+      attr_accessor server_side_encryption_configuration: Types::ServerSideEncryptionConfiguration
+      SENSITIVE: []
+    end
+
+    class GetBucketEncryptionRequest
+      attr_accessor bucket: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class GetBucketIntelligentTieringConfigurationOutput
+      attr_accessor intelligent_tiering_configuration: Types::IntelligentTieringConfiguration
+      SENSITIVE: []
+    end
+
+    class GetBucketIntelligentTieringConfigurationRequest
+      attr_accessor bucket: ::String
+      attr_accessor id: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class GetBucketInventoryConfigurationOutput
+      attr_accessor inventory_configuration: Types::InventoryConfiguration
+      SENSITIVE: []
+    end
+
+    class GetBucketInventoryConfigurationRequest
+      attr_accessor bucket: ::String
+      attr_accessor id: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class GetBucketLifecycleConfigurationOutput
+      attr_accessor rules: ::Array[Types::LifecycleRule]
+      attr_accessor transition_default_minimum_object_size: ("varies_by_storage_class" | "all_storage_classes_128K")
+      SENSITIVE: []
+    end
+
+    class GetBucketLifecycleConfigurationRequest
+      attr_accessor bucket: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class GetBucketLifecycleOutput
+      attr_accessor rules: ::Array[Types::Rule]
+      SENSITIVE: []
+    end
+
+    class GetBucketLifecycleRequest
+      attr_accessor bucket: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class GetBucketLocationOutput
+      attr_accessor location_constraint: ("af-south-1" | "ap-east-1" | "ap-northeast-1" | "ap-northeast-2" | "ap-northeast-3" | "ap-south-1" | "ap-south-2" | "ap-southeast-1" | "ap-southeast-2" | "ap-southeast-3" | "ap-southeast-4" | "ap-southeast-5" | "ca-central-1" | "cn-north-1" | "cn-northwest-1" | "EU" | "eu-central-1" | "eu-central-2" | "eu-north-1" | "eu-south-1" | "eu-south-2" | "eu-west-1" | "eu-west-2" | "eu-west-3" | "il-central-1" | "me-central-1" | "me-south-1" | "sa-east-1" | "us-east-2" | "us-gov-east-1" | "us-gov-west-1" | "us-west-1" | "us-west-2")
+      SENSITIVE: []
+    end
+
+    class GetBucketLocationRequest
+      attr_accessor bucket: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class GetBucketLoggingOutput
+      attr_accessor logging_enabled: Types::LoggingEnabled
+      SENSITIVE: []
+    end
+
+    class GetBucketLoggingRequest
+      attr_accessor bucket: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class GetBucketMetadataConfigurationOutput
+      attr_accessor get_bucket_metadata_configuration_result: Types::GetBucketMetadataConfigurationResult
+      SENSITIVE: []
+    end
+
+    class GetBucketMetadataConfigurationRequest
+      attr_accessor bucket: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class GetBucketMetadataConfigurationResult
+      attr_accessor metadata_configuration_result: Types::MetadataConfigurationResult
+      SENSITIVE: []
+    end
+
+    class GetBucketMetadataTableConfigurationOutput
+      attr_accessor get_bucket_metadata_table_configuration_result: Types::GetBucketMetadataTableConfigurationResult
+      SENSITIVE: []
+    end
+
+    class GetBucketMetadataTableConfigurationRequest
+      attr_accessor bucket: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class GetBucketMetadataTableConfigurationResult
+      attr_accessor metadata_table_configuration_result: Types::MetadataTableConfigurationResult
+      attr_accessor status: ::String
+      attr_accessor error: Types::ErrorDetails
+      SENSITIVE: []
+    end
+
+    class GetBucketMetricsConfigurationOutput
+      attr_accessor metrics_configuration: Types::MetricsConfiguration
+      SENSITIVE: []
+    end
+
+    class GetBucketMetricsConfigurationRequest
+      attr_accessor bucket: ::String
+      attr_accessor id: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class GetBucketNotificationConfigurationRequest
+      attr_accessor bucket: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class GetBucketOwnershipControlsOutput
+      attr_accessor ownership_controls: Types::OwnershipControls
+      SENSITIVE: []
+    end
+
+    class GetBucketOwnershipControlsRequest
+      attr_accessor bucket: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class GetBucketPolicyOutput
+      attr_accessor policy: ::IO
+      SENSITIVE: []
+    end
+
+    class GetBucketPolicyRequest
+      attr_accessor bucket: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class GetBucketPolicyStatusOutput
+      attr_accessor policy_status: Types::PolicyStatus
+      SENSITIVE: []
+    end
+
+    class GetBucketPolicyStatusRequest
+      attr_accessor bucket: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class GetBucketReplicationOutput
+      attr_accessor replication_configuration: Types::ReplicationConfiguration
+      SENSITIVE: []
+    end
+
+    class GetBucketReplicationRequest
+      attr_accessor bucket: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class GetBucketRequestPaymentOutput
+      attr_accessor payer: ("Requester" | "BucketOwner")
+      SENSITIVE: []
+    end
+
+    class GetBucketRequestPaymentRequest
+      attr_accessor bucket: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class GetBucketTaggingOutput
+      attr_accessor tag_set: ::Array[Types::Tag]
+      SENSITIVE: []
+    end
+
+    class GetBucketTaggingRequest
+      attr_accessor bucket: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class GetBucketVersioningOutput
+      attr_accessor status: ("Enabled" | "Suspended")
+      attr_accessor mfa_delete: ("Enabled" | "Disabled")
+      SENSITIVE: []
+    end
+
+    class GetBucketVersioningRequest
+      attr_accessor bucket: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class GetBucketWebsiteOutput
+      attr_accessor redirect_all_requests_to: Types::RedirectAllRequestsTo
+      attr_accessor index_document: Types::IndexDocument
+      attr_accessor error_document: Types::ErrorDocument
+      attr_accessor routing_rules: ::Array[Types::RoutingRule]
+      SENSITIVE: []
+    end
+
+    class GetBucketWebsiteRequest
+      attr_accessor bucket: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class GetObjectAclOutput
+      attr_accessor owner: Types::Owner
+      attr_accessor grants: ::Array[Types::Grant]
+      attr_accessor request_charged: ("requester")
+      SENSITIVE: []
+    end
+
+    class GetObjectAclRequest
+      attr_accessor bucket: ::String
+      attr_accessor key: ::String
+      attr_accessor version_id: ::String
+      attr_accessor request_payer: ("requester")
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class GetObjectAttributesOutput
+      attr_accessor delete_marker: bool
+      attr_accessor last_modified: ::Time
+      attr_accessor version_id: ::String
+      attr_accessor request_charged: ("requester")
+      attr_accessor etag: ::String
+      attr_accessor checksum: Types::Checksum
+      attr_accessor object_parts: Types::GetObjectAttributesParts
+      attr_accessor storage_class: ("STANDARD" | "REDUCED_REDUNDANCY" | "STANDARD_IA" | "ONEZONE_IA" | "INTELLIGENT_TIERING" | "GLACIER" | "DEEP_ARCHIVE" | "OUTPOSTS" | "GLACIER_IR" | "SNOW" | "EXPRESS_ONEZONE" | "FSX_OPENZFS" | "FSX_ONTAP")
+      attr_accessor object_size: ::Integer
+      SENSITIVE: []
+    end
+
+    class GetObjectAttributesParts
+      attr_accessor total_parts_count: ::Integer
+      attr_accessor part_number_marker: ::Integer
+      attr_accessor next_part_number_marker: ::Integer
+      attr_accessor max_parts: ::Integer
+      attr_accessor is_truncated: bool
+      attr_accessor parts: ::Array[Types::ObjectPart]
+      SENSITIVE: []
+    end
+
+    class GetObjectAttributesRequest
+      attr_accessor bucket: ::String
+      attr_accessor key: ::String
+      attr_accessor version_id: ::String
+      attr_accessor max_parts: ::Integer
+      attr_accessor part_number_marker: ::Integer
+      attr_accessor sse_customer_algorithm: ::String
+      attr_accessor sse_customer_key: ::String
+      attr_accessor sse_customer_key_md5: ::String
+      attr_accessor request_payer: ("requester")
+      attr_accessor expected_bucket_owner: ::String
+      attr_accessor object_attributes: ::Array[("ETag" | "Checksum" | "ObjectParts" | "StorageClass" | "ObjectSize")]
+      SENSITIVE: [:sse_customer_key]
+    end
+
+    class GetObjectLegalHoldOutput
+      attr_accessor legal_hold: Types::ObjectLockLegalHold
+      SENSITIVE: []
+    end
+
+    class GetObjectLegalHoldRequest
+      attr_accessor bucket: ::String
+      attr_accessor key: ::String
+      attr_accessor version_id: ::String
+      attr_accessor request_payer: ("requester")
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class GetObjectLockConfigurationOutput
+      attr_accessor object_lock_configuration: Types::ObjectLockConfiguration
+      SENSITIVE: []
+    end
+
+    class GetObjectLockConfigurationRequest
+      attr_accessor bucket: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class GetObjectOutput
+      attr_accessor body: ::IO
+      attr_accessor delete_marker: bool
+      attr_accessor accept_ranges: ::String
+      attr_accessor expiration: ::String
+      attr_accessor restore: ::String
+      attr_accessor last_modified: ::Time
+      attr_accessor content_length: ::Integer
+      attr_accessor etag: ::String
+      attr_accessor checksum_crc32: ::String
+      attr_accessor checksum_crc32c: ::String
+      attr_accessor checksum_crc64nvme: ::String
+      attr_accessor checksum_sha1: ::String
+      attr_accessor checksum_sha256: ::String
+      attr_accessor checksum_type: ("COMPOSITE" | "FULL_OBJECT")
+      attr_accessor missing_meta: ::Integer
+      attr_accessor version_id: ::String
+      attr_accessor cache_control: ::String
+      attr_accessor content_disposition: ::String
+      attr_accessor content_encoding: ::String
+      attr_accessor content_language: ::String
+      attr_accessor content_range: ::String
+      attr_accessor content_type: ::String
+      attr_accessor expires: ::Time
+      attr_accessor expires_string: ::String
+      attr_accessor website_redirect_location: ::String
+      attr_accessor server_side_encryption: ("AES256" | "aws:fsx" | "aws:kms" | "aws:kms:dsse")
+      attr_accessor metadata: ::Hash[::String, ::String]
+      attr_accessor sse_customer_algorithm: ::String
+      attr_accessor sse_customer_key_md5: ::String
+      attr_accessor ssekms_key_id: ::String
+      attr_accessor bucket_key_enabled: bool
+      attr_accessor storage_class: ("STANDARD" | "REDUCED_REDUNDANCY" | "STANDARD_IA" | "ONEZONE_IA" | "INTELLIGENT_TIERING" | "GLACIER" | "DEEP_ARCHIVE" | "OUTPOSTS" | "GLACIER_IR" | "SNOW" | "EXPRESS_ONEZONE" | "FSX_OPENZFS" | "FSX_ONTAP")
+      attr_accessor request_charged: ("requester")
+      attr_accessor replication_status: ("COMPLETE" | "PENDING" | "FAILED" | "REPLICA" | "COMPLETED")
+      attr_accessor parts_count: ::Integer
+      attr_accessor tag_count: ::Integer
+      attr_accessor object_lock_mode: ("GOVERNANCE" | "COMPLIANCE")
+      attr_accessor object_lock_retain_until_date: ::Time
+      attr_accessor object_lock_legal_hold_status: ("ON" | "OFF")
+      SENSITIVE: [:ssekms_key_id]
+    end
+
+    class GetObjectRequest
+      attr_accessor bucket: ::String
+      attr_accessor if_match: ::String
+      attr_accessor if_modified_since: ::Time
+      attr_accessor if_none_match: ::String
+      attr_accessor if_unmodified_since: ::Time
+      attr_accessor key: ::String
+      attr_accessor range: ::String
+      attr_accessor response_cache_control: ::String
+      attr_accessor response_content_disposition: ::String
+      attr_accessor response_content_encoding: ::String
+      attr_accessor response_content_language: ::String
+      attr_accessor response_content_type: ::String
+      attr_accessor response_expires: ::Time
+      attr_accessor version_id: ::String
+      attr_accessor sse_customer_algorithm: ::String
+      attr_accessor sse_customer_key: ::String
+      attr_accessor sse_customer_key_md5: ::String
+      attr_accessor request_payer: ("requester")
+      attr_accessor part_number: ::Integer
+      attr_accessor expected_bucket_owner: ::String
+      attr_accessor checksum_mode: ("ENABLED")
+      SENSITIVE: [:sse_customer_key]
+    end
+
+    class GetObjectRetentionOutput
+      attr_accessor retention: Types::ObjectLockRetention
+      SENSITIVE: []
+    end
+
+    class GetObjectRetentionRequest
+      attr_accessor bucket: ::String
+      attr_accessor key: ::String
+      attr_accessor version_id: ::String
+      attr_accessor request_payer: ("requester")
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class GetObjectTaggingOutput
+      attr_accessor version_id: ::String
+      attr_accessor tag_set: ::Array[Types::Tag]
+      SENSITIVE: []
+    end
+
+    class GetObjectTaggingRequest
+      attr_accessor bucket: ::String
+      attr_accessor key: ::String
+      attr_accessor version_id: ::String
+      attr_accessor expected_bucket_owner: ::String
+      attr_accessor request_payer: ("requester")
+      SENSITIVE: []
+    end
+
+    class GetObjectTorrentOutput
+      attr_accessor body: ::IO
+      attr_accessor request_charged: ("requester")
+      SENSITIVE: []
+    end
+
+    class GetObjectTorrentRequest
+      attr_accessor bucket: ::String
+      attr_accessor key: ::String
+      attr_accessor request_payer: ("requester")
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class GetPublicAccessBlockOutput
+      attr_accessor public_access_block_configuration: Types::PublicAccessBlockConfiguration
+      SENSITIVE: []
+    end
+
+    class GetPublicAccessBlockRequest
+      attr_accessor bucket: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class GlacierJobParameters
+      attr_accessor tier: ("Standard" | "Bulk" | "Expedited")
+      SENSITIVE: []
+    end
+
+    class Grant
+      attr_accessor grantee: Types::Grantee
+      attr_accessor permission: ("FULL_CONTROL" | "WRITE" | "WRITE_ACP" | "READ" | "READ_ACP")
+      SENSITIVE: []
+    end
+
+    class Grantee
+      attr_accessor display_name: ::String
+      attr_accessor email_address: ::String
+      attr_accessor id: ::String
+      attr_accessor type: ("CanonicalUser" | "AmazonCustomerByEmail" | "Group")
+      attr_accessor uri: ::String
+      SENSITIVE: []
+    end
+
+    class HeadBucketOutput
+      attr_accessor bucket_arn: ::String
+      attr_accessor bucket_location_type: ("AvailabilityZone" | "LocalZone")
+      attr_accessor bucket_location_name: ::String
+      attr_accessor bucket_region: ::String
+      attr_accessor access_point_alias: bool
+      SENSITIVE: []
+    end
+
+    class HeadBucketRequest
+      attr_accessor bucket: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class HeadObjectOutput
+      attr_accessor delete_marker: bool
+      attr_accessor accept_ranges: ::String
+      attr_accessor expiration: ::String
+      attr_accessor restore: ::String
+      attr_accessor archive_status: ("ARCHIVE_ACCESS" | "DEEP_ARCHIVE_ACCESS")
+      attr_accessor last_modified: ::Time
+      attr_accessor content_length: ::Integer
+      attr_accessor checksum_crc32: ::String
+      attr_accessor checksum_crc32c: ::String
+      attr_accessor checksum_crc64nvme: ::String
+      attr_accessor checksum_sha1: ::String
+      attr_accessor checksum_sha256: ::String
+      attr_accessor checksum_type: ("COMPOSITE" | "FULL_OBJECT")
+      attr_accessor etag: ::String
+      attr_accessor missing_meta: ::Integer
+      attr_accessor version_id: ::String
+      attr_accessor cache_control: ::String
+      attr_accessor content_disposition: ::String
+      attr_accessor content_encoding: ::String
+      attr_accessor content_language: ::String
+      attr_accessor content_type: ::String
+      attr_accessor content_range: ::String
+      attr_accessor expires: ::Time
+      attr_accessor expires_string: ::String
+      attr_accessor website_redirect_location: ::String
+      attr_accessor server_side_encryption: ("AES256" | "aws:fsx" | "aws:kms" | "aws:kms:dsse")
+      attr_accessor metadata: ::Hash[::String, ::String]
+      attr_accessor sse_customer_algorithm: ::String
+      attr_accessor sse_customer_key_md5: ::String
+      attr_accessor ssekms_key_id: ::String
+      attr_accessor bucket_key_enabled: bool
+      attr_accessor storage_class: ("STANDARD" | "REDUCED_REDUNDANCY" | "STANDARD_IA" | "ONEZONE_IA" | "INTELLIGENT_TIERING" | "GLACIER" | "DEEP_ARCHIVE" | "OUTPOSTS" | "GLACIER_IR" | "SNOW" | "EXPRESS_ONEZONE" | "FSX_OPENZFS" | "FSX_ONTAP")
+      attr_accessor request_charged: ("requester")
+      attr_accessor replication_status: ("COMPLETE" | "PENDING" | "FAILED" | "REPLICA" | "COMPLETED")
+      attr_accessor parts_count: ::Integer
+      attr_accessor tag_count: ::Integer
+      attr_accessor object_lock_mode: ("GOVERNANCE" | "COMPLIANCE")
+      attr_accessor object_lock_retain_until_date: ::Time
+      attr_accessor object_lock_legal_hold_status: ("ON" | "OFF")
+      SENSITIVE: [:ssekms_key_id]
+    end
+
+    class HeadObjectRequest
+      attr_accessor bucket: ::String
+      attr_accessor if_match: ::String
+      attr_accessor if_modified_since: ::Time
+      attr_accessor if_none_match: ::String
+      attr_accessor if_unmodified_since: ::Time
+      attr_accessor key: ::String
+      attr_accessor range: ::String
+      attr_accessor response_cache_control: ::String
+      attr_accessor response_content_disposition: ::String
+      attr_accessor response_content_encoding: ::String
+      attr_accessor response_content_language: ::String
+      attr_accessor response_content_type: ::String
+      attr_accessor response_expires: ::Time
+      attr_accessor version_id: ::String
+      attr_accessor sse_customer_algorithm: ::String
+      attr_accessor sse_customer_key: ::String
+      attr_accessor sse_customer_key_md5: ::String
+      attr_accessor request_payer: ("requester")
+      attr_accessor part_number: ::Integer
+      attr_accessor expected_bucket_owner: ::String
+      attr_accessor checksum_mode: ("ENABLED")
+      SENSITIVE: [:sse_customer_key]
+    end
+
+    class IdempotencyParameterMismatch < Aws::EmptyStructure
+    end
+
+    class IndexDocument
+      attr_accessor suffix: ::String
+      SENSITIVE: []
+    end
+
+    class Initiator
+      attr_accessor id: ::String
+      attr_accessor display_name: ::String
+      SENSITIVE: []
+    end
+
+    class InputSerialization
+      attr_accessor csv: Types::CSVInput
+      attr_accessor compression_type: ("NONE" | "GZIP" | "BZIP2")
+      attr_accessor json: Types::JSONInput
+      attr_accessor parquet: Types::ParquetInput
+      SENSITIVE: []
+    end
+
+    class IntelligentTieringAndOperator
+      attr_accessor prefix: ::String
+      attr_accessor tags: ::Array[Types::Tag]
+      SENSITIVE: []
+    end
+
+    class IntelligentTieringConfiguration
+      attr_accessor id: ::String
+      attr_accessor filter: Types::IntelligentTieringFilter
+      attr_accessor status: ("Enabled" | "Disabled")
+      attr_accessor tierings: ::Array[Types::Tiering]
+      SENSITIVE: []
+    end
+
+    class IntelligentTieringFilter
+      attr_accessor prefix: ::String
+      attr_accessor tag: Types::Tag
+      attr_accessor and: Types::IntelligentTieringAndOperator
+      SENSITIVE: []
+    end
+
+    class InvalidObjectState
+      attr_accessor storage_class: ("STANDARD" | "REDUCED_REDUNDANCY" | "STANDARD_IA" | "ONEZONE_IA" | "INTELLIGENT_TIERING" | "GLACIER" | "DEEP_ARCHIVE" | "OUTPOSTS" | "GLACIER_IR" | "SNOW" | "EXPRESS_ONEZONE" | "FSX_OPENZFS" | "FSX_ONTAP")
+      attr_accessor access_tier: ("ARCHIVE_ACCESS" | "DEEP_ARCHIVE_ACCESS")
+      SENSITIVE: []
+    end
+
+    class InvalidRequest < Aws::EmptyStructure
+    end
+
+    class InvalidWriteOffset < Aws::EmptyStructure
+    end
+
+    class InventoryConfiguration
+      attr_accessor destination: Types::InventoryDestination
+      attr_accessor is_enabled: bool
+      attr_accessor filter: Types::InventoryFilter
+      attr_accessor id: ::String
+      attr_accessor included_object_versions: ("All" | "Current")
+      attr_accessor optional_fields: ::Array[("Size" | "LastModifiedDate" | "StorageClass" | "ETag" | "IsMultipartUploaded" | "ReplicationStatus" | "EncryptionStatus" | "ObjectLockRetainUntilDate" | "ObjectLockMode" | "ObjectLockLegalHoldStatus" | "IntelligentTieringAccessTier" | "BucketKeyStatus" | "ChecksumAlgorithm" | "ObjectAccessControlList" | "ObjectOwner" | "LifecycleExpirationDate")]
+      attr_accessor schedule: Types::InventorySchedule
+      SENSITIVE: []
+    end
+
+    class InventoryDestination
+      attr_accessor s3_bucket_destination: Types::InventoryS3BucketDestination
+      SENSITIVE: []
+    end
+
+    class InventoryEncryption
+      attr_accessor sses3: Types::SSES3
+      attr_accessor ssekms: Types::SSEKMS
+      SENSITIVE: []
+    end
+
+    class InventoryFilter
+      attr_accessor prefix: ::String
+      SENSITIVE: []
+    end
+
+    class InventoryS3BucketDestination
+      attr_accessor account_id: ::String
+      attr_accessor bucket: ::String
+      attr_accessor format: ("CSV" | "ORC" | "Parquet")
+      attr_accessor prefix: ::String
+      attr_accessor encryption: Types::InventoryEncryption
+      SENSITIVE: []
+    end
+
+    class InventorySchedule
+      attr_accessor frequency: ("Daily" | "Weekly")
+      SENSITIVE: []
+    end
+
+    class InventoryTableConfiguration
+      attr_accessor configuration_state: ("ENABLED" | "DISABLED")
+      attr_accessor encryption_configuration: Types::MetadataTableEncryptionConfiguration
+      SENSITIVE: []
+    end
+
+    class InventoryTableConfigurationResult
+      attr_accessor configuration_state: ("ENABLED" | "DISABLED")
+      attr_accessor table_status: ::String
+      attr_accessor error: Types::ErrorDetails
+      attr_accessor table_name: ::String
+      attr_accessor table_arn: ::String
+      SENSITIVE: []
+    end
+
+    class InventoryTableConfigurationUpdates
+      attr_accessor configuration_state: ("ENABLED" | "DISABLED")
+      attr_accessor encryption_configuration: Types::MetadataTableEncryptionConfiguration
+      SENSITIVE: []
+    end
+
+    class JSONInput
+      attr_accessor type: ("DOCUMENT" | "LINES")
+      SENSITIVE: []
+    end
+
+    class JSONOutput
+      attr_accessor record_delimiter: ::String
+      SENSITIVE: []
+    end
+
+    class JournalTableConfiguration
+      attr_accessor record_expiration: Types::RecordExpiration
+      attr_accessor encryption_configuration: Types::MetadataTableEncryptionConfiguration
+      SENSITIVE: []
+    end
+
+    class JournalTableConfigurationResult
+      attr_accessor table_status: ::String
+      attr_accessor error: Types::ErrorDetails
+      attr_accessor table_name: ::String
+      attr_accessor table_arn: ::String
+      attr_accessor record_expiration: Types::RecordExpiration
+      SENSITIVE: []
+    end
+
+    class JournalTableConfigurationUpdates
+      attr_accessor record_expiration: Types::RecordExpiration
+      SENSITIVE: []
+    end
+
+    class LambdaFunctionConfiguration
+      attr_accessor id: ::String
+      attr_accessor lambda_function_arn: ::String
+      attr_accessor events: ::Array[("s3:ReducedRedundancyLostObject" | "s3:ObjectCreated:*" | "s3:ObjectCreated:Put" | "s3:ObjectCreated:Post" | "s3:ObjectCreated:Copy" | "s3:ObjectCreated:CompleteMultipartUpload" | "s3:ObjectRemoved:*" | "s3:ObjectRemoved:Delete" | "s3:ObjectRemoved:DeleteMarkerCreated" | "s3:ObjectRestore:*" | "s3:ObjectRestore:Post" | "s3:ObjectRestore:Completed" | "s3:Replication:*" | "s3:Replication:OperationFailedReplication" | "s3:Replication:OperationNotTracked" | "s3:Replication:OperationMissedThreshold" | "s3:Replication:OperationReplicatedAfterThreshold" | "s3:ObjectRestore:Delete" | "s3:LifecycleTransition" | "s3:IntelligentTiering" | "s3:ObjectAcl:Put" | "s3:LifecycleExpiration:*" | "s3:LifecycleExpiration:Delete" | "s3:LifecycleExpiration:DeleteMarkerCreated" | "s3:ObjectTagging:*" | "s3:ObjectTagging:Put" | "s3:ObjectTagging:Delete")]
+      attr_accessor filter: Types::NotificationConfigurationFilter
+      SENSITIVE: []
+    end
+
+    class LifecycleConfiguration
+      attr_accessor rules: ::Array[Types::Rule]
+      SENSITIVE: []
+    end
+
+    class LifecycleExpiration
+      attr_accessor date: ::Time
+      attr_accessor days: ::Integer
+      attr_accessor expired_object_delete_marker: bool
+      SENSITIVE: []
+    end
+
+    class LifecycleRule
+      attr_accessor expiration: Types::LifecycleExpiration
+      attr_accessor id: ::String
+      attr_accessor prefix: ::String
+      attr_accessor filter: Types::LifecycleRuleFilter
+      attr_accessor status: ("Enabled" | "Disabled")
+      attr_accessor transitions: ::Array[Types::Transition]
+      attr_accessor noncurrent_version_transitions: ::Array[Types::NoncurrentVersionTransition]
+      attr_accessor noncurrent_version_expiration: Types::NoncurrentVersionExpiration
+      attr_accessor abort_incomplete_multipart_upload: Types::AbortIncompleteMultipartUpload
+      SENSITIVE: []
+    end
+
+    class LifecycleRuleAndOperator
+      attr_accessor prefix: ::String
+      attr_accessor tags: ::Array[Types::Tag]
+      attr_accessor object_size_greater_than: ::Integer
+      attr_accessor object_size_less_than: ::Integer
+      SENSITIVE: []
+    end
+
+    class LifecycleRuleFilter
+      attr_accessor prefix: ::String
+      attr_accessor tag: Types::Tag
+      attr_accessor object_size_greater_than: ::Integer
+      attr_accessor object_size_less_than: ::Integer
+      attr_accessor and: Types::LifecycleRuleAndOperator
+      SENSITIVE: []
+    end
+
+    class ListBucketAnalyticsConfigurationsOutput
+      attr_accessor is_truncated: bool
+      attr_accessor continuation_token: ::String
+      attr_accessor next_continuation_token: ::String
+      attr_accessor analytics_configuration_list: ::Array[Types::AnalyticsConfiguration]
+      SENSITIVE: []
+    end
+
+    class ListBucketAnalyticsConfigurationsRequest
+      attr_accessor bucket: ::String
+      attr_accessor continuation_token: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class ListBucketIntelligentTieringConfigurationsOutput
+      attr_accessor is_truncated: bool
+      attr_accessor continuation_token: ::String
+      attr_accessor next_continuation_token: ::String
+      attr_accessor intelligent_tiering_configuration_list: ::Array[Types::IntelligentTieringConfiguration]
+      SENSITIVE: []
+    end
+
+    class ListBucketIntelligentTieringConfigurationsRequest
+      attr_accessor bucket: ::String
+      attr_accessor continuation_token: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class ListBucketInventoryConfigurationsOutput
+      attr_accessor continuation_token: ::String
+      attr_accessor inventory_configuration_list: ::Array[Types::InventoryConfiguration]
+      attr_accessor is_truncated: bool
+      attr_accessor next_continuation_token: ::String
+      SENSITIVE: []
+    end
+
+    class ListBucketInventoryConfigurationsRequest
+      attr_accessor bucket: ::String
+      attr_accessor continuation_token: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class ListBucketMetricsConfigurationsOutput
+      attr_accessor is_truncated: bool
+      attr_accessor continuation_token: ::String
+      attr_accessor next_continuation_token: ::String
+      attr_accessor metrics_configuration_list: ::Array[Types::MetricsConfiguration]
+      SENSITIVE: []
+    end
+
+    class ListBucketMetricsConfigurationsRequest
+      attr_accessor bucket: ::String
+      attr_accessor continuation_token: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class ListBucketsOutput
+      attr_accessor buckets: ::Array[Types::Bucket]
+      attr_accessor owner: Types::Owner
+      attr_accessor continuation_token: ::String
+      attr_accessor prefix: ::String
+      SENSITIVE: []
+    end
+
+    class ListBucketsRequest
+      attr_accessor max_buckets: ::Integer
+      attr_accessor continuation_token: ::String
+      attr_accessor prefix: ::String
+      attr_accessor bucket_region: ::String
+      SENSITIVE: []
+    end
+
+    class ListDirectoryBucketsOutput
+      attr_accessor buckets: ::Array[Types::Bucket]
+      attr_accessor continuation_token: ::String
+      SENSITIVE: []
+    end
+
+    class ListDirectoryBucketsRequest
+      attr_accessor continuation_token: ::String
+      attr_accessor max_directory_buckets: ::Integer
+      SENSITIVE: []
+    end
+
+    class ListMultipartUploadsOutput
+      attr_accessor bucket: ::String
+      attr_accessor key_marker: ::String
+      attr_accessor upload_id_marker: ::String
+      attr_accessor next_key_marker: ::String
+      attr_accessor prefix: ::String
+      attr_accessor delimiter: ::String
+      attr_accessor next_upload_id_marker: ::String
+      attr_accessor max_uploads: ::Integer
+      attr_accessor is_truncated: bool
+      attr_accessor uploads: ::Array[Types::MultipartUpload]
+      attr_accessor common_prefixes: ::Array[Types::CommonPrefix]
+      attr_accessor encoding_type: ("url")
+      attr_accessor request_charged: ("requester")
+      SENSITIVE: []
+    end
+
+    class ListMultipartUploadsRequest
+      attr_accessor bucket: ::String
+      attr_accessor delimiter: ::String
+      attr_accessor encoding_type: ("url")
+      attr_accessor key_marker: ::String
+      attr_accessor max_uploads: ::Integer
+      attr_accessor prefix: ::String
+      attr_accessor upload_id_marker: ::String
+      attr_accessor expected_bucket_owner: ::String
+      attr_accessor request_payer: ("requester")
+      SENSITIVE: []
+    end
+
+    class ListObjectVersionsOutput
+      attr_accessor is_truncated: bool
+      attr_accessor key_marker: ::String
+      attr_accessor version_id_marker: ::String
+      attr_accessor next_key_marker: ::String
+      attr_accessor next_version_id_marker: ::String
+      attr_accessor versions: ::Array[Types::ObjectVersion]
+      attr_accessor delete_markers: ::Array[Types::DeleteMarkerEntry]
+      attr_accessor name: ::String
+      attr_accessor prefix: ::String
+      attr_accessor delimiter: ::String
+      attr_accessor max_keys: ::Integer
+      attr_accessor common_prefixes: ::Array[Types::CommonPrefix]
+      attr_accessor encoding_type: ("url")
+      attr_accessor request_charged: ("requester")
+      SENSITIVE: []
+    end
+
+    class ListObjectVersionsRequest
+      attr_accessor bucket: ::String
+      attr_accessor delimiter: ::String
+      attr_accessor encoding_type: ("url")
+      attr_accessor key_marker: ::String
+      attr_accessor max_keys: ::Integer
+      attr_accessor prefix: ::String
+      attr_accessor version_id_marker: ::String
+      attr_accessor expected_bucket_owner: ::String
+      attr_accessor request_payer: ("requester")
+      attr_accessor optional_object_attributes: ::Array[("RestoreStatus")]
+      SENSITIVE: []
+    end
+
+    class ListObjectsOutput
+      attr_accessor is_truncated: bool
+      attr_accessor marker: ::String
+      attr_accessor next_marker: ::String
+      attr_accessor contents: ::Array[Types::Object]
+      attr_accessor name: ::String
+      attr_accessor prefix: ::String
+      attr_accessor delimiter: ::String
+      attr_accessor max_keys: ::Integer
+      attr_accessor common_prefixes: ::Array[Types::CommonPrefix]
+      attr_accessor encoding_type: ("url")
+      attr_accessor request_charged: ("requester")
+      SENSITIVE: []
+    end
+
+    class ListObjectsRequest
+      attr_accessor bucket: ::String
+      attr_accessor delimiter: ::String
+      attr_accessor encoding_type: ("url")
+      attr_accessor marker: ::String
+      attr_accessor max_keys: ::Integer
+      attr_accessor prefix: ::String
+      attr_accessor request_payer: ("requester")
+      attr_accessor expected_bucket_owner: ::String
+      attr_accessor optional_object_attributes: ::Array[("RestoreStatus")]
+      SENSITIVE: []
+    end
+
+    class ListObjectsV2Output
+      attr_accessor is_truncated: bool
+      attr_accessor contents: ::Array[Types::Object]
+      attr_accessor name: ::String
+      attr_accessor prefix: ::String
+      attr_accessor delimiter: ::String
+      attr_accessor max_keys: ::Integer
+      attr_accessor common_prefixes: ::Array[Types::CommonPrefix]
+      attr_accessor encoding_type: ("url")
+      attr_accessor key_count: ::Integer
+      attr_accessor continuation_token: ::String
+      attr_accessor next_continuation_token: ::String
+      attr_accessor start_after: ::String
+      attr_accessor request_charged: ("requester")
+      SENSITIVE: []
+    end
+
+    class ListObjectsV2Request
+      attr_accessor bucket: ::String
+      attr_accessor delimiter: ::String
+      attr_accessor encoding_type: ("url")
+      attr_accessor max_keys: ::Integer
+      attr_accessor prefix: ::String
+      attr_accessor continuation_token: ::String
+      attr_accessor fetch_owner: bool
+      attr_accessor start_after: ::String
+      attr_accessor request_payer: ("requester")
+      attr_accessor expected_bucket_owner: ::String
+      attr_accessor optional_object_attributes: ::Array[("RestoreStatus")]
+      SENSITIVE: []
+    end
+
+    class ListPartsOutput
+      attr_accessor abort_date: ::Time
+      attr_accessor abort_rule_id: ::String
+      attr_accessor bucket: ::String
+      attr_accessor key: ::String
+      attr_accessor upload_id: ::String
+      attr_accessor part_number_marker: ::Integer
+      attr_accessor next_part_number_marker: ::Integer
+      attr_accessor max_parts: ::Integer
+      attr_accessor is_truncated: bool
+      attr_accessor parts: ::Array[Types::Part]
+      attr_accessor initiator: Types::Initiator
+      attr_accessor owner: Types::Owner
+      attr_accessor storage_class: ("STANDARD" | "REDUCED_REDUNDANCY" | "STANDARD_IA" | "ONEZONE_IA" | "INTELLIGENT_TIERING" | "GLACIER" | "DEEP_ARCHIVE" | "OUTPOSTS" | "GLACIER_IR" | "SNOW" | "EXPRESS_ONEZONE" | "FSX_OPENZFS" | "FSX_ONTAP")
+      attr_accessor request_charged: ("requester")
+      attr_accessor checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+      attr_accessor checksum_type: ("COMPOSITE" | "FULL_OBJECT")
+      SENSITIVE: []
+    end
+
+    class ListPartsRequest
+      attr_accessor bucket: ::String
+      attr_accessor key: ::String
+      attr_accessor max_parts: ::Integer
+      attr_accessor part_number_marker: ::Integer
+      attr_accessor upload_id: ::String
+      attr_accessor request_payer: ("requester")
+      attr_accessor expected_bucket_owner: ::String
+      attr_accessor sse_customer_algorithm: ::String
+      attr_accessor sse_customer_key: ::String
+      attr_accessor sse_customer_key_md5: ::String
+      SENSITIVE: [:sse_customer_key]
+    end
+
+    class LocationInfo
+      attr_accessor type: ("AvailabilityZone" | "LocalZone")
+      attr_accessor name: ::String
+      SENSITIVE: []
+    end
+
+    class LoggingEnabled
+      attr_accessor target_bucket: ::String
+      attr_accessor target_grants: ::Array[Types::TargetGrant]
+      attr_accessor target_prefix: ::String
+      attr_accessor target_object_key_format: Types::TargetObjectKeyFormat
+      SENSITIVE: []
+    end
+
+    class MetadataConfiguration
+      attr_accessor journal_table_configuration: Types::JournalTableConfiguration
+      attr_accessor inventory_table_configuration: Types::InventoryTableConfiguration
+      SENSITIVE: []
+    end
+
+    class MetadataConfigurationResult
+      attr_accessor destination_result: Types::DestinationResult
+      attr_accessor journal_table_configuration_result: Types::JournalTableConfigurationResult
+      attr_accessor inventory_table_configuration_result: Types::InventoryTableConfigurationResult
+      SENSITIVE: []
+    end
+
+    class MetadataEntry
+      attr_accessor name: ::String
+      attr_accessor value: ::String
+      SENSITIVE: []
+    end
+
+    class MetadataTableConfiguration
+      attr_accessor s3_tables_destination: Types::S3TablesDestination
+      SENSITIVE: []
+    end
+
+    class MetadataTableConfigurationResult
+      attr_accessor s3_tables_destination_result: Types::S3TablesDestinationResult
+      SENSITIVE: []
+    end
+
+    class MetadataTableEncryptionConfiguration
+      attr_accessor sse_algorithm: ("aws:kms" | "AES256")
+      attr_accessor kms_key_arn: ::String
+      SENSITIVE: []
+    end
+
+    class Metrics
+      attr_accessor status: ("Enabled" | "Disabled")
+      attr_accessor event_threshold: Types::ReplicationTimeValue
+      SENSITIVE: []
+    end
+
+    class MetricsAndOperator
+      attr_accessor prefix: ::String
+      attr_accessor tags: ::Array[Types::Tag]
+      attr_accessor access_point_arn: ::String
+      SENSITIVE: []
+    end
+
+    class MetricsConfiguration
+      attr_accessor id: ::String
+      attr_accessor filter: Types::MetricsFilter
+      SENSITIVE: []
+    end
+
+    class MetricsFilter
+      attr_accessor prefix: ::String
+      attr_accessor tag: Types::Tag
+      attr_accessor access_point_arn: ::String
+      attr_accessor and: Types::MetricsAndOperator
+      SENSITIVE: []
+    end
+
+    class MultipartUpload
+      attr_accessor upload_id: ::String
+      attr_accessor key: ::String
+      attr_accessor initiated: ::Time
+      attr_accessor storage_class: ("STANDARD" | "REDUCED_REDUNDANCY" | "STANDARD_IA" | "ONEZONE_IA" | "INTELLIGENT_TIERING" | "GLACIER" | "DEEP_ARCHIVE" | "OUTPOSTS" | "GLACIER_IR" | "SNOW" | "EXPRESS_ONEZONE" | "FSX_OPENZFS" | "FSX_ONTAP")
+      attr_accessor owner: Types::Owner
+      attr_accessor initiator: Types::Initiator
+      attr_accessor checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+      attr_accessor checksum_type: ("COMPOSITE" | "FULL_OBJECT")
+      SENSITIVE: []
+    end
+
+    class NoSuchBucket < Aws::EmptyStructure
+    end
+
+    class NoSuchKey < Aws::EmptyStructure
+    end
+
+    class NoSuchUpload < Aws::EmptyStructure
+    end
+
+    class NoncurrentVersionExpiration
+      attr_accessor noncurrent_days: ::Integer
+      attr_accessor newer_noncurrent_versions: ::Integer
+      SENSITIVE: []
+    end
+
+    class NoncurrentVersionTransition
+      attr_accessor noncurrent_days: ::Integer
+      attr_accessor storage_class: ("GLACIER" | "STANDARD_IA" | "ONEZONE_IA" | "INTELLIGENT_TIERING" | "DEEP_ARCHIVE" | "GLACIER_IR")
+      attr_accessor newer_noncurrent_versions: ::Integer
+      SENSITIVE: []
+    end
+
+    class NotificationConfiguration
+      attr_accessor topic_configurations: ::Array[Types::TopicConfiguration]
+      attr_accessor queue_configurations: ::Array[Types::QueueConfiguration]
+      attr_accessor lambda_function_configurations: ::Array[Types::LambdaFunctionConfiguration]
+      attr_accessor event_bridge_configuration: Types::EventBridgeConfiguration
+      SENSITIVE: []
+    end
+
+    class NotificationConfigurationDeprecated
+      attr_accessor topic_configuration: Types::TopicConfigurationDeprecated
+      attr_accessor queue_configuration: Types::QueueConfigurationDeprecated
+      attr_accessor cloud_function_configuration: Types::CloudFunctionConfiguration
+      SENSITIVE: []
+    end
+
+    class NotificationConfigurationFilter
+      attr_accessor key: Types::S3KeyFilter
+      SENSITIVE: []
+    end
+
+    class Object
+      attr_accessor key: ::String
+      attr_accessor last_modified: ::Time
+      attr_accessor etag: ::String
+      attr_accessor checksum_algorithm: ::Array[("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")]
+      attr_accessor checksum_type: ("COMPOSITE" | "FULL_OBJECT")
+      attr_accessor size: ::Integer
+      attr_accessor storage_class: ("STANDARD" | "REDUCED_REDUNDANCY" | "GLACIER" | "STANDARD_IA" | "ONEZONE_IA" | "INTELLIGENT_TIERING" | "DEEP_ARCHIVE" | "OUTPOSTS" | "GLACIER_IR" | "SNOW" | "EXPRESS_ONEZONE" | "FSX_OPENZFS" | "FSX_ONTAP")
+      attr_accessor owner: Types::Owner
+      attr_accessor restore_status: Types::RestoreStatus
+      SENSITIVE: []
+    end
+
+    class ObjectAlreadyInActiveTierError < Aws::EmptyStructure
+    end
+
+    class ObjectEncryption
+      attr_accessor ssekms: Types::SSEKMSEncryption
+      attr_accessor unknown: untyped
+      SENSITIVE: []
+
+      class Ssekms < ObjectEncryption
+      end
+      class Unknown < ObjectEncryption
+      end
+    end
+
+    class ObjectIdentifier
+      attr_accessor key: ::String
+      attr_accessor version_id: ::String
+      attr_accessor etag: ::String
+      attr_accessor last_modified_time: ::Time
+      attr_accessor size: ::Integer
+      SENSITIVE: []
+    end
+
+    class ObjectLockConfiguration
+      attr_accessor object_lock_enabled: ("Enabled")
+      attr_accessor rule: Types::ObjectLockRule
+      SENSITIVE: []
+    end
+
+    class ObjectLockLegalHold
+      attr_accessor status: ("ON" | "OFF")
+      SENSITIVE: []
+    end
+
+    class ObjectLockRetention
+      attr_accessor mode: ("GOVERNANCE" | "COMPLIANCE")
+      attr_accessor retain_until_date: ::Time
+      SENSITIVE: []
+    end
+
+    class ObjectLockRule
+      attr_accessor default_retention: Types::DefaultRetention
+      SENSITIVE: []
+    end
+
+    class ObjectNotInActiveTierError < Aws::EmptyStructure
+    end
+
+    class ObjectPart
+      attr_accessor part_number: ::Integer
+      attr_accessor size: ::Integer
+      attr_accessor checksum_crc32: ::String
+      attr_accessor checksum_crc32c: ::String
+      attr_accessor checksum_crc64nvme: ::String
+      attr_accessor checksum_sha1: ::String
+      attr_accessor checksum_sha256: ::String
+      SENSITIVE: []
+    end
+
+    class ObjectVersion
+      attr_accessor etag: ::String
+      attr_accessor checksum_algorithm: ::Array[("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")]
+      attr_accessor checksum_type: ("COMPOSITE" | "FULL_OBJECT")
+      attr_accessor size: ::Integer
+      attr_accessor storage_class: ("STANDARD")
+      attr_accessor key: ::String
+      attr_accessor version_id: ::String
+      attr_accessor is_latest: bool
+      attr_accessor last_modified: ::Time
+      attr_accessor owner: Types::Owner
+      attr_accessor restore_status: Types::RestoreStatus
+      SENSITIVE: []
+    end
+
+    class OutputLocation
+      attr_accessor s3: Types::S3Location
+      SENSITIVE: []
+    end
+
+    class OutputSerialization
+      attr_accessor csv: Types::CSVOutput
+      attr_accessor json: Types::JSONOutput
+      SENSITIVE: []
+    end
+
+    class Owner
+      attr_accessor display_name: ::String
+      attr_accessor id: ::String
+      SENSITIVE: []
+    end
+
+    class OwnershipControls
+      attr_accessor rules: ::Array[Types::OwnershipControlsRule]
+      SENSITIVE: []
+    end
+
+    class OwnershipControlsRule
+      attr_accessor object_ownership: ("BucketOwnerPreferred" | "ObjectWriter" | "BucketOwnerEnforced")
+      SENSITIVE: []
+    end
+
+    class ParquetInput < Aws::EmptyStructure
+    end
+
+    class Part
+      attr_accessor part_number: ::Integer
+      attr_accessor last_modified: ::Time
+      attr_accessor etag: ::String
+      attr_accessor size: ::Integer
+      attr_accessor checksum_crc32: ::String
+      attr_accessor checksum_crc32c: ::String
+      attr_accessor checksum_crc64nvme: ::String
+      attr_accessor checksum_sha1: ::String
+      attr_accessor checksum_sha256: ::String
+      SENSITIVE: []
+    end
+
+    class PartitionedPrefix
+      attr_accessor partition_date_source: ("EventTime" | "DeliveryTime")
+      SENSITIVE: []
+    end
+
+    class PolicyStatus
+      attr_accessor is_public: bool
+      SENSITIVE: []
+    end
+
+    class Progress
+      attr_accessor bytes_scanned: ::Integer
+      attr_accessor bytes_processed: ::Integer
+      attr_accessor bytes_returned: ::Integer
+      SENSITIVE: []
+    end
+
+    class ProgressEvent
+      attr_accessor details: Types::Progress
+      attr_accessor event_type: untyped
+      SENSITIVE: []
+    end
+
+    class PublicAccessBlockConfiguration
+      attr_accessor block_public_acls: bool
+      attr_accessor ignore_public_acls: bool
+      attr_accessor block_public_policy: bool
+      attr_accessor restrict_public_buckets: bool
+      SENSITIVE: []
+    end
+
+    class PutBucketAbacRequest
+      attr_accessor bucket: ::String
+      attr_accessor content_md5: ::String
+      attr_accessor checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+      attr_accessor expected_bucket_owner: ::String
+      attr_accessor abac_status: Types::AbacStatus
+      SENSITIVE: []
+    end
+
+    class PutBucketAccelerateConfigurationRequest
+      attr_accessor bucket: ::String
+      attr_accessor accelerate_configuration: Types::AccelerateConfiguration
+      attr_accessor expected_bucket_owner: ::String
+      attr_accessor checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+      SENSITIVE: []
+    end
+
+    class PutBucketAclRequest
+      attr_accessor acl: ("private" | "public-read" | "public-read-write" | "authenticated-read")
+      attr_accessor access_control_policy: Types::AccessControlPolicy
+      attr_accessor bucket: ::String
+      attr_accessor content_md5: ::String
+      attr_accessor checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+      attr_accessor grant_full_control: ::String
+      attr_accessor grant_read: ::String
+      attr_accessor grant_read_acp: ::String
+      attr_accessor grant_write: ::String
+      attr_accessor grant_write_acp: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class PutBucketAnalyticsConfigurationRequest
+      attr_accessor bucket: ::String
+      attr_accessor id: ::String
+      attr_accessor analytics_configuration: Types::AnalyticsConfiguration
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class PutBucketCorsRequest
+      attr_accessor bucket: ::String
+      attr_accessor cors_configuration: Types::CORSConfiguration
+      attr_accessor content_md5: ::String
+      attr_accessor checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class PutBucketEncryptionRequest
+      attr_accessor bucket: ::String
+      attr_accessor content_md5: ::String
+      attr_accessor checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+      attr_accessor server_side_encryption_configuration: Types::ServerSideEncryptionConfiguration
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class PutBucketIntelligentTieringConfigurationRequest
+      attr_accessor bucket: ::String
+      attr_accessor id: ::String
+      attr_accessor expected_bucket_owner: ::String
+      attr_accessor intelligent_tiering_configuration: Types::IntelligentTieringConfiguration
+      SENSITIVE: []
+    end
+
+    class PutBucketInventoryConfigurationRequest
+      attr_accessor bucket: ::String
+      attr_accessor id: ::String
+      attr_accessor inventory_configuration: Types::InventoryConfiguration
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class PutBucketLifecycleConfigurationOutput
+      attr_accessor transition_default_minimum_object_size: ("varies_by_storage_class" | "all_storage_classes_128K")
+      SENSITIVE: []
+    end
+
+    class PutBucketLifecycleConfigurationRequest
+      attr_accessor bucket: ::String
+      attr_accessor checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+      attr_accessor lifecycle_configuration: Types::BucketLifecycleConfiguration
+      attr_accessor expected_bucket_owner: ::String
+      attr_accessor transition_default_minimum_object_size: ("varies_by_storage_class" | "all_storage_classes_128K")
+      SENSITIVE: []
+    end
+
+    class PutBucketLifecycleRequest
+      attr_accessor bucket: ::String
+      attr_accessor content_md5: ::String
+      attr_accessor checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+      attr_accessor lifecycle_configuration: Types::LifecycleConfiguration
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class PutBucketLoggingRequest
+      attr_accessor bucket: ::String
+      attr_accessor bucket_logging_status: Types::BucketLoggingStatus
+      attr_accessor content_md5: ::String
+      attr_accessor checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class PutBucketMetricsConfigurationRequest
+      attr_accessor bucket: ::String
+      attr_accessor id: ::String
+      attr_accessor metrics_configuration: Types::MetricsConfiguration
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class PutBucketNotificationConfigurationRequest
+      attr_accessor bucket: ::String
+      attr_accessor notification_configuration: Types::NotificationConfiguration
+      attr_accessor expected_bucket_owner: ::String
+      attr_accessor skip_destination_validation: bool
+      SENSITIVE: []
+    end
+
+    class PutBucketNotificationRequest
+      attr_accessor bucket: ::String
+      attr_accessor content_md5: ::String
+      attr_accessor checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+      attr_accessor notification_configuration: Types::NotificationConfigurationDeprecated
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class PutBucketOwnershipControlsRequest
+      attr_accessor bucket: ::String
+      attr_accessor content_md5: ::String
+      attr_accessor expected_bucket_owner: ::String
+      attr_accessor ownership_controls: Types::OwnershipControls
+      attr_accessor checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+      SENSITIVE: []
+    end
+
+    class PutBucketPolicyRequest
+      attr_accessor bucket: ::String
+      attr_accessor content_md5: ::String
+      attr_accessor checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+      attr_accessor confirm_remove_self_bucket_access: bool
+      attr_accessor policy: ::IO
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class PutBucketReplicationRequest
+      attr_accessor bucket: ::String
+      attr_accessor content_md5: ::String
+      attr_accessor checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+      attr_accessor replication_configuration: Types::ReplicationConfiguration
+      attr_accessor token: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class PutBucketRequestPaymentRequest
+      attr_accessor bucket: ::String
+      attr_accessor content_md5: ::String
+      attr_accessor checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+      attr_accessor request_payment_configuration: Types::RequestPaymentConfiguration
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class PutBucketTaggingRequest
+      attr_accessor bucket: ::String
+      attr_accessor content_md5: ::String
+      attr_accessor checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+      attr_accessor tagging: Types::Tagging
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class PutBucketVersioningRequest
+      attr_accessor bucket: ::String
+      attr_accessor content_md5: ::String
+      attr_accessor checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+      attr_accessor mfa: ::String
+      attr_accessor versioning_configuration: Types::VersioningConfiguration
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class PutBucketWebsiteRequest
+      attr_accessor bucket: ::String
+      attr_accessor content_md5: ::String
+      attr_accessor checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+      attr_accessor website_configuration: Types::WebsiteConfiguration
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class PutObjectAclOutput
+      attr_accessor request_charged: ("requester")
+      SENSITIVE: []
+    end
+
+    class PutObjectAclRequest
+      attr_accessor acl: ("private" | "public-read" | "public-read-write" | "authenticated-read" | "aws-exec-read" | "bucket-owner-read" | "bucket-owner-full-control")
+      attr_accessor access_control_policy: Types::AccessControlPolicy
+      attr_accessor bucket: ::String
+      attr_accessor content_md5: ::String
+      attr_accessor checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+      attr_accessor grant_full_control: ::String
+      attr_accessor grant_read: ::String
+      attr_accessor grant_read_acp: ::String
+      attr_accessor grant_write: ::String
+      attr_accessor grant_write_acp: ::String
+      attr_accessor key: ::String
+      attr_accessor request_payer: ("requester")
+      attr_accessor version_id: ::String
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class PutObjectLegalHoldOutput
+      attr_accessor request_charged: ("requester")
+      SENSITIVE: []
+    end
+
+    class PutObjectLegalHoldRequest
+      attr_accessor bucket: ::String
+      attr_accessor key: ::String
+      attr_accessor legal_hold: Types::ObjectLockLegalHold
+      attr_accessor request_payer: ("requester")
+      attr_accessor version_id: ::String
+      attr_accessor content_md5: ::String
+      attr_accessor checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class PutObjectLockConfigurationOutput
+      attr_accessor request_charged: ("requester")
+      SENSITIVE: []
+    end
+
+    class PutObjectLockConfigurationRequest
+      attr_accessor bucket: ::String
+      attr_accessor object_lock_configuration: Types::ObjectLockConfiguration
+      attr_accessor request_payer: ("requester")
+      attr_accessor token: ::String
+      attr_accessor content_md5: ::String
+      attr_accessor checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class PutObjectOutput
+      attr_accessor expiration: ::String
+      attr_accessor etag: ::String
+      attr_accessor checksum_crc32: ::String
+      attr_accessor checksum_crc32c: ::String
+      attr_accessor checksum_crc64nvme: ::String
+      attr_accessor checksum_sha1: ::String
+      attr_accessor checksum_sha256: ::String
+      attr_accessor checksum_type: ("COMPOSITE" | "FULL_OBJECT")
+      attr_accessor server_side_encryption: ("AES256" | "aws:fsx" | "aws:kms" | "aws:kms:dsse")
+      attr_accessor version_id: ::String
+      attr_accessor sse_customer_algorithm: ::String
+      attr_accessor sse_customer_key_md5: ::String
+      attr_accessor ssekms_key_id: ::String
+      attr_accessor ssekms_encryption_context: ::String
+      attr_accessor bucket_key_enabled: bool
+      attr_accessor size: ::Integer
+      attr_accessor request_charged: ("requester")
+      SENSITIVE: [:ssekms_key_id, :ssekms_encryption_context]
+    end
+
+    class PutObjectRequest
+      attr_accessor acl: ("private" | "public-read" | "public-read-write" | "authenticated-read" | "aws-exec-read" | "bucket-owner-read" | "bucket-owner-full-control")
+      attr_accessor body: ::IO
+      attr_accessor bucket: ::String
+      attr_accessor cache_control: ::String
+      attr_accessor content_disposition: ::String
+      attr_accessor content_encoding: ::String
+      attr_accessor content_language: ::String
+      attr_accessor content_length: ::Integer
+      attr_accessor content_md5: ::String
+      attr_accessor content_type: ::String
+      attr_accessor checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+      attr_accessor checksum_crc32: ::String
+      attr_accessor checksum_crc32c: ::String
+      attr_accessor checksum_crc64nvme: ::String
+      attr_accessor checksum_sha1: ::String
+      attr_accessor checksum_sha256: ::String
+      attr_accessor expires: ::Time
+      attr_accessor if_match: ::String
+      attr_accessor if_none_match: ::String
+      attr_accessor grant_full_control: ::String
+      attr_accessor grant_read: ::String
+      attr_accessor grant_read_acp: ::String
+      attr_accessor grant_write_acp: ::String
+      attr_accessor key: ::String
+      attr_accessor write_offset_bytes: ::Integer
+      attr_accessor metadata: ::Hash[::String, ::String]
+      attr_accessor server_side_encryption: ("AES256" | "aws:fsx" | "aws:kms" | "aws:kms:dsse")
+      attr_accessor storage_class: ("STANDARD" | "REDUCED_REDUNDANCY" | "STANDARD_IA" | "ONEZONE_IA" | "INTELLIGENT_TIERING" | "GLACIER" | "DEEP_ARCHIVE" | "OUTPOSTS" | "GLACIER_IR" | "SNOW" | "EXPRESS_ONEZONE" | "FSX_OPENZFS" | "FSX_ONTAP")
+      attr_accessor website_redirect_location: ::String
+      attr_accessor sse_customer_algorithm: ::String
+      attr_accessor sse_customer_key: ::String
+      attr_accessor sse_customer_key_md5: ::String
+      attr_accessor ssekms_key_id: ::String
+      attr_accessor ssekms_encryption_context: ::String
+      attr_accessor bucket_key_enabled: bool
+      attr_accessor request_payer: ("requester")
+      attr_accessor tagging: ::String
+      attr_accessor object_lock_mode: ("GOVERNANCE" | "COMPLIANCE")
+      attr_accessor object_lock_retain_until_date: ::Time
+      attr_accessor object_lock_legal_hold_status: ("ON" | "OFF")
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: [:sse_customer_key, :ssekms_key_id, :ssekms_encryption_context]
+    end
+
+    class PutObjectRetentionOutput
+      attr_accessor request_charged: ("requester")
+      SENSITIVE: []
+    end
+
+    class PutObjectRetentionRequest
+      attr_accessor bucket: ::String
+      attr_accessor key: ::String
+      attr_accessor retention: Types::ObjectLockRetention
+      attr_accessor request_payer: ("requester")
+      attr_accessor version_id: ::String
+      attr_accessor bypass_governance_retention: bool
+      attr_accessor content_md5: ::String
+      attr_accessor checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class PutObjectTaggingOutput
+      attr_accessor version_id: ::String
+      SENSITIVE: []
+    end
+
+    class PutObjectTaggingRequest
+      attr_accessor bucket: ::String
+      attr_accessor key: ::String
+      attr_accessor version_id: ::String
+      attr_accessor content_md5: ::String
+      attr_accessor checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+      attr_accessor tagging: Types::Tagging
+      attr_accessor expected_bucket_owner: ::String
+      attr_accessor request_payer: ("requester")
+      SENSITIVE: []
+    end
+
+    class PutPublicAccessBlockRequest
+      attr_accessor bucket: ::String
+      attr_accessor content_md5: ::String
+      attr_accessor checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+      attr_accessor public_access_block_configuration: Types::PublicAccessBlockConfiguration
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class QueueConfiguration
+      attr_accessor id: ::String
+      attr_accessor queue_arn: ::String
+      attr_accessor events: ::Array[("s3:ReducedRedundancyLostObject" | "s3:ObjectCreated:*" | "s3:ObjectCreated:Put" | "s3:ObjectCreated:Post" | "s3:ObjectCreated:Copy" | "s3:ObjectCreated:CompleteMultipartUpload" | "s3:ObjectRemoved:*" | "s3:ObjectRemoved:Delete" | "s3:ObjectRemoved:DeleteMarkerCreated" | "s3:ObjectRestore:*" | "s3:ObjectRestore:Post" | "s3:ObjectRestore:Completed" | "s3:Replication:*" | "s3:Replication:OperationFailedReplication" | "s3:Replication:OperationNotTracked" | "s3:Replication:OperationMissedThreshold" | "s3:Replication:OperationReplicatedAfterThreshold" | "s3:ObjectRestore:Delete" | "s3:LifecycleTransition" | "s3:IntelligentTiering" | "s3:ObjectAcl:Put" | "s3:LifecycleExpiration:*" | "s3:LifecycleExpiration:Delete" | "s3:LifecycleExpiration:DeleteMarkerCreated" | "s3:ObjectTagging:*" | "s3:ObjectTagging:Put" | "s3:ObjectTagging:Delete")]
+      attr_accessor filter: Types::NotificationConfigurationFilter
+      SENSITIVE: []
+    end
+
+    class QueueConfigurationDeprecated
+      attr_accessor id: ::String
+      attr_accessor event: ("s3:ReducedRedundancyLostObject" | "s3:ObjectCreated:*" | "s3:ObjectCreated:Put" | "s3:ObjectCreated:Post" | "s3:ObjectCreated:Copy" | "s3:ObjectCreated:CompleteMultipartUpload" | "s3:ObjectRemoved:*" | "s3:ObjectRemoved:Delete" | "s3:ObjectRemoved:DeleteMarkerCreated" | "s3:ObjectRestore:*" | "s3:ObjectRestore:Post" | "s3:ObjectRestore:Completed" | "s3:Replication:*" | "s3:Replication:OperationFailedReplication" | "s3:Replication:OperationNotTracked" | "s3:Replication:OperationMissedThreshold" | "s3:Replication:OperationReplicatedAfterThreshold" | "s3:ObjectRestore:Delete" | "s3:LifecycleTransition" | "s3:IntelligentTiering" | "s3:ObjectAcl:Put" | "s3:LifecycleExpiration:*" | "s3:LifecycleExpiration:Delete" | "s3:LifecycleExpiration:DeleteMarkerCreated" | "s3:ObjectTagging:*" | "s3:ObjectTagging:Put" | "s3:ObjectTagging:Delete")
+      attr_accessor events: ::Array[("s3:ReducedRedundancyLostObject" | "s3:ObjectCreated:*" | "s3:ObjectCreated:Put" | "s3:ObjectCreated:Post" | "s3:ObjectCreated:Copy" | "s3:ObjectCreated:CompleteMultipartUpload" | "s3:ObjectRemoved:*" | "s3:ObjectRemoved:Delete" | "s3:ObjectRemoved:DeleteMarkerCreated" | "s3:ObjectRestore:*" | "s3:ObjectRestore:Post" | "s3:ObjectRestore:Completed" | "s3:Replication:*" | "s3:Replication:OperationFailedReplication" | "s3:Replication:OperationNotTracked" | "s3:Replication:OperationMissedThreshold" | "s3:Replication:OperationReplicatedAfterThreshold" | "s3:ObjectRestore:Delete" | "s3:LifecycleTransition" | "s3:IntelligentTiering" | "s3:ObjectAcl:Put" | "s3:LifecycleExpiration:*" | "s3:LifecycleExpiration:Delete" | "s3:LifecycleExpiration:DeleteMarkerCreated" | "s3:ObjectTagging:*" | "s3:ObjectTagging:Put" | "s3:ObjectTagging:Delete")]
+      attr_accessor queue: ::String
+      SENSITIVE: []
+    end
+
+    class RecordExpiration
+      attr_accessor expiration: ("ENABLED" | "DISABLED")
+      attr_accessor days: ::Integer
+      SENSITIVE: []
+    end
+
+    class RecordsEvent
+      attr_accessor payload: ::IO
+      attr_accessor event_type: untyped
+      SENSITIVE: []
+    end
+
+    class Redirect
+      attr_accessor host_name: ::String
+      attr_accessor http_redirect_code: ::String
+      attr_accessor protocol: ("http" | "https")
+      attr_accessor replace_key_prefix_with: ::String
+      attr_accessor replace_key_with: ::String
+      SENSITIVE: []
+    end
+
+    class RedirectAllRequestsTo
+      attr_accessor host_name: ::String
+      attr_accessor protocol: ("http" | "https")
+      SENSITIVE: []
+    end
+
+    class RenameObjectOutput < Aws::EmptyStructure
+    end
+
+    class RenameObjectRequest
+      attr_accessor bucket: ::String
+      attr_accessor key: ::String
+      attr_accessor rename_source: ::String
+      attr_accessor destination_if_match: ::String
+      attr_accessor destination_if_none_match: ::String
+      attr_accessor destination_if_modified_since: ::Time
+      attr_accessor destination_if_unmodified_since: ::Time
+      attr_accessor source_if_match: ::String
+      attr_accessor source_if_none_match: ::String
+      attr_accessor source_if_modified_since: ::Time
+      attr_accessor source_if_unmodified_since: ::Time
+      attr_accessor client_token: ::String
+      SENSITIVE: []
+    end
+
+    class ReplicaModifications
+      attr_accessor status: ("Enabled" | "Disabled")
+      SENSITIVE: []
+    end
+
+    class ReplicationConfiguration
+      attr_accessor role: ::String
+      attr_accessor rules: ::Array[Types::ReplicationRule]
+      SENSITIVE: []
+    end
+
+    class ReplicationRule
+      attr_accessor id: ::String
+      attr_accessor priority: ::Integer
+      attr_accessor prefix: ::String
+      attr_accessor filter: Types::ReplicationRuleFilter
+      attr_accessor status: ("Enabled" | "Disabled")
+      attr_accessor source_selection_criteria: Types::SourceSelectionCriteria
+      attr_accessor existing_object_replication: Types::ExistingObjectReplication
+      attr_accessor destination: Types::Destination
+      attr_accessor delete_marker_replication: Types::DeleteMarkerReplication
+      SENSITIVE: []
+    end
+
+    class ReplicationRuleAndOperator
+      attr_accessor prefix: ::String
+      attr_accessor tags: ::Array[Types::Tag]
+      SENSITIVE: []
+    end
+
+    class ReplicationRuleFilter
+      attr_accessor prefix: ::String
+      attr_accessor tag: Types::Tag
+      attr_accessor and: Types::ReplicationRuleAndOperator
+      SENSITIVE: []
+    end
+
+    class ReplicationTime
+      attr_accessor status: ("Enabled" | "Disabled")
+      attr_accessor time: Types::ReplicationTimeValue
+      SENSITIVE: []
+    end
+
+    class ReplicationTimeValue
+      attr_accessor minutes: ::Integer
+      SENSITIVE: []
+    end
+
+    class RequestPaymentConfiguration
+      attr_accessor payer: ("Requester" | "BucketOwner")
+      SENSITIVE: []
+    end
+
+    class RequestProgress
+      attr_accessor enabled: bool
+      SENSITIVE: []
+    end
+
+    class RestoreObjectOutput
+      attr_accessor request_charged: ("requester")
+      attr_accessor restore_output_path: ::String
+      SENSITIVE: []
+    end
+
+    class RestoreObjectRequest
+      attr_accessor bucket: ::String
+      attr_accessor key: ::String
+      attr_accessor version_id: ::String
+      attr_accessor restore_request: Types::RestoreRequest
+      attr_accessor request_payer: ("requester")
+      attr_accessor checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class RestoreRequest
+      attr_accessor days: ::Integer
+      attr_accessor glacier_job_parameters: Types::GlacierJobParameters
+      attr_accessor type: ("SELECT")
+      attr_accessor tier: ("Standard" | "Bulk" | "Expedited")
+      attr_accessor description: ::String
+      attr_accessor select_parameters: Types::SelectParameters
+      attr_accessor output_location: Types::OutputLocation
+      SENSITIVE: []
+    end
+
+    class RestoreStatus
+      attr_accessor is_restore_in_progress: bool
+      attr_accessor restore_expiry_date: ::Time
+      SENSITIVE: []
+    end
+
+    class RoutingRule
+      attr_accessor condition: Types::Condition
+      attr_accessor redirect: Types::Redirect
+      SENSITIVE: []
+    end
+
+    class Rule
+      attr_accessor expiration: Types::LifecycleExpiration
+      attr_accessor id: ::String
+      attr_accessor prefix: ::String
+      attr_accessor status: ("Enabled" | "Disabled")
+      attr_accessor transition: Types::Transition
+      attr_accessor noncurrent_version_transition: Types::NoncurrentVersionTransition
+      attr_accessor noncurrent_version_expiration: Types::NoncurrentVersionExpiration
+      attr_accessor abort_incomplete_multipart_upload: Types::AbortIncompleteMultipartUpload
+      SENSITIVE: []
+    end
+
+    class S3KeyFilter
+      attr_accessor filter_rules: ::Array[Types::FilterRule]
+      SENSITIVE: []
+    end
+
+    class S3Location
+      attr_accessor bucket_name: ::String
+      attr_accessor prefix: ::String
+      attr_accessor encryption: Types::Encryption
+      attr_accessor canned_acl: ("private" | "public-read" | "public-read-write" | "authenticated-read" | "aws-exec-read" | "bucket-owner-read" | "bucket-owner-full-control")
+      attr_accessor access_control_list: ::Array[Types::Grant]
+      attr_accessor tagging: Types::Tagging
+      attr_accessor user_metadata: ::Array[Types::MetadataEntry]
+      attr_accessor storage_class: ("STANDARD" | "REDUCED_REDUNDANCY" | "STANDARD_IA" | "ONEZONE_IA" | "INTELLIGENT_TIERING" | "GLACIER" | "DEEP_ARCHIVE" | "OUTPOSTS" | "GLACIER_IR" | "SNOW" | "EXPRESS_ONEZONE" | "FSX_OPENZFS" | "FSX_ONTAP")
+      SENSITIVE: []
+    end
+
+    class S3TablesDestination
+      attr_accessor table_bucket_arn: ::String
+      attr_accessor table_name: ::String
+      SENSITIVE: []
+    end
+
+    class S3TablesDestinationResult
+      attr_accessor table_bucket_arn: ::String
+      attr_accessor table_name: ::String
+      attr_accessor table_arn: ::String
+      attr_accessor table_namespace: ::String
+      SENSITIVE: []
+    end
+
+    class SSEKMS
+      attr_accessor key_id: ::String
+      SENSITIVE: [:key_id]
+    end
+
+    class SSEKMSEncryption
+      attr_accessor kms_key_arn: ::String
+      attr_accessor bucket_key_enabled: bool
+      SENSITIVE: [:kms_key_arn]
+    end
+
+    class SSES3 < Aws::EmptyStructure
+    end
+
+    class ScanRange
+      attr_accessor start: ::Integer
+      attr_accessor end: ::Integer
+      SENSITIVE: []
+    end
+
+    class SelectObjectContentOutput
+      attr_accessor payload: Types::SelectObjectContentEventStream
+      SENSITIVE: []
+    end
+
+    class SelectObjectContentRequest
+      attr_accessor bucket: ::String
+      attr_accessor key: ::String
+      attr_accessor sse_customer_algorithm: ::String
+      attr_accessor sse_customer_key: ::String
+      attr_accessor sse_customer_key_md5: ::String
+      attr_accessor expression: ::String
+      attr_accessor expression_type: ("SQL")
+      attr_accessor request_progress: Types::RequestProgress
+      attr_accessor input_serialization: Types::InputSerialization
+      attr_accessor output_serialization: Types::OutputSerialization
+      attr_accessor scan_range: Types::ScanRange
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: [:sse_customer_key]
+    end
+
+    class SelectParameters
+      attr_accessor input_serialization: Types::InputSerialization
+      attr_accessor expression_type: ("SQL")
+      attr_accessor expression: ::String
+      attr_accessor output_serialization: Types::OutputSerialization
+      SENSITIVE: []
+    end
+
+    class ServerSideEncryptionByDefault
+      attr_accessor sse_algorithm: ("AES256" | "aws:fsx" | "aws:kms" | "aws:kms:dsse")
+      attr_accessor kms_master_key_id: ::String
+      SENSITIVE: [:kms_master_key_id]
+    end
+
+    class ServerSideEncryptionConfiguration
+      attr_accessor rules: ::Array[Types::ServerSideEncryptionRule]
+      SENSITIVE: []
+    end
+
+    class ServerSideEncryptionRule
+      attr_accessor apply_server_side_encryption_by_default: Types::ServerSideEncryptionByDefault
+      attr_accessor bucket_key_enabled: bool
+      attr_accessor blocked_encryption_types: Types::BlockedEncryptionTypes
+      SENSITIVE: []
+    end
+
+    class SessionCredentials
+      attr_accessor access_key_id: ::String
+      attr_accessor secret_access_key: ::String
+      attr_accessor session_token: ::String
+      attr_accessor expiration: ::Time
+      SENSITIVE: [:secret_access_key, :session_token]
+    end
+
+    class SimplePrefix < Aws::EmptyStructure
+    end
+
+    class SourceSelectionCriteria
+      attr_accessor sse_kms_encrypted_objects: Types::SseKmsEncryptedObjects
+      attr_accessor replica_modifications: Types::ReplicaModifications
+      SENSITIVE: []
+    end
+
+    class SseKmsEncryptedObjects
+      attr_accessor status: ("Enabled" | "Disabled")
+      SENSITIVE: []
+    end
+
+    class Stats
+      attr_accessor bytes_scanned: ::Integer
+      attr_accessor bytes_processed: ::Integer
+      attr_accessor bytes_returned: ::Integer
+      SENSITIVE: []
+    end
+
+    class StatsEvent
+      attr_accessor details: Types::Stats
+      attr_accessor event_type: untyped
+      SENSITIVE: []
+    end
+
+    class StorageClassAnalysis
+      attr_accessor data_export: Types::StorageClassAnalysisDataExport
+      SENSITIVE: []
+    end
+
+    class StorageClassAnalysisDataExport
+      attr_accessor output_schema_version: ("V_1")
+      attr_accessor destination: Types::AnalyticsExportDestination
+      SENSITIVE: []
+    end
+
+    class Tag
+      attr_accessor key: ::String
+      attr_accessor value: ::String
+      SENSITIVE: []
+    end
+
+    class Tagging
+      attr_accessor tag_set: ::Array[Types::Tag]
+      SENSITIVE: []
+    end
+
+    class TargetGrant
+      attr_accessor grantee: Types::Grantee
+      attr_accessor permission: ("FULL_CONTROL" | "READ" | "WRITE")
+      SENSITIVE: []
+    end
+
+    class TargetObjectKeyFormat
+      attr_accessor simple_prefix: Types::SimplePrefix
+      attr_accessor partitioned_prefix: Types::PartitionedPrefix
+      SENSITIVE: []
+    end
+
+    class Tiering
+      attr_accessor days: ::Integer
+      attr_accessor access_tier: ("ARCHIVE_ACCESS" | "DEEP_ARCHIVE_ACCESS")
+      SENSITIVE: []
+    end
+
+    class TooManyParts < Aws::EmptyStructure
+    end
+
+    class TopicConfiguration
+      attr_accessor id: ::String
+      attr_accessor topic_arn: ::String
+      attr_accessor events: ::Array[("s3:ReducedRedundancyLostObject" | "s3:ObjectCreated:*" | "s3:ObjectCreated:Put" | "s3:ObjectCreated:Post" | "s3:ObjectCreated:Copy" | "s3:ObjectCreated:CompleteMultipartUpload" | "s3:ObjectRemoved:*" | "s3:ObjectRemoved:Delete" | "s3:ObjectRemoved:DeleteMarkerCreated" | "s3:ObjectRestore:*" | "s3:ObjectRestore:Post" | "s3:ObjectRestore:Completed" | "s3:Replication:*" | "s3:Replication:OperationFailedReplication" | "s3:Replication:OperationNotTracked" | "s3:Replication:OperationMissedThreshold" | "s3:Replication:OperationReplicatedAfterThreshold" | "s3:ObjectRestore:Delete" | "s3:LifecycleTransition" | "s3:IntelligentTiering" | "s3:ObjectAcl:Put" | "s3:LifecycleExpiration:*" | "s3:LifecycleExpiration:Delete" | "s3:LifecycleExpiration:DeleteMarkerCreated" | "s3:ObjectTagging:*" | "s3:ObjectTagging:Put" | "s3:ObjectTagging:Delete")]
+      attr_accessor filter: Types::NotificationConfigurationFilter
+      SENSITIVE: []
+    end
+
+    class TopicConfigurationDeprecated
+      attr_accessor id: ::String
+      attr_accessor events: ::Array[("s3:ReducedRedundancyLostObject" | "s3:ObjectCreated:*" | "s3:ObjectCreated:Put" | "s3:ObjectCreated:Post" | "s3:ObjectCreated:Copy" | "s3:ObjectCreated:CompleteMultipartUpload" | "s3:ObjectRemoved:*" | "s3:ObjectRemoved:Delete" | "s3:ObjectRemoved:DeleteMarkerCreated" | "s3:ObjectRestore:*" | "s3:ObjectRestore:Post" | "s3:ObjectRestore:Completed" | "s3:Replication:*" | "s3:Replication:OperationFailedReplication" | "s3:Replication:OperationNotTracked" | "s3:Replication:OperationMissedThreshold" | "s3:Replication:OperationReplicatedAfterThreshold" | "s3:ObjectRestore:Delete" | "s3:LifecycleTransition" | "s3:IntelligentTiering" | "s3:ObjectAcl:Put" | "s3:LifecycleExpiration:*" | "s3:LifecycleExpiration:Delete" | "s3:LifecycleExpiration:DeleteMarkerCreated" | "s3:ObjectTagging:*" | "s3:ObjectTagging:Put" | "s3:ObjectTagging:Delete")]
+      attr_accessor event: ("s3:ReducedRedundancyLostObject" | "s3:ObjectCreated:*" | "s3:ObjectCreated:Put" | "s3:ObjectCreated:Post" | "s3:ObjectCreated:Copy" | "s3:ObjectCreated:CompleteMultipartUpload" | "s3:ObjectRemoved:*" | "s3:ObjectRemoved:Delete" | "s3:ObjectRemoved:DeleteMarkerCreated" | "s3:ObjectRestore:*" | "s3:ObjectRestore:Post" | "s3:ObjectRestore:Completed" | "s3:Replication:*" | "s3:Replication:OperationFailedReplication" | "s3:Replication:OperationNotTracked" | "s3:Replication:OperationMissedThreshold" | "s3:Replication:OperationReplicatedAfterThreshold" | "s3:ObjectRestore:Delete" | "s3:LifecycleTransition" | "s3:IntelligentTiering" | "s3:ObjectAcl:Put" | "s3:LifecycleExpiration:*" | "s3:LifecycleExpiration:Delete" | "s3:LifecycleExpiration:DeleteMarkerCreated" | "s3:ObjectTagging:*" | "s3:ObjectTagging:Put" | "s3:ObjectTagging:Delete")
+      attr_accessor topic: ::String
+      SENSITIVE: []
+    end
+
+    class Transition
+      attr_accessor date: ::Time
+      attr_accessor days: ::Integer
+      attr_accessor storage_class: ("GLACIER" | "STANDARD_IA" | "ONEZONE_IA" | "INTELLIGENT_TIERING" | "DEEP_ARCHIVE" | "GLACIER_IR")
+      SENSITIVE: []
+    end
+
+    class UpdateBucketMetadataInventoryTableConfigurationRequest
+      attr_accessor bucket: ::String
+      attr_accessor content_md5: ::String
+      attr_accessor checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+      attr_accessor inventory_table_configuration: Types::InventoryTableConfigurationUpdates
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class UpdateBucketMetadataJournalTableConfigurationRequest
+      attr_accessor bucket: ::String
+      attr_accessor content_md5: ::String
+      attr_accessor checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+      attr_accessor journal_table_configuration: Types::JournalTableConfigurationUpdates
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: []
+    end
+
+    class UpdateObjectEncryptionRequest
+      attr_accessor bucket: ::String
+      attr_accessor key: ::String
+      attr_accessor version_id: ::String
+      attr_accessor object_encryption: Types::ObjectEncryption
+      attr_accessor request_payer: ("requester")
+      attr_accessor expected_bucket_owner: ::String
+      attr_accessor content_md5: ::String
+      attr_accessor checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+      SENSITIVE: []
+    end
+
+    class UpdateObjectEncryptionResponse
+      attr_accessor request_charged: ("requester")
+      SENSITIVE: []
+    end
+
+    class UploadPartCopyOutput
+      attr_accessor copy_source_version_id: ::String
+      attr_accessor copy_part_result: Types::CopyPartResult
+      attr_accessor server_side_encryption: ("AES256" | "aws:fsx" | "aws:kms" | "aws:kms:dsse")
+      attr_accessor sse_customer_algorithm: ::String
+      attr_accessor sse_customer_key_md5: ::String
+      attr_accessor ssekms_key_id: ::String
+      attr_accessor bucket_key_enabled: bool
+      attr_accessor request_charged: ("requester")
+      SENSITIVE: [:ssekms_key_id]
+    end
+
+    class UploadPartCopyRequest
+      attr_accessor bucket: ::String
+      attr_accessor copy_source: ::String
+      attr_accessor copy_source_if_match: ::String
+      attr_accessor copy_source_if_modified_since: ::Time
+      attr_accessor copy_source_if_none_match: ::String
+      attr_accessor copy_source_if_unmodified_since: ::Time
+      attr_accessor copy_source_range: ::String
+      attr_accessor key: ::String
+      attr_accessor part_number: ::Integer
+      attr_accessor upload_id: ::String
+      attr_accessor sse_customer_algorithm: ::String
+      attr_accessor sse_customer_key: ::String
+      attr_accessor sse_customer_key_md5: ::String
+      attr_accessor copy_source_sse_customer_algorithm: ::String
+      attr_accessor copy_source_sse_customer_key: ::String
+      attr_accessor copy_source_sse_customer_key_md5: ::String
+      attr_accessor request_payer: ("requester")
+      attr_accessor expected_bucket_owner: ::String
+      attr_accessor expected_source_bucket_owner: ::String
+      SENSITIVE: [:sse_customer_key, :copy_source_sse_customer_key]
+    end
+
+    class UploadPartOutput
+      attr_accessor server_side_encryption: ("AES256" | "aws:fsx" | "aws:kms" | "aws:kms:dsse")
+      attr_accessor etag: ::String
+      attr_accessor checksum_crc32: ::String
+      attr_accessor checksum_crc32c: ::String
+      attr_accessor checksum_crc64nvme: ::String
+      attr_accessor checksum_sha1: ::String
+      attr_accessor checksum_sha256: ::String
+      attr_accessor sse_customer_algorithm: ::String
+      attr_accessor sse_customer_key_md5: ::String
+      attr_accessor ssekms_key_id: ::String
+      attr_accessor bucket_key_enabled: bool
+      attr_accessor request_charged: ("requester")
+      SENSITIVE: [:ssekms_key_id]
+    end
+
+    class UploadPartRequest
+      attr_accessor body: ::IO
+      attr_accessor bucket: ::String
+      attr_accessor content_length: ::Integer
+      attr_accessor content_md5: ::String
+      attr_accessor checksum_algorithm: ("CRC32" | "CRC32C" | "SHA1" | "SHA256" | "CRC64NVME")
+      attr_accessor checksum_crc32: ::String
+      attr_accessor checksum_crc32c: ::String
+      attr_accessor checksum_crc64nvme: ::String
+      attr_accessor checksum_sha1: ::String
+      attr_accessor checksum_sha256: ::String
+      attr_accessor key: ::String
+      attr_accessor part_number: ::Integer
+      attr_accessor upload_id: ::String
+      attr_accessor sse_customer_algorithm: ::String
+      attr_accessor sse_customer_key: ::String
+      attr_accessor sse_customer_key_md5: ::String
+      attr_accessor request_payer: ("requester")
+      attr_accessor expected_bucket_owner: ::String
+      SENSITIVE: [:sse_customer_key]
+    end
+
+    class VersioningConfiguration
+      attr_accessor mfa_delete: ("Enabled" | "Disabled")
+      attr_accessor status: ("Enabled" | "Suspended")
+      SENSITIVE: []
+    end
+
+    class WebsiteConfiguration
+      attr_accessor error_document: Types::ErrorDocument
+      attr_accessor index_document: Types::IndexDocument
+      attr_accessor redirect_all_requests_to: Types::RedirectAllRequestsTo
+      attr_accessor routing_rules: ::Array[Types::RoutingRule]
+      SENSITIVE: []
+    end
+
+    class WriteGetObjectResponseRequest
+      attr_accessor request_route: ::String
+      attr_accessor request_token: ::String
+      attr_accessor body: ::IO
+      attr_accessor status_code: ::Integer
+      attr_accessor error_code: ::String
+      attr_accessor error_message: ::String
+      attr_accessor accept_ranges: ::String
+      attr_accessor cache_control: ::String
+      attr_accessor content_disposition: ::String
+      attr_accessor content_encoding: ::String
+      attr_accessor content_language: ::String
+      attr_accessor content_length: ::Integer
+      attr_accessor content_range: ::String
+      attr_accessor content_type: ::String
+      attr_accessor checksum_crc32: ::String
+      attr_accessor checksum_crc32c: ::String
+      attr_accessor checksum_crc64nvme: ::String
+      attr_accessor checksum_sha1: ::String
+      attr_accessor checksum_sha256: ::String
+      attr_accessor delete_marker: bool
+      attr_accessor etag: ::String
+      attr_accessor expires: ::Time
+      attr_accessor expiration: ::String
+      attr_accessor last_modified: ::Time
+      attr_accessor missing_meta: ::Integer
+      attr_accessor metadata: ::Hash[::String, ::String]
+      attr_accessor object_lock_mode: ("GOVERNANCE" | "COMPLIANCE")
+      attr_accessor object_lock_legal_hold_status: ("ON" | "OFF")
+      attr_accessor object_lock_retain_until_date: ::Time
+      attr_accessor parts_count: ::Integer
+      attr_accessor replication_status: ("COMPLETE" | "PENDING" | "FAILED" | "REPLICA" | "COMPLETED")
+      attr_accessor request_charged: ("requester")
+      attr_accessor restore: ::String
+      attr_accessor server_side_encryption: ("AES256" | "aws:fsx" | "aws:kms" | "aws:kms:dsse")
+      attr_accessor sse_customer_algorithm: ::String
+      attr_accessor ssekms_key_id: ::String
+      attr_accessor sse_customer_key_md5: ::String
+      attr_accessor storage_class: ("STANDARD" | "REDUCED_REDUNDANCY" | "STANDARD_IA" | "ONEZONE_IA" | "INTELLIGENT_TIERING" | "GLACIER" | "DEEP_ARCHIVE" | "OUTPOSTS" | "GLACIER_IR" | "SNOW" | "EXPRESS_ONEZONE" | "FSX_OPENZFS" | "FSX_ONTAP")
+      attr_accessor tag_count: ::Integer
+      attr_accessor version_id: ::String
+      attr_accessor bucket_key_enabled: bool
+      SENSITIVE: [:ssekms_key_id]
+    end
+
+    class SelectObjectContentEventStream < Enumerator[untyped, untyped]
+      def event_types: () -> [:records, :stats, :progress, :cont, :end]
+    end
+  end
+end

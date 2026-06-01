@@ -1,0 +1,5 @@
+page_dir: doc
+warn_missing_rdoc_ref: true
+
+autolink_excluded_words:
+- IRB

@@ -1,0 +1,267 @@
+--- 
+:sl: 
+  :territories: 
+    :ac: "Otok Ascension"
+    :ad: Andora
+    :ae: "Združeni arabski emirati"
+    :af: Afganistan
+    :ag: "Antigva in Barbuda"
+    :ai: Angvila
+    :al: Albanija
+    :am: Armenija
+    :ao: Angola
+    :aq: Antarktika
+    :ar: Argentina
+    :as: "Ameriška Samoa"
+    :at: Avstrija
+    :au: Avstralija
+    :aw: Aruba
+    :ax: "Ålandski otoki"
+    :az: Azerbajdžan
+    :ba: "Bosna in Hercegovina"
+    :bb: Barbados
+    :bd: Bangladeš
+    :be: Belgija
+    :bf: "Burkina Faso"
+    :bg: Bolgarija
+    :bh: Bahrajn
+    :bi: Burundi
+    :bj: Benin
+    :bl: "Saint Barthélemy"
+    :bm: Bermudi
+    :bn: Brunej
+    :bo: Bolivija
+    :bq: "Nizozemski Karibi"
+    :br: Brazilija
+    :bs: Bahami
+    :bt: Butan
+    :bv: "Bouvetov otok"
+    :bw: Bocvana
+    :by: Belorusija
+    :bz: Belize
+    :ca: Kanada
+    :cc: "Kokosovi otoki"
+    :cd: "Demokratična republika Kongo"
+    :cf: "Srednjeafriška republika"
+    :cg: "Kongo - Brazzaville"
+    :ch: Švica
+    :ci: "Slonokoščena obala"
+    :ck: "Cookovi otoki"
+    :cl: Čile
+    :cm: Kamerun
+    :cn: Kitajska
+    :co: Kolumbija
+    :cp: "Otok Clipperton"
+    :cr: Kostarika
+    :cu: Kuba
+    :cv: "Zelenortski otoki"
+    :cw: Curaçao
+    :cx: "Božični otok"
+    :cy: Ciper
+    :cz: Češka
+    :de: Nemčija
+    :dg: "Diego Garcia"
+    :dj: Džibuti
+    :dk: Danska
+    :dm: Dominika
+    :do: "Dominikanska republika"
+    :dz: Alžirija
+    :ea: "Ceuta in Melilla"
+    :ec: Ekvador
+    :ee: Estonija
+    :eg: Egipt
+    :eh: "Zahodna Sahara"
+    :er: Eritreja
+    :es: Španija
+    :et: Etiopija
+    :eu: "Evropska unija"
+    :ez: evroobmočje
+    :fi: Finska
+    :fj: Fidži
+    :fk: "Falklandski otoki"
+    :fm: Mikronezija
+    :fo: "Ferski otoki"
+    :fr: Francija
+    :ga: Gabon
+    :gb: "Združeno kraljestvo"
+    :gd: Grenada
+    :ge: Gruzija
+    :gf: "Francoska Gvajana"
+    :gg: Guernsey
+    :gh: Gana
+    :gi: Gibraltar
+    :gl: Grenlandija
+    :gm: Gambija
+    :gn: Gvineja
+    :gp: Guadeloupe
+    :gq: "Ekvatorialna Gvineja"
+    :gr: Grčija
+    :gs: "Južna Georgia in Južni Sandwichevi otoki"
+    :gt: Gvatemala
+    :gu: Guam
+    :gw: "Gvineja Bissau"
+    :gy: Gvajana
+    :hk: "Posebno upravno območje Ljudske republike Kitajske Hongkong"
+    :hm: "Heardov otok in McDonaldovi otoki"
+    :hn: Honduras
+    :hr: Hrvaška
+    :ht: Haiti
+    :hu: Madžarska
+    :ic: "Kanarski otoki"
+    :id: Indonezija
+    :ie: Irska
+    :il: Izrael
+    :im: "Otok Man"
+    :in: Indija
+    :io: "Britansko ozemlje v Indijskem oceanu"
+    :iq: Irak
+    :ir: Iran
+    :is: Islandija
+    :it: Italija
+    :je: Jersey
+    :jm: Jamajka
+    :jo: Jordanija
+    :jp: Japonska
+    :ke: Kenija
+    :kg: Kirgizistan
+    :kh: Kambodža
+    :ki: Kiribati
+    :km: Komori
+    :kn: "Saint Kitts in Nevis"
+    :kp: "Severna Koreja"
+    :kr: "Južna Koreja"
+    :kw: Kuvajt
+    :ky: "Kajmanski otoki"
+    :kz: Kazahstan
+    :la: Laos
+    :lb: Libanon
+    :lc: "Saint Lucia"
+    :li: Lihtenštajn
+    :lk: Šrilanka
+    :lr: Liberija
+    :ls: Lesoto
+    :lt: Litva
+    :lu: Luksemburg
+    :lv: Latvija
+    :ly: Libija
+    :ma: Maroko
+    :mc: Monako
+    :md: Moldavija
+    :me: "Črna gora"
+    :mf: "Saint Martin"
+    :mg: Madagaskar
+    :mh: "Marshallovi otoki"
+    :mk: "Severna Makedonija"
+    :ml: Mali
+    :mm: "Mjanmar (Burma)"
+    :mn: Mongolija
+    :mo: "Posebno upravno območje Ljudske republike Kitajske Macao"
+    :mp: "Severni Marianski otoki"
+    :mq: Martinik
+    :mr: Mavretanija
+    :ms: Montserrat
+    :mt: Malta
+    :mu: Mauritius
+    :mv: Maldivi
+    :mw: Malavi
+    :mx: Mehika
+    :my: Malezija
+    :mz: Mozambik
+    :na: Namibija
+    :nc: "Nova Kaledonija"
+    :ne: Niger
+    :nf: "Norfolški otok"
+    :ng: Nigerija
+    :ni: Nikaragva
+    :nl: Nizozemska
+    ? !ruby/symbol "no"
+    : Norveška
+    :np: Nepal
+    :nr: Nauru
+    :nu: Niue
+    :nz: "Nova Zelandija"
+    :om: Oman
+    :pa: Panama
+    :pe: Peru
+    :pf: "Francoska Polinezija"
+    :pg: "Papua Nova Gvineja"
+    :ph: Filipini
+    :pk: Pakistan
+    :pl: Poljska
+    :pm: "Saint Pierre in Miquelon"
+    :pn: Pitcairn
+    :pr: Portoriko
+    :ps: "Palestinsko ozemlje"
+    :pt: Portugalska
+    :pw: Palau
+    :py: Paragvaj
+    :qa: Katar
+    :qo: "Ostala oceanija"
+    :re: Reunion
+    :ro: Romunija
+    :rs: Srbija
+    :ru: Rusija
+    :rw: Ruanda
+    :sa: "Saudova Arabija"
+    :sb: "Salomonovi otoki"
+    :sc: Sejšeli
+    :sd: Sudan
+    :se: Švedska
+    :sg: Singapur
+    :sh: "Sveta Helena"
+    :si: Slovenija
+    :sj: "Svalbard in Jan Mayen"
+    :sk: Slovaška
+    :sl: "Sierra Leone"
+    :sm: "San Marino"
+    :sn: Senegal
+    :so: Somalija
+    :sr: Surinam
+    :ss: "Južni Sudan"
+    :st: "Sao Tome in Principe"
+    :sv: Salvador
+    :sx: "Sint Maarten"
+    :sy: Sirija
+    :sz: Esvatini
+    :ta: "Tristan da Cunha"
+    :tc: "Otoki Turks in Caicos"
+    :td: Čad
+    :tf: "Francosko južno ozemlje"
+    :tg: Togo
+    :th: Tajska
+    :tj: Tadžikistan
+    :tk: Tokelau
+    :tl: Timor-Leste
+    :tm: Turkmenistan
+    :tn: Tunizija
+    :to: Tonga
+    :tr: Turčija
+    :tt: "Trinidad in Tobago"
+    :tv: Tuvalu
+    :tw: Tajvan
+    :tz: Tanzanija
+    :ua: Ukrajina
+    :ug: Uganda
+    :um: "Stranski zunanji otoki Združenih držav"
+    :un: "Združeni narodi"
+    :us: "Združene države Amerike"
+    :uy: Urugvaj
+    :uz: Uzbekistan
+    :va: Vatikan
+    :vc: "Saint Vincent in Grenadine"
+    :ve: Venezuela
+    :vg: "Britanski Deviški otoki"
+    :vi: "Ameriški Deviški otoki"
+    :vn: Vietnam
+    :vu: Vanuatu
+    :wf: "Wallis in Futuna"
+    :ws: Samoa
+    :xa: psevdonaglasi
+    :xb: psevdobidi
+    :xk: Kosovo
+    :ye: Jemen
+    :yt: Mayotte
+    :za: "Južnoafriška republika"
+    :zm: Zambija
+    :zw: Zimbabve
+    :zz: "Neznano ali neveljavno območje"

@@ -1,0 +1,613 @@
+--- 
+:fr: 
+  :rbnf: 
+    :grouping: 
+      - 
+        :ruleset: 
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: "&[last primary ignorable ] << ' ' << ',' << '-' << '­';"
+                :value: 0
+            :type: lenient-parse
+          - 
+            :rules: 
+              - 
+                :rule: "moins >>;"
+                :value: "-x"
+              - 
+                :rule: =0.0=;
+                :value: x.x
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 0
+              - 
+                :radix: 100
+                :rule: <%spellout-cardinal-masculine<-cent>%%cents-m>;
+                :value: 1100
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 2000
+            :type: spellout-numbering-year
+          - 
+            :rules: 
+              - 
+                :rule: =%spellout-cardinal-masculine=;
+                :value: 0
+            :type: spellout-numbering
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: et-un;
+                :value: 1
+              - 
+                :rule: =%spellout-cardinal-masculine=;
+                :value: 2
+              - 
+                :rule: et-onze;
+                :value: 11
+              - 
+                :rule: =%spellout-cardinal-masculine=;
+                :value: 12
+            :type: et-un
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: s;
+                :value: 0
+              - 
+                :rule: " =%spellout-cardinal-masculine=;"
+                :value: 1
+            :type: cents-m
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: s;
+                :value: 0
+              - 
+                :rule: "-=%spellout-cardinal-masculine=;"
+                :value: 1
+            :type: subcents-m
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: =%spellout-cardinal-masculine=;
+                :value: 0
+              - 
+                :radix: 20
+                :rule: "quatre-vingt[->>];"
+                :value: 80
+              - 
+                :rule: "cent[ >>];"
+                :value: 100
+              - 
+                :rule: "<< cent[ >>];"
+                :value: 200
+              - 
+                :rule: =%spellout-cardinal-masculine=;
+                :value: 1000
+            :type: spellout-leading
+          - 
+            :rules: 
+              - 
+                :rule: "moins >>;"
+                :value: "-x"
+              - 
+                :rule: "<< virgule >>;"
+                :value: x.x
+              - 
+                :rule: zéro;
+                :value: 0
+              - 
+                :rule: un;
+                :value: 1
+              - 
+                :rule: deux;
+                :value: 2
+              - 
+                :rule: trois;
+                :value: 3
+              - 
+                :rule: quatre;
+                :value: 4
+              - 
+                :rule: cinq;
+                :value: 5
+              - 
+                :rule: six;
+                :value: 6
+              - 
+                :rule: sept;
+                :value: 7
+              - 
+                :rule: huit;
+                :value: 8
+              - 
+                :rule: neuf;
+                :value: 9
+              - 
+                :rule: dix;
+                :value: 10
+              - 
+                :rule: onze;
+                :value: 11
+              - 
+                :rule: douze;
+                :value: 12
+              - 
+                :rule: treize;
+                :value: 13
+              - 
+                :rule: quatorze;
+                :value: 14
+              - 
+                :rule: quinze;
+                :value: 15
+              - 
+                :rule: seize;
+                :value: 16
+              - 
+                :rule: dix->>;
+                :value: 17
+              - 
+                :rule: "vingt[->%%et-un>];"
+                :value: 20
+              - 
+                :rule: "trente[->%%et-un>];"
+                :value: 30
+              - 
+                :rule: "quarante[->%%et-un>];"
+                :value: 40
+              - 
+                :rule: "cinquante[->%%et-un>];"
+                :value: 50
+              - 
+                :radix: 20
+                :rule: "soixante[->%%et-un>];"
+                :value: 60
+              - 
+                :radix: 20
+                :rule: quatre-vingt>%%subcents-m>;
+                :value: 80
+              - 
+                :rule: "cent[ >>];"
+                :value: 100
+              - 
+                :rule: "<< cent>%%cents-m>;"
+                :value: 200
+              - 
+                :rule: "mille[ >>];"
+                :value: 1000
+              - 
+                :rule: "<%%spellout-leading< mille[ >>];"
+                :value: 2000
+              - 
+                :rule: "un million[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<%%spellout-leading< millions[ >>];"
+                :value: 2000000
+              - 
+                :rule: "un milliard[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<%%spellout-leading< milliards[ >>];"
+                :value: 2000000000
+              - 
+                :rule: "un billion[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%%spellout-leading< billions[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "un billiard[ >>];"
+                :value: 1000000000000000
+              - 
+                :rule: "<%%spellout-leading< billiards[ >>];"
+                :value: 2000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-masculine
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: et-une;
+                :value: 1
+              - 
+                :rule: =%spellout-cardinal-feminine=;
+                :value: 2
+              - 
+                :rule: et-onze;
+                :value: 11
+              - 
+                :rule: =%spellout-cardinal-feminine=;
+                :value: 12
+            :type: et-une
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: s;
+                :value: 0
+              - 
+                :rule: " =%spellout-cardinal-feminine=;"
+                :value: 1
+            :type: cents-f
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: s;
+                :value: 0
+              - 
+                :rule: "-=%spellout-cardinal-feminine=;"
+                :value: 1
+            :type: subcents-f
+          - 
+            :rules: 
+              - 
+                :rule: "moins >>;"
+                :value: "-x"
+              - 
+                :rule: "<< virgule >>;"
+                :value: x.x
+              - 
+                :rule: zéro;
+                :value: 0
+              - 
+                :rule: une;
+                :value: 1
+              - 
+                :rule: =%spellout-cardinal-masculine=;
+                :value: 2
+              - 
+                :rule: "vingt[->%%et-une>];"
+                :value: 20
+              - 
+                :rule: "trente[->%%et-une>];"
+                :value: 30
+              - 
+                :rule: "quarante[->%%et-une>];"
+                :value: 40
+              - 
+                :rule: "cinquante[->%%et-une>];"
+                :value: 50
+              - 
+                :radix: 20
+                :rule: "soixante[->%%et-une>];"
+                :value: 60
+              - 
+                :radix: 20
+                :rule: quatre-vingt>%%subcents-f>;
+                :value: 80
+              - 
+                :rule: "cent[ >>];"
+                :value: 100
+              - 
+                :rule: "<%spellout-cardinal-masculine< cent>%%cents-f>;"
+                :value: 200
+              - 
+                :rule: "mille[ >>];"
+                :value: 1000
+              - 
+                :rule: "<%%spellout-leading< mille[ >>];"
+                :value: 2000
+              - 
+                :rule: "un million[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<%%spellout-leading< millions[ >>];"
+                :value: 2000000
+              - 
+                :rule: "un milliard[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<%%spellout-leading< milliards[ >>];"
+                :value: 2000000000
+              - 
+                :rule: "un billion[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%%spellout-leading< billions[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "un billiard[ >>];"
+                :value: 1000000000000000
+              - 
+                :rule: "<%%spellout-leading< billiards[ >>];"
+                :value: 2000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-feminine
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: et-unième;
+                :value: 1
+              - 
+                :rule: =%%spellout-ordinal=;
+                :value: 2
+              - 
+                :rule: et-onzième;
+                :value: 11
+              - 
+                :rule: =%%spellout-ordinal=;
+                :value: 12
+            :type: et-unieme
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: ième;
+                :value: 0
+              - 
+                :rule: "-=%%et-unieme=;"
+                :value: 1
+              - 
+                :rule: " =%%spellout-ordinal=;"
+                :value: 2
+              - 
+                :rule: "-et-onzième;"
+                :value: 11
+              - 
+                :rule: " =%%spellout-ordinal=;"
+                :value: 12
+            :type: cents-o
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: ième;
+                :value: 0
+              - 
+                :rule: "-=%%et-unieme=;"
+                :value: 1
+              - 
+                :rule: "-=%%spellout-ordinal=;"
+                :value: 2
+              - 
+                :rule: "-et-onzième;"
+                :value: 11
+              - 
+                :rule: "-=%%spellout-ordinal=;"
+                :value: 12
+            :type: subcents-o
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: ième;
+                :value: 0
+              - 
+                :rule: e-=%%et-unieme=;
+                :value: 1
+              - 
+                :rule: "e =%%spellout-ordinal=;"
+                :value: 2
+              - 
+                :rule: e-et-onzième;
+                :value: 11
+              - 
+                :rule: "e =%%spellout-ordinal=;"
+                :value: 12
+            :type: mille-o
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: unième;
+                :value: 1
+              - 
+                :rule: deuxième;
+                :value: 2
+              - 
+                :rule: troisième;
+                :value: 3
+              - 
+                :rule: quatrième;
+                :value: 4
+              - 
+                :rule: cinquième;
+                :value: 5
+              - 
+                :rule: sixième;
+                :value: 6
+              - 
+                :rule: septième;
+                :value: 7
+              - 
+                :rule: huitième;
+                :value: 8
+              - 
+                :rule: neuvième;
+                :value: 9
+              - 
+                :rule: dixième;
+                :value: 10
+              - 
+                :rule: onzième;
+                :value: 11
+              - 
+                :rule: douzième;
+                :value: 12
+              - 
+                :rule: treizième;
+                :value: 13
+              - 
+                :rule: quatorzième;
+                :value: 14
+              - 
+                :rule: quinzième;
+                :value: 15
+              - 
+                :rule: seizième;
+                :value: 16
+              - 
+                :rule: dix->>;
+                :value: 17
+              - 
+                :rule: vingtième;
+                :value: 20
+              - 
+                :rule: vingt->%%et-unieme>;
+                :value: 21
+              - 
+                :rule: trentième;
+                :value: 30
+              - 
+                :rule: trente->%%et-unieme>;
+                :value: 31
+              - 
+                :rule: quarantième;
+                :value: 40
+              - 
+                :rule: quarante->%%et-unieme>;
+                :value: 41
+              - 
+                :rule: cinquantième;
+                :value: 50
+              - 
+                :rule: cinquante->%%et-unieme>;
+                :value: 51
+              - 
+                :rule: soixantième;
+                :value: 60
+              - 
+                :radix: 20
+                :rule: soixante->%%et-unieme>;
+                :value: 61
+              - 
+                :radix: 20
+                :rule: quatre-vingt>%%subcents-o>;
+                :value: 80
+              - 
+                :rule: cent>%%cents-o>;
+                :value: 100
+              - 
+                :rule: "<%spellout-cardinal-masculine< cent>%%cents-o>;"
+                :value: 200
+              - 
+                :rule: mill>%%mille-o>;
+                :value: 1000
+              - 
+                :rule: "<%%spellout-leading< mill>%%mille-o>;"
+                :value: 2000
+              - 
+                :rule: "<%%spellout-leading< million>%%cents-o>;"
+                :value: 1000000
+              - 
+                :rule: "<%%spellout-leading< milliard>%%cents-o>;"
+                :value: 1000000000
+              - 
+                :rule: "<%%spellout-leading< billion>%%cents-o>;"
+                :value: 1000000000000
+              - 
+                :rule: "<%%spellout-leading< billiard>%%cents-o>;"
+                :value: 1000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-ordinal
+          - 
+            :rules: 
+              - 
+                :rule: =%spellout-ordinal-masculine=s;
+                :value: 0
+            :type: spellout-ordinal-masculine-plural
+          - 
+            :rules: 
+              - 
+                :rule: "moins >>;"
+                :value: "-x"
+              - 
+                :rule: "=#,##0.#=;"
+                :value: x.x
+              - 
+                :rule: zéroième;
+                :value: 0
+              - 
+                :rule: premier;
+                :value: 1
+              - 
+                :rule: =%%spellout-ordinal=;
+                :value: 2
+            :type: spellout-ordinal-masculine
+          - 
+            :rules: 
+              - 
+                :rule: =%spellout-ordinal-feminine=s;
+                :value: 0
+            :type: spellout-ordinal-feminine-plural
+          - 
+            :rules: 
+              - 
+                :rule: "moins >>;"
+                :value: "-x"
+              - 
+                :rule: "=#,##0.#=;"
+                :value: x.x
+              - 
+                :rule: zéroième;
+                :value: 0
+              - 
+                :rule: première;
+                :value: 1
+              - 
+                :rule: =%%spellout-ordinal=;
+                :value: 2
+            :type: spellout-ordinal-feminine
+        :type: SpelloutRules
+      - 
+        :ruleset: 
+          - 
+            :rules: 
+              - 
+                :rule: −>>;
+                :value: "-x"
+              - 
+                :rule: "=#,##0=$(ordinal,one{er}other{e})$;"
+                :value: 0
+            :type: digits-ordinal-masculine
+          - 
+            :rules: 
+              - 
+                :rule: −>>;
+                :value: "-x"
+              - 
+                :rule: "=#,##0=$(ordinal,one{re}other{e})$;"
+                :value: 0
+            :type: digits-ordinal-feminine
+          - 
+            :rules: 
+              - 
+                :rule: −>>;
+                :value: "-x"
+              - 
+                :rule: "=#,##0=$(ordinal,one{ers}other{es})$;"
+                :value: 0
+            :type: digits-ordinal-masculine-plural
+          - 
+            :rules: 
+              - 
+                :rule: −>>;
+                :value: "-x"
+              - 
+                :rule: "=#,##0=$(ordinal,one{res}other{es})$;"
+                :value: 0
+            :type: digits-ordinal-feminine-plural
+          - 
+            :rules: 
+              - 
+                :rule: =%digits-ordinal-masculine=;
+                :value: 0
+            :type: digits-ordinal
+        :type: OrdinalRules

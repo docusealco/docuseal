@@ -1,0 +1,4 @@
+# Exclude TypeScript source files from the package directory
+*.ts
+# But keep the TypeScript declaration files
+!*.d.ts

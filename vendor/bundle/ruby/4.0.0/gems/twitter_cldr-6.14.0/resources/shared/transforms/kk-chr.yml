@@ -1,0 +1,12 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - chr-t-kk
+    :direction: forward
+    :rules: 
+      - "::kk-kk_FONIPA ;"
+      - "::und_FONIPA-chr ;"
+    :source: kk
+    :target: chr
+    :variant: ~

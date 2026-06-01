@@ -1,0 +1,50 @@
+o:!TwitterCldr::Utils::RangeSet:@ranges[o:
+Range:	exclF:
+begini
+:endi
+o;;F;	i
+;
+i
+
+o;;F;	i
+;
+i
+o;;F;	i
+;
+i(
+o;;F;	i*
+;
+i0
+o;;F;	i2
+;
+i3
+o;;F;	i5
+;
+i6
+o;;F;	i8
+;
+i9
+o;;F;	i<
+;
+i<
+o;;F;	i>
+;
+iB
+o;;F;	iG
+;
+iH
+o;;F;	iK
+;
+iM
+o;;F;	iQ
+;
+iQ
+o;;F;	iY
+;
+i\
+o;;F;	i^
+;
+i^
+o;;F;	if
+;
+iv

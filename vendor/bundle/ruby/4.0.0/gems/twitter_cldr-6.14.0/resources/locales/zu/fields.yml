@@ -1,0 +1,312 @@
+--- 
+:zu: 
+  :fields: 
+    :day: 
+      :display_name: Usuku
+      :relative: 
+        -1: izolo
+        -2: "usuku olwandulela olwayizolo"
+        0: namhlanje
+        1: kusasa
+        2: "usuku olulandela olwakusasa"
+      :relative_time: 
+        :future: 
+          :one: "osukwini olungu-{0} oluzayo"
+          :other: "ezinsukwini ezingu-{0} ezizayo"
+        :past: 
+          :one: "osukwini olungu-{0} olwedlule"
+          :other: "ezinsukwini ezingu-{0} ezedlule."
+    :day-short: 
+      :relative_time: 
+        :past: 
+          :one: "{0} usuku olwedlule"
+          :other: "{0} izinsuku ezedlule"
+    :dayOfYear-short: 
+      :display_name: "usuku lonyaka"
+    :dayperiod: 
+      :display_name: AM/PM
+    :era: 
+      :display_name: Isikhathi
+    :fri: 
+      :relative: 
+        -1: "uLwesihlanu oludlule"
+        0: "kulo Lwesihlanu"
+        1: "uLwesihlanu oluzayo"
+      :relative_time: 
+        :future: 
+          :one: "ngo {0} Lwesihlanu"
+          :other: "ngo {0} Lwezihlanu"
+        :past: 
+          :one: "{0} Lwesihlanu oludlule"
+          :other: "{0} Lwezihlanu oludlule"
+    :fri-short: 
+      :relative_time: 
+        :future: 
+          :one: "ngo {0} Lwezihlanu"
+          :other: "ngo {0} Lwezihlanu"
+        :past: 
+          :one: "{0} Lwezihlanu oludlule"
+          :other: "{0} Lwezihlanu oludlule"
+    :hour: 
+      :display_name: Ihora
+      :relative: 
+        0: "leli hora"
+      :relative_time: 
+        :future: 
+          :one: "ehoreni elingu-{0} elizayo"
+          :other: "emahoreni angu-{0} ezayo"
+        :past: 
+          :one: "{0} ihora eledlule"
+          :other: "emahoreni angu-{0} edlule"
+    :hour-narrow: 
+      :relative_time: 
+        :past: 
+          :one: "{0} ihora eledlule"
+          :other: "{0} amahora edlule"
+    :minute: 
+      :display_name: Iminithi
+      :relative: 
+        0: "leli minithi"
+      :relative_time: 
+        :future: 
+          :one: "kuminithi elingu-{0} elizayo"
+          :other: "kumaminithi angu-{0} ezayo"
+        :past: 
+          :one: "{0} iminithi eledlule"
+          :other: "{0} amaminithi edlule"
+    :mon: 
+      :relative: 
+        -1: "uMsombuluko odlule"
+        0: "kulo Msombuluko"
+        1: "uMsombuluko ozayo"
+      :relative_time: 
+        :future: 
+          :one: "ngoMsombuluko o-{0}"
+          :other: "ngeMisombuluko e-{0}"
+        :past: 
+          :one: "ngoMsombuluko o-{0} odlule"
+          :other: "ngeMsombuluko e-{0} edlule"
+    :mon-short: 
+      :relative_time: 
+        :future: 
+          :one: "ngeMisombuluko e-{0}"
+          :other: "ngeMisombuluko e-{0}"
+        :past: 
+          :one: "ngeMsombuluko e-{0} edlule"
+          :other: "ngeMsombuluko e-{0} edlule"
+    :month: 
+      :display_name: Inyanga
+      :relative: 
+        -1: "inyanga edlule"
+        0: "le nyanga"
+        1: "inyanga ezayo"
+      :relative_time: 
+        :future: 
+          :one: "enyangeni engu-{0}"
+          :other: "ezinyangeni ezingu-{0} ezizayo"
+        :past: 
+          :one: "{0} inyanga edlule"
+          :other: "{0} izinyanga ezedlule"
+    :month-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "enyangeni engu-{0} ezayo"
+          :other: "enyangeni engu-{0} ezayo"
+    :month-short: 
+      :relative_time: 
+        :future: 
+          :one: "ezinyangeni ezingu-{0} ezizayo"
+          :other: "ezinyangeni ezingu-{0} ezizayo"
+        :past: 
+          :one: "{0} izinyanga ezedlule"
+          :other: "{0} izinyanga ezedlule"
+    :quarter: 
+      :display_name: Ikota
+      :relative: 
+        -1: "ikota edlule"
+        0: "le kota"
+        1: "ikota ezayo"
+      :relative_time: 
+        :future: 
+          :one: "kwikota engu-{0} ezayo"
+          :other: "kumakota angu-{0} ezayo"
+        :past: 
+          :one: "{0} ikota edlule"
+          :other: "{0} amakota adlule"
+    :quarter-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "kumakota angu-{0}"
+          :other: "kumakota angu-{0}"
+    :quarter-short: 
+      :relative_time: 
+        :past: 
+          :one: "{0} amakota adlule"
+          :other: "{0} amakota edlule"
+    :sat: 
+      :relative: 
+        -1: "uMgqibelo odlule"
+        0: "kulo Mgqibelo"
+        1: "uMgqibelo ozayo"
+      :relative_time: 
+        :future: 
+          :one: "ngoMgqibelo o-{0}"
+          :other: "ngeMgqibelo engu-{0}"
+        :past: 
+          :one: "ngoMgqibelo o-{0} odlule"
+          :other: "ngeMgqibelo engu-{0} edlule"
+    :sat-short: 
+      :relative_time: 
+        :future: 
+          :one: "ngeMgqibelo engu-{0}"
+          :other: "ngeMgqibelo engu-{0}"
+        :past: 
+          :one: "ngeMgqibelo engu-{0} edlule"
+          :other: "ngeMgqibelo engu-{0} edlule"
+    :second: 
+      :display_name: Isekhondi
+      :relative: 
+        0: manje
+      :relative_time: 
+        :future: 
+          :one: "kusekhondi elingu-{0} elizayo"
+          :other: "kumasekhondi angu-{0} ezayo"
+        :past: 
+          :one: "{0} isekhondi eledlule"
+          :other: "{0} amasekhondi edlule"
+    :sun: 
+      :relative: 
+        -1: "iSonto eledlule"
+        0: "kuleli Sonto"
+        1: "iSonto elizayo"
+      :relative_time: 
+        :future: 
+          :one: "kwiSonto elingu-{0}"
+          :other: "kumaSonto angu-{0}"
+        :past: 
+          :one: "{0} iSonto eledlule"
+          :other: "{0} amaSonto edlule"
+    :sun-short: 
+      :relative_time: 
+        :future: 
+          :one: "kumaSonto angu-{0}"
+          :other: "kumaSonto angu-{0}"
+        :past: 
+          :one: "{0} amaSonto edlule"
+          :other: "{0} amaSonto edlule"
+    :thu: 
+      :relative: 
+        -1: "uLwesine oludlule"
+        0: "kulo Lwesine"
+        1: "uLwesine oluzayo"
+      :relative_time: 
+        :future: 
+          :one: "ngoLwesine olu-{0}"
+          :other: "ngoLwezine abangu-{0}"
+        :past: 
+          :one: "ngoLwesine olu-{0} olwedlule"
+          :other: "ngoLwezine abangu-{0} abedlule"
+    :thu-short: 
+      :relative: 
+        -1: "uLwesine olwedlule"
+        0: "kulo Lwesine"
+        1: "uLwesine oluzayo"
+      :relative_time: 
+        :future: 
+          :one: "ngoLwezine abangu-{0}"
+          :other: "ngoLwezine abangu-{0}"
+        :past: 
+          :one: "ngoLwezine abangu-{0} abedlule"
+          :other: "ngoLwezine abangu-{0} abedlule"
+    :tue: 
+      :relative: 
+        -1: "uLwesibili oludlule"
+        0: "kulo Lwesibili"
+        1: "uLwesibili oluzayo"
+      :relative_time: 
+        :future: 
+          :one: "ngoLwesibili olu-{0}"
+          :other: "ngoLwezibili abangu-{0}"
+        :past: 
+          :one: "ngoLwesibili ongu-{0} owedlule"
+          :other: "ngoLwezibili abangu-{0} abedlule"
+    :tue-short: 
+      :relative_time: 
+        :future: 
+          :one: "{0} ngoLwezibili"
+          :other: "{0} ngoLwezibili"
+        :past: 
+          :one: "{0} ngoLwezibili olwedlule"
+          :other: "{0} ngoLwezibili olwedlule"
+    :wed: 
+      :relative: 
+        -1: "uLwesithathu oludlule"
+        0: "kulo Lwesithathu"
+        1: "uLwesithathu oluzayo"
+      :relative_time: 
+        :future: 
+          :one: "ngoLwesithathu o-{0}"
+          :other: "ngoLwezithathu abangu-{0}"
+        :past: 
+          :one: "ngoLwesithathu olungu-{0} olwedlule"
+          :other: "ngoLwezithathu abangu-{0} abedlule"
+    :wed-short: 
+      :relative_time: 
+        :future: 
+          :one: "ngoLwezithathu abangu-{0}"
+          :other: "ngoLwezithathu abangu-{0}"
+        :past: 
+          :one: "ngoLwezithathu abangu-{0} abedlule"
+          :other: "ngoLwezithathu abangu-{0} abedlule"
+    :week: 
+      :display_name: Iviki
+      :relative: 
+        -1: "iviki eledlule"
+        0: "leli viki"
+        1: "iviki elizayo"
+      :relative_time: 
+        :future: 
+          :one: "evikini elingu-{0}"
+          :other: "emavikini angu-{0}"
+        :past: 
+          :one: "evikini elingu-{0} eledlule"
+          :other: "amaviki angu-{0} edlule"
+    :week-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "emavikini angu-{0} ezayo"
+          :other: "emavikini angu-{0} ezayo"
+    :week-short: 
+      :relative_time: 
+        :future: 
+          :one: "evikini elingu-{0} elizayo"
+          :other: "emavikini angu-{0} ezayo"
+        :past: 
+          :one: "amaviki angu-{0} edlule"
+          :other: "amaviki angu-{0} edlule"
+    :weekOfMonth: 
+      :display_name: "Iviki leNyanga"
+    :weekday: 
+      :display_name: "Usuku evikini"
+    :weekdayOfMonth: 
+      :display_name: "usuku lwenyanga"
+    :year: 
+      :display_name: Unyaka
+      :relative: 
+        -1: "onyakeni odlule"
+        0: "kulo nyaka"
+        1: "unyaka ozayo"
+      :relative_time: 
+        :future: 
+          :one: "onyakeni ongu-{0} ozayo"
+          :other: "eminyakeni engu-{0} ezayo"
+        :past: 
+          :one: "{0} unyaka odlule"
+          :other: "{0} iminyaka edlule"
+    :year-short: 
+      :relative_time: 
+        :past: 
+          :one: "{0} unyaka odlule"
+          :other: "{0} unyaka odlule"
+    :zone: 
+      :display_name: "Isikhathi sendawo"

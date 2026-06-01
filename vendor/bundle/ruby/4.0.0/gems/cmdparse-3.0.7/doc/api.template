@@ -1,0 +1,24 @@
+--- name:content pipeline:erb
+<%
+rdoc_object = context.node.node_info[:rdoc_object]
+api = context.node.node_info[:api]
+%>
+<div style="text-align: center">
+<select onchange="window.location.href=this.value">
+<option value="#">-- Classes and Modules --</option>
+<% rdoc_object.store.all_classes_and_modules.sort.each do |entry| %>
+<option value="<%= context.dest_node.route_to(api.class_nodes[entry.full_name], context.dest_node.lang) %>"><%= entry.full_name %></option>
+<% end %>
+</select>
+
+<select onchange="window.location.href=this.value">
+<option value="#">-- Attributes and Methods --</option>
+<% (rdoc_object.attributes + rdoc_object.method_list).sort.each do |entry| %>
+<option value="#<%= entry.aref %>"><%= entry.pretty_name %></option>
+<% end %>
+</select>
+</div>
+
+<hr style="margin-top: 0.5em; padding: 0;" />
+
+<%= context.render_block(:name => 'content', :chain => [context.website.tree['/templates/api.template'], context.content_node]) %>

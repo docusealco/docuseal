@@ -1,0 +1,112 @@
+--- 
+:eo: 
+  :rbnf: 
+    :grouping: 
+      - 
+        :ruleset: 
+          - 
+            :rules: 
+              - 
+                :rule: =0.0=;
+                :value: x.x
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 0
+            :type: spellout-numbering-year
+          - 
+            :rules: 
+              - 
+                :rule: =%spellout-cardinal=;
+                :value: 0
+            :type: spellout-numbering
+          - 
+            :rules: 
+              - 
+                :rule: "minus >>;"
+                :value: "-x"
+              - 
+                :rule: "<< komo >>;"
+                :value: x.x
+              - 
+                :rule: nulo;
+                :value: 0
+              - 
+                :rule: unu;
+                :value: 1
+              - 
+                :rule: du;
+                :value: 2
+              - 
+                :rule: tri;
+                :value: 3
+              - 
+                :rule: kvar;
+                :value: 4
+              - 
+                :rule: kvin;
+                :value: 5
+              - 
+                :rule: ses;
+                :value: 6
+              - 
+                :rule: sep;
+                :value: 7
+              - 
+                :rule: ok;
+                :value: 8
+              - 
+                :rule: naŭ;
+                :value: 9
+              - 
+                :rule: "dek[ >>];"
+                :value: 10
+              - 
+                :rule: "<<dek[ >>];"
+                :value: 20
+              - 
+                :rule: "cent[ >>];"
+                :value: 100
+              - 
+                :rule: "<<cent[ >>];"
+                :value: 200
+              - 
+                :rule: "mil[ >>];"
+                :value: 1000
+              - 
+                :rule: "<< mil[ >>];"
+                :value: 2000
+              - 
+                :rule: "miliono[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<< milionoj[ >>];"
+                :value: 2000000
+              - 
+                :rule: "miliardo[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<< miliardoj[ >>];"
+                :value: 2000000000
+              - 
+                :rule: "biliono[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<< bilionoj[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "biliardo[ >>];"
+                :value: 1000000000000000
+              - 
+                :rule: "<< biliardoj[ >>];"
+                :value: 2000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal
+          - 
+            :rules: 
+              - 
+                :rule: =%spellout-cardinal=a;
+                :value: 0
+            :type: spellout-ordinal
+        :type: SpelloutRules

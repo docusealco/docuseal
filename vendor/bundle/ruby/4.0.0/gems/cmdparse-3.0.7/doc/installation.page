@@ -1,0 +1,33 @@
+---
+title: Installation
+in_menu: true
+sort_info: 4
+---
+## Download & Installation
+
+The newest version of cmdparse can be downloaded from [Rubygems] or the [cmdparse Github
+page][github]!
+
+The preferred way of installing cmdparse is via RubyGems:
+
+    $ gem install cmdparse
+
+If you do not have RubyGems installed, but Rake, you can use the following command inside the
+cmdparse directory:
+
+    $ rake install
+
+If you have neither RubyGems nor Rake, use these commands:
+
+    $ ruby setup.rb config
+    $ ruby setup.rb setup
+    $ ruby setup.rb install
+
+
+[Rubygems]: http://rubygems.org/gems/cmdparse
+[github]: http://github.com/gettalong/cmdparse
+
+
+### Dependencies
+
+This library has *no* dependencies.

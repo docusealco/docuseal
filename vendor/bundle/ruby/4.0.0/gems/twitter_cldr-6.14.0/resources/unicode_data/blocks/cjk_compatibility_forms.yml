@@ -1,0 +1,513 @@
+---
+65072:
+- 65072
+- PRESENTATION FORM FOR VERTICAL TWO DOT LEADER
+- Po
+- '0'
+- 'ON'
+- "<vertical> 2025"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR VERTICAL TWO DOT LEADER
+- ''
+- ''
+- ''
+- ''
+65073:
+- 65073
+- PRESENTATION FORM FOR VERTICAL EM DASH
+- Pd
+- '0'
+- 'ON'
+- "<vertical> 2014"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR VERTICAL EM DASH
+- ''
+- ''
+- ''
+- ''
+65074:
+- 65074
+- PRESENTATION FORM FOR VERTICAL EN DASH
+- Pd
+- '0'
+- 'ON'
+- "<vertical> 2013"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR VERTICAL EN DASH
+- ''
+- ''
+- ''
+- ''
+65075:
+- 65075
+- PRESENTATION FORM FOR VERTICAL LOW LINE
+- Pc
+- '0'
+- 'ON'
+- "<vertical> 005F"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR VERTICAL SPACING UNDERSCORE
+- ''
+- ''
+- ''
+- ''
+65076:
+- 65076
+- PRESENTATION FORM FOR VERTICAL WAVY LOW LINE
+- Pc
+- '0'
+- 'ON'
+- "<vertical> 005F"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR VERTICAL SPACING WAVY UNDERSCORE
+- ''
+- ''
+- ''
+- ''
+65077:
+- 65077
+- PRESENTATION FORM FOR VERTICAL LEFT PARENTHESIS
+- Ps
+- '0'
+- 'ON'
+- "<vertical> 0028"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR VERTICAL OPENING PARENTHESIS
+- ''
+- ''
+- ''
+- ''
+65078:
+- 65078
+- PRESENTATION FORM FOR VERTICAL RIGHT PARENTHESIS
+- Pe
+- '0'
+- 'ON'
+- "<vertical> 0029"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR VERTICAL CLOSING PARENTHESIS
+- ''
+- ''
+- ''
+- ''
+65079:
+- 65079
+- PRESENTATION FORM FOR VERTICAL LEFT CURLY BRACKET
+- Ps
+- '0'
+- 'ON'
+- "<vertical> 007B"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR VERTICAL OPENING CURLY BRACKET
+- ''
+- ''
+- ''
+- ''
+65080:
+- 65080
+- PRESENTATION FORM FOR VERTICAL RIGHT CURLY BRACKET
+- Pe
+- '0'
+- 'ON'
+- "<vertical> 007D"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR VERTICAL CLOSING CURLY BRACKET
+- ''
+- ''
+- ''
+- ''
+65081:
+- 65081
+- PRESENTATION FORM FOR VERTICAL LEFT TORTOISE SHELL BRACKET
+- Ps
+- '0'
+- 'ON'
+- "<vertical> 3014"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR VERTICAL OPENING TORTOISE SHELL BRACKET
+- ''
+- ''
+- ''
+- ''
+65082:
+- 65082
+- PRESENTATION FORM FOR VERTICAL RIGHT TORTOISE SHELL BRACKET
+- Pe
+- '0'
+- 'ON'
+- "<vertical> 3015"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR VERTICAL CLOSING TORTOISE SHELL BRACKET
+- ''
+- ''
+- ''
+- ''
+65083:
+- 65083
+- PRESENTATION FORM FOR VERTICAL LEFT BLACK LENTICULAR BRACKET
+- Ps
+- '0'
+- 'ON'
+- "<vertical> 3010"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR VERTICAL OPENING BLACK LENTICULAR BRACKET
+- ''
+- ''
+- ''
+- ''
+65084:
+- 65084
+- PRESENTATION FORM FOR VERTICAL RIGHT BLACK LENTICULAR BRACKET
+- Pe
+- '0'
+- 'ON'
+- "<vertical> 3011"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR VERTICAL CLOSING BLACK LENTICULAR BRACKET
+- ''
+- ''
+- ''
+- ''
+65085:
+- 65085
+- PRESENTATION FORM FOR VERTICAL LEFT DOUBLE ANGLE BRACKET
+- Ps
+- '0'
+- 'ON'
+- "<vertical> 300A"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR VERTICAL OPENING DOUBLE ANGLE BRACKET
+- ''
+- ''
+- ''
+- ''
+65086:
+- 65086
+- PRESENTATION FORM FOR VERTICAL RIGHT DOUBLE ANGLE BRACKET
+- Pe
+- '0'
+- 'ON'
+- "<vertical> 300B"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR VERTICAL CLOSING DOUBLE ANGLE BRACKET
+- ''
+- ''
+- ''
+- ''
+65087:
+- 65087
+- PRESENTATION FORM FOR VERTICAL LEFT ANGLE BRACKET
+- Ps
+- '0'
+- 'ON'
+- "<vertical> 3008"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR VERTICAL OPENING ANGLE BRACKET
+- ''
+- ''
+- ''
+- ''
+65088:
+- 65088
+- PRESENTATION FORM FOR VERTICAL RIGHT ANGLE BRACKET
+- Pe
+- '0'
+- 'ON'
+- "<vertical> 3009"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR VERTICAL CLOSING ANGLE BRACKET
+- ''
+- ''
+- ''
+- ''
+65089:
+- 65089
+- PRESENTATION FORM FOR VERTICAL LEFT CORNER BRACKET
+- Ps
+- '0'
+- 'ON'
+- "<vertical> 300C"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR VERTICAL OPENING CORNER BRACKET
+- ''
+- ''
+- ''
+- ''
+65090:
+- 65090
+- PRESENTATION FORM FOR VERTICAL RIGHT CORNER BRACKET
+- Pe
+- '0'
+- 'ON'
+- "<vertical> 300D"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR VERTICAL CLOSING CORNER BRACKET
+- ''
+- ''
+- ''
+- ''
+65091:
+- 65091
+- PRESENTATION FORM FOR VERTICAL LEFT WHITE CORNER BRACKET
+- Ps
+- '0'
+- 'ON'
+- "<vertical> 300E"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR VERTICAL OPENING WHITE CORNER BRACKET
+- ''
+- ''
+- ''
+- ''
+65092:
+- 65092
+- PRESENTATION FORM FOR VERTICAL RIGHT WHITE CORNER BRACKET
+- Pe
+- '0'
+- 'ON'
+- "<vertical> 300F"
+- ''
+- ''
+- ''
+- N
+- GLYPH FOR VERTICAL CLOSING WHITE CORNER BRACKET
+- ''
+- ''
+- ''
+- ''
+65093:
+- 65093
+- SESAME DOT
+- Po
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65094:
+- 65094
+- WHITE SESAME DOT
+- Po
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65095:
+- 65095
+- PRESENTATION FORM FOR VERTICAL LEFT SQUARE BRACKET
+- Ps
+- '0'
+- 'ON'
+- "<vertical> 005B"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65096:
+- 65096
+- PRESENTATION FORM FOR VERTICAL RIGHT SQUARE BRACKET
+- Pe
+- '0'
+- 'ON'
+- "<vertical> 005D"
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+65097:
+- 65097
+- DASHED OVERLINE
+- Po
+- '0'
+- 'ON'
+- "<compat> 203E"
+- ''
+- ''
+- ''
+- N
+- SPACING DASHED OVERSCORE
+- ''
+- ''
+- ''
+- ''
+65098:
+- 65098
+- CENTRELINE OVERLINE
+- Po
+- '0'
+- 'ON'
+- "<compat> 203E"
+- ''
+- ''
+- ''
+- N
+- SPACING CENTERLINE OVERSCORE
+- ''
+- ''
+- ''
+- ''
+65099:
+- 65099
+- WAVY OVERLINE
+- Po
+- '0'
+- 'ON'
+- "<compat> 203E"
+- ''
+- ''
+- ''
+- N
+- SPACING WAVY OVERSCORE
+- ''
+- ''
+- ''
+- ''
+65100:
+- 65100
+- DOUBLE WAVY OVERLINE
+- Po
+- '0'
+- 'ON'
+- "<compat> 203E"
+- ''
+- ''
+- ''
+- N
+- SPACING DOUBLE WAVY OVERSCORE
+- ''
+- ''
+- ''
+- ''
+65101:
+- 65101
+- DASHED LOW LINE
+- Pc
+- '0'
+- 'ON'
+- "<compat> 005F"
+- ''
+- ''
+- ''
+- N
+- SPACING DASHED UNDERSCORE
+- ''
+- ''
+- ''
+- ''
+65102:
+- 65102
+- CENTRELINE LOW LINE
+- Pc
+- '0'
+- 'ON'
+- "<compat> 005F"
+- ''
+- ''
+- ''
+- N
+- SPACING CENTERLINE UNDERSCORE
+- ''
+- ''
+- ''
+- ''
+65103:
+- 65103
+- WAVY LOW LINE
+- Pc
+- '0'
+- 'ON'
+- "<compat> 005F"
+- ''
+- ''
+- ''
+- N
+- SPACING WAVY UNDERSCORE
+- ''
+- ''
+- ''
+- ''

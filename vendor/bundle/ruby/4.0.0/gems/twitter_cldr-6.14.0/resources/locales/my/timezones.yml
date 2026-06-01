@@ -1,0 +1,1456 @@
+--- 
+:my: 
+  :formats: 
+    :fallback_formats: 
+      :generic: "{1} ({0})"
+    :gmt_formats: 
+      :generic: "GMT{0}"
+    :gmt_zero_formats: 
+      :generic: GMT
+    :hour_formats: 
+      :generic: "+HH:mm;-HH:mm"
+    :region_formats: 
+      :daylight: "{0} နွေရာသီ စံတော်ချိန်"
+      :generic: "{0} အချိန်"
+      :standard: "{0} စံတော်ချိန်"
+  :metazones: 
+    :Afghanistan: 
+      :long: 
+        :standard: "အာဖဂန်နစ္စတန် အချိန်"
+    :Africa_Central: 
+      :long: 
+        :standard: "အလယ်အာဖရိက အချိန်"
+    :Africa_Eastern: 
+      :long: 
+        :standard: "အရှေ့အာဖရိက အချိန်"
+    :Africa_Southern: 
+      :long: 
+        :standard: "တောင်အာဖရိက အချိန်"
+    :Africa_Western: 
+      :long: 
+        :daylight: "အနောက်အာဖရိက နွေရာသီ အချိန်"
+        :generic: "အနောက်အာဖရိက အချိန်"
+        :standard: "အနောက်အာဖရိက စံတော်ချိန်"
+    :Alaska: 
+      :long: 
+        :daylight: "အလာစကာ နွေရာသီ စံတော်ချိန်"
+        :generic: "အလာစကာ အချိန်"
+        :standard: "အလာစကာ စံတော်ချိန်"
+    :Amazon: 
+      :long: 
+        :daylight: "အမေဇုံ နွေရာသီအချိန်"
+        :generic: "အမေဇုံ အချိန်"
+        :standard: "အမေဇုံ စံတော်ချိန်"
+    :America_Central: 
+      :long: 
+        :daylight: "အလယ်ပိုင်း နွေရာသီစံတော်ချိန်"
+        :generic: အလယ်ပိုင်းအချိန်
+        :standard: အလယ်ပိုင်းစံတော်ချိန်
+    :America_Eastern: 
+      :long: 
+        :daylight: "အရှေ့ပိုင်း နွေရာသီစံတော်ချိန်"
+        :generic: အရှေ့ပိုင်းအချိန်
+        :standard: အရှေ့ပိုင်းစံတော်ချိန်
+    :America_Mountain: 
+      :long: 
+        :daylight: "တောင်တန်း နွေရာသီစံတော်ချိန်"
+        :generic: တောင်တန်းအချိန်
+        :standard: တောင်တန်းစံတော်ချိန်
+    :America_Pacific: 
+      :long: 
+        :daylight: "ပစိဖိတ် နွေရာသီစံတော်ချိန်"
+        :generic: ပစိဖိတ်အချိန်
+        :standard: ပစိဖိတ်စံတော်ချိန်
+    :Apia: 
+      :long: 
+        :daylight: "အပီယာ နွေရာသီ အချိန်"
+        :generic: "အပီယာ အချိန်"
+        :standard: "အပီယာ စံတော်ချိန်"
+    :Arabian: 
+      :long: 
+        :daylight: "အာရေဗျ နွေရာသီ အချိန်"
+        :generic: "အာရေဗျ အချိန်"
+        :standard: "အာရေဗျ စံတော်ချိန်"
+    :Argentina: 
+      :long: 
+        :daylight: "အာဂျင်တီးနား နွေရာသီအချိန်"
+        :generic: "အာဂျင်တီးနား အချိန်"
+        :standard: "အာဂျင်တီးနား စံတော်ချိန်"
+    :Argentina_Western: 
+      :long: 
+        :daylight: "အနောက် အာဂျင်တီးနား နွေရာသီ အချိန်"
+        :generic: "အနောက် အာဂျင်တီးနား အချိန်"
+        :standard: "အနောက် အာဂျင်တီးနား စံတော်ချိန်"
+    :Armenia: 
+      :long: 
+        :daylight: "အာမေးနီးယား နွေရာသီ အချိန်"
+        :generic: "အာမေးနီးယား အချိန်"
+        :standard: "အာမေးနီးယား စံတော်ချိန်"
+    :Atlantic: 
+      :long: 
+        :daylight: "အတ္တလန်တစ် နွေရာသီ စံတော်ချိန်"
+        :generic: "အတ္တလန်တစ် အချိန်"
+        :standard: "အတ္တလန်တစ် စံတော်ချိန်"
+    :Australia_Central: 
+      :long: 
+        :daylight: "ဩစတြေးလျ အလယ်ပိုင်း နွေရာသီ အချိန်"
+        :generic: "ဩစတြေးလျ အလယ်ပိုင်း အချိန်"
+        :standard: "ဩစတြေးလျ အလယ်ပိုင်း စံတော်ချိန်"
+    :Australia_CentralWestern: 
+      :long: 
+        :daylight: "သြစတြေးလျား အနောက်အလယ်ပိုင်း နွေရာသီ အချိန်"
+        :generic: "သြစတြေးလျား အနောက်အလယ်ပိုင်း အချိန်"
+        :standard: "သြစတြေးလျား အနောက်အလယ်ပိုင်း စံတော်ချိန်"
+    :Australia_Eastern: 
+      :long: 
+        :daylight: "အရှေ့ဩစတြေးလျ နွေရာသီ အချိန်"
+        :generic: "အရှေ့ဩစတြေးလျ အချိန်"
+        :standard: "အရှေ့ဩစတြေးလျ စံတော်ချိန်"
+    :Australia_Western: 
+      :long: 
+        :daylight: "ဩစတြေးလျ နွေရာသီ အချိန်"
+        :generic: "အနောက်ဩစတြေးလျ အချိန်"
+        :standard: "အနောက်ဩစတြေးလျ စံတော်ချိန်"
+    :Azerbaijan: 
+      :long: 
+        :daylight: "အဇာဘိုင်ဂျန် နွေရာသီ အချိန်"
+        :generic: "အဇာဘိုင်ဂျန် အချိန်"
+        :standard: "အဇာဘိုင်ဂျန် စံတော်ချိန်"
+    :Azores: 
+      :long: 
+        :daylight: "အေဇိုးရီးစ် နွေရာသီ အချိန်"
+        :generic: "အေဇိုးရီးစ် အချိန်"
+        :standard: "အေဇိုးရီးစ် စံတော်ချိန်"
+    :Bangladesh: 
+      :long: 
+        :daylight: "ဘင်္ဂလားဒေ့ရှ် နွေရာသီ အချိန်"
+        :generic: "ဘင်္ဂလားဒေ့ရှ် အချိန်"
+        :standard: "ဘင်္ဂလားဒေ့ရှ် စံတော်ချိန်"
+    :Bhutan: 
+      :long: 
+        :standard: "ဘူတန် အချိန်"
+    :Bolivia: 
+      :long: 
+        :standard: "ဘိုလီးဘီးယား အချိန်"
+    :Brasilia: 
+      :long: 
+        :daylight: "ဘရာဇီး နွေရာသီ အချိန်"
+        :generic: "ဘရာဇီး အချိန်"
+        :standard: "ဘရာဇီး စံတော်ချိန်"
+    :Brunei: 
+      :long: 
+        :standard: "ဘရူနိုင်း စံတော်ချိန်"
+    :Cape_Verde: 
+      :long: 
+        :daylight: "ကိတ်ဗာဒီ နွေရာသီ အချိန်"
+        :generic: "ကိတ်ဗာဒီ အချိန်"
+        :standard: "ကိတ်ဗာဒီ စံတော်ချိန်"
+    :Chamorro: 
+      :long: 
+        :standard: "ချာမိုရို အချိန်"
+    :Chatham: 
+      :long: 
+        :daylight: "ချားသမ် နွေရာသီ အချိန်"
+        :generic: ချားသမ်အချိန်
+        :standard: ချားသမ်စံတော်ချိန်
+    :Chile: 
+      :long: 
+        :daylight: "ချီလီ နွေရာသီ အချိန်"
+        :generic: "ချီလီ အချိန်"
+        :standard: "ချီလီ စံတော်ချိန်"
+    :China: 
+      :long: 
+        :daylight: "တရုတ် နွေရာသီ အချိန်"
+        :generic: "တရုတ် အချိန်"
+        :standard: "တရုတ် စံတော်ချိန်"
+    :Christmas: 
+      :long: 
+        :standard: "ခရစ်စမတ်ကျွန်း အချိန်"
+    :Cocos: 
+      :long: 
+        :standard: "ကိုကိုးကျွန်း အချိန်"
+    :Colombia: 
+      :long: 
+        :daylight: "ကိုလံဘီယာ နွေရာသီ အချိန်"
+        :generic: "ကိုလံဘီယာ အချိန်"
+        :standard: "ကိုလံဘီယာ စံတော်ချိန်"
+    :Cook: 
+      :long: 
+        :daylight: "ကွတ်ကျွန်းစု နွေရာသီ အချိန်"
+        :generic: "ကွတ်ကျွန်းစု အချိန်"
+        :standard: "ကွတ်ကျွန်းစု စံတော်ချိန်"
+    :Cuba: 
+      :long: 
+        :daylight: "ကျူးဘား နွေရာသီ စံတော်ချိန်"
+        :generic: "ကျူးဘား အချိန်"
+        :standard: "ကျူးဘား စံတော်ချိန်"
+    :Davis: 
+      :long: 
+        :standard: "ဒေးဗစ် အချိန်"
+    :DumontDUrville: 
+      :long: 
+        :standard: "ဒူးမော့တ် ဒါရ်ဗီးလ် အချိန်"
+    :East_Timor: 
+      :long: 
+        :standard: "အရှေ့တီမော အချိန်"
+    :Easter: 
+      :long: 
+        :daylight: "အီစတာကျွန်း နွေရာသီ အချိန်"
+        :generic: "အီစတာကျွန်း အချိန်"
+        :standard: "အီစတာကျွန်း စံတော်ချိန်"
+    :Ecuador: 
+      :long: 
+        :standard: "အီကွေဒေါ အချိန်"
+    :Europe_Central: 
+      :long: 
+        :daylight: "ဥရောပအလယ်ပိုင်း နွေရာသီ အချိန်"
+        :generic: "ဥရောပအလယ်ပိုင်း အချိန်"
+        :standard: "ဥရောပအလယ်ပိုင်း စံတော်ချိန်"
+    :Europe_Eastern: 
+      :long: 
+        :daylight: "အရှေ့ဥရောပ နွေရာသီ အချိန်"
+        :generic: "အရှေ့ဥရောပ အချိန်"
+        :standard: "အရှေ့ဥရောပ စံတော်ချိန်"
+    :Europe_Further_Eastern: 
+      :long: 
+        :standard: "အရှေ့ဖျား ဥရောပဒေသ အချိန်"
+    :Europe_Western: 
+      :long: 
+        :daylight: "အနောက်ဥရောပ နွေရာသီ အချိန်"
+        :generic: "အနောက်ဥရောပ အချိန်"
+        :standard: "အနောက်ဥရောပ စံတော်ချိန်"
+    :Falkland: 
+      :long: 
+        :daylight: "ဖော့ကလန်ကျွန်းစု နွေရာသီ အချိန်"
+        :generic: "ဖော့ကလန်ကျွန်းစု အချိန်"
+        :standard: "ဖော့ကလန်ကျွန်းစု စံတော်ချိန်"
+    :Fiji: 
+      :long: 
+        :daylight: "ဖီဂျီ နွေရာသီ အချိန်"
+        :generic: "ဖီဂျီ အချိန်"
+        :standard: "ဖီဂျီ စံတော်ချိန်"
+    :French_Guiana: 
+      :long: 
+        :standard: "ပြင်သစ် ဂီအားနား အချိန်"
+    :French_Southern: 
+      :long: 
+        :standard: "ပြင်သစ်တောင်ပိုင်းနှင့် အန္တာတိတ် အချိန်"
+    :GMT: 
+      :long: 
+        :standard: "ဂရင်းနစ် စံတော်ချိန်"
+    :Galapagos: 
+      :long: 
+        :standard: "ဂါလားပါဂိုးစ် အချိန်"
+    :Gambier: 
+      :long: 
+        :standard: "ဂမ်ဘီယာ အချိန်"
+    :Georgia: 
+      :long: 
+        :daylight: "ဂျော်ဂျီယာ နွေရာသီ အချိန်"
+        :generic: "ဂျော်ဂျီယာ အချိန်"
+        :standard: "ဂျော်ဂျီယာ စံတော်ချိန်"
+    :Gilbert_Islands: 
+      :long: 
+        :standard: "ဂီလ်ဘတ်ကျွန်းစု အချိန်"
+    :Greenland_Eastern: 
+      :long: 
+        :daylight: "အရှေ့ဂရင်းလန် နွေရာသီ စံတော်ချိန်"
+        :generic: "အရှေ့ဂရင်းလန်း အချိန်"
+        :standard: "အရှေ့ဂရင်းလန်း စံတော်ချိန်"
+    :Greenland_Western: 
+      :long: 
+        :daylight: "အနောက် ဂရင်းလန် နွေရာသီ စံတော်ချိန်"
+        :generic: "အနောက် ဂရင်းလန်း အချိန်"
+        :standard: "အနောက် ဂရင်းလန်း စံတော်ချိန်"
+    :Gulf: 
+      :long: 
+        :standard: "ပင်လယ်ကွေ့ အချိန်"
+    :Guyana: 
+      :long: 
+        :standard: "ဂိုင်ယာနာ အချိန်"
+    :Hawaii_Aleutian: 
+      :long: 
+        :daylight: "ဟာဝိုင်ယီ အယ်လူးရှန်း နွေရာသီ စံတော်ချိန်"
+        :generic: "ဟာဝိုင်ယီ အယ်လူးရှန်း အချိန်"
+        :standard: "ဟာဝိုင်ယီ အယ်လူးရှန်း စံတော်ချိန်"
+    :Hong_Kong: 
+      :long: 
+        :daylight: "ဟောင်ကောင် နွေရာသီ အချိန်"
+        :generic: "ဟောင်ကောင် အချိန်"
+        :standard: "ဟောင်ကောင် စံတော်ချိန်"
+    :Hovd: 
+      :long: 
+        :daylight: "ဟိုးဗ် နွေရာသီ အချိန်"
+        :generic: "ဟိုးဗ် အချိန်"
+        :standard: "ဟိုးဗ် စံတော်ချိန်"
+    :India: 
+      :long: 
+        :standard: "အိန္ဒိယ စံတော်ချိန်"
+    :Indian_Ocean: 
+      :long: 
+        :standard: "အိန္ဒိယသမုဒ္ဒရာ အချိန်"
+    :Indochina: 
+      :long: 
+        :standard: "အင်ဒိုချိုင်းနား အချိန်"
+    :Indonesia_Central: 
+      :long: 
+        :standard: "အလယ်ပိုင်း အင်ဒိုနီးရှား အချိန်"
+    :Indonesia_Eastern: 
+      :long: 
+        :standard: "အရှေ့ပိုင်း အင်ဒိုနီးရှား အချိန်"
+    :Indonesia_Western: 
+      :long: 
+        :standard: "အနောက်ပိုင်း အင်ဒိုနီးရှား အချိန်"
+    :Iran: 
+      :long: 
+        :daylight: "အီရန် နွေရာသီ အချိန်"
+        :generic: "အီရန် အချိန်"
+        :standard: "အီရန် စံတော်ချိန်"
+    :Irkutsk: 
+      :long: 
+        :daylight: "အီရူခူတ် နွေရာသီ အချိန်"
+        :generic: "အီရူခူတ် အချိန်"
+        :standard: "အီရူခူတ် စံတော်ချိန်"
+    :Israel: 
+      :long: 
+        :daylight: "အစ္စရေး နွေရာသီ အချိန်"
+        :generic: "အစ္စရေး အချိန်"
+        :standard: "အစ္စရေး စံတော်ချိန်"
+    :Japan: 
+      :long: 
+        :daylight: "ဂျပန် နွေရာသီ အချိန်"
+        :generic: "ဂျပန် အချိန်"
+        :standard: "ဂျပန် စံတော်ချိန်"
+    :Kazakhstan: 
+      :long: 
+        :standard: "ကာဇက်စတန် အချိန်"
+    :Kazakhstan_Eastern: 
+      :long: 
+        :standard: "အရှေ့ကာဇက်စတန် အချိန်"
+    :Kazakhstan_Western: 
+      :long: 
+        :standard: "အနောက်ကာဇက်စတန် အချိန်"
+    :Korea: 
+      :long: 
+        :daylight: "ကိုရီးယား နွေရာသီ အချိန်"
+        :generic: "ကိုရီးယား အချိန်"
+        :standard: "ကိုရီးယား စံတော်ချိန်"
+    :Kosrae: 
+      :long: 
+        :standard: "ခိုစ်ရိုင် အချိန်"
+    :Krasnoyarsk: 
+      :long: 
+        :daylight: "ခရာ့စ်နိုရာစ် နွေရာသီ အချိန်"
+        :generic: "ခရာ့စ်နိုရာစ် အချိန်"
+        :standard: "ခရာ့စ်နိုရာစ် စံတော်ချိန်"
+    :Kyrgystan: 
+      :long: 
+        :standard: "ကာဂျစ္စတန် အချိန်"
+    :Lanka: 
+      :long: 
+        :standard: "သီရိလင်္ကာ အချိန်"
+    :Line_Islands: 
+      :long: 
+        :standard: "လိုင်းကျွန်းစု အချိန်"
+    :Lord_Howe: 
+      :long: 
+        :daylight: "လော့ဒ်ဟောင် နွေရာသီ အချိန်"
+        :generic: "လော့ဒ်ဟောင် အချိန်"
+        :standard: "လော့ဒ်ဟောင် စံတော်ချိန်"
+    :Macau: 
+      :long: 
+        :daylight: "မကာအို နွေရာသီ အချိန်"
+        :generic: "မကာအို အချိန်"
+        :standard: "မကာအို စံတော်ချိန်"
+    :Magadan: 
+      :long: 
+        :daylight: "မာဂါဒန်း နွေရာသီ အချိန်"
+        :generic: "မာဂါဒန်း အချိန်"
+        :standard: "မာဂါဒန်း စံတော်ချိန်"
+    :Malaysia: 
+      :long: 
+        :standard: "မလေးရှား အချိန်"
+    :Maldives: 
+      :long: 
+        :standard: "မော်လဒိုက် အချိန်"
+    :Marquesas: 
+      :long: 
+        :standard: "မာခေးအပ်စ် အချိန်"
+    :Marshall_Islands: 
+      :long: 
+        :standard: "မာရှယ်ကျွန်းစု အချိန်"
+    :Mauritius: 
+      :long: 
+        :daylight: "မောရစ်ရှ နွေရာသီ အချိန်"
+        :generic: "မောရစ်ရှ အချိန်"
+        :standard: "မောရစ်ရှ စံတော်ချိန်"
+    :Mawson: 
+      :long: 
+        :standard: "မော်စွန် အချိန်"
+    :Mexico_Pacific: 
+      :long: 
+        :daylight: "မက္ကစီကန် ပစိဖိတ် နွေရာသီ စံတော်ချိန်"
+        :generic: "မက္ကဆီကန် ပစိဖိတ် အချိန်"
+        :standard: "မက္ကဆီကန် ပစိဖိတ် စံတော်ချိန်"
+    :Mongolia: 
+      :long: 
+        :daylight: "ဥလန်ဘာတော နွေရာသီ အချိန်"
+        :generic: "ဥလန်ဘာတော အချိန်"
+        :standard: "ဥလန်ဘာတော စံတော်ချိန်"
+    :Moscow: 
+      :long: 
+        :daylight: "မော်စကို နွေရာသီ အချိန်"
+        :generic: "မော်စကို အချိန်"
+        :standard: "မော်စကို စံတော်ချိန်"
+    :Myanmar: 
+      :long: 
+        :standard: "မြန်မာ အချိန်"
+    :Nauru: 
+      :long: 
+        :standard: "နာဥူရူ အချိန်"
+    :Nepal: 
+      :long: 
+        :standard: "နီပေါ အချိန်"
+    :New_Caledonia: 
+      :long: 
+        :daylight: "နယူးကာလီဒိုးနီးယား နွေရာသီ အချိန်"
+        :generic: "နယူးကယ်လီဒိုးနီးယား အချိန်"
+        :standard: "နယူးကာလီဒိုးနီးယား စံတော်ချိန်"
+    :New_Zealand: 
+      :long: 
+        :daylight: "နယူးဇီလန် နွေရာသီ အချိန်"
+        :generic: "နယူးဇီလန် အချိန်"
+        :standard: "နယူးဇီလန် စံတော်ချိန်"
+    :Newfoundland: 
+      :long: 
+        :daylight: "နယူးဖောင်လန် နွေရာသီ စံတော်ချိန်"
+        :generic: "နယူးဖောင်လန် အချိန်"
+        :standard: "နယူးဖောင်လန် စံတော်ချိန်"
+    :Niue: 
+      :long: 
+        :standard: "နီဥူအေ အချိန်"
+    :Norfolk: 
+      :long: 
+        :daylight: "နောဖော့ခ်ကျွန်း နွေရာသီ စံတော်ချိန်"
+        :generic: "နောဖော့ခ်ကျွန်း အချိန်"
+        :standard: "နောဖော့ခ်ကျွန်း စံတော်ချိန်"
+    :Noronha: 
+      :long: 
+        :daylight: "ဖာနန်ဒိုးဒီနိုးရိုးညာ နွေရာသီ အချိန်"
+        :generic: "ဖာနန်ဒိုးဒီနိုးရိုးညာ အချိန်"
+        :standard: "ဖာနန်ဒိုးဒီနိုးရိုးညာ စံတော်ချိန်"
+    :Novosibirsk: 
+      :long: 
+        :daylight: "နိုဗိုစဲဘီအဲယ်စ် နွေရာသီ အချိန်"
+        :generic: "နိုဗိုစဲဘီအဲယ်စ် အချိန်"
+        :standard: "နိုဗိုစဲဘီအဲယ်စ် စံတော်ချိန်"
+    :Omsk: 
+      :long: 
+        :daylight: "အွမ်းစ်ခ် နွေရာသီ အချိန်"
+        :generic: "အွမ်းစ်ခ် အချိန်"
+        :standard: "အွမ်းစ်ခ် စံတော်ချိန်"
+    :Pakistan: 
+      :long: 
+        :daylight: "ပါကစ္စတန် နွေရာသီ အချိန်"
+        :generic: "ပါကစ္စတန် အချိန်"
+        :standard: "ပါကစ္စတန် စံတော်ချိန်"
+    :Palau: 
+      :long: 
+        :standard: "ပလာအို အချိန်"
+    :Papua_New_Guinea: 
+      :long: 
+        :standard: "ပါပူအာနယူးဂီနီ အချိန်"
+    :Paraguay: 
+      :long: 
+        :daylight: "ပါရာဂွေး နွေရာသီ အချိန်"
+        :generic: "ပါရာဂွေး အချိန်"
+        :standard: "ပါရာဂွေး စံတော်ချိန်"
+    :Peru: 
+      :long: 
+        :daylight: "ပီရူး နွေရာသီ အချိန်"
+        :generic: "ပီရူး အချိန်"
+        :standard: "ပီရူး စံတော်ချိန်"
+    :Philippines: 
+      :long: 
+        :daylight: "ဖိလစ်ပိုင် နွေရာသီ အချိန်"
+        :generic: "ဖိလစ်ပိုင် အချိန်"
+        :standard: "ဖိလစ်ပိုင် စံတော်ချိန်"
+    :Phoenix_Islands: 
+      :long: 
+        :standard: "ဖီးနစ်ကျွန်းစု အချိန်"
+    :Pierre_Miquelon: 
+      :long: 
+        :daylight: "စိန့်ပီအဲနှင့် မီခွီလွန် နွေရာသီ စံတော်ချိန်"
+        :generic: စိန့်ပီအဲနှင့်မီခွီလွန်အချိန်
+        :standard: စိန့်ပီအဲနှင့်မီခွီလွန်စံတော်ချိန်
+    :Pitcairn: 
+      :long: 
+        :standard: "ပါတ်ကယ်ရင် အချိန်"
+    :Ponape: 
+      :long: 
+        :standard: "ဖိုနာဖဲအ် အချိန်"
+    :Pyongyang: 
+      :long: 
+        :standard: "ပြုံယန်း အချိန်"
+    :Reunion: 
+      :long: 
+        :standard: "ရီယူနီယံ အချိန်"
+    :Rothera: 
+      :long: 
+        :standard: "ရိုသီရာ အချိန်"
+    :Sakhalin: 
+      :long: 
+        :daylight: "ဆာခါလင် နွေရာသီ အချိန်"
+        :generic: "ဆာခါလင် အချိန်"
+        :standard: "ဆာခါလင် စံတော်ချိန်"
+    :Samoa: 
+      :long: 
+        :daylight: "ဆမိုးအား နွေရာသီ အချိန်"
+        :generic: "ဆမိုအာ အချိန်"
+        :standard: "ဆမိုအာ စံတော်ချိန်"
+    :Seychelles: 
+      :long: 
+        :standard: "ဆေးရှဲ အချိန်"
+    :Singapore: 
+      :long: 
+        :standard: "စင်္ကာပူ အချိန်"
+    :Solomon: 
+      :long: 
+        :standard: "ဆော်လမွန်ကျွန်းစု အချိန်"
+    :South_Georgia: 
+      :long: 
+        :standard: "တောင်ဂျော်ဂျီယာ အချိန်"
+    :Suriname: 
+      :long: 
+        :standard: စူးရီနာမ်အချိန်
+    :Syowa: 
+      :long: 
+        :standard: "ရှိုဝါ အချိန်"
+    :Tahiti: 
+      :long: 
+        :standard: "တဟီတီ အချိန်"
+    :Taipei: 
+      :long: 
+        :daylight: "ထိုင်ပေ နွေရာသီ အချိန်"
+        :generic: "ထိုင်ပေ အချိန်"
+        :standard: "ထိုင်ပေ စံတော်ချိန်"
+    :Tajikistan: 
+      :long: 
+        :standard: "တာဂျစ်ကစ္စတန် အချိန်"
+    :Tokelau: 
+      :long: 
+        :standard: "တိုကီလာဥ အချိန်"
+    :Tonga: 
+      :long: 
+        :daylight: "တွန်ဂါ နွေရာသီ အချိန်"
+        :generic: "တွန်ဂါ အချိန်"
+        :standard: "တွန်ဂါ စံတော်ချိန်"
+    :Truk: 
+      :long: 
+        :standard: "ချုခ် အချိန်"
+    :Turkmenistan: 
+      :long: 
+        :daylight: "တာ့ခ်မင်နစ္စတန် နွေရာသီ အချိန်"
+        :generic: "တာ့ခ်မင်နစ္စတန် အချိန်"
+        :standard: "တာ့ခ်မင်နစ္စတန် စံတော်ချိန်"
+    :Tuvalu: 
+      :long: 
+        :standard: "တူဗားလူ အချိန်"
+    :Uruguay: 
+      :long: 
+        :daylight: "ဥရုဂွေး နွေရာသီ အချိန်"
+        :generic: "ဥရုဂွေး အချိန်"
+        :standard: "ဥရုဂွေး စံတော်ချိန်"
+    :Uzbekistan: 
+      :long: 
+        :daylight: "ဥဇဘက်ကစ္စတန် နွေရာသီ အချိန်"
+        :generic: "ဥဇဘက်ကစ္စတန် အချိန်"
+        :standard: "ဥဇဘက်ကစ္စတန် စံတော်ချိန်"
+    :Vanuatu: 
+      :long: 
+        :daylight: "ဗနွားတူ နွေရာသီ အချိန်"
+        :generic: "ဗနွားတူ အချိန်"
+        :standard: "ဗနွားတူ စံတော်ချိန်"
+    :Venezuela: 
+      :long: 
+        :standard: "ဗင်နီဇွဲလား အချိန်"
+    :Vladivostok: 
+      :long: 
+        :daylight: "ဗလာဒီဗော့စတော့ခ် နွေရာသီ အချိန်"
+        :generic: "ဗလာဒီဗော့စတော့ခ် အချိန်"
+        :standard: "ဗလာဒီဗော့စတော့ခ် စံတော်ချိန်"
+    :Volgograd: 
+      :long: 
+        :daylight: "ဗိုဂိုဂရက် နွေရာသီ အချိန်"
+        :generic: "ဗိုလ်ဂိုဂရက် အချိန်"
+        :standard: "ဗိုလ်ဂိုဂရက် စံတော်ချိန်"
+    :Vostok: 
+      :long: 
+        :standard: "ဗိုစ်တိုခ် အချိန်"
+    :Wake: 
+      :long: 
+        :standard: "ဝိတ်ခ်ကျွန်း အချိန်"
+    :Wallis: 
+      :long: 
+        :standard: "ဝေါလီစ်နှင့် ဖူကျူနာ အချိန်"
+    :Yakutsk: 
+      :long: 
+        :daylight: "ယူခူးတ်စ် နွေရာသီ အချိန်"
+        :generic: "ယူခူးတ်စ် အချိန်"
+        :standard: "ယူခူးတ်စ် စံတော်ချိန်"
+    :Yekaterinburg: 
+      :long: 
+        :daylight: "ရယ်ခါးတီရင်ဘာခ် နွေရာသီ အချိန်"
+        :generic: "ရယ်ခါးတီရင်ဘားခ် အချိန်"
+        :standard: "ရယ်ခါးတီရင်ဘားခ် စံတော်ချိန်"
+    :Yukon: 
+      :long: 
+        :standard: "ယူကွန်း အချိန်"
+  :timezones: 
+    :Africa/Abidjan: 
+      :city: အာဘီဂျန်
+    :Africa/Accra: 
+      :city: အက်ကရာ
+    :Africa/Addis_Ababa: 
+      :city: "အားဒစ် အဘာဘာ"
+    :Africa/Algiers: 
+      :city: အယ်လ်ဂျီးရီးယား
+    :Africa/Asmera: 
+      :city: အားစ်မားရာ
+    :Africa/Bamako: 
+      :city: ဘာမာကို
+    :Africa/Bangui: 
+      :city: ဘာန်ဂီး
+    :Africa/Banjul: 
+      :city: ဘန်ဂျုးလ်
+    :Africa/Bissau: 
+      :city: ဘီစာအို
+    :Africa/Blantyre: 
+      :city: ဘလန်တိုင်းရဲလ်
+    :Africa/Brazzaville: 
+      :city: ဘရားဇာဗီးလ်
+    :Africa/Bujumbura: 
+      :city: ဘူဂျွန်ဘူးရာ
+    :Africa/Cairo: 
+      :city: ကိုင်ရို
+    :Africa/Casablanca: 
+      :city: ကာဆာဘလန်ကာ
+    :Africa/Ceuta: 
+      :city: ဆီရူးတာ
+    :Africa/Conakry: 
+      :city: ကိုနာကရီး
+    :Africa/Dakar: 
+      :city: ဒကျကား
+    :Africa/Dar_es_Salaam: 
+      :city: ဒါရက်စ်ဆာလမ်
+    :Africa/Djibouti: 
+      :city: ဂျီဘူတီ
+    :Africa/Douala: 
+      :city: ဒိုအူအာလာ
+    :Africa/El_Aaiun: 
+      :city: အယ်လ်အာယွန်း
+    :Africa/Freetown: 
+      :city: ဖရီးတောင်းန်
+    :Africa/Gaborone: 
+      :city: ဂါဘာရွန်းနီ
+    :Africa/Harare: 
+      :city: ဟာရားရဲယ်
+    :Africa/Johannesburg: 
+      :city: ဂျိုဟန်းနက်စဘတ်
+    :Africa/Juba: 
+      :city: ဂျုဘာ
+    :Africa/Kampala: 
+      :city: ကမ်ပါလာ
+    :Africa/Khartoum: 
+      :city: ခါတိုအန်
+    :Africa/Kigali: 
+      :city: ကီဂါးလီ
+    :Africa/Kinshasa: 
+      :city: ကင်ရှာစာ
+    :Africa/Lagos: 
+      :city: လာဂိုစ်
+    :Africa/Libreville: 
+      :city: လီဗရာဗီးလ်
+    :Africa/Lome: 
+      :city: လိုမီ
+    :Africa/Luanda: 
+      :city: လူဝမ်ဒါ
+    :Africa/Lubumbashi: 
+      :city: လူဘွန်းဘာရှီ
+    :Africa/Lusaka: 
+      :city: လူစာကာ
+    :Africa/Malabo: 
+      :city: မာလာဘို
+    :Africa/Maputo: 
+      :city: မာပူးတို
+    :Africa/Maseru: 
+      :city: မာဆူရူး
+    :Africa/Mbabane: 
+      :city: ဘားဘာန်း
+    :Africa/Mogadishu: 
+      :city: မော်ဂါဒီးသျုး
+    :Africa/Monrovia: 
+      :city: မွန်ရိုးဗီးယား
+    :Africa/Nairobi: 
+      :city: နိုင်ရိုဘီ
+    :Africa/Ndjamena: 
+      :city: အင်ဂျာမီနာ
+    :Africa/Niamey: 
+      :city: ညာမဲယ်
+    :Africa/Nouakchott: 
+      :city: နိုအာ့ခ်ရှော့တ်
+    :Africa/Ouagadougou: 
+      :city: ဝါဂါဒူးဂူ
+    :Africa/Porto-Novo: 
+      :city: ပိုတို-နိုဗို
+    :Africa/Sao_Tome: 
+      :city: ဆောင်တူမေး
+    :Africa/Tripoli: 
+      :city: ထရီပိုလီ
+    :Africa/Tunis: 
+      :city: တူနီစ်
+    :Africa/Windhoek: 
+      :city: ဗင်းဟူးခ်
+    :America/Adak: 
+      :city: အာဒချ
+    :America/Anchorage: 
+      :city: အန်ကာရေ့ဂျ်
+    :America/Anguilla: 
+      :city: အန်ဂီလာ
+    :America/Antigua: 
+      :city: အန်တီဂွါ
+    :America/Araguaina: 
+      :city: အာရာဂွါအီနာ
+    :America/Argentina/La_Rioja: 
+      :city: "လာ ရီယိုဟာ"
+    :America/Argentina/Rio_Gallegos: 
+      :city: "ရီယို ဂါလီဂိုစ်"
+    :America/Argentina/Salta: 
+      :city: ဆာလ်တာ
+    :America/Argentina/San_Juan: 
+      :city: "ဆန် ဂွမ်"
+    :America/Argentina/San_Luis: 
+      :city: "ဆန် လူဝီစ်"
+    :America/Argentina/Tucuman: 
+      :city: တူကူမန်
+    :America/Argentina/Ushuaia: 
+      :city: ဥဆွာအီအာ
+    :America/Aruba: 
+      :city: အာရူးဗာ
+    :America/Asuncion: 
+      :city: အာဆူစီအွန်း
+    :America/Bahia: 
+      :city: ဘာဟီအာ
+    :America/Bahia_Banderas: 
+      :city: "ဘာဟီအာ ဘန်ဒရက်စ်"
+    :America/Barbados: 
+      :city: ဘာဘေးဒိုးစ်
+    :America/Belem: 
+      :city: ဘီလင်မ်
+    :America/Belize: 
+      :city: ဘလိဇ်
+    :America/Blanc-Sablon: 
+      :city: ဘလွန်ခ်-စာဘလွန်
+    :America/Boa_Vista: 
+      :city: ဘိုအာဗီစ်တာ
+    :America/Bogota: 
+      :city: ဘိုဂိုတာ
+    :America/Boise: 
+      :city: ဗွိုက်စီ
+    :America/Buenos_Aires: 
+      :city: ဗျူနိုအေးရိစ်
+    :America/Cambridge_Bay: 
+      :city: "ကိန်းဘရစ်ချ် ဘေး"
+    :America/Campo_Grande: 
+      :city: "ကိမ်ပို ဂရန်ဒီ"
+    :America/Cancun: 
+      :city: ကန်ခန်
+    :America/Caracas: 
+      :city: ကာရာကာစ်
+    :America/Catamarca: 
+      :city: ကာတာမာရကာ
+    :America/Cayenne: 
+      :city: ကေညင်န်
+    :America/Cayman: 
+      :city: ကေမန်
+    :America/Chicago: 
+      :city: ချီကာကို
+    :America/Chihuahua: 
+      :city: ချီဟူအာဟူအာ
+    :America/Ciudad_Juarez: 
+      :city: "စီယူဒတ်စ် ဟွာရက်စ်"
+    :America/Coral_Harbour: 
+      :city: အာတီကိုကန်
+    :America/Cordoba: 
+      :city: ကိုဒိုဘာ
+    :America/Costa_Rica: 
+      :city: ကို့စတာရီကာ
+    :America/Creston: 
+      :city: ကရစ်စတွန်
+    :America/Cuiaba: 
+      :city: ကွီရာဘာ
+    :America/Curacao: 
+      :city: ကျူရေးကိုး
+    :America/Danmarkshavn: 
+      :city: ဒန်မတ်ရှ်ဗာန်
+    :America/Dawson: 
+      :city: ဒေါ်ဆန်
+    :America/Dawson_Creek: 
+      :city: "ဒေါ်ဆန် ခရိခ်"
+    :America/Denver: 
+      :city: ဒင်န်ဗာ
+    :America/Detroit: 
+      :city: ဒက်ထရွိုက်
+    :America/Dominica: 
+      :city: ဒိုမီနီကာ
+    :America/Edmonton: 
+      :city: အက်ဒ်မွန်တန်
+    :America/Eirunepe: 
+      :city: အီရူနီပီ
+    :America/El_Salvador: 
+      :city: အယ်လ်ဆာဗေဒို
+    :America/Fort_Nelson: 
+      :city: "ဖို့တ် နယ်လ်ဆင်"
+    :America/Fortaleza: 
+      :city: ဖို့တ်တာလီဇာ
+    :America/Glace_Bay: 
+      :city: ဂလဲစ်ဘေး
+    :America/Godthab: 
+      :city: နုခ်
+    :America/Goose_Bay: 
+      :city: ဂူးစ်ဘေး
+    :America/Grand_Turk: 
+      :city: "ဂရန်ဒ် တခ်"
+    :America/Grenada: 
+      :city: ဂရီနေဒါ
+    :America/Guadeloupe: 
+      :city: ဂွါဒီလုပ်
+    :America/Guatemala: 
+      :city: ဂွါတီမာလာ
+    :America/Guayaquil: 
+      :city: ဂွါရာကွီးလ်
+    :America/Guyana: 
+      :city: ဂိုင်ယာနာ
+    :America/Halifax: 
+      :city: ဟလီဖက်စ်
+    :America/Havana: 
+      :city: ဟာဗာနာ
+    :America/Hermosillo: 
+      :city: ဟာမိုစ်စီလို
+    :America/Indiana/Knox: 
+      :city: "နောက်ခ်စ်၊ အင်ဒီယားနား"
+    :America/Indiana/Marengo: 
+      :city: "မာရန်ဂို၊ အင်ဒီယားနား"
+    :America/Indiana/Petersburg: 
+      :city: "ပီတာစ်ဘတ်ခ်၊ အင်ဒီယားနား"
+    :America/Indiana/Tell_City: 
+      :city: "တဲလ်စီးတီး၊ အင်ဒီယားနား"
+    :America/Indiana/Vevay: 
+      :city: "ဗီဗဲ၊ အင်ဒီယားနား"
+    :America/Indiana/Vincennes: 
+      :city: "ဗင်ဆင့်စ်၊ အင်ဒီယားနား"
+    :America/Indiana/Winamac: 
+      :city: "ဝီနာမက်ခ်၊ အင်ဒီယားနား"
+    :America/Indianapolis: 
+      :city: "အင်ဒီယားနား ပိုလိစ်"
+    :America/Inuvik: 
+      :city: အီနုဗီခ်
+    :America/Iqaluit: 
+      :city: အီကာလူအီတ်
+    :America/Jamaica: 
+      :city: ဂျမေကာ
+    :America/Jujuy: 
+      :city: ဂျုဂျေ
+    :America/Juneau: 
+      :city: ဂျုနိုအော
+    :America/Kentucky/Monticello: 
+      :city: "မွန်တီချယ်လို၊ ကင်တပ်ကီ"
+    :America/Kralendijk: 
+      :city: ခရာလဲန်းဒစ်ချ်
+    :America/La_Paz: 
+      :city: လာပါဇ်
+    :America/Lima: 
+      :city: လီမာ
+    :America/Los_Angeles: 
+      :city: လော့စ်အိန်ဂျယ်လိစ်
+    :America/Louisville: 
+      :city: လူဝီဗီးလ်
+    :America/Lower_Princes: 
+      :city: "လိုအာပရင့်စ် ကွာတာ"
+    :America/Maceio: 
+      :city: မာဆဲသွာ
+    :America/Managua: 
+      :city: မာနာဂွါ
+    :America/Manaus: 
+      :city: မာနောက်စ်
+    :America/Marigot: 
+      :city: မာရီဂေါ့
+    :America/Martinique: 
+      :city: မာတီနီဂ်
+    :America/Matamoros: 
+      :city: မာတာမိုရိုစ်
+    :America/Mazatlan: 
+      :city: မာဇတ်လန်
+    :America/Mendoza: 
+      :city: မန်ဒိုဇာ
+    :America/Menominee: 
+      :city: မီနိုမီနီး
+    :America/Merida: 
+      :city: မီရီဒါ
+    :America/Metlakatla: 
+      :city: မက်တ်လာကက်လာ
+    :America/Mexico_City: 
+      :city: "မက်ကဆီကို စီးတီး"
+    :America/Miquelon: 
+      :city: မီကွီလွန်
+    :America/Moncton: 
+      :city: မွန်ခ်တွန်
+    :America/Monterrey: 
+      :city: မွန်တဲရေး
+    :America/Montevideo: 
+      :city: မွန်တီဗီဒီအို
+    :America/Montserrat: 
+      :city: မွန့်(တ်)ဆေးရတ်
+    :America/Nassau: 
+      :city: နာ့ဆော်
+    :America/New_York: 
+      :city: နယူးယောက်
+    :America/Nome: 
+      :city: နိုမီ
+    :America/Noronha: 
+      :city: နိုရိုညာ
+    :America/North_Dakota/Beulah: 
+      :city: "ဗြူလာ၊ မြောက်ဒါကိုတာ"
+    :America/North_Dakota/Center: 
+      :city: "စင်တာ၊ မြောက်ဒါကိုတာ"
+    :America/North_Dakota/New_Salem: 
+      :city: "နယူးဆေးလမ်၊ မြောက်ဒါကိုတာ"
+    :America/Ojinaga: 
+      :city: အိုခီနဂါ
+    :America/Panama: 
+      :city: ပနားမား
+    :America/Paramaribo: 
+      :city: ပါရာမာရီဘို
+    :America/Phoenix: 
+      :city: ဖီးနစ်
+    :America/Port-au-Prince: 
+      :city: ပို့တ်-အို-ပရင့်စ်
+    :America/Port_of_Spain: 
+      :city: "ပို့တ် အော့ဖ် စပိန်"
+    :America/Porto_Velho: 
+      :city: "ပို့တ်တို ဗဲလီယို"
+    :America/Puerto_Rico: 
+      :city: ပေါ်တိုရီကို
+    :America/Punta_Arenas: 
+      :city: "ပွန်တာ အရီနာစ်"
+    :America/Rankin_Inlet: 
+      :city: "ရန်ကင် အင်းလက်"
+    :America/Recife: 
+      :city: ဟေစီဖီလ်
+    :America/Regina: 
+      :city: ရယ်ဂျီနာ
+    :America/Resolute: 
+      :city: ရီဆိုလုပ်(တ်)
+    :America/Rio_Branco: 
+      :city: "ရီယို ဘရန်ကို"
+    :America/Santarem: 
+      :city: ဆန်တာရမ်
+    :America/Santiago: 
+      :city: ဆန်တီအာဂို
+    :America/Santo_Domingo: 
+      :city: "ဆန်တို ဒိုမင်းဂို"
+    :America/Sao_Paulo: 
+      :city: ဆော်ပိုလို
+    :America/Scoresbysund: 
+      :city: "အစ်တာကာ တိုးမိရက်တ်"
+    :America/Sitka: 
+      :city: စစ်ကာ
+    :America/St_Barthelemy: 
+      :city: စိန့်ဘာသယ်လမီ
+    :America/St_Johns: 
+      :city: စိန့်ဂျွန်း
+    :America/St_Kitts: 
+      :city: စိန့်ကိစ်
+    :America/St_Lucia: 
+      :city: စိန့်လူစီယာ
+    :America/St_Thomas: 
+      :city: စိန့်သောမတ်စ်
+    :America/St_Vincent: 
+      :city: စိန့်ဗင်းဆင့်
+    :America/Swift_Current: 
+      :city: "စွတ်ဖ်တ် ကားရင့်"
+    :America/Tegucigalpa: 
+      :city: တီဂူစီဂလ်ပါ
+    :America/Thule: 
+      :city: သုလီ
+    :America/Tijuana: 
+      :city: တီဂွါနာ
+    :America/Toronto: 
+      :city: တိုရန်တို
+    :America/Tortola: 
+      :city: တောတိုလာ
+    :America/Vancouver: 
+      :city: ဗန်ကူးဗား
+    :America/Whitehorse: 
+      :city: ဝိုက်(တ်)ဟိုစ်
+    :America/Winnipeg: 
+      :city: ဝီနီဗက်ဂ်
+    :America/Yakutat: 
+      :city: ရာကုတတ်
+    :Antarctica/Casey: 
+      :city: ကေစီ
+    :Antarctica/Davis: 
+      :city: ဒေးဗစ်
+    :Antarctica/DumontDUrville: 
+      :city: "ဒူးမော့တ် ဒါရ်ဗီးလ်"
+    :Antarctica/Macquarie: 
+      :city: မက်ကွယ်ရီ
+    :Antarctica/Mawson: 
+      :city: မော်စွန်
+    :Antarctica/McMurdo: 
+      :city: မက်မူဒိုး
+    :Antarctica/Palmer: 
+      :city: ပါလ်မာ
+    :Antarctica/Rothera: 
+      :city: ရိုသီရာ
+    :Antarctica/Syowa: 
+      :city: ရှိုးဝါ
+    :Antarctica/Troll: 
+      :city: ထရိုလ်
+    :Antarctica/Vostok: 
+      :city: ဗိုစ်တိုခ်
+    :Arctic/Longyearbyen: 
+      :city: လောင်ရီယားဘရံ
+    :Asia/Aden: 
+      :city: အာဒင်
+    :Asia/Almaty: 
+      :city: အော်မာတီ
+    :Asia/Amman: 
+      :city: အာမာန်း
+    :Asia/Anadyr: 
+      :city: အန်အာဒီအာ
+    :Asia/Aqtau: 
+      :city: အက်တာဥု
+    :Asia/Aqtobe: 
+      :city: အာချတူးဘီ
+    :Asia/Ashgabat: 
+      :city: အာရှ်ဂါဘာဒ်
+    :Asia/Atyrau: 
+      :city: အာတီရအူ
+    :Asia/Baghdad: 
+      :city: ဘဂ္ဂဒက်
+    :Asia/Bahrain: 
+      :city: ဘာရိန်း
+    :Asia/Baku: 
+      :city: ဘာကူ
+    :Asia/Bangkok: 
+      :city: ဘန်ကောက်
+    :Asia/Barnaul: 
+      :city: ဘရ်နာအူ
+    :Asia/Beirut: 
+      :city: ဘေရွတ်
+    :Asia/Bishkek: 
+      :city: ဘီရှ်ခက်
+    :Asia/Brunei: 
+      :city: ဘရူနိုင်း
+    :Asia/Calcutta: 
+      :city: ကိုလျကတ်တား
+    :Asia/Chita: 
+      :city: ချီတာ
+    :Asia/Colombo: 
+      :city: ကိုလံဘို
+    :Asia/Damascus: 
+      :city: ဒမားစကပ်
+    :Asia/Dhaka: 
+      :city: ဒက်ကာ
+    :Asia/Dili: 
+      :city: ဒစ်လီ
+    :Asia/Dubai: 
+      :city: ဒူဘိုင်း
+    :Asia/Dushanbe: 
+      :city: ဒူရှန်းဘဲ
+    :Asia/Famagusta: 
+      :city: ဖာမာဂူစတာ
+    :Asia/Gaza: 
+      :city: ဂါဇာ
+    :Asia/Hebron: 
+      :city: ဟီဘရွန်
+    :Asia/Hong_Kong: 
+      :city: ဟောင်ကောင်
+    :Asia/Hovd: 
+      :city: ဟိုးဗျ
+    :Asia/Irkutsk: 
+      :city: အီရူခူတ်
+    :Asia/Jakarta: 
+      :city: ဂျကာတာ
+    :Asia/Jayapura: 
+      :city: ဂျာရာပူရာ
+    :Asia/Jerusalem: 
+      :city: ဂျေရုဆလင်
+    :Asia/Kabul: 
+      :city: ကာဘူးလ်
+    :Asia/Kamchatka: 
+      :city: ခမ်ချာ့ခါ
+    :Asia/Karachi: 
+      :city: ကရာချိ
+    :Asia/Katmandu: 
+      :city: ခတ်တမန်ဒူ
+    :Asia/Khandyga: 
+      :city: ခန်ဒိုင်ဂါ
+    :Asia/Krasnoyarsk: 
+      :city: ခရာ့စ်နိုရာစ်
+    :Asia/Kuala_Lumpur: 
+      :city: ကွာလာလမ်ပူ
+    :Asia/Kuching: 
+      :city: ကူချင်
+    :Asia/Kuwait: 
+      :city: ကူဝိတ်
+    :Asia/Macau: 
+      :city: မကာအို
+    :Asia/Magadan: 
+      :city: မာဂါဒန်း
+    :Asia/Makassar: 
+      :city: မခက်စ်ဆာ
+    :Asia/Manila: 
+      :city: မနီလာ
+    :Asia/Muscat: 
+      :city: မတ်စ်ကက်တ်
+    :Asia/Nicosia: 
+      :city: နီကိုရှား
+    :Asia/Novokuznetsk: 
+      :city: နိုဗိုခူဇ်နက်စ်
+    :Asia/Novosibirsk: 
+      :city: နိုဗိုစဲဘီအဲယ်စ်
+    :Asia/Omsk: 
+      :city: အွမ်းစ်ခ်
+    :Asia/Oral: 
+      :city: အော်ရဲလ်
+    :Asia/Phnom_Penh: 
+      :city: ဖနွမ်ပင်
+    :Asia/Pontianak: 
+      :city: ပွန်တီအားနာ့ခ်
+    :Asia/Pyongyang: 
+      :city: ပြုံယန်း
+    :Asia/Qatar: 
+      :city: ကာတာ
+    :Asia/Qostanay: 
+      :city: ကော့စ်တနေ
+    :Asia/Qyzylorda: 
+      :city: ကီဇလော်ဒါ
+    :Asia/Rangoon: 
+      :city: ရန်ကုန်
+    :Asia/Riyadh: 
+      :city: ရီယားဒ်
+    :Asia/Saigon: 
+      :city: ဟိုချီမင်းစီးတီး
+    :Asia/Sakhalin: 
+      :city: ဆာခါလင်
+    :Asia/Samarkand: 
+      :city: ဆမ်းမာခန်းဒ်
+    :Asia/Seoul: 
+      :city: ဆိုးလ်
+    :Asia/Shanghai: 
+      :city: ရှန်ဟိုင်း
+    :Asia/Singapore: 
+      :city: စင်္ကာပူ
+    :Asia/Srednekolymsk: 
+      :city: ဆရစ်နစ်ကာလင်မ်စ်
+    :Asia/Taipei: 
+      :city: တိုင်ပေ
+    :Asia/Tashkent: 
+      :city: တာရှ်ကဲန့်
+    :Asia/Tbilisi: 
+      :city: တဘီးလီစီ
+    :Asia/Tehran: 
+      :city: တီဟီရန်
+    :Asia/Thimphu: 
+      :city: တင်ဖူး
+    :Asia/Tokyo: 
+      :city: တိုကျို
+    :Asia/Tomsk: 
+      :city: တွန်မ်စ်ခ်
+    :Asia/Ulaanbaatar: 
+      :city: ဥလန်ဘာတော
+    :Asia/Urumqi: 
+      :city: အူရုမ်ချီ
+    :Asia/Ust-Nera: 
+      :city: "အူးစ် နီရား"
+    :Asia/Vientiane: 
+      :city: ဗီယင်ကျန်း
+    :Asia/Vladivostok: 
+      :city: ဗလာဒီဗော့စတော့ခ်
+    :Asia/Yakutsk: 
+      :city: ယူခူးတ်စ်
+    :Asia/Yekaterinburg: 
+      :city: ရယ်ခါးတီရင်ဘားခ်
+    :Asia/Yerevan: 
+      :city: ရဲယ်ရေဗန်း
+    :Atlantic/Azores: 
+      :city: အေဇိုးရီးစ်
+    :Atlantic/Bermuda: 
+      :city: ဘာမြူဒါ
+    :Atlantic/Canary: 
+      :city: ကနေရီ
+    :Atlantic/Cape_Verde: 
+      :city: "ကိတ်ပ် ဗာဒီ"
+    :Atlantic/Faeroe: 
+      :city: ဖါရို
+    :Atlantic/Madeira: 
+      :city: မဒီးရာ
+    :Atlantic/Reykjavik: 
+      :city: ရေးကီဗစ်ခ်
+    :Atlantic/South_Georgia: 
+      :city: တောင်ဂျော်ဂျီယာ
+    :Atlantic/St_Helena: 
+      :city: စိန့်ဟယ်လယ်နာ
+    :Atlantic/Stanley: 
+      :city: စတန်လေ
+    :Australia/Adelaide: 
+      :city: အန္ဒီလိတ်ဒ်
+    :Australia/Brisbane: 
+      :city: ဘရစ္စဘိန်း
+    :Australia/Broken_Hill: 
+      :city: ဘရိုကင်ဟီးလ်
+    :Australia/Darwin: 
+      :city: ဒါဝင်
+    :Australia/Eucla: 
+      :city: ယူးခလာ
+    :Australia/Hobart: 
+      :city: ဟိုးဘားတ်
+    :Australia/Lindeman: 
+      :city: လင်းဒီမန်း
+    :Australia/Lord_Howe: 
+      :city: "လော့ဒ် ဟောင်"
+    :Australia/Melbourne: 
+      :city: မဲလ်ဘုန်း
+    :Australia/Perth: 
+      :city: ပါးသ်
+    :Australia/Sydney: 
+      :city: ဆစ်ဒနီ
+    :Etc/UTC: 
+      :long: 
+        :standard: "ညှိထားသည့် ကမ္ဘာ့ စံတော်ချိန်"
+      :short: 
+        :standard: UTC
+    :Etc/Unknown: 
+      :city: အမည်မသိသောမြို့
+    :Europe/Amsterdam: 
+      :city: အမ်စတာဒမ်
+    :Europe/Andorra: 
+      :city: အန်ဒိုရာ
+    :Europe/Astrakhan: 
+      :city: အားစ်တရခန်း
+    :Europe/Athens: 
+      :city: အေသင်
+    :Europe/Belgrade: 
+      :city: ဘဲလ်ဂရိတ်
+    :Europe/Berlin: 
+      :city: ဘာလင်
+    :Europe/Bratislava: 
+      :city: ဘရာတီးစ်လားဗာ
+    :Europe/Brussels: 
+      :city: ဘရပ်ဆဲလ်
+    :Europe/Bucharest: 
+      :city: ဘူခါရက်စ်
+    :Europe/Budapest: 
+      :city: ဘူဒါပက်စ်
+    :Europe/Busingen: 
+      :city: ဘူရှင်ဂျင်
+    :Europe/Chisinau: 
+      :city: ချီရှီနားအူ
+    :Europe/Copenhagen: 
+      :city: ကိုပင်ဟေဂင်
+    :Europe/Dublin: 
+      :city: ဒတ်ဘလင်
+      :long: 
+        :daylight: "အိုင်းရစ်ရှ် စံတော်ချိန်"
+    :Europe/Gibraltar: 
+      :city: ဂျီဘရော်လ်တာ
+    :Europe/Guernsey: 
+      :city: ဂွန်းဇီ
+    :Europe/Helsinki: 
+      :city: ဟဲလ်စင်ကီ
+    :Europe/Isle_of_Man: 
+      :city: မန်းကျွန်း
+    :Europe/Istanbul: 
+      :city: အစ္စတန်ဘူလ်
+    :Europe/Jersey: 
+      :city: ဂျာစီ
+    :Europe/Kaliningrad: 
+      :city: ခါလီနင်ဂရက်
+    :Europe/Kiev: 
+      :city: ခီးအက်ဖ်
+    :Europe/Kirov: 
+      :city: ခီရိုဗ်
+    :Europe/Lisbon: 
+      :city: လစ္စဘွန်း
+    :Europe/Ljubljana: 
+      :city: လူဘလီအားနား
+    :Europe/London: 
+      :city: လန်ဒန်
+      :long: 
+        :daylight: "ဗြိတိန် နွေရာသီ အချိန်"
+    :Europe/Luxembourg: 
+      :city: လူဇင်ဘတ်
+    :Europe/Madrid: 
+      :city: မဒရစ်
+    :Europe/Malta: 
+      :city: မော်လ်တာ
+    :Europe/Mariehamn: 
+      :city: "မရီအာ ဟားမန်"
+    :Europe/Minsk: 
+      :city: မင်းစခ်
+    :Europe/Monaco: 
+      :city: မိုနာကို
+    :Europe/Moscow: 
+      :city: မော်စကို
+    :Europe/Oslo: 
+      :city: အော်စလို
+    :Europe/Paris: 
+      :city: ပဲရစ်
+    :Europe/Podgorica: 
+      :city: ပေါ့ဂိုရီကာ
+    :Europe/Prague: 
+      :city: ပရက်ဂ်
+    :Europe/Riga: 
+      :city: ရီဂါ
+    :Europe/Rome: 
+      :city: ရောမ
+    :Europe/Samara: 
+      :city: ဆာမားရာ
+    :Europe/San_Marino: 
+      :city: ဆန်မရီးနို
+    :Europe/Sarajevo: 
+      :city: ဆာရာယေဗို
+    :Europe/Saratov: 
+      :city: ဆာရာတို့ဖ်
+    :Europe/Simferopol: 
+      :city: စင်ဖာရိုးဖို
+    :Europe/Skopje: 
+      :city: စကော့ပ်ရာ
+    :Europe/Sofia: 
+      :city: ဆိုဖီအာ
+    :Europe/Stockholm: 
+      :city: စတော့ဟုမ်း
+    :Europe/Tallinn: 
+      :city: ထားလင်
+    :Europe/Tirane: 
+      :city: တီရာနီ
+    :Europe/Ulyanovsk: 
+      :city: အူလီယာနိုစကစ်ဖ်
+    :Europe/Vaduz: 
+      :city: ဗာဒူးစ်
+    :Europe/Vatican: 
+      :city: ဗာတီကန်
+    :Europe/Vienna: 
+      :city: ဗီယင်နာ
+    :Europe/Vilnius: 
+      :city: ဗီးလ်နီအိုးစ်
+    :Europe/Volgograd: 
+      :city: ဗိုလ်ဂိုဂရက်
+    :Europe/Warsaw: 
+      :city: ဝါဆော
+    :Europe/Zagreb: 
+      :city: ဇာဂ်ဂရက်ဘ်
+    :Europe/Zurich: 
+      :city: ဇူးရစ်ချ်
+    :Indian/Antananarivo: 
+      :city: အန်တာနာနာရီးဘို
+    :Indian/Chagos: 
+      :city: ချာဂိုစ်
+    :Indian/Christmas: 
+      :city: ခရစ်စမတ်
+    :Indian/Cocos: 
+      :city: ကိုကိုးစ်
+    :Indian/Comoro: 
+      :city: ကိုမိုရို
+    :Indian/Kerguelen: 
+      :city: ခါဂါလန်
+    :Indian/Mahe: 
+      :city: မာဟီ
+    :Indian/Maldives: 
+      :city: မော်လဒိုက်
+    :Indian/Mauritius: 
+      :city: မောရစ်ရှ
+    :Indian/Mayotte: 
+      :city: မာယိုတဲ
+    :Indian/Reunion: 
+      :city: ရီယူနီယန်
+    :Pacific/Apia: 
+      :city: အားပီအား
+    :Pacific/Auckland: 
+      :city: အော့ကလန်
+    :Pacific/Bougainville: 
+      :city: ဘူဂန်ဗီးလီးယား
+    :Pacific/Chatham: 
+      :city: ချားသမ်
+    :Pacific/Easter: 
+      :city: အီစတာ
+    :Pacific/Efate: 
+      :city: အီဖာတီ
+    :Pacific/Enderbury: 
+      :city: အန်ဒါဘူရီ
+    :Pacific/Fakaofo: 
+      :city: ဖာခါအိုဖို
+    :Pacific/Fiji: 
+      :city: ဖီဂျီ
+    :Pacific/Funafuti: 
+      :city: ဖူနာဖူတီ
+    :Pacific/Galapagos: 
+      :city: ဂါလာပါကပ်စ်
+    :Pacific/Gambier: 
+      :city: ဂမ်ဘီယာ
+    :Pacific/Guadalcanal: 
+      :city: ဂွါဒါကနဲလ်
+    :Pacific/Guam: 
+      :city: ဂူအမ်
+    :Pacific/Honolulu: 
+      :city: ဟိုနိုလူလူ
+    :Pacific/Kanton: 
+      :city: ကန်တွန်
+    :Pacific/Kiritimati: 
+      :city: ခရိဒီမတီ
+    :Pacific/Kosrae: 
+      :city: ခိုစ်ရိုင်
+    :Pacific/Kwajalein: 
+      :city: ခွာဂျာလိန်
+    :Pacific/Majuro: 
+      :city: မာဂျူးရို
+    :Pacific/Marquesas: 
+      :city: မာခေးအပ်စ်
+    :Pacific/Midway: 
+      :city: မစ်ဒ်ဝေး
+    :Pacific/Nauru: 
+      :city: နာဥူရူ
+    :Pacific/Niue: 
+      :city: နီဦးအေ
+    :Pacific/Norfolk: 
+      :city: နော်ဖော့ခ်
+    :Pacific/Noumea: 
+      :city: နူမယ်အာ
+    :Pacific/Pago_Pago: 
+      :city: ပါဂိုပါဂို
+    :Pacific/Palau: 
+      :city: ပလာအို
+    :Pacific/Pitcairn: 
+      :city: ပါတ်ကယ်ရင်
+    :Pacific/Ponape: 
+      :city: ဖိုနာဖဲအ်
+    :Pacific/Port_Moresby: 
+      :city: "ဖို့တ် မိုရက်စ်ဘီ"
+    :Pacific/Rarotonga: 
+      :city: ရာရိုတွန်းဂါ
+    :Pacific/Saipan: 
+      :city: ဆိုင်ပန်
+    :Pacific/Tahiti: 
+      :city: တဟီတီ
+    :Pacific/Tarawa: 
+      :city: တာရာဝါ
+    :Pacific/Tongatapu: 
+      :city: တွန်ဂါတာပု
+    :Pacific/Truk: 
+      :city: ချုခ်
+    :Pacific/Wake: 
+      :city: ဝိတ်ခ်
+    :Pacific/Wallis: 
+      :city: ဝေါလီစ်

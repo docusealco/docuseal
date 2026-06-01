@@ -1,0 +1,10 @@
+<% classes = %w(list-group-item list-group-action d-flex justify-content-between align-items-start p-2 message-headers) %>
+<% classes << 'active' if active %>
+<%= content_tag :li, class: classes do %>
+  <%= link_to(letter_path(letter, style: letter.default_style), target: 'mail') do %>
+    <%= letter.headers %>
+  <% end %>
+  <button class="btn btn-danger btn-sm" data-remote="true" data-url="<%= delete_letter_path(letter) %>" data-method="post" data-confirm="Are you sure?">
+    <strong><small>X</small></strong>
+  </button>
+<% end %>

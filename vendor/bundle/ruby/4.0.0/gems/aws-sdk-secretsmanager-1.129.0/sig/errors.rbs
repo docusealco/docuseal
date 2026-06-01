@@ -1,0 +1,52 @@
+# WARNING ABOUT GENERATED CODE
+#
+# This file is generated. See the contributing guide for more information:
+# https://github.com/aws/aws-sdk-ruby/blob/version-3/CONTRIBUTING.md
+#
+# WARNING ABOUT GENERATED CODE
+
+module Aws
+  module SecretsManager
+    module Errors
+      class ServiceError < ::Aws::Errors::ServiceError
+      end
+
+      class DecryptionFailure < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class EncryptionFailure < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class InternalServiceError < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class InvalidNextTokenException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class InvalidParameterException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class InvalidRequestException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class LimitExceededException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class MalformedPolicyDocumentException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class PreconditionNotMetException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class PublicPolicyException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class ResourceExistsException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+      class ResourceNotFoundException < ::Aws::Errors::ServiceError
+        def message: () -> ::String
+      end
+    end
+  end
+end

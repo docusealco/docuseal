@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "lib": ["ES2020"],
+    "importHelpers": false,
+    "typeRoots": [
+      "./node_modules/@types",
+      "node_modules/@types",
+      "../node_modules/@types"
+    ],
+    "declaration": true,
+    "declarationMap": true,
+    "outDir": "./package",
+    "rootDir": "./package",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "allowJs": true,
+    "checkJs": false,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": false,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "allowSyntheticDefaultImports": true,
+    "preserveConstEnums": true,
+    "isolatedModules": true,
+    "removeComments": false
+  },
+  "include": ["package/**/*.ts"],
+  "exclude": ["node_modules", "package/**/*.test.ts", "package/**/*.spec.ts"]
+}

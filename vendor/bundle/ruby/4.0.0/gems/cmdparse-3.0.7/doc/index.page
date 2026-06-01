@@ -1,0 +1,114 @@
+---
+title: Home
+in_menu: true
+routed_title: cmdparse
+sort_info: 1
+---
+## cmdparse
+
+... is an advanced Ruby command line parser supporting nested commands.
+
+It allows the creation of "command style" programs, like `git` or `svn`, that perform different
+functions depending on which command is invoked. Additionally, nesting of commands, i.e. commands
+that take commands themselves, is also possible. For option parsing, the battle-tested Ruby standard
+library `optparse` is used.
+
+A typical command line for a program which uses commands looks like this:
+
+    $ net --verbose ipaddr add 192.168.0.1 193.150.0.1
+
+
+## Features
+
+* Commands can have sub-commands
+* Built-in commands for showing help and the version of the program
+* Automatic discovery of names and number of required/optional command arguments
+* Truly global options that can be used on any command
+* No need to learn a special DSL
+* Use POROs (plain old Ruby objects) for creating commands or create them on the fly
+* All `OptionParser` goodies available for option parsing
+* Easy to use
+
+
+## Quickstart
+
+Here are two short code samples which show how to use cmdparse. A complete example application can
+be found in the [tutorial](tutorial.html), also see the API documentation of
+[CmdParse::CommandParser] and [CmdParse::Command].
+
+A sample CLI program where commands are defined using classes:
+
+~~~ ruby
+require 'cmdparse'
+
+class TestCmd < CmdParse::Command
+  def initialize
+    super('test')
+    short_desc('Short description of command')
+    add_command(TestSubCmd.new)
+  end
+end
+
+class TestSubCmd < CmdParse::Command
+  def initialize
+    super('sub', takes_commands: false)
+    options.on('-x', '--example', 'Example option') { puts 'example' }
+  end
+
+  def execute(name, *opt)
+    puts "Hello #{name}, options: #{opt.join(', ')}"
+  end
+end
+
+parser = CmdParse::CommandParser.new(handle_exceptions: :no_help)
+parser.add_command(CmdParse::HelpCommand.new)
+parser.add_command(TestCmd.new)
+parser.parse
+~~~
+
+The same program but with the commands defined on the fly:
+
+~~~ ruby
+<%= context.render_block('sample') %>
+~~~
+
+Sample output for different invocations:
+
+<%
+invocations = ['', 'help', 'test sub', 'test sub -h', 'test sub Thomas', 'test sub -x Thomas opt1 opt2']
+tmpfile = context.website.tmpdir('sample.rb', true)
+File.write(tmpfile, context.render_block('sample'))
+result = invocations.map do |args|
+  ["$ <strong>sample.rb #{args}</strong>", h(`ruby -I#{context.website.directory}/lib #{tmpfile} #{args}`)]
+end.flatten.join("\n")
+%>
+<pre>
+<%= result %>
+</pre>
+
+
+
+## Author
+
+* **Thomas Leitner**
+* Web: <https://cmdparse.gettalong.org>
+* e-Mail: <mailto:t_leitner@gmx.at>
+
+
+--- name:sample pipeline:
+require 'cmdparse'
+
+parser = CmdParse::CommandParser.new(handle_exceptions: :no_help)
+parser.add_command(CmdParse::HelpCommand.new)
+parser.add_command('test') do |test_cmd|
+  test_cmd.short_desc('Short description of command')
+
+  test_cmd.add_command('sub') do |sub_cmd|
+    sub_cmd.takes_commands(false)
+    sub_cmd.options.on('-x', '--example', 'Example option') { puts 'example' }
+    sub_cmd.action do |name, *opt|
+      puts "Hello #{name}, options: #{opt.join(', ')}"
+    end
+  end
+end
+parser.parse

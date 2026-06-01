@@ -1,0 +1,16 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - el-t-d0-title
+    :direction: forward
+    :rules: 
+      - "::NFD() ;"
+      - "[:Cased:] [:Case_Ignorable:]* { Σ } [:Case_Ignorable:]* [:Cased:] > σ ;"
+      - "[:Cased:] [:Case_Ignorable:]* { Σ > ς ;"
+      - "[:Cased:] [:Case_Ignorable:]* { (.) > &Any-Lower($1) ;"
+      - "([:Lowercase:]) > &Any-Title($1) ;"
+      - "::NFC() ;"
+    :source: el
+    :target: Title
+    :variant: ~

@@ -1,0 +1,384 @@
+--- 
+:zh-Hant: 
+  :calendars: 
+    :gregorian: 
+      :additional_formats: 
+        :Bh: Bh時
+        :Bhm: "Bh:mm"
+        :Bhms: "Bh:mm:ss"
+        :E: ccc
+        :EBhm: "E Bh:mm"
+        :EBhms: "E Bh:mm:ss"
+        :EHm: "E HH:mm"
+        :EHms: "E HH:mm:ss"
+        :Ed: "d E"
+        :Ehm: "E Bh:mm"
+        :Ehms: "E Bh:mm:ss"
+        :Gy: Gy年
+        :GyMMM: Gy年M月
+        :GyMMMEd: "Gy年M月d日 E"
+        :GyMMMd: Gy年M月d日
+        :GyMd: "G y/M/d"
+        :H: H時
+        :Hm: "HH:mm"
+        :Hms: "HH:mm:ss"
+        :Hmsv: "HH:mm:ss [v]"
+        :Hmv: "HH:mm [v]"
+        :M: M月
+        :MEd: M/d（E）
+        :MMM: LLL
+        :MMMEd: "M月d日 E"
+        :MMMMW: MMMM的第W週
+        :MMMMd: M月d日
+        :MMMd: M月d日
+        :MMdd: MM/dd
+        :Md: M/d
+        :d: d日
+        :h: Bh時
+        :hm: "Bh:mm"
+        :hms: "Bh:mm:ss"
+        :hmsv: "Bh:mm:ss [v]"
+        :hmv: "Bh:mm [v]"
+        :ms: "mm:ss"
+        ? !ruby/symbol "y"
+        : y年
+        :yM: y/M
+        :yMEEEEd: "y年M月d日 EEEE"
+        :yMEd: y/M/d（E）
+        :yMM: y/MM
+        :yMMM: y年M月
+        :yMMMEd: "y年M月d日 E"
+        :yMMMM: y年M月
+        :yMMMd: y年M月d日
+        :yMd: y/M/d
+        :yQQQ: y年QQQ
+        :yQQQQ: y年QQQQ
+        :yw: Y年的第w週
+      :days: 
+        :format: 
+          :abbreviated: 
+            :fri: 週五
+            :mon: 週一
+            :sat: 週六
+            :sun: 週日
+            :thu: 週四
+            :tue: 週二
+            :wed: 週三
+          :narrow: 
+            :fri: 五
+            :mon: 一
+            :sat: 六
+            :sun: 日
+            :thu: 四
+            :tue: 二
+            :wed: 三
+          :short: 
+            :fri: 五
+            :mon: 一
+            :sat: 六
+            :sun: 日
+            :thu: 四
+            :tue: 二
+            :wed: 三
+          :wide: 
+            :fri: 星期五
+            :mon: 星期一
+            :sat: 星期六
+            :sun: 星期日
+            :thu: 星期四
+            :tue: 星期二
+            :wed: 星期三
+        :stand-alone: 
+          :abbreviated: 
+            :fri: 週五
+            :mon: 週一
+            :sat: 週六
+            :sun: 週日
+            :thu: 週四
+            :tue: 週二
+            :wed: 週三
+          :narrow: 
+            :fri: 五
+            :mon: 一
+            :sat: 六
+            :sun: 日
+            :thu: 四
+            :tue: 二
+            :wed: 三
+          :short: 
+            :fri: 五
+            :mon: 一
+            :sat: 六
+            :sun: 日
+            :thu: 四
+            :tue: 二
+            :wed: 三
+          :wide: 
+            :fri: 星期五
+            :mon: 星期一
+            :sat: 星期六
+            :sun: 星期日
+            :thu: 星期四
+            :tue: 星期二
+            :wed: 星期三
+      :eras: 
+        :abbr: 
+          0: 公元前
+          1: 公元
+        :name: 
+          0: BCE
+          1: CE
+        :narrow: 
+          0: BCE
+          1: CE
+      :fields: 
+        :day: 日
+        :day-narrow: 日
+        :day-short: 日
+        :dayOfYear: 該年第幾天
+        :dayOfYear-narrow: 該年第幾天
+        :dayOfYear-short: 該年第幾天
+        :dayperiod: 時段
+        :dayperiod-narrow: 時段
+        :dayperiod-short: 時段
+        :era: 紀元
+        :era-narrow: 紀元
+        :era-short: 紀元
+        :hour: 小時
+        :hour-narrow: 時
+        :hour-short: 時
+        :minute: 分鐘
+        :minute-narrow: 分
+        :minute-short: 分
+        :month: 月
+        :month-narrow: 月
+        :month-short: 月
+        :quarter: 季度
+        :quarter-narrow: 季度
+        :quarter-short: 季度
+        :second: 秒
+        :second-narrow: 秒
+        :second-short: 秒
+        :week: 週
+        :week-narrow: 週
+        :week-short: 週
+        :weekOfMonth: 該月第幾週
+        :weekOfMonth-narrow: 月週次
+        :weekOfMonth-short: 月週次
+        :weekday: 星期
+        :weekday-narrow: 星期
+        :weekday-short: 星期
+        :weekdayOfMonth: 該月第幾週
+        :weekdayOfMonth-narrow: 該月第幾週
+        :weekdayOfMonth-short: 該月第幾週
+        :year: 年
+        :year-narrow: 年
+        :year-short: 年
+        :zone: 時區
+        :zone-narrow: 時區
+        :zone-short: 時區
+      :formats: 
+        :date: 
+          :full: 
+            :pattern: "y年M月d日 EEEE"
+          :long: 
+            :pattern: y年M月d日
+          :medium: 
+            :pattern: y年M月d日
+          :short: 
+            :pattern: y/M/d
+        :datetime: 
+          :full: 
+            :pattern: "{{date}} {{time}}"
+          :long: 
+            :pattern: "{{date}} {{time}}"
+          :medium: 
+            :pattern: "{{date}} {{time}}"
+          :short: 
+            :pattern: "{{date}} {{time}}"
+        :time: 
+          :full: 
+            :pattern: "Bh:mm:ss [zzzz]"
+          :long: 
+            :pattern: "Bh:mm:ss [z]"
+          :medium: 
+            :pattern: "Bh:mm:ss"
+          :short: 
+            :pattern: "Bh:mm"
+      :months: 
+        :format: 
+          :abbreviated: 
+            1: 1月
+            10: 10月
+            11: 11月
+            12: 12月
+            2: 2月
+            3: 3月
+            4: 4月
+            5: 5月
+            6: 6月
+            7: 7月
+            8: 8月
+            9: 9月
+          :narrow: 
+            1: "1"
+            10: "10"
+            11: "11"
+            12: "12"
+            2: "2"
+            3: "3"
+            4: "4"
+            5: "5"
+            6: "6"
+            7: "7"
+            8: "8"
+            9: "9"
+          :wide: 
+            1: 1月
+            10: 10月
+            11: 11月
+            12: 12月
+            2: 2月
+            3: 3月
+            4: 4月
+            5: 5月
+            6: 6月
+            7: 7月
+            8: 8月
+            9: 9月
+        :stand-alone: 
+          :abbreviated: 
+            1: 1月
+            10: 10月
+            11: 11月
+            12: 12月
+            2: 2月
+            3: 3月
+            4: 4月
+            5: 5月
+            6: 6月
+            7: 7月
+            8: 8月
+            9: 9月
+          :narrow: 
+            1: "1"
+            10: "10"
+            11: "11"
+            12: "12"
+            2: "2"
+            3: "3"
+            4: "4"
+            5: "5"
+            6: "6"
+            7: "7"
+            8: "8"
+            9: "9"
+          :wide: 
+            1: 1月
+            10: 10月
+            11: 11月
+            12: 12月
+            2: 2月
+            3: 3月
+            4: 4月
+            5: 5月
+            6: 6月
+            7: 7月
+            8: 8月
+            9: 9月
+      :periods: 
+        :format: 
+          :abbreviated: 
+            :afternoon1: 中午
+            :afternoon2: 下午
+            :am: 上午
+            :evening1: 晚上
+            :midnight: 午夜
+            :morning1: 清晨
+            :morning2: 上午
+            :night1: 凌晨
+            :pm: 下午
+          :narrow: 
+            :afternoon1: 中午
+            :afternoon2: 下午
+            :am: 上午
+            :evening1: 晚上
+            :midnight: 午夜
+            :morning1: 清晨
+            :morning2: 上午
+            :night1: 凌晨
+            :pm: 下午
+          :wide: 
+            :afternoon1: 中午
+            :afternoon2: 下午
+            :am: 上午
+            :evening1: 晚上
+            :midnight: 午夜
+            :morning1: 清晨
+            :morning2: 上午
+            :night1: 凌晨
+            :pm: 下午
+        :stand-alone: 
+          :abbreviated: 
+            :afternoon1: 中午
+            :afternoon2: 下午
+            :am: 上午
+            :evening1: 晚上
+            :midnight: 午夜
+            :morning1: 清晨
+            :morning2: 上午
+            :night1: 凌晨
+            :pm: 下午
+          :narrow: 
+            :afternoon1: 中午
+            :afternoon2: 下午
+            :am: 上午
+            :evening1: 晚上
+            :midnight: 午夜
+            :morning1: 清晨
+            :morning2: 上午
+            :night1: 凌晨
+            :pm: 下午
+          :wide: 
+            :afternoon1: 中午
+            :afternoon2: 下午
+            :am: 上午
+            :evening1: 晚上
+            :midnight: 午夜
+            :morning1: 清晨
+            :morning2: 上午
+            :night1: 凌晨
+            :pm: 下午
+      :quarters: 
+        :format: 
+          :abbreviated: 
+            1: 第1季
+            2: 第2季
+            3: 第3季
+            4: 第4季
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: 第1季
+            2: 第2季
+            3: 第3季
+            4: 第4季
+        :stand-alone: 
+          :abbreviated: 
+            1: 第1季
+            2: 第2季
+            3: 第3季
+            4: 第4季
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: 第1季
+            2: 第2季
+            3: 第3季
+            4: 第4季

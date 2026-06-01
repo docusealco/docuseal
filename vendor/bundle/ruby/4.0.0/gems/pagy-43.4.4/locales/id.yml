@@ -1,0 +1,20 @@
+# See https://ddnexus.github.io/pagy/resources/i18n
+
+id:
+  pagy:
+    p11n: 'Other'
+    aria_label:
+      nav: "Halaman"
+      previous: "Sebelumnya"
+      next: "Selanjutnya"
+    previous: "&lt;"
+    next: "&gt;"
+    gap: "&hellip;"
+    item_name: "item"
+    info_tag:
+      no_count: "Halaman %{page} dari %{pages}"
+      no_items: "Tidak ditemukan %{item_name}"
+      single_page: "Menampilkan %{count} %{item_name}"
+      multiple_pages: "Menampilkan %{item_name} %{from}-%{to} dari total %{count}"
+    input_nav_js: "Halaman %{page_input} dari %{pages}"
+    limit_tag_js: "Tampilkan %{limit_input} %{item_name} per halaman"

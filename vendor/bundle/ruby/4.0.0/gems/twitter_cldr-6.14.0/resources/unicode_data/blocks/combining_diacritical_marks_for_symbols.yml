@@ -1,0 +1,529 @@
+---
+8400:
+- 8400
+- COMBINING LEFT HARPOON ABOVE
+- Mn
+- '230'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- NON-SPACING LEFT HARPOON ABOVE
+- ''
+- ''
+- ''
+- ''
+8401:
+- 8401
+- COMBINING RIGHT HARPOON ABOVE
+- Mn
+- '230'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- NON-SPACING RIGHT HARPOON ABOVE
+- ''
+- ''
+- ''
+- ''
+8402:
+- 8402
+- COMBINING LONG VERTICAL LINE OVERLAY
+- Mn
+- '1'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- NON-SPACING LONG VERTICAL BAR OVERLAY
+- ''
+- ''
+- ''
+- ''
+8403:
+- 8403
+- COMBINING SHORT VERTICAL LINE OVERLAY
+- Mn
+- '1'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- NON-SPACING SHORT VERTICAL BAR OVERLAY
+- ''
+- ''
+- ''
+- ''
+8404:
+- 8404
+- COMBINING ANTICLOCKWISE ARROW ABOVE
+- Mn
+- '230'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- NON-SPACING ANTICLOCKWISE ARROW ABOVE
+- ''
+- ''
+- ''
+- ''
+8405:
+- 8405
+- COMBINING CLOCKWISE ARROW ABOVE
+- Mn
+- '230'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- NON-SPACING CLOCKWISE ARROW ABOVE
+- ''
+- ''
+- ''
+- ''
+8406:
+- 8406
+- COMBINING LEFT ARROW ABOVE
+- Mn
+- '230'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- NON-SPACING LEFT ARROW ABOVE
+- ''
+- ''
+- ''
+- ''
+8407:
+- 8407
+- COMBINING RIGHT ARROW ABOVE
+- Mn
+- '230'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- NON-SPACING RIGHT ARROW ABOVE
+- ''
+- ''
+- ''
+- ''
+8408:
+- 8408
+- COMBINING RING OVERLAY
+- Mn
+- '1'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- NON-SPACING RING OVERLAY
+- ''
+- ''
+- ''
+- ''
+8409:
+- 8409
+- COMBINING CLOCKWISE RING OVERLAY
+- Mn
+- '1'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- NON-SPACING CLOCKWISE RING OVERLAY
+- ''
+- ''
+- ''
+- ''
+8410:
+- 8410
+- COMBINING ANTICLOCKWISE RING OVERLAY
+- Mn
+- '1'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- NON-SPACING ANTICLOCKWISE RING OVERLAY
+- ''
+- ''
+- ''
+- ''
+8411:
+- 8411
+- COMBINING THREE DOTS ABOVE
+- Mn
+- '230'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- NON-SPACING THREE DOTS ABOVE
+- ''
+- ''
+- ''
+- ''
+8412:
+- 8412
+- COMBINING FOUR DOTS ABOVE
+- Mn
+- '230'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- NON-SPACING FOUR DOTS ABOVE
+- ''
+- ''
+- ''
+- ''
+8413:
+- 8413
+- COMBINING ENCLOSING CIRCLE
+- Me
+- '0'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- ENCLOSING CIRCLE
+- ''
+- ''
+- ''
+- ''
+8414:
+- 8414
+- COMBINING ENCLOSING SQUARE
+- Me
+- '0'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- ENCLOSING SQUARE
+- ''
+- ''
+- ''
+- ''
+8415:
+- 8415
+- COMBINING ENCLOSING DIAMOND
+- Me
+- '0'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- ENCLOSING DIAMOND
+- ''
+- ''
+- ''
+- ''
+8416:
+- 8416
+- COMBINING ENCLOSING CIRCLE BACKSLASH
+- Me
+- '0'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- ENCLOSING CIRCLE SLASH
+- ''
+- ''
+- ''
+- ''
+8417:
+- 8417
+- COMBINING LEFT RIGHT ARROW ABOVE
+- Mn
+- '230'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- NON-SPACING LEFT RIGHT ARROW ABOVE
+- ''
+- ''
+- ''
+- ''
+8418:
+- 8418
+- COMBINING ENCLOSING SCREEN
+- Me
+- '0'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8419:
+- 8419
+- COMBINING ENCLOSING KEYCAP
+- Me
+- '0'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8420:
+- 8420
+- COMBINING ENCLOSING UPWARD POINTING TRIANGLE
+- Me
+- '0'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8421:
+- 8421
+- COMBINING REVERSE SOLIDUS OVERLAY
+- Mn
+- '1'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8422:
+- 8422
+- COMBINING DOUBLE VERTICAL STROKE OVERLAY
+- Mn
+- '1'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8423:
+- 8423
+- COMBINING ANNUITY SYMBOL
+- Mn
+- '230'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8424:
+- 8424
+- COMBINING TRIPLE UNDERDOT
+- Mn
+- '220'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8425:
+- 8425
+- COMBINING WIDE BRIDGE ABOVE
+- Mn
+- '230'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8426:
+- 8426
+- COMBINING LEFTWARDS ARROW OVERLAY
+- Mn
+- '1'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8427:
+- 8427
+- COMBINING LONG DOUBLE SOLIDUS OVERLAY
+- Mn
+- '1'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8428:
+- 8428
+- COMBINING RIGHTWARDS HARPOON WITH BARB DOWNWARDS
+- Mn
+- '220'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8429:
+- 8429
+- COMBINING LEFTWARDS HARPOON WITH BARB DOWNWARDS
+- Mn
+- '220'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8430:
+- 8430
+- COMBINING LEFT ARROW BELOW
+- Mn
+- '220'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8431:
+- 8431
+- COMBINING RIGHT ARROW BELOW
+- Mn
+- '220'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+8432:
+- 8432
+- COMBINING ASTERISK ABOVE
+- Mn
+- '230'
+- NSM
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''

@@ -1,0 +1,513 @@
+---
+9600:
+- 9600
+- UPPER HALF BLOCK
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9601:
+- 9601
+- LOWER ONE EIGHTH BLOCK
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9602:
+- 9602
+- LOWER ONE QUARTER BLOCK
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9603:
+- 9603
+- LOWER THREE EIGHTHS BLOCK
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9604:
+- 9604
+- LOWER HALF BLOCK
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9605:
+- 9605
+- LOWER FIVE EIGHTHS BLOCK
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9606:
+- 9606
+- LOWER THREE QUARTERS BLOCK
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- LOWER THREE QUARTER BLOCK
+- ''
+- ''
+- ''
+- ''
+9607:
+- 9607
+- LOWER SEVEN EIGHTHS BLOCK
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9608:
+- 9608
+- FULL BLOCK
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9609:
+- 9609
+- LEFT SEVEN EIGHTHS BLOCK
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9610:
+- 9610
+- LEFT THREE QUARTERS BLOCK
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- LEFT THREE QUARTER BLOCK
+- ''
+- ''
+- ''
+- ''
+9611:
+- 9611
+- LEFT FIVE EIGHTHS BLOCK
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9612:
+- 9612
+- LEFT HALF BLOCK
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9613:
+- 9613
+- LEFT THREE EIGHTHS BLOCK
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9614:
+- 9614
+- LEFT ONE QUARTER BLOCK
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9615:
+- 9615
+- LEFT ONE EIGHTH BLOCK
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9616:
+- 9616
+- RIGHT HALF BLOCK
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9617:
+- 9617
+- LIGHT SHADE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9618:
+- 9618
+- MEDIUM SHADE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9619:
+- 9619
+- DARK SHADE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9620:
+- 9620
+- UPPER ONE EIGHTH BLOCK
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9621:
+- 9621
+- RIGHT ONE EIGHTH BLOCK
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9622:
+- 9622
+- QUADRANT LOWER LEFT
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9623:
+- 9623
+- QUADRANT LOWER RIGHT
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9624:
+- 9624
+- QUADRANT UPPER LEFT
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9625:
+- 9625
+- QUADRANT UPPER LEFT AND LOWER LEFT AND LOWER RIGHT
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9626:
+- 9626
+- QUADRANT UPPER LEFT AND LOWER RIGHT
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9627:
+- 9627
+- QUADRANT UPPER LEFT AND UPPER RIGHT AND LOWER LEFT
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9628:
+- 9628
+- QUADRANT UPPER LEFT AND UPPER RIGHT AND LOWER RIGHT
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9629:
+- 9629
+- QUADRANT UPPER RIGHT
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9630:
+- 9630
+- QUADRANT UPPER RIGHT AND LOWER LEFT
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9631:
+- 9631
+- QUADRANT UPPER RIGHT AND LOWER LEFT AND LOWER RIGHT
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''

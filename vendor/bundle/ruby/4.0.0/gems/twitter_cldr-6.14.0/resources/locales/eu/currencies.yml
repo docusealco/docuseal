@@ -1,0 +1,1423 @@
+--- 
+:eu: 
+  :currencies: 
+    :ADP: 
+      :name: "pezeta andorratarra"
+      :one: "pezeta andorratar"
+      :other: "pezeta andorratar"
+    :AED: 
+      :name: "Arabiar Emirerri Batuetako dirhama"
+      :one: "Arabiar Emirerri Batuetako dirham"
+      :other: "Arabiar Emirerri Batuetako dirham"
+    :AFA: 
+      :name: "afghani afgandarra (1927–2002)"
+      :one: "afghani afgandar (1927–2002)"
+      :other: "afghani afgandar (1927–2002)"
+    :AFN: 
+      :name: "afgani afganiarra"
+      :narrow_symbol: ؋
+      :one: "afgani afganiar"
+      :other: "afgani afganiar"
+      :symbol: ؋
+    :ALK: 
+      :name: "lek albaniarra (1946–1965)"
+      :one: "lek albaniar (1946–1965)"
+      :other: "lek albaniar (1946–1965)"
+    :ALL: 
+      :name: "lek albaniarra"
+      :one: "lek albaniar"
+      :other: "lek albaniar"
+    :AMD: 
+      :name: "dram armeniarra"
+      :narrow_symbol: ֏
+      :one: "dram armeniar"
+      :other: "dram armeniar"
+      :symbol: ֏
+    :ANG: 
+      :name: "florin antillarra"
+      :one: "florin antillar"
+      :other: "florin antillar"
+    :AOA: 
+      :name: "kwanza angolarra"
+      :narrow_symbol: Kz
+      :one: "kwanza angolar"
+      :other: "kwanza angolar"
+      :symbol: Kz
+    :AOK: 
+      :name: "kwanza angolarra (1977–1991)"
+      :one: "kwanza angolar (1977–1991)"
+      :other: "kwanza angolar (1977–1991)"
+    :AON: 
+      :name: "kwanza angolar berria (1990–2000)"
+      :one: "kwanza angolar berri (1990–2000)"
+      :other: "kwanza angolar berri (1990–2000)"
+    :AOR: 
+      :name: "kwanza angolar birdoitua (1995–1999)"
+      :one: "kwanza angolar birdoitu (1995–1999)"
+      :other: "kwanza angolar birdoitu (1995–1999)"
+    :ARA: 
+      :name: "austral argentinarra"
+      :one: "austral argentinar"
+      :other: "austral argentinar"
+    :ARL: 
+      :name: "peso ley argentinarra (1970–1983)"
+      :one: "peso ley argentinar (1970–1983)"
+      :other: "peso ley argentinar (1970–1983)"
+    :ARM: 
+      :name: "peso argentinarra (1981–1970)"
+      :one: "peso argentinar (1981–1970)"
+      :other: "peso argentinar (1981–1970)"
+    :ARP: 
+      :name: "peso argentinarra (1983–1985)"
+      :one: "peso argentinar (1983–1985)"
+      :other: "peso argentinar (1983–1985)"
+    :ARS: 
+      :name: "peso argentinarra"
+      :narrow_symbol: $
+      :one: "peso argentinar"
+      :other: "peso argentinar"
+      :symbol: $
+    :ATS: 
+      :name: "txelin austriarra"
+      :one: "txelin austriar"
+      :other: "txelin austriar"
+    :AUD: 
+      :name: "dolar australiarra"
+      :narrow_symbol: $
+      :one: "dolar australiar"
+      :other: "dolar australiar"
+      :symbol: A$
+    :AWG: 
+      :name: "florin arubarra"
+      :one: "florin arubar"
+      :other: "florin arubar"
+    :AZM: 
+      :name: "manat azerbaijandarra (1993–2006)"
+      :one: "manat azerbaijandar (1993–2006)"
+      :other: "manat azerbaijandar (1993–2006)"
+    :AZN: 
+      :name: "manat azerbaijandarra"
+      :narrow_symbol: ₼
+      :one: "manat azerbaijandar"
+      :other: "manat azerbaijandar"
+      :symbol: ₼
+    :BAD: 
+      :name: "dinar bosnia-herzegovinarra (1992–1994)"
+      :one: "dinar bosnia-herzegovinar (1992–1994)"
+      :other: "dinar bosnia-herzegovinar (1992–1994)"
+    :BAM: 
+      :name: "marko bihurgarri bosniarra"
+      :narrow_symbol: KM
+      :one: "marko bihurgarri bosniar"
+      :other: "marko bihurgarri bosniar"
+      :symbol: KM
+    :BAN: 
+      :name: "dinar bosnia-herzegovinar berria (1994–1997)"
+      :one: "dinar bosnia-herzegovinar berri (1994–1997)"
+      :other: "dinar bosnia-herzegovinar berri (1994–1997)"
+    :BBD: 
+      :name: "dolar barbadostarra"
+      :narrow_symbol: $
+      :one: "dolar barbadostar"
+      :other: "dolar barbadostar"
+      :symbol: $
+    :BDT: 
+      :name: "taka bangladeshtarra"
+      :narrow_symbol: ৳
+      :one: "taka bangladeshtar"
+      :other: "taka bangladeshtar"
+      :symbol: ৳
+    :BEC: 
+      :name: "franko belgikarra (bihurgarria)"
+      :one: "franko belgikar (bihurgarria)"
+      :other: "franko belgikar (bihurgarria)"
+    :BEF: 
+      :name: "franko belgikarra"
+      :one: "franko belgikar"
+      :other: "franko belgikar"
+    :BEL: 
+      :name: "franko belgikarra (finantzarioa)"
+      :one: "franko belgikar (finantzarioa)"
+      :other: "franko belgikar (finantzarioa)"
+    :BGL: 
+      :name: "Lev bulgariar indartsua"
+      :one: "Lev bulgariar indartsu"
+      :other: "Lev bulgariar indartsu"
+    :BGM: 
+      :name: "Lev bulgariar sozialista"
+      :one: "Lev bulgariar sozialista"
+    :BGN: 
+      :name: "lev bulgariarra"
+      :one: "lev bulgariar"
+      :other: "lev bulgariar"
+    :BGO: 
+      :name: "Lev bulgariarra (1879–1952)"
+      :one: "Lev bulgariar (1879–1952)"
+      :other: "Lev bulgariar (1879–1952)"
+    :BHD: 
+      :name: "dinar bahraindarra"
+      :one: "dinar bahraindar"
+      :other: "dinar bahraindar"
+    :BIF: 
+      :name: "franko burundiarra"
+      :one: "franko burundiar"
+      :other: "franko burundiar"
+    :BMD: 
+      :name: "dolar bermudarra"
+      :narrow_symbol: $
+      :one: "dolar bermudar"
+      :other: "dolar bermudar"
+      :symbol: $
+    :BND: 
+      :name: "dolar bruneitarra"
+      :narrow_symbol: $
+      :one: "dolar bruneitar"
+      :other: "dolar bruneitar"
+      :symbol: $
+    :BOB: 
+      :name: "boliviano boliviarra"
+      :narrow_symbol: Bs
+      :one: "boliviano boliviar"
+      :other: "boliviano boliviar"
+      :symbol: Bs
+    :BOL: 
+      :name: "boliviano boliviarra (1863–1963)"
+      :one: "boliviano boliviar (1863–1963)"
+      :other: "boliviano boliviar (1863–1963)"
+    :BOP: 
+      :name: "peso boliviarra"
+      :one: "peso boliviar"
+      :other: "peso boliviar"
+    :BOV: 
+      :name: "mvdol boliviarra"
+      :one: "mvdol boliviar"
+      :other: "mvdol boliviar"
+    :BRB: 
+      :name: "cruzeiro brasildar berria (1967–1986)"
+      :one: "cruzeiro brasildar berri (1967–1986)"
+      :other: "cruzeiro brasildar berri (1967–1986)"
+    :BRC: 
+      :name: "cruzado brasildarra (1986–1989)"
+      :one: "cruzado brasildar (1986–1989)"
+      :other: "cruzado brasildar (1986–1989)"
+    :BRE: 
+      :name: "cruzeiro brasildarra (1990–1993)"
+      :one: "cruzeiro brasildar (1990–1993)"
+      :other: "cruzeiro brasildar (1990–1993)"
+    :BRL: 
+      :name: "erreal brasildarra"
+      :narrow_symbol: R$
+      :one: "erreal brasildar"
+      :other: "erreal brasildar"
+      :symbol: R$
+    :BRN: 
+      :name: "cruzado brasildar berria (1989–1990)"
+      :one: "cruzado brasildar berri (1989–1990)"
+      :other: "cruzado brasildar berri (1989–1990)"
+    :BRR: 
+      :name: "cruzeiro brasildar berria (1993–1994)"
+      :one: "cruzeiro brasildar berri (1993–1994)"
+      :other: "cruzeiro brasildar berri (1993–1994)"
+    :BRZ: 
+      :name: "cruzeiro brasildarra (1942–1967)"
+      :one: "cruzeiro brasildar (1942–1967)"
+      :other: "cruzeiro brasildar (1942–1967)"
+    :BSD: 
+      :name: "dolar bahamarra"
+      :narrow_symbol: $
+      :one: "dolar bahamar"
+      :other: "dolar bahamar"
+      :symbol: $
+    :BTN: 
+      :name: "ngultrum bhutandarra"
+      :one: "ngultrum bhutandar"
+      :other: "ngultrum bhutandar"
+    :BUK: 
+      :name: "kyat birmaniarra"
+      :one: "kyat birmaniar"
+      :other: "kyat birmaniar"
+    :BWP: 
+      :name: "pula botswanarra"
+      :narrow_symbol: P
+      :one: "pula botswanar"
+      :other: "pula botswanar"
+      :symbol: P
+    :BYB: 
+      :name: "errublo bielorrusiarra (1994–1999)"
+      :one: "errublo bielorrusiar (1994–1999)"
+      :other: "errublo bielorrusiar (1994–1999)"
+    :BYN: 
+      :name: "errublo bielorrusiarra"
+      :narrow_symbol: р.
+      :one: "errublo bielorrusiar"
+      :other: "errublo bielorrusiar"
+      :symbol: р.
+    :BYR: 
+      :name: "Bielorrusiako errubloa (2000–2016)"
+      :one: "Bielorrusiako errublo (2000–2016)"
+      :other: "Bielorrusiako errublo (2000–2016)"
+    :BZD: 
+      :name: "dolar belizetarra"
+      :narrow_symbol: $
+      :one: "dolar belizetar"
+      :other: "dolar belizetar"
+      :symbol: $
+    :CAD: 
+      :name: "dolar kanadarra"
+      :narrow_symbol: $
+      :one: "dolar kanadar"
+      :other: "dolar kanadar"
+      :symbol: CA$
+    :CDF: 
+      :name: "franko kongoarra"
+      :one: "franko kongoar"
+      :other: "franko kongoar"
+    :CHE: 
+      :name: "WIR euroa"
+      :one: "WIR euro"
+      :other: "WIR euro"
+    :CHF: 
+      :name: "franko suitzarra"
+      :one: "franko suitzar"
+      :other: "franko suitzar"
+    :CHW: 
+      :name: "WIR frankoa"
+      :one: "WIR franko"
+      :other: "WIR franko"
+    :CLE: 
+      :name: "ezkutu txiletarra"
+      :one: "ezkutu txiletar"
+      :other: "ezkutu txiletar"
+    :CLF: 
+      :name: "kontu-unitate txiletarra (UF)"
+      :one: "kontu-unitate txiletar (UF)"
+      :other: "kontu-unitate txiletar (UF)"
+    :CLP: 
+      :name: "peso txiletarra"
+      :narrow_symbol: $
+      :one: "peso txiletar"
+      :other: "peso txiletar"
+      :symbol: $
+    :CNH: 
+      :name: "yuan txinatarra (itsasoz haraindikoa)"
+      :one: "yuan txinatar (itsasoz haraindikoa)"
+      :other: "yuan txinatar (itsasoz haraindikoa)"
+    :CNX: 
+      :name: "Txinako Herri Bankuaren dolarra"
+      :one: "Txinako Herri Bankuaren dolar"
+      :other: "Txinako Herri Bankuaren dolar"
+    :CNY: 
+      :name: "yuan txinatarra"
+      :narrow_symbol: ¥
+      :one: "yuan txinatar"
+      :other: "yuan txinatar"
+      :symbol: CN¥
+    :COP: 
+      :name: "peso kolonbiarra"
+      :narrow_symbol: $
+      :one: "peso kolonbiar"
+      :other: "peso kolonbiar"
+      :symbol: $
+    :COU: 
+      :name: "erreal kolonbiarraren balio-unitatea"
+      :one: "erreal kolonbiarraren balio-unitate"
+      :other: "erreal kolonbiarraren balio-unitate"
+    :CRC: 
+      :name: "colon costarricarra"
+      :narrow_symbol: ₡
+      :one: "colon costarricar"
+      :other: "colon costarricar"
+      :symbol: ₡
+    :CSD: 
+      :name: "dinar serbiarra (2002–2006)"
+      :one: "dinar serbiar (2002–2006)"
+      :other: "dinar serbiar (2002–2006)"
+    :CSK: 
+      :name: "Txekoslovakiako koroa indartsua"
+      :one: "Txekoslovakiako koroa indartsu"
+      :other: "Txekoslovakiako koroa indartsu"
+    :CUC: 
+      :name: "peso bihurgarri kubatarra"
+      :narrow_symbol: $
+      :one: "peso bihurgarri kubatar"
+      :other: "peso bihurgarri kubatar"
+      :symbol: $
+    :CUP: 
+      :name: "peso kubatarra"
+      :narrow_symbol: $
+      :one: "peso kubatar"
+      :other: "peso kubatar"
+      :symbol: $
+    :CVE: 
+      :name: "ezkutu caboverdetarra"
+      :one: "ezkutu caboverdetar"
+      :other: "ezkutu caboverdetar"
+    :CYP: 
+      :name: "libera zipretarra"
+      :one: "libera zipretar"
+      :other: "libera zipretar"
+    :CZK: 
+      :name: "koroa txekiarra"
+      :narrow_symbol: Kč
+      :one: "koroa txekiar"
+      :other: "koroa txekiar"
+      :symbol: Kč
+    :DDM: 
+      :name: "Ekialdeko Alemaniako markoa"
+      :one: "Ekialdeko Alemaniako marko"
+      :other: "Ekialdeko Alemaniako marko"
+    :DEM: 
+      :name: "marko alemana"
+      :one: "marko aleman"
+      :other: "marko aleman"
+    :DJF: 
+      :name: "franko djibutiarra"
+      :one: "franko djibutiar"
+      :other: "franko djibutiar"
+    :DKK: 
+      :name: "koroa danimarkarra"
+      :narrow_symbol: kr
+      :one: "koroa danimarkar"
+      :other: "koroa danimarkar"
+      :symbol: kr
+    :DOP: 
+      :name: "peso dominikarra"
+      :narrow_symbol: $
+      :one: "peso dominikar"
+      :other: "peso dominikar"
+      :symbol: $
+    :DZD: 
+      :name: "dinar aljeriarra"
+      :one: "dinar aljeriar"
+      :other: "dinar aljeriar"
+    :ECS: 
+      :name: "sukre ekuadortarra"
+      :one: "sukre ekuadortar"
+      :other: "sukre ekuadortar"
+    :ECV: 
+      :name: "balio-unitate konstante ekuadortarra"
+      :one: "balio-unitate konstante ekuadortar"
+      :other: "balio-unitate konstante ekuadortar"
+    :EEK: 
+      :name: "kroon estoniarra"
+      :one: "kroon estoniar"
+      :other: "kroon estoniar"
+    :EGP: 
+      :name: "libera egiptoarra"
+      :narrow_symbol: E£
+      :one: "libera egiptoar"
+      :other: "libera egiptoar"
+      :symbol: E£
+    :ERN: 
+      :name: "nakfa eritrearra"
+      :one: "nakfa eritrear"
+      :other: "nakfa eritrear"
+    :ESA: 
+      :name: "pezeta espainiarra (A kontua)"
+      :one: "pezeta espainiar (A kontua)"
+      :other: "pezeta espainiar (A kontua)"
+    :ESB: 
+      :name: "pezeta espainiarra (kontu bihurgarria)"
+      :one: "pezeta espainiar (kontu bihurgarria)"
+      :other: "pezeta espainiar (kontu bihurgarria)"
+    :ESP: 
+      :name: "pezeta espainiarra"
+      :narrow_symbol: ₧
+      :one: "pezeta espainiar"
+      :other: "pezeta espainiar"
+      :symbol: ₧
+    :ETB: 
+      :name: "birr etiopiarra"
+      :one: "birr etiopiar"
+      :other: "birr etiopiar"
+    :EUR: 
+      :name: euroa
+      :narrow_symbol: €
+      :one: euro
+      :other: euro
+      :symbol: €
+    :FIM: 
+      :name: "markka finlandiarra"
+      :one: "markka finlandiar"
+      :other: "markka finlandiar"
+    :FJD: 
+      :name: "dolar fijiarra"
+      :narrow_symbol: $
+      :one: "dolar fijiar"
+      :other: "dolar fijiar"
+      :symbol: $
+    :FKP: 
+      :name: "libera falklandarra"
+      :narrow_symbol: £
+      :one: "libera falklandar"
+      :other: "libera falklandar"
+      :symbol: £
+    :FRF: 
+      :name: "libera frantsesa"
+      :one: "libera frantses"
+      :other: "libera frantses"
+    :GBP: 
+      :name: "libera esterlina"
+      :narrow_symbol: £
+      :one: "libera esterlina"
+      :symbol: £
+    :GEK: 
+      :name: "kupon larit georgiarra"
+      :one: "kupon larit georgiar"
+      :other: "kupon larit georgiar"
+    :GEL: 
+      :name: "lari georgiarra"
+      :narrow_symbol: ₾
+      :one: "lari georgiar"
+      :other: "lari georgiar"
+      :symbol: ₾
+    :GHC: 
+      :name: "cedi ghanatarra (1979–2007)"
+      :one: "cedi ghanatar (1979–2007)"
+      :other: "cedi ghanatar (1979–2007)"
+    :GHS: 
+      :name: "cedi ghanatarra"
+      :narrow_symbol: GH₵
+      :one: "cedi ghanatar"
+      :other: "cedi ghanatar"
+      :symbol: GH₵
+    :GIP: 
+      :name: "libera gibraltartarra"
+      :narrow_symbol: £
+      :one: "libera gibraltartar"
+      :other: "libera gibraltartar"
+      :symbol: £
+    :GMD: 
+      :name: "dalasi gambiarra"
+      :one: "dalasi gambiar"
+      :other: "dalasi gambiar"
+    :GNF: 
+      :name: "franko ginearra"
+      :narrow_symbol: FG
+      :one: "franko ginear"
+      :other: "franko ginear"
+      :symbol: FG
+    :GNS: 
+      :name: "syli ginearra"
+      :one: "syli ginear"
+      :other: "syli ginear"
+    :GQE: 
+      :name: "ekwele ekuatoreginearra"
+      :one: "ekwele ekuatoreginear"
+      :other: "ekwele ekuatoreginear"
+    :GRD: 
+      :name: "drakma greziarra"
+      :one: "drakma greziar"
+      :other: "drakma greziar"
+    :GTQ: 
+      :name: "ketzal guatemalarra"
+      :narrow_symbol: Q
+      :one: "ketzal guatemalar"
+      :other: "ketzal guatemalar"
+      :symbol: Q
+    :GWE: 
+      :name: "Gineako ezkutu portugesa"
+      :one: "Gineako ezkutu portuges"
+      :other: "Gineako ezkutu portuges"
+    :GWP: 
+      :name: "peso gineabissautarra"
+      :one: "peso gineabissautar"
+      :other: "peso gineabissautar"
+    :GYD: 
+      :name: "dolar guyanarra"
+      :narrow_symbol: $
+      :one: "dolar guyanar"
+      :other: "dolar guyanar"
+      :symbol: $
+    :HKD: 
+      :name: "dolar hongkongtarra"
+      :narrow_symbol: $
+      :one: "dolar hongkongtar"
+      :other: "dolar hongkongtar"
+      :symbol: HK$
+    :HNL: 
+      :name: "lempira hodurastarra"
+      :narrow_symbol: L
+      :one: "lempira hodurastar"
+      :other: "lempira hodurastar"
+      :symbol: L
+    :HRD: 
+      :name: "dinar kroaziarra"
+      :one: "dinar kroaziar"
+      :other: "dinar kroaziar"
+    :HRK: 
+      :name: "kuna kroaziarra"
+      :narrow_symbol: kn
+      :one: "kuna kroaziar"
+      :other: "kuna kroaziar"
+      :symbol: kn
+    :HTG: 
+      :name: "gourde haitiarra"
+      :one: "gourde haitiar"
+      :other: "gourde haitiar"
+    :HUF: 
+      :name: "forint hungariarra"
+      :narrow_symbol: Ft
+      :one: "forint hungariar"
+      :other: "forint hungariar"
+      :symbol: Ft
+    :IDR: 
+      :name: "errupia indonesiarra"
+      :narrow_symbol: Rp
+      :one: "errupia indonesiar"
+      :other: "errupia indonesiar"
+      :symbol: Rp
+    :IEP: 
+      :name: "libera irlandarra"
+      :one: "libera irlandar"
+      :other: "libera irlandar"
+    :ILP: 
+      :name: "libera israeldarra"
+      :one: "libera israeldar"
+      :other: "libera israeldar"
+    :ILR: 
+      :name: "shekel israeldarra (1980–1985)"
+      :one: "shekel israeldar (1980–1985)"
+      :other: "shekel israeldar (1980–1985)"
+    :ILS: 
+      :name: "shekel israeldar berria"
+      :narrow_symbol: ₪
+      :one: "shekel israeldar berri"
+      :other: "shekel israeldar berri"
+      :symbol: ₪
+    :INR: 
+      :name: "errupia indiarra"
+      :narrow_symbol: ₹
+      :one: "errupia indiar"
+      :other: "errupia indiar"
+      :symbol: ₹
+    :IQD: 
+      :name: "dinar irakiarra"
+      :one: "dinar irakiar"
+      :other: "dinar irakiar"
+    :IRR: 
+      :name: "rial irandarra"
+      :one: "rial irandar"
+      :other: "rial irandar"
+    :ISJ: 
+      :name: "koroa islandiarra (1918–1981)"
+      :one: "koroa islandiar (1918–1981)"
+      :other: "koroa islandiar (1918–1981)"
+    :ISK: 
+      :name: "koroa islandiarra"
+      :narrow_symbol: kr
+      :one: "koroa islandiar"
+      :other: "koroa islandiar"
+      :symbol: kr
+    :ITL: 
+      :name: "lira italiarra"
+      :one: "lira italiar"
+      :other: "lira italiar"
+    :JMD: 
+      :name: "dolar jamaikarra"
+      :narrow_symbol: $
+      :one: "dolar jamaikar"
+      :other: "dolar jamaikar"
+      :symbol: $
+    :JOD: 
+      :name: "dinar jordaniarra"
+      :one: "dinar jordaniar"
+      :other: "dinar jordaniar"
+    :JPY: 
+      :name: "yen japoniarra"
+      :narrow_symbol: ¥
+      :one: "yen japoniar"
+      :other: "yen japoniar"
+      :symbol: JP¥
+    :KES: 
+      :name: "txelin kenyarra"
+      :one: "txelin kenyar"
+      :other: "txelin kenyar"
+    :KGS: 
+      :name: "som kirgizistandarra"
+      :narrow_symbol: ⃀
+      :one: "som kirgizistandar"
+      :other: "som kirgizistandar"
+      :symbol: ⃀
+    :KHR: 
+      :name: "riel kanbodiarra"
+      :narrow_symbol: ៛
+      :one: "riel kanbodiar"
+      :other: "riel kanbodiar"
+      :symbol: ៛
+    :KMF: 
+      :name: "franko komoretarra"
+      :narrow_symbol: CF
+      :one: "franko komoretar"
+      :other: "franko komoretar"
+      :symbol: CF
+    :KPW: 
+      :name: "won iparkorearra"
+      :narrow_symbol: ₩
+      :one: "won iparkorear"
+      :other: "won iparkorear"
+      :symbol: ₩
+    :KRH: 
+      :name: "hwan hegokorearra (1953–1962)"
+      :one: "hwan hegokorear (1953–1962)"
+      :other: "hwan hegokorear (1953–1962)"
+    :KRO: 
+      :name: "won hegokorearra (1945–1953)"
+      :one: "won hegokorear (1945–1953)"
+      :other: "won hegokorear (1945–1953)"
+    :KRW: 
+      :name: "won hegokorearra"
+      :narrow_symbol: ₩
+      :one: "won hegokorear"
+      :other: "won hegokorear"
+      :symbol: ₩
+    :KWD: 
+      :name: "dinar kuwaitarra"
+      :one: "dinar kuwaitar"
+      :other: "dinar kuwaitar"
+    :KYD: 
+      :name: "dolar kaimandarra"
+      :narrow_symbol: $
+      :one: "dolar kaimandar"
+      :other: "dolar kaimandar"
+      :symbol: $
+    :KZT: 
+      :name: "tenge kazakhstandarra"
+      :narrow_symbol: ₸
+      :one: "tenge kazakhstandar"
+      :other: "tenge kazakhstandar"
+      :symbol: ₸
+    :LAK: 
+      :name: "kip laostarra"
+      :narrow_symbol: ₭
+      :one: "kip laostar"
+      :other: "kip laostar"
+      :symbol: ₭
+    :LBP: 
+      :name: "libera libanoarra"
+      :narrow_symbol: L£
+      :one: "libera libanoar"
+      :other: "libera libanoar"
+      :symbol: L£
+    :LKR: 
+      :name: "errupia srilankarra"
+      :narrow_symbol: Rs
+      :one: "errupia srilankar"
+      :other: "errupia srilankar"
+      :symbol: Rs
+    :LRD: 
+      :name: "dolar liberiarra"
+      :narrow_symbol: $
+      :one: "dolar liberiar"
+      :other: "dolar liberiar"
+      :symbol: $
+    :LSL: 
+      :name: "loti lesothoarra"
+      :one: "loti lesothoar"
+      :other: "loti lesothoar"
+    :LTL: 
+      :name: "Lituaniako litasa"
+      :narrow_symbol: Lt
+      :one: "Lituaniako litas"
+      :other: "Lituaniako litas"
+      :symbol: Lt
+    :LTT: 
+      :name: "Lituaniako talonasa"
+      :one: "Lituaniako talonas"
+      :other: "Lituaniako talonas"
+    :LUC: 
+      :name: "Luxenburgoko franko bihurgarria"
+      :one: "Luxenburgoko franko bihurgarri"
+      :other: "Luxenburgoko franko bihurgarri"
+    :LUF: 
+      :name: "Luxenburgoko frankoa"
+      :one: "Luxenburgoko franko"
+      :other: "Luxenburgoko franko"
+    :LUL: 
+      :name: "Luxenburgoko finantza-frankoa"
+      :one: "Luxenburgoko finantza-franko"
+      :other: "Luxenburgoko finantza-franko"
+    :LVL: 
+      :name: "Letoniako latsa"
+      :narrow_symbol: Ls
+      :one: "Letoniako lats"
+      :other: "Letoniako lats"
+      :symbol: Ls
+    :LVR: 
+      :name: "Letoniako errubloa"
+      :one: "Letoniako errublo"
+      :other: "Letoniako errublo"
+    :LYD: 
+      :name: "dinar libiarra"
+      :one: "dinar libiar"
+      :other: "dinar libiar"
+    :MAD: 
+      :name: "dirham marokoarra"
+      :one: "dirham marokoar"
+      :other: "dirham marokoar"
+    :MAF: 
+      :name: "franko marokoarra"
+      :one: "franko marokoar"
+      :other: "franko marokoar"
+    :MCF: 
+      :name: "Monakoko frankoa"
+      :one: "Monakoko franko"
+      :other: "Monakoko franko"
+    :MDC: 
+      :name: "kupoi moldaviarra"
+      :one: "kupoi moldaviar"
+      :other: "kupoi moldaviar"
+    :MDL: 
+      :name: "leu moldaviarra"
+      :one: "leu moldaviar"
+      :other: "leu moldaviar"
+    :MGA: 
+      :name: "ariary madagaskartarra"
+      :narrow_symbol: Ar
+      :one: "ariary madagaskartar"
+      :other: "ariary madagaskartar"
+      :symbol: Ar
+    :MGF: 
+      :name: "franko malagasiarra"
+      :one: "franko malagasiar"
+      :other: "franko malagasiar"
+    :MKD: 
+      :name: "dinar mazedoniarra"
+      :one: "dinar mazedoniar"
+      :other: "dinar mazedoniar"
+    :MKN: 
+      :name: "dinar mazedoniarra (1992–1993)"
+      :one: "dinar mazedoniar (1992–1993)"
+      :other: "dinar mazedoniar (1992–1993)"
+    :MLF: 
+      :name: "franko maliarra"
+      :one: "franko maliar"
+      :other: "franko maliar"
+    :MMK: 
+      :name: "kyat myanmartarra"
+      :narrow_symbol: K
+      :one: "kyat myanmartar"
+      :other: "kyat myanmartar"
+      :symbol: K
+    :MNT: 
+      :name: "tugrik mongoliarra"
+      :narrow_symbol: ₮
+      :one: "tugrik mongoliar"
+      :other: "tugrik mongoliar"
+      :symbol: ₮
+    :MOP: 
+      :name: "pataca macauarra"
+      :one: "pataca macauar"
+      :other: "pataca macauar"
+    :MRO: 
+      :name: "Mauritaniako ouguiya (1973–2017)"
+      :one: "Mauritaniako ouguiya (1973–2017)"
+    :MRU: 
+      :name: "uguiya mauritaniarra"
+      :one: "uguiya mauritaniar"
+      :other: "uguiya mauritaniar"
+    :MTL: 
+      :name: "lira maltarra"
+      :one: "lira maltar"
+      :other: "lira maltar"
+    :MTP: 
+      :name: "libera maltar"
+      :one: "libera maltar"
+    :MUR: 
+      :name: "errupia mauriziarra"
+      :narrow_symbol: Rs
+      :one: "errupia mauriziar"
+      :other: "errupia mauriziar"
+      :symbol: Rs
+    :MVP: 
+      :name: "errupia maldivarra (1947–1981)"
+      :one: "errupia maldivar (1947–1981)"
+      :other: "errupia maldivar (1947–1981)"
+    :MVR: 
+      :name: "rufiyaa maldivarra"
+      :one: "rufiyaa maldivar"
+      :other: "rufiyaa maldivar"
+    :MWK: 
+      :name: "kwacha malawiarra"
+      :one: "kwacha malawiar"
+      :other: "kwacha malawiar"
+    :MXN: 
+      :name: "peso mexikarra"
+      :narrow_symbol: $
+      :one: "peso mexikar"
+      :other: "peso mexikar"
+      :symbol: MX$
+    :MXP: 
+      :name: "Zilar-peso amerikarra (1861–1992)"
+      :one: "Zilar-peso amerikar (1861–1992)"
+      :other: "Zilar-peso amerikar (1861–1992)"
+    :MXV: 
+      :name: "Inbertsio-unitate mexikarra"
+      :one: "Inbertsio-unitate mexikar"
+      :other: "Inbertsio-unitate mexikar"
+    :MYR: 
+      :name: "ringgit malaysiarra"
+      :narrow_symbol: RM
+      :one: "ringgit malaysiar"
+      :other: "ringgit malaysiar"
+      :symbol: RM
+    :MZE: 
+      :name: "ezkutu mozambiketarra"
+      :one: "ezkutu mozambiketar"
+      :other: "ezkutu mozambiketar"
+    :MZM: 
+      :name: "metikal mozambiketarra"
+      :one: "metikal mozambiketar"
+      :other: "metikal mozambiketar"
+    :MZN: 
+      :name: "metical mozambiketarra"
+      :one: "metical mozambiketar"
+      :other: "metical mozambiketar"
+    :NAD: 
+      :name: "dolar namibiarra"
+      :narrow_symbol: $
+      :one: "dolar namibiar"
+      :other: "dolar namibiar"
+      :symbol: $
+    :NGN: 
+      :name: "naira nigeriarra"
+      :narrow_symbol: ₦
+      :one: "naira nigeriar"
+      :other: "naira nigeriar"
+      :symbol: ₦
+    :NIC: 
+      :name: "kordoba nikaraguar (1988–1991)"
+      :one: "kordoba nikaraguar (1988–1991)"
+    :NIO: 
+      :name: "cordoba nikaraguarra"
+      :narrow_symbol: C$
+      :one: "cordoba nikaraguar"
+      :other: "cordoba nikaraguar"
+      :symbol: C$
+    :NLG: 
+      :name: "gilder herbeheretarra"
+      :one: "gilder herbeheretar"
+      :other: "gilder herbeheretar"
+    :NOK: 
+      :name: "koroa norvegiarra"
+      :narrow_symbol: kr
+      :one: "koroa norvegiar"
+      :other: "koroa norvegiar"
+      :symbol: kr
+    :NPR: 
+      :name: "errupia nepaldarra"
+      :narrow_symbol: Rs
+      :one: "errupia nepaldar"
+      :other: "errupia nepaldar"
+      :symbol: Rs
+    :NZD: 
+      :name: "dolar zeelandaberritarra"
+      :narrow_symbol: $
+      :one: "dolar zeelandaberritar"
+      :other: "dolar zeelandaberritar"
+      :symbol: NZ$
+    :OMR: 
+      :name: "rial omandarra"
+      :one: "rial omandar"
+      :other: "rial omandar"
+    :PAB: 
+      :name: "balboa panamarra"
+      :one: "balboa panamar"
+      :other: "balboa panamar"
+    :PEI: 
+      :name: "inti perutarra"
+      :one: "inti perutar"
+      :other: "inti perutar"
+    :PEN: 
+      :name: "sol perutarra"
+      :one: "sol perutar"
+      :other: "sol perutar"
+    :PES: 
+      :name: "sol perutarra (1863–1965)"
+      :one: "sol perutar (1863–1965)"
+      :other: "sol perutar (1863–1965)"
+    :PGK: 
+      :name: "kina gineaberriarra"
+      :one: "kina gineaberriar"
+      :other: "kina gineaberriar"
+    :PHP: 
+      :name: "peso filipinarra"
+      :narrow_symbol: ₱
+      :one: "peso filipinar"
+      :other: "peso filipinar"
+      :symbol: PHP
+    :PKR: 
+      :name: "errupia pakistandarra"
+      :narrow_symbol: Rs
+      :one: "errupia pakistandar"
+      :other: "errupia pakistandar"
+      :symbol: Rs
+    :PLN: 
+      :name: "zloty poloniarra"
+      :narrow_symbol: zł
+      :one: "zloty poloniar"
+      :other: "zloty poloniar"
+      :symbol: zł
+    :PLZ: 
+      :name: "zloty poloniarra (1950–1995)"
+      :one: "zloty poloniar (PLZ)"
+      :other: "zloty poloniar (PLZ)"
+    :PTE: 
+      :name: "ezkutu portugesa"
+      :one: "ezkutu portuges"
+      :other: "ezkutu portuges"
+    :PYG: 
+      :name: "guarani paraguaitarra"
+      :narrow_symbol: ₲
+      :one: "guarani paraguaitar"
+      :other: "guarani paraguaitar"
+      :symbol: ₲
+    :QAR: 
+      :name: "riyal qatartarra"
+      :one: "riyal qatartar"
+      :other: "riyal qatartar"
+    :RHD: 
+      :name: "dolar rhodesiarra"
+      :one: "dolar rhodesiar"
+      :other: "dolar rhodesiar"
+    :ROL: 
+      :name: "leu errumaniarra (1952–2006)"
+      :one: "leu errumaniar (1952–2006)"
+      :other: "leu errumaniar (1952–2006)"
+    :RON: 
+      :name: "leu errumaniarra"
+      :narrow_symbol: lei
+      :one: "leu errumaniar"
+      :other: "leu errumaniar"
+      :symbol: lei
+    :RSD: 
+      :name: "dinar serbiarra"
+      :one: "dinar serbiar"
+      :other: "dinar serbiar"
+    :RUB: 
+      :name: "errublo errusiarra"
+      :narrow_symbol: ₽
+      :one: "errublo errusiar"
+      :other: "errublo errusiar"
+      :symbol: ₽
+    :RUR: 
+      :name: "errublo errusiarra (1991–1998)"
+      :one: "errublo errusiar (1991–1998)"
+      :other: "errublo errusiar (1991–1998)"
+    :RWF: 
+      :name: "franko ruandarra"
+      :narrow_symbol: RF
+      :one: "franko ruandar"
+      :other: "franko ruandar"
+      :symbol: RF
+    :SAR: 
+      :name: "riyal saudiarabiarra"
+      :one: "riyal saudiarabiar"
+      :other: "riyal saudiarabiar"
+    :SBD: 
+      :name: "dolar salomondarra"
+      :narrow_symbol: $
+      :one: "dolar salomondar"
+      :other: "dolar salomondar"
+      :symbol: $
+    :SCR: 
+      :name: "errupia seychelletarra"
+      :one: "errupia seychelletar"
+      :other: "errupia seychelletar"
+    :SDD: 
+      :name: "dinar sudandarra (1992–2007)"
+      :one: "dinar sudandar (1992–2007)"
+      :other: "dinar sudandar (1992–2007)"
+    :SDG: 
+      :name: "libera sudandarra"
+      :one: "libera sudandar"
+      :other: "libera sudandar"
+    :SDP: 
+      :name: "libera sudandarra (1957–1998)"
+      :one: "libera sudandar (1957–1998)"
+      :other: "libera sudandar (1957–1998)"
+    :SEK: 
+      :name: "koroa suediarra"
+      :narrow_symbol: kr
+      :one: "koroa suediar"
+      :other: "koroa suediar"
+      :symbol: kr
+    :SGD: 
+      :name: "dolar singapurtarra"
+      :narrow_symbol: $
+      :one: "dolar singapurtar"
+      :other: "dolar singapurtar"
+      :symbol: $
+    :SHP: 
+      :name: "Santa Helenako libera"
+      :narrow_symbol: £
+      :one: "Santa Helenako libera"
+      :symbol: £
+    :SIT: 
+      :name: "tolar esloveniarra"
+      :one: "tolar esloveniar"
+      :other: "tolar esloveniar"
+    :SKK: 
+      :name: "koroa eslovakiarra"
+      :one: "koroa eslovakiar"
+      :other: "koroa eslovakiar"
+    :SLE: 
+      :name: "leone sierraleonar berria"
+      :one: "leone sierraleonar berri"
+      :other: "leone sierraleonar berri"
+    :SLL: 
+      :name: "leone sierraleonarra"
+      :one: "leone sierraleonar"
+      :other: "leone sierraleonar"
+    :SOS: 
+      :name: "txelin somaliarra"
+      :one: "txelin somaliar"
+      :other: "txelin somaliar"
+    :SRD: 
+      :name: "dolar surinamdarra"
+      :narrow_symbol: $
+      :one: "dolar surinamdar"
+      :other: "dolar surinamdar"
+      :symbol: $
+    :SRG: 
+      :name: "gilder surinamdarra"
+      :one: "gilder surinamdar"
+      :other: "gilder surinamdar"
+    :SSP: 
+      :name: "libera hegosudandarra"
+      :narrow_symbol: £
+      :one: "libera hegosudandar"
+      :other: "libera hegosudandar"
+      :symbol: £
+    :STD: 
+      :name: "Sao Tomeko eta Principeko dobra (1977–2017)"
+      :one: "Sao Tomeko eta Principeko dobra (1977–2017)"
+    :STN: 
+      :name: "dobra saotometarra"
+      :narrow_symbol: Db
+      :one: "dobra saotometar"
+      :other: "dobra saotometar"
+      :symbol: Db
+    :SUR: 
+      :name: "errublo sovietarra"
+      :one: "errublo sovietar"
+      :other: "errublo sovietar"
+    :SVC: 
+      :name: "kolon salvadortarra"
+      :one: "kolon salvadortar"
+      :other: "kolon salvadortar"
+    :SYP: 
+      :name: "libera siriarra"
+      :narrow_symbol: £
+      :one: "libera siriar"
+      :other: "libera siriar"
+      :symbol: £
+    :SZL: 
+      :name: "lilangeni swazilandiarra"
+      :one: "lilangeni swazilandiar"
+      :other: "lilangeni swazilandiar"
+    :THB: 
+      :name: "baht thailandiarra"
+      :narrow_symbol: ฿
+      :one: "baht thailandiar"
+      :other: "baht thailandiar"
+      :symbol: ฿
+    :TJR: 
+      :name: "errublo tajikistandarra"
+      :one: "errublo tajikistandar"
+      :other: "errublo tajikistandar"
+    :TJS: 
+      :name: "somoni tajikistandarra"
+      :one: "somoni tajikistandar"
+      :other: "somoni tajikistandar"
+    :TMM: 
+      :name: "manat turkmenistandarra (1993–2009)"
+      :one: "manat turkmenistandar (1993–2009)"
+      :other: "manat turkmenistandar (1993–2009)"
+    :TMT: 
+      :name: "manat turkmenistandarra"
+      :one: "manat turkmenistandar"
+      :other: "manat turkmenistandar"
+    :TND: 
+      :name: "dinar tunisiarra"
+      :one: "dinar tunisiar"
+      :other: "dinar tunisiar"
+    :TOP: 
+      :name: "paʻanga tongatarra"
+      :narrow_symbol: T$
+      :one: "paʻanga tongatar"
+      :other: "paʻanga tongatar"
+      :symbol: T$
+    :TPE: 
+      :name: "ezkutu timortarra"
+      :one: "ezkutu timortar"
+      :other: "ezkutu timortar"
+    :TRL: 
+      :name: "lira turkiarra (1922–2005)"
+      :one: "lira turkiar (1922–2005)"
+      :other: "lira turkiar (1922–2005)"
+    :TRY: 
+      :name: "lira turkiarra"
+      :narrow_symbol: ₺
+      :one: "lira turkiar"
+      :other: "lira turkiar"
+      :symbol: ₺
+    :TTD: 
+      :name: "dolar trinitatearra"
+      :narrow_symbol: $
+      :one: "dolar trinitatear"
+      :other: "dolar trinitatear"
+      :symbol: $
+    :TWD: 
+      :name: "dolar taiwandar berria"
+      :narrow_symbol: NT$
+      :one: "dolar taiwandar berri"
+      :other: "dolar taiwandar berri"
+      :symbol: NT$
+    :TZS: 
+      :name: "txelin tanzaniarra"
+      :one: "txelin tanzaniar"
+      :other: "txelin tanzaniar"
+    :UAH: 
+      :name: "hryvnia ukrainarra"
+      :narrow_symbol: ₴
+      :one: "hryvnia ukrainar"
+      :other: "hryvnia ukrainar"
+      :symbol: ₴
+    :UAK: 
+      :name: "karbovanets ukrainarra"
+      :one: "karbovanets ukrainar"
+      :other: "karbovanets ukrainar"
+    :UGS: 
+      :name: "txelin ugandarra (1966–1987)"
+      :one: "txelin ugandar (1966–1987)"
+      :other: "txelin ugandar (1966–1987)"
+    :UGX: 
+      :name: "txelin ugandarra"
+      :one: "txelin ugandar"
+      :other: "txelin ugandar"
+    :USD: 
+      :name: "dolar estatubatuarra"
+      :narrow_symbol: $
+      :one: "dolar estatubatuar"
+      :other: "dolar estatubatuar"
+      :symbol: US$
+    :USN: 
+      :name: "dolar estatubatuar (Hurrengo eguna)"
+      :one: "dolar estatubatuar (hurrengo eguna)"
+      :other: "dolar estatubatuar (hurrengo eguna)"
+    :USS: 
+      :name: "dolar estatubatuar (Egun berean)"
+      :one: "dolar estatubatuar (egun berean)"
+      :other: "dolar estatubatuar (egun berean)"
+    :UYI: 
+      :name: "peso uruguaitarra (unitate indexatuak)"
+      :one: "peso uruguaitar (unitate indexatuak)"
+      :other: "peso uruguaitar (unitate indexatuak)"
+    :UYP: 
+      :name: "peso uruguaitarra (1975–1993)"
+      :one: "peso uruguaitar (1975–1993)"
+      :other: "peso uruguaitar (1975–1993)"
+    :UYU: 
+      :name: "peso uruguaitarra"
+      :narrow_symbol: $
+      :one: "peso uruguaitar"
+      :other: "peso uruguaitar"
+      :symbol: $
+    :UYW: 
+      :name: "soldata nominalaren indize-unitate uruguaitarra"
+      :one: "soldata nominalaren indize-unitate uruguaitar"
+      :other: "soldata nominalaren indize-unitate uruguaitar"
+    :UZS: 
+      :name: "sum uzbekistandarra"
+      :one: "sum uzbekistandar"
+      :other: "sum uzbekistandar"
+    :VEB: 
+      :name: "Venezuelako bolivarra (1871–2008)"
+      :one: "Venezuelako bolivar (1871–2008)"
+      :other: "Venezuelako bolivar (1871–2008)"
+    :VED: 
+      :name: "bolivar subiraua"
+      :one: "bolivar subirau"
+      :other: "bolivar subirau"
+    :VEF: 
+      :name: "Venezuelako bolivarra (2008–2018)"
+      :narrow_symbol: Bs
+      :one: "Venezuelako bolivar (2008–2018)"
+      :other: "Venezuelako bolivar (2008–2018)"
+      :symbol: Bs
+    :VES: 
+      :name: "bolivar venezuelarra"
+      :one: "bolivar venezuelar"
+      :other: "bolivar venezuelar"
+    :VND: 
+      :name: "dong vietnamdarra"
+      :narrow_symbol: ₫
+      :one: "dong vietnamdar"
+      :other: "dong vietnamdar"
+      :symbol: ₫
+    :VNN: 
+      :name: "dong vietnamdar (1978–1985)"
+      :one: "dong vietnamdar (1978–1985)"
+    :VUV: 
+      :name: "vatu vanuatuarra"
+      :one: "vatu vanuatuar"
+      :other: "vatu vanuatuar"
+    :WST: 
+      :name: "tala samoarra"
+      :one: "tala samoar"
+      :other: "tala samoar"
+    :XAF: 
+      :name: "Afrika erdialdeko CFA frankoa"
+      :one: "Afrika erdialdeko CFA franko"
+      :other: "Afrika erdialdeko CFA franko"
+      :symbol: FCFA
+    :XAG: 
+      :name: zilarra
+      :one: "zilarrezko troy ontza"
+      :other: "zilarrezko troy ontza"
+    :XAU: 
+      :name: urrea
+      :one: "urrezko troy ontza"
+      :other: "urrezko troy ontza"
+    :XBA: 
+      :name: "Europako unitate konposatua"
+      :one: "Europako unitate konposatu"
+      :other: "Europako unitate konposatu"
+    :XBB: 
+      :name: "Europako moneta-unitatea"
+      :one: "Europako moneta-unitate"
+      :other: "Europako moneta-unitate"
+    :XBC: 
+      :name: "Europako kontu-unitatea (XBC)"
+      :one: "Europako kontu-unitate (XBC)"
+      :other: "Europako kontu-unitate (XBC)"
+    :XBD: 
+      :name: "Europako kontu-unitatea (XBD)"
+      :one: "Europako kontu-unitate (XBD)"
+      :other: "Europako kontu-unitate (XBD)"
+    :XCD: 
+      :name: "dolar ekikaribearra"
+      :narrow_symbol: $
+      :one: "dolar ekikaribear"
+      :other: "dolar ekikaribear"
+      :symbol: EC$
+    :XCG: 
+      :symbol: Cg.
+    :XDR: 
+      :name: "igorpen-eskubide berezia"
+      :one: "igorpen-eskubide berezi"
+      :other: "igorpen-eskubide berezi"
+    :XEU: 
+      :name: "Europako dibisa-unitatea"
+      :one: "Europako dibisa-unitate"
+      :other: "Europako dibisa-unitate"
+    :XFO: 
+      :name: "urrezko libera frantsesa"
+      :one: "urrezko libera frantses"
+      :other: "urrezko libera frantses"
+    :XFU: 
+      :name: "UIC libera frantsesa"
+      :one: "UIC libera frantses"
+      :other: "UIC libera frantses"
+    :XOF: 
+      :name: "Afrika mendebaldeko CFA frankoa"
+      :one: "Afrika mendebaldeko CFA franko"
+      :other: "Afrika mendebaldeko CFA franko"
+      :symbol: F CFA
+    :XPD: 
+      :name: paladioa
+      :one: "paladiozko troy ontza"
+      :other: "paladiozko troy ontza"
+    :XPF: 
+      :name: "CFP frankoa"
+      :one: "CFP franko"
+      :other: "CFP franko"
+      :symbol: CFPF
+    :XPT: 
+      :name: "platinozko troy ontza"
+      :one: "platinozko troy ontza"
+    :XRE: 
+      :name: "RINET funtsak"
+      :one: "RINET funtsen unitate"
+      :other: "RINET funtsen unitate"
+    :XSU: 
+      :name: sucrea
+      :one: sucre
+      :other: sucre
+    :XTS: 
+      :name: "aztertzeko dibisa-unitatea"
+      :one: "aztertzeko dibisa-unitate"
+      :other: "aztertzeko dibisa-unitate"
+    :XUA: 
+      :name: "ADB kontu-unitatea"
+      :one: "ADB kontu-unitate"
+      :other: "ADB kontu-unitate"
+    :XXX: 
+      :name: "moneta ezezaguna"
+      :one: "(moneta ezezaguna)"
+      :other: "(moneta ezezaguna)"
+      :symbol: ¤
+    :YDD: 
+      :name: "dinar yemendarra"
+      :one: "dinar yemendar"
+      :other: "dinar yemendar"
+    :YER: 
+      :name: "rial yemendarra"
+      :one: "rial yemendar"
+      :other: "rial yemendar"
+    :YUD: 
+      :name: "dinar yugoslaviar indartsua (1966–1990)"
+      :one: "dinar yugoslaviar indartsu (1966–1990)"
+      :other: "dinar yugoslaviar indartsu (1966–1990)"
+    :YUM: 
+      :name: "dinar yugoslaviar berria (1994–2002)"
+      :one: "dinar yugoslaviar berri (1994–2002)"
+      :other: "dinar yugoslaviar berri (1994–2002)"
+    :YUN: 
+      :name: "dinar yugoslaviar bihurgarria (1990–1992)"
+      :one: "dinar yugoslaviar bihurgarri (1990–1992)"
+      :other: "dinar yugoslaviar bihurgarri (1990–1992)"
+    :YUR: 
+      :name: "dinar yugoslaviar erreformatua (1992–1993)"
+      :one: "dinar yugoslaviar erreformatu (1992–1993)"
+      :other: "dinar yugoslaviar erreformatu (1992–1993)"
+    :ZAL: 
+      :name: "rand hegoafrikarra (finantzarioa)"
+      :one: "rand hegoafrikar (finantzarioa)"
+      :other: "rand hegoafrikar (finantzarioa)"
+    :ZAR: 
+      :name: "rand hegoafrikarra"
+      :narrow_symbol: R
+      :one: "rand hegoafrikar"
+      :other: "rand hegoafrikar"
+      :symbol: R
+    :ZMK: 
+      :name: "Zambiako kwacha (1968–2012)"
+      :one: "Zambiako kwacha (1968–2012)"
+    :ZMW: 
+      :name: "kwacha zambiarra"
+      :narrow_symbol: ZK
+      :one: "kwacha zambiar"
+      :other: "kwacha zambiar"
+      :symbol: ZK
+    :ZRN: 
+      :name: "zaire berri zairetarra (1993–1998)"
+      :one: "zaire berri zairetar (1993–1998)"
+      :other: "zaire berri zairetar (1993–1998)"
+    :ZRZ: 
+      :name: "zaire zairetarra (1971–1993)"
+      :one: "zaire zairetar (1971–1993)"
+      :other: "zaire zairetar (1971–1993)"
+    :ZWD: 
+      :name: "dolar zimbabwetarra (1980–2008)"
+      :one: "dolar zimbabwetar (1980–2008)"
+      :other: "dolar zimbabwetar (1980–2008)"
+    :ZWL: 
+      :name: "dolar zimbabwetarra (2009)"
+      :one: "dolar zimbabwetar (2009)"
+      :other: "dolar zimbabwetar (2009)"
+    :ZWR: 
+      :name: "dolar zimbabwetarra (2008)"
+      :one: "dolar zimbabwetar (2008)"
+      :other: "dolar zimbabwetar (2008)"

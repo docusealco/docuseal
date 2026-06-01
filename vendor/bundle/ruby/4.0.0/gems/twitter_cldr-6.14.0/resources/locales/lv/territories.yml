@@ -1,0 +1,267 @@
+--- 
+:lv: 
+  :territories: 
+    :ac: "Debesbraukšanas sala"
+    :ad: Andora
+    :ae: "Apvienotie Arābu Emirāti"
+    :af: Afganistāna
+    :ag: "Antigva un Barbuda"
+    :ai: Angilja
+    :al: Albānija
+    :am: Armēnija
+    :ao: Angola
+    :aq: Antarktika
+    :ar: Argentīna
+    :as: "ASV Samoa"
+    :at: Austrija
+    :au: Austrālija
+    :aw: Aruba
+    :ax: "Olandes salas"
+    :az: Azerbaidžāna
+    :ba: "Bosnija un Hercegovina"
+    :bb: Barbadosa
+    :bd: Bangladeša
+    :be: Beļģija
+    :bf: Burkinafaso
+    :bg: Bulgārija
+    :bh: Bahreina
+    :bi: Burundija
+    :bj: Benina
+    :bl: Senbartelmī
+    :bm: "Bermudu salas"
+    :bn: Bruneja
+    :bo: Bolīvija
+    :bq: "Nīderlandes Karību salas"
+    :br: Brazīlija
+    :bs: "Bahamu salas"
+    :bt: Butāna
+    :bv: "Buvē sala"
+    :bw: Botsvāna
+    :by: Baltkrievija
+    :bz: Beliza
+    :ca: Kanāda
+    :cc: "Kokosu (Kīlinga) salas"
+    :cd: "Kongo (Kinšasa)"
+    :cf: "Centrālāfrikas Republika"
+    :cg: "Kongo (Brazavila)"
+    :ch: Šveice
+    :ci: Kotdivuāra
+    :ck: "Kuka salas"
+    :cl: Čīle
+    :cm: Kamerūna
+    :cn: Ķīna
+    :co: Kolumbija
+    :cp: "Klipertona sala"
+    :cr: Kostarika
+    :cu: Kuba
+    :cv: Kaboverde
+    :cw: Kirasao
+    :cx: "Ziemsvētku sala"
+    :cy: Kipra
+    :cz: Čehija
+    :de: Vācija
+    :dg: "Djego Garsijas atols"
+    :dj: Džibutija
+    :dk: Dānija
+    :dm: Dominika
+    :do: Dominikāna
+    :dz: Alžīrija
+    :ea: "Seūta un Melilja"
+    :ec: Ekvadora
+    :ee: Igaunija
+    :eg: Ēģipte
+    :eh: Rietumsahāra
+    :er: Eritreja
+    :es: Spānija
+    :et: Etiopija
+    :eu: "Eiropas Savienība"
+    :ez: Eirozona
+    :fi: Somija
+    :fj: Fidži
+    :fk: "Folklenda salas"
+    :fm: Mikronēzija
+    :fo: "Fēru salas"
+    :fr: Francija
+    :ga: Gabona
+    :gb: "Apvienotā Karaliste"
+    :gd: Grenāda
+    :ge: Gruzija
+    :gf: "Francijas Gviāna"
+    :gg: Gērnsija
+    :gh: Gana
+    :gi: Gibraltārs
+    :gl: Grenlande
+    :gm: Gambija
+    :gn: Gvineja
+    :gp: Gvadelupa
+    :gq: "Ekvatoriālā Gvineja"
+    :gr: Grieķija
+    :gs: "Dienviddžordžija un Dienvidsendviču salas"
+    :gt: Gvatemala
+    :gu: Guama
+    :gw: Gvineja-Bisava
+    :gy: Gajāna
+    :hk: "Ķīnas īpašās pārvaldes apgabals Honkonga"
+    :hm: "Hērda sala un Makdonalda salas"
+    :hn: Hondurasa
+    :hr: Horvātija
+    :ht: Haiti
+    :hu: Ungārija
+    :ic: "Kanāriju salas"
+    :id: Indonēzija
+    :ie: Īrija
+    :il: Izraēla
+    :im: "Menas sala"
+    :in: Indija
+    :io: "Indijas okeāna Britu teritorija"
+    :iq: Irāka
+    :ir: Irāna
+    :is: Islande
+    :it: Itālija
+    :je: Džērsija
+    :jm: Jamaika
+    :jo: Jordānija
+    :jp: Japāna
+    :ke: Kenija
+    :kg: Kirgizstāna
+    :kh: Kambodža
+    :ki: Kiribati
+    :km: "Komoru salas"
+    :kn: "Sentkitsa un Nevisa"
+    :kp: Ziemeļkoreja
+    :kr: Dienvidkoreja
+    :kw: Kuveita
+    :ky: "Kaimanu salas"
+    :kz: Kazahstāna
+    :la: Laosa
+    :lb: Libāna
+    :lc: Sentlūsija
+    :li: Lihtenšteina
+    :lk: Šrilanka
+    :lr: Libērija
+    :ls: Lesoto
+    :lt: Lietuva
+    :lu: Luksemburga
+    :lv: Latvija
+    :ly: Lībija
+    :ma: Maroka
+    :mc: Monako
+    :md: Moldova
+    :me: Melnkalne
+    :mf: Senmartēna
+    :mg: Madagaskara
+    :mh: "Māršala salas"
+    :mk: Ziemeļmaķedonija
+    :ml: Mali
+    :mm: "Mjanma (Birma)"
+    :mn: Mongolija
+    :mo: "ĶTR īpašais administratīvais reģions Makao"
+    :mp: "Ziemeļu Marianas salas"
+    :mq: Martinika
+    :mr: Mauritānija
+    :ms: Montserrata
+    :mt: Malta
+    :mu: Maurīcija
+    :mv: Maldīvija
+    :mw: Malāvija
+    :mx: Meksika
+    :my: Malaizija
+    :mz: Mozambika
+    :na: Namībija
+    :nc: Jaunkaledonija
+    :ne: Nigēra
+    :nf: "Norfolkas sala"
+    :ng: Nigērija
+    :ni: Nikaragva
+    :nl: Nīderlande
+    ? !ruby/symbol "no"
+    : Norvēģija
+    :np: Nepāla
+    :nr: Nauru
+    :nu: Niue
+    :nz: Jaunzēlande
+    :om: Omāna
+    :pa: Panama
+    :pe: Peru
+    :pf: "Francijas Polinēzija"
+    :pg: Papua-Jaungvineja
+    :ph: Filipīnas
+    :pk: Pakistāna
+    :pl: Polija
+    :pm: "Senpjēra un Mikelona"
+    :pn: "Pitkērnas salas"
+    :pr: Puertoriko
+    :ps: "Palestīnas teritorijas"
+    :pt: Portugāle
+    :pw: Palau
+    :py: Paragvaja
+    :qa: Katara
+    :qo: "Okeānijas attālās salas"
+    :re: Reinjona
+    :ro: Rumānija
+    :rs: Serbija
+    :ru: Krievija
+    :rw: Ruanda
+    :sa: "Saūda Arābija"
+    :sb: "Zālamana salas"
+    :sc: "Seišelu salas"
+    :sd: Sudāna
+    :se: Zviedrija
+    :sg: Singapūra
+    :sh: "Sv.Helēnas sala"
+    :si: Slovēnija
+    :sj: "Svalbāra un Jana Majena sala"
+    :sk: Slovākija
+    :sl: Sjerraleone
+    :sm: Sanmarīno
+    :sn: Senegāla
+    :so: Somālija
+    :sr: Surinama
+    :ss: Dienvidsudāna
+    :st: "Santome un Prinsipi"
+    :sv: Salvadora
+    :sx: Sintmārtena
+    :sy: Sīrija
+    :sz: Svatini
+    :ta: "Tristana da Kuņjas salu teritorijas"
+    :tc: "Tērksas un Kaikosas salas"
+    :td: Čada
+    :tf: "Francijas Dienvidjūru teritorija"
+    :tg: Togo
+    :th: Taizeme
+    :tj: Tadžikistāna
+    :tk: Tokelau
+    :tl: Austrumtimora
+    :tm: Turkmenistāna
+    :tn: Tunisija
+    :to: Tonga
+    :tr: Turcija
+    :tt: "Trinidāda un Tobāgo"
+    :tv: Tuvalu
+    :tw: Taivāna
+    :tz: Tanzānija
+    :ua: Ukraina
+    :ug: Uganda
+    :um: "ASV Mazās Aizjūras salas"
+    :un: "Apvienoto Nāciju Organizācija"
+    :us: "Amerikas Savienotās Valstis"
+    :uy: Urugvaja
+    :uz: Uzbekistāna
+    :va: Vatikāns
+    :vc: "Sentvinsenta un Grenadīnas"
+    :ve: Venecuēla
+    :vg: "Britu Virdžīnas"
+    :vi: "ASV Virdžīnas"
+    :vn: Vjetnama
+    :vu: Vanuatu
+    :wf: "Volisa un Futunas salas"
+    :ws: Samoa
+    :xa: pseidoakcenti
+    :xb: pseidodivvirzienu
+    :xk: Kosova
+    :ye: Jemena
+    :yt: Majota
+    :za: "Dienvidāfrikas Republika"
+    :zm: Zambija
+    :zw: Zimbabve
+    :zz: "nezināms reģions"

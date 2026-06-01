@@ -1,0 +1,467 @@
+--- 
+:lv: 
+  :fields: 
+    :day: 
+      :display_name: diena
+      :relative: 
+        -1: vakar
+        -2: aizvakar
+        0: šodien
+        1: rīt
+        2: parīt
+      :relative_time: 
+        :future: 
+          :one: "pēc {0} dienas"
+          :other: "pēc {0} dienām"
+          :zero: "pēc {0} dienām"
+        :past: 
+          :one: "pirms {0} dienas"
+          :other: "pirms {0} dienām"
+          :zero: "pirms {0} dienām"
+    :day-short: 
+      :display_name: d.
+      :relative_time: 
+        :future: 
+          :one: "pēc {0} d."
+          :other: "pēc {0} d."
+          :zero: "pēc {0} d."
+        :past: 
+          :one: "pirms {0} d."
+          :other: "pirms {0} d."
+          :zero: "pirms {0} d."
+    :dayOfYear: 
+      :display_name: "gada diena"
+    :dayperiod: 
+      :display_name: priekšpusdienā/pēcpusdienā
+    :dayperiod-short: 
+      :display_name: priekšpusd./pēcpusd.
+    :era: 
+      :display_name: ēra
+    :fri: 
+      :relative: 
+        -1: "pagājušajā piektdienā"
+        0: "šajā piektdienā"
+        1: "nākamajā piektdienā"
+      :relative_time: 
+        :future: 
+          :one: "pēc {0} piektdienas"
+          :other: "pēc {0} piektdienām"
+          :zero: "pēc {0} piektdienām"
+        :past: 
+          :one: "pirms {0} piektdienas"
+          :other: "pirms {0} piektdienām"
+          :zero: "pirms {0} piektdienām"
+    :fri-short: 
+      :relative: 
+        -1: "pag. piektd."
+        0: "šajā piektd."
+        1: "nāk. piektd."
+      :relative_time: 
+        :future: 
+          :one: "pēc {0} piektd."
+          :other: "pēc {0} piektd."
+          :zero: "pēc {0} piektdienām"
+        :past: 
+          :one: "pirms {0} piektd."
+          :other: "pirms {0} piektd."
+          :zero: "pirms {0} piektdienām"
+    :hour: 
+      :display_name: stundas
+      :relative: 
+        0: "šajā stundā"
+      :relative_time: 
+        :future: 
+          :one: "pēc {0} stundas"
+          :other: "pēc {0} stundām"
+          :zero: "pēc {0} stundām"
+        :past: 
+          :one: "pirms {0} stundas"
+          :other: "pirms {0} stundām"
+          :zero: "pirms {0} stundām"
+    :hour-narrow: 
+      :display_name: h
+      :relative_time: 
+        :future: 
+          :one: "pēc {0} h"
+          :other: "pēc {0} h"
+          :zero: "pēc {0} h"
+        :past: 
+          :one: "pirms {0} h"
+          :other: "pirms {0} h"
+          :zero: "pirms {0} h"
+    :hour-short: 
+      :display_name: st.
+      :relative_time: 
+        :future: 
+          :one: "pēc {0} st."
+          :other: "pēc {0} st."
+          :zero: "pēc {0} st."
+        :past: 
+          :one: "pirms {0} st."
+          :other: "pirms {0} st."
+          :zero: "pirms {0} st."
+    :minute: 
+      :display_name: minūtes
+      :relative: 
+        0: "šajā minūtē"
+      :relative_time: 
+        :future: 
+          :one: "pēc {0} minūtes"
+          :other: "pēc {0} minūtēm"
+          :zero: "pēc {0} minūtēm"
+        :past: 
+          :one: "pirms {0} minūtes"
+          :other: "pirms {0} minūtēm"
+          :zero: "pirms {0} minūtēm"
+    :minute-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "pēc {0} min"
+          :other: "pēc {0} min"
+          :zero: "pēc {0} min"
+        :past: 
+          :one: "pirms {0} min"
+          :other: "pirms {0} min"
+          :zero: "pirms {0} min"
+    :minute-short: 
+      :display_name: min
+      :relative_time: 
+        :future: 
+          :one: "pēc {0} min."
+          :other: "pēc {0} min."
+          :zero: "pēc {0} min."
+        :past: 
+          :one: "pirms {0} min."
+          :other: "pirms {0} min."
+          :zero: "pirms {0} min."
+    :mon: 
+      :relative: 
+        -1: "pagājušajā pirmdienā"
+        0: "šajā pirmdienā"
+        1: "nākamajā pirmdienā"
+      :relative_time: 
+        :future: 
+          :one: "pēc {0} pirmdienas"
+          :other: "pēc {0} pirmdienām"
+          :zero: "pēc {0} pirmdienām"
+        :past: 
+          :one: "pirms {0} pirmdienas"
+          :other: "pirms {0} pirmdienām"
+          :zero: "pirms {0} pirmdienām"
+    :mon-short: 
+      :relative: 
+        -1: "pag. pirmd."
+        0: "šajā pirmd."
+        1: "nāk. pirmd."
+      :relative_time: 
+        :future: 
+          :one: "pēc {0} pirmd."
+          :other: "pēc {0} pirmd."
+          :zero: "pēc {0} pirmdienām"
+        :past: 
+          :one: "pirms {0} pirmd."
+          :other: "pirms {0} pirmd."
+          :zero: "pirms {0} pirmdienām"
+    :month: 
+      :display_name: mēnesis
+      :relative: 
+        -1: "pagājušajā mēnesī"
+        0: "šajā mēnesī"
+        1: "nākamajā mēnesī"
+      :relative_time: 
+        :future: 
+          :one: "pēc {0} mēneša"
+          :other: "pēc {0} mēnešiem"
+          :zero: "pēc {0} mēnešiem"
+        :past: 
+          :one: "pirms {0} mēneša"
+          :other: "pirms {0} mēnešiem"
+          :zero: "pirms {0} mēnešiem"
+    :month-short: 
+      :display_name: mēn.
+      :relative: 
+        -1: "pag. mēn."
+        0: "šajā mēn."
+        1: "nāk. mēn."
+      :relative_time: 
+        :future: 
+          :one: "pēc {0} mēn."
+          :other: "pēc {0} mēn."
+          :zero: "pēc {0} mēn."
+        :past: 
+          :one: "pirms {0} mēn."
+          :other: "pirms {0} mēn."
+          :zero: "pirms {0} mēn."
+    :quarter: 
+      :display_name: ceturksnis
+      :relative: 
+        -1: "pēdējais ceturksnis"
+        0: "šis ceturksnis"
+        1: "nākamais ceturksnis"
+      :relative_time: 
+        :future: 
+          :one: "pēc {0} ceturkšņa"
+          :other: "pēc {0} ceturkšņiem"
+          :zero: "pēc {0} ceturkšņiem"
+        :past: 
+          :one: "pirms {0} ceturkšņa"
+          :other: "pirms {0} ceturkšņiem"
+          :zero: "pirms {0} ceturkšņiem"
+    :quarter-short: 
+      :display_name: cet.
+      :relative_time: 
+        :future: 
+          :one: "pēc {0} cet."
+          :other: "pēc {0} cet."
+          :zero: "pēc {0} cet."
+        :past: 
+          :one: "pirms {0} cet."
+          :other: "pirms {0} cet."
+          :zero: "pirms {0} cet."
+    :sat: 
+      :relative: 
+        -1: "pagājušajā sestdienā"
+        0: "šajā sestdienā"
+        1: "nākamajā sestdienā"
+      :relative_time: 
+        :future: 
+          :one: "pēc {0} sestdienas"
+          :other: "pēc {0} sestdienām"
+          :zero: "pēc {0} sestdienām"
+        :past: 
+          :one: "pirms {0} sestdienas"
+          :other: "pirms {0} sestdienām"
+          :zero: "pirms {0} sestdienām"
+    :sat-short: 
+      :relative: 
+        -1: "pag. sestd."
+        0: "šajā sestd."
+        1: "nāk. sestd."
+      :relative_time: 
+        :future: 
+          :one: "pēc {0} sestd."
+          :other: "pēc {0} sestd."
+          :zero: "pēc {0} sestdienām"
+        :past: 
+          :one: "pirms {0} sestd."
+          :other: "pirms {0} sestd."
+          :zero: "pirms {0} sestdienām"
+    :second: 
+      :display_name: sekundes
+      :relative: 
+        0: tagad
+      :relative_time: 
+        :future: 
+          :one: "pēc {0} sekundes"
+          :other: "pēc {0} sekundēm"
+          :zero: "pēc {0} sekundēm"
+        :past: 
+          :one: "pirms {0} sekundes"
+          :other: "pirms {0} sekundēm"
+          :zero: "pirms {0} sekundēm"
+    :second-narrow: 
+      :display_name: s
+      :relative_time: 
+        :future: 
+          :one: "pēc {0} s"
+          :other: "pēc {0} s"
+          :zero: "pēc {0} s"
+        :past: 
+          :one: "pirms {0} s"
+          :other: "pirms {0} s"
+          :zero: "pirms {0} s"
+    :second-short: 
+      :display_name: sek.
+      :relative_time: 
+        :future: 
+          :one: "pēc {0} sek."
+          :other: "pēc {0} sek."
+          :zero: "pēc {0} sek."
+        :past: 
+          :one: "pirms {0} sek."
+          :other: "pirms {0} sek."
+          :zero: "pirms {0} sek."
+    :sun: 
+      :relative: 
+        -1: "pagājušajā svētdienā"
+        0: "šajā svētdienā"
+        1: "nākamajā svētdienā"
+      :relative_time: 
+        :future: 
+          :one: "pēc {0} svētdienas"
+          :other: "pēc {0} svētdienām"
+          :zero: "pēc {0} svētdienām"
+        :past: 
+          :one: "pirms {0} svētdienas"
+          :other: "pirms {0} svētdienām"
+          :zero: "pirms {0} svētdienām"
+    :sun-short: 
+      :relative: 
+        -1: "pag. svētd."
+        0: "šajā svētd."
+        1: "nāk. svētd."
+      :relative_time: 
+        :future: 
+          :one: "pēc {0} svētd."
+          :other: "pēc {0} svētd."
+          :zero: "pēc {0} svētdienām"
+        :past: 
+          :one: "pirms {0} svētd."
+          :other: "pirms {0} svētd."
+          :zero: "pirms {0} svētdienām"
+    :thu: 
+      :relative: 
+        -1: "pagājušajā ceturtdienā"
+        0: "šajā ceturtdienā"
+        1: "nākamajā ceturtdienā"
+      :relative_time: 
+        :future: 
+          :one: "pēc {0} ceturtdienas"
+          :other: "pēc {0} ceturtdienām"
+          :zero: "pēc {0} ceturtdienām"
+        :past: 
+          :one: "pirms {0} ceturtdienas"
+          :other: "pirms {0} ceturtdienām"
+          :zero: "pirms {0} ceturtdienām"
+    :thu-short: 
+      :relative: 
+        -1: "pag. ceturtd."
+        0: "šajā ceturtd."
+        1: "nāk. ceturtd."
+      :relative_time: 
+        :future: 
+          :one: "pēc {0} ceturtd."
+          :other: "pēc {0} ceturtd."
+          :zero: "pēc {0} ceturtdienām"
+        :past: 
+          :one: "pirms {0} ceturtd."
+          :other: "pirms {0} ceturtd."
+          :zero: "pirms {0} ceturtdienām"
+    :tue: 
+      :relative: 
+        -1: "pagājušajā otrdienā"
+        0: "šajā otrdienā"
+        1: "nākamajā otrdienā"
+      :relative_time: 
+        :future: 
+          :one: "pēc {0} otrdienas"
+          :other: "pēc {0} otrdienām"
+          :zero: "pēc {0} otrdienām"
+        :past: 
+          :one: "pirms {0} otrdienas"
+          :other: "pirms {0} otrdienām"
+          :zero: "pirms {0} otrdienām"
+    :tue-short: 
+      :relative: 
+        -1: "pag. otrd."
+        0: "šajā otrd."
+        1: "nāk. otrd."
+      :relative_time: 
+        :future: 
+          :one: "pēc {0} otrd."
+          :other: "pēc {0} otrd."
+          :zero: "pēc {0} otrdienām"
+        :past: 
+          :one: "pirms {0} otrd."
+          :other: "pirms {0} otrd."
+          :zero: "pirms {0} otrdienām"
+    :wed: 
+      :relative: 
+        -1: "pagājušajā trešdienā"
+        0: "šajā trešdienā"
+        1: "nākamajā trešdienā"
+      :relative_time: 
+        :future: 
+          :one: "pēc {0} trešdienas"
+          :other: "pēc {0} trešdienām"
+          :zero: "pēc {0} trešdienām"
+        :past: 
+          :one: "pirms {0} trešdienas"
+          :other: "pirms {0} trešdienām"
+          :zero: "pirms {0} trešdienām"
+    :wed-short: 
+      :relative: 
+        -1: "pag. trešd."
+        0: "šajā trešd."
+        1: "nāk. trešd."
+      :relative_time: 
+        :future: 
+          :one: "pēc {0} trešd."
+          :other: "pēc {0} trešd."
+          :zero: "pēc {0} trešdienām"
+        :past: 
+          :one: "pirms {0} trešd."
+          :other: "pirms {0} trešd."
+          :zero: "pirms {0} trešdienām"
+    :week: 
+      :display_name: nedēļa
+      :relative: 
+        -1: "pagājušajā nedēļā"
+        0: "šajā nedēļā"
+        1: "nākamajā nedēļā"
+      :relative_time: 
+        :future: 
+          :one: "pēc {0} nedēļas"
+          :other: "pēc {0} nedēļām"
+          :zero: "pēc {0} nedēļām"
+        :past: 
+          :one: "pirms {0} nedēļas"
+          :other: "pirms {0} nedēļām"
+          :zero: "pirms {0} nedēļām"
+    :week-short: 
+      :display_name: ned.
+      :relative: 
+        -1: "pag. ned."
+        0: "šajā ned."
+        1: "nāk. ned."
+      :relative_time: 
+        :future: 
+          :one: "pēc {0} ned."
+          :other: "pēc {0} ned."
+          :zero: "pēc {0} ned."
+        :past: 
+          :one: "pirms {0} ned."
+          :other: "pirms {0} ned."
+          :zero: "pirms {0} ned."
+    :weekOfMonth: 
+      :display_name: "mēneša nedēļa"
+    :weekOfMonth-short: 
+      :display_name: "mēneša ned."
+    :weekday: 
+      :display_name: "nedēļas diena"
+    :weekdayOfMonth: 
+      :display_name: "mēneša nedēļas diena"
+    :weekdayOfMonth-short: 
+      :display_name: "mēneša ned. diena"
+    :year: 
+      :display_name: gads
+      :relative: 
+        -1: "pagājušajā gadā"
+        0: "šajā gadā"
+        1: "nākamajā gadā"
+      :relative_time: 
+        :future: 
+          :one: "pēc {0} gada"
+          :other: "pēc {0} gadiem"
+          :zero: "pēc {0} gadiem"
+        :past: 
+          :one: "pirms {0} gada"
+          :other: "pirms {0} gadiem"
+          :zero: "pirms {0} gadiem"
+    :year-short: 
+      :display_name: g.
+      :relative: 
+        -1: "pag. gadā"
+        0: "šajā g."
+        1: "nāk. gadā"
+      :relative_time: 
+        :future: 
+          :one: "pēc {0} g."
+          :other: "pēc {0} g."
+          :zero: "pēc {0} g."
+        :past: 
+          :one: "pirms {0} g."
+          :other: "pirms {0} g."
+          :zero: "pirms {0} g."
+    :zone: 
+      :display_name: "laika josla"

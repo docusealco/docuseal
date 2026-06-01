@@ -1,0 +1,267 @@
+--- 
+:xh: 
+  :territories: 
+    :ac: "E-Ascension Island"
+    :ad: E-Andorra
+    :ae: "E-United Arab Emirates"
+    :af: E-Afghanistan
+    :ag: "E-Antigua & Barbuda"
+    :ai: E-Anguilla
+    :al: E-Albania
+    :am: E-Armenia
+    :ao: E-Angola
+    :aq: E-Antarctica
+    :ar: E-Argentina
+    :as: "E-American Samoa"
+    :at: E-Austria
+    :au: E-Australia
+    :aw: E-Aruba
+    :ax: "E-Åland Islands"
+    :az: E-Azerbaijan
+    :ba: "EBosnia & Herzegovina"
+    :bb: EBarbados
+    :bd: EBangladesh
+    :be: EBelgium
+    :bf: "EBurkina Faso"
+    :bg: EBulgaria
+    :bh: EBahrain
+    :bi: EBurundi
+    :bj: EBenin
+    :bl: "ESt. Barthélemy"
+    :bm: EBermuda
+    :bn: eBrunei
+    :bo: EBolivia
+    :bq: "ECaribbean Netherlands"
+    :br: EBrazil
+    :bs: EBahamas
+    :bt: EBhutan
+    :bv: "EBouvet Island"
+    :bw: EBotswana
+    :by: EBelarus
+    :bz: EBelize
+    :ca: EKhanada
+    :cc: "ECocos (Keeling) Islands"
+    :cd: "ECongo -Kinshasa"
+    :cf: "ECentral African Republic"
+    :cg: "ECongo - Brazzaville"
+    :ch: ESwitzerland
+    :ci: "ECôte d’Ivoire"
+    :ck: "ECook Islands"
+    :cl: EChile
+    :cm: ECameroon
+    :cn: ETshayina
+    :co: EColombia
+    :cp: "EClipperton Island"
+    :cr: "ECosta Rica"
+    :cu: ECuba
+    :cv: "ECape Verde"
+    :cw: ECuraçao
+    :cx: "EChristmas Island"
+    :cy: ECyprus
+    :cz: ECzechia
+    :de: EJamani
+    :dg: "EDiego Garcia"
+    :dj: EDjibouti
+    :dk: EDenmark
+    :dm: EDominica
+    :do: "EDominican Republic"
+    :dz: E-Algeria
+    :ea: "ECeuta & Melilla"
+    :ec: EEcuador
+    :ee: E-Estonia
+    :eg: IYiputa
+    :eh: "EWestern Sahara"
+    :er: E-Eritrea
+    :es: ESpain
+    :et: E-Ethiopia
+    :eu: "I-European Union"
+    :ez: I-Eurozone
+    :fi: EFinland
+    :fj: EFiji
+    :fk: "EFalkland Islands"
+    :fm: EMicronesia
+    :fo: "EFaroe Islands"
+    :fr: EFrance
+    :ga: EGabon
+    :gb: "E-United Kingdom"
+    :gd: EGrenada
+    :ge: EGeorgia
+    :gf: "EFrench Guiana"
+    :gg: EGuernsey
+    :gh: EGhana
+    :gi: EGibraltar
+    :gl: EGreenland
+    :gm: EGambia
+    :gn: EGuinea
+    :gp: EGuadeloupe
+    :gq: "E-Equatorial Guinea"
+    :gr: EGreece
+    :gs: "ESouth Georgia & South Sandwich Islands"
+    :gt: EGuatemala
+    :gu: EGuam
+    :gw: EGuinea-Bissau
+    :gy: EGuyana
+    :hk: "EHong Kong SAR China"
+    :hm: "EHeard & McDonald Islands"
+    :hn: EHonduras
+    :hr: ECroatia
+    :ht: EHaiti
+    :hu: EHungary
+    :ic: "ECanary Islands"
+    :id: E-Indonesia
+    :ie: E-Ireland
+    :il: E-Israel
+    :im: "E-Isle of Man"
+    :in: E-Indiya
+    :io: "EBritish Indian Ocean Territory"
+    :iq: E-Iraq
+    :ir: E-Iran
+    :is: E-Iceland
+    :it: E-Italy
+    :je: EJersey
+    :jm: EJamaica
+    :jo: EJordan
+    :jp: EJapan
+    :ke: EKenya
+    :kg: EKyrgyzstan
+    :kh: ECambodia
+    :ki: EKiribati
+    :km: EComoros
+    :kn: "ESt. Kitts & Nevis"
+    :kp: "EMntla Korea"
+    :kr: "EMzantsi Korea"
+    :kw: EKuwait
+    :ky: "ECayman Islands"
+    :kz: EKazakhstan
+    :la: ELaos
+    :lb: ELebanon
+    :lc: "ESt. Lucia"
+    :li: ELiechtenstein
+    :lk: "ESri Lanka"
+    :lr: ELiberia
+    :ls: ELesotho
+    :lt: ELithuania
+    :lu: ELuxembourg
+    :lv: ELatvia
+    :ly: ELibya
+    :ma: EMorocco
+    :mc: EMonaco
+    :md: EMoldova
+    :me: EMontenegro
+    :mf: "ESt. Martin"
+    :mg: EMadagascar
+    :mh: "EMarshall Islands"
+    :mk: "EMntla Macedonia"
+    :ml: EMali
+    :mm: "EMyanmar (Burma)"
+    :mn: EMongolia
+    :mo: "EMacao SAR China"
+    :mp: "ENorthern Mariana Islands"
+    :mq: EMartinique
+    :mr: EMauritania
+    :ms: EMontserrat
+    :mt: EMalta
+    :mu: EMauritius
+    :mv: EMaldives
+    :mw: EMalawi
+    :mx: EMexico
+    :my: EMalaysia
+    :mz: EMozambique
+    :na: ENamibia
+    :nc: "ENew Caledonia"
+    :ne: ENiger
+    :nf: "ENorfolk Island"
+    :ng: ENigeria
+    :ni: ENicaragua
+    :nl: ENetherlands
+    ? !ruby/symbol "no"
+    : ENorway
+    :np: ENepal
+    :nr: ENauru
+    :nu: ENiue
+    :nz: "ENew Zealand"
+    :om: E-Oman
+    :pa: EPanama
+    :pe: EPeru
+    :pf: "EFrench Polynesia"
+    :pg: "EPapua New Guinea"
+    :ph: EPhilippines
+    :pk: EPakistan
+    :pl: EPoland
+    :pm: "ESt. Pierre & Miquelon"
+    :pn: "EPitcairn Islands"
+    :pr: "EPuerto Rico"
+    :ps: "IPalestinian Territories"
+    :pt: EPortugal
+    :pw: EPalau
+    :py: EParaguay
+    :qa: EQatar
+    :qo: "I-Oceania Esemaphandleni"
+    :re: ERéunion
+    :ro: ERomania
+    :rs: ESerbia
+    :ru: ERashiya
+    :rw: ERwanda
+    :sa: "ESaudi Arabia"
+    :sb: "ESolomon Islands"
+    :sc: ESeychelles
+    :sd: ESudan
+    :se: ESweden
+    :sg: ESingapore
+    :sh: "ESt. Helena"
+    :si: ESlovenia
+    :sj: "ESvalbard & Jan Mayen"
+    :sk: ESlovakia
+    :sl: "ESierra Leone"
+    :sm: "ESan Marino"
+    :sn: ESenegal
+    :so: ESomalia
+    :sr: ESuriname
+    :ss: "ESouth Sudan"
+    :st: "ESão Tomé & Príncipe"
+    :sv: "E-El Salvador"
+    :sx: "ESint Maarten"
+    :sy: ESiriya
+    :sz: ESwatini
+    :ta: "ETristan da Cunha"
+    :tc: "ETurks & Caicos Islands"
+    :td: EChad
+    :tf: "EFrench Southern Territories"
+    :tg: ETogo
+    :th: EThailand
+    :tj: ETajikistan
+    :tk: ETokelau
+    :tl: ETimor-Leste
+    :tm: ETurkmenistan
+    :tn: ETunisia
+    :to: ETonga
+    :tr: ETurkey
+    :tt: "ETrinidad & Tobago"
+    :tv: ETuvalu
+    :tw: ETaiwan
+    :tz: ETanzania
+    :ua: E-Ukraine
+    :ug: E-Uganda
+    :um: "I-U.S. Outlying Islands"
+    :un: "Izizwe Ezimanyeneyo"
+    :us: EMelika
+    :uy: E-Uruguay
+    :uz: E-Uzbekistan
+    :va: "EVatican City"
+    :vc: "ESt. Vincent & Grenadines"
+    :ve: EVenezuela
+    :vg: "EBritish Virgin Islands"
+    :vi: "E-U.S. Virgin Islands"
+    :vn: EVietnam
+    :vu: EVanuatu
+    :wf: "EWallis & Futuna"
+    :ws: ESamoa
+    :xa: I-Pseudo-Accents
+    :xb: I-Pseudo-Bidi
+    :xk: EKosovo
+    :ye: EYemen
+    :yt: EMayotte
+    :za: "EMzantsi Afrika"
+    :zm: EZambia
+    :zw: EZimbabwe
+    :zz: "Ingingqi Engaziwayo"

@@ -1,0 +1,57 @@
+module WEBrick
+  class ServerError < StandardError
+  end
+
+  class SimpleServer
+    def self.start: [T] () { () -> T } -> T
+  end
+
+  class Daemon
+    def self.start: ()  -> void
+                  | [T] () { () -> T } -> T
+  end
+
+  class GenericServer
+    @shutdown_pipe: [IO, IO]?
+
+    attr_reader status: :Stop | :Running | :Shutdown
+
+    attr_reader config: Hash[Symbol, untyped]
+
+    attr_reader logger: BasicLog
+
+    attr_reader tokens: Thread::SizedQueue
+
+    attr_reader listeners: Array[TCPServer| OpenSSL::SSL::SSLServer]
+
+    def initialize: (?Hash[Symbol, untyped] config, ?Hash[Symbol, untyped] default) -> void
+
+    def []: (Symbol key) -> untyped
+
+    def listen: (String address, Integer port) -> void
+
+    def start: () ?{ (TCPSocket) -> void } -> void
+
+    def stop: () -> void
+
+    def shutdown: () -> void
+
+    def run: (TCPSocket sock) -> void
+
+    private
+
+    def accept_client: (TCPServer svr) -> TCPSocket?
+
+    def start_thread: (TCPSocket sock) ?{ (TCPSocket) -> void } -> Thread
+
+    def call_callback: (Symbol callback_name, *untyped args) -> untyped
+
+    def setup_shutdown_pipe: () -> [IO, IO]
+
+    def cleanup_shutdown_pipe: ([IO, IO]? shutdown_pipe) -> void
+
+    def alarm_shutdown_pipe: [T] () { (IO) -> T } -> T?
+
+    def cleanup_listener: () -> void
+  end
+end

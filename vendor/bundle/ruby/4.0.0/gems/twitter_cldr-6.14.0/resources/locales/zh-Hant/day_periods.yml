@@ -1,0 +1,120 @@
+--- 
+:zh-Hant: 
+  :default: 
+    :afternoon1: 
+      :before: 
+        :hour: 13
+        :min: 0
+      :from: 
+        :hour: 12
+        :min: 0
+    :afternoon2: 
+      :before: 
+        :hour: 19
+        :min: 0
+      :from: 
+        :hour: 13
+        :min: 0
+    :am: 
+      :before: 
+        :hour: 12
+        :min: 0
+      :from: 
+        :hour: 0
+        :min: 0
+    :evening1: 
+      :before: 
+        :hour: 24
+        :min: 0
+      :from: 
+        :hour: 19
+        :min: 0
+    :midnight: 
+      :at: 
+        :hour: 0
+        :min: 0
+    :morning1: 
+      :before: 
+        :hour: 8
+        :min: 0
+      :from: 
+        :hour: 5
+        :min: 0
+    :morning2: 
+      :before: 
+        :hour: 12
+        :min: 0
+      :from: 
+        :hour: 8
+        :min: 0
+    :night1: 
+      :before: 
+        :hour: 5
+        :min: 0
+      :from: 
+        :hour: 0
+        :min: 0
+    :pm: 
+      :before: 
+        :hour: 24
+        :min: 0
+      :from: 
+        :hour: 12
+        :min: 0
+  :selection: 
+    :afternoon1: 
+      :before: 
+        :hour: 13
+        :min: 0
+      :from: 
+        :hour: 12
+        :min: 0
+    :afternoon2: 
+      :before: 
+        :hour: 19
+        :min: 0
+      :from: 
+        :hour: 13
+        :min: 0
+    :am: 
+      :before: 
+        :hour: 12
+        :min: 0
+      :from: 
+        :hour: 0
+        :min: 0
+    :evening1: 
+      :before: 
+        :hour: 24
+        :min: 0
+      :from: 
+        :hour: 19
+        :min: 0
+    :morning1: 
+      :before: 
+        :hour: 8
+        :min: 0
+      :from: 
+        :hour: 5
+        :min: 0
+    :morning2: 
+      :before: 
+        :hour: 12
+        :min: 0
+      :from: 
+        :hour: 8
+        :min: 0
+    :night1: 
+      :before: 
+        :hour: 5
+        :min: 0
+      :from: 
+        :hour: 0
+        :min: 0
+    :pm: 
+      :before: 
+        :hour: 24
+        :min: 0
+      :from: 
+        :hour: 12
+        :min: 0

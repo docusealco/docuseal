@@ -1,0 +1,46 @@
+name: ESLint Validation
+
+on:
+  pull_request:
+    paths:
+      - "eslint.config.js"
+      - "package.json"
+      - "package/**/*.js"
+      - "test/**/*.js"
+      - ".github/workflows/eslint-validation.yml"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "yarn"
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Validate ESLint config
+        run: |
+          echo "Validating ESLint configuration..."
+          node -e "const config = require('./eslint.config.js'); console.log('✓ Config is valid with', config.length, 'rule sets')"
+
+      - name: Run ESLint
+        run: |
+          echo "Running ESLint on allowed files..."
+          yarn eslint . --max-warnings 5
+
+      - name: Check warning count
+        run: |
+          echo "Checking warning count..."
+          WARNING_COUNT=$(yarn eslint . 2>&1 | grep -E "^✖.*warning" | grep -oE "[0-9]+ warning" | cut -d' ' -f1)
+          echo "Current warning count: $WARNING_COUNT"
+          if [ "$WARNING_COUNT" -gt "5" ]; then
+            echo "❌ Too many warnings: $WARNING_COUNT (max allowed: 5)"
+            exit 1
+          fi
+          echo "✓ Warning count is acceptable"

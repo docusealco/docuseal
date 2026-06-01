@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+# This requires the default gemset so Sidekiq Pro
+# and Sidekiq Enterprise can load any code extensions.
+Bundler.require(:default, :tui)
+
+require_relative "../lib/sidekiq/tui"
+
+# Run any load hooks registered during Bundler.require
+Sidekiq.loader.run_load_hooks(:tui)
+
+tt = Sidekiq::TUI.new(Sidekiq.default_configuration)
+
+RatatuiRuby.run do |tui|
+  tt.prepare(tui)
+  tt.run_loop
+end

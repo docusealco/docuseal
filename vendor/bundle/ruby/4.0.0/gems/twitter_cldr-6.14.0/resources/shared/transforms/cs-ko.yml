@@ -1,0 +1,12 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - ko-t-cs
+    :direction: forward
+    :rules: 
+      - "::cs-cs_FONIPA ;"
+      - "::cs_FONIPA-ko ;"
+    :source: cs
+    :target: ko
+    :variant: ~

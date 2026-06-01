@@ -1,0 +1,95 @@
+--- 
+:xh: 
+  :fields: 
+    :day: 
+      :display_name: usuku
+      :relative: 
+        -1: izolo
+        0: namhlanje
+        1: ngomso
+    :dayperiod: 
+      :display_name: "Kusasa/Emva kwemini"
+    :era: 
+      :display_name: "ixesha leminyaka"
+    :hour: 
+      :display_name: iyure
+    :hour-narrow: 
+      :display_name: yur
+    :hour-short: 
+      :display_name: yur.
+    :minute: 
+      :display_name: umzuzu
+    :minute-narrow: 
+      :display_name: umz
+    :minute-short: 
+      :display_name: umz.
+    :month: 
+      :display_name: inyanga
+      :relative: 
+        -1: "inyanga ephelileyo"
+        0: "kule nyanga"
+        1: "kwinyanga ezayo"
+    :month-narrow: 
+      :display_name: nya
+      :relative: 
+        -1: "inya ephel."
+        0: "kule nya."
+        1: "kwinya eza."
+    :month-short: 
+      :display_name: iny.
+      :relative: 
+        -1: "inyanga ephel."
+        0: "kule nya."
+        1: "kwinyanga eza."
+    :quarter: 
+      :display_name: ikota
+    :quarter-narrow: 
+      :display_name: kot
+    :quarter-short: 
+      :display_name: kot.
+    :second: 
+      :display_name: umzuzwana
+    :second-narrow: 
+      :display_name: mzuzwa.
+    :second-short: 
+      :display_name: zuzwa.
+    :week: 
+      :display_name: iveki
+      :relative: 
+        -1: "kwiveki ephelileyo"
+        0: "ku;e veki"
+        1: "kwiveki ezayo"
+    :week-narrow: 
+      :display_name: vek
+      :relative: 
+        -1: "veki ephel."
+        0: "kule vek."
+        1: "veki eza."
+    :week-short: 
+      :display_name: ive.
+      :relative: 
+        -1: "vek ephel."
+        0: "kule vek."
+        1: "vek eza."
+    :weekday: 
+      :display_name: "usuku lweveki"
+    :year: 
+      :display_name: unyaka
+      :relative: 
+        -1: "unyaka ophelileyo"
+        0: "kulo nyaka"
+        1: "kunyaka ozayo"
+    :year-narrow: 
+      :display_name: uny
+      :relative: 
+        -1: "unyaka ophel."
+        0: "kulo nyak."
+        1: "unyak oza."
+    :year-short: 
+      :display_name: uny.
+      :relative: 
+        -1: "unyaka ophel."
+        0: "kulo nyak."
+        1: "kunyak oza."
+    :zone: 
+      :display_name: "ingingqi yexesha"

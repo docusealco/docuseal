@@ -1,0 +1,109 @@
+--- 
+:hy: 
+  :rbnf: 
+    :grouping: 
+      - 
+        :ruleset: 
+          - 
+            :rules: 
+              - 
+                :rule: =0.0=;
+                :value: x.x
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 0
+            :type: spellout-numbering-year
+          - 
+            :rules: 
+              - 
+                :rule: =%spellout-cardinal=;
+                :value: 0
+            :type: spellout-numbering
+          - 
+            :rules: 
+              - 
+                :rule: "հանած >>;"
+                :value: "-x"
+              - 
+                :rule: "<< ստորակել >>;"
+                :value: x.x
+              - 
+                :rule: զրո;
+                :value: 0
+              - 
+                :rule: մեկ;
+                :value: 1
+              - 
+                :rule: երկու;
+                :value: 2
+              - 
+                :rule: երեք;
+                :value: 3
+              - 
+                :rule: չորս;
+                :value: 4
+              - 
+                :rule: հինգ;
+                :value: 5
+              - 
+                :rule: վեց;
+                :value: 6
+              - 
+                :rule: յոթ;
+                :value: 7
+              - 
+                :rule: ութ;
+                :value: 8
+              - 
+                :rule: ինը;
+                :value: 9
+              - 
+                :rule: "տասն[­>>];"
+                :value: 10
+              - 
+                :rule: "քսան[­>>];"
+                :value: 20
+              - 
+                :rule: "երեսուն[­>>];"
+                :value: 30
+              - 
+                :rule: "քառասուն[­>>];"
+                :value: 40
+              - 
+                :rule: "հիսուն[­>>];"
+                :value: 50
+              - 
+                :rule: "վաթսուն[­>>];"
+                :value: 60
+              - 
+                :rule: "յոթանասուն[­>>];"
+                :value: 70
+              - 
+                :rule: "ութսուն[­>>];"
+                :value: 80
+              - 
+                :rule: "իննասուն[­>>];"
+                :value: 90
+              - 
+                :rule: "<<­հարյուր[ >>];"
+                :value: 100
+              - 
+                :rule: "<< հազար[ >>];"
+                :value: 1000
+              - 
+                :rule: "<< միլիօն[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<< միլիար[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<< բիլիօն[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<< բիլիար[ >>];"
+                :value: 1000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal
+        :type: SpelloutRules

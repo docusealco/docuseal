@@ -1,107 +1,77 @@
 <h1 align="center" style="border-bottom: none">
   <div>
-    <a href="https://www.docuseal.com">
-      <img  alt="DocuSeal" src="https://github.com/user-attachments/assets/38b45682-ffa4-4919-abde-d2d422325c44" width="80" />
+    <a href="https://sign.wabo.cc">
+      <img alt="WaboSign" src="public/favicon.svg" width="80" />
       <br>
     </a>
-    DocuSeal
+    WaboSign
   </div>
 </h1>
 <h3 align="center">
-  Open source document filling and signing
+  Self-hosted document filling and signing
 </h3>
-<p align="center">
-  <a href="https://hub.docker.com/r/docuseal/docuseal">
-    <img alt="Docker releases" src="https://img.shields.io/docker/v/docuseal/docuseal">
-  </a>
-  <a href="https://discord.gg/qygYCDGck9">
-    <img src="https://img.shields.io/discord/1125112641170448454?logo=discord"/>
-  </a>
-  <a href="https://twitter.com/intent/follow?screen_name=docusealco">
-    <img src="https://img.shields.io/twitter/follow/docusealco?style=social" alt="Follow @docusealco" />
-  </a>
-</p>
-<p>
-DocuSeal is an open source platform that provides secure and efficient digital document signing and processing. Create PDF forms to have them filled and signed online on any device with an easy-to-use, mobile-optimized web tool.
-</p>
-<h2 align="center">
-  <a href="https://demo.docuseal.tech">✨ Live Demo</a>
-  <span>|</span>
-  <a href="https://docuseal.com/sign_up">☁️ Try in Cloud</a>
-</h2>
 
-[![Demo](https://github.com/docusealco/docuseal/assets/5418788/d8703ea3-361a-423f-8bfe-eff1bd9dbe14)](https://demo.docuseal.tech)
+<p>
+WaboSign is a self-hosted, open-source platform for secure digital document signing and processing. Create PDF forms, fill them in online from any device, and collect signatures with an easy-to-use, mobile-optimized web tool.
+</p>
+
+WaboSign is a fork of [DocuSeal](https://github.com/docusealco/docuseal) under AGPLv3, with the upstream's "Pro" feature paywall removed so that every shipped capability is available out of the box on a self-hosted deployment.
 
 ## Features
+
 - PDF form fields builder (WYSIWYG)
-- 12 field types available (Signature, Date, File, Checkbox etc.)
+- 12 field types (Signature, Date, File, Checkbox, Phone, Verification, etc.)
 - Multiple submitters per document
 - Automated emails via SMTP
-- Files storage on disk or AWS S3, Google Storage, Azure Cloud
+- File storage on disk or AWS S3, Google Storage, Azure Blob
 - Automatic PDF eSignature
 - PDF signature verification
-- Users management
-- Mobile-optimized
-- 7 UI languages with signing available in 14 languages
-- API and Webhooks for integrations
-- Easy to deploy in minutes
-
-## Pro Features
-- Company logo and white-label
-- User roles
-- Automated reminders
-- Invitation and identity verification via SMS
+- User management and roles
+- Mobile-optimized signing flow
+- 14 UI languages
+- API + Webhooks for integrations
+- SMS invitations via [BulkVS, Twilio, VoIP.ms, or SignalWire](SMS.md)
+- Bulk send via CSV / XLSX import
+- Google Workspace SSO ([setup guide](GOOGLE_SSO.md))
 - Conditional fields and formulas
-- Bulk send with CSV, XLSX spreadsheet import
-- SSO / SAML
-- Template creation with HTML API ([Guide](https://www.docuseal.com/guides/create-pdf-document-fillable-form-with-html-api))
-- Template creation with PDF or DOCX and field tags API ([Guide](https://www.docuseal.com/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form))
-- Embedded signing form ([React](https://github.com/docusealco/docuseal-react), [Vue](https://github.com/docusealco/docuseal-vue), [Angular](https://github.com/docusealco/docuseal-angular) or [JavaScript](https://www.docuseal.com/docs/embedded))
-- Embedded document form builder ([React](https://github.com/docusealco/docuseal-react), [Vue](https://github.com/docusealco/docuseal-vue), [Angular](https://github.com/docusealco/docuseal-angular) or [JavaScript](https://www.docuseal.com/docs/embedded))
-- [Learn more](https://www.docuseal.com/pricing)
+- Custom branding (logo, colors, reply-to)
+- Easy Docker deployment
 
-## Deploy
-
-|Heroku|Railway|
-|:--:|:---:|
-| [<img alt="Deploy on Heroku" src="https://www.herokucdn.com/deploy/button.svg" height="40">](https://heroku.com/deploy?template=https://github.com/docusealco/docuseal-heroku) | [<img alt="Deploy on Railway" src="https://railway.app/button.svg" height="40">](https://railway.com/deploy/IGoDnc?referralCode=ruU7JR)|
-|**DigitalOcean**|**Render**|
-| [<img alt="Deploy on DigitalOcean" src="https://www.deploytodo.com/do-btn-blue.svg" height="40">](https://cloud.digitalocean.com/apps/new?repo=https://github.com/docusealco/docuseal-digitalocean/tree/master&refcode=421d50f53990) | [<img alt="Deploy to Render" src="https://render.com/images/deploy-to-render-button.svg" height="40">](https://render.com/deploy?repo=https://github.com/docusealco/docuseal-render)
-
-#### Docker
+## Docker
 
 ```sh
-docker run --name docuseal -p 3000:3000 -v.:/data docuseal/docuseal
+docker run --name wabosign -p 3000:3000 -v .:/data ghcr.io/wabolabs/wabosign:1.3.2
 ```
 
-By default DocuSeal docker container uses an SQLite database to store data and configurations. Alternatively, it is possible to use PostgreSQL or MySQL databases by specifying the `DATABASE_URL` env variable.
+`:latest` always tracks the most recent release; pin a `MAJOR.MINOR.PATCH` tag for reproducible deployments.
 
-#### Docker Compose
+By default the container uses SQLite for data. Point at PostgreSQL or MySQL by setting `DATABASE_URL`.
 
-Download docker-compose.yml into your private server:
+### Docker Compose
+
 ```sh
-curl https://raw.githubusercontent.com/docusealco/docuseal/master/docker-compose.yml > docker-compose.yml
+sudo HOST=sign.example.com docker compose up
 ```
 
-Run the app under a custom domain over https using docker compose (make sure your DNS points to the server to automatically issue ssl certs with Caddy):
-```sh
-sudo HOST=your-domain-name.com docker compose up
-```
+Make sure your DNS points at the server so Caddy can issue an SSL cert automatically.
 
-## For Businesses
-### Integrate seamless document signing into your web or mobile apps with DocuSeal
+## Authentication
 
-At DocuSeal we have expertise and technologies to make documents creation, filling, signing and processing seamlessly integrated with your product. We specialize in working with various industries, including **Banking, Healthcare, Transport, Real Estate, eCommerce, KYC, CRM, and other software products** that require bulk document signing. By leveraging DocuSeal, we can assist in reducing the overall cost of developing and processing electronic documents while ensuring security and compliance with local electronic document laws.
+WaboSign ships with email + password (Devise) and TOTP two-factor auth out of the box. Google Workspace SSO can be enabled by setting three environment variables — see [GOOGLE_SSO.md](GOOGLE_SSO.md) for the full operator guide.
 
-[Book a Meeting](https://www.docuseal.com/contact)
+## Releases
+
+- **Current release:** 1.3.2 — see [CHANGELOG.md](CHANGELOG.md).
+- **Container image:** `ghcr.io/wabolabs/wabosign:1.3.2` (or `:latest`).
+- **Versioning:** `MAJOR.MINOR.PATCH` per [semver.org](https://semver.org).
+- **Tagging triggers a build:** pushing a `MAJOR.MINOR.PATCH` git tag runs [`.github/workflows/docker.yml`](.github/workflows/docker.yml), which builds `linux/amd64` + `linux/arm64` and pushes to GHCR.
 
 ## License
 
-Distributed under the AGPLv3 License with Section 7(b) Additional Terms. See [LICENSE](https://github.com/docusealco/docuseal/blob/master/LICENSE) and [LICENSE_ADDITIONAL_TERMS](https://github.com/docusealco/docuseal/blob/master/LICENSE_ADDITIONAL_TERMS) for more information.
-Unless otherwise noted, all files © 2023-2026 DocuSeal LLC.
+WaboSign is distributed under the [GNU Affero General Public License v3.0](LICENSE), with the §7(b) [Additional Terms](LICENSE_ADDITIONAL_TERMS) preserved from upstream.
 
-## Tools
+WaboSign is a fork of [DocuSeal](https://github.com/docusealco/docuseal) © 2023–2026 DocuSeal LLC. The upstream attribution required by §7(b) is preserved in interactive UIs and in the [NOTICE](NOTICE) file. Modifications © 2026 the WaboSign authors.
 
-- [Signature Maker](https://www.docuseal.com/online-signature)
-- [Sign Document Online](https://www.docuseal.com/sign-documents-online)
-- [Fill PDF Online](https://www.docuseal.com/fill-pdf)
+## Acknowledgements
+
+This software builds on the substantial work of the [DocuSeal](https://github.com/docusealco/docuseal) team. Their open-source release made this fork possible. WaboSign retains the embedding SDK contract (`<docuseal-form>`, `@docuseal/react`, `@docuseal/vue`, `@docuseal/angular`) so existing DocuSeal embedding code continues to work.

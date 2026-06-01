@@ -1,0 +1,5 @@
+---
+rdoc_options: lib/ --main 'CmdParse::CommandParser' --title 'cmdparse'
+prefix_link_defs: false
+output_structure: hierarchical
+api_template: /api.template

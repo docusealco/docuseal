@@ -1,0 +1,362 @@
+--- 
+:hy: 
+  :fields: 
+    :day: 
+      :display_name: օր
+      :relative: 
+        -1: երեկ
+        -2: "նախանցյալ օրը"
+        0: այսօր
+        1: վաղը
+        2: "վաղը չէ մյուս օրը"
+      :relative_time: 
+        :future: 
+          :one: "{0} օրից"
+          :other: "{0} օրից"
+        :past: 
+          :one: "{0} օր առաջ"
+          :other: "{0} օր առաջ"
+    :day-short: 
+      :relative: 
+        -2: "երեկ չէ առաջի օրը"
+    :dayOfYear: 
+      :display_name: "տարվա օր"
+    :dayperiod: 
+      :display_name: ԿԱ/ԿՀ
+    :era: 
+      :display_name: թվարկություն
+    :era-short: 
+      :display_name: թ․
+    :fri: 
+      :relative: 
+        -1: "նախորդ ուրբաթ"
+        0: "այս ուրբաթ"
+        1: "հաջորդ ուրբաթ"
+      :relative_time: 
+        :future: 
+          :one: "{0} ուրբաթ հետո"
+          :other: "{0} ուրբաթ հետո"
+        :past: 
+          :one: "{0} ուրբաթ առաջ"
+          :other: "{0} ուրբաթ առաջ"
+    :fri-short: 
+      :relative: 
+        -1: "նխրդ ուրբ"
+        0: "այս ուրբ"
+        1: "հջրդ ուրբ"
+      :relative_time: 
+        :future: 
+          :one: "{0} ուրբ հետո"
+          :other: "{0} ուրբ հետո"
+        :past: 
+          :one: "{0} ուրբ առաջ"
+          :other: "{0} ուրբ առաջ"
+    :hour: 
+      :display_name: ժամ
+      :relative: 
+        0: "այս ժամին"
+      :relative_time: 
+        :future: 
+          :one: "{0} ժամից"
+          :other: "{0} ժամից"
+        :past: 
+          :one: "{0} ժամ առաջ"
+          :other: "{0} ժամ առաջ"
+    :hour-short: 
+      :display_name: ժ
+      :relative_time: 
+        :future: 
+          :one: "{0} ժ-ից"
+          :other: "{0} ժ-ից"
+        :past: 
+          :one: "{0} ժ առաջ"
+          :other: "{0} ժ առաջ"
+    :minute: 
+      :display_name: րոպե
+      :relative: 
+        0: "այս րոպեին"
+      :relative_time: 
+        :future: 
+          :one: "{0} րոպեից"
+          :other: "{0} րոպեից"
+        :past: 
+          :one: "{0} րոպե առաջ"
+          :other: "{0} րոպե առաջ"
+    :minute-short: 
+      :display_name: ր
+      :relative_time: 
+        :future: 
+          :one: "{0} ր-ից"
+          :other: "{0} ր-ից"
+        :past: 
+          :one: "{0} ր առաջ"
+          :other: "{0} ր առաջ"
+    :mon: 
+      :relative: 
+        -1: "նախորդ երկուշաբթի"
+        0: "այս երկուշաբթի"
+        1: "հաջորդ երկուշաբթի"
+      :relative_time: 
+        :future: 
+          :one: "{0} երկուշաբթի հետո"
+          :other: "{0} երկուշաբթի հետո"
+        :past: 
+          :one: "{0} երկուշաբթի առաջ"
+          :other: "{0} երկուշաբթի առաջ"
+    :mon-short: 
+      :relative: 
+        -1: "նխրդ երկ"
+        0: "այս երկ"
+        1: "հջրդ երկ"
+      :relative_time: 
+        :future: 
+          :one: "{0} երկ հետո"
+          :other: "{0} երկ հետո"
+        :past: 
+          :one: "{0} երկ առաջ"
+          :other: "{0} երկ առաջ"
+    :month: 
+      :display_name: ամիս
+      :relative: 
+        -1: "նախորդ ամիս"
+        0: "այս ամիս"
+        1: "հաջորդ ամիս"
+      :relative_time: 
+        :future: 
+          :one: "{0} ամսից"
+          :other: "{0} ամսից"
+        :past: 
+          :one: "{0} ամիս առաջ"
+          :other: "{0} ամիս առաջ"
+    :month-short: 
+      :display_name: ամս
+    :quarter: 
+      :display_name: եռամսյակ
+      :relative: 
+        -1: "նախորդ եռամսյակ"
+        0: "այս եռամսյակ"
+        1: "հաջորդ եռամսյակ"
+      :relative_time: 
+        :future: 
+          :one: "{0} եռամսյակից"
+          :other: "{0} եռամսյակից"
+        :past: 
+          :one: "{0} եռամսյակ առաջ"
+          :other: "{0} եռամսյակ առաջ"
+    :quarter-short: 
+      :display_name: եռմս
+      :relative_time: 
+        :future: 
+          :one: "{0} եռմս-ից"
+          :other: "{0} եռմս-ից"
+        :past: 
+          :one: "{0} եռմս առաջ"
+          :other: "{0} եռմս առաջ"
+    :sat: 
+      :relative: 
+        -1: "նախորդ շաբաթ օրը"
+        0: "այս շաբաթ օրը"
+        1: "հաջորդ շաբաթ օրը"
+      :relative_time: 
+        :future: 
+          :one: "{0} շաբաթ օր հետո"
+          :other: "{0} շաբաթ օր հետո"
+        :past: 
+          :one: "{0} շաբաթ օր առաջ"
+          :other: "{0} շաբաթ օր առաջ"
+    :sat-short: 
+      :relative: 
+        -1: "նխրդ շբթ"
+        0: "այս շբթ"
+        1: "հջրդ շբթ"
+      :relative_time: 
+        :future: 
+          :one: "{0} շբթ հետո"
+          :other: "{0} շբթ հետո"
+        :past: 
+          :one: "{0} շբթ առաջ"
+          :other: "{0} շբթ առաջ"
+    :second: 
+      :display_name: վայրկյան
+      :relative: 
+        0: հիմա
+      :relative_time: 
+        :future: 
+          :one: "{0} վայրկյանից"
+          :other: "{0} վայրկյանից"
+        :past: 
+          :one: "{0} վայրկյան առաջ"
+          :other: "{0} վայրկյան առաջ"
+    :second-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "{0} վ-ից"
+          :other: "{0} վ-ից"
+        :past: 
+          :one: "{0} վ առաջ"
+          :other: "{0} վ առաջ"
+    :second-short: 
+      :display_name: վ
+      :relative_time: 
+        :future: 
+          :one: "{0} վրկ-ից"
+          :other: "{0} վրկ-ից"
+        :past: 
+          :one: "{0} վրկ առաջ"
+          :other: "{0} վրկ առաջ"
+    :sun: 
+      :relative: 
+        -1: "նախորդ կիրակի"
+        0: "այս կիրակի"
+        1: "հաջորդ կիրակի"
+      :relative_time: 
+        :future: 
+          :one: "{0} կիրակի հետո"
+          :other: "{0} կիրակի հետո"
+        :past: 
+          :one: "{0} կիրակի առաջ"
+          :other: "{0} կիրակի առաջ"
+    :sun-short: 
+      :relative: 
+        -1: "նխրդ կիր"
+        0: "այս կիր"
+        1: "հջրդ կիր"
+      :relative_time: 
+        :future: 
+          :one: "{0} կիր հետո"
+          :other: "{0} կիր հետո"
+        :past: 
+          :one: "{0} կիր առաջ"
+          :other: "{0} կիր առաջ"
+    :thu: 
+      :relative: 
+        -1: "նախորդ հինգշաբթի"
+        0: "այս հինգշաբթի"
+        1: "հաջորդ հինգշաբթի"
+      :relative_time: 
+        :future: 
+          :one: "{0} հինգշաբթի հետո"
+          :other: "{0} հինգշաբթի հետո"
+        :past: 
+          :one: "{0} հինգշաբթի առաջ"
+          :other: "{0} հինգշաբթի առաջ"
+    :thu-short: 
+      :relative: 
+        -1: "նխրդ հնգ"
+        0: "այս հնգ"
+        1: "հջրդ հնգ"
+      :relative_time: 
+        :future: 
+          :one: "{0} հնգ հետո"
+          :other: "{0} հնգ հետո"
+        :past: 
+          :one: "{0} հնգ առաջ"
+          :other: "{0} հնգ առաջ"
+    :tue: 
+      :relative: 
+        -1: "նախորդ երեքշաբթի"
+        0: "այս երեքշաբթի"
+        1: "հաջորդ երեքշաբթի"
+      :relative_time: 
+        :future: 
+          :one: "{0} երեքշաբթի հետո"
+          :other: "{0} երեքշաբթի հետո"
+        :past: 
+          :one: "{0} երեքշաբթի առաջ"
+          :other: "{0} երեքշաբթի առաջ"
+    :tue-short: 
+      :relative: 
+        -1: "նխրդ երք"
+        0: "այս երք"
+        1: "հջրդ երք"
+      :relative_time: 
+        :future: 
+          :one: "{0} երք հետո"
+          :other: "{0} երք հետո"
+        :past: 
+          :one: "{0} երք առաջ"
+          :other: "{0} երք առաջ"
+    :wed: 
+      :relative: 
+        -1: "նախորդ չորեքշաբթի"
+        0: "այս չորեքշաբթի"
+        1: "հաջորդ չորեքշաբթի"
+      :relative_time: 
+        :future: 
+          :one: "{0} չորեքշաբթի հետո"
+          :other: "{0} չորեքշաբթի հետո"
+        :past: 
+          :one: "{0} չորեքշաբթի առաջ"
+          :other: "{0} չորեքշաբթի առաջ"
+    :wed-short: 
+      :relative: 
+        -1: "նխրդ չրք"
+        0: "այս չրք"
+        1: "հջրդ չրք"
+      :relative_time: 
+        :future: 
+          :one: "{0} չրք հետո"
+          :other: "{0} չրք հետո"
+        :past: 
+          :one: "{0} չրք առաջ"
+          :other: "{0} չրք առաջ"
+    :week: 
+      :display_name: շաբաթ
+      :relative: 
+        -1: "նախորդ շաբաթ"
+        0: "այս շաբաթ"
+        1: "հաջորդ շաբաթ"
+      :relative_time: 
+        :future: 
+          :one: "{0} շաբաթից"
+          :other: "{0} շաբաթից"
+        :past: 
+          :one: "{0} շաբաթ առաջ"
+          :other: "{0} շաբաթ առաջ"
+    :week-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "{0} շաբ անց"
+          :other: "{0} շաբ անց"
+    :week-short: 
+      :display_name: շաբ
+      :relative_time: 
+        :future: 
+          :one: "{0} շաբ-ից"
+          :other: "{0} շաբ-ից"
+        :past: 
+          :one: "{0} շաբ առաջ"
+          :other: "{0} շաբ առաջ"
+    :weekOfMonth: 
+      :display_name: "ամսվա շաբաթ"
+    :weekOfMonth-narrow: 
+      :display_name: "ամս շաբ"
+    :weekOfMonth-short: 
+      :display_name: "ամսվա շաբ"
+    :weekday: 
+      :display_name: "շաբաթվա օր"
+    :weekdayOfMonth: 
+      :display_name: "ամսվա օր"
+    :weekdayOfMonth-narrow: 
+      :display_name: "ամս օր"
+    :year: 
+      :display_name: տարի
+      :relative: 
+        -1: "նախորդ տարի"
+        0: "այս տարի"
+        1: "հաջորդ տարի"
+      :relative_time: 
+        :future: 
+          :one: "{0} տարուց"
+          :other: "{0} տարուց"
+        :past: 
+          :one: "{0} տարի առաջ"
+          :other: "{0} տարի առաջ"
+    :year-short: 
+      :display_name: տ
+      :relative_time: 
+        :past: 
+          :one: "{0} տ առաջ"
+          :other: "{0} տ առաջ"
+    :zone: 
+      :display_name: "ժամային գոտի"

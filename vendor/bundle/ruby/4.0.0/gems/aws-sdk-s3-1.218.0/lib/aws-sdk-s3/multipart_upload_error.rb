@@ -1,0 +1,17 @@
+# frozen_string_literal: true
+
+module Aws
+  module S3
+    # Raise when multipart upload fails to complete.
+    class MultipartUploadError < StandardError
+
+      def initialize(message, errors = [])
+        @errors = errors
+        super(message)
+      end
+
+      # @return [Array<StandardError>] The list of errors encountered when uploading or aborting the upload.
+      attr_reader :errors
+    end
+  end
+end

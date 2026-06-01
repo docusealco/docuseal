@@ -1,0 +1,333 @@
+--- 
+:ja: 
+  :fields: 
+    :day: 
+      :display_name: 日
+      :relative: 
+        -1: 昨日
+        -2: 一昨日
+        0: 今日
+        1: 明日
+        2: 明後日
+      :relative_time: 
+        :future: 
+          :other: "{0} 日後"
+        :past: 
+          :other: "{0} 日前"
+    :day-narrow: 
+      :relative_time: 
+        :future: 
+          :other: "{0}日後"
+        :past: 
+          :other: "{0}日前"
+    :dayOfYear: 
+      :display_name: 年の通日
+    :dayOfYear-narrow: 
+      :display_name: 通日
+    :dayperiod: 
+      :display_name: 午前/午後
+    :era: 
+      :display_name: 時代
+    :fri: 
+      :relative: 
+        -1: 先週の金曜日
+        0: 今週の金曜日
+        1: 来週の金曜日
+      :relative_time: 
+        :future: 
+          :other: "{0} 個後の金曜日"
+        :past: 
+          :other: "{0} 個前の金曜日"
+    :fri-narrow: 
+      :relative_time: 
+        :future: 
+          :other: "{0}個後の金曜"
+        :past: 
+          :other: "{0}個前の金曜"
+    :fri-short: 
+      :relative: 
+        -1: 先週の金曜
+        0: 今週の金曜
+        1: 来週の金曜
+      :relative_time: 
+        :future: 
+          :other: "{0} 個後の金曜"
+        :past: 
+          :other: "{0} 個前の金曜"
+    :hour: 
+      :display_name: 時
+      :relative: 
+        0: "1 時間以内"
+      :relative_time: 
+        :future: 
+          :other: "{0} 時間後"
+        :past: 
+          :other: "{0} 時間前"
+    :hour-narrow: 
+      :relative_time: 
+        :future: 
+          :other: "{0}時間後"
+        :past: 
+          :other: "{0}時間前"
+    :minute: 
+      :display_name: 分
+      :relative: 
+        0: "1 分以内"
+      :relative_time: 
+        :future: 
+          :other: "{0} 分後"
+        :past: 
+          :other: "{0} 分前"
+    :minute-narrow: 
+      :relative_time: 
+        :future: 
+          :other: "{0}分後"
+        :past: 
+          :other: "{0}分前"
+    :mon: 
+      :relative: 
+        -1: 先週の月曜日
+        0: 今週の月曜日
+        1: 来週の月曜日
+      :relative_time: 
+        :future: 
+          :other: "{0} 個後の月曜日"
+        :past: 
+          :other: "{0} 個前の月曜日"
+    :mon-narrow: 
+      :relative_time: 
+        :future: 
+          :other: "{0}個後の月曜"
+        :past: 
+          :other: "{0}個前の月曜"
+    :mon-short: 
+      :relative: 
+        -1: 先週の月曜
+        0: 今週の月曜
+        1: 来週の月曜
+      :relative_time: 
+        :future: 
+          :other: "{0} 個後の月曜"
+        :past: 
+          :other: "{0} 個前の月曜"
+    :month: 
+      :display_name: 月
+      :relative: 
+        -1: 先月
+        0: 今月
+        1: 来月
+      :relative_time: 
+        :future: 
+          :other: "{0} か月後"
+        :past: 
+          :other: "{0} か月前"
+    :month-narrow: 
+      :relative_time: 
+        :future: 
+          :other: "{0}か月後"
+        :past: 
+          :other: "{0}か月前"
+    :quarter: 
+      :display_name: 四半期
+      :relative: 
+        -1: 前四半期
+        0: 今四半期
+        1: 翌四半期
+      :relative_time: 
+        :future: 
+          :other: "{0} 四半期後"
+        :past: 
+          :other: "{0} 四半期前"
+    :quarter-narrow: 
+      :relative_time: 
+        :future: 
+          :other: "{0}四半期後"
+        :past: 
+          :other: "{0}四半期前"
+    :sat: 
+      :relative: 
+        -1: 先週の土曜日
+        0: 今週の土曜日
+        1: 来週の土曜日
+      :relative_time: 
+        :future: 
+          :other: "{0} 個後の土曜日"
+        :past: 
+          :other: "{0} 個前の土曜日"
+    :sat-narrow: 
+      :relative_time: 
+        :future: 
+          :other: "{0}個後の土曜"
+        :past: 
+          :other: "{0}個前の土曜"
+    :sat-short: 
+      :relative: 
+        -1: 先週の土曜
+        0: 今週の土曜
+        1: 来週の土曜
+      :relative_time: 
+        :future: 
+          :other: "{0} 個後の土曜"
+        :past: 
+          :other: "{0} 個前の土曜"
+    :second: 
+      :display_name: 秒
+      :relative: 
+        0: 今
+      :relative_time: 
+        :future: 
+          :other: "{0} 秒後"
+        :past: 
+          :other: "{0} 秒前"
+    :second-narrow: 
+      :relative_time: 
+        :future: 
+          :other: "{0}秒後"
+        :past: 
+          :other: "{0}秒前"
+    :sun: 
+      :relative: 
+        -1: 先週の日曜日
+        0: 今週の日曜日
+        1: 来週の日曜日
+      :relative_time: 
+        :future: 
+          :other: "{0} 個後の日曜日"
+        :past: 
+          :other: "{0} 個前の日曜日"
+    :sun-narrow: 
+      :relative_time: 
+        :future: 
+          :other: "{0}個後の日曜"
+        :past: 
+          :other: "{0}個前の日曜"
+    :sun-short: 
+      :relative: 
+        -1: 先週の日曜
+        0: 今週の日曜
+        1: 来週の日曜
+      :relative_time: 
+        :future: 
+          :other: "{0} 個後の日曜"
+        :past: 
+          :other: "{0} 個前の日曜"
+    :thu: 
+      :relative: 
+        -1: 先週の木曜日
+        0: 今週の木曜日
+        1: 来週の木曜日
+      :relative_time: 
+        :future: 
+          :other: "{0} 個後の木曜日"
+        :past: 
+          :other: "{0} 個前の木曜日"
+    :thu-narrow: 
+      :relative_time: 
+        :future: 
+          :other: "{0}個後の木曜"
+        :past: 
+          :other: "{0}個前の木曜"
+    :thu-short: 
+      :relative: 
+        -1: 先週の木曜
+        0: 今週の木曜
+        1: 来週の木曜
+      :relative_time: 
+        :future: 
+          :other: "{0} 個後の木曜"
+        :past: 
+          :other: "{0} 個前の木曜"
+    :tue: 
+      :relative: 
+        -1: 先週の火曜日
+        0: 今週の火曜日
+        1: 来週の火曜日
+      :relative_time: 
+        :future: 
+          :other: "{0} 個後の火曜日"
+        :past: 
+          :other: "{0} 個前の火曜日"
+    :tue-narrow: 
+      :relative_time: 
+        :future: 
+          :other: "{0}個後の火曜"
+        :past: 
+          :other: "{0}個前の火曜"
+    :tue-short: 
+      :relative: 
+        -1: 先週の火曜
+        0: 今週の火曜
+        1: 来週の火曜
+      :relative_time: 
+        :future: 
+          :other: "{0} 個後の火曜"
+        :past: 
+          :other: "{0} 個前の火曜"
+    :wed: 
+      :relative: 
+        -1: 先週の水曜日
+        0: 今週の水曜日
+        1: 来週の水曜日
+      :relative_time: 
+        :future: 
+          :other: "{0} 個後の水曜日"
+        :past: 
+          :other: "{0} 個前の水曜日"
+    :wed-narrow: 
+      :relative_time: 
+        :future: 
+          :other: "{0}個後の水曜"
+        :past: 
+          :other: "{0}個前の水曜"
+    :wed-short: 
+      :relative: 
+        -1: 先週の水曜
+        0: 今週の水曜
+        1: 来週の水曜
+      :relative_time: 
+        :future: 
+          :other: "{0} 個後の水曜"
+        :past: 
+          :other: "{0} 個前の水曜"
+    :week: 
+      :display_name: 週
+      :relative: 
+        -1: 先週
+        0: 今週
+        1: 来週
+      :relative_time: 
+        :future: 
+          :other: "{0} 週間後"
+        :past: 
+          :other: "{0} 週間前"
+    :week-narrow: 
+      :relative_time: 
+        :future: 
+          :other: "{0}週間後"
+        :past: 
+          :other: "{0}週間前"
+    :weekOfMonth: 
+      :display_name: 月の週番号
+    :weekday: 
+      :display_name: 曜日
+    :weekdayOfMonth: 
+      :display_name: 月の曜日番号
+    :year: 
+      :display_name: 年
+      :relative: 
+        -1: 昨年
+        0: 今年
+        1: 来年
+      :relative_time: 
+        :future: 
+          :other: "{0} 年後"
+        :past: 
+          :other: "{0} 年前"
+    :year-narrow: 
+      :relative_time: 
+        :future: 
+          :other: "{0}年後"
+        :past: 
+          :other: "{0}年前"
+    :zone: 
+      :display_name: タイムゾーン

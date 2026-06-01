@@ -1,0 +1,21 @@
+class PackageJson
+  module Managers
+    class BunLike < Base
+      def initialize: (PackageJson package_json) -> self
+
+      private
+
+      def build_run_args: (
+          String script_name,
+          Array[String] args,
+          _silent: bool
+        ) -> Array[String]
+
+      def with_frozen_flag: (bool frozen) -> Array[String]
+
+      def exact_flag: (bool exact) -> (String | nil)
+
+      def package_type_install_flag: (Symbol type) -> (String | nil)
+    end
+  end
+end

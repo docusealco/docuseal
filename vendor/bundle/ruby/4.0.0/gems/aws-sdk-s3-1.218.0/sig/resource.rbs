@@ -1,0 +1,142 @@
+# WARNING ABOUT GENERATED CODE
+#
+# This file is generated. See the contributing guide for more information:
+# https://github.com/aws/aws-sdk-ruby/blob/version-3/CONTRIBUTING.md
+#
+# WARNING ABOUT GENERATED CODE
+
+module Aws
+  module S3
+    # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Resource.html
+    class Resource
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Resource.html#initialize-instance_method
+      def initialize: (
+                        ?client: Client,
+                        ?credentials: untyped,
+                        ?region: String,
+                        ?access_grants: bool,
+                        ?access_grants_credentials_provider: untyped,
+                        ?access_key_id: String,
+                        ?account_id: String,
+                        ?active_endpoint_cache: bool,
+                        ?adaptive_retry_wait_to_fill: bool,
+                        ?auth_scheme_preference: Array[String],
+                        ?client_side_monitoring: bool,
+                        ?client_side_monitoring_client_id: String,
+                        ?client_side_monitoring_host: String,
+                        ?client_side_monitoring_port: Integer,
+                        ?client_side_monitoring_publisher: untyped,
+                        ?compute_checksums: bool,
+                        ?convert_params: bool,
+                        ?correct_clock_skew: bool,
+                        ?defaults_mode: String,
+                        ?disable_host_prefix_injection: bool,
+                        ?disable_request_compression: bool,
+                        ?disable_s3_express_session_auth: bool,
+                        ?endpoint: String,
+                        ?endpoint_cache_max_entries: Integer,
+                        ?endpoint_cache_max_threads: Integer,
+                        ?endpoint_cache_poll_interval: Integer,
+                        ?endpoint_discovery: bool,
+                        ?event_stream_handler: Proc,
+                        ?express_credentials_provider: untyped,
+                        ?follow_redirects: bool,
+                        ?force_path_style: bool,
+                        ?ignore_configured_endpoint_urls: bool,
+                        ?input_event_stream_handler: Proc,
+                        ?log_formatter: untyped,
+                        ?log_level: Symbol,
+                        ?logger: untyped,
+                        ?max_attempts: Integer,
+                        ?output_event_stream_handler: Proc,
+                        ?profile: String,
+                        ?request_checksum_calculation: String,
+                        ?request_min_compression_size_bytes: Integer,
+                        ?require_https_for_sse_cpk: bool,
+                        ?response_checksum_validation: String,
+                        ?retry_backoff: Proc,
+                        ?retry_base_delay: Float,
+                        ?retry_jitter: (:none | :equal | :full | ^(Integer) -> Integer),
+                        ?retry_limit: Integer,
+                        ?retry_max_delay: Integer,
+                        ?retry_mode: ("legacy" | "standard" | "adaptive"),
+                        ?s3_disable_multiregion_access_points: bool,
+                        ?s3_us_east_1_regional_endpoint: String,
+                        ?s3_use_arn_region: bool,
+                        ?sdk_ua_app_id: String,
+                        ?secret_access_key: String,
+                        ?session_token: String,
+                        ?sigv4a_signing_region_set: Array[String],
+                        ?stub_responses: untyped,
+                        ?telemetry_provider: Aws::Telemetry::TelemetryProviderBase,
+                        ?token_provider: untyped,
+                        ?use_accelerate_endpoint: bool,
+                        ?use_dualstack_endpoint: bool,
+                        ?use_fips_endpoint: bool,
+                        ?validate_params: bool,
+                        ?endpoint_provider: untyped,
+                        ?http_proxy: String,
+                        ?http_open_timeout: (Float | Integer),
+                        ?http_read_timeout: (Float | Integer),
+                        ?http_idle_timeout: (Float | Integer),
+                        ?http_continue_timeout: (Float | Integer),
+                        ?ssl_timeout: (Float | Integer | nil),
+                        ?http_wire_trace: bool,
+                        ?ssl_verify_peer: bool,
+                        ?ssl_ca_bundle: String,
+                        ?ssl_ca_directory: String,
+                        ?ssl_ca_store: String,
+                        ?on_chunk_received: Proc,
+                        ?on_chunk_sent: Proc,
+                        ?raise_response_errors: bool
+                      ) -> void
+                    | (?Hash[Symbol, untyped]) -> void
+
+      def client: () -> Client
+
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Resource.html#create_bucket-instance_method
+      def create_bucket: (
+                           ?acl: ("private" | "public-read" | "public-read-write" | "authenticated-read"),
+                           bucket: ::String,
+                           ?create_bucket_configuration: {
+                             location_constraint: ("af-south-1" | "ap-east-1" | "ap-northeast-1" | "ap-northeast-2" | "ap-northeast-3" | "ap-south-1" | "ap-south-2" | "ap-southeast-1" | "ap-southeast-2" | "ap-southeast-3" | "ap-southeast-4" | "ap-southeast-5" | "ca-central-1" | "cn-north-1" | "cn-northwest-1" | "EU" | "eu-central-1" | "eu-central-2" | "eu-north-1" | "eu-south-1" | "eu-south-2" | "eu-west-1" | "eu-west-2" | "eu-west-3" | "il-central-1" | "me-central-1" | "me-south-1" | "sa-east-1" | "us-east-2" | "us-gov-east-1" | "us-gov-west-1" | "us-west-1" | "us-west-2")?,
+                             location: {
+                               type: ("AvailabilityZone" | "LocalZone")?,
+                               name: ::String?
+                             }?,
+                             bucket: {
+                               data_redundancy: ("SingleAvailabilityZone" | "SingleLocalZone")?,
+                               type: ("Directory")?
+                             }?,
+                             tags: Array[
+                               {
+                                 key: ::String,
+                                 value: ::String
+                               },
+                             ]?
+                           },
+                           ?grant_full_control: ::String,
+                           ?grant_read: ::String,
+                           ?grant_read_acp: ::String,
+                           ?grant_write: ::String,
+                           ?grant_write_acp: ::String,
+                           ?object_lock_enabled_for_bucket: bool,
+                           ?object_ownership: ("BucketOwnerPreferred" | "ObjectWriter" | "BucketOwnerEnforced"),
+                           ?bucket_namespace: ("account-regional" | "global")
+                         ) -> Bucket
+                       | (?Hash[Symbol, untyped]) -> Bucket
+
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Resource.html#bucket-instance_method
+      def bucket: (String name) -> Bucket
+
+      # https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Resource.html#buckets-instance_method
+      def buckets: (
+                     ?prefix: ::String,
+                     ?bucket_region: ::String
+                   ) -> Bucket::Collection
+                 | (?Hash[Symbol, untyped]) -> Bucket::Collection
+    end
+  end
+end

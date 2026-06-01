@@ -1,0 +1,16 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - Telugu-Arabic
+      - und-Arab-t-und-telu
+    :direction: forward
+    :rules: 
+      - "::[ఁ-ఃఅ-ఌఎ-ఐఒ-నప-ళవ-హా-ౄె-ైొ-్ౕ-ౖౠ-ౡ౦-౯] ;"
+      - "::NFD ;"
+      - "::Telugu-InterIndic ;"
+      - "::InterIndic-Arabic ;"
+      - "::NFC ;"
+    :source: Telu
+    :target: Arab
+    :variant: ~

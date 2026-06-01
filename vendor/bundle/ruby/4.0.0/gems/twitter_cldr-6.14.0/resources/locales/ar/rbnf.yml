@@ -1,0 +1,841 @@
+--- 
+:ar: 
+  :rbnf: 
+    :grouping: 
+      - 
+        :ruleset: 
+          - 
+            :rules: 
+              - 
+                :rule: =0.0=;
+                :value: x.x
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 0
+            :type: spellout-numbering-year
+          - 
+            :rules: 
+              - 
+                :rule: "ناقص >>;"
+                :value: "-x"
+              - 
+                :rule: "<< فاصل >>;"
+                :value: x.x
+              - 
+                :rule: صفر;
+                :value: 0
+              - 
+                :rule: واحد;
+                :value: 1
+              - 
+                :rule: إثنان;
+                :value: 2
+              - 
+                :rule: ثلاثة;
+                :value: 3
+              - 
+                :rule: أربعة;
+                :value: 4
+              - 
+                :rule: خمسة;
+                :value: 5
+              - 
+                :rule: ستة;
+                :value: 6
+              - 
+                :rule: سبعة;
+                :value: 7
+              - 
+                :rule: ثمانية;
+                :value: 8
+              - 
+                :rule: تسعة;
+                :value: 9
+              - 
+                :rule: عشرة;
+                :value: 10
+              - 
+                :rule: "إحدى عشر;"
+                :value: 11
+              - 
+                :rule: "إثنا عشر;"
+                :value: 12
+              - 
+                :rule: ">%spellout-numbering> عشر;"
+                :value: 13
+              - 
+                :rule: "[>%spellout-numbering> و]عشرون;"
+                :value: 20
+              - 
+                :rule: "[>%spellout-numbering> و]ثلاثون;"
+                :value: 30
+              - 
+                :rule: "[>%spellout-numbering> و]أربعون;"
+                :value: 40
+              - 
+                :rule: "[>%spellout-numbering> و]خمسون;"
+                :value: 50
+              - 
+                :rule: "[>%spellout-numbering> و]ستون;"
+                :value: 60
+              - 
+                :rule: "[>%spellout-numbering> و]سبعون;"
+                :value: 70
+              - 
+                :rule: "[>%spellout-numbering> و]ثمانون;"
+                :value: 80
+              - 
+                :rule: "[>%spellout-numbering> و]تسعون;"
+                :value: 90
+              - 
+                :rule: "مائة[ و>%spellout-numbering>];"
+                :value: 100
+              - 
+                :rule: "مائتان[ و>%spellout-numbering>];"
+                :value: 200
+              - 
+                :rule: "<%spellout-numbering< مائة[ و>%spellout-numbering>];"
+                :value: 300
+              - 
+                :rule: "ألف[ و>%spellout-numbering>];"
+                :value: 1000
+              - 
+                :rule: "ألفين[ و>%spellout-numbering>];"
+                :value: 2000
+              - 
+                :rule: "<%spellout-numbering< آلاف[ و>%spellout-numbering>];"
+                :value: 3000
+              - 
+                :radix: 1000
+                :rule: "<%%spellout-numbering-m< ألف[ و>%spellout-numbering>];"
+                :value: 11000
+              - 
+                :rule: "مليون[ و>%spellout-numbering>];"
+                :value: 1000000
+              - 
+                :rule: "<%%spellout-numbering-m< مليون[ و>%spellout-numbering>];"
+                :value: 2000000
+              - 
+                :rule: "مليار[ و>%spellout-numbering>];"
+                :value: 1000000000
+              - 
+                :rule: "<%%spellout-numbering-m< مليار[ و>%spellout-numbering>];"
+                :value: 2000000000
+              - 
+                :rule: "ترليون[ و>%spellout-numbering>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%%spellout-numbering-m< ترليون[ و>%spellout-numbering>];"
+                :value: 2000000000000
+              - 
+                :rule: "كوادرليون[ و>%spellout-numbering>];"
+                :value: 1000000000000000
+              - 
+                :rule: "<%%spellout-numbering-m< كوادرليون[ و>%spellout-numbering>];"
+                :value: 2000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-numbering
+          - 
+            :rules: 
+              - 
+                :rule: "ناقص >>;"
+                :value: "-x"
+              - 
+                :rule: "<< فاصل >>;"
+                :value: x.x
+              - 
+                :rule: صفر;
+                :value: 0
+              - 
+                :rule: واحدة;
+                :value: 1
+              - 
+                :rule: إثنتان;
+                :value: 2
+              - 
+                :rule: ثلاثة;
+                :value: 3
+              - 
+                :rule: أربعة;
+                :value: 4
+              - 
+                :rule: خمسة;
+                :value: 5
+              - 
+                :rule: ستة;
+                :value: 6
+              - 
+                :rule: سبعة;
+                :value: 7
+              - 
+                :rule: ثمانية;
+                :value: 8
+              - 
+                :rule: تسعة;
+                :value: 9
+              - 
+                :rule: عشرة;
+                :value: 10
+              - 
+                :rule: "إحدى عشر;"
+                :value: 11
+              - 
+                :rule: "إثنتا عشرة;"
+                :value: 12
+              - 
+                :rule: ">%spellout-numbering> عشر;"
+                :value: 13
+              - 
+                :rule: "[>%spellout-numbering> و]عشرون;"
+                :value: 20
+              - 
+                :rule: "[>%spellout-numbering> و]ثلاثون;"
+                :value: 30
+              - 
+                :rule: "[>%spellout-numbering> و]أربعون;"
+                :value: 40
+              - 
+                :rule: "[>%spellout-numbering> و]خمسون;"
+                :value: 50
+              - 
+                :rule: "[>%spellout-numbering> و]ستون;"
+                :value: 60
+              - 
+                :rule: "[>%spellout-numbering> و]سبعون;"
+                :value: 70
+              - 
+                :rule: "[>%spellout-numbering> و]ثمانون;"
+                :value: 80
+              - 
+                :rule: "[>%spellout-numbering> و]تسعون;"
+                :value: 90
+              - 
+                :rule: "مائة[ و>%spellout-numbering>];"
+                :value: 100
+              - 
+                :rule: "مائتان[ و>%spellout-numbering>];"
+                :value: 200
+              - 
+                :rule: "<%spellout-numbering< مائة[ و>%spellout-numbering>];"
+                :value: 300
+              - 
+                :rule: "ألف[ و>%spellout-numbering>];"
+                :value: 1000
+              - 
+                :rule: "ألفي[ و>%spellout-numbering>];"
+                :value: 2000
+              - 
+                :rule: "<%spellout-numbering< آلاف[ و>%spellout-numbering>];"
+                :value: 3000
+              - 
+                :radix: 1000
+                :rule: "<%%spellout-numbering-m< ألف[ و>%spellout-numbering>];"
+                :value: 11000
+              - 
+                :rule: "مليون[ و>%spellout-numbering>];"
+                :value: 1000000
+              - 
+                :rule: "<%%spellout-numbering-m< مليون[ و>%spellout-numbering>];"
+                :value: 2000000
+              - 
+                :rule: "مليار[ و>%spellout-numbering>];"
+                :value: 1000000000
+              - 
+                :rule: "<%%spellout-numbering-m< مليار[ و>%spellout-numbering>];"
+                :value: 2000000000
+              - 
+                :rule: "ترليون[ و>%spellout-numbering>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%%spellout-numbering-m< ترليون[ و>%spellout-numbering>];"
+                :value: 2000000000000
+              - 
+                :rule: "كوادرليون[ و>%spellout-numbering>];"
+                :value: 1000000000000000
+              - 
+                :rule: "<%%spellout-numbering-m< كوادرليون[ و>%spellout-numbering>];"
+                :value: 2000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-feminine
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: صفر;
+                :value: 0
+              - 
+                :rule: واحد;
+                :value: 1
+              - 
+                :rule: إثنان;
+                :value: 2
+              - 
+                :rule: ثلاثة;
+                :value: 3
+              - 
+                :rule: أربعة;
+                :value: 4
+              - 
+                :rule: خمسة;
+                :value: 5
+              - 
+                :rule: ستة;
+                :value: 6
+              - 
+                :rule: سبعة;
+                :value: 7
+              - 
+                :rule: ثمانية;
+                :value: 8
+              - 
+                :rule: تسعة;
+                :value: 9
+              - 
+                :rule: عشرة;
+                :value: 10
+              - 
+                :rule: "إحدى عشر;"
+                :value: 11
+              - 
+                :rule: "إثنا عشر;"
+                :value: 12
+              - 
+                :rule: ">> عشر;"
+                :value: 13
+              - 
+                :rule: "[>%%spellout-numbering-m> و]عشرون;"
+                :value: 20
+              - 
+                :rule: "[>%%spellout-numbering-m> و]ثلاثون;"
+                :value: 30
+              - 
+                :rule: "[>%%spellout-numbering-m> و]أربعون;"
+                :value: 40
+              - 
+                :rule: "[>%%spellout-numbering-m> و]خمسون;"
+                :value: 50
+              - 
+                :rule: "[>%%spellout-numbering-m> و]ستون;"
+                :value: 60
+              - 
+                :rule: "[>%%spellout-numbering-m> و]سبعون;"
+                :value: 70
+              - 
+                :rule: "[>%%spellout-numbering-m> و]ثمانون;"
+                :value: 80
+              - 
+                :rule: "[>%%spellout-numbering-m> و]تسعون;"
+                :value: 90
+              - 
+                :rule: "مائة[ و>%%spellout-numbering-m>];"
+                :value: 100
+              - 
+                :rule: "مائتان[ و>%%spellout-numbering-m>];"
+                :value: 200
+              - 
+                :rule: "<%spellout-numbering< مائة[ و>%%spellout-numbering-m>];"
+                :value: 300
+              - 
+                :rule: "ألف[ و>%%spellout-numbering-m>];"
+                :value: 1000
+              - 
+                :rule: "ألفي[ و>%%spellout-numbering-m>];"
+                :value: 2000
+              - 
+                :rule: "<%spellout-numbering< آلاف[ و>%%spellout-numbering-m>];"
+                :value: 3000
+              - 
+                :radix: 1000
+                :rule: "<%%spellout-numbering-m< ألف[ و>%%spellout-numbering-m>];"
+                :value: 11000
+              - 
+                :rule: "مليون[ و>%%spellout-numbering-m>];"
+                :value: 1000000
+              - 
+                :rule: "<%%spellout-numbering-m< مليون[ و>%%spellout-numbering-m>];"
+                :value: 2000000
+              - 
+                :rule: "مليار[ و>%%spellout-numbering-m>];"
+                :value: 1000000000
+              - 
+                :rule: "<%%spellout-numbering-m< مليار[ و>%%spellout-numbering-m>];"
+                :value: 2000000000
+              - 
+                :rule: "ترليون[ و>%%spellout-numbering-m>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%%spellout-numbering-m< ترليون[ و>%%spellout-numbering-m>];"
+                :value: 2000000000000
+              - 
+                :rule: "كوادرليون[ و>%%spellout-numbering-m>];"
+                :value: 1000000000000000
+              - 
+                :rule: "<%%spellout-numbering-m< كوادرليون[ و>%%spellout-numbering-m>];"
+                :value: 2000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-numbering-m
+          - 
+            :rules: 
+              - 
+                :rule: "ناقص >>;"
+                :value: "-x"
+              - 
+                :rule: "<%%spellout-numbering-m< فاصل >> ;"
+                :value: x.x
+              - 
+                :rule: صفر;
+                :value: 0
+              - 
+                :rule: واحد;
+                :value: 1
+              - 
+                :rule: إثنان;
+                :value: 2
+              - 
+                :rule: ثلاثة;
+                :value: 3
+              - 
+                :rule: أربعة;
+                :value: 4
+              - 
+                :rule: خمسة;
+                :value: 5
+              - 
+                :rule: ستة;
+                :value: 6
+              - 
+                :rule: سبعة;
+                :value: 7
+              - 
+                :rule: ثمانية;
+                :value: 8
+              - 
+                :rule: تسعة;
+                :value: 9
+              - 
+                :rule: عشرة;
+                :value: 10
+              - 
+                :rule: "إحدى عشر;"
+                :value: 11
+              - 
+                :rule: "إثنا عشر;"
+                :value: 12
+              - 
+                :rule: ">> عشر;"
+                :value: 13
+              - 
+                :rule: "[>%%spellout-numbering-m> و]عشرون;"
+                :value: 20
+              - 
+                :rule: "[>%%spellout-numbering-m> و]ثلاثون;"
+                :value: 30
+              - 
+                :rule: "[>%%spellout-numbering-m> و]أربعون;"
+                :value: 40
+              - 
+                :rule: "[>%%spellout-numbering-m> و]خمسون;"
+                :value: 50
+              - 
+                :rule: "[>%%spellout-numbering-m> و]ستون;"
+                :value: 60
+              - 
+                :rule: "[>%%spellout-numbering-m> و]سبعون;"
+                :value: 70
+              - 
+                :rule: "[>%%spellout-numbering-m> و]ثمانون;"
+                :value: 80
+              - 
+                :rule: "[>%%spellout-numbering-m> و]تسعون;"
+                :value: 90
+              - 
+                :rule: "مائة[ و>%%spellout-numbering-m>];"
+                :value: 100
+              - 
+                :rule: "مائتان[ و>%%spellout-numbering-m>];"
+                :value: 200
+              - 
+                :rule: "<%spellout-numbering< مائة[ و>%%spellout-numbering-m>];"
+                :value: 300
+              - 
+                :rule: "ألف[ و>%%spellout-numbering-m>];"
+                :value: 1000
+              - 
+                :rule: "ألفي[ و>%%spellout-numbering-m>];"
+                :value: 2000
+              - 
+                :rule: "<%spellout-numbering< آلاف[ و>%%spellout-numbering-m>];"
+                :value: 3000
+              - 
+                :radix: 1000
+                :rule: "<%%spellout-numbering-m< ألف[ و>%%spellout-numbering-m>];"
+                :value: 11000
+              - 
+                :rule: "مليون[ و>%%spellout-numbering-m>];"
+                :value: 1000000
+              - 
+                :rule: "<%%spellout-numbering-m< مليون[ و>%%spellout-numbering-m>];"
+                :value: 2000000
+              - 
+                :rule: "مليار[ و>%%spellout-numbering-m>];"
+                :value: 1000000000
+              - 
+                :rule: "<%%spellout-numbering-m< مليار[ و>%%spellout-numbering-m>];"
+                :value: 2000000000
+              - 
+                :rule: "ترليون[ و>%%spellout-numbering-m>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%%spellout-numbering-m< ترليون[ و>%%spellout-numbering-m>];"
+                :value: 2000000000000
+              - 
+                :rule: "كوادرليون[ و>%%spellout-numbering-m>];"
+                :value: 1000000000000000
+              - 
+                :rule: "<%%spellout-numbering-m< كوادرليون[ و>%%spellout-numbering-m>];"
+                :value: 2000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-masculine
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: "الحادية ;"
+                :value: 1
+              - 
+                :rule: =%spellout-ordinal-feminine=;
+                :value: 2
+              - 
+                :rule: "الحادية عشرة;"
+                :value: 11
+              - 
+                :rule: =%spellout-ordinal-feminine=;
+                :value: 12
+            :type: ordinal-ones-feminine
+          - 
+            :rules: 
+              - 
+                :rule: "ناقص >>;"
+                :value: "-x"
+              - 
+                :rule: "<< فاصل >>;"
+                :value: x.x
+              - 
+                :rule: صفر;
+                :value: 0
+              - 
+                :rule: الأولى;
+                :value: 1
+              - 
+                :rule: الثانية;
+                :value: 2
+              - 
+                :rule: الثالثة;
+                :value: 3
+              - 
+                :rule: الرابعة;
+                :value: 4
+              - 
+                :rule: الخامسة;
+                :value: 5
+              - 
+                :rule: السادسة;
+                :value: 6
+              - 
+                :rule: السابعة;
+                :value: 7
+              - 
+                :rule: الثامنة;
+                :value: 8
+              - 
+                :rule: التاسعة;
+                :value: 9
+              - 
+                :rule: العاشرة;
+                :value: 10
+              - 
+                :rule: "الحادية عشرة;"
+                :value: 11
+              - 
+                :rule: ">> عشرة;"
+                :value: 12
+              - 
+                :rule: العشرون;
+                :value: 20
+              - 
+                :rule: ">%%ordinal-ones-feminine> والعشرون;"
+                :value: 21
+              - 
+                :rule: الثلاثون;
+                :value: 30
+              - 
+                :rule: ">%%ordinal-ones-feminine> والثلاثون;"
+                :value: 31
+              - 
+                :rule: الأربعون;
+                :value: 40
+              - 
+                :rule: ">%%ordinal-ones-feminine> والأربعون;"
+                :value: 41
+              - 
+                :rule: الخمسون;
+                :value: 50
+              - 
+                :rule: ">%%ordinal-ones-feminine> والخمسون;"
+                :value: 51
+              - 
+                :rule: الستون;
+                :value: 60
+              - 
+                :rule: ">%%ordinal-ones-feminine> والستون;"
+                :value: 61
+              - 
+                :rule: السبعون;
+                :value: 70
+              - 
+                :rule: ">%%ordinal-ones-feminine> والسبعون;"
+                :value: 71
+              - 
+                :rule: الثمانون;
+                :value: 80
+              - 
+                :rule: ">%%ordinal-ones-feminine> والثمانون;"
+                :value: 81
+              - 
+                :rule: التسعون;
+                :value: 90
+              - 
+                :rule: ">%%ordinal-ones-feminine> والتسعون;"
+                :value: 91
+              - 
+                :rule: "المائة[ و>%spellout-cardinal-feminine>];"
+                :value: 100
+              - 
+                :rule: "المائتان[ و>%spellout-cardinal-feminine>];"
+                :value: 200
+              - 
+                :rule: "<%spellout-numbering< مائة[ و>%spellout-cardinal-feminine>];"
+                :value: 300
+              - 
+                :rule: "الألف[ و>%spellout-cardinal-feminine>];"
+                :value: 1000
+              - 
+                :rule: "الألفي[ و>%spellout-cardinal-feminine>];"
+                :value: 2000
+              - 
+                :rule: "<%spellout-cardinal-feminine< آلاف[ و>%spellout-cardinal-feminine>];"
+                :value: 3000
+              - 
+                :radix: 1000
+                :rule: "<%spellout-cardinal-feminine< ألف[ و>%spellout-cardinal-feminine>];"
+                :value: 11000
+              - 
+                :rule: "المليون[ و>%spellout-cardinal-feminine>];"
+                :value: 1000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< الألف[ و>%spellout-cardinal-feminine>];"
+                :value: 2000000
+              - 
+                :rule: "المليار[ و>%spellout-cardinal-feminine>];"
+                :value: 1000000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< مليار[ و>%spellout-cardinal-feminine>];"
+                :value: 2000000000
+              - 
+                :rule: "ترليون[ و>%spellout-cardinal-feminine>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< ترليون[ و>%spellout-cardinal-feminine>];"
+                :value: 2000000000000
+              - 
+                :rule: "كوادرليون[ و>%spellout-cardinal-feminine>];"
+                :value: 1000000000000000
+              - 
+                :rule: "<%spellout-cardinal-feminine< كوادرليون[ و>%spellout-cardinal-feminine>];"
+                :value: 2000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-ordinal-feminine
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: "الحادي ;"
+                :value: 1
+              - 
+                :rule: =%spellout-ordinal-masculine=;
+                :value: 2
+              - 
+                :rule: "الحادي عشر;"
+                :value: 11
+              - 
+                :rule: =%spellout-ordinal-masculine=;
+                :value: 12
+            :type: ordinal-ones-masculine
+          - 
+            :rules: 
+              - 
+                :rule: "ناقص >>;"
+                :value: "-x"
+              - 
+                :rule: "<< فاصل >>;"
+                :value: x.x
+              - 
+                :rule: صفر;
+                :value: 0
+              - 
+                :rule: الأول;
+                :value: 1
+              - 
+                :rule: الثاني;
+                :value: 2
+              - 
+                :rule: الثالث;
+                :value: 3
+              - 
+                :rule: الرابع;
+                :value: 4
+              - 
+                :rule: الخامس;
+                :value: 5
+              - 
+                :rule: السادس;
+                :value: 6
+              - 
+                :rule: السابع;
+                :value: 7
+              - 
+                :rule: الثامن;
+                :value: 8
+              - 
+                :rule: التاسع;
+                :value: 9
+              - 
+                :rule: العاشر;
+                :value: 10
+              - 
+                :rule: "الحادي عشر;"
+                :value: 11
+              - 
+                :rule: ">> عشر;"
+                :value: 12
+              - 
+                :rule: العشرون;
+                :value: 20
+              - 
+                :rule: ">%%ordinal-ones-masculine> والعشرون;"
+                :value: 21
+              - 
+                :rule: الثلاثون;
+                :value: 30
+              - 
+                :rule: ">%%ordinal-ones-masculine> والثلاثون;"
+                :value: 31
+              - 
+                :rule: الأربعون;
+                :value: 40
+              - 
+                :rule: ">%%ordinal-ones-masculine> والأربعون;"
+                :value: 41
+              - 
+                :rule: الخمسون;
+                :value: 50
+              - 
+                :rule: ">%%ordinal-ones-masculine> والخمسون;"
+                :value: 51
+              - 
+                :rule: الستون;
+                :value: 60
+              - 
+                :rule: ">%%ordinal-ones-masculine> والستون;"
+                :value: 61
+              - 
+                :rule: السبعون;
+                :value: 70
+              - 
+                :rule: ">%%ordinal-ones-masculine> والسبعون;"
+                :value: 71
+              - 
+                :rule: الثمانون;
+                :value: 80
+              - 
+                :rule: ">%%ordinal-ones-masculine> والثمانون;"
+                :value: 81
+              - 
+                :rule: التسعون;
+                :value: 90
+              - 
+                :rule: ">%%ordinal-ones-masculine> والتسعون;"
+                :value: 91
+              - 
+                :rule: "المائة[ و>%%spellout-numbering-m>];"
+                :value: 100
+              - 
+                :rule: "المائتان[ و>%%spellout-numbering-m>];"
+                :value: 200
+              - 
+                :rule: "<%spellout-numbering< مائة[ و>%%spellout-numbering-m>];"
+                :value: 300
+              - 
+                :rule: "الألف[ و>%%spellout-numbering-m>];"
+                :value: 1000
+              - 
+                :rule: "الألفي[ و>%%spellout-numbering-m>];"
+                :value: 2000
+              - 
+                :rule: "<%spellout-numbering< آلاف[ و>%%spellout-numbering-m>];"
+                :value: 3000
+              - 
+                :radix: 1000
+                :rule: "<%%spellout-numbering-m< ألف[ و>%%spellout-numbering-m>];"
+                :value: 11000
+              - 
+                :rule: "المليون[ و>%%spellout-numbering-m>];"
+                :value: 1000000
+              - 
+                :rule: "<%%spellout-numbering-m< الألف[ و>%%spellout-numbering-m>];"
+                :value: 2000000
+              - 
+                :rule: "المليار[ و>%%spellout-numbering-m>];"
+                :value: 1000000000
+              - 
+                :rule: "<%%spellout-numbering-m< مليار[ و>%%spellout-numbering-m>];"
+                :value: 2000000000
+              - 
+                :rule: "ترليون[ و>%%spellout-numbering-m>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%%spellout-numbering-m< ترليون[ و>%%spellout-numbering-m>];"
+                :value: 2000000000000
+              - 
+                :rule: "كوادرليون[ و>%%spellout-numbering-m>];"
+                :value: 1000000000000000
+              - 
+                :rule: "<%%spellout-numbering-m< كوادرليون[ و>%%spellout-numbering-m>];"
+                :value: 2000000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-ordinal-masculine
+        :type: SpelloutRules
+      - 
+        :ruleset: 
+          - 
+            :rules: 
+              - 
+                :rule: −>>;
+                :value: "-x"
+              - 
+                :rule: "=#,##0=;"
+                :value: 0
+            :type: digits-ordinal
+        :type: OrdinalRules

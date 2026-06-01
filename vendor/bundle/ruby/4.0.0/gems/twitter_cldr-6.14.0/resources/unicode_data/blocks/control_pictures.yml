@@ -1,0 +1,673 @@
+---
+9216:
+- 9216
+- SYMBOL FOR NULL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- GRAPHIC FOR NULL
+- ''
+- ''
+- ''
+- ''
+9217:
+- 9217
+- SYMBOL FOR START OF HEADING
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- GRAPHIC FOR START OF HEADING
+- ''
+- ''
+- ''
+- ''
+9218:
+- 9218
+- SYMBOL FOR START OF TEXT
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- GRAPHIC FOR START OF TEXT
+- ''
+- ''
+- ''
+- ''
+9219:
+- 9219
+- SYMBOL FOR END OF TEXT
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- GRAPHIC FOR END OF TEXT
+- ''
+- ''
+- ''
+- ''
+9220:
+- 9220
+- SYMBOL FOR END OF TRANSMISSION
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- GRAPHIC FOR END OF TRANSMISSION
+- ''
+- ''
+- ''
+- ''
+9221:
+- 9221
+- SYMBOL FOR ENQUIRY
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- GRAPHIC FOR ENQUIRY
+- ''
+- ''
+- ''
+- ''
+9222:
+- 9222
+- SYMBOL FOR ACKNOWLEDGE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- GRAPHIC FOR ACKNOWLEDGE
+- ''
+- ''
+- ''
+- ''
+9223:
+- 9223
+- SYMBOL FOR BELL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- GRAPHIC FOR BELL
+- ''
+- ''
+- ''
+- ''
+9224:
+- 9224
+- SYMBOL FOR BACKSPACE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- GRAPHIC FOR BACKSPACE
+- ''
+- ''
+- ''
+- ''
+9225:
+- 9225
+- SYMBOL FOR HORIZONTAL TABULATION
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- GRAPHIC FOR HORIZONTAL TABULATION
+- ''
+- ''
+- ''
+- ''
+9226:
+- 9226
+- SYMBOL FOR LINE FEED
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- GRAPHIC FOR LINE FEED
+- ''
+- ''
+- ''
+- ''
+9227:
+- 9227
+- SYMBOL FOR VERTICAL TABULATION
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- GRAPHIC FOR VERTICAL TABULATION
+- ''
+- ''
+- ''
+- ''
+9228:
+- 9228
+- SYMBOL FOR FORM FEED
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- GRAPHIC FOR FORM FEED
+- ''
+- ''
+- ''
+- ''
+9229:
+- 9229
+- SYMBOL FOR CARRIAGE RETURN
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- GRAPHIC FOR CARRIAGE RETURN
+- ''
+- ''
+- ''
+- ''
+9230:
+- 9230
+- SYMBOL FOR SHIFT OUT
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- GRAPHIC FOR SHIFT OUT
+- ''
+- ''
+- ''
+- ''
+9231:
+- 9231
+- SYMBOL FOR SHIFT IN
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- GRAPHIC FOR SHIFT IN
+- ''
+- ''
+- ''
+- ''
+9232:
+- 9232
+- SYMBOL FOR DATA LINK ESCAPE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- GRAPHIC FOR DATA LINK ESCAPE
+- ''
+- ''
+- ''
+- ''
+9233:
+- 9233
+- SYMBOL FOR DEVICE CONTROL ONE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- GRAPHIC FOR DEVICE CONTROL ONE
+- ''
+- ''
+- ''
+- ''
+9234:
+- 9234
+- SYMBOL FOR DEVICE CONTROL TWO
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- GRAPHIC FOR DEVICE CONTROL TWO
+- ''
+- ''
+- ''
+- ''
+9235:
+- 9235
+- SYMBOL FOR DEVICE CONTROL THREE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- GRAPHIC FOR DEVICE CONTROL THREE
+- ''
+- ''
+- ''
+- ''
+9236:
+- 9236
+- SYMBOL FOR DEVICE CONTROL FOUR
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- GRAPHIC FOR DEVICE CONTROL FOUR
+- ''
+- ''
+- ''
+- ''
+9237:
+- 9237
+- SYMBOL FOR NEGATIVE ACKNOWLEDGE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- GRAPHIC FOR NEGATIVE ACKNOWLEDGE
+- ''
+- ''
+- ''
+- ''
+9238:
+- 9238
+- SYMBOL FOR SYNCHRONOUS IDLE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- GRAPHIC FOR SYNCHRONOUS IDLE
+- ''
+- ''
+- ''
+- ''
+9239:
+- 9239
+- SYMBOL FOR END OF TRANSMISSION BLOCK
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- GRAPHIC FOR END OF TRANSMISSION BLOCK
+- ''
+- ''
+- ''
+- ''
+9240:
+- 9240
+- SYMBOL FOR CANCEL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- GRAPHIC FOR CANCEL
+- ''
+- ''
+- ''
+- ''
+9241:
+- 9241
+- SYMBOL FOR END OF MEDIUM
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- GRAPHIC FOR END OF MEDIUM
+- ''
+- ''
+- ''
+- ''
+9242:
+- 9242
+- SYMBOL FOR SUBSTITUTE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- GRAPHIC FOR SUBSTITUTE
+- ''
+- ''
+- ''
+- ''
+9243:
+- 9243
+- SYMBOL FOR ESCAPE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- GRAPHIC FOR ESCAPE
+- ''
+- ''
+- ''
+- ''
+9244:
+- 9244
+- SYMBOL FOR FILE SEPARATOR
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- GRAPHIC FOR FILE SEPARATOR
+- ''
+- ''
+- ''
+- ''
+9245:
+- 9245
+- SYMBOL FOR GROUP SEPARATOR
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- GRAPHIC FOR GROUP SEPARATOR
+- ''
+- ''
+- ''
+- ''
+9246:
+- 9246
+- SYMBOL FOR RECORD SEPARATOR
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- GRAPHIC FOR RECORD SEPARATOR
+- ''
+- ''
+- ''
+- ''
+9247:
+- 9247
+- SYMBOL FOR UNIT SEPARATOR
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- GRAPHIC FOR UNIT SEPARATOR
+- ''
+- ''
+- ''
+- ''
+9248:
+- 9248
+- SYMBOL FOR SPACE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- GRAPHIC FOR SPACE
+- ''
+- ''
+- ''
+- ''
+9249:
+- 9249
+- SYMBOL FOR DELETE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- GRAPHIC FOR DELETE
+- ''
+- ''
+- ''
+- ''
+9250:
+- 9250
+- BLANK SYMBOL
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- BLANK
+- ''
+- ''
+- ''
+- ''
+9251:
+- 9251
+- OPEN BOX
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9252:
+- 9252
+- SYMBOL FOR NEWLINE
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- GRAPHIC FOR NEWLINE
+- ''
+- ''
+- ''
+- ''
+9253:
+- 9253
+- SYMBOL FOR DELETE FORM TWO
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9254:
+- 9254
+- SYMBOL FOR SUBSTITUTE FORM TWO
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9255:
+- 9255
+- SYMBOL FOR DELETE SQUARE CHECKER BOARD FORM
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9256:
+- 9256
+- SYMBOL FOR DELETE RECTANGULAR CHECKER BOARD FORM
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''
+9257:
+- 9257
+- SYMBOL FOR DELETE MEDIUM SHADE FORM
+- So
+- '0'
+- 'ON'
+- ''
+- ''
+- ''
+- ''
+- N
+- ''
+- ''
+- ''
+- ''
+- ''

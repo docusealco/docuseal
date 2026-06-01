@@ -1,0 +1,1403 @@
+--- 
+:ca: 
+  :currencies: 
+    :ADP: 
+      :name: "pesseta andorrana"
+      :one: "pesseta andorrana"
+      :other: "pessetes andorranes"
+    :AED: 
+      :name: "dírham dels Emirats Àrabs Units"
+      :one: "dírham dels Emirats Àrabs Units"
+      :other: "dírhams dels Emirats Àrabs Units"
+    :AFA: 
+      :name: "afgani afganès (1927–2002)"
+      :one: "afgani afganès (1927–2002)"
+      :other: "afganis afganesos (1927–2002)"
+    :AFN: 
+      :name: "afgani afganès"
+      :narrow_symbol: ؋
+      :one: "afgani afganès"
+      :other: "afganis afganesos"
+      :symbol: ؋
+    :ALK: 
+      :name: "lek albanès (1946–1965)"
+      :one: "lek albanès (1946–1965)"
+      :other: "lekë albanesos (1946–1965)"
+    :ALL: 
+      :name: lek
+      :one: lek
+      :other: lekë
+    :AMD: 
+      :name: dram
+      :narrow_symbol: ֏
+      :one: dram
+      :other: drams
+      :symbol: ֏
+    :ANG: 
+      :name: "florí de les Antilles Neerlandeses"
+      :one: "florí de les Antilles Neerlandeses"
+      :other: "florins de les Antilles Neerlandeses"
+    :AOA: 
+      :name: "kwanza angolès"
+      :narrow_symbol: Kz
+      :one: "kwanza angolès"
+      :other: "kwanzas angolesos"
+      :symbol: Kz
+    :AOK: 
+      :name: "kwanza angolès (1977–1991)"
+      :one: "kwanza angolès (1977–1991)"
+      :other: "kwanzas angolesos (1977–1991)"
+    :AON: 
+      :name: "nou kwanza angolès (1990–2000)"
+      :one: "nou kwanza angolès (1990–2000)"
+      :other: "nous kwanzas angolesos (1990–2000)"
+    :AOR: 
+      :name: "kwanza angolès reajustat (1995–1999)"
+      :one: "kwanza angolès reajustat (1995–1999)"
+      :other: "kwanzas angolesos (1995–1999)"
+    :ARA: 
+      :name: "austral argentí"
+      :one: "austral argentí"
+      :other: "australs argentins"
+    :ARL: 
+      :name: "peso ley argentí (1970–1983)"
+      :one: "peso ley argentí (1970–1983)"
+      :other: "pesos ley argentins (1970–1983)"
+    :ARM: 
+      :name: "peso argentí (1981–1970)"
+      :one: "peso argentí moneda nacional"
+      :other: "pesos argentins moneda nacional"
+    :ARP: 
+      :name: "peso argentí (1983–1985)"
+      :one: "peso argentí (1983–1985)"
+      :other: "pesos argentins (1983–1985)"
+    :ARS: 
+      :name: "peso argentí"
+      :narrow_symbol: $
+      :one: "peso argentí"
+      :other: "pesos argentins"
+      :symbol: $
+    :ATS: 
+      :name: "xíling austríac"
+      :one: "xíling austríac"
+      :other: "xílings austríacs"
+    :AUD: 
+      :name: "dòlar australià"
+      :narrow_symbol: $
+      :one: "dòlar australià"
+      :other: "dòlars australians"
+      :symbol: AU$
+    :AWG: 
+      :name: "florí d’Aruba"
+      :one: "florí d’Aruba"
+      :other: "florins d’Aruba"
+    :AZM: 
+      :name: "manat azerbaidjanès (1993–2006)"
+      :one: "manat azerbaidjanès (1993–2006)"
+      :other: "manats azerbaidjanesos (1993–2006)"
+    :AZN: 
+      :name: "manat azerbaidjanès"
+      :narrow_symbol: ₼
+      :one: "manat azerbaidjanès"
+      :other: "manats azerbaidjanesos"
+      :symbol: ₼
+    :BAD: 
+      :name: "dinar de Bòsnia i Hercegovina (1992–1994)"
+      :one: "dinar de Bòsnia i Hercegovina (1992–1994)"
+      :other: "dinars de Bòsnia i Hercegovina (1992–1994)"
+    :BAM: 
+      :name: "marc convertible de Bòsnia i Hercegovina"
+      :narrow_symbol: KM
+      :one: "marc convertible de Bòsnia i Hercegovina"
+      :other: "marcs convertibles de Bòsnia i Hercegovina"
+      :symbol: KM
+    :BAN: 
+      :name: "nou dinar de Bòsnia i Hercegovina (1994–1997)"
+      :one: "nou dinar de Bòsnia i Hercegovina (1994–1997)"
+      :other: "nous dinars de Bòsnia i Hercegovina (1994–1997)"
+    :BBD: 
+      :name: "dòlar de Barbados"
+      :narrow_symbol: $
+      :one: "dòlar de Barbados"
+      :other: "dòlars de Barbados"
+      :symbol: $
+    :BDT: 
+      :name: taka
+      :narrow_symbol: ৳
+      :one: taka
+      :symbol: ৳
+    :BEC: 
+      :name: "franc belga (convertible)"
+      :one: "franc belga (convertible)"
+      :other: "francs belgues (convertibles)"
+    :BEF: 
+      :name: "franc belga"
+      :one: "franc belga"
+      :other: "francs belgues"
+    :BEL: 
+      :name: "franc belga (financer)"
+      :one: "franc belga (financer)"
+      :other: "francs belgues (financers)"
+    :BGL: 
+      :name: "lev fort búlgar"
+      :one: "lev fort búlgar"
+      :other: "leva forts búlgars"
+    :BGM: 
+      :name: "lev socialista búlgar"
+      :one: "lev socialista búlgar"
+      :other: "leva socialistes búlgars"
+    :BGN: 
+      :name: lev
+      :one: lev
+      :other: leva
+    :BGO: 
+      :name: "lev búlgar (1879–1952)"
+      :one: "lev búlgar (1879–1952)"
+      :other: "leva búlgars (1879–1952)"
+    :BHD: 
+      :name: "dinar de Bahrain"
+      :one: "dinar de Bahrain"
+      :other: "dinars de Bahrain"
+    :BIF: 
+      :name: "franc de Burundi"
+      :one: "franc de Burundi"
+      :other: "francs de Burundi"
+    :BMD: 
+      :name: "dòlar de les Bermudes"
+      :narrow_symbol: $
+      :one: "dòlar de les Bermudes"
+      :other: "dòlars de les Bermudes"
+      :symbol: $
+    :BND: 
+      :name: "dòlar de Brunei"
+      :narrow_symbol: $
+      :one: "dòlar de Brunei"
+      :other: "dòlars de Brunei"
+      :symbol: $
+    :BOB: 
+      :name: bolivià
+      :narrow_symbol: Bs
+      :one: bolivià
+      :other: bolivians
+      :symbol: Bs
+    :BOL: 
+      :name: "boliviano bolivià (1863–1963)"
+      :one: "boliviano bolivià (1863–1963)"
+      :other: "bolivianos bolivians (1863–1963)"
+    :BOP: 
+      :name: "peso bolivià"
+      :one: "peso bolivià"
+      :other: "pesos bolivians"
+    :BOV: 
+      :name: "MVDOL bolivià"
+      :one: "MVDOL bolivià"
+      :other: "MVDOL bolivians"
+    :BRB: 
+      :name: "cruzeiro novo brasiler (1967–1986)"
+      :one: "cruzeiro novo brasiler (1967–1986)"
+      :other: "cruzeiros novos brasilers (1967–1986)"
+    :BRC: 
+      :name: "cruzado brasiler"
+      :one: "cruzado brasiler"
+      :other: "cruzados brasilers"
+    :BRE: 
+      :name: "cruzeiro brasiler (1990–1993)"
+      :one: "cruzeiro brasiler (1990–1993)"
+      :other: "cruzeiros brasilers (1990–1993)"
+    :BRL: 
+      :name: "real brasiler"
+      :narrow_symbol: R$
+      :one: "real brasiler"
+      :other: "reals brasilers"
+      :symbol: BRL
+    :BRN: 
+      :name: "cruzado novo brasiler"
+      :one: "cruzado novo brasiler"
+      :other: "cruzados novos brasilers"
+    :BRR: 
+      :name: "cruzeiro brasiler"
+      :one: "cruzeiro brasiler"
+      :other: "cruzeiros brasilers"
+    :BRZ: 
+      :name: "antic cruzeiro brasiler"
+      :one: "antic cruzeiro brasiler"
+      :other: "antics cruzeiros brasilers"
+    :BSD: 
+      :name: "dòlar de les Bahames"
+      :narrow_symbol: $
+      :one: "dòlar de les Bahames"
+      :other: "dòlars de les Bahames"
+      :symbol: $
+    :BTN: 
+      :name: "ngultrum de Bhutan"
+      :one: "ngultrum de Bhutan"
+      :other: "ngultrums de Bhutan"
+    :BUK: 
+      :name: "kyat birmà"
+      :one: "kyat birmà"
+      :other: "kyats birmans"
+    :BWP: 
+      :name: "pula de Botswana"
+      :narrow_symbol: P
+      :one: "pula de Botswana"
+      :other: "pules de Botswana"
+      :symbol: P
+    :BYB: 
+      :name: "nou ruble bielorús (1994–1999)"
+      :one: "nou ruble bielorús (1994–1999)"
+      :other: "nous rubles bielorussos (1994–1999)"
+    :BYN: 
+      :name: "ruble belarús"
+      :narrow_symbol: р.
+      :one: "ruble belarús"
+      :other: "rubles belarussos"
+      :symbol: р.
+    :BYR: 
+      :name: "ruble bielorús (2000–2016)"
+      :one: "ruble bielorús (2000–2016)"
+      :other: "rubles bielorussos (2000–2016)"
+    :BZD: 
+      :name: "dòlar de Belize"
+      :narrow_symbol: $
+      :one: "dòlar de Belize"
+      :other: "dòlars de Belize"
+      :symbol: $
+    :CAD: 
+      :name: "dòlar canadenc"
+      :narrow_symbol: $
+      :one: "dòlar canadenc"
+      :other: "dòlars canadencs"
+      :symbol: CAD
+    :CDF: 
+      :name: "franc congolès"
+      :one: "franc congolès"
+      :other: "francs congolesos"
+    :CHE: 
+      :name: "euro WIR"
+      :one: "euro WIR"
+      :other: "euros WIR"
+    :CHF: 
+      :name: "franc suís"
+      :one: "franc suís"
+      :other: "francs suïssos"
+    :CHW: 
+      :name: "franc WIR"
+      :one: "franc WIR"
+      :other: "francs WIR"
+    :CLE: 
+      :name: "escut xilè"
+      :one: "escudo xilè"
+      :other: "escudos xilens"
+    :CLF: 
+      :name: "unidad de fomento xilena"
+      :one: "unidad de fomento xilena"
+      :other: "unidades de fomento xilenes"
+    :CLP: 
+      :name: "peso xilè"
+      :narrow_symbol: $
+      :one: "peso xilè"
+      :other: "pesos xilens"
+      :symbol: $
+    :CNH: 
+      :name: "iuan xinès extracontinental"
+      :one: "iuan xinès extracontinental"
+      :other: "iuans xinesos extracontinentals"
+    :CNX: 
+      :one: "dòlar del Banc Popular Xinès"
+      :other: "dòlars del Banc Popular Xinès"
+    :CNY: 
+      :name: iuan
+      :narrow_symbol: ¥
+      :one: iuan
+      :other: iuans
+      :symbol: CNY
+    :COP: 
+      :name: "peso colombià"
+      :narrow_symbol: $
+      :one: "peso colombià"
+      :other: "pesos colombians"
+      :symbol: $
+    :COU: 
+      :name: "unidad de valor real colombiana"
+      :one: "unidad de valor real colombiana"
+      :other: "unidades de valor real colombianes"
+    :CRC: 
+      :name: "colon costa-riqueny"
+      :narrow_symbol: ₡
+      :one: "colon costa-riqueny"
+      :other: "colons costa-riquenys"
+      :symbol: ₡
+    :CSD: 
+      :name: "dinar serbi antic"
+      :one: "dinar serbi antic"
+      :other: "dinars serbis antics"
+    :CSK: 
+      :name: "corona forta txecoslovaca"
+      :one: "corona forta txecoslovaca"
+      :other: "corones fortes txecoslovaques"
+    :CUC: 
+      :name: "peso convertible cubà"
+      :narrow_symbol: $
+      :one: "peso convertible cubà"
+      :other: "pesos convertibles cubans"
+      :symbol: $
+    :CUP: 
+      :name: "peso cubà"
+      :narrow_symbol: $
+      :one: "peso cubà"
+      :other: "pesos cubans"
+      :symbol: $
+    :CVE: 
+      :name: "escut de Cap Verd"
+      :one: "escut de Cap Verd"
+      :other: "escuts de Cap Verd"
+    :CYP: 
+      :name: "lliura xipriota"
+      :one: "lliura xipriota"
+      :other: "lliures xipriotes"
+    :CZK: 
+      :name: "corona txeca"
+      :narrow_symbol: Kč
+      :one: "corona txeca"
+      :other: "corones txeques"
+      :symbol: Kč
+    :DDM: 
+      :name: "marc de l’Alemanya Oriental"
+      :one: "marc de l’Alemanya Oriental"
+      :other: "marcs de l’Alemanya Oriental"
+    :DEM: 
+      :name: "marc alemany"
+      :one: "marc alemany"
+      :other: "marcs alemanys"
+    :DJF: 
+      :name: "franc de Djibouti"
+      :one: "franc de Djibouti"
+      :other: "francs de Djibouti"
+    :DKK: 
+      :name: "corona danesa"
+      :narrow_symbol: kr
+      :one: "corona danesa"
+      :other: "corones daneses"
+      :symbol: kr
+    :DOP: 
+      :name: "peso dominicà"
+      :narrow_symbol: $
+      :one: "peso dominicà"
+      :other: "pesos dominicans"
+      :symbol: $
+    :DZD: 
+      :name: "dinar algerià"
+      :one: "dinar algerià"
+      :other: "dinars algerians"
+    :ECS: 
+      :name: "sucre equatorià"
+      :one: "sucre equatorià"
+      :other: "sucres equatorians"
+    :ECV: 
+      :name: "unidad de valor constante (UVC) equatoriana"
+      :one: "unidad de valor constante (UVC) equatoriana"
+      :other: "unidades de valor constante (UVC) equatorianes"
+    :EEK: 
+      :name: "corona estoniana"
+      :one: "corona estoniana"
+      :other: "corones estonianes"
+    :EGP: 
+      :name: "lliura egípcia"
+      :narrow_symbol: E£
+      :one: "lliura egípcia"
+      :other: "lliures egípcies"
+      :symbol: E£
+    :ERN: 
+      :name: "nakfa eritreu"
+      :one: "nakfa eritreu"
+      :other: "nakfes eritreus"
+    :ESA: 
+      :name: "pesseta espanyola (compte A)"
+      :one: "pesseta espanyola (compte A)"
+      :other: "pessetes espanyoles (compte A)"
+    :ESB: 
+      :name: "pesseta espanyola (compte convertible)"
+      :one: "pesseta espanyola (compte convertible)"
+      :other: "pessetes espanyoles (compte convertible)"
+    :ESP: 
+      :name: "pesseta espanyola"
+      :narrow_symbol: ₧
+      :one: "pesseta espanyola"
+      :other: "pessetes espanyoles"
+      :symbol: ₧
+    :ETB: 
+      :name: "birr etíop"
+      :one: "birr etíop"
+      :other: "birrs etíops"
+    :EUR: 
+      :name: euro
+      :narrow_symbol: €
+      :one: euro
+      :other: euros
+      :symbol: €
+    :FIM: 
+      :name: "marc finlandès"
+      :one: "marc finlandès"
+      :other: "marcs finlandesos"
+    :FJD: 
+      :name: "dòlar fijià"
+      :narrow_symbol: $
+      :one: "dòlar fijià"
+      :other: "dòlars fijians"
+      :symbol: $
+    :FKP: 
+      :name: "lliura de les illes Malvines"
+      :narrow_symbol: £
+      :one: "lliura de les illes Malvines"
+      :other: "lliures de les illes Malvines"
+      :symbol: £
+    :FRF: 
+      :name: "franc francès"
+      :one: "franc francès"
+      :other: "francs francesos"
+    :GBP: 
+      :name: "lliura esterlina"
+      :narrow_symbol: £
+      :one: "lliura esterlina"
+      :other: "lliures esterlines"
+      :symbol: £
+    :GEK: 
+      :name: "cupó de lari georgià"
+      :one: "cupó de lari georgià"
+      :other: "cupons de lari georgians"
+    :GEL: 
+      :name: lari
+      :narrow_symbol: ₾
+      :one: lari
+      :other: laris
+      :symbol: ₾
+    :GHC: 
+      :name: "cedi ghanès (1979–2007)"
+      :one: "cedi ghanès (1979–2007)"
+      :other: "cedis ghanesos (1979–2007)"
+    :GHS: 
+      :name: "cedi ghanès"
+      :narrow_symbol: GH₵
+      :one: "cedi ghanès"
+      :other: "cedis ghanesos"
+      :symbol: GH₵
+    :GIP: 
+      :name: "lliura de Gibraltar"
+      :narrow_symbol: £
+      :one: "lliura de Gibraltar"
+      :other: "lliures de Gibraltar"
+      :symbol: £
+    :GMD: 
+      :name: "dalasi gambià"
+      :one: "dalasi gambià"
+      :other: "dalasis gambians"
+    :GNF: 
+      :name: "franc guineà"
+      :narrow_symbol: FG
+      :one: "franc guineà"
+      :other: "francs guineans"
+      :symbol: FG
+    :GNS: 
+      :name: "syli guineà"
+      :one: "syli guineà"
+      :other: "sylis guineans"
+    :GQE: 
+      :name: "ekwele de Guinea Equatorial"
+      :one: "ekwele de Guinea Equatorial"
+      :other: "bipkwele de Guinea Equatorial"
+    :GRD: 
+      :name: "dracma grega"
+      :one: "dracma grega"
+      :other: "dracmes gregues"
+    :GTQ: 
+      :name: quetzal
+      :narrow_symbol: Q
+      :one: quetzal
+      :other: quetzals
+      :symbol: Q
+    :GWE: 
+      :name: "escut de la Guinea Portuguesa"
+      :one: "escut de la Guinea Portuguesa"
+      :other: "escuts de la Guinea Portuguesa"
+    :GWP: 
+      :name: "peso de Guinea Bissau"
+      :one: "peso de Guinea Bissau"
+      :other: "pesos de Guinea Bissau"
+    :GYD: 
+      :name: "dòlar de Guyana"
+      :narrow_symbol: $
+      :one: "dòlar de Guyana"
+      :other: "dòlars de Guyana"
+      :symbol: $
+    :HKD: 
+      :name: "dòlar de Hong Kong"
+      :narrow_symbol: $
+      :one: "dòlar de Hong Kong"
+      :other: "dòlars de Hong Kong"
+      :symbol: HK$
+    :HNL: 
+      :name: lempira
+      :narrow_symbol: L
+      :one: lempira
+      :other: lempires
+      :symbol: L
+    :HRD: 
+      :name: "dinar croat"
+      :one: "dinar croat"
+      :other: "dinars croats"
+    :HRK: 
+      :name: kuna
+      :narrow_symbol: kn
+      :one: kuna
+      :other: kunes
+      :symbol: kn
+    :HTG: 
+      :name: gourde
+      :one: gourde
+      :other: gourdes
+    :HUF: 
+      :name: fòrint
+      :narrow_symbol: Ft
+      :one: fòrint
+      :other: fòrints
+      :symbol: Ft
+    :IDR: 
+      :name: "rupia indonèsia"
+      :narrow_symbol: Rp
+      :one: "rupia indonèsia"
+      :other: "rupies indonèsies"
+      :symbol: Rp
+    :IEP: 
+      :name: "lliura irlandesa"
+      :one: "lliura irlandesa"
+      :other: "lliures irlandeses"
+    :ILP: 
+      :name: "lliura israeliana"
+      :one: "lliura israeliana"
+      :other: "lliures israelianes"
+    :ILR: 
+      :name: "xéquel israelià"
+      :one: "xéquel israelià"
+    :ILS: 
+      :name: "nou xéquel israelià"
+      :narrow_symbol: ₪
+      :one: "nou xéquel israelià"
+      :other: "nous xéquels israelians"
+      :symbol: ₪
+    :INR: 
+      :name: "rupia índia"
+      :narrow_symbol: ₹
+      :one: "rupia índia"
+      :other: "rupies índies"
+      :symbol: ₹
+    :IQD: 
+      :name: "dinar iraquià"
+      :one: "dinar iraquià"
+      :other: "dinars iraquians"
+    :IRR: 
+      :name: "rial iranià"
+      :one: "rial iranià"
+      :other: "rials iranians"
+    :ISJ: 
+      :name: "corona islandesa antiga"
+      :one: "corona islandesa antiga"
+      :other: "corones islandeses antigues"
+    :ISK: 
+      :name: "corona islandesa"
+      :narrow_symbol: kr
+      :one: "corona islandesa"
+      :other: "corones islandeses"
+      :symbol: kr
+    :ITL: 
+      :name: "lira italiana"
+      :one: "lira italiana"
+      :other: "lires italianes"
+    :JMD: 
+      :name: "dòlar jamaicà"
+      :narrow_symbol: $
+      :one: "dòlar jamaicà"
+      :other: "dòlars jamaicans"
+      :symbol: $
+    :JOD: 
+      :name: "dinar jordà"
+      :one: "dinar jordà"
+      :other: "dinars jordans"
+    :JPY: 
+      :name: ien
+      :narrow_symbol: ¥
+      :one: ien
+      :other: iens
+      :symbol: ¥
+    :KES: 
+      :name: "xíling kenyà"
+      :one: "xíling kenyà"
+      :other: "xílings kenyans"
+    :KGS: 
+      :name: "som kirguís"
+      :narrow_symbol: ⃀
+      :one: "som kirguís"
+      :other: "soms kirguisos"
+      :symbol: ⃀
+    :KHR: 
+      :name: "riel cambodjà"
+      :narrow_symbol: ៛
+      :one: "riel cambodjà"
+      :other: "riels cambodjans"
+      :symbol: ៛
+    :KMF: 
+      :name: "franc de les Comores"
+      :narrow_symbol: CF
+      :one: "franc de les Comores"
+      :other: "francs de les Comores"
+      :symbol: CF
+    :KPW: 
+      :name: "won nord-coreà"
+      :narrow_symbol: ₩
+      :one: "won nord-coreà"
+      :other: "wons nord-coreans"
+      :symbol: ₩
+    :KRH: 
+      :name: "hwan sud-coreà (1953–1962)"
+      :one: "hwan sud-coreà"
+      :other: "hwans sud-coreans"
+    :KRO: 
+      :name: "antic won sud-coreà"
+      :one: "antic won sud-coreà"
+      :other: "antics wons sud-coreans"
+    :KRW: 
+      :name: "won sud-coreà"
+      :narrow_symbol: ₩
+      :one: "won sud-coreà"
+      :other: "wons sud-coreans"
+      :symbol: ₩
+    :KWD: 
+      :name: "dinar kuwaitià"
+      :one: "dinar kuwaitià"
+      :other: "dinars kuwaitians"
+    :KYD: 
+      :name: "dòlar de les illes Caiman"
+      :narrow_symbol: $
+      :one: "dòlar de les illes Caiman"
+      :other: "dòlars de les illes Caiman"
+      :symbol: $
+    :KZT: 
+      :name: tenge
+      :narrow_symbol: ₸
+      :one: tenge
+      :other: tenges
+      :symbol: ₸
+    :LAK: 
+      :name: "kip laosià"
+      :narrow_symbol: ₭
+      :one: "kip laosià"
+      :other: "kips laosians"
+      :symbol: ₭
+    :LBP: 
+      :name: "lliura libanesa"
+      :narrow_symbol: L£
+      :one: "lliura libanesa"
+      :other: "lliures libaneses"
+      :symbol: L£
+    :LKR: 
+      :name: "rupia de Sri Lanka"
+      :narrow_symbol: Rs
+      :one: "rupia de Sri Lanka"
+      :other: "rupies de Sri Lanka"
+      :symbol: Rs
+    :LRD: 
+      :name: "dòlar liberià"
+      :narrow_symbol: $
+      :one: "dòlar liberià"
+      :other: "dòlars liberians"
+      :symbol: $
+    :LSL: 
+      :name: loti
+      :one: loti
+      :other: lotis
+    :LTL: 
+      :name: "litas lituà"
+      :narrow_symbol: Lt
+      :one: "litas lituà"
+      :other: "litai lituans"
+      :symbol: Lt
+    :LTT: 
+      :name: "talonas lituà"
+      :one: "talonas lituà"
+      :other: "talonai lituans"
+    :LUC: 
+      :name: "franc convertible luxemburguès"
+      :one: "franc convertible luxemburguès"
+      :other: "francs convertibles luxemburguesos"
+    :LUF: 
+      :name: "franc luxemburguès"
+      :one: "franc luxemburguès"
+      :other: "francs luxemburguesos"
+    :LUL: 
+      :name: "franc financer luxemburguès"
+      :one: "franc financer luxemburguès"
+      :other: "francs financers luxemburguesos"
+    :LVL: 
+      :name: "lats letó"
+      :narrow_symbol: Ls
+      :one: "lats letó"
+      :other: "lati letons"
+      :symbol: Ls
+    :LVR: 
+      :name: "ruble letó"
+      :one: "ruble letó"
+      :other: "rubles letons"
+    :LYD: 
+      :name: "dinar libi"
+      :one: "dinar libi"
+      :other: "dinars libis"
+    :MAD: 
+      :name: "dírham marroquí"
+      :one: "dírham marroquí"
+      :other: "dírhams marroquins"
+    :MAF: 
+      :name: "franc marroquí"
+      :one: "franc marroquí"
+      :other: "francs marroquins"
+    :MCF: 
+      :name: "franc monegasc"
+      :one: "franc monegasc"
+      :other: "francs monegascos"
+    :MDC: 
+      :name: "cupó moldau"
+      :one: "cupó moldau"
+      :other: "cupons moldaus"
+    :MDL: 
+      :name: "leu moldau"
+      :one: "leu moldau"
+      :other: "lei moldaus"
+    :MGA: 
+      :name: "ariary malgaix"
+      :narrow_symbol: Ar
+      :one: "ariary malgaix"
+      :other: "ariarys malgaixos"
+      :symbol: Ar
+    :MGF: 
+      :name: "franc malgaix"
+      :one: "franc malgaix"
+      :other: "francs malgaixos"
+    :MKD: 
+      :name: "dinar macedoni"
+      :one: "dinar macedoni"
+      :other: "dinars macedonis"
+    :MKN: 
+      :name: "denar macedoni (1992–1993)"
+      :one: "denar macedoni (1992–1993)"
+      :other: "denari macedonis (1992–1993)"
+    :MLF: 
+      :name: "franc malià"
+      :one: "franc malià"
+      :other: "francs malians"
+    :MMK: 
+      :name: "kyat de Myanmar"
+      :narrow_symbol: K
+      :one: "kyat de Myanmar"
+      :other: "kyats de Myanmar"
+      :symbol: K
+    :MNT: 
+      :name: "tögrög mongol"
+      :narrow_symbol: ₮
+      :one: "tögrög mongol"
+      :other: "tögrögs mongols"
+      :symbol: ₮
+    :MOP: 
+      :name: "pataca de Macau"
+      :one: "pataca de Macau"
+      :other: "pataques de Macau"
+    :MRO: 
+      :name: "ouguiya maurità (1973–2017)"
+      :one: "ouguiya maurità (1973–2017)"
+      :other: "ouguiyas mauritans (1973–2017)"
+    :MRU: 
+      :name: "ouguiya maurità"
+      :one: "ouguiya maurità"
+      :other: "ouguiyas mauritans"
+    :MTL: 
+      :name: "lira maltesa"
+      :one: "lira maltesa"
+      :other: "lires malteses"
+    :MTP: 
+      :name: "lliura maltesa"
+      :one: "lliura maltesa"
+      :other: "lliures malteses"
+    :MUR: 
+      :name: "rupia mauriciana"
+      :narrow_symbol: Rs
+      :one: "rupia mauriciana"
+      :other: "rupies mauricianes"
+      :symbol: Rs
+    :MVR: 
+      :name: "rupia de les Maldives"
+      :one: "rupia de les Maldives"
+      :other: "rupies de les Maldives"
+    :MWK: 
+      :name: "kwacha malawià"
+      :one: "kwacha malawià"
+      :other: "kwacha malawians"
+    :MXN: 
+      :name: "peso mexicà"
+      :narrow_symbol: $
+      :one: "peso mexicà"
+      :other: "pesos mexicans"
+      :symbol: MXN
+    :MXP: 
+      :name: "peso de plata mexicà (1861–1992)"
+      :one: "peso de plata mexicà (1861–1992)"
+      :other: "pesos de plata mexicans (1861–1992)"
+    :MXV: 
+      :name: "unidad de inversión (UDI) mexicana"
+      :one: "unidad de inversión (UDI) mexicana"
+      :other: "unidades de inversión (UDI) mexicanes"
+    :MYR: 
+      :name: ringgit
+      :narrow_symbol: RM
+      :one: ringgit
+      :other: ringgits
+      :symbol: RM
+    :MZE: 
+      :name: "escut moçambiquès"
+      :one: "escut moçambiquès"
+      :other: "escuts moçambiquesos"
+    :MZM: 
+      :name: "antic metical moçambiquès"
+      :one: "antic metical moçambiquès"
+      :other: "antics meticals moçambiquesos"
+    :MZN: 
+      :name: "metical moçambiquès"
+      :one: "metical moçambiquès"
+      :other: "meticals moçambiquesos"
+    :NAD: 
+      :name: "dòlar namibià"
+      :narrow_symbol: $
+      :one: "dòlar namibià"
+      :other: "dòlars namibians"
+      :symbol: $
+    :NGN: 
+      :name: "naira nigerià"
+      :narrow_symbol: ₦
+      :one: "naira nigerià"
+      :other: "naires nigerians"
+      :symbol: ₦
+    :NIC: 
+      :name: "córdoba nicaragüenca"
+      :one: "córdoba nicaragüenca"
+      :other: "córdobas nicaragüenques"
+    :NIO: 
+      :name: "córdoba nicaragüenc"
+      :narrow_symbol: C$
+      :one: "córdoba nicaragüenc"
+      :other: "córdobas nicaragüencs"
+      :symbol: C$
+    :NLG: 
+      :name: "florí neerlandès"
+      :one: "florí neerlandès"
+      :other: "florins neerlandesos"
+    :NOK: 
+      :name: "corona noruega"
+      :narrow_symbol: kr
+      :one: "corona noruega"
+      :other: "corones noruegues"
+      :symbol: kr
+    :NPR: 
+      :name: "rupia nepalesa"
+      :narrow_symbol: Rs
+      :one: "rupia nepalesa"
+      :other: "rupies nepaleses"
+      :symbol: Rs
+    :NZD: 
+      :name: "dòlar neozelandès"
+      :narrow_symbol: $
+      :one: "dòlar neozelandès"
+      :other: "dòlars neozelandesos"
+      :symbol: NZ$
+    :OMR: 
+      :name: "rial omanita"
+      :one: "rial omanita"
+      :other: "rials omanites"
+    :PAB: 
+      :name: balboa
+      :one: balboa
+      :other: balboes
+    :PEI: 
+      :name: "inti peruà"
+      :one: "inti peruà"
+      :other: "intis peruans"
+    :PEN: 
+      :name: sol
+      :one: sol
+      :other: sols
+    :PES: 
+      :name: "sol peruà (1863–1965)"
+      :one: "sol peruà (1863–1965)"
+      :other: "sols peruans (1863–1965)"
+    :PGK: 
+      :name: kina
+      :one: kina
+      :other: kines
+    :PHP: 
+      :name: "peso filipí"
+      :narrow_symbol: ₱
+      :one: "peso filipí"
+      :other: "pesos filipins"
+      :symbol: PHP
+    :PKR: 
+      :name: "rupia pakistanesa"
+      :narrow_symbol: Rs
+      :one: "rupia pakistanesa"
+      :other: "rupies pakistaneses"
+      :symbol: Rs
+    :PLN: 
+      :name: zloty
+      :narrow_symbol: zł
+      :one: zloty
+      :other: zlote
+      :symbol: zł
+    :PLZ: 
+      :name: "zloty polonès (1950–1995)"
+      :one: "zloty polonès (1950–1995)"
+      :other: "zlote polonesos (1950–1995)"
+    :PTE: 
+      :name: "escut portuguès"
+      :one: "escut portuguès"
+      :other: "escuts portuguesos"
+    :PYG: 
+      :name: guaraní
+      :narrow_symbol: ₲
+      :one: guaraní
+      :other: guaranís
+      :symbol: ₲
+    :QAR: 
+      :name: "rial de Qatar"
+      :one: "rial de Qatar"
+      :other: "rials de Qatar"
+    :RHD: 
+      :name: "dòlar rhodesià"
+      :one: "dòlar rhodesià"
+      :other: "dòlars rhodesians"
+    :ROL: 
+      :name: "antic leu romanès"
+      :one: "antic leu romanès"
+      :other: "antics lei romanesos"
+    :RON: 
+      :name: "leu romanès"
+      :narrow_symbol: lei
+      :one: "leu romanès"
+      :other: "lei romanesos"
+      :symbol: lei
+    :RSD: 
+      :name: "dinar serbi"
+      :one: "dinar serbi"
+      :other: "dinars serbis"
+    :RUB: 
+      :name: ruble
+      :narrow_symbol: ₽
+      :one: ruble
+      :other: rubles
+      :symbol: ₽
+    :RUR: 
+      :name: "ruble rus (1991–1998)"
+      :one: "ruble rus (1991–1998)"
+      :other: "rubles russos (1991–1998)"
+    :RWF: 
+      :name: "franc de Ruanda"
+      :narrow_symbol: RF
+      :one: "franc de Ruanda"
+      :other: "francs de Ruanda"
+      :symbol: RF
+    :SAR: 
+      :name: "rial saudita"
+      :one: "rial saudita"
+      :other: "rials saudites"
+    :SBD: 
+      :name: "dòlar de les illes Salomó"
+      :narrow_symbol: $
+      :one: "dòlar de les illes Salomó"
+      :other: "dòlars de les illes Salomó"
+      :symbol: $
+    :SCR: 
+      :name: "rupia de les Seychelles"
+      :one: "rupia de les Seychelles"
+      :other: "rupies de les Seychelles"
+    :SDD: 
+      :name: "dinar sudanès"
+      :one: "dinar sudanès"
+      :other: "dinars sudanesos"
+    :SDG: 
+      :name: "lliura sudanesa"
+      :one: "lliura sudanesa"
+      :other: "lliures sudaneses"
+    :SDP: 
+      :name: "antiga lliura sudanesa"
+      :one: "antiga lliura sudanesa"
+      :other: "antigues lliures sudaneses"
+    :SEK: 
+      :name: "corona sueca"
+      :narrow_symbol: kr
+      :one: "corona sueca"
+      :other: "corones sueques"
+      :symbol: kr
+    :SGD: 
+      :name: "dòlar de Singapur"
+      :narrow_symbol: $
+      :one: "dòlar de Singapur"
+      :other: "dòlars de Singapur"
+      :symbol: $
+    :SHP: 
+      :name: "lliura de Santa Helena"
+      :narrow_symbol: £
+      :one: "lliura de Santa Helena"
+      :other: "lliures de Santa Helena"
+      :symbol: £
+    :SIT: 
+      :name: "tolar eslovè"
+      :one: "tolar eslovè"
+      :other: "tolars eslovens"
+    :SKK: 
+      :name: "corona eslovaca"
+      :one: "corona eslovaca"
+      :other: "corones eslovaques"
+    :SLE: 
+      :name: "leone de Sierra Leone"
+      :one: "leone de Sierra Leone"
+      :other: "leones de Sierra Leone"
+    :SLL: 
+      :name: "leone de Sierra Leone (1964—2022)"
+      :one: "leone de Sierra Leone (1964—2022)"
+      :other: "leones de Sierra Leone (1964—2022)"
+    :SOS: 
+      :name: "xíling somali"
+      :one: "xíling somali"
+      :other: "xílings somalis"
+    :SRD: 
+      :name: "dòlar de Surinam"
+      :narrow_symbol: $
+      :one: "dòlar de Surinam"
+      :other: "dòlars de Surinam"
+      :symbol: $
+    :SRG: 
+      :name: "florí de Surinam"
+      :one: "florí de Surinam"
+      :other: "florins de Surinam"
+    :SSP: 
+      :name: "lliura del Sudan del Sud"
+      :narrow_symbol: £
+      :one: "lliura del Sudan del Sud"
+      :other: "lliures del Sudan del Sud"
+      :symbol: £
+    :STD: 
+      :name: "dobra de São Tomé i Príncipe (1977–2017)"
+      :one: "dobra de São Tomé i Príncipe (1977–2017)"
+      :other: "dobras de São Tomé i Príncipe (1977–2017)"
+    :STN: 
+      :name: "dobra de São Tomé i Príncipe"
+      :narrow_symbol: Db
+      :one: "dobra de São Tomé i Príncipe"
+      :other: "dobras de São Tomé i Príncipe"
+      :symbol: Db
+    :SUR: 
+      :name: "ruble soviètic"
+      :one: "ruble soviètic"
+      :other: "rubles soviètics"
+    :SVC: 
+      :name: "colon salvadorenc"
+      :one: "colón salvadorenc"
+      :other: "colones salvadorencs"
+    :SYP: 
+      :name: "lliura siriana"
+      :narrow_symbol: £
+      :one: "lliura siriana"
+      :other: "lliures sirianes"
+      :symbol: £
+    :SZL: 
+      :name: "lilangeni swazi"
+      :one: "lilangeni swazi"
+      :other: "emalangeni swazis"
+    :THB: 
+      :name: baht
+      :narrow_symbol: ฿
+      :one: baht
+      :other: bahts
+      :symbol: ฿
+    :TJR: 
+      :name: "ruble tadjik"
+      :one: "ruble tadjik"
+      :other: "rubles tadjiks"
+    :TJS: 
+      :name: "somoni tadjik"
+      :one: "somoni tadjik"
+      :other: "somonis tadjiks"
+    :TMM: 
+      :name: "manat turcman (1993–2009)"
+      :one: "manat turcman (1993–2009)"
+      :other: "manats turcmans (1993–2009)"
+    :TMT: 
+      :name: "manat turcman"
+      :one: "manat turcman"
+      :other: "manats turcmans"
+    :TND: 
+      :name: "dinar tunisià"
+      :one: "dinar tunisià"
+      :other: "dinars tunisians"
+    :TOP: 
+      :name: "pa‘anga tongà"
+      :narrow_symbol: T$
+      :one: "pa‘anga tongà"
+      :other: "pa‘angas tongans"
+      :symbol: T$
+    :TPE: 
+      :name: "escut de Timor"
+      :one: "escut de Timor"
+      :other: "escuts de Timor"
+    :TRL: 
+      :name: "lira turca (1922–2005)"
+      :one: "lira turca (1922–2005)"
+      :other: "lires turques (1922–2005)"
+    :TRY: 
+      :name: "lira turca"
+      :narrow_symbol: ₺
+      :one: "lira turca"
+      :other: "lires turques"
+      :symbol: ₺
+    :TTD: 
+      :name: "dòlar de Trinitat i Tobago"
+      :narrow_symbol: $
+      :one: "dòlar de Trinitat i Tobago"
+      :other: "dòlars de Trinitat i Tobago"
+      :symbol: $
+    :TWD: 
+      :name: "nou dòlar de Taiwan"
+      :narrow_symbol: $
+      :one: "nou dòlar de Taiwan"
+      :other: "nous dòlars de Taiwan"
+      :symbol: NT$
+    :TZS: 
+      :name: "xíling tanzà"
+      :one: "xíling tanzà"
+      :other: "xílings tanzans"
+    :UAH: 
+      :name: hrívnia
+      :narrow_symbol: ₴
+      :one: hrívnia
+      :other: hrívnies
+      :symbol: ₴
+    :UAK: 
+      :name: "karbóvanets ucraïnès"
+      :one: "karbóvanets ucraïnès"
+      :other: "karbóvantsiv ucraïnesos"
+    :UGS: 
+      :name: "xíling ugandès (1966–1987)"
+      :one: "xíling ugandès (1966–1987)"
+      :other: "xílings ugandesos (1966–1987)"
+    :UGX: 
+      :name: "xíling ugandès"
+      :one: "xíling ugandès"
+      :other: "xílings ugandesos"
+    :USD: 
+      :name: "dòlar dels Estats Units"
+      :narrow_symbol: $
+      :one: "dòlar dels Estats Units"
+      :other: "dòlars dels Estats Units"
+      :symbol: USD
+    :USN: 
+      :name: "dòlar dels Estats Units (dia següent)"
+      :one: "dòlar dels Estats Units (dia següent)"
+      :other: "dòlars dels Estats Units (dia següent)"
+    :USS: 
+      :name: "dòlar dels Estats Units (mateix dia)"
+      :one: "dòlar dels Estats Units (mateix dia)"
+      :other: "dòlars dels Estats Units (mateix dia)"
+    :UYI: 
+      :name: "peso uruguaià en unitats indexades"
+      :one: "peso uruguaià en unitats indexades"
+      :other: "pesos uruguaians en unitats indexades"
+    :UYP: 
+      :name: "peso uruguaià (1975–1993)"
+      :one: "peso uruguaià (1975–1993)"
+      :other: "pesos uruguaians (1975–1993)"
+    :UYU: 
+      :name: "peso uruguaià"
+      :narrow_symbol: $
+      :one: "peso uruguaià"
+      :other: "pesos uruguaians"
+      :symbol: $
+    :UZS: 
+      :name: "som uzbek"
+      :one: "som uzbek"
+      :other: "soms uzbeks"
+    :VEB: 
+      :name: "bolívar veneçolà (1871–2008)"
+      :one: "bolívar veneçolà (1871–2008)"
+      :other: "bolívars veneçolans (1871–2008)"
+    :VEF: 
+      :name: "bolívar veneçolà (2008–2018)"
+      :narrow_symbol: "Bs F"
+      :one: "bolívar veneçolà (2008–2018)"
+      :other: "bolívars veneçolans (2008–2018)"
+      :symbol: "Bs F"
+    :VES: 
+      :name: "bolívar veneçolà"
+      :one: "bolívar veneçolà"
+      :other: "bolívars veneçolans"
+    :VND: 
+      :name: "dong vietnamita"
+      :narrow_symbol: ₫
+      :one: "dong vietnamita"
+      :other: "dongs vietnamites"
+      :symbol: ₫
+    :VNN: 
+      :name: "dong vietnamita (1978–1985)"
+      :one: "dong vietnamita (1978–1985)"
+      :other: "dongs vietnamites (1978–1985)"
+    :VUV: 
+      :name: "vatu de Vanuatu"
+      :one: "vatu de Vanuatu"
+      :other: "vatus de Vanuatu"
+    :WST: 
+      :name: "tala samoà"
+      :one: "tala samoà"
+      :other: "tales samoans"
+    :XAF: 
+      :name: "franc CFA BEAC"
+      :one: "franc CFA BEAC"
+      :other: "francs CFA BEAC"
+      :symbol: FCFA
+    :XAG: 
+      :name: plata
+      :one: plata
+    :XAU: 
+      :name: or
+      :one: or
+    :XBA: 
+      :name: "unitat compensatòria europea"
+      :one: "unitat compensatòria europea"
+      :other: "unitats compensatòries europees"
+    :XBB: 
+      :name: "unitat monetària europea"
+      :one: "unitat monetària europea"
+      :other: "unitats monetàries europees"
+    :XBC: 
+      :name: "unitat de compte europea (XBC)"
+      :one: "unitat de compte europea (XBC)"
+      :other: "unitats de compte europees (XBC)"
+    :XBD: 
+      :name: "unitat de compte europea (XBD)"
+      :one: "unitat de compte europea (XBD)"
+      :other: "unitats de compte europees (XBD)"
+    :XCD: 
+      :name: "dòlar del Carib Oriental"
+      :narrow_symbol: $
+      :one: "dòlar del Carib Oriental"
+      :other: "dòlars del Carib Oriental"
+      :symbol: XCD
+    :XCG: 
+      :symbol: Cg.
+    :XDR: 
+      :name: "drets especials de gir"
+      :one: "drets especials de gir"
+    :XEU: 
+      :name: "unitat de moneda europea"
+      :one: "unitat de moneda europea"
+      :other: "unitats de moneda europees"
+    :XFO: 
+      :name: "franc or francès"
+      :one: "franc or francès"
+      :other: "francs or francesos"
+    :XFU: 
+      :name: "franc UIC francès"
+      :one: "franc UIC francès"
+      :other: "francs UIC francesos"
+    :XOF: 
+      :name: "franc CFA BCEAO"
+      :one: "franc CFA BCEAO"
+      :other: "francs CFA BCEAO"
+      :symbol: F CFA
+    :XPD: 
+      :name: pal·ladi
+      :one: pal·ladi
+    :XPF: 
+      :name: "franc CFP"
+      :one: "franc CFP"
+      :other: "francs CFP"
+      :symbol: CFPF
+    :XPT: 
+      :name: platí
+      :one: platí
+    :XRE: 
+      :name: "fons RINET"
+      :one: "fons RINET"
+    :XTS: 
+      :name: "codi reservat per a proves"
+      :one: "codi reservat per a proves"
+    :XXX: 
+      :name: "moneda desconeguda"
+      :one: "(unitat monetària desconeguda)"
+      :other: "(moneda desconeguda)"
+      :symbol: XXX
+    :YDD: 
+      :name: "dinar iemenita"
+      :one: "dinar iemenita"
+      :other: "dinars iemenites"
+    :YER: 
+      :name: "rial iemenita"
+      :one: "rial iemenita"
+      :other: "rials iemenites"
+    :YUD: 
+      :name: "dinar fort iugoslau"
+      :one: "dinar fort iugoslau"
+      :other: "dinars forts iugoslaus"
+    :YUM: 
+      :name: "nou dinar iugoslau"
+      :one: "nou dinar iugoslau"
+      :other: "nous dinars iugoslaus"
+    :YUN: 
+      :name: "dinar convertible iugoslau"
+      :one: "dinar convertible iugoslau"
+      :other: "dinars convertibles iugoslaus"
+    :YUR: 
+      :name: "dinar iugoslau reformat (1992–1993)"
+      :one: "dinar reformat iugoslau"
+      :other: "dinars reformats iugoslaus"
+    :ZAL: 
+      :name: "rand sud-africà (financer)"
+      :one: "rand sud-africà (financer)"
+      :other: "rands sud-africans (financers)"
+    :ZAR: 
+      :name: "rand sud-africà"
+      :narrow_symbol: R
+      :one: "rand sud-africà"
+      :other: "rands sud-africans"
+      :symbol: R
+    :ZMK: 
+      :name: "kwacha zambià (1968–2012)"
+      :one: "kwacha zambià (1968–2012)"
+      :other: "kwacha zambians (1968–2012)"
+    :ZMW: 
+      :name: "kwacha zambià"
+      :narrow_symbol: ZK
+      :one: "kwacha zambià"
+      :other: "kwacha zambians"
+      :symbol: ZK
+    :ZRN: 
+      :name: "nou zaire zairès"
+      :one: "nou zaire zairès"
+      :other: "nous zaires zairesos"
+    :ZRZ: 
+      :name: "zaire zairès"
+      :one: "zaire zairès"
+      :other: "zaires zairesos"
+    :ZWD: 
+      :name: "dòlar zimbabuès (1980–2008)"
+      :one: "dòlar zimbabuès (1980–2008)"
+      :other: "dòlars zimbabuesos (1980–2008)"
+    :ZWL: 
+      :name: "dòlar zimbabuès (2009)"
+      :one: "dòlar zimbabuès (2009)"
+      :other: "dòlars zimbabuesos (2009)"
+    :ZWR: 
+      :name: "dòlar zimbabuès (2008)"
+      :one: "dòlar zimbabuès (2008)"
+      :other: "dòlars zimbabuesos (2008)"

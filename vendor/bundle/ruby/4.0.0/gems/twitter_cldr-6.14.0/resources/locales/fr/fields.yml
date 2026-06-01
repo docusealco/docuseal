@@ -1,0 +1,445 @@
+--- 
+:fr: 
+  :fields: 
+    :day: 
+      :display_name: jour
+      :relative: 
+        -1: hier
+        -2: avant-hier
+        0: aujourd’hui
+        1: demain
+        2: après-demain
+      :relative_time: 
+        :future: 
+          :one: "dans {0} jour"
+          :other: "dans {0} jours"
+        :past: 
+          :one: "il y a {0} jour"
+          :other: "il y a {0} jours"
+    :day-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "+{0} j"
+          :other: "+{0} j"
+        :past: 
+          :one: "-{0} j"
+          :other: "-{0} j"
+    :day-short: 
+      :display_name: j
+      :relative_time: 
+        :future: 
+          :one: "dans {0} j"
+          :other: "dans {0} j"
+        :past: 
+          :one: "il y a {0} j"
+          :other: "il y a {0} j"
+    :dayOfYear: 
+      :display_name: "jour (année)"
+    :dayOfYear-short: 
+      :display_name: "j (an)"
+    :dayperiod: 
+      :display_name: cadran
+    :era: 
+      :display_name: ère
+    :fri: 
+      :relative: 
+        -1: "vendredi dernier"
+        0: "ce vendredi"
+        1: "vendredi prochain"
+      :relative_time: 
+        :future: 
+          :one: "dans {0} vendredi"
+          :other: "dans {0} vendredis"
+        :past: 
+          :one: "il y a {0} vendredi"
+          :other: "il y a {0} vendredis"
+    :fri-short: 
+      :relative: 
+        -1: "ven. dernier"
+        0: "ce ven."
+        1: "ven. prochain"
+      :relative_time: 
+        :future: 
+          :one: "dans {0} ven."
+          :other: "dans {0} ven."
+        :past: 
+          :one: "il y a {0} ven."
+          :other: "il y a {0} ven."
+    :hour: 
+      :display_name: heure
+      :relative: 
+        0: "cette heure-ci"
+      :relative_time: 
+        :future: 
+          :one: "dans {0} heure"
+          :other: "dans {0} heures"
+        :past: 
+          :one: "il y a {0} heure"
+          :other: "il y a {0} heures"
+    :hour-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "+{0} h"
+          :other: "+{0} h"
+        :past: 
+          :one: "-{0} h"
+          :other: "-{0} h"
+    :hour-short: 
+      :display_name: h
+      :relative: 
+        0: "cette h"
+      :relative_time: 
+        :future: 
+          :one: "dans {0} h"
+          :other: "dans {0} h"
+        :past: 
+          :one: "il y a {0} h"
+          :other: "il y a {0} h"
+    :minute: 
+      :display_name: minute
+      :relative: 
+        0: "cette minute-ci"
+      :relative_time: 
+        :future: 
+          :one: "dans {0} minute"
+          :other: "dans {0} minutes"
+        :past: 
+          :one: "il y a {0} minute"
+          :other: "il y a {0} minutes"
+    :minute-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "+{0} min"
+          :other: "+{0} min"
+        :past: 
+          :one: "-{0} min"
+          :other: "-{0} min"
+    :minute-short: 
+      :display_name: min
+      :relative: 
+        0: "cette min"
+      :relative_time: 
+        :future: 
+          :one: "dans {0} min"
+          :other: "dans {0} min"
+        :past: 
+          :one: "il y a {0} min"
+          :other: "il y a {0} min"
+    :mon: 
+      :relative: 
+        -1: "lundi dernier"
+        0: "ce lundi"
+        1: "lundi prochain"
+      :relative_time: 
+        :future: 
+          :one: "dans {0} lundi"
+          :other: "dans {0} lundis"
+        :past: 
+          :one: "il y a {0} lundi"
+          :other: "il y a {0} lundis"
+    :mon-short: 
+      :relative: 
+        -1: "lun. dernier"
+        0: "ce lun."
+        1: "lun. prochain"
+      :relative_time: 
+        :future: 
+          :one: "dans {0} lun."
+          :other: "dans {0} lun."
+        :past: 
+          :one: "il y a {0} lun."
+          :other: "il y a {0} lun."
+    :month: 
+      :display_name: mois
+      :relative: 
+        -1: "le mois dernier"
+        0: "ce mois-ci"
+        1: "le mois prochain"
+      :relative_time: 
+        :future: 
+          :one: "dans {0} mois"
+          :other: "dans {0} mois"
+        :past: 
+          :one: "il y a {0} mois"
+          :other: "il y a {0} mois"
+    :month-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "+{0} m."
+          :other: "+{0} m."
+        :past: 
+          :one: "-{0} m."
+          :other: "-{0} m."
+    :month-short: 
+      :display_name: m.
+      :relative_time: 
+        :future: 
+          :one: "dans {0} m."
+          :other: "dans {0} m."
+        :past: 
+          :one: "il y a {0} m."
+          :other: "il y a {0} m."
+    :quarter: 
+      :display_name: trimestre
+      :relative: 
+        -1: "le trimestre dernier"
+        0: "ce trimestre"
+        1: "le trimestre prochain"
+      :relative_time: 
+        :future: 
+          :one: "dans {0} trimestre"
+          :other: "dans {0} trimestres"
+        :past: 
+          :one: "il y a {0} trimestre"
+          :other: "il y a {0} trimestres"
+    :quarter-narrow: 
+      :relative: 
+        -1: "trim. dern."
+        0: "ce trim."
+        1: "trim. proch."
+      :relative_time: 
+        :future: 
+          :one: "+{0} trim."
+          :other: "+{0} trim."
+        :past: 
+          :one: "-{0} trim."
+          :other: "-{0} trim."
+    :quarter-short: 
+      :display_name: trim.
+      :relative: 
+        -1: "le trim. dern."
+        0: "ce trim."
+        1: "le trim. proch."
+      :relative_time: 
+        :future: 
+          :one: "dans {0} trim."
+          :other: "dans {0} trim."
+        :past: 
+          :one: "il y a {0} trim."
+          :other: "il y a {0} trim."
+    :sat: 
+      :relative: 
+        -1: "samedi dernier"
+        0: "ce samedi"
+        1: "samedi prochain"
+      :relative_time: 
+        :future: 
+          :one: "dans {0} samedi"
+          :other: "dans {0} samedis"
+        :past: 
+          :one: "il y a {0} samedi"
+          :other: "il y a {0} samedis"
+    :sat-narrow: 
+      :relative_time: 
+        :past: 
+          :one: "il y a {0} sam."
+          :other: "il y a {0} sam."
+    :sat-short: 
+      :relative: 
+        -1: "sam. dernier"
+        0: "ce sam."
+        1: "sam. prochain"
+      :relative_time: 
+        :future: 
+          :one: "dans {0} sam."
+          :other: "dans {0} sam."
+        :past: 
+          :one: "dans {0} sam."
+          :other: "dans {0} sam."
+    :second: 
+      :display_name: seconde
+      :relative: 
+        0: maintenant
+      :relative_time: 
+        :future: 
+          :one: "dans {0} seconde"
+          :other: "dans {0} secondes"
+        :past: 
+          :one: "il y a {0} seconde"
+          :other: "il y a {0} secondes"
+    :second-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "+{0} s"
+          :other: "+{0} s"
+        :past: 
+          :one: "-{0} s"
+          :other: "-{0} s"
+    :second-short: 
+      :display_name: s
+      :relative_time: 
+        :future: 
+          :one: "dans {0} s"
+          :other: "dans {0} s"
+        :past: 
+          :one: "il y a {0} s"
+          :other: "il y a {0} s"
+    :sun: 
+      :relative: 
+        -1: "dimanche dernier"
+        0: "ce dimanche"
+        1: "dimanche prochain"
+      :relative_time: 
+        :future: 
+          :one: "dans {0} dimanche"
+          :other: "dans {0} dimanches"
+        :past: 
+          :one: "il y a {0} dimanche"
+          :other: "il y a {0} dimanches"
+    :sun-short: 
+      :relative: 
+        -1: "dim. dernier"
+        0: "ce dim."
+        1: "dim. prochain"
+      :relative_time: 
+        :future: 
+          :one: "dans {0} dim."
+          :other: "dans {0} dim."
+        :past: 
+          :one: "il y a {0} dim."
+          :other: "il y a {0} dim."
+    :thu: 
+      :relative: 
+        -1: "jeudi dernier"
+        0: "ce jeudi"
+        1: "jeudi prochain"
+      :relative_time: 
+        :future: 
+          :one: "dans {0} jeudi"
+          :other: "dans {0} jeudis"
+        :past: 
+          :one: "il y a {0} jeudi"
+          :other: "il y a {0} jeudis"
+    :thu-short: 
+      :relative: 
+        -1: "jeu. dernier"
+        0: "ce jeu."
+        1: "jeu. prochain"
+      :relative_time: 
+        :future: 
+          :one: "dans {0} jeu."
+          :other: "dans {0} jeu."
+        :past: 
+          :one: "il y a {0} jeu."
+          :other: "il y a {0} jeu."
+    :tue: 
+      :relative: 
+        -1: "mardi dernier"
+        0: "ce mardi"
+        1: "mardi prochain"
+      :relative_time: 
+        :future: 
+          :one: "dans {0} mardi"
+          :other: "dans {0} mardis"
+        :past: 
+          :one: "il y a {0} mardi"
+          :other: "il y a {0} mardis"
+    :tue-short: 
+      :relative: 
+        -1: "mar. dernier"
+        0: "ce mar."
+        1: "mar. prochain"
+      :relative_time: 
+        :future: 
+          :one: "dans {0} mar."
+          :other: "dans {0} mar."
+        :past: 
+          :one: "il y a {0} mar."
+          :other: "il y a {0} mar."
+    :wed: 
+      :relative: 
+        -1: "mercredi dernier"
+        0: "ce mercredi"
+        1: "mercredi prochain"
+      :relative_time: 
+        :future: 
+          :one: "dans {0} mercredi"
+          :other: "dans {0} mercredis"
+        :past: 
+          :one: "il y a {0} mercredi"
+          :other: "il y a {0} mercredis"
+    :wed-short: 
+      :relative: 
+        -1: "mer. dernier"
+        0: "ce mer."
+        1: "mer. prochain"
+      :relative_time: 
+        :future: 
+          :one: "dans {0} mer."
+          :other: "dans {0} mer."
+        :past: 
+          :one: "il y a {0} mer."
+          :other: "il y a {0} mer."
+    :week: 
+      :display_name: semaine
+      :relative: 
+        -1: "la semaine dernière"
+        0: "cette semaine"
+        1: "la semaine prochaine"
+      :relative_time: 
+        :future: 
+          :one: "dans {0} semaine"
+          :other: "dans {0} semaines"
+        :past: 
+          :one: "il y a {0} semaine"
+          :other: "il y a {0} semaines"
+    :week-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "+{0} sem."
+          :other: "+{0} sem."
+        :past: 
+          :one: "-{0} sem."
+          :other: "-{0} sem."
+    :week-short: 
+      :display_name: sem.
+      :relative_time: 
+        :future: 
+          :one: "dans {0} sem."
+          :other: "dans {0} sem."
+        :past: 
+          :one: "il y a {0} sem."
+          :other: "il y a {0} sem."
+    :weekOfMonth: 
+      :display_name: "semaine (mois)"
+    :weekOfMonth-short: 
+      :display_name: "sem. (m.)"
+    :weekday: 
+      :display_name: "jour de la semaine"
+    :weekday-short: 
+      :display_name: "j (sem.)"
+    :weekdayOfMonth: 
+      :display_name: "jour (mois)"
+    :year: 
+      :display_name: année
+      :relative: 
+        -1: "l’année dernière"
+        0: "cette année"
+        1: "l’année prochaine"
+      :relative_time: 
+        :future: 
+          :one: "dans {0} an"
+          :other: "dans {0} ans"
+        :past: 
+          :one: "il y a {0} an"
+          :other: "il y a {0} ans"
+    :year-narrow: 
+      :display_name: a
+      :relative_time: 
+        :future: 
+          :one: "+{0} a"
+          :other: "+{0} a"
+        :past: 
+          :one: "-{0} a"
+          :other: "-{0} a"
+    :year-short: 
+      :display_name: an
+      :relative_time: 
+        :future: 
+          :one: "dans {0} a"
+          :other: "dans {0} a"
+        :past: 
+          :one: "il y a {0} a"
+          :other: "il y a {0} a"
+    :zone: 
+      :display_name: "fuseau horaire"

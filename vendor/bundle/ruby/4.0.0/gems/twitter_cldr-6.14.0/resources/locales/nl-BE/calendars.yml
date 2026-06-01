@@ -1,0 +1,366 @@
+--- 
+:nl-BE: 
+  :calendars: 
+    :gregorian: 
+      :additional_formats: 
+        :Bh: "h B"
+        :Bhm: "h:mm B"
+        :Bhms: "h:mm:ss B"
+        :E: ccc
+        :EBhm: "E h:mm B"
+        :EBhms: "E h:mm:ss B"
+        :EHm: "E HH:mm"
+        :EHms: "E HH:mm:ss"
+        :Ed: "E d"
+        :Ehm: "E h:mm a"
+        :Ehms: "E h:mm:ss a"
+        :Gy: "y G"
+        :GyMMM: "MMM y G"
+        :GyMMMEd: "E d MMM y G"
+        :GyMMMd: "d MMM y G"
+        :GyMd: "d/M/y GGGGG"
+        :H: HH
+        :Hm: "HH:mm"
+        :Hms: "HH:mm:ss"
+        :Hmsv: "HH:mm:ss v"
+        :Hmv: "HH:mm v"
+        :M: L
+        :MEd: "E d/M"
+        :MMM: LLL
+        :MMMEd: "E d MMM"
+        :MMMMW: "'week' W 'van' MMMM"
+        :MMMMd: "d MMMM"
+        :MMMd: "d MMM"
+        :Md: d/M
+        :d: d
+        :h: h a
+        :hm: "h:mm a"
+        :hms: "h:mm:ss a"
+        :hmsv: "h:mm:ss a v"
+        :hmv: "h:mm a v"
+        :ms: "mm:ss"
+        ? !ruby/symbol "y"
+        : "y"
+        :yM: M/y
+        :yMEd: "E d/M/y"
+        :yMMM: "MMM y"
+        :yMMMEd: "E d MMM y"
+        :yMMMM: "MMMM y"
+        :yMMMd: "d MMM y"
+        :yMd: d/M/y
+        :yQQQ: "QQQ y"
+        :yQQQQ: "QQQQ y"
+        :yw: "'week' w 'in' Y"
+      :days: 
+        :format: 
+          :abbreviated: 
+            :fri: vr
+            :mon: ma
+            :sat: za
+            :sun: zo
+            :thu: do
+            :tue: di
+            :wed: wo
+          :narrow: 
+            :fri: V
+            :mon: M
+            :sat: Z
+            :sun: Z
+            :thu: D
+            :tue: D
+            :wed: W
+          :short: 
+            :fri: vr
+            :mon: ma
+            :sat: za
+            :sun: zo
+            :thu: do
+            :tue: di
+            :wed: wo
+          :wide: 
+            :fri: vrijdag
+            :mon: maandag
+            :sat: zaterdag
+            :sun: zondag
+            :thu: donderdag
+            :tue: dinsdag
+            :wed: woensdag
+        :stand-alone: 
+          :abbreviated: 
+            :fri: vr
+            :mon: ma
+            :sat: za
+            :sun: zo
+            :thu: do
+            :tue: di
+            :wed: wo
+          :narrow: 
+            :fri: V
+            :mon: M
+            :sat: Z
+            :sun: Z
+            :thu: D
+            :tue: D
+            :wed: W
+          :short: 
+            :fri: vr
+            :mon: ma
+            :sat: za
+            :sun: zo
+            :thu: do
+            :tue: di
+            :wed: wo
+          :wide: 
+            :fri: vrijdag
+            :mon: maandag
+            :sat: zaterdag
+            :sun: zondag
+            :thu: donderdag
+            :tue: dinsdag
+            :wed: woensdag
+      :eras: 
+        :abbr: 
+          0: v.g.j.
+          1: g.j.
+        :name: 
+          0: "vóór gewone jaartelling"
+          1: "gewone jaartelling"
+        :narrow: 
+          0: vgj
+          1: gj
+      :fields: 
+        :day: dag
+        :day-narrow: Day
+        :day-short: Day
+        :dayOfYear: "dag van het jaar"
+        :dayOfYear-narrow: "dag v.h. jr"
+        :dayOfYear-short: "dag van het jr"
+        :dayperiod: a.m./p.m.
+        :dayperiod-narrow: a.m./p.m.
+        :dayperiod-short: a.m./p.m.
+        :era: tijdperk
+        :era-narrow: tijdperk
+        :era-short: tijdperk
+        :hour: uur
+        :hour-narrow: u
+        :hour-short: uur
+        :minute: minuut
+        :minute-narrow: min
+        :minute-short: min
+        :month: maand
+        :month-narrow: mnd
+        :month-short: mnd
+        :quarter: kwartaal
+        :quarter-narrow: Quarter
+        :quarter-short: Quarter
+        :second: seconde
+        :second-narrow: s
+        :second-short: sec
+        :week: week
+        :week-narrow: wk
+        :week-short: wk
+        :weekOfMonth: "week van de maand"
+        :weekOfMonth-narrow: "wk v.d. mnd"
+        :weekOfMonth-short: "wk van de mnd"
+        :weekday: "dag van de week"
+        :weekday-narrow: "dag v.d. wk"
+        :weekday-short: "dag van de wk"
+        :weekdayOfMonth: "weekdag van de maand"
+        :weekdayOfMonth-narrow: "wkdag v.d. mnd"
+        :weekdayOfMonth-short: "wkdag van de mnd"
+        :year: jaar
+        :year-narrow: jr
+        :year-short: jr
+        :zone: tijdzone
+        :zone-narrow: zone
+        :zone-short: zone
+      :formats: 
+        :date: 
+          :full: 
+            :pattern: "EEEE d MMMM y"
+          :long: 
+            :pattern: "d MMMM y"
+          :medium: 
+            :pattern: "d MMM y"
+          :short: 
+            :pattern: d/MM/y
+        :datetime: 
+          :full: 
+            :pattern: "{{date}} 'om' {{time}}"
+          :long: 
+            :pattern: "{{date}} 'om' {{time}}"
+          :medium: 
+            :pattern: "{{date}}, {{time}}"
+          :short: 
+            :pattern: "{{date}}, {{time}}"
+        :time: 
+          :full: 
+            :pattern: "HH:mm:ss zzzz"
+          :long: 
+            :pattern: "HH:mm:ss z"
+          :medium: 
+            :pattern: "HH:mm:ss"
+          :short: 
+            :pattern: "HH:mm"
+      :months: 
+        :format: 
+          :abbreviated: 
+            1: jan
+            10: okt
+            11: nov
+            12: dec
+            2: feb
+            3: mrt
+            4: apr
+            5: mei
+            6: jun
+            7: jul
+            8: aug
+            9: sep
+          :narrow: 
+            1: J
+            10: O
+            11: "N"
+            12: D
+            2: F
+            3: M
+            4: A
+            5: M
+            6: J
+            7: J
+            8: A
+            9: S
+          :wide: 
+            1: januari
+            10: oktober
+            11: november
+            12: december
+            2: februari
+            3: maart
+            4: april
+            5: mei
+            6: juni
+            7: juli
+            8: augustus
+            9: september
+        :stand-alone: 
+          :abbreviated: 
+            1: jan
+            10: okt
+            11: nov
+            12: dec
+            2: feb
+            3: mrt
+            4: apr
+            5: mei
+            6: jun
+            7: jul
+            8: aug
+            9: sep
+          :narrow: 
+            1: J
+            10: O
+            11: "N"
+            12: D
+            2: F
+            3: M
+            4: A
+            5: M
+            6: J
+            7: J
+            8: A
+            9: S
+          :wide: 
+            1: januari
+            10: oktober
+            11: november
+            12: december
+            2: februari
+            3: maart
+            4: april
+            5: mei
+            6: juni
+            7: juli
+            8: augustus
+            9: september
+      :periods: 
+        :format: 
+          :abbreviated: 
+            :afternoon1: "’s middags"
+            :am: a.m.
+            :evening1: "’s avonds"
+            :midnight: middernacht
+            :morning1: "’s ochtends"
+            :night1: "’s nachts"
+            :pm: p.m.
+          :narrow: 
+            :afternoon1: "’s middags"
+            :am: a.m.
+            :evening1: "’s avonds"
+            :midnight: middernacht
+            :morning1: "’s ochtends"
+            :night1: "’s nachts"
+            :pm: p.m.
+          :wide: 
+            :afternoon1: "’s middags"
+            :am: a.m.
+            :evening1: "’s avonds"
+            :midnight: middernacht
+            :morning1: "’s ochtends"
+            :night1: "’s nachts"
+            :pm: p.m.
+        :stand-alone: 
+          :abbreviated: 
+            :afternoon1: middag
+            :am: AM
+            :evening1: avond
+            :morning1: ochtend
+            :night1: nacht
+            :pm: PM
+          :narrow: 
+            :afternoon1: middag
+            :am: AM
+            :evening1: avond
+            :morning1: ochtend
+            :night1: nacht
+            :pm: PM
+          :wide: 
+            :afternoon1: middag
+            :am: AM
+            :evening1: avond
+            :morning1: ochtend
+            :night1: nacht
+            :pm: PM
+      :quarters: 
+        :format: 
+          :abbreviated: 
+            1: K1
+            2: K2
+            3: K3
+            4: K4
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: "1e kwartaal"
+            2: "2e kwartaal"
+            3: "3e kwartaal"
+            4: "4e kwartaal"
+        :stand-alone: 
+          :abbreviated: 
+            1: K1
+            2: K2
+            3: K3
+            4: K4
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: "1e kwartaal"
+            2: "2e kwartaal"
+            3: "3e kwartaal"
+            4: "4e kwartaal"

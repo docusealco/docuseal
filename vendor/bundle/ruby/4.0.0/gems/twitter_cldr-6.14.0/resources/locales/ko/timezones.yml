@@ -1,0 +1,1496 @@
+--- 
+:ko: 
+  :formats: 
+    :fallback_formats: 
+      :generic: "{1}({0})"
+    :gmt_formats: 
+      :generic: "GMT{0}"
+    :gmt_zero_formats: 
+      :generic: GMT
+    :hour_formats: 
+      :generic: "+HH:mm;-HH:mm"
+    :region_formats: 
+      :daylight: "{0} 하계 표준시"
+      :generic: "{0} 시간"
+      :standard: "{0} 표준시"
+  :metazones: 
+    :Acre: 
+      :long: 
+        :daylight: "아크레 하계 표준시"
+        :generic: "아크레 시간"
+        :standard: "아크레 표준시"
+    :Afghanistan: 
+      :long: 
+        :standard: "아프가니스탄 시간"
+    :Africa_Central: 
+      :long: 
+        :standard: "중앙아프리카 시간"
+    :Africa_Eastern: 
+      :long: 
+        :standard: "동아프리카 시간"
+    :Africa_Southern: 
+      :long: 
+        :standard: "남아프리카 시간"
+    :Africa_Western: 
+      :long: 
+        :daylight: "서아프리카 하계 표준시"
+        :generic: "서아프리카 시간"
+        :standard: "서아프리카 표준시"
+    :Alaska: 
+      :long: 
+        :daylight: "알래스카 하계 표준시"
+        :generic: "알래스카 시간"
+        :standard: "알래스카 표준시"
+    :Almaty: 
+      :long: 
+        :daylight: "알마티 하계 표준시"
+        :generic: "알마티 표준 시간"
+        :standard: "알마티 표준 표준시"
+    :Amazon: 
+      :long: 
+        :daylight: "아마존 하계 표준시"
+        :generic: "아마존 시간"
+        :standard: "아마존 표준시"
+    :America_Central: 
+      :long: 
+        :daylight: "미 중부 하계 표준시"
+        :generic: "미 중부 시간"
+        :standard: "미 중부 표준시"
+    :America_Eastern: 
+      :long: 
+        :daylight: "미 동부 하계 표준시"
+        :generic: "미 동부 시간"
+        :standard: "미 동부 표준시"
+    :America_Mountain: 
+      :long: 
+        :daylight: "미 산지 하계 표준시"
+        :generic: "미 산지 시간"
+        :standard: "미 산악 표준시"
+    :America_Pacific: 
+      :long: 
+        :daylight: "미 태평양 하계 표준시"
+        :generic: "미 태평양 시간"
+        :standard: "미 태평양 표준시"
+    :Anadyr: 
+      :long: 
+        :daylight: "아나디리 하계 표준시"
+        :generic: "아나디리 시간"
+        :standard: "아나디리 표준시"
+    :Apia: 
+      :long: 
+        :daylight: "아피아 하계 표준시"
+        :generic: "아피아 시간"
+        :standard: "아피아 표준시"
+    :Aqtau: 
+      :long: 
+        :daylight: "악타우 하계 표준시"
+        :generic: "악타우 표준 시간"
+        :standard: "악타우 표준 표준시"
+    :Aqtobe: 
+      :long: 
+        :daylight: "악퇴베 하계 표준시"
+        :generic: "악퇴베 표준 시간"
+        :standard: "악퇴베 표준 표준시"
+    :Arabian: 
+      :long: 
+        :daylight: "아라비아 하계 표준시"
+        :generic: "아라비아 시간"
+        :standard: "아라비아 표준시"
+    :Argentina: 
+      :long: 
+        :daylight: "아르헨티나 하계 표준시"
+        :generic: "아르헨티나 시간"
+        :standard: "아르헨티나 표준시"
+    :Argentina_Western: 
+      :long: 
+        :daylight: "아르헨티나 서부 하계 표준시"
+        :generic: "아르헨티나 서부 시간"
+        :standard: "아르헨티나 서부 표준시"
+    :Armenia: 
+      :long: 
+        :daylight: "아르메니아 하계 표준시"
+        :generic: "아르메니아 시간"
+        :standard: "아르메니아 표준시"
+    :Atlantic: 
+      :long: 
+        :daylight: "대서양 하계 표준시"
+        :generic: "대서양 시간"
+        :standard: "대서양 표준시"
+    :Australia_Central: 
+      :long: 
+        :daylight: "오스트레일리아 중부 하계 표준시"
+        :generic: "오스트레일리아 중부 시간"
+        :standard: "오스트레일리아 중부 표준시"
+    :Australia_CentralWestern: 
+      :long: 
+        :daylight: "오스트레일리아 중서부 하계 표준시"
+        :generic: "오스트레일리아 중서부 시간"
+        :standard: "오스트레일리아 중서부 표준시"
+    :Australia_Eastern: 
+      :long: 
+        :daylight: "오스트레일리아 동부 하계 표준시"
+        :generic: "오스트레일리아 동부 시간"
+        :standard: "오스트레일리아 동부 표준시"
+    :Australia_Western: 
+      :long: 
+        :daylight: "오스트레일리아 서부 하계 표준시"
+        :generic: "오스트레일리아 서부 시간"
+        :standard: "오스트레일리아 서부 표준시"
+    :Azerbaijan: 
+      :long: 
+        :daylight: "아제르바이잔 하계 표준시"
+        :generic: "아제르바이잔 시간"
+        :standard: "아제르바이잔 표준시"
+    :Azores: 
+      :long: 
+        :daylight: "아조레스 하계 표준시"
+        :generic: "아조레스 시간"
+        :standard: "아조레스 표준시"
+    :Bangladesh: 
+      :long: 
+        :daylight: "방글라데시 하계 표준시"
+        :generic: "방글라데시 시간"
+        :standard: "방글라데시 표준시"
+    :Bhutan: 
+      :long: 
+        :standard: "부탄 시간"
+    :Bolivia: 
+      :long: 
+        :standard: "볼리비아 시간"
+    :Brasilia: 
+      :long: 
+        :daylight: "브라질리아 하계 표준시"
+        :generic: "브라질리아 시간"
+        :standard: "브라질리아 표준시"
+    :Brunei: 
+      :long: 
+        :standard: "브루나이 시간"
+    :Cape_Verde: 
+      :long: 
+        :daylight: "카보 베르데 하계 표준시"
+        :generic: "카보 베르데 시간"
+        :standard: "카보 베르데 표준시"
+    :Casey: 
+      :long: 
+        :standard: "케이시 시간"
+    :Chamorro: 
+      :long: 
+        :standard: "차모로 시간"
+    :Chatham: 
+      :long: 
+        :daylight: "채텀 하계 표준시"
+        :generic: "채텀 시간"
+        :standard: "채텀 표준시"
+    :Chile: 
+      :long: 
+        :daylight: "칠레 하계 표준시"
+        :generic: "칠레 시간"
+        :standard: "칠레 표준시"
+    :China: 
+      :long: 
+        :daylight: "중국 하계 표준시"
+        :generic: "중국 시간"
+        :standard: "중국 표준시"
+    :Christmas: 
+      :long: 
+        :standard: "크리스마스섬 시간"
+    :Cocos: 
+      :long: 
+        :standard: "코코스 제도 시간"
+    :Colombia: 
+      :long: 
+        :daylight: "콜롬비아 하계 표준시"
+        :generic: "콜롬비아 시간"
+        :standard: "콜롬비아 표준시"
+    :Cook: 
+      :long: 
+        :daylight: "쿡 제도 절반 하계 표준시"
+        :generic: "쿡 제도 시간"
+        :standard: "쿡 제도 표준시"
+    :Cuba: 
+      :long: 
+        :daylight: "쿠바 하계 표준시"
+        :generic: "쿠바 시간"
+        :standard: "쿠바 표준시"
+    :Davis: 
+      :long: 
+        :standard: "데이비스 시간"
+    :DumontDUrville: 
+      :long: 
+        :standard: "뒤몽뒤르빌 시간"
+    :East_Timor: 
+      :long: 
+        :standard: "동티모르 시간"
+    :Easter: 
+      :long: 
+        :daylight: "이스터섬 하계 표준시"
+        :generic: "이스터섬 시간"
+        :standard: "이스터섬 표준시"
+    :Ecuador: 
+      :long: 
+        :standard: "에콰도르 시간"
+    :Europe_Central: 
+      :long: 
+        :daylight: "중부유럽 하계 표준시"
+        :generic: "중부유럽 시간"
+        :standard: "중부유럽 표준시"
+    :Europe_Eastern: 
+      :long: 
+        :daylight: "동유럽 하계 표준시"
+        :generic: "동유럽 시간"
+        :standard: "동유럽 표준시"
+    :Europe_Further_Eastern: 
+      :long: 
+        :standard: "극동유럽 표준시"
+    :Europe_Western: 
+      :long: 
+        :daylight: "서유럽 하계 표준시"
+        :generic: "서유럽 시간"
+        :standard: "서유럽 표준시"
+    :Falkland: 
+      :long: 
+        :daylight: "포클랜드 제도 하계 표준시"
+        :generic: "포클랜드 제도 시간"
+        :standard: "포클랜드 제도 표준시"
+    :Fiji: 
+      :long: 
+        :daylight: "피지 하계 표준시"
+        :generic: "피지 시간"
+        :standard: "피지 표준시"
+    :French_Guiana: 
+      :long: 
+        :standard: "프랑스령 가이아나 시간"
+    :French_Southern: 
+      :long: 
+        :standard: "프랑스령 남부 식민지 및 남극 시간"
+    :GMT: 
+      :long: 
+        :standard: "그리니치 표준시"
+    :Galapagos: 
+      :long: 
+        :standard: "갈라파고스 시간"
+    :Gambier: 
+      :long: 
+        :standard: "감비에 시간"
+    :Georgia: 
+      :long: 
+        :daylight: "조지아 하계 표준시"
+        :generic: "조지아 시간"
+        :standard: "조지아 표준시"
+    :Gilbert_Islands: 
+      :long: 
+        :standard: "길버트 제도 시간"
+    :Greenland_Eastern: 
+      :long: 
+        :daylight: "그린란드 동부 하계 표준시"
+        :generic: "그린란드 동부 시간"
+        :standard: "그린란드 동부 표준시"
+    :Greenland_Western: 
+      :long: 
+        :daylight: "그린란드 서부 하계 표준시"
+        :generic: "그린란드 서부 시간"
+        :standard: "그린란드 서부 표준시"
+    :Gulf: 
+      :long: 
+        :standard: "걸프만 표준시"
+    :Guyana: 
+      :long: 
+        :standard: "가이아나 시간"
+    :Hawaii_Aleutian: 
+      :long: 
+        :daylight: "하와이 알류샨 하계 표준시"
+        :generic: "하와이 알류샨 시간"
+        :standard: "하와이 알류샨 표준시"
+    :Hong_Kong: 
+      :long: 
+        :daylight: "홍콩 하계 표준시"
+        :generic: "홍콩 시간"
+        :standard: "홍콩 표준시"
+    :Hovd: 
+      :long: 
+        :daylight: "호브드 하계 표준시"
+        :generic: "호브드 시간"
+        :standard: "호브드 표준시"
+    :India: 
+      :long: 
+        :standard: "인도 표준시"
+    :Indian_Ocean: 
+      :long: 
+        :standard: "인도양 시간"
+    :Indochina: 
+      :long: 
+        :standard: "인도차이나 시간"
+    :Indonesia_Central: 
+      :long: 
+        :standard: "중부 인도네시아 시간"
+    :Indonesia_Eastern: 
+      :long: 
+        :standard: "동부 인도네시아 시간"
+    :Indonesia_Western: 
+      :long: 
+        :standard: "서부 인도네시아 시간"
+    :Iran: 
+      :long: 
+        :daylight: "이란 하계 표준시"
+        :generic: "이란 시간"
+        :standard: "이란 표준시"
+    :Irkutsk: 
+      :long: 
+        :daylight: "이르쿠츠크 하계 표준시"
+        :generic: "이르쿠츠크 시간"
+        :standard: "이르쿠츠크 표준시"
+    :Israel: 
+      :long: 
+        :daylight: "이스라엘 하계 표준시"
+        :generic: "이스라엘 시간"
+        :standard: "이스라엘 표준시"
+    :Japan: 
+      :long: 
+        :daylight: "일본 하계 표준시"
+        :generic: "일본 시간"
+        :standard: "일본 표준시"
+    :Kamchatka: 
+      :long: 
+        :daylight: "페트로파블롭스크-캄차츠키 하계 표준시"
+        :generic: "페트로파블롭스크-캄차츠키 시간"
+        :standard: "페트로파블롭스크-캄차츠키 표준시"
+    :Kazakhstan: 
+      :long: 
+        :standard: "카자흐스탄 시간"
+    :Kazakhstan_Eastern: 
+      :long: 
+        :standard: "동부 카자흐스탄 시간"
+    :Kazakhstan_Western: 
+      :long: 
+        :standard: "서부 카자흐스탄 시간"
+    :Korea: 
+      :long: 
+        :daylight: "대한민국 하계 표준시"
+        :generic: "대한민국 시간"
+        :standard: "대한민국 표준시"
+    :Kosrae: 
+      :long: 
+        :standard: "코스라에섬 시간"
+    :Krasnoyarsk: 
+      :long: 
+        :daylight: "크라스노야르스크 하계 표준시"
+        :generic: "크라스노야르스크 시간"
+        :standard: "크라스노야르스크 표준시"
+    :Kyrgystan: 
+      :long: 
+        :standard: "키르기스스탄 시간"
+    :Line_Islands: 
+      :long: 
+        :standard: "라인 제도 시간"
+    :Lord_Howe: 
+      :long: 
+        :daylight: "로드 하우 하계 표준시"
+        :generic: "로드 하우 시간"
+        :standard: "로드 하우 표준시"
+    :Macau: 
+      :long: 
+        :daylight: "마카오 하계 표준시"
+        :generic: "마카오 시간"
+        :standard: "마카오 표준 시간"
+    :Magadan: 
+      :long: 
+        :daylight: "마가단 하계 표준시"
+        :generic: "마가단 시간"
+        :standard: "마가단 표준시"
+    :Malaysia: 
+      :long: 
+        :standard: "말레이시아 시간"
+    :Maldives: 
+      :long: 
+        :standard: "몰디브 시간"
+    :Marquesas: 
+      :long: 
+        :standard: "마르키즈 제도 시간"
+    :Marshall_Islands: 
+      :long: 
+        :standard: "마셜 제도 시간"
+    :Mauritius: 
+      :long: 
+        :daylight: "모리셔스 하계 표준시"
+        :generic: "모리셔스 시간"
+        :standard: "모리셔스 표준시"
+    :Mawson: 
+      :long: 
+        :standard: "모슨 시간"
+    :Mexico_Pacific: 
+      :long: 
+        :daylight: "멕시코 태평양 하계 표준시"
+        :generic: "멕시코 태평양 시간"
+        :standard: "멕시코 태평양 표준시"
+    :Mongolia: 
+      :long: 
+        :daylight: "울란바토르 하계 표준시"
+        :generic: "울란바토르 시간"
+        :standard: "울란바토르 표준시"
+    :Moscow: 
+      :long: 
+        :daylight: "모스크바 하계 표준시"
+        :generic: "모스크바 시간"
+        :standard: "모스크바 표준시"
+    :Myanmar: 
+      :long: 
+        :standard: "미얀마 시간"
+    :Nauru: 
+      :long: 
+        :standard: "나우루 시간"
+    :Nepal: 
+      :long: 
+        :standard: "네팔 시간"
+    :New_Caledonia: 
+      :long: 
+        :daylight: "뉴칼레도니아 하계 표준시"
+        :generic: "뉴칼레도니아 시간"
+        :standard: "뉴칼레도니아 표준시"
+    :New_Zealand: 
+      :long: 
+        :daylight: "뉴질랜드 하계 표준시"
+        :generic: "뉴질랜드 시간"
+        :standard: "뉴질랜드 표준시"
+    :Newfoundland: 
+      :long: 
+        :daylight: "뉴펀들랜드 하계 표준시"
+        :generic: "뉴펀들랜드 시간"
+        :standard: "뉴펀들랜드 표준시"
+    :Niue: 
+      :long: 
+        :standard: "니우에 시간"
+    :Norfolk: 
+      :long: 
+        :daylight: "노퍽섬 하계 표준시"
+        :generic: "노퍽섬 시간"
+        :standard: "노퍽섬 표준시"
+    :Noronha: 
+      :long: 
+        :daylight: "페르난도 데 노로냐 하계 표준시"
+        :generic: "페르난도 데 노로냐 시간"
+        :standard: "페르난도 데 노로냐 표준시"
+    :Novosibirsk: 
+      :long: 
+        :daylight: "노보시비르스크 하계 표준시"
+        :generic: "노보시비르스크 시간"
+        :standard: "노보시비르스크 표준시"
+    :Omsk: 
+      :long: 
+        :daylight: "옴스크 하계 표준시"
+        :generic: "옴스크 시간"
+        :standard: "옴스크 표준시"
+    :Pakistan: 
+      :long: 
+        :daylight: "파키스탄 하계 표준시"
+        :generic: "파키스탄 시간"
+        :standard: "파키스탄 표준시"
+    :Palau: 
+      :long: 
+        :standard: "팔라우 시간"
+    :Papua_New_Guinea: 
+      :long: 
+        :standard: "파푸아뉴기니 시간"
+    :Paraguay: 
+      :long: 
+        :daylight: "파라과이 하계 표준시"
+        :generic: "파라과이 시간"
+        :standard: "파라과이 표준시"
+    :Peru: 
+      :long: 
+        :daylight: "페루 하계 표준시"
+        :generic: "페루 시간"
+        :standard: "페루 표준시"
+    :Philippines: 
+      :long: 
+        :daylight: "필리핀 하계 표준시"
+        :generic: "필리핀 시간"
+        :standard: "필리핀 표준시"
+    :Phoenix_Islands: 
+      :long: 
+        :standard: "피닉스 제도 시간"
+    :Pierre_Miquelon: 
+      :long: 
+        :daylight: "세인트피에르 미클롱 하계 표준시"
+        :generic: "세인트피에르 미클롱 시간"
+        :standard: "세인트피에르 미클롱 표준시"
+    :Pitcairn: 
+      :long: 
+        :standard: "핏케언 시간"
+    :Ponape: 
+      :long: 
+        :standard: "포나페 시간"
+    :Pyongyang: 
+      :long: 
+        :standard: "평양 시간"
+    :Qyzylorda: 
+      :long: 
+        :daylight: "키질로르다 하계 표준시"
+        :generic: "키질로르다 시간"
+        :standard: "키질로르다 표준 시간"
+    :Reunion: 
+      :long: 
+        :standard: "레위니옹 시간"
+    :Rothera: 
+      :long: 
+        :standard: "로데라 시간"
+    :Sakhalin: 
+      :long: 
+        :daylight: "사할린 하계 표준시"
+        :generic: "사할린 시간"
+        :standard: "사할린 표준시"
+    :Samara: 
+      :long: 
+        :daylight: "사마라 하계 표준시"
+        :generic: "사마라 시간"
+        :standard: "사마라 표준시"
+    :Samoa: 
+      :long: 
+        :daylight: "사모아 하계 표준시"
+        :generic: "사모아 시간"
+        :standard: "사모아 표준시"
+    :Seychelles: 
+      :long: 
+        :standard: "세이셸 시간"
+    :Singapore: 
+      :long: 
+        :standard: "싱가포르 표준시"
+    :Solomon: 
+      :long: 
+        :standard: "솔로몬 제도 시간"
+    :South_Georgia: 
+      :long: 
+        :standard: "사우스 조지아 시간"
+    :Suriname: 
+      :long: 
+        :standard: "수리남 시간"
+    :Syowa: 
+      :long: 
+        :standard: "쇼와 시간"
+    :Tahiti: 
+      :long: 
+        :standard: "타히티 시간"
+    :Taipei: 
+      :long: 
+        :daylight: "대만 하계 표준시"
+        :generic: "대만 시간"
+        :standard: "대만 표준시"
+    :Tajikistan: 
+      :long: 
+        :standard: "타지키스탄 시간"
+    :Tokelau: 
+      :long: 
+        :standard: "토켈라우 시간"
+    :Tonga: 
+      :long: 
+        :daylight: "통가 하계 표준시"
+        :generic: "통가 시간"
+        :standard: "통가 표준시"
+    :Truk: 
+      :long: 
+        :standard: "추크 시간"
+    :Turkmenistan: 
+      :long: 
+        :daylight: "투르크메니스탄 하계 표준시"
+        :generic: "투르크메니스탄 시간"
+        :standard: "투르크메니스탄 표준시"
+    :Tuvalu: 
+      :long: 
+        :standard: "투발루 시간"
+    :Uruguay: 
+      :long: 
+        :daylight: "우루과이 하계 표준시"
+        :generic: "우루과이 시간"
+        :standard: "우루과이 표준시"
+    :Uzbekistan: 
+      :long: 
+        :daylight: "우즈베키스탄 하계 표준시"
+        :generic: "우즈베키스탄 시간"
+        :standard: "우즈베키스탄 표준시"
+    :Vanuatu: 
+      :long: 
+        :daylight: "바누아투 하계 표준시"
+        :generic: "바누아투 시간"
+        :standard: "바누아투 표준시"
+    :Venezuela: 
+      :long: 
+        :standard: "베네수엘라 시간"
+    :Vladivostok: 
+      :long: 
+        :daylight: "블라디보스토크 하계 표준시"
+        :generic: "블라디보스토크 시간"
+        :standard: "블라디보스토크 표준시"
+    :Volgograd: 
+      :long: 
+        :daylight: "볼고그라드 하계 표준시"
+        :generic: "볼고그라드 시간"
+        :standard: "볼고그라드 표준시"
+    :Vostok: 
+      :long: 
+        :standard: "보스톡 시간"
+    :Wake: 
+      :long: 
+        :standard: "웨이크섬 시간"
+    :Wallis: 
+      :long: 
+        :standard: "월리스푸투나 제도 시간"
+    :Yakutsk: 
+      :long: 
+        :daylight: "야쿠츠크 하계 표준시"
+        :generic: "야쿠츠크 시간"
+        :standard: "야쿠츠크 표준시"
+    :Yekaterinburg: 
+      :long: 
+        :daylight: "예카테린부르크 하계 표준시"
+        :generic: "예카테린부르크 시간"
+        :standard: "예카테린부르크 표준시"
+    :Yukon: 
+      :long: 
+        :standard: "유콘 시간"
+  :timezones: 
+    :Africa/Abidjan: 
+      :city: 아비장
+    :Africa/Accra: 
+      :city: 아크라
+    :Africa/Addis_Ababa: 
+      :city: 아디스아바바
+    :Africa/Algiers: 
+      :city: 알제
+    :Africa/Asmera: 
+      :city: 아스메라
+    :Africa/Bamako: 
+      :city: 바마코
+    :Africa/Bangui: 
+      :city: 방기
+    :Africa/Banjul: 
+      :city: 반줄
+    :Africa/Bissau: 
+      :city: 비사우
+    :Africa/Blantyre: 
+      :city: 블랜타이어
+    :Africa/Brazzaville: 
+      :city: 브라자빌
+    :Africa/Bujumbura: 
+      :city: 부줌부라
+    :Africa/Cairo: 
+      :city: 카이로
+    :Africa/Casablanca: 
+      :city: 카사블랑카
+    :Africa/Ceuta: 
+      :city: 세우타
+    :Africa/Conakry: 
+      :city: 코나크리
+    :Africa/Dakar: 
+      :city: 다카르
+    :Africa/Dar_es_Salaam: 
+      :city: 다르에스살람
+    :Africa/Djibouti: 
+      :city: 지부티
+    :Africa/Douala: 
+      :city: 두알라
+    :Africa/El_Aaiun: 
+      :city: 엘아이운
+    :Africa/Freetown: 
+      :city: 프리타운
+    :Africa/Gaborone: 
+      :city: 가보로네
+    :Africa/Harare: 
+      :city: 하라레
+    :Africa/Johannesburg: 
+      :city: 요하네스버그
+    :Africa/Juba: 
+      :city: 주바
+    :Africa/Kampala: 
+      :city: 캄팔라
+    :Africa/Khartoum: 
+      :city: 카르툼
+    :Africa/Kigali: 
+      :city: 키갈리
+    :Africa/Kinshasa: 
+      :city: 킨샤사
+    :Africa/Lagos: 
+      :city: 라고스
+    :Africa/Libreville: 
+      :city: 리브르빌
+    :Africa/Lome: 
+      :city: 로메
+    :Africa/Luanda: 
+      :city: 루안다
+    :Africa/Lubumbashi: 
+      :city: 루붐바시
+    :Africa/Lusaka: 
+      :city: 루사카
+    :Africa/Malabo: 
+      :city: 말라보
+    :Africa/Maputo: 
+      :city: 마푸토
+    :Africa/Maseru: 
+      :city: 마세루
+    :Africa/Mbabane: 
+      :city: 음바바네
+    :Africa/Mogadishu: 
+      :city: 모가디슈
+    :Africa/Monrovia: 
+      :city: 몬로비아
+    :Africa/Nairobi: 
+      :city: 나이로비
+    :Africa/Ndjamena: 
+      :city: 엔자메나
+    :Africa/Niamey: 
+      :city: 니아메
+    :Africa/Nouakchott: 
+      :city: 누악쇼트
+    :Africa/Ouagadougou: 
+      :city: 와가두구
+    :Africa/Porto-Novo: 
+      :city: 포르토노보
+    :Africa/Sao_Tome: 
+      :city: 상투메
+    :Africa/Tripoli: 
+      :city: 트리폴리
+    :Africa/Tunis: 
+      :city: 튀니스
+    :Africa/Windhoek: 
+      :city: 빈트후크
+    :America/Adak: 
+      :city: 에이닥
+    :America/Anchorage: 
+      :city: 앵커리지
+    :America/Anguilla: 
+      :city: 앙귈라
+    :America/Antigua: 
+      :city: 안티과
+    :America/Araguaina: 
+      :city: 아라과이나
+    :America/Argentina/La_Rioja: 
+      :city: "라 리오하"
+    :America/Argentina/Rio_Gallegos: 
+      :city: "리오 가예고스"
+    :America/Argentina/Salta: 
+      :city: 살타
+    :America/Argentina/San_Juan: 
+      :city: 산후안
+    :America/Argentina/San_Luis: 
+      :city: 산루이스
+    :America/Argentina/Tucuman: 
+      :city: 투쿠만
+    :America/Argentina/Ushuaia: 
+      :city: 우수아이아
+    :America/Aruba: 
+      :city: 아루바
+    :America/Asuncion: 
+      :city: 아순시온
+    :America/Bahia: 
+      :city: 바히아
+    :America/Bahia_Banderas: 
+      :city: "바이아 반데라스"
+    :America/Barbados: 
+      :city: 바베이도스
+    :America/Belem: 
+      :city: 벨렘
+    :America/Belize: 
+      :city: 벨리즈
+    :America/Blanc-Sablon: 
+      :city: "블랑 사블롱"
+    :America/Boa_Vista: 
+      :city: "보아 비스타"
+    :America/Bogota: 
+      :city: 보고타
+    :America/Boise: 
+      :city: 보이시
+    :America/Buenos_Aires: 
+      :city: "부에노스 아이레스"
+    :America/Cambridge_Bay: 
+      :city: "케임브리지 베이"
+    :America/Campo_Grande: 
+      :city: "캄포 그란데"
+    :America/Cancun: 
+      :city: 칸쿤
+    :America/Caracas: 
+      :city: 카라카스
+    :America/Catamarca: 
+      :city: 카타마르카
+    :America/Cayenne: 
+      :city: 카옌
+    :America/Cayman: 
+      :city: 케이맨
+    :America/Chicago: 
+      :city: 시카고
+    :America/Chihuahua: 
+      :city: 치와와
+    :America/Ciudad_Juarez: 
+      :city: 시우다드후아레스
+    :America/Coral_Harbour: 
+      :city: 코랄하버
+    :America/Cordoba: 
+      :city: 코르도바
+    :America/Costa_Rica: 
+      :city: 코스타리카
+    :America/Creston: 
+      :city: 크레스톤
+    :America/Cuiaba: 
+      :city: 쿠이아바
+    :America/Curacao: 
+      :city: 퀴라소
+    :America/Danmarkshavn: 
+      :city: 덴마크샤븐
+    :America/Dawson: 
+      :city: 도슨
+    :America/Dawson_Creek: 
+      :city: 도슨크릭
+    :America/Denver: 
+      :city: 덴버
+    :America/Detroit: 
+      :city: 디트로이트
+    :America/Dominica: 
+      :city: 도미니카
+    :America/Edmonton: 
+      :city: 에드먼턴
+    :America/Eirunepe: 
+      :city: 아이루네페
+    :America/El_Salvador: 
+      :city: 엘살바도르
+    :America/Fort_Nelson: 
+      :city: "포트 넬슨"
+    :America/Fortaleza: 
+      :city: 포르탈레자
+    :America/Glace_Bay: 
+      :city: 글라스베이
+    :America/Godthab: 
+      :city: 고드호프
+    :America/Goose_Bay: 
+      :city: 구즈베이
+    :America/Grand_Turk: 
+      :city: "그랜드 터크"
+    :America/Grenada: 
+      :city: 그레나다
+    :America/Guadeloupe: 
+      :city: 과들루프
+    :America/Guatemala: 
+      :city: 과테말라
+    :America/Guayaquil: 
+      :city: 과야킬
+    :America/Guyana: 
+      :city: 가이아나
+    :America/Halifax: 
+      :city: 핼리팩스
+    :America/Havana: 
+      :city: 하바나
+    :America/Hermosillo: 
+      :city: 에르모시요
+    :America/Indiana/Knox: 
+      :city: "인디애나주, 녹스"
+    :America/Indiana/Marengo: 
+      :city: "인디애나주, 머렝고"
+    :America/Indiana/Petersburg: 
+      :city: "인디애나주, 피츠버그"
+    :America/Indiana/Tell_City: 
+      :city: "인디애나주, 텔시티"
+    :America/Indiana/Vevay: 
+      :city: "인디애나주, 비비"
+    :America/Indiana/Vincennes: 
+      :city: "인디애나주, 빈센스"
+    :America/Indiana/Winamac: 
+      :city: "인디애나주, 위너맥"
+    :America/Indianapolis: 
+      :city: 인디애나폴리스
+    :America/Inuvik: 
+      :city: 이누빅
+    :America/Iqaluit: 
+      :city: 이칼루이트
+    :America/Jamaica: 
+      :city: 자메이카
+    :America/Jujuy: 
+      :city: 후후이
+    :America/Juneau: 
+      :city: 주노
+    :America/Kentucky/Monticello: 
+      :city: "켄터키주, 몬티첼로"
+    :America/Kralendijk: 
+      :city: 크라렌디즈크
+    :America/La_Paz: 
+      :city: 라파스
+    :America/Lima: 
+      :city: 리마
+    :America/Los_Angeles: 
+      :city: 로스앤젤레스
+    :America/Louisville: 
+      :city: 루이빌
+    :America/Lower_Princes: 
+      :city: "로워 프린스 쿼터"
+    :America/Maceio: 
+      :city: 마세이오
+    :America/Managua: 
+      :city: 마나과
+    :America/Manaus: 
+      :city: 마나우스
+    :America/Marigot: 
+      :city: 마리곳
+    :America/Martinique: 
+      :city: 마티니크
+    :America/Matamoros: 
+      :city: 마타모로스
+    :America/Mazatlan: 
+      :city: 마사틀란
+    :America/Mendoza: 
+      :city: 멘도사
+    :America/Menominee: 
+      :city: 메노미니
+    :America/Merida: 
+      :city: 메리다
+    :America/Metlakatla: 
+      :city: 메틀라카틀라
+    :America/Mexico_City: 
+      :city: "멕시코 시티"
+    :America/Miquelon: 
+      :city: 미클롱
+    :America/Moncton: 
+      :city: 몽턴
+    :America/Monterrey: 
+      :city: 몬테레이
+    :America/Montevideo: 
+      :city: 몬테비데오
+    :America/Montserrat: 
+      :city: 몬세라트
+    :America/Nassau: 
+      :city: 나소
+    :America/New_York: 
+      :city: 뉴욕
+    :America/Nome: 
+      :city: 놈
+    :America/Noronha: 
+      :city: 노롱야
+    :America/North_Dakota/Beulah: 
+      :city: "노스다코타주, 베라"
+    :America/North_Dakota/Center: 
+      :city: "중부, 노스다코타"
+    :America/North_Dakota/New_Salem: 
+      :city: "노스다코타주, 뉴살렘"
+    :America/Ojinaga: 
+      :city: 오히나가
+    :America/Panama: 
+      :city: 파나마
+    :America/Paramaribo: 
+      :city: 파라마리보
+    :America/Phoenix: 
+      :city: 피닉스
+    :America/Port-au-Prince: 
+      :city: 포르토프랭스
+    :America/Port_of_Spain: 
+      :city: 포트오브스페인
+    :America/Porto_Velho: 
+      :city: 포르토벨료
+    :America/Puerto_Rico: 
+      :city: 푸에르토리코
+    :America/Punta_Arenas: 
+      :city: 푼타아레나스
+    :America/Rankin_Inlet: 
+      :city: "랭킹 인렛"
+    :America/Recife: 
+      :city: 레시페
+    :America/Regina: 
+      :city: 리자이나
+    :America/Resolute: 
+      :city: 리졸루트
+    :America/Rio_Branco: 
+      :city: "히우 브랑쿠"
+    :America/Santarem: 
+      :city: 산타렘
+    :America/Santiago: 
+      :city: 산티아고
+    :America/Santo_Domingo: 
+      :city: 산토도밍고
+    :America/Sao_Paulo: 
+      :city: 상파울루
+    :America/Scoresbysund: 
+      :city: 스코레스바이선드
+    :America/Sitka: 
+      :city: 싯카
+    :America/St_Barthelemy: 
+      :city: 생바르텔레미
+    :America/St_Johns: 
+      :city: 세인트존스
+    :America/St_Kitts: 
+      :city: 세인트키츠
+    :America/St_Lucia: 
+      :city: 세인트루시아
+    :America/St_Thomas: 
+      :city: 세인트토마스
+    :America/St_Vincent: 
+      :city: 세인트빈센트
+    :America/Swift_Current: 
+      :city: 스위프트커런트
+    :America/Tegucigalpa: 
+      :city: 테구시갈파
+    :America/Thule: 
+      :city: 툴레
+    :America/Tijuana: 
+      :city: 티후아나
+    :America/Toronto: 
+      :city: 토론토
+    :America/Tortola: 
+      :city: 토르톨라
+    :America/Vancouver: 
+      :city: 벤쿠버
+    :America/Whitehorse: 
+      :city: 화이트호스
+    :America/Winnipeg: 
+      :city: 위니펙
+    :America/Yakutat: 
+      :city: 야쿠타트
+    :Antarctica/Casey: 
+      :city: 케이시
+    :Antarctica/Davis: 
+      :city: 데이비스
+    :Antarctica/DumontDUrville: 
+      :city: "뒤몽 뒤르빌"
+    :Antarctica/Macquarie: 
+      :city: 맥쿼리
+    :Antarctica/Mawson: 
+      :city: 모슨
+    :Antarctica/McMurdo: 
+      :city: 맥머도
+    :Antarctica/Palmer: 
+      :city: 파머
+    :Antarctica/Rothera: 
+      :city: 로데라
+    :Antarctica/Syowa: 
+      :city: 쇼와
+    :Antarctica/Troll: 
+      :city: 트롤
+    :Antarctica/Vostok: 
+      :city: 보스토크
+    :Arctic/Longyearbyen: 
+      :city: 롱이어비엔
+    :Asia/Aden: 
+      :city: 아덴
+    :Asia/Almaty: 
+      :city: 알마티
+    :Asia/Amman: 
+      :city: 암만
+    :Asia/Anadyr: 
+      :city: 아나디리
+    :Asia/Aqtau: 
+      :city: 아크타우
+    :Asia/Aqtobe: 
+      :city: 악토브
+    :Asia/Ashgabat: 
+      :city: 아슈하바트
+    :Asia/Atyrau: 
+      :city: 아티라우
+    :Asia/Baghdad: 
+      :city: 바그다드
+    :Asia/Bahrain: 
+      :city: 바레인
+    :Asia/Baku: 
+      :city: 바쿠
+    :Asia/Bangkok: 
+      :city: 방콕
+    :Asia/Barnaul: 
+      :city: 바르나울
+    :Asia/Beirut: 
+      :city: 베이루트
+    :Asia/Bishkek: 
+      :city: 비슈케크
+    :Asia/Brunei: 
+      :city: 브루나이
+    :Asia/Calcutta: 
+      :city: 콜카타
+    :Asia/Chita: 
+      :city: 치타
+    :Asia/Colombo: 
+      :city: 콜롬보
+    :Asia/Damascus: 
+      :city: 다마스쿠스
+    :Asia/Dhaka: 
+      :city: 다카
+    :Asia/Dili: 
+      :city: 딜리
+    :Asia/Dubai: 
+      :city: 두바이
+    :Asia/Dushanbe: 
+      :city: 두샨베
+    :Asia/Famagusta: 
+      :city: 파마구스타
+    :Asia/Gaza: 
+      :city: 가자
+    :Asia/Hebron: 
+      :city: 헤브론
+    :Asia/Hong_Kong: 
+      :city: 홍콩
+    :Asia/Hovd: 
+      :city: 호브드
+    :Asia/Irkutsk: 
+      :city: 이르쿠츠크
+    :Asia/Jakarta: 
+      :city: 자카르타
+    :Asia/Jayapura: 
+      :city: 자야푸라
+    :Asia/Jerusalem: 
+      :city: 예루살렘
+    :Asia/Kabul: 
+      :city: 카불
+    :Asia/Kamchatka: 
+      :city: 캄차카
+    :Asia/Karachi: 
+      :city: 카라치
+    :Asia/Katmandu: 
+      :city: 카트만두
+    :Asia/Khandyga: 
+      :city: 한디가
+    :Asia/Krasnoyarsk: 
+      :city: 크라스노야르스크
+    :Asia/Kuala_Lumpur: 
+      :city: 쿠알라룸푸르
+    :Asia/Kuching: 
+      :city: 쿠칭
+    :Asia/Kuwait: 
+      :city: 쿠웨이트
+    :Asia/Macau: 
+      :city: 마카오
+    :Asia/Magadan: 
+      :city: 마가단
+    :Asia/Makassar: 
+      :city: 마카사르
+    :Asia/Manila: 
+      :city: 마닐라
+    :Asia/Muscat: 
+      :city: 무스카트
+    :Asia/Nicosia: 
+      :city: 니코시아
+    :Asia/Novokuznetsk: 
+      :city: 노보쿠즈네츠크
+    :Asia/Novosibirsk: 
+      :city: 노보시비르스크
+    :Asia/Omsk: 
+      :city: 옴스크
+    :Asia/Oral: 
+      :city: 오랄
+    :Asia/Phnom_Penh: 
+      :city: 프놈펜
+    :Asia/Pontianak: 
+      :city: 폰티아나크
+    :Asia/Pyongyang: 
+      :city: 평양
+    :Asia/Qatar: 
+      :city: 카타르
+    :Asia/Qostanay: 
+      :city: 코스타나이
+    :Asia/Qyzylorda: 
+      :city: 키질로르다
+    :Asia/Rangoon: 
+      :city: 랑군
+    :Asia/Riyadh: 
+      :city: 리야드
+    :Asia/Saigon: 
+      :city: 사이공
+    :Asia/Sakhalin: 
+      :city: 사할린
+    :Asia/Samarkand: 
+      :city: 사마르칸트
+    :Asia/Seoul: 
+      :city: 서울
+    :Asia/Shanghai: 
+      :city: 상하이
+    :Asia/Singapore: 
+      :city: 싱가포르
+    :Asia/Srednekolymsk: 
+      :city: 스레드네콜림스크
+    :Asia/Taipei: 
+      :city: 타이베이
+    :Asia/Tashkent: 
+      :city: 타슈켄트
+    :Asia/Tbilisi: 
+      :city: 트빌리시
+    :Asia/Tehran: 
+      :city: 테헤란
+    :Asia/Thimphu: 
+      :city: 팀부
+    :Asia/Tokyo: 
+      :city: 도쿄
+    :Asia/Tomsk: 
+      :city: 톰스크
+    :Asia/Ulaanbaatar: 
+      :city: 울란바토르
+    :Asia/Urumqi: 
+      :city: 우루무치
+    :Asia/Ust-Nera: 
+      :city: 우스티네라
+    :Asia/Vientiane: 
+      :city: 비엔티안
+    :Asia/Vladivostok: 
+      :city: 블라디보스토크
+    :Asia/Yakutsk: 
+      :city: 야쿠츠크
+    :Asia/Yekaterinburg: 
+      :city: 예카테린부르크
+    :Asia/Yerevan: 
+      :city: 예레반
+    :Atlantic/Azores: 
+      :city: 아조레스
+    :Atlantic/Bermuda: 
+      :city: 버뮤다
+    :Atlantic/Canary: 
+      :city: "카나리아 제도"
+    :Atlantic/Cape_Verde: 
+      :city: "카보 베르데"
+    :Atlantic/Faeroe: 
+      :city: "페로 제도"
+    :Atlantic/Madeira: 
+      :city: 마데이라
+    :Atlantic/Reykjavik: 
+      :city: 레이캬비크
+    :Atlantic/South_Georgia: 
+      :city: 사우스조지아
+    :Atlantic/St_Helena: 
+      :city: "세인트 헬레나"
+    :Atlantic/Stanley: 
+      :city: 스탠리
+    :Australia/Adelaide: 
+      :city: 애들레이드
+    :Australia/Brisbane: 
+      :city: 브리스베인
+    :Australia/Broken_Hill: 
+      :city: 브로컨힐
+    :Australia/Darwin: 
+      :city: 다윈
+    :Australia/Eucla: 
+      :city: 유클라
+    :Australia/Hobart: 
+      :city: 호바트
+    :Australia/Lindeman: 
+      :city: 린데만
+    :Australia/Lord_Howe: 
+      :city: "로드 하우"
+    :Australia/Melbourne: 
+      :city: 멜버른
+    :Australia/Perth: 
+      :city: 퍼스
+    :Australia/Sydney: 
+      :city: 시드니
+    :Etc/UTC: 
+      :long: 
+        :standard: "협정 세계시"
+      :short: 
+        :standard: UTC
+    :Etc/Unknown: 
+      :city: "알 수 없는 장소"
+    :Europe/Amsterdam: 
+      :city: 암스테르담
+    :Europe/Andorra: 
+      :city: 안도라
+    :Europe/Astrakhan: 
+      :city: 아스트라한
+    :Europe/Athens: 
+      :city: 아테네
+    :Europe/Belgrade: 
+      :city: 베오그라드
+    :Europe/Berlin: 
+      :city: 베를린
+    :Europe/Bratislava: 
+      :city: 브라티슬라바
+    :Europe/Brussels: 
+      :city: 브뤼셀
+    :Europe/Bucharest: 
+      :city: 부쿠레슈티
+    :Europe/Budapest: 
+      :city: 부다페스트
+    :Europe/Busingen: 
+      :city: 뷔지겐
+    :Europe/Chisinau: 
+      :city: 키시나우
+    :Europe/Copenhagen: 
+      :city: 코펜하겐
+    :Europe/Dublin: 
+      :city: 더블린
+      :long: 
+        :daylight: "아일랜드 표준시"
+    :Europe/Gibraltar: 
+      :city: 지브롤터
+    :Europe/Guernsey: 
+      :city: 건지
+    :Europe/Helsinki: 
+      :city: 헬싱키
+    :Europe/Isle_of_Man: 
+      :city: 맨섬
+    :Europe/Istanbul: 
+      :city: 이스탄불
+    :Europe/Jersey: 
+      :city: 저지
+    :Europe/Kaliningrad: 
+      :city: 칼리닌그라드
+    :Europe/Kiev: 
+      :city: 키예프
+    :Europe/Kirov: 
+      :city: 키로프
+    :Europe/Lisbon: 
+      :city: 리스본
+    :Europe/Ljubljana: 
+      :city: 류블랴나
+    :Europe/London: 
+      :city: 런던
+      :long: 
+        :daylight: "영국 하계 표준시"
+    :Europe/Luxembourg: 
+      :city: 룩셈부르크
+    :Europe/Madrid: 
+      :city: 마드리드
+    :Europe/Malta: 
+      :city: 몰타
+    :Europe/Mariehamn: 
+      :city: 마리에함
+    :Europe/Minsk: 
+      :city: 민스크
+    :Europe/Monaco: 
+      :city: 모나코
+    :Europe/Moscow: 
+      :city: 모스크바
+    :Europe/Oslo: 
+      :city: 오슬로
+    :Europe/Paris: 
+      :city: 파리
+    :Europe/Podgorica: 
+      :city: 포드고리차
+    :Europe/Prague: 
+      :city: 프라하
+    :Europe/Riga: 
+      :city: 리가
+    :Europe/Rome: 
+      :city: 로마
+    :Europe/Samara: 
+      :city: 사마라
+    :Europe/San_Marino: 
+      :city: 산마리노
+    :Europe/Sarajevo: 
+      :city: 사라예보
+    :Europe/Saratov: 
+      :city: 사라토프
+    :Europe/Simferopol: 
+      :city: 심페로폴
+    :Europe/Skopje: 
+      :city: 스코페
+    :Europe/Sofia: 
+      :city: 소피아
+    :Europe/Stockholm: 
+      :city: 스톡홀름
+    :Europe/Tallinn: 
+      :city: 탈린
+    :Europe/Tirane: 
+      :city: 티라나
+    :Europe/Ulyanovsk: 
+      :city: 울리야노프스크
+    :Europe/Vaduz: 
+      :city: 파두츠
+    :Europe/Vatican: 
+      :city: 바티칸
+    :Europe/Vienna: 
+      :city: 비엔나
+    :Europe/Vilnius: 
+      :city: 빌니우스
+    :Europe/Volgograd: 
+      :city: 볼고그라트
+    :Europe/Warsaw: 
+      :city: 바르샤바
+    :Europe/Zagreb: 
+      :city: 자그레브
+    :Europe/Zurich: 
+      :city: 취리히
+    :Indian/Antananarivo: 
+      :city: 안타나나리보
+    :Indian/Chagos: 
+      :city: 차고스
+    :Indian/Christmas: 
+      :city: 크리스마스
+    :Indian/Cocos: 
+      :city: 코코스
+    :Indian/Comoro: 
+      :city: 코모로
+    :Indian/Kerguelen: 
+      :city: 케르켈렌
+    :Indian/Mahe: 
+      :city: 마헤
+    :Indian/Maldives: 
+      :city: 몰디브
+    :Indian/Mauritius: 
+      :city: 모리셔스
+    :Indian/Mayotte: 
+      :city: 메요트
+    :Indian/Reunion: 
+      :city: 레위니옹
+    :Pacific/Apia: 
+      :city: 아피아
+    :Pacific/Auckland: 
+      :city: 오클랜드
+    :Pacific/Bougainville: 
+      :city: 부갱빌
+    :Pacific/Chatham: 
+      :city: 채텀
+    :Pacific/Easter: 
+      :city: "이스터 섬"
+    :Pacific/Efate: 
+      :city: 에파테
+    :Pacific/Enderbury: 
+      :city: 엔더베리
+    :Pacific/Fakaofo: 
+      :city: 파카오푸
+    :Pacific/Fiji: 
+      :city: 피지
+    :Pacific/Funafuti: 
+      :city: 푸나푸티
+    :Pacific/Galapagos: 
+      :city: 갈라파고스
+    :Pacific/Gambier: 
+      :city: 감비어
+    :Pacific/Guadalcanal: 
+      :city: 과달카날
+    :Pacific/Guam: 
+      :city: 괌
+    :Pacific/Honolulu: 
+      :city: 호놀룰루
+    :Pacific/Kanton: 
+      :city: 칸톤
+    :Pacific/Kiritimati: 
+      :city: 키리티마티
+    :Pacific/Kosrae: 
+      :city: 코스레
+    :Pacific/Kwajalein: 
+      :city: 콰잘렌
+    :Pacific/Majuro: 
+      :city: 마주로
+    :Pacific/Marquesas: 
+      :city: 마퀘사스
+    :Pacific/Midway: 
+      :city: 미드웨이
+    :Pacific/Nauru: 
+      :city: 나우루
+    :Pacific/Niue: 
+      :city: 니우에
+    :Pacific/Norfolk: 
+      :city: 노퍽
+    :Pacific/Noumea: 
+      :city: 누메아
+    :Pacific/Pago_Pago: 
+      :city: 파고파고
+    :Pacific/Palau: 
+      :city: 팔라우
+    :Pacific/Pitcairn: 
+      :city: 핏케언
+    :Pacific/Ponape: 
+      :city: 포나페
+    :Pacific/Port_Moresby: 
+      :city: 포트모르즈비
+    :Pacific/Rarotonga: 
+      :city: 라로통가
+    :Pacific/Saipan: 
+      :city: 사이판
+    :Pacific/Tahiti: 
+      :city: 타히티
+    :Pacific/Tarawa: 
+      :city: 타라와
+    :Pacific/Tongatapu: 
+      :city: 통가타푸
+    :Pacific/Truk: 
+      :city: 트루크
+    :Pacific/Wake: 
+      :city: 웨이크
+    :Pacific/Wallis: 
+      :city: 월리스

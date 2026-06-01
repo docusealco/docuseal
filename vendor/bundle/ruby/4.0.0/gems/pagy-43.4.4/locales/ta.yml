@@ -1,0 +1,24 @@
+# See https://ddnexus.github.io/pagy/resources/i18n
+
+ta:
+  pagy:
+    p11n: 'OneOther'
+    aria_label:
+      nav:
+        one: "பக்கம்"
+        other: "பக்கங்கள்"
+      previous: "முந்தையது"
+      next: "அடுத்தது"
+    previous: "&lt;"
+    next: "&gt;"
+    gap: "&hellip;"
+    item_name:
+      one: "பதிவு"
+      other: "பதிவுகள்"
+    info_tag:
+      no_count: "%{pages}-இல் %{page}-வது பக்கம்"
+      no_items: "%{item_name} கிடைக்கவில்லை"
+      single_page: "%{count} %{item_name} காட்டப்படுகின்றது"
+      multiple_pages: "மொத்தம் %{count} %{item_name}, காட்டப்படுபவை %{from}-%{to}"
+    input_nav_js: "%{pages}-இல் %{page_input}-வது பக்கம்"
+    limit_tag_js: "ஒரு பக்கத்திற்கு %{limit_input} %{item_name} காட்டு"

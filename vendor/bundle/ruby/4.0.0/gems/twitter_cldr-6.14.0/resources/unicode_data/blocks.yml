@@ -1,0 +1,1353 @@
+---
+:basic_latin: !ruby/range
+  begin: 0
+  end: 127
+  excl: false
+:latin_1_supplement: !ruby/range
+  begin: 128
+  end: 255
+  excl: false
+:latin_extended_a: !ruby/range
+  begin: 256
+  end: 383
+  excl: false
+:latin_extended_b: !ruby/range
+  begin: 384
+  end: 591
+  excl: false
+:ipa_extensions: !ruby/range
+  begin: 592
+  end: 687
+  excl: false
+:spacing_modifier_letters: !ruby/range
+  begin: 688
+  end: 767
+  excl: false
+:combining_diacritical_marks: !ruby/range
+  begin: 768
+  end: 879
+  excl: false
+:greek_and_coptic: !ruby/range
+  begin: 880
+  end: 1023
+  excl: false
+:cyrillic: !ruby/range
+  begin: 1024
+  end: 1279
+  excl: false
+:cyrillic_supplement: !ruby/range
+  begin: 1280
+  end: 1327
+  excl: false
+:armenian: !ruby/range
+  begin: 1328
+  end: 1423
+  excl: false
+:hebrew: !ruby/range
+  begin: 1424
+  end: 1535
+  excl: false
+:arabic: !ruby/range
+  begin: 1536
+  end: 1791
+  excl: false
+:syriac: !ruby/range
+  begin: 1792
+  end: 1871
+  excl: false
+:arabic_supplement: !ruby/range
+  begin: 1872
+  end: 1919
+  excl: false
+:thaana: !ruby/range
+  begin: 1920
+  end: 1983
+  excl: false
+:nko: !ruby/range
+  begin: 1984
+  end: 2047
+  excl: false
+:samaritan: !ruby/range
+  begin: 2048
+  end: 2111
+  excl: false
+:mandaic: !ruby/range
+  begin: 2112
+  end: 2143
+  excl: false
+:syriac_supplement: !ruby/range
+  begin: 2144
+  end: 2159
+  excl: false
+:arabic_extended_b: !ruby/range
+  begin: 2160
+  end: 2207
+  excl: false
+:arabic_extended_a: !ruby/range
+  begin: 2208
+  end: 2303
+  excl: false
+:devanagari: !ruby/range
+  begin: 2304
+  end: 2431
+  excl: false
+:bengali: !ruby/range
+  begin: 2432
+  end: 2559
+  excl: false
+:gurmukhi: !ruby/range
+  begin: 2560
+  end: 2687
+  excl: false
+:gujarati: !ruby/range
+  begin: 2688
+  end: 2815
+  excl: false
+:oriya: !ruby/range
+  begin: 2816
+  end: 2943
+  excl: false
+:tamil: !ruby/range
+  begin: 2944
+  end: 3071
+  excl: false
+:telugu: !ruby/range
+  begin: 3072
+  end: 3199
+  excl: false
+:kannada: !ruby/range
+  begin: 3200
+  end: 3327
+  excl: false
+:malayalam: !ruby/range
+  begin: 3328
+  end: 3455
+  excl: false
+:sinhala: !ruby/range
+  begin: 3456
+  end: 3583
+  excl: false
+:thai: !ruby/range
+  begin: 3584
+  end: 3711
+  excl: false
+:lao: !ruby/range
+  begin: 3712
+  end: 3839
+  excl: false
+:tibetan: !ruby/range
+  begin: 3840
+  end: 4095
+  excl: false
+:myanmar: !ruby/range
+  begin: 4096
+  end: 4255
+  excl: false
+:georgian: !ruby/range
+  begin: 4256
+  end: 4351
+  excl: false
+:hangul_jamo: !ruby/range
+  begin: 4352
+  end: 4607
+  excl: false
+:ethiopic: !ruby/range
+  begin: 4608
+  end: 4991
+  excl: false
+:ethiopic_supplement: !ruby/range
+  begin: 4992
+  end: 5023
+  excl: false
+:cherokee: !ruby/range
+  begin: 5024
+  end: 5119
+  excl: false
+:unified_canadian_aboriginal_syllabics: !ruby/range
+  begin: 5120
+  end: 5759
+  excl: false
+:ogham: !ruby/range
+  begin: 5760
+  end: 5791
+  excl: false
+:runic: !ruby/range
+  begin: 5792
+  end: 5887
+  excl: false
+:tagalog: !ruby/range
+  begin: 5888
+  end: 5919
+  excl: false
+:hanunoo: !ruby/range
+  begin: 5920
+  end: 5951
+  excl: false
+:buhid: !ruby/range
+  begin: 5952
+  end: 5983
+  excl: false
+:tagbanwa: !ruby/range
+  begin: 5984
+  end: 6015
+  excl: false
+:khmer: !ruby/range
+  begin: 6016
+  end: 6143
+  excl: false
+:mongolian: !ruby/range
+  begin: 6144
+  end: 6319
+  excl: false
+:unified_canadian_aboriginal_syllabics_extended: !ruby/range
+  begin: 6320
+  end: 6399
+  excl: false
+:limbu: !ruby/range
+  begin: 6400
+  end: 6479
+  excl: false
+:tai_le: !ruby/range
+  begin: 6480
+  end: 6527
+  excl: false
+:new_tai_lue: !ruby/range
+  begin: 6528
+  end: 6623
+  excl: false
+:khmer_symbols: !ruby/range
+  begin: 6624
+  end: 6655
+  excl: false
+:buginese: !ruby/range
+  begin: 6656
+  end: 6687
+  excl: false
+:tai_tham: !ruby/range
+  begin: 6688
+  end: 6831
+  excl: false
+:combining_diacritical_marks_extended: !ruby/range
+  begin: 6832
+  end: 6911
+  excl: false
+:balinese: !ruby/range
+  begin: 6912
+  end: 7039
+  excl: false
+:sundanese: !ruby/range
+  begin: 7040
+  end: 7103
+  excl: false
+:batak: !ruby/range
+  begin: 7104
+  end: 7167
+  excl: false
+:lepcha: !ruby/range
+  begin: 7168
+  end: 7247
+  excl: false
+:ol_chiki: !ruby/range
+  begin: 7248
+  end: 7295
+  excl: false
+:cyrillic_extended_c: !ruby/range
+  begin: 7296
+  end: 7311
+  excl: false
+:georgian_extended: !ruby/range
+  begin: 7312
+  end: 7359
+  excl: false
+:sundanese_supplement: !ruby/range
+  begin: 7360
+  end: 7375
+  excl: false
+:vedic_extensions: !ruby/range
+  begin: 7376
+  end: 7423
+  excl: false
+:phonetic_extensions: !ruby/range
+  begin: 7424
+  end: 7551
+  excl: false
+:phonetic_extensions_supplement: !ruby/range
+  begin: 7552
+  end: 7615
+  excl: false
+:combining_diacritical_marks_supplement: !ruby/range
+  begin: 7616
+  end: 7679
+  excl: false
+:latin_extended_additional: !ruby/range
+  begin: 7680
+  end: 7935
+  excl: false
+:greek_extended: !ruby/range
+  begin: 7936
+  end: 8191
+  excl: false
+:general_punctuation: !ruby/range
+  begin: 8192
+  end: 8303
+  excl: false
+:superscripts_and_subscripts: !ruby/range
+  begin: 8304
+  end: 8351
+  excl: false
+:currency_symbols: !ruby/range
+  begin: 8352
+  end: 8399
+  excl: false
+:combining_diacritical_marks_for_symbols: !ruby/range
+  begin: 8400
+  end: 8447
+  excl: false
+:letterlike_symbols: !ruby/range
+  begin: 8448
+  end: 8527
+  excl: false
+:number_forms: !ruby/range
+  begin: 8528
+  end: 8591
+  excl: false
+:arrows: !ruby/range
+  begin: 8592
+  end: 8703
+  excl: false
+:mathematical_operators: !ruby/range
+  begin: 8704
+  end: 8959
+  excl: false
+:miscellaneous_technical: !ruby/range
+  begin: 8960
+  end: 9215
+  excl: false
+:control_pictures: !ruby/range
+  begin: 9216
+  end: 9279
+  excl: false
+:optical_character_recognition: !ruby/range
+  begin: 9280
+  end: 9311
+  excl: false
+:enclosed_alphanumerics: !ruby/range
+  begin: 9312
+  end: 9471
+  excl: false
+:box_drawing: !ruby/range
+  begin: 9472
+  end: 9599
+  excl: false
+:block_elements: !ruby/range
+  begin: 9600
+  end: 9631
+  excl: false
+:geometric_shapes: !ruby/range
+  begin: 9632
+  end: 9727
+  excl: false
+:miscellaneous_symbols: !ruby/range
+  begin: 9728
+  end: 9983
+  excl: false
+:dingbats: !ruby/range
+  begin: 9984
+  end: 10175
+  excl: false
+:miscellaneous_mathematical_symbols_a: !ruby/range
+  begin: 10176
+  end: 10223
+  excl: false
+:supplemental_arrows_a: !ruby/range
+  begin: 10224
+  end: 10239
+  excl: false
+:braille_patterns: !ruby/range
+  begin: 10240
+  end: 10495
+  excl: false
+:supplemental_arrows_b: !ruby/range
+  begin: 10496
+  end: 10623
+  excl: false
+:miscellaneous_mathematical_symbols_b: !ruby/range
+  begin: 10624
+  end: 10751
+  excl: false
+:supplemental_mathematical_operators: !ruby/range
+  begin: 10752
+  end: 11007
+  excl: false
+:miscellaneous_symbols_and_arrows: !ruby/range
+  begin: 11008
+  end: 11263
+  excl: false
+:glagolitic: !ruby/range
+  begin: 11264
+  end: 11359
+  excl: false
+:latin_extended_c: !ruby/range
+  begin: 11360
+  end: 11391
+  excl: false
+:coptic: !ruby/range
+  begin: 11392
+  end: 11519
+  excl: false
+:georgian_supplement: !ruby/range
+  begin: 11520
+  end: 11567
+  excl: false
+:tifinagh: !ruby/range
+  begin: 11568
+  end: 11647
+  excl: false
+:ethiopic_extended: !ruby/range
+  begin: 11648
+  end: 11743
+  excl: false
+:cyrillic_extended_a: !ruby/range
+  begin: 11744
+  end: 11775
+  excl: false
+:supplemental_punctuation: !ruby/range
+  begin: 11776
+  end: 11903
+  excl: false
+:cjk_radicals_supplement: !ruby/range
+  begin: 11904
+  end: 12031
+  excl: false
+:kangxi_radicals: !ruby/range
+  begin: 12032
+  end: 12255
+  excl: false
+:ideographic_description_characters: !ruby/range
+  begin: 12272
+  end: 12287
+  excl: false
+:cjk_symbols_and_punctuation: !ruby/range
+  begin: 12288
+  end: 12351
+  excl: false
+:hiragana: !ruby/range
+  begin: 12352
+  end: 12447
+  excl: false
+:katakana: !ruby/range
+  begin: 12448
+  end: 12543
+  excl: false
+:bopomofo: !ruby/range
+  begin: 12544
+  end: 12591
+  excl: false
+:hangul_compatibility_jamo: !ruby/range
+  begin: 12592
+  end: 12687
+  excl: false
+:kanbun: !ruby/range
+  begin: 12688
+  end: 12703
+  excl: false
+:bopomofo_extended: !ruby/range
+  begin: 12704
+  end: 12735
+  excl: false
+:cjk_strokes: !ruby/range
+  begin: 12736
+  end: 12783
+  excl: false
+:katakana_phonetic_extensions: !ruby/range
+  begin: 12784
+  end: 12799
+  excl: false
+:enclosed_cjk_letters_and_months: !ruby/range
+  begin: 12800
+  end: 13055
+  excl: false
+:cjk_compatibility: !ruby/range
+  begin: 13056
+  end: 13311
+  excl: false
+:cjk_unified_ideographs_extension_a: !ruby/range
+  begin: 13312
+  end: 19903
+  excl: false
+:yijing_hexagram_symbols: !ruby/range
+  begin: 19904
+  end: 19967
+  excl: false
+:cjk_unified_ideographs: !ruby/range
+  begin: 19968
+  end: 40959
+  excl: false
+:yi_syllables: !ruby/range
+  begin: 40960
+  end: 42127
+  excl: false
+:yi_radicals: !ruby/range
+  begin: 42128
+  end: 42191
+  excl: false
+:lisu: !ruby/range
+  begin: 42192
+  end: 42239
+  excl: false
+:vai: !ruby/range
+  begin: 42240
+  end: 42559
+  excl: false
+:cyrillic_extended_b: !ruby/range
+  begin: 42560
+  end: 42655
+  excl: false
+:bamum: !ruby/range
+  begin: 42656
+  end: 42751
+  excl: false
+:modifier_tone_letters: !ruby/range
+  begin: 42752
+  end: 42783
+  excl: false
+:latin_extended_d: !ruby/range
+  begin: 42784
+  end: 43007
+  excl: false
+:syloti_nagri: !ruby/range
+  begin: 43008
+  end: 43055
+  excl: false
+:common_indic_number_forms: !ruby/range
+  begin: 43056
+  end: 43071
+  excl: false
+:phags_pa: !ruby/range
+  begin: 43072
+  end: 43135
+  excl: false
+:saurashtra: !ruby/range
+  begin: 43136
+  end: 43231
+  excl: false
+:devanagari_extended: !ruby/range
+  begin: 43232
+  end: 43263
+  excl: false
+:kayah_li: !ruby/range
+  begin: 43264
+  end: 43311
+  excl: false
+:rejang: !ruby/range
+  begin: 43312
+  end: 43359
+  excl: false
+:hangul_jamo_extended_a: !ruby/range
+  begin: 43360
+  end: 43391
+  excl: false
+:javanese: !ruby/range
+  begin: 43392
+  end: 43487
+  excl: false
+:myanmar_extended_b: !ruby/range
+  begin: 43488
+  end: 43519
+  excl: false
+:cham: !ruby/range
+  begin: 43520
+  end: 43615
+  excl: false
+:myanmar_extended_a: !ruby/range
+  begin: 43616
+  end: 43647
+  excl: false
+:tai_viet: !ruby/range
+  begin: 43648
+  end: 43743
+  excl: false
+:meetei_mayek_extensions: !ruby/range
+  begin: 43744
+  end: 43775
+  excl: false
+:ethiopic_extended_a: !ruby/range
+  begin: 43776
+  end: 43823
+  excl: false
+:latin_extended_e: !ruby/range
+  begin: 43824
+  end: 43887
+  excl: false
+:cherokee_supplement: !ruby/range
+  begin: 43888
+  end: 43967
+  excl: false
+:meetei_mayek: !ruby/range
+  begin: 43968
+  end: 44031
+  excl: false
+:hangul_syllables: !ruby/range
+  begin: 44032
+  end: 55215
+  excl: false
+:hangul_jamo_extended_b: !ruby/range
+  begin: 55216
+  end: 55295
+  excl: false
+:high_surrogates: !ruby/range
+  begin: 55296
+  end: 56191
+  excl: false
+:high_private_use_surrogates: !ruby/range
+  begin: 56192
+  end: 56319
+  excl: false
+:low_surrogates: !ruby/range
+  begin: 56320
+  end: 57343
+  excl: false
+:private_use_area: !ruby/range
+  begin: 57344
+  end: 63743
+  excl: false
+:cjk_compatibility_ideographs: !ruby/range
+  begin: 63744
+  end: 64255
+  excl: false
+:alphabetic_presentation_forms: !ruby/range
+  begin: 64256
+  end: 64335
+  excl: false
+:arabic_presentation_forms_a: !ruby/range
+  begin: 64336
+  end: 65023
+  excl: false
+:variation_selectors: !ruby/range
+  begin: 65024
+  end: 65039
+  excl: false
+:vertical_forms: !ruby/range
+  begin: 65040
+  end: 65055
+  excl: false
+:combining_half_marks: !ruby/range
+  begin: 65056
+  end: 65071
+  excl: false
+:cjk_compatibility_forms: !ruby/range
+  begin: 65072
+  end: 65103
+  excl: false
+:small_form_variants: !ruby/range
+  begin: 65104
+  end: 65135
+  excl: false
+:arabic_presentation_forms_b: !ruby/range
+  begin: 65136
+  end: 65279
+  excl: false
+:halfwidth_and_fullwidth_forms: !ruby/range
+  begin: 65280
+  end: 65519
+  excl: false
+:specials: !ruby/range
+  begin: 65520
+  end: 65535
+  excl: false
+:linear_b_syllabary: !ruby/range
+  begin: 65536
+  end: 65663
+  excl: false
+:linear_b_ideograms: !ruby/range
+  begin: 65664
+  end: 65791
+  excl: false
+:aegean_numbers: !ruby/range
+  begin: 65792
+  end: 65855
+  excl: false
+:ancient_greek_numbers: !ruby/range
+  begin: 65856
+  end: 65935
+  excl: false
+:ancient_symbols: !ruby/range
+  begin: 65936
+  end: 65999
+  excl: false
+:phaistos_disc: !ruby/range
+  begin: 66000
+  end: 66047
+  excl: false
+:lycian: !ruby/range
+  begin: 66176
+  end: 66207
+  excl: false
+:carian: !ruby/range
+  begin: 66208
+  end: 66271
+  excl: false
+:coptic_epact_numbers: !ruby/range
+  begin: 66272
+  end: 66303
+  excl: false
+:old_italic: !ruby/range
+  begin: 66304
+  end: 66351
+  excl: false
+:gothic: !ruby/range
+  begin: 66352
+  end: 66383
+  excl: false
+:old_permic: !ruby/range
+  begin: 66384
+  end: 66431
+  excl: false
+:ugaritic: !ruby/range
+  begin: 66432
+  end: 66463
+  excl: false
+:old_persian: !ruby/range
+  begin: 66464
+  end: 66527
+  excl: false
+:deseret: !ruby/range
+  begin: 66560
+  end: 66639
+  excl: false
+:shavian: !ruby/range
+  begin: 66640
+  end: 66687
+  excl: false
+:osmanya: !ruby/range
+  begin: 66688
+  end: 66735
+  excl: false
+:osage: !ruby/range
+  begin: 66736
+  end: 66815
+  excl: false
+:elbasan: !ruby/range
+  begin: 66816
+  end: 66863
+  excl: false
+:caucasian_albanian: !ruby/range
+  begin: 66864
+  end: 66927
+  excl: false
+:vithkuqi: !ruby/range
+  begin: 66928
+  end: 67007
+  excl: false
+:todhri: !ruby/range
+  begin: 67008
+  end: 67071
+  excl: false
+:linear_a: !ruby/range
+  begin: 67072
+  end: 67455
+  excl: false
+:latin_extended_f: !ruby/range
+  begin: 67456
+  end: 67519
+  excl: false
+:cypriot_syllabary: !ruby/range
+  begin: 67584
+  end: 67647
+  excl: false
+:imperial_aramaic: !ruby/range
+  begin: 67648
+  end: 67679
+  excl: false
+:palmyrene: !ruby/range
+  begin: 67680
+  end: 67711
+  excl: false
+:nabataean: !ruby/range
+  begin: 67712
+  end: 67759
+  excl: false
+:hatran: !ruby/range
+  begin: 67808
+  end: 67839
+  excl: false
+:phoenician: !ruby/range
+  begin: 67840
+  end: 67871
+  excl: false
+:lydian: !ruby/range
+  begin: 67872
+  end: 67903
+  excl: false
+:meroitic_hieroglyphs: !ruby/range
+  begin: 67968
+  end: 67999
+  excl: false
+:meroitic_cursive: !ruby/range
+  begin: 68000
+  end: 68095
+  excl: false
+:kharoshthi: !ruby/range
+  begin: 68096
+  end: 68191
+  excl: false
+:old_south_arabian: !ruby/range
+  begin: 68192
+  end: 68223
+  excl: false
+:old_north_arabian: !ruby/range
+  begin: 68224
+  end: 68255
+  excl: false
+:manichaean: !ruby/range
+  begin: 68288
+  end: 68351
+  excl: false
+:avestan: !ruby/range
+  begin: 68352
+  end: 68415
+  excl: false
+:inscriptional_parthian: !ruby/range
+  begin: 68416
+  end: 68447
+  excl: false
+:inscriptional_pahlavi: !ruby/range
+  begin: 68448
+  end: 68479
+  excl: false
+:psalter_pahlavi: !ruby/range
+  begin: 68480
+  end: 68527
+  excl: false
+:old_turkic: !ruby/range
+  begin: 68608
+  end: 68687
+  excl: false
+:old_hungarian: !ruby/range
+  begin: 68736
+  end: 68863
+  excl: false
+:hanifi_rohingya: !ruby/range
+  begin: 68864
+  end: 68927
+  excl: false
+:garay: !ruby/range
+  begin: 68928
+  end: 69007
+  excl: false
+:rumi_numeral_symbols: !ruby/range
+  begin: 69216
+  end: 69247
+  excl: false
+:yezidi: !ruby/range
+  begin: 69248
+  end: 69311
+  excl: false
+:arabic_extended_c: !ruby/range
+  begin: 69312
+  end: 69375
+  excl: false
+:old_sogdian: !ruby/range
+  begin: 69376
+  end: 69423
+  excl: false
+:sogdian: !ruby/range
+  begin: 69424
+  end: 69487
+  excl: false
+:old_uyghur: !ruby/range
+  begin: 69488
+  end: 69551
+  excl: false
+:chorasmian: !ruby/range
+  begin: 69552
+  end: 69599
+  excl: false
+:elymaic: !ruby/range
+  begin: 69600
+  end: 69631
+  excl: false
+:brahmi: !ruby/range
+  begin: 69632
+  end: 69759
+  excl: false
+:kaithi: !ruby/range
+  begin: 69760
+  end: 69839
+  excl: false
+:sora_sompeng: !ruby/range
+  begin: 69840
+  end: 69887
+  excl: false
+:chakma: !ruby/range
+  begin: 69888
+  end: 69967
+  excl: false
+:mahajani: !ruby/range
+  begin: 69968
+  end: 70015
+  excl: false
+:sharada: !ruby/range
+  begin: 70016
+  end: 70111
+  excl: false
+:sinhala_archaic_numbers: !ruby/range
+  begin: 70112
+  end: 70143
+  excl: false
+:khojki: !ruby/range
+  begin: 70144
+  end: 70223
+  excl: false
+:multani: !ruby/range
+  begin: 70272
+  end: 70319
+  excl: false
+:khudawadi: !ruby/range
+  begin: 70320
+  end: 70399
+  excl: false
+:grantha: !ruby/range
+  begin: 70400
+  end: 70527
+  excl: false
+:tulu_tigalari: !ruby/range
+  begin: 70528
+  end: 70655
+  excl: false
+:newa: !ruby/range
+  begin: 70656
+  end: 70783
+  excl: false
+:tirhuta: !ruby/range
+  begin: 70784
+  end: 70879
+  excl: false
+:siddham: !ruby/range
+  begin: 71040
+  end: 71167
+  excl: false
+:modi: !ruby/range
+  begin: 71168
+  end: 71263
+  excl: false
+:mongolian_supplement: !ruby/range
+  begin: 71264
+  end: 71295
+  excl: false
+:takri: !ruby/range
+  begin: 71296
+  end: 71375
+  excl: false
+:myanmar_extended_c: !ruby/range
+  begin: 71376
+  end: 71423
+  excl: false
+:ahom: !ruby/range
+  begin: 71424
+  end: 71503
+  excl: false
+:dogra: !ruby/range
+  begin: 71680
+  end: 71759
+  excl: false
+:warang_citi: !ruby/range
+  begin: 71840
+  end: 71935
+  excl: false
+:dives_akuru: !ruby/range
+  begin: 71936
+  end: 72031
+  excl: false
+:nandinagari: !ruby/range
+  begin: 72096
+  end: 72191
+  excl: false
+:zanabazar_square: !ruby/range
+  begin: 72192
+  end: 72271
+  excl: false
+:soyombo: !ruby/range
+  begin: 72272
+  end: 72367
+  excl: false
+:unified_canadian_aboriginal_syllabics_extended_a: !ruby/range
+  begin: 72368
+  end: 72383
+  excl: false
+:pau_cin_hau: !ruby/range
+  begin: 72384
+  end: 72447
+  excl: false
+:devanagari_extended_a: !ruby/range
+  begin: 72448
+  end: 72543
+  excl: false
+:sunuwar: !ruby/range
+  begin: 72640
+  end: 72703
+  excl: false
+:bhaiksuki: !ruby/range
+  begin: 72704
+  end: 72815
+  excl: false
+:marchen: !ruby/range
+  begin: 72816
+  end: 72895
+  excl: false
+:masaram_gondi: !ruby/range
+  begin: 72960
+  end: 73055
+  excl: false
+:gunjala_gondi: !ruby/range
+  begin: 73056
+  end: 73135
+  excl: false
+:makasar: !ruby/range
+  begin: 73440
+  end: 73471
+  excl: false
+:kawi: !ruby/range
+  begin: 73472
+  end: 73567
+  excl: false
+:lisu_supplement: !ruby/range
+  begin: 73648
+  end: 73663
+  excl: false
+:tamil_supplement: !ruby/range
+  begin: 73664
+  end: 73727
+  excl: false
+:cuneiform: !ruby/range
+  begin: 73728
+  end: 74751
+  excl: false
+:cuneiform_numbers_and_punctuation: !ruby/range
+  begin: 74752
+  end: 74879
+  excl: false
+:early_dynastic_cuneiform: !ruby/range
+  begin: 74880
+  end: 75087
+  excl: false
+:cypro_minoan: !ruby/range
+  begin: 77712
+  end: 77823
+  excl: false
+:egyptian_hieroglyphs: !ruby/range
+  begin: 77824
+  end: 78895
+  excl: false
+:egyptian_hieroglyph_format_controls: !ruby/range
+  begin: 78896
+  end: 78943
+  excl: false
+:egyptian_hieroglyphs_extended_a: !ruby/range
+  begin: 78944
+  end: 82943
+  excl: false
+:anatolian_hieroglyphs: !ruby/range
+  begin: 82944
+  end: 83583
+  excl: false
+:gurung_khema: !ruby/range
+  begin: 90368
+  end: 90431
+  excl: false
+:bamum_supplement: !ruby/range
+  begin: 92160
+  end: 92735
+  excl: false
+:mro: !ruby/range
+  begin: 92736
+  end: 92783
+  excl: false
+:tangsa: !ruby/range
+  begin: 92784
+  end: 92879
+  excl: false
+:bassa_vah: !ruby/range
+  begin: 92880
+  end: 92927
+  excl: false
+:pahawh_hmong: !ruby/range
+  begin: 92928
+  end: 93071
+  excl: false
+:kirat_rai: !ruby/range
+  begin: 93504
+  end: 93567
+  excl: false
+:medefaidrin: !ruby/range
+  begin: 93760
+  end: 93855
+  excl: false
+:miao: !ruby/range
+  begin: 93952
+  end: 94111
+  excl: false
+:ideographic_symbols_and_punctuation: !ruby/range
+  begin: 94176
+  end: 94207
+  excl: false
+:tangut: !ruby/range
+  begin: 94208
+  end: 100351
+  excl: false
+:tangut_components: !ruby/range
+  begin: 100352
+  end: 101119
+  excl: false
+:khitan_small_script: !ruby/range
+  begin: 101120
+  end: 101631
+  excl: false
+:tangut_supplement: !ruby/range
+  begin: 101632
+  end: 101759
+  excl: false
+:kana_extended_b: !ruby/range
+  begin: 110576
+  end: 110591
+  excl: false
+:kana_supplement: !ruby/range
+  begin: 110592
+  end: 110847
+  excl: false
+:kana_extended_a: !ruby/range
+  begin: 110848
+  end: 110895
+  excl: false
+:small_kana_extension: !ruby/range
+  begin: 110896
+  end: 110959
+  excl: false
+:nushu: !ruby/range
+  begin: 110960
+  end: 111359
+  excl: false
+:duployan: !ruby/range
+  begin: 113664
+  end: 113823
+  excl: false
+:shorthand_format_controls: !ruby/range
+  begin: 113824
+  end: 113839
+  excl: false
+:symbols_for_legacy_computing_supplement: !ruby/range
+  begin: 117760
+  end: 118463
+  excl: false
+:znamenny_musical_notation: !ruby/range
+  begin: 118528
+  end: 118735
+  excl: false
+:byzantine_musical_symbols: !ruby/range
+  begin: 118784
+  end: 119039
+  excl: false
+:musical_symbols: !ruby/range
+  begin: 119040
+  end: 119295
+  excl: false
+:ancient_greek_musical_notation: !ruby/range
+  begin: 119296
+  end: 119375
+  excl: false
+:kaktovik_numerals: !ruby/range
+  begin: 119488
+  end: 119519
+  excl: false
+:mayan_numerals: !ruby/range
+  begin: 119520
+  end: 119551
+  excl: false
+:tai_xuan_jing_symbols: !ruby/range
+  begin: 119552
+  end: 119647
+  excl: false
+:counting_rod_numerals: !ruby/range
+  begin: 119648
+  end: 119679
+  excl: false
+:mathematical_alphanumeric_symbols: !ruby/range
+  begin: 119808
+  end: 120831
+  excl: false
+:sutton_signwriting: !ruby/range
+  begin: 120832
+  end: 121519
+  excl: false
+:latin_extended_g: !ruby/range
+  begin: 122624
+  end: 122879
+  excl: false
+:glagolitic_supplement: !ruby/range
+  begin: 122880
+  end: 122927
+  excl: false
+:cyrillic_extended_d: !ruby/range
+  begin: 122928
+  end: 123023
+  excl: false
+:nyiakeng_puachue_hmong: !ruby/range
+  begin: 123136
+  end: 123215
+  excl: false
+:toto: !ruby/range
+  begin: 123536
+  end: 123583
+  excl: false
+:wancho: !ruby/range
+  begin: 123584
+  end: 123647
+  excl: false
+:nag_mundari: !ruby/range
+  begin: 124112
+  end: 124159
+  excl: false
+:ol_onal: !ruby/range
+  begin: 124368
+  end: 124415
+  excl: false
+:ethiopic_extended_b: !ruby/range
+  begin: 124896
+  end: 124927
+  excl: false
+:mende_kikakui: !ruby/range
+  begin: 124928
+  end: 125151
+  excl: false
+:adlam: !ruby/range
+  begin: 125184
+  end: 125279
+  excl: false
+:indic_siyaq_numbers: !ruby/range
+  begin: 126064
+  end: 126143
+  excl: false
+:ottoman_siyaq_numbers: !ruby/range
+  begin: 126208
+  end: 126287
+  excl: false
+:arabic_mathematical_alphabetic_symbols: !ruby/range
+  begin: 126464
+  end: 126719
+  excl: false
+:mahjong_tiles: !ruby/range
+  begin: 126976
+  end: 127023
+  excl: false
+:domino_tiles: !ruby/range
+  begin: 127024
+  end: 127135
+  excl: false
+:playing_cards: !ruby/range
+  begin: 127136
+  end: 127231
+  excl: false
+:enclosed_alphanumeric_supplement: !ruby/range
+  begin: 127232
+  end: 127487
+  excl: false
+:enclosed_ideographic_supplement: !ruby/range
+  begin: 127488
+  end: 127743
+  excl: false
+:miscellaneous_symbols_and_pictographs: !ruby/range
+  begin: 127744
+  end: 128511
+  excl: false
+:emoticons: !ruby/range
+  begin: 128512
+  end: 128591
+  excl: false
+:ornamental_dingbats: !ruby/range
+  begin: 128592
+  end: 128639
+  excl: false
+:transport_and_map_symbols: !ruby/range
+  begin: 128640
+  end: 128767
+  excl: false
+:alchemical_symbols: !ruby/range
+  begin: 128768
+  end: 128895
+  excl: false
+:geometric_shapes_extended: !ruby/range
+  begin: 128896
+  end: 129023
+  excl: false
+:supplemental_arrows_c: !ruby/range
+  begin: 129024
+  end: 129279
+  excl: false
+:supplemental_symbols_and_pictographs: !ruby/range
+  begin: 129280
+  end: 129535
+  excl: false
+:chess_symbols: !ruby/range
+  begin: 129536
+  end: 129647
+  excl: false
+:symbols_and_pictographs_extended_a: !ruby/range
+  begin: 129648
+  end: 129791
+  excl: false
+:symbols_for_legacy_computing: !ruby/range
+  begin: 129792
+  end: 130047
+  excl: false
+:cjk_unified_ideographs_extension_b: !ruby/range
+  begin: 131072
+  end: 173791
+  excl: false
+:cjk_unified_ideographs_extension_c: !ruby/range
+  begin: 173824
+  end: 177983
+  excl: false
+:cjk_unified_ideographs_extension_d: !ruby/range
+  begin: 177984
+  end: 178207
+  excl: false
+:cjk_unified_ideographs_extension_e: !ruby/range
+  begin: 178208
+  end: 183983
+  excl: false
+:cjk_unified_ideographs_extension_f: !ruby/range
+  begin: 183984
+  end: 191471
+  excl: false
+:cjk_unified_ideographs_extension_i: !ruby/range
+  begin: 191472
+  end: 192095
+  excl: false
+:cjk_compatibility_ideographs_supplement: !ruby/range
+  begin: 194560
+  end: 195103
+  excl: false
+:cjk_unified_ideographs_extension_g: !ruby/range
+  begin: 196608
+  end: 201551
+  excl: false
+:cjk_unified_ideographs_extension_h: !ruby/range
+  begin: 201552
+  end: 205743
+  excl: false
+:tags: !ruby/range
+  begin: 917504
+  end: 917631
+  excl: false
+:variation_selectors_supplement: !ruby/range
+  begin: 917760
+  end: 917999
+  excl: false
+:supplementary_private_use_area_a: !ruby/range
+  begin: 983040
+  end: 1048575
+  excl: false
+:supplementary_private_use_area_b: !ruby/range
+  begin: 1048576
+  end: 1114111
+  excl: false

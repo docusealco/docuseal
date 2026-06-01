@@ -1,0 +1,56 @@
+# .npmignore
+# This file controls what gets published to npm
+# It overrides .gitignore for npm publishing
+
+# Exclude development and test files
+/.bundle
+/pkg
+/spec
+/test
+/gemfiles
+/.github
+/.circleci
+/.husky
+/.byebug_history
+.DS_Store
+yarn-debug.log*
+yarn-error.log*
+.yarn-integrity
+.yalc
+yalc.lock
+.yalcignore
+
+# Exclude Ruby files not needed for npm package
+Gemfile
+Gemfile.lock
+Rakefile
+*.gemspec
+.rubocop.yml
+.ruby-version
+
+# Exclude TypeScript config
+tsconfig.json
+
+# Exclude source maps (optional - remove these lines to include source maps)
+*.js.map
+*.d.ts.map
+
+# Exclude git and editor files
+.git
+.gitignore
+.gitattributes
+.editorconfig
+.vscode
+.idea
+
+# Exclude CI/CD files
+.travis.yml
+appveyor.yml
+
+# Exclude documentation source files (keep compiled docs if any)
+docs/
+
+# CRITICAL: Exclude TypeScript source files (must be at the end)
+# Only include compiled .js and .d.ts files
+*.ts
+!*.d.ts

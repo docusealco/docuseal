@@ -1,0 +1,318 @@
+--- 
+:fa: 
+  :fields: 
+    :day: 
+      :display_name: روز
+      :relative: 
+        -1: دیروز
+        -2: پریروز
+        0: امروز
+        1: فردا
+        2: پس‌فردا
+      :relative_time: 
+        :future: 
+          :one: "{0} روز دیگر"
+          :other: "{0} روز دیگر"
+        :past: 
+          :one: "{0} روز پیش"
+          :other: "{0} روز پیش"
+    :day-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "{0} روز بعد"
+          :other: "{0} روز بعد"
+    :dayOfYear: 
+      :display_name: "روز سال"
+    :dayperiod: 
+      :display_name: ق.ظ/ب.ظ
+    :era: 
+      :display_name: دوره
+    :fri: 
+      :relative: 
+        -1: "جمعهٔ گذشته"
+        0: "این جمعه"
+        1: "جمعهٔ آینده"
+      :relative_time: 
+        :future: 
+          :one: "{0} جمعه بعد"
+          :other: "{0} جمعه بعد"
+        :past: 
+          :one: "{0} جمعه قبل"
+          :other: "{0} جمعه قبل"
+    :fri-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "{0} جمعه بعد"
+          :other: "{0} جمعه بعد"
+        :past: 
+          :one: "{0} جمعه قبل"
+          :other: "{0} جمعه قبل"
+    :fri-short: 
+      :relative_time: 
+        :future: 
+          :one: "{0} جمعه بعد"
+          :other: "{0} جمعه بعد"
+        :past: 
+          :one: "{0} جمعه قبل"
+          :other: "{0} جمعه قبل"
+    :hour: 
+      :display_name: ساعت
+      :relative: 
+        0: "همین ساعت"
+      :relative_time: 
+        :future: 
+          :one: "{0} ساعت بعد"
+          :other: "{0} ساعت بعد"
+        :past: 
+          :one: "{0} ساعت پیش"
+          :other: "{0} ساعت پیش"
+    :minute: 
+      :display_name: دقیقه
+      :relative: 
+        0: "همین دقیقه"
+      :relative_time: 
+        :future: 
+          :one: "{0} دقیقه بعد"
+          :other: "{0} دقیقه بعد"
+        :past: 
+          :one: "{0} دقیقه پیش"
+          :other: "{0} دقیقه پیش"
+    :mon: 
+      :relative: 
+        -1: "دوشنبهٔ گذشته"
+        0: "این دوشنبه"
+        1: "دوشنبهٔ آینده"
+      :relative_time: 
+        :future: 
+          :one: "{0} دوشنبه بعد"
+          :other: "{0} دوشنبه بعد"
+        :past: 
+          :one: "{0} دوشنبه قبل"
+          :other: "{0} دوشنبه قبل"
+    :mon-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "{0} دوشنبه بعد"
+          :other: "{0} دوشنبه بعد"
+        :past: 
+          :one: "{0} دوشنبه قبل"
+          :other: "{0} دوشنبه قبل"
+    :mon-short: 
+      :relative_time: 
+        :future: 
+          :one: "{0} دوشنبه بعد"
+          :other: "{0} دوشنبه بعد"
+        :past: 
+          :one: "{0} دوشنبه قبل"
+          :other: "{0} دوشنبه قبل"
+    :month: 
+      :display_name: ماه
+      :relative: 
+        -1: "ماه گذشته"
+        0: "این ماه"
+        1: "ماه آینده"
+      :relative_time: 
+        :future: 
+          :one: "{0} ماه بعد"
+          :other: "{0} ماه بعد"
+        :past: 
+          :one: "{0} ماه پیش"
+          :other: "{0} ماه پیش"
+    :quarter: 
+      :display_name: سه‌ماهه
+      :relative: 
+        -1: "سه‌ماههٔ گذشته"
+        0: "سه‌ماههٔ کنونی"
+        1: "سه‌ماههٔ آینده"
+      :relative_time: 
+        :future: 
+          :one: "{0} سه‌ماههٔ بعد"
+          :other: "{0} سه‌ماههٔ بعد"
+        :past: 
+          :one: "{0} سه‌ماههٔ پیش"
+          :other: "{0} سه‌ماههٔ پیش"
+    :sat: 
+      :relative: 
+        -1: "شنبهٔ گذشته"
+        0: "این شنبه"
+        1: "شنبهٔ آینده"
+      :relative_time: 
+        :future: 
+          :one: "{0} شنبه بعد"
+          :other: "{0} شنبه بعد"
+        :past: 
+          :one: "{0} شنبه قبل"
+          :other: "{0} شنبه قبل"
+    :sat-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "{0} شنبه بعد"
+          :other: "{0} شنبه بعد"
+        :past: 
+          :one: "{0} شنبه قبل"
+          :other: "{0} شنبه قبل"
+    :sat-short: 
+      :relative_time: 
+        :future: 
+          :one: "{0} شنبه بعد"
+          :other: "{0} شنبه بعد"
+        :past: 
+          :one: "{0} شنبه قبل"
+          :other: "{0} شنبه قبل"
+    :second: 
+      :display_name: ثانیه
+      :relative: 
+        0: اکنون
+      :relative_time: 
+        :future: 
+          :one: "{0} ثانیه بعد"
+          :other: "{0} ثانیه بعد"
+        :past: 
+          :one: "{0} ثانیه پیش"
+          :other: "{0} ثانیه پیش"
+    :sun: 
+      :relative: 
+        -1: "یکشنبهٔ گذشته"
+        0: "این یکشنبه"
+        1: "یکشنبهٔ آینده"
+      :relative_time: 
+        :future: 
+          :one: "{0} یکشنبه بعد"
+          :other: "{0} یکشنبه بعد"
+        :past: 
+          :one: "{0} یکشنبه قبل"
+          :other: "{0} یکشنبه قبل"
+    :sun-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "{0} یکشنبه بعد"
+          :other: "{0} یکشنبه بعد"
+        :past: 
+          :one: "{0} یکشنبه قبل"
+          :other: "{0} یکشنبه قبل"
+    :sun-short: 
+      :relative_time: 
+        :future: 
+          :one: "{0} یکشنبه بعد"
+          :other: "{0} یکشنبه بعد"
+        :past: 
+          :one: "{0} یکشنبه قبل"
+          :other: "{0} یکشنبه قبل"
+    :thu: 
+      :relative: 
+        -1: "پنجشنبهٔ گذشته"
+        0: "این پنجشنبه"
+        1: "پنجشنبهٔ آینده"
+      :relative_time: 
+        :future: 
+          :one: "{0} پنجشنبه بعد"
+          :other: "{0} پنجشنبه بعد"
+        :past: 
+          :one: "{0} پنجشنبه قبل"
+          :other: "{0} پنجشنبه قبل"
+    :thu-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "{0} پنجشنبه بعد"
+          :other: "{0} پنجشنبه بعد"
+        :past: 
+          :one: "{0} پنجشنبه قبل"
+          :other: "{0} پنجشنبه قبل"
+    :thu-short: 
+      :relative_time: 
+        :future: 
+          :one: "{0} پنجشنبه بعد"
+          :other: "{0} پنجشنبه بعد"
+        :past: 
+          :one: "{0} پنجشنبه قبل"
+          :other: "{0} پنجشنبه قبل"
+    :tue: 
+      :relative: 
+        -1: "سه‌شنبهٔ گذشته"
+        0: "این سه‌شنبه"
+        1: "سه‌شنبهٔ آینده"
+      :relative_time: 
+        :future: 
+          :one: "{0} سه‌شنبه بعد"
+          :other: "{0} سه‌شنبه بعد"
+        :past: 
+          :one: "{0} سه‌شنبه قبل"
+          :other: "{0} سه‌شنبه قبل"
+    :tue-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "{0} سه‌شنبه بعد"
+          :other: "{0} سه‌شنبه بعد"
+        :past: 
+          :one: "{0} سه‌شنبه قبل"
+          :other: "{0} سه‌شنبه قبل"
+    :tue-short: 
+      :relative_time: 
+        :future: 
+          :one: "{0} سه‌شنبه بعد"
+          :other: "{0} سه‌شنبه بعد"
+        :past: 
+          :one: "{0} سه‌شنبه قبل"
+          :other: "{0} سه‌شنبه قبل"
+    :wed: 
+      :relative: 
+        -1: "چهارشنبهٔ گذشته"
+        0: "این چهارشنبه"
+        1: "چهارشنبهٔ آینده"
+      :relative_time: 
+        :future: 
+          :one: "{0} چهارشنبه بعد"
+          :other: "{0} چهارشنبه بعد"
+        :past: 
+          :one: "{0} چهارشنبه قبل"
+          :other: "{0} چهارشنبه قبل"
+    :wed-narrow: 
+      :relative_time: 
+        :future: 
+          :one: "{0} چهارشنبه بعد"
+          :other: "{0} چهارشنبه بعد"
+        :past: 
+          :one: "{0} چهارشنبه قبل"
+          :other: "{0} چهارشنبه قبل"
+    :wed-short: 
+      :relative_time: 
+        :future: 
+          :one: "{0} چهارشنبه بعد"
+          :other: "{0} چهارشنبه بعد"
+        :past: 
+          :one: "{0} چهارشنبه قبل"
+          :other: "{0} چهارشنبه قبل"
+    :week: 
+      :display_name: هفته
+      :relative: 
+        -1: "هفتهٔ گذشته"
+        0: "این هفته"
+        1: "هفتهٔ آینده"
+      :relative_time: 
+        :future: 
+          :one: "{0} هفته بعد"
+          :other: "{0} هفته بعد"
+        :past: 
+          :one: "{0} هفته پیش"
+          :other: "{0} هفته پیش"
+    :weekOfMonth: 
+      :display_name: "هفتهٔ ماه"
+    :weekday: 
+      :display_name: "روز هفته"
+    :weekdayOfMonth: 
+      :display_name: "روز کاری ماه"
+    :year: 
+      :display_name: سال
+      :relative: 
+        -1: "سال گذشته"
+        0: امسال
+        1: "سال آینده"
+      :relative_time: 
+        :future: 
+          :one: "{0} سال بعد"
+          :other: "{0} سال بعد"
+        :past: 
+          :one: "{0} سال پیش"
+          :other: "{0} سال پیش"
+    :zone: 
+      :display_name: "منطقهٔ زمانی"

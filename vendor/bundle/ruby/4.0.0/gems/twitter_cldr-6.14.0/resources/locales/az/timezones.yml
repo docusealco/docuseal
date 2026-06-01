@@ -1,0 +1,1231 @@
+--- 
+:az: 
+  :formats: 
+    :fallback_formats: 
+      :generic: "{1} ({0})"
+    :gmt_formats: 
+      :generic: "GMT{0}"
+    :gmt_zero_formats: 
+      :generic: GMT
+    :hour_formats: 
+      :generic: "+HH:mm;-HH:mm"
+    :region_formats: 
+      :daylight: "{0} Yay Vaxtı"
+      :generic: "{0} Vaxtı"
+      :standard: "{0} Standart Vaxtı"
+  :metazones: 
+    :Afghanistan: 
+      :long: 
+        :standard: "Əfqanıstan Vaxtı"
+    :Africa_Central: 
+      :long: 
+        :standard: "Mərkəzi Afrika Vaxtı"
+    :Africa_Eastern: 
+      :long: 
+        :standard: "Şərqi Afrika Vaxtı"
+    :Africa_Southern: 
+      :long: 
+        :standard: "Cənubi Afrika Vaxtı"
+    :Africa_Western: 
+      :long: 
+        :daylight: "Qərbi Afrika Yay Vaxtı"
+        :generic: "Qərbi Afrika Vaxtı"
+        :standard: "Qərbi Afrika Standart Vaxtı"
+    :Alaska: 
+      :long: 
+        :daylight: "Alyaska Yay Vaxtı"
+        :generic: "Alyaska Vaxtı"
+        :standard: "Alyaska Standart Vaxtı"
+    :Amazon: 
+      :long: 
+        :daylight: "Amazon Yay Vaxtı"
+        :generic: "Amazon Vaxtı"
+        :standard: "Amazon Standart Vaxtı"
+    :America_Central: 
+      :long: 
+        :daylight: "Şimali Mərkəzi Amerika Yay Vaxtı"
+        :generic: "Şimali Mərkəzi Amerika Vaxtı"
+        :standard: "Şimali Mərkəzi Amerika Standart Vaxtı"
+    :America_Eastern: 
+      :long: 
+        :daylight: "Şimali Şərqi Amerika Yay Vaxtı"
+        :generic: "Şimali Şərqi Amerika Vaxtı"
+        :standard: "Şimali Şərqi Amerika Standart Vaxtı"
+    :America_Mountain: 
+      :long: 
+        :daylight: "Şimali Dağlıq Amerika Yay Vaxtı"
+        :generic: "Şimali Dağlıq Amerika Vaxtı"
+        :standard: "Şimali Dağlıq Amerika Standart Vaxtı"
+    :America_Pacific: 
+      :long: 
+        :daylight: "Şimali Amerika Sakit Okean Yay Vaxtı"
+        :generic: "Şimali Amerika Sakit Okean Vaxtı"
+        :standard: "Şimali Amerika Sakit Okean Standart Vaxtı"
+    :Apia: 
+      :long: 
+        :daylight: "Apia Yay Vaxtı"
+        :generic: "Apia Vaxtı"
+        :standard: "Apia Standart Vaxtı"
+    :Arabian: 
+      :long: 
+        :daylight: "Ərəbistan Yay Vaxtı"
+        :generic: "Ərəbistan Vaxtı"
+        :standard: "Ərəbistan Standart Vaxtı"
+    :Argentina: 
+      :long: 
+        :daylight: "Argentina Yay Vaxtı"
+        :generic: "Argentina Vaxtı"
+        :standard: "Argentina Standart Vaxtı"
+    :Argentina_Western: 
+      :long: 
+        :daylight: "Qərbi Argentina Yay Vaxtı"
+        :generic: "Qərbi Argentina Vaxtı"
+        :standard: "Qərbi Argentina Standart Vaxtı"
+    :Armenia: 
+      :long: 
+        :daylight: "Ermənistan Yay Vaxtı"
+        :generic: "Ermənistan Vaxtı"
+        :standard: "Ermənistan Standart Vaxtı"
+    :Atlantic: 
+      :long: 
+        :daylight: "Atlantik Yay Vaxtı"
+        :generic: "Atlantik Vaxt"
+        :standard: "Atlantik Standart Vaxt"
+    :Australia_Central: 
+      :long: 
+        :daylight: "Mərkəzi Avstraliya Yay Vaxtı"
+        :generic: "Mərkəzi Avstraliya Vaxtı"
+        :standard: "Mərkəzi Avstraliya Standart Vaxtı"
+    :Australia_CentralWestern: 
+      :long: 
+        :daylight: "Mərkəzi Qərbi Avstraliya Yay Vaxtı"
+        :generic: "Mərkəzi Qərbi Avstraliya Vaxtı"
+        :standard: "Mərkəzi Qərbi Avstraliya Standart Vaxtı"
+    :Australia_Eastern: 
+      :long: 
+        :daylight: "Şərqi Avstraliya Yay Vaxtı"
+        :generic: "Şərqi Avstraliya Vaxtı"
+        :standard: "Şərqi Avstraliya Standart Vaxtı"
+    :Australia_Western: 
+      :long: 
+        :daylight: "Qərbi Avstraliya Yay Vaxtı"
+        :generic: "Qərbi Avstraliya Vaxtı"
+        :standard: "Qərbi Avstraliya Standart Vaxtı"
+    :Azerbaijan: 
+      :long: 
+        :daylight: "Azərbaycan Yay Vaxtı"
+        :generic: "Azərbaycan Vaxtı"
+        :standard: "Azərbaycan Standart Vaxtı"
+    :Azores: 
+      :long: 
+        :daylight: "Azor Yay Vaxtı"
+        :generic: "Azor Vaxtı"
+        :standard: "Azor Standart Vaxtı"
+    :Bangladesh: 
+      :long: 
+        :daylight: "Banqladeş Yay Vaxtı"
+        :generic: "Banqladeş Vaxtı"
+        :standard: "Banqladeş Standart Vaxtı"
+    :Bhutan: 
+      :long: 
+        :standard: "Butan Vaxtı"
+    :Bolivia: 
+      :long: 
+        :standard: "Boliviya Vaxtı"
+    :Brasilia: 
+      :long: 
+        :daylight: "Braziliya Yay Vaxtı"
+        :generic: "Braziliya Vaxtı"
+        :standard: "Braziliya Standart Vaxtı"
+    :Brunei: 
+      :long: 
+        :standard: "Brunei Darussalam vaxtı"
+    :Cape_Verde: 
+      :long: 
+        :daylight: "Kape Verde Yay Vaxtı"
+        :generic: "Kape Verde Vaxtı"
+        :standard: "Kape Verde Standart Vaxtı"
+    :Chamorro: 
+      :long: 
+        :standard: "Çamorro Vaxtı"
+    :Chatham: 
+      :long: 
+        :daylight: "Çatham Yay Vaxtı"
+        :generic: "Çatham Vaxtı"
+        :standard: "Çatham Standart Vaxtı"
+    :Chile: 
+      :long: 
+        :daylight: "Çili Yay Vaxtı"
+        :generic: "Çili Vaxtı"
+        :standard: "Çili Standart Vaxtı"
+    :China: 
+      :long: 
+        :daylight: "Çin Yay Vaxtı"
+        :generic: "Çin Vaxtı"
+        :standard: "Çin Standart Vaxtı"
+    :Christmas: 
+      :long: 
+        :standard: "Milad Adası Vaxtı"
+    :Cocos: 
+      :long: 
+        :standard: "Kokos Adaları Vaxtı"
+    :Colombia: 
+      :long: 
+        :daylight: "Kolumbiya Yay Vaxtı"
+        :generic: "Kolumbiya Vaxtı"
+        :standard: "Kolumbiya Standart Vaxtı"
+    :Cook: 
+      :long: 
+        :daylight: "Kuk Adaları Yarım Yay Vaxtı"
+        :generic: "Kuk Adaları Vaxtı"
+        :standard: "Kuk Adaları Standart Vaxtı"
+    :Cuba: 
+      :long: 
+        :daylight: "Kuba Yay Vaxtı"
+        :generic: "Kuba Vaxtı"
+        :standard: "Kuba Standart Vaxtı"
+    :Davis: 
+      :long: 
+        :standard: "Devis Vaxtı"
+    :DumontDUrville: 
+      :long: 
+        :standard: "Dümon-d’Ürvil Vaxtı"
+    :East_Timor: 
+      :long: 
+        :standard: "Şərqi Timor Vaxtı"
+    :Easter: 
+      :long: 
+        :daylight: "Pasxa Adası Yay Vaxtı"
+        :generic: "Pasxa Adası Vaxtı"
+        :standard: "Pasxa Adası Standart Vaxtı"
+    :Ecuador: 
+      :long: 
+        :standard: "Ekvador Vaxtı"
+    :Europe_Central: 
+      :long: 
+        :daylight: "Mərkəzi Avropa Yay Vaxtı"
+        :generic: "Mərkəzi Avropa Vaxtı"
+        :standard: "Mərkəzi Avropa Standart Vaxtı"
+    :Europe_Eastern: 
+      :long: 
+        :daylight: "Şərqi Avropa Yay Vaxtı"
+        :generic: "Şərqi Avropa Vaxtı"
+        :standard: "Şərqi Avropa Standart Vaxtı"
+    :Europe_Further_Eastern: 
+      :long: 
+        :standard: "Kənar Şərqi Avropa Vaxtı"
+    :Europe_Western: 
+      :long: 
+        :daylight: "Qərbi Avropa Yay Vaxtı"
+        :generic: "Qərbi Avropa Vaxtı"
+        :standard: "Qərbi Avropa Standart Vaxtı"
+    :Falkland: 
+      :long: 
+        :daylight: "Folklend Adaları Yay Vaxtı"
+        :generic: "Folklend Adaları Vaxtı"
+        :standard: "Folklend Adaları Standart Vaxtı"
+    :Fiji: 
+      :long: 
+        :daylight: "Fici Yay Vaxtı"
+        :generic: "Fici Vaxtı"
+        :standard: "Fici Standart Vaxtı"
+    :French_Guiana: 
+      :long: 
+        :standard: "Fransız Qvianası Vaxtı"
+    :French_Southern: 
+      :long: 
+        :standard: "Fransız Cənubi və Antarktik Vaxtı"
+    :GMT: 
+      :long: 
+        :standard: "Qrinviç Orta Vaxtı"
+    :Galapagos: 
+      :long: 
+        :standard: "Qalapaqos Vaxtı"
+    :Gambier: 
+      :long: 
+        :standard: "Qambier Vaxtı"
+    :Georgia: 
+      :long: 
+        :daylight: "Gurcüstan Yay Vaxtı"
+        :generic: "Gurcüstan Vaxtı"
+        :standard: "Gurcüstan Standart Vaxtı"
+    :Gilbert_Islands: 
+      :long: 
+        :standard: "Gilbert Adaları Vaxtı"
+    :Greenland_Eastern: 
+      :long: 
+        :daylight: "Şərqi Qrenlandiya Yay Vaxtı"
+        :generic: "Şərqi Qrenlandiya Vaxtı"
+        :standard: "Şərqi Qrenlandiya Standart Vaxtı"
+    :Greenland_Western: 
+      :long: 
+        :daylight: "Qərbi Qrenlandiya Yay Vaxtı"
+        :generic: "Qərbi Qrenlandiya Vaxtı"
+        :standard: "Qərbi Qrenlandiya Standart Vaxtı"
+    :Gulf: 
+      :long: 
+        :standard: "Körfəz Vaxtı"
+    :Guyana: 
+      :long: 
+        :standard: "Qayana Vaxtı"
+    :Hawaii_Aleutian: 
+      :long: 
+        :daylight: "Havay-Aleut Yay Vaxtı"
+        :generic: "Havay-Aleut Vaxtı"
+        :standard: "Havay-Aleut Standart Vaxtı"
+    :Hong_Kong: 
+      :long: 
+        :daylight: "Honq Konq Yay Vaxtı"
+        :generic: "Honq Konq Vaxtı"
+        :standard: "Honq Konq Standart Vaxtı"
+    :Hovd: 
+      :long: 
+        :daylight: "Hovd Yay Vaxtı"
+        :generic: "Hovd Vaxtı"
+        :standard: "Hovd Standart Vaxtı"
+    :India: 
+      :long: 
+        :standard: "Hindistan Vaxtı"
+    :Indian_Ocean: 
+      :long: 
+        :standard: "Hind Okeanı Vaxtı"
+    :Indochina: 
+      :long: 
+        :standard: "Hindçin Vaxtı"
+    :Indonesia_Central: 
+      :long: 
+        :standard: "Mərkəzi İndoneziya Vaxtı"
+    :Indonesia_Eastern: 
+      :long: 
+        :standard: "Şərqi İndoneziya Vaxtı"
+    :Indonesia_Western: 
+      :long: 
+        :standard: "Qərbi İndoneziya Vaxtı"
+    :Iran: 
+      :long: 
+        :daylight: "İran Yay Vaxtı"
+        :generic: "İran Vaxtı"
+        :standard: "İran Standart Vaxtı"
+    :Irkutsk: 
+      :long: 
+        :daylight: "İrkutsk Yay Vaxtı"
+        :generic: "İrkutsk Vaxtı"
+        :standard: "İrkutsk Standart Vaxtı"
+    :Israel: 
+      :long: 
+        :daylight: "İsrail Yay Vaxtı"
+        :generic: "İsrail Vaxtı"
+        :standard: "İsrail Standart Vaxtı"
+    :Japan: 
+      :long: 
+        :daylight: "Yaponiya Yay Vaxtı"
+        :generic: "Yaponiya Vaxtı"
+        :standard: "Yaponiya Standart Vaxtı"
+    :Kazakhstan: 
+      :long: 
+        :standard: "Qazaxıstan vaxtı"
+    :Kazakhstan_Eastern: 
+      :long: 
+        :standard: "Şərqi Qazaxıstan Vaxtı"
+    :Kazakhstan_Western: 
+      :long: 
+        :standard: "Qərbi Qazaxıstan Vaxtı"
+    :Korea: 
+      :long: 
+        :daylight: "Koreya Yay Vaxtı"
+        :generic: "Koreya Vaxtı"
+        :standard: "Koreya Standart Vaxtı"
+    :Kosrae: 
+      :long: 
+        :standard: "Korse Vaxtı"
+    :Krasnoyarsk: 
+      :long: 
+        :daylight: "Krasnoyarsk Yay Vaxtı"
+        :generic: "Krasnoyarsk Vaxtı"
+        :standard: "Krasnoyarsk Standart Vaxtı"
+    :Kyrgystan: 
+      :long: 
+        :standard: "Qırğızıstan Vaxtı"
+    :Line_Islands: 
+      :long: 
+        :standard: "Layn Adaları Vaxtı"
+    :Lord_Howe: 
+      :long: 
+        :daylight: "Lord Hau Yay vaxtı"
+        :generic: "Lord Hau Vaxtı"
+        :standard: "Lord Hau Standart Vaxtı"
+    :Magadan: 
+      :long: 
+        :daylight: "Maqadan Yay Vaxtı"
+        :generic: "Maqadan Vaxtı"
+        :standard: "Maqadan Standart Vaxtı"
+    :Malaysia: 
+      :long: 
+        :standard: "Malayziya Vaxtı"
+    :Maldives: 
+      :long: 
+        :standard: "Maldiv Vaxtı"
+    :Marquesas: 
+      :long: 
+        :standard: "Markesas Vaxtı"
+    :Marshall_Islands: 
+      :long: 
+        :standard: "Marşal Adaları Vaxtı"
+    :Mauritius: 
+      :long: 
+        :daylight: "Mavriki Yay Vaxtı"
+        :generic: "Mavriki Vaxtı"
+        :standard: "Mavriki Standart Vaxtı"
+    :Mawson: 
+      :long: 
+        :standard: "Mouson Vaxtı"
+    :Mexico_Pacific: 
+      :long: 
+        :daylight: "Meksika Sakit Okean Yay Vaxtı"
+        :generic: "Meksika Sakit Okean Vaxtı"
+        :standard: "Meksika Sakit Okean Standart Vaxtı"
+    :Mongolia: 
+      :long: 
+        :daylight: "Ulanbator Yay Vaxtı"
+        :generic: "Ulanbator Vaxtı"
+        :standard: "Ulanbator Standart Vaxtı"
+    :Moscow: 
+      :long: 
+        :daylight: "Moskva Yay vaxtı"
+        :generic: "Moskva Vaxtı"
+        :standard: "Moskva Standart Vaxtı"
+    :Myanmar: 
+      :long: 
+        :standard: "Myanma Vaxtı"
+    :Nauru: 
+      :long: 
+        :standard: "Nauru Vaxtı"
+    :Nepal: 
+      :long: 
+        :standard: "Nepal vaxtı"
+    :New_Caledonia: 
+      :long: 
+        :daylight: "Yeni Kaledoniya Yay Vaxtı"
+        :generic: "Yeni Kaledoniya Vaxtı"
+        :standard: "Yeni Kaledoniya Standart Vaxtı"
+    :New_Zealand: 
+      :long: 
+        :daylight: "Yeni Zelandiya Yay Vaxtı"
+        :generic: "Yeni Zelandiya Vaxtı"
+        :standard: "Yeni Zelandiya Standart Vaxtı"
+    :Newfoundland: 
+      :long: 
+        :daylight: "Nyufaundlend Yay Vaxtı"
+        :generic: "Nyufaundlend Vaxtı"
+        :standard: "Nyufaundlend Standart Vaxtı"
+    :Niue: 
+      :long: 
+        :standard: "Niue Vaxtı"
+    :Norfolk: 
+      :long: 
+        :daylight: "Norfolk Adası Yay Vaxtı"
+        :generic: "Norfolk Adası Vaxtı"
+        :standard: "Norfolk Adası Standart Vaxtı"
+    :Noronha: 
+      :long: 
+        :daylight: "Fernando de Noronya Yay Vaxtı"
+        :generic: "Fernando de Noronya Vaxtı"
+        :standard: "Fernando de Noronya Standart Vaxtı"
+    :Novosibirsk: 
+      :long: 
+        :daylight: "Novosibirsk Yay Vaxtı"
+        :generic: "Novosibirsk Vaxtı"
+        :standard: "Novosibirsk Standart Vaxtı"
+    :Omsk: 
+      :long: 
+        :daylight: "Omsk Yay Vaxtı"
+        :generic: "Omsk Vaxtı"
+        :standard: "Omsk Standart Vaxtı"
+    :Pakistan: 
+      :long: 
+        :daylight: "Pakistan Yay Vaxtı"
+        :generic: "Pakistan Vaxtı"
+        :standard: "Pakistan Standart vaxtı"
+    :Palau: 
+      :long: 
+        :standard: "Palau Vaxtı"
+    :Papua_New_Guinea: 
+      :long: 
+        :standard: "Papua Yeni Qvineya Vaxtı"
+    :Paraguay: 
+      :long: 
+        :daylight: "Paraqvay Yay Vaxtı"
+        :generic: "Paraqvay Vaxtı"
+        :standard: "Paraqvay Standart Vaxtı"
+    :Peru: 
+      :long: 
+        :daylight: "Peru Yay Vaxtı"
+        :generic: "Peru Vaxtı"
+        :standard: "Peru Standart Vaxtı"
+    :Philippines: 
+      :long: 
+        :daylight: "Filippin Yay Vaxtı"
+        :generic: "Filippin Vaxtı"
+        :standard: "Filippin Standart Vaxtı"
+    :Phoenix_Islands: 
+      :long: 
+        :standard: "Feniks Adaları Vaxtı"
+    :Pierre_Miquelon: 
+      :long: 
+        :daylight: "Müqəddəs Pyer və Mikelon Yay Vaxtı"
+        :generic: "Müqəddəs Pyer və Mikelon Vaxtı"
+        :standard: "Müqəddəs Pyer və Mikelon Standart Vaxtı"
+    :Pitcairn: 
+      :long: 
+        :standard: "Pitkern Vaxtı"
+    :Ponape: 
+      :long: 
+        :standard: "Ponape Vaxtı"
+    :Pyongyang: 
+      :long: 
+        :standard: "Pxenyan Vaxtı"
+    :Reunion: 
+      :long: 
+        :standard: Reyunyon
+    :Rothera: 
+      :long: 
+        :standard: "Rotera Vaxtı"
+    :Sakhalin: 
+      :long: 
+        :daylight: "Saxalin Yay Vaxtı"
+        :generic: "Saxalin Vaxtı"
+        :standard: "Saxalin Standart Vaxtı"
+    :Samara: 
+      :long: 
+        :daylight: "Samara yay vaxtı"
+        :generic: "Samara vaxtı"
+        :standard: "Samara standart vaxtı"
+    :Samoa: 
+      :long: 
+        :daylight: "Samoa Yay Vaxtı"
+        :generic: "Samoa Vaxtı"
+        :standard: "Samoa Standart Vaxtı"
+    :Seychelles: 
+      :long: 
+        :standard: "Seyşel Adaları Vaxtı"
+    :Singapore: 
+      :long: 
+        :standard: "Sinqapur Vaxtı"
+    :Solomon: 
+      :long: 
+        :standard: "Solomon Adaları Vaxtı"
+    :South_Georgia: 
+      :long: 
+        :standard: "Cənubi Corciya Vaxtı"
+    :Suriname: 
+      :long: 
+        :standard: "Surinam Vaxtı"
+    :Syowa: 
+      :long: 
+        :standard: "Syova Vaxtı"
+    :Tahiti: 
+      :long: 
+        :standard: "Tahiti Vaxtı"
+    :Taipei: 
+      :long: 
+        :daylight: "Taybey Yay Vaxtı"
+        :generic: "Taybey Vaxtı"
+        :standard: "Taybey Standart Vaxtı"
+    :Tajikistan: 
+      :long: 
+        :standard: "Tacikistan Vaxtı"
+    :Tokelau: 
+      :long: 
+        :standard: "Tokelau Vaxtı"
+    :Tonga: 
+      :long: 
+        :daylight: "Tonqa Yay Vaxtı"
+        :generic: "Tonqa Vaxtı"
+        :standard: "Tonqa Standart Vaxtı"
+    :Truk: 
+      :long: 
+        :standard: "Çuuk Vaxtı"
+    :Turkmenistan: 
+      :long: 
+        :daylight: "Türkmənistan Yay Vaxtı"
+        :generic: "Türkmənistan Vaxtı"
+        :standard: "Türkmənistan Standart Vaxtı"
+    :Tuvalu: 
+      :long: 
+        :standard: "Tuvalu Vaxtı"
+    :Uruguay: 
+      :long: 
+        :daylight: "Uruqvay Yay Vaxtı"
+        :generic: "Uruqvay Vaxtı"
+        :standard: "Uruqvay Standart Vaxtı"
+    :Uzbekistan: 
+      :long: 
+        :daylight: "Özbəkistan Yay Vaxtı"
+        :generic: "Özbəkistan Vaxtı"
+        :standard: "Özbəkistan Standart Vaxtı"
+    :Vanuatu: 
+      :long: 
+        :daylight: "Vaunatu Yay Vaxtı"
+        :generic: "Vanuatu Vaxtı"
+        :standard: "Vanuatu Standart Vaxtı"
+    :Venezuela: 
+      :long: 
+        :standard: "Venesuela Vaxtı"
+    :Vladivostok: 
+      :long: 
+        :daylight: "Vladivostok Yay Vaxtı"
+        :generic: "Vladivostok Vaxtı"
+        :standard: "Vladivostok Standart Vaxtı"
+    :Volgograd: 
+      :long: 
+        :daylight: "Volqoqrad Yay Vaxtı"
+        :generic: "Volqoqrad Vaxtı"
+        :standard: "Volqoqrad Standart Vaxtı"
+    :Vostok: 
+      :long: 
+        :standard: "Vostok Vaxtı"
+    :Wake: 
+      :long: 
+        :standard: "Ueyk Vaxtı"
+    :Wallis: 
+      :long: 
+        :standard: "Uollis və Futuna Vaxtı"
+    :Yakutsk: 
+      :long: 
+        :daylight: "Yakutsk Yay Vaxtı"
+        :generic: "Yakutsk Vaxtı"
+        :standard: "Yakutsk Standart Vaxtı"
+    :Yekaterinburg: 
+      :long: 
+        :daylight: "Yekaterinburq Yay Vaxtı"
+        :generic: "Yekaterinburq Vaxtı"
+        :standard: "Yekaterinburq Standart Vaxtı"
+    :Yukon: 
+      :long: 
+        :standard: "Yukon Vaxtı"
+  :timezones: 
+    :Africa/Abidjan: 
+      :city: Abican
+    :Africa/Accra: 
+      :city: Akkra
+    :Africa/Addis_Ababa: 
+      :city: "Əddis Əbəbə"
+    :Africa/Algiers: 
+      :city: Əlcəzair
+    :Africa/Asmera: 
+      :city: Əsmərə
+    :Africa/Bangui: 
+      :city: Banqui
+    :Africa/Banjul: 
+      :city: Bancul
+    :Africa/Blantyre: 
+      :city: Blantir
+    :Africa/Brazzaville: 
+      :city: Brazzavil
+    :Africa/Cairo: 
+      :city: Qahirə
+    :Africa/Casablanca: 
+      :city: Kasablanka
+    :Africa/Ceuta: 
+      :city: Seuta
+    :Africa/Conakry: 
+      :city: Konakri
+    :Africa/Dar_es_Salaam: 
+      :city: "Dar es Salam"
+    :Africa/Djibouti: 
+      :city: Cibuti
+    :Africa/Douala: 
+      :city: Duala
+    :Africa/El_Aaiun: 
+      :city: "Əl Əyun"
+    :Africa/Freetown: 
+      :city: Fritaun
+    :Africa/Gaborone: 
+      :city: Qaboron
+    :Africa/Johannesburg: 
+      :city: Yohanesburq
+    :Africa/Khartoum: 
+      :city: Xartum
+    :Africa/Kigali: 
+      :city: Kiqali
+    :Africa/Kinshasa: 
+      :city: Kinşasa
+    :Africa/Lagos: 
+      :city: Laqos
+    :Africa/Libreville: 
+      :city: Librevil
+    :Africa/Lubumbashi: 
+      :city: Lubumbaşi
+    :Africa/Mogadishu: 
+      :city: Moqadişu
+    :Africa/Ndjamena: 
+      :city: Ncamena
+    :Africa/Nouakchott: 
+      :city: Nouakşot
+    :Africa/Ouagadougou: 
+      :city: Uqaduqu
+    :Africa/Sao_Tome: 
+      :city: "San Tom"
+    :Africa/Windhoek: 
+      :city: Vindhuk
+    :America/Anchorage: 
+      :city: Ankorac
+    :America/Anguilla: 
+      :city: Angilya
+    :America/Antigua: 
+      :city: Antiqua
+    :America/Araguaina: 
+      :city: Araguayna
+    :America/Argentina/La_Rioja: 
+      :city: Rioxa
+    :America/Argentina/Rio_Gallegos: 
+      :city: "Rio Qalyeqos"
+    :America/Argentina/San_Juan: 
+      :city: "San Xuan"
+    :America/Argentina/Tucuman: 
+      :city: Tukuman
+    :America/Argentina/Ushuaia: 
+      :city: Uşuaya
+    :America/Asuncion: 
+      :city: Asunsion
+    :America/Bahia: 
+      :city: Bahiya
+    :America/Bahia_Banderas: 
+      :city: "Bahia Banderas"
+    :America/Belize: 
+      :city: Beliz
+    :America/Blanc-Sablon: 
+      :city: Blank-Sablon
+    :America/Bogota: 
+      :city: Boqota
+    :America/Boise: 
+      :city: Boyse
+    :America/Buenos_Aires: 
+      :city: "Buenos Ayres"
+    :America/Cambridge_Bay: 
+      :city: "Kembric Körfəzi"
+    :America/Campo_Grande: 
+      :city: "Kampo Qrande"
+    :America/Cancun: 
+      :city: Kankun
+    :America/Caracas: 
+      :city: Karakas
+    :America/Catamarca: 
+      :city: Katamarka
+    :America/Cayenne: 
+      :city: Kayen
+    :America/Cayman: 
+      :city: Kayman
+    :America/Chicago: 
+      :city: Çikaqo
+    :America/Chihuahua: 
+      :city: Çihuahua
+    :America/Ciudad_Juarez: 
+      :city: "Ciudad Juárez"
+    :America/Coral_Harbour: 
+      :city: Atikokan
+    :America/Cordoba: 
+      :city: Kordoba
+    :America/Costa_Rica: 
+      :city: "Kosta Rika"
+    :America/Creston: 
+      :city: Kreston
+    :America/Cuiaba: 
+      :city: Kuyaba
+    :America/Curacao: 
+      :city: Kurasao
+    :America/Danmarkshavn: 
+      :city: Danmarkşavn
+    :America/Dawson: 
+      :city: Douson
+    :America/Dawson_Creek: 
+      :city: "Douson Krik"
+    :America/Detroit: 
+      :city: Detroyt
+    :America/Dominica: 
+      :city: Dominika
+    :America/Edmonton: 
+      :city: Edmondton
+    :America/Eirunepe: 
+      :city: İrunepe
+    :America/El_Salvador: 
+      :city: Salvador
+    :America/Glace_Bay: 
+      :city: "Qleys Körfəzi"
+    :America/Godthab: 
+      :city: Nuuk
+    :America/Goose_Bay: 
+      :city: "Quz Körfəzi"
+    :America/Grand_Turk: 
+      :city: "Qrand Turk"
+    :America/Grenada: 
+      :city: Qrenada
+    :America/Guadeloupe: 
+      :city: Qvadelupa
+    :America/Guatemala: 
+      :city: Qvatemala
+    :America/Guayaquil: 
+      :city: Quayakil
+    :America/Guyana: 
+      :city: Qayana
+    :America/Halifax: 
+      :city: Halifaks
+    :America/Hermosillo: 
+      :city: Hermosilo
+    :America/Indiana/Knox: 
+      :city: Noks
+    :America/Indiana/Marengo: 
+      :city: Marenqo
+    :America/Indiana/Petersburg: 
+      :city: Pitersburq
+    :America/Indiana/Tell_City: 
+      :city: Tell
+    :America/Indiana/Vevay: 
+      :city: Vivey
+    :America/Indiana/Vincennes: 
+      :city: Vinsen
+    :America/Indiana/Winamac: 
+      :city: Vinamak
+    :America/Indianapolis: 
+      :city: İndianapolis
+    :America/Inuvik: 
+      :city: İnuvik
+    :America/Iqaluit: 
+      :city: İqaluit
+    :America/Jamaica: 
+      :city: Yamayka
+    :America/Juneau: 
+      :city: Cuno
+    :America/Kentucky/Monticello: 
+      :city: Montiçello
+    :America/Kralendijk: 
+      :city: Kralendik
+    :America/La_Paz: 
+      :city: "La Pas"
+    :America/Los_Angeles: 
+      :city: "Los Anceles"
+    :America/Louisville: 
+      :city: Luisvil
+    :America/Lower_Princes: 
+      :city: "Aşağı Prins Kvartalı"
+    :America/Maceio: 
+      :city: Maseyo
+    :America/Managua: 
+      :city: Manaqua
+    :America/Marigot: 
+      :city: Mariqot
+    :America/Martinique: 
+      :city: Martinik
+    :America/Mazatlan: 
+      :city: Mazaltan
+    :America/Menominee: 
+      :city: Menomini
+    :America/Merida: 
+      :city: Merida
+    :America/Mexico_City: 
+      :city: Mexiko
+    :America/Miquelon: 
+      :city: Mikelon
+    :America/Moncton: 
+      :city: Monkton
+    :America/Monterrey: 
+      :city: Monterey
+    :America/Montserrat: 
+      :city: Monserat
+    :America/New_York: 
+      :city: "Nyu York"
+    :America/Nome: 
+      :city: Nom
+    :America/Noronha: 
+      :city: Noronya
+    :America/North_Dakota/Beulah: 
+      :city: "Beulah, Şimali Dakota"
+    :America/North_Dakota/Center: 
+      :city: "Mərkəz, Şimal Dakota"
+    :America/North_Dakota/New_Salem: 
+      :city: "Nyu Salem"
+    :America/Ojinaga: 
+      :city: Ocinaqa
+    :America/Phoenix: 
+      :city: Feniks
+    :America/Port-au-Prince: 
+      :city: Port-o-Prins
+    :America/Port_of_Spain: 
+      :city: "İspan Limanı"
+    :America/Porto_Velho: 
+      :city: "Porto Velyo"
+    :America/Puerto_Rico: 
+      :city: "Puerto Riko"
+    :America/Rankin_Inlet: 
+      :city: "Rankin Girişi"
+    :America/Recife: 
+      :city: Resif
+    :America/Regina: 
+      :city: Recina
+    :America/Resolute: 
+      :city: Rezolyut
+    :America/Rio_Branco: 
+      :city: "Rio Branko"
+    :America/Santiago: 
+      :city: Santyaqo
+    :America/Santo_Domingo: 
+      :city: "Santo Dominqo"
+    :America/Sao_Paulo: 
+      :city: "San Paulo"
+    :America/Scoresbysund: 
+      :city: Skoresbisund
+    :America/St_Barthelemy: 
+      :city: Sent-Bartelemi
+    :America/St_Johns: 
+      :city: "Sent Cons"
+    :America/St_Kitts: 
+      :city: "San Kits"
+    :America/St_Lucia: 
+      :city: "San Lüsiya"
+    :America/St_Thomas: 
+      :city: "San Tomas"
+    :America/St_Vincent: 
+      :city: "San Vinsent"
+    :America/Swift_Current: 
+      :city: "Svift Kurent"
+    :America/Tegucigalpa: 
+      :city: Tequsiqalpa
+    :America/Thule: 
+      :city: Tul
+    :America/Tijuana: 
+      :city: Tixuana
+    :America/Vancouver: 
+      :city: Vankuver
+    :America/Whitehorse: 
+      :city: Uaythors
+    :America/Winnipeg: 
+      :city: Vinnipeq
+    :Antarctica/Casey: 
+      :city: Keysi
+    :Antarctica/Davis: 
+      :city: Deyvis
+    :Antarctica/DumontDUrville: 
+      :city: "Dumont d’Urvil"
+    :Antarctica/Macquarie: 
+      :city: Makuari
+    :Antarctica/Mawson: 
+      :city: Mouson
+    :Antarctica/McMurdo: 
+      :city: "Mak Murdo"
+    :Antarctica/Syowa: 
+      :city: Syova
+    :Arctic/Longyearbyen: 
+      :city: Lonqyir
+    :Asia/Almaty: 
+      :city: Almatı
+    :Asia/Anadyr: 
+      :city: Anadır
+    :Asia/Aqtau: 
+      :city: Aktau
+    :Asia/Ashgabat: 
+      :city: Aşqabat
+    :Asia/Atyrau: 
+      :city: Atırau
+    :Asia/Baghdad: 
+      :city: Bağdad
+    :Asia/Bahrain: 
+      :city: Bəhreyn
+    :Asia/Baku: 
+      :city: Bakı
+    :Asia/Bangkok: 
+      :city: Banqkok
+    :Asia/Beirut: 
+      :city: Beyrut
+    :Asia/Bishkek: 
+      :city: Bişkek
+    :Asia/Brunei: 
+      :city: Bruney
+    :Asia/Calcutta: 
+      :city: Kəlkətə
+    :Asia/Chita: 
+      :city: Çita
+    :Asia/Colombo: 
+      :city: Kolombo
+    :Asia/Damascus: 
+      :city: Dəməşq
+    :Asia/Dhaka: 
+      :city: Dəkkə
+    :Asia/Dubai: 
+      :city: Dubay
+    :Asia/Dushanbe: 
+      :city: Düşənbə
+    :Asia/Famagusta: 
+      :city: Famaqusta
+    :Asia/Gaza: 
+      :city: Qəza
+    :Asia/Hong_Kong: 
+      :city: "Honq Konq"
+    :Asia/Irkutsk: 
+      :city: İrkutsk
+    :Asia/Jakarta: 
+      :city: Cakarta
+    :Asia/Jayapura: 
+      :city: Cayapura
+    :Asia/Jerusalem: 
+      :city: Yerusəlim
+    :Asia/Kabul: 
+      :city: Kabil
+    :Asia/Kamchatka: 
+      :city: Kamçatka
+    :Asia/Karachi: 
+      :city: Karaçi
+    :Asia/Katmandu: 
+      :city: Katmandu
+    :Asia/Khandyga: 
+      :city: Xandıqa
+    :Asia/Kuching: 
+      :city: Kuçinq
+    :Asia/Kuwait: 
+      :city: Küveyt
+    :Asia/Macau: 
+      :city: Makao
+    :Asia/Magadan: 
+      :city: Maqadan
+    :Asia/Makassar: 
+      :city: Makasar
+    :Asia/Muscat: 
+      :city: Muskat
+    :Asia/Nicosia: 
+      :city: Nikosiya
+    :Asia/Phnom_Penh: 
+      :city: "Pnom Pen"
+    :Asia/Pyongyang: 
+      :city: Pxenyan
+    :Asia/Qyzylorda: 
+      :city: Qızılorda
+    :Asia/Rangoon: 
+      :city: Ranqun
+    :Asia/Riyadh: 
+      :city: Riyad
+    :Asia/Saigon: 
+      :city: "Ho Şi Min"
+    :Asia/Sakhalin: 
+      :city: Saxalin
+    :Asia/Samarkand: 
+      :city: Səmərqənd
+    :Asia/Seoul: 
+      :city: Seul
+    :Asia/Shanghai: 
+      :city: Şanxay
+    :Asia/Singapore: 
+      :city: Sinqapur
+    :Asia/Srednekolymsk: 
+      :city: Srednekolımsk
+    :Asia/Taipei: 
+      :city: Taybey
+    :Asia/Tashkent: 
+      :city: Daşkənd
+    :Asia/Ulaanbaatar: 
+      :city: Ulanbator
+    :Asia/Urumqi: 
+      :city: Urumçi
+    :Asia/Vientiane: 
+      :city: Vyentyan
+    :Asia/Yekaterinburg: 
+      :city: Yekaterinburq
+    :Atlantic/Azores: 
+      :city: Azor
+    :Atlantic/Bermuda: 
+      :city: "Bermud adaları"
+    :Atlantic/Canary: 
+      :city: Kanar
+    :Atlantic/Cape_Verde: 
+      :city: "Kape Verde"
+    :Atlantic/Faeroe: 
+      :city: Farer
+    :Atlantic/Madeira: 
+      :city: Madeyra
+    :Atlantic/Reykjavik: 
+      :city: Reykyavik
+    :Atlantic/South_Georgia: 
+      :city: "Cənubi Corciya"
+    :Atlantic/St_Helena: 
+      :city: "Müqəddəs Yelena"
+    :Atlantic/Stanley: 
+      :city: Stenli
+    :Australia/Adelaide: 
+      :city: Adelaida
+    :Australia/Brisbane: 
+      :city: Brisbeyn
+    :Australia/Darwin: 
+      :city: Darvin
+    :Australia/Eucla: 
+      :city: Yukla
+    :Australia/Lord_Howe: 
+      :city: "Lord Hau"
+    :Australia/Melbourne: 
+      :city: Melburn
+    :Australia/Perth: 
+      :city: Pert
+    :Australia/Sydney: 
+      :city: Sidney
+    :Etc/UTC: 
+      :long: 
+        :standard: "Koordinasiya edilmiş ümumdünya vaxtı"
+      :short: 
+        :standard: UTC
+    :Etc/Unknown: 
+      :city: "Naməlum Şəhər"
+    :Europe/Astrakhan: 
+      :city: Həştərxan
+    :Europe/Athens: 
+      :city: Afina
+    :Europe/Belgrade: 
+      :city: Belqrad
+    :Europe/Brussels: 
+      :city: Brüssel
+    :Europe/Bucharest: 
+      :city: Buxarest
+    :Europe/Budapest: 
+      :city: Budapeşt
+    :Europe/Chisinau: 
+      :city: Kişinyov
+    :Europe/Copenhagen: 
+      :city: Kopenhagen
+    :Europe/Dublin: 
+      :long: 
+        :daylight: "İrlandiya Yay Vaxtı"
+    :Europe/Gibraltar: 
+      :city: Cəbəli-Tariq
+    :Europe/Guernsey: 
+      :city: Gernzey
+    :Europe/Isle_of_Man: 
+      :city: "Men Adası"
+    :Europe/Istanbul: 
+      :city: İstanbul
+    :Europe/Jersey: 
+      :city: Cersi
+    :Europe/Kaliningrad: 
+      :city: Kalininqrad
+    :Europe/Kiev: 
+      :city: Kiyev
+    :Europe/Lisbon: 
+      :city: Lissabon
+    :Europe/Ljubljana: 
+      :city: Lyublyana
+    :Europe/London: 
+      :long: 
+        :daylight: "Britaniya Yay Vaxtı"
+    :Europe/Luxembourg: 
+      :city: Lüksemburq
+    :Europe/Mariehamn: 
+      :city: Mariham
+    :Europe/Monaco: 
+      :city: Monako
+    :Europe/Moscow: 
+      :city: Moskva
+    :Europe/Podgorica: 
+      :city: Podqoritsa
+    :Europe/Prague: 
+      :city: Praqa
+    :Europe/Riga: 
+      :city: Riqa
+    :Europe/Rome: 
+      :city: Roma
+    :Europe/Sarajevo: 
+      :city: Sarayevo
+    :Europe/Skopje: 
+      :city: Skopye
+    :Europe/Sofia: 
+      :city: Sofiya
+    :Europe/Stockholm: 
+      :city: Stokholm
+    :Europe/Tallinn: 
+      :city: Tallin
+    :Europe/Tirane: 
+      :city: Tirana
+    :Europe/Vaduz: 
+      :city: Vaduts
+    :Europe/Vatican: 
+      :city: Vatikan
+    :Europe/Vienna: 
+      :city: Vyana
+    :Europe/Vilnius: 
+      :city: Vilnüs
+    :Europe/Volgograd: 
+      :city: Volqoqrad
+    :Europe/Warsaw: 
+      :city: Varşava
+    :Europe/Zagreb: 
+      :city: Zaqreb
+    :Europe/Zurich: 
+      :city: Sürix
+    :Indian/Chagos: 
+      :city: Çaqos
+    :Indian/Christmas: 
+      :city: Milad
+    :Indian/Cocos: 
+      :city: Kokos
+    :Indian/Comoro: 
+      :city: Komoro
+    :Indian/Kerguelen: 
+      :city: Kergelen
+    :Indian/Maldives: 
+      :city: Maldiv
+    :Indian/Mauritius: 
+      :city: Mavriki
+    :Indian/Mayotte: 
+      :city: Mayot
+    :Indian/Reunion: 
+      :city: Réunion
+    :Pacific/Auckland: 
+      :city: Oklənd
+    :Pacific/Bougainville: 
+      :city: Buqanvil
+    :Pacific/Chatham: 
+      :city: Çatam
+    :Pacific/Easter: 
+      :city: Pasxa
+    :Pacific/Enderbury: 
+      :city: Enderböri
+    :Pacific/Fiji: 
+      :city: Fici
+    :Pacific/Galapagos: 
+      :city: Qalapaqos
+    :Pacific/Gambier: 
+      :city: Qambiyer
+    :Pacific/Guadalcanal: 
+      :city: Quadalkanal
+    :Pacific/Guam: 
+      :city: Quam
+    :Pacific/Honolulu: 
+      :city: Honolulu
+    :Pacific/Kiritimati: 
+      :city: Kirimati
+    :Pacific/Kosrae: 
+      :city: Kosraye
+    :Pacific/Kwajalein: 
+      :city: Kvajaleyn
+    :Pacific/Majuro: 
+      :city: Macuro
+    :Pacific/Marquesas: 
+      :city: Markesas
+    :Pacific/Midway: 
+      :city: Midvey
+    :Pacific/Pago_Pago: 
+      :city: "Paqo Paqo"
+    :Pacific/Pitcairn: 
+      :city: Pitkern
+    :Pacific/Ponape: 
+      :city: Pohnpei
+    :Pacific/Port_Moresby: 
+      :city: "Port Moresbi"
+    :Pacific/Rarotonga: 
+      :city: Rarotonqa
+    :Pacific/Saipan: 
+      :city: Saypan
+    :Pacific/Tarawa: 
+      :city: Tarava
+    :Pacific/Tongatapu: 
+      :city: Tonqapatu
+    :Pacific/Truk: 
+      :city: Çuuk
+    :Pacific/Wake: 
+      :city: Veyk
+    :Pacific/Wallis: 
+      :city: Uollis

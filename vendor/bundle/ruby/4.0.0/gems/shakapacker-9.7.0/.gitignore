@@ -1,0 +1,43 @@
+/.bundle
+/pkg
+/spec/mounted_app/test/dummy/log
+/spec/test_app/log
+node_modules
+.byebug_history
+/spec/test_app/tmp
+/test/tmp
+yarn-debug.log*
+yarn-error.log*
+.yarn-integrity
+/log
+gemfiles/*.lock
+.DS_Store
+.eslintcache
+
+.yalc
+yalc.lock
+
+# npm pack tarballs
+*.tgz
+
+# Built gem files
+*.gem
+
+# Config exporter output directory
+shakapacker-config-exports/
+
+# TypeScript generated files
+package/**/*.d.ts
+package/**/*.d.ts.map
+package/**/*.js.map
+# Ignore compiled JS files from TypeScript sources
+package/**/*.js
+# Keep specific files that are not TypeScript-generated
+!package/index.d.ts
+!package/loaders.d.ts
+!package/webpack-types.d.ts
+!package/babel/preset-react.js
+!package/loaders/*.js
+!package/__mocks__/*.js
+!package/utils/get_style_rule.js
+!package/utils/node_modules.js

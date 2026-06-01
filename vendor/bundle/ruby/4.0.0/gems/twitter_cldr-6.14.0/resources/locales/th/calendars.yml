@@ -1,0 +1,382 @@
+--- 
+:th: 
+  :calendars: 
+    :gregorian: 
+      :additional_formats: 
+        :Bh: "h B"
+        :Bhm: "h:mm B"
+        :Bhms: "h:mm:ss B"
+        :E: ccc
+        :EBhm: "E h:mm B"
+        :EBhms: "E h:mm:ss B"
+        :EHm: "E HH:mm น."
+        :EHms: "E HH:mm:ss"
+        :Ed: "E d"
+        :Ehm: "E h:mm a"
+        :Ehms: "E h:mm:ss a"
+        :Gy: "G y"
+        :GyMMM: "MMM G y"
+        :GyMMMEEEEd: "EEEEที่ d MMM G y"
+        :GyMMMEd: "E d MMM G y"
+        :GyMMMd: "d MMM G y"
+        :GyMd: "d/M/GGGGG y"
+        :H: HH
+        :Hm: "HH:mm น."
+        :Hms: "HH:mm:ss"
+        :Hmsv: "HH:mm:ss v"
+        :Hmv: "HH:mm v"
+        :M: L
+        :MEd: "E d/M"
+        :MMM: LLL
+        :MMMEEEEd: "EEEEที่ d MMM"
+        :MMMEd: "E d MMM"
+        :MMMMEEEEd: "EEEEที่ d MMMM"
+        :MMMMEd: "E d MMMM"
+        :MMMMW: "สัปดาห์ที่ W ของเดือนMMMM"
+        :MMMMd: "d MMMM"
+        :MMMd: "d MMM"
+        :Md: d/M
+        :d: d
+        :h: h a
+        :hm: "h:mm a"
+        :hms: "h:mm:ss a"
+        :hmsv: "h:mm:ss a v"
+        :hmv: "h:mm น. a v"
+        :mmss: "mm:ss"
+        :ms: "mm:ss"
+        ? !ruby/symbol "y"
+        : "y"
+        :yM: M/y
+        :yMEd: "E d/M/y"
+        :yMMM: "MMM y"
+        :yMMMEEEEd: "EEEEที่ d MMM y"
+        :yMMMEd: "E d MMM y"
+        :yMMMM: "MMMM y"
+        :yMMMMEEEEd: "EEEEที่ d MMMM y"
+        :yMMMMEd: "E d MMMM y"
+        :yMMMMd: "d MMMM y"
+        :yMMMd: "d MMM y"
+        :yMd: d/M/y
+        :yQQQ: "QQQ y"
+        :yQQQQ: "QQQQ G y"
+        :yw: "สัปดาห์ที่ w ของปี Y"
+      :days: 
+        :format: 
+          :abbreviated: 
+            :fri: ศ.
+            :mon: จ.
+            :sat: ส.
+            :sun: อา.
+            :thu: พฤ.
+            :tue: อ.
+            :wed: พ.
+          :narrow: 
+            :fri: ศ
+            :mon: จ
+            :sat: ส
+            :sun: อา
+            :thu: พฤ
+            :tue: อ
+            :wed: พ
+          :short: 
+            :fri: ศ.
+            :mon: จ.
+            :sat: ส.
+            :sun: อา.
+            :thu: พฤ.
+            :tue: อ.
+            :wed: พ.
+          :wide: 
+            :fri: วันศุกร์
+            :mon: วันจันทร์
+            :sat: วันเสาร์
+            :sun: วันอาทิตย์
+            :thu: วันพฤหัสบดี
+            :tue: วันอังคาร
+            :wed: วันพุธ
+        :stand-alone: 
+          :abbreviated: 
+            :fri: ศ.
+            :mon: จ.
+            :sat: ส.
+            :sun: อา.
+            :thu: พฤ.
+            :tue: อ.
+            :wed: พ.
+          :narrow: 
+            :fri: ศ
+            :mon: จ
+            :sat: ส
+            :sun: อา
+            :thu: พฤ
+            :tue: อ
+            :wed: พ
+          :short: 
+            :fri: ศ.
+            :mon: จ.
+            :sat: ส.
+            :sun: อา.
+            :thu: พฤ.
+            :tue: อ.
+            :wed: พ.
+          :wide: 
+            :fri: วันศุกร์
+            :mon: วันจันทร์
+            :sat: วันเสาร์
+            :sun: วันอาทิตย์
+            :thu: วันพฤหัสบดี
+            :tue: วันอังคาร
+            :wed: วันพุธ
+      :eras: 
+        :abbr: 
+          0: "ก่อน ส.ศ."
+          1: ส.ศ.
+        :name: 
+          0: ก่อนสามัญศักราช
+          1: สามัญศักราช
+        :narrow: 
+          0: ก.ส.ศ.
+          1: CE
+      :fields: 
+        :day: วัน
+        :day-narrow: Day
+        :day-short: Day
+        :dayOfYear: วันของปี
+        :dayOfYear-narrow: วันของปี
+        :dayOfYear-short: วันของปี
+        :dayperiod: ช่วงวัน
+        :dayperiod-narrow: ช่วงวัน
+        :dayperiod-short: ช่วงวัน
+        :era: สมัย
+        :era-narrow: สมัย
+        :era-short: สมัย
+        :hour: ชั่วโมง
+        :hour-narrow: ชม.
+        :hour-short: ชม.
+        :minute: นาที
+        :minute-narrow: Minute
+        :minute-short: Minute
+        :month: เดือน
+        :month-narrow: Month
+        :month-short: Month
+        :quarter: ไตรมาส
+        :quarter-narrow: Quarter
+        :quarter-short: Quarter
+        :second: วินาที
+        :second-narrow: วิ
+        :second-short: วิ
+        :week: สัปดาห์
+        :week-narrow: Week
+        :week-short: Week
+        :weekOfMonth: สัปดาห์ของเดือน
+        :weekOfMonth-narrow: สัปดาห์ของเดือน
+        :weekOfMonth-short: สัปดาห์ของเดือน
+        :weekday: วันของสัปดาห์
+        :weekday-narrow: วันของสัปดาห์
+        :weekday-short: วันของสัปดาห์
+        :weekdayOfMonth: วันของเดือน
+        :weekdayOfMonth-narrow: วันของเดือน
+        :weekdayOfMonth-short: วันของเดือน
+        :year: ปี
+        :year-narrow: Year
+        :year-short: Year
+        :zone: เขตเวลา
+        :zone-narrow: เขตเวลา
+        :zone-short: โซน
+      :formats: 
+        :date: 
+          :full: 
+            :pattern: "EEEEที่ d MMMM G y"
+          :long: 
+            :pattern: "d MMMM G y"
+          :medium: 
+            :pattern: "d MMM y"
+          :short: 
+            :pattern: d/M/yy
+        :datetime: 
+          :full: 
+            :pattern: "{{date}} เวลา {{time}}"
+          :long: 
+            :pattern: "{{date}} เวลา {{time}}"
+          :medium: 
+            :pattern: "{{date}} {{time}}"
+          :short: 
+            :pattern: "{{date}} {{time}}"
+        :time: 
+          :full: 
+            :pattern: "H นาฬิกา mm นาที ss วินาที zzzz"
+          :long: 
+            :pattern: "H นาฬิกา mm นาที ss วินาที z"
+          :medium: 
+            :pattern: "HH:mm:ss"
+          :short: 
+            :pattern: "HH:mm"
+      :months: 
+        :format: 
+          :abbreviated: 
+            1: ม.ค.
+            10: ต.ค.
+            11: พ.ย.
+            12: ธ.ค.
+            2: ก.พ.
+            3: มี.ค.
+            4: เม.ย.
+            5: พ.ค.
+            6: มิ.ย.
+            7: ก.ค.
+            8: ส.ค.
+            9: ก.ย.
+          :narrow: 
+            1: ม.ค.
+            10: ต.ค.
+            11: พ.ย.
+            12: ธ.ค.
+            2: ก.พ.
+            3: มี.ค.
+            4: เม.ย.
+            5: พ.ค.
+            6: มิ.ย.
+            7: ก.ค.
+            8: ส.ค.
+            9: ก.ย.
+          :wide: 
+            1: มกราคม
+            10: ตุลาคม
+            11: พฤศจิกายน
+            12: ธันวาคม
+            2: กุมภาพันธ์
+            3: มีนาคม
+            4: เมษายน
+            5: พฤษภาคม
+            6: มิถุนายน
+            7: กรกฎาคม
+            8: สิงหาคม
+            9: กันยายน
+        :stand-alone: 
+          :abbreviated: 
+            1: ม.ค.
+            10: ต.ค.
+            11: พ.ย.
+            12: ธ.ค.
+            2: ก.พ.
+            3: มี.ค.
+            4: เม.ย.
+            5: พ.ค.
+            6: มิ.ย.
+            7: ก.ค.
+            8: ส.ค.
+            9: ก.ย.
+          :narrow: 
+            1: ม.ค.
+            10: ต.ค.
+            11: พ.ย.
+            12: ธ.ค.
+            2: ก.พ.
+            3: มี.ค.
+            4: เม.ย.
+            5: พ.ค.
+            6: มิ.ย.
+            7: ก.ค.
+            8: ส.ค.
+            9: ก.ย.
+          :wide: 
+            1: มกราคม
+            10: ตุลาคม
+            11: พฤศจิกายน
+            12: ธันวาคม
+            2: กุมภาพันธ์
+            3: มีนาคม
+            4: เมษายน
+            5: พฤษภาคม
+            6: มิถุนายน
+            7: กรกฎาคม
+            8: สิงหาคม
+            9: กันยายน
+      :periods: 
+        :format: 
+          :abbreviated: 
+            :afternoon1: ในตอนบ่าย
+            :afternoon2: บ่าย
+            :am: AM
+            :evening1: ในตอนเย็น
+            :evening2: ค่ำ
+            :midnight: เที่ยงคืน
+            :morning1: ในตอนเช้า
+            :night1: กลางคืน
+            :noon: เที่ยง
+            :pm: PM
+          :narrow: 
+            :afternoon1: เที่ยง
+            :afternoon2: บ่าย
+            :am: a
+            :evening1: เย็น
+            :evening2: ค่ำ
+            :midnight: เที่ยงคืน
+            :morning1: เช้า
+            :night1: กลางคืน
+            :noon: เที่ยง
+            :pm: p
+          :wide: 
+            :am: ก่อนเที่ยง
+            :pm: หลังเที่ยง
+        :stand-alone: 
+          :abbreviated: 
+            :afternoon1: ตอนบ่าย
+            :afternoon2: บ่าย
+            :am: ก่อนเที่ยง
+            :evening1: ตอนเย็น
+            :evening2: ค่ำ
+            :morning1: ตอนเช้า
+            :night1: กลางคืน
+            :pm: หลังเที่ยง
+          :narrow: 
+            :afternoon1: ช่วงเที่ยง
+            :afternoon2: บ่าย
+            :am: AM
+            :evening1: เย็น
+            :evening2: ค่ำ
+            :morning1: เช้า
+            :night1: กลางคืน
+            :pm: PM
+          :wide: 
+            :afternoon1: ในตอนบ่าย
+            :afternoon2: บ่าย
+            :am: AM
+            :evening1: ในตอนเย็น
+            :evening2: ค่ำ
+            :morning1: ในตอนเช้า
+            :night1: กลางคืน
+            :pm: PM
+      :quarters: 
+        :format: 
+          :abbreviated: 
+            1: "ไตรมาส 1"
+            2: "ไตรมาส 2"
+            3: "ไตรมาส 3"
+            4: "ไตรมาส 4"
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: "ไตรมาส 1"
+            2: "ไตรมาส 2"
+            3: "ไตรมาส 3"
+            4: "ไตรมาส 4"
+        :stand-alone: 
+          :abbreviated: 
+            1: "ไตรมาส 1"
+            2: "ไตรมาส 2"
+            3: "ไตรมาส 3"
+            4: "ไตรมาส 4"
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: "ไตรมาส 1"
+            2: "ไตรมาส 2"
+            3: "ไตรมาส 3"
+            4: "ไตรมาส 4"

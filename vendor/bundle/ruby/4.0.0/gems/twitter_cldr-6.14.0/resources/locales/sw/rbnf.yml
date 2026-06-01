@@ -1,0 +1,136 @@
+--- 
+:sw: 
+  :rbnf: 
+    :grouping: 
+      - 
+        :ruleset: 
+          - 
+            :rules: 
+              - 
+                :rule: =0.0=;
+                :value: x.x
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 0
+            :type: spellout-numbering-year
+          - 
+            :rules: 
+              - 
+                :rule: =%spellout-cardinal=;
+                :value: 0
+            :type: spellout-numbering
+          - 
+            :rules: 
+              - 
+                :rule: "si nambari;"
+                :value: NaN
+              - 
+                :rule: usio;
+                :value: Inf
+              - 
+                :rule: "kasoro >>;"
+                :value: "-x"
+              - 
+                :rule: "<< nukta >>;"
+                :value: x.x
+              - 
+                :rule: sifuri;
+                :value: 0
+              - 
+                :rule: moja;
+                :value: 1
+              - 
+                :rule: mbili;
+                :value: 2
+              - 
+                :rule: tatu;
+                :value: 3
+              - 
+                :rule: nne;
+                :value: 4
+              - 
+                :rule: tano;
+                :value: 5
+              - 
+                :rule: sita;
+                :value: 6
+              - 
+                :rule: saba;
+                :value: 7
+              - 
+                :rule: nane;
+                :value: 8
+              - 
+                :rule: tisa;
+                :value: 9
+              - 
+                :rule: "kumi[ na >>];"
+                :value: 10
+              - 
+                :rule: "ishirini[ na >>];"
+                :value: 20
+              - 
+                :rule: "thelathini[ na >>];"
+                :value: 30
+              - 
+                :rule: "arobaini[ na >>];"
+                :value: 40
+              - 
+                :rule: "hamsini[ na >>];"
+                :value: 50
+              - 
+                :rule: "sitini[ na >>];"
+                :value: 60
+              - 
+                :rule: "sabini[ na >>];"
+                :value: 70
+              - 
+                :rule: "themanini[ na >>];"
+                :value: 80
+              - 
+                :rule: "tisini[ na >>];"
+                :value: 90
+              - 
+                :rule: "mia <<[ na >>];"
+                :value: 100
+              - 
+                :rule: "elfu <<[, >>];"
+                :value: 1000
+              - 
+                :rule: "milioni <<[, >>];"
+                :value: 1000000
+              - 
+                :rule: "bilioni <<[, >>];"
+                :value: 1000000000
+              - 
+                :rule: "trilioni <<[, >>];"
+                :value: 1000000000000
+              - 
+                :rule: "kvadrilioni <<[, >>];"
+                :value: 1000000000000000
+              - 
+                :rule: "=#,##0.#=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal
+          - 
+            :rules: 
+              - 
+                :rule: "wa kasoro >%spellout-cardinal>;"
+                :value: "-x"
+              - 
+                :rule: =0.0=;
+                :value: x.x
+              - 
+                :rule: "wa sifuri;"
+                :value: 0
+              - 
+                :rule: kwanza;
+                :value: 1
+              - 
+                :rule: pili;
+                :value: 2
+              - 
+                :rule: "wa =%spellout-cardinal=;"
+                :value: 3
+            :type: spellout-ordinal
+        :type: SpelloutRules

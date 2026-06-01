@@ -1,0 +1,339 @@
+--- 
+:ga: 
+  :calendars: 
+    :gregorian: 
+      :additional_formats: 
+        :Bh: "h B"
+        :Bhm: "h:mm B"
+        :Bhms: "h:mm:ss B"
+        :E: ccc
+        :EBhm: "E h:mm B"
+        :EBhms: "E h:mm:ss B"
+        :EHm: "E HH:mm"
+        :EHms: "E HH:mm:ss"
+        :Ed: "E d"
+        :Ehm: "E h:mm a"
+        :Ehms: "E h:mm:ss a"
+        :Gy: "y G"
+        :GyMMM: "MMM y G"
+        :GyMMMEd: "E d MMM y G"
+        :GyMMMd: "d MMM y G"
+        :GyMd: "dd/MM/y GGGGG"
+        :H: HH
+        :Hm: "HH:mm"
+        :Hms: "HH:mm:ss"
+        :Hmsv: "HH:mm:ss v"
+        :Hmv: "HH:mm v"
+        :M: LL
+        :MEd: "E dd/MM"
+        :MMM: LLL
+        :MMMEd: "E d MMM"
+        :MMMMW: "'seachtain' 'a' W 'i' MMMM"
+        :MMMMd: "d MMMM"
+        :MMMd: "d MMM"
+        :Md: dd/MM
+        :d: d
+        :h: h a
+        :hm: "h:mm a"
+        :hms: "h:mm:ss a"
+        :hmsv: "h:mm:ss a v"
+        :hmv: "h:mm a v"
+        :ms: "mm:ss"
+        ? !ruby/symbol "y"
+        : "y"
+        :yM: MM/y
+        :yMEd: "E dd/MM/y"
+        :yMMM: "MMM y"
+        :yMMMEd: "E d MMM y"
+        :yMMMM: "MMMM y"
+        :yMMMd: "d MMM y"
+        :yMd: dd/MM/y
+        :yQQQ: "QQQ y"
+        :yQQQQ: "QQQQ y"
+        :yw: "'seachtain' 'a' w 'in' Y"
+      :days: 
+        :format: 
+          :abbreviated: 
+            :fri: Aoine
+            :mon: Luan
+            :sat: Sath
+            :sun: Domh
+            :thu: Déar
+            :tue: Máirt
+            :wed: Céad
+          :narrow: 
+            :fri: A
+            :mon: L
+            :sat: S
+            :sun: D
+            :thu: D
+            :tue: M
+            :wed: C
+          :short: 
+            :fri: Ao
+            :mon: Lu
+            :sat: Sa
+            :sun: Do
+            :thu: Dé
+            :tue: Má
+            :wed: Cé
+          :wide: 
+            :fri: "Dé hAoine"
+            :mon: "Dé Luain"
+            :sat: "Dé Sathairn"
+            :sun: "Dé Domhnaigh"
+            :thu: Déardaoin
+            :tue: "Dé Máirt"
+            :wed: "Dé Céadaoin"
+        :stand-alone: 
+          :abbreviated: 
+            :fri: Aoine
+            :mon: Luan
+            :sat: Sath
+            :sun: Domh
+            :thu: Déar
+            :tue: Máirt
+            :wed: Céad
+          :narrow: 
+            :fri: A
+            :mon: L
+            :sat: S
+            :sun: D
+            :thu: D
+            :tue: M
+            :wed: C
+          :short: 
+            :fri: Ao
+            :mon: Lu
+            :sat: Sa
+            :sun: Do
+            :thu: Dé
+            :tue: Má
+            :wed: Cé
+          :wide: 
+            :fri: "Dé hAoine"
+            :mon: "Dé Luain"
+            :sat: "Dé Sathairn"
+            :sun: "Dé Domhnaigh"
+            :thu: Déardaoin
+            :tue: "Dé Máirt"
+            :wed: "Dé Céadaoin"
+      :eras: 
+        :abbr: 
+          0: RCR
+          1: CR
+        :name: 
+          0: "Roimh Chomh-Ré"
+          1: Comh-Ré
+        :narrow: 
+          0: BCE
+          1: CE
+      :fields: 
+        :day: lá
+        :day-narrow: Day
+        :day-short: lá
+        :dayOfYear: "lá den bhliain"
+        :dayOfYear-narrow: "lá den bhl."
+        :dayOfYear-short: "lá den bhl."
+        :dayperiod: a.m./p.m.
+        :dayperiod-narrow: a.m./p.m.
+        :dayperiod-short: a.m./p.m.
+        :era: ré
+        :era-narrow: ré
+        :era-short: ré
+        :hour: uair
+        :hour-narrow: u
+        :hour-short: Hour
+        :minute: nóiméad
+        :minute-narrow: "n"
+        :minute-short: nóim.
+        :month: mí
+        :month-narrow: Month
+        :month-short: Month
+        :quarter: ráithe
+        :quarter-narrow: Quarter
+        :quarter-short: ráithe
+        :second: soicind
+        :second-narrow: s
+        :second-short: soic.
+        :week: seachtain
+        :week-narrow: Week
+        :week-short: scht.
+        :weekOfMonth: "seachtain den mhí"
+        :weekOfMonth-narrow: "scht. den mhí"
+        :weekOfMonth-short: "scht. den mhí"
+        :weekday: "lá den tseachtain"
+        :weekday-narrow: "lá den tscht."
+        :weekday-short: "lá den tscht."
+        :weekdayOfMonth: "lá den tseachtain sa mhí"
+        :weekdayOfMonth-narrow: "lá oib. den mhí"
+        :weekdayOfMonth-short: "lá oib. den mhí"
+        :year: bliain
+        :year-narrow: Year
+        :year-short: bl.
+        :zone: "crios ama"
+        :zone-narrow: crios
+        :zone-short: crios
+      :formats: 
+        :date: 
+          :full: 
+            :pattern: "EEEE d MMMM y"
+          :long: 
+            :pattern: "d MMMM y"
+          :medium: 
+            :pattern: "d MMM y"
+          :short: 
+            :pattern: dd/MM/y
+        :datetime: 
+          :full: 
+            :pattern: "{{date}} 'ag' {{time}}"
+          :long: 
+            :pattern: "{{date}} 'ag' {{time}}"
+          :medium: 
+            :pattern: "{{date}}, {{time}}"
+          :short: 
+            :pattern: "{{date}}, {{time}}"
+        :time: 
+          :full: 
+            :pattern: "HH:mm:ss zzzz"
+          :long: 
+            :pattern: "HH:mm:ss z"
+          :medium: 
+            :pattern: "HH:mm:ss"
+          :short: 
+            :pattern: "HH:mm"
+      :months: 
+        :format: 
+          :abbreviated: 
+            1: Ean
+            10: DFómh
+            11: Samh
+            12: Noll
+            2: Feabh
+            3: Márta
+            4: Aib
+            5: Beal
+            6: Meith
+            7: Iúil
+            8: Lún
+            9: MFómh
+          :narrow: 
+            1: E
+            10: D
+            11: S
+            12: "N"
+            2: F
+            3: M
+            4: A
+            5: B
+            6: M
+            7: I
+            8: L
+            9: M
+          :wide: 
+            1: Eanáir
+            10: "Deireadh Fómhair"
+            11: Samhain
+            12: Nollaig
+            2: Feabhra
+            3: Márta
+            4: Aibreán
+            5: Bealtaine
+            6: Meitheamh
+            7: Iúil
+            8: Lúnasa
+            9: "Meán Fómhair"
+        :stand-alone: 
+          :abbreviated: 
+            1: Ean
+            10: DFómh
+            11: Samh
+            12: Noll
+            2: Feabh
+            3: Márta
+            4: Aib
+            5: Beal
+            6: Meith
+            7: Iúil
+            8: Lún
+            9: MFómh
+          :narrow: 
+            1: E
+            10: D
+            11: S
+            12: "N"
+            2: F
+            3: M
+            4: A
+            5: B
+            6: M
+            7: I
+            8: L
+            9: M
+          :wide: 
+            1: Eanáir
+            10: "Deireadh Fómhair"
+            11: Samhain
+            12: Nollaig
+            2: Feabhra
+            3: Márta
+            4: Aibreán
+            5: Bealtaine
+            6: Meitheamh
+            7: Iúil
+            8: Lúnasa
+            9: "Meán Fómhair"
+      :periods: 
+        :format: 
+          :abbreviated: 
+            :am: r.n.
+            :pm: i.n.
+          :narrow: 
+            :am: r.n.
+            :pm: i.n.
+          :wide: 
+            :am: r.n.
+            :pm: i.n.
+        :stand-alone: 
+          :abbreviated: 
+            :am: r.n.
+            :pm: i.n.
+          :narrow: 
+            :am: r.n.
+            :pm: i.n.
+          :wide: 
+            :am: r.n.
+            :pm: i.n.
+      :quarters: 
+        :format: 
+          :abbreviated: 
+            1: R1
+            2: R2
+            3: R3
+            4: R4
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: "1ú ráithe"
+            2: "2ú ráithe"
+            3: "3ú ráithe"
+            4: "4ú ráithe"
+        :stand-alone: 
+          :abbreviated: 
+            1: R1
+            2: R2
+            3: R3
+            4: R4
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: "1ú ráithe"
+            2: "2ú ráithe"
+            3: "3ú ráithe"
+            4: "4ú ráithe"

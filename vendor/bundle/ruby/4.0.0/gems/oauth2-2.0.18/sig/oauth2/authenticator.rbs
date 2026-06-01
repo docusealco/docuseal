@@ -1,0 +1,22 @@
+module OAuth2
+  class Authenticator
+    include OAuth2::FilteredAttributes
+
+    attr_reader mode: (Symbol | String)
+    attr_reader id: String?
+    attr_reader secret: String?
+
+    def initialize: (String? id, String? secret, (Symbol | String) mode) -> void
+
+    def apply: (Hash[untyped, untyped]) -> Hash[untyped, untyped]
+
+    def self.encode_basic_auth: (String, String) -> String
+
+    private
+
+    def apply_params_auth: (Hash[untyped, untyped]) -> Hash[untyped, untyped]
+    def apply_client_id: (Hash[untyped, untyped]) -> Hash[untyped, untyped]
+    def apply_basic_auth: (Hash[untyped, untyped]) -> Hash[untyped, untyped]
+    def basic_auth_header: () -> Hash[String, String]
+  end
+end

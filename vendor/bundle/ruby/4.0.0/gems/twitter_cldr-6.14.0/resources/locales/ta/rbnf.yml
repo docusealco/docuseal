@@ -1,0 +1,241 @@
+--- 
+:ta: 
+  :rbnf: 
+    :grouping: 
+      - 
+        :ruleset: 
+          - 
+            :rules: 
+              - 
+                :rule: =0.0=;
+                :value: x.x
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 0
+            :type: spellout-numbering-year
+          - 
+            :rules: 
+              - 
+                :rule: =%spellout-cardinal=;
+                :value: 0
+            :type: spellout-numbering
+          - 
+            :rules: 
+              - 
+                :rule: "எதிர்ம >>;"
+                :value: "-x"
+              - 
+                :rule: "<< புள்ளி >>;"
+                :value: x.x
+              - 
+                :rule: பூஜ்யம்;
+                :value: 0
+              - 
+                :rule: ஒன்று;
+                :value: 1
+              - 
+                :rule: இரண்டு;
+                :value: 2
+              - 
+                :rule: மூன்று;
+                :value: 3
+              - 
+                :rule: நான்கு;
+                :value: 4
+              - 
+                :rule: ஐந்து;
+                :value: 5
+              - 
+                :rule: ஆறு;
+                :value: 6
+              - 
+                :rule: ஏழு;
+                :value: 7
+              - 
+                :rule: எட்டு;
+                :value: 8
+              - 
+                :rule: ஒன்பது;
+                :value: 9
+              - 
+                :rule: பத்து;
+                :value: 10
+              - 
+                :rule: பதினொன்று;
+                :value: 11
+              - 
+                :rule: பன்னிரண்டு;
+                :value: 12
+              - 
+                :rule: பதின்மூன்று;
+                :value: 13
+              - 
+                :rule: பதினான்கு;
+                :value: 14
+              - 
+                :rule: பதினைந்து;
+                :value: 15
+              - 
+                :rule: பதினாறு;
+                :value: 16
+              - 
+                :rule: பதினேழு;
+                :value: 17
+              - 
+                :rule: பதினெட்டு;
+                :value: 18
+              - 
+                :rule: பத்தொன்பது;
+                :value: 19
+              - 
+                :rule: "இருபது[ >>];"
+                :value: 20
+              - 
+                :rule: "முப்பது[ >>];"
+                :value: 30
+              - 
+                :rule: "நாற்பது[ >>];"
+                :value: 40
+              - 
+                :rule: "ஐம்பது[ >>];"
+                :value: 50
+              - 
+                :rule: "அறுபது[ >>];"
+                :value: 60
+              - 
+                :rule: "எழுபது[ >>];"
+                :value: 70
+              - 
+                :rule: "எண்பது[ >>];"
+                :value: 80
+              - 
+                :rule: "தொண்ணூறு[ >>];"
+                :value: 90
+              - 
+                :rule: "நூறு[ >>];"
+                :value: 100
+              - 
+                :rule: "இருநூறு[ >>];"
+                :value: 200
+              - 
+                :rule: "முந்நூறு[ >>];"
+                :value: 300
+              - 
+                :rule: "நாநூறூ[ >>];"
+                :value: 400
+              - 
+                :rule: "ஐநூறு[ >>];"
+                :value: 500
+              - 
+                :rule: "அறுநூறு[ >>];"
+                :value: 600
+              - 
+                :rule: "எழுநூறு[ >>];"
+                :value: 700
+              - 
+                :rule: "எண்நூறு[ >>];"
+                :value: 800
+              - 
+                :rule: "தொள்ளாயிரம்[ >>];"
+                :value: 900
+              - 
+                :rule: "<< ஆயிரம்[ >>];"
+                :value: 1000
+              - 
+                :rule: "<< லட்சம்[ >>];"
+                :value: 100000
+              - 
+                :rule: "<< கோடி[ >>];"
+                :value: 10000000
+              - 
+                :rule: "=#,##,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal
+          - 
+            :rules: 
+              - 
+                :rule: "எதிர்ம >>;"
+                :value: "-x"
+              - 
+                :rule: "=#,##,##0.#=;"
+                :value: x.x
+              - 
+                :rule: பூஜ்யம்;
+                :value: 0
+              - 
+                :rule: முதலாவது;
+                :value: 1
+              - 
+                :rule: இரண்டாவது;
+                :value: 2
+              - 
+                :rule: மூன்றாவது;
+                :value: 3
+              - 
+                :rule: நான்காவது;
+                :value: 4
+              - 
+                :rule: ஐந்தாவது;
+                :value: 5
+              - 
+                :rule: ஆறாவது;
+                :value: 6
+              - 
+                :rule: ஏழாவது;
+                :value: 7
+              - 
+                :rule: எட்டாவது;
+                :value: 8
+              - 
+                :rule: ஒன்பதாவது;
+                :value: 9
+              - 
+                :rule: பத்தாவது;
+                :value: 10
+              - 
+                :rule: பதினொன்றாவது;
+                :value: 11
+              - 
+                :rule: பன்னிரண்டாவது;
+                :value: 12
+              - 
+                :rule: பதிமூன்றாவது;
+                :value: 13
+              - 
+                :rule: பதிநான்காவது;
+                :value: 14
+              - 
+                :rule: பதினைந்தாவது;
+                :value: 15
+              - 
+                :rule: பதினாறாவது;
+                :value: 16
+              - 
+                :rule: பதினேழாவது;
+                :value: 17
+              - 
+                :rule: பதினெட்டாவது;
+                :value: 18
+              - 
+                :rule: பத்தொன்பதாவது;
+                :value: 19
+              - 
+                :rule: இருபதாவது;
+                :value: 20
+              - 
+                :rule: "=#,##,##0=ாவது;"
+                :value: 21
+            :type: spellout-ordinal
+        :type: SpelloutRules
+      - 
+        :ruleset: 
+          - 
+            :rules: 
+              - 
+                :rule: −>>;
+                :value: "-x"
+              - 
+                :rule: "=#,##,##0=.;"
+                :value: 0
+            :type: digits-ordinal
+        :type: OrdinalRules

@@ -1,0 +1,243 @@
+---
+require:
+  - rubocop-performance
+  - rubocop-rspec
+
+# Built-in config:
+# https://github.com/bbatsov/rubocop/blob/master/config/default.yml
+
+# We do not typically use/need class documentation
+Style/Documentation:
+  Enabled: false
+
+AllCops:
+  NewCops: enable
+  DisplayCopNames: true
+  DisplayStyleGuide: true
+  TargetRubyVersion: 2.6
+  SuggestExtensions: false
+  Exclude:
+    - 'bin/*'
+    - 'node_modules/**/*'
+    - 'bower_components/**/*'
+    - 'tmp/**/*'
+    - 'vendor/**/*'
+    - 'bin/**/*'
+    - 'doc/**/*'
+
+Layout/LineLength:
+  Max: 120
+
+Metrics/ModuleLength:
+  Exclude:
+    - 'spec/**/*_spec.rb'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb'
+
+# We generally don't want methods longer than 20 lines, except in migrations where it's probably okay.
+Metrics/MethodLength:
+  Max: 20
+  Exclude:
+    - 'db/migrate/**/*.rb'
+    - 'spec/**/*'
+
+# This cop complains when you have variables named things like:
+#     address_line_1
+#     address_line_2
+# etc.
+Naming/VariableNumber:
+  Enabled: false
+
+# Just always use `raise` and stop thinking about it.
+Style/SignalException:
+  EnforcedStyle: only_raise
+
+# We think that:
+#   array = [
+#     :value
+#   ]
+#   and_in_a_method_call([
+#     :value
+#   ])
+# Looks better than:
+#   value = [
+#     :value
+#   ]
+#   but_in_a_method_call([
+#                          :its_like_this
+#                         ])
+Layout/FirstArrayElementIndentation:
+  EnforcedStyle: consistent
+
+# We think that:
+#   hash = {
+#     key: :value
+#   }
+#   and_in_a_method_call({
+#     no: :difference
+#   })
+# Looks better than:
+#   hash = {
+#     key: :value
+#   }
+#   but_in_a_method_call({
+#                          its_like: :this
+#                         })
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent
+
+# We think that:
+#     {
+#       foo: :bar
+#       baz: :bip
+#     }
+# Looks better than:
+#     { foo: :bar
+#       baz: :bip }
+Layout/MultilineHashBraceLayout:
+  Enabled: false
+
+# We think that:
+#    foo(
+#      bar: :baz,
+#      bip: :whizz
+#    )
+# Looks better than:
+#    foo(bar: baz,
+#        bip: :whizz)
+Layout/MultilineMethodCallBraceLayout:
+  Enabled: false
+
+# Just always use double quotes and stop thinking about it.
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: double_quotes
+
+# Ruby 2.4+ has a magic comment that makes all strings frozen and Rubocop wants to put it
+# at the top of every. single. file. We decided we didn't want that - for now.
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# We usually don't want you to use semicolons in Ruby, except in specs where brevity is
+# often more valued than readability.
+Style/Semicolon:
+  AllowAsExpressionSeparator: true
+  Exclude:
+    - 'spec/**/*.rb'
+
+# Single line method definitions are totally fine, and often more readable, consider:
+#    class WidgetsPolicy
+#      def create?; false; end
+#      def index?;  true;  end
+#      def show?;   true;  end
+#      def update?; false; end
+#      def delete?; false; end
+#    end
+Style/SingleLineMethods:
+  Enabled: false
+
+# We want you to put a blank line between method definitions, the only exception being
+# if you're defining a bunch of single-line methods as above.
+Layout/EmptyLineBetweenDefs:
+  AllowAdjacentOneLineDefs: true
+
+Naming/FileName:
+  Exclude:
+    - '**/Gemfile'
+    - '**/Rakefile'
+    - '**/Berksfile'
+
+# Disable preference for Ruby's new safe navigation operator `&.` because it
+# usually comes at the cost of expressiveness in the simple case:
+#
+#     -      coupon_usage.destroy if coupon_usage
+#     +      coupon_usage&.destroy
+#
+# And guides you towards Law of Demeter violations in the extreme case:
+#
+#     result&.data&.attributes&.payments&.first&.payment_token
+#
+# Disabling this cop doesn't stop you from using it, but be prepared to defend
+# it in code review if you do.
+Style/SafeNavigation:
+  Enabled: false
+
+# Ruby supports two styles of string template formatting.
+# "annotated" - format("%<greeting>s", greeting: "Hello")
+# "template"  - format("%{greeting}", greeting: "Hello")
+#
+# While the annotated format is more descriptive, it also comes in a style that is
+# significantly harder for a developer to parse. The template style is easy to read, understand,
+# and is consistent with formatting with (for example), interpolation (#{}).
+Style/FormatStringToken:
+  EnforcedStyle: template
+
+# This syntax is a deliberate idiom in rspec
+# bbatsov endorses disabling it for rspec
+# https://github.com/bbatsov/rubocop/issues/4222#issuecomment-290722962
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - 'spec/**/*'
+
+# https://rubocop.readthedocs.io/en/latest/cops_style/
+Style/HashTransformKeys:
+  Enabled: false
+
+# https://rubocop.readthedocs.io/en/latest/cops_style/
+Style/HashTransformValues:
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 18
+  Exclude:
+    - 'spec/**/*'
+
+Metrics/ClassLength:
+  Exclude:
+    - 'spec/**/*'
+
+Naming/MemoizedInstanceVariableName:
+  EnforcedStyleForLeadingUnderscores: optional
+
+Performance/Casecmp:
+  Enabled: false
+
+Style/BarePercentLiterals:
+  EnforcedStyle: percent_q
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/DoubleNegation:
+  Enabled: false
+
+Style/EmptyMethod:
+  Enabled: false
+
+Style/NumericPredicate:
+  Enabled: false
+
+Style/TrivialAccessors:
+  AllowPredicates: true
+
+RSpec:
+  Language:
+    Expectations:
+      - assert_match
+
+RSpec/MultipleExpectations:
+  Max: 10
+
+RSpec/ExampleLength:
+  Max: 30
+
+RSpec/RepeatedExample:
+  Exclude:
+    - 'spec/policies/**'
+
+RSpec/MultipleMemoizedHelpers:
+  Max: 10

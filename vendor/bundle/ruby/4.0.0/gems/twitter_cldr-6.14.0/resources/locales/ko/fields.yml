@@ -1,0 +1,171 @@
+--- 
+:ko: 
+  :fields: 
+    :day: 
+      :display_name: 일
+      :relative: 
+        -1: 어제
+        -2: 그저께
+        0: 오늘
+        1: 내일
+        2: 모레
+      :relative_time: 
+        :future: 
+          :other: "{0}일 후"
+        :past: 
+          :other: "{0}일 전"
+    :dayOfYear: 
+      :display_name: "년의 일"
+    :dayperiod: 
+      :display_name: 오전/오후
+    :era: 
+      :display_name: 연호
+    :fri: 
+      :relative: 
+        -1: "지난 금요일"
+        0: "이번 금요일"
+        1: "다음 금요일"
+      :relative_time: 
+        :future: 
+          :other: "{0}주 후 금요일"
+        :past: 
+          :other: "{0}주 전 금요일"
+    :hour: 
+      :display_name: 시
+      :relative: 
+        0: "현재 시간"
+      :relative_time: 
+        :future: 
+          :other: "{0}시간 후"
+        :past: 
+          :other: "{0}시간 전"
+    :minute: 
+      :display_name: 분
+      :relative: 
+        0: "현재 분"
+      :relative_time: 
+        :future: 
+          :other: "{0}분 후"
+        :past: 
+          :other: "{0}분 전"
+    :mon: 
+      :relative: 
+        -1: "지난 월요일"
+        0: "이번 월요일"
+        1: "다음 월요일"
+      :relative_time: 
+        :future: 
+          :other: "{0}주 후 월요일"
+        :past: 
+          :other: "{0}주 전 월요일"
+    :month: 
+      :display_name: 월
+      :relative: 
+        -1: 지난달
+        0: "이번 달"
+        1: "다음 달"
+      :relative_time: 
+        :future: 
+          :other: "{0}개월 후"
+        :past: 
+          :other: "{0}개월 전"
+    :quarter: 
+      :display_name: 분기
+      :relative: 
+        -1: "지난 분기"
+        0: "이번 분기"
+        1: "다음 분기"
+      :relative_time: 
+        :future: 
+          :other: "{0}분기 후"
+        :past: 
+          :other: "{0}분기 전"
+    :sat: 
+      :relative: 
+        -1: "지난 토요일"
+        0: "이번 토요일"
+        1: "다음 토요일"
+      :relative_time: 
+        :future: 
+          :other: "{0}주 후 토요일"
+        :past: 
+          :other: "{0}주 전 토요일"
+    :second: 
+      :display_name: 초
+      :relative: 
+        0: 지금
+      :relative_time: 
+        :future: 
+          :other: "{0}초 후"
+        :past: 
+          :other: "{0}초 전"
+    :sun: 
+      :relative: 
+        -1: "지난 일요일"
+        0: "이번 일요일"
+        1: "다음 일요일"
+      :relative_time: 
+        :future: 
+          :other: "{0}주 후 일요일"
+        :past: 
+          :other: "{0}주 전 일요일"
+    :thu: 
+      :relative: 
+        -1: "지난 목요일"
+        0: "이번 목요일"
+        1: "다음 목요일"
+      :relative_time: 
+        :future: 
+          :other: "{0}주 후 목요일"
+        :past: 
+          :other: "{0}주 전 목요일"
+    :tue: 
+      :relative: 
+        -1: "지난 화요일"
+        0: "이번 화요일"
+        1: "다음 화요일"
+      :relative_time: 
+        :future: 
+          :other: "{0}주 후 화요일"
+        :past: 
+          :other: "{0}주 전 화요일"
+    :wed: 
+      :relative: 
+        -1: "지난 수요일"
+        0: "이번 수요일"
+        1: "다음 수요일"
+      :relative_time: 
+        :future: 
+          :other: "{0}주 후 수요일"
+        :past: 
+          :other: "{0}주 전 수요일"
+    :week: 
+      :display_name: 주
+      :relative: 
+        -1: 지난주
+        0: "이번 주"
+        1: "다음 주"
+      :relative_time: 
+        :future: 
+          :other: "{0}주 후"
+        :past: 
+          :other: "{0}주 전"
+    :weekOfMonth: 
+      :display_name: "월의 주"
+    :weekday: 
+      :display_name: 요일
+    :weekdayOfMonth: 
+      :display_name: "월의 평일"
+    :year: 
+      :display_name: 년
+      :relative: 
+        -1: 작년
+        0: 올해
+        1: 내년
+      :relative_time: 
+        :future: 
+          :other: "{0}년 후"
+        :past: 
+          :other: "{0}년 전"
+    :zone: 
+      :display_name: 시간대

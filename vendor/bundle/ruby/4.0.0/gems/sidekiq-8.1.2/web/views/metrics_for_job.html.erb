@@ -1,0 +1,58 @@
+<%= script_tag "javascripts/chart.min.js" %>
+<%= script_tag "javascripts/chartjs-plugin-annotation.min.js" %>
+<%= script_tag "javascripts/chartjs-adapter-date-fns.min.js" %>
+<%= script_tag "javascripts/base-charts.js" %>
+
+<%
+  job_result = @query_result.job_results[@name]
+  hist_totals = job_result.hist.values.first.zip(*job_result.hist.values[1..-1]).map(&:sum).reverse
+  bucket_labels = Sidekiq::Metrics::Histogram::LABELS
+  bucket_intervals = Sidekiq::Metrics::Histogram::BUCKET_INTERVALS
+%>
+<section>
+  <% if job_result.totals["s"] > 0 %>
+    <header>
+      <h1>
+        <a href="<%= root_path %>metrics?period=<%= @period %>"><%= t('Metrics') %></a> /
+        <%= h @name %>
+        <a target="blank" href="https://github.com/sidekiq/sidekiq/wiki/Metrics"><span class="info-circle" title="Click to learn more about metrics">?</span></a>
+      </h1>
+      <%= erb :_metrics_period_select, locals: { periods: @periods, period: @period, path: "#{root_path}metrics/#{@name}" } %>
+    </header>
+
+    <canvas id="hist-totals-chart">
+      <%= to_json({
+        series: hist_totals,
+        labels: bucket_labels,
+        xLabel: t('ExecutionTime'),
+        yLabel: t('Jobs'),
+        units: t('Jobs').downcase,
+      }) %>
+    </canvas>
+
+    <canvas id="hist-bubble-chart">
+      <%= to_json({
+        hist: job_result.hist,
+        marks: @query_result.marks.map { |m| [m.bucket, m.label] },
+        starts_at: @query_result.starts_at.iso8601,
+        ends_at: @query_result.ends_at.iso8601,
+        histIntervals: bucket_intervals,
+        yLabel: t('ExecutionTime'),
+        markLabel: t('Deploy'),
+        yUnits: t('Seconds').downcase,
+        zUnits: t('Jobs').downcase,
+      }) %>
+    </canvas>
+
+  <!--p><small>Data from <%= @query_result.starts_at %> to <%= @query_result.ends_at %></small></p-->
+  <% else %>
+    <header>
+      <h1>
+        <a href="<%= root_path %>/metrics"><%= t('Metrics') %></a> /
+        <%= h @name %>
+      </h1>
+    </header>
+    <div class="alert alert-success"><%= t('NoJobMetricsFound') %></div>
+  <% end %>
+</section>
+<%= script_tag "javascripts/metrics.js" %>

@@ -14,8 +14,15 @@ Rails.application.routes.draw do
   get 'up' => 'rails/health#show'
   get 'manifest' => 'pwa#manifest'
 
-  devise_for :users, path: '/', only: %i[sessions passwords],
-                     controllers: { sessions: 'sessions', passwords: 'passwords' }
+  # User is always :omniauthable (see app/models/user.rb); the strategy is
+  # registered with a setup proc in config/initializers/devise.rb that pulls
+  # live credentials from ENV or the database at request time.
+  devise_for :users, path: '/', only: %i[sessions passwords omniauth_callbacks],
+                     controllers: {
+                       sessions: 'sessions',
+                       passwords: 'passwords',
+                       omniauth_callbacks: 'users/omniauth_callbacks'
+                     }
 
   devise_scope :user do
     resource :invitation, only: %i[update] do
@@ -172,13 +179,18 @@ Rails.application.routes.draw do
     resources :download, only: %i[index], controller: 'submitters_download', constraints: { submitter_id: /\d+/ }
     resources :download, only: %i[index], controller: 'submit_form_completed_download'
     resources :send_email, only: %i[create], controller: 'submitters_send_email'
+    resources :send_sms, only: %i[create], controller: 'submitters_send_sms'
   end
 
   scope '/settings', as: :settings do
     unless Wabosign.multitenant?
       resources :storage, only: %i[index create], controller: 'storage_settings'
       resources :search_entries_reindex, only: %i[create]
-      resources :sms, only: %i[index], controller: 'sms_settings'
+      resources :sms, only: %i[index create], controller: 'sms_settings' do
+        collection do
+          post :test_message
+        end
+      end
       resources :mcp, only: %i[index new create destroy], controller: 'mcp_settings'
     end
     if Wabosign.demo? || !Wabosign.multitenant?
@@ -186,7 +198,7 @@ Rails.application.routes.draw do
       resource :reveal_access_token, only: %i[show create], controller: 'reveal_access_token'
     end
     resources :email, only: %i[index create], controller: 'email_smtp_settings'
-    resources :sso, only: %i[index], controller: 'sso_settings'
+    resources :sso, only: %i[index create], controller: 'sso_settings'
     resources :notifications, only: %i[index create], controller: 'notifications_settings'
     resource :esign, only: %i[show create new update destroy], controller: 'esign_settings'
     resources :users, only: %i[index]
@@ -195,6 +207,7 @@ Rails.application.routes.draw do
     resources :integration_users, only: %i[index], path: 'users/:status', controller: 'users',
                                   defaults: { status: :integration }
     resource :personalization, only: %i[show create], controller: 'personalization_settings'
+    resource :account_logo, only: %i[create destroy], controller: 'account_logo'
     resources :webhooks, only: %i[index show new create update destroy], controller: 'webhook_settings' do
       post :resend
 

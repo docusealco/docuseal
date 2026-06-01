@@ -1,0 +1,1299 @@
+--- 
+:et: 
+  :currencies: 
+    :ADP: 
+      :name: "Andorra peseeta"
+      :one: "Andorra peseeta"
+      :other: "Andorra peseetat"
+    :AED: 
+      :name: "Araabia Ühendemiraatide dirhem"
+      :one: "Araabia Ühendemiraatide dirhem"
+      :other: "Araabia Ühendemiraatide dirhemit"
+    :AFA: 
+      :name: "Afganistani afgaani (1927–2002)"
+      :one: "Afganistani afgaani (1927–2002)"
+      :other: "Afganistani afgaanit (1927–2002)"
+    :AFN: 
+      :name: "Afganistani afgaani"
+      :narrow_symbol: ؋
+      :one: "Afganistani afgaani"
+      :other: "Afganistani afgaanit"
+      :symbol: ؋
+    :ALK: 
+      :name: "Albaania lekk (1946–1965)"
+      :one: "Albaania lekk (1946–1965)"
+      :other: "Albaania lekki (1946–1965)"
+    :ALL: 
+      :name: "Albaania lekk"
+      :one: "Albaania lekk"
+      :other: "Albaania lekki"
+    :AMD: 
+      :name: "Armeenia dramm"
+      :narrow_symbol: ֏
+      :one: "Armeenia dramm"
+      :other: "Armeenia drammi"
+      :symbol: ֏
+    :ANG: 
+      :name: "Hollandi Antillide kulden"
+      :one: "Hollandi Antillide kulden"
+      :other: "Hollandi Antillide kuldnat"
+    :AOA: 
+      :name: "Angola kvanza"
+      :narrow_symbol: Kz
+      :one: "Angola kvanza"
+      :other: "Angola kvanzat"
+      :symbol: Kz
+    :AOK: 
+      :name: "Angola kvanza (1977–1990)"
+      :one: "Angola kvanza (1977–1990)"
+      :other: "Angola kvanzat (1977–1990)"
+    :AON: 
+      :name: "Angola kvanza (1990–2000)"
+      :one: "Angola kvanza (1990–2000)"
+      :other: "Angola kvanzat (1990–2000)"
+    :AOR: 
+      :name: "Angola reformitud kvanza, 1995–1999"
+      :one: "Angola reformitud kvanza, 1995–1999"
+    :ARA: 
+      :name: "Argentina austral"
+      :one: "Argentina austral"
+    :ARM: 
+      :name: "Argentina peeso (1881–1970)"
+      :one: "Argentina peeso (1881–1970)"
+      :other: "Argentina peesot (1881–1970)"
+    :ARP: 
+      :name: "Argentina peeso (1983–1985)"
+      :one: "Argentina peeso (1983–1985)"
+      :other: "Argentina peesot (1983–1985)"
+    :ARS: 
+      :name: "Argentina peeso"
+      :narrow_symbol: $
+      :one: "Argentina peeso"
+      :other: "Argentina peesot"
+      :symbol: $
+    :ATS: 
+      :name: "Austria šilling"
+      :one: "Austria šilling"
+      :other: "Austria šillingit"
+    :AUD: 
+      :name: "Austraalia dollar"
+      :narrow_symbol: $
+      :one: "Austraalia dollar"
+      :other: "Austraalia dollarit"
+      :symbol: AU$
+    :AWG: 
+      :name: "Aruba kulden"
+      :one: "Aruba kulden"
+      :other: "Aruba kuldnat"
+    :AZM: 
+      :name: "Aserbaidžaani manat (1993–2006)"
+      :one: "Aserbaidžaani manat (1993–2006)"
+      :other: "Aserbaidžaani manatit (1993–2006)"
+    :AZN: 
+      :name: "Aserbaidžaani manat"
+      :narrow_symbol: ₼
+      :one: "Aserbaidžaani manat"
+      :other: "Aserbaidžaani manatit"
+      :symbol: ₼
+    :BAD: 
+      :name: "Bosnia ja Hertsegoviina dinaar (1992–1994)"
+      :one: "Bosnia ja Hertsegoviina dinaar (1992–1994)"
+      :other: "Bosnia ja Hertsegoviina dinaari (1992–1994)"
+    :BAM: 
+      :name: "Bosnia ja Hertsegoviina konverteeritav mark"
+      :narrow_symbol: KM
+      :one: "Bosnia ja Hertsegoviina konverteeritav mark"
+      :other: "Bosnia ja Hertsegoviina konverteeritavat marka"
+      :symbol: KM
+    :BAN: 
+      :name: "Bosnia ja Hertsegoviina uus dinaar (1994–1997)"
+      :one: "Bosnia ja Hertsegoviina uus dinaar (1994–1997)"
+      :other: "Bosnia ja Hertsegoviina uut dinaari (1994–1997)"
+    :BBD: 
+      :name: "Barbadose dollar"
+      :narrow_symbol: $
+      :one: "Barbadose dollar"
+      :other: "Barbadose dollarit"
+      :symbol: $
+    :BDT: 
+      :name: "Bangladeshi taka"
+      :narrow_symbol: ৳
+      :one: "Bangladeshi taka"
+      :other: "Bangladeshi takat"
+      :symbol: ৳
+    :BEC: 
+      :name: "Belgia konverteeritav frank"
+      :one: "Belgia konverteeritav frank"
+      :other: "Belgia konverteeritavat franki"
+    :BEF: 
+      :name: "Belgia frank"
+      :one: "Belgia frank"
+      :other: "Belgia franki"
+    :BEL: 
+      :name: "Belgia arveldusfrank"
+      :one: "Belgia arveldusfrank"
+    :BGL: 
+      :name: "Bulgaaria püsiv leev"
+      :one: "Bulgaaria kõva leev"
+      :other: "Bulgaaria kõva leevi"
+    :BGN: 
+      :name: "Bulgaaria leev"
+      :one: "Bulgaaria leev"
+      :other: "Bulgaaria leevi"
+    :BGO: 
+      :name: "Bulgaaria leev (1879–1952)"
+      :one: "Bulgaaria leev (1879–1952)"
+      :other: "Bulgaaria leevi (1879–1952)"
+    :BHD: 
+      :name: "Bahreini dinaar"
+      :one: "Bahreini dinaar"
+      :other: "Bahreini dinaari"
+    :BIF: 
+      :name: "Burundi frank"
+      :one: "Burundi frank"
+      :other: "Burundi franki"
+    :BMD: 
+      :name: "Bermuda dollar"
+      :narrow_symbol: $
+      :one: "Bermuda dollar"
+      :other: "Bermuda dollarit"
+      :symbol: $
+    :BND: 
+      :name: "Brunei dollar"
+      :narrow_symbol: $
+      :one: "Brunei dollar"
+      :other: "Brunei dollarit"
+      :symbol: $
+    :BOB: 
+      :name: "Boliivia boliviaano"
+      :narrow_symbol: Bs
+      :one: "Boliivia boliviaano"
+      :other: "Boliivia boliviaanot"
+      :symbol: Bs
+    :BOL: 
+      :name: "Boliivia boliviaano (1863–1963)"
+      :one: "Boliivia boliviaano (1863–1963)"
+      :other: "Boliivia boliviaanot (1863–1963)"
+    :BOP: 
+      :name: "Boliivia peeso"
+      :one: "Boliivia peeso"
+      :other: "Boliivia peesot"
+    :BRB: 
+      :name: "Brasiilia uus kruseiro (1967–1986)"
+      :one: "Brasiilia uus kruseiro (1967–1986)"
+      :other: "Brasiilia uut kruseirot (1967–1986)"
+    :BRC: 
+      :name: "Brasiilia krusado"
+      :one: "Brasiilia krusado"
+    :BRE: 
+      :name: "Brasiilia kruseiro (1990–1993)"
+      :one: "Brasiilia kruseiro (1990–1993)"
+      :other: "Brasiilia kruseirot (1990–1993)"
+    :BRL: 
+      :name: "Brasiilia reaal"
+      :narrow_symbol: R$
+      :one: "Brasiilia reaal"
+      :other: "Brasiilia reaali"
+      :symbol: R$
+    :BRR: 
+      :name: "Brasiilia kruseiro (1993–1994)"
+      :one: "Brasiilia kruseiro (1993–1994)"
+      :other: "Brasiilia kruseirot (1993–1994)"
+    :BRZ: 
+      :name: "Brasiilia kruseiro (1942–1967)"
+      :one: "Brasiilia kruseiro (1942–1967)"
+      :other: "Brasiilia kruseirot (1942–1967)"
+    :BSD: 
+      :name: "Bahama dollar"
+      :narrow_symbol: $
+      :one: "Bahama dollar"
+      :other: "Bahama dollarit"
+      :symbol: $
+    :BTN: 
+      :name: "Bhutani ngultrum"
+      :one: "Bhutani ngultrum"
+      :other: "Bhutani ngultrumit"
+    :BUK: 
+      :name: "Birma kjatt"
+      :one: "Birma kjatt"
+      :other: "Birma kjatti"
+    :BWP: 
+      :name: "Botswana pula"
+      :narrow_symbol: P
+      :one: "Botswana pula"
+      :other: "Botswana pulat"
+      :symbol: P
+    :BYB: 
+      :name: "Valgevene uus rubla (1994–1999)"
+      :one: "Valgevene uus rubla (1994–1999)"
+      :other: "Valgevene uut rubla (1994–1999)"
+    :BYN: 
+      :name: "Valgevene rubla"
+      :one: "Valgevene rubla"
+    :BYR: 
+      :name: "Valgevene rubla (2000–2016)"
+      :one: "Valgevene rubla (2000–2016)"
+    :BZD: 
+      :name: "Belize’i dollar"
+      :narrow_symbol: $
+      :one: "Belize’i dollar"
+      :other: "Belize’i dollarit"
+      :symbol: $
+    :CAD: 
+      :name: "Kanada dollar"
+      :narrow_symbol: $
+      :one: "Kanada dollar"
+      :other: "Kanada dollarit"
+      :symbol: CA$
+    :CDF: 
+      :name: "Kongo frank"
+      :one: "Kongo frank"
+      :other: "Kongo franki"
+    :CHF: 
+      :name: "Šveitsi frank"
+      :one: "Šveitsi frank"
+      :other: "Šveitsi franki"
+    :CLE: 
+      :name: "Tšiili eskuudo"
+      :one: "Tšiili eskuudo"
+      :other: "Tšiili eskuudot"
+    :CLP: 
+      :name: "Tšiili peeso"
+      :narrow_symbol: $
+      :one: "Tšiili peeso"
+      :other: "Tšiili peesot"
+      :symbol: $
+    :CNH: 
+      :name: "Hiina jüaan (välismaine turg)"
+      :one: "Hiina jüaan (välismaine turg)"
+      :other: "Hiina jüaani (välismaine turg)"
+    :CNY: 
+      :name: "Hiina jüaan"
+      :narrow_symbol: ¥
+      :one: "Hiina jüaan"
+      :other: "Hiina jüaani"
+      :symbol: CN¥
+    :COP: 
+      :name: "Colombia peeso"
+      :narrow_symbol: $
+      :one: "Colombia peeso"
+      :other: "Colombia peesot"
+      :symbol: $
+    :CRC: 
+      :name: "Costa Rica koloon"
+      :narrow_symbol: ₡
+      :one: "Costa Rica koloon"
+      :other: "Costa Rica kolooni"
+      :symbol: ₡
+    :CSD: 
+      :name: "Serbia dinaar (2002–2006)"
+      :one: "Serbia dinaar (2002–2006)"
+      :other: "Serbia dinaari (2002–2006)"
+    :CSK: 
+      :name: "Tšehhoslovakkia kõva kroon"
+      :one: "Tšehhoslovakkia kõva kroon"
+      :other: "Tšehhoslovakkia kõva krooni"
+    :CUC: 
+      :name: "Kuuba konverteeritav peeso"
+      :narrow_symbol: $
+      :one: "Kuuba konverteeritav peeso"
+      :other: "Kuuba konverteeritavat peesot"
+      :symbol: $
+    :CUP: 
+      :name: "Kuuba peeso"
+      :narrow_symbol: $
+      :one: "Kuuba peeso"
+      :other: "Kuuba peesot"
+      :symbol: $
+    :CVE: 
+      :name: "Cabo Verde eskuudo"
+      :one: "Cabo Verde eskuudo"
+      :other: "Cabo Verde eskuudot"
+    :CYP: 
+      :name: "Küprose nael"
+      :one: "Küprose nael"
+      :other: "Küprose naela"
+    :CZK: 
+      :name: "Tšehhi kroon"
+      :narrow_symbol: Kč
+      :one: "Tšehhi kroon"
+      :other: "Tšehhi krooni"
+      :symbol: Kč
+    :DDM: 
+      :name: "Ida-Saksa mark"
+      :one: "Ida-Saksa mark"
+      :other: "Ida-Saksa marka"
+    :DEM: 
+      :name: "Saksa mark"
+      :one: "Saksa mark"
+      :other: "Saksa marka"
+    :DJF: 
+      :name: "Djibouti frank"
+      :one: "Djibouti frank"
+      :other: "Djibouti franki"
+    :DKK: 
+      :name: "Taani kroon"
+      :narrow_symbol: kr
+      :one: "Taani kroon"
+      :other: "Taani krooni"
+      :symbol: kr
+    :DOP: 
+      :name: "Dominikaani peeso"
+      :narrow_symbol: $
+      :one: "Dominikaani peeso"
+      :other: "Dominikaani peesot"
+      :symbol: $
+    :DZD: 
+      :name: "Alžeeria dinaar"
+      :one: "Alžeeria dinaar"
+      :other: "Alžeeria dinaari"
+    :ECS: 
+      :name: "Ecuadori sukre"
+      :one: "Ecuadori sukre"
+      :other: "Ecuadori sukret"
+    :EEK: 
+      :name: "Eesti kroon"
+      :one: "Eesti kroon"
+      :other: "Eesti krooni"
+      :symbol: kr
+    :EGP: 
+      :name: "Egiptuse nael"
+      :narrow_symbol: E£
+      :one: "Egiptuse nael"
+      :other: "Egiptuse naela"
+      :symbol: E£
+    :ERN: 
+      :name: "Eritrea nakfa"
+      :one: "Eritrea nakfa"
+      :other: "Eritrea nakfat"
+    :ESP: 
+      :name: "Hispaania peseeta"
+      :narrow_symbol: ₧
+      :one: "Hispaania peseeta"
+      :other: "Hispaania peseetat"
+      :symbol: ₧
+    :ETB: 
+      :name: "Etioopia birr"
+      :one: "Etioopia birr"
+      :other: "Etioopia birri"
+    :EUR: 
+      :name: euro
+      :narrow_symbol: €
+      :one: euro
+      :other: eurot
+      :symbol: €
+    :FIM: 
+      :name: "Soome mark"
+      :one: "Soome mark"
+      :other: "Soome marka"
+    :FJD: 
+      :name: "Fidži dollar"
+      :narrow_symbol: $
+      :one: "Fidži dollar"
+      :other: "Fidži dollarit"
+      :symbol: $
+    :FKP: 
+      :name: "Falklandi saarte nael"
+      :narrow_symbol: £
+      :one: "Falklandi saarte nael"
+      :other: "Falklandi saarte naela"
+      :symbol: £
+    :FRF: 
+      :name: "Prantsuse frank"
+      :one: "Prantsuse frank"
+      :other: "Prantsuse franki"
+    :GBP: 
+      :name: "Suurbritannia naelsterling"
+      :narrow_symbol: £
+      :one: "Suurbritannia naelsterling"
+      :other: "Suurbritannia naelsterlingit"
+      :symbol: £
+    :GEL: 
+      :name: "Gruusia lari"
+      :narrow_symbol: ₾
+      :one: "Gruusia lari"
+      :symbol: ₾
+    :GHC: 
+      :name: "Ghana sedi (1979–2007)"
+      :one: "Ghana sedi (1979–2007)"
+      :other: "Ghana sedit (1979–2007)"
+    :GHS: 
+      :name: "Ghana sedi"
+      :narrow_symbol: GH₵
+      :one: "Ghana sedi"
+      :other: "Ghana sedit"
+      :symbol: GH₵
+    :GIP: 
+      :name: "Gibraltari nael"
+      :narrow_symbol: £
+      :one: "Gibraltari nael"
+      :other: "Gibraltari naela"
+      :symbol: £
+    :GMD: 
+      :name: "Gambia dalasi"
+      :one: "Gambia dalasi"
+      :other: "Gambia dalasit"
+    :GNF: 
+      :name: "Guinea frank"
+      :narrow_symbol: FG
+      :one: "Guinea frank"
+      :other: "Guinea franki"
+      :symbol: FG
+    :GNS: 
+      :name: "Guinea syli"
+      :one: "Guinea syli"
+    :GRD: 
+      :name: "Kreeka drahm"
+      :one: "Kreeka drahm"
+      :other: "Kreeka drahmi"
+    :GTQ: 
+      :name: "Guatemala ketsaal"
+      :narrow_symbol: Q
+      :one: "Guatemala ketsaal"
+      :other: "Guatemala ketsaali"
+      :symbol: Q
+    :GWE: 
+      :name: "Portugali Guinea eskuudo"
+      :one: "Portugali Guinea eskuudo"
+      :other: "Portugali Guinea eskuudot"
+    :GWP: 
+      :name: "Guinea-Bissau peeso"
+      :one: "Guinea-Bissau peeso"
+      :other: "Guinea-Bissau peesot"
+    :GYD: 
+      :name: "Guyana dollar"
+      :narrow_symbol: $
+      :one: "Guyana dollar"
+      :other: "Guyana dollarit"
+      :symbol: $
+    :HKD: 
+      :name: "Hongkongi dollar"
+      :narrow_symbol: $
+      :one: "Hongkongi dollar"
+      :other: "Hongkongi dollarit"
+      :symbol: HK$
+    :HNL: 
+      :name: "Hondurase lempiira"
+      :narrow_symbol: L
+      :one: "Hondurase lempiira"
+      :other: "Hondurase lempiirat"
+      :symbol: L
+    :HRD: 
+      :name: "Horvaatia dinaar"
+      :one: "Horvaatia dinaar"
+      :other: "Horvaatia dinaari"
+    :HRK: 
+      :name: "Horvaatia kuna"
+      :narrow_symbol: kn
+      :one: "Horvaatia kuna"
+      :symbol: kn
+    :HTG: 
+      :name: "Haiti gurd"
+      :one: "Haiti gurd"
+      :other: "Haiti gurdi"
+    :HUF: 
+      :name: "Ungari forint"
+      :narrow_symbol: Ft
+      :one: "Ungari forint"
+      :other: "Ungari forintit"
+      :symbol: Ft
+    :IDR: 
+      :name: "Indoneesia ruupia"
+      :narrow_symbol: Rp
+      :one: "Indoneesia ruupia"
+      :other: "Indoneesia ruupiat"
+      :symbol: Rp
+    :IEP: 
+      :name: "Iiri nael"
+      :one: "Iiri nael"
+      :other: "Iiri naela"
+    :ILP: 
+      :name: "Iisraeli nael"
+      :one: "Iisraeli nael"
+      :other: "Iisraeli naela"
+    :ILR: 
+      :name: "Iisraeli seekel (1980–1985)"
+      :one: "Iisraeli seekel (1980–1985)"
+      :other: "Iisraeli seekelit (1980–1985)"
+    :ILS: 
+      :name: "Iisraeli uus seekel"
+      :narrow_symbol: ₪
+      :one: "Iisraeli uus seekel"
+      :other: "Iisraeli uut seeklit"
+      :symbol: ₪
+    :INR: 
+      :name: "India ruupia"
+      :narrow_symbol: ₹
+      :one: "India ruupia"
+      :other: "India ruupiat"
+      :symbol: ₹
+    :IQD: 
+      :name: "Iraagi dinaar"
+      :one: "Iraagi dinaar"
+      :other: "Iraagi dinaari"
+    :IRR: 
+      :name: "Iraani riaal"
+      :one: "Iraani riaal"
+      :other: "Iraani riaali"
+    :ISJ: 
+      :name: "Islandi kroon (1918–1981)"
+      :one: "Islandi kroon (1918–1981)"
+      :other: "Islandi krooni (1918–1981)"
+    :ISK: 
+      :name: "Islandi kroon"
+      :narrow_symbol: kr
+      :one: "Islandi kroon"
+      :other: "Islandi krooni"
+      :symbol: kr
+    :ITL: 
+      :name: "Itaalia liir"
+      :one: "Itaalia liir"
+      :other: "Itaalia liiri"
+    :JMD: 
+      :name: "Jamaica dollar"
+      :narrow_symbol: $
+      :one: "Jamaica dollar"
+      :other: "Jamaica dollarit"
+      :symbol: $
+    :JOD: 
+      :name: "Jordaania dinaar"
+      :one: "Jordaania dinaar"
+      :other: "Jordaania dinaari"
+    :JPY: 
+      :name: "Jaapani jeen"
+      :narrow_symbol: ¥
+      :one: "Jaapani jeen"
+      :other: "Jaapani jeeni"
+      :symbol: ¥
+    :KES: 
+      :name: "Keenia šilling"
+      :one: "Keenia šilling"
+      :other: "Keenia šillingit"
+    :KGS: 
+      :name: "Kõrgõzstani somm"
+      :narrow_symbol: ⃀
+      :one: "Kõrgõzstani somm"
+      :other: "Kõrgõzstani sommi"
+      :symbol: ⃀
+    :KHR: 
+      :name: "Kambodža riaal"
+      :narrow_symbol: ៛
+      :one: "Kambodža riaal"
+      :other: "Kambodža riaali"
+      :symbol: ៛
+    :KMF: 
+      :name: "Komoori frank"
+      :narrow_symbol: CF
+      :one: "Komoori frank"
+      :other: "Komoori franki"
+      :symbol: CF
+    :KPW: 
+      :name: "Põhja-Korea vonn"
+      :narrow_symbol: ₩
+      :one: "Põhja-Korea vonn"
+      :other: "Põhja-Korea vonni"
+      :symbol: ₩
+    :KRO: 
+      :name: "Lõuna-Korea vonn (1945–1953)"
+      :one: "Lõuna-Korea vonn (1945–1953)"
+      :other: "Lõuna-Korea vonni (1945–1953)"
+    :KRW: 
+      :name: "Lõuna-Korea vonn"
+      :narrow_symbol: ₩
+      :one: "Lõuna-Korea vonn"
+      :other: "Lõuna-Korea vonni"
+      :symbol: ₩
+    :KWD: 
+      :name: "Kuveidi dinaar"
+      :one: "Kuveidi dinaar"
+      :other: "Kuveidi dinaari"
+    :KYD: 
+      :name: "Kaimanisaarte dollar"
+      :narrow_symbol: $
+      :one: "Kaimanisaarte dollar"
+      :other: "Kaimanisaarte dollarit"
+      :symbol: $
+    :KZT: 
+      :name: "Kasahstani tenge"
+      :narrow_symbol: ₸
+      :one: "Kasahstani tenge"
+      :other: "Kasahstani tenget"
+      :symbol: ₸
+    :LAK: 
+      :name: "Laose kiip"
+      :narrow_symbol: ₭
+      :one: "Laose kiip"
+      :other: "Laose kiipi"
+      :symbol: ₭
+    :LBP: 
+      :name: "Liibanoni nael"
+      :narrow_symbol: L£
+      :one: "Liibanoni nael"
+      :other: "Liibanoni naela"
+      :symbol: L£
+    :LKR: 
+      :name: "Sri Lanka ruupia"
+      :narrow_symbol: Rs
+      :one: "Sri Lanka ruupia"
+      :other: "Sri Lanka ruupiat"
+      :symbol: Rs
+    :LRD: 
+      :name: "Libeeria dollar"
+      :narrow_symbol: $
+      :one: "Libeeria dollar"
+      :other: "Libeeria dollarit"
+      :symbol: $
+    :LSL: 
+      :name: "Lesotho loti"
+      :one: "Lesotho loti"
+      :other: "Lesotho lotit"
+    :LTL: 
+      :name: "Leedu litt"
+      :narrow_symbol: Lt
+      :one: "Leedu litt"
+      :other: "Leedu litti"
+      :symbol: Lt
+    :LUC: 
+      :name: "Luksemburgi konverteeritav frank"
+      :one: "Luksemburgi konverteeritav frank"
+      :other: "Luksemburgi konverteeritavat franki"
+    :LUF: 
+      :name: "Luksemburgi frank"
+      :one: "Luksemburgi frank"
+      :other: "Luksemburgi franki"
+    :LVL: 
+      :name: "Läti latt"
+      :narrow_symbol: Ls
+      :one: "Läti latt"
+      :other: "Läti latti"
+      :symbol: Ls
+    :LVR: 
+      :name: "Läti rubla"
+      :one: "Läti rubla"
+    :LYD: 
+      :name: "Liibüa dinaar"
+      :one: "Liibüa dinaar"
+      :other: "Liibüa dinaari"
+    :MAD: 
+      :name: "Maroko dirhem"
+      :one: "Maroko dirhem"
+      :other: "Maroko dirhemit"
+    :MAF: 
+      :name: "Maroko frank"
+      :one: "Maroko frank"
+      :other: "Maroko franki"
+    :MCF: 
+      :name: "Monaco frank"
+      :one: "Monaco frank"
+      :other: "Monaco franki"
+    :MDL: 
+      :name: "Moldova leu"
+      :one: "Moldova leu"
+      :other: "Moldova leud"
+    :MGA: 
+      :name: "Madagaskari ariari"
+      :narrow_symbol: Ar
+      :one: "Madagaskari ariari"
+      :other: "Madagaskari ariarit"
+      :symbol: Ar
+    :MGF: 
+      :name: "Madagaskari frank"
+      :one: "Madagaskari frank"
+      :other: "Madagaskar franki"
+    :MKD: 
+      :name: "Makedoonia dinaar"
+      :one: "Makedoonia dinaar"
+      :other: "Makedoonia dinaari"
+    :MKN: 
+      :name: "Makedoonia dinaar (1992–1993)"
+      :one: "Makedoonia dinaar (1992–1993)"
+      :other: "Makedoonia dinaari (1992–1993)"
+    :MLF: 
+      :name: "Mali frank"
+      :one: "Mali frank"
+      :other: "Mali franki"
+    :MMK: 
+      :name: "Myanmari kjatt"
+      :narrow_symbol: K
+      :one: "Myanmari kjatt"
+      :other: "Myanmari kjatti"
+      :symbol: K
+    :MNT: 
+      :name: "Mongoolia tugrik"
+      :narrow_symbol: ₮
+      :one: "Mongoolia tugrik"
+      :other: "Mongoolia tugrikut"
+      :symbol: ₮
+    :MOP: 
+      :name: "Macau pataaka"
+      :one: "Macau pataaka"
+      :other: "Macau pataakat"
+    :MRO: 
+      :name: "Mauritaania ugia (1973–2017)"
+      :one: "Mauritaania ugia (1973–2017)"
+      :other: "Mauritaania ugiat (1973–2017)"
+    :MRU: 
+      :name: "Mauritaania ugia"
+      :one: "Mauritaania ugia"
+      :other: "Mauritaania ugiat"
+    :MTL: 
+      :name: "Malta liir"
+      :one: "Malta liir"
+      :other: "Malta liiri"
+    :MTP: 
+      :name: "Malta nael"
+      :one: "Malta nael"
+      :other: "Malta naela"
+    :MUR: 
+      :name: "Mauritiuse ruupia"
+      :narrow_symbol: Rs
+      :one: "Mauritiuse ruupia"
+      :other: "Mauritiuse ruupiat"
+      :symbol: Rs
+    :MVP: 
+      :name: "Maldiivi ruupia (1947–1981)"
+      :one: "Maldiivi ruupia (1947–1981)"
+      :other: "Maldiivi ruupiat (1947–1981)"
+    :MVR: 
+      :name: "Maldiivi ruupia"
+      :one: "Maldiivi ruupia"
+      :other: "Maldiivi ruupiat"
+    :MWK: 
+      :name: "Malawi kvatša"
+      :one: "Malawi kvatša"
+      :other: "Malawi kvatšat"
+    :MXN: 
+      :name: "Mehhiko peeso"
+      :narrow_symbol: $
+      :one: "Mehhiko peeso"
+      :other: "Mehhiko peesot"
+      :symbol: MX$
+    :MXP: 
+      :name: "Mehhiko peeso (1861–1992)"
+      :one: "Mehhiko peeso (1861–1992)"
+      :other: "Mehhiko peesot (1861–1992)"
+    :MYR: 
+      :name: "Malaisia ringgit"
+      :narrow_symbol: RM
+      :one: "Malaisia ringgit"
+      :other: "Malaisia ringgitit"
+      :symbol: RM
+    :MZE: 
+      :name: "Mosambiigi eskuudo"
+      :one: "Mosambiigi eskuudo"
+      :other: "Mosambiigi eskuudot"
+    :MZM: 
+      :name: "Mosambiigi metikal (1980–2006)"
+      :one: "Mosambiigi metikal (1980–2006)"
+      :other: "Mosambiigi metikali (1980–2006)"
+    :MZN: 
+      :name: "Mosambiigi metikal"
+      :one: "Mosambiigi metikal"
+      :other: "Mosambiigi metikali"
+    :NAD: 
+      :name: "Namiibia dollar"
+      :narrow_symbol: $
+      :one: "Namiibia dollar"
+      :other: "Namiibia dollarit"
+      :symbol: $
+    :NGN: 
+      :name: "Nigeeria naira"
+      :narrow_symbol: ₦
+      :one: "Nigeeria naira"
+      :other: "Nigeeria nairat"
+      :symbol: ₦
+    :NIC: 
+      :name: "Nicaragua kordoba (1988–1991)"
+      :one: "Nicaragua kordoba (1988–1991)"
+      :other: "Nicaragua kordobat (1988–1991)"
+    :NIO: 
+      :name: "Nicaragua kordoba"
+      :narrow_symbol: C$
+      :one: "Nicaragua kordoba"
+      :other: "Nicaragua kordobat"
+      :symbol: C$
+    :NLG: 
+      :name: "Hollandi kulden"
+      :one: "Hollandi kulden"
+      :other: "Hollandi kuldnat"
+    :NOK: 
+      :name: "Norra kroon"
+      :narrow_symbol: kr
+      :one: "Norra kroon"
+      :other: "Norra krooni"
+      :symbol: kr
+    :NPR: 
+      :name: "Nepali ruupia"
+      :narrow_symbol: Rs
+      :one: "Nepali ruupia"
+      :other: "Nepali ruupiat"
+      :symbol: Rs
+    :NZD: 
+      :name: "Uus-Meremaa dollar"
+      :narrow_symbol: $
+      :one: "Uus-Meremaa dollar"
+      :other: "Uus-Meremaa dollarit"
+      :symbol: NZ$
+    :OMR: 
+      :name: "Omaani riaal"
+      :one: "Omaani riaal"
+      :other: "Omaani riaali"
+    :PAB: 
+      :name: "Panama balboa"
+      :one: "Panama balboa"
+      :other: "Panama balboad"
+    :PEI: 
+      :name: "Peruu inti"
+      :one: "Peruu inti"
+    :PEN: 
+      :name: "Peruu soll"
+      :one: "Peruu soll"
+      :other: "Peruu solli"
+    :PES: 
+      :name: "Peruu soll (1863–1965)"
+      :one: "Peruu soll (1863–1965)"
+      :other: "Peruu solli (1863–1965)"
+    :PGK: 
+      :name: "Paapua Uus-Guinea kina"
+      :one: "Paapua Uus-Guinea kina"
+      :other: "Paapua Uus-Guinea kinat"
+    :PHP: 
+      :name: "Filipiini peeso"
+      :narrow_symbol: ₱
+      :one: "Filipiini peeso"
+      :other: "Filipiini peesot"
+      :symbol: PHP
+    :PKR: 
+      :name: "Pakistani ruupia"
+      :narrow_symbol: Rs
+      :one: "Pakistani ruupia"
+      :other: "Pakistani ruupiat"
+      :symbol: Rs
+    :PLN: 
+      :name: "Poola zlott"
+      :narrow_symbol: zł
+      :one: "Poola zlott"
+      :other: "Poola zlotti"
+      :symbol: zł
+    :PLZ: 
+      :name: "Poola zlott (1950–1995)"
+      :one: "Poola zlott (1950–1995)"
+      :other: "Poola zlotti (1950–1995)"
+    :PTE: 
+      :name: "Portugali eskuudo"
+      :one: "Portugali eskuudo"
+      :other: "Portugali eskuudot"
+    :PYG: 
+      :name: "Paraguay guaranii"
+      :narrow_symbol: ₲
+      :one: "Paraguay guaranii"
+      :other: "Paraguay guaraniid"
+      :symbol: ₲
+    :QAR: 
+      :name: "Katari riaal"
+      :one: "Katari riaal"
+      :other: "Katari riaali"
+    :RHD: 
+      :name: "Rodeesia dollar"
+      :one: "Rodeesia dollar"
+      :other: "Rodeesia dollarit"
+    :ROL: 
+      :name: "Rumeenia leu (1952–2006)"
+      :one: "Rumeenia leu (1952–2006)"
+      :other: "Rumeenia leud (1952–2006)"
+    :RON: 
+      :name: "Rumeenia leu"
+      :narrow_symbol: lei
+      :one: "Rumeenia leu"
+      :other: "Rumeenia leud"
+      :symbol: lei
+    :RSD: 
+      :name: "Serbia dinaar"
+      :one: "Serbia dinaar"
+      :other: "Serbia dinaari"
+    :RUB: 
+      :name: "Venemaa rubla"
+      :narrow_symbol: ₽
+      :one: "Venemaa rubla"
+      :symbol: ₽
+    :RUR: 
+      :name: "Venemaa rubla (1991–1998)"
+      :one: "Venemaa rubla (1991–1998)"
+    :RWF: 
+      :name: "Rwanda frank"
+      :narrow_symbol: RF
+      :one: "Rwanda frank"
+      :other: "Rwanda franki"
+      :symbol: RF
+    :SAR: 
+      :name: "Saudi Araabia riaal"
+      :one: "Saudi Araabia riaal"
+      :other: "Saudi Araabia riaali"
+    :SBD: 
+      :name: "Saalomoni Saarte dollar"
+      :narrow_symbol: $
+      :one: "Saalomoni Saarte dollar"
+      :other: "Saalomoni Saarte dollarit"
+      :symbol: $
+    :SCR: 
+      :name: "Seišelli ruupia"
+      :one: "Seišelli ruupia"
+      :other: "Seišelli ruupiat"
+    :SDD: 
+      :name: "Sudaani dinaar (1992–2007)"
+      :one: "Sudaani dinaar (1992–2007)"
+      :other: "Sudaani dinaari (1992–2007)"
+    :SDG: 
+      :name: "Sudaani nael"
+      :one: "Sudaani nael"
+      :other: "Sudaani naela"
+    :SDP: 
+      :name: "Sudaani nael (1957–1998)"
+      :one: "Sudaani nael (1957–1998)"
+      :other: "Sudaani naela (1957–1998)"
+    :SEK: 
+      :name: "Rootsi kroon"
+      :narrow_symbol: kr
+      :one: "Rootsi kroon"
+      :other: "Rootsi krooni"
+      :symbol: kr
+    :SGD: 
+      :name: "Singapuri dollar"
+      :narrow_symbol: $
+      :one: "Singapuri dollar"
+      :other: "Singapuri dollarit"
+      :symbol: $
+    :SHP: 
+      :name: "Saint Helena nael"
+      :narrow_symbol: £
+      :one: "Saint Helena nael"
+      :other: "Saint Helena naela"
+      :symbol: £
+    :SIT: 
+      :name: "Sloveenia tolar"
+      :one: "Sloveenia tolar"
+      :other: "Sloveenia tolarit"
+    :SKK: 
+      :name: "Slovaki kroon"
+      :one: "Slovaki kroon"
+      :other: "Slovaki krooni"
+    :SLE: 
+      :name: "Sierra Leone leoone"
+      :one: "Sierra Leone leoone"
+      :other: "Sierra Leone leoonet"
+    :SLL: 
+      :name: "Sierra Leone leoone (1964–2022)"
+      :one: "Sierra Leone leoone (1964–2022)"
+      :other: "Sierra Leone leoonet (1964–2022)"
+    :SOS: 
+      :name: "Somaalia šilling"
+      :one: "Somaalia šilling"
+      :other: "Somaalia šillingit"
+    :SRD: 
+      :name: "Suriname dollar"
+      :narrow_symbol: $
+      :one: "Suriname dollar"
+      :other: "Suriname dollarit"
+      :symbol: $
+    :SRG: 
+      :name: "Suriname kulden"
+      :one: "Suriname kulden"
+      :other: "Suriname kuldnat"
+    :SSP: 
+      :name: "Lõuna-Sudaani nael"
+      :narrow_symbol: £
+      :one: "Lõuna-Sudaani nael"
+      :other: "Lõuna-Sudaani naela"
+      :symbol: £
+    :STD: 
+      :name: "São Tomé ja Príncipe dobra (1977–2017)"
+      :one: "São Tomé ja Príncipe dobra (1977–2017)"
+      :other: "São Tomé ja Príncipe dobrat (1977–2017)"
+    :STN: 
+      :name: "São Tomé ja Príncipe dobra"
+      :narrow_symbol: Db
+      :one: "São Tomé ja Príncipe dobra"
+      :other: "São Tomé ja Príncipe dobrat"
+      :symbol: Db
+    :SUR: 
+      :name: "NSVL-i rubla"
+      :one: "NSVL-i rubla"
+    :SVC: 
+      :name: "El Salvadori koloon"
+      :one: "El Salvadori koloon"
+      :other: "El Salvadori kolooni"
+    :SYP: 
+      :name: "Süüria nael"
+      :narrow_symbol: £
+      :one: "Süüria nael"
+      :other: "Süüria naela"
+      :symbol: £
+    :SZL: 
+      :name: "Svaasimaa lilangeni"
+      :one: "Svaasimaa lilangeni"
+      :other: "Svaasimaa lilangenit"
+    :THB: 
+      :name: "Tai baat"
+      :narrow_symbol: ฿
+      :one: "Tai baat"
+      :other: "Tai baati"
+      :symbol: ฿
+    :TJR: 
+      :name: "Tadžikistani rubla"
+      :one: "Tadžikistani rubla"
+    :TJS: 
+      :name: "Tadžikistani somoni"
+      :one: "Tadžikistani somoni"
+      :other: "Tadžikistani somonit"
+    :TMM: 
+      :name: "Türkmenistani manat (1993–2009)"
+      :one: "Türkmenistani manat (1993–2009)"
+      :other: "Türkmenistani manatit (1993–2009)"
+    :TMT: 
+      :name: "Türkmenistani manat"
+      :one: "Türkmenistani manat"
+      :other: "Türkmenistani manatit"
+    :TND: 
+      :name: "Tuneesia dinaar"
+      :one: "Tuneesia dinaar"
+      :other: "Tuneesia dinaari"
+    :TOP: 
+      :name: "Tonga pa’anga"
+      :narrow_symbol: T$
+      :one: "Tonga pa’anga"
+      :other: "Tonga pa’angat"
+      :symbol: T$
+    :TPE: 
+      :name: "Timori eskuudo"
+      :one: "Timori eskuudo"
+      :other: "Timori eskuudot"
+    :TRL: 
+      :name: "Türgi liir (1922–2005)"
+      :one: "Türgi liir (1922–2005)"
+      :other: "Türgi liiri (1922–2005)"
+    :TRY: 
+      :name: "Türgi liir"
+      :narrow_symbol: ₺
+      :one: "Türgi liir"
+      :other: "Türgi liiri"
+      :symbol: ₺
+    :TTD: 
+      :name: "Trinidadi ja Tobago dollar"
+      :narrow_symbol: $
+      :one: "Trinidadi ja Tobago dollar"
+      :other: "Trinidadi ja Tobago dollarit"
+      :symbol: $
+    :TWD: 
+      :name: "uus Taiwani dollar"
+      :narrow_symbol: NT$
+      :one: "uus Taiwani dollar"
+      :other: "uut Taiwani dollarit"
+      :symbol: NT$
+    :TZS: 
+      :name: "Tansaania šilling"
+      :one: "Tansaania šilling"
+      :other: "Tansaania šillingit"
+    :UAH: 
+      :name: "Ukraina grivna"
+      :narrow_symbol: ₴
+      :one: "Ukraina grivna"
+      :other: "Ukraina grivnat"
+      :symbol: ₴
+    :UAK: 
+      :name: "Ukraina karbovanets"
+      :one: "Ukraina karbovanetsi"
+      :other: "Ukraina karbovanetsi"
+    :UGS: 
+      :name: "Uganda šilling (1966–1987)"
+      :one: "Uganda šilling (1966–1987)"
+      :other: "Uganda šillingit (1966–1987)"
+    :UGX: 
+      :name: "Uganda šilling"
+      :one: "Uganda šilling"
+      :other: "Uganda šillingit"
+    :USD: 
+      :name: "USA dollar"
+      :narrow_symbol: $
+      :one: "USA dollar"
+      :other: "USA dollarit"
+      :symbol: $
+    :USN: 
+      :name: "USA järgmise päeva dollar"
+      :one: "USA järgmise päeva dollar"
+    :USS: 
+      :name: "USA sama päeva dollar"
+      :one: "USA sama päeva dollar"
+    :UYP: 
+      :name: "Uruguay peeso (1975–1993)"
+      :one: "Uruguay peeso (1975–1993)"
+      :other: "Uruguay peesot (1975–1993)"
+    :UYU: 
+      :name: "Uruguay peeso"
+      :narrow_symbol: $
+      :one: "Uruguay peeso"
+      :other: "Uruguay peesot"
+      :symbol: $
+    :UZS: 
+      :name: "Usbekistani somm"
+      :one: "Usbekistani somm"
+      :other: "Usbekistani sommi"
+    :VEB: 
+      :name: "Venezuela boliivar (1871–2008)"
+      :one: "Venezuela boliivar (1871–2008)"
+      :other: "Venezuela boliivarit (1871–2008)"
+    :VEF: 
+      :name: "Venezuela boliivar (2008–2018)"
+      :narrow_symbol: Bs
+      :one: "Venezuela boliivar (2008–2018)"
+      :other: "Venezuela boliivarit (2008–2018)"
+      :symbol: Bs
+    :VES: 
+      :name: "Venezuela boliivar"
+      :one: "Venezuela boliivar"
+      :other: "Venezuela boliivarit"
+    :VND: 
+      :name: "Vietnami dong"
+      :narrow_symbol: ₫
+      :one: "Vietnami dong"
+      :other: "Vietnami dongi"
+      :symbol: ₫
+    :VNN: 
+      :name: "Vietnami dong (1978–1985)"
+      :one: "Vietnami dong (1978–1985)"
+      :other: "Vietnami dongi (1978–1985)"
+    :VUV: 
+      :name: "Vanuatu vatu"
+      :one: "Vanuatu vatu"
+      :other: "Vanuatu vatut"
+    :WST: 
+      :name: "Samoa taala"
+      :one: "Samoa taala"
+      :other: "Samoa taalat"
+    :XAF: 
+      :name: "Kesk-Aafrika CFA frank"
+      :one: "Kesk-Aafrika CFA frank"
+      :other: "Kesk-Aafrika CFA franki"
+      :symbol: FCFA
+    :XAG: 
+      :name: hõbe
+      :one: "troiunts hõbedat"
+      :other: "troiuntsi hõbedat"
+    :XAU: 
+      :name: kuld
+      :one: "troiunts kulda"
+      :other: "troiuntsi kulda"
+    :XBA: 
+      :name: EURCO
+      :one: EURCO
+    :XBB: 
+      :name: "Euroopa rahaühik"
+      :one: "Euroopa rahaühik"
+    :XBC: 
+      :name: "Euroopa rahaline arvestusühik (XBC)"
+      :one: "Euroopa rahaline arvestusühik (XBC)"
+    :XBD: 
+      :name: "Euroopa rahaline arvestusühik (XBD)"
+      :one: "Euroopa rahaline arvestusühik (XBD)"
+    :XCD: 
+      :name: "Ida-Kariibi dollar"
+      :narrow_symbol: $
+      :one: "Ida-Kariibi dollar"
+      :other: "Ida-Kariibi dollarit"
+      :symbol: EC$
+    :XCG: 
+      :symbol: Cg.
+    :XDR: 
+      :name: "Rahvusvahelise Valuutafondi arvestusühik"
+      :one: "Rahvusvahelise Valuutafondi arvestusühik"
+    :XEU: 
+      :name: eküü
+      :one: eküü
+      :other: eküüd
+    :XFO: 
+      :name: "Prantsuse kuldfrank"
+      :one: "Prantsuse kuldfrank"
+      :other: "Prantsuse kuldfranki"
+    :XFU: 
+      :name: "Prantsuse UIC-frank"
+      :one: "Prantsuse UIC-frank"
+    :XOF: 
+      :name: "Lääne-Aafrika CFA frank"
+      :one: "Lääne-Aafrika CFA frank"
+      :other: "Lääne-Aafrika CFA franki"
+      :symbol: F CFA
+    :XPD: 
+      :name: pallaadium
+      :one: "troiunts pallaadiumit"
+      :other: "troiuntsi pallaadiumit"
+    :XPF: 
+      :name: "CFP frank"
+      :one: "CFP frank"
+      :other: "CFP franki"
+      :symbol: CFPF
+    :XPT: 
+      :name: plaatina
+      :one: "troiunts plaatinat"
+      :other: "troiuntsi plaatinat"
+    :XTS: 
+      :name: "vääringute testkood"
+      :one: "vääringute testkood"
+    :XXX: 
+      :name: "määramata rahaühik"
+      :one: "(määramata rahaühik)"
+      :other: "(määramata rahaühikut)"
+      :symbol: ¤
+    :YDD: 
+      :name: "Jeemeni dinaar"
+      :one: "Jeemeni dinaar"
+      :other: "Jeemeni dinaari"
+    :YER: 
+      :name: "Jeemeni riaal"
+      :one: "Jeemeni riaal"
+      :other: "Jeemeni riaali"
+    :YUD: 
+      :name: "Jugoslaavia kõva dinaar (1966–1990)"
+      :one: "Jugoslaavia kõva dinaar (1966–1990)"
+      :other: "Jugoslaavia kõva dinaar (1966–1990)"
+    :YUM: 
+      :name: "Jugoslaavia uus dinaar (1994–2002)"
+      :one: "Jugoslaavia uus dinaar (1994–2002)"
+      :other: "Jugoslaavia uut dinaari (1994–2002)"
+    :YUN: 
+      :name: "Jugoslaavia konverteeritav dinaar (1990–1992)"
+      :one: "Jugoslaavia konverteeritav dinaar (1990–1992)"
+      :other: "Jugoslaavia konverteeritavat dinaari (1990–1992)"
+    :YUR: 
+      :name: "Jugoslaavia reformitud dinaar (1992–1993)"
+      :one: "Jugoslaavia reformitud dinaar (1992–1993)"
+      :other: "Jugoslaavia reformitud dinaari (1992–1993)"
+    :ZAR: 
+      :name: "Lõuna-Aafrika rand"
+      :narrow_symbol: R
+      :one: "Lõuna-Aafrika rand"
+      :other: "Lõuna-Aafrika randi"
+      :symbol: R
+    :ZMK: 
+      :name: "Sambia kvatša (1968–2012)"
+      :one: "Sambia kvatša (1968–2012)"
+      :other: "Sambia kvatšat (1968–2012)"
+    :ZMW: 
+      :name: "Sambia kvatša"
+      :narrow_symbol: ZK
+      :one: "Sambia kvatša"
+      :other: "Sambia kvatšat"
+      :symbol: ZK
+    :ZRZ: 
+      :name: "Sairi zaire"
+      :one: "Sairi zaire"
+    :ZWD: 
+      :name: "Zimbabwe dollar (1980–2008)"
+      :one: "Zimbabwe dollar (1980–2008)"
+      :other: "Zimbabwe dollarit (1980–2008)"
+    :ZWL: 
+      :name: "Zimbabwe dollar (2009)"
+      :one: "Zimbabwe dollar (2009)"
+      :other: "Zimbabwe dollarit (2009)"
+    :ZWR: 
+      :name: "Zimbabwe dollar (2008)"
+      :one: "Zimbabwe dollar (2008)"
+      :other: "Zimbabwe dollarit (2008)"

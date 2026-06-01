@@ -1,0 +1,374 @@
+--- 
+:sr-Latn-ME: 
+  :calendars: 
+    :gregorian: 
+      :additional_formats: 
+        :Bh: "h B"
+        :Bhm: "hh:mm B"
+        :Bhms: "hh:mm:ss B"
+        :E: E
+        :EBhm: "E h:mm B"
+        :EBhms: "E, hh:mm:ss B"
+        :EHm: "E HH:mm"
+        :EHms: "E HH:mm:ss"
+        :Ed: "E d."
+        :Ehm: "E h:mm a"
+        :Ehms: "E h:mm:ss a"
+        :Gy: "y. G"
+        :GyMMM: "MMM y. G"
+        :GyMMMEd: "E, d. MMM y. G"
+        :GyMMMd: "d. MMM y. G"
+        :GyMd: "d.MM.y. GGGGG"
+        :H: HH
+        :Hm: "HH:mm"
+        :Hms: "HH:mm:ss"
+        :Hmsv: "HH:mm:ss v"
+        :Hmv: "HH:mm v"
+        :M: L
+        :MEd: "E, d. M."
+        :MMM: LLL
+        :MMMEd: "E d. MMM"
+        :MMMMEd: "E, d. MMMM"
+        :MMMMW: "W. 'sjedmica' 'u' MMMM"
+        :MMMMd: "d. MMMM"
+        :MMMd: "d. MMM"
+        :MMMdd: dd.MMM
+        :MMdd: dd.MM.
+        :Md: "d. M."
+        :d: d
+        :h: h a
+        :hm: "h:mm a"
+        :hms: "h:mm:ss a"
+        :hmsv: "h:mm:ss a v"
+        :hmv: "h:mm a v"
+        :ms: "mm:ss"
+        ? !ruby/symbol "y"
+        : y.
+        :yM: "M. y."
+        :yMEd: "E, d. M. y."
+        :yMM: MM.y.
+        :yMMM: "MMM y."
+        :yMMMEd: "E, d. MMM y."
+        :yMMMM: "MMMM y."
+        :yMMMd: "d. MMM y."
+        :yMMdd: dd.MM.y.
+        :yMd: "d. M. y."
+        :yQQQ: "QQQ y."
+        :yQQQQ: "QQQQ y."
+        :yw: "w. 'sjedmica' 'u' Y."
+      :days: 
+        :format: 
+          :abbreviated: 
+            :fri: pet
+            :mon: pon
+            :sat: sub
+            :sun: ned
+            :thu: čet
+            :tue: uto
+            :wed: sre
+          :narrow: 
+            :fri: p
+            :mon: p
+            :sat: s
+            :sun: "n"
+            :thu: č
+            :tue: u
+            :wed: s
+          :short: 
+            :fri: pe
+            :mon: po
+            :sat: su
+            :sun: ne
+            :thu: če
+            :tue: ut
+            :wed: sr
+          :wide: 
+            :fri: petak
+            :mon: ponedeljak
+            :sat: subota
+            :sun: nedjelja
+            :thu: četvrtak
+            :tue: utorak
+            :wed: srijeda
+        :stand-alone: 
+          :abbreviated: 
+            :fri: pet
+            :mon: pon
+            :sat: sub
+            :sun: ned
+            :thu: čet
+            :tue: uto
+            :wed: sre
+          :narrow: 
+            :fri: p
+            :mon: p
+            :sat: s
+            :sun: "n"
+            :thu: č
+            :tue: u
+            :wed: s
+          :short: 
+            :fri: pe
+            :mon: po
+            :sat: su
+            :sun: ne
+            :thu: če
+            :tue: ut
+            :wed: sr
+          :wide: 
+            :fri: petak
+            :mon: ponedeljak
+            :sat: subota
+            :sun: nedjelja
+            :thu: četvrtak
+            :tue: utorak
+            :wed: srijeda
+      :eras: 
+        :abbr: 
+          0: "p. n. e."
+          1: "n. e."
+        :name: 
+          0: "pre naše ere"
+          1: "naše ere"
+        :narrow: 
+          0: p.n.e.
+          1: n.e.
+      :fields: 
+        :day: dan
+        :day-narrow: d.
+        :day-short: d.
+        :dayOfYear: "dan u godini"
+        :dayOfYear-narrow: "dan u god."
+        :dayOfYear-short: "dan u god."
+        :dayperiod: AM/PM
+        :dayperiod-narrow: "pre podne/po podne"
+        :dayperiod-short: "pre podne/po podne"
+        :era: era
+        :era-narrow: era
+        :era-short: era
+        :hour: sat
+        :hour-narrow: č.
+        :hour-short: č.
+        :minute: minut
+        :minute-narrow: min.
+        :minute-short: min.
+        :month: mesec
+        :month-narrow: Month
+        :month-short: mes.
+        :quarter: kvartal
+        :quarter-narrow: kv.
+        :quarter-short: kv.
+        :second: sekund
+        :second-narrow: s
+        :second-short: sek.
+        :week: nedelja
+        :week-narrow: Week
+        :week-short: ned.
+        :weekOfMonth: "nedelja u mesecu"
+        :weekOfMonth-narrow: "ned. u mes."
+        :weekOfMonth-short: "ned. u mes."
+        :weekday: "dan u nedelji"
+        :weekday-narrow: "dan u nedelji"
+        :weekday-short: "dan u nedelji"
+        :weekdayOfMonth: "dan u mesecu"
+        :weekdayOfMonth-narrow: "dan u mesecu"
+        :weekdayOfMonth-short: "dan u mesecu"
+        :year: godina
+        :year-narrow: g.
+        :year-short: god.
+        :zone: "vremenska zona"
+        :zone-narrow: "vremenska zona"
+        :zone-short: "vremenska zona"
+      :formats: 
+        :date: 
+          :full: 
+            :pattern: "EEEE, d. MMMM y."
+          :long: 
+            :pattern: "d. MMMM y."
+          :medium: 
+            :pattern: "d. M. y."
+          :short: 
+            :pattern: "d. M. y."
+        :datetime: 
+          :full: 
+            :pattern: "{{date}} {{time}}"
+          :long: 
+            :pattern: "{{date}} {{time}}"
+          :medium: 
+            :pattern: "{{date}} {{time}}"
+          :short: 
+            :pattern: "{{date}} {{time}}"
+        :time: 
+          :full: 
+            :pattern: "HH:mm:ss zzzz"
+          :long: 
+            :pattern: "HH:mm:ss z"
+          :medium: 
+            :pattern: "HH:mm:ss"
+          :short: 
+            :pattern: "HH:mm"
+      :months: 
+        :format: 
+          :abbreviated: 
+            1: jan
+            10: okt
+            11: nov
+            12: dec
+            2: feb
+            3: mart
+            4: apr
+            5: maj
+            6: jun
+            7: jul
+            8: avg
+            9: sept
+          :narrow: 
+            1: j
+            10: o
+            11: "n"
+            12: d
+            2: f
+            3: m
+            4: a
+            5: m
+            6: j
+            7: j
+            8: a
+            9: s
+          :wide: 
+            1: januar
+            10: oktobar
+            11: novembar
+            12: decembar
+            2: februar
+            3: mart
+            4: april
+            5: maj
+            6: jun
+            7: jul
+            8: avgust
+            9: septembar
+        :stand-alone: 
+          :abbreviated: 
+            1: jan
+            10: okt
+            11: nov
+            12: dec
+            2: feb
+            3: mart
+            4: apr
+            5: maj
+            6: jun
+            7: jul
+            8: avg
+            9: sept
+          :narrow: 
+            1: j
+            10: o
+            11: "n"
+            12: d
+            2: f
+            3: m
+            4: a
+            5: m
+            6: j
+            7: j
+            8: a
+            9: s
+          :wide: 
+            1: januar
+            10: oktobar
+            11: novembar
+            12: decembar
+            2: februar
+            3: mart
+            4: april
+            5: maj
+            6: jun
+            7: jul
+            8: avgust
+            9: septembar
+      :periods: 
+        :format: 
+          :abbreviated: 
+            :afternoon1: "po pod."
+            :am: prije podne
+            :evening1: veče
+            :midnight: ponoć
+            :morning1: jutro
+            :night1: noću
+            :noon: podne
+            :pm: po podne
+          :narrow: 
+            :afternoon1: "po pod."
+            :am: AM
+            :evening1: veče
+            :midnight: ponoć
+            :morning1: jutro
+            :night1: noć
+            :noon: podne
+            :pm: PM
+          :wide: 
+            :afternoon1: "po podne"
+            :am: "prije podne"
+            :evening1: uveče
+            :midnight: ponoć
+            :morning1: ujutru
+            :night1: noću
+            :noon: podne
+            :pm: "po podne"
+        :stand-alone: 
+          :abbreviated: 
+            :afternoon1: popodne
+            :am: AM
+            :evening1: veče
+            :morning1: jutro
+            :night1: noć
+            :pm: PM
+          :narrow: 
+            :afternoon1: popodne
+            :am: a
+            :evening1: veče
+            :morning1: jutro
+            :night1: noć
+            :pm: p
+          :wide: 
+            :afternoon1: popodne
+            :am: "prije podne"
+            :evening1: veče
+            :morning1: jutro
+            :night1: noć
+            :pm: "po podne"
+      :quarters: 
+        :format: 
+          :abbreviated: 
+            1: "1. kv."
+            2: "2. kv."
+            3: "3. kv."
+            4: "4. kv."
+          :narrow: 
+            1: "1."
+            2: "2."
+            3: "3."
+            4: "4."
+          :wide: 
+            1: "prvi kvartal"
+            2: "drugi kvartal"
+            3: "treći kvartal"
+            4: "četvrti kvartal"
+        :stand-alone: 
+          :abbreviated: 
+            1: "1. kv."
+            2: "2. kv."
+            3: "3. kv."
+            4: "4. kv."
+          :narrow: 
+            1: "1."
+            2: "2."
+            3: "3."
+            4: "4."
+          :wide: 
+            1: "prvi kvartal"
+            2: "drugi kvartal"
+            3: "treći kvartal"
+            4: "četvrti kvartal"

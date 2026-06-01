@@ -1,0 +1,43 @@
+<section>
+  <header>
+    <h1>
+      <%= t('Profiles') %>
+      <a target="blank" href="https://github.com/sidekiq/sidekiq/wiki/Profiling"><span class="info-circle" title="Click to learn more about profiling">?</span></a>
+    </h1>
+  </header>
+
+  <% @profiles = Sidekiq::ProfileSet.new %>
+  <% if @profiles.size > 0 %>
+  <div class="table_container">
+    <table>
+      <thead>
+        <th><%= t('CreatedAt') %></th>
+        <th><%= t('Type') %></th>
+        <th><%= t('JID') %></th>
+        <th><%= t('Token') %></th>
+        <th><%= t('Size') %></th>
+        <th><%= t('ElapsedTime') %></th>
+        <th>&nbsp</th>
+      </thead>
+      <% @profiles.each do |record| %>
+        <tr>
+          <td><%= relative_time(record.started_at) %></td>
+          <td><%= record.type %> </td>
+          <td><%= record.jid %> </td>
+          <td><%= record.token %> </td>
+          <td><%= format_memory(record.size / 1024) %> </td>
+          <td><%= number_with_delimiter(record.elapsed, precision: 2) %> </td>
+          <td>
+            <% if config[:profile_store_url] %>
+              <a target="_blank" class="btn" href="<%= root_path %>profiles/<%= CGI.escape(record.key) %>"><%= t("View") %></a>
+            <% end %>
+            <a class="btn" href="<%= root_path %>profiles/<%= CGI.escape(record.key) %>/data"><%= t("Data") %></a>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  <% else %>
+    <div class="alert alert-success"><%= t('NoDataFound') %></div>
+  <% end %>
+</section>

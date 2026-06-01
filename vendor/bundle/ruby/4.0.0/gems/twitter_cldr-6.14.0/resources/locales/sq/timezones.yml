@@ -1,0 +1,1250 @@
+--- 
+:sq: 
+  :formats: 
+    :fallback_formats: 
+      :generic: "{1} ({0})"
+    :gmt_formats: 
+      :generic: "GMT{0}"
+    :gmt_zero_formats: 
+      :generic: GMT
+    :hour_formats: 
+      :generic: "+HH:mm;-HH:mm"
+    :region_formats: 
+      :daylight: "Ora verore: {0}"
+      :generic: "Ora: {0}"
+      :standard: "Ora standarde: {0}"
+  :metazones: 
+    :Acre: 
+      :long: 
+        :daylight: "Ora verore e Ejkrit [Ako]"
+        :generic: "Ora e Ejkrit [Ako]"
+        :standard: "Ora standarde e Ejkrit [Ako]"
+    :Afghanistan: 
+      :long: 
+        :standard: "Ora e Afganistanit"
+    :Africa_Central: 
+      :long: 
+        :standard: "Ora e Afrikës Qendrore"
+    :Africa_Eastern: 
+      :long: 
+        :standard: "Ora e Afrikës Lindore"
+    :Africa_Southern: 
+      :long: 
+        :standard: "Ora standarde e Afrikës Jugore"
+    :Africa_Western: 
+      :long: 
+        :daylight: "Ora verore e Afrikës Perëndimore"
+        :generic: "Ora e Afrikës Perëndimore"
+        :standard: "Ora standarde e Afrikës Perëndimore"
+    :Alaska: 
+      :long: 
+        :daylight: "Ora verore e Alaskës"
+        :generic: "Ora e Alaskës"
+        :standard: "Ora standarde e Alaskës"
+    :Almaty: 
+      :long: 
+        :daylight: "Ora verore e Almatit"
+        :generic: "Ora e Almatit"
+        :standard: "Ora standarde e Almatit"
+    :Amazon: 
+      :long: 
+        :daylight: "Ora verore e Amazonës"
+        :generic: "Ora e Amazonës"
+        :standard: "Ora standarde e Amazonës"
+    :America_Central: 
+      :long: 
+        :daylight: "Ora verore e SHBA-së Qendrore"
+        :generic: "Ora e SHBA-së Qendrore"
+        :standard: "Ora standarde e SHBA-së Qendrore"
+    :America_Eastern: 
+      :long: 
+        :daylight: "Ora verore e SHBA-së Lindore"
+        :generic: "Ora e SHBA-së Lindore"
+        :standard: "Ora standarde e SHBA-së Lindore"
+    :America_Mountain: 
+      :long: 
+        :daylight: "Ora verore e Territoreve Amerikane të Brezit Malor"
+        :generic: "Ora e Territoreve Amerikane të Brezit Malor"
+        :standard: "Ora standarde e Territoreve Amerikane të Brezit Malor"
+    :America_Pacific: 
+      :long: 
+        :daylight: "Ora verore e Territoreve Amerikane të Bregut të Paqësorit"
+        :generic: "Ora e Territoreve Amerikane të Bregut të Paqësorit"
+        :standard: "Ora standarde e Territoreve Amerikane të Bregut të Paqësorit"
+    :Anadyr: 
+      :long: 
+        :daylight: "Ora verore e Anadirit"
+        :generic: "Ora e Anadirit"
+        :standard: "Ora standarde e Anadirit"
+    :Apia: 
+      :long: 
+        :daylight: "Ora verore e Apias"
+        :generic: "Ora e Apias"
+        :standard: "Ora standarde e Apias"
+    :Aqtau: 
+      :long: 
+        :daylight: "Ora verore e Aktaut"
+        :generic: "Ora e Aktaut"
+        :standard: "Ora standarde e Aktaut"
+    :Aqtobe: 
+      :long: 
+        :daylight: "Ora verore e Aktobit"
+        :generic: "Ora e Aktobit"
+        :standard: "Ora standarde e Aktobit"
+    :Arabian: 
+      :long: 
+        :daylight: "Ora verore arabe"
+        :generic: "Ora arabe"
+        :standard: "Ora standarde arabe"
+    :Argentina: 
+      :long: 
+        :daylight: "Ora verore e Argjentinës"
+        :generic: "Ora e Argjentinës"
+        :standard: "Ora standarde e Argjentinës"
+    :Argentina_Western: 
+      :long: 
+        :daylight: "Ora verore e Argjentinës Perëndimore"
+        :generic: "Ora e Argjentinës Perëndimore"
+        :standard: "Ora standarde e Argjentinës Perëndimore"
+    :Armenia: 
+      :long: 
+        :daylight: "Ora verore e Armenisë"
+        :generic: "Ora e Armenisë"
+        :standard: "Ora standarde e Armenisë"
+    :Atlantic: 
+      :long: 
+        :daylight: "Ora verore e Atlantikut"
+        :generic: "Ora e Atlantikut"
+        :standard: "Ora standarde e Atlantikut"
+    :Australia_Central: 
+      :long: 
+        :daylight: "Ora verore e Australisë Qendrore"
+        :generic: "Ora e Australisë Qendrore"
+        :standard: "Ora standarde e Australisë Qendrore"
+    :Australia_CentralWestern: 
+      :long: 
+        :daylight: "Ora verore e Australisë Qendroro-Perëndimore"
+        :generic: "Ora e Australisë Qendroro-Perëndimore"
+        :standard: "Ora standarde e Australisë Qendroro-Perëndimore"
+    :Australia_Eastern: 
+      :long: 
+        :daylight: "Ora verore e Australisë Lindore"
+        :generic: "Ora e Australisë Lindore"
+        :standard: "Ora standarde e Australisë Lindore"
+    :Australia_Western: 
+      :long: 
+        :daylight: "Ora verore e Australisë Perëndimore"
+        :generic: "Ora e Australisë Perëndimore"
+        :standard: "Ora standarde e Australisë Perëndimore"
+    :Azerbaijan: 
+      :long: 
+        :daylight: "Ora verore e Azerbajxhanit"
+        :generic: "Ora e Azerbajxhanit"
+        :standard: "Ora standarde e Azerbajxhanit"
+    :Azores: 
+      :long: 
+        :daylight: "Ora verore e Azoreve"
+        :generic: "Ora e Azoreve"
+        :standard: "Ora standarde e Azoreve"
+    :Bangladesh: 
+      :long: 
+        :daylight: "Ora verore e Bangladeshit"
+        :generic: "Ora e Bangladeshit"
+        :standard: "Ora standarde e Bangladeshit"
+    :Bhutan: 
+      :long: 
+        :standard: "Ora e Butanit"
+    :Bolivia: 
+      :long: 
+        :standard: "Ora e Bolivisë"
+    :Brasilia: 
+      :long: 
+        :daylight: "Ora verore e Brazilisë"
+        :generic: "Ora e Brazilisë"
+        :standard: "Ora standarde e Brazilisë"
+    :Brunei: 
+      :long: 
+        :standard: "Ora e Brunei-Durasalamit"
+    :Cape_Verde: 
+      :long: 
+        :daylight: "Ora verore e Kepit të Gjelbër"
+        :generic: "Ora e Kepit të Gjelbër"
+        :standard: "Ora standarde e Kepit të Gjelbër"
+    :Casey: 
+      :long: 
+        :standard: "Ora e Kejsit"
+    :Chamorro: 
+      :long: 
+        :standard: "Ora e Kamorros"
+    :Chatham: 
+      :long: 
+        :daylight: "Ora verore e Katamit"
+        :generic: "Ora e Katamit"
+        :standard: "Ora standarde e Katamit"
+    :Chile: 
+      :long: 
+        :daylight: "Ora verore e Kilit"
+        :generic: "Ora e Kilit"
+        :standard: "Ora standarde e Kilit"
+    :China: 
+      :long: 
+        :daylight: "Ora verore e Kinës"
+        :generic: "Ora e Kinës"
+        :standard: "Ora standarde e Kinës"
+    :Christmas: 
+      :long: 
+        :standard: "Ora e Ishullit të Krishtlindjeve"
+    :Cocos: 
+      :long: 
+        :standard: "Ora e Ishujve Kokos"
+    :Colombia: 
+      :long: 
+        :daylight: "Ora verore e Kolumbisë"
+        :generic: "Ora e Kolumbisë"
+        :standard: "Ora standarde e Kolumbisë"
+    :Cook: 
+      :long: 
+        :daylight: "Ora verore e Ishujve Kuk"
+        :generic: "Ora e Ishujve Kuk"
+        :standard: "Ora standarde e Ishujve Kuk"
+    :Cuba: 
+      :long: 
+        :daylight: "Ora verore e Kubës"
+        :generic: "Ora e Kubës"
+        :standard: "Ora standarde e Kubës"
+    :Davis: 
+      :long: 
+        :standard: "Ora e Dejvisit"
+    :DumontDUrville: 
+      :long: 
+        :standard: "Ora e Dumont-d’Urvilës"
+    :East_Timor: 
+      :long: 
+        :standard: "Ora e Timorit Lindor"
+    :Easter: 
+      :long: 
+        :daylight: "Ora verore e Ishullit të Pashkës"
+        :generic: "Ora e Ishullit të Pashkës"
+        :standard: "Ora standarde e Ishullit të Pashkës"
+    :Ecuador: 
+      :long: 
+        :standard: "Ora e Ekuadorit"
+    :Europe_Central: 
+      :long: 
+        :daylight: "Ora verore e Evropës Qendrore"
+        :generic: "Ora e Evropës Qendrore"
+        :standard: "Ora standarde e Evropës Qendrore"
+    :Europe_Eastern: 
+      :long: 
+        :daylight: "Ora verore e Evropës Lindore"
+        :generic: "Ora e Evropës Lindore"
+        :standard: "Ora standarde e Evropës Lindore"
+    :Europe_Further_Eastern: 
+      :long: 
+        :standard: "Ora e Evropës së Largët Lindore"
+    :Europe_Western: 
+      :long: 
+        :daylight: "Ora verore e Evropës Perëndimore"
+        :generic: "Ora e Evropës Perëndimore"
+        :standard: "Ora standarde e Evropës Perëndimore"
+    :Falkland: 
+      :long: 
+        :daylight: "Ora verore e Ishujve Falkland"
+        :generic: "Ora e Ishujve Falkland"
+        :standard: "Ora standarde e Ishujve Falkland"
+    :Fiji: 
+      :long: 
+        :daylight: "Ora verore e Fixhit"
+        :generic: "Ora e Fixhit"
+        :standard: "Ora standarde e Fixhit"
+    :French_Guiana: 
+      :long: 
+        :standard: "Ora e Guajanës Franceze"
+    :French_Southern: 
+      :long: 
+        :standard: "Ora e Territoreve Jugore dhe Antarktike Franceze"
+    :GMT: 
+      :long: 
+        :standard: "Ora e Grinuiçit"
+    :Galapagos: 
+      :long: 
+        :standard: "Ora e Galapagosit"
+    :Gambier: 
+      :long: 
+        :standard: "Ora e Gambierit"
+    :Georgia: 
+      :long: 
+        :daylight: "Ora verore e Gjeorgjisë"
+        :generic: "Ora e Gjeorgjisë"
+        :standard: "Ora standarde e Gjeorgjisë"
+    :Gilbert_Islands: 
+      :long: 
+        :standard: "Ora e Ishujve Gilbert"
+    :Greenland_Eastern: 
+      :long: 
+        :daylight: "Ora verore e Grenlandës Lindore"
+        :generic: "Ora e Grenlandës Lindore"
+        :standard: "Ora standarde e Grenlandës Lindore"
+    :Greenland_Western: 
+      :long: 
+        :daylight: "Ora verore e Grënlandës Perëndimore"
+        :generic: "Ora e Grënlandës Perëndimore"
+        :standard: "Ora standarde e Grënlandës Perëndimore"
+    :Guam: 
+      :long: 
+        :standard: "Ora e Guamit"
+    :Gulf: 
+      :long: 
+        :standard: "Ora e Gjirit"
+    :Guyana: 
+      :long: 
+        :standard: "Ora e Guajanës"
+    :Hawaii_Aleutian: 
+      :long: 
+        :daylight: "Ora verore e Ishujve Hauai-Aleutian"
+        :generic: "Ora e Ishujve Hauai-Aleutian"
+        :standard: "Ora standarde e Ishujve Hauai-Aleutian"
+    :Hong_Kong: 
+      :long: 
+        :daylight: "Ora verore e Hong-Kongut"
+        :generic: "Ora e Hong-Kongut"
+        :standard: "Ora standarde e Hong-Kongut"
+    :Hovd: 
+      :long: 
+        :daylight: "Ora verore e Hovdit"
+        :generic: "Ora e Hovdit"
+        :standard: "Ora standarde e Hovdit"
+    :India: 
+      :long: 
+        :standard: "Ora standarde e Indisë"
+    :Indian_Ocean: 
+      :long: 
+        :standard: "Ora e Oqeanit Indian"
+    :Indochina: 
+      :long: 
+        :standard: "Ora e Indokinës"
+    :Indonesia_Central: 
+      :long: 
+        :standard: "Ora e Indonezisë Qendrore"
+    :Indonesia_Eastern: 
+      :long: 
+        :standard: "Ora e Indonezisë Lindore"
+    :Indonesia_Western: 
+      :long: 
+        :standard: "Ora e Indonezisë Perëndimore"
+    :Iran: 
+      :long: 
+        :daylight: "Ora verore e Iranit"
+        :generic: "Ora e Iranit"
+        :standard: "Ora standarde e Iranit"
+    :Irkutsk: 
+      :long: 
+        :daylight: "Ora verore e Irkutskut"
+        :generic: "Ora e Irkutskut"
+        :standard: "Ora standarde e Irkutskut"
+    :Israel: 
+      :long: 
+        :daylight: "Ora verore e Izraelit"
+        :generic: "Ora e Izraelit"
+        :standard: "Ora standarde e Izraelit"
+    :Japan: 
+      :long: 
+        :daylight: "Ora verore e Japonisë"
+        :generic: "Ora e Japonisë"
+        :standard: "Ora standarde e Japonisë"
+    :Kamchatka: 
+      :long: 
+        :daylight: "Ora verore e Petropavllovsk-Kamçatkës"
+        :generic: "Ora e Petropavllovsk-Kamçatkës"
+        :standard: "Ora standarde e Petropavllovsk-Kamçatkës"
+    :Kazakhstan: 
+      :long: 
+        :standard: "Ora e Kazakistanit"
+    :Kazakhstan_Eastern: 
+      :long: 
+        :standard: "Ora e Kazakistanit Lindor"
+    :Kazakhstan_Western: 
+      :long: 
+        :standard: "Ora e Kazakistanit Perëndimor"
+    :Korea: 
+      :long: 
+        :daylight: "Ora verore koreane"
+        :generic: "Ora koreane"
+        :standard: "Ora standarde koreane"
+    :Kosrae: 
+      :long: 
+        :standard: "Ora e Kosrës"
+    :Krasnoyarsk: 
+      :long: 
+        :daylight: "Ora verore e Krasnojarskut"
+        :generic: "Ora e Krasnojarskut"
+        :standard: "Ora standarde e Krasnojarskut"
+    :Kyrgystan: 
+      :long: 
+        :standard: "Ora e Kirgizisë"
+    :Lanka: 
+      :long: 
+        :standard: "Ora e Lankasë"
+    :Line_Islands: 
+      :long: 
+        :standard: "Ora e Ishujve Sporadikë Ekuatorialë"
+    :Lord_Howe: 
+      :long: 
+        :daylight: "Ora verore e Lord-Houit"
+        :generic: "Ora e Lord-Houit"
+        :standard: "Ora standarde e Lord-Houit"
+    :Macau: 
+      :long: 
+        :daylight: "Ora verore e Makaos"
+        :generic: "Ora e Makaos"
+        :standard: "Ora standarde e Makaos"
+    :Magadan: 
+      :long: 
+        :daylight: "Ora verore e Magadanit"
+        :generic: "Ora e Magadanit"
+        :standard: "Ora standarde e Magadanit"
+    :Malaysia: 
+      :long: 
+        :standard: "Ora e Malajzisë"
+    :Maldives: 
+      :long: 
+        :standard: "Ora e Maldiveve"
+    :Marquesas: 
+      :long: 
+        :standard: "Ora e Ishujve Markezë"
+    :Marshall_Islands: 
+      :long: 
+        :standard: "Ora e Ishujve Marshall"
+    :Mauritius: 
+      :long: 
+        :daylight: "Ora verore e Mauritiusit"
+        :generic: "Ora e Mauritiusit"
+        :standard: "Ora standarde e Mauritiusit"
+    :Mawson: 
+      :long: 
+        :standard: "Ora e Mausonit"
+    :Mexico_Pacific: 
+      :long: 
+        :daylight: "Ora verore e Territoreve Meksikane të Bregut të Paqësorit"
+        :generic: "Ora e Territoreve Meksikane të Bregut të Paqësorit"
+        :standard: "Ora standarde e Territoreve Meksikane të Bregut të Paqësorit"
+    :Mongolia: 
+      :long: 
+        :daylight: "Ora verore e Ulan-Batorit"
+        :generic: "Ora e Ulan-Batorit"
+        :standard: "Ora standarde e Ulan-Batorit"
+    :Moscow: 
+      :long: 
+        :daylight: "Ora verore e Moskës"
+        :generic: "Ora e Moskës"
+        :standard: "Ora standarde e Moskës"
+    :Myanmar: 
+      :long: 
+        :standard: "Ora e Mianmarit"
+    :Nauru: 
+      :long: 
+        :standard: "Ora e Naurusë"
+    :Nepal: 
+      :long: 
+        :standard: "Ora e Nepalit"
+    :New_Caledonia: 
+      :long: 
+        :daylight: "Ora verore e Kaledonisë së Re"
+        :generic: "Ora e Kaledonisë së Re"
+        :standard: "Ora standarde e Kaledonisë së Re"
+    :New_Zealand: 
+      :long: 
+        :daylight: "Ora verore e Zelandës së Re"
+        :generic: "Ora e Zelandës së Re"
+        :standard: "Ora standarde e Zelandës së Re"
+    :Newfoundland: 
+      :long: 
+        :daylight: "Ora verore e Njufaundlendit [Tokës së Re]"
+        :generic: "Ora e Njufaundlendit [Tokës së Re]"
+        :standard: "Ora standarde e Njufaundlendit [Tokës së Re]"
+    :Niue: 
+      :long: 
+        :standard: "Ora e Niuesë"
+    :Norfolk: 
+      :long: 
+        :daylight: "Ora verore e Ishullit Norfolk"
+        :generic: "Ora e Ishullit Norfolk"
+        :standard: "Ora standarde e Ishullit Norfolk"
+    :Noronha: 
+      :long: 
+        :daylight: "Ora verore e Fernando-de-Noronjës"
+        :generic: "Ora e Fernando-de-Noronjës"
+        :standard: "Ora standarde e Fernando-de-Noronjës"
+    :North_Mariana: 
+      :long: 
+        :standard: "Ora e Ishujve të Marianës së Veriut"
+    :Novosibirsk: 
+      :long: 
+        :daylight: "Ora verore e Novosibirskut"
+        :generic: "Ora e Novosibirskut"
+        :standard: "Ora standarde e Novosibirskut"
+    :Omsk: 
+      :long: 
+        :daylight: "Ora verore e Omskut"
+        :generic: "Ora e Omskut"
+        :standard: "Ora standarde e Omskut"
+    :Pakistan: 
+      :long: 
+        :daylight: "Ora verore e Pakistanit"
+        :generic: "Ora e Pakistanit"
+        :standard: "Ora standarde e Pakistanit"
+    :Palau: 
+      :long: 
+        :standard: "Ora e Palaut"
+    :Papua_New_Guinea: 
+      :long: 
+        :standard: "Ora e Guinesë së Re-Papua"
+    :Paraguay: 
+      :long: 
+        :daylight: "Ora Verore e Paraguait"
+        :generic: "Ora e Paraguait"
+        :standard: "Ora standarde e Paraguait"
+    :Peru: 
+      :long: 
+        :daylight: "Ora verore e Perusë"
+        :generic: "Ora e Perusë"
+        :standard: "Ora standarde e Perusë"
+    :Philippines: 
+      :long: 
+        :daylight: "Ora verore e Filipineve"
+        :generic: "Ora e Filipineve"
+        :standard: "Ora standarde e Filipineve"
+    :Phoenix_Islands: 
+      :long: 
+        :standard: "Ora e Ishujve Feniks"
+    :Pierre_Miquelon: 
+      :long: 
+        :daylight: "Ora verore e Shën-Pier dhe Mikelon"
+        :generic: "Ora e Shën-Pier dhe Mikelon"
+        :standard: "Ora standarde e Shën-Pier dhe Mikelon"
+    :Pitcairn: 
+      :long: 
+        :standard: "Ora e Pitkernit"
+    :Ponape: 
+      :long: 
+        :standard: "Ora e Ponapeit"
+    :Pyongyang: 
+      :long: 
+        :standard: "Ora e Penianit"
+    :Qyzylorda: 
+      :long: 
+        :daylight: "Ora verore e Kizilordit"
+        :generic: "Ora e Kizilordit"
+        :standard: "Ora standarde e Kizilordit"
+    :Reunion: 
+      :long: 
+        :standard: "Ora e Reunionit"
+    :Rothera: 
+      :long: 
+        :standard: "Ora e Rodherës"
+    :Sakhalin: 
+      :long: 
+        :daylight: "Ora verore e Sakalinit"
+        :generic: "Ora e Sakalinit"
+        :standard: "Ora standarde e Sakalinit"
+    :Samara: 
+      :long: 
+        :daylight: "Ora verore e Samarës"
+        :generic: "Ora e Samarës"
+        :standard: "Ora standarde e Samarës"
+    :Samoa: 
+      :long: 
+        :daylight: "Ora verore e Samoas"
+        :generic: "Ora e Samoas"
+        :standard: "Ora standarde e Samoas"
+    :Seychelles: 
+      :long: 
+        :standard: "Ora e Sejshelleve"
+    :Singapore: 
+      :long: 
+        :standard: "Ora e Singaporit"
+    :Solomon: 
+      :long: 
+        :standard: "Ora e Ishujve Solomon"
+    :South_Georgia: 
+      :long: 
+        :standard: "Ora e Xhorxhas të Jugut"
+    :Suriname: 
+      :long: 
+        :standard: "Ora e Surinamit"
+    :Syowa: 
+      :long: 
+        :standard: "Ora e Sjouit"
+    :Tahiti: 
+      :long: 
+        :standard: "Ora e Tahitit"
+    :Taipei: 
+      :long: 
+        :daylight: "Ora verore e Tajpeit"
+        :generic: "Ora e Tajpeit"
+        :standard: "Ora standarde e Tajpeit"
+    :Tajikistan: 
+      :long: 
+        :standard: "Ora e Taxhikistanit"
+    :Tokelau: 
+      :long: 
+        :standard: "Ora e Tokelaut"
+    :Tonga: 
+      :long: 
+        :daylight: "Ora verore e Tongës"
+        :generic: "Ora e Tongës"
+        :standard: "Ora standarde e Tongës"
+    :Truk: 
+      :long: 
+        :standard: "Ora e Çukut"
+    :Turkmenistan: 
+      :long: 
+        :daylight: "Ora verore e Turkmenistanit"
+        :generic: "Ora e Turkmenistanit"
+        :standard: "Ora standarde e Turkmenistanit"
+    :Tuvalu: 
+      :long: 
+        :standard: "Ora e Tuvalusë"
+    :Uruguay: 
+      :long: 
+        :daylight: "Ora verore e Uruguait"
+        :generic: "Ora e Uruguait"
+        :standard: "Ora standarde e Uruguait"
+    :Uzbekistan: 
+      :long: 
+        :daylight: "Ora verore e Uzbekistanit"
+        :generic: "Ora e Uzbekistanit"
+        :standard: "Ora standarde e Uzbekistanit"
+    :Vanuatu: 
+      :long: 
+        :daylight: "Ora verore e Vanuatusë"
+        :generic: "Ora e Vanuatusë"
+        :standard: "Ora standarde e Vanuatusë"
+    :Venezuela: 
+      :long: 
+        :standard: "Ora e Venezuelës"
+    :Vladivostok: 
+      :long: 
+        :daylight: "Ora verore e Vladivostokut"
+        :generic: "Ora e Vladivostokut"
+        :standard: "Ora standarde e Vladivostokut"
+    :Volgograd: 
+      :long: 
+        :daylight: "Ora verore e Volgogradit"
+        :generic: "Ora e Volgogradit"
+        :standard: "Ora standarde e Volgogradit"
+    :Vostok: 
+      :long: 
+        :standard: "Ora e Vostokut"
+    :Wake: 
+      :long: 
+        :standard: "Ora e Ishullit Uejk"
+    :Wallis: 
+      :long: 
+        :standard: "Ora e Uollisit dhe Futunës"
+    :Yakutsk: 
+      :long: 
+        :daylight: "Ora verore e Jakutskut"
+        :generic: "Ora e Jakutskut"
+        :standard: "Ora standarde e Jakutskut"
+    :Yekaterinburg: 
+      :long: 
+        :daylight: "Ora verore e Ekaterinburgut"
+        :generic: "Ora e Ekaterinburgut"
+        :standard: "Ora standarde e Ekaterinburgut"
+    :Yukon: 
+      :long: 
+        :standard: "Ora e Jukonit"
+  :timezones: 
+    :Africa/Abidjan: 
+      :city: Abixhan
+    :Africa/Accra: 
+      :city: Akra
+    :Africa/Addis_Ababa: 
+      :city: Adis-Ababë
+    :Africa/Algiers: 
+      :city: Algjer
+    :Africa/Asmera: 
+      :city: Asmarë
+    :Africa/Banjul: 
+      :city: Banxhul
+    :Africa/Bissau: 
+      :city: Bisau
+    :Africa/Blantyre: 
+      :city: Blantirë
+    :Africa/Brazzaville: 
+      :city: Brazavillë
+    :Africa/Bujumbura: 
+      :city: Buxhumburë
+    :Africa/Cairo: 
+      :city: Kajro
+    :Africa/Casablanca: 
+      :city: Kazablankë
+    :Africa/Ceuta: 
+      :city: Theuta
+    :Africa/Conakry: 
+      :city: Konakri
+    :Africa/Dar_es_Salaam: 
+      :city: Dar-es-Salam
+    :Africa/Djibouti: 
+      :city: Xhibuti
+    :Africa/El_Aaiun: 
+      :city: "El Ajun"
+    :Africa/Freetown: 
+      :city: Fritaun
+    :Africa/Johannesburg: 
+      :city: Johanesburg
+    :Africa/Juba: 
+      :city: Xhuba
+    :Africa/Khartoum: 
+      :city: Kartum
+    :Africa/Libreville: 
+      :city: Librevilë
+    :Africa/Niamey: 
+      :city: Niamej
+    :Africa/Nouakchott: 
+      :city: Nouakot
+    :Africa/Ouagadougou: 
+      :city: Uagëdugu
+    :Africa/Sao_Tome: 
+      :city: Sao-Tome
+    :Africa/Tunis: 
+      :city: Tuniz
+    :Africa/Windhoek: 
+      :city: Vint’huk
+    :America/Anchorage: 
+      :city: Ankorejxh
+    :America/Anguilla: 
+      :city: Anguilë
+    :America/Araguaina: 
+      :city: Araguajana
+    :America/Argentina/La_Rioja: 
+      :city: "La Rioha"
+    :America/Argentina/Rio_Gallegos: 
+      :city: Rio-Galegos
+    :America/Argentina/Salta: 
+      :city: Saltë
+    :America/Argentina/San_Juan: 
+      :city: San-Huan
+    :America/Argentina/San_Luis: 
+      :city: Shën-Luis
+    :America/Argentina/Tucuman: 
+      :city: Tukuman
+    :America/Argentina/Ushuaia: 
+      :city: Ushuaja
+    :America/Aruba: 
+      :city: Arubë
+    :America/Asuncion: 
+      :city: Asunsion
+    :America/Bahia_Banderas: 
+      :city: Bahia-Banderas
+    :America/Belize: 
+      :city: Belizë
+    :America/Blanc-Sablon: 
+      :city: Blank-Sablon
+    :America/Boa_Vista: 
+      :city: Boa-Vista
+    :America/Bogota: 
+      :city: Bogotë
+    :America/Boise: 
+      :city: Boizë
+    :America/Buenos_Aires: 
+      :city: Buenos-Ajres
+    :America/Cambridge_Bay: 
+      :city: "Gjiri i Kembrixhit"
+    :America/Campo_Grande: 
+      :city: Kampo-Grande
+    :America/Cancun: 
+      :city: Kankun
+    :America/Caracas: 
+      :city: Karakas
+    :America/Catamarca: 
+      :city: Katamarka
+    :America/Cayenne: 
+      :city: Kajenë
+    :America/Cayman: 
+      :city: Kajman
+    :America/Chicago: 
+      :city: Çikago
+    :America/Chihuahua: 
+      :city: Çihahua
+    :America/Ciudad_Juarez: 
+      :city: Siudad-Huarez
+    :America/Coral_Harbour: 
+      :city: Atikokan
+    :America/Cordoba: 
+      :city: Kordoba
+    :America/Costa_Rica: 
+      :city: Kosta-Rikë
+    :America/Creston: 
+      :city: Kreston
+    :America/Cuiaba: 
+      :city: Kujaba
+    :America/Curacao: 
+      :city: Kurasao
+    :America/Danmarkshavn: 
+      :city: Denmarkshavën
+    :America/Dawson: 
+      :city: Douson
+    :America/Dawson_Creek: 
+      :city: "Gjiri i Dousonit"
+    :America/Dominica: 
+      :city: Dominikë
+    :America/Eirunepe: 
+      :city: Ejrunep
+    :America/El_Salvador: 
+      :city: Salvador
+    :America/Fort_Nelson: 
+      :city: Fort-Nelson
+    :America/Glace_Bay: 
+      :city: "Gjiri i Ngrirë"
+    :America/Godthab: 
+      :city: Njuk
+    :America/Goose_Bay: 
+      :city: "Gjiri i Patës"
+    :America/Grand_Turk: 
+      :city: "Turku i Madh"
+    :America/Grenada: 
+      :city: Granadë
+    :America/Guadeloupe: 
+      :city: Guadelupë
+    :America/Guatemala: 
+      :city: Guatemalë
+    :America/Guayaquil: 
+      :city: Guajakuil
+    :America/Guyana: 
+      :city: Guajanë
+    :America/Halifax: 
+      :city: Halifaks
+    :America/Havana: 
+      :city: Havanë
+    :America/Hermosillo: 
+      :city: Hermosijo
+    :America/Indiana/Knox: 
+      :city: "Knoks, Indiana"
+    :America/Indiana/Marengo: 
+      :city: "Marengo, Indiana"
+    :America/Indiana/Petersburg: 
+      :city: "Petërsburg, Indiana"
+    :America/Indiana/Tell_City: 
+      :city: "Tell-Siti, Indiana"
+    :America/Indiana/Vevay: 
+      :city: "Vevëj, Indiana"
+    :America/Indiana/Vincennes: 
+      :city: "Vincenes, Indiana"
+    :America/Indiana/Winamac: 
+      :city: "Uinamak, Indiana"
+    :America/Iqaluit: 
+      :city: Ikaluit
+    :America/Jamaica: 
+      :city: Xhamajkë
+    :America/Jujuy: 
+      :city: Huhui
+    :America/Juneau: 
+      :city: Xhunou
+    :America/Kentucky/Monticello: 
+      :city: "Montiçelo, Kentaki"
+    :America/Lima: 
+      :city: Limë
+    :America/Los_Angeles: 
+      :city: "Los Anxhelos"
+    :America/Louisville: 
+      :city: Luizvilë
+    :America/Lower_Princes: 
+      :city: Louer-Prinsis-Kuortër
+    :America/Maceio: 
+      :city: Makejo
+    :America/Martinique: 
+      :city: Martinikë
+    :America/Menominee: 
+      :city: Menomini
+    :America/Merida: 
+      :city: Merida
+    :America/Mexico_City: 
+      :city: "Qyteti i Meksikës"
+    :America/Miquelon: 
+      :city: Mikelon
+    :America/Moncton: 
+      :city: Monkton
+    :America/Monterrey: 
+      :city: Monterrej
+    :America/Montserrat: 
+      :city: Montserat
+    :America/Nassau: 
+      :city: Nasao
+    :America/New_York: 
+      :city: Nju-Jork
+    :America/Noronha: 
+      :city: Noronja
+    :America/North_Dakota/Beulah: 
+      :city: "Beula, Dakota e Veriut"
+    :America/North_Dakota/Center: 
+      :city: "Qendër, Dakota e Veriut"
+    :America/North_Dakota/New_Salem: 
+      :city: "Nju-Salem, Dakota e Veriut"
+    :America/Ojinaga: 
+      :city: Ohinaga
+    :America/Phoenix: 
+      :city: Feniks
+    :America/Port-au-Prince: 
+      :city: Port-o-Prins
+    :America/Porto_Velho: 
+      :city: Porto-Velho
+    :America/Puerto_Rico: 
+      :city: Porto-Riko
+    :America/Punta_Arenas: 
+      :city: Punta-Arenas
+    :America/Rankin_Inlet: 
+      :city: "Gryka Inlet"
+    :America/Regina: 
+      :city: Rexhina
+    :America/Rio_Branco: 
+      :city: Rio-Branko
+    :America/Santo_Domingo: 
+      :city: Santo-Domingo
+    :America/Sao_Paulo: 
+      :city: Sao-Paulo
+    :America/Scoresbysund: 
+      :city: Itokorturmit
+    :America/St_Barthelemy: 
+      :city: Sen-Bartelemi
+    :America/St_Johns: 
+      :city: Shën-Gjon
+    :America/St_Kitts: 
+      :city: Shën-Kits
+    :America/St_Lucia: 
+      :city: Shën-Luçia
+    :America/St_Thomas: 
+      :city: Shën-Tomas
+    :America/St_Vincent: 
+      :city: Shën-Vincent
+    :America/Swift_Current: 
+      :city: "Rryma e Shpejtë"
+    :America/Tegucigalpa: 
+      :city: Tegusigalpa
+    :America/Thule: 
+      :city: Dhule
+    :America/Tijuana: 
+      :city: Tihuana
+    :America/Tortola: 
+      :city: Tortolë
+    :America/Vancouver: 
+      :city: Vankuver
+    :America/Whitehorse: 
+      :city: Uajt’hors
+    :America/Winnipeg: 
+      :city: Uinipeg
+    :America/Yakutat: 
+      :city: Jakutat
+    :Antarctica/Casey: 
+      :city: Kejsi
+    :Antarctica/Davis: 
+      :city: Dejvis
+    :Antarctica/DumontDUrville: 
+      :city: Dumont-d’Urvilë
+    :Antarctica/Macquarie: 
+      :city: Mekuari
+    :Antarctica/Mawson: 
+      :city: Mauson
+    :Antarctica/McMurdo: 
+      :city: Mekmurdo
+    :Antarctica/Rothera: 
+      :city: Rodherë
+    :Antarctica/Syowa: 
+      :city: Sjoua
+    :Arctic/Longyearbyen: 
+      :city: Long’jëbjen
+    :Asia/Almaty: 
+      :city: Almati
+    :Asia/Amman: 
+      :city: Aman
+    :Asia/Anadyr: 
+      :city: Anadir
+    :Asia/Aqtau: 
+      :city: Aktau
+    :Asia/Aqtobe: 
+      :city: Aktobe
+    :Asia/Atyrau: 
+      :city: Atirau
+    :Asia/Baghdad: 
+      :city: Bagdad
+    :Asia/Bahrain: 
+      :city: Bahrejn
+    :Asia/Beirut: 
+      :city: Bejrut
+    :Asia/Calcutta: 
+      :city: Kalkutë
+    :Asia/Chita: 
+      :city: Çita
+    :Asia/Colombo: 
+      :city: Kolombo
+    :Asia/Damascus: 
+      :city: Damask
+    :Asia/Dhaka: 
+      :city: Daka
+    :Asia/Famagusta: 
+      :city: Famagustë
+    :Asia/Hong_Kong: 
+      :city: Hong-Kong
+    :Asia/Jakarta: 
+      :city: Xhakartë
+    :Asia/Jayapura: 
+      :city: Xhajapurë
+    :Asia/Kamchatka: 
+      :city: Kamçatkë
+    :Asia/Karachi: 
+      :city: Karaçi
+    :Asia/Katmandu: 
+      :city: Katmandu
+    :Asia/Khandyga: 
+      :city: Kandigë
+    :Asia/Krasnoyarsk: 
+      :city: Krasnojarsk
+    :Asia/Kuala_Lumpur: 
+      :city: Kuala-Lumpur
+    :Asia/Kuching: 
+      :city: Kuçing
+    :Asia/Kuwait: 
+      :city: Kuvajt
+    :Asia/Macau: 
+      :city: Makao
+    :Asia/Makassar: 
+      :city: Makasar
+    :Asia/Manila: 
+      :city: Manilë
+    :Asia/Muscat: 
+      :city: Muskat
+    :Asia/Nicosia: 
+      :city: Nikozia
+    :Asia/Phnom_Penh: 
+      :city: Pnom-Pen
+    :Asia/Pyongyang: 
+      :city: Penian
+    :Asia/Qatar: 
+      :city: Katar
+    :Asia/Qostanay: 
+      :city: Kostanaj
+    :Asia/Qyzylorda: 
+      :city: Kizilorda
+    :Asia/Rangoon: 
+      :city: Rangun
+    :Asia/Riyadh: 
+      :city: Riad
+    :Asia/Saigon: 
+      :city: Ho-Çi-Min
+    :Asia/Sakhalin: 
+      :city: Sakalin
+    :Asia/Seoul: 
+      :city: Seul
+    :Asia/Shanghai: 
+      :city: Shangai
+    :Asia/Singapore: 
+      :city: Singapor
+    :Asia/Srednekolymsk: 
+      :city: Srednekolimsk
+    :Asia/Taipei: 
+      :city: Tajpej
+    :Asia/Tbilisi: 
+      :city: Tbilis
+    :Asia/Tehran: 
+      :city: Teheran
+    :Asia/Thimphu: 
+      :city: Thimpu
+    :Asia/Tokyo: 
+      :city: Tokio
+    :Asia/Ulaanbaatar: 
+      :city: Ulanbatar
+    :Asia/Vientiane: 
+      :city: Vjentianë
+    :Asia/Yakutsk: 
+      :city: Jakutsk
+    :Asia/Yekaterinburg: 
+      :city: Ekaterinburg
+    :Asia/Yerevan: 
+      :city: Jerevan
+    :Atlantic/Azores: 
+      :city: Azore
+    :Atlantic/Bermuda: 
+      :city: Bermude
+    :Atlantic/Canary: 
+      :city: Kanari
+    :Atlantic/Cape_Verde: 
+      :city: "Kepi i Gjelbër"
+    :Atlantic/Faeroe: 
+      :city: Faroe
+    :Atlantic/Reykjavik: 
+      :city: Reikjavik
+    :Atlantic/South_Georgia: 
+      :city: "Xhorxha e Jugut"
+    :Atlantic/St_Helena: 
+      :city: Shën-Elenë
+    :Atlantic/Stanley: 
+      :city: Stenli
+    :Australia/Adelaide: 
+      :city: Adelajde
+    :Australia/Brisbane: 
+      :city: Brisbejn
+    :Australia/Broken_Hill: 
+      :city: Brokën-Hill
+    :Australia/Darwin: 
+      :city: Darvin
+    :Australia/Eucla: 
+      :city: Eukla
+    :Australia/Lindeman: 
+      :city: Lindëmen
+    :Australia/Lord_Howe: 
+      :city: Lord-Houi
+    :Australia/Melbourne: 
+      :city: Melburn
+    :Australia/Perth: 
+      :city: Përth
+    :Australia/Sydney: 
+      :city: Sidnej
+    :Etc/UTC: 
+      :long: 
+        :standard: "Ora universale e koordinuar"
+      :short: 
+        :standard: UTC
+    :Etc/Unknown: 
+      :city: "Qytet i panjohur"
+    :Europe/Andorra: 
+      :city: Andorrë
+    :Europe/Astrakhan: 
+      :city: Astrakan
+    :Europe/Athens: 
+      :city: Athinë
+    :Europe/Belgrade: 
+      :city: Beograd
+    :Europe/Bratislava: 
+      :city: Bratislavë
+    :Europe/Brussels: 
+      :city: Bruksel
+    :Europe/Bucharest: 
+      :city: Bukuresht
+    :Europe/Chisinau: 
+      :city: Kishineu
+    :Europe/Copenhagen: 
+      :city: Kopenhagen
+    :Europe/Dublin: 
+      :long: 
+        :daylight: "Ora strandarde e Irlandës"
+    :Europe/Gibraltar: 
+      :city: Gjibraltar
+    :Europe/Guernsey: 
+      :city: Gernsej
+    :Europe/Isle_of_Man: 
+      :city: "Ishulli i Manit"
+    :Europe/Istanbul: 
+      :city: Stamboll
+    :Europe/Jersey: 
+      :city: Xhersej
+    :Europe/Kiev: 
+      :city: Kiev
+    :Europe/Lisbon: 
+      :city: Lisbonë
+    :Europe/Ljubljana: 
+      :city: Lubjanë
+    :Europe/London: 
+      :city: Londër
+      :long: 
+        :daylight: "Ora verore britanike"
+    :Europe/Luxembourg: 
+      :city: Luksemburg
+    :Europe/Malta: 
+      :city: Maltë
+    :Europe/Monaco: 
+      :city: Monako
+    :Europe/Moscow: 
+      :city: Moskë
+    :Europe/Podgorica: 
+      :city: Podgoricë
+    :Europe/Prague: 
+      :city: Pragë
+    :Europe/Riga: 
+      :city: Rigë
+    :Europe/Rome: 
+      :city: Romë
+    :Europe/San_Marino: 
+      :city: San-Marino
+    :Europe/Sarajevo: 
+      :city: Sarajevë
+    :Europe/Skopje: 
+      :city: Shkup
+    :Europe/Sofia: 
+      :city: Sofje
+    :Europe/Stockholm: 
+      :city: Stokholm
+    :Europe/Tallinn: 
+      :city: Talin
+    :Europe/Tirane: 
+      :city: Tiranë
+    :Europe/Ulyanovsk: 
+      :city: Uljanovsk
+    :Europe/Vatican: 
+      :city: Vatikan
+    :Europe/Vienna: 
+      :city: Vjenë
+    :Europe/Warsaw: 
+      :city: Varshavë
+    :Europe/Zurich: 
+      :city: Zyrih
+    :Indian/Chagos: 
+      :city: Çagos
+    :Indian/Christmas: 
+      :city: Krishtlindje
+    :Indian/Cocos: 
+      :city: Kokos
+    :Indian/Comoro: 
+      :city: Komore
+    :Indian/Maldives: 
+      :city: Maldive
+    :Indian/Mayotte: 
+      :city: Majotë
+    :Indian/Reunion: 
+      :city: Réunion
+    :Pacific/Auckland: 
+      :city: Okland
+    :Pacific/Bougainville: 
+      :city: Bunganvilë
+    :Pacific/Chatham: 
+      :city: Çatman
+    :Pacific/Easter: 
+      :city: Pashkë
+    :Pacific/Enderbury: 
+      :city: Enderbur
+    :Pacific/Fiji: 
+      :city: Fixhi
+    :Pacific/Guadalcanal: 
+      :city: Guadalkanal
+    :Pacific/Honolulu: 
+      :city: Honolulu
+    :Pacific/Kiritimati: 
+      :city: Kiritimat
+    :Pacific/Kosrae: 
+      :city: Kosre
+    :Pacific/Kwajalein: 
+      :city: Kuaxhalein
+    :Pacific/Majuro: 
+      :city: Mahuro
+    :Pacific/Marquesas: 
+      :city: Markez
+    :Pacific/Midway: 
+      :city: Miduej
+    :Pacific/Pago_Pago: 
+      :city: Pago-Pago
+    :Pacific/Pitcairn: 
+      :city: Pitkern
+    :Pacific/Ponape: 
+      :city: Ponapei
+    :Pacific/Port_Moresby: 
+      :city: Port-Moresbi
+    :Pacific/Rarotonga: 
+      :city: Rarotongë
+    :Pacific/Tarawa: 
+      :city: Taravë
+    :Pacific/Truk: 
+      :city: Çuk
+    :Pacific/Wake: 
+      :city: Uejk
+    :Pacific/Wallis: 
+      :city: Uollis

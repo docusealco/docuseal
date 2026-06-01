@@ -1,0 +1,119 @@
+--- 
+:lo: 
+  :rbnf: 
+    :grouping: 
+      - 
+        :ruleset: 
+          - 
+            :rules: 
+              - 
+                :rule: =0.0=;
+                :value: x.x
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 0
+            :type: spellout-numbering-year
+          - 
+            :rules: 
+              - 
+                :rule: =%spellout-cardinal=;
+                :value: 0
+            :type: spellout-numbering
+          - 
+            :rules: 
+              - 
+                :rule: ลบ​>>;
+                :value: "-x"
+              - 
+                :rule: <<​จุด​>>>;
+                :value: x.x
+              - 
+                :rule: ศูนย์;
+                :value: 0
+              - 
+                :rule: ໜຶ່ງ;
+                :value: 1
+              - 
+                :rule: ສອງ;
+                :value: 2
+              - 
+                :rule: ສາມ;
+                :value: 3
+              - 
+                :rule: ສີ່;
+                :value: 4
+              - 
+                :rule: ຫ້າ;
+                :value: 5
+              - 
+                :rule: ຫົກ;
+                :value: 6
+              - 
+                :rule: ເຈັດ;
+                :value: 7
+              - 
+                :rule: ແປດ;
+                :value: 8
+              - 
+                :rule: ເກົ້າ;
+                :value: 9
+              - 
+                :rule: "ສິບ[​>%%alt-ones>];"
+                :value: 10
+              - 
+                :rule: "ຊາວ[​>%%alt-ones>];"
+                :value: 20
+              - 
+                :rule: "<<​ສິບ[​>%%alt-ones>];"
+                :value: 30
+              - 
+                :rule: "<<​ร้อย[​>>];"
+                :value: 100
+              - 
+                :rule: "<<​พัน[​>>];"
+                :value: 1000
+              - 
+                :rule: "<<​หมื่น[​>>];"
+                :value: 10000
+              - 
+                :rule: "<<​แสน[​>>];"
+                :value: 100000
+              - 
+                :rule: "<<​ล้าน[​>>];"
+                :value: 1000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: ເອັດ;
+                :value: 1
+              - 
+                :rule: =%spellout-cardinal=;
+                :value: 2
+            :type: alt-ones
+          - 
+            :rules: 
+              - 
+                :rule: "=#,##0.#=;"
+                :value: x.x
+              - 
+                :rule: ที่​=%spellout-cardinal=;
+                :value: 0
+            :type: spellout-ordinal
+        :type: SpelloutRules
+      - 
+        :ruleset: 
+          - 
+            :rules: 
+              - 
+                :rule: "ที่−>#,##0>;"
+                :value: "-x"
+              - 
+                :rule: "ที่​=#,##0=;"
+                :value: 0
+            :type: digits-ordinal
+        :type: OrdinalRules

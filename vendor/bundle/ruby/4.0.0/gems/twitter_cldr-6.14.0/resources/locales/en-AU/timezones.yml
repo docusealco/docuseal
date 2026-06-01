@@ -1,0 +1,792 @@
+--- 
+:en-AU: 
+  :formats: 
+    :fallback_formats: 
+      :generic: "{1} ({0})"
+    :gmt_formats: 
+      :generic: "GMT{0}"
+    :gmt_zero_formats: 
+      :generic: GMT
+    :hour_formats: 
+      :generic: "+HH:mm;-HH:mm"
+    :region_formats: 
+      :daylight: "{0} Daylight Time"
+      :generic: "{0} Time"
+      :standard: "{0} Standard Time"
+  :metazones: 
+    :Acre: 
+      :long: 
+        :daylight: "Acre Summer Time"
+        :generic: "Acre Time"
+        :standard: "Acre Standard Time"
+    :Afghanistan: 
+      :long: 
+        :standard: "Afghanistan Time"
+    :Africa_Central: 
+      :long: 
+        :standard: "Central Africa Time"
+    :Africa_Eastern: 
+      :long: 
+        :standard: "Eastern Africa Time"
+    :Africa_Southern: 
+      :long: 
+        :standard: "South Africa Standard Time"
+    :Africa_Western: 
+      :long: 
+        :daylight: "West Africa Summer Time"
+        :generic: "West Africa Time"
+        :standard: "West Africa Standard Time"
+    :Alaska: 
+      :long: 
+        :daylight: "Alaska Daylight Time"
+        :generic: "Alaska Time"
+        :standard: "Alaska Standard Time"
+    :Almaty: 
+      :long: 
+        :daylight: "Almaty Summer Time"
+        :generic: "Almaty Time"
+        :standard: "Almaty Standard Time"
+    :Amazon: 
+      :long: 
+        :daylight: "Amazon Summer Time"
+        :generic: "Amazon Time"
+        :standard: "Amazon Standard Time"
+    :America_Central: 
+      :long: 
+        :daylight: "Central Daylight Time"
+        :generic: "Central Time"
+        :standard: "Central Standard Time"
+    :America_Eastern: 
+      :long: 
+        :daylight: "Eastern Daylight Time"
+        :generic: "Eastern Time"
+        :standard: "Eastern Standard Time"
+    :America_Mountain: 
+      :long: 
+        :daylight: "Mountain Daylight Time"
+        :generic: "Mountain Time"
+        :standard: "Mountain Standard Time"
+    :America_Pacific: 
+      :long: 
+        :daylight: "Pacific Daylight Time"
+        :generic: "Pacific Time"
+        :standard: "Pacific Standard Time"
+    :Anadyr: 
+      :long: 
+        :daylight: "Anadyr Summer Time"
+        :generic: "Anadyr Time"
+        :standard: "Anadyr Standard Time"
+    :Apia: 
+      :long: 
+        :daylight: "Apia Daylight Time"
+        :generic: "Apia Time"
+        :standard: "Apia Standard Time"
+    :Aqtau: 
+      :long: 
+        :daylight: "Aqtau Summer Time"
+        :generic: "Aqtau Time"
+        :standard: "Aqtau Standard Time"
+    :Aqtobe: 
+      :long: 
+        :daylight: "Aqtobe Summer Time"
+        :generic: "Aqtobe Time"
+        :standard: "Aqtobe Standard Time"
+    :Arabian: 
+      :long: 
+        :daylight: "Arabia Daylight Time"
+        :generic: "Arabia Time"
+        :standard: "Arabia Standard Time"
+    :Argentina: 
+      :long: 
+        :daylight: "Argentina Summer Time"
+        :generic: "Argentina Time"
+        :standard: "Argentina Standard Time"
+    :Argentina_Western: 
+      :long: 
+        :daylight: "Western Argentina Summer Time"
+        :generic: "Western Argentina Time"
+        :standard: "Western Argentina Standard Time"
+    :Armenia: 
+      :long: 
+        :daylight: "Armenia Summer Time"
+        :generic: "Armenia Time"
+        :standard: "Armenia Standard Time"
+    :Atlantic: 
+      :long: 
+        :daylight: "Atlantic Daylight Time"
+        :generic: "Atlantic Time"
+        :standard: "Atlantic Standard Time"
+    :Australia_Central: 
+      :long: 
+        :daylight: "Australian Central Daylight Time"
+        :generic: "Australian Central Time"
+        :standard: "Australian Central Standard Time"
+      :short: 
+        :daylight: ACDT
+        :generic: ACT
+        :standard: ACST
+    :Australia_CentralWestern: 
+      :long: 
+        :daylight: "Australian Central Western Daylight Time"
+        :generic: "Australian Central Western Time"
+        :standard: "Australian Central Western Standard Time"
+      :short: 
+        :daylight: ACWDT
+        :generic: ACWT
+        :standard: ACWST
+    :Australia_Eastern: 
+      :long: 
+        :daylight: "Australian Eastern Daylight Time"
+        :generic: "Australian Eastern Time"
+        :standard: "Australian Eastern Standard Time"
+      :short: 
+        :daylight: AEDT
+        :generic: AET
+        :standard: AEST
+    :Australia_Western: 
+      :long: 
+        :daylight: "Australian Western Daylight Time"
+        :generic: "Australian Western Time"
+        :standard: "Australian Western Standard Time"
+      :short: 
+        :daylight: AWDT
+        :generic: AWT
+        :standard: AWST
+    :Azerbaijan: 
+      :long: 
+        :daylight: "Azerbaijan Summer Time"
+        :generic: "Azerbaijan Time"
+        :standard: "Azerbaijan Standard Time"
+    :Azores: 
+      :long: 
+        :daylight: "Azores Summer Time"
+        :generic: "Azores Time"
+        :standard: "Azores Standard Time"
+    :Bangladesh: 
+      :long: 
+        :daylight: "Bangladesh Summer Time"
+        :generic: "Bangladesh Time"
+        :standard: "Bangladesh Standard Time"
+    :Bhutan: 
+      :long: 
+        :standard: "Bhutan Time"
+    :Bolivia: 
+      :long: 
+        :standard: "Bolivia Time"
+    :Brasilia: 
+      :long: 
+        :daylight: "Brasilia Summer Time"
+        :generic: "Brasilia Time"
+        :standard: "Brasilia Standard Time"
+    :Brunei: 
+      :long: 
+        :standard: "Brunei Darussalam Time"
+    :Cape_Verde: 
+      :long: 
+        :daylight: "Cape Verde Summer Time"
+        :generic: "Cape Verde Time"
+        :standard: "Cape Verde Standard Time"
+    :Casey: 
+      :long: 
+        :standard: "Casey Time"
+    :Chamorro: 
+      :long: 
+        :standard: "Chamorro Standard Time"
+    :Chatham: 
+      :long: 
+        :daylight: "Chatham Daylight Time"
+        :generic: "Chatham Time"
+        :standard: "Chatham Standard Time"
+    :Chile: 
+      :long: 
+        :daylight: "Chile Summer Time"
+        :generic: "Chile Time"
+        :standard: "Chile Standard Time"
+    :China: 
+      :long: 
+        :daylight: "China Summer Time"
+        :generic: "China Time"
+        :standard: "China Standard Time"
+    :Christmas: 
+      :long: 
+        :standard: "Christmas Island Time"
+    :Cocos: 
+      :long: 
+        :standard: "Cocos Islands Time"
+    :Colombia: 
+      :long: 
+        :daylight: "Colombia Summer Time"
+        :generic: "Colombia Time"
+        :standard: "Colombia Standard Time"
+    :Cook: 
+      :long: 
+        :daylight: "Cook Island Summer Time"
+        :generic: "Cook Island Time"
+        :standard: "Cook Island Standard Time"
+    :Cuba: 
+      :long: 
+        :daylight: "Cuba Daylight Time"
+        :generic: "Cuba Time"
+        :standard: "Cuba Standard Time"
+    :Davis: 
+      :long: 
+        :standard: "Davis Time"
+    :DumontDUrville: 
+      :long: 
+        :standard: "Dumont-d’Urville Time"
+    :East_Timor: 
+      :long: 
+        :standard: "East Timor Time"
+    :Easter: 
+      :long: 
+        :daylight: "Easter Island Summer Time"
+        :generic: "Easter Island Time"
+        :standard: "Easter Island Standard Time"
+    :Ecuador: 
+      :long: 
+        :standard: "Ecuador Time"
+    :Europe_Central: 
+      :long: 
+        :daylight: "Central European Summer Time"
+        :generic: "Central European Time"
+        :standard: "Central European Standard Time"
+    :Europe_Eastern: 
+      :long: 
+        :daylight: "Eastern European Summer Time"
+        :generic: "Eastern European Time"
+        :standard: "Eastern European Standard Time"
+    :Europe_Further_Eastern: 
+      :long: 
+        :standard: "Further-eastern European Time"
+    :Europe_Western: 
+      :long: 
+        :daylight: "Western European Summer Time"
+        :generic: "Western European Time"
+        :standard: "Western European Standard Time"
+    :Falkland: 
+      :long: 
+        :daylight: "Falkland Islands Summer Time"
+        :generic: "Falkland Islands Time"
+        :standard: "Falkland Islands Standard Time"
+    :Fiji: 
+      :long: 
+        :daylight: "Fiji Summer Time"
+        :generic: "Fiji Time"
+        :standard: "Fiji Standard Time"
+    :French_Guiana: 
+      :long: 
+        :standard: "French Guiana Time"
+    :French_Southern: 
+      :long: 
+        :standard: "French Southern & Antarctic Time"
+    :GMT: 
+      :long: 
+        :standard: "Greenwich Mean Time"
+      :short: 
+        :standard: GMT
+    :Galapagos: 
+      :long: 
+        :standard: "Galapagos Time"
+    :Gambier: 
+      :long: 
+        :standard: "Gambier Time"
+    :Georgia: 
+      :long: 
+        :daylight: "Georgia Summer Time"
+        :generic: "Georgia Time"
+        :standard: "Georgia Standard Time"
+    :Gilbert_Islands: 
+      :long: 
+        :standard: "Gilbert Islands Time"
+    :Greenland: 
+      :long: 
+        :daylight: "Greenland Summer Time"
+        :generic: "Greenland Time"
+        :standard: "Greenland Standard Time"
+    :Greenland_Eastern: 
+      :long: 
+        :daylight: "East Greenland Summer Time"
+        :generic: "East Greenland Time"
+        :standard: "East Greenland Standard Time"
+    :Greenland_Western: 
+      :long: 
+        :daylight: "West Greenland Summer Time"
+        :generic: "West Greenland Time"
+        :standard: "West Greenland Standard Time"
+    :Guam: 
+      :long: 
+        :standard: "Guam Standard Time"
+    :Gulf: 
+      :long: 
+        :standard: "Gulf Standard Time"
+      :short: 
+        :standard: "Gulf ST"
+    :Guyana: 
+      :long: 
+        :standard: "Guyana Time"
+    :Hawaii_Aleutian: 
+      :long: 
+        :daylight: "Hawaii-Aleutian Daylight Time"
+        :generic: "Hawaii-Aleutian Time"
+        :standard: "Hawaii-Aleutian Standard Time"
+    :Hong_Kong: 
+      :long: 
+        :daylight: "Hong Kong Summer Time"
+        :generic: "Hong Kong Time"
+        :standard: "Hong Kong Standard Time"
+    :Hovd: 
+      :long: 
+        :daylight: "Hovd Summer Time"
+        :generic: "Hovd Time"
+        :standard: "Hovd Standard Time"
+    :India: 
+      :long: 
+        :standard: "India Standard Time"
+    :Indian_Ocean: 
+      :long: 
+        :standard: "Indian Ocean Time"
+    :Indochina: 
+      :long: 
+        :standard: "Indochina Time"
+    :Indonesia_Central: 
+      :long: 
+        :standard: "Central Indonesia Time"
+    :Indonesia_Eastern: 
+      :long: 
+        :standard: "Eastern Indonesia Time"
+    :Indonesia_Western: 
+      :long: 
+        :standard: "Western Indonesia Time"
+    :Iran: 
+      :long: 
+        :daylight: "Iran Daylight Time"
+        :generic: "Iran Time"
+        :standard: "Iran Standard Time"
+    :Irkutsk: 
+      :long: 
+        :daylight: "Irkutsk Summer Time"
+        :generic: "Irkutsk Time"
+        :standard: "Irkutsk Standard Time"
+    :Israel: 
+      :long: 
+        :daylight: "Israel Daylight Time"
+        :generic: "Israel Time"
+        :standard: "Israel Standard Time"
+    :Japan: 
+      :long: 
+        :daylight: "Japan Summer Time"
+        :generic: "Japan Time"
+        :standard: "Japan Standard Time"
+    :Kamchatka: 
+      :long: 
+        :daylight: "Petropavlovsk-Kamchatski Summer Time"
+        :generic: "Petropavlovsk-Kamchatski Time"
+        :standard: "Petropavlovsk-Kamchatski Standard Time"
+    :Kazakhstan: 
+      :long: 
+        :standard: "Kazakhstan Time"
+    :Kazakhstan_Eastern: 
+      :long: 
+        :standard: "East Kazakhstan Time"
+    :Kazakhstan_Western: 
+      :long: 
+        :standard: "West Kazakhstan Time"
+    :Korea: 
+      :long: 
+        :daylight: "Korean Summer Time"
+        :generic: "Korea Time"
+        :standard: "Korean Standard Time"
+    :Kosrae: 
+      :long: 
+        :standard: "Kosrae Time"
+    :Krasnoyarsk: 
+      :long: 
+        :daylight: "Krasnoyarsk Summer Time"
+        :generic: "Krasnoyarsk Time"
+        :standard: "Krasnoyarsk Standard Time"
+    :Kyrgystan: 
+      :long: 
+        :standard: "Kyrgyzstan Time"
+    :Lanka: 
+      :long: 
+        :standard: "Lanka Time"
+    :Line_Islands: 
+      :long: 
+        :standard: "Line Islands Time"
+    :Lord_Howe: 
+      :long: 
+        :daylight: "Lord Howe Daylight Time"
+        :generic: "Lord Howe Time"
+        :standard: "Lord Howe Standard Time"
+      :short: 
+        :daylight: LHDT
+        :generic: LHT
+        :standard: LHST
+    :Macau: 
+      :long: 
+        :daylight: "Macao Summer Time"
+        :generic: "Macao Time"
+        :standard: "Macao Standard Time"
+    :Magadan: 
+      :long: 
+        :daylight: "Magadan Summer Time"
+        :generic: "Magadan Time"
+        :standard: "Magadan Standard Time"
+    :Malaysia: 
+      :long: 
+        :standard: "Malaysia Time"
+    :Maldives: 
+      :long: 
+        :standard: "Maldives Time"
+    :Marquesas: 
+      :long: 
+        :standard: "Marquesas Time"
+    :Marshall_Islands: 
+      :long: 
+        :standard: "Marshall Islands Time"
+    :Mauritius: 
+      :long: 
+        :daylight: "Mauritius Summer Time"
+        :generic: "Mauritius Time"
+        :standard: "Mauritius Standard Time"
+    :Mawson: 
+      :long: 
+        :standard: "Mawson Time"
+    :Mexico_Pacific: 
+      :long: 
+        :daylight: "Mexican Pacific Daylight Time"
+        :generic: "Mexican Pacific Time"
+        :standard: "Mexican Pacific Standard Time"
+    :Mongolia: 
+      :long: 
+        :daylight: "Ulaanbaatar Summer Time"
+        :generic: "Ulaanbaatar Time"
+        :standard: "Ulaanbaatar Standard Time"
+    :Moscow: 
+      :long: 
+        :daylight: "Moscow Daylight Time"
+        :generic: "Moscow Time"
+        :standard: "Moscow Standard Time"
+    :Myanmar: 
+      :long: 
+        :standard: "Myanmar Time"
+    :Nauru: 
+      :long: 
+        :standard: "Nauru Time"
+    :Nepal: 
+      :long: 
+        :standard: "Nepal Time"
+    :New_Caledonia: 
+      :long: 
+        :daylight: "New Caledonia Summer Time"
+        :generic: "New Caledonia Time"
+        :standard: "New Caledonia Standard Time"
+    :New_Zealand: 
+      :long: 
+        :daylight: "New Zealand Daylight Time"
+        :generic: "New Zealand Time"
+        :standard: "New Zealand Standard Time"
+      :short: 
+        :daylight: NZDT
+        :generic: NZT
+        :standard: NZST
+    :Newfoundland: 
+      :long: 
+        :daylight: "Newfoundland Daylight Time"
+        :generic: "Newfoundland Time"
+        :standard: "Newfoundland Standard Time"
+    :Niue: 
+      :long: 
+        :standard: "Niue Time"
+    :Norfolk: 
+      :long: 
+        :daylight: "Norfolk Island Daylight Time"
+        :generic: "Norfolk Island Time"
+        :standard: "Norfolk Island Standard Time"
+    :Noronha: 
+      :long: 
+        :daylight: "Fernando de Noronha Summer Time"
+        :generic: "Fernando de Noronha Time"
+        :standard: "Fernando de Noronha Standard Time"
+    :North_Mariana: 
+      :long: 
+        :standard: "North Mariana Islands Time"
+    :Novosibirsk: 
+      :long: 
+        :daylight: "Novosibirsk Summer Time"
+        :generic: "Novosibirsk Time"
+        :standard: "Novosibirsk Standard Time"
+    :Omsk: 
+      :long: 
+        :daylight: "Omsk Summer Time"
+        :generic: "Omsk Time"
+        :standard: "Omsk Standard Time"
+    :Pakistan: 
+      :long: 
+        :daylight: "Pakistan Summer Time"
+        :generic: "Pakistan Time"
+        :standard: "Pakistan Standard Time"
+    :Palau: 
+      :long: 
+        :standard: "Palau Time"
+    :Papua_New_Guinea: 
+      :long: 
+        :standard: "Papua New Guinea Time"
+    :Paraguay: 
+      :long: 
+        :daylight: "Paraguay Summer Time"
+        :generic: "Paraguay Time"
+        :standard: "Paraguay Standard Time"
+    :Peru: 
+      :long: 
+        :daylight: "Peru Summer Time"
+        :generic: "Peru Time"
+        :standard: "Peru Standard Time"
+    :Philippines: 
+      :long: 
+        :daylight: "Philippine Summer Time"
+        :generic: "Philippine Time"
+        :standard: "Philippine Standard Time"
+    :Phoenix_Islands: 
+      :long: 
+        :standard: "Phoenix Islands Time"
+    :Pierre_Miquelon: 
+      :long: 
+        :daylight: "St Pierre & Miquelon Daylight Time"
+        :generic: "St Pierre & Miquelon Time"
+        :standard: "St Pierre & Miquelon Standard Time"
+    :Pitcairn: 
+      :long: 
+        :standard: "Pitcairn Time"
+    :Ponape: 
+      :long: 
+        :standard: "Ponape Time"
+    :Pyongyang: 
+      :long: 
+        :standard: "Pyongyang Time"
+    :Qyzylorda: 
+      :long: 
+        :daylight: "Qyzylorda Summer Time"
+        :generic: "Qyzylorda Time"
+        :standard: "Qyzylorda Standard Time"
+    :Reunion: 
+      :long: 
+        :standard: "Réunion Time"
+    :Rothera: 
+      :long: 
+        :standard: "Rothera Time"
+    :Sakhalin: 
+      :long: 
+        :daylight: "Sakhalin Summer Time"
+        :generic: "Sakhalin Time"
+        :standard: "Sakhalin Standard Time"
+    :Samara: 
+      :long: 
+        :daylight: "Samara Summer Time"
+        :generic: "Samara Time"
+        :standard: "Samara Standard Time"
+    :Samoa: 
+      :long: 
+        :daylight: "Samoa Summer Time"
+        :generic: "Samoa Time"
+        :standard: "Samoa Standard Time"
+    :Seychelles: 
+      :long: 
+        :standard: "Seychelles Time"
+    :Singapore: 
+      :long: 
+        :standard: "Singapore Standard Time"
+    :Solomon: 
+      :long: 
+        :standard: "Solomon Islands Time"
+    :South_Georgia: 
+      :long: 
+        :standard: "South Georgia Time"
+    :Suriname: 
+      :long: 
+        :standard: "Suriname Time"
+    :Syowa: 
+      :long: 
+        :standard: "Syowa Time"
+    :Tahiti: 
+      :long: 
+        :standard: "Tahiti Time"
+    :Taipei: 
+      :long: 
+        :daylight: "Taipei Summer Time"
+        :generic: "Taipei Time"
+        :standard: "Taipei Standard Time"
+    :Tajikistan: 
+      :long: 
+        :standard: "Tajikistan Time"
+    :Tokelau: 
+      :long: 
+        :standard: "Tokelau Time"
+    :Tonga: 
+      :long: 
+        :daylight: "Tonga Summer Time"
+        :generic: "Tonga Time"
+        :standard: "Tonga Standard Time"
+    :Truk: 
+      :long: 
+        :standard: "Chuuk Time"
+    :Turkmenistan: 
+      :long: 
+        :daylight: "Turkmenistan Summer Time"
+        :generic: "Turkmenistan Time"
+        :standard: "Turkmenistan Standard Time"
+    :Tuvalu: 
+      :long: 
+        :standard: "Tuvalu Time"
+    :Uruguay: 
+      :long: 
+        :daylight: "Uruguay Summer Time"
+        :generic: "Uruguay Time"
+        :standard: "Uruguay Standard Time"
+    :Uzbekistan: 
+      :long: 
+        :daylight: "Uzbekistan Summer Time"
+        :generic: "Uzbekistan Time"
+        :standard: "Uzbekistan Standard Time"
+    :Vanuatu: 
+      :long: 
+        :daylight: "Vanuatu Summer Time"
+        :generic: "Vanuatu Time"
+        :standard: "Vanuatu Standard Time"
+    :Venezuela: 
+      :long: 
+        :standard: "Venezuela Time"
+    :Vladivostok: 
+      :long: 
+        :daylight: "Vladivostok Summer Time"
+        :generic: "Vladivostok Time"
+        :standard: "Vladivostok Standard Time"
+    :Volgograd: 
+      :long: 
+        :daylight: "Volgograd Summer Time"
+        :generic: "Volgograd Time"
+        :standard: "Volgograd Standard Time"
+    :Vostok: 
+      :long: 
+        :standard: "Vostok Time"
+    :Wake: 
+      :long: 
+        :standard: "Wake Island Time"
+    :Wallis: 
+      :long: 
+        :standard: "Wallis & Futuna Time"
+    :Yakutsk: 
+      :long: 
+        :daylight: "Yakutsk Summer Time"
+        :generic: "Yakutsk Time"
+        :standard: "Yakutsk Standard Time"
+    :Yekaterinburg: 
+      :long: 
+        :daylight: "Yekaterinburg Summer Time"
+        :generic: "Yekaterinburg Time"
+        :standard: "Yekaterinburg Standard Time"
+    :Yukon: 
+      :long: 
+        :standard: "Yukon Time"
+  :timezones: 
+    :Africa/Asmera: 
+      :city: Asmara
+    :Africa/Sao_Tome: 
+      :city: "São Tomé"
+    :America/Asuncion: 
+      :city: Asunción
+    :America/Bahia_Banderas: 
+      :city: "Bahía de Banderas"
+    :America/Cancun: 
+      :city: Cancún
+    :America/Ciudad_Juarez: 
+      :city: "Ciudad Juárez"
+    :America/Coral_Harbour: 
+      :city: Atikokan
+    :America/Curacao: 
+      :city: Curaçao
+    :America/Godthab: 
+      :city: Nuuk
+    :America/Indiana/Knox: 
+      :city: "Knox, Indiana"
+    :America/Indiana/Marengo: 
+      :city: "Marengo, Indiana"
+    :America/Indiana/Petersburg: 
+      :city: "Petersburg, Indiana"
+    :America/Indiana/Tell_City: 
+      :city: "Tell City, Indiana"
+    :America/Indiana/Vevay: 
+      :city: "Vevay, Indiana"
+    :America/Indiana/Vincennes: 
+      :city: "Vincennes, Indiana"
+    :America/Indiana/Winamac: 
+      :city: "Winamac, Indiana"
+    :America/Kentucky/Monticello: 
+      :city: "Monticello, Kentucky"
+    :America/Lower_Princes: 
+      :city: "Lower Prince’s Quarter"
+    :America/Merida: 
+      :city: Mérida
+    :America/North_Dakota/Beulah: 
+      :city: "Beulah, North Dakota"
+    :America/North_Dakota/Center: 
+      :city: "Center, North Dakota"
+    :America/North_Dakota/New_Salem: 
+      :city: "New Salem, North Dakota"
+    :America/Scoresbysund: 
+      :city: Ittoqqortoormiit
+    :America/St_Barthelemy: 
+      :city: "St Barthélemy"
+    :America/St_Johns: 
+      :city: "St John’s"
+    :America/St_Kitts: 
+      :city: "St Kitts"
+    :America/St_Lucia: 
+      :city: "St Lucia"
+    :America/St_Thomas: 
+      :city: "St Thomas"
+    :America/St_Vincent: 
+      :city: "St Vincent"
+    :Antarctica/DumontDUrville: 
+      :city: "Dumont d’Urville"
+    :Asia/Aqtau: 
+      :city: Aktau
+    :Asia/Calcutta: 
+      :city: Kolkata
+    :Asia/Katmandu: 
+      :city: Kathmandu
+    :Asia/Macau: 
+      :city: Macao
+    :Asia/Qostanay: 
+      :city: Kostanay
+    :Asia/Rangoon: 
+      :city: Yangon
+    :Asia/Saigon: 
+      :city: "Ho Chi Minh City"
+    :Atlantic/Faeroe: 
+      :city: Faroe
+    :Atlantic/St_Helena: 
+      :city: "St Helena"
+    :Etc/UTC: 
+      :long: 
+        :standard: "Coordinated Universal Time"
+      :short: 
+        :standard: UTC
+    :Etc/Unknown: 
+      :city: "Unknown City"
+    :Europe/Dublin: 
+      :long: 
+        :daylight: "Irish Standard Time"
+    :Europe/Kiev: 
+      :city: Kyiv
+    :Europe/London: 
+      :long: 
+        :daylight: "British Summer Time"
+    :Indian/Reunion: 
+      :city: Réunion
+    :Pacific/Enderbury: 
+      :city: Enderbury
+    :Pacific/Ponape: 
+      :city: Pohnpei
+    :Pacific/Truk: 
+      :city: Chuuk

@@ -1,0 +1,23 @@
+--- paths
+[/**/*.js, /**/*.css]:
+  modified_at_in_dest_path: true
+
+/**/*.scss:
+  modified_at_in_dest_path: true
+
+--- alcn
+/api/:
+  title: API
+  in_menu: true
+  sort_info: 10
+
+/api/**/*.html:
+  link:
+    css: /stylesheets/api.css
+  in_menu: true
+
+/api/**/index*.html:
+  in_menu: false
+
+/**/*.css:
+  pipeline: scss,cssminify

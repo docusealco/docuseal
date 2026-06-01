@@ -1,0 +1,586 @@
+--- 
+:ro: 
+  :fields: 
+    :day: 
+      :display_name: zi
+      :relative: 
+        -1: ieri
+        -2: alaltăieri
+        0: azi
+        1: mâine
+        2: poimâine
+      :relative_time: 
+        :future: 
+          :few: "peste {0} zile"
+          :one: "peste {0} zi"
+          :other: "peste {0} de zile"
+        :past: 
+          :few: "acum {0} zile"
+          :one: "acum {0} zi"
+          :other: "acum {0} de zile"
+    :day-narrow: 
+      :relative_time: 
+        :future: 
+          :few: "+{0} zile"
+          :one: "+{0} zi"
+          :other: "+{0} zile"
+        :past: 
+          :few: "-{0} zile"
+          :one: "-{0} zi"
+          :other: "-{0} zile"
+    :dayOfYear: 
+      :display_name: "ziua din an"
+    :dayperiod: 
+      :display_name: a.m/p.m.
+    :era: 
+      :display_name: eră
+    :fri: 
+      :relative: 
+        -1: "vinerea trecută"
+        0: "vinerea aceasta"
+        1: "vinerea viitoare"
+      :relative_time: 
+        :future: 
+          :few: "vineri, peste {0} săptămâni"
+          :one: "vineri, peste {0} săptămână"
+          :other: "vineri, peste {0} de săptămâni"
+        :past: 
+          :few: "vineri, acum {0} săptămâni"
+          :one: "vineri, acum {0} săptămână"
+          :other: "vineri, acum {0} de săptămâni"
+    :fri-narrow: 
+      :relative: 
+        -1: "vi. trecută"
+        0: "vi. aceasta"
+        1: "vi. viitoare"
+      :relative_time: 
+        :future: 
+          :few: "vi. +{0} săpt."
+          :one: "vi. +{0} săpt."
+          :other: "vi. +{0} săpt."
+        :past: 
+          :few: "vi. -{0} săpt."
+          :one: "vi. -{0} săpt."
+          :other: "vi. -{0} săpt."
+    :fri-short: 
+      :relative: 
+        -1: "vin. trecută"
+        0: "vin. aceasta"
+        1: "vin. viitoare"
+      :relative_time: 
+        :future: 
+          :few: "vineri, peste {0} săpt."
+          :one: "vineri, peste {0} săpt."
+          :other: "vineri, peste {0} săpt."
+        :past: 
+          :few: "vineri, acum {0} săpt."
+          :one: "vineri, acum {0} săpt."
+          :other: "vineri, acum {0} săpt."
+    :hour: 
+      :display_name: oră
+      :relative: 
+        0: "ora aceasta"
+      :relative_time: 
+        :future: 
+          :few: "peste {0} ore"
+          :one: "peste {0} oră"
+          :other: "peste {0} de ore"
+        :past: 
+          :few: "acum {0} ore"
+          :one: "acum {0} oră"
+          :other: "acum {0} de ore"
+    :hour-narrow: 
+      :relative_time: 
+        :future: 
+          :few: "+{0} h"
+          :one: "+{0} h"
+          :other: "+{0} h"
+        :past: 
+          :few: "-{0} h"
+          :one: "-{0} h"
+          :other: "-{0} h"
+    :hour-short: 
+      :display_name: h
+      :relative_time: 
+        :future: 
+          :few: "peste {0} h"
+          :one: "peste {0} h"
+          :other: "peste {0} h"
+        :past: 
+          :few: "acum {0} h"
+          :one: "acum {0} h"
+          :other: "acum {0} h"
+    :minute: 
+      :display_name: minut
+      :relative: 
+        0: "minutul acesta"
+      :relative_time: 
+        :future: 
+          :few: "peste {0} minute"
+          :one: "peste {0} minut"
+          :other: "peste {0} de minute"
+        :past: 
+          :few: "acum {0} minute"
+          :one: "acum {0} minut"
+          :other: "acum {0} de minute"
+    :minute-narrow: 
+      :display_name: m
+      :relative_time: 
+        :future: 
+          :few: "+{0} m"
+          :one: "+{0} m"
+          :other: "+{0} m"
+        :past: 
+          :few: "-{0} m"
+          :one: "-{0} m"
+          :other: "-{0} m"
+    :minute-short: 
+      :display_name: min.
+      :relative_time: 
+        :future: 
+          :few: "peste {0} min."
+          :one: "peste {0} min."
+          :other: "peste {0} min."
+        :past: 
+          :few: "acum {0} min."
+          :one: "acum {0} min."
+          :other: "acum {0} min."
+    :mon: 
+      :relative: 
+        -1: "lunea trecută"
+        0: "lunea aceasta"
+        1: "lunea viitoare"
+      :relative_time: 
+        :future: 
+          :few: "luni, peste {0} săptămâni"
+          :one: "luni, peste {0} săptămână"
+          :other: "luni, peste {0} de săptămâni"
+        :past: 
+          :few: "luni, acum {0} săptămâni"
+          :one: "luni, acum {0} săptămână"
+          :other: "luni, acum {0} de săptămâni"
+    :mon-narrow: 
+      :relative: 
+        -1: "lu. trecută"
+        0: "lu. aceasta"
+        1: "lu. viitoare"
+      :relative_time: 
+        :future: 
+          :few: "lu. +{0} săpt."
+          :one: "lu. +{0} săpt."
+          :other: "lu. +{0} săpt."
+        :past: 
+          :few: "lu. -{0} săpt."
+          :one: "lu. -{0} săpt."
+          :other: "lu. -{0} săpt."
+    :mon-short: 
+      :relative: 
+        -1: "lun. trecută"
+        0: "lun. aceasta"
+        1: "lun. viitoare"
+      :relative_time: 
+        :future: 
+          :few: "luni, peste {0} săpt."
+          :one: "luni, peste {0} săpt."
+          :other: "luni, peste {0} săpt."
+        :past: 
+          :few: "luni, acum {0} săpt."
+          :one: "luni, acum {0} săpt."
+          :other: "luni, acum {0} săpt."
+    :month: 
+      :display_name: lună
+      :relative: 
+        -1: "luna trecută"
+        0: "luna aceasta"
+        1: "luna viitoare"
+      :relative_time: 
+        :future: 
+          :few: "peste {0} luni"
+          :one: "peste {0} lună"
+          :other: "peste {0} de luni"
+        :past: 
+          :few: "acum {0} luni"
+          :one: "acum {0} lună"
+          :other: "acum {0} de luni"
+    :month-narrow: 
+      :relative_time: 
+        :future: 
+          :few: "+{0} luni"
+          :one: "+{0} lună"
+          :other: "+{0} luni"
+        :past: 
+          :few: "-{0} luni"
+          :one: "-{0} lună"
+          :other: "-{0} luni"
+    :month-short: 
+      :relative_time: 
+        :future: 
+          :few: "peste {0} luni"
+          :one: "peste {0} lună"
+          :other: "peste {0} luni"
+        :past: 
+          :few: "acum {0} luni"
+          :one: "acum {0} lună"
+          :other: "acum {0} luni"
+    :quarter: 
+      :display_name: trimestru
+      :relative: 
+        -1: "trimestrul trecut"
+        0: "trimestrul acesta"
+        1: "trimestrul viitor"
+      :relative_time: 
+        :future: 
+          :few: "peste {0} trimestre"
+          :one: "peste {0} trimestru"
+          :other: "peste {0} de trimestre"
+        :past: 
+          :few: "acum {0} trimestre"
+          :one: "acum {0} trimestru"
+          :other: "acum {0} de trimestre"
+    :quarter-narrow: 
+      :relative_time: 
+        :future: 
+          :few: "+{0} trim."
+          :one: "+{0} trim."
+          :other: "+{0} trim."
+        :past: 
+          :few: "-{0} trim."
+          :one: "-{0} trim."
+          :other: "-{0} trim."
+    :quarter-short: 
+      :display_name: trim.
+      :relative: 
+        -1: "trim. trecut"
+        0: "trim. acesta"
+        1: "trim. viitor"
+      :relative_time: 
+        :future: 
+          :few: "peste {0} trim."
+          :one: "peste {0} trim."
+          :other: "peste {0} trim."
+        :past: 
+          :few: "acum {0} trim."
+          :one: "acum {0} trim."
+          :other: "acum {0} trim."
+    :sat: 
+      :relative: 
+        -1: "sâmbăta trecută"
+        0: "sâmbăta aceasta"
+        1: "sâmbăta viitoare"
+      :relative_time: 
+        :future: 
+          :few: "sâmbătă, peste {0} săptămâni"
+          :one: "sâmbătă, peste {0} săptămână"
+          :other: "sâmbătă, peste {0} de săptămâni"
+        :past: 
+          :few: "sâmbătă, acum {0} săptămâni"
+          :one: "sâmbătă, acum {0} săptămână"
+          :other: "sâmbătă, acum {0} de săptămâni"
+    :sat-narrow: 
+      :relative: 
+        -1: "sâ. trecută"
+        0: "sâ. aceasta"
+        1: "sâ. viitoare"
+      :relative_time: 
+        :future: 
+          :few: "sâ. +{0} săpt."
+          :one: "sâ. +{0} săpt."
+          :other: "sâ. +{0} săpt."
+        :past: 
+          :few: "sâ. -{0} săpt."
+          :one: "sâ. -{0} săpt."
+          :other: "sâ. -{0} săpt."
+    :sat-short: 
+      :relative: 
+        -1: "sâm. trecută"
+        0: "sâm. aceasta"
+        1: "sâm. viitoare"
+      :relative_time: 
+        :future: 
+          :few: "sâmbătă, peste {0} săpt."
+          :one: "sâmbătă, peste {0} săpt."
+          :other: "sâmbătă, peste {0} săpt."
+        :past: 
+          :few: "sâmbătă, acum {0} săpt."
+          :one: "sâmbătă, acum {0} săpt."
+          :other: "sâmbătă, acum {0} săpt."
+    :second: 
+      :display_name: secundă
+      :relative: 
+        0: acum
+      :relative_time: 
+        :future: 
+          :few: "peste {0} secunde"
+          :one: "peste {0} secundă"
+          :other: "peste {0} de secunde"
+        :past: 
+          :few: "acum {0} secunde"
+          :one: "acum {0} secundă"
+          :other: "acum {0} de secunde"
+    :second-narrow: 
+      :display_name: s
+      :relative_time: 
+        :future: 
+          :few: "+{0} s"
+          :one: "+{0} s"
+          :other: "+{0} s"
+        :past: 
+          :few: "-{0} s"
+          :one: "-{0} s"
+          :other: "-{0} s"
+    :second-short: 
+      :display_name: sec.
+      :relative_time: 
+        :future: 
+          :few: "peste {0} sec."
+          :one: "peste {0} sec."
+          :other: "peste {0} sec."
+        :past: 
+          :few: "acum {0} sec."
+          :one: "acum {0} sec."
+          :other: "acum {0} sec."
+    :sun: 
+      :relative: 
+        -1: "duminica trecută"
+        0: "duminica aceasta"
+        1: "duminica viitoare"
+      :relative_time: 
+        :future: 
+          :few: "duminică, peste {0} săptămâni"
+          :one: "duminică, peste {0} săptămână"
+          :other: "duminică, peste {0} de săptămâni"
+        :past: 
+          :few: "duminică, acum {0} săptămâni"
+          :one: "duminică, acum {0} săptămână"
+          :other: "duminică, acum {0} de săptămâni"
+    :sun-narrow: 
+      :relative: 
+        -1: "du. trecută"
+        0: "du. aceasta"
+        1: "du. viitoare"
+      :relative_time: 
+        :future: 
+          :few: "du. +{0} săpt."
+          :one: "du. +{0} săpt."
+          :other: "du. +{0} săpt."
+        :past: 
+          :few: "du. -{0} săpt."
+          :one: "du. -{0} săpt."
+          :other: "du. -{0} săpt."
+    :sun-short: 
+      :relative: 
+        -1: "dum. trecută"
+        0: "dum. aceasta"
+        1: "dum. viitoare"
+      :relative_time: 
+        :future: 
+          :few: "duminică, peste {0} săpt."
+          :one: "duminică, peste {0} săpt."
+          :other: "duminică, peste {0} săpt."
+        :past: 
+          :few: "duminică, acum {0} săpt."
+          :one: "duminică, acum {0} săpt."
+          :other: "duminică, acum {0} săpt."
+    :thu: 
+      :relative: 
+        -1: "joia trecută"
+        0: "joia aceasta"
+        1: "joia viitoare"
+      :relative_time: 
+        :future: 
+          :few: "joi, peste {0} săptămâni"
+          :one: "joi, peste {0} săptămână"
+          :other: "joi, peste {0} de săptămâni"
+        :past: 
+          :few: "joi, acum {0} săptămâni"
+          :one: "joi, acum {0} săptămână"
+          :other: "joi, acum {0} de săptămâni"
+    :thu-narrow: 
+      :relative: 
+        -1: "jo. trecută"
+        0: "jo. aceasta"
+        1: "jo. viitoare"
+      :relative_time: 
+        :future: 
+          :few: "jo. +{0} săpt."
+          :one: "jo. +{0} săpt."
+          :other: "jo. +{0} săpt."
+        :past: 
+          :few: "jo. -{0} săpt."
+          :one: "jo. -{0} săpt."
+          :other: "jo. -{0} săpt."
+    :thu-short: 
+      :relative_time: 
+        :future: 
+          :few: "joi, peste {0} săpt."
+          :one: "joi, peste {0} săpt."
+          :other: "joi, peste {0} săpt."
+        :past: 
+          :few: "joi, acum {0} săpt."
+          :one: "joi, acum {0} săpt."
+          :other: "joi, acum {0} săpt."
+    :tue: 
+      :relative: 
+        -1: "marțea trecută"
+        0: "marțea aceasta"
+        1: "marțea viitoare"
+      :relative_time: 
+        :future: 
+          :few: "marți, peste {0} săptămâni"
+          :one: "marți, peste {0} săptămână"
+          :other: "marți, peste {0} de săptămâni"
+        :past: 
+          :few: "marți, acum {0} săptămâni"
+          :one: "marți, acum {0} săptămână"
+          :other: "marți, acum {0} de săptămâni"
+    :tue-narrow: 
+      :relative: 
+        -1: "ma. trecută"
+        0: "ma. aceasta"
+        1: "ma. viitoare"
+      :relative_time: 
+        :future: 
+          :few: "ma. +{0} săpt."
+          :one: "ma. +{0} săpt."
+          :other: "ma. +{0} săpt."
+        :past: 
+          :few: "ma. -{0} săpt."
+          :one: "ma. -{0} săpt."
+          :other: "ma. -{0} săpt."
+    :tue-short: 
+      :relative: 
+        -1: "mar. trecută"
+        0: "mar. aceasta"
+        1: "mar. viitoare"
+      :relative_time: 
+        :future: 
+          :few: "marți, peste {0} săpt."
+          :one: "marți, peste {0} săpt."
+          :other: "marți, peste {0} săpt."
+        :past: 
+          :few: "marți, acum {0} săpt."
+          :one: "marți, acum {0} săpt."
+          :other: "marți, acum {0} săpt."
+    :wed: 
+      :relative: 
+        -1: "miercurea trecută"
+        0: "miercurea aceasta"
+        1: "miercurea viitoare"
+      :relative_time: 
+        :future: 
+          :few: "miercuri, peste {0} săptămâni"
+          :one: "miercuri, peste {0} săptămână"
+          :other: "miercuri, peste {0} de săptămâni"
+        :past: 
+          :few: "miercuri, acum {0} săptămâni"
+          :one: "miercuri, acum {0} săptămână"
+          :other: "miercuri, acum {0} de săptămâni"
+    :wed-narrow: 
+      :relative: 
+        -1: "mi. trecută"
+        0: "mi. aceasta"
+        1: "mi. viitoare"
+      :relative_time: 
+        :future: 
+          :few: "mi. +{0} săpt."
+          :one: "mi. +{0} săpt."
+          :other: "mi. +{0} săpt."
+        :past: 
+          :few: "mi. -{0} săpt."
+          :one: "mi. -{0} săpt."
+          :other: "mi. -{0} săpt."
+    :wed-short: 
+      :relative: 
+        -1: "mie. trecută"
+        0: "mie. aceasta"
+        1: "mie. viitoare"
+      :relative_time: 
+        :future: 
+          :few: "miercuri, peste {0} săpt."
+          :one: "miercuri, peste {0} săpt."
+          :other: "miercuri, peste {0} săpt."
+        :past: 
+          :few: "miercuri, acum {0} săpt."
+          :one: "miercuri, acum {0} săpt."
+          :other: "miercuri, acum {0} săpt."
+    :week: 
+      :display_name: săptămână
+      :relative: 
+        -1: "săptămâna trecută"
+        0: "săptămâna aceasta"
+        1: "săptămâna viitoare"
+      :relative_time: 
+        :future: 
+          :few: "peste {0} săptămâni"
+          :one: "peste {0} săptămână"
+          :other: "peste {0} de săptămâni"
+        :past: 
+          :few: "acum {0} săptămâni"
+          :one: "acum {0} săptămână"
+          :other: "acum {0} de săptămâni"
+    :week-narrow: 
+      :relative_time: 
+        :future: 
+          :few: "+{0} săpt."
+          :one: "+{0} săpt."
+          :other: "+{0} săpt."
+        :past: 
+          :few: "-{0} săpt."
+          :one: "-{0} săpt."
+          :other: "-{0} săpt."
+    :week-short: 
+      :display_name: săpt.
+      :relative: 
+        -1: "săpt. trecută"
+        0: "săpt. aceasta"
+        1: "săpt. viitoare"
+      :relative_time: 
+        :future: 
+          :few: "peste {0} săpt."
+          :one: "peste {0} săpt."
+          :other: "peste {0} săpt."
+        :past: 
+          :few: "acum {0} săpt."
+          :one: "acum {0} săpt."
+          :other: "acum {0} săpt."
+    :weekOfMonth: 
+      :display_name: "săptămâna din lună"
+    :weekOfMonth-short: 
+      :display_name: "săpt. din lună"
+    :weekday: 
+      :display_name: "ziua din săptămână"
+    :weekday-short: 
+      :display_name: "ziua din săpt."
+    :weekdayOfMonth: 
+      :display_name: "ziua săptămânii din lună"
+    :weekdayOfMonth-short: 
+      :display_name: "ziua săpt. din lună"
+    :year: 
+      :display_name: an
+      :relative: 
+        -1: "anul trecut"
+        0: "anul acesta"
+        1: "anul viitor"
+      :relative_time: 
+        :future: 
+          :few: "peste {0} ani"
+          :one: "peste {0} an"
+          :other: "peste {0} de ani"
+        :past: 
+          :few: "acum {0} ani"
+          :one: "acum {0} an"
+          :other: "acum {0} de ani"
+    :year-narrow: 
+      :relative_time: 
+        :future: 
+          :few: "+{0} ani"
+          :one: "+{0} an"
+          :other: "+{0} ani"
+        :past: 
+          :few: "-{0} ani"
+          :one: "-{0} an"
+          :other: "-{0} ani"
+    :zone: 
+      :display_name: "fus orar"
+    :zone-short: 
+      :display_name: fus

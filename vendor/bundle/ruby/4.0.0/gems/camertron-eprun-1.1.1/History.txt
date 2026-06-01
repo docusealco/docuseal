@@ -1,0 +1,4 @@
+== 1.0.0
+
+* Repo converted into gem.
+* Added MRI 1.8 compatibility.

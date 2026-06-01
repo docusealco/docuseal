@@ -1,0 +1,1487 @@
+--- 
+:fa: 
+  :formats: 
+    :fallback_formats: 
+      :generic: "{1} ({0})"
+    :gmt_formats: 
+      :generic: "{0} گرینویچ"
+    :gmt_zero_formats: 
+      :generic: گرینویچ
+    :hour_formats: 
+      :generic: "‎+HH:mm;‎−HH:mm"
+    :region_formats: 
+      :daylight: "وقت تابستانی {0}"
+      :generic: "وقت {0}"
+      :standard: "وقت عادی {0}"
+  :metazones: 
+    :Afghanistan: 
+      :long: 
+        :standard: "وقت افغانستان"
+    :Africa_Central: 
+      :long: 
+        :standard: "وقت مرکز آفریقا"
+    :Africa_Eastern: 
+      :long: 
+        :standard: "وقت شرق افریقا"
+    :Africa_Southern: 
+      :long: 
+        :standard: "وقت عادی جنوب افریقا"
+    :Africa_Western: 
+      :long: 
+        :daylight: "وقت تابستانی غرب افریقا"
+        :generic: "وقت غرب افریقا"
+        :standard: "وقت عادی غرب افریقا"
+    :Alaska: 
+      :long: 
+        :daylight: "وقت تابستانی آلاسکا"
+        :generic: "وقت آلاسکا"
+        :standard: "وقت عادی آلاسکا"
+    :Almaty: 
+      :long: 
+        :daylight: "وقت تابستانی آلماآتا"
+        :generic: "وقت آلماآتا"
+        :standard: "وقت عادی آلماآتا"
+    :Amazon: 
+      :long: 
+        :daylight: "وقت تابستانی آمازون"
+        :generic: "وقت آمازون"
+        :standard: "وقت عادی آمازون"
+    :America_Central: 
+      :long: 
+        :daylight: "وقت تابستانی مرکز امریکا"
+        :generic: "وقت مرکز امریکا"
+        :standard: "وقت عادی مرکز امریکا"
+    :America_Eastern: 
+      :long: 
+        :daylight: "وقت تابستانی شرق امریکا"
+        :generic: "وقت شرق امریکا"
+        :standard: "وقت عادی شرق امریکا"
+    :America_Mountain: 
+      :long: 
+        :daylight: "وقت تابستانی کوهستانی امریکا"
+        :generic: "وقت کوهستانی امریکا"
+        :standard: "وقت عادی کوهستانی امریکا"
+    :America_Pacific: 
+      :long: 
+        :daylight: "وقت تابستانی غرب امریکا"
+        :generic: "وقت غرب امریکا"
+        :standard: "وقت عادی غرب امریکا"
+    :Anadyr: 
+      :long: 
+        :daylight: "وقت تابستانی آنادیر"
+        :generic: "وقت آنادیر"
+        :standard: "وقت عادی آنادیر"
+    :Apia: 
+      :long: 
+        :daylight: "وقت تابستانی آپیا"
+        :generic: "وقت آپیا"
+        :standard: "وقت عادی آپیا"
+    :Arabian: 
+      :long: 
+        :daylight: "وقت تابستانی عربستان"
+        :generic: "وقت عربستان"
+        :standard: "وقت عادی عربستان"
+    :Argentina: 
+      :long: 
+        :daylight: "وقت تابستانی آرژانتین"
+        :generic: "وقت آرژانتین"
+        :standard: "وقت عادی آرژانتین"
+    :Argentina_Western: 
+      :long: 
+        :daylight: "وقت تابستانی غرب آرژانتین"
+        :generic: "وقت غرب آرژانتین"
+        :standard: "وقت عادی غرب آرژانتین"
+    :Armenia: 
+      :long: 
+        :daylight: "وقت تابستانی ارمنستان"
+        :generic: "وقت ارمنستان"
+        :standard: "وقت عادی ارمنستان"
+    :Atlantic: 
+      :long: 
+        :daylight: "وقت تابستانی آتلانتیک"
+        :generic: "وقت آتلانتیک"
+        :standard: "وقت عادی آتلانتیک"
+    :Australia_Central: 
+      :long: 
+        :daylight: "وقت تابستانی مرکز استرالیا"
+        :generic: "وقت مرکز استرالیا"
+        :standard: "وقت عادی مرکز استرالیا"
+    :Australia_CentralWestern: 
+      :long: 
+        :daylight: "وقت تابستانی مرکز استرالیای غربی"
+        :generic: "وقت مرکز استرالیای غربی"
+        :standard: "وقت عادی مرکز استرالیای غربی"
+    :Australia_Eastern: 
+      :long: 
+        :daylight: "وقت تابستانی استرالیای شرقی"
+        :generic: "وقت استرالیای شرقی"
+        :standard: "وقت عادی استرالیای شرقی"
+    :Australia_Western: 
+      :long: 
+        :daylight: "وقت تابستانی استرالیای غربی"
+        :generic: "وقت استرالیای غربی"
+        :standard: "وقت عادی استرالیای غربی"
+    :Azerbaijan: 
+      :long: 
+        :daylight: "وقت تابستانی جمهوری آذربایجان"
+        :generic: "وقت جمهوری آذربایجان"
+        :standard: "وقت عادی جمهوری آذربایجان"
+    :Azores: 
+      :long: 
+        :daylight: "وقت تابستانی آزور"
+        :generic: "وقت آزور"
+        :standard: "وقت عادی آزور"
+    :Bangladesh: 
+      :long: 
+        :daylight: "وقت تابستانی بنگلادش"
+        :generic: "وقت بنگلادش"
+        :standard: "وقت عادی بنگلادش"
+    :Bhutan: 
+      :long: 
+        :standard: "وقت بوتان"
+    :Bolivia: 
+      :long: 
+        :standard: "وقت بولیوی"
+    :Brasilia: 
+      :long: 
+        :daylight: "وقت تابستانی برازیلیا"
+        :generic: "وقت برازیلیا"
+        :standard: "وقت عادی برازیلیا"
+    :Brunei: 
+      :long: 
+        :standard: "وقت برونئی دارالسلام"
+    :Cape_Verde: 
+      :long: 
+        :daylight: "وقت تابستانی کیپ‌ورد"
+        :generic: "وقت کیپ‌ورد"
+        :standard: "وقت عادی کیپ‌ورد"
+    :Chamorro: 
+      :long: 
+        :standard: "وقت عادی چامورو"
+    :Chatham: 
+      :long: 
+        :daylight: "وقت تابستانی چت‌هام"
+        :generic: "وقت چت‌هام"
+        :standard: "وقت عادی چت‌هام"
+    :Chile: 
+      :long: 
+        :daylight: "وقت تابستانی شیلی"
+        :generic: "وقت شیلی"
+        :standard: "وقت عادی شیلی"
+    :China: 
+      :long: 
+        :daylight: "وقت تابستانی چین"
+        :generic: "وقت چین"
+        :standard: "وقت عادی چین"
+    :Christmas: 
+      :long: 
+        :standard: "وقت جزیرهٔ کریسمس"
+    :Cocos: 
+      :long: 
+        :standard: "وقت جزایر کوکوس"
+    :Colombia: 
+      :long: 
+        :daylight: "وقت تابستانی کلمبیا"
+        :generic: "وقت کلمبیا"
+        :standard: "وقت عادی کلمبیا"
+    :Cook: 
+      :long: 
+        :daylight: "وقت تابستانی جزایر کوک"
+        :generic: "وقت جزایر کوک"
+        :standard: "وقت عادی جزایر کوک"
+    :Cuba: 
+      :long: 
+        :daylight: "وقت تابستانی کوبا"
+        :generic: "وقت کوبا"
+        :standard: "وقت عادی کوبا"
+    :Davis: 
+      :long: 
+        :standard: "وقت دیویس"
+    :DumontDUrville: 
+      :long: 
+        :standard: "وقت دومون دورویل"
+    :East_Timor: 
+      :long: 
+        :standard: "وقت تیمور شرقی"
+    :Easter: 
+      :long: 
+        :daylight: "وقت تابستانی جزیرهٔ ایستر"
+        :generic: "وقت جزیرهٔ ایستر"
+        :standard: "وقت عادی جزیرهٔ ایستر"
+    :Ecuador: 
+      :long: 
+        :standard: "وقت اکوادور"
+    :Europe_Central: 
+      :long: 
+        :daylight: "وقت تابستانی مرکز اروپا"
+        :generic: "وقت مرکز اروپا"
+        :standard: "وقت عادی مرکز اروپا"
+    :Europe_Eastern: 
+      :long: 
+        :daylight: "وقت تابستانی شرق اروپا"
+        :generic: "وقت شرق اروپا"
+        :standard: "وقت عادی شرق اروپا"
+    :Europe_Further_Eastern: 
+      :long: 
+        :standard: "وقت تابستانی مکان‌های دیگر شرق اروپا"
+    :Europe_Western: 
+      :long: 
+        :daylight: "وقت تابستانی غرب اروپا"
+        :generic: "وقت غرب اروپا"
+        :standard: "وقت عادی غرب اروپا"
+    :Falkland: 
+      :long: 
+        :daylight: "وقت تابستانی جزایر فالکلند"
+        :generic: "وقت جزایر فالکلند"
+        :standard: "وقت عادی جزایر فالکلند"
+    :Fiji: 
+      :long: 
+        :daylight: "وقت تابستانی فیجی"
+        :generic: "وقت فیجی"
+        :standard: "وقت عادی فیجی"
+    :French_Guiana: 
+      :long: 
+        :standard: "وقت گویان فرانسه"
+    :French_Southern: 
+      :long: 
+        :standard: "وقت سرزمین‌های جنوبی و جنوبگان فرانسه"
+    :GMT: 
+      :long: 
+        :standard: "وقت گرینویچ"
+    :Galapagos: 
+      :long: 
+        :standard: "وقت گالاپاگوس"
+    :Gambier: 
+      :long: 
+        :standard: "وقت گامبیه"
+    :Georgia: 
+      :long: 
+        :daylight: "وقت تابستانی گرجستان"
+        :generic: "وقت گرجستان"
+        :standard: "وقت عادی گرجستان"
+    :Gilbert_Islands: 
+      :long: 
+        :standard: "وقت جزایر گیلبرت"
+    :Greenland_Eastern: 
+      :long: 
+        :daylight: "وقت تابستانی شرق گرینلند"
+        :generic: "وقت شرق گرینلند"
+        :standard: "وقت عادی شرق گرینلند"
+    :Greenland_Western: 
+      :long: 
+        :daylight: "وقت تابستانی غرب گرینلند"
+        :generic: "وقت غرب گرینلند"
+        :standard: "وقت عادی غرب گرینلند"
+    :Guam: 
+      :long: 
+        :standard: "وقت عادی گوام"
+    :Gulf: 
+      :long: 
+        :standard: "وقت عادی خلیج فارس"
+    :Guyana: 
+      :long: 
+        :standard: "وقت گویان"
+    :Hawaii_Aleutian: 
+      :long: 
+        :daylight: "وقت تابستانی هاوایی‐الوشن"
+        :generic: "وقت هاوایی‐الوشن"
+        :standard: "وقت عادی هاوایی‐الوشن"
+    :Hong_Kong: 
+      :long: 
+        :daylight: "وقت تابستانی هنگ‌کنگ"
+        :generic: "وقت هنگ‌کنگ"
+        :standard: "وقت عادی هنگ‌کنگ"
+    :Hovd: 
+      :long: 
+        :daylight: "وقت تابستانی خوود"
+        :generic: "وقت خوود"
+        :standard: "وقت عادی خوود"
+    :India: 
+      :long: 
+        :standard: "وقت هند"
+    :Indian_Ocean: 
+      :long: 
+        :standard: "وقت اقیانوس هند"
+    :Indochina: 
+      :long: 
+        :standard: "وقت هندوچین"
+    :Indonesia_Central: 
+      :long: 
+        :standard: "وقت مرکز اندونزی"
+    :Indonesia_Eastern: 
+      :long: 
+        :standard: "وقت شرق اندونزی"
+    :Indonesia_Western: 
+      :long: 
+        :standard: "وقت غرب اندونزی"
+    :Iran: 
+      :long: 
+        :daylight: "وقت تابستانی ایران"
+        :generic: "وقت ایران"
+        :standard: "وقت عادی ایران"
+    :Irkutsk: 
+      :long: 
+        :daylight: "وقت تابستانی ایرکوتسک"
+        :generic: "وقت ایرکوتسک"
+        :standard: "وقت عادی ایرکوتسک"
+    :Israel: 
+      :long: 
+        :daylight: "وقت تابستانی اسرائیل"
+        :generic: "وقت اسرائیل"
+        :standard: "وقت عادی اسرائیل"
+    :Japan: 
+      :long: 
+        :daylight: "وقت تابستانی ژاپن"
+        :generic: "وقت ژاپن"
+        :standard: "وقت عادی ژاپن"
+    :Kamchatka: 
+      :long: 
+        :daylight: "وقت تابستانی پتروپاولوسک‐کامچاتسکی"
+        :generic: "وقت پتروپاولوسک‐کامچاتسکی"
+        :standard: "وقت عادی پتروپاولوسک‐کامچاتسکی"
+    :Kazakhstan: 
+      :long: 
+        :standard: "وقت قزاقستان"
+    :Kazakhstan_Eastern: 
+      :long: 
+        :standard: "وقت شرق قزاقستان"
+    :Kazakhstan_Western: 
+      :long: 
+        :standard: "وقت غرب قزاقستان"
+    :Korea: 
+      :long: 
+        :daylight: "وقت تابستانی کره"
+        :generic: "وقت کره"
+        :standard: "وقت عادی کره"
+    :Kosrae: 
+      :long: 
+        :standard: "وقت کوسرای"
+    :Krasnoyarsk: 
+      :long: 
+        :daylight: "وقت تابستانی کراسنویارسک"
+        :generic: "وقت کراسنویارسک"
+        :standard: "وقت عادی کراسنویارسک"
+    :Kyrgystan: 
+      :long: 
+        :standard: "وقت قرقیزستان"
+    :Lanka: 
+      :long: 
+        :standard: "وقت لانکا"
+    :Line_Islands: 
+      :long: 
+        :standard: "وقت جزایر لاین"
+    :Lord_Howe: 
+      :long: 
+        :daylight: "وقت تابستانی لردهو"
+        :generic: "وقت لردهو"
+        :standard: "وقت عادی لردهو"
+    :Macau: 
+      :long: 
+        :daylight: "وقت تابستانی ماکائو"
+        :generic: "وقت ماکائو"
+        :standard: "وقت عادی ماکائو"
+    :Magadan: 
+      :long: 
+        :daylight: "وقت تابستانی ماگادان"
+        :generic: "وقت ماگادان"
+        :standard: "وقت عادی ماگادان"
+    :Malaysia: 
+      :long: 
+        :standard: "وقت مالزی"
+    :Maldives: 
+      :long: 
+        :standard: "وقت مالدیو"
+    :Marquesas: 
+      :long: 
+        :standard: "وقت مارکوئز"
+    :Marshall_Islands: 
+      :long: 
+        :standard: "وقت جزایر مارشال"
+    :Mauritius: 
+      :long: 
+        :daylight: "وقت تابستانی موریس"
+        :generic: "وقت موریس"
+        :standard: "وقت عادی موریس"
+    :Mawson: 
+      :long: 
+        :standard: "وقت ماوسون"
+    :Mexico_Pacific: 
+      :long: 
+        :daylight: "وقت تابستانی شرق مکزیک"
+        :generic: "وقت شرق مکزیک"
+        :standard: "وقت عادی شرق مکزیک"
+    :Mongolia: 
+      :long: 
+        :daylight: "وقت تابستانی اولان‌باتور"
+        :generic: "وقت اولان‌باتور"
+        :standard: "وقت عادی اولان‌باتور"
+    :Moscow: 
+      :long: 
+        :daylight: "وقت تابستانی مسکو"
+        :generic: "وقت مسکو"
+        :standard: "وقت عادی مسکو"
+    :Myanmar: 
+      :long: 
+        :standard: "وقت میانمار"
+    :Nauru: 
+      :long: 
+        :standard: "وقت نائورو"
+    :Nepal: 
+      :long: 
+        :standard: "وقت نپال"
+    :New_Caledonia: 
+      :long: 
+        :daylight: "وقت تابستانی کالدونیای جدید"
+        :generic: "وقت کالدونیای جدید"
+        :standard: "وقت عادی کالدونیای جدید"
+    :New_Zealand: 
+      :long: 
+        :daylight: "وقت تابستانی نیوزیلند"
+        :generic: "وقت نیوزیلند"
+        :standard: "وقت عادی نیوزیلند"
+    :Newfoundland: 
+      :long: 
+        :daylight: "وقت تابستانی نیوفاندلند"
+        :generic: "وقت نیوفاندلند"
+        :standard: "وقت عادی نیوفاندلند"
+    :Niue: 
+      :long: 
+        :standard: "وقت نیوئه"
+    :Norfolk: 
+      :long: 
+        :daylight: "وقت تابستانی جزیرهٔ نورفولک"
+        :generic: "وقت جزیرهٔ نورفولک"
+        :standard: "وقت عادی جزیرهٔ نورفولک"
+    :Noronha: 
+      :long: 
+        :daylight: "وقت تابستانی فرناندو دی نورونیا"
+        :generic: "وقت فرناندو دی نورونیا"
+        :standard: "وقت عادی فرناندو دی نورونیا"
+    :North_Mariana: 
+      :long: 
+        :standard: "وقت جزایر ماریانای شمالی"
+    :Novosibirsk: 
+      :long: 
+        :daylight: "وقت تابستانی نووسیبیرسک"
+        :generic: "وقت نووسیبیرسک"
+        :standard: "وقت عادی نووسیبیرسک"
+    :Omsk: 
+      :long: 
+        :daylight: "وقت تابستانی اومسک"
+        :generic: "وقت اومسک"
+        :standard: "وقت عادی اومسک"
+    :Pakistan: 
+      :long: 
+        :daylight: "وقت تابستانی پاکستان"
+        :generic: "وقت پاکستان"
+        :standard: "وقت عادی پاکستان"
+    :Palau: 
+      :long: 
+        :standard: "وقت پالائو"
+    :Papua_New_Guinea: 
+      :long: 
+        :standard: "وقت پاپوا گینهٔ نو"
+    :Paraguay: 
+      :long: 
+        :daylight: "وقت تابستانی پاراگوئه"
+        :generic: "وقت پاراگوئه"
+        :standard: "وقت عادی پاراگوئه"
+    :Peru: 
+      :long: 
+        :daylight: "وقت تابستانی پرو"
+        :generic: "وقت پرو"
+        :standard: "وقت عادی پرو"
+    :Philippines: 
+      :long: 
+        :daylight: "وقت تابستانی فیلیپین"
+        :generic: "وقت فیلیپین"
+        :standard: "وقت عادی فیلیپین"
+    :Phoenix_Islands: 
+      :long: 
+        :standard: "وقت جزایر فونیکس"
+    :Pierre_Miquelon: 
+      :long: 
+        :daylight: "وقت تابستانی سنت‌پیر و میکلون"
+        :generic: "وقت سنت‌پیر و میکلون"
+        :standard: "وقت عادی سنت‌پیر و میکلون"
+    :Pitcairn: 
+      :long: 
+        :standard: "وقت پیتکایرن"
+    :Ponape: 
+      :long: 
+        :standard: "وقت پوناپه"
+    :Pyongyang: 
+      :long: 
+        :standard: "وقت پیونگ‌یانگ"
+    :Qyzylorda: 
+      :long: 
+        :daylight: "وقت تابستانی قیزیل‌اوردا"
+        :generic: "وقت قیزیل‌اوردا"
+        :standard: "وقت عادی قیزیل‌اوردا"
+    :Reunion: 
+      :long: 
+        :standard: "وقت رئونیون"
+    :Rothera: 
+      :long: 
+        :standard: "وقت روترا"
+    :Sakhalin: 
+      :long: 
+        :daylight: "وقت تابستانی ساخالین"
+        :generic: "وقت ساخالین"
+        :standard: "وقت عادی ساخالین"
+    :Samara: 
+      :long: 
+        :daylight: "وقت تابستانی سامارا"
+        :generic: "وقت سامارا"
+        :standard: "وقت عادی سامارا"
+    :Samoa: 
+      :long: 
+        :daylight: "وقت تابستانی ساموا"
+        :generic: "وقت ساموا"
+        :standard: "وقت عادی ساموا"
+    :Seychelles: 
+      :long: 
+        :standard: "وقت سیشل"
+    :Singapore: 
+      :long: 
+        :standard: "وقت سنگاپور"
+    :Solomon: 
+      :long: 
+        :standard: "وقت جزایر سلیمان"
+    :South_Georgia: 
+      :long: 
+        :standard: "وقت جورجیای جنوبی"
+    :Suriname: 
+      :long: 
+        :standard: "وقت سورینام"
+    :Syowa: 
+      :long: 
+        :standard: "وقت شووا"
+    :Tahiti: 
+      :long: 
+        :standard: "وقت تاهیتی"
+    :Taipei: 
+      :long: 
+        :daylight: "وقت تابستانی تایپه"
+        :generic: "وقت تایپه"
+        :standard: "وقت عادی تایپه"
+    :Tajikistan: 
+      :long: 
+        :standard: "وقت تاجیکستان"
+    :Tokelau: 
+      :long: 
+        :standard: "وقت توکلائو"
+    :Tonga: 
+      :long: 
+        :daylight: "وقت تابستانی تونگا"
+        :generic: "وقت تونگا"
+        :standard: "وقت عادی تونگا"
+    :Truk: 
+      :long: 
+        :standard: "وقت چوئوک"
+    :Turkmenistan: 
+      :long: 
+        :daylight: "وقت تابستانی ترکمنستان"
+        :generic: "وقت ترکمنستان"
+        :standard: "وقت عادی ترکمنستان"
+    :Tuvalu: 
+      :long: 
+        :standard: "وقت تووالو"
+    :Uruguay: 
+      :long: 
+        :daylight: "وقت تابستانی اروگوئه"
+        :generic: "وقت اروگوئه"
+        :standard: "وقت عادی اروگوئه"
+    :Uzbekistan: 
+      :long: 
+        :daylight: "وقت تابستانی ازبکستان"
+        :generic: "وقت ازبکستان"
+        :standard: "وقت عادی ازبکستان"
+    :Vanuatu: 
+      :long: 
+        :daylight: "وقت تابستانی واناتو"
+        :generic: "وقت واناتو"
+        :standard: "وقت عادی واناتو"
+    :Venezuela: 
+      :long: 
+        :standard: "وقت ونزوئلا"
+    :Vladivostok: 
+      :long: 
+        :daylight: "وقت تابستانی ولادی‌وستوک"
+        :generic: "وقت ولادی‌وستوک"
+        :standard: "وقت عادی ولادی‌وستوک"
+    :Volgograd: 
+      :long: 
+        :daylight: "وقت تابستانی ولگاگراد"
+        :generic: "وقت ولگاگراد"
+        :standard: "وقت عادی ولگاگراد"
+    :Vostok: 
+      :long: 
+        :standard: "وقت وستوک"
+    :Wake: 
+      :long: 
+        :standard: "وقت جزیرهٔ ویک"
+    :Wallis: 
+      :long: 
+        :standard: "وقت والیس و فوتونا"
+    :Yakutsk: 
+      :long: 
+        :daylight: "وقت تابستانی یاکوتسک"
+        :generic: "وقت یاکوتسک"
+        :standard: "وقت عادی یاکوتسک"
+    :Yekaterinburg: 
+      :long: 
+        :daylight: "وقت تابستانی یکاترینبورگ"
+        :generic: "وقت یکاترینبورگ"
+        :standard: "وقت عادی یکاترینبورگ"
+    :Yukon: 
+      :long: 
+        :standard: "وقت یوکان"
+  :timezones: 
+    :Africa/Abidjan: 
+      :city: آبیجان
+    :Africa/Accra: 
+      :city: اکرا
+    :Africa/Addis_Ababa: 
+      :city: "آدیس آبابا"
+    :Africa/Algiers: 
+      :city: الجزیره
+    :Africa/Asmera: 
+      :city: اسمره
+    :Africa/Bamako: 
+      :city: باماکو
+    :Africa/Bangui: 
+      :city: بانگی
+    :Africa/Banjul: 
+      :city: بانجول
+    :Africa/Bissau: 
+      :city: بیسائو
+    :Africa/Blantyre: 
+      :city: بلانتیره
+    :Africa/Brazzaville: 
+      :city: برازویل
+    :Africa/Bujumbura: 
+      :city: بوجومبورا
+    :Africa/Cairo: 
+      :city: قاهره
+    :Africa/Casablanca: 
+      :city: کازابلانکا
+    :Africa/Ceuta: 
+      :city: سبته
+    :Africa/Conakry: 
+      :city: کوناکری
+    :Africa/Dakar: 
+      :city: داکار
+    :Africa/Dar_es_Salaam: 
+      :city: دارالسلام
+    :Africa/Djibouti: 
+      :city: جیبوتی
+    :Africa/Douala: 
+      :city: دوآلا
+    :Africa/El_Aaiun: 
+      :city: العیون
+    :Africa/Freetown: 
+      :city: فری‌تاون
+    :Africa/Gaborone: 
+      :city: گابورون
+    :Africa/Harare: 
+      :city: هراره
+    :Africa/Johannesburg: 
+      :city: ژوهانسبورگ
+    :Africa/Juba: 
+      :city: جوبا
+    :Africa/Kampala: 
+      :city: کامپالا
+    :Africa/Khartoum: 
+      :city: خارطوم
+    :Africa/Kigali: 
+      :city: کیگالی
+    :Africa/Kinshasa: 
+      :city: کینشاسا
+    :Africa/Lagos: 
+      :city: لاگوس
+    :Africa/Libreville: 
+      :city: لیبرویل
+    :Africa/Lome: 
+      :city: لومه
+    :Africa/Luanda: 
+      :city: لواندا
+    :Africa/Lubumbashi: 
+      :city: لوبومباشی
+    :Africa/Lusaka: 
+      :city: لوزاکا
+    :Africa/Malabo: 
+      :city: مالابو
+    :Africa/Maputo: 
+      :city: ماپوتو
+    :Africa/Maseru: 
+      :city: ماسرو
+    :Africa/Mbabane: 
+      :city: مبابانه
+    :Africa/Mogadishu: 
+      :city: موگادیشو
+    :Africa/Monrovia: 
+      :city: مونروویا
+    :Africa/Nairobi: 
+      :city: نایروبی
+    :Africa/Ndjamena: 
+      :city: انجامنا
+    :Africa/Niamey: 
+      :city: نیامی
+    :Africa/Nouakchott: 
+      :city: نوآکشوت
+    :Africa/Ouagadougou: 
+      :city: اوآگادوگو
+    :Africa/Porto-Novo: 
+      :city: "پورتو نووو"
+    :Africa/Sao_Tome: 
+      :city: سائوتومه
+    :Africa/Tripoli: 
+      :city: طرابلس
+    :Africa/Tunis: 
+      :city: تونس
+    :Africa/Windhoek: 
+      :city: ویندهوک
+    :America/Adak: 
+      :city: ایدک
+    :America/Anchorage: 
+      :city: انکوریج
+    :America/Anguilla: 
+      :city: آنگوئیلا
+    :America/Antigua: 
+      :city: آنتیگوا
+    :America/Araguaina: 
+      :city: آراگواینا
+    :America/Argentina/La_Rioja: 
+      :city: لاریوخا
+    :America/Argentina/Rio_Gallegos: 
+      :city: ریوگالگوس
+    :America/Argentina/Salta: 
+      :city: سالتا
+    :America/Argentina/San_Juan: 
+      :city: سن‌خوان
+    :America/Argentina/San_Luis: 
+      :city: سن‌لوئیس
+    :America/Argentina/Tucuman: 
+      :city: توکومن
+    :America/Argentina/Ushuaia: 
+      :city: اوشوایا
+    :America/Aruba: 
+      :city: اروبا
+    :America/Asuncion: 
+      :city: آسونسیون
+    :America/Bahia: 
+      :city: بایا
+    :America/Bahia_Banderas: 
+      :city: "باهیا باندراس"
+    :America/Barbados: 
+      :city: باربادوس
+    :America/Belem: 
+      :city: بلم
+    :America/Belize: 
+      :city: بلیز
+    :America/Blanc-Sablon: 
+      :city: بلان‐سابلون
+    :America/Boa_Vista: 
+      :city: بوئاویستا
+    :America/Bogota: 
+      :city: بوگوتا
+    :America/Boise: 
+      :city: بویسی
+    :America/Buenos_Aires: 
+      :city: بوئنوس‌آیرس
+    :America/Cambridge_Bay: 
+      :city: کمبریج‌بی
+    :America/Campo_Grande: 
+      :city: "کمپو گرانده"
+    :America/Cancun: 
+      :city: کانکون
+    :America/Caracas: 
+      :city: کاراکاس
+    :America/Catamarca: 
+      :city: کاتامارکا
+    :America/Cayenne: 
+      :city: کاین
+    :America/Cayman: 
+      :city: کیمن
+    :America/Chicago: 
+      :city: شیکاگو
+    :America/Chihuahua: 
+      :city: چیواوا
+    :America/Ciudad_Juarez: 
+      :city: "سیوداد خوارز"
+    :America/Coral_Harbour: 
+      :city: اتکوکان
+    :America/Cordoba: 
+      :city: کوردووا
+    :America/Costa_Rica: 
+      :city: کاستاریکا
+    :America/Creston: 
+      :city: کرستون
+    :America/Cuiaba: 
+      :city: کویاوا
+    :America/Curacao: 
+      :city: کوراسائو
+    :America/Danmarkshavn: 
+      :city: دانمارکس‌هاون
+    :America/Dawson: 
+      :city: داوسن
+    :America/Dawson_Creek: 
+      :city: "داوسن کریک"
+    :America/Denver: 
+      :city: دنور
+    :America/Detroit: 
+      :city: دیترویت
+    :America/Dominica: 
+      :city: دومینیکا
+    :America/Edmonton: 
+      :city: ادمونتون
+    :America/Eirunepe: 
+      :city: ایرونپه
+    :America/El_Salvador: 
+      :city: السالوادور
+    :America/Fort_Nelson: 
+      :city: "فورت نلسون"
+    :America/Fortaleza: 
+      :city: فورتالزا
+    :America/Glace_Bay: 
+      :city: گلیس‌بی
+    :America/Godthab: 
+      :city: نووک
+    :America/Goose_Bay: 
+      :city: گوس‌بی
+    :America/Grand_Turk: 
+      :city: "گراند تورک"
+    :America/Grenada: 
+      :city: گرنادا
+    :America/Guadeloupe: 
+      :city: گوادلوپ
+    :America/Guatemala: 
+      :city: گواتمالا
+    :America/Guayaquil: 
+      :city: گوایاکیل
+    :America/Guyana: 
+      :city: گویان
+    :America/Halifax: 
+      :city: هلیفکس
+    :America/Havana: 
+      :city: هاوانا
+    :America/Hermosillo: 
+      :city: ارموسیو
+    :America/Indiana/Knox: 
+      :city: "ناکس، ایندیانا"
+    :America/Indiana/Marengo: 
+      :city: "مارنگو، ایندیانا"
+    :America/Indiana/Petersburg: 
+      :city: "پیترزبرگ، ایندیانا"
+    :America/Indiana/Tell_City: 
+      :city: "تل‌سیتی، ایندیانا"
+    :America/Indiana/Vevay: 
+      :city: "ویوی، ایندیانا"
+    :America/Indiana/Vincennes: 
+      :city: "وینسنس، اندیانا"
+    :America/Indiana/Winamac: 
+      :city: "ویناماک، ایندیانا"
+    :America/Indianapolis: 
+      :city: ایندیاناپولیس
+    :America/Inuvik: 
+      :city: اینوویک
+    :America/Iqaluit: 
+      :city: ایکلوئت
+    :America/Jamaica: 
+      :city: جامائیکا
+    :America/Jujuy: 
+      :city: خوخوی
+    :America/Juneau: 
+      :city: جونو
+    :America/Kentucky/Monticello: 
+      :city: "مانتیسلو، کنتاکی"
+    :America/Kralendijk: 
+      :city: کرالندیک
+    :America/La_Paz: 
+      :city: لاپاز
+    :America/Lima: 
+      :city: لیما
+    :America/Los_Angeles: 
+      :city: لوس‌آنجلس
+    :America/Louisville: 
+      :city: لوئیزویل
+    :America/Lower_Princes: 
+      :city: "بخش شاهزاده‌‌نشین پایین"
+    :America/Maceio: 
+      :city: ماسیو
+    :America/Managua: 
+      :city: ماناگوا
+    :America/Manaus: 
+      :city: ماناوس
+    :America/Marigot: 
+      :city: ماریگات
+    :America/Martinique: 
+      :city: مارتینیک
+    :America/Matamoros: 
+      :city: ماتاموروس
+    :America/Mazatlan: 
+      :city: ماساتلان
+    :America/Mendoza: 
+      :city: مندوسا
+    :America/Menominee: 
+      :city: منامینی
+    :America/Merida: 
+      :city: مریدا
+    :America/Metlakatla: 
+      :city: متالاکاتلا
+    :America/Mexico_City: 
+      :city: مکزیکوسیتی
+    :America/Miquelon: 
+      :city: میکلون
+    :America/Moncton: 
+      :city: مانکتون
+    :America/Monterrey: 
+      :city: مونتری
+    :America/Montevideo: 
+      :city: مونته‌ویدئو
+    :America/Montserrat: 
+      :city: مونتسرات
+    :America/Nassau: 
+      :city: ناسائو
+    :America/New_York: 
+      :city: نیویورک
+    :America/Nome: 
+      :city: نوم
+    :America/Noronha: 
+      :city: نورونیا
+    :America/North_Dakota/Beulah: 
+      :city: "بیولا، داکوتای شمالی"
+    :America/North_Dakota/Center: 
+      :city: "سنتر، داکوتای شمالی"
+    :America/North_Dakota/New_Salem: 
+      :city: "نیوسالم، داکوتای شمالی"
+    :America/Ojinaga: 
+      :city: اوجیناگا
+    :America/Panama: 
+      :city: پاناما
+    :America/Paramaribo: 
+      :city: پاراماریبو
+    :America/Phoenix: 
+      :city: فینکس
+    :America/Port-au-Prince: 
+      :city: پورتوپرنس
+    :America/Port_of_Spain: 
+      :city: پورت‌آواسپین
+    :America/Porto_Velho: 
+      :city: پورتوولیو
+    :America/Puerto_Rico: 
+      :city: پورتوریکو
+    :America/Punta_Arenas: 
+      :city: "پونتا آرناس"
+    :America/Rankin_Inlet: 
+      :city: "خلیجک رنکین"
+    :America/Recife: 
+      :city: ریسیفی
+    :America/Regina: 
+      :city: رجاینا
+    :America/Resolute: 
+      :city: رزولوت
+    :America/Rio_Branco: 
+      :city: ریوبرانکو
+    :America/Santarem: 
+      :city: سنتارم
+    :America/Santiago: 
+      :city: سانتیاگو
+    :America/Santo_Domingo: 
+      :city: "سانتو دومینگو"
+    :America/Sao_Paulo: 
+      :city: سائوپائولو
+    :America/Scoresbysund: 
+      :city: اسکورسبیسوند
+    :America/Sitka: 
+      :city: سیتکا
+    :America/St_Barthelemy: 
+      :city: "سنت بارتلمی"
+    :America/St_Johns: 
+      :city: "سنت جان"
+    :America/St_Kitts: 
+      :city: "سنت کیتس"
+    :America/St_Lucia: 
+      :city: "سنت لوسیا"
+    :America/St_Thomas: 
+      :city: "سنت توماس"
+    :America/St_Vincent: 
+      :city: "سنت وینسنت"
+    :America/Swift_Current: 
+      :city: سویفت‌کارنت
+    :America/Tegucigalpa: 
+      :city: تگوسیگالپا
+    :America/Thule: 
+      :city: تول
+    :America/Tijuana: 
+      :city: تیخوانا
+    :America/Toronto: 
+      :city: تورنتو
+    :America/Tortola: 
+      :city: تورتولا
+    :America/Vancouver: 
+      :city: ونکوور
+    :America/Whitehorse: 
+      :city: وایت‌هورس
+    :America/Winnipeg: 
+      :city: وینیپگ
+    :America/Yakutat: 
+      :city: یاکوتات
+    :Antarctica/Casey: 
+      :city: کیسی
+    :Antarctica/Davis: 
+      :city: دیویس
+    :Antarctica/DumontDUrville: 
+      :city: "دومون دورویل"
+    :Antarctica/Macquarie: 
+      :city: مکواری
+    :Antarctica/Mawson: 
+      :city: ماوسون
+    :Antarctica/McMurdo: 
+      :city: مک‌موردو
+    :Antarctica/Palmer: 
+      :city: پالمر
+    :Antarctica/Rothera: 
+      :city: روترا
+    :Antarctica/Syowa: 
+      :city: شووا
+    :Antarctica/Troll: 
+      :city: ترول
+    :Antarctica/Vostok: 
+      :city: وستوک
+    :Arctic/Longyearbyen: 
+      :city: لانگ‌یربین
+    :Asia/Aden: 
+      :city: عدن
+    :Asia/Almaty: 
+      :city: آلماتی
+    :Asia/Amman: 
+      :city: عَمان
+    :Asia/Anadyr: 
+      :city: آنادیر
+    :Asia/Aqtau: 
+      :city: آقتاو
+    :Asia/Aqtobe: 
+      :city: آقتوبه
+    :Asia/Ashgabat: 
+      :city: عشق‌آباد
+    :Asia/Atyrau: 
+      :city: آتیراو
+    :Asia/Baghdad: 
+      :city: بغداد
+    :Asia/Bahrain: 
+      :city: بحرین
+    :Asia/Baku: 
+      :city: باکو
+    :Asia/Bangkok: 
+      :city: بانکوک
+    :Asia/Barnaul: 
+      :city: بارنائول
+    :Asia/Beirut: 
+      :city: بیروت
+    :Asia/Bishkek: 
+      :city: بیشکک
+    :Asia/Brunei: 
+      :city: برونئی
+    :Asia/Calcutta: 
+      :city: کلکته
+    :Asia/Chita: 
+      :city: چیتا
+    :Asia/Colombo: 
+      :city: کلمبو
+    :Asia/Damascus: 
+      :city: دمشق
+    :Asia/Dhaka: 
+      :city: داکا
+    :Asia/Dili: 
+      :city: دیلی
+    :Asia/Dubai: 
+      :city: دبی
+    :Asia/Dushanbe: 
+      :city: دوشنبه
+    :Asia/Famagusta: 
+      :city: فاماگوستا
+    :Asia/Gaza: 
+      :city: غزه
+    :Asia/Hebron: 
+      :city: الخلیل
+    :Asia/Hong_Kong: 
+      :city: هنگ‌کنگ
+    :Asia/Hovd: 
+      :city: خوود
+    :Asia/Irkutsk: 
+      :city: ایرکوتسک
+    :Asia/Jakarta: 
+      :city: جاکارتا
+    :Asia/Jayapura: 
+      :city: جایاپورا
+    :Asia/Jerusalem: 
+      :city: اورشلیم
+    :Asia/Kabul: 
+      :city: کابل
+    :Asia/Kamchatka: 
+      :city: کامچاتکا
+    :Asia/Karachi: 
+      :city: کراچی
+    :Asia/Katmandu: 
+      :city: کاتماندو
+    :Asia/Khandyga: 
+      :city: خاندیگا
+    :Asia/Krasnoyarsk: 
+      :city: کراسنویارسک
+    :Asia/Kuala_Lumpur: 
+      :city: کوالالامپور
+    :Asia/Kuching: 
+      :city: کوچینگ
+    :Asia/Kuwait: 
+      :city: کویت
+    :Asia/Macau: 
+      :city: ماکائو
+    :Asia/Magadan: 
+      :city: ماگادان
+    :Asia/Makassar: 
+      :city: ماکاسار
+    :Asia/Manila: 
+      :city: مانیل
+    :Asia/Muscat: 
+      :city: مسقط
+    :Asia/Nicosia: 
+      :city: نیکوزیا
+    :Asia/Novokuznetsk: 
+      :city: نوووکوزنتسک
+    :Asia/Novosibirsk: 
+      :city: نووسیبیریسک
+    :Asia/Omsk: 
+      :city: اومسک
+    :Asia/Oral: 
+      :city: اورال
+    :Asia/Phnom_Penh: 
+      :city: پنوم‌پن
+    :Asia/Pontianak: 
+      :city: پونتیاناک
+    :Asia/Pyongyang: 
+      :city: پیونگ‌یانگ
+    :Asia/Qatar: 
+      :city: قطر
+    :Asia/Qostanay: 
+      :city: قوستانای
+    :Asia/Qyzylorda: 
+      :city: قیزیل‌اوردا
+    :Asia/Rangoon: 
+      :city: یانگون
+    :Asia/Riyadh: 
+      :city: ریاض
+    :Asia/Saigon: 
+      :city: هوشی‌مین‌سیتی
+    :Asia/Sakhalin: 
+      :city: ساخالین
+    :Asia/Samarkand: 
+      :city: سمرقند
+    :Asia/Seoul: 
+      :city: سئول
+    :Asia/Shanghai: 
+      :city: شانگهای
+    :Asia/Singapore: 
+      :city: سنگاپور
+    :Asia/Srednekolymsk: 
+      :city: اسردنکولیمسک
+    :Asia/Taipei: 
+      :city: تایپه
+    :Asia/Tashkent: 
+      :city: تاشکند
+    :Asia/Tbilisi: 
+      :city: تفلیس
+    :Asia/Tehran: 
+      :city: تهران
+    :Asia/Thimphu: 
+      :city: تیمفو
+    :Asia/Tokyo: 
+      :city: توکیو
+    :Asia/Tomsk: 
+      :city: تومسک
+    :Asia/Ulaanbaatar: 
+      :city: اولان‌باتور
+    :Asia/Urumqi: 
+      :city: ارومچی
+    :Asia/Ust-Nera: 
+      :city: "اوست نرا"
+    :Asia/Vientiane: 
+      :city: وینتیان
+    :Asia/Vladivostok: 
+      :city: ولادی‌وستوک
+    :Asia/Yakutsk: 
+      :city: یاکوتسک
+    :Asia/Yekaterinburg: 
+      :city: یکاترینبرگ
+    :Asia/Yerevan: 
+      :city: ایروان
+    :Atlantic/Azores: 
+      :city: آزور
+    :Atlantic/Bermuda: 
+      :city: برمودا
+    :Atlantic/Canary: 
+      :city: قناری
+    :Atlantic/Cape_Verde: 
+      :city: کیپ‌ورد
+    :Atlantic/Faeroe: 
+      :city: فارو
+    :Atlantic/Madeira: 
+      :city: مادیرا
+    :Atlantic/Reykjavik: 
+      :city: ریکیاویک
+    :Atlantic/South_Georgia: 
+      :city: "جورجیای جنوبی"
+    :Atlantic/St_Helena: 
+      :city: "سنت هلنا"
+    :Atlantic/Stanley: 
+      :city: استانلی
+    :Australia/Adelaide: 
+      :city: آدلاید
+    :Australia/Brisbane: 
+      :city: بریسبین
+    :Australia/Broken_Hill: 
+      :city: بروکن‌هیل
+    :Australia/Darwin: 
+      :city: داروین
+    :Australia/Eucla: 
+      :city: اوکلا
+    :Australia/Hobart: 
+      :city: هوبارت
+    :Australia/Lindeman: 
+      :city: لیندمن
+    :Australia/Lord_Howe: 
+      :city: لردهاو
+    :Australia/Melbourne: 
+      :city: ملبورن
+    :Australia/Perth: 
+      :city: پرت
+    :Australia/Sydney: 
+      :city: سیدنی
+    :Etc/UTC: 
+      :long: 
+        :standard: "زمان هماهنگ جهانی"
+      :short: 
+        :standard: UTC
+    :Etc/Unknown: 
+      :city: "شهر نامشخص"
+    :Europe/Amsterdam: 
+      :city: آمستردام
+    :Europe/Andorra: 
+      :city: آندورا
+    :Europe/Astrakhan: 
+      :city: آستراخان
+    :Europe/Athens: 
+      :city: آتن
+    :Europe/Belgrade: 
+      :city: بلگراد
+    :Europe/Berlin: 
+      :city: برلین
+    :Europe/Bratislava: 
+      :city: براتیسلاوا
+    :Europe/Brussels: 
+      :city: بروکسل
+    :Europe/Bucharest: 
+      :city: بخارست
+    :Europe/Budapest: 
+      :city: بوداپست
+    :Europe/Busingen: 
+      :city: بازنگن
+    :Europe/Chisinau: 
+      :city: کیشیناو
+    :Europe/Copenhagen: 
+      :city: کپنهاگ
+    :Europe/Dublin: 
+      :city: دوبلین
+      :long: 
+        :daylight: "وقت عادی ایرلند"
+    :Europe/Gibraltar: 
+      :city: جبل‌الطارق
+    :Europe/Guernsey: 
+      :city: گرنزی
+    :Europe/Helsinki: 
+      :city: هلسینکی
+    :Europe/Isle_of_Man: 
+      :city: "جزیرهٔ من"
+    :Europe/Istanbul: 
+      :city: استانبول
+    :Europe/Jersey: 
+      :city: جرزی
+    :Europe/Kaliningrad: 
+      :city: کالینینگراد
+    :Europe/Kiev: 
+      :city: کیف
+    :Europe/Kirov: 
+      :city: کیروف
+    :Europe/Lisbon: 
+      :city: لیسبون
+    :Europe/Ljubljana: 
+      :city: لیوبلیانا
+    :Europe/London: 
+      :city: لندن
+      :long: 
+        :daylight: "وقت تابستانی بریتانیا"
+    :Europe/Luxembourg: 
+      :city: لوکزامبورگ
+    :Europe/Madrid: 
+      :city: مادرید
+    :Europe/Malta: 
+      :city: مالت
+    :Europe/Mariehamn: 
+      :city: ماریه‌هامن
+    :Europe/Minsk: 
+      :city: مینسک
+    :Europe/Monaco: 
+      :city: موناکو
+    :Europe/Moscow: 
+      :city: مسکو
+    :Europe/Oslo: 
+      :city: اسلو
+    :Europe/Paris: 
+      :city: پاریس
+    :Europe/Podgorica: 
+      :city: پادگاریتسا
+    :Europe/Prague: 
+      :city: پراگ
+    :Europe/Riga: 
+      :city: ریگا
+    :Europe/Rome: 
+      :city: رم
+    :Europe/Samara: 
+      :city: سامارا
+    :Europe/San_Marino: 
+      :city: سان‌مارینو
+    :Europe/Sarajevo: 
+      :city: سارایوو
+    :Europe/Saratov: 
+      :city: ساراتوف
+    :Europe/Simferopol: 
+      :city: سیمفروپل
+    :Europe/Skopje: 
+      :city: اسکوپیه
+    :Europe/Sofia: 
+      :city: صوفیه
+    :Europe/Stockholm: 
+      :city: استکهلم
+    :Europe/Tallinn: 
+      :city: تالین
+    :Europe/Tirane: 
+      :city: تیرانا
+    :Europe/Ulyanovsk: 
+      :city: اولیانوفسک
+    :Europe/Vaduz: 
+      :city: فادوتس
+    :Europe/Vatican: 
+      :city: واتیکان
+    :Europe/Vienna: 
+      :city: وین
+    :Europe/Vilnius: 
+      :city: ویلنیوس
+    :Europe/Volgograd: 
+      :city: ولگاگراد
+    :Europe/Warsaw: 
+      :city: ورشو
+    :Europe/Zagreb: 
+      :city: زاگرب
+    :Europe/Zurich: 
+      :city: زوریخ
+    :Indian/Antananarivo: 
+      :city: آنتاناناریوو
+    :Indian/Chagos: 
+      :city: شاگوس
+    :Indian/Christmas: 
+      :city: کریسمس
+    :Indian/Cocos: 
+      :city: کوکوس
+    :Indian/Comoro: 
+      :city: کومورو
+    :Indian/Kerguelen: 
+      :city: کرگولن
+    :Indian/Mahe: 
+      :city: ماهه
+    :Indian/Maldives: 
+      :city: مالدیو
+    :Indian/Mauritius: 
+      :city: موریس
+    :Indian/Mayotte: 
+      :city: مایوت
+    :Indian/Reunion: 
+      :city: رئونیون
+    :Pacific/Apia: 
+      :city: آپیا
+    :Pacific/Auckland: 
+      :city: اوکلند
+    :Pacific/Bougainville: 
+      :city: بوگنویل
+    :Pacific/Chatham: 
+      :city: چت‌هام
+    :Pacific/Easter: 
+      :city: ایستر
+    :Pacific/Efate: 
+      :city: افاته
+    :Pacific/Enderbury: 
+      :city: اندربری
+    :Pacific/Fakaofo: 
+      :city: فاکائوفو
+    :Pacific/Fiji: 
+      :city: فیجی
+    :Pacific/Funafuti: 
+      :city: فونافوتی
+    :Pacific/Galapagos: 
+      :city: گالاپاگوس
+    :Pacific/Gambier: 
+      :city: گامبیر
+    :Pacific/Guadalcanal: 
+      :city: گوادال‌کانال
+    :Pacific/Guam: 
+      :city: گوام
+    :Pacific/Honolulu: 
+      :city: هونولولو
+    :Pacific/Kanton: 
+      :city: کانتون
+    :Pacific/Kiritimati: 
+      :city: کریتیماتی
+    :Pacific/Kosrae: 
+      :city: کوسرای
+    :Pacific/Kwajalein: 
+      :city: کواجیلین
+    :Pacific/Majuro: 
+      :city: ماجورو
+    :Pacific/Marquesas: 
+      :city: مارکوزه
+    :Pacific/Midway: 
+      :city: میدوی
+    :Pacific/Nauru: 
+      :city: نائورو
+    :Pacific/Niue: 
+      :city: نیوئه
+    :Pacific/Norfolk: 
+      :city: نورفولک
+    :Pacific/Noumea: 
+      :city: نومئا
+    :Pacific/Pago_Pago: 
+      :city: پاگوپاگو
+    :Pacific/Palau: 
+      :city: پالائو
+    :Pacific/Pitcairn: 
+      :city: پیت‌کرن
+    :Pacific/Ponape: 
+      :city: پانپی
+    :Pacific/Port_Moresby: 
+      :city: پورت‌مورزبی
+    :Pacific/Rarotonga: 
+      :city: راروتونگا
+    :Pacific/Saipan: 
+      :city: سایپان
+    :Pacific/Tahiti: 
+      :city: تاهیتی
+    :Pacific/Tarawa: 
+      :city: تاراوا
+    :Pacific/Tongatapu: 
+      :city: تونگاتاپو
+    :Pacific/Truk: 
+      :city: چوک
+    :Pacific/Wake: 
+      :city: ویک
+    :Pacific/Wallis: 
+      :city: والیس

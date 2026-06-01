@@ -1,0 +1,340 @@
+--- 
+:bo: 
+  :calendars: 
+    :gregorian: 
+      :additional_formats: 
+        :Bh: "h B"
+        :Bhm: "h:mm B"
+        :Bhms: "h:mm:ss B"
+        :E: ccc
+        :EBhm: "E h:mm B"
+        :EBhms: "E h:mm:ss B"
+        :EHm: "E HH:mm"
+        :EHms: "E HH:mm:ss"
+        :Ed: "d, E"
+        :Ehm: "E h:mm a"
+        :Ehms: "E h:mm:ss a"
+        :Gy: "G y"
+        :GyMMM: "G y LLLL"
+        :GyMMMEd: "G y MMM d, E"
+        :GyMMMd: "G y MMM d"
+        :GyMd: "GGGGG y-MM-dd"
+        :H: HH
+        :Hm: "HH:mm"
+        :Hms: "HH:mm:ss"
+        :Hmsv: "HH:mm:ss v"
+        :Hmv: "HH:mm v"
+        :M: L
+        :MEd: "MM-dd, E"
+        :MMM: LLL
+        :MMMEd: "MMMཚེས་d, E"
+        :MMMMW: "'week' W 'of' MMMM"
+        :MMMMd: MMMMའི་ཚེས་d
+        :MMMd: MMMཚེས་d
+        :Md: MM-dd
+        :d: d
+        :h: h a
+        :hm: "h:mm a"
+        :hms: "h:mm:ss a"
+        :hmsv: "h:mm:ss a v"
+        :hmv: "h:mm a v"
+        :ms: "mm:ss"
+        ? !ruby/symbol "y"
+        : "y"
+        :yM: y-MM
+        :yMEd: "y-MM-dd, E"
+        :yMMM: "y LLL"
+        :yMMMEd: "y MMM d, E"
+        :yMMMM: "y MMMM"
+        :yMMMMd: "སྤྱི་ལོ་y MMMMའི་ཚེས་d"
+        :yMMMd: "y ལོའི་MMMཚེས་d"
+        :yMd: y-MM-dd
+        :yQQQ: "y QQQ"
+        :yQQQQ: "y QQQQ"
+        :yw: "'week' w 'of' Y"
+      :days: 
+        :format: 
+          :abbreviated: 
+            :fri: པ་སངས་
+            :mon: ཟླ་བ་
+            :sat: སྤེན་པ་
+            :sun: ཉི་མ་
+            :thu: ཕུར་བུ་
+            :tue: མིག་དམར་
+            :wed: ལྷག་པ་
+          :narrow: 
+            :fri: སངས
+            :mon: ཟླ
+            :sat: སྤེན
+            :sun: ཉི
+            :thu: ཕུར
+            :tue: མིག
+            :wed: ལྷག
+          :short: 
+            :fri: པ་སངས་
+            :mon: ཟླ་བ་
+            :sat: སྤེན་པ་
+            :sun: ཉི་མ་
+            :thu: ཕུར་བུ་
+            :tue: མིག་དམར་
+            :wed: ལྷག་པ་
+          :wide: 
+            :fri: གཟའ་པ་སངས་
+            :mon: གཟའ་ཟླ་བ་
+            :sat: གཟའ་སྤེན་པ་
+            :sun: གཟའ་ཉི་མ་
+            :thu: གཟའ་ཕུར་བུ་
+            :tue: གཟའ་མིག་དམར་
+            :wed: གཟའ་ལྷག་པ་
+        :stand-alone: 
+          :abbreviated: 
+            :fri: པ་སངས་
+            :mon: ཟླ་བ་
+            :sat: སྤེན་པ་
+            :sun: ཉི་མ་
+            :thu: ཕུར་བུ་
+            :tue: མིག་དམར་
+            :wed: ལྷག་པ་
+          :narrow: 
+            :fri: སངས
+            :mon: ཟླ
+            :sat: སྤེན
+            :sun: ཉི
+            :thu: ཕུར
+            :tue: མིག
+            :wed: ལྷག
+          :short: 
+            :fri: པ་སངས་
+            :mon: ཟླ་བ་
+            :sat: སྤེན་པ་
+            :sun: ཉི་མ་
+            :thu: ཕུར་བུ་
+            :tue: མིག་དམར་
+            :wed: ལྷག་པ་
+          :wide: 
+            :fri: གཟའ་པ་སངས་
+            :mon: གཟའ་ཟླ་བ་
+            :sat: གཟའ་སྤེན་པ་
+            :sun: གཟའ་ཉི་མ་
+            :thu: གཟའ་ཕུར་བུ་
+            :tue: གཟའ་མིག་དམར་
+            :wed: གཟའ་ལྷག་པ་
+      :eras: 
+        :abbr: 
+          0: སྤྱི་ལོ་སྔོན་
+          1: སྤྱི་ལོ་
+        :name: 
+          0: BCE
+          1: CE
+        :narrow: 
+          0: BCE
+          1: CE
+      :fields: 
+        :day: ཉིན།
+        :day-narrow: ཉིན།
+        :day-short: ཉིན།
+        :dayOfYear: "Day Of Year"
+        :dayOfYear-narrow: "Day Of Year"
+        :dayOfYear-short: "Day Of Year"
+        :dayperiod: "སྔ་དྲོ། ཕྱི་དྲོ།"
+        :dayperiod-narrow: "སྔ་དྲོ། ཕྱི་དྲོ།"
+        :dayperiod-short: "སྔ་དྲོ། ཕྱི་དྲོ།"
+        :era: ལོ་རིམ།
+        :era-narrow: ལོ་རིམ།
+        :era-short: ལོ་རིམ།
+        :hour: ཆུ་ཚོད་
+        :hour-narrow: ཆུ་ཚོད་
+        :hour-short: ཆུ་ཚོད་
+        :minute: སྐར་མ།
+        :minute-narrow: སྐར་མ།
+        :minute-short: སྐར་མ།
+        :month: ཟླ་བ་
+        :month-narrow: ཟླ་བ་
+        :month-short: ཟླ་བ་
+        :quarter: Quarter
+        :quarter-narrow: Quarter
+        :quarter-short: Quarter
+        :second: སྐར་ཆ།
+        :second-narrow: སྐར་ཆ།
+        :second-short: སྐར་ཆ།
+        :week: གཟའ་འཁོར།
+        :week-narrow: གཟའ་འཁོར།
+        :week-short: གཟའ་འཁོར།
+        :weekOfMonth: "Week Of Month"
+        :weekOfMonth-narrow: "Week Of Month"
+        :weekOfMonth-short: "Week Of Month"
+        :weekday: གཟའ་འཁོར་གཅིག
+        :weekday-narrow: གཟའ་འཁོར་གཅིག
+        :weekday-short: གཟའ་འཁོར་གཅིག
+        :weekdayOfMonth: "Weekday Of Month"
+        :weekdayOfMonth-narrow: "Weekday Of Month"
+        :weekdayOfMonth-short: "Weekday Of Month"
+        :year: ལོ།
+        :year-narrow: ལོ།
+        :year-short: ལོ།
+        :zone: དུས་ཚོད།
+        :zone-narrow: དུས་ཚོད།
+        :zone-short: དུས་ཚོད།
+      :formats: 
+        :date: 
+          :full: 
+            :pattern: "y MMMMའི་ཚེས་d, EEEE"
+          :long: 
+            :pattern: "སྤྱི་ལོ་y MMMMའི་ཚེས་d"
+          :medium: 
+            :pattern: "y ལོའི་MMMཚེས་d"
+          :short: 
+            :pattern: y-MM-dd
+        :datetime: 
+          :full: 
+            :pattern: "{{date}} {{time}}"
+          :long: 
+            :pattern: "{{date}} {{time}}"
+          :medium: 
+            :pattern: "{{date}} {{time}}"
+          :short: 
+            :pattern: "{{date}} {{time}}"
+        :time: 
+          :full: 
+            :pattern: "HH:mm:ss zzzz"
+          :long: 
+            :pattern: "HH:mm:ss z"
+          :medium: 
+            :pattern: "HH:mm:ss"
+          :short: 
+            :pattern: "HH:mm"
+      :months: 
+        :format: 
+          :abbreviated: 
+            1: ཟླ་༡
+            10: ཟླ་༡༠
+            11: ཟླ་༡༡
+            12: ཟླ་༡༢
+            2: ཟླ་༢
+            3: ཟླ་༣
+            4: ཟླ་༤
+            5: ཟླ་༥
+            6: ཟླ་༦
+            7: ཟླ་༧
+            8: ཟླ་༨
+            9: ཟླ་༩
+          :narrow: 
+            1: "1"
+            10: "10"
+            11: "11"
+            12: "12"
+            2: "2"
+            3: "3"
+            4: "4"
+            5: "5"
+            6: "6"
+            7: "7"
+            8: "8"
+            9: "9"
+          :wide: 
+            1: ཟླ་བ་དང་པོ
+            10: ཟླ་བ་བཅུ་པ
+            11: ཟླ་བ་བཅུ་གཅིག་པ
+            12: ཟླ་བ་བཅུ་གཉིས་པ
+            2: ཟླ་བ་གཉིས་པ
+            3: ཟླ་བ་གསུམ་པ
+            4: ཟླ་བ་བཞི་པ
+            5: ཟླ་བ་ལྔ་པ
+            6: ཟླ་བ་དྲུག་པ
+            7: ཟླ་བ་བདུན་པ
+            8: ཟླ་བ་བརྒྱད་པ
+            9: ཟླ་བ་དགུ་པ
+        :stand-alone: 
+          :abbreviated: 
+            1: ཟླ་༡
+            10: ཟླ་༡༠
+            11: ཟླ་༡༡
+            12: ཟླ་༡༢
+            2: ཟླ་༢
+            3: ཟླ་༣
+            4: ཟླ་༤
+            5: ཟླ་༥
+            6: ཟླ་༦
+            7: ཟླ་༧
+            8: ཟླ་༨
+            9: ཟླ་༩
+          :narrow: 
+            1: "1"
+            10: "10"
+            11: "11"
+            12: "12"
+            2: "2"
+            3: "3"
+            4: "4"
+            5: "5"
+            6: "6"
+            7: "7"
+            8: "8"
+            9: "9"
+          :wide: 
+            1: ཟླ་བ་དང་པོ་
+            10: ཟླ་བ་བཅུ་པ་
+            11: ཟླ་བ་བཅུ་གཅིག་པ་
+            12: ཟླ་བ་བཅུ་གཉིས་པ་
+            2: ཟླ་བ་གཉིས་པ་
+            3: ཟླ་བ་གསུམ་པ་
+            4: ཟླ་བ་བཞི་པ་
+            5: ཟླ་བ་ལྔ་པ་
+            6: ཟླ་བ་དྲུག་པ་
+            7: ཟླ་བ་བདུན་པ་
+            8: ཟླ་བ་བརྒྱད་པ་
+            9: ཟླ་བ་དགུ་པ་
+      :periods: 
+        :format: 
+          :abbreviated: 
+            :am: སྔ་དྲོ་
+            :pm: ཕྱི་དྲོ་
+          :narrow: 
+            :am: སྔ་དྲོ་
+            :pm: ཕྱི་དྲོ་
+          :wide: 
+            :am: སྔ་དྲོ་
+            :pm: ཕྱི་དྲོ་
+        :stand-alone: 
+          :abbreviated: 
+            :am: སྔ་དྲོ་
+            :pm: ཕྱི་དྲོ་
+          :narrow: 
+            :am: སྔ་དྲོ་
+            :pm: ཕྱི་དྲོ་
+          :wide: 
+            :am: སྔ་དྲོ་
+            :pm: ཕྱི་དྲོ་
+      :quarters: 
+        :format: 
+          :abbreviated: 
+            1: དུས་ཚིགས་དང་པོ།
+            2: དུས་ཚིགས་གཉིས་པ།
+            3: དུས་ཚིགས་གསུམ་པ།
+            4: དུས་ཚིགས་བཞི་པ།
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: དུས་ཚིགས་དང་པོ།
+            2: དུས་ཚིགས་གཉིས་པ།
+            3: དུས་ཚིགས་གསུམ་པ།
+            4: དུས་ཚིགས་བཞི་པ།
+        :stand-alone: 
+          :abbreviated: 
+            1: དུས་ཚིགས་དང་པོ།
+            2: དུས་ཚིགས་གཉིས་པ།
+            3: དུས་ཚིགས་གསུམ་པ།
+            4: དུས་ཚིགས་བཞི་པ།
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: དུས་ཚིགས་དང་པོ།
+            2: དུས་ཚིགས་གཉིས་པ།
+            3: དུས་ཚིགས་གསུམ་པ།
+            4: དུས་ཚིགས་བཞི་པ།

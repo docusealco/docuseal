@@ -1,0 +1,1155 @@
+--- 
+:lv: 
+  :currencies: 
+    :AED: 
+      :name: "Apvienoto Arābu Emirātu dirhēms"
+      :one: "AAE dirhēms"
+      :other: "AAE dirhēmi"
+      :zero: "AAE dirhēmi"
+    :AFN: 
+      :name: "Afganistānas afgāns"
+      :narrow_symbol: ؋
+      :one: "Afganistānas afgāns"
+      :other: "Afganistānas afgāni"
+      :symbol: ؋
+      :zero: "Afganistānas afgāni"
+    :ALL: 
+      :name: "Albānijas leks"
+      :one: "Albānijas leks"
+      :other: "Albānijas leki"
+      :zero: "Albānijas leki"
+    :AMD: 
+      :name: "Armēnijas drams"
+      :narrow_symbol: ֏
+      :one: "Armēnijas drams"
+      :other: "Armēnijas drami"
+      :symbol: ֏
+      :zero: "Armēnijas drami"
+    :ANG: 
+      :name: "Nīderlandes Antiļu guldenis"
+      :one: "Nīderlandes Antiļu guldenis"
+      :other: "Nīderlandes Antiļu guldeņi"
+      :zero: "Nīderlandes Antiļu guldeņi"
+    :AOA: 
+      :name: "Angolas kvanza"
+      :narrow_symbol: Kz
+      :one: "Angolas kvanza"
+      :other: "Angolas kvanzas"
+      :symbol: Kz
+      :zero: "Angolas kvanzas"
+    :ARS: 
+      :name: "Argentīnas peso"
+      :narrow_symbol: $
+      :one: "Argentīnas peso"
+      :symbol: $
+    :ATS: 
+      :name: "Austrijas šiliņš"
+      :one: "Austrijas šiliņš"
+    :AUD: 
+      :name: "Austrālijas dolārs"
+      :narrow_symbol: $
+      :one: "Austrālijas dolārs"
+      :other: "Austrālijas dolāri"
+      :symbol: AU$
+      :zero: "Austrālijas dolāri"
+    :AWG: 
+      :name: "Arubas guldenis"
+      :one: "Arubas guldenis"
+      :other: "Arubas guldeņi"
+      :zero: "Arubas guldeņi"
+    :AZM: 
+      :name: "Azerbaidžānas manats (1993–2006)"
+      :one: "Azerbaidžānas manats (1993–2006)"
+      :other: "Azerbaidžānas manati (1993–2006)"
+      :zero: "Azerbaidžānas manati (1993–2006)"
+    :AZN: 
+      :name: "Azerbaidžānas manats"
+      :narrow_symbol: ₼
+      :one: "Azerbaidžānas manats"
+      :other: "Azerbaidžānas manati"
+      :symbol: ₼
+      :zero: "Azerbaidžānas manati"
+    :BAM: 
+      :name: "Bosnijas un Hercogovinas konvertējamā marka"
+      :narrow_symbol: KM
+      :one: "Bosnijas un Hercogovinas konvertējamā marka"
+      :other: "Bosnijas un Hercogovinas konvertējamās markas"
+      :symbol: KM
+      :zero: "Bosnijas un Hercogovinas konvertējamās markas"
+    :BBD: 
+      :name: "Barbadosas dolārs"
+      :narrow_symbol: $
+      :one: "Barbadosas dolārs"
+      :other: "Barbadosas dolāri"
+      :symbol: $
+      :zero: "Barbadosas dolāri"
+    :BDT: 
+      :name: "Bangladešas taka"
+      :narrow_symbol: ৳
+      :one: "Bangladešas taka"
+      :other: "Bangladešas takas"
+      :symbol: ৳
+      :zero: "Bangladešas takas"
+    :BEF: 
+      :name: "Beļģijas franks"
+      :one: "Beļģijas franks"
+      :other: "Beļģijas franki"
+      :zero: "Beļģijas franki"
+    :BGN: 
+      :name: "Bulgārijas leva"
+      :one: "Bulgārijas leva"
+      :other: "Bulgārijas levas"
+      :zero: "Bulgārijas levas"
+    :BHD: 
+      :name: "Bahreinas dinārs"
+      :one: "Bahreinas dinārs"
+      :other: "Bahreinas dināri"
+      :zero: "Bahreinas dināri"
+    :BIF: 
+      :name: "Burundi franks"
+      :one: "Burundi franks"
+      :other: "Burundi franki"
+      :zero: "Burundi franki"
+    :BMD: 
+      :name: "Bermudu dolārs"
+      :narrow_symbol: $
+      :one: "Bermudu dolārs"
+      :other: "Bermudu dolāri"
+      :symbol: $
+      :zero: "Bermudu dolāri"
+    :BND: 
+      :name: "Brunejas dolārs"
+      :narrow_symbol: $
+      :one: "Brunejas dolārs"
+      :other: "Brunejas dolāri"
+      :symbol: $
+      :zero: "Brunejas dolāri"
+    :BOB: 
+      :name: "Bolīvijas boliviano"
+      :narrow_symbol: Bs
+      :one: "Bolīvijas boliviano"
+      :symbol: Bs
+    :BRL: 
+      :name: "Brazīlijas reāls"
+      :narrow_symbol: R$
+      :one: "Brazīlijas reāls"
+      :other: "Brazīlijas reāli"
+      :symbol: R$
+      :zero: "Brazīlijas reāli"
+    :BSD: 
+      :name: "Bahamu dolārs"
+      :narrow_symbol: $
+      :one: "Bahamu dolārs"
+      :other: "Bahamu dolāri"
+      :symbol: $
+      :zero: "Bahamu dolāri"
+    :BTN: 
+      :name: "Butānas ngultrums"
+      :one: "Butānas ngultrums"
+      :other: "Butānas ngultrumi"
+      :zero: "Butānas ngultrumi"
+    :BWP: 
+      :name: "Botsvanas pula"
+      :narrow_symbol: P
+      :one: "Botsvanas pula"
+      :other: "Botsvanas pulas"
+      :symbol: P
+      :zero: "Botsvanas pulas"
+    :BYN: 
+      :name: "Baltkrievijas rubelis"
+      :narrow_symbol: р.
+      :one: "Baltkrievijas rubelis"
+      :other: "Baltkrievijas rubeļi"
+      :symbol: р.
+      :zero: "Baltkrievijas rubeļi"
+    :BYR: 
+      :name: "Baltkrievijas rubelis (2000–2016)"
+      :one: "Baltkrievijas rubelis (2000–2016)"
+      :other: "Baltkrievijas rubeļi (2000–2016)"
+      :zero: "Baltkrievijas rubeļi (2000–2016)"
+    :BZD: 
+      :name: "Belizas dolārs"
+      :narrow_symbol: $
+      :one: "Belizas dolārs"
+      :other: "Belizas dolāri"
+      :symbol: $
+      :zero: "Belizas dolāri"
+    :CAD: 
+      :name: "Kanādas dolārs"
+      :narrow_symbol: $
+      :one: "Kanādas dolārs"
+      :other: "Kanādas dolāri"
+      :symbol: CA$
+      :zero: "Kanādas dolāri"
+    :CDF: 
+      :name: "KDR franks"
+      :one: "KDR franks"
+      :other: "KDR franki"
+      :zero: "KDR franki"
+    :CHF: 
+      :name: "Šveices franks"
+      :one: "Šveices franks"
+      :other: "Šveices franki"
+      :zero: "Šveices franki"
+    :CLP: 
+      :name: "Čīles peso"
+      :narrow_symbol: $
+      :one: "Čīles peso"
+      :symbol: $
+    :CNH: 
+      :name: "Ķīnas juaņa (ofšors)"
+      :one: "Ķīnas juaņa (ofšors)"
+      :other: "Ķīnas juaņas (ofšors)"
+      :zero: "Ķīnas juaņa (ofšors)"
+    :CNY: 
+      :name: "Ķīnas juaņs"
+      :narrow_symbol: ¥
+      :one: "Ķīnas juaņs"
+      :other: "Ķīnas juaņi"
+      :symbol: CN¥
+      :zero: "Ķīnas juaņi"
+    :COP: 
+      :name: "Kolumbijas peso"
+      :narrow_symbol: $
+      :one: "Kolumbijas peso"
+      :symbol: $
+    :COU: 
+      :name: "Kolumbijas reāls"
+      :one: "Kolumbijas reāls"
+    :CRC: 
+      :name: "Kostarikas kolons"
+      :narrow_symbol: ₡
+      :one: "Kostarikas kolons"
+      :other: "Kostarikas koloni"
+      :symbol: ₡
+      :zero: "Kostarikas koloni"
+    :CUC: 
+      :name: "Kubas konvertējamais peso"
+      :narrow_symbol: $
+      :one: "Kubas konvertējamais peso"
+      :other: "Kubas konvertējamie peso"
+      :symbol: $
+      :zero: "Kubas konvertējamie peso"
+    :CUP: 
+      :name: "Kubas peso"
+      :narrow_symbol: $
+      :one: "Kubas peso"
+      :symbol: $
+    :CVE: 
+      :name: "Kaboverdes eskudo"
+      :one: "Kaboverdes eskudo"
+    :CYP: 
+      :name: "Kipras mārciņa"
+      :one: "Kipras mārciņa"
+    :CZK: 
+      :name: "Čehijas krona"
+      :narrow_symbol: Kč
+      :one: "Čehijas krona"
+      :other: "Čehijas kronas"
+      :symbol: Kč
+      :zero: "Čehijas kronas"
+    :DEM: 
+      :name: "Vācijas marka"
+      :one: "Vācijas marka"
+    :DJF: 
+      :name: "Džibutijas franks"
+      :one: "Džibutijas franks"
+      :other: "Džibutijas franki"
+      :zero: "Džibutijas franki"
+    :DKK: 
+      :name: "Dānijas krona"
+      :narrow_symbol: kr
+      :one: "Dānijas krona"
+      :other: "Dānijas kronas"
+      :symbol: kr
+      :zero: "Dānijas kronas"
+    :DOP: 
+      :name: "Dominikānas peso"
+      :narrow_symbol: $
+      :one: "Dominikānas peso"
+      :symbol: $
+    :DZD: 
+      :name: "Alžīrijas dinārs"
+      :one: "Alžīrijas dinārs"
+      :other: "Alžīrijas dināri"
+      :zero: "Alžīrijas dināri"
+    :EEK: 
+      :name: "Igaunijas krona"
+      :one: "Igaunijas krona"
+    :EGP: 
+      :name: "Ēģiptes mārciņa"
+      :narrow_symbol: E£
+      :one: "Ēģiptes mārciņa"
+      :other: "Ēģiptes mārciņas"
+      :symbol: E£
+      :zero: "Ēģiptes mārciņas"
+    :ERN: 
+      :name: "Eritrejas nakfa"
+      :one: "Eritrejas nakfa"
+      :other: "Eritrejas nakfas"
+      :zero: "Eritrejas nakfas"
+    :ESP: 
+      :name: "Spānijas peseta"
+      :narrow_symbol: ₧
+      :one: "Spānijas peseta"
+      :symbol: ₧
+    :ETB: 
+      :name: "Etiopijas birs"
+      :one: "Etiopijas birs"
+      :other: "Etiopijas biri"
+      :zero: "Etiopijas biri"
+    :EUR: 
+      :name: eiro
+      :narrow_symbol: €
+      :one: eiro
+      :symbol: €
+    :FIM: 
+      :name: "Somijas marka"
+      :one: "Somijas marka"
+    :FJD: 
+      :name: "Fidži dolārs"
+      :narrow_symbol: $
+      :one: "Fidži dolārs"
+      :other: "Fidži dolāri"
+      :symbol: $
+      :zero: "Fidži dolāri"
+    :FKP: 
+      :name: "Folklenda Salu mārciņa"
+      :narrow_symbol: £
+      :one: "Folklenda Salu mārciņa"
+      :other: "Folklenda Salu mārciņas"
+      :symbol: £
+      :zero: "Folklenda Salu mārciņas"
+    :FRF: 
+      :name: "Francijas franks"
+      :one: "Francijas franks"
+    :GBP: 
+      :name: "Lielbritānijas mārciņa"
+      :narrow_symbol: £
+      :one: "Lielbritānijas mārciņa"
+      :other: "Lielbritānijas mārciņas"
+      :symbol: £
+      :zero: "Lielbritānijas mārciņas"
+    :GEL: 
+      :name: "Gruzijas lari"
+      :narrow_symbol: ₾
+      :one: "Gruzijas lari"
+      :symbol: ₾
+    :GHS: 
+      :name: "Ganas sedi"
+      :narrow_symbol: GHS
+      :one: "Ganas sedi"
+      :symbol: GHS
+    :GIP: 
+      :name: "Gibraltāra mārciņa"
+      :narrow_symbol: £
+      :one: "Gibraltāra mārciņa"
+      :other: "Gibraltāra mārciņas"
+      :symbol: £
+      :zero: "Gibraltāra mārciņas"
+    :GMD: 
+      :name: "Gambijas dalasi"
+      :one: "Gambijas dalasi"
+    :GNF: 
+      :name: "Gvinejas franks"
+      :narrow_symbol: FG
+      :one: "Gvinejas franks"
+      :other: "Gvinejas franki"
+      :symbol: FG
+      :zero: "Gvinejas franki"
+    :GRD: 
+      :name: "Grieķijas drahma"
+      :one: "Grieķijas drahma"
+    :GTQ: 
+      :name: "Gvatemalas ketsals"
+      :narrow_symbol: Q
+      :one: "Gvatemalas ketsals"
+      :other: "Gvatemalas ketsali"
+      :symbol: Q
+      :zero: "Gvatemalas ketsali"
+    :GYD: 
+      :name: "Gajānas dolārs"
+      :narrow_symbol: $
+      :one: "Gajānas dolārs"
+      :other: "Gajānas dolāri"
+      :symbol: $
+      :zero: "Gajānas dolāri"
+    :HKD: 
+      :name: "Honkongas dolārs"
+      :narrow_symbol: $
+      :one: "Honkongas dolārs"
+      :other: "Honkongas dolāri"
+      :symbol: HK$
+      :zero: "Honkongas dolāri"
+    :HNL: 
+      :name: "Hondurasas lempīra"
+      :narrow_symbol: L
+      :one: "Hondurasas lempīra"
+      :other: "Hondurasas lempīras"
+      :symbol: L
+      :zero: "Hondurasas lempīras"
+    :HRK: 
+      :name: "Horvātijas kuna"
+      :narrow_symbol: kn
+      :one: "Horvātijas kuna"
+      :other: "Horvātijas kunas"
+      :symbol: kn
+      :zero: "Horvātijas kunas"
+    :HTG: 
+      :name: "Haiti gurds"
+      :one: "Haiti gurds"
+      :other: "Haiti gurdi"
+      :zero: "Haiti gurdi"
+    :HUF: 
+      :name: "Ungārijas forints"
+      :narrow_symbol: Ft
+      :one: "Ungārijas forints"
+      :other: "Ungārijas forinti"
+      :symbol: Ft
+      :zero: "Ungārijas forinti"
+    :IDR: 
+      :name: "Indonēzijas rūpija"
+      :narrow_symbol: Rp
+      :one: "Indonēzijas rūpija"
+      :other: "Indonēzijas rūpijas"
+      :symbol: Rp
+      :zero: "Indonēzijas rūpijas"
+    :IEP: 
+      :name: "Īrijas mārciņa"
+      :one: "Īrijas mārciņa"
+    :ILS: 
+      :name: "Izraēlas šekelis"
+      :narrow_symbol: ₪
+      :one: "Izraēlas šekelis"
+      :other: "Izraēlas šekeļi"
+      :symbol: ₪
+      :zero: "Izraēlas šekeļi"
+    :INR: 
+      :name: "Indijas rūpija"
+      :narrow_symbol: ₹
+      :one: "Indijas rūpija"
+      :other: "Indijas rūpijas"
+      :symbol: ₹
+      :zero: "Indijas rūpijas"
+    :IQD: 
+      :name: "Irākas dinārs"
+      :one: "Irākas dinārs"
+      :other: "Irākas dināri"
+      :zero: "Irākas dināri"
+    :IRR: 
+      :name: "Irānas riāls"
+      :one: "Irānas riāls"
+      :other: "Irānas riāli"
+      :zero: "Irānas riāli"
+    :ISK: 
+      :name: "Islandes krona"
+      :narrow_symbol: kr
+      :one: "Islandes krona"
+      :other: "Islandes kronas"
+      :symbol: kr
+      :zero: "Islandes kronas"
+    :ITL: 
+      :name: "Itālijas lira"
+      :one: "Itālijas lira"
+    :JMD: 
+      :name: "Jamaikas dolārs"
+      :narrow_symbol: $
+      :one: "Jamaikas dolārs"
+      :other: "Jamaikas dolāri"
+      :symbol: $
+      :zero: "Jamaikas dolāri"
+    :JOD: 
+      :name: "Jordānas dinārs"
+      :one: "Jordānas dinārs"
+      :other: "Jordānas dināri"
+      :zero: "Jordānas dināri"
+    :JPY: 
+      :name: "Japānas jena"
+      :narrow_symbol: ¥
+      :one: "Japānas jena"
+      :other: "Japānas jenas"
+      :symbol: ¥
+      :zero: "Japānas jenas"
+    :KES: 
+      :name: "Kenijas šiliņš"
+      :one: "Kenijas šiliņš"
+      :other: "Kenijas šiliņi"
+      :zero: "Kenijas šiliņi"
+    :KGS: 
+      :name: "Kirgizstānas soms"
+      :narrow_symbol: ⃀
+      :one: "Kirgizstānas soms"
+      :other: "Kirgizstānas somi"
+      :symbol: ⃀
+      :zero: "Kirgizstānas somi"
+    :KHR: 
+      :name: "Kambodžas riels"
+      :narrow_symbol: ៛
+      :one: "Kambodžas riels"
+      :other: "Kambodžas rieli"
+      :symbol: ៛
+      :zero: "Kambodžas rieli"
+    :KMF: 
+      :name: "Komoru franks"
+      :narrow_symbol: CF
+      :one: "Komoru franks"
+      :other: "Komoru franki"
+      :symbol: CF
+      :zero: "Komoru franki"
+    :KPW: 
+      :name: "Ziemeļkorejas vona"
+      :narrow_symbol: ₩
+      :one: "Ziemeļkorejas vona"
+      :other: "Ziemeļkorejas vonas"
+      :symbol: ₩
+      :zero: "Ziemeļkorejas vonas"
+    :KRW: 
+      :name: "Dienvidkorejas vona"
+      :narrow_symbol: ₩
+      :one: "Dienvidkorejas vona"
+      :other: "Dienvidkorejas vonas"
+      :symbol: ₩
+      :zero: "Dienvidkorejas vonas"
+    :KWD: 
+      :name: "Kuveitas dinārs"
+      :one: "Kuveitas dinārs"
+      :other: "Kuveitas dināri"
+      :zero: "Kuveitas dināri"
+    :KYD: 
+      :name: "Kaimanu salu dolārs"
+      :narrow_symbol: $
+      :one: "Kaimanu salu dolārs"
+      :other: "Kaimanu salu dolāri"
+      :symbol: $
+      :zero: "Kaimanu salu dolāri"
+    :KZT: 
+      :name: "Kazahstānas tenge"
+      :narrow_symbol: ₸
+      :one: "Kazahstānas tenge"
+      :other: "Kazahstānas tenges"
+      :symbol: ₸
+      :zero: "Kazahstānas tenges"
+    :LAK: 
+      :name: "Laosas kips"
+      :narrow_symbol: ₭
+      :one: "Laosas kips"
+      :other: "Laosas kipi"
+      :symbol: ₭
+      :zero: "Laosas kipi"
+    :LBP: 
+      :name: "Libānas mārciņa"
+      :narrow_symbol: L£
+      :one: "Libānas mārciņa"
+      :other: "Libānas mārciņas"
+      :symbol: L£
+      :zero: "Libānas mārciņas"
+    :LKR: 
+      :name: "Šrilankas rūpija"
+      :narrow_symbol: Rs
+      :one: "Šrilankas rūpija"
+      :other: "Šrilankas rūpijas"
+      :symbol: Rs
+      :zero: "Šrilankas rūpijas"
+    :LRD: 
+      :name: "Libērijas dolārs"
+      :narrow_symbol: $
+      :one: "Libērijas dolārs"
+      :other: "Libērijas dolāri"
+      :symbol: $
+      :zero: "Libērijas dolāri"
+    :LSL: 
+      :name: "Lesoto loti"
+      :one: "Lesoto loti"
+    :LTL: 
+      :name: "Lietuvas lits"
+      :narrow_symbol: Lt
+      :one: "Lietuvas lits"
+      :other: "Lietuvas liti"
+      :symbol: Lt
+      :zero: "Lietuvas liti"
+    :LUF: 
+      :name: "Luksemburgas franks"
+      :one: "Luksemburgas franks"
+    :LVL: 
+      :name: "Latvijas lats"
+      :narrow_symbol: Ls
+      :one: "Latvijas lats"
+      :other: "Latvijas lati"
+      :symbol: Ls
+      :zero: "Latvijas lati"
+    :LVR: 
+      :name: "Latvijas rublis"
+      :one: "Latvijas rublis"
+    :LYD: 
+      :name: "Lībijas dinārs"
+      :one: "Lībijas dinārs"
+      :other: "Lībijas dināri"
+      :zero: "Lībijas dināri"
+    :MAD: 
+      :name: "Marokas dirhēms"
+      :one: "Marokas dirhēms"
+      :other: "Marokas dirhēmi"
+      :zero: "Marokas dirhēmi"
+    :MDL: 
+      :name: "Moldovas leja"
+      :one: "Moldovas leja"
+      :other: "Moldovas lejas"
+      :zero: "Moldovas lejas"
+    :MGA: 
+      :name: "Madagaskaras ariari"
+      :narrow_symbol: Ar
+      :one: "Madagaskaras ariari"
+      :symbol: Ar
+    :MKD: 
+      :name: "Maķedonijas denārs"
+      :one: "Maķedonijas denārs"
+      :other: "Maķedonijas denāri"
+      :zero: "Maķedonijas denāri"
+    :MLF: 
+      :name: "CFA (Āfrikas) franks"
+      :one: "CFA (Āfrikas) franks"
+    :MMK: 
+      :name: "Mjanmas kjats"
+      :narrow_symbol: K
+      :one: "Mjanmas kjats"
+      :other: "Mjanmas kjati"
+      :symbol: K
+      :zero: "Mjanmas kjati"
+    :MNT: 
+      :name: "Mongolijas tugriks"
+      :narrow_symbol: ₮
+      :one: "Mongolijas tugriks"
+      :other: "Mongolijas tugriki"
+      :symbol: ₮
+      :zero: "Mongolijas tugriki"
+    :MOP: 
+      :name: "Makao pataka"
+      :one: "Makao pataka"
+      :other: "Makao patakas"
+      :zero: "Makao patakas"
+    :MRO: 
+      :name: "Mauritānijas ugija (1973–2017)"
+      :one: "Mauritānijas ugija (1973–2017)"
+      :other: "Mauritānijas ugijas (1973–2017)"
+      :zero: "Mauritānijas ugijas (1973–2017)"
+    :MRU: 
+      :name: "Mauritānijas ugija"
+      :one: "Mauritānijas ugija"
+      :other: "Mauritānijas ugijas"
+      :zero: "Mauritānijas ugijas"
+    :MTL: 
+      :name: "Maltas lira"
+      :one: "Maltas lira"
+    :MTP: 
+      :name: "Maltas mārciņa"
+      :one: "Maltas mārciņa"
+    :MUR: 
+      :name: "Maurīcijas rūpija"
+      :narrow_symbol: Rs
+      :one: "Maurīcijas rūpija"
+      :other: "Maurīcijas rūpijas"
+      :symbol: Rs
+      :zero: "Maurīcijas rūpijas"
+    :MVR: 
+      :name: "Maldīvijas rūfija"
+      :one: "Maldīvijas rūfija"
+      :other: "Maldīvijas rūfijas"
+      :zero: "Maldīvijas rūfijas"
+    :MWK: 
+      :name: "Malāvijas kvača"
+      :one: "Malāvijas kvača"
+      :other: "Malāvijas kvačas"
+      :zero: "Malāvijas kvačas"
+    :MXN: 
+      :name: "Meksikas peso"
+      :narrow_symbol: $
+      :one: "Meksikas peso"
+      :symbol: MX$
+    :MYR: 
+      :name: "Malaizijas ringits"
+      :narrow_symbol: RM
+      :one: "Malaizijas ringits"
+      :other: "Malaizijas ringiti"
+      :symbol: RM
+      :zero: "Malaizijas ringiti"
+    :MZE: 
+      :name: "Mozambikas eskudo"
+      :one: "Mozambikas eskudo"
+    :MZM: 
+      :name: "Mozambikas vecais metikals"
+      :one: "Mozambikas vecais metikals"
+      :other: "Mozambikas vecie metikali"
+      :zero: "Mozambikas vecie metikali"
+    :MZN: 
+      :name: "Mozambikas metikals"
+      :one: "Mozambikas metikals"
+      :other: "Mozambikas metikali"
+      :zero: "Mozambikas metikali"
+    :NAD: 
+      :name: "Namībijas dolārs"
+      :narrow_symbol: $
+      :one: "Namībijas dolārs"
+      :other: "Namībijas dolāri"
+      :symbol: $
+      :zero: "Namībijas dolāri"
+    :NGN: 
+      :name: "Nigērijas naira"
+      :narrow_symbol: ₦
+      :one: "Nigērijas naira"
+      :other: "Nigērijas nairas"
+      :symbol: ₦
+      :zero: "Nigērijas nairas"
+    :NIO: 
+      :name: "Nikaragvas kordoba"
+      :narrow_symbol: C$
+      :one: "Nikaragvas kordoba"
+      :other: "Nikaragvas kordobas"
+      :symbol: C$
+      :zero: "Nikaragvas kordobas"
+    :NLG: 
+      :name: "Nīderlandes guldenis"
+      :one: "Nīderlandes guldenis"
+    :NOK: 
+      :name: "Norvēģijas krona"
+      :narrow_symbol: kr
+      :one: "Norvēģijas krona"
+      :other: "Norvēģijas kronas"
+      :symbol: kr
+      :zero: "Norvēģijas kronas"
+    :NPR: 
+      :name: "Nepālas rūpija"
+      :narrow_symbol: Rs
+      :one: "Nepālas rūpija"
+      :other: "Nepālas rūpijas"
+      :symbol: Rs
+      :zero: "Nepālas rūpijas"
+    :NZD: 
+      :name: "Jaunzēlandes dolārs"
+      :narrow_symbol: $
+      :one: "Jaunzēlandes dolārs"
+      :other: "Jaunzēlandes dolāri"
+      :symbol: NZ$
+      :zero: "Jaunzēlandes dolāri"
+    :OMR: 
+      :name: "Omānas riāls"
+      :one: "Omānas riāls"
+      :other: "Omānas riāli"
+      :zero: "Omānas riāli"
+    :PAB: 
+      :name: "Panamas balboa"
+      :one: "Panamas balboa"
+    :PEN: 
+      :name: "Peru sols"
+      :one: "Peru sols"
+      :other: "Peru soli"
+      :zero: "Peru soli"
+    :PGK: 
+      :name: "Papua-Jaungvinejas kina"
+      :one: "Papua-Jaungvinejas kina"
+      :other: "Papua-Jaungvinejas kinas"
+      :zero: "Papua-Jaungvinejas kinas"
+    :PHP: 
+      :name: "Filipīnu peso"
+      :narrow_symbol: ₱
+      :one: "Filipīnu peso"
+      :symbol: PHP
+    :PKR: 
+      :name: "Pakistānas rūpija"
+      :narrow_symbol: Rs
+      :one: "Pakistānas rūpija"
+      :other: "Pakistānas rūpijas"
+      :symbol: Rs
+      :zero: "Pakistānas rūpijas"
+    :PLN: 
+      :name: "Polijas zlots"
+      :narrow_symbol: zł
+      :one: "Polijas zlots"
+      :other: "Polijas zloti"
+      :symbol: zł
+      :zero: "Polijas zloti"
+    :PTE: 
+      :name: "Portugāles eskudo"
+      :one: "Portugāles eskudo"
+    :PYG: 
+      :name: "Paragvajas guarani"
+      :narrow_symbol: ₲
+      :one: "Paragvajas guarani"
+      :symbol: ₲
+    :QAR: 
+      :name: "Kataras riāls"
+      :one: "Kataras riāls"
+      :other: "Kataras riāli"
+      :zero: "Kataras riāli"
+    :ROL: 
+      :name: "Rumānijas vecā leja"
+      :one: "Rumānijas vecā leva"
+      :other: "Rumānijas vecās levas"
+      :zero: "Rumānijas vecās levas"
+    :RON: 
+      :name: "Rumānijas leja"
+      :narrow_symbol: lei
+      :one: "Rumānijas leja"
+      :other: "Rumānijas lejas"
+      :symbol: lei
+      :zero: "Rumānijas lejas"
+    :RSD: 
+      :name: "Serbijas dinārs"
+      :one: "Serbijas dinārs"
+      :other: "Serbijas dināri"
+      :zero: "Serbijas dināri"
+    :RUB: 
+      :name: "Krievijas rublis"
+      :narrow_symbol: ₽
+      :one: "Krievijas rublis"
+      :other: "Krievijas rubļi"
+      :symbol: ₽
+      :zero: "Krievijas rubļi"
+    :RWF: 
+      :name: "Ruandas franks"
+      :narrow_symbol: RF
+      :one: "Ruandas franks"
+      :other: "Ruandas franki"
+      :symbol: RF
+      :zero: "Ruandas franki"
+    :SAR: 
+      :name: "Saūda Arābijas riāls"
+      :one: "Saūda riāls"
+      :other: "Saūda riāli"
+      :zero: "Saūda riāli"
+    :SBD: 
+      :name: "Zālamana Salu dolārs"
+      :narrow_symbol: $
+      :one: "Zālamana Salu dolārs"
+      :other: "Zālamana Salu dolāri"
+      :symbol: $
+      :zero: "Zālamana Salu dolāri"
+    :SCR: 
+      :name: "Seišelu salu rūpija"
+      :one: "Seišelu salu rūpija"
+      :other: "Seišelu salu rūpijas"
+      :zero: "Seišelu salu rūpijas"
+    :SDG: 
+      :name: "Sudānas mārciņa"
+      :one: "Sudānas mārciņa"
+      :other: "Sudānas mārciņas"
+      :zero: "Sudānas mārciņas"
+    :SEK: 
+      :name: "Zviedrijas krona"
+      :narrow_symbol: kr
+      :one: "Zviedrijas krona"
+      :other: "Zviedrijas kronas"
+      :symbol: kr
+      :zero: "Zviedrijas kronas"
+    :SGD: 
+      :name: "Singapūras dolārs"
+      :narrow_symbol: $
+      :one: "Singapūras dolārs"
+      :other: "Singapūras dolāri"
+      :symbol: $
+      :zero: "Singapūras dolāri"
+    :SHP: 
+      :name: "Sv.Helēnas salas mārciņa"
+      :narrow_symbol: £
+      :one: "Sv.Helēnas salas mārciņa"
+      :other: "Sv.Helēnas salas mārciņas"
+      :symbol: £
+      :zero: "Sv.Helēnas salas mārciņas"
+    :SIT: 
+      :name: "Slovēnijas tolars"
+      :one: "Slovēnijas tolars"
+    :SKK: 
+      :name: "Slovakijas krona"
+      :one: "Slovakijas krona"
+    :SLE: 
+      :name: "Sjerraleones leone"
+      :one: "Sjerraleones leone"
+      :other: "Sjerraleones leones"
+      :zero: "Sjerraleones leones"
+    :SLL: 
+      :name: "Sjerraleones leone (1964—2022)"
+      :one: "Sjerraleones leone (1964—2022)"
+      :other: "Sjerraleones leones (1964—2022)"
+      :zero: "Sjerraleones leones (1964—2022)"
+    :SOS: 
+      :name: "Somālijas šiliņš"
+      :one: "Somālijas šiliņš"
+      :other: "Somālijas šiliņi"
+      :zero: "Somālijas šiliņi"
+    :SRD: 
+      :name: "Surinamas dolārs"
+      :narrow_symbol: $
+      :one: "Surinamas dolārs"
+      :other: "Surinamas dolāri"
+      :symbol: $
+      :zero: "Surinamas dolāri"
+    :SRG: 
+      :name: "Surinamas guldenis"
+      :one: "Surinamas guldenis"
+    :SSP: 
+      :name: "Dienvidsudānas mārciņa"
+      :narrow_symbol: £
+      :one: "Dienvidsudānas mārciņa"
+      :other: "Dienvidsudānas mārciņas"
+      :symbol: £
+      :zero: "Dienvidsudānas mārciņas"
+    :STD: 
+      :name: "Santome un Prinsipi dobra (1977–2017)"
+      :one: "Santome un Prinsipi dobra (1977–2017)"
+      :other: "Santome un Prinsipi dobras (1977–2017)"
+      :zero: "Santome un Prinsipi dobras (1977–2017)"
+    :STN: 
+      :name: "Santome un Prinsipi dobra"
+      :narrow_symbol: Db
+      :one: "Santome un Prinsipi dobra"
+      :other: "Santome un Prinsipi dobras"
+      :symbol: Db
+      :zero: "Santome un Prinsipi dobras"
+    :SVC: 
+      :name: "Salvadoras kolons"
+      :one: "Salvadoras kolons"
+    :SYP: 
+      :name: "Sīrijas mārciņa"
+      :narrow_symbol: £
+      :one: "Sīrijas mārciņa"
+      :other: "Sīrijas mārciņas"
+      :symbol: £
+      :zero: "Sīrijas mārciņas"
+    :SZL: 
+      :name: "Svazilendas lilangeni"
+      :one: "Svazilendas lilangeni"
+    :THB: 
+      :name: "Taizemes bāts"
+      :narrow_symbol: ฿
+      :one: "Taizemes bāts"
+      :other: "Taizemes bāti"
+      :symbol: ฿
+      :zero: "Taizemes bāti"
+    :TJS: 
+      :name: "Tadžikistānas somons"
+      :one: "Tadžikistānas somons"
+      :other: "Tadžikistānas somoni"
+      :zero: "Tadžikistānas somoni"
+    :TMM: 
+      :name: "Turkmenistānas manats (1993–2009)"
+      :one: "Turkmenistānas manats (1993–2009)"
+      :other: "Turkmenistānas manati (1993–2009)"
+      :zero: "Turkmenistānas manati (1993–2009)"
+    :TMT: 
+      :name: "Turkmenistānas manats"
+      :one: "Turkmenistānas manats"
+      :other: "Turkmenistānas manati"
+      :zero: "Turkmenistānas manati"
+    :TND: 
+      :name: "Tunisijas dinārs"
+      :one: "Tunisijas dinārs"
+      :other: "Tunisijas dināri"
+      :zero: "Tunisijas dināri"
+    :TOP: 
+      :name: "Tongas paanga"
+      :narrow_symbol: T$
+      :one: "Tongas paanga"
+      :other: "Tongas paangas"
+      :symbol: T$
+      :zero: "Tongas paangas"
+    :TRL: 
+      :name: "Turcijas lira (1922–2005)"
+      :one: "Turcijas lira (1922–2005)"
+      :other: "Turcijas liras (1922–2005)"
+      :zero: "Turcijas liras (1922–2005)"
+    :TRY: 
+      :name: "Turcijas lira"
+      :narrow_symbol: ₺
+      :one: "Turcijas lira"
+      :other: "Turcijas liras"
+      :symbol: ₺
+      :zero: "Turcijas liras"
+    :TTD: 
+      :name: "Trinidādas un Tobāgo dolārs"
+      :narrow_symbol: $
+      :one: "Trinidādas un Tobāgo dolārs"
+      :other: "Trinidādas un Tobāgo dolāri"
+      :symbol: $
+      :zero: "Trinidādas un Tobāgo dolāri"
+    :TWD: 
+      :name: "Taivānas jaunais dolārs"
+      :narrow_symbol: NT$
+      :one: "Taivānas jaunais dolārs"
+      :other: "Taivānas jaunie dolāri"
+      :symbol: NT$
+      :zero: "Taivānas jaunie dolāri"
+    :TZS: 
+      :name: "Tanzānijas šiliņš"
+      :one: "Tanzānijas šiliņš"
+      :other: "Tanzānijas šiliņi"
+      :zero: "Tanzānijas šiliņi"
+    :UAH: 
+      :name: "Ukrainas grivna"
+      :narrow_symbol: ₴
+      :one: "Ukrainas grivna"
+      :other: "Ukrainas grivnas"
+      :symbol: ₴
+      :zero: "Ukrainas grivnas"
+    :UGX: 
+      :name: "Ugandas šiliņš"
+      :one: "Ugandas šiliņš"
+      :other: "Ugandas šiliņi"
+      :zero: "Ugandas šiliņi"
+    :USD: 
+      :name: "ASV dolārs"
+      :narrow_symbol: $
+      :one: "ASV dolārs"
+      :other: "ASV dolāri"
+      :symbol: $
+      :zero: "ASV dolāri"
+    :UYU: 
+      :name: "Urugvajas peso"
+      :narrow_symbol: $
+      :one: "Urugvajas peso"
+      :symbol: $
+    :UZS: 
+      :name: "Uzbekistānas sums"
+      :one: "Uzbekistānas sums"
+      :other: "Uzbekistānas sumi"
+      :zero: "Uzbekistānas sumi"
+    :VEB: 
+      :name: "Venecuēlas bolivārs (1871–2008)"
+      :one: "Venecuēlas bolivārs (1871–2008)"
+      :other: "Venecuēlas bolivāri (1871–2008)"
+      :zero: "Venecuēlas bolivāri (1871–2008)"
+    :VEF: 
+      :name: "Venecuēlas bolivārs (2008–2018)"
+      :narrow_symbol: Bs
+      :one: "Venecuēlas bolivārs (2008–2018)"
+      :other: "Venecuēlas bolivāri (2008–2018)"
+      :symbol: Bs
+      :zero: "Venecuēlas bolivāri (2008–2018)"
+    :VES: 
+      :name: "Venecuēlas bolivārs"
+      :one: "Venecuēlas bolivārs"
+      :other: "Venecuēlas bolivāri"
+      :zero: "Venecuēlas bolivāri"
+    :VND: 
+      :name: "Vjetnamas dongi"
+      :narrow_symbol: ₫
+      :one: "Vjetnamas dongi"
+      :symbol: ₫
+    :VUV: 
+      :name: "Vanuatu vatu"
+      :one: "Vanuatu vatu"
+    :WST: 
+      :name: "Samoa tala"
+      :one: "Samoa tala"
+      :other: "Samoa talas"
+      :zero: "Samoa talas"
+    :XAF: 
+      :name: "Centrālāfrikas CFA franks"
+      :one: "Centrālāfrikas CFA franks"
+      :other: "Centrālāfrikas CFA franki"
+      :symbol: FCFA
+      :zero: "Centrālāfrikas CFA franki"
+    :XAG: 
+      :name: sudrabs
+      :one: sudrabs
+    :XAU: 
+      :name: zelts
+      :one: zelts
+    :XBA: 
+      :name: "Eiropas norēķinu vienība EURCO"
+      :one: "Eiropas norēķinu vienība EURCO"
+      :other: "Eiropas norēķinu vienības EURCO"
+      :zero: "Eiropas norēķinu vienības EURCO"
+    :XBB: 
+      :name: "Eiropas naudas vienība"
+      :one: "Eiropas naudas vienība"
+    :XBC: 
+      :name: "Eiropas norēķinu vienība (XBC)"
+      :one: "Eiropas norēķinu vienība (XBC)"
+      :other: "Eiropas norēķinu vienības (XBC)"
+      :zero: "Eiropas norēķinu vienības (XBC)"
+    :XBD: 
+      :name: "Eiropas norēķinu vienība (XBD)"
+      :one: "Eiropas norēķinu vienība (XBD)"
+      :other: "Eiropas norēķinu vienības (XBD)"
+      :zero: "Eiropas norēķinu vienības (XBD)"
+    :XCD: 
+      :name: "Austrumkarību dolārs"
+      :narrow_symbol: $
+      :one: "Austrumkarību dolārs"
+      :other: "Austrumkarību dolāri"
+      :symbol: EC$
+      :zero: "Austrumkarību dolāri"
+    :XCG: 
+      :symbol: Cg.
+    :XDR: 
+      :name: "Speciālās aizņēmuma tiesības"
+      :one: "Speciālās aizņēmuma tiesības"
+    :XEU: 
+      :name: "Eiropas norēķinu vienība"
+      :one: "Eiropas norēķinu vienība"
+    :XFO: 
+      :name: "Francijas zelta franks"
+      :one: "Francijas zelta franks"
+    :XFU: 
+      :name: "Francijas UIC franks"
+      :one: "Francijas UIC franks"
+    :XOF: 
+      :name: "Rietumāfrikas CFA franks"
+      :one: "Rietumāfrikas CFA franks"
+      :other: "Rietumāfrikas CFA franki"
+      :symbol: F CFA
+      :zero: "Rietumāfrikas CFA franki"
+    :XPD: 
+      :name: pallādijs
+      :one: pallādijs
+    :XPF: 
+      :name: "CFP franks"
+      :one: "CFP franks"
+      :other: "CFP franki"
+      :symbol: CFPF
+      :zero: "CFP franki"
+    :XPT: 
+      :name: platīns
+      :one: platīns
+    :XTS: 
+      :name: "Testa valūtas kods"
+      :one: "testa valūtas kods"
+      :other: "testa valūtas kods"
+      :zero: "testa valūtas kods"
+    :XXX: 
+      :name: "Nezināma valūta"
+      :one: "(nezināma valūta)"
+      :other: "(nezināma valūta)"
+      :symbol: ¤
+      :zero: "(nezināma valūta)"
+    :YER: 
+      :name: "Jemenas riāls"
+      :one: "Jemenas riāls"
+      :other: "Jemenas riāli"
+      :zero: "Jemenas riāli"
+    :ZAR: 
+      :name: "Dienvidāfrikas rends"
+      :narrow_symbol: R
+      :one: "Dienvidāfrikas rends"
+      :other: "Dienvidāfrikas rendi"
+      :symbol: R
+      :zero: "Dienvidāfrikas rendi"
+    :ZMK: 
+      :name: "Zambijas kvača (1968–2012)"
+      :one: "Zambijas kvača (1968–2012)"
+      :other: "Zambijas kvačas (1968–2012)"
+      :zero: "Zambijas kvačas (1968–2012)"
+    :ZMW: 
+      :name: "Zambijas kvača"
+      :narrow_symbol: ZK
+      :one: "Zambijas kvača"
+      :other: "Zambijas kvačas"
+      :symbol: ZK
+      :zero: "Zambijas kvačas"
+    :ZWD: 
+      :name: "Zimbabves dolārs"
+      :one: "Zimbabves dolārs"
+    :ZWL: 
+      :name: "Zimbabves dolārs (2009)"
+      :one: "Zimbabves dollārs (2009)"
+      :other: "Zimbabves dollāri (2009)"
+      :zero: "Zimbabves dollāri (2009)"

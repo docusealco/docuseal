@@ -1,0 +1,24 @@
+# See https://ddnexus.github.io/pagy/resources/i18n
+
+en:
+  pagy:
+    p11n: 'OneOther'
+    aria_label:
+      nav:
+        one: "Page"
+        other: "Pages"
+      previous: "Previous"
+      next: "Next"
+    previous: "&lt;"
+    next: "&gt;"
+    gap: "&hellip;"
+    item_name:
+      one: "item"
+      other: "items"
+    info_tag:
+      no_count: "Page %{page} of %{pages}"
+      no_items: "No %{item_name} found"
+      single_page: "Displaying %{count} %{item_name}"
+      multiple_pages: "Displaying %{item_name} %{from}-%{to} of %{count} in total"
+    input_nav_js: "Page %{page_input} of %{pages}"
+    limit_tag_js: "Show %{limit_input} %{item_name} per page"

@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@layer components {
+  .pagy {
+    /* PagyWand Generated Variables */
+    /* Copy from the PagyWand "CSS Override" field, and paste in YOUR own CSS to override the style */
+    --B: 1;
+    --H: 0;
+    --S: 0;
+    --L: 50;
+    --A: 1;
+    --spacing: 0.125rem;
+    --padding: 0.75rem;
+    --rounding: 1.75rem;
+    --border-width: 0rem;
+    --font-size: 0.875rem;
+    --font-weight: 600;
+    --line-height: 1.75;
+
+    /* Calculated Color Variables */
+    --text:               hsl(var(--H) var(--S) calc(var(--L) - (25 * var(--B))) / var(--A));
+    --text-hover:         hsl(var(--H) var(--S) calc(var(--L) - (30 * var(--B))) / var(--A));
+    --text-current:       hsl(var(--H) var(--S) calc(100 * (var(--B) + 1)) / var(--A));
+    --background:         hsl(var(--H) var(--S) calc(var(--L) + (30 * var(--B))) / var(--A));
+    --background-hover:   hsl(var(--H) var(--S) calc(var(--L) + (20 * var(--B))) / var(--A));
+    --background-current: hsl(var(--H) var(--S) var(--L) / var(--A));
+    --background-input:   hsl(var(--H) var(--S) calc(var(--L) + (45 * var(--B))) / var(--A));
+
+    /* Base Properties */
+    @apply flex gap-x-[var(--spacing)] font-[var(--font-weight)]
+    text-[length:var(--font-size)] text-[var(--text)]
+    leading-[var(--line-height)];
+
+    /* Element Rules */
+
+    a:not([role="separator"]) { /* all but gaps */
+      @apply block rounded-[var(--rounding)] px-[var(--padding)] py-[calc(var(--padding)/3)] bg-[var(--background)]
+      border-solid  border-[var(--background-current)] border-[length:var(--border-width)];
+    }
+
+    a[href]:hover { /* all links on hover */
+      @apply bg-[var(--background-hover)] text-[var(--text-hover)];
+    }
+
+    a:not([href]) { /* all but links */
+      @apply cursor-default
+    }
+
+    a[role="link"]:not([aria-current]) { /* disabled links */
+      @apply opacity-[.6];
+    }
+
+    a[aria-current] {  /* current page */
+      @apply bg-[var(--background-current)] text-[var(--text-current)];
+    }
+
+    label {
+      @apply inline-block whitespace-nowrap rounded-[var(--rounding)] px-[var(--padding)]
+      py-[calc(var(--padding)/3-var(--border-width))]
+      bg-[var(--background)] border-solid border-[length:var(--border-width)] border-[var(--background-current)];
+
+      input {
+        @apply text-[var(--text)] text-[length:var(--font-size)] leading-[var(--line-height)] rounded-[calc(var(--rounding)/2)]
+        font-[var(--font-weight)] bg-[var(--background-input)] border-[length:var(--border-width)] border-[var(--background-current)];
+      }
+    }
+  }
+}

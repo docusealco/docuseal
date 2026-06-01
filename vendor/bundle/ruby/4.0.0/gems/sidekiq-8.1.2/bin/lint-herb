@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# HERB Linting Script
+# Run this script to lint all ERB files in the project
+# Usage: bin/lint-herb
+
+require "bundler/setup"
+
+puts "🔍 Running HERB linting on ERB files..."
+puts
+
+exec("bundle exec herb analyze web/views -n --no-log-file")

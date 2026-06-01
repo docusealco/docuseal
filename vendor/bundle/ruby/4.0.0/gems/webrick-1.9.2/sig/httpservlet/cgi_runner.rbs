@@ -1,0 +1,3 @@
+class Object
+  def sysread: (IO io, Integer size) -> String
+end

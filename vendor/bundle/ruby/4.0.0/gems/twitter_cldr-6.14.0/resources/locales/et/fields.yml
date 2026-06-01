@@ -1,0 +1,479 @@
+--- 
+:et: 
+  :fields: 
+    :day: 
+      :display_name: päev
+      :relative: 
+        -1: eile
+        -2: üleeile
+        0: täna
+        1: homme
+        2: ülehomme
+      :relative_time: 
+        :future: 
+          :one: "{0} päeva pärast"
+          :other: "{0} päeva pärast"
+        :past: 
+          :one: "{0} päeva eest"
+          :other: "{0} päeva eest"
+    :day-short: 
+      :display_name: p
+      :relative_time: 
+        :future: 
+          :one: "{0} p pärast"
+          :other: "{0} p pärast"
+        :past: 
+          :one: "{0} p eest"
+          :other: "{0} p eest"
+    :dayOfYear: 
+      :display_name: "aasta päev"
+    :dayOfYear-short: 
+      :display_name: "aasta p"
+    :dayperiod: 
+      :display_name: "enne/pärast lõunat"
+    :era: 
+      :display_name: ajastu
+    :fri: 
+      :relative: 
+        -1: "eelmine reede"
+        0: "käesolev reede"
+        1: "järgmine reede"
+      :relative_time: 
+        :future: 
+          :one: "{0} reede pärast"
+          :other: "{0} reede pärast"
+        :past: 
+          :one: "{0} reede eest"
+          :other: "{0} reede eest"
+    :fri-narrow: 
+      :relative: 
+        -1: "eelmine R"
+        0: "käesolev R"
+        1: "järgmine R"
+      :relative_time: 
+        :future: 
+          :one: "{0} R pärast"
+          :other: "{0} R pärast"
+        :past: 
+          :one: "{0} R eest"
+          :other: "{0} R eest"
+    :hour: 
+      :display_name: tund
+      :relative: 
+        0: "praegusel tunnil"
+      :relative_time: 
+        :future: 
+          :one: "{0} tunni pärast"
+          :other: "{0} tunni pärast"
+        :past: 
+          :one: "{0} tunni eest"
+          :other: "{0} tunni eest"
+    :hour-short: 
+      :display_name: t
+      :relative_time: 
+        :future: 
+          :one: "{0} t pärast"
+          :other: "{0} t pärast"
+        :past: 
+          :one: "{0} t eest"
+          :other: "{0} t eest"
+    :minute: 
+      :display_name: minut
+      :relative: 
+        0: "praegusel minutil"
+      :relative_time: 
+        :future: 
+          :one: "{0} minuti pärast"
+          :other: "{0} minuti pärast"
+        :past: 
+          :one: "{0} minuti eest"
+          :other: "{0} minuti eest"
+    :minute-short: 
+      :display_name: min
+      :relative_time: 
+        :future: 
+          :one: "{0} min pärast"
+          :other: "{0} min pärast"
+        :past: 
+          :one: "{0} min eest"
+          :other: "{0} min eest"
+    :mon: 
+      :relative: 
+        -1: "eelmine esmaspäev"
+        0: "käesolev esmaspäev"
+        1: "järgmine esmaspäev"
+      :relative_time: 
+        :future: 
+          :one: "{0} esmaspäeva pärast"
+          :other: "{0} esmaspäeva pärast"
+        :past: 
+          :one: "{0} esmaspäeva eest"
+          :other: "{0} esmaspäeva eest"
+    :mon-narrow: 
+      :relative: 
+        -1: "eelmine E"
+        0: "käesolev E"
+        1: "järgmine E"
+      :relative_time: 
+        :future: 
+          :one: "{0} E pärast"
+          :other: "{0} E pärast"
+        :past: 
+          :one: "{0} E eest"
+          :other: "{0} E eest"
+    :mon-short: 
+      :relative: 
+        -1: "eelmine esmasp"
+        0: "käesolev esmasp"
+        1: "järgmine esmasp"
+      :relative_time: 
+        :future: 
+          :one: "{0} esmasp pärast"
+          :other: "{0} esmasp pärast"
+        :past: 
+          :one: "{0} esmasp eest"
+          :other: "{0} esmasp eest"
+    :month: 
+      :display_name: kuu
+      :relative: 
+        -1: "eelmine kuu"
+        0: "käesolev kuu"
+        1: "järgmine kuu"
+      :relative_time: 
+        :future: 
+          :one: "{0} kuu pärast"
+          :other: "{0} kuu pärast"
+        :past: 
+          :one: "{0} kuu eest"
+          :other: "{0} kuu eest"
+    :month-narrow: 
+      :relative: 
+        -1: "eelm. k"
+        0: "see k"
+        1: "järgm. k"
+      :relative_time: 
+        :future: 
+          :one: "{0} k pärast"
+          :other: "{0} k pärast"
+        :past: 
+          :one: "{0} k eest"
+          :other: "{0} k eest"
+    :month-short: 
+      :display_name: k
+      :relative: 
+        -1: "eelm. kuu"
+        0: "see kuu"
+        1: "järgm. kuu"
+    :quarter: 
+      :display_name: kvartal
+      :relative: 
+        -1: "eelmine kvartal"
+        0: "käesolev kvartal"
+        1: "järgmine kvartal"
+      :relative_time: 
+        :future: 
+          :one: "{0} kvartali pärast"
+          :other: "{0} kvartali pärast"
+        :past: 
+          :one: "{0} kvartali eest"
+          :other: "{0} kvartali eest"
+    :quarter-short: 
+      :display_name: kv
+      :relative: 
+        -1: "eelmine kv"
+        0: "käesolev kv"
+        1: "järgmine kv"
+      :relative_time: 
+        :future: 
+          :one: "{0} kv pärast"
+          :other: "{0} kv pärast"
+        :past: 
+          :one: "{0} kv eest"
+          :other: "{0} kv eest"
+    :sat: 
+      :relative: 
+        -1: "eelmine laupäev"
+        0: "käesolev laupäev"
+        1: "järgmine laupäev"
+      :relative_time: 
+        :future: 
+          :one: "{0} laupäeva pärast"
+          :other: "{0} laupäeva pärast"
+        :past: 
+          :one: "{0} laupäeva eest"
+          :other: "{0} laupäeva eest"
+    :sat-narrow: 
+      :relative: 
+        -1: "eelmine L"
+        0: "käesolev L"
+        1: "järgmine L"
+      :relative_time: 
+        :future: 
+          :one: "{0} L pärast"
+          :other: "{0} L pärast"
+        :past: 
+          :one: "{0} L eest"
+          :other: "{0} L eest"
+    :sat-short: 
+      :relative: 
+        -1: "eelmine laup"
+        0: "käesolev laup"
+        1: "järgmine laup"
+      :relative_time: 
+        :future: 
+          :one: "{0} laup pärast"
+          :other: "{0} laup pärast"
+        :past: 
+          :one: "{0} laup eest"
+          :other: "{0} laup eest"
+    :second: 
+      :display_name: sekund
+      :relative: 
+        0: nüüd
+      :relative_time: 
+        :future: 
+          :one: "{0} sekundi pärast"
+          :other: "{0} sekundi pärast"
+        :past: 
+          :one: "{0} sekundi eest"
+          :other: "{0} sekundi eest"
+    :second-narrow: 
+      :display_name: s
+      :relative_time: 
+        :future: 
+          :one: "{0} s pärast"
+          :other: "{0} s pärast"
+        :past: 
+          :one: "{0} s eest"
+          :other: "{0} s eest"
+    :second-short: 
+      :display_name: sek
+      :relative_time: 
+        :future: 
+          :one: "{0} sek pärast"
+          :other: "{0} sek pärast"
+        :past: 
+          :one: "{0} sek eest"
+          :other: "{0} sek eest"
+    :sun: 
+      :relative: 
+        -1: "eelmine pühapäev"
+        0: "käesolev pühapäev"
+        1: "järgmine pühapäev"
+      :relative_time: 
+        :future: 
+          :one: "{0} pühapäeva pärast"
+          :other: "{0} pühapäeva pärast"
+        :past: 
+          :one: "{0} pühapäeva eest"
+          :other: "{0} pühapäeva eest"
+    :sun-narrow: 
+      :relative: 
+        -1: "eelmine P"
+        0: "käesolev P"
+        1: "järgmine P"
+      :relative_time: 
+        :future: 
+          :one: "{0} P pärast"
+          :other: "{0} P pärast"
+        :past: 
+          :one: "{0} P eest"
+          :other: "{0} P eest"
+    :sun-short: 
+      :relative: 
+        -1: "eelmine pühap"
+        0: "käesolev pühap"
+        1: "järgmine pühap"
+      :relative_time: 
+        :future: 
+          :one: "{0} pühap pärast"
+          :other: "{0} pühap pärast"
+        :past: 
+          :one: "{0} pühap eest"
+          :other: "{0} pühap pärast"
+    :thu: 
+      :relative: 
+        -1: "eelmine neljapäev"
+        0: "käesolev neljapäev"
+        1: "järgmine neljapäev"
+      :relative_time: 
+        :future: 
+          :one: "{0} neljapäeva pärast"
+          :other: "{0} neljapäeva pärast"
+        :past: 
+          :one: "{0} neljapäeva eest"
+          :other: "{0} neljapäeva eest"
+    :thu-narrow: 
+      :relative: 
+        -1: "eelmine N"
+        0: "käesolev N"
+        1: "järgmine N"
+      :relative_time: 
+        :future: 
+          :one: "{0} N pärast"
+          :other: "{0} N pärast"
+        :past: 
+          :one: "{0} N eest"
+          :other: "{0} N eest"
+    :thu-short: 
+      :relative: 
+        -1: "eelmine neljap"
+        0: "käesolev neljap"
+        1: "järgmine neljap"
+      :relative_time: 
+        :future: 
+          :one: "{0} neljap pärast"
+          :other: "{0} neljap pärast"
+        :past: 
+          :one: "{0} neljap eest"
+          :other: "{0} neljap eest"
+    :tue: 
+      :relative: 
+        -1: "eelmine teisipäev"
+        0: "käesolev teisipäev"
+        1: "järgmine teisipäev"
+      :relative_time: 
+        :future: 
+          :one: "{0} teisipäeva pärast"
+          :other: "{0} teisipäeva pärast"
+        :past: 
+          :one: "{0} teisipäeva eest"
+          :other: "{0} teisipäeva eest"
+    :tue-narrow: 
+      :relative: 
+        -1: "eelmine T"
+        0: "käesolev T"
+        1: "järgmine T"
+      :relative_time: 
+        :future: 
+          :one: "{0} T pärast"
+          :other: "{0} T pärast"
+        :past: 
+          :one: "{0} T eest"
+          :other: "{0} T eest"
+    :tue-short: 
+      :relative: 
+        -1: "eelmine teisip"
+        0: "käesolev teisip"
+        1: "järgmine teisip"
+      :relative_time: 
+        :future: 
+          :one: "{0} teisip pärast"
+          :other: "{0} teisip pärast"
+        :past: 
+          :one: "{0} teisip eest"
+          :other: "{0} teisip eest"
+    :wed: 
+      :relative: 
+        -1: "eelmine kolmapäev"
+        0: "käesolev kolmapäev"
+        1: "järgmine kolmapäev"
+      :relative_time: 
+        :future: 
+          :one: "{0} kolmapäeva pärast"
+          :other: "{0} kolmapäeva pärast"
+        :past: 
+          :one: "{0} kolmapäeva eest"
+          :other: "{0} kolmapäeva eest"
+    :wed-narrow: 
+      :relative: 
+        -1: "eelmine K"
+        0: "käesolev K"
+        1: "järgmine K"
+      :relative_time: 
+        :future: 
+          :one: "{0} K pärast"
+          :other: "{0} K pärast"
+        :past: 
+          :one: "{0} K eest"
+          :other: "{0} K eest"
+    :wed-short: 
+      :relative: 
+        -1: "eelmine kolmap"
+        0: "käesolev kolmap"
+        1: "järgmine kolmap"
+      :relative_time: 
+        :future: 
+          :one: "{0} kolmap pärast"
+          :other: "{0} kolmap pärast"
+        :past: 
+          :one: "{0} kolmap eest"
+          :other: "{0} kolmap eest"
+    :week: 
+      :display_name: nädal
+      :relative: 
+        -1: "eelmine nädal"
+        0: "käesolev nädal"
+        1: "järgmine nädal"
+      :relative_time: 
+        :future: 
+          :one: "{0} nädala pärast"
+          :other: "{0} nädala pärast"
+        :past: 
+          :one: "{0} nädala eest"
+          :other: "{0} nädala eest"
+    :week-narrow: 
+      :relative: 
+        -1: "eelm. n"
+        0: "see n"
+        1: "järgm. n"
+    :week-short: 
+      :display_name: näd
+      :relative: 
+        -1: "eelm. näd"
+        0: "see näd"
+        1: "järgm. näd"
+      :relative_time: 
+        :future: 
+          :one: "{0} näd pärast"
+          :other: "{0} näd pärast"
+        :past: 
+          :one: "{0} näd eest"
+          :other: "{0} näd eest"
+    :weekOfMonth: 
+      :display_name: "kuu nädal"
+    :weekOfMonth-short: 
+      :display_name: "kuu näd"
+    :weekday: 
+      :display_name: nädalapäev
+    :weekday-short: 
+      :display_name: nädalap.
+    :weekdayOfMonth: 
+      :display_name: "kuu nädalapäev"
+    :weekdayOfMonth-short: 
+      :display_name: "kuu nädalap."
+    :year: 
+      :display_name: aasta
+      :relative: 
+        -1: "eelmine aasta"
+        0: "käesolev aasta"
+        1: "järgmine aasta"
+      :relative_time: 
+        :future: 
+          :one: "{0} aasta pärast"
+          :other: "{0} aasta pärast"
+        :past: 
+          :one: "{0} aasta eest"
+          :other: "{0} aasta eest"
+    :year-narrow: 
+      :relative: 
+        -1: "eelm. a"
+        0: "see a"
+        1: "järgm. a"
+    :year-short: 
+      :display_name: a
+      :relative: 
+        -1: "eelmine a"
+        0: "käesolev a"
+        1: "järgmine a"
+      :relative_time: 
+        :future: 
+          :one: "{0} a pärast"
+          :other: "{0} a pärast"
+        :past: 
+          :one: "{0} a eest"
+          :other: "{0} a eest"
+    :zone: 
+      :display_name: ajavöönd
+    :zone-short: 
+      :display_name: vöönd

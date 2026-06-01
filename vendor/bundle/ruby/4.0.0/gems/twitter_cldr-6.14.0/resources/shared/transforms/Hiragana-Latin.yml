@@ -1,0 +1,18 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - Hiragana-Latin
+      - und-Latn-t-und-hira
+    :direction: both
+    :rules: 
+      - ":: [ぁ-ゔ゙ゝ-ゞガギグゲゴザジズゼゾダヂヅデドバビブベボヴヷ-ヺーヾ] ;"
+      - ":: NFD ;"
+      - ":: Hiragana-Katakana ;"
+      - ":: Katakana-Latin ;"
+      - ":: NFC ;"
+      - ":: (Lower) ;"
+      - ":: ([',.A-Za-z~À-ÖØ-öø-ďĒ-ĥĨ-İĴ-ķĹ-ľŃ-ňŌ-őŔ-ťŨ-žƠ-ơƯ-ưǍ-ǜǞ-ǣǦ-ǭǰǴ-ǵǸ-țȞ-ȟȦ-ȳ̄Ӣ-ӣӮ-ӯḀ-ẙẠ-ỹᾱᾹῑῙῡῩK-Å]) ;"
+    :source: Hira
+    :target: Latn
+    :variant: ~

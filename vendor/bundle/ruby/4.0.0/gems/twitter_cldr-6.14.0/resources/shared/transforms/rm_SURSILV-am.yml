@@ -1,0 +1,12 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - am-t-rm-sursilv
+    :direction: forward
+    :rules: 
+      - "::rm_SURSILV-rm_FONIPA_SURSILV ;"
+      - "::am_FONIPA-am ;"
+    :source: rm_SURSILV
+    :target: am
+    :variant: ~

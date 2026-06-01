@@ -1,0 +1,12 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - zh-t-es
+    :direction: forward
+    :rules: 
+      - "::es-es_FONIPA ;"
+      - "::es_FONIPA-zh ;"
+    :source: es
+    :target: zh
+    :variant: ~

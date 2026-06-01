@@ -1,0 +1,17 @@
+module WEBrick
+  module HTTPServlet
+    class ERBHandler < AbstractServlet
+      @script_filename: String
+
+      def initialize: (HTTPServer server, String name) -> void
+
+      def do_GET: (HTTPRequest req, HTTPResponse res) -> void
+
+      alias do_POST do_GET
+
+      private
+
+      def evaluate: (ERB erb, HTTPRequest servlet_request, HTTPResponse servlet_response) -> String
+    end
+  end
+end

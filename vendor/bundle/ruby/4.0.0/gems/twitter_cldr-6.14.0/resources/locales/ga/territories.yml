@@ -1,0 +1,267 @@
+--- 
+:ga: 
+  :territories: 
+    :ac: "Oileán na Deascabhála"
+    :ad: Andóra
+    :ae: "Aontas na nÉimíríochtaí Arabacha"
+    :af: "an Afganastáin"
+    :ag: "Antigua agus Barbúda"
+    :ai: Angaíle
+    :al: "an Albáin"
+    :am: "an Airméin"
+    :ao: Angóla
+    :aq: Antartaice
+    :ar: "an Airgintín"
+    :as: "Samó Mheiriceá"
+    :at: "an Ostair"
+    :au: "an Astráil"
+    :aw: Arúba
+    :ax: "Oileáin Åland"
+    :az: "an Asarbaiseáin"
+    :ba: "an Bhoisnia agus an Heirseagaivéin"
+    :bb: Barbadós
+    :bd: "an Bhanglaidéis"
+    :be: "an Bheilg"
+    :bf: "Buircíne Fasó"
+    :bg: "an Bhulgáir"
+    :bh: Bairéin
+    :bi: "an Bhurúin"
+    :bj: Beinin
+    :bl: "Saint Barthélemy"
+    :bm: Beirmiúda
+    :bn: Brúiné
+    :bo: "an Bholaiv"
+    :bq: "an Ísiltír Chairibeach"
+    :br: "an Bhrasaíl"
+    :bs: "na Bahámaí"
+    :bt: "an Bhútáin"
+    :bv: "Oileán Bouvet"
+    :bw: "an Bhotsuáin"
+    :by: "an Bhealarúis"
+    :bz: "an Bheilís"
+    :ca: Ceanada
+    :cc: "Oileáin Cocos (Keeling)"
+    :cd: "Poblacht Dhaonlathach an Chongó"
+    :cf: "Poblacht na hAfraice Láir"
+    :cg: Congó-Brazzaville
+    :ch: "an Eilvéis"
+    :ci: "An Cósta Eabhair"
+    :ck: "Oileáin Cook"
+    :cl: "an tSile"
+    :cm: Camarún
+    :cn: "an tSín"
+    :co: "an Cholóim"
+    :cp: "Oileán Clipperton"
+    :cr: "Cósta Ríce"
+    :cu: Cúba
+    :cv: "Rinn Verde"
+    :cw: Cúrasó
+    :cx: "Oileán na Nollag"
+    :cy: "an Chipir"
+    :cz: "an tSeicia"
+    :de: "an Ghearmáin"
+    :dg: "Diego Garcia"
+    :dj: Djibouti
+    :dk: "an Danmhairg"
+    :dm: Doiminice
+    :do: "an Phoblacht Dhoiminiceach"
+    :dz: "An Ailgéir"
+    :ea: "Ceuta agus Melilla"
+    :ec: Eacuadór
+    :ee: "an Eastóin"
+    :eg: "An Éigipt"
+    :eh: "An Sahára Thiar"
+    :er: "an Eiritré"
+    :es: "an Spáinn"
+    :et: "an Aetóip"
+    :eu: "an tAontas Eorpach"
+    :ez: "Limistéar an euro"
+    :fi: "an Fhionlainn"
+    :fj: Fidsí
+    :fk: "Oileáin Fháclainne"
+    :fm: "an Mhicrinéis"
+    :fo: "Oileáin Fharó"
+    :fr: "an Fhrainc"
+    :ga: "an Ghabúin"
+    :gb: "an Ríocht Aontaithe"
+    :gd: Greanáda
+    :ge: "an tSeoirsia"
+    :gf: "Guáin na Fraince"
+    :gg: Geansaí
+    :gh: Gána
+    :gi: Giobráltar
+    :gl: "an Ghraonlainn"
+    :gm: "An Ghaimbia"
+    :gn: "An Ghuine"
+    :gp: Guadalúip
+    :gq: "an Ghuine Mheánchiorclach"
+    :gr: "an Ghréig"
+    :gs: "An tSeoirsia Theas agus Oileáin Sandwich Theas"
+    :gt: Guatamala
+    :gu: Guam
+    :gw: "Guine Bissau"
+    :gy: "An Ghuáin"
+    :hk: "Sainréigiún Riaracháin Hong Cong, Daonphoblacht na Síne"
+    :hm: "Oileán Heard agus Oileáin McDonald"
+    :hn: Hondúras
+    :hr: "an Chróit"
+    :ht: Háítí
+    :hu: "an Ungáir"
+    :ic: "Na hOileáin Chanáracha"
+    :id: "an Indinéis"
+    :ie: Éire
+    :il: Iosrael
+    :im: "Oileán Mhanann"
+    :in: "an India"
+    :io: "Críoch Aigéan Indiach na Breataine"
+    :iq: "an Iaráic"
+    :ir: "an Iaráin"
+    :is: "an Íoslainn"
+    :it: "an Iodáil"
+    :je: Geirsí
+    :jm: Iamáice
+    :jo: "an Iordáin"
+    :jp: "an tSeapáin"
+    :ke: "an Chéinia"
+    :kg: "an Chirgeastáin"
+    :kh: "an Chambóid"
+    :ki: Ciribeas
+    :km: "Oileáin Chomóra"
+    :kn: "San Críostóir-Nimheas"
+    :kp: "an Chóiré Thuaidh"
+    :kr: "an Chóiré Theas"
+    :kw: Cuáit
+    :ky: "Oileáin Cayman"
+    :kz: "an Chasacstáin"
+    :la: Laos
+    :lb: "an Liobáin"
+    :lc: "Saint Lucia"
+    :li: Lichtinstéin
+    :lk: "Srí Lanca"
+    :lr: "An Libéir"
+    :ls: Leosóta
+    :lt: "an Liotuáin"
+    :lu: Lucsamburg
+    :lv: "an Laitvia"
+    :ly: "An Libia"
+    :ma: Maracó
+    :mc: Monacó
+    :md: "an Mholdóiv"
+    :me: Montainéagró
+    :mf: Saint-Martin
+    :mg: Madagascar
+    :mh: "Oileáin Marshall"
+    :mk: "an Mhacadóin Thuaidh"
+    :ml: Mailí
+    :mm: "Maenmar (Burma)"
+    :mn: "an Mhongóil"
+    :mo: "Sainréigiún Riaracháin Macao, Daonphoblacht na Síne"
+    :mp: "Na hOileáin Mháirianacha Thuaidh"
+    :mq: Martinique
+    :mr: "An Mháratái"
+    :ms: Montsarat
+    :mt: Málta
+    :mu: "Oileán Mhuirís"
+    :mv: "Oileáin Mhaildíve"
+    :mw: "an Mhaláiv"
+    :mx: Meicsiceo
+    :my: "an Mhalaeisia"
+    :mz: Mósaimbíc
+    :na: "an Namaib"
+    :nc: "an Nua-Chaladóin"
+    :ne: "An Nígir"
+    :nf: "Oileán Norfolk"
+    :ng: "An Nigéir"
+    :ni: Nicearagua
+    :nl: "an Ísiltír"
+    ? !ruby/symbol "no"
+    : "an Iorua"
+    :np: Neipeal
+    :nr: Nárú
+    :nu: Niue
+    :nz: "an Nua-Shéalainn"
+    :om: Óman
+    :pa: Panama
+    :pe: Peiriú
+    :pf: "Polainéis na Fraince"
+    :pg: "Nua-Ghuine Phapua"
+    :ph: "Na hOileáin Fhilipíneacha"
+    :pk: "an Phacastáin"
+    :pl: "an Pholainn"
+    :pm: "San Pierre agus Miquelon"
+    :pn: "Oileáin Pitcairn"
+    :pr: "Pórtó Ríce"
+    :ps: "na Críocha Palaistíneacha"
+    :pt: "an Phortaingéil"
+    :pw: "Oileáin Palau"
+    :py: Paragua
+    :qa: Catar
+    :qo: "an Aigéine Imeallach"
+    :re: "La Réunion"
+    :ro: "an Rómáin"
+    :rs: "an tSeirbia"
+    :ru: "an Rúis"
+    :rw: Ruanda
+    :sa: "an Araib Shádach"
+    :sb: "Oileáin Sholaimh"
+    :sc: "na Séiséil"
+    :sd: "An tSúdáin"
+    :se: "an tSualainn"
+    :sg: Singeapór
+    :sh: "San Héilin"
+    :si: "an tSlóivéin"
+    :sj: "Svalbard agus Jan Mayen"
+    :sk: "an tSlóvaic"
+    :sl: "Siarra Leon"
+    :sm: "San Mairíne"
+    :sn: "An tSeineagáil"
+    :so: "an tSomáil"
+    :sr: Suranam
+    :ss: "an tSúdáin Theas"
+    :st: "São Tomé agus Príncipe"
+    :sv: "An tSalvadóir"
+    :sx: "Sint Maarten"
+    :sy: "an tSiria"
+    :sz: eSuaitíní
+    :ta: "Tristan da Cunha"
+    :tc: "Oileáin na dTurcach agus Caicos"
+    :td: Sead
+    :tf: "Críocha Francacha Dheisceart an Domhain"
+    :tg: Tóga
+    :th: "an Téalainn"
+    :tj: "an Táidsíceastáin"
+    :tk: Tócalá
+    :tl: "Tíomór Thoir"
+    :tm: "an Tuircméanastáin"
+    :tn: "An Tuinéis"
+    :to: Tonga
+    :tr: "an Tuirc"
+    :tt: "Oileán na Tríonóide agus Tobága"
+    :tv: Túvalú
+    :tw: "an Téaváin"
+    :tz: "an Tansáin"
+    :ua: "an Úcráin"
+    :ug: Uganda
+    :um: "Oileáin Imeallacha S.A.M."
+    :un: "na Náisiúin Aontaithe"
+    :us: "Stáit Aontaithe Mheiriceá"
+    :uy: Uragua
+    :uz: "an Úisbéiceastáin"
+    :va: "Cathair na Vatacáine"
+    :vc: "San Uinseann agus na Greanáidíní"
+    :ve: Veiniséala
+    :vg: "Oileáin Bhriotanacha na Maighdean"
+    :vi: "Oileáin Mheiriceánacha na Maighdean"
+    :vn: Vítneam
+    :vu: Vanuatú
+    :wf: "Vailís agus Futúna"
+    :ws: Samó
+    :xa: Bréagaicinn
+    :xb: Bréag-Bidi
+    :xk: "an Chosaiv"
+    :ye: Éimin
+    :yt: Mayotte
+    :za: "an Afraic Theas"
+    :zm: "an tSaimbia"
+    :zw: "an tSiombáib"
+    :zz: "Réigiún Anaithnid"

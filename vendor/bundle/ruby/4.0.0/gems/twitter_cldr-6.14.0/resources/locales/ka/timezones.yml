@@ -1,0 +1,1448 @@
+--- 
+:ka: 
+  :formats: 
+    :fallback_formats: 
+      :generic: "{1} ({0})"
+    :gmt_formats: 
+      :generic: "GMT{0}"
+    :gmt_zero_formats: 
+      :generic: GMT
+    :hour_formats: 
+      :generic: "+HH:mm;-HH:mm"
+    :region_formats: 
+      :daylight: "{0} ზაფხულის დრო"
+      :generic: "დრო: {0}"
+      :standard: "{0} სტანდარტული დრო"
+  :metazones: 
+    :Afghanistan: 
+      :long: 
+        :standard: "ავღანეთის დრო"
+    :Africa_Central: 
+      :long: 
+        :standard: "ცენტრალური აფრიკის დრო"
+    :Africa_Eastern: 
+      :long: 
+        :standard: "აღმოსავლეთ აფრიკის დრო"
+    :Africa_Southern: 
+      :long: 
+        :standard: "სამხრეთ აფრიკის დრო"
+    :Africa_Western: 
+      :long: 
+        :daylight: "დასავლეთ აფრიკის ზაფხულის დრო"
+        :generic: "დასავლეთ აფრიკის დრო"
+        :standard: "დასავლეთ აფრიკის სტანდარტული დრო"
+    :Alaska: 
+      :long: 
+        :daylight: "ალასკის ზაფხულის დრო"
+        :generic: "ალასკის დრო"
+        :standard: "ალასკის სტანდარტული დრო"
+    :Amazon: 
+      :long: 
+        :daylight: "ამაზონიის ზაფხულის დრო"
+        :generic: "ამაზონიის დრო"
+        :standard: "ამაზონიის სტანდარტული დრო"
+    :America_Central: 
+      :long: 
+        :daylight: "ჩრდილოეთ ამერიკის ცენტრალური ზაფხულის დრო"
+        :generic: "ჩრდილოეთ ამერიკის ცენტრალური დრო"
+        :standard: "ჩრდილოეთ ამერიკის ცენტრალური სტანდარტული დრო"
+    :America_Eastern: 
+      :long: 
+        :daylight: "ჩრდილოეთ ამერიკის აღმოსავლეთის ზაფხულის დრო"
+        :generic: "ჩრდილოეთ ამერიკის აღმოსავლეთის დრო"
+        :standard: "ჩრდილოეთ ამერიკის აღმოსავლეთის სტანდარტული დრო"
+    :America_Mountain: 
+      :long: 
+        :daylight: "ჩრდილოეთ ამერიკის მაუნთინის ზაფხულის დრო"
+        :generic: "ჩრდილოეთ ამერიკის მაუნთინის დრო"
+        :standard: "ჩრდილოეთ ამერიკის მაუნთინის სტანდარტული დრო"
+    :America_Pacific: 
+      :long: 
+        :daylight: "ჩრდილოეთ ამერიკის წყნარი ოკეანის ზაფხულის დრო"
+        :generic: "ჩრდილოეთ ამერიკის წყნარი ოკეანის დრო"
+        :standard: "ჩრდილოეთ ამერიკის წყნარი ოკეანის სტანდარტული დრო"
+    :Apia: 
+      :long: 
+        :daylight: "აპიას ზაფხულის დრო"
+        :generic: "აპიას დრო"
+        :standard: "აპიას სტანდარტული დრო"
+    :Arabian: 
+      :long: 
+        :daylight: "არაბეთის ზაფხულის დრო"
+        :generic: "არაბეთის დრო"
+        :standard: "არაბეთის სტანდარტული დრო"
+    :Argentina: 
+      :long: 
+        :daylight: "არგენტინის ზაფხულის დრო"
+        :generic: "არგენტინის დრო"
+        :standard: "არგენტინის სტანდარტული დრო"
+    :Argentina_Western: 
+      :long: 
+        :daylight: "დასავლეთ არგენტინის ზაფხულის დრო"
+        :generic: "დასავლეთ არგენტინის დრო"
+        :standard: "დასავლეთ არგენტინის სტანდარტული დრო"
+    :Armenia: 
+      :long: 
+        :daylight: "სომხეთის ზაფხულის დრო"
+        :generic: "სომხეთის დრო"
+        :standard: "სომხეთის სტანდარტული დრო"
+    :Atlantic: 
+      :long: 
+        :daylight: "ატლანტიკის ოკეანის ზაფხულის დრო"
+        :generic: "ატლანტიკის ოკეანის დრო"
+        :standard: "ატლანტიკის ოკეანის სტანდარტული დრო"
+    :Australia_Central: 
+      :long: 
+        :daylight: "ავსტრალიის ცენტრალური ზაფხულის დრო"
+        :generic: "ცენტრალური ავსტრალიის დრო"
+        :standard: "ავსტრალიის ცენტრალური სტანდარტული დრო"
+    :Australia_CentralWestern: 
+      :long: 
+        :daylight: "ცენტრალური და დასავლეთ ავსტრალიის ზაფხულის დრო"
+        :generic: "ცენტრალური და დასავლეთ ავსტრალიის დრო"
+        :standard: "ცენტრალური და დასავლეთ ავსტრალიის სტანდარტული დრო"
+    :Australia_Eastern: 
+      :long: 
+        :daylight: "აღმოსავლეთ ავსტრალიის ზაფხულის დრო"
+        :generic: "აღმოსავლეთ ავსტრალიის დრო"
+        :standard: "აღმოსავლეთ ავსტრალიის სტანდარტული დრო"
+    :Australia_Western: 
+      :long: 
+        :daylight: "დასავლეთ ავსტრალიის ზაფხულის დრო"
+        :generic: "დასავლეთ ავსტრალიის დრო"
+        :standard: "დასავლეთ ავსტრალიის სტანდარტული დრო"
+    :Azerbaijan: 
+      :long: 
+        :daylight: "აზერბაიჯანის ზაფხულის დრო"
+        :generic: "აზერბაიჯანის დრო"
+        :standard: "აზერბაიჯანის სტანდარტული დრო"
+    :Azores: 
+      :long: 
+        :daylight: "აზორის კუნძულების ზაფხულის დრო"
+        :generic: "აზორის კუნძულების დრო"
+        :standard: "აზორის კუნძულების სტანდარტული დრო"
+    :Bangladesh: 
+      :long: 
+        :daylight: "ბანგლადეშის ზაფხულის დრო"
+        :generic: "ბანგლადეშის დრო"
+        :standard: "ბანგლადეშის სტანდარტული დრო"
+    :Bhutan: 
+      :long: 
+        :standard: "ბუტანის დრო"
+    :Bolivia: 
+      :long: 
+        :standard: "ბოლივიის დრო"
+    :Brasilia: 
+      :long: 
+        :daylight: "ბრაზილიის ზაფხულის დრო"
+        :generic: "ბრაზილიის დრო"
+        :standard: "ბრაზილიის სტანდარტული დრო"
+    :Brunei: 
+      :long: 
+        :standard: "ბრუნეი-დარუსალამის დრო"
+    :Cape_Verde: 
+      :long: 
+        :daylight: "კაბო-ვერდეს ზაფხულის დრო"
+        :generic: "კაბო-ვერდეს დრო"
+        :standard: "კაბო-ვერდეს სტანდარტული დრო"
+    :Chamorro: 
+      :long: 
+        :standard: "ჩამოროს დრო"
+    :Chatham: 
+      :long: 
+        :daylight: "ჩატემის ზაფხულის დრო"
+        :generic: "ჩატემის დრო"
+        :standard: "ჩატემის სტანდარტული დრო"
+    :Chile: 
+      :long: 
+        :daylight: "ჩილეს ზაფხულის დრო"
+        :generic: "ჩილეს დრო"
+        :standard: "ჩილეს სტანდარტული დრო"
+    :China: 
+      :long: 
+        :daylight: "ჩინეთის დროის სარტყელი"
+        :generic: "ჩინეთის დრო"
+        :standard: "ჩინეთის სტანდარტული დრო"
+    :Christmas: 
+      :long: 
+        :standard: "შობის კუნძულის დრო"
+    :Cocos: 
+      :long: 
+        :standard: "ქოქოსის კუნძულების დრო"
+    :Colombia: 
+      :long: 
+        :daylight: "კოლუმბიის ზაფხულის დრო"
+        :generic: "კოლუმბიის დრო"
+        :standard: "კოლუმბიის სტანდარტული დრო"
+    :Cook: 
+      :long: 
+        :daylight: "კუკის კუნძულების ნახევრად ზაფხულის დრო"
+        :generic: "კუკის კუნძულების დრო"
+        :standard: "კუკის კუნძულების სტანდარტული დრო"
+    :Cuba: 
+      :long: 
+        :daylight: "კუბის ზაფხულის დრო"
+        :generic: "კუბის დრო"
+        :standard: "კუბის სტანდარტული დრო"
+    :Davis: 
+      :long: 
+        :standard: "დევისის დრო"
+    :DumontDUrville: 
+      :long: 
+        :standard: "დუმონ-დურვილის დრო"
+    :East_Timor: 
+      :long: 
+        :standard: "აღმოსავლეთ ტიმორის დრო"
+    :Easter: 
+      :long: 
+        :daylight: "აღდგომის კუნძულის ზაფხულის დრო"
+        :generic: "აღდგომის კუნძულის დრო"
+        :standard: "აღდგომის კუნძულის სტანდარტული დრო"
+    :Ecuador: 
+      :long: 
+        :standard: "ეკვადორის დრო"
+    :Europe_Central: 
+      :long: 
+        :daylight: "ცენტრალური ევროპის ზაფხულის დრო"
+        :generic: "ცენტრალური ევროპის დრო"
+        :standard: "ცენტრალური ევროპის სტანდარტული დრო"
+    :Europe_Eastern: 
+      :long: 
+        :daylight: "აღმოსავლეთ ევროპის ზაფხულის დრო"
+        :generic: "აღმოსავლეთ ევროპის დრო"
+        :standard: "აღმოსავლეთ ევროპის სტანდარტული დრო"
+    :Europe_Further_Eastern: 
+      :long: 
+        :standard: "შორეული აღმოსავლეთ ევროპის დრო"
+    :Europe_Western: 
+      :long: 
+        :daylight: "დასავლეთ ევროპის ზაფხულის დრო"
+        :generic: "დასავლეთ ევროპის დრო"
+        :standard: "დასავლეთ ევროპის სტანდარტული დრო"
+    :Falkland: 
+      :long: 
+        :daylight: "ფოლკლენდის კუნძულების ზაფხულის დრო"
+        :generic: "ფოლკლენდის კუნძულების დრო"
+        :standard: "ფოლკლენდის კუნძულების სტანდარტული დრო"
+    :Fiji: 
+      :long: 
+        :daylight: "ფიჯის ზაფხულის დრო"
+        :generic: "ფიჯის დრო"
+        :standard: "ფიჯის სტანდარტული დრო"
+    :French_Guiana: 
+      :long: 
+        :standard: "საფრანგეთის გვიანის დრო"
+    :French_Southern: 
+      :long: 
+        :standard: "ფრანგული სამხრეთის და ანტარქტიკის დრო"
+    :GMT: 
+      :long: 
+        :standard: "გრინვიჩის საშუალო დრო"
+    :Galapagos: 
+      :long: 
+        :standard: "გალაპაგოსის დრო"
+    :Gambier: 
+      :long: 
+        :standard: "გამბიერის დრო"
+    :Georgia: 
+      :long: 
+        :daylight: "საქართველოს ზაფხულის დრო"
+        :generic: "საქართველოს დრო"
+        :standard: "საქართველოს სტანდარტული დრო"
+    :Gilbert_Islands: 
+      :long: 
+        :standard: "გილბერტის კუნძულების დრო"
+    :Greenland_Eastern: 
+      :long: 
+        :daylight: "აღმოსავლეთ გრენლანდიის ზაფხულის დრო"
+        :generic: "აღმოსავლეთ გრენლანდიის დრო"
+        :standard: "აღმოსავლეთ გრენლანდიის სტანდარტული დრო"
+    :Greenland_Western: 
+      :long: 
+        :daylight: "დასავლეთ გრენლანდიის ზაფხულის დრო"
+        :generic: "დასავლეთ გრენლანდიის დრო"
+        :standard: "დასავლეთ გრენლანდიის სტანდარტული დრო"
+    :Gulf: 
+      :long: 
+        :standard: "სპარსეთის ყურის სტანდარტული დრო"
+    :Guyana: 
+      :long: 
+        :standard: "გაიანის დრო"
+    :Hawaii_Aleutian: 
+      :long: 
+        :daylight: "ჰავაისა და ალეუტის ზაფხულის დრო"
+        :generic: "ჰავაისა და ალეუტის დრო"
+        :standard: "ჰავაისა და ალეუტის სტანდარტული დრო"
+    :Hong_Kong: 
+      :long: 
+        :daylight: "ჰონკონგის ზაფხულის დრო"
+        :generic: "ჰონკონგის დრო"
+        :standard: "ჰონკონგის სტანდარტული დრო"
+    :Hovd: 
+      :long: 
+        :daylight: "ჰოვდის ზაფხულის დრო"
+        :generic: "ჰოვდის დრო"
+        :standard: "ჰოვდის სტანდარტული დრო"
+    :India: 
+      :long: 
+        :standard: "ინდოეთის დრო"
+    :Indian_Ocean: 
+      :long: 
+        :standard: "ინდოეთის ოკეანის კუნძულების დრო"
+    :Indochina: 
+      :long: 
+        :standard: "ინდოჩინეთის დრო"
+    :Indonesia_Central: 
+      :long: 
+        :standard: "ცენტრალური ინდონეზიის დრო"
+    :Indonesia_Eastern: 
+      :long: 
+        :standard: "აღმოსავლეთ ინდონეზიის დრო"
+    :Indonesia_Western: 
+      :long: 
+        :standard: "დასავლეთ ინდონეზიის დრო"
+    :Iran: 
+      :long: 
+        :daylight: "ირანის დროის სარტყელი"
+        :generic: "ირანის დრო"
+        :standard: "ირანის სტანდარტული დრო"
+    :Irkutsk: 
+      :long: 
+        :daylight: "ირკუტსკის ზაფხულის დრო"
+        :generic: "ირკუტსკის დრო"
+        :standard: "ირკუტსკის სტანდარტული დრო"
+    :Israel: 
+      :long: 
+        :daylight: "ისრაელის ზაფხულის დრო"
+        :generic: "ისრაელის დრო"
+        :standard: "ისრაელის სტანდარტული დრო"
+    :Japan: 
+      :long: 
+        :daylight: "იაპონიის ზაფხულის დრო"
+        :generic: "იაპონიის დრო"
+        :standard: "იაპონიის სტანდარტული დრო"
+    :Kazakhstan: 
+      :long: 
+        :standard: "ყაზახეთის დრო"
+    :Kazakhstan_Eastern: 
+      :long: 
+        :standard: "აღმოსავლეთ ყაზახეთის დრო"
+    :Kazakhstan_Western: 
+      :long: 
+        :standard: "დასავლეთ ყაზახეთის დრო"
+    :Korea: 
+      :long: 
+        :daylight: "კორეის ზაფხულის დრო"
+        :generic: "კორეის დრო"
+        :standard: "კორეის სტანდარტული დრო"
+    :Kosrae: 
+      :long: 
+        :standard: "კოსრეს დრო"
+    :Krasnoyarsk: 
+      :long: 
+        :daylight: "კრასნოიარსკის ზაფხულის დრო"
+        :generic: "კრასნოიარსკის დრო"
+        :standard: "კრასნოიარსკის სტანდარტული დრო"
+    :Kyrgystan: 
+      :long: 
+        :standard: "ყირგიზეთის დრო"
+    :Line_Islands: 
+      :long: 
+        :standard: "ლაინის კუნძულების დრო"
+    :Lord_Howe: 
+      :long: 
+        :daylight: "ლორდ-ჰაუს ზაფხულის დრო"
+        :generic: "ლორდ-ჰაუს დრო"
+        :standard: "ლორდ-ჰაუს სტანდარტული დრო"
+    :Magadan: 
+      :long: 
+        :daylight: "მაგადანის ზაფხულის დრო"
+        :generic: "მაგადანის დრო"
+        :standard: "მაგადანის სტანდარტული დრო"
+    :Malaysia: 
+      :long: 
+        :standard: "მალაიზიის დრო"
+    :Maldives: 
+      :long: 
+        :standard: "მალდივების დრო"
+    :Marquesas: 
+      :long: 
+        :standard: "მარკიზის კუნძულების დრო"
+    :Marshall_Islands: 
+      :long: 
+        :standard: "მარშალის კუნძულების დრო"
+    :Mauritius: 
+      :long: 
+        :daylight: "მავრიკის ზაფხულის დრო"
+        :generic: "მავრიკის დრო"
+        :standard: "მავრიკის სტანდარტული დრო"
+    :Mawson: 
+      :long: 
+        :standard: "მოუსონის დრო"
+    :Mexico_Pacific: 
+      :long: 
+        :daylight: "მექსიკის წყნარი ოკეანის ზაფხულის დრო"
+        :generic: "მექსიკის წყნარი ოკეანის დრო"
+        :standard: "მექსიკის წყნარი ოკეანის სტანდარტული დრო"
+    :Mongolia: 
+      :long: 
+        :daylight: "ულან-ბატორის ზაფხულის დრო"
+        :generic: "ულან-ბატორის დრო"
+        :standard: "ულან-ბატორის სტანდარტული დრო"
+    :Moscow: 
+      :long: 
+        :daylight: "მოსკოვის ზაფხულის დრო"
+        :generic: "მოსკოვის დრო"
+        :standard: "მოსკოვის სტანდარტული დრო"
+    :Myanmar: 
+      :long: 
+        :standard: "მიანმარის დრო"
+    :Nauru: 
+      :long: 
+        :standard: "ნაურუს დრო"
+    :Nepal: 
+      :long: 
+        :standard: "ნეპალის დრო"
+    :New_Caledonia: 
+      :long: 
+        :daylight: "ახალი კალედონიის ზაფხულის დრო"
+        :generic: "ახალი კალედონიის დრო"
+        :standard: "ახალი კალედონიის სტანდარტული დრო"
+    :New_Zealand: 
+      :long: 
+        :daylight: "ახალი ზელანდიის ზაფხულის დრო"
+        :generic: "ახალი ზელანდიის დრო"
+        :standard: "ახალი ზელანდიის სტანდარტული დრო"
+    :Newfoundland: 
+      :long: 
+        :daylight: "ნიუფაუნდლენდის ზაფხულის დრო"
+        :generic: "ნიუფაუნდლენდის დრო"
+        :standard: "ნიუფაუნდლენდის სტანდარტული დრო"
+    :Niue: 
+      :long: 
+        :standard: "ნიუეს დრო"
+    :Norfolk: 
+      :long: 
+        :daylight: "ნორფოლკის კუნძულის ზაფხულის დრო"
+        :generic: "ნორფოლკის კუნძულის დრო"
+        :standard: "ნორფოლკის კუნძულის სტანდარტული დრო"
+    :Noronha: 
+      :long: 
+        :daylight: "ფერნანდო-დე-ნორონიას ზაფხულის დრო"
+        :generic: "ფერნანდო-დე-ნორონიას დრო"
+        :standard: "ფერნანდო-დე-ნორონიას სტანდარტული დრო"
+    :Novosibirsk: 
+      :long: 
+        :daylight: "ნოვოსიბირსკის ზაფხულის დრო"
+        :generic: "ნოვოსიბირსკის დრო"
+        :standard: "ნოვოსიბირსკის სტანდარტული დრო"
+    :Omsk: 
+      :long: 
+        :daylight: "ომსკის ზაფხულის დრო"
+        :generic: "ომსკის დრო"
+        :standard: "ომსკის სტანდარტული დრო"
+    :Pakistan: 
+      :long: 
+        :daylight: "პაკისტანის ზაფხულის დრო"
+        :generic: "პაკისტანის დრო"
+        :standard: "პაკისტანის სტანდარტული დრო"
+    :Palau: 
+      :long: 
+        :standard: "პალაუს დრო"
+    :Papua_New_Guinea: 
+      :long: 
+        :standard: "პაპუა-ახალი გვინეის დრო"
+    :Paraguay: 
+      :long: 
+        :daylight: "პარაგვაის ზაფხულის დრო"
+        :generic: "პარაგვაის დრო"
+        :standard: "პარაგვაის სტანდარტული დრო"
+    :Peru: 
+      :long: 
+        :daylight: "პერუს ზაფხულის დრო"
+        :generic: "პერუს დრო"
+        :standard: "პერუს სტანდარტული დრო"
+    :Philippines: 
+      :long: 
+        :daylight: "ფილიპინების ზაფხულის დრო"
+        :generic: "ფილიპინების დრო"
+        :standard: "ფილიპინების სტანდარტული დრო"
+    :Phoenix_Islands: 
+      :long: 
+        :standard: "ფენიქსის კუნძულების დრო"
+    :Pierre_Miquelon: 
+      :long: 
+        :daylight: "სენ-პიერის და მიკელონის ზაფხულის დრო"
+        :generic: "სენ-პიერის და მიკელონის დრო"
+        :standard: "სენ-პიერის და მიკელონის სტანდარტული დრო"
+    :Pitcairn: 
+      :long: 
+        :standard: "პიტკერნის დრო"
+    :Ponape: 
+      :long: 
+        :standard: "პონაპეს დრო"
+    :Pyongyang: 
+      :long: 
+        :standard: "ფხენიანის დრო"
+    :Reunion: 
+      :long: 
+        :standard: "რეიუნიონის დრო"
+    :Rothera: 
+      :long: 
+        :standard: "როთერის დრო"
+    :Sakhalin: 
+      :long: 
+        :daylight: "სახალინის ზაფხულის დრო"
+        :generic: "სახალინის დრო"
+        :standard: "სახალინის სტანდარტული დრო"
+    :Samoa: 
+      :long: 
+        :daylight: "სამოას ზაფხულის დრო"
+        :generic: "სამოას დრო"
+        :standard: "სამოას სტანდარტული დრო"
+    :Seychelles: 
+      :long: 
+        :standard: "სეიშელის კუნძულების დრო"
+    :Singapore: 
+      :long: 
+        :standard: "სინგაპურის დრო"
+    :Solomon: 
+      :long: 
+        :standard: "სოლომონის კუნძულების დრო"
+    :South_Georgia: 
+      :long: 
+        :standard: "სამხრეთ გეორგიის დრო"
+    :Suriname: 
+      :long: 
+        :standard: "სურინამის დრო"
+    :Syowa: 
+      :long: 
+        :standard: "სიოვას დრო"
+    :Tahiti: 
+      :long: 
+        :standard: "ტაიტის დრო"
+    :Taipei: 
+      :long: 
+        :daylight: "ტაიბეის ზაფხულის დრო"
+        :generic: "ტაიბეის დრო"
+        :standard: "ტაიბეის სტანდარტული დრო"
+    :Tajikistan: 
+      :long: 
+        :standard: "ტაჯიკეთის დრო"
+    :Tokelau: 
+      :long: 
+        :standard: "ტოკელაუს დრო"
+    :Tonga: 
+      :long: 
+        :daylight: "ტონგის ზაფხულის დრო"
+        :generic: "ტონგის დრო"
+        :standard: "ტონგის სტანდარტული დრო"
+    :Truk: 
+      :long: 
+        :standard: "ჩუუკის დრო"
+    :Turkmenistan: 
+      :long: 
+        :daylight: "თურქმენეთის ზაფხულის დრო"
+        :generic: "თურქმენეთის დრო"
+        :standard: "თურქმენეთის სტანდარტული დრო"
+    :Tuvalu: 
+      :long: 
+        :standard: "ტუვალუს დრო"
+    :Uruguay: 
+      :long: 
+        :daylight: "ურუგვაის ზაფხულის დრო"
+        :generic: "ურუგვაის დრო"
+        :standard: "ურუგვაის სტანდარტული დრო"
+    :Uzbekistan: 
+      :long: 
+        :daylight: "უზბეკეთის ზაფხულის დრო"
+        :generic: "უზბეკეთის დრო"
+        :standard: "უზბეკეთის სტანდარტული დრო"
+    :Vanuatu: 
+      :long: 
+        :daylight: "ვანუატუს ზაფხულის დრო"
+        :generic: "ვანუატუს დრო"
+        :standard: "ვანუატუს სტანდარტული დრო"
+    :Venezuela: 
+      :long: 
+        :standard: "ვენესუელის დრო"
+    :Vladivostok: 
+      :long: 
+        :daylight: "ვლადივოსტოკის ზაფხულის დრო"
+        :generic: "ვლადივოსტოკის დრო"
+        :standard: "ვლადივოსტოკის სტანდარტული დრო"
+    :Volgograd: 
+      :long: 
+        :daylight: "ვოლგოგრადის ზაფხულის დრო"
+        :generic: "ვოლგოგრადის დრო"
+        :standard: "ვოლგოგრადის სტანდარტული დრო"
+    :Vostok: 
+      :long: 
+        :standard: "ვოსტოკის დრო"
+    :Wake: 
+      :long: 
+        :standard: "ვეიკის კუნძულის დრო"
+    :Wallis: 
+      :long: 
+        :standard: "ვოლისი და ფუტუნას დრო"
+    :Yakutsk: 
+      :long: 
+        :daylight: "იაკუტსკის ზაფხულის დრო"
+        :generic: "იაკუტსკის დრო"
+        :standard: "იაკუტსკის სტანდარტული დრო"
+    :Yekaterinburg: 
+      :long: 
+        :daylight: "ეკატერინბურგის ზაფხულის დრო"
+        :generic: "ეკატერინბურგის დრო"
+        :standard: "ეკატერინბურგის სტანდარტული დრო"
+    :Yukon: 
+      :long: 
+        :standard: "იუკონის დრო"
+  :timezones: 
+    :Africa/Abidjan: 
+      :city: აბიჯანი
+    :Africa/Accra: 
+      :city: აკრა
+    :Africa/Addis_Ababa: 
+      :city: ადის-აბება
+    :Africa/Algiers: 
+      :city: ალჟირი
+    :Africa/Asmera: 
+      :city: ასმარა
+    :Africa/Bamako: 
+      :city: ბამაკო
+    :Africa/Bangui: 
+      :city: ბანგი
+    :Africa/Banjul: 
+      :city: ბანჯული
+    :Africa/Bissau: 
+      :city: ბისაუ
+    :Africa/Blantyre: 
+      :city: ბლანტირი
+    :Africa/Brazzaville: 
+      :city: ბრაზავილი
+    :Africa/Bujumbura: 
+      :city: ბუჯუმბურა
+    :Africa/Cairo: 
+      :city: კაირო
+    :Africa/Casablanca: 
+      :city: კასაბლანკა
+    :Africa/Ceuta: 
+      :city: სეუტა
+    :Africa/Conakry: 
+      :city: კონაკრი
+    :Africa/Dakar: 
+      :city: დაკარი
+    :Africa/Dar_es_Salaam: 
+      :city: დარ-ეს-სალამი
+    :Africa/Djibouti: 
+      :city: ჯიბუტი
+    :Africa/Douala: 
+      :city: დუალა
+    :Africa/El_Aaiun: 
+      :city: ელ-ააიუნი
+    :Africa/Freetown: 
+      :city: ფრიტაუნი
+    :Africa/Gaborone: 
+      :city: გაბორონე
+    :Africa/Harare: 
+      :city: ჰარარე
+    :Africa/Johannesburg: 
+      :city: იოჰანესბურგი
+    :Africa/Juba: 
+      :city: ჯუბა
+    :Africa/Kampala: 
+      :city: კამპალა
+    :Africa/Khartoum: 
+      :city: ხარტუმი
+    :Africa/Kigali: 
+      :city: კიგალი
+    :Africa/Kinshasa: 
+      :city: კინშასა
+    :Africa/Lagos: 
+      :city: ლაგოსი
+    :Africa/Libreville: 
+      :city: ლიბრევილი
+    :Africa/Lome: 
+      :city: ლომე
+    :Africa/Luanda: 
+      :city: ლუანდა
+    :Africa/Lubumbashi: 
+      :city: ლუბუმბაში
+    :Africa/Lusaka: 
+      :city: ლუსაკა
+    :Africa/Malabo: 
+      :city: მალაბო
+    :Africa/Maputo: 
+      :city: მაპუტო
+    :Africa/Maseru: 
+      :city: მასერუ
+    :Africa/Mbabane: 
+      :city: მბაბანე
+    :Africa/Mogadishu: 
+      :city: მოგადიშუ
+    :Africa/Monrovia: 
+      :city: მონროვია
+    :Africa/Nairobi: 
+      :city: ნაირობი
+    :Africa/Ndjamena: 
+      :city: ნჯამენა
+    :Africa/Niamey: 
+      :city: ნიამეი
+    :Africa/Nouakchott: 
+      :city: ნუაკშოტი
+    :Africa/Ouagadougou: 
+      :city: უაგადუგუ
+    :Africa/Porto-Novo: 
+      :city: პორტო-ნოვო
+    :Africa/Sao_Tome: 
+      :city: სენ-ტომე
+    :Africa/Tripoli: 
+      :city: ტრიპოლი
+    :Africa/Tunis: 
+      :city: ტუნისი
+    :Africa/Windhoek: 
+      :city: ვინდხუკი
+    :America/Adak: 
+      :city: ადაკი
+    :America/Anchorage: 
+      :city: ენქორაჯი
+    :America/Anguilla: 
+      :city: ანგილია
+    :America/Antigua: 
+      :city: ანტიგუა
+    :America/Araguaina: 
+      :city: არაგუაინა
+    :America/Argentina/La_Rioja: 
+      :city: "ლა რიოხა"
+    :America/Argentina/Rio_Gallegos: 
+      :city: "რიო გალეგოსი"
+    :America/Argentina/Salta: 
+      :city: სალტა
+    :America/Argentina/San_Juan: 
+      :city: "სან ხუანი"
+    :America/Argentina/San_Luis: 
+      :city: სან-ლუისი
+    :America/Argentina/Tucuman: 
+      :city: ტუკუმანი
+    :America/Argentina/Ushuaia: 
+      :city: უშუაია
+    :America/Aruba: 
+      :city: არუბა
+    :America/Asuncion: 
+      :city: ასუნსიონი
+    :America/Bahia: 
+      :city: ბაია
+    :America/Bahia_Banderas: 
+      :city: "ბაჰია ბანდერასი"
+    :America/Barbados: 
+      :city: ბარბადოსი
+    :America/Belem: 
+      :city: ბელემი
+    :America/Belize: 
+      :city: ბელიზი
+    :America/Blanc-Sablon: 
+      :city: ბლან-საბლონი
+    :America/Boa_Vista: 
+      :city: "ბოა ვისტა"
+    :America/Bogota: 
+      :city: ბოგოტა
+    :America/Boise: 
+      :city: ბუასი
+    :America/Buenos_Aires: 
+      :city: ბუენოს-აირესი
+    :America/Cambridge_Bay: 
+      :city: "კემბრიჯ ბეი"
+    :America/Campo_Grande: 
+      :city: "კამპო გრანდე"
+    :America/Cancun: 
+      :city: კანკუნი
+    :America/Caracas: 
+      :city: კარაკასი
+    :America/Catamarca: 
+      :city: კატამარკა
+    :America/Cayenne: 
+      :city: კაიენა
+    :America/Cayman: 
+      :city: კაიმანი
+    :America/Chicago: 
+      :city: ჩიკაგო
+    :America/Chihuahua: 
+      :city: ჩიჰუაჰუა
+    :America/Ciudad_Juarez: 
+      :city: სიუდად-ხუარესი
+    :America/Coral_Harbour: 
+      :city: ატიკოკანი
+    :America/Cordoba: 
+      :city: კორდობა
+    :America/Costa_Rica: 
+      :city: კოსტა-რიკა
+    :America/Creston: 
+      :city: კრესტონი
+    :America/Cuiaba: 
+      :city: კუიაბა
+    :America/Curacao: 
+      :city: კიურასაო
+    :America/Danmarkshavn: 
+      :city: დენმარკშავნი
+    :America/Dawson: 
+      :city: დოუსონი
+    :America/Dawson_Creek: 
+      :city: "დოუსონ ქრიკი"
+    :America/Denver: 
+      :city: დენვერი
+    :America/Detroit: 
+      :city: დეტროიტი
+    :America/Dominica: 
+      :city: დომინიკა
+    :America/Edmonton: 
+      :city: ედმონტონი
+    :America/Eirunepe: 
+      :city: ეირუნეპე
+    :America/El_Salvador: 
+      :city: სალვადორი
+    :America/Fort_Nelson: 
+      :city: ფორტ-ნელსონი
+    :America/Fortaleza: 
+      :city: ფორტალეზა
+    :America/Glace_Bay: 
+      :city: "გლეის ბეი"
+    :America/Godthab: 
+      :city: გოდთები
+    :America/Goose_Bay: 
+      :city: "გუზ ბეი"
+    :America/Grand_Turk: 
+      :city: გრანდ-ტურკი
+    :America/Grenada: 
+      :city: გრენადა
+    :America/Guadeloupe: 
+      :city: გვადელუპა
+    :America/Guatemala: 
+      :city: გვატემალა
+    :America/Guayaquil: 
+      :city: გუაიაკილი
+    :America/Guyana: 
+      :city: გაიანა
+    :America/Halifax: 
+      :city: ჰალიფაქსი
+    :America/Havana: 
+      :city: ჰავანა
+    :America/Hermosillo: 
+      :city: ჰერმოსილო
+    :America/Indiana/Knox: 
+      :city: "ნოქსი, ინდიანა"
+    :America/Indiana/Marengo: 
+      :city: "მარენგო, ინდიანა"
+    :America/Indiana/Petersburg: 
+      :city: "პიტერსბურგი, ინდიანა"
+    :America/Indiana/Tell_City: 
+      :city: "თელ სითი, ინდიანა"
+    :America/Indiana/Vevay: 
+      :city: "ვივეი, ინდიანა"
+    :America/Indiana/Vincennes: 
+      :city: "ვინსენი, ინდიანა"
+    :America/Indiana/Winamac: 
+      :city: "უინემაკი, ინდიანა"
+    :America/Indianapolis: 
+      :city: ინდიანაპოლისი
+    :America/Inuvik: 
+      :city: ინუვიკი
+    :America/Iqaluit: 
+      :city: იქალუიტი
+    :America/Jamaica: 
+      :city: იამაიკა
+    :America/Jujuy: 
+      :city: ჯუჯუი
+    :America/Juneau: 
+      :city: ჯუნო
+    :America/Kentucky/Monticello: 
+      :city: "მონტიჩელო, კენტუკი"
+    :America/Kralendijk: 
+      :city: კრალენდიიკი
+    :America/La_Paz: 
+      :city: ლა-პაზი
+    :America/Lima: 
+      :city: ლიმა
+    :America/Los_Angeles: 
+      :city: ლოს-ანჯელესი
+    :America/Louisville: 
+      :city: ლუისვილი
+    :America/Lower_Princes: 
+      :city: "ლოერ პრინც კვორტერი"
+    :America/Maceio: 
+      :city: მასეიო
+    :America/Managua: 
+      :city: მანაგუა
+    :America/Manaus: 
+      :city: მანაუსი
+    :America/Marigot: 
+      :city: მარიგო
+    :America/Martinique: 
+      :city: მარტინიკი
+    :America/Matamoros: 
+      :city: მატამოროსი
+    :America/Mazatlan: 
+      :city: მაზატლანი
+    :America/Mendoza: 
+      :city: მენდოზა
+    :America/Menominee: 
+      :city: მენომინი
+    :America/Merida: 
+      :city: მერიდა
+    :America/Metlakatla: 
+      :city: მეტლაკატლა
+    :America/Mexico_City: 
+      :city: მეხიკო
+    :America/Miquelon: 
+      :city: მიკელონი
+    :America/Moncton: 
+      :city: მონქტონი
+    :America/Monterrey: 
+      :city: მონტერეი
+    :America/Montevideo: 
+      :city: მონტევიდეო
+    :America/Montserrat: 
+      :city: მონსერატი
+    :America/Nassau: 
+      :city: ნასაუ
+    :America/New_York: 
+      :city: ნიუ-იორკი
+    :America/Nome: 
+      :city: ნომი
+    :America/Noronha: 
+      :city: ნორონია
+    :America/North_Dakota/Beulah: 
+      :city: "ბიულა, ჩრდილოეთი დაკოტა"
+    :America/North_Dakota/Center: 
+      :city: "ცენტრი, ჩრდილოეთი დაკოტა"
+    :America/North_Dakota/New_Salem: 
+      :city: "ნიუ-სალემი, ჩრდილოეთი დაკოტა"
+    :America/Ojinaga: 
+      :city: ოხინაგა
+    :America/Panama: 
+      :city: პანამა
+    :America/Paramaribo: 
+      :city: პარამარიბო
+    :America/Phoenix: 
+      :city: ფენიქსი
+    :America/Port-au-Prince: 
+      :city: პორტ-ა-პრინსი
+    :America/Port_of_Spain: 
+      :city: პორტ-ოვ-სპეინი
+    :America/Porto_Velho: 
+      :city: პორტუ-ველიო
+    :America/Puerto_Rico: 
+      :city: პუერტო-რიკო
+    :America/Punta_Arenas: 
+      :city: პუნტა-არენასი
+    :America/Rankin_Inlet: 
+      :city: "რენკინ ინლეტი"
+    :America/Recife: 
+      :city: რეციფე
+    :America/Regina: 
+      :city: რეჯინა
+    :America/Resolute: 
+      :city: რეზოლუტე
+    :America/Rio_Branco: 
+      :city: "რიო ბრანკო"
+    :America/Santarem: 
+      :city: სანტარემი
+    :America/Santiago: 
+      :city: სანტიაგო
+    :America/Santo_Domingo: 
+      :city: სანტო-დომინგო
+    :America/Sao_Paulo: 
+      :city: სან-პაულუ
+    :America/Scoresbysund: 
+      :city: სკორსბისუნდი
+    :America/Sitka: 
+      :city: სიტკა
+    :America/St_Barthelemy: 
+      :city: სენ-ბართელემი
+    :America/St_Johns: 
+      :city: სენტ-ჯონსი
+    :America/St_Kitts: 
+      :city: სენტ-კიტსი
+    :America/St_Lucia: 
+      :city: სენტ-ლუსია
+    :America/St_Thomas: 
+      :city: სენ-ტომასი
+    :America/St_Vincent: 
+      :city: სენ-ვინსენტი
+    :America/Swift_Current: 
+      :city: "სვიფტ კარენტი"
+    :America/Tegucigalpa: 
+      :city: ტეგუჩიგალპა
+    :America/Thule: 
+      :city: თულე
+    :America/Tijuana: 
+      :city: ტიხუანა
+    :America/Toronto: 
+      :city: ტორონტო
+    :America/Tortola: 
+      :city: ტორტოლა
+    :America/Vancouver: 
+      :city: ვანკუვერი
+    :America/Whitehorse: 
+      :city: უაითჰორსი
+    :America/Winnipeg: 
+      :city: უინიპეგი
+    :America/Yakutat: 
+      :city: იაკუტატი
+    :Antarctica/Casey: 
+      :city: კეისი
+    :Antarctica/Davis: 
+      :city: დევისი
+    :Antarctica/DumontDUrville: 
+      :city: "დიუმონ დ’ურვილი"
+    :Antarctica/Macquarie: 
+      :city: მექვორი
+    :Antarctica/Mawson: 
+      :city: მოუსონი
+    :Antarctica/McMurdo: 
+      :city: მაკმურდო
+    :Antarctica/Palmer: 
+      :city: პალმერი
+    :Antarctica/Rothera: 
+      :city: როთერა
+    :Antarctica/Syowa: 
+      :city: სიოუა
+    :Antarctica/Troll: 
+      :city: ტროლი
+    :Antarctica/Vostok: 
+      :city: ვოსტოკი
+    :Arctic/Longyearbyen: 
+      :city: ლონგირბიენი
+    :Asia/Aden: 
+      :city: ადენი
+    :Asia/Almaty: 
+      :city: ალმატი
+    :Asia/Amman: 
+      :city: ამანი
+    :Asia/Anadyr: 
+      :city: ანადირი
+    :Asia/Aqtau: 
+      :city: აქტაუ
+    :Asia/Aqtobe: 
+      :city: აქტობე
+    :Asia/Ashgabat: 
+      :city: აშხაბადი
+    :Asia/Atyrau: 
+      :city: ატირაუ
+    :Asia/Baghdad: 
+      :city: ბაღდადი
+    :Asia/Bahrain: 
+      :city: ბაჰრეინი
+    :Asia/Baku: 
+      :city: ბაქო
+    :Asia/Bangkok: 
+      :city: ბანგკოკი
+    :Asia/Barnaul: 
+      :city: ბარნაული
+    :Asia/Beirut: 
+      :city: ბეირუთი
+    :Asia/Bishkek: 
+      :city: ბიშკეკი
+    :Asia/Brunei: 
+      :city: ბრუნეი
+    :Asia/Calcutta: 
+      :city: კალკუტა
+    :Asia/Chita: 
+      :city: ჩიტა
+    :Asia/Colombo: 
+      :city: კოლომბო
+    :Asia/Damascus: 
+      :city: დამასკი
+    :Asia/Dhaka: 
+      :city: დაკა
+    :Asia/Dili: 
+      :city: დილი
+    :Asia/Dubai: 
+      :city: დუბაი
+    :Asia/Dushanbe: 
+      :city: დუშანბე
+    :Asia/Famagusta: 
+      :city: ფამაგუსტა
+    :Asia/Gaza: 
+      :city: გაზა
+    :Asia/Hebron: 
+      :city: ჰებრონი
+    :Asia/Hong_Kong: 
+      :city: ჰონკონგი
+    :Asia/Hovd: 
+      :city: ჰოვდი
+    :Asia/Irkutsk: 
+      :city: ირკუტსკი
+    :Asia/Jakarta: 
+      :city: ჯაკარტა
+    :Asia/Jayapura: 
+      :city: ჯაიაპურა
+    :Asia/Jerusalem: 
+      :city: იერუსალიმი
+    :Asia/Kabul: 
+      :city: ქაბული
+    :Asia/Kamchatka: 
+      :city: კამჩატკა
+    :Asia/Karachi: 
+      :city: კარაჩი
+    :Asia/Katmandu: 
+      :city: კატმანდუ
+    :Asia/Khandyga: 
+      :city: ხანდიგა
+    :Asia/Krasnoyarsk: 
+      :city: კრასნოიარსკი
+    :Asia/Kuala_Lumpur: 
+      :city: კუალა-ლუმპური
+    :Asia/Kuching: 
+      :city: კუჩინგი
+    :Asia/Kuwait: 
+      :city: ქუვეითი
+    :Asia/Macau: 
+      :city: მაკაო
+    :Asia/Magadan: 
+      :city: მაგადანი
+    :Asia/Makassar: 
+      :city: მაკასარი
+    :Asia/Manila: 
+      :city: მანილა
+    :Asia/Muscat: 
+      :city: მუსკატი
+    :Asia/Nicosia: 
+      :city: ნიკოსია
+    :Asia/Novokuznetsk: 
+      :city: ნოვოკუზნეცკი
+    :Asia/Novosibirsk: 
+      :city: ნოვოსიბირსკი
+    :Asia/Omsk: 
+      :city: ომსკი
+    :Asia/Oral: 
+      :city: ორალი
+    :Asia/Phnom_Penh: 
+      :city: პნომპენი
+    :Asia/Pontianak: 
+      :city: პონტიანაკი
+    :Asia/Pyongyang: 
+      :city: ფხენიანი
+    :Asia/Qatar: 
+      :city: კატარი
+    :Asia/Qostanay: 
+      :city: კოსტანაი
+    :Asia/Qyzylorda: 
+      :city: ყიზილორდა
+    :Asia/Rangoon: 
+      :city: რანგუნი
+    :Asia/Riyadh: 
+      :city: ერ-რიადი
+    :Asia/Saigon: 
+      :city: ჰოჩიმინი
+    :Asia/Sakhalin: 
+      :city: სახალინი
+    :Asia/Samarkand: 
+      :city: სამარყანდი
+    :Asia/Seoul: 
+      :city: სეული
+    :Asia/Shanghai: 
+      :city: შანხაი
+    :Asia/Singapore: 
+      :city: სინგაპური
+    :Asia/Srednekolymsk: 
+      :city: სრედნეკოლიმსკი
+    :Asia/Taipei: 
+      :city: ტაიპეი
+    :Asia/Tashkent: 
+      :city: ტაშკენტი
+    :Asia/Tbilisi: 
+      :city: თბილისი
+    :Asia/Tehran: 
+      :city: თეირანი
+    :Asia/Thimphu: 
+      :city: თხიმფხუ
+    :Asia/Tokyo: 
+      :city: ტოკიო
+    :Asia/Tomsk: 
+      :city: ტომსკი
+    :Asia/Ulaanbaatar: 
+      :city: ულანბატარი
+    :Asia/Urumqi: 
+      :city: ურუმქი
+    :Asia/Ust-Nera: 
+      :city: უსტ-ნერა
+    :Asia/Vientiane: 
+      :city: ვიენტიანი
+    :Asia/Vladivostok: 
+      :city: ვლადივოსტოკი
+    :Asia/Yakutsk: 
+      :city: იაკუტსკი
+    :Asia/Yekaterinburg: 
+      :city: ეკატერინბურგი
+    :Asia/Yerevan: 
+      :city: ერევანი
+    :Atlantic/Azores: 
+      :city: "აზორის კუნძულები"
+    :Atlantic/Bermuda: 
+      :city: ბერმუდა
+    :Atlantic/Canary: 
+      :city: კანარი
+    :Atlantic/Cape_Verde: 
+      :city: კაბო-ვერდე
+    :Atlantic/Faeroe: 
+      :city: "ფარერის კუნძულები"
+    :Atlantic/Madeira: 
+      :city: მადეირა
+    :Atlantic/Reykjavik: 
+      :city: რეიკიავიკი
+    :Atlantic/South_Georgia: 
+      :city: "სამხრეთ ჯორჯია"
+    :Atlantic/St_Helena: 
+      :city: "წმ. ელენეს კუნძული"
+    :Atlantic/Stanley: 
+      :city: სტენლი
+    :Australia/Adelaide: 
+      :city: ადელაიდა
+    :Australia/Brisbane: 
+      :city: ბრისბეინი
+    :Australia/Broken_Hill: 
+      :city: "ბროუკენ ჰილი"
+    :Australia/Darwin: 
+      :city: დარვინი
+    :Australia/Eucla: 
+      :city: ეუკლა
+    :Australia/Hobart: 
+      :city: ჰობარტი
+    :Australia/Lindeman: 
+      :city: ლინდმანი
+    :Australia/Lord_Howe: 
+      :city: "ლორდ ჰოუი"
+    :Australia/Melbourne: 
+      :city: მელბურნი
+    :Australia/Perth: 
+      :city: პერთი
+    :Australia/Sydney: 
+      :city: სიდნეი
+    :Etc/UTC: 
+      :long: 
+        :standard: "მსოფლიო კოორდინირებული დრო"
+      :short: 
+        :standard: UTC
+    :Etc/Unknown: 
+      :city: "უცნობი ქალაქი"
+    :Europe/Amsterdam: 
+      :city: ამსტერდამი
+    :Europe/Andorra: 
+      :city: ანდორა
+    :Europe/Astrakhan: 
+      :city: ასტრახანი
+    :Europe/Athens: 
+      :city: ათენი
+    :Europe/Belgrade: 
+      :city: ბელგრადი
+    :Europe/Berlin: 
+      :city: ბერლინი
+    :Europe/Bratislava: 
+      :city: ბრატისლავა
+    :Europe/Brussels: 
+      :city: ბრიუსელი
+    :Europe/Bucharest: 
+      :city: ბუქარესტი
+    :Europe/Budapest: 
+      :city: ბუდაპეშტი
+    :Europe/Busingen: 
+      :city: ბუსინგენი
+    :Europe/Chisinau: 
+      :city: კიშინიოვი
+    :Europe/Copenhagen: 
+      :city: კოპენჰაგენი
+    :Europe/Dublin: 
+      :city: დუბლინი
+      :long: 
+        :daylight: "ირლანდიის სტანდარტული დრო"
+    :Europe/Gibraltar: 
+      :city: გიბრალტარი
+    :Europe/Guernsey: 
+      :city: გერნსი
+    :Europe/Helsinki: 
+      :city: ჰელსინკი
+    :Europe/Isle_of_Man: 
+      :city: "მენის კუნძული"
+    :Europe/Istanbul: 
+      :city: სტამბოლი
+    :Europe/Jersey: 
+      :city: ჯერსი
+    :Europe/Kaliningrad: 
+      :city: კალინინგრადი
+    :Europe/Kiev: 
+      :city: კიევი
+    :Europe/Kirov: 
+      :city: კიროვი
+    :Europe/Lisbon: 
+      :city: ლისაბონი
+    :Europe/Ljubljana: 
+      :city: ლიუბლიანა
+    :Europe/London: 
+      :city: ლონდონი
+      :long: 
+        :daylight: "ბრიტანეთის ზაფხულის დრო"
+    :Europe/Luxembourg: 
+      :city: ლუქსემბურგი
+    :Europe/Madrid: 
+      :city: მადრიდი
+    :Europe/Malta: 
+      :city: მალტა
+    :Europe/Mariehamn: 
+      :city: მარიჰამნი
+    :Europe/Minsk: 
+      :city: მინსკი
+    :Europe/Monaco: 
+      :city: მონაკო
+    :Europe/Moscow: 
+      :city: მოსკოვი
+    :Europe/Oslo: 
+      :city: ოსლო
+    :Europe/Paris: 
+      :city: პარიზი
+    :Europe/Podgorica: 
+      :city: პოდგორიცა
+    :Europe/Prague: 
+      :city: პრაღა
+    :Europe/Riga: 
+      :city: რიგა
+    :Europe/Rome: 
+      :city: რომი
+    :Europe/Samara: 
+      :city: სამარა
+    :Europe/San_Marino: 
+      :city: სან-მარინო
+    :Europe/Sarajevo: 
+      :city: სარაევო
+    :Europe/Saratov: 
+      :city: სარატოვი
+    :Europe/Simferopol: 
+      :city: სიმფეროპოლი
+    :Europe/Skopje: 
+      :city: სკოპიე
+    :Europe/Sofia: 
+      :city: სოფია
+    :Europe/Stockholm: 
+      :city: სტოკჰოლმი
+    :Europe/Tallinn: 
+      :city: ტალინი
+    :Europe/Tirane: 
+      :city: ტირანა
+    :Europe/Ulyanovsk: 
+      :city: ულიანოვსკი
+    :Europe/Vaduz: 
+      :city: ვადუცი
+    :Europe/Vatican: 
+      :city: ვატიკანი
+    :Europe/Vienna: 
+      :city: ვენა
+    :Europe/Vilnius: 
+      :city: ვილნიუსი
+    :Europe/Volgograd: 
+      :city: ვოლგოგრადი
+    :Europe/Warsaw: 
+      :city: ვარშავა
+    :Europe/Zagreb: 
+      :city: ზაგრები
+    :Europe/Zurich: 
+      :city: ციურიხი
+    :Indian/Antananarivo: 
+      :city: ანტანანარივუ
+    :Indian/Chagos: 
+      :city: ჩაგოსი
+    :Indian/Christmas: 
+      :city: "შობის კუნძული"
+    :Indian/Cocos: 
+      :city: ქოქოსი
+    :Indian/Comoro: 
+      :city: კომორო
+    :Indian/Kerguelen: 
+      :city: კერგელენი
+    :Indian/Mahe: 
+      :city: მაჰე
+    :Indian/Maldives: 
+      :city: მალდივები
+    :Indian/Mauritius: 
+      :city: მავრიკი
+    :Indian/Mayotte: 
+      :city: მაიოტი
+    :Indian/Reunion: 
+      :city: რეიუნიონი
+    :Pacific/Apia: 
+      :city: აპია
+    :Pacific/Auckland: 
+      :city: ოკლენდი
+    :Pacific/Bougainville: 
+      :city: ბუგენვილი
+    :Pacific/Chatham: 
+      :city: ჩათამი
+    :Pacific/Easter: 
+      :city: ისთერი
+    :Pacific/Efate: 
+      :city: ეფატე
+    :Pacific/Enderbury: 
+      :city: ენდერბური
+    :Pacific/Fakaofo: 
+      :city: ფაკაოფო
+    :Pacific/Fiji: 
+      :city: ფიჯი
+    :Pacific/Funafuti: 
+      :city: ფუნაფუტი
+    :Pacific/Galapagos: 
+      :city: გალაპაგოსი
+    :Pacific/Gambier: 
+      :city: გამბიერი
+    :Pacific/Guadalcanal: 
+      :city: გვადალკანალი
+    :Pacific/Guam: 
+      :city: გუამი
+    :Pacific/Honolulu: 
+      :city: ჰონოლულუ
+    :Pacific/Kanton: 
+      :city: კანტონი
+    :Pacific/Kiritimati: 
+      :city: კირიტიმატი
+    :Pacific/Kosrae: 
+      :city: კოსრაე
+    :Pacific/Kwajalein: 
+      :city: კვაჯალეინი
+    :Pacific/Majuro: 
+      :city: მახურო
+    :Pacific/Marquesas: 
+      :city: მარკეზასი
+    :Pacific/Midway: 
+      :city: მიდუეი
+    :Pacific/Nauru: 
+      :city: ნაურუ
+    :Pacific/Niue: 
+      :city: ნიუე
+    :Pacific/Norfolk: 
+      :city: ნორფოლკი
+    :Pacific/Noumea: 
+      :city: ნუმეა
+    :Pacific/Pago_Pago: 
+      :city: პაგო-პაგო
+    :Pacific/Palau: 
+      :city: პალაუ
+    :Pacific/Pitcairn: 
+      :city: პიტკერნი
+    :Pacific/Ponape: 
+      :city: პონპეი
+    :Pacific/Port_Moresby: 
+      :city: "პორტ მორსბი"
+    :Pacific/Rarotonga: 
+      :city: რაროტონგა
+    :Pacific/Saipan: 
+      :city: საიპანი
+    :Pacific/Tahiti: 
+      :city: ტაიტი
+    :Pacific/Tarawa: 
+      :city: ტარაუა
+    :Pacific/Tongatapu: 
+      :city: ტონგატაპუ
+    :Pacific/Truk: 
+      :city: ჩუუკი
+    :Pacific/Wake: 
+      :city: უეიკი
+    :Pacific/Wallis: 
+      :city: ვალისი

@@ -1,0 +1,13 @@
+module WEBrick
+  module HTTPAuth
+    module UserDB
+      attr_accessor auth_type: String
+
+      def make_passwd: (String realm, String user, String pass) -> String
+
+      def set_passwd: (String realm, String user, String pass) -> void
+
+      def get_passwd: (String realm, String user, ?bool reload_db) -> String
+    end
+  end
+end

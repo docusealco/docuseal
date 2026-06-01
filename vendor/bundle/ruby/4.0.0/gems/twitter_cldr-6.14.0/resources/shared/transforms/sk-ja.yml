@@ -1,0 +1,12 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - ja-t-sk
+    :direction: forward
+    :rules: 
+      - "::sk-sk_FONIPA ;"
+      - "::sk_FONIPA-ja ;"
+    :source: sk
+    :target: ja
+    :variant: ~

@@ -1,0 +1,3998 @@
+--- 
+:fi: 
+  :rbnf: 
+    :grouping: 
+      - 
+        :ruleset: 
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: =0.0=;
+                :value: x.x
+              - 
+                :rule: =%spellout-numbering=;
+                :value: 0
+            :type: spellout-numbering-year
+          - 
+            :rules: 
+              - 
+                :rule: =%spellout-cardinal=;
+                :value: 0
+            :type: spellout-numbering
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: "<< pilkku >>;"
+                :value: x.x
+              - 
+                :rule: nolla;
+                :value: 0
+              - 
+                :rule: yksi;
+                :value: 1
+              - 
+                :rule: kaksi;
+                :value: 2
+              - 
+                :rule: kolme;
+                :value: 3
+              - 
+                :rule: neljä;
+                :value: 4
+              - 
+                :rule: viisi;
+                :value: 5
+              - 
+                :rule: kuusi;
+                :value: 6
+              - 
+                :rule: seitsemän;
+                :value: 7
+              - 
+                :rule: kahdeksan;
+                :value: 8
+              - 
+                :rule: yhdeksän;
+                :value: 9
+              - 
+                :rule: kymmenen;
+                :value: 10
+              - 
+                :rule: ">>toista;"
+                :value: 11
+              - 
+                :rule: "<<­kymmentä[­>>];"
+                :value: 20
+              - 
+                :rule: "sata[­>>];"
+                :value: 100
+              - 
+                :rule: "<<­sataa[­>>];"
+                :value: 200
+              - 
+                :rule: "tuhat[­>>];"
+                :value: 1000
+              - 
+                :rule: "<<­tuhatta[­>>];"
+                :value: 2000
+              - 
+                :rule: "<< miljoona[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<< miljoonaa[ >>];"
+                :value: 2000000
+              - 
+                :rule: "<< miljardi[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<< miljardia[ >>];"
+                :value: 2000000000
+              - 
+                :rule: "<< biljoona[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<< biljoonaa[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: "<< pilkku >>;"
+                :value: x.x
+              - 
+                :rule: nollan;
+                :value: 0
+              - 
+                :rule: yhden;
+                :value: 1
+              - 
+                :rule: kahden;
+                :value: 2
+              - 
+                :rule: kolmen;
+                :value: 3
+              - 
+                :rule: neljän;
+                :value: 4
+              - 
+                :rule: viiden;
+                :value: 5
+              - 
+                :rule: kuuden;
+                :value: 6
+              - 
+                :rule: seitsemän;
+                :value: 7
+              - 
+                :rule: kahdeksan;
+                :value: 8
+              - 
+                :rule: yhdeksän;
+                :value: 9
+              - 
+                :rule: kymmenen;
+                :value: 10
+              - 
+                :rule: ">>toista;"
+                :value: 11
+              - 
+                :rule: "<<­kymmenen[­>>];"
+                :value: 20
+              - 
+                :rule: "sadan[­>>];"
+                :value: 100
+              - 
+                :rule: "<<­sadan[­>>];"
+                :value: 200
+              - 
+                :rule: "tuhannen[­>>];"
+                :value: 1000
+              - 
+                :rule: "<<­tuhannen[­>>];"
+                :value: 2000
+              - 
+                :rule: "<< miljoonan[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<< miljoonan[ >>];"
+                :value: 2000000
+              - 
+                :rule: "<< miljardin[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<< miljardin[ >>];"
+                :value: 2000000000
+              - 
+                :rule: "<< biljoonan[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<< biljoonan[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-genitive
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: "<< pilkku >>;"
+                :value: x.x
+              - 
+                :rule: nollaa;
+                :value: 0
+              - 
+                :rule: yhtä;
+                :value: 1
+              - 
+                :rule: kahta;
+                :value: 2
+              - 
+                :rule: kolmea;
+                :value: 3
+              - 
+                :rule: neljää;
+                :value: 4
+              - 
+                :rule: viittä;
+                :value: 5
+              - 
+                :rule: kuutta;
+                :value: 6
+              - 
+                :rule: seitsemää;
+                :value: 7
+              - 
+                :rule: kahdeksaa;
+                :value: 8
+              - 
+                :rule: yhdeksää;
+                :value: 9
+              - 
+                :rule: kymmentä;
+                :value: 10
+              - 
+                :rule: ">>toista;"
+                :value: 11
+              - 
+                :rule: "<<­kymmentä[­>>];"
+                :value: 20
+              - 
+                :rule: "sataa[­>>];"
+                :value: 100
+              - 
+                :rule: "<<­sataa[­>>];"
+                :value: 200
+              - 
+                :rule: "tuhatta[­>>];"
+                :value: 1000
+              - 
+                :rule: "<<­tuhatta[­>>];"
+                :value: 2000
+              - 
+                :rule: "<< miljoonaa[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<< miljoonaa[ >>];"
+                :value: 2000000
+              - 
+                :rule: "<< miljardia[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<< miljardia[ >>];"
+                :value: 2000000000
+              - 
+                :rule: "<< biljoonaa[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<< biljoonaa[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-partitive
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: "<< pilkku >>;"
+                :value: x.x
+              - 
+                :rule: nollana;
+                :value: 0
+              - 
+                :rule: yhtenä;
+                :value: 1
+              - 
+                :rule: kahtena;
+                :value: 2
+              - 
+                :rule: kolmena;
+                :value: 3
+              - 
+                :rule: neljänä;
+                :value: 4
+              - 
+                :rule: viitenä;
+                :value: 5
+              - 
+                :rule: kuutena;
+                :value: 6
+              - 
+                :rule: seitsemänä;
+                :value: 7
+              - 
+                :rule: kahdeksana;
+                :value: 8
+              - 
+                :rule: yhdeksänä;
+                :value: 9
+              - 
+                :rule: kymmenenä;
+                :value: 10
+              - 
+                :rule: ">>toista;"
+                :value: 11
+              - 
+                :rule: "<<­kymmenenä[­>>];"
+                :value: 20
+              - 
+                :rule: "satana[­>>];"
+                :value: 100
+              - 
+                :rule: "<<­satana[­>>];"
+                :value: 200
+              - 
+                :rule: "tuhantena[­>>];"
+                :value: 1000
+              - 
+                :rule: "<<­tuhantena[­>>];"
+                :value: 2000
+              - 
+                :rule: "<< miljoonana[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<< miljoonana[ >>];"
+                :value: 2000000
+              - 
+                :rule: "<< miljardina[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<< miljardina[ >>];"
+                :value: 2000000000
+              - 
+                :rule: "<< biljoonana[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<< biljoonana[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-essive
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: "<< pilkku >>;"
+                :value: x.x
+              - 
+                :rule: nollaksi;
+                :value: 0
+              - 
+                :rule: yhdeksi;
+                :value: 1
+              - 
+                :rule: kahdeksi;
+                :value: 2
+              - 
+                :rule: kolmeksi;
+                :value: 3
+              - 
+                :rule: neljäksi;
+                :value: 4
+              - 
+                :rule: viideksi;
+                :value: 5
+              - 
+                :rule: kuudeksi;
+                :value: 6
+              - 
+                :rule: seitsemäksi;
+                :value: 7
+              - 
+                :rule: kahdeksaksi;
+                :value: 8
+              - 
+                :rule: yhdeksäksi;
+                :value: 9
+              - 
+                :rule: kymmeneksi;
+                :value: 10
+              - 
+                :rule: ">>toista;"
+                :value: 11
+              - 
+                :rule: "<<­kymmeneksi[­>>];"
+                :value: 20
+              - 
+                :rule: "sadaksi[­>>];"
+                :value: 100
+              - 
+                :rule: "<<­sadaksi[­>>];"
+                :value: 200
+              - 
+                :rule: "tuhanneksi[­>>];"
+                :value: 1000
+              - 
+                :rule: "<<­tuhanneksi[­>>];"
+                :value: 2000
+              - 
+                :rule: "<< miljoonaksi[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<< miljoonaksi[ >>];"
+                :value: 2000000
+              - 
+                :rule: "<< miljardiksi[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<< miljardiksi[ >>];"
+                :value: 2000000000
+              - 
+                :rule: "<< biljoonaksi[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<< biljoonaksi[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-translative
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: "<< pilkku >>;"
+                :value: x.x
+              - 
+                :rule: nollassa;
+                :value: 0
+              - 
+                :rule: yhdessä;
+                :value: 1
+              - 
+                :rule: kahdessa;
+                :value: 2
+              - 
+                :rule: kolmessa;
+                :value: 3
+              - 
+                :rule: neljässä;
+                :value: 4
+              - 
+                :rule: viidessä;
+                :value: 5
+              - 
+                :rule: kuudessa;
+                :value: 6
+              - 
+                :rule: seitsemässä;
+                :value: 7
+              - 
+                :rule: kahdeksassa;
+                :value: 8
+              - 
+                :rule: yhdeksässä;
+                :value: 9
+              - 
+                :rule: kymmenessä;
+                :value: 10
+              - 
+                :rule: ">>toista;"
+                :value: 11
+              - 
+                :rule: "<<­kymmenessä[­>>];"
+                :value: 20
+              - 
+                :rule: "sadassa[­>>];"
+                :value: 100
+              - 
+                :rule: "<<­sadassa[­>>];"
+                :value: 200
+              - 
+                :rule: "tuhannessa[­>>];"
+                :value: 1000
+              - 
+                :rule: "<<­tuhannessa[­>>];"
+                :value: 2000
+              - 
+                :rule: "<< miljoonassa[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<< miljoonassa[ >>];"
+                :value: 2000000
+              - 
+                :rule: "<< miljardissa[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<< miljardissa[ >>];"
+                :value: 2000000000
+              - 
+                :rule: "<< biljoonassa[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<< biljoonassa[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-inessive
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: "<< pilkku >>;"
+                :value: x.x
+              - 
+                :rule: nollasta;
+                :value: 0
+              - 
+                :rule: yhdestä;
+                :value: 1
+              - 
+                :rule: kahdesta;
+                :value: 2
+              - 
+                :rule: kolmesta;
+                :value: 3
+              - 
+                :rule: neljästä;
+                :value: 4
+              - 
+                :rule: viidestä;
+                :value: 5
+              - 
+                :rule: kuudesta;
+                :value: 6
+              - 
+                :rule: seitsemästä;
+                :value: 7
+              - 
+                :rule: kahdeksasta;
+                :value: 8
+              - 
+                :rule: yhdeksästä;
+                :value: 9
+              - 
+                :rule: kymmenestä;
+                :value: 10
+              - 
+                :rule: ">>toista;"
+                :value: 11
+              - 
+                :rule: "<<­kymmenestä[­>>];"
+                :value: 20
+              - 
+                :rule: "sadasta[­>>];"
+                :value: 100
+              - 
+                :rule: "<<­sadasta[­>>];"
+                :value: 200
+              - 
+                :rule: "tuhannesta[­>>];"
+                :value: 1000
+              - 
+                :rule: "<<­tuhannesta[­>>];"
+                :value: 2000
+              - 
+                :rule: "<< miljoonasta[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<< miljoonasta[ >>];"
+                :value: 2000000
+              - 
+                :rule: "<< miljardista[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<< miljardista[ >>];"
+                :value: 2000000000
+              - 
+                :rule: "<< biljoonasta[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<< biljoonasta[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-elative
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: "<< pilkku >>;"
+                :value: x.x
+              - 
+                :rule: nollaan;
+                :value: 0
+              - 
+                :rule: yhteen;
+                :value: 1
+              - 
+                :rule: kahteen;
+                :value: 2
+              - 
+                :rule: kolmeen;
+                :value: 3
+              - 
+                :rule: neljään;
+                :value: 4
+              - 
+                :rule: viiteen;
+                :value: 5
+              - 
+                :rule: kuuteen;
+                :value: 6
+              - 
+                :rule: seitsemään;
+                :value: 7
+              - 
+                :rule: kahdeksaan;
+                :value: 8
+              - 
+                :rule: yhdeksään;
+                :value: 9
+              - 
+                :rule: kymmeneen;
+                :value: 10
+              - 
+                :rule: ">>toista;"
+                :value: 11
+              - 
+                :rule: "<<­kymmeneen[­>>];"
+                :value: 20
+              - 
+                :rule: "sataan[­>>];"
+                :value: 100
+              - 
+                :rule: "<<­sataan[­>>];"
+                :value: 200
+              - 
+                :rule: "tuhanteen[­>>];"
+                :value: 1000
+              - 
+                :rule: "<<­tuhanteen[­>>];"
+                :value: 2000
+              - 
+                :rule: "<< miljoonaan[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<< miljoonaan[ >>];"
+                :value: 2000000
+              - 
+                :rule: "<< miljardiin[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<< miljardiin[ >>];"
+                :value: 2000000000
+              - 
+                :rule: "<< biljoonaan[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<< biljoonaan[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-illative
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: "<< pilkku >>;"
+                :value: x.x
+              - 
+                :rule: nollalla;
+                :value: 0
+              - 
+                :rule: yhdellä;
+                :value: 1
+              - 
+                :rule: kahdella;
+                :value: 2
+              - 
+                :rule: kolmella;
+                :value: 3
+              - 
+                :rule: neljällä;
+                :value: 4
+              - 
+                :rule: viidellä;
+                :value: 5
+              - 
+                :rule: kuudella;
+                :value: 6
+              - 
+                :rule: seitsemällä;
+                :value: 7
+              - 
+                :rule: kahdeksalla;
+                :value: 8
+              - 
+                :rule: yhdeksällä;
+                :value: 9
+              - 
+                :rule: kymmenellä;
+                :value: 10
+              - 
+                :rule: ">>toista;"
+                :value: 11
+              - 
+                :rule: "<<­kymmenellä[­>>];"
+                :value: 20
+              - 
+                :rule: "sadalla[­>>];"
+                :value: 100
+              - 
+                :rule: "<<­sadalla[­>>];"
+                :value: 200
+              - 
+                :rule: "tuhannella[­>>];"
+                :value: 1000
+              - 
+                :rule: "<<­tuhannella[­>>];"
+                :value: 2000
+              - 
+                :rule: "<< miljoonalla[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<< miljoonalla[ >>];"
+                :value: 2000000
+              - 
+                :rule: "<< miljardilla[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<< miljardilla[ >>];"
+                :value: 2000000000
+              - 
+                :rule: "<< biljoonalla[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<< biljoonalla[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-adessive
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: "<< pilkku >>;"
+                :value: x.x
+              - 
+                :rule: nollalta;
+                :value: 0
+              - 
+                :rule: yhdeltä;
+                :value: 1
+              - 
+                :rule: kahdelta;
+                :value: 2
+              - 
+                :rule: kolmelta;
+                :value: 3
+              - 
+                :rule: neljältä;
+                :value: 4
+              - 
+                :rule: viideltä;
+                :value: 5
+              - 
+                :rule: kuudelta;
+                :value: 6
+              - 
+                :rule: seitsemältä;
+                :value: 7
+              - 
+                :rule: kahdeksalta;
+                :value: 8
+              - 
+                :rule: yhdeksältä;
+                :value: 9
+              - 
+                :rule: kymmeneltä;
+                :value: 10
+              - 
+                :rule: ">>toista;"
+                :value: 11
+              - 
+                :rule: "<<­kymmeneltä[­>>];"
+                :value: 20
+              - 
+                :rule: "sadalta[­>>];"
+                :value: 100
+              - 
+                :rule: "<<­sadalta[­>>];"
+                :value: 200
+              - 
+                :rule: "tuhannelta[­>>];"
+                :value: 1000
+              - 
+                :rule: "<<­tuhannelta[­>>];"
+                :value: 2000
+              - 
+                :rule: "<< miljoonalta[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<< miljoonalta[ >>];"
+                :value: 2000000
+              - 
+                :rule: "<< miljardilta[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<< miljardilta[ >>];"
+                :value: 2000000000
+              - 
+                :rule: "<< biljoonalta[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<< biljoonalta[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-ablative
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: "<< pilkku >>;"
+                :value: x.x
+              - 
+                :rule: nollalle;
+                :value: 0
+              - 
+                :rule: yhdelle;
+                :value: 1
+              - 
+                :rule: kahdelle;
+                :value: 2
+              - 
+                :rule: kolmelle;
+                :value: 3
+              - 
+                :rule: neljälle;
+                :value: 4
+              - 
+                :rule: viidelle;
+                :value: 5
+              - 
+                :rule: kuudelle;
+                :value: 6
+              - 
+                :rule: seitsemälle;
+                :value: 7
+              - 
+                :rule: kahdeksalle;
+                :value: 8
+              - 
+                :rule: yhdeksälle;
+                :value: 9
+              - 
+                :rule: kymmenelle;
+                :value: 10
+              - 
+                :rule: ">>toista;"
+                :value: 11
+              - 
+                :rule: "<<­kymmenelle[­>>];"
+                :value: 20
+              - 
+                :rule: "sadalle[­>>];"
+                :value: 100
+              - 
+                :rule: "<<­sadalle[­>>];"
+                :value: 200
+              - 
+                :rule: "tuhannelle[­>>];"
+                :value: 1000
+              - 
+                :rule: "<<­tuhannelle[­>>];"
+                :value: 2000
+              - 
+                :rule: "<< miljoonalle[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<< miljoonalle[ >>];"
+                :value: 2000000
+              - 
+                :rule: "<< miljardille[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<< miljardille[ >>];"
+                :value: 2000000000
+              - 
+                :rule: "<< biljoonalle[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<< biljoonalle[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-allative
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: "<< pilkku >>;"
+                :value: x.x
+              - 
+                :rule: nollat;
+                :value: 0
+              - 
+                :rule: yhdet;
+                :value: 1
+              - 
+                :rule: kahdet;
+                :value: 2
+              - 
+                :rule: kolmet;
+                :value: 3
+              - 
+                :rule: neljät;
+                :value: 4
+              - 
+                :rule: viidet;
+                :value: 5
+              - 
+                :rule: kuudet;
+                :value: 6
+              - 
+                :rule: seitsemät;
+                :value: 7
+              - 
+                :rule: kahdeksat;
+                :value: 8
+              - 
+                :rule: yhdeksät;
+                :value: 9
+              - 
+                :rule: kymmenet;
+                :value: 10
+              - 
+                :rule: ">>toista;"
+                :value: 11
+              - 
+                :rule: "<<-kymmenet[­>>];"
+                :value: 20
+              - 
+                :rule: "sadat[­>>];"
+                :value: 100
+              - 
+                :rule: "<<-sadat[­>>];"
+                :value: 200
+              - 
+                :rule: "tuhannet[­>>];"
+                :value: 1000
+              - 
+                :rule: "<<­tuhannet[­>>];"
+                :value: 2000
+              - 
+                :rule: "<< miljoonat[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<< miljardit[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<< biljoonat[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-plural
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: "<< pilkku >>;"
+                :value: x.x
+              - 
+                :rule: nollien;
+                :value: 0
+              - 
+                :rule: yksien;
+                :value: 1
+              - 
+                :rule: kaksien;
+                :value: 2
+              - 
+                :rule: kolmien;
+                :value: 3
+              - 
+                :rule: neljien;
+                :value: 4
+              - 
+                :rule: viisien;
+                :value: 5
+              - 
+                :rule: kuusien;
+                :value: 6
+              - 
+                :rule: seitsemien;
+                :value: 7
+              - 
+                :rule: kahdeksien;
+                :value: 8
+              - 
+                :rule: yhdeksien;
+                :value: 9
+              - 
+                :rule: kymmenien;
+                :value: 10
+              - 
+                :rule: ">>toista;"
+                :value: 11
+              - 
+                :rule: "<<­kymmenien[­>>];"
+                :value: 20
+              - 
+                :rule: "satojen[­>>];"
+                :value: 100
+              - 
+                :rule: "<<­satojen[­>>];"
+                :value: 200
+              - 
+                :rule: "tuhansien[­>>];"
+                :value: 1000
+              - 
+                :rule: "<<­tuhansien[­>>];"
+                :value: 2000
+              - 
+                :rule: "<< miljoonien[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<< miljoonien[ >>];"
+                :value: 2000000
+              - 
+                :rule: "<< miljardien[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<< miljardien[ >>];"
+                :value: 2000000000
+              - 
+                :rule: "<< biljoonien[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<< biljoonien[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-genitive-plural
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: "<< pilkku >>;"
+                :value: x.x
+              - 
+                :rule: nollia;
+                :value: 0
+              - 
+                :rule: yksiä;
+                :value: 1
+              - 
+                :rule: kaksia;
+                :value: 2
+              - 
+                :rule: kolmia;
+                :value: 3
+              - 
+                :rule: neljiä;
+                :value: 4
+              - 
+                :rule: viisiä;
+                :value: 5
+              - 
+                :rule: kuusia;
+                :value: 6
+              - 
+                :rule: seitsemiä;
+                :value: 7
+              - 
+                :rule: kahdeksia;
+                :value: 8
+              - 
+                :rule: yhdeksiä;
+                :value: 9
+              - 
+                :rule: kymmeniä;
+                :value: 10
+              - 
+                :rule: ">>toista;"
+                :value: 11
+              - 
+                :rule: "<<­kymmeniä[­>>];"
+                :value: 20
+              - 
+                :rule: "satoja[­>>];"
+                :value: 100
+              - 
+                :rule: "<<­satoja[­>>];"
+                :value: 200
+              - 
+                :rule: "tuhansia[­>>];"
+                :value: 1000
+              - 
+                :rule: "<<­tuhansia[­>>];"
+                :value: 2000
+              - 
+                :rule: "<< miljoonia[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<< miljoonia[ >>];"
+                :value: 2000000
+              - 
+                :rule: "<< miljardeja[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<< miljardeja[ >>];"
+                :value: 2000000000
+              - 
+                :rule: "<< biljoonia[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<< biljoonia[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-partitive-plural
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: "<< pilkku >>;"
+                :value: x.x
+              - 
+                :rule: nollina;
+                :value: 0
+              - 
+                :rule: yksinä;
+                :value: 1
+              - 
+                :rule: kaksina;
+                :value: 2
+              - 
+                :rule: kolmina;
+                :value: 3
+              - 
+                :rule: neljinä;
+                :value: 4
+              - 
+                :rule: viisinä;
+                :value: 5
+              - 
+                :rule: kuusina;
+                :value: 6
+              - 
+                :rule: seitseminä;
+                :value: 7
+              - 
+                :rule: kahdeksina;
+                :value: 8
+              - 
+                :rule: yhdeksinä;
+                :value: 9
+              - 
+                :rule: kymmeninä;
+                :value: 10
+              - 
+                :rule: ">>toista;"
+                :value: 11
+              - 
+                :rule: "<<­kymmeninä[­>>];"
+                :value: 20
+              - 
+                :rule: "satoina[­>>];"
+                :value: 100
+              - 
+                :rule: "<<­satoina[­>>];"
+                :value: 200
+              - 
+                :rule: "tuhansina[­>>];"
+                :value: 1000
+              - 
+                :rule: "<<­tuhansina[­>>];"
+                :value: 2000
+              - 
+                :rule: "<< miljoonina[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<< miljoonina[ >>];"
+                :value: 2000000
+              - 
+                :rule: "<< miljardeina[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<< miljardeina[ >>];"
+                :value: 2000000000
+              - 
+                :rule: "<< biljoonina[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<< biljoonina[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-essive-plural
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: "<< pilkku >>;"
+                :value: x.x
+              - 
+                :rule: nolliksi;
+                :value: 0
+              - 
+                :rule: yksiksi;
+                :value: 1
+              - 
+                :rule: kaksiksi;
+                :value: 2
+              - 
+                :rule: kolmiksi;
+                :value: 3
+              - 
+                :rule: neljiksi;
+                :value: 4
+              - 
+                :rule: viisiksi;
+                :value: 5
+              - 
+                :rule: kuusiksi;
+                :value: 6
+              - 
+                :rule: seitsemiksi;
+                :value: 7
+              - 
+                :rule: kahdeksiksi;
+                :value: 8
+              - 
+                :rule: yhdeksiksi;
+                :value: 9
+              - 
+                :rule: kymmeniksi;
+                :value: 10
+              - 
+                :rule: ">>toista;"
+                :value: 11
+              - 
+                :rule: "<<­kymmeniksi[­>>];"
+                :value: 20
+              - 
+                :rule: "sadoiksi[­>>];"
+                :value: 100
+              - 
+                :rule: "<<­sadoiksi[­>>];"
+                :value: 200
+              - 
+                :rule: "tuhansiksi[­>>];"
+                :value: 1000
+              - 
+                :rule: "<<­tuhansiksi[­>>];"
+                :value: 2000
+              - 
+                :rule: "<< miljooniksi[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<< miljooniksi[ >>];"
+                :value: 2000000
+              - 
+                :rule: "<< miljardeiksi[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<< miljardeiksi[ >>];"
+                :value: 2000000000
+              - 
+                :rule: "<< biljooniksi[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<< biljooniksi[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-translative-plural
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: "<< pilkku >>;"
+                :value: x.x
+              - 
+                :rule: nollissa;
+                :value: 0
+              - 
+                :rule: yksissä;
+                :value: 1
+              - 
+                :rule: kaksissa;
+                :value: 2
+              - 
+                :rule: kolmissa;
+                :value: 3
+              - 
+                :rule: neljissä;
+                :value: 4
+              - 
+                :rule: viisissä;
+                :value: 5
+              - 
+                :rule: kuusissa;
+                :value: 6
+              - 
+                :rule: seitsemissä;
+                :value: 7
+              - 
+                :rule: kahdeksissa;
+                :value: 8
+              - 
+                :rule: yhdeksissä;
+                :value: 9
+              - 
+                :rule: kymmenissä;
+                :value: 10
+              - 
+                :rule: ">>toista;"
+                :value: 11
+              - 
+                :rule: "<<­kymmenissä[­>>];"
+                :value: 20
+              - 
+                :rule: "sadoissa[­>>];"
+                :value: 100
+              - 
+                :rule: "<<­sadoissa[­>>];"
+                :value: 200
+              - 
+                :rule: "tuhansissa[­>>];"
+                :value: 1000
+              - 
+                :rule: "<<­tuhansissa[­>>];"
+                :value: 2000
+              - 
+                :rule: "<< miljoonissa[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<< miljoonissa[ >>];"
+                :value: 2000000
+              - 
+                :rule: "<< miljardeissa[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<< miljardeissa[ >>];"
+                :value: 2000000000
+              - 
+                :rule: "<< biljoonissa[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<< biljoonissa[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-inessive-plural
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: "<< pilkku >>;"
+                :value: x.x
+              - 
+                :rule: nollista;
+                :value: 0
+              - 
+                :rule: yksistä;
+                :value: 1
+              - 
+                :rule: kaksista;
+                :value: 2
+              - 
+                :rule: kolmista;
+                :value: 3
+              - 
+                :rule: neljistä;
+                :value: 4
+              - 
+                :rule: viisistä;
+                :value: 5
+              - 
+                :rule: kuusista;
+                :value: 6
+              - 
+                :rule: seitsemistä;
+                :value: 7
+              - 
+                :rule: kahdeksista;
+                :value: 8
+              - 
+                :rule: yhdeksistä;
+                :value: 9
+              - 
+                :rule: kymmenistä;
+                :value: 10
+              - 
+                :rule: ">>toista;"
+                :value: 11
+              - 
+                :rule: "<<­kymmenistä[­>>];"
+                :value: 20
+              - 
+                :rule: "sadoista[­>>];"
+                :value: 100
+              - 
+                :rule: "<<­sadoista[­>>];"
+                :value: 200
+              - 
+                :rule: "tuhansista[­>>];"
+                :value: 1000
+              - 
+                :rule: "<<­tuhansista[­>>];"
+                :value: 2000
+              - 
+                :rule: "<< miljoonista[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<< miljoonista[ >>];"
+                :value: 2000000
+              - 
+                :rule: "<< miljardeista[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<< miljardeista[ >>];"
+                :value: 2000000000
+              - 
+                :rule: "<< biljoonista[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<< biljoonista[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-elative-plural
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: "<< pilkku >>;"
+                :value: x.x
+              - 
+                :rule: nolliin;
+                :value: 0
+              - 
+                :rule: yksiin;
+                :value: 1
+              - 
+                :rule: kaksiin;
+                :value: 2
+              - 
+                :rule: kolmiin;
+                :value: 3
+              - 
+                :rule: neljiin;
+                :value: 4
+              - 
+                :rule: viisiin;
+                :value: 5
+              - 
+                :rule: kuusiin;
+                :value: 6
+              - 
+                :rule: seitsemiin;
+                :value: 7
+              - 
+                :rule: kahdeksiin;
+                :value: 8
+              - 
+                :rule: yhdeksiin;
+                :value: 9
+              - 
+                :rule: kymmeniin;
+                :value: 10
+              - 
+                :rule: ">>toista;"
+                :value: 11
+              - 
+                :rule: "<<­kymmeniin[­>>];"
+                :value: 20
+              - 
+                :rule: "satoihin[­>>];"
+                :value: 100
+              - 
+                :rule: "<<­satoihin[­>>];"
+                :value: 200
+              - 
+                :rule: "tuhansiin­[­>>];"
+                :value: 1000
+              - 
+                :rule: "<<­tuhansiin­[­>>];"
+                :value: 2000
+              - 
+                :rule: "<< miljooniin[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<< miljooniin[ >>];"
+                :value: 2000000
+              - 
+                :rule: "<< miljardeihin[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<< miljardeihin[ >>];"
+                :value: 2000000000
+              - 
+                :rule: "<< biljooniin[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<< biljooniin[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-illative-plural
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: "<< pilkku >>;"
+                :value: x.x
+              - 
+                :rule: nollilla;
+                :value: 0
+              - 
+                :rule: yksillä;
+                :value: 1
+              - 
+                :rule: kaksilla;
+                :value: 2
+              - 
+                :rule: kolmilla;
+                :value: 3
+              - 
+                :rule: neljillä;
+                :value: 4
+              - 
+                :rule: viisillä;
+                :value: 5
+              - 
+                :rule: kuusilla;
+                :value: 6
+              - 
+                :rule: seitsemillä;
+                :value: 7
+              - 
+                :rule: kahdeksilla;
+                :value: 8
+              - 
+                :rule: yhdeksillä;
+                :value: 9
+              - 
+                :rule: kymmenillä;
+                :value: 10
+              - 
+                :rule: ">>toista;"
+                :value: 11
+              - 
+                :rule: "<<­kymmenillä[­>>];"
+                :value: 20
+              - 
+                :rule: "sadoilla[­>>];"
+                :value: 100
+              - 
+                :rule: "<<­sadoilla[­>>];"
+                :value: 200
+              - 
+                :rule: "tuhansilla­[­>>];"
+                :value: 1000
+              - 
+                :rule: "<<­tuhansilla[­>>];"
+                :value: 2000
+              - 
+                :rule: "<< miljoonilla[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<< miljoonilla[ >>];"
+                :value: 2000000
+              - 
+                :rule: "<< miljardeilla[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<< miljardeilla[ >>];"
+                :value: 2000000000
+              - 
+                :rule: "<< biljoonilla[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<< biljoonilla[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-adessive-plural
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: "<< pilkku >>;"
+                :value: x.x
+              - 
+                :rule: nollilta;
+                :value: 0
+              - 
+                :rule: yksiltä;
+                :value: 1
+              - 
+                :rule: kaksilta;
+                :value: 2
+              - 
+                :rule: kolmilta;
+                :value: 3
+              - 
+                :rule: neljiltä;
+                :value: 4
+              - 
+                :rule: viisiltä;
+                :value: 5
+              - 
+                :rule: kuusilta;
+                :value: 6
+              - 
+                :rule: seitsemiltä;
+                :value: 7
+              - 
+                :rule: kahdeksilta;
+                :value: 8
+              - 
+                :rule: yhdeksiltä;
+                :value: 9
+              - 
+                :rule: kymmeniltä;
+                :value: 10
+              - 
+                :rule: ">>toista;"
+                :value: 11
+              - 
+                :rule: "<<­kymmeniltä[­>>];"
+                :value: 20
+              - 
+                :rule: "sadoilta[­>>];"
+                :value: 100
+              - 
+                :rule: "<<­sadoilta[­>>];"
+                :value: 200
+              - 
+                :rule: "tuhansilta[­>>];"
+                :value: 1000
+              - 
+                :rule: "<<­tuhansilta[­>>];"
+                :value: 2000
+              - 
+                :rule: "<< miljoonilta[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<< miljoonilta[ >>];"
+                :value: 2000000
+              - 
+                :rule: "<< miljardeilta[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<< miljardeilta[ >>];"
+                :value: 2000000000
+              - 
+                :rule: "<< biljoonilta[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<< biljoonilta[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-ablative-plural
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: "<< pilkku >>;"
+                :value: x.x
+              - 
+                :rule: nollille;
+                :value: 0
+              - 
+                :rule: yksille;
+                :value: 1
+              - 
+                :rule: kaksille;
+                :value: 2
+              - 
+                :rule: kolmille;
+                :value: 3
+              - 
+                :rule: neljille;
+                :value: 4
+              - 
+                :rule: viisille;
+                :value: 5
+              - 
+                :rule: kuusille;
+                :value: 6
+              - 
+                :rule: seitsemille;
+                :value: 7
+              - 
+                :rule: kahdeksille;
+                :value: 8
+              - 
+                :rule: yhdeksille;
+                :value: 9
+              - 
+                :rule: kymmenille;
+                :value: 10
+              - 
+                :rule: ">>toista;"
+                :value: 11
+              - 
+                :rule: "<<­kymmenille[­>>];"
+                :value: 20
+              - 
+                :rule: "sadoille[­>>];"
+                :value: 100
+              - 
+                :rule: "<<­sadoille[­>>];"
+                :value: 200
+              - 
+                :rule: "tuhansille[­>>];"
+                :value: 1000
+              - 
+                :rule: "<<­tuhansille[­>>];"
+                :value: 2000
+              - 
+                :rule: "<< miljoonille[ >>];"
+                :value: 1000000
+              - 
+                :rule: "<< miljoonille[ >>];"
+                :value: 2000000
+              - 
+                :rule: "<< miljardeille[ >>];"
+                :value: 1000000000
+              - 
+                :rule: "<< miljardeille[ >>];"
+                :value: 2000000000
+              - 
+                :rule: "<< biljoonille[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<< biljoonille[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-cardinal-allative-plural
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: ;
+                :value: 0
+              - 
+                :rule: kahdes;
+                :value: 2
+              - 
+                :rule: =%spellout-ordinal=;
+                :value: 3
+            :type: spellout-ordinal-larger
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: "=#,##0.#=;"
+                :value: x.x
+              - 
+                :rule: nollas;
+                :value: 0
+              - 
+                :rule: ensimmäinen;
+                :value: 1
+              - 
+                :rule: toinen;
+                :value: 2
+              - 
+                :rule: kolmas;
+                :value: 3
+              - 
+                :rule: neljäs;
+                :value: 4
+              - 
+                :rule: viides;
+                :value: 5
+              - 
+                :rule: kuudes;
+                :value: 6
+              - 
+                :rule: seitsemäs;
+                :value: 7
+              - 
+                :rule: kahdeksas;
+                :value: 8
+              - 
+                :rule: yhdeksäs;
+                :value: 9
+              - 
+                :rule: kymmenes;
+                :value: 10
+              - 
+                :rule: yhdestoista;
+                :value: 11
+              - 
+                :rule: kahdestoista;
+                :value: 12
+              - 
+                :rule: ">>toista;"
+                :value: 13
+              - 
+                :rule: "<%%spellout-ordinal-larger<­kymmenes[­>>];"
+                :value: 20
+              - 
+                :rule: "sadas[­>>];"
+                :value: 100
+              - 
+                :rule: "<%%spellout-ordinal-larger<­sadas[­>>];"
+                :value: 200
+              - 
+                :rule: "tuhannes[­>>];"
+                :value: 1000
+              - 
+                :rule: "<%%spellout-ordinal-larger<­tuhannes[­>>];"
+                :value: 2000
+              - 
+                :rule: "miljoonas[­>>];"
+                :value: 1000000
+              - 
+                :rule: "<%%spellout-ordinal-larger< miljoonas[­>>];"
+                :value: 2000000
+              - 
+                :rule: "miljardis[­>>];"
+                :value: 1000000000
+              - 
+                :rule: "<%%spellout-ordinal-larger< miljardis[­>>];"
+                :value: 2000000000
+              - 
+                :rule: "biljoonas[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%%spellout-ordinal-larger< biljoonas[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-ordinal
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: ;
+                :value: 0
+              - 
+                :rule: kahdennen;
+                :value: 2
+              - 
+                :rule: =%spellout-ordinal-genitive=;
+                :value: 3
+            :type: spellout-ordinal-genitive-larger
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: "=#,##0.#=;"
+                :value: x.x
+              - 
+                :rule: nollannen;
+                :value: 0
+              - 
+                :rule: ensimmäisen;
+                :value: 1
+              - 
+                :rule: toisen;
+                :value: 2
+              - 
+                :rule: kolmannen;
+                :value: 3
+              - 
+                :rule: neljännen;
+                :value: 4
+              - 
+                :rule: viidennen;
+                :value: 5
+              - 
+                :rule: kuudennen;
+                :value: 6
+              - 
+                :rule: seitsemännen;
+                :value: 7
+              - 
+                :rule: kahdeksannen;
+                :value: 8
+              - 
+                :rule: yhdeksännen;
+                :value: 9
+              - 
+                :rule: kymmenennen;
+                :value: 10
+              - 
+                :rule: yhdennentoista;
+                :value: 11
+              - 
+                :rule: kahdennentoista;
+                :value: 12
+              - 
+                :rule: ">>toista;"
+                :value: 13
+              - 
+                :rule: "<%%spellout-ordinal-genitive-larger<­kymmenennen[­>>];"
+                :value: 20
+              - 
+                :rule: "sadannen[­>>];"
+                :value: 100
+              - 
+                :rule: "<%%spellout-ordinal-genitive-larger<­sadannen[­>>];"
+                :value: 200
+              - 
+                :rule: "tuhannennen[­>>];"
+                :value: 1000
+              - 
+                :rule: "<%%spellout-ordinal-genitive-larger<­tuhannennen[­>>];"
+                :value: 2000
+              - 
+                :rule: "miljoonannen[­>>];"
+                :value: 1000000
+              - 
+                :rule: "<%%spellout-ordinal-genitive-larger<­miljoonannen[­>>];"
+                :value: 2000000
+              - 
+                :rule: "miljardinnen[­>>];"
+                :value: 1000000000
+              - 
+                :rule: "<%%spellout-ordinal-genitive-larger<­miljardinnen[­>>];"
+                :value: 2000000000
+              - 
+                :rule: "biljoonannen[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%%spellout-ordinal-genitive-larger<­biljoonannen[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-ordinal-genitive
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: ;
+                :value: 0
+              - 
+                :rule: kahdetta;
+                :value: 2
+              - 
+                :rule: =%spellout-ordinal-partitive=;
+                :value: 3
+            :type: spellout-ordinal-partitive-larger
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: "=#,##0.#=;"
+                :value: x.x
+              - 
+                :rule: nollatta;
+                :value: 0
+              - 
+                :rule: ensimmäistä;
+                :value: 1
+              - 
+                :rule: toista;
+                :value: 2
+              - 
+                :rule: kolmatta;
+                :value: 3
+              - 
+                :rule: neljättä;
+                :value: 4
+              - 
+                :rule: viidettä;
+                :value: 5
+              - 
+                :rule: kuudetta;
+                :value: 6
+              - 
+                :rule: seitsemättä;
+                :value: 7
+              - 
+                :rule: kahdeksatta;
+                :value: 8
+              - 
+                :rule: yhdeksättä;
+                :value: 9
+              - 
+                :rule: kymmenettä;
+                :value: 10
+              - 
+                :rule: yhdettätoista;
+                :value: 11
+              - 
+                :rule: kahdettatoista;
+                :value: 12
+              - 
+                :rule: ">>toista;"
+                :value: 13
+              - 
+                :rule: "<%%spellout-ordinal-partitive-larger<­kymmenettä[­>>];"
+                :value: 20
+              - 
+                :rule: "sadatta[­>>];"
+                :value: 100
+              - 
+                :rule: "<%%spellout-ordinal-partitive-larger<­sadatta[­>>];"
+                :value: 200
+              - 
+                :rule: "tuhannetta[­>>];"
+                :value: 1000
+              - 
+                :rule: "<%%spellout-ordinal-partitive-larger<­tuhannetta[­>>];"
+                :value: 2000
+              - 
+                :rule: "miljoonatta[­>>];"
+                :value: 1000000
+              - 
+                :rule: "<%%spellout-ordinal-partitive-larger<­miljoonatta[­>>];"
+                :value: 2000000
+              - 
+                :rule: "miljarditta[­>>];"
+                :value: 1000000000
+              - 
+                :rule: "<%%spellout-ordinal-partitive-larger<­miljarditta[­>>];"
+                :value: 2000000000
+              - 
+                :rule: "biljoonatta[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%%spellout-ordinal-partitive-larger<­biljoonatta[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-ordinal-partitive
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: ;
+                :value: 0
+              - 
+                :rule: kahdentena;
+                :value: 2
+              - 
+                :rule: =%spellout-ordinal-essive=;
+                :value: 3
+            :type: spellout-ordinal-essive-larger
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: "=#,##0.#=;"
+                :value: x.x
+              - 
+                :rule: nollantena;
+                :value: 0
+              - 
+                :rule: ensimmäisenä;
+                :value: 1
+              - 
+                :rule: toisena;
+                :value: 2
+              - 
+                :rule: kolmantena;
+                :value: 3
+              - 
+                :rule: neljäntenä;
+                :value: 4
+              - 
+                :rule: viidentenä;
+                :value: 5
+              - 
+                :rule: kuudentena;
+                :value: 6
+              - 
+                :rule: seitsemäntenä;
+                :value: 7
+              - 
+                :rule: kahdeksantena;
+                :value: 8
+              - 
+                :rule: yhdeksäntenä;
+                :value: 9
+              - 
+                :rule: kymmenentenä;
+                :value: 10
+              - 
+                :rule: yhdentenätoista;
+                :value: 11
+              - 
+                :rule: kahdentenatoista;
+                :value: 12
+              - 
+                :rule: ">>toista;"
+                :value: 13
+              - 
+                :rule: "<%%spellout-ordinal-essive-larger<­kymmenentenä[­>>];"
+                :value: 20
+              - 
+                :rule: "sadantena[­>>];"
+                :value: 100
+              - 
+                :rule: "<%%spellout-ordinal-essive-larger<­sadantena[­>>];"
+                :value: 200
+              - 
+                :rule: "tuhannentena[­>>];"
+                :value: 1000
+              - 
+                :rule: "<%%spellout-ordinal-essive-larger<­tuhannentena[­>>];"
+                :value: 2000
+              - 
+                :rule: "miljoonantena[­>>];"
+                :value: 1000000
+              - 
+                :rule: "<%%spellout-ordinal-essive-larger<­miljoonantena[­>>];"
+                :value: 2000000
+              - 
+                :rule: "miljardintena[­>>];"
+                :value: 1000000000
+              - 
+                :rule: "<%%spellout-ordinal-essive-larger<­miljardintena[­>>];"
+                :value: 2000000000
+              - 
+                :rule: "biljoonantena[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%%spellout-ordinal-essive-larger<­biljoonantena[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-ordinal-essive
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: ;
+                :value: 0
+              - 
+                :rule: kahdenneksi;
+                :value: 2
+              - 
+                :rule: =%spellout-ordinal-translative=;
+                :value: 3
+            :type: spellout-ordinal-translative-larger
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: "=#,##0.#=;"
+                :value: x.x
+              - 
+                :rule: nollanneksi;
+                :value: 0
+              - 
+                :rule: ensimmäiseksi;
+                :value: 1
+              - 
+                :rule: toiseksi;
+                :value: 2
+              - 
+                :rule: kolmanneksi;
+                :value: 3
+              - 
+                :rule: neljänneksi;
+                :value: 4
+              - 
+                :rule: viidenneksi;
+                :value: 5
+              - 
+                :rule: kuudenneksi;
+                :value: 6
+              - 
+                :rule: seitsemänneksi;
+                :value: 7
+              - 
+                :rule: kahdeksanneksi;
+                :value: 8
+              - 
+                :rule: yhdeksänneksi;
+                :value: 9
+              - 
+                :rule: kymmenenneksi;
+                :value: 10
+              - 
+                :rule: yhdenneksitoista;
+                :value: 11
+              - 
+                :rule: kahdenneksitoista;
+                :value: 12
+              - 
+                :rule: ">>toista;"
+                :value: 13
+              - 
+                :rule: "<%%spellout-ordinal-translative-larger<­kymmenenneksi[­>>];"
+                :value: 20
+              - 
+                :rule: "sadanneksi[­>>];"
+                :value: 100
+              - 
+                :rule: "<%%spellout-ordinal-translative-larger<­sadanneksi[­>>];"
+                :value: 200
+              - 
+                :rule: "tuhannenneksi[­>>];"
+                :value: 1000
+              - 
+                :rule: "<%%spellout-ordinal-translative-larger<­tuhannenneksi[­>>];"
+                :value: 2000
+              - 
+                :rule: "miljoonanneksi[­>>];"
+                :value: 1000000
+              - 
+                :rule: "<%%spellout-ordinal-translative-larger<­miljoonanneksi[­>>];"
+                :value: 2000000
+              - 
+                :rule: "miljardinneksi[­>>];"
+                :value: 1000000000
+              - 
+                :rule: "<%%spellout-ordinal-translative-larger<­miljardinneksi[­>>];"
+                :value: 2000000000
+              - 
+                :rule: "biljoonanneksi[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%%spellout-ordinal-translative-larger<­biljoonanneksi[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-ordinal-translative
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: ;
+                :value: 0
+              - 
+                :rule: kahdennessa;
+                :value: 2
+              - 
+                :rule: =%spellout-ordinal-inessive=;
+                :value: 3
+            :type: spellout-ordinal-inessive-larger
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: "=#,##0.#=;"
+                :value: x.x
+              - 
+                :rule: nollannessa;
+                :value: 0
+              - 
+                :rule: ensimmäisessä;
+                :value: 1
+              - 
+                :rule: toisessa;
+                :value: 2
+              - 
+                :rule: kolmannessa;
+                :value: 3
+              - 
+                :rule: neljännessä;
+                :value: 4
+              - 
+                :rule: viidennessä;
+                :value: 5
+              - 
+                :rule: kuudennessa;
+                :value: 6
+              - 
+                :rule: seitsemännessä;
+                :value: 7
+              - 
+                :rule: kahdeksannessa;
+                :value: 8
+              - 
+                :rule: yhdeksännessä;
+                :value: 9
+              - 
+                :rule: kymmenennessä;
+                :value: 10
+              - 
+                :rule: yhdennessätoista;
+                :value: 11
+              - 
+                :rule: kahdennessatoista;
+                :value: 12
+              - 
+                :rule: ">>toista;"
+                :value: 13
+              - 
+                :rule: "<%%spellout-ordinal-inessive-larger<­kymmenennessä[­>>];"
+                :value: 20
+              - 
+                :rule: "sadannessa[­>>];"
+                :value: 100
+              - 
+                :rule: "<%%spellout-ordinal-inessive-larger<­sadannessa[­>>];"
+                :value: 200
+              - 
+                :rule: "tuhannennessa[­>>];"
+                :value: 1000
+              - 
+                :rule: "<%%spellout-ordinal-inessive-larger<­tuhannennessa[­>>];"
+                :value: 2000
+              - 
+                :rule: "miljoonannessa[­>>];"
+                :value: 1000000
+              - 
+                :rule: "<%%spellout-ordinal-inessive-larger<­miljoonannessa[­>>];"
+                :value: 2000000
+              - 
+                :rule: "miljardinnessa[­>>];"
+                :value: 1000000000
+              - 
+                :rule: "<%%spellout-ordinal-inessive-larger<­miljardinnessa[­>>];"
+                :value: 2000000000
+              - 
+                :rule: "biljoonannessa[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%%spellout-ordinal-inessive-larger<­biljoonannessa[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-ordinal-inessive
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: ;
+                :value: 0
+              - 
+                :rule: kahdennesta;
+                :value: 2
+              - 
+                :rule: =%spellout-ordinal-elative=;
+                :value: 3
+            :type: spellout-ordinal-elative-larger
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: "=#,##0.#=;"
+                :value: x.x
+              - 
+                :rule: nollannesta;
+                :value: 0
+              - 
+                :rule: ensimmäisestä;
+                :value: 1
+              - 
+                :rule: toisesta;
+                :value: 2
+              - 
+                :rule: kolmannesta;
+                :value: 3
+              - 
+                :rule: neljännestä;
+                :value: 4
+              - 
+                :rule: viidennestä;
+                :value: 5
+              - 
+                :rule: kuudennesta;
+                :value: 6
+              - 
+                :rule: seitsemännestä;
+                :value: 7
+              - 
+                :rule: kahdeksannesta;
+                :value: 8
+              - 
+                :rule: yhdeksännestä;
+                :value: 9
+              - 
+                :rule: kymmenennestä;
+                :value: 10
+              - 
+                :rule: yhdennestätoista;
+                :value: 11
+              - 
+                :rule: kahdennestatoista;
+                :value: 12
+              - 
+                :rule: ">>toista;"
+                :value: 13
+              - 
+                :rule: "<%%spellout-ordinal-elative-larger<­kymmenennestä[­>>];"
+                :value: 20
+              - 
+                :rule: "sadannesta[­>>];"
+                :value: 100
+              - 
+                :rule: "<%%spellout-ordinal-elative-larger<­sadannesta[­>>];"
+                :value: 200
+              - 
+                :rule: "tuhannennesta[­>>];"
+                :value: 1000
+              - 
+                :rule: "<%%spellout-ordinal-elative-larger<­tuhannennesta[­>>];"
+                :value: 2000
+              - 
+                :rule: "miljoonannesta[­>>];"
+                :value: 1000000
+              - 
+                :rule: "<%%spellout-ordinal-elative-larger<­miljoonannesta[­>>];"
+                :value: 2000000
+              - 
+                :rule: "miljardinnesta[­>>];"
+                :value: 1000000000
+              - 
+                :rule: "<%%spellout-ordinal-elative-larger<­miljardinnesta[­>>];"
+                :value: 2000000000
+              - 
+                :rule: "biljoonannesta[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%%spellout-ordinal-elative-larger<­biljoonannesta[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-ordinal-elative
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: ;
+                :value: 0
+              - 
+                :rule: kahdenteen;
+                :value: 2
+              - 
+                :rule: =%spellout-ordinal-illative=;
+                :value: 3
+            :type: spellout-ordinal-illative-larger
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: "=#,##0.#=;"
+                :value: x.x
+              - 
+                :rule: nollanteen;
+                :value: 0
+              - 
+                :rule: ensimmäiseen;
+                :value: 1
+              - 
+                :rule: toiseen;
+                :value: 2
+              - 
+                :rule: kolmanteen;
+                :value: 3
+              - 
+                :rule: neljänteen;
+                :value: 4
+              - 
+                :rule: viidenteen;
+                :value: 5
+              - 
+                :rule: kuudenteen;
+                :value: 6
+              - 
+                :rule: seitsemänteen;
+                :value: 7
+              - 
+                :rule: kahdeksanteen;
+                :value: 8
+              - 
+                :rule: yhdeksänteen;
+                :value: 9
+              - 
+                :rule: kymmenenteen;
+                :value: 10
+              - 
+                :rule: yhdenteentoista;
+                :value: 11
+              - 
+                :rule: kahdenteentoista;
+                :value: 12
+              - 
+                :rule: ">>toista;"
+                :value: 13
+              - 
+                :rule: "<%%spellout-ordinal-illative-larger<­kymmenenteen[­>>];"
+                :value: 20
+              - 
+                :rule: "sadanteen[­>>];"
+                :value: 100
+              - 
+                :rule: "<%%spellout-ordinal-illative-larger<­sadanteen[­>>];"
+                :value: 200
+              - 
+                :rule: "tuhannenteen[­>>];"
+                :value: 1000
+              - 
+                :rule: "<%%spellout-ordinal-illative-larger<­tuhannenteen[­>>];"
+                :value: 2000
+              - 
+                :rule: "miljoonanteen[­>>];"
+                :value: 1000000
+              - 
+                :rule: "<%%spellout-ordinal-illative-larger<­miljoonanteen[­>>];"
+                :value: 2000000
+              - 
+                :rule: "miljardinteen[­>>];"
+                :value: 1000000000
+              - 
+                :rule: "<%%spellout-ordinal-illative-larger<­miljardinteen[­>>];"
+                :value: 2000000000
+              - 
+                :rule: "biljoonanteen[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%%spellout-ordinal-illative-larger<­biljoonanteen[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-ordinal-illative
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: ;
+                :value: 0
+              - 
+                :rule: kahdennella;
+                :value: 2
+              - 
+                :rule: =%spellout-ordinal-adessive=;
+                :value: 3
+            :type: spellout-ordinal-adessive-larger
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: "=#,##0.#=;"
+                :value: x.x
+              - 
+                :rule: nollannella;
+                :value: 0
+              - 
+                :rule: ensimmäisellä;
+                :value: 1
+              - 
+                :rule: toisella;
+                :value: 2
+              - 
+                :rule: kolmannella;
+                :value: 3
+              - 
+                :rule: neljännellä;
+                :value: 4
+              - 
+                :rule: viidennellä;
+                :value: 5
+              - 
+                :rule: kuudennella;
+                :value: 6
+              - 
+                :rule: seitsemännellä;
+                :value: 7
+              - 
+                :rule: kahdeksannella;
+                :value: 8
+              - 
+                :rule: yhdeksännellä;
+                :value: 9
+              - 
+                :rule: kymmenennellä;
+                :value: 10
+              - 
+                :rule: yhdennellätoista;
+                :value: 11
+              - 
+                :rule: kahdennellatoista;
+                :value: 12
+              - 
+                :rule: ">>toista;"
+                :value: 13
+              - 
+                :rule: "<%%spellout-ordinal-adessive-larger<­kymmenennellä[­>>];"
+                :value: 20
+              - 
+                :rule: "sadannella[­>>];"
+                :value: 100
+              - 
+                :rule: "<%%spellout-ordinal-adessive-larger<­sadannella[­>>];"
+                :value: 200
+              - 
+                :rule: "tuhannennella[­>>];"
+                :value: 1000
+              - 
+                :rule: "<%%spellout-ordinal-adessive-larger<­tuhannennella[­>>];"
+                :value: 2000
+              - 
+                :rule: "miljoonannella[­>>];"
+                :value: 1000000
+              - 
+                :rule: "<%%spellout-ordinal-adessive-larger<­miljoonannella[­>>];"
+                :value: 2000000
+              - 
+                :rule: "miljardinnella[­>>];"
+                :value: 1000000000
+              - 
+                :rule: "<%%spellout-ordinal-adessive-larger<­miljardinnella[­>>];"
+                :value: 2000000000
+              - 
+                :rule: "biljoonannella[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%%spellout-ordinal-adessive-larger<­biljoonannella[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-ordinal-adessive
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: ;
+                :value: 0
+              - 
+                :rule: kahdennelta;
+                :value: 2
+              - 
+                :rule: =%spellout-ordinal-ablative=;
+                :value: 3
+            :type: spellout-ordinal-ablative-larger
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: "=#,##0.#=;"
+                :value: x.x
+              - 
+                :rule: nollannelta;
+                :value: 0
+              - 
+                :rule: ensimmäiseltä;
+                :value: 1
+              - 
+                :rule: toiselta;
+                :value: 2
+              - 
+                :rule: kolmannelta;
+                :value: 3
+              - 
+                :rule: neljänneltä;
+                :value: 4
+              - 
+                :rule: viidenneltä;
+                :value: 5
+              - 
+                :rule: kuudennelta;
+                :value: 6
+              - 
+                :rule: seitsemänneltä;
+                :value: 7
+              - 
+                :rule: kahdeksannelta;
+                :value: 8
+              - 
+                :rule: yhdeksänneltä;
+                :value: 9
+              - 
+                :rule: kymmenenneltä;
+                :value: 10
+              - 
+                :rule: yhdenneltätoista;
+                :value: 11
+              - 
+                :rule: kahdenneltatoista;
+                :value: 12
+              - 
+                :rule: ">>toista;"
+                :value: 13
+              - 
+                :rule: "<%%spellout-ordinal-ablative-larger<­kymmenenneltä[­>>];"
+                :value: 20
+              - 
+                :rule: "sadannelta[­>>];"
+                :value: 100
+              - 
+                :rule: "<%%spellout-ordinal-ablative-larger<­sadannelta[­>>];"
+                :value: 200
+              - 
+                :rule: "tuhannennelta[­>>];"
+                :value: 1000
+              - 
+                :rule: "<%%spellout-ordinal-ablative-larger<­tuhannennelta[­>>];"
+                :value: 2000
+              - 
+                :rule: "miljoonannelta[­>>];"
+                :value: 1000000
+              - 
+                :rule: "<%%spellout-ordinal-ablative-larger<­miljoonannelta[­>>];"
+                :value: 2000000
+              - 
+                :rule: "miljardinnelta[­>>];"
+                :value: 1000000000
+              - 
+                :rule: "<%%spellout-ordinal-ablative-larger<­miljardinnelta[­>>];"
+                :value: 2000000000
+              - 
+                :rule: "biljoonannelta[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%%spellout-ordinal-ablative-larger<­biljoonannelta[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-ordinal-ablative
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: ;
+                :value: 0
+              - 
+                :rule: kahdennelle;
+                :value: 2
+              - 
+                :rule: =%spellout-ordinal-allative=;
+                :value: 3
+            :type: spellout-ordinal-allative-larger
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: "=#,##0.#=;"
+                :value: x.x
+              - 
+                :rule: nollannelle;
+                :value: 0
+              - 
+                :rule: ensimmäiselle;
+                :value: 1
+              - 
+                :rule: toiselle;
+                :value: 2
+              - 
+                :rule: kolmannelle;
+                :value: 3
+              - 
+                :rule: neljännelle;
+                :value: 4
+              - 
+                :rule: viidennelle;
+                :value: 5
+              - 
+                :rule: kuudennelle;
+                :value: 6
+              - 
+                :rule: seitsemännelle;
+                :value: 7
+              - 
+                :rule: kahdeksannelle;
+                :value: 8
+              - 
+                :rule: yhdeksännelle;
+                :value: 9
+              - 
+                :rule: kymmenennelle;
+                :value: 10
+              - 
+                :rule: yhdennelletoista;
+                :value: 11
+              - 
+                :rule: kahdennelletoista;
+                :value: 12
+              - 
+                :rule: ">>toista;"
+                :value: 13
+              - 
+                :rule: "<%%spellout-ordinal-allative-larger<­kymmenennelle[­>>];"
+                :value: 20
+              - 
+                :rule: "sadannelle[­>>];"
+                :value: 100
+              - 
+                :rule: "<%%spellout-ordinal-allative-larger<­sadannelle[­>>];"
+                :value: 200
+              - 
+                :rule: "tuhannennelle[­>>];"
+                :value: 1000
+              - 
+                :rule: "<%%spellout-ordinal-allative-larger<­tuhannennelle[­>>];"
+                :value: 2000
+              - 
+                :rule: "miljoonannelle[­>>];"
+                :value: 1000000
+              - 
+                :rule: "<%%spellout-ordinal-allative-larger<­miljoonannelle[­>>];"
+                :value: 2000000
+              - 
+                :rule: "miljardinnelle[­>>];"
+                :value: 1000000000
+              - 
+                :rule: "<%%spellout-ordinal-allative-larger<­miljardinnelle[­>>];"
+                :value: 2000000000
+              - 
+                :rule: "biljoonannelle[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%%spellout-ordinal-allative-larger<­biljoonannelle[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-ordinal-allative
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: ;
+                :value: 0
+              - 
+                :rule: kahdennet;
+                :value: 2
+              - 
+                :rule: =%spellout-ordinal-plural=;
+                :value: 3
+            :type: spellout-ordinal-plural-larger
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: "=#,##0.#=;"
+                :value: x.x
+              - 
+                :rule: nollannet;
+                :value: 0
+              - 
+                :rule: ensimmäiset;
+                :value: 1
+              - 
+                :rule: toiset;
+                :value: 2
+              - 
+                :rule: kolmannet;
+                :value: 3
+              - 
+                :rule: neljännet;
+                :value: 4
+              - 
+                :rule: viidennet;
+                :value: 5
+              - 
+                :rule: kuudennet;
+                :value: 6
+              - 
+                :rule: seitsemännet;
+                :value: 7
+              - 
+                :rule: kahdeksannet;
+                :value: 8
+              - 
+                :rule: yhdeksännet;
+                :value: 9
+              - 
+                :rule: kymmenennet;
+                :value: 10
+              - 
+                :rule: yhdennettoista;
+                :value: 11
+              - 
+                :rule: kahdennettoista;
+                :value: 12
+              - 
+                :rule: ">>toista;"
+                :value: 13
+              - 
+                :rule: "<%%spellout-ordinal-plural-larger<­kymmenennet[­>>];"
+                :value: 20
+              - 
+                :rule: "sadannet[­>>];"
+                :value: 100
+              - 
+                :rule: "<%%spellout-ordinal-plural-larger<­sadannet[­>>];"
+                :value: 200
+              - 
+                :rule: "tuhannennet[­>>];"
+                :value: 1000
+              - 
+                :rule: "<%%spellout-ordinal-plural-larger<­tuhannennet[­>>];"
+                :value: 2000
+              - 
+                :rule: "miljoonannet[­>>];"
+                :value: 1000000
+              - 
+                :rule: "<%%spellout-ordinal-plural-larger<­miljoonannet[­>>];"
+                :value: 2000000
+              - 
+                :rule: "miljardinnet[­>>];"
+                :value: 1000000000
+              - 
+                :rule: "<%%spellout-ordinal-plural-larger<­miljardinnet[­>>];"
+                :value: 2000000000
+              - 
+                :rule: "biljoonannet[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%%spellout-ordinal-plural-larger<­biljoonannet[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-ordinal-plural
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: ;
+                :value: 0
+              - 
+                :rule: kahdensien;
+                :value: 2
+              - 
+                :rule: =%spellout-ordinal-genitive-plural=;
+                :value: 3
+            :type: spellout-ordinal-genitive-plural-larger
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: "=#,##0.#=;"
+                :value: x.x
+              - 
+                :rule: nollansien;
+                :value: 0
+              - 
+                :rule: ensimmäisten;
+                :value: 1
+              - 
+                :rule: toisten;
+                :value: 2
+              - 
+                :rule: kolmansien;
+                :value: 3
+              - 
+                :rule: neljänsien;
+                :value: 4
+              - 
+                :rule: viidensien;
+                :value: 5
+              - 
+                :rule: kuudensien;
+                :value: 6
+              - 
+                :rule: seitsemänsien;
+                :value: 7
+              - 
+                :rule: kahdeksansien;
+                :value: 8
+              - 
+                :rule: yhdeksänsien;
+                :value: 9
+              - 
+                :rule: kymmenensien;
+                :value: 10
+              - 
+                :rule: yhdensientoista;
+                :value: 11
+              - 
+                :rule: kahdensientoista;
+                :value: 12
+              - 
+                :rule: ">>toista;"
+                :value: 13
+              - 
+                :rule: "<%%spellout-ordinal-genitive-plural-larger<­kymmenensien[­>>];"
+                :value: 20
+              - 
+                :rule: "sadansien[­>>];"
+                :value: 100
+              - 
+                :rule: "<%%spellout-ordinal-genitive-plural-larger<­sadansien[­>>];"
+                :value: 200
+              - 
+                :rule: "tuhannensien[­>>];"
+                :value: 1000
+              - 
+                :rule: "<%%spellout-ordinal-genitive-plural-larger<­tuhannensien[­>>];"
+                :value: 2000
+              - 
+                :rule: "miljoonansien[­>>];"
+                :value: 1000000
+              - 
+                :rule: "<%%spellout-ordinal-genitive-plural-larger<­miljoonansien[­>>];"
+                :value: 2000000
+              - 
+                :rule: "miljardinsien[­>>];"
+                :value: 1000000000
+              - 
+                :rule: "<%%spellout-ordinal-genitive-plural-larger<­miljardinsien[­>>];"
+                :value: 2000000000
+              - 
+                :rule: "biljoonansien[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%%spellout-ordinal-genitive-plural-larger<­biljoonansien[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-ordinal-genitive-plural
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: ;
+                :value: 0
+              - 
+                :rule: kahdensia;
+                :value: 2
+              - 
+                :rule: =%spellout-ordinal-partitive-plural=;
+                :value: 3
+            :type: spellout-ordinal-partitive-plural-larger
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: "=#,##0.#=;"
+                :value: x.x
+              - 
+                :rule: nollansia;
+                :value: 0
+              - 
+                :rule: ensimmäisiä;
+                :value: 1
+              - 
+                :rule: toisia;
+                :value: 2
+              - 
+                :rule: kolmansia;
+                :value: 3
+              - 
+                :rule: neljänsiä;
+                :value: 4
+              - 
+                :rule: viidensiä;
+                :value: 5
+              - 
+                :rule: kuudensia;
+                :value: 6
+              - 
+                :rule: seitsemänsiä;
+                :value: 7
+              - 
+                :rule: kahdeksansia;
+                :value: 8
+              - 
+                :rule: yhdeksänsiä;
+                :value: 9
+              - 
+                :rule: kymmenensiä;
+                :value: 10
+              - 
+                :rule: yhdensiätoista;
+                :value: 11
+              - 
+                :rule: kahdensiatoista;
+                :value: 12
+              - 
+                :rule: ">>toista;"
+                :value: 13
+              - 
+                :rule: "<%%spellout-ordinal-partitive-plural-larger<­kymmenensiä[­>>];"
+                :value: 20
+              - 
+                :rule: "sadansia[­>>];"
+                :value: 100
+              - 
+                :rule: "<%%spellout-ordinal-partitive-plural-larger<­sadansia[­>>];"
+                :value: 200
+              - 
+                :rule: "tuhannensia[­>>];"
+                :value: 1000
+              - 
+                :rule: "<%%spellout-ordinal-partitive-plural-larger<­tuhannensia[­>>];"
+                :value: 2000
+              - 
+                :rule: "miljoonansia[­>>];"
+                :value: 1000000
+              - 
+                :rule: "<%%spellout-ordinal-partitive-plural-larger<­miljoonansia[­>>];"
+                :value: 2000000
+              - 
+                :rule: "miljardinsia[­>>];"
+                :value: 1000000000
+              - 
+                :rule: "<%%spellout-ordinal-partitive-plural-larger<­miljardinsia[­>>];"
+                :value: 2000000000
+              - 
+                :rule: "biljoonansia[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%%spellout-ordinal-partitive-plural-larger<­biljoonansia[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-ordinal-partitive-plural
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: ;
+                :value: 0
+              - 
+                :rule: kahdensina;
+                :value: 2
+              - 
+                :rule: =%spellout-ordinal-essive-plural=;
+                :value: 3
+            :type: spellout-ordinal-essive-plural-larger
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: "=#,##0.#=;"
+                :value: x.x
+              - 
+                :rule: nollansina;
+                :value: 0
+              - 
+                :rule: ensimmäisinä;
+                :value: 1
+              - 
+                :rule: toisina;
+                :value: 2
+              - 
+                :rule: kolmansina;
+                :value: 3
+              - 
+                :rule: neljänsinä;
+                :value: 4
+              - 
+                :rule: viidensinä;
+                :value: 5
+              - 
+                :rule: kuudensina;
+                :value: 6
+              - 
+                :rule: seitsemänsinä;
+                :value: 7
+              - 
+                :rule: kahdeksansina;
+                :value: 8
+              - 
+                :rule: yhdeksänsinä;
+                :value: 9
+              - 
+                :rule: kymmenensinä;
+                :value: 10
+              - 
+                :rule: yhdensinätoista;
+                :value: 11
+              - 
+                :rule: kahdensinatoista;
+                :value: 12
+              - 
+                :rule: ">>toista;"
+                :value: 13
+              - 
+                :rule: "<%%spellout-ordinal-essive-plural-larger<­kymmenensinä[­>>];"
+                :value: 20
+              - 
+                :rule: "sadansina[­>>];"
+                :value: 100
+              - 
+                :rule: "<%%spellout-ordinal-essive-plural-larger<­sadansina[­>>];"
+                :value: 200
+              - 
+                :rule: "tuhannensina[­>>];"
+                :value: 1000
+              - 
+                :rule: "<%%spellout-ordinal-essive-plural-larger<­tuhannensina[­>>];"
+                :value: 2000
+              - 
+                :rule: "miljoonansina[­>>];"
+                :value: 1000000
+              - 
+                :rule: "<%%spellout-ordinal-essive-plural-larger<­miljoonansina[­>>];"
+                :value: 2000000
+              - 
+                :rule: "miljardinsina[­>>];"
+                :value: 1000000000
+              - 
+                :rule: "<%%spellout-ordinal-essive-plural-larger<­miljardinsina[­>>];"
+                :value: 2000000000
+              - 
+                :rule: "biljoonansina[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%%spellout-ordinal-essive-plural-larger<­biljoonansina[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-ordinal-essive-plural
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: ;
+                :value: 0
+              - 
+                :rule: kahdensiksi;
+                :value: 2
+              - 
+                :rule: =%spellout-ordinal-translative-plural=;
+                :value: 3
+            :type: spellout-ordinal-translative-plural-larger
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: "=#,##0.#=;"
+                :value: x.x
+              - 
+                :rule: nollansiksi;
+                :value: 0
+              - 
+                :rule: ensimmäisiksi;
+                :value: 1
+              - 
+                :rule: toisiksi;
+                :value: 2
+              - 
+                :rule: kolmansiksi;
+                :value: 3
+              - 
+                :rule: neljänsiksi;
+                :value: 4
+              - 
+                :rule: viidensiksi;
+                :value: 5
+              - 
+                :rule: kuudensiksi;
+                :value: 6
+              - 
+                :rule: seitsemänsiksi;
+                :value: 7
+              - 
+                :rule: kahdeksansiksi;
+                :value: 8
+              - 
+                :rule: yhdeksänsiksi;
+                :value: 9
+              - 
+                :rule: kymmenensiksi;
+                :value: 10
+              - 
+                :rule: yhdensiksitoista;
+                :value: 11
+              - 
+                :rule: kahdensiksitoista;
+                :value: 12
+              - 
+                :rule: ">>toista;"
+                :value: 13
+              - 
+                :rule: "<%%spellout-ordinal-translative-plural-larger<­kymmenensiksi[­>>];"
+                :value: 20
+              - 
+                :rule: "sadansiksi[­>>];"
+                :value: 100
+              - 
+                :rule: "<%%spellout-ordinal-translative-plural-larger<­sadansiksi[­>>];"
+                :value: 200
+              - 
+                :rule: "tuhannensiksi[­>>];"
+                :value: 1000
+              - 
+                :rule: "<%%spellout-ordinal-translative-plural-larger<­tuhannensiksi[­>>];"
+                :value: 2000
+              - 
+                :rule: "miljoonansiksi[­>>];"
+                :value: 1000000
+              - 
+                :rule: "<%%spellout-ordinal-translative-plural-larger<­miljoonansiksi[­>>];"
+                :value: 2000000
+              - 
+                :rule: "miljardinsiksi[­>>];"
+                :value: 1000000000
+              - 
+                :rule: "<%%spellout-ordinal-translative-plural-larger<­miljardinsiksi[­>>];"
+                :value: 2000000000
+              - 
+                :rule: "biljoonansiksi[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%%spellout-ordinal-translative-plural-larger<­biljoonansiksi[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-ordinal-translative-plural
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: ;
+                :value: 0
+              - 
+                :rule: kahdensissa;
+                :value: 2
+              - 
+                :rule: =%spellout-ordinal-inessive-plural=;
+                :value: 3
+            :type: spellout-ordinal-inessive-plural-larger
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: "=#,##0.#=;"
+                :value: x.x
+              - 
+                :rule: nollansissa;
+                :value: 0
+              - 
+                :rule: ensimmäisissä;
+                :value: 1
+              - 
+                :rule: toisissa;
+                :value: 2
+              - 
+                :rule: kolmansissa;
+                :value: 3
+              - 
+                :rule: neljänsissä;
+                :value: 4
+              - 
+                :rule: viidensissä;
+                :value: 5
+              - 
+                :rule: kuudensissa;
+                :value: 6
+              - 
+                :rule: seitsemänsissä;
+                :value: 7
+              - 
+                :rule: kahdeksansissa;
+                :value: 8
+              - 
+                :rule: yhdeksänsissä;
+                :value: 9
+              - 
+                :rule: kymmenensissä;
+                :value: 10
+              - 
+                :rule: yhdensissätoista;
+                :value: 11
+              - 
+                :rule: kahdensissatoista;
+                :value: 12
+              - 
+                :rule: ">>toista;"
+                :value: 13
+              - 
+                :rule: "<%%spellout-ordinal-inessive-plural-larger<­kymmenensissä[­>>];"
+                :value: 20
+              - 
+                :rule: "sadansissa[­>>];"
+                :value: 100
+              - 
+                :rule: "<%%spellout-ordinal-inessive-plural-larger<­sadansissa[­>>];"
+                :value: 200
+              - 
+                :rule: "tuhannensissa[­>>];"
+                :value: 1000
+              - 
+                :rule: "<%%spellout-ordinal-inessive-plural-larger<­tuhannensissa[­>>];"
+                :value: 2000
+              - 
+                :rule: "miljoonansissa[­>>];"
+                :value: 1000000
+              - 
+                :rule: "<%%spellout-ordinal-inessive-plural-larger<­miljoonansissa[­>>];"
+                :value: 2000000
+              - 
+                :rule: "miljardinsissa[­>>];"
+                :value: 1000000000
+              - 
+                :rule: "<%%spellout-ordinal-inessive-plural-larger<­miljardinsissa[­>>];"
+                :value: 2000000000
+              - 
+                :rule: "biljoonansissa[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%%spellout-ordinal-inessive-plural-larger<­biljoonansissa[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-ordinal-inessive-plural
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: ;
+                :value: 0
+              - 
+                :rule: kahdensista;
+                :value: 2
+              - 
+                :rule: =%spellout-ordinal-elative-plural=;
+                :value: 3
+            :type: spellout-ordinal-elative-plural-larger
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: "=#,##0.#=;"
+                :value: x.x
+              - 
+                :rule: nollansista;
+                :value: 0
+              - 
+                :rule: ensimmäisistä;
+                :value: 1
+              - 
+                :rule: toisista;
+                :value: 2
+              - 
+                :rule: kolmansista;
+                :value: 3
+              - 
+                :rule: neljänsistä;
+                :value: 4
+              - 
+                :rule: viidensistä;
+                :value: 5
+              - 
+                :rule: kuudensista;
+                :value: 6
+              - 
+                :rule: seitsemänsistä;
+                :value: 7
+              - 
+                :rule: kahdeksansista;
+                :value: 8
+              - 
+                :rule: yhdeksänsistä;
+                :value: 9
+              - 
+                :rule: kymmenensistä;
+                :value: 10
+              - 
+                :rule: yhdensistätoista;
+                :value: 11
+              - 
+                :rule: kahdensistatoista;
+                :value: 12
+              - 
+                :rule: ">>toista;"
+                :value: 13
+              - 
+                :rule: "<%%spellout-ordinal-elative-plural-larger<­kymmenensistä[­>>];"
+                :value: 20
+              - 
+                :rule: "sadansista[­>>];"
+                :value: 100
+              - 
+                :rule: "<%%spellout-ordinal-elative-plural-larger<­sadansista[­>>];"
+                :value: 200
+              - 
+                :rule: "tuhannensista[­>>];"
+                :value: 1000
+              - 
+                :rule: "<%%spellout-ordinal-elative-plural-larger<­tuhannensista[­>>];"
+                :value: 2000
+              - 
+                :rule: "miljoonansista[­>>];"
+                :value: 1000000
+              - 
+                :rule: "<%%spellout-ordinal-elative-plural-larger<­miljoonansista[­>>];"
+                :value: 2000000
+              - 
+                :rule: "miljardinsista[­>>];"
+                :value: 1000000000
+              - 
+                :rule: "<%%spellout-ordinal-elative-plural-larger<­miljardinsista[­>>];"
+                :value: 2000000000
+              - 
+                :rule: "biljoonansista[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%%spellout-ordinal-elative-plural-larger<­biljoonansista[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-ordinal-elative-plural
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: ;
+                :value: 0
+              - 
+                :rule: kahdensiin;
+                :value: 2
+              - 
+                :rule: =%spellout-ordinal-illative-plural=;
+                :value: 3
+            :type: spellout-ordinal-illative-plural-larger
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: "=#,##0.#=;"
+                :value: x.x
+              - 
+                :rule: nollansiin;
+                :value: 0
+              - 
+                :rule: ensimmäisiin;
+                :value: 1
+              - 
+                :rule: toisiin;
+                :value: 2
+              - 
+                :rule: kolmansiin;
+                :value: 3
+              - 
+                :rule: neljänsiin;
+                :value: 4
+              - 
+                :rule: viidensiin;
+                :value: 5
+              - 
+                :rule: kuudensiin;
+                :value: 6
+              - 
+                :rule: seitsemänsiin;
+                :value: 7
+              - 
+                :rule: kahdeksansiin;
+                :value: 8
+              - 
+                :rule: yhdeksänsiin;
+                :value: 9
+              - 
+                :rule: kymmenensiin;
+                :value: 10
+              - 
+                :rule: yhdensiintoista;
+                :value: 11
+              - 
+                :rule: kahdensiintoista;
+                :value: 12
+              - 
+                :rule: ">>toista;"
+                :value: 13
+              - 
+                :rule: "<%%spellout-ordinal-illative-plural-larger<­kymmenensiin[­>>];"
+                :value: 20
+              - 
+                :rule: "sadansiin[­>>];"
+                :value: 100
+              - 
+                :rule: "<%%spellout-ordinal-illative-plural-larger<­sadansiin[­>>];"
+                :value: 200
+              - 
+                :rule: "tuhannensiin[­>>];"
+                :value: 1000
+              - 
+                :rule: "<%%spellout-ordinal-illative-plural-larger<­tuhannensiin[­>>];"
+                :value: 2000
+              - 
+                :rule: "miljoonansiin[­>>];"
+                :value: 1000000
+              - 
+                :rule: "<%%spellout-ordinal-illative-plural-larger<­miljoonansiin[­>>];"
+                :value: 2000000
+              - 
+                :rule: "miljardinsiin[­>>];"
+                :value: 1000000000
+              - 
+                :rule: "<%%spellout-ordinal-illative-plural-larger<­miljardinsiin[­>>];"
+                :value: 2000000000
+              - 
+                :rule: "biljoonansiin[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%%spellout-ordinal-illative-plural-larger<­biljoonansiin[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-ordinal-illative-plural
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: ;
+                :value: 0
+              - 
+                :rule: kahdennilla;
+                :value: 2
+              - 
+                :rule: =%spellout-ordinal-adessive-plural=;
+                :value: 3
+            :type: spellout-ordinal-adessive-plural-larger
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: "=#,##0.#=;"
+                :value: x.x
+              - 
+                :rule: nollannilla;
+                :value: 0
+              - 
+                :rule: ensimmäisillä;
+                :value: 1
+              - 
+                :rule: toisilla;
+                :value: 2
+              - 
+                :rule: kolmannilla;
+                :value: 3
+              - 
+                :rule: neljännillä;
+                :value: 4
+              - 
+                :rule: viidennillä;
+                :value: 5
+              - 
+                :rule: kuudennilla;
+                :value: 6
+              - 
+                :rule: seitsemännillä;
+                :value: 7
+              - 
+                :rule: kahdeksannilla;
+                :value: 8
+              - 
+                :rule: yhdeksännillä;
+                :value: 9
+              - 
+                :rule: kymmenennillä;
+                :value: 10
+              - 
+                :rule: yhdennillätoista;
+                :value: 11
+              - 
+                :rule: kahdennillatoista;
+                :value: 12
+              - 
+                :rule: ">>toista;"
+                :value: 13
+              - 
+                :rule: "<%%spellout-ordinal-adessive-plural-larger<­kymmenennillä[­>>];"
+                :value: 20
+              - 
+                :rule: "sadannilla[­>>];"
+                :value: 100
+              - 
+                :rule: "<%%spellout-ordinal-adessive-plural-larger<­sadannilla[­>>];"
+                :value: 200
+              - 
+                :rule: "tuhannennilla[­>>];"
+                :value: 1000
+              - 
+                :rule: "<%%spellout-ordinal-adessive-plural-larger<­tuhannennilla[­>>];"
+                :value: 2000
+              - 
+                :rule: "miljoonannilla[­>>];"
+                :value: 1000000
+              - 
+                :rule: "<%%spellout-ordinal-adessive-plural-larger<­miljoonannilla[­>>];"
+                :value: 2000000
+              - 
+                :rule: "miljardinnilla[­>>];"
+                :value: 1000000000
+              - 
+                :rule: "<%%spellout-ordinal-adessive-plural-larger<­miljardinnilla[­>>];"
+                :value: 2000000000
+              - 
+                :rule: "biljoonannilla[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%%spellout-ordinal-adessive-plural-larger<­biljoonannilla[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-ordinal-adessive-plural
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: ;
+                :value: 0
+              - 
+                :rule: kahdennilta;
+                :value: 2
+              - 
+                :rule: =%spellout-ordinal-ablative-plural=;
+                :value: 3
+            :type: spellout-ordinal-ablative-plural-larger
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: "=#,##0.#=;"
+                :value: x.x
+              - 
+                :rule: nollannilta;
+                :value: 0
+              - 
+                :rule: ensimmäisiltä;
+                :value: 1
+              - 
+                :rule: toisilta;
+                :value: 2
+              - 
+                :rule: kolmannilta;
+                :value: 3
+              - 
+                :rule: neljänniltä;
+                :value: 4
+              - 
+                :rule: viidenniltä;
+                :value: 5
+              - 
+                :rule: kuudennilta;
+                :value: 6
+              - 
+                :rule: seitsemänniltä;
+                :value: 7
+              - 
+                :rule: kahdeksannilta;
+                :value: 8
+              - 
+                :rule: yhdeksänniltä;
+                :value: 9
+              - 
+                :rule: kymmenenniltä;
+                :value: 10
+              - 
+                :rule: yhdenniltätoista;
+                :value: 11
+              - 
+                :rule: kahdenniltatoista;
+                :value: 12
+              - 
+                :rule: ">>toista;"
+                :value: 13
+              - 
+                :rule: "<%%spellout-ordinal-ablative-plural-larger<­kymmenenniltä[­>>];"
+                :value: 20
+              - 
+                :rule: "sadannilta[­>>];"
+                :value: 100
+              - 
+                :rule: "<%%spellout-ordinal-ablative-plural-larger<­sadannilta[­>>];"
+                :value: 200
+              - 
+                :rule: "tuhannennilta[­>>];"
+                :value: 1000
+              - 
+                :rule: "<%%spellout-ordinal-ablative-plural-larger<­tuhannennilta[­>>];"
+                :value: 2000
+              - 
+                :rule: "miljoonannilta[­>>];"
+                :value: 1000000
+              - 
+                :rule: "<%%spellout-ordinal-ablative-plural-larger<­miljoonannilta[­>>];"
+                :value: 2000000
+              - 
+                :rule: "miljardinnilta[­>>];"
+                :value: 1000000000
+              - 
+                :rule: "<%%spellout-ordinal-ablative-plural-larger<­miljardinnilta[­>>];"
+                :value: 2000000000
+              - 
+                :rule: "biljoonannilta[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%%spellout-ordinal-ablative-plural-larger<­biljoonannilta[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-ordinal-ablative-plural
+          - 
+            :access: private
+            :rules: 
+              - 
+                :rule: ;
+                :value: 0
+              - 
+                :rule: kahdennille;
+                :value: 2
+              - 
+                :rule: =%spellout-ordinal-allative-plural=;
+                :value: 3
+            :type: spellout-ordinal-allative-plural-larger
+          - 
+            :rules: 
+              - 
+                :rule: "miinus >>;"
+                :value: "-x"
+              - 
+                :rule: "=#,##0.#=;"
+                :value: x.x
+              - 
+                :rule: nollannille;
+                :value: 0
+              - 
+                :rule: ensimmäisille;
+                :value: 1
+              - 
+                :rule: toisille;
+                :value: 2
+              - 
+                :rule: kolmannille;
+                :value: 3
+              - 
+                :rule: neljännille;
+                :value: 4
+              - 
+                :rule: viidennille;
+                :value: 5
+              - 
+                :rule: kuudennille;
+                :value: 6
+              - 
+                :rule: seitsemännille;
+                :value: 7
+              - 
+                :rule: kahdeksannille;
+                :value: 8
+              - 
+                :rule: yhdeksännille;
+                :value: 9
+              - 
+                :rule: kymmenennille;
+                :value: 10
+              - 
+                :rule: yhdennilletoista;
+                :value: 11
+              - 
+                :rule: kahdennilletoista;
+                :value: 12
+              - 
+                :rule: ">>toista;"
+                :value: 13
+              - 
+                :rule: "<%%spellout-ordinal-allative-plural-larger<­kymmenennille[­>>];"
+                :value: 20
+              - 
+                :rule: "sadannille[­>>];"
+                :value: 100
+              - 
+                :rule: "<%%spellout-ordinal-allative-plural-larger<­sadannille[­>>];"
+                :value: 200
+              - 
+                :rule: "tuhannennille[­>>];"
+                :value: 1000
+              - 
+                :rule: "<%%spellout-ordinal-allative-plural-larger<­tuhannennille[­>>];"
+                :value: 2000
+              - 
+                :rule: "miljoonannille[­>>];"
+                :value: 1000000
+              - 
+                :rule: "<%%spellout-ordinal-allative-plural-larger<­miljoonannille[­>>];"
+                :value: 2000000
+              - 
+                :rule: "miljardinnille[­>>];"
+                :value: 1000000000
+              - 
+                :rule: "<%%spellout-ordinal-allative-plural-larger<­miljardinnille[­>>];"
+                :value: 2000000000
+              - 
+                :rule: "biljoonannille[ >>];"
+                :value: 1000000000000
+              - 
+                :rule: "<%%spellout-ordinal-allative-plural-larger<­biljoonannille[ >>];"
+                :value: 2000000000000
+              - 
+                :rule: "=#,##0=;"
+                :value: 1000000000000000000
+            :type: spellout-ordinal-allative-plural
+        :type: SpelloutRules

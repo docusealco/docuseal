@@ -116,6 +116,10 @@ class User < ApplicationRecord
     [first_name&.first, last_name&.first].compact_blank.join.upcase
   end
 
+  def signed_in_via_sso?
+    provider == 'google_oauth2' && uid.present?
+  end
+
   def full_name
     [first_name, last_name].compact_blank.join(' ')
   end
@@ -126,5 +130,41 @@ class User < ApplicationRecord
     else
       email
     end
+  end
+
+  def self.from_google_omniauth(auth)
+    raw_info = auth.extra&.raw_info
+    hosted_domain = raw_info.respond_to?(:hd) ? raw_info.hd : raw_info&.dig('hd')
+    return nil unless Wabosign.google_domain_allowed?(hosted_domain)
+
+    email = auth.info.email.to_s.downcase
+    return nil if email.blank?
+
+    user = find_by('lower(email) = ?', email)
+    if user
+      return nil if user.provider.present? && user.uid != auth.uid
+
+      user.update!(provider: 'google_oauth2', uid: auth.uid) if user.provider.blank?
+      return user
+    end
+
+    account = default_sso_account
+    return nil if account.nil?
+
+    create!(
+      account: account,
+      email: email,
+      first_name: auth.info.first_name,
+      last_name: auth.info.last_name,
+      role: ADMIN_ROLE,
+      password: SecureRandom.hex(32),
+      provider: 'google_oauth2',
+      uid: auth.uid,
+      confirmed_at: Time.current
+    )
+  end
+
+  def self.default_sso_account
+    Account.where(archived_at: nil).order(:created_at).first
   end
 end

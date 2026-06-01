@@ -1,0 +1,52 @@
+module OAuth2
+  class Client
+    RESERVED_REQ_KEYS: Array[String]
+    RESERVED_PARAM_KEYS: Array[String]
+
+    include OAuth2::FilteredAttributes
+
+    attr_reader id: String
+    attr_reader secret: String
+    attr_reader site: String?
+    attr_accessor options: Hash[Symbol, untyped]
+    attr_writer connection: untyped
+
+    def initialize: (String client_id, String client_secret, ?Hash[Symbol, untyped]) { (untyped) -> void } -> void
+
+    def site=: (String) -> String
+
+    def connection: () -> untyped
+
+    def authorize_url: (?Hash[untyped, untyped]) -> String
+    def token_url: (?Hash[untyped, untyped]) -> String
+    def revoke_url: (?Hash[untyped, untyped]) -> String
+
+    def request: (Symbol verb, String url, ?Hash[Symbol, untyped]) { (untyped) -> void } -> OAuth2::Response
+
+    def get_token: (Hash[untyped, untyped] params, ?Hash[Symbol, untyped] access_token_opts, ?Proc) { (Hash[Symbol, untyped]) -> void } -> (OAuth2::AccessToken | nil)
+
+    def revoke_token: (String token, ?String token_type_hint, ?Hash[Symbol, untyped]) { (untyped) -> void } -> OAuth2::Response
+
+    def http_method: () -> Symbol
+
+    def auth_code: () -> OAuth2::Strategy::AuthCode
+    def implicit: () -> OAuth2::Strategy::Implicit
+    def password: () -> OAuth2::Strategy::Password
+    def client_credentials: () -> OAuth2::Strategy::ClientCredentials
+    def assertion: () -> OAuth2::Strategy::Assertion
+
+    def redirection_params: () -> Hash[String, String]
+
+    private
+
+    def params_to_req_opts: (Hash[untyped, untyped]) -> Hash[Symbol, untyped]
+    def parse_snaky_params_headers: (Hash[untyped, untyped]) -> [Symbol, bool, untyped, (Symbol | nil), Hash[untyped, untyped], Hash[String, String]]
+    def execute_request: (Symbol verb, String url, ?Hash[Symbol, untyped]) { (Faraday::Request) -> void } -> OAuth2::Response
+    def authenticator: () -> OAuth2::Authenticator
+    def parse_response_legacy: (OAuth2::Response, Hash[Symbol, untyped], Proc) -> (OAuth2::AccessToken | nil)
+    def parse_response: (OAuth2::Response, Hash[Symbol, untyped]) -> (OAuth2::AccessToken | nil)
+    def build_access_token: (OAuth2::Response, Hash[Symbol, untyped], untyped) -> OAuth2::AccessToken
+    def build_access_token_legacy: (OAuth2::Response, Hash[Symbol, untyped], Proc) -> (OAuth2::AccessToken | nil)
+    def oauth_debug_logging: (untyped) -> void
+  end
+end

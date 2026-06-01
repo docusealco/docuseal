@@ -1,0 +1,12 @@
+--- 
+:transforms: 
+  - 
+    :aliases: 
+      - ja-t-ro
+    :direction: forward
+    :rules: 
+      - "::ro-ro_FONIPA ;"
+      - "::ro_FONIPA-ja ;"
+    :source: ro
+    :target: ja
+    :variant: ~

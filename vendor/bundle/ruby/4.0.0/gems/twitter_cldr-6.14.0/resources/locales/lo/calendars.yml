@@ -1,0 +1,369 @@
+--- 
+:lo: 
+  :calendars: 
+    :gregorian: 
+      :additional_formats: 
+        :Bh: "h B"
+        :Bhm: "h:mm B"
+        :Bhms: "h:mm:ss B"
+        :E: ccc
+        :EBhm: "E h:mm B"
+        :EBhms: "E h:mm:ss B"
+        :EHm: "E HH:mm"
+        :EHms: "E HH:mm:ss"
+        :Ed: "E, d"
+        :Ehm: "E h:mm a"
+        :Ehms: "E h:mm:ss a"
+        :Gy: "G y"
+        :GyMMM: "MMM, G y"
+        :GyMMMEd: "E d MMMM, G y"
+        :GyMMMd: "d MMMM, G y"
+        :GyMd: "d/M/GGGGG y"
+        :H: HH
+        :Hm: "HH:mm"
+        :Hms: "HH:mm:ss"
+        :Hmsv: "HH:mm:ss v"
+        :Hmv: "HH:mm v"
+        :M: L
+        :MEd: "E, d/M"
+        :MMM: LLL
+        :MMMEd: "E d MMM"
+        :MMMMW: "ອາທິດທີ່ W ຂອງເດືອນ M"
+        :MMMMd: "d MMMM"
+        :MMMd: "d MMM"
+        :Md: d/M
+        :d: d
+        :h: "h ໂມງa"
+        :hm: "h:mm a"
+        :hms: "h:mm:ss a"
+        :hmsv: "h:mm:ss a v"
+        :hmv: "h:mm a v"
+        :ms: "mm:ss"
+        ? !ruby/symbol "y"
+        : "y"
+        :yM: M/y
+        :yMEd: "E, d/M/y"
+        :yMMM: "MMM y"
+        :yMMMEd: "E, d MMM y"
+        :yMMMM: "MMMM y"
+        :yMMMd: "d MMM y"
+        :yMd: d/M/y
+        :yQQQ: "QQQ y"
+        :yQQQQ: "QQQQ y"
+        :yw: "ອາທິດທີ່ w ຂອງປີ Y"
+      :days: 
+        :format: 
+          :abbreviated: 
+            :fri: ສຸກ
+            :mon: ຈັນ
+            :sat: ເສົາ
+            :sun: ອາທິດ
+            :thu: ພະຫັດ
+            :tue: ອັງຄານ
+            :wed: ພຸດ
+          :narrow: 
+            :fri: ສຸ
+            :mon: ຈ
+            :sat: ສ
+            :sun: ອາ
+            :thu: ພຫ
+            :tue: ອ
+            :wed: ພ
+          :short: 
+            :fri: ສຸ.
+            :mon: ຈ.
+            :sat: ສ.
+            :sun: ອາ.
+            :thu: ພຫ.
+            :tue: ອ.
+            :wed: ພ.
+          :wide: 
+            :fri: ວັນສຸກ
+            :mon: ວັນຈັນ
+            :sat: ວັນເສົາ
+            :sun: ວັນອາທິດ
+            :thu: ວັນພະຫັດ
+            :tue: ວັນອັງຄານ
+            :wed: ວັນພຸດ
+        :stand-alone: 
+          :abbreviated: 
+            :fri: ສຸກ
+            :mon: ຈັນ
+            :sat: ເສົາ
+            :sun: ອາທິດ
+            :thu: ພະຫັດ
+            :tue: ອັງຄານ
+            :wed: ພຸດ
+          :narrow: 
+            :fri: ສຸ
+            :mon: ຈ
+            :sat: ສ
+            :sun: ອາ
+            :thu: ພຫ
+            :tue: ອ
+            :wed: ພ
+          :short: 
+            :fri: ສຸ.
+            :mon: ຈ.
+            :sat: ສ.
+            :sun: ອາ.
+            :thu: ພຫ.
+            :tue: ອ.
+            :wed: ພ.
+          :wide: 
+            :fri: ວັນສຸກ
+            :mon: ວັນຈັນ
+            :sat: ວັນເສົາ
+            :sun: ວັນອາທິດ
+            :thu: ວັນພະຫັດ
+            :tue: ວັນອັງຄານ
+            :wed: ວັນພຸດ
+      :eras: 
+        :abbr: 
+          0: "ກ່ອນ ຄ.ສ."
+          1: "ຍຸກ ຄ.ສ"
+        :name: 
+          0: ກ່ອນສາກົນສັກກະລາດ
+          1: ສາກົນສັກກະລາດ
+        :narrow: 
+          0: BCE
+          1: CE
+      :fields: 
+        :day: ມື້
+        :day-narrow: ມື້
+        :day-short: ມື້
+        :dayOfYear: ມື້ຂອງປີ
+        :dayOfYear-narrow: ມື້ຂອງປີ
+        :dayOfYear-short: ມື້ຂອງປີ
+        :dayperiod: ກ່ອນທ່ຽງ/ຫຼັງທ່ຽງ
+        :dayperiod-narrow: ກ່ອນທ່ຽງ/ຫຼັງທ່ຽງ
+        :dayperiod-short: ກ່ອນທ່ຽງ/ຫຼັງທ່ຽງ
+        :era: ສະໄໝ
+        :era-narrow: ສະໄໝ
+        :era-short: ສະໄໝ
+        :hour: ຊົ່ວໂມງ
+        :hour-narrow: ຊມ.
+        :hour-short: ຊມ.
+        :minute: ນາທີ
+        :minute-narrow: ນທ.
+        :minute-short: ນທ.
+        :month: ເດືອນ
+        :month-narrow: ດ.
+        :month-short: ດ.
+        :quarter: ໄຕຣມາດ
+        :quarter-narrow: ຕມ.
+        :quarter-short: ຕມ.
+        :second: ວິນາທີ
+        :second-narrow: ວິ.
+        :second-short: ວິ.
+        :week: ອາທິດ
+        :week-narrow: ອ.
+        :week-short: ອ.
+        :weekOfMonth: ອາທິດຂອງເດືອນ
+        :weekOfMonth-narrow: "ອທ ຂອງ ດ"
+        :weekOfMonth-short: "ອທ ຂອງ ດ"
+        :weekday: ມື້ຂອງອາທິດ
+        :weekday-narrow: ມື້ຂອງອາທິດ
+        :weekday-short: ມື້ຂອງອາທິດ
+        :weekdayOfMonth: ມື້ເຮັດວຽກຂອງເດືອນ
+        :weekdayOfMonth-narrow: "ມຮວ ຂອງ ດ"
+        :weekdayOfMonth-short: "ມຮວ ຂອງ ດ"
+        :year: ປີ
+        :year-narrow: ປີ
+        :year-short: ປີ
+        :zone: ເຂດເວລາ
+        :zone-narrow: ເຂດເວລາ
+        :zone-short: ເຂດເວລາ
+      :formats: 
+        :date: 
+          :full: 
+            :pattern: "EEEE, d MMMM y"
+          :long: 
+            :pattern: "d MMMM y"
+          :medium: 
+            :pattern: "d MMM y"
+          :short: 
+            :pattern: d/M/y
+        :datetime: 
+          :full: 
+            :pattern: "{{date}}, {{time}}"
+          :long: 
+            :pattern: "{{date}}, {{time}}"
+          :medium: 
+            :pattern: "{{date}}, {{time}}"
+          :short: 
+            :pattern: "{{date}}, {{time}}"
+        :time: 
+          :full: 
+            :pattern: "H ໂມງ m ນາທີ ss ວິນາທີ zzzz"
+          :long: 
+            :pattern: "H ໂມງ m ນາທີ ss ວິນາທີ z"
+          :medium: 
+            :pattern: "H:mm:ss"
+          :short: 
+            :pattern: "H:mm"
+      :months: 
+        :format: 
+          :abbreviated: 
+            1: ມ.ກ.
+            10: ຕ.ລ.
+            11: ພ.ຈ.
+            12: ທ.ວ.
+            2: ກ.ພ.
+            3: ມ.ນ.
+            4: ມ.ສ.
+            5: ພ.ພ.
+            6: ມິ.ຖ.
+            7: ກ.ລ.
+            8: ສ.ຫ.
+            9: ກ.ຍ.
+          :narrow: 
+            1: "1"
+            10: "10"
+            11: "11"
+            12: "12"
+            2: "2"
+            3: "3"
+            4: "4"
+            5: "5"
+            6: "6"
+            7: "7"
+            8: "8"
+            9: "9"
+          :wide: 
+            1: ມັງກອນ
+            10: ຕຸລາ
+            11: ພະຈິກ
+            12: ທັນວາ
+            2: ກຸມພາ
+            3: ມີນາ
+            4: ເມສາ
+            5: ພຶດສະພາ
+            6: ມິຖຸນາ
+            7: ກໍລະກົດ
+            8: ສິງຫາ
+            9: ກັນຍາ
+        :stand-alone: 
+          :abbreviated: 
+            1: ມ.ກ.
+            10: ຕ.ລ.
+            11: ພ.ຈ.
+            12: ທ.ວ.
+            2: ກ.ພ.
+            3: ມ.ນ.
+            4: ມ.ສ.
+            5: ພ.ພ.
+            6: ມິ.ຖ.
+            7: ກ.ລ.
+            8: ສ.ຫ.
+            9: ກ.ຍ.
+          :narrow: 
+            1: "1"
+            10: "10"
+            11: "11"
+            12: "12"
+            2: "2"
+            3: "3"
+            4: "4"
+            5: "5"
+            6: "6"
+            7: "7"
+            8: "8"
+            9: "9"
+          :wide: 
+            1: ມັງກອນ
+            10: ຕຸລາ
+            11: ພະຈິກ
+            12: ທັນວາ
+            2: ກຸມພາ
+            3: ມີນາ
+            4: ເມສາ
+            5: ພຶດສະພາ
+            6: ມິຖຸນາ
+            7: ກໍລະກົດ
+            8: ສິງຫາ
+            9: ກັນຍາ
+      :periods: 
+        :format: 
+          :abbreviated: 
+            :afternoon1: ຕອນບ່າຍ
+            :am: ກ່ອນທ່ຽງ
+            :evening1: ຕອນແລງ
+            :midnight: ທ່ຽງຄືນ
+            :morning1: ຕອນເຊົ້າ
+            :night1: ກາງຄືນ
+            :noon: ຕອນທ່ຽງ
+            :pm: ຫຼັງທ່ຽງ
+          :narrow: 
+            :afternoon1: ຕອນທ່ຽງ
+            :am: AM
+            :evening1: ຕອນແລງ
+            :midnight: ທ່ຽງຄືນ
+            :morning1: ຕອນເຊົ້າ
+            :night1: ກາງຄືນ
+            :noon: ຕອນທ່ຽງ
+            :pm: PM
+          :wide: 
+            :afternoon1: ຕອນບ່າຍ
+            :am: AM
+            :evening1: ຕອນແລງ
+            :midnight: ທ່ຽງຄືນ
+            :morning1: ຕອນເຊົ້າ
+            :night1: ຕອນກາງຄືນ
+            :noon: ຕອນທ່ຽງ
+            :pm: PM
+        :stand-alone: 
+          :abbreviated: 
+            :afternoon1: ສວາຍ
+            :am: AM
+            :evening1: ແລງ
+            :midnight: ທ່ຽງ​ຄືນ
+            :morning1: ​ເຊົ້າ
+            :night1: ​ກາງ​ຄືນ
+            :noon: ທ່ຽງ
+            :pm: PM
+          :narrow: 
+            :afternoon1: ສ
+            :am: AM
+            :evening1: ແລງ
+            :morning1: ​ເຊົ້າ
+            :night1: ​ກາງ​ຄືນ
+            :pm: PM
+          :wide: 
+            :am: AM
+            :midnight: ທ່ຽງຄືນ
+            :noon: ຕອນທ່ຽງ
+            :pm: PM
+      :quarters: 
+        :format: 
+          :abbreviated: 
+            1: ຕມ1
+            2: ຕມ2
+            3: ຕມ3
+            4: ຕມ4
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: "ໄຕຣມາດ 1"
+            2: "ໄຕຣມາດ 2"
+            3: "ໄຕຣມາດ 3"
+            4: "ໄຕຣມາດ 4"
+        :stand-alone: 
+          :abbreviated: 
+            1: ຕ1
+            2: ຕ2
+            3: ຕ3
+            4: ຕ4
+          :narrow: 
+            1: "1"
+            2: "2"
+            3: "3"
+            4: "4"
+          :wide: 
+            1: "ໄຕຣມາດ 1"
+            2: "ໄຕຣມາດ 2"
+            3: "ໄຕຣມາດ 3"
+            4: "ໄຕຣມາດ 4"

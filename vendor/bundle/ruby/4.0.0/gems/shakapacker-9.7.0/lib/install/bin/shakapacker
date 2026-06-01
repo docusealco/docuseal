@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+ENV["RAILS_ENV"] ||= "development"
+ENV["BUNDLE_GEMFILE"] ||= File.expand_path("../Gemfile", __dir__)
+ENV["APP_ROOT"] ||= File.expand_path("..", __dir__)
+
+require "bundler/setup"
+require "shakapacker"
+require "shakapacker/runner"
+
+Shakapacker::Runner.run(ARGV)

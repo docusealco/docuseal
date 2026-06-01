@@ -1,0 +1,1443 @@
+--- 
+:lt: 
+  :formats: 
+    :fallback_formats: 
+      :generic: "{1} ({0})"
+    :gmt_formats: 
+      :generic: "GMT{0}"
+    :gmt_zero_formats: 
+      :generic: GMT
+    :hour_formats: 
+      :generic: "+HH:mm;−HH:mm"
+    :region_formats: 
+      :daylight: "Vasaros laikas: {0}"
+      :generic: "Laikas: {0}"
+      :standard: "Žiemos laikas: {0}"
+  :metazones: 
+    :Acre: 
+      :long: 
+        :daylight: "Ako vasaros laikas"
+        :generic: "Ako laikas"
+        :standard: "Ako standartinis laikas"
+    :Afghanistan: 
+      :long: 
+        :standard: "Afganistano laikas"
+    :Africa_Central: 
+      :long: 
+        :standard: "Centrinės Afrikos laikas"
+    :Africa_Eastern: 
+      :long: 
+        :standard: "Rytų Afrikos laikas"
+    :Africa_Southern: 
+      :long: 
+        :standard: "Pietų Afrikos laikas"
+    :Africa_Western: 
+      :long: 
+        :daylight: "Vakarų Afrikos vasaros laikas"
+        :generic: "Vakarų Afrikos laikas"
+        :standard: "Vakarų Afrikos žiemos laikas"
+    :Alaska: 
+      :long: 
+        :daylight: "Aliaskos vasaros laikas"
+        :generic: "Aliaskos laikas"
+        :standard: "Aliaskos žiemos laikas"
+    :Almaty: 
+      :long: 
+        :daylight: "Almatos vasaros laikas"
+        :generic: "Almatos laikas"
+        :standard: "Almatos žiemos laikas"
+    :Amazon: 
+      :long: 
+        :daylight: "Amazonės vasaros laikas"
+        :generic: "Amazonės laikas"
+        :standard: "Amazonės žiemos laikas"
+    :America_Central: 
+      :long: 
+        :daylight: "Šiaurės Amerikos centro vasaros laikas"
+        :generic: "Šiaurės Amerikos centro laikas"
+        :standard: "Šiaurės Amerikos centro žiemos laikas"
+    :America_Eastern: 
+      :long: 
+        :daylight: "Šiaurės Amerikos rytų vasaros laikas"
+        :generic: "Šiaurės Amerikos rytų laikas"
+        :standard: "Šiaurės Amerikos rytų žiemos laikas"
+    :America_Mountain: 
+      :long: 
+        :daylight: "Šiaurės Amerikos kalnų vasaros laikas"
+        :generic: "Šiaurės Amerikos kalnų laikas"
+        :standard: "Šiaurės Amerikos kalnų žiemos laikas"
+    :America_Pacific: 
+      :long: 
+        :daylight: "Šiaurės Amerikos Ramiojo vandenyno vasaros laikas"
+        :generic: "Šiaurės Amerikos Ramiojo vandenyno laikas"
+        :standard: "Šiaurės Amerikos Ramiojo vandenyno žiemos laikas"
+    :Anadyr: 
+      :long: 
+        :daylight: "Anadyrės vasaros laikas"
+        :generic: "Anadyrės laikas"
+        :standard: "Anadyrės žiemos laikas"
+    :Apia: 
+      :long: 
+        :daylight: "Apijos vasaros laikas"
+        :generic: "Apijos laikas"
+        :standard: "Apijos žiemos laikas"
+    :Aqtau: 
+      :long: 
+        :daylight: "Aktau vasaros laikas"
+        :generic: "Aktau laikas"
+        :standard: "Aktau žiemos laikas"
+    :Aqtobe: 
+      :long: 
+        :daylight: "Aktobės vasaros laikas"
+        :generic: "Aktobės laikas"
+        :standard: "Aktobės žiemos laikas"
+    :Arabian: 
+      :long: 
+        :daylight: "Arabijos vasaros laikas"
+        :generic: "Arabijos laikas"
+        :standard: "Arabijos žiemos laikas"
+    :Argentina: 
+      :long: 
+        :daylight: "Argentinos vasaros laikas"
+        :generic: "Argentinos laikas"
+        :standard: "Argentinos žiemos laikas"
+    :Argentina_Western: 
+      :long: 
+        :daylight: "Vakarų Argentinos vasaros laikas"
+        :generic: "Vakarų Argentinos laikas"
+        :standard: "Vakarų Argentinos žiemos laikas"
+    :Armenia: 
+      :long: 
+        :daylight: "Armėnijos vasaros laikas"
+        :generic: "Armėnijos laikas"
+        :standard: "Armėnijos žiemos laikas"
+    :Atlantic: 
+      :long: 
+        :daylight: "Atlanto vasaros laikas"
+        :generic: "Atlanto laikas"
+        :standard: "Atlanto žiemos laikas"
+    :Australia_Central: 
+      :long: 
+        :daylight: "Centrinės Australijos vasaros laikas"
+        :generic: "Centrinės Australijos laikas"
+        :standard: "Centrinės Australijos žiemos laikas"
+    :Australia_CentralWestern: 
+      :long: 
+        :daylight: "Centrinės vakarų Australijos vasaros laikas"
+        :generic: "Centrinės vakarų Australijos laikas"
+        :standard: "Centrinės vakarų Australijos žiemos laikas"
+    :Australia_Eastern: 
+      :long: 
+        :daylight: "Rytų Australijos vasaros laikas"
+        :generic: "Rytų Australijos laikas"
+        :standard: "Rytų Australijos žiemos laikas"
+    :Australia_Western: 
+      :long: 
+        :daylight: "Vakarų Australijos vasaros laikas"
+        :generic: "Vakarų Australijos laikas"
+        :standard: "Vakarų Australijos žiemos laikas"
+    :Azerbaijan: 
+      :long: 
+        :daylight: "Azerbaidžano vasaros laikas"
+        :generic: "Azerbaidžano laikas"
+        :standard: "Azerbaidžano žiemos laikas"
+    :Azores: 
+      :long: 
+        :daylight: "Azorų Salų vasaros laikas"
+        :generic: "Azorų Salų laikas"
+        :standard: "Azorų Salų žiemos laikas"
+    :Bangladesh: 
+      :long: 
+        :daylight: "Bangladešo vasaros laikas"
+        :generic: "Bangladešo laikas"
+        :standard: "Bangladešo žiemos laikas"
+    :Bhutan: 
+      :long: 
+        :standard: "Butano laikas"
+    :Bolivia: 
+      :long: 
+        :standard: "Bolivijos laikas"
+    :Brasilia: 
+      :long: 
+        :daylight: "Brazilijos vasaros laikas"
+        :generic: "Brazilijos laikas"
+        :standard: "Brazilijos žiemos laikas"
+    :Brunei: 
+      :long: 
+        :standard: "Brunėjaus Darusalamo laikas"
+    :Cape_Verde: 
+      :long: 
+        :daylight: "Žaliojo Kyšulio vasaros laikas"
+        :generic: "Žaliojo Kyšulio laikas"
+        :standard: "Žaliojo Kyšulio žiemos laikas"
+    :Casey: 
+      :long: 
+        :standard: "Keisio laikas"
+    :Chamorro: 
+      :long: 
+        :standard: "Čamoro laikas"
+    :Chatham: 
+      :long: 
+        :daylight: "Čatamo vasaros laikas"
+        :generic: "Čatamo laikas"
+        :standard: "Čatamo žiemos laikas"
+    :Chile: 
+      :long: 
+        :daylight: "Čilės vasaros laikas"
+        :generic: "Čilės laikas"
+        :standard: "Čilės žiemos laikas"
+    :China: 
+      :long: 
+        :daylight: "Kinijos vasaros laikas"
+        :generic: "Kinijos laikas"
+        :standard: "Kinijos žiemos laikas"
+    :Christmas: 
+      :long: 
+        :standard: "Kalėdų Salos laikas"
+    :Cocos: 
+      :long: 
+        :standard: "Kokosų Salų laikas"
+    :Colombia: 
+      :long: 
+        :daylight: "Kolumbijos vasaros laikas"
+        :generic: "Kolumbijos laikas"
+        :standard: "Kolumbijos žiemos laikas"
+    :Cook: 
+      :long: 
+        :daylight: "Kuko Salų pusės vasaros laikas"
+        :generic: "Kuko Salų laikas"
+        :standard: "Kuko Salų žiemos laikas"
+    :Cuba: 
+      :long: 
+        :daylight: "Kubos vasaros laikas"
+        :generic: "Kubos laikas"
+        :standard: "Kubos žiemos laikas"
+    :Davis: 
+      :long: 
+        :standard: "Deiviso laikas"
+    :DumontDUrville: 
+      :long: 
+        :standard: "Diumono d’Urvilio laikas"
+    :East_Timor: 
+      :long: 
+        :standard: "Rytų Timoro laikas"
+    :Easter: 
+      :long: 
+        :daylight: "Velykų Salos vasaros laikas"
+        :generic: "Velykų Salos laikas"
+        :standard: "Velykų salos žiemos laikas"
+    :Ecuador: 
+      :long: 
+        :standard: "Ekvadoro laikas"
+    :Europe_Central: 
+      :long: 
+        :daylight: "Vidurio Europos vasaros laikas"
+        :generic: "Vidurio Europos laikas"
+        :standard: "Vidurio Europos žiemos laikas"
+    :Europe_Eastern: 
+      :long: 
+        :daylight: "Rytų Europos vasaros laikas"
+        :generic: "Rytų Europos laikas"
+        :standard: "Rytų Europos žiemos laikas"
+    :Europe_Further_Eastern: 
+      :long: 
+        :standard: "Tolimųjų rytų Europos laikas"
+    :Europe_Western: 
+      :long: 
+        :daylight: "Vakarų Europos vasaros laikas"
+        :generic: "Vakarų Europos laikas"
+        :standard: "Vakarų Europos žiemos laikas"
+    :Falkland: 
+      :long: 
+        :daylight: "Folklando Salų vasaros laikas"
+        :generic: "Folklando Salų laikas"
+        :standard: "Folklandų Salų žiemos laikas"
+    :Fiji: 
+      :long: 
+        :daylight: "Fidžio vasaros laikas"
+        :generic: "Fidžio laikas"
+        :standard: "Fidžio žiemos laikas"
+    :French_Guiana: 
+      :long: 
+        :standard: "Prancūzijos Gvianos laikas"
+    :French_Southern: 
+      :long: 
+        :standard: "Pietų Prancūzijos ir antarktinis laikas"
+    :GMT: 
+      :long: 
+        :standard: "Grinvičo laikas"
+    :Galapagos: 
+      :long: 
+        :standard: "Galapagų laikas"
+    :Gambier: 
+      :long: 
+        :standard: "Gambyro laikas"
+    :Georgia: 
+      :long: 
+        :daylight: "Gruzijos vasaros laikas"
+        :generic: "Gruzijos laikas"
+        :standard: "Gruzijos žiemos laikas"
+    :Gilbert_Islands: 
+      :long: 
+        :standard: "Gilberto Salų laikas"
+    :Greenland_Eastern: 
+      :long: 
+        :daylight: "Grenlandijos rytų vasaros laikas"
+        :generic: "Grenlandijos rytų laikas"
+        :standard: "Grenlandijos rytų žiemos laikas"
+    :Greenland_Western: 
+      :long: 
+        :daylight: "Grenlandijos vakarų vasaros laikas"
+        :generic: "Grenlandijos vakarų laikas"
+        :standard: "Grenlandijos vakarų žiemos laikas"
+    :Guam: 
+      :long: 
+        :standard: "Guamo laikas"
+    :Gulf: 
+      :long: 
+        :standard: "Persijos įlankos laikas"
+    :Guyana: 
+      :long: 
+        :standard: "Gajanos laikas"
+    :Hawaii_Aleutian: 
+      :long: 
+        :daylight: "Havajų–Aleutų vasaros laikas"
+        :generic: "Havajų-Aleutų laikas"
+        :standard: "Havajų–Aleutų žiemos laikas"
+    :Hong_Kong: 
+      :long: 
+        :daylight: "Honkongo vasaros laikas"
+        :generic: "Honkongo laikas"
+        :standard: "Honkongo žiemos laikas"
+    :Hovd: 
+      :long: 
+        :daylight: "Hovdo vasaros laikas"
+        :generic: "Hovdo laikas"
+        :standard: "Hovdo žiemos laikas"
+    :India: 
+      :long: 
+        :standard: "Indijos laikas"
+    :Indian_Ocean: 
+      :long: 
+        :standard: "Indijos vandenyno laikas"
+    :Indochina: 
+      :long: 
+        :standard: "Indokinijos laikas"
+    :Indonesia_Central: 
+      :long: 
+        :standard: "Centrinės Indonezijos laikas"
+    :Indonesia_Eastern: 
+      :long: 
+        :standard: "Rytų Indonezijos laikas"
+    :Indonesia_Western: 
+      :long: 
+        :standard: "Vakarų Indonezijos laikas"
+    :Iran: 
+      :long: 
+        :daylight: "Irano vasaros laikas"
+        :generic: "Irano laikas"
+        :standard: "Irano žiemos laikas"
+    :Irkutsk: 
+      :long: 
+        :daylight: "Irkutsko vasaros laikas"
+        :generic: "Irkutsko laikas"
+        :standard: "Irkutsko žiemos laikas"
+    :Israel: 
+      :long: 
+        :daylight: "Izraelio vasaros laikas"
+        :generic: "Izraelio laikas"
+        :standard: "Izraelio žiemos laikas"
+    :Japan: 
+      :long: 
+        :daylight: "Japonijos vasaros laikas"
+        :generic: "Japonijos laikas"
+        :standard: "Japonijos žiemos laikas"
+    :Kamchatka: 
+      :long: 
+        :daylight: "Kamčiatkos Petropavlovsko vasaros laikas"
+        :generic: "Kamčiatkos Petropavlovsko laikas"
+        :standard: "Kamčiatkos Petropavlovsko žiemos laikas"
+    :Kazakhstan: 
+      :long: 
+        :standard: "Kazachstano laikas"
+    :Kazakhstan_Eastern: 
+      :long: 
+        :standard: "Rytų Kazachstano laikas"
+    :Kazakhstan_Western: 
+      :long: 
+        :standard: "Vakarų Kazachstano laikas"
+    :Korea: 
+      :long: 
+        :daylight: "Korėjos vasaros laikas"
+        :generic: "Korėjos laikas"
+        :standard: "Korėjos žiemos laikas"
+    :Kosrae: 
+      :long: 
+        :standard: "Kosrajė laikas"
+    :Krasnoyarsk: 
+      :long: 
+        :daylight: "Krasnojarsko vasaros laikas"
+        :generic: "Krasnojarsko laikas"
+        :standard: "Krasnojarsko žiemos laikas"
+    :Kyrgystan: 
+      :long: 
+        :standard: "Kirgistano laikas"
+    :Lanka: 
+      :long: 
+        :standard: "Lankos laikas"
+    :Line_Islands: 
+      :long: 
+        :standard: "Laino Salų laikas"
+    :Lord_Howe: 
+      :long: 
+        :daylight: "Lordo Hau vasaros laikas"
+        :generic: "Lordo Hau laikas"
+        :standard: "Lordo Hau žiemos laikas"
+    :Macau: 
+      :long: 
+        :daylight: "Makau vasaros laikas"
+        :generic: "Makau laikas"
+        :standard: "Makau žiemos laikas"
+    :Magadan: 
+      :long: 
+        :daylight: "Magadano vasaros laikas"
+        :generic: "Magadano laikas"
+        :standard: "Magadano žiemos laikas"
+    :Malaysia: 
+      :long: 
+        :standard: "Malaizijos laikas"
+    :Maldives: 
+      :long: 
+        :standard: "Maldyvų laikas"
+    :Marquesas: 
+      :long: 
+        :standard: "Markizo Salų laikas"
+    :Marshall_Islands: 
+      :long: 
+        :standard: "Maršalo Salų laikas"
+    :Mauritius: 
+      :long: 
+        :daylight: "Mauricijaus vasaros laikas"
+        :generic: "Mauricijaus laikas"
+        :standard: "Mauricijaus žiemos laikas"
+    :Mawson: 
+      :long: 
+        :standard: "Mosono laikas"
+    :Mexico_Pacific: 
+      :long: 
+        :daylight: "Meksikos Ramiojo vandenyno vasaros laikas"
+        :generic: "Meksikos Ramiojo vandenyno laikas"
+        :standard: "Meksikos Ramiojo vandenyno žiemos laikas"
+    :Mongolia: 
+      :long: 
+        :daylight: "Ulan Batoro vasaros laikas"
+        :generic: "Ulan Batoro laikas"
+        :standard: "Ulan Batoro žiemos laikas"
+    :Moscow: 
+      :long: 
+        :daylight: "Maskvos vasaros laikas"
+        :generic: "Maskvos laikas"
+        :standard: "Maskvos žiemos laikas"
+    :Myanmar: 
+      :long: 
+        :standard: "Mianmaro laikas"
+    :Nauru: 
+      :long: 
+        :standard: "Nauru laikas"
+    :Nepal: 
+      :long: 
+        :standard: "Nepalo laikas"
+    :New_Caledonia: 
+      :long: 
+        :daylight: "Naujosios Kaledonijos vasaros laikas"
+        :generic: "Naujosios Kaledonijos laikas"
+        :standard: "Naujosios Kaledonijos žiemos laikas"
+    :New_Zealand: 
+      :long: 
+        :daylight: "Naujosios Zelandijos vasaros laikas"
+        :generic: "Naujosios Zelandijos laikas"
+        :standard: "Naujosios Zelandijos žiemos laikas"
+    :Newfoundland: 
+      :long: 
+        :daylight: "Niufaundlendo vasaros laikas"
+        :generic: "Niufaundlendo laikas"
+        :standard: "Niufaundlendo žiemos laikas"
+    :Niue: 
+      :long: 
+        :standard: "Niujė laikas"
+    :Norfolk: 
+      :long: 
+        :daylight: "Norfolko Salų vasaros laikas"
+        :generic: "Norfolko Salų laikas"
+        :standard: "Norfolko Salų žiemos laikas"
+    :Noronha: 
+      :long: 
+        :daylight: "Fernando de Noronjos vasaros laikas"
+        :generic: "Fernando de Noronjos laikas"
+        :standard: "Fernando de Noronjos žiemos laikas"
+    :North_Mariana: 
+      :long: 
+        :standard: "Šiaurės Marianos Salų laikas"
+    :Novosibirsk: 
+      :long: 
+        :daylight: "Novosibirsko vasaros laikas"
+        :generic: "Novosibirsko laikas"
+        :standard: "Novosibirsko žiemos laikas"
+    :Omsk: 
+      :long: 
+        :daylight: "Omsko vasaros laikas"
+        :generic: "Omsko laikas"
+        :standard: "Omsko žiemos laikas"
+    :Pakistan: 
+      :long: 
+        :daylight: "Pakistano vasaros laikas"
+        :generic: "Pakistano laikas"
+        :standard: "Pakistano žiemos laikas"
+    :Palau: 
+      :long: 
+        :standard: "Palau laikas"
+    :Papua_New_Guinea: 
+      :long: 
+        :standard: "Papua Naujosios Gvinėjos laikas"
+    :Paraguay: 
+      :long: 
+        :daylight: "Paragvajaus vasaros laikas"
+        :generic: "Paragvajaus laikas"
+        :standard: "Paragvajaus žiemos laikas"
+    :Peru: 
+      :long: 
+        :daylight: "Peru vasaros laikas"
+        :generic: "Peru laikas"
+        :standard: "Peru žiemos laikas"
+    :Philippines: 
+      :long: 
+        :daylight: "Filipinų vasaros laikas"
+        :generic: "Filipinų laikas"
+        :standard: "Filipinų žiemos laikas"
+    :Phoenix_Islands: 
+      :long: 
+        :standard: "Fenikso Salų laikas"
+    :Pierre_Miquelon: 
+      :long: 
+        :daylight: "Sen Pjero ir Mikelono vasaros laikas"
+        :generic: "Sen Pjero ir Mikelono laikas"
+        :standard: "Sen Pjero ir Mikelono žiemos laikas"
+    :Pitcairn: 
+      :long: 
+        :standard: "Pitkerno laikas"
+    :Ponape: 
+      :long: 
+        :standard: "Ponapės laikas"
+    :Pyongyang: 
+      :long: 
+        :standard: "Pchenjano laikas"
+    :Qyzylorda: 
+      :long: 
+        :daylight: "Kyzylordos vasaros laikas"
+        :generic: "Kyzylordos laikas"
+        :standard: "Kyzylordos žiemos laikas"
+    :Reunion: 
+      :long: 
+        :standard: "Reunjono laikas"
+    :Rothera: 
+      :long: 
+        :standard: "Roteros laikas"
+    :Sakhalin: 
+      :long: 
+        :daylight: "Sachalino vasaros laikas"
+        :generic: "Sachalino laikas"
+        :standard: "Sachalino žiemos laikas"
+    :Samara: 
+      :long: 
+        :daylight: "Samaros vasaros laikas"
+        :generic: "Samaros laikas"
+        :standard: "Samaros žiemos laikas"
+    :Samoa: 
+      :long: 
+        :daylight: "Samoa vasaros laikas"
+        :generic: "Samoa laikas"
+        :standard: "Samoa žiemos laikas"
+    :Seychelles: 
+      :long: 
+        :standard: "Seišelių laikas"
+    :Singapore: 
+      :long: 
+        :standard: "Singapūro laikas"
+    :Solomon: 
+      :long: 
+        :standard: "Saliamono Salų laikas"
+    :South_Georgia: 
+      :long: 
+        :standard: "Pietų Džordžijos laikas"
+    :Suriname: 
+      :long: 
+        :standard: "Surinamo laikas"
+    :Syowa: 
+      :long: 
+        :standard: "Siovos laikas"
+    :Tahiti: 
+      :long: 
+        :standard: "Tahičio laikas"
+    :Taipei: 
+      :long: 
+        :daylight: "Taipėjaus vasaros laikas"
+        :generic: "Taipėjaus laikas"
+        :standard: "Taipėjaus žiemos laikas"
+    :Tajikistan: 
+      :long: 
+        :standard: "Tadžikistano laikas"
+    :Tokelau: 
+      :long: 
+        :standard: "Tokelau laikas"
+    :Tonga: 
+      :long: 
+        :daylight: "Tongos vasaros laikas"
+        :generic: "Tongos laikas"
+        :standard: "Tongos žiemos laikas"
+    :Truk: 
+      :long: 
+        :standard: "Čuko laikas"
+    :Turkmenistan: 
+      :long: 
+        :daylight: "Turkmėnistano vasaros laikas"
+        :generic: "Turkmėnistano laikas"
+        :standard: "Turkmėnistano žiemos laikas"
+    :Tuvalu: 
+      :long: 
+        :standard: "Tuvalu laikas"
+    :Uruguay: 
+      :long: 
+        :daylight: "Urugvajaus vasaros laikas"
+        :generic: "Urugvajaus laikas"
+        :standard: "Urugvajaus žiemos laikas"
+    :Uzbekistan: 
+      :long: 
+        :daylight: "Uzbekistano vasaros laikas"
+        :generic: "Uzbekistano laikas"
+        :standard: "Uzbekistano žiemos laikas"
+    :Vanuatu: 
+      :long: 
+        :daylight: "Vanuatu vasaros laikas"
+        :generic: "Vanuatu laikas"
+        :standard: "Vanuatu žiemos laikas"
+    :Venezuela: 
+      :long: 
+        :standard: "Venesuelos laikas"
+    :Vladivostok: 
+      :long: 
+        :daylight: "Vladivostoko vasaros laikas"
+        :generic: "Vladivostoko laikas"
+        :standard: "Vladivostoko žiemos laikas"
+    :Volgograd: 
+      :long: 
+        :daylight: "Volgogrado vasaros laikas"
+        :generic: "Volgogrado laikas"
+        :standard: "Volgogrado žiemos laikas"
+    :Vostok: 
+      :long: 
+        :standard: "Vostoko laikas"
+    :Wake: 
+      :long: 
+        :standard: "Veiko Salos laikas"
+    :Wallis: 
+      :long: 
+        :standard: "Voliso ir Futūnos laikas"
+    :Yakutsk: 
+      :long: 
+        :daylight: "Jakutsko vasaros laikas"
+        :generic: "Jakutsko laikas"
+        :standard: "Jakutsko žiemos laikas"
+    :Yekaterinburg: 
+      :long: 
+        :daylight: "Jekaterinburgo vasaros laikas"
+        :generic: "Jekaterinburgo laikas"
+        :standard: "Jekaterinburgo žiemos laikas"
+    :Yukon: 
+      :long: 
+        :standard: "Jukono laikas"
+  :timezones: 
+    :Africa/Abidjan: 
+      :city: Abidžanas
+    :Africa/Accra: 
+      :city: Akra
+    :Africa/Addis_Ababa: 
+      :city: "Adis Abeba"
+    :Africa/Algiers: 
+      :city: Alžyras
+    :Africa/Asmera: 
+      :city: Asmara
+    :Africa/Bamako: 
+      :city: Bamakas
+    :Africa/Bangui: 
+      :city: Bangis
+    :Africa/Banjul: 
+      :city: Bandžulis
+    :Africa/Bissau: 
+      :city: Bisau
+    :Africa/Blantyre: 
+      :city: Blantairas
+    :Africa/Brazzaville: 
+      :city: Brazavilis
+    :Africa/Bujumbura: 
+      :city: Bužumbūra
+    :Africa/Cairo: 
+      :city: Kairas
+    :Africa/Casablanca: 
+      :city: Kasablanka
+    :Africa/Ceuta: 
+      :city: Seuta
+    :Africa/Conakry: 
+      :city: Konakris
+    :Africa/Dakar: 
+      :city: Dakaras
+    :Africa/Dar_es_Salaam: 
+      :city: "Dar es Salamas"
+    :Africa/Djibouti: 
+      :city: Džibutis
+    :Africa/Douala: 
+      :city: Duala
+    :Africa/El_Aaiun: 
+      :city: "al Ajūnas"
+    :Africa/Freetown: 
+      :city: Fritaunas
+    :Africa/Gaborone: 
+      :city: Gaboronas
+    :Africa/Harare: 
+      :city: Hararė
+    :Africa/Johannesburg: 
+      :city: Johanesburgas
+    :Africa/Juba: 
+      :city: Džuba
+    :Africa/Khartoum: 
+      :city: Chartumas
+    :Africa/Kigali: 
+      :city: Kigalis
+    :Africa/Kinshasa: 
+      :city: Kinšasa
+    :Africa/Lagos: 
+      :city: Lagosas
+    :Africa/Libreville: 
+      :city: Librevilis
+    :Africa/Lome: 
+      :city: Lomė
+    :Africa/Lubumbashi: 
+      :city: Lubumbašis
+    :Africa/Malabo: 
+      :city: Malabas
+    :Africa/Maputo: 
+      :city: Maputas
+    :Africa/Mbabane: 
+      :city: Mbabanė
+    :Africa/Mogadishu: 
+      :city: Mogadišas
+    :Africa/Monrovia: 
+      :city: Monrovija
+    :Africa/Nairobi: 
+      :city: Nairobis
+    :Africa/Ndjamena: 
+      :city: Ndžamena
+    :Africa/Niamey: 
+      :city: Niamėjus
+    :Africa/Nouakchott: 
+      :city: Nuakšotas
+    :Africa/Ouagadougou: 
+      :city: Vagadugu
+    :Africa/Porto-Novo: 
+      :city: "Porto Novas"
+    :Africa/Sao_Tome: 
+      :city: "San Tomė"
+    :Africa/Tripoli: 
+      :city: Tripolis
+    :Africa/Tunis: 
+      :city: Tunisas
+    :Africa/Windhoek: 
+      :city: Vindhukas
+    :America/Adak: 
+      :city: Eidakas
+    :America/Anchorage: 
+      :city: Ankoridžas
+    :America/Anguilla: 
+      :city: Angilija
+    :America/Antigua: 
+      :city: Antigva
+    :America/Araguaina: 
+      :city: Aragvajana
+    :America/Argentina/La_Rioja: 
+      :city: "La Riocha"
+    :America/Argentina/Rio_Gallegos: 
+      :city: "Rio Galjegosas"
+    :America/Argentina/Salta: 
+      :city: Saltas
+    :America/Argentina/San_Juan: 
+      :city: "San Chuanas"
+    :America/Argentina/San_Luis: 
+      :city: "Sent Luisas"
+    :America/Argentina/Tucuman: 
+      :city: Tukumanas
+    :America/Argentina/Ushuaia: 
+      :city: Ušuaja
+    :America/Asuncion: 
+      :city: Asunsjonas
+    :America/Bahia: 
+      :city: Baija
+    :America/Bahia_Banderas: 
+      :city: "Bahia Banderasas"
+    :America/Barbados: 
+      :city: Barbadosas
+    :America/Belem: 
+      :city: Belenas
+    :America/Belize: 
+      :city: Belizas
+    :America/Blanc-Sablon: 
+      :city: "Blanč Sablonas"
+    :America/Boa_Vista: 
+      :city: "Bua Vista"
+    :America/Boise: 
+      :city: Boisis
+    :America/Buenos_Aires: 
+      :city: "Buenos Airės"
+    :America/Cambridge_Bay: 
+      :city: "Keimbridž Bėjus"
+    :America/Campo_Grande: 
+      :city: "Kampo Grandė"
+    :America/Cancun: 
+      :city: Kankūnas
+    :America/Caracas: 
+      :city: Karakasas
+    :America/Catamarca: 
+      :city: Katamarka
+    :America/Cayenne: 
+      :city: Kajenas
+    :America/Cayman: 
+      :city: Kaimanas
+    :America/Chicago: 
+      :city: Čikaga
+    :America/Chihuahua: 
+      :city: Čihuahua
+    :America/Ciudad_Juarez: 
+      :city: "Siudad Chuaresas"
+    :America/Coral_Harbour: 
+      :city: Atikokanas
+    :America/Cordoba: 
+      :city: Kordoba
+    :America/Costa_Rica: 
+      :city: "Kosta Rika"
+    :America/Creston: 
+      :city: Krestonas
+    :America/Cuiaba: 
+      :city: Kujaba
+    :America/Curacao: 
+      :city: Kiurasao
+    :America/Danmarkshavn: 
+      :city: Danmarkshaunas
+    :America/Dawson: 
+      :city: Dosonas
+    :America/Dawson_Creek: 
+      :city: "Doson Krikas"
+    :America/Denver: 
+      :city: Denveris
+    :America/Detroit: 
+      :city: Detroitas
+    :America/Dominica: 
+      :city: Dominika
+    :America/Edmonton: 
+      :city: Edmontonas
+    :America/Eirunepe: 
+      :city: Eirunepė
+    :America/El_Salvador: 
+      :city: Salvadoras
+    :America/Fort_Nelson: 
+      :city: "Fort Nelsonas"
+    :America/Glace_Bay: 
+      :city: "Gleis Bėjus"
+    :America/Godthab: 
+      :city: Nūkas
+    :America/Goose_Bay: 
+      :city: "Gus Bėjus"
+    :America/Grand_Turk: 
+      :city: "Grand Terkas"
+    :America/Guadeloupe: 
+      :city: Gvadalupė
+    :America/Guatemala: 
+      :city: Gvatemala
+    :America/Guayaquil: 
+      :city: Gvajakilis
+    :America/Guyana: 
+      :city: Gvajana
+    :America/Halifax: 
+      :city: Halifaksas
+    :America/Hermosillo: 
+      :city: Hermosiljas
+    :America/Indiana/Knox: 
+      :city: "Noksas, Indiana"
+    :America/Indiana/Marengo: 
+      :city: "Marengas, Indiana"
+    :America/Indiana/Petersburg: 
+      :city: "Pitersbergas, Indiana"
+    :America/Indiana/Tell_City: 
+      :city: "Tel Sitis, Indiana"
+    :America/Indiana/Vevay: 
+      :city: "Vivis, Indiana"
+    :America/Indiana/Vincennes: 
+      :city: "Vinsenas, Indiana"
+    :America/Indiana/Winamac: 
+      :city: "Vinamakas, Indiana"
+    :America/Inuvik: 
+      :city: Inuvikas
+    :America/Iqaluit: 
+      :city: Ikaluitas
+    :America/Jamaica: 
+      :city: Jamaika
+    :America/Jujuy: 
+      :city: Chuchujus
+    :America/Juneau: 
+      :city: Džunas
+    :America/Kentucky/Monticello: 
+      :city: "Montiselas, Kentukis"
+    :America/Kralendijk: 
+      :city: Kralendeikas
+    :America/La_Paz: 
+      :city: "La Pasas"
+    :America/Los_Angeles: 
+      :city: "Los Andželas"
+    :America/Louisville: 
+      :city: Luisvilis
+    :America/Lower_Princes: 
+      :city: "Žemutinis Prinses Kvorteris"
+    :America/Maceio: 
+      :city: Masejo
+    :America/Managua: 
+      :city: Managva
+    :America/Manaus: 
+      :city: Manausas
+    :America/Marigot: 
+      :city: Marigo
+    :America/Martinique: 
+      :city: Martinika
+    :America/Matamoros: 
+      :city: Matamorosas
+    :America/Mazatlan: 
+      :city: Masatlanas
+    :America/Mendoza: 
+      :city: Mendosa
+    :America/Menominee: 
+      :city: Menominis
+    :America/Merida: 
+      :city: Merida
+    :America/Mexico_City: 
+      :city: Meksikas
+    :America/Miquelon: 
+      :city: Mikelonas
+    :America/Moncton: 
+      :city: Monktonas
+    :America/Monterrey: 
+      :city: Monterėjus
+    :America/Montevideo: 
+      :city: Montevidėjas
+    :America/Montserrat: 
+      :city: Montseratas
+    :America/Nassau: 
+      :city: Nasau
+    :America/New_York: 
+      :city: Niujorkas
+    :America/Nome: 
+      :city: Nomas
+    :America/Noronha: 
+      :city: Noronja
+    :America/North_Dakota/Beulah: 
+      :city: "Bjula, Šiaurės Dakota"
+    :America/North_Dakota/Center: 
+      :city: "Senteris, Šiaurės Dakota"
+    :America/North_Dakota/New_Salem: 
+      :city: "Niu Seilemas, Šiaurės Dakota"
+    :America/Ojinaga: 
+      :city: Ochinaga
+    :America/Paramaribo: 
+      :city: Paramaribas
+    :America/Phoenix: 
+      :city: Finiksas
+    :America/Port-au-Prince: 
+      :city: "Port o Prensas"
+    :America/Port_of_Spain: 
+      :city: "Port of Speinas"
+    :America/Porto_Velho: 
+      :city: "Porto Veljas"
+    :America/Puerto_Rico: 
+      :city: "Puerto Rikas"
+    :America/Punta_Arenas: 
+      :city: "Punta Arenasas"
+    :America/Rankin_Inlet: 
+      :city: "Rankin Inletas"
+    :America/Recife: 
+      :city: Resifė
+    :America/Regina: 
+      :city: Redžina
+    :America/Resolute: 
+      :city: Resolutas
+    :America/Rio_Branco: 
+      :city: "Rio Brankas"
+    :America/Santarem: 
+      :city: Santarenas
+    :America/Santiago: 
+      :city: Santjagas
+    :America/Santo_Domingo: 
+      :city: "Santo Domingas"
+    :America/Sao_Paulo: 
+      :city: "San Paulas"
+    :America/Scoresbysund: 
+      :city: Itokortormitas
+    :America/St_Barthelemy: 
+      :city: "Sen Bartelemi"
+    :America/St_Johns: 
+      :city: "Sent Džonsas"
+    :America/St_Kitts: 
+      :city: "Sent Kitsas"
+    :America/St_Lucia: 
+      :city: "Sent Lusija"
+    :America/St_Thomas: 
+      :city: "Sent Tomasas"
+    :America/St_Vincent: 
+      :city: "Sent Vincentas"
+    :America/Swift_Current: 
+      :city: "Svift Karentas"
+    :America/Tegucigalpa: 
+      :city: Tegusigalpa
+    :America/Thule: 
+      :city: Kanakas
+    :America/Tijuana: 
+      :city: Tichuana
+    :America/Toronto: 
+      :city: Torontas
+    :America/Vancouver: 
+      :city: Vankuveris
+    :America/Whitehorse: 
+      :city: Vaithorsas
+    :America/Winnipeg: 
+      :city: Vinipegas
+    :America/Yakutat: 
+      :city: Jakutatas
+    :Antarctica/Casey: 
+      :city: Keisis
+    :Antarctica/Davis: 
+      :city: Deivisas
+    :Antarctica/DumontDUrville: 
+      :city: "Diumonas d’Urvilis"
+    :Antarctica/Macquarie: 
+      :city: Makvoris
+    :Antarctica/Mawson: 
+      :city: Mosonas
+    :Antarctica/McMurdo: 
+      :city: Makmerdas
+    :Antarctica/Palmer: 
+      :city: Palmeris
+    :Antarctica/Rothera: 
+      :city: Rotera
+    :Antarctica/Syowa: 
+      :city: Siova
+    :Antarctica/Troll: 
+      :city: Trolis
+    :Antarctica/Vostok: 
+      :city: Vostokas
+    :Arctic/Longyearbyen: 
+      :city: Longjyrbienas
+    :Asia/Aden: 
+      :city: Adenas
+    :Asia/Almaty: 
+      :city: "Alma Ata"
+    :Asia/Amman: 
+      :city: Amanas
+    :Asia/Anadyr: 
+      :city: Anadyris
+    :Asia/Aqtau: 
+      :city: Aktau
+    :Asia/Aqtobe: 
+      :city: Aktiubinskas
+    :Asia/Ashgabat: 
+      :city: Ašchabadas
+    :Asia/Baghdad: 
+      :city: Bagdadas
+    :Asia/Bahrain: 
+      :city: Bahreinas
+    :Asia/Bangkok: 
+      :city: Bankokas
+    :Asia/Barnaul: 
+      :city: Barnaulas
+    :Asia/Beirut: 
+      :city: Beirutas
+    :Asia/Bishkek: 
+      :city: Biškekas
+    :Asia/Brunei: 
+      :city: Brunėjus
+    :Asia/Calcutta: 
+      :city: Kolkata
+    :Asia/Chita: 
+      :city: Čita
+    :Asia/Colombo: 
+      :city: Kolombas
+    :Asia/Damascus: 
+      :city: Damaskas
+    :Asia/Dhaka: 
+      :city: Daka
+    :Asia/Dili: 
+      :city: Dilis
+    :Asia/Dubai: 
+      :city: Dubajus
+    :Asia/Dushanbe: 
+      :city: Dušanbė
+    :Asia/Gaza: 
+      :city: "Gazos ruožas"
+    :Asia/Hebron: 
+      :city: Hebronas
+    :Asia/Hong_Kong: 
+      :city: Honkongas
+    :Asia/Hovd: 
+      :city: Hovdas
+    :Asia/Irkutsk: 
+      :city: Irkutskas
+    :Asia/Jakarta: 
+      :city: Džakarta
+    :Asia/Jayapura: 
+      :city: Džajapura
+    :Asia/Jerusalem: 
+      :city: Jeruzalė
+    :Asia/Kabul: 
+      :city: Kabulas
+    :Asia/Kamchatka: 
+      :city: Kamčiatka
+    :Asia/Karachi: 
+      :city: Karačis
+    :Asia/Katmandu: 
+      :city: Katmandu
+    :Asia/Khandyga: 
+      :city: Chandyga
+    :Asia/Krasnoyarsk: 
+      :city: Krasnojarskas
+    :Asia/Kuala_Lumpur: 
+      :city: "Kvala Lumpūras"
+    :Asia/Kuching: 
+      :city: Kučingas
+    :Asia/Kuwait: 
+      :city: Kuveitas
+    :Asia/Macau: 
+      :city: Makao
+    :Asia/Magadan: 
+      :city: Magadanas
+    :Asia/Makassar: 
+      :city: Makasaras
+    :Asia/Muscat: 
+      :city: Maskatas
+    :Asia/Nicosia: 
+      :city: Nikosija
+    :Asia/Novokuznetsk: 
+      :city: Novokuzneckas
+    :Asia/Novosibirsk: 
+      :city: Novosibirskas
+    :Asia/Omsk: 
+      :city: Omskas
+    :Asia/Oral: 
+      :city: Uralskas
+    :Asia/Phnom_Penh: 
+      :city: Pnompenis
+    :Asia/Pontianak: 
+      :city: Pontianakas
+    :Asia/Pyongyang: 
+      :city: Pchenjanas
+    :Asia/Qatar: 
+      :city: Kataras
+    :Asia/Qostanay: 
+      :city: Kostanajus
+    :Asia/Qyzylorda: 
+      :city: Kzyl-Orda
+    :Asia/Rangoon: 
+      :city: Rangūnas
+    :Asia/Riyadh: 
+      :city: Rijadas
+    :Asia/Saigon: 
+      :city: Hošiminas
+    :Asia/Sakhalin: 
+      :city: Sachalinas
+    :Asia/Samarkand: 
+      :city: Samarkandas
+    :Asia/Seoul: 
+      :city: Seulas
+    :Asia/Shanghai: 
+      :city: Šanchajus
+    :Asia/Singapore: 
+      :city: Singapūras
+    :Asia/Srednekolymsk: 
+      :city: Srednekolymskas
+    :Asia/Taipei: 
+      :city: Taipėjus
+    :Asia/Tashkent: 
+      :city: Taškentas
+    :Asia/Tbilisi: 
+      :city: Tbilisis
+    :Asia/Tehran: 
+      :city: Teheranas
+    :Asia/Thimphu: 
+      :city: Timpu
+    :Asia/Tokyo: 
+      :city: Tokijas
+    :Asia/Tomsk: 
+      :city: Tomskas
+    :Asia/Ulaanbaatar: 
+      :city: "Ulan Batoras"
+    :Asia/Urumqi: 
+      :city: Urumči
+    :Asia/Ust-Nera: 
+      :city: "Ust Nera"
+    :Asia/Vientiane: 
+      :city: Vientianas
+    :Asia/Vladivostok: 
+      :city: Vladivostokas
+    :Asia/Yakutsk: 
+      :city: Jakutskas
+    :Asia/Yekaterinburg: 
+      :city: Jekaterinburgas
+    :Asia/Yerevan: 
+      :city: Jerevanas
+    :Atlantic/Azores: 
+      :city: Azorai
+    :Atlantic/Canary: 
+      :city: "Kanarų salos"
+    :Atlantic/Cape_Verde: 
+      :city: "Žaliasis Kyšulys"
+    :Atlantic/Faeroe: 
+      :city: Farerai
+    :Atlantic/Reykjavik: 
+      :city: Reikjavikas
+    :Atlantic/South_Georgia: 
+      :city: "Pietų Džordžija"
+    :Atlantic/St_Helena: 
+      :city: "Sent Helena"
+    :Atlantic/Stanley: 
+      :city: Stenlis
+    :Australia/Adelaide: 
+      :city: Adelaidė
+    :Australia/Brisbane: 
+      :city: Brisbanas
+    :Australia/Broken_Hill: 
+      :city: "Broken Hilis"
+    :Australia/Darwin: 
+      :city: Darvinas
+    :Australia/Eucla: 
+      :city: Jukla
+    :Australia/Hobart: 
+      :city: Hobartas
+    :Australia/Lindeman: 
+      :city: Lindemanas
+    :Australia/Lord_Howe: 
+      :city: "Lordo Hau sala"
+    :Australia/Melbourne: 
+      :city: Melburnas
+    :Australia/Perth: 
+      :city: Pertas
+    :Australia/Sydney: 
+      :city: Sidnėjus
+    :Etc/UTC: 
+      :long: 
+        :standard: "pasaulio suderintasis laikas"
+      :short: 
+        :standard: UTC
+    :Etc/Unknown: 
+      :city: "nežinomas miestas"
+    :Europe/Amsterdam: 
+      :city: Amsterdamas
+    :Europe/Andorra: 
+      :city: Andora
+    :Europe/Astrakhan: 
+      :city: Astrachanė
+    :Europe/Athens: 
+      :city: Atėnai
+    :Europe/Belgrade: 
+      :city: Belgradas
+    :Europe/Berlin: 
+      :city: Berlynas
+    :Europe/Brussels: 
+      :city: Briuselis
+    :Europe/Bucharest: 
+      :city: Bukareštas
+    :Europe/Budapest: 
+      :city: Budapeštas
+    :Europe/Busingen: 
+      :city: Biusingenas
+    :Europe/Chisinau: 
+      :city: Kišiniovas
+    :Europe/Copenhagen: 
+      :city: Kopenhaga
+    :Europe/Dublin: 
+      :city: Dublinas
+      :long: 
+        :daylight: "Airijos vasaros laikas"
+    :Europe/Gibraltar: 
+      :city: Gibraltaras
+    :Europe/Guernsey: 
+      :city: Gernsis
+    :Europe/Helsinki: 
+      :city: Helsinkis
+    :Europe/Isle_of_Man: 
+      :city: "Meno sala"
+    :Europe/Istanbul: 
+      :city: Stambulas
+    :Europe/Jersey: 
+      :city: Džersis
+    :Europe/Kaliningrad: 
+      :city: Kaliningradas
+    :Europe/Kiev: 
+      :city: Kijevas
+    :Europe/Kirov: 
+      :city: Kirovas
+    :Europe/Lisbon: 
+      :city: Lisabona
+    :Europe/Ljubljana: 
+      :city: Liubliana
+    :Europe/London: 
+      :city: Londonas
+      :long: 
+        :daylight: "Britanijos vasaros laikas"
+    :Europe/Luxembourg: 
+      :city: Liuksemburgas
+    :Europe/Madrid: 
+      :city: Madridas
+    :Europe/Mariehamn: 
+      :city: Marianhamina
+    :Europe/Minsk: 
+      :city: Minskas
+    :Europe/Monaco: 
+      :city: Monakas
+    :Europe/Moscow: 
+      :city: Maskva
+    :Europe/Oslo: 
+      :city: Oslas
+    :Europe/Paris: 
+      :city: Paryžius
+    :Europe/Prague: 
+      :city: Praha
+    :Europe/Riga: 
+      :city: Ryga
+    :Europe/Rome: 
+      :city: Roma
+    :Europe/San_Marino: 
+      :city: "San Marinas"
+    :Europe/Sarajevo: 
+      :city: Sarajevas
+    :Europe/Saratov: 
+      :city: Saratovas
+    :Europe/Simferopol: 
+      :city: Simferopolis
+    :Europe/Skopje: 
+      :city: Skopjė
+    :Europe/Sofia: 
+      :city: Sofija
+    :Europe/Stockholm: 
+      :city: Stokholmas
+    :Europe/Tallinn: 
+      :city: Talinas
+    :Europe/Tirane: 
+      :city: Tirana
+    :Europe/Ulyanovsk: 
+      :city: Uljanovskas
+    :Europe/Vaduz: 
+      :city: Vaducas
+    :Europe/Vatican: 
+      :city: Vatikanas
+    :Europe/Vienna: 
+      :city: Viena
+    :Europe/Volgograd: 
+      :city: Volgogradas
+    :Europe/Warsaw: 
+      :city: Varšuva
+    :Europe/Zagreb: 
+      :city: Zagrebas
+    :Europe/Zurich: 
+      :city: Ciurichas
+    :Indian/Antananarivo: 
+      :city: Antananaryvas
+    :Indian/Chagos: 
+      :city: Čagosas
+    :Indian/Christmas: 
+      :city: "Kalėdų Sala"
+    :Indian/Cocos: 
+      :city: "Kokosų sala"
+    :Indian/Comoro: 
+      :city: Komoras
+    :Indian/Kerguelen: 
+      :city: Kergelenas
+    :Indian/Mahe: 
+      :city: Mahė
+    :Indian/Maldives: 
+      :city: Maldyvai
+    :Indian/Mauritius: 
+      :city: Mauricijus
+    :Indian/Mayotte: 
+      :city: Majotas
+    :Indian/Reunion: 
+      :city: Reunjonas
+    :Pacific/Apia: 
+      :city: Apija
+    :Pacific/Auckland: 
+      :city: Oklandas
+    :Pacific/Bougainville: 
+      :city: Bugenvilis
+    :Pacific/Chatham: 
+      :city: Čatamas
+    :Pacific/Easter: 
+      :city: "Velykų sala"
+    :Pacific/Efate: 
+      :city: Efatė
+    :Pacific/Enderbury: 
+      :city: Enderburis
+    :Pacific/Fakaofo: 
+      :city: Fakaofas
+    :Pacific/Fiji: 
+      :city: Fidžis
+    :Pacific/Funafuti: 
+      :city: Funafutis
+    :Pacific/Galapagos: 
+      :city: Galapagai
+    :Pacific/Gambier: 
+      :city: Gambyras
+    :Pacific/Guadalcanal: 
+      :city: Gvadalkanalis
+    :Pacific/Guam: 
+      :city: Guamas
+    :Pacific/Honolulu: 
+      :city: Honolulu
+    :Pacific/Kiritimati: 
+      :city: Kiritimatis
+    :Pacific/Kosrae: 
+      :city: Kosrajė
+    :Pacific/Kwajalein: 
+      :city: Kvadžaleinas
+    :Pacific/Majuro: 
+      :city: Madžūras
+    :Pacific/Marquesas: 
+      :city: "Markizo salos"
+    :Pacific/Midway: 
+      :city: Midvėjus
+    :Pacific/Niue: 
+      :city: Niujė
+    :Pacific/Norfolk: 
+      :city: Norfolkas
+    :Pacific/Noumea: 
+      :city: Numėja
+    :Pacific/Pago_Pago: 
+      :city: "Pago Pagas"
+    :Pacific/Pitcairn: 
+      :city: "Pitkerno sala"
+    :Pacific/Ponape: 
+      :city: Ponapė
+    :Pacific/Port_Moresby: 
+      :city: "Port Morsbis"
+    :Pacific/Saipan: 
+      :city: Saipanas
+    :Pacific/Tahiti: 
+      :city: Taitis
+    :Pacific/Tarawa: 
+      :city: Tarava
+    :Pacific/Truk: 
+      :city: Čukas
+    :Pacific/Wake: 
+      :city: "Veiko sala"
+    :Pacific/Wallis: 
+      :city: Volisas

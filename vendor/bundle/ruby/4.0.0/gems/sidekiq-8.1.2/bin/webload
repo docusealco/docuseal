@@ -1,0 +1,69 @@
+#!/usr/bin/env ruby
+
+require 'bundler'
+Bundler.setup
+
+# This skeleton allows you to run Sidekiq::Web page rendering
+# through Vernier for tuning.
+require "sidekiq/web"
+require "rack/test"
+require "vernier"
+
+Sidekiq::Web.configure do |config|
+  config.middlewares.clear # remove csrf
+end
+
+class SomeJob
+  include Sidekiq::Job
+end
+
+class BenchWeb
+  include Rack::Test::Methods
+
+  def app
+    Sidekiq::Web.new
+  end
+
+  def warmup(page = "/scheduled")
+    # Sidekiq.redis {|c| c.flushdb }
+
+    # 100.times do |idx|
+    #   SomeJob.perform_at(idx, 1, 3, "mike", {"foo" => "bar"})
+    # end
+
+    100.times do
+      get page
+    end
+  end
+
+  def load(page = "/scheduled", count = 10_000)
+    profile do
+      count.times do
+        get page
+        raise last_response.inspect unless last_response.status == 200
+      end
+    end
+  end
+
+  def profile(&)
+    if ENV["PROF"]
+      Vernier.profile(out: "profile.json.gz", &)
+    else
+      yield
+    end
+  end
+end
+
+def timer(name="block", count = 10_000)
+  a = Time.now
+  yield count
+  b = Time.now
+  puts "#{name} in #{b - a} sec"
+end
+
+page = "/busy"
+b = BenchWeb.new
+b.warmup(page)
+timer(page) do |count|
+  b.load(page, count)
+end
