@@ -2,6 +2,7 @@
 
 class PersonalizationSettingsController < ApplicationController
   ALLOWED_KEYS = [
+    AccountConfig::BRAND_NAME_KEY,
     AccountConfig::FORM_COMPLETED_BUTTON_KEY,
     AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY,
     AccountConfig::SUBMITTER_INVITATION_REMINDER_EMAIL_KEY,
