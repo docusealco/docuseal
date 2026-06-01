@@ -61,6 +61,10 @@ class Account < ApplicationRecord
     linked_account_account&.testing?
   end
 
+  def brand_name
+    account_configs.find_by(key: AccountConfig::BRAND_NAME_KEY)&.value.to_s.strip.presence
+  end
+
   def tz_info
     @tz_info ||= TZInfo::Timezone.get(ActiveSupport::TimeZone::MAPPING[timezone] || timezone)
   end
