@@ -6,8 +6,6 @@ class UsersController < ApplicationController
   before_action :build_user, only: %i[new create]
   authorize_resource :user, only: %i[new create]
 
-  before_action(only: :index) { authorize!(:manage, current_account) }
-
   def index
     @users =
       if params[:status] == 'archived'

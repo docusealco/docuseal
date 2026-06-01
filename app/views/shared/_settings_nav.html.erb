@@ -64,13 +64,33 @@
           </li>
         <% end %>
       <% end %>
+      <% if !Wabosign.demo? && can?(:manage, EncryptedConfig) && (current_user != true_user || !current_account.linked_account_account) %>
+        <li>
+          <%= content_for(:pro_link) || link_to(Wabosign.multitenant? ? console_redirect_index_path(redir: "#{Wabosign::CONSOLE_URL}/plans") : "#{Wabosign::CLOUD_URL}/sign_up?#{{ redir: "#{Wabosign::CONSOLE_URL}/on_premises" }.to_query}", class: 'text-base hover:bg-base-300', data: { turbo: false }) do %>
+            <%= t('plans') %>
+            <span class="badge badge-warning"><%= t('pro') %></span>
+          <% end %>
+        </li>
+      <% end %>
       <% if !Wabosign.demo? && can?(:manage, EncryptedConfig) && (current_user == true_user || current_account.testing?) %>
-        <% if can?(:read, EncryptedConfig.new(key: 'saml_configs', account: current_account)) && true_user == current_user %>
+        <li>
+          <%= link_to Wabosign.multitenant? ? console_redirect_index_path(redir: "#{Wabosign::CONSOLE_URL}#{'/test' if current_account.testing?}/api") : "#{Wabosign::CONSOLE_URL}/on_premises", class: 'text-base hover:bg-base-300', data: { turbo: false } do %>
+            <% if Wabosign.multitenant? %> API <% else %> <%= t('console') %> <% end %>
+          <% end %>
+        </li>
+        <% if Wabosign.multitenant? %>
+          <li>
+            <%= link_to console_redirect_index_path(redir: "#{Wabosign::CONSOLE_URL}#{'/test' if current_account.testing?}/embedding/form"), class: 'text-base hover:bg-base-300', data: { turbo: false } do %>
+              <%= t('embedding') %>
+            <% end %>
+          </li>
+        <% end %>
+        <% if (!Wabosign.multitenant? || can?(:manage, :saml_sso)) && can?(:read, EncryptedConfig.new(key: 'saml_configs', account: current_account)) && true_user == current_user %>
           <li>
             <%= link_to 'SSO', settings_sso_index_path, class: 'text-base hover:bg-base-300' %>
           </li>
         <% end %>
-        <% if can?(:read, McpToken) && can?(:manage, :mcp) %>
+        <% if !Wabosign.multitenant? && can?(:read, McpToken) && can?(:manage, :mcp) %>
           <li>
             <%= link_to 'MCP', settings_mcp_index_path, class: 'text-base hover:bg-base-300' %>
           </li>
@@ -104,12 +124,24 @@
             <%= svg_icon('brand_github', class: 'w-8 h-8') %>
           </a>
         </div>
+        <div class="tooltip" data-tip="<%= t('discord_community') %>">
+          <a href="<%= Wabosign::DISCORD_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
+            <%= svg_icon('brand_discord', class: 'w-8 h-8') %>
+          </a>
+        </div>
+        <%= capture do %>
+          <div class="tooltip" data-tip="<%= t('ai_assistant') %>">
+            <a href="<%= Wabosign::CHATGPT_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
+              <%= svg_icon('brand_openai', class: 'w-8 h-8') %>
+            </a>
+          </div>
+        <% end %>
       </div>
       <a href="mailto:<%= Wabosign::SUPPORT_EMAIL %>" target="_blank" class="w-full block mt-4 underline text-center">
         <%= Wabosign::SUPPORT_EMAIL %>
       </a>
       <% if Wabosign.version.present? && !Wabosign.multitenant? && can?(:manage, EncryptedConfig) %>
-        <a href="<%= Wabosign::GITHUB_URL %>/releases" target="_blank" class="badge badge-outline text-xs block mx-auto mt-4">
+        <a href="https://github.com/wabolabs/wabosign/releases" target="_blank" class="badge badge-outline text-xs block mx-auto mt-4">
           v<%= Wabosign.version %>
         </a>
       <% end %>

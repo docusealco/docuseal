@@ -39,7 +39,7 @@ module LoadBmp
       bands = header_data[:bpp] / 8
     end
 
-    image = Vips::Image.new_from_memory(final_pixel_data, header_data[:width], header_data[:height], bands, :uchar)
+    image = Vips::Image.new_from_memory_copy(final_pixel_data, header_data[:width], header_data[:height], bands, :uchar)
 
     image = image.flip(:vertical) if header_data[:orientation] == -1
 

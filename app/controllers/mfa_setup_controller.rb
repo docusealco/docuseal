@@ -20,8 +20,7 @@ class MfaSetupController < ApplicationController
 
       redirect_to settings_profile_index_path, notice: I18n.t('2fa_has_been_configured')
     else
-      @provision_url = current_user.otp_provisioning_uri(current_user.email,
-                                                         issuer: Wabosign.branded_product_name(current_account))
+      @provision_url = current_user.otp_provisioning_uri(current_user.email, issuer: Wabosign.product_name)
 
       @error_message = I18n.t('code_is_invalid')
 
@@ -50,7 +49,6 @@ class MfaSetupController < ApplicationController
 
     current_user.save!
 
-    @provision_url = current_user.otp_provisioning_uri(current_user.email,
-                                                       issuer: Wabosign.branded_product_name(current_account))
+    @provision_url = current_user.otp_provisioning_uri(current_user.email, issuer: Wabosign.product_name)
   end
 end

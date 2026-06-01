@@ -42,6 +42,7 @@
       {{ error }}
     </div>
     <button
+      type="button"
       class="base-button w-full flex justify-center submit-form-button"
       @click="restartKba"
     >

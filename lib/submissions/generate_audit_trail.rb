@@ -43,11 +43,11 @@ module Submissions
 
         io = StringIO.new
 
-        document.trailer.info[:Creator] = "#{Wabosign.branded_product_name(account)} (#{Wabosign::PRODUCT_URL})"
+        document.trailer.info[:Creator] = "#{Wabosign.product_name} (#{Wabosign::PRODUCT_URL})"
 
         if pkcs
           sign_params = {
-            reason: sign_reason(account),
+            reason: sign_reason,
             **Submissions::GenerateResultAttachments.build_signing_params(last_submitter, pkcs, tsa_url)
           }
 
@@ -128,6 +128,8 @@ module Submissions
       with_audit_sender = configs.find { |c| c.key == AccountConfig::WITH_AUDIT_SENDER_KEY }&.value == true
       with_submitter_timezone = configs.find { |c| c.key == AccountConfig::WITH_SUBMITTER_TIMEZONE_KEY }&.value == true
       with_timestamp_seconds = configs.find { |c| c.key == AccountConfig::WITH_TIMESTAMP_SECONDS_KEY }&.value == true
+
+      file_links_expire_at = Accounts.link_expires_at(submission.account) if with_file_links
 
       timezone = account.timezone
       timezone = last_submitter.timezone || account.timezone if with_submitter_timezone
@@ -408,7 +410,7 @@ module Submissions
 
                   link =
                     if with_file_links
-                      ActiveStorage::Blob.proxy_url(attachment.blob)
+                      ActiveStorage::Blob.proxy_url(attachment.blob, expires_at: file_links_expire_at)
                     else
                       r.submissions_preview_url(submission.slug, **Wabosign.default_url_options)
                     end
@@ -516,8 +518,8 @@ module Submissions
       composer.document
     end
 
-    def sign_reason(account = nil)
-      "Signed with #{Wabosign.branded_product_name(account)}"
+    def sign_reason
+      'Signed with WaboSign.com'
     end
 
     def select_attachments(submitter)
@@ -536,11 +538,10 @@ module Submissions
       !submission.source.in?(%w[embed api])
     end
 
-    def add_logo(column, submission = nil)
-      column.image(PdfIcons.account_logo_io(submission&.account),
-                   width: 40, height: 40, position: :float)
+    def add_logo(column, _submission = nil)
+      column.image(PdfIcons.logo_io, width: 40, height: 40, position: :float)
 
-      column.formatted_text([{ text: Wabosign.branded_product_name(submission&.account),
+      column.formatted_text([{ text: 'WaboSign',
                                link: Wabosign::PRODUCT_EMAIL_URL }],
                             font_size: 20,
                             font: [FONT_NAME, { variant: :bold }],

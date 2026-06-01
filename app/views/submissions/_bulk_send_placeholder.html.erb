@@ -5,7 +5,11 @@
       <%= t('bulk_send_from_excel_xlsx_or_csv') %>
     </p>
     <p class="text-gray-700">
-      Bulk send via CSV/XLSX import is not bundled with this open-source edition. Use the JSON API (POST /api/submissions with an array of submitters) to create submissions in bulk programmatically.
+      <%= t('unlock_with_docuseal_pro') %>
+      <br>
+      <a class="link font-medium" target="_blank" href="<%= Wabosign.multitenant? ? console_redirect_index_path(redir: "#{Wabosign::CONSOLE_URL}/plans") : "#{Wabosign::CLOUD_URL}/sign_up?#{{ redir: "#{Wabosign::CONSOLE_URL}/on_premises" }.to_query}" %>" data-turbo="false">
+        <%= t('learn_more') %>
+      </a>
     </p>
   </div>
 </div>

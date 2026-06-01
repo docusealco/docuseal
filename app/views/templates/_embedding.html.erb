@@ -55,8 +55,8 @@
 <div id="js_1" class="block my-4">
     <div class="mockup-code overflow-hidden pb-0 mt-4">
       <span class="top-0 right-0 absolute flex">
-        <%= link_to t(:learn_more), "#{Wabosign::PRODUCT_URL}/docs/embedding", target: '_blank', data: { turbo: false }, class: 'btn btn-ghost text-gray-100 flex', rel: 'noopener' %>
-        <clipboard-copy data-text="<script src=&quot;<%= embed_script_url(filename: 'form.js') %>&quot;></script>
+        <%= link_to t('learn_more'), console_redirect_index_path(redir: "#{Wabosign::CONSOLE_URL}/embedding/form"), target: '_blank', data: { turbo: false }, class: 'btn btn-ghost text-gray-100 flex', rel: 'noopener' %>
+        <clipboard-copy data-text="<script src=&quot;<%= Wabosign::CDN_URL %>/js/form.js&quot;></script>
 
 <docuseal-form data-src=&quot;<%= start_form_url(slug: template.slug) %>&quot;></docuseal-form>
 ">
@@ -78,7 +78,7 @@
 </clipboard-copy>
 
       </span>
-      <pre class="before:!m-0 pl-6 pb-4 overflow-auto"><code class="overflow-hidden w-full"><span style="color: #f4bf75">&lt;script </span><span style="color: #6a9fb5">src=</span><span style="color: #90a959">"<%= embed_script_url(filename: 'form.js') %>"</span><span style="color: #f4bf75">&gt;&lt;/script&gt;</span>
+      <pre class="before:!m-0 pl-6 pb-4 overflow-auto"><code class="overflow-hidden w-full"><span style="color: #f4bf75">&lt;script </span><span style="color: #6a9fb5">src=</span><span style="color: #90a959">"<%= Wabosign::CDN_URL %>/js/form.js"</span><span style="color: #f4bf75">&gt;&lt;/script&gt;</span>
 
 <span style="color: #f4bf75">&lt;docuseal-form</span> <span style="color: #6a9fb5">data-src=</span><span style="color: #90a959">"<%= start_form_url(slug: template.slug) %>"</span><span style="color: #f4bf75">&gt;</span><span style="color: #f4bf75">&lt;/docuseal-form&gt;</span>
 </code></pre>
@@ -88,7 +88,7 @@
 <div id="react_1" class="block my-4 hidden">
     <div class="mockup-code overflow-hidden pb-0 mt-4">
       <span class="top-0 right-0 absolute flex">
-        <%= link_to t(:learn_more), "#{Wabosign::PRODUCT_URL}/docs/embedding", target: '_blank', data: { turbo: false }, class: 'btn btn-ghost text-gray-100 flex', rel: 'noopener' %>
+        <%= link_to t('learn_more'), console_redirect_index_path(redir: "#{Wabosign::CONSOLE_URL}/embedding/form"), target: '_blank', data: { turbo: false }, class: 'btn btn-ghost text-gray-100 flex', rel: 'noopener' %>
         <clipboard-copy data-text="import React from &quot;react&quot;
 import { DocusealForm } from '@docuseal/react'
 
@@ -135,7 +135,7 @@ export function App() {
 <div id="vue_1" class="block my-4 hidden">
     <div class="mockup-code overflow-hidden pb-0 mt-4">
       <span class="top-0 right-0 absolute flex">
-        <%= link_to t(:learn_more), "#{Wabosign::PRODUCT_URL}/docs/embedding", target: '_blank', data: { turbo: false }, class: 'btn btn-ghost text-gray-100 flex', rel: 'noopener' %>
+        <%= link_to t('learn_more'), console_redirect_index_path(redir: "#{Wabosign::CONSOLE_URL}/embedding/form"), target: '_blank', data: { turbo: false }, class: 'btn btn-ghost text-gray-100 flex', rel: 'noopener' %>
         <clipboard-copy data-text="<template>
   <DocusealForm
     :src=&quot;'<%= start_form_url(slug: template.slug) %>'&quot;
@@ -193,7 +193,7 @@ export default {
 <div id="angular_1" class="block my-4 hidden">
     <div class="mockup-code overflow-hidden pb-0 mt-4">
       <span class="top-0 right-0 absolute flex">
-        <%= link_to t(:learn_more), "#{Wabosign::PRODUCT_URL}/docs/embedding", target: '_blank', data: { turbo: false }, class: 'btn btn-ghost text-gray-100 flex', rel: 'noopener' %>
+        <%= link_to t('learn_more'), console_redirect_index_path(redir: "#{Wabosign::CONSOLE_URL}/embedding/form"), target: '_blank', data: { turbo: false }, class: 'btn btn-ghost text-gray-100 flex', rel: 'noopener' %>
         <clipboard-copy data-text="import { Component } from '@angular/core';
 import { DocusealFormComponent } from '@docuseal/angular';
 

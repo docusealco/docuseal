@@ -77,7 +77,7 @@ module Templates
                                  split_page: false, aspect_ratio: false, padding: nil, page_number: nil)
       return [[], nil] if page_number && page_number != 0
 
-      image = ImageUtils.load_vips(io.read, content_type: attachment.content_type)
+      image = ImageUtils.load_vips(io.read)
 
       fields = inference.call(image, confidence:, nms:, nmm:, split_page:,
                                      temperature:, aspect_ratio:, padding:)
@@ -193,7 +193,7 @@ module Templates
 
       data, width, height = page.render_to_bitmap(size_key => size)
 
-      Vips::Image.new_from_memory(data, width, height, 4, :uchar)
+      Vips::Image.new_from_memory_copy(data, width, height, 4, :uchar)
     end
 
     def sort_fields(fields, y_threshold: 0.01)

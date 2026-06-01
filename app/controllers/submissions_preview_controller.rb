@@ -5,6 +5,8 @@ class SubmissionsPreviewController < ApplicationController
   skip_before_action :authenticate_user!
   skip_authorization_check
 
+  prepend_before_action :maybe_redirect_com, only: %i[show completed]
+
   TTL = 40.minutes
 
   def show

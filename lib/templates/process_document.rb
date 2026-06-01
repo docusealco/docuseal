@@ -107,7 +107,7 @@ module Templates
 
           bytes, width, height = doc_page.render_to_bitmap(width: MAX_WIDTH)
 
-          image = Vips::Image.new_from_memory(bytes, width, height, 4, :uchar)
+          image = Vips::Image.new_from_memory_copy(bytes, width, height, 4, :uchar)
 
           Concurrent::Promise.execute(executor: pool) { build_and_upload_blob(image, page_number) }
         ensure
@@ -201,7 +201,7 @@ module Templates
 
       doc_page.close
 
-      image = Vips::Image.new_from_memory(bytes, width, height, 4, :uchar)
+      image = Vips::Image.new_from_memory_copy(bytes, width, height, 4, :uchar)
 
       blob = build_and_upload_blob(image, page_number, PREVIEW_FORMAT)
 

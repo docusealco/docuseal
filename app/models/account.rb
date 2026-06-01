@@ -18,12 +18,7 @@
 #  index_accounts_on_uuid  (uuid) UNIQUE
 #
 class Account < ApplicationRecord
-  LOGO_CONTENT_TYPES = %w[image/png image/jpeg image/svg+xml].freeze
-  LOGO_MAX_BYTES = 2.megabytes
-
   attribute :uuid, :string, default: -> { SecureRandom.uuid }
-
-  has_one_attached :logo
 
   has_many :users, dependent: :destroy
   has_many :encrypted_configs, dependent: :destroy
@@ -64,10 +59,6 @@ class Account < ApplicationRecord
 
   def testing?
     linked_account_account&.testing?
-  end
-
-  def brand_name
-    account_configs.find_by(key: AccountConfig::BRAND_NAME_KEY)&.value.to_s.strip.presence
   end
 
   def tz_info

@@ -28,7 +28,6 @@ class DashboardController < ApplicationController
   def maybe_redirect_mfa_setup
     return unless signed_in?
     return if current_user.otp_required_for_login
-    return if session[:bypass_otp_for_sso] || current_user.signed_in_via_sso?
 
     return if !current_user.otp_required_for_login && !AccountConfig.exists?(value: true,
                                                                              account_id: current_user.account_id,

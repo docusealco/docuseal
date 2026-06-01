@@ -320,7 +320,7 @@
       class="text-base-content/60 text-xs text-center w-full mt-1 select-none"
     >
       {{ t('by_clicking_you_agree_to_the').replace('{button}', buttonText.charAt(0).toUpperCase() + buttonText.slice(1)) }} <a
-        :href="esignDisclosureUrl"
+        href="https://www.wabosign.com/esign-disclosure"
         target="_blank"
       >
         <span class="inline md:hidden">
@@ -399,11 +399,6 @@ export default {
       type: Boolean,
       required: false,
       default: false
-    },
-    esignDisclosureUrl: {
-      type: String,
-      required: false,
-      default: ''
     },
     withQrButton: {
       type: Boolean,
@@ -910,7 +905,7 @@ export default {
             reader.readAsDataURL(file)
 
             reader.onloadend = () => {
-              const attachment = { url: reader.result, uuid: crypto.randomUUID() }
+              const attachment = { url: reader.result, uuid: Math.random().toString() }
 
               this.$emit('attached', attachment)
               this.$emit('update:model-value', attachment.uuid)

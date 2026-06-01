@@ -1,4 +1,4 @@
-<% content_for(:html_title, "#{@template.name} | #{Wabosign.branded_product_name(@template.account)}") %>
+<% content_for(:html_title, "#{@template.name} | WaboSign") %>
 <% I18n.with_locale(@template.account.locale) do %>
   <% content_for(:html_description, t('share_link_is_currently_disabled')) %>
 <% end %>

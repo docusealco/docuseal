@@ -40,7 +40,7 @@ class SetupController < ApplicationController
 
       sign_in(@user)
 
-      redirect_to root_path
+      redirect_to newsletter_path
     else
       render :index, status: :unprocessable_content
     end

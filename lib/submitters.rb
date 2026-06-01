@@ -122,7 +122,7 @@ module Submitters
     end
   end
 
-  def create_attachment!(submitter, file)
+  def create_attachment!(submitter, file, metadata: {})
     raise ParamsError, 'file param is missing' if file.blank?
 
     extension = File.extname(file.original_filename).delete_prefix('.').downcase
@@ -133,7 +133,8 @@ module Submitters
 
     blob = ActiveStorage::Blob.create_and_upload!(io: file.tap(&:rewind).open,
                                                   filename: file.original_filename,
-                                                  content_type: file.content_type)
+                                                  content_type: file.content_type,
+                                                  metadata:)
 
     ActiveStorage::Attachment.create!(blob:, name: 'attachments', record: submitter)
   end

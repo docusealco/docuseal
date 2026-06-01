@@ -14,10 +14,12 @@
           <%= ff.text_field :subject, required: true, class: 'base-input', dir: 'auto' %>
         </div>
         <%= render 'personalization_settings/email_body_field', ff:, config: f.object %>
-        <div class="form-control">
-          <%= ff.label :reply_to, t('reply_to'), class: 'label' %>
-          <%= ff.email_field :reply_to, class: 'base-input', dir: 'auto', placeholder: t(:email) %>
-        </div>
+        <% if can?(:manage, :reply_to) || can?(:manage, :personalization_advanced) %>
+          <div class="form-control">
+            <%= ff.label :reply_to, t('reply_to'), class: 'label' %>
+            <%= ff.email_field :reply_to, class: 'base-input', dir: 'auto', placeholder: t(:email) %>
+          </div>
+        <% end %>
         <div class="space-y-3.5">
           <div class="flex items-center justify-between mx-1">
             <span>
@@ -31,18 +33,22 @@
             </span>
             <%= ff.check_box :attach_audit_log, { checked: ff.object.attach_audit_log != false, class: 'toggle' }, 'true', 'false' %>
           </div>
-          <div class="flex items-center justify-between mx-1">
-            <span>
-              <%= t('bcc_recipients') %>
-            </span>
-            <%= ff.check_box :bcc_recipients, { checked: ff.object.bcc_recipients == true, class: 'toggle' }, 'true', 'false' %>
-          </div>
-          <div class="flex items-center justify-between mx-1">
-            <span>
-              <%= t('send_emails_automatically_on_completion') %>
-            </span>
-            <%= ff.check_box :enabled, { checked: ff.object.enabled != false, class: 'toggle' }, 'true', 'false' %>
-          </div>
+          <% unless Wabosign.multitenant? %>
+            <div class="flex items-center justify-between mx-1">
+              <span>
+                <%= t('bcc_recipients') %>
+              </span>
+              <%= ff.check_box :bcc_recipients, { checked: ff.object.bcc_recipients == true, class: 'toggle' }, 'true', 'false' %>
+            </div>
+          <% end %>
+          <% if !Wabosign.multitenant? || can?(:manage, :personalization_advanced) %>
+            <div class="flex items-center justify-between mx-1">
+              <span>
+                <%= t('send_emails_automatically_on_completion') %>
+              </span>
+              <%= ff.check_box :enabled, { checked: ff.object.enabled != false, class: 'toggle' }, 'true', 'false' %>
+            </div>
+          <% end %>
         </div>
       <% end %>
       <div class="form-control pt-2">

@@ -1,6 +1,5 @@
-<% filter_path = params[:path].to_s.start_with?('/') ? params[:path] : '/' %>
 <%= render 'shared/turbo_modal', title: local_assigns[:title] do %>
-  <%= form_for '', url: filter_path, method: :get, data: { turbo_frame: :_top }, html: { autocomplete: :off } do |f| %>
+  <%= form_for '', url: params[:path], method: :get, data: { turbo_frame: :_top }, html: { autocomplete: :off } do |f| %>
     <%= hidden_field_tag :q, params[:q] if params[:q].present? %>
     <% local_assigns[:default_params].each do |key, value| %>
       <%= hidden_field_tag(key, value) if value.present? %>
@@ -11,7 +10,7 @@
     </div>
     <% if params[:with_remove] %>
       <div class="text-center w-full mt-4">
-        <%= link_to t('remove_filter'), "#{filter_path}?#{request.query_parameters.slice('q').merge(local_assigns[:default_params]).to_query}", class: 'link', data: { turbo_frame: :_top } %>
+        <%= link_to t('remove_filter'), "#{params[:path]}?#{request.query_parameters.slice('q').merge(local_assigns[:default_params]).to_query}", class: 'link', data: { turbo_frame: :_top } %>
       </div>
     <% end %>
   <% end %>

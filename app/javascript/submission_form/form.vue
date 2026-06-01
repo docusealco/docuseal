@@ -95,7 +95,7 @@
       v-else
       id="complete_form_button"
       class="btn btn-sm btn-neutral text-white px-4 w-full flex justify-center"
-      form="steps_form"
+      form="complete_form"
       type="submit"
       name="completed"
       value="true"
@@ -120,7 +120,7 @@
   >
     <button
       class="complete-button btn btn-sm btn-neutral text-white px-4"
-      form="steps_form"
+      form="complete_form"
       type="submit"
       name="completed"
       value="true"
@@ -138,6 +138,14 @@
       </span>
     </button>
   </Teleport>
+  <form
+    v-if="!isCompleted && !isInvite"
+    id="complete_form"
+    class="hidden"
+    :action="submitPath"
+    method="post"
+    @submit.prevent="submitStep"
+  />
   <button
     v-if="!isFormVisible"
     id="expand_form_button"

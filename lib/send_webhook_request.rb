@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module SendWebhookRequest
-  USER_AGENT = 'WaboSign Webhook'
+  USER_AGENT = 'WaboSign.com Webhook'
 
   LOCALHOSTS = DownloadUtils::LOCALHOSTS
 

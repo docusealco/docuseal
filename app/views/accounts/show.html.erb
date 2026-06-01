@@ -70,7 +70,7 @@
             <div class="flex items-center justify-between gap-4 py-2.5">
               <div class="flex items-center space-x-1">
                 <span class="text-left"><%= t('add_signature_id_to_the_documents') %></span>
-                <span class="tooltip tooltip-top flex cursor-pointer" data-tip="<%= t('add_a_unique_signature_id_and_timestamp_to_each_signature_for_audit_and_traceability_purposes_along_with_the_timestamp_part_of_wabosigns_21_cfr_part_11_compliance_settings') %>">
+                <span class="tooltip tooltip-top flex cursor-pointer" data-tip="<%= t('add_a_unique_signature_id_and_timestamp_to_each_signature_for_audit_and_traceability_purposes_along_with_the_timestamp_part_of_docuseals_21_cfr_part_11_compliance_settings') %>">
                   <%= svg_icon('info_circle', class: 'hidden md:inline-block w-4 h-4 shrink-0') %>
                 </span>
               </div>
@@ -87,7 +87,7 @@
             <div class="flex items-center justify-between gap-4 py-2.5">
               <div class="flex items-center space-x-1">
                 <span class="text-left"><%= t('require_signing_reason') %></span>
-                <span class="tooltip tooltip-top flex cursor-pointer" data-tip="<%= t('require_signer_to_provide_a_reason_for_signing_before_completing_their_signature_e_g_approvals_certifications_part_of_wabosigns_21_cfr_part_11_compliance_settings') %>">
+                <span class="tooltip tooltip-top flex cursor-pointer" data-tip="<%= t('require_signer_to_provide_a_reason_for_signing_before_completing_their_signature_e_g_approvals_certifications_part_of_docuseals_21_cfr_part_11_compliance_settings') %>">
                   <%= svg_icon('info_circle', class: 'hidden md:inline-block w-4 h-4 shrink-0') %>
                 </span>
               </div>
@@ -142,9 +142,15 @@
                   <%= svg_icon('info_circle', class: 'hidden md:inline-block w-4 h-4 shrink-0') %>
                 </span>
               </div>
-              <submit-form data-on="change" class="flex">
-                <%= f.check_box :value, class: 'toggle', checked: account_config.value != false %>
-              </submit-form>
+              <% if !Wabosign.multitenant? || can?(:manage, :disable_decline) %>
+                <submit-form data-on="change" class="flex">
+                  <%= f.check_box :value, class: 'toggle', checked: account_config.value != false %>
+                </submit-form>
+              <% else %>
+                <a href="<%= console_redirect_index_path(redir: "#{Wabosign::CONSOLE_URL}/plans") %>" data-turbo="false" data-tip="<%= I18n.t('unlock_with_docuseal_pro') %>" data-on="change" class="flex tooltip">
+                  <%= f.check_box :value, class: 'toggle pointer-events-none', checked: account_config.value != false, disabled: true %>
+                </a>
+              <% end %>
             </div>
           <% end %>
         <% end %>
@@ -159,9 +165,15 @@
                   <%= svg_icon('info_circle', class: 'hidden md:inline-block w-4 h-4 shrink-0') %>
                 </span>
               </div>
-              <submit-form data-on="change" class="flex">
-                <%= f.check_box :value, class: 'toggle', checked: account_config.value == true %>
-              </submit-form>
+              <% if !Wabosign.multitenant? || can?(:manage, :delegate_form) %>
+                <submit-form data-on="change" class="flex">
+                  <%= f.check_box :value, class: 'toggle', checked: account_config.value == true %>
+                </submit-form>
+              <% else %>
+                <a href="<%= console_redirect_index_path(redir: "#{Wabosign::CONSOLE_URL}/plans") %>" data-turbo="false" data-tip="<%= I18n.t('unlock_with_docuseal_pro') %>" class="flex tooltip">
+                  <%= f.check_box :value, class: 'toggle pointer-events-none', checked: account_config.value == true, disabled: true %>
+                </a>
+              <% end %>
             </div>
           <% end %>
         <% end %>
@@ -233,7 +245,7 @@
             </div>
           <% end %>
         <% end %>
-        <% if true # personalization_advanced gate removed in fork %>
+        <% if !Wabosign.multitenant? || can?(:manage, :personalization_advanced) %>
           <% account_config = AccountConfig.find_or_initialize_by(account: current_account, key: AccountConfig::ENFORCE_SIGNING_ORDER_KEY) %>
           <% if can?(:manage, account_config) %>
             <%= form_for account_config, url: account_configs_path, method: :post do |f| %>
@@ -252,7 +264,7 @@
             <% end %>
           <% end %>
         <% end %>
-        <% if true # personalization_advanced gate removed in fork %>
+        <% if !Wabosign.multitenant? || can?(:manage, :personalization_advanced) %>
           <% account_config = AccountConfig.find_or_initialize_by(account: current_account, key: AccountConfig::WITH_FILE_LINKS_KEY) %>
           <% if can?(:manage, account_config) %>
             <%= form_for account_config, url: account_configs_path, method: :post do |f| %>

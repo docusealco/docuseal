@@ -21,14 +21,10 @@ gem 'faraday'
 gem 'faraday-follow_redirects'
 gem 'google-cloud-storage', require: false
 gem 'hexapdf'
-gem 'image_processing'
 gem 'jwt', require: false
 gem 'lograge'
 gem 'numo-narray-alt', require: false
 gem 'oj'
-gem 'omniauth', '~> 2.1'
-gem 'omniauth-google-oauth2', '~> 1.2'
-gem 'omniauth-rails_csrf_protection', '~> 1.0'
 gem 'onnxruntime', require: false
 gem 'pagy'
 gem 'pg', require: false

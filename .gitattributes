@@ -1,6 +1,1 @@
 *.html linguist-detectable=false
-
-# Upstream-merge ergonomics. Lockfiles are regenerated post-merge rather
-# than merged line-by-line — see REBRANDING.md "Sync workflow".
-Gemfile.lock -merge
-yarn.lock -merge

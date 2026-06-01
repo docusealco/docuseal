@@ -1,22 +1,8 @@
 ---
 name: CI
 on: [push]
-permissions: read-all
 
 jobs:
-  rebrand_check:
-    name: Rebrand check
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    steps:
-      - uses: actions/checkout@v4
-      - name: Install Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 4.0.1
-      - name: Run rebrand-check
-        run: ruby bin/rebrand-check
-
   rubocop:
     name: Rubocop
     runs-on: ubuntu-latest
@@ -74,12 +60,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v1
         with:
           node-version: 20.19.0
       - name: Cache directory path
         id: yarn-cache-dir-path
-        run: echo "dir=$(yarn cache dir)" >> "$GITHUB_OUTPUT"
+        run: echo "::set-output name=dir::$(yarn cache dir)"
       - uses: actions/cache@v4
         id: yarn-cache
         with:
@@ -133,7 +119,7 @@ jobs:
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: wabosign_test
+          POSTGRES_DB: docuseal_test
         ports: ["5432:5432"]
         options: >-
           --health-cmd pg_isready
@@ -148,7 +134,7 @@ jobs:
         with:
           ruby-version: 4.0.5
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v1
         with:
           node-version: 20.19.0
       - name: Install Chrome
@@ -185,7 +171,7 @@ jobs:
           RAILS_ENV: test
           NODE_ENV: test
           COVERAGE: true
-          DATABASE_URL: postgres://postgres:postgres@localhost:5432/wabosign_test
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/docuseal_test
         run: |
           bundle exec rake db:create
           bundle exec rake db:migrate

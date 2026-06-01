@@ -15,6 +15,7 @@
         </template>
       </label>
       <button
+        type="button"
         class="btn btn-outline btn-sm reupload-button"
         @click.prevent="remove"
       >

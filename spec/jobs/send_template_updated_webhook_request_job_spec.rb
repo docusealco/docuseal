@@ -32,7 +32,7 @@ RSpec.describe SendTemplateUpdatedWebhookRequestJob do
         },
         headers: {
           'Content-Type' => 'application/json',
-          'User-Agent' => 'WaboSign Webhook'
+          'User-Agent' => 'WaboSign.com Webhook'
         }
       ).once
     end
@@ -50,7 +50,7 @@ RSpec.describe SendTemplateUpdatedWebhookRequestJob do
         },
         headers: {
           'Content-Type' => 'application/json',
-          'User-Agent' => 'WaboSign Webhook',
+          'User-Agent' => 'WaboSign.com Webhook',
           'X-Secret-Header' => 'secret_value'
         }
       ).once

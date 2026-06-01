@@ -22,15 +22,14 @@ class SessionsController < Devise::SessionsController
     super
   end
 
-  def destroy
-    session.delete(:bypass_otp_for_sso)
-    super
-  end
-
   private
 
   def after_sign_in_path_for(...)
-    return params[:redir] if params[:redir].present?
+    if params[:redir].present?
+      return console_redirect_index_path(redir: params[:redir]) if params[:redir].starts_with?(Wabosign::CONSOLE_URL)
+
+      return params[:redir]
+    end
 
     super
   end

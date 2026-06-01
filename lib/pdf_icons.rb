@@ -20,26 +20,6 @@ module PdfIcons
     StringIO.new(logo_data)
   end
 
-  # Returns binary IO for the account's uploaded logo when attached,
-  # otherwise the default WaboSign mark. SVG uploads are rasterised via
-  # ActiveStorage variants (libvips + librsvg ship in the production image
-  # via the `vips` Alpine package). On any failure path we fall back to the
-  # default mark so audit-trail generation never crashes on a bad logo.
-  def account_logo_io(account)
-    return logo_io if account.nil? || !account.logo.attached?
-
-    blob = account.logo
-    if blob.content_type == 'image/svg+xml'
-      variant = blob.variant(resize_to_limit: [WIDTH, HEIGHT], format: :png).processed
-      StringIO.new(variant.download)
-    else
-      StringIO.new(blob.download)
-    end
-  rescue StandardError => e
-    Rails.logger.warn("[PdfIcons] account_logo_io fallback for account=#{account&.id}: #{e.class}: #{e.message}")
-    logo_io
-  end
-
   def stamp_logo_io
     StringIO.new(stamp_logo_data)
   end

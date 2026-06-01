@@ -5,7 +5,7 @@ class SendTestWebhookRequestJob
 
   sidekiq_options retry: 0
 
-  USER_AGENT = 'WaboSign Webhook'
+  USER_AGENT = 'WaboSign.com Webhook'
 
   HttpsError = Class.new(StandardError)
   LocalhostError = Class.new(StandardError)

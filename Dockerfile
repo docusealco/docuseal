@@ -42,26 +42,14 @@ RUN echo "gem 'shakapacker'" > Gemfile && ./bin/shakapacker
 
 FROM ruby:4.0.5-alpine AS app
 
-ARG VERSION="dev"
-ARG REVISION="unknown"
-
-LABEL org.opencontainers.image.title="WaboSign" \
-      org.opencontainers.image.description="Self-hosted, open-source document filling and signing platform — a WaboSign fork of DocuSeal." \
-      org.opencontainers.image.url="https://github.com/wabolabs/wabosign" \
-      org.opencontainers.image.source="https://github.com/wabolabs/wabosign" \
-      org.opencontainers.image.documentation="https://github.com/wabolabs/wabosign#readme" \
-      org.opencontainers.image.vendor="WaboLabs" \
-      org.opencontainers.image.licenses="AGPL-3.0-or-later" \
-      org.opencontainers.image.version="${VERSION}" \
-      org.opencontainers.image.revision="${REVISION}"
-
 ENV RAILS_ENV=production
 ENV BUNDLE_WITHOUT="development:test"
 ENV OPENSSL_CONF=/etc/openssl_legacy.cnf
 
 WORKDIR /app
 
-RUN apk add --no-cache libpq vips redis onnxruntime
+RUN apk add --no-cache libpq vips redis onnxruntime && \
+    rm -f /usr/bin/onnx_test_runner /usr/bin/onnxruntime_test
 
 RUN addgroup -g 2000 wabosign && adduser -u 2000 -G wabosign -s /bin/sh -D -h /home/wabosign wabosign
 

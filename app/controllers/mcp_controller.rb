@@ -47,8 +47,7 @@ class McpController < ActionController::API
   end
 
   def user_from_api_key
-    auth  = request.headers['Authorization'].to_s
-    token = auth.start_with?('Bearer ') ? auth[7..].strip.presence : nil
+    token = request.headers['Authorization'].to_s[/\ABearer\s+(.+)\z/, 1]
 
     return if token.blank?
 

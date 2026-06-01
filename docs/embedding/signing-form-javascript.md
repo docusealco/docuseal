@@ -3,11 +3,11 @@
 ### Example Code
 
 ```javascript
-<script src="https://sign.wabo.cc/js/form.js"></script>
+<script src="https://cdn.docuseal.com/js/form.js"></script>
 
 <docuseal-form
   id="docusealForm"
-  data-src="https://sign.wabo.cc/d/{{ template_slug }}"
+  data-src="https://docuseal.com/d/{{ template_slug }}"
   data-email="{{ signer_email }}">
 </docuseal-form>
 
@@ -240,7 +240,7 @@
     "type": "string",
     "required": false,
     "description": "URL to redirect to after the submission completion.",
-    "example": "https://sign.wabo.cc/success"
+    "example": "https://docuseal.com/success"
   },
   "data-completed-message-title": {
     "type": "string",

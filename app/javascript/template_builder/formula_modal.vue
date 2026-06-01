@@ -18,6 +18,16 @@
         >&times;</a>
       </div>
       <div>
+        <div
+          v-if="!withFormula"
+          class="bg-base-300 rounded-xl py-2 px-3 text-center"
+        >
+          <a
+            href="https://www.wabosign.com/pricing"
+            target="_blank"
+            class="link"
+          >{{ t('available_in_pro') }}</a>
+        </div>
         <div class="flex flex-wrap mb-2 gap-y-1 pt-1">
           <button
             v-for="f in fields"

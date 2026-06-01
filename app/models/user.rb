@@ -48,15 +48,13 @@
 #
 class User < ApplicationRecord
   ROLES = [
-    ADMIN_ROLE  = 'admin',
-    EDITOR_ROLE = 'editor',
-    VIEWER_ROLE = 'viewer'
+    ADMIN_ROLE = 'admin'
   ].freeze
 
   EMAIL_REGEXP = /[^@;,<>\s]+@[^@;,<>\s]+/
 
   FULL_EMAIL_REGEXP =
-    /\A[a-z0-9_]+(?:[.'+-][a-z0-9_]+)*@(?:[a-z0-9]+[.-])*[a-z0-9]+\.[a-z]{2,}\z/i
+    /\A[a-z0-9][.']?(?:(?:[a-z0-9_-]+[.+'])*[a-z0-9_-]+)*@(?:[a-z0-9]+[.-])*[a-z0-9]+\.[a-z]{2,}\z/i
 
   has_one_attached :signature
   has_one_attached :initials
@@ -71,14 +69,7 @@ class User < ApplicationRecord
   has_many :encrypted_configs, dependent: :destroy, class_name: 'EncryptedUserConfig'
   has_many :email_messages, dependent: :destroy, foreign_key: :author_id, inverse_of: :author
 
-  # :omniauthable is included unconditionally so the Devise routes are
-  # always declared. Whether the strategy actually works (and whether the
-  # Google button is shown on the sign-in page) is gated by
-  # Wabosign.google_sso_enabled? at runtime — driven by ENV and/or the
-  # `google_sso_configs` EncryptedConfig record.
-  devise :two_factor_authenticatable, :recoverable, :rememberable,
-         :validatable, :trackable, :lockable, :omniauthable,
-         omniauth_providers: [:google_oauth2]
+  devise :two_factor_authenticatable, :recoverable, :rememberable, :validatable, :trackable, :lockable
 
   attribute :role, :string, default: ADMIN_ROLE
   attribute :uuid, :string, default: -> { SecureRandom.uuid }
@@ -129,57 +120,5 @@ class User < ApplicationRecord
     else
       email
     end
-  end
-
-  def admin?  = role == ADMIN_ROLE
-  def editor? = role == EDITOR_ROLE
-  def viewer? = role == VIEWER_ROLE
-
-  def signed_in_via_sso?
-    provider == 'google_oauth2' && uid.present?
-  end
-
-  def self.from_google_omniauth(auth)
-    raw_info = auth.extra&.raw_info
-    hosted_domain = raw_info.respond_to?(:hd) ? raw_info.hd : raw_info&.dig('hd')
-    return nil unless Wabosign.google_domain_allowed?(hosted_domain)
-
-    email = auth.info.email.to_s.downcase
-    return nil if email.blank?
-
-    user = find_by('lower(email) = ?', email)
-    if user
-      return nil if user.provider.present? && user.uid != auth.uid
-
-      user.update!(provider: 'google_oauth2', uid: auth.uid) if user.provider.blank?
-      return user
-    end
-
-    account = default_sso_account
-    return nil if account.nil?
-
-    create!(
-      account: account,
-      email: email,
-      first_name: auth.info.first_name,
-      last_name: auth.info.last_name,
-      role: ADMIN_ROLE,
-      password: SecureRandom.hex(32),
-      provider: 'google_oauth2',
-      uid: auth.uid,
-      confirmed_at: Time.current
-    )
-  end
-
-  def self.default_sso_account
-    # ENV override always wins.
-    return Account.find_by(id: Wabosign::GOOGLE_DEFAULT_ACCOUNT_ID) if Wabosign::GOOGLE_DEFAULT_ACCOUNT_ID.present?
-
-    # If an admin saved the Google SSO config via the UI, JIT-provision into
-    # that same account so admins land in the right tenant.
-    db_config = EncryptedConfig.find_by(key: EncryptedConfig::GOOGLE_SSO_KEY)
-    return db_config.account if db_config&.account && db_config.account.archived_at.nil?
-
-    Account.order(:created_at).first
   end
 end

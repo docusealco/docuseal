@@ -7,6 +7,7 @@ class StartFormController < ApplicationController
   skip_authorization_check
 
   around_action :with_browser_locale, only: %i[show update completed]
+  before_action :maybe_redirect_com, only: %i[show completed]
   before_action :load_resubmit_submitter, only: :update
   before_action :load_template
   before_action :authorize_start!, only: :update
@@ -82,7 +83,7 @@ class StartFormController < ApplicationController
 
     @submitter = Submitter.where(submission: @template.submissions)
                           .where.not(completed_at: nil)
-                          .find_by!(required_params.slice('email', 'phone'))
+                          .find_by!(required_params.except('name'))
   end
 
   private
@@ -100,11 +101,18 @@ class StartFormController < ApplicationController
   def load_resubmit_submitter
     @resubmit_submitter =
       if params[:resubmit].present? && !params[:resubmit].in?([true, 'true'])
-        Submitter.find_by(slug: params[:resubmit])
+        submitter = Submitter.find_by(slug: params[:resubmit])
+
+        submitter if submitter && can_resubmit?(submitter)
       end
   end
 
+  def can_resubmit?(submitter)
+    submitter.account.account_configs.find_or_initialize_by(key: AccountConfig::ALLOW_TO_RESUBMIT).value != false
+  end
+
   def authorize_start!
+    return redirect_to submit_form_path(@resubmit_submitter.slug) if @resubmit_submitter && @template.archived_at?
     return redirect_to start_form_path(@template.slug) if @template.archived_at?
 
     return if @resubmit_submitter
@@ -120,7 +128,7 @@ class StartFormController < ApplicationController
 
     required_params = required_fields.index_with { |key| submitter_params[key] }
 
-    find_params = required_params.slice('email', 'phone')
+    find_params = required_params.except('name')
 
     submitter = Submitter.new if find_params.compact_blank.blank?
 

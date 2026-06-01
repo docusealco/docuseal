@@ -10,7 +10,7 @@ export function App() {
   return (
     <div className="app">
       <DocusealForm
-        src="https://sign.wabo.cc/d/{{template_slug}}"
+        src="https://docuseal.com/d/{{template_slug}}"
         email="{{signer_email}}"
         onComplete={(data) => console.log(data)}
       />
@@ -159,7 +159,7 @@ export function App() {
     "type": "string",
     "required": false,
     "description": "URL to redirect to after the submission completion.",
-    "example": "https://sign.wabo.cc/success"
+    "example": "https://docuseal.com/success"
   },
   "completedMessage": {
     "type": "object",

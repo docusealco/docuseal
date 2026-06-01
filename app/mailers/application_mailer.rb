@@ -1,12 +1,7 @@
 # frozen_string_literal: true
 
 class ApplicationMailer < ActionMailer::Base
-  # Lambda is evaluated per-message in mailer context, so @current_account
-  # (set by each mailer action) is available here.
-  default from: lambda {
-    account = instance_variable_defined?(:@current_account) ? @current_account : nil
-    "#{Wabosign.branded_product_name(account)} <#{Wabosign::SUPPORT_EMAIL}>"
-  }
+  default from: 'WaboSign <info@wabosign.com>'
   layout 'mailer'
 
   register_interceptor ActionMailerConfigsInterceptor

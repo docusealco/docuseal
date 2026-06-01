@@ -1,17 +1,5 @@
 Additional Terms
 
 In accordance with Section 7(b) of the GNU Affero General Public License,
-covered works derived from this software must retain attribution to:
-
-  1. WaboSign — https://sign.wabo.cc — https://github.com/wabolabs/wabosign
-  2. DocuSeal (the upstream from which WaboSign is forked) —
-     https://github.com/docusealco/docuseal
-
-Attribution must remain visible in interactive user interfaces (e.g. footer,
-About page, generated emails, audit-trail PDFs, signing-completion screens).
-
-WaboSign itself complies with this requirement by displaying both the
-WaboSign and DocuSeal credits in the "Powered by" footer (see
-app/views/shared/_powered_by.html.erb), in email attributions (see
-app/views/shared/_email_attribution.html.erb), in generated PDF audit
-trails, and in this repository's README and NOTICE files.
+a covered work must retain the original DocuSeal attribution in interactive
+user interfaces.

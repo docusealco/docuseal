@@ -1,15 +1,14 @@
 <% if Wabosign.demo? || (request.path != '/' && !devise_controller?) %>
   <meta name="robots" content="noindex">
 <% end %>
-<% brand = Wabosign.branded_product_name(signed_in? ? current_account : nil) %>
-<% title = content_for(:html_title) || (signed_in? ? brand : "#{brand} | Open Source Document Signing") %>
+<% title = content_for(:html_title) || (signed_in? ? 'WaboSign' : 'WaboSign | Open Source Document Signing') %>
 <% description = content_for(:html_description) || 'Open source, self-hosted tool to streamline document filling and signing. Create custom PDF forms to complete and sign with an easy to use online tool.' %>
 <meta name="description" content="<%= description %>">
 <meta property="og:title" content="<%= title %>">
 <meta property="og:description" content="<%= description %>">
 <meta property="og:type" content="website">
 <meta property="og:url" content="<%= root_url %>">
-<meta property="og:site_name" content="<%= brand %>">
+<meta property="og:site_name" content="WaboSign">
 <% if content_for(:disable_image_preview) %>
   <meta property="og:image" content="">
   <meta name="twitter:image" content="">
@@ -20,6 +19,8 @@
   <meta name="twitter:image" content="<%= content_for(:preview_image_url).presence || "#{root_url}preview.png" %>">
 <% end %>
 <meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@docusealco">
+<meta name="twitter:site" content="@docusealco">
 <meta name="twitter:title" content="<%= title %>">
 <meta name="twitter:description" content="<%= description %>">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">

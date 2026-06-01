@@ -17,16 +17,12 @@
       "note": "Safe SQL"
     },
     {
+      "fingerprint": "f3a20210cde7b9cb5944d53505fe80fea502308416143f4da9ec2422f6b7035c",
+      "note": "Safe Param"
+    },
+    {
       "fingerprint": "dbbfb4a4ace7f43d8247cbb44afa8b628e005e6194ca5552e029b200f725a2d5",
       "message": "Unescaped find_by!(uuid: params[:id]) is not risky"
-    },
-    {
-      "fingerprint": "4ce817efd946b7806f6d3da9a6923aa282e3ff992810353ed35d8f83a82cb7a0",
-      "note": "HighlightCode returns escaped HTML for syntax-highlighted MCP token preview"
-    },
-    {
-      "fingerprint": "3f83dd553eb9ee8027ee629960e3e42d18b7e4143131d266899e916b7a6472c1",
-      "note": "filter_path is validated with start_with?('/') — prevents javascript: and absolute-URL payloads; Brakeman tracks taint through the conditional assignment"
     }
   ]
 }

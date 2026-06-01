@@ -10,8 +10,7 @@ class UserMailer < ApplicationMailer
 
     I18n.with_locale(@current_account.locale) do
       mail(to: @user.friendly_name,
-           subject: I18n.t('you_are_invited_to_product_name',
-                           product_name: Wabosign.branded_product_name(@current_account)))
+           subject: I18n.t('you_are_invited_to_product_name', product_name: Wabosign.product_name))
     end
   end
 end

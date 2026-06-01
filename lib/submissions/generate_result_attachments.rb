@@ -34,11 +34,7 @@ module Submissions
       bold_italic: FONT_BOLD_NAME
     }.freeze
 
-    # PDF signature "reason" template. Per-account branded — the actual
-    # template is computed by `sign_reason_template(account)` below; this
-    # constant is the format placeholder. Historically the format kwarg
-    # `name:` was unused.
-    SIGN_REASON_FORMAT = 'Signed with %<brand>s'
+    SIGN_REASON = 'Signed with WaboSign.com'
 
     RTL_REGEXP = TextUtils::RTL_REGEXP
 
@@ -155,6 +151,8 @@ module Submissions
       with_signature_id_reason =
         configs.find { |c| c.key == AccountConfig::WITH_SIGNATURE_ID_REASON_KEY }&.value != false
 
+      file_links_expire_at = Accounts.link_expires_at(submitter.account) if with_file_links
+
       pdfs_index = build_pdfs_index(submitter.submission, submitter:, flatten: is_flatten,
                                                           incremental: is_rotate_incremental)
 
@@ -202,12 +200,14 @@ module Submissions
                                                                       with_submitter_timezone:,
                                                                       with_file_links:,
                                                                       with_timestamp_seconds:,
-                                                                      with_signature_id_reason:)
+                                                                      with_signature_id_reason:,
+                                                                      file_links_expire_at:)
     end
 
     def fill_submitter_fields(submitter, account, pdfs_index, with_signature_id:, is_flatten:, with_headings: nil,
                               with_submitter_timezone: false, with_signature_id_reason: true,
-                              with_timestamp_seconds: false, with_file_links: nil)
+                              with_timestamp_seconds: false, with_file_links: nil,
+                              file_links_expire_at: Accounts.link_expires_at(account))
       cell_layouters = Hash.new do |hash, valign|
         hash[valign] = HexaPDF::Layout::TextLayouter.new(text_valign: valign.to_sym, text_align: :center)
       end
@@ -520,7 +520,7 @@ module Submissions
 
               url =
                 if with_file_links
-                  ActiveStorage::Blob.proxy_url(attachment.blob)
+                  ActiveStorage::Blob.proxy_url(attachment.blob, expires_at: file_links_expire_at)
                 else
                   r.submissions_preview_url(submission.slug, **Wabosign.default_url_options)
                 end
@@ -744,10 +744,10 @@ module Submissions
     def build_pdf_attachment(pdf:, submitter:, pkcs:, tsa_url:, uuid:, name:)
       io = StringIO.new
 
-      pdf.trailer.info[:Creator] = info_creator(submitter&.account)
+      pdf.trailer.info[:Creator] = info_creator
 
       if Wabosign.pdf_format == 'pdf/a-3b'
-        pdf.task(:pdfa, level: '3b')
+        pdfa_listener = pdf.task(:pdfa, level: '3b')
         pdf.config['font.map'] = PDFA_FONT_MAP
       end
 
@@ -763,12 +763,14 @@ module Submissions
 
         begin
           pdf.sign(io, write_options: { validate: false }, **sign_params)
-        rescue HexaPDF::Error, NoMethodError => e
+        rescue HexaPDF::Error, NoMethodError, TypeError => e
           Rollbar.error(e) if defined?(Rollbar)
+
+          pdf.instance_variable_get(:@listeners)[:complete_objects].delete(pdfa_listener) if pdfa_listener
 
           begin
             pdf.sign(io, write_options: { validate: false, incremental: false }, **sign_params)
-          rescue HexaPDF::Error
+          rescue HexaPDF::Error, TypeError
             pdf.validate(auto_correct: true)
             pdf.sign(io, write_options: { validate: false, incremental: false }, **sign_params)
           end
@@ -986,14 +988,14 @@ module Submissions
       HexaPDF::Document.new(io:)
     end
 
-    def sign_reason(_name, account: nil)
-      format(SIGN_REASON_FORMAT, brand: Wabosign.branded_product_name(account))
+    def sign_reason(name)
+      format(SIGN_REASON, name:)
     end
 
     def single_sign_reason(submitter)
-      submitter.submission.submitters.sort_by(&:completed_at).map { |s| s.email || s.name || s.phone }
+      signers = submitter.submission.submitters.sort_by(&:completed_at).map { |s| s.email || s.name || s.phone }
 
-      format(SIGN_REASON_FORMAT, brand: Wabosign.branded_product_name(submitter&.account))
+      format(SIGN_REASON, name: signers.reverse.join(', '))
     end
 
     def fetch_sign_reason(submitter)
@@ -1008,7 +1010,7 @@ module Submissions
                        .first_or_initialize(value: 'single')
         end
 
-      return sign_reason(reason_name, account: submitter.account) if config.value == 'multiple'
+      return sign_reason(reason_name) if config.value == 'multiple'
 
       if !submitter.submission.submitters.exists?(completed_at: nil) &&
          submitter.completed_at == submitter.submission.submitters.maximum(:completed_at)
@@ -1018,8 +1020,8 @@ module Submissions
       nil
     end
 
-    def info_creator(account = nil)
-      "#{Wabosign.branded_product_name(account)} (#{Wabosign::PRODUCT_URL})"
+    def info_creator
+      "#{Wabosign.product_name} (#{Wabosign::PRODUCT_URL})"
     end
 
     def detached_signature?(_submitter)

@@ -1,11 +1,3 @@
-<% if Sms.enabled_for?(current_account) && local_assigns[:submitter]&.phone.present? %>
-  <div class="form-control mt-2">
-    <label class="label cursor-pointer" for="send_sms_toggle">
-      <span class="label-text">
-        <%= local_assigns[:resend_sms] ? t('re_send_sms') : t('send_sms') %>
-        on save
-      </span>
-      <%= check_box_tag 'submitter[send_sms]', '1', local_assigns.fetch(:checked, false), id: 'send_sms_toggle', class: 'toggle' %>
-    </label>
-  </div>
-<% end %>
+<div class="form-control">
+  <%= render 'sms_settings/placeholder' %>
+</div>

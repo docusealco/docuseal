@@ -177,7 +177,7 @@ export default {
               reader.onloadend = () => {
                 resolve({
                   url: reader.result,
-                  uuid: crypto.randomUUID(),
+                  uuid: Math.random().toString(),
                   filename: file.name
                 })
               }

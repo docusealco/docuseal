@@ -121,6 +121,12 @@ class ApplicationController < ActionController::Base
     Wabosign.default_url_options[:host]
   end
 
+  def maybe_redirect_com
+    return if request.domain != 'wabosign.co'
+
+    redirect_to request.url.gsub('.co/', '.com/'), allow_other_host: true, status: :moved_permanently
+  end
+
   def set_csp
     request.content_security_policy = current_content_security_policy.tap do |policy|
       policy.default_src :self

@@ -86,8 +86,8 @@ en: &en
   you_have_been_invited_to_account_name_product_name_please_sign_up_using_the_link_below_: 'You have been invited to %{account_name} %{product_name}. Please sign up using the link below:'
   sent_using_product_name_in_testing_mode_html: 'Sent using <a href="%{product_url}">%{product_name}</a> in testing mode'
   sent_using_product_name_free_document_signing_html: 'Sent using <a href="%{product_url}">%{product_name}</a> free document signing.'
-  sent_with_wabosign_pro_html: 'Sent with <a href="%{product_url}">WaboSign Pro</a>'
-  show_send_with_wabosign_pro_attribution_in_emails_html: Show "Sent with <span class="link">WaboSign Pro</span>" attribution in emails
+  sent_with_docuseal_pro_html: 'Sent with <a href="%{product_url}">WaboSign Pro</a>'
+  show_send_with_docuseal_pro_attribution_in_emails_html: Show "Sent with <span class="link">WaboSign Pro</span>" attribution in emails
   sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Sign documents with trusted certificate provided by WaboSign. Your documents and data are never shared with WaboSign. PDF checksum is provided to generate a trusted signature.
   you_have_been_invited_to_submit_the_name_form: 'You have been invited to submit the "%{name}" form.'
   you_have_been_invited_to_sign_the_name: 'You have been invited to sign the "%{name}".'
@@ -190,7 +190,7 @@ en: &en
   profile_details: Profile Details
   sign_up_with_google: Sign up with Google
   sign_up_with_microsoft: Sign up with Microsoft
-  by_creating_an_account_you_agree_to_our_html: 'By creating an account, you agree to our <a target="_blank" href="https://sign.wabo.cc/privacy">Privacy Policy</a> and <a target="_blank" href="https://sign.wabo.cc/terms">Terms of Service</a>.'
+  by_creating_an_account_you_agree_to_our_html: 'By creating an account, you agree to our <a target="_blank" href="https://www.wabosign.com/privacy">Privacy Policy</a> and <a target="_blank" href="https://www.wabosign.com/terms">Terms of Service</a>.'
   enter_email_to_continue: Enter email to continue
   account: Account
   preferences: Preferences
@@ -212,7 +212,7 @@ en: &en
   combine_completed_documents_and_audit_log: Combine completed documents and Audit Log
   salesforce_integration: Salesforce Integration
   salesforce_has_been_connected: Salesforce has been connected.
-  connect_salesforce_account_to_integrate_with_wabosign: Connect Salesforce account to integrate with WaboSign
+  connect_salesforce_account_to_integrate_with_docuseal: Connect Salesforce account to integrate with WaboSign
   re_connect_salesforce: Re-connect Salesforce
   connect_salesforce: Connect Salesforce
   danger_zone: Danger Zone
@@ -241,13 +241,13 @@ en: &en
   resetting_password: Resetting password
   sign_in_with_name_account: 'Sign in with %{name} account'
   two_factor_code_from_authenticator_app: Two-Factor Code from Authenticator App
-  sign_up_in_wabosign_console_to_upgrade_on_premises_app_is_completely_standalone_console_is_used_only_to_manage_your_license: Sign up in WaboSign Console to upgrade. On-premises app is completely standalone, Console is used only to manage your license.
+  sign_up_in_docuseal_console_to_upgrade_on_premises_app_is_completely_standalone_console_is_used_only_to_manage_your_license: Sign up in WaboSign Console to upgrade. On-premises app is completely standalone, Console is used only to manage your license.
   send_from_email: Send from Email
   optional: optional
   save: Save
   saving: Saving
   changes_have_been_saved: Changes have been saved.
-  unlock_with_wabosign_pro: Unlock with WaboSign Pro
+  unlock_with_docuseal_pro: Unlock with WaboSign Pro
   use_your_own_certificates_to_sign_and_verify_pdf_files: Use your own certificates to sign and verify PDF files.
   upload_certificate: Upload Certificate
   name: Name
@@ -291,6 +291,7 @@ en: &en
   code_is_invalid: Code is invalid
   2fa_has_been_removed: 2FA has been removed.
   2fa_has_been_set_up_already: 2FA has been set up already.
+  developer_newsletters: Developer Newsletters
   skip: Skip
   email_notifications: Email Notifications
   receive_notification_emails_on_completed_submission: Receive notification emails on completed submission
@@ -346,7 +347,7 @@ en: &en
   password_has_been_changed: Password has been changed.
   email_integration: Email Integration
   send_via_connected_email: Send via connected email
-  activate_with_wabosign_pro: Activate with WaboSign Pro
+  activate_with_docuseal_pro: Activate with WaboSign Pro
   send_signature_request_to_your_recipients_directly_from_your_email: Send signature request to your recipients directly from your email
   connect_gmail: Connect Gmail
   re_connect_gmail: Re-connect Gmail
@@ -367,8 +368,6 @@ en: &en
   sign_out: Sign out
   page_number: 'Page %{number}'
   powered_by: Powered by
-  based_on: based on
-  view_on_github: View on GitHub
   qr_code: QR Code
   print: Print
   scan_the_qr_code_above_with_your_phone_camera_to_open_and_sign_this_document: Scan the QR code above with your phone camera to open and sign this document.
@@ -428,7 +427,7 @@ en: &en
   upgrade_to_send_unlimited_signature_requests: Upgrade to send unlimited signature requests
   add_without_sending: Add without sending
   upgade_now: Upgrade Now
-  send_signature_request_emails_without_limits_with_wabosign_pro: Send signature request emails without limits with WaboSign Pro
+  send_signature_request_emails_without_limits_with_docuseal_pro: Send signature request emails without limits with WaboSign Pro
   count_emails_used: '%{count} emails used'
   has_been_connected: has been connected
   sms_not_configured: SMS not Configured
@@ -530,7 +529,7 @@ en: &en
   new_user: New User
   unarchive: Unarchive
   last_session: Last session
-  unlock_more_user_roles_with_wabosign_pro: Unlock more user roles with WaboSign Pro.
+  unlock_more_user_roles_with_docuseal_pro: Unlock more user roles with WaboSign Pro.
   view_active: View Active
   team_account: Team account
   team_accounts: Team Accounts
@@ -659,6 +658,9 @@ en: &en
   create_a_new_template_document_form_or_submit_the_existing_one_html: <a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Create a new template</a> document form or <a href="%{start_form_link}" target="_blank" class="inline underline font-medium">submit the existing one</a>
   send_email_copy_with_completed_documents_to_a_specified_bcc_address: Send email copy with completed documents to a specified BCC address.
   re_send_email: Re-send Email
+  re_send_emails: Re-send Emails
+  are_you_sure_you_want_to_re_send_email_to_n_recipients: Are you sure you want to re-send the invitation email to %{count} recipients?
+  emails_have_been_sent_to_n_recipients: Emails have been sent to %{count} recipients.
   send_email: Send Email
   copy_share_link: Copy Share Link
   copied_to_clipboard: Copied to Clipboard
@@ -754,25 +756,25 @@ en: &en
   seamlessly_automate_your_document_signing_process_with_make_com: Seamlessly automate your document signing process with Make.com.
   find_suitable_zapier_templates_to_automate_your_workflow: Find suitable Zapier templates to automate your workflow.
   get_started: Get started
-  click_here_to_learn_more_about_user_roles_and_permissions_html: '<a href="https://sign.wabo.cc/docs/users-and-roles" class="link" rel="noopener noreferrer nofollow" target="_blank">Click here</a> to learn more about user roles and permissions.'
+  click_here_to_learn_more_about_user_roles_and_permissions_html: '<a href="https://www.wabosign.com/resources/manage-users-and-roles" class="link" rel="noopener noreferrer nofollow" target="_blank">Click here</a> to learn more about user roles and permissions.'
   count_10_signature_request_emails_sent_this_month_upgrade_to_pro_to_send_unlimited_signature_request_email: '%{count} / 10 signature request emails sent this month. Upgrade to Pro to send unlimited signature request emails.'
   test_mode_emails_limit_will_be_reset_within_24_hours: Test mode emails limit will be reset within 24 hours.
-  on_a_scale_of_1_to_10_how_satisfied_are_you_with_the_wabosign_product_: On a scale of 1 to 10, how satisfied are you with the WaboSign product?
+  on_a_scale_of_1_to_10_how_satisfied_are_you_with_the_docuseal_product_: On a scale of 1 to 10, how satisfied are you with the WaboSign product?
   tell_us_more_about_your_experience: Tell us more about your experience
   extremely_dissatisfied: Extremely Dissatisfied
   extremely_satisfied: Extremely Satisfied
   your_pro_plan_payment_is_overdue: Your Pro plan payment is overdue.
   click_here_to_update_your_payment_details_and_clear_the_invoice_to_ensure_uninterrupted_service_html: <a href="%{url}" class="link">Click here</a> to update your payment details and clear the invoice to ensure uninterrupted service.
   overdue_payment: Overdue Payment
-  your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_wabosign_or_cancel_your_subscription: Your Pro Plan has been suspended due to unpaid invoices. You can update your payment details to settle the invoice and continue using WaboSign or cancel your subscription.
+  your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Your Pro Plan has been suspended due to unpaid invoices. You can update your payment details to settle the invoice and continue using WaboSign or cancel your subscription.
   manage_subscription: Manage Subscription
   submission_created_by_email_html: '<b>Submission created</b> by %{email}'
   submission_created_by_email_via_source_html: '<b>Submission created</b> by %{email} via %{source}'
   submission_created_via_source_html: '<b>Submission created</b> via %{source}'
   pro_user_seats_used: Pro user seats used
   manage_plan: Manage plan
-  this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: This submission has multiple signers, which prevents the use of a sharing link as it's unclear which signer is responsible for specific fields. To resolve this, follow this <a href="https://sign.wabo.cc/docs/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">guide</a> to define the default signer details.
-  welcome_to_wabosign: Welcome to WaboSign
+  this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: This submission has multiple signers, which prevents the use of a sharing link as it's unclear which signer is responsible for specific fields. To resolve this, follow this <a href="https://www.wabosign.com/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">guide</a> to define the default signer details.
+  welcome_to_docuseal: Welcome to WaboSign
   start_a_quick_tour_to_learn_how_to_create_and_send_your_first_document: Start a quick tour to learn how to create and send your first document
   start_tour: Start Tour
   name_a_z: Name A-Z
@@ -848,13 +850,13 @@ en: &en
   use_otp_code_to_access_the_api_key_html: Use <b>%{code}</b> code to access the API key.
   please_reply_to_this_email_if_you_dont_recognize_this_request: Please reply to this email if you don't recognize this request.
   your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: Your user account has been archived. Contact your administrator to restore access to your account.
-  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Your email could not be reached. This may happen if there was a typo in your address or if your mailbox is not available. Please contact wabosign@wabo.cc to log in.
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Your email could not be reached. This may happen if there was a typo in your address or if your mailbox is not available. Please contact support@wabosign.com to log in.
   efficient_search_with_search_index: Efficient search with search index
   reindex: Reindex
   build_search_index: Build Search Index
   require_two_factor_authentication_2fa_with_an_authenticator_app_e_g_google_authenticator_authy_all_users_signing_documents_must_pass_the_second_factor_verification_using_a_secure_code_in_addition_to_their_password: Require two-factor authentication (2FA) with an authenticator app (e.g., Google Authenticator, Authy). All users signing documents must pass the second factor verification using a secure code in addition to their password.
-  add_a_unique_signature_id_and_timestamp_to_each_signature_for_audit_and_traceability_purposes_along_with_the_timestamp_part_of_wabosigns_21_cfr_part_11_compliance_settings: "Add a unique Signature ID and timestamp to each signature for audit and traceability purposes along with the timestamp. Part of WaboSign's 21 CFR Part 11 compliance settings."
-  require_signer_to_provide_a_reason_for_signing_before_completing_their_signature_e_g_approvals_certifications_part_of_wabosigns_21_cfr_part_11_compliance_settings: "Require signers to provide a reason for signing before completing their signature (e.g., approvals, certifications). Part of WaboSign's 21 CFR Part 11 compliance settings."
+  add_a_unique_signature_id_and_timestamp_to_each_signature_for_audit_and_traceability_purposes_along_with_the_timestamp_part_of_docuseals_21_cfr_part_11_compliance_settings: "Add a unique Signature ID and timestamp to each signature for audit and traceability purposes along with the timestamp. Part of WaboSign's 21 CFR Part 11 compliance settings."
+  require_signer_to_provide_a_reason_for_signing_before_completing_their_signature_e_g_approvals_certifications_part_of_docuseals_21_cfr_part_11_compliance_settings: "Require signers to provide a reason for signing before completing their signature (e.g., approvals, certifications). Part of WaboSign's 21 CFR Part 11 compliance settings."
   allow_signers_to_create_signatures_by_typing_their_name_instead_of_drawing_or_uploading_one: Allow signers to create signatures by typing their name instead of drawing or uploading one.
   allow_signers_to_resubmit_forms_after_completion_useful_when_corrections_or_multiple_submissions_are_needed: Allow signers to resubmit forms after completion, useful when corrections or multiple submissions are needed.
   allow_recipients_to_decline_signing_a_document_the_decline_reason_notification_will_be_sent_to_the_signature_requester: Allow recipients to decline signing a document. The decline reason notification will be sent to the signature requester.
@@ -929,12 +931,15 @@ en: &en
   mcp_token_has_been_removed: MCP token has been removed.
   enable_mcp_server: Enable MCP server
   all_existing_mcp_connections_will_be_stopped_immediately_when_this_setting_is_disabled: All existing MCP connections will be stopped immediately when this setting is disabled.
-  connect_to_product_name_mcp: Connect to %{product_name} MCP
+  connect_to_docuseal_mcp: Connect to WaboSign MCP
   add_the_following_to_your_mcp_client_configuration: Add the following to your MCP client configuration
   works_with_claude_desktop_cursor_windsurf_vs_code_and_any_mcp_compatible_client: Works with Claude Desktop, Cursor, Windsurf, VS Code, and any MCP-compatible client.
   your_email_address_has_been_changed: Your email address has been changed
   the_email_address_for_your_account_has_been_changed_to_new_email: The email address for your account has been changed to %{new_email}.
   if_you_did_not_make_this_change_please_contact_us_by_replying_to_this_email: If you did not make this change, please contact us by replying to this email.
+  open_file_from: 'Open file from'
+  cancel: Cancel
+  open: Open
   devise:
     confirmations:
       confirmed: Your email address has been successfully confirmed.
@@ -1029,7 +1034,7 @@ en: &en
     settings: 'Settings'
     settings_account_description: 'With comprehensive account settings, you can customize the eSigning experience and invite more users.'
     support: 'Support'
-    support_description: 'You can use our self-service AI assistant or email us at wabosign@wabo.cc if you have any questions.'
+    support_description: 'You can use our self-service AI assistant or email us at support@wabosign.com if you have any questions.'
     settings_template_description: 'Use this button to access your account settings page.'
   doorkeeper:
     scopes:
@@ -1137,8 +1142,8 @@ es: &es
   you_have_been_invited_to_account_name_product_name_please_sign_up_using_the_link_below_: 'Has sido invitado a %{account_name} %{product_name}. Por favor, regístrate usando el enlace a continuación:'
   sent_using_product_name_in_testing_mode_html: 'Enviado usando <a href="%{product_url}">%{product_name}</a> en Modo de Prueba'
   sent_using_product_name_free_document_signing_html: 'Enviado usando la firma de documentos gratuita de <a href="%{product_url}">%{product_name}</a>.'
-  sent_with_wabosign_pro_html: 'Enviado con <a href="%{product_url}">WaboSign Pro</a>'
-  show_send_with_wabosign_pro_attribution_in_emails_html: Mostrar el mensaje "Enviado con <span class="link">WaboSign Pro</span>" en los correos electrónicos
+  sent_with_docuseal_pro_html: 'Enviado con <a href="%{product_url}">WaboSign Pro</a>'
+  show_send_with_docuseal_pro_attribution_in_emails_html: Mostrar el mensaje "Enviado con <span class="link">WaboSign Pro</span>" en los correos electrónicos
   sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Firme documentos con un certificado de confianza proporcionado por WaboSign. Sus documentos y datos nunca se comparten con WaboSign. Se proporciona un checksum de PDF para generar una firma de confianza.
   hi_there: Hola
   thanks: Gracias
@@ -1241,7 +1246,7 @@ es: &es
   profile_details: Detalles del perfil
   sign_up_with_google: Registrarse con Google
   sign_up_with_microsoft: Registrarse con Microsoft
-  by_creating_an_account_you_agree_to_our_html: 'Al crear una cuenta, aceptas nuestra <a target="_blank" href="https://sign.wabo.cc/privacy">Política de Privacidad</a> y <a target="_blank" href="https://sign.wabo.cc/terms">Términos de Servicio</a>.'
+  by_creating_an_account_you_agree_to_our_html: 'Al crear una cuenta, aceptas nuestra <a target="_blank" href="https://www.wabosign.com/privacy">Política de Privacidad</a> y <a target="_blank" href="https://www.wabosign.com/terms">Términos de Servicio</a>.'
   enter_email_to_continue: Ingresa tu correo electrónico para continuar
   account: Cuenta
   preferences: Preferencias
@@ -1263,7 +1268,7 @@ es: &es
   combine_completed_documents_and_audit_log: Combinar documentos completados y Registro de Auditoría
   salesforce_integration: Integración con Salesforce
   salesforce_has_been_connected: Salesforce ha sido conectado.
-  connect_salesforce_account_to_integrate_with_wabosign: Conectar cuenta de Salesforce para integrar con WaboSign
+  connect_salesforce_account_to_integrate_with_docuseal: Conectar cuenta de Salesforce para integrar con WaboSign
   re_connect_salesforce: Volver a conectar Salesforce
   connect_salesforce: Conectar Salesforce
   danger_zone: Zona de peligro
@@ -1292,13 +1297,13 @@ es: &es
   resetting_password: Restableciendo contraseña
   sign_in_with_name_account: 'Iniciar sesión con la cuenta de %{name}'
   two_factor_code_from_authenticator_app: Código de dos factores de la aplicación Authenticator
-  sign_up_in_wabosign_console_to_upgrade_on_premises_app_is_completely_standalone_console_is_used_only_to_manage_your_license: Regístrate en la consola de WaboSign para actualizar. La aplicación local es completamente independiente, la consola solo se utiliza para gestionar tu licencia.
+  sign_up_in_docuseal_console_to_upgrade_on_premises_app_is_completely_standalone_console_is_used_only_to_manage_your_license: Regístrate en la consola de WaboSign para actualizar. La aplicación local es completamente independiente, la consola solo se utiliza para gestionar tu licencia.
   send_from_email: Enviar desde correo electrónico
   optional: opcional
   save: Guardar
   saving: Guardando
   changes_have_been_saved: Los cambios han sido guardados.
-  unlock_with_wabosign_pro: Desbloquear con WaboSign Pro
+  unlock_with_docuseal_pro: Desbloquear con WaboSign Pro
   use_your_own_certificates_to_sign_and_verify_pdf_files: Usa tus propios certificados para firmar y verificar archivos PDF.
   upload_certificate: Subir certificado
   name: Nombre
@@ -1342,6 +1347,7 @@ es: &es
   code_is_invalid: El código no es válido
   2fa_has_been_removed: 2FA ha sido eliminado.
   2fa_has_been_set_up_already: 2FA ya ha sido configurado.
+  developer_newsletters: Boletines para desarrolladores
   skip: Omitir
   email_notifications: Notificaciones por correo electrónico
   receive_notification_emails_on_completed_submission: Recibir notificaciones por correo electrónico sobre formularios completados
@@ -1397,7 +1403,7 @@ es: &es
   password_has_been_changed: La contraseña ha sido cambiada.
   email_integration: Integración de correo electrónico
   send_via_connected_email: Enviar vía correo electrónico conectado
-  activate_with_wabosign_pro: Activar con WaboSign Pro
+  activate_with_docuseal_pro: Activar con WaboSign Pro
   send_signature_request_to_your_recipients_directly_from_your_email: Envía la solicitud de firma a tus destinatarios directamente desde tu correo electrónico
   connect_gmail: Conectar Gmail
   re_connect_gmail: Volver a conectar Gmail
@@ -1418,8 +1424,6 @@ es: &es
   sign_out: Cerrar sesión
   page_number: 'Página %{number}'
   powered_by: Desarrollado por
-  based_on: based on
-  view_on_github: View on GitHub
   qr_code: Código QR
   print: Imprimir
   scan_the_qr_code_above_with_your_phone_camera_to_open_and_sign_this_document: Escanea el código QR de arriba con la cámara de tu teléfono para abrir y firmar este documento.
@@ -1466,7 +1470,7 @@ es: &es
   type_emails_here: Escribe correos electrónicos aquí
   or_embed_on_your_website: O integra en tu sitio web
   phone: Teléfono
-  send_emails: Enviar correos electrónicos
+  send_emails: Enviar emails
   edit_message: Editar mensaje
   smtp_not_configured: SMTP no configurado
   configure_smtp_settings_in_order_to_send_emails_: 'Configura los ajustes de SMTP para enviar correos electrónicos:'
@@ -1479,7 +1483,7 @@ es: &es
   upgrade_to_send_unlimited_signature_requests: Actualiza para enviar solicitudes de firma ilimitadas
   add_without_sending: Agregar sin enviar
   upgade_now: Actualizar ahora
-  send_signature_request_emails_without_limits_with_wabosign_pro: Envía solicitudes de firma sin límites con WaboSign Pro
+  send_signature_request_emails_without_limits_with_docuseal_pro: Envía solicitudes de firma sin límites con WaboSign Pro
   count_emails_used: '%{count} correos electrónicos utilizados'
   has_been_connected: ha sido conectado
   sms_not_configured: SMS no configurado
@@ -1581,7 +1585,7 @@ es: &es
   new_user: Nuevo usuario
   unarchive: Desarchivar
   last_session: Última sesión
-  unlock_more_user_roles_with_wabosign_pro: Desbloquea más roles de usuario con WaboSign Pro.
+  unlock_more_user_roles_with_docuseal_pro: Desbloquea más roles de usuario con WaboSign Pro.
   view_active: Ver activos
   team_account: Cuenta de equipo
   team_accounts: Cuentas de equipo
@@ -1709,8 +1713,11 @@ es: &es
   sign_in_person: Firma en persona
   create_a_new_template_document_form_or_submit_the_existing_one_html: <a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Crear una nueva plantilla</a> de documento o <a href="%{start_form_link}" target="_blank" class="inline underline font-medium">enviar el existente</a>
   send_email_copy_with_completed_documents_to_a_specified_bcc_address: Enviar una copia del correo electrónico con los documentos completados a una dirección BCC especificada.
-  re_send_email: Reenviar correo electrónico
-  send_email: Enviar correo electrónico
+  re_send_email: Reenviar email
+  re_send_emails: Reenviar emails
+  are_you_sure_you_want_to_re_send_email_to_n_recipients: ¿Estás seguro de que quieres reenviar el email de invitación a %{count} destinatarios?
+  emails_have_been_sent_to_n_recipients: Los emails han sido enviados a %{count} destinatarios.
+  send_email: Enviar email
   copy_share_link: Copiar enlace de compartir
   copied_to_clipboard: Copiado al portapapeles
   link: Enlace
@@ -1802,25 +1809,25 @@ es: &es
   seamlessly_automate_your_document_signing_process_with_make_com: Automatiza sin problemas tu proceso de firma de documentos con Make.com.
   find_suitable_zapier_templates_to_automate_your_workflow: Encuentra plantillas de Zapier adecuadas para automatizar tu flujo de trabajo.
   get_started: Comenzar
-  click_here_to_learn_more_about_user_roles_and_permissions_html: '<a href="https://sign.wabo.cc/docs/users-and-roles" class="link" rel="noopener noreferrer nofollow" target="_blank">Haz clic aquí</a> para obtener más información sobre los roles y permisos de usuario.'
+  click_here_to_learn_more_about_user_roles_and_permissions_html: '<a href="https://www.wabosign.com/resources/manage-users-and-roles" class="link" rel="noopener noreferrer nofollow" target="_blank">Haz clic aquí</a> para obtener más información sobre los roles y permisos de usuario.'
   count_10_signature_request_emails_sent_this_month_upgrade_to_pro_to_send_unlimited_signature_request_email: '%{count} / 10 correos electrónicos de solicitud de firma enviados este mes. Mejora a Pro para enviar solicitudes de firma ilimitadas.'
   test_mode_emails_limit_will_be_reset_within_24_hours: El límite de correos electrónicos en modo de prueba se restablecerá en 24 horas.
-  on_a_scale_of_1_to_10_how_satisfied_are_you_with_the_wabosign_product_: 'En una escala del 1 al 10, ¿qué tan satisfecho estás con el producto WaboSign?'
+  on_a_scale_of_1_to_10_how_satisfied_are_you_with_the_docuseal_product_: 'En una escala del 1 al 10, ¿qué tan satisfecho estás con el producto WaboSign?'
   tell_us_more_about_your_experience: Cuéntanos más sobre tu experiencia
   extremely_dissatisfied: Extremadamente insatisfecho
   extremely_satisfied: Extremadamente satisfecho
   your_pro_plan_payment_is_overdue: El pago de tu plan Pro está atrasado.
   click_here_to_update_your_payment_details_and_clear_the_invoice_to_ensure_uninterrupted_service_html: '<a href="%{url}" class="link">Haz clic aquí</a> para actualizar tus datos de pago y liquidar la factura para garantizar un servicio ininterrumpido.'
   overdue_payment: Pago Atrasado
-  your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_wabosign_or_cancel_your_subscription: Tu plan Pro ha sido suspendido debido a facturas impagas. Puedes actualizar tus datos de pago para liquidar la factura y seguir usando WaboSign o cancelar tu suscripción.
+  your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Tu plan Pro ha sido suspendido debido a facturas impagas. Puedes actualizar tus datos de pago para liquidar la factura y seguir usando WaboSign o cancelar tu suscripción.
   manage_subscription: Gestionar Suscripción
   submission_created_by_email_html: '<b>Envío creado</b> por %{email}'
   submission_created_by_email_via_source_html: '<b>Envío creado</b> por %{email} a través de %{source}'
   submission_created_via_source_html: '<b>Envío creado</b> a través de %{source}'
   pro_user_seats_used: Plazas de usuario Pro en uso
   manage_plan: Gestionar plan
-  this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: 'Este envío tiene múltiples firmantes, lo que impide el uso de un enlace para compartir, ya que no está claro qué firmante es responsable de los campos específicos. Para resolver esto, sigue esta <a href="https://sign.wabo.cc/docs/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">guía</a> para definir los detalles predeterminados del firmante.'
-  welcome_to_wabosign: Bienvenido a WaboSign
+  this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: 'Este envío tiene múltiples firmantes, lo que impide el uso de un enlace para compartir, ya que no está claro qué firmante es responsable de los campos específicos. Para resolver esto, sigue esta <a href="https://www.wabosign.com/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">guía</a> para definir los detalles predeterminados del firmante.'
+  welcome_to_docuseal: Bienvenido a WaboSign
   start_a_quick_tour_to_learn_how_to_create_and_send_your_first_document: Inicia una guía rápida para aprender a crear y enviar tu primer documento.
   start_tour: Iniciar guía
   name_a_z: Nombre A-Z
@@ -1896,13 +1903,13 @@ es: &es
   use_otp_code_to_access_the_api_key_html: Usa el código <b>%{code}</b> para acceder a la clave API.
   please_reply_to_this_email_if_you_dont_recognize_this_request: Responde a este correo si no reconoces esta solicitud.
   your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: Tu cuenta de usuario ha sido archivada. Contacta a tu administrador para restaurar el acceso a tu cuenta.
-  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: No se pudo acceder a tu correo electrónico. Esto puede ocurrir si hubo un error tipográfico en tu dirección o si tu buzón no está disponible. Por favor, contacta a wabosign@wabo.cc para iniciar sesión.
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: No se pudo acceder a tu correo electrónico. Esto puede ocurrir si hubo un error tipográfico en tu dirección o si tu buzón no está disponible. Por favor, contacta a support@wabosign.com para iniciar sesión.
   efficient_search_with_search_index: Búsqueda eficiente con índice de búsqueda
   reindex: Reindexar
   build_search_index: Construir índice de búsqueda
   require_two_factor_authentication_2fa_with_an_authenticator_app_e_g_google_authenticator_authy_all_users_signing_documents_must_pass_the_second_factor_verification_using_a_secure_code_in_addition_to_their_password: Requerir autenticación de dos factores (2FA) con una aplicación de autenticación (p. ej., Google Authenticator, Authy). Todos los usuarios que firman documentos deben pasar la verificación del segundo factor usando un código seguro además de su contraseña.
-  add_a_unique_signature_id_and_timestamp_to_each_signature_for_audit_and_traceability_purposes_along_with_the_timestamp_part_of_wabosigns_21_cfr_part_11_compliance_settings: Agregar un ID de firma único y una marca de tiempo a cada firma para fines de auditoría y trazabilidad junto con la marca de tiempo. Parte de la configuración de cumplimiento 21 CFR Parte 11 de WaboSign.
-  require_signer_to_provide_a_reason_for_signing_before_completing_their_signature_e_g_approvals_certifications_part_of_wabosigns_21_cfr_part_11_compliance_settings: Requerir que los firmantes proporcionen un motivo para firmar antes de completar su firma (p. ej., aprobaciones, certificaciones). Parte de la configuración de cumplimiento 21 CFR Parte 11 de WaboSign.
+  add_a_unique_signature_id_and_timestamp_to_each_signature_for_audit_and_traceability_purposes_along_with_the_timestamp_part_of_docuseals_21_cfr_part_11_compliance_settings: Agregar un ID de firma único y una marca de tiempo a cada firma para fines de auditoría y trazabilidad junto con la marca de tiempo. Parte de la configuración de cumplimiento 21 CFR Parte 11 de WaboSign.
+  require_signer_to_provide_a_reason_for_signing_before_completing_their_signature_e_g_approvals_certifications_part_of_docuseals_21_cfr_part_11_compliance_settings: Requerir que los firmantes proporcionen un motivo para firmar antes de completar su firma (p. ej., aprobaciones, certificaciones). Parte de la configuración de cumplimiento 21 CFR Parte 11 de WaboSign.
   allow_signers_to_create_signatures_by_typing_their_name_instead_of_drawing_or_uploading_one: Permitir que los firmantes creen firmas escribiendo su nombre en lugar de dibujar o subir una.
   allow_signers_to_resubmit_forms_after_completion_useful_when_corrections_or_multiple_submissions_are_needed: Permitir que los firmantes vuelvan a enviar formularios después de completarlos, útil cuando se necesitan correcciones o múltiples envíos.
   allow_recipients_to_decline_signing_a_document_the_decline_reason_notification_will_be_sent_to_the_signature_requester: Permitir que los destinatarios rechacen firmar un documento. La notificación del motivo del rechazo se enviará al solicitante de la firma.
@@ -1977,12 +1984,15 @@ es: &es
   mcp_token_has_been_removed: El token MCP ha sido eliminado.
   enable_mcp_server: Habilitar servidor MCP
   all_existing_mcp_connections_will_be_stopped_immediately_when_this_setting_is_disabled: Todas las conexiones MCP existentes se detendrán inmediatamente cuando se desactive esta configuración.
-  connect_to_product_name_mcp: Conectar a %{product_name} MCP
+  connect_to_docuseal_mcp: Conectar a WaboSign MCP
   add_the_following_to_your_mcp_client_configuration: Agregue lo siguiente a la configuración de su cliente MCP
   works_with_claude_desktop_cursor_windsurf_vs_code_and_any_mcp_compatible_client: Funciona con Claude Desktop, Cursor, Windsurf, VS Code y cualquier cliente compatible con MCP.
   your_email_address_has_been_changed: Tu dirección de correo electrónico ha sido cambiada
   the_email_address_for_your_account_has_been_changed_to_new_email: La dirección de correo electrónico de tu cuenta ha sido cambiada a %{new_email}.
   if_you_did_not_make_this_change_please_contact_us_by_replying_to_this_email: Si no realizaste este cambio, contáctanos respondiendo a este correo electrónico.
+  open_file_from: 'Abrir archivo desde'
+  cancel: Cancelar
+  open: Abrir
   devise:
     confirmations:
       confirmed: Tu dirección de correo electrónico ha sido confirmada correctamente.
@@ -2077,7 +2087,7 @@ es: &es
     settings: 'Configuración'
     settings_account_description: 'Con una configuración completa de la cuenta, puedes personalizar la experiencia de firma y añadir más usuarios.'
     support: 'Soporte'
-    support_description: 'Puedes usar nuestro asistente de IA o escribirnos a wabosign@wabo.cc si tienes preguntas.'
+    support_description: 'Puedes usar nuestro asistente de IA o escribirnos a support@wabosign.com si tienes preguntas.'
     settings_template_description: 'Usa este botón para acceder a la configuración de tu cuenta.'
   doorkeeper:
     scopes:
@@ -2185,8 +2195,8 @@ it: &it
   you_have_been_invited_to_account_name_product_name_please_sign_up_using_the_link_below_: 'Sei stato invitato a %{account_name} %{product_name}. Registrati utilizzando il link qui sotto:'
   sent_using_product_name_in_testing_mode_html: 'Inviato utilizzando <a href="%{product_url}">%{product_name}</a> in Modalità di Test'
   sent_using_product_name_free_document_signing_html: 'Inviato utilizzando la firma di documenti gratuita di <a href="%{product_url}">%{product_name}</a>.'
-  sent_with_wabosign_pro_html: 'Inviato con <a href="%{product_url}">WaboSign Pro</a>'
-  show_send_with_wabosign_pro_attribution_in_emails_html: Mostra la dicitura "Inviato con <span class="link">WaboSign Pro</span>" nelle email
+  sent_with_docuseal_pro_html: 'Inviato con <a href="%{product_url}">WaboSign Pro</a>'
+  show_send_with_docuseal_pro_attribution_in_emails_html: Mostra la dicitura "Inviato con <span class="link">WaboSign Pro</span>" nelle email
   sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: "Firma documenti con un certificato di fiducia fornito da WaboSign. I tuoi documenti e i tuoi dati non vengono mai condivisi con WaboSign. Il checksum PDF è fornito per generare una firma di fiducia."
   hi_there: Ciao
   thanks: Grazie
@@ -2289,7 +2299,7 @@ it: &it
   profile_details: Dettagli del profilo
   sign_up_with_google: Registrati con Google
   sign_up_with_microsoft: Registrati con Microsoft
-  by_creating_an_account_you_agree_to_our_html: 'Creando un account, accetti la nostra <a target="_blank" href="https://sign.wabo.cc/privacy">Privacy Policy</a> e i nostri <a target="_blank" href="https://sign.wabo.cc/terms">Termini di servizio</a>.'
+  by_creating_an_account_you_agree_to_our_html: 'Creando un account, accetti la nostra <a target="_blank" href="https://www.wabosign.com/privacy">Privacy Policy</a> e i nostri <a target="_blank" href="https://www.wabosign.com/terms">Termini di servizio</a>.'
   enter_email_to_continue: "Inserisci l'email per continuare"
   account: Account
   preferences: Preferenze
@@ -2311,7 +2321,7 @@ it: &it
   combine_completed_documents_and_audit_log: Combinare i documenti completati e il Registro di Audit
   salesforce_integration: Integrazione con Salesforce
   salesforce_has_been_connected: Salesforce è stato connesso.
-  connect_salesforce_account_to_integrate_with_wabosign: "Connetti l'account Salesforce per integrare con WaboSign"
+  connect_salesforce_account_to_integrate_with_docuseal: "Connetti l'account Salesforce per integrare con WaboSign"
   re_connect_salesforce: Riconnetti Salesforce
   connect_salesforce: Connetti Salesforce
   danger_zone: Zona di pericolo
@@ -2340,13 +2350,13 @@ it: &it
   resetting_password: Reimpostazione password in corso
   sign_in_with_name_account: "Accedi con l'account %{name}"
   two_factor_code_from_authenticator_app: "Codice a due fattori dall'app Authenticator"
-  sign_up_in_wabosign_console_to_upgrade_on_premises_app_is_completely_standalone_console_is_used_only_to_manage_your_license: "Registrati nella console di WaboSign per aggiornare. L'applicazione on-premise è completamente autonoma, la console viene utilizzata solo per gestire la tua licenza."
+  sign_up_in_docuseal_console_to_upgrade_on_premises_app_is_completely_standalone_console_is_used_only_to_manage_your_license: "Registrati nella console di WaboSign per aggiornare. L'applicazione on-premise è completamente autonoma, la console viene utilizzata solo per gestire la tua licenza."
   send_from_email: Invia da Email
   optional: opzionale
   save: Salva
   saving: Salvataggio in corso
   changes_have_been_saved: Le modifiche sono state salvate.
-  unlock_with_wabosign_pro: Sblocca con WaboSign Pro
+  unlock_with_docuseal_pro: Sblocca con WaboSign Pro
   use_your_own_certificates_to_sign_and_verify_pdf_files: Usa i tuoi certificati per firmare e verificare i file PDF.
   upload_certificate: Carica certificato
   name: Nome
@@ -2390,6 +2400,7 @@ it: &it
   code_is_invalid: Il codice non è valido
   2fa_has_been_removed: 2FA è stata rimossa.
   2fa_has_been_set_up_already: 2FA è già stata configurata.
+  developer_newsletters: Newsletter per sviluppatori
   skip: Salta
   email_notifications: Notifiche email
   receive_notification_emails_on_completed_submission: Ricevi notifiche email su moduli completati
@@ -2445,7 +2456,7 @@ it: &it
   password_has_been_changed: La password è stata cambiata.
   email_integration: Integrazione email
   send_via_connected_email: Invia tramite email connessa
-  activate_with_wabosign_pro: Attiva con WaboSign Pro
+  activate_with_docuseal_pro: Attiva con WaboSign Pro
   send_signature_request_to_your_recipients_directly_from_your_email: Invia la richiesta di firma ai tuoi destinatari direttamente dalla tua email
   connect_gmail: Connetti Gmail
   re_connect_gmail: Riconnetti Gmail
@@ -2466,8 +2477,6 @@ it: &it
   sign_out: Esci
   page_number: 'Pagina %{number}'
   powered_by: Fornito da
-  based_on: based on
-  view_on_github: View on GitHub
   qr_code: Codice QR
   print: Stampa
   scan_the_qr_code_above_with_your_phone_camera_to_open_and_sign_this_document: Scansiona il codice QR qui sopra con la fotocamera del tuo telefono per aprire e firmare questo documento.
@@ -2527,7 +2536,7 @@ it: &it
   upgrade_to_send_unlimited_signature_requests: Aggiorna per inviare richieste di firma illimitate
   add_without_sending: Aggiungi senza inviare
   upgade_now: Aggiorna ora
-  send_signature_request_emails_without_limits_with_wabosign_pro: Invia email di richiesta di firma senza limiti con WaboSign Pro
+  send_signature_request_emails_without_limits_with_docuseal_pro: Invia email di richiesta di firma senza limiti con WaboSign Pro
   count_emails_used: '%{count} email utilizzate'
   has_been_connected: è stato connesso
   sms_not_configured: SMS non configurato
@@ -2629,7 +2638,7 @@ it: &it
   new_user: Nuovo utente
   unarchive: Disarchivia
   last_session: Ultima sessione
-  unlock_more_user_roles_with_wabosign_pro: Sblocca più ruoli utente con WaboSign Pro.
+  unlock_more_user_roles_with_docuseal_pro: Sblocca più ruoli utente con WaboSign Pro.
   view_active: Visualizza attivi
   team_account: Account di squadra
   team_accounts: Account di squadra
@@ -2757,7 +2766,10 @@ it: &it
   sign_in_person: Firma di persona
   create_a_new_template_document_form_or_submit_the_existing_one_html: <a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Crea un nuovo modello</a> di documento o <a href="%{start_form_link}" target="_blank" class="inline underline font-medium">invia quello esistente</a>
   send_email_copy_with_completed_documents_to_a_specified_bcc_address: Invia una copia dell'email con i documenti completati a un indirizzo BCC specificato.
-  re_send_email: Invia di nuovo l'email
+  re_send_email: Reinvia email
+  re_send_emails: Reinvia le email
+  are_you_sure_you_want_to_re_send_email_to_n_recipients: Sei sicuro di voler inviare di nuovo l'email di invito a %{count} destinatari?
+  emails_have_been_sent_to_n_recipients: Le email sono state inviate a %{count} destinatari.
   send_email: Invia email
   copy_share_link: Copia link di condivisione
   copied_to_clipboard: Copiato negli appunti
@@ -2850,25 +2862,25 @@ it: &it
   seamlessly_automate_your_document_signing_process_with_make_com: Automatizza senza problemi il tuo processo di firma dei documenti con Make.com.
   find_suitable_zapier_templates_to_automate_your_workflow: Trova modelli Zapier adatti per automatizzare il tuo flusso di lavoro.
   get_started: Inizia
-  click_here_to_learn_more_about_user_roles_and_permissions_html: '<a href="https://sign.wabo.cc/docs/users-and-roles" class="link" rel="noopener noreferrer nofollow" target="_blank">Fai clic qui</a> per saperne di più sui ruoli e le autorizzazioni degli utenti.'
+  click_here_to_learn_more_about_user_roles_and_permissions_html: '<a href="https://www.wabosign.com/resources/manage-users-and-roles" class="link" rel="noopener noreferrer nofollow" target="_blank">Fai clic qui</a> per saperne di più sui ruoli e le autorizzazioni degli utenti.'
   count_10_signature_request_emails_sent_this_month_upgrade_to_pro_to_send_unlimited_signature_request_email: '%{count} / 10 e-mail di richiesta di firma inviate questo mese. Passa a Pro per inviare richieste di firma illimitate.'
   test_mode_emails_limit_will_be_reset_within_24_hours: Il limite di e-mail in modalità di test verrà ripristinato entro 24 ore.
-  on_a_scale_of_1_to_10_how_satisfied_are_you_with_the_wabosign_product_: 'Su una scala da 1 a 10, quanto sei soddisfatto del prodotto WaboSign?'
+  on_a_scale_of_1_to_10_how_satisfied_are_you_with_the_docuseal_product_: 'Su una scala da 1 a 10, quanto sei soddisfatto del prodotto WaboSign?'
   tell_us_more_about_your_experience: Raccontaci di più sulla tua esperienza
   extremely_dissatisfied: Estremamente insoddisfatto
   extremely_satisfied: Estremamente soddisfatto
   your_pro_plan_payment_is_overdue: Il pagamento del tuo piano Pro è in ritardo.
   click_here_to_update_your_payment_details_and_clear_the_invoice_to_ensure_uninterrupted_service_html: '<a href="%{url}" class="link">Fai clic qui</a> per aggiornare i tuoi dati di pagamento e saldare la fattura per garantire un servizio ininterrotto.'
   overdue_payment: Pagamento Scaduto
-  your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_wabosign_or_cancel_your_subscription: Il tuo piano Pro è stato sospeso a causa di fatture non pagate. Puoi aggiornare i tuoi dati di pagamento per saldare la fattura e continuare a utilizzare WaboSign o annullare l'abbonamento.
+  your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Il tuo piano Pro è stato sospeso a causa di fatture non pagate. Puoi aggiornare i tuoi dati di pagamento per saldare la fattura e continuare a utilizzare WaboSign o annullare l'abbonamento.
   manage_subscription: Gestisci Abbonamento
   submission_created_by_email_html: '<b>Invio creato</b> da %{email}'
   submission_created_by_email_via_source_html: '<b>Invio creato</b> da %{email} tramite %{source}'
   submission_created_via_source_html: '<b>Invio creato</b> tramite %{source}'
   pro_user_seats_used: Posti utente Pro in uso
   manage_plan: Gestisci piano
-  this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: "Questa sottomissione ha più firmatari, il che impedisce l'uso di un link di condivisione poiché non è chiaro quale firmatario sia responsabile di specifici campi. Per risolvere questo problema, segui questa <a href=\"https://sign.wabo.cc/docs/pre-filling-recipients\" class=\"link font-bold\" rel=\"noopener noreferrer nofollow\" target=\"_blank\">guida</a> per definire i dettagli predefiniti del firmatario."
-  welcome_to_wabosign: Benvenuto in WaboSign
+  this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: "Questa sottomissione ha più firmatari, il che impedisce l'uso di un link di condivisione poiché non è chiaro quale firmatario sia responsabile di specifici campi. Per risolvere questo problema, segui questa <a href=\"https://www.wabosign.com/resources/pre-filling-recipients\" class=\"link font-bold\" rel=\"noopener noreferrer nofollow\" target=\"_blank\">guida</a> per definire i dettagli predefiniti del firmatario."
+  welcome_to_docuseal: Benvenuto in WaboSign
   start_a_quick_tour_to_learn_how_to_create_and_send_your_first_document: Inizia un tour rapido per imparare a creare e inviare il tuo primo documento.
   start_tour: Inizia il tour
   name_a_z: Nome A-Z
@@ -2944,13 +2956,13 @@ it: &it
   use_otp_code_to_access_the_api_key_html: Usa il codice <b>%{code}</b> per accedere alla chiave API.
   please_reply_to_this_email_if_you_dont_recognize_this_request: Rispondi a questa email se non riconosci questa richiesta.
   your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: Il tuo account utente è stato archiviato. Contatta il tuo amministratore per ripristinare l'accesso al tuo account.
-  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Non è stato possibile raggiungere la tua email. Questo può accadere se c'è stato un errore di digitazione nell'indirizzo o se la tua casella di posta non è disponibile. Contatta wabosign@wabo.cc per accedere.
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Non è stato possibile raggiungere la tua email. Questo può accadere se c'è stato un errore di digitazione nell'indirizzo o se la tua casella di posta non è disponibile. Contatta support@wabosign.com per accedere.
   efficient_search_with_search_index: Ricerca efficiente con indice di ricerca
   reindex: Reindicizza
   build_search_index: Crea indice di ricerca
   require_two_factor_authentication_2fa_with_an_authenticator_app_e_g_google_authenticator_authy_all_users_signing_documents_must_pass_the_second_factor_verification_using_a_secure_code_in_addition_to_their_password: "Richiedere l'autenticazione a due fattori (2FA) con un'app di autenticazione (es. Google Authenticator, Authy). Tutti gli utenti che firmano documenti devono superare la verifica del secondo fattore utilizzando un codice sicuro oltre alla password."
-  add_a_unique_signature_id_and_timestamp_to_each_signature_for_audit_and_traceability_purposes_along_with_the_timestamp_part_of_wabosigns_21_cfr_part_11_compliance_settings: Aggiungere un ID firma univoco e una marca temporale a ogni firma per scopi di audit e tracciabilità insieme alla marca temporale. Parte delle impostazioni di conformità 21 CFR Parte 11 di WaboSign.
-  require_signer_to_provide_a_reason_for_signing_before_completing_their_signature_e_g_approvals_certifications_part_of_wabosigns_21_cfr_part_11_compliance_settings: Richiedere ai firmatari di fornire una motivazione prima di completare la firma (es. approvazioni, certificazioni). Parte delle impostazioni di conformità 21 CFR Parte 11 di WaboSign.
+  add_a_unique_signature_id_and_timestamp_to_each_signature_for_audit_and_traceability_purposes_along_with_the_timestamp_part_of_docuseals_21_cfr_part_11_compliance_settings: Aggiungere un ID firma univoco e una marca temporale a ogni firma per scopi di audit e tracciabilità insieme alla marca temporale. Parte delle impostazioni di conformità 21 CFR Parte 11 di WaboSign.
+  require_signer_to_provide_a_reason_for_signing_before_completing_their_signature_e_g_approvals_certifications_part_of_docuseals_21_cfr_part_11_compliance_settings: Richiedere ai firmatari di fornire una motivazione prima di completare la firma (es. approvazioni, certificazioni). Parte delle impostazioni di conformità 21 CFR Parte 11 di WaboSign.
   allow_signers_to_create_signatures_by_typing_their_name_instead_of_drawing_or_uploading_one: Consentire ai firmatari di creare firme digitando il proprio nome invece di disegnarle o caricarle.
   allow_signers_to_resubmit_forms_after_completion_useful_when_corrections_or_multiple_submissions_are_needed: Consentire ai firmatari di reinviare i moduli dopo il completamento, utile quando sono necessarie correzioni o più invii.
   allow_recipients_to_decline_signing_a_document_the_decline_reason_notification_will_be_sent_to_the_signature_requester: Consentire ai destinatari di rifiutare di firmare un documento. La notifica del motivo del rifiuto verrà inviata al richiedente della firma.
@@ -3025,12 +3037,15 @@ it: &it
   mcp_token_has_been_removed: Il token MCP è stato rimosso.
   enable_mcp_server: Abilita server MCP
   all_existing_mcp_connections_will_be_stopped_immediately_when_this_setting_is_disabled: Tutte le connessioni MCP esistenti verranno interrotte immediatamente quando questa impostazione viene disattivata.
-  connect_to_product_name_mcp: Connetti a %{product_name} MCP
+  connect_to_docuseal_mcp: Connetti a WaboSign MCP
   add_the_following_to_your_mcp_client_configuration: Aggiungi quanto segue alla configurazione del tuo client MCP
   works_with_claude_desktop_cursor_windsurf_vs_code_and_any_mcp_compatible_client: Funziona con Claude Desktop, Cursor, Windsurf, VS Code e qualsiasi client compatibile con MCP.
   your_email_address_has_been_changed: Il tuo indirizzo email è stato modificato
   the_email_address_for_your_account_has_been_changed_to_new_email: L'indirizzo email del tuo account è stato modificato in %{new_email}.
   if_you_did_not_make_this_change_please_contact_us_by_replying_to_this_email: Se non hai effettuato questa modifica, contattaci rispondendo a questa email.
+  open_file_from: 'Aprire file da'
+  cancel: Annulla
+  open: Apri
   devise:
     confirmations:
       confirmed: Il tuo indirizzo email è stato confermato con successo.
@@ -3125,7 +3140,7 @@ it: &it
     settings: 'Impostazioni'
     settings_account_description: "Con impostazioni complete dell'account, puoi personalizzare l'esperienza di firma elettronica e invitare altri utenti."
     support: 'Supporto'
-    support_description: 'Puoi usare il nostro assistente AI oppure scriverci a wabosign@wabo.cc se hai domande.'
+    support_description: 'Puoi usare il nostro assistente AI oppure scriverci a support@wabosign.com se hai domande.'
     settings_template_description: "Usa questo pulsante per accedere alla pagina delle impostazioni dell'account."
   doorkeeper:
     scopes:
@@ -3233,8 +3248,8 @@ fr: &fr
   you_have_been_invited_to_account_name_product_name_please_sign_up_using_the_link_below_: 'Vous avez été invité à %{account_name} %{product_name}. Veuillez vous inscrire en utilisant le lien ci-dessous :'
   sent_using_product_name_in_testing_mode_html: Envoyé avec <a href="%{product_url}">%{product_name}</a> en mode test
   sent_using_product_name_free_document_signing_html: Envoyé avec <a href="%{product_url}">%{product_name}</a> signature de documents gratuite.
-  sent_with_wabosign_pro_html: Envoyé avec <a href="%{product_url}">WaboSign Pro</a>
-  show_send_with_wabosign_pro_attribution_in_emails_html: Afficher l’attribution "Envoyé avec <span class="link">WaboSign Pro</span>" dans les e‑mails
+  sent_with_docuseal_pro_html: Envoyé avec <a href="%{product_url}">WaboSign Pro</a>
+  show_send_with_docuseal_pro_attribution_in_emails_html: Afficher l’attribution "Envoyé avec <span class="link">WaboSign Pro</span>" dans les e‑mails
   sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Signez des documents avec un certificat de confiance fourni par WaboSign. Vos documents et données ne sont jamais partagés avec WaboSign. Une empreinte (checksum) PDF est fournie pour générer une signature de confiance.
   hi_there: Bonjour
   thanks: Merci
@@ -3337,7 +3352,7 @@ fr: &fr
   profile_details: Détails du profil
   sign_up_with_google: S’inscrire avec Google
   sign_up_with_microsoft: S’inscrire avec Microsoft
-  by_creating_an_account_you_agree_to_our_html: En créant un compte, vous acceptez notre <a target="_blank" href="https://sign.wabo.cc/privacy">Politique de confidentialité</a> et nos <a target="_blank" href="https://sign.wabo.cc/terms">Conditions d’utilisation</a>.
+  by_creating_an_account_you_agree_to_our_html: En créant un compte, vous acceptez notre <a target="_blank" href="https://www.wabosign.com/privacy">Politique de confidentialité</a> et nos <a target="_blank" href="https://www.wabosign.com/terms">Conditions d’utilisation</a>.
   enter_email_to_continue: Entrez votre e‑mail pour continuer
   account: Compte
   preferences: Préférences
@@ -3359,7 +3374,7 @@ fr: &fr
   combine_completed_documents_and_audit_log: Combiner les documents complétés et le journal d’audit
   salesforce_integration: Intégration Salesforce
   salesforce_has_been_connected: Salesforce a été connecté.
-  connect_salesforce_account_to_integrate_with_wabosign: Connectez un compte Salesforce pour l’intégrer à WaboSign
+  connect_salesforce_account_to_integrate_with_docuseal: Connectez un compte Salesforce pour l’intégrer à WaboSign
   re_connect_salesforce: Reconnecter Salesforce
   connect_salesforce: Connecter Salesforce
   danger_zone: Zone de danger
@@ -3388,13 +3403,13 @@ fr: &fr
   resetting_password: Réinitialisation du mot de passe
   sign_in_with_name_account: Se connecter avec le compte %{name}
   two_factor_code_from_authenticator_app: Code 2FA de l’application d’authentification
-  sign_up_in_wabosign_console_to_upgrade_on_premises_app_is_completely_standalone_console_is_used_only_to_manage_your_license: Inscrivez-vous sur la Console WaboSign pour mettre à niveau. L’application on‑premises est entièrement autonome ; la Console sert uniquement à gérer votre licence.
+  sign_up_in_docuseal_console_to_upgrade_on_premises_app_is_completely_standalone_console_is_used_only_to_manage_your_license: Inscrivez-vous sur la Console WaboSign pour mettre à niveau. L’application on‑premises est entièrement autonome ; la Console sert uniquement à gérer votre licence.
   send_from_email: Envoyer depuis l’e‑mail
   optional: facultatif
   save: Enregistrer
   saving: Enregistrement
   changes_have_been_saved: Les modifications ont été enregistrées.
-  unlock_with_wabosign_pro: Débloquer avec WaboSign Pro
+  unlock_with_docuseal_pro: Débloquer avec WaboSign Pro
   use_your_own_certificates_to_sign_and_verify_pdf_files: Utilisez vos propres certificats pour signer et vérifier des fichiers PDF.
   upload_certificate: Téléverser un certificat
   name: Nom
@@ -3438,6 +3453,7 @@ fr: &fr
   code_is_invalid: Le code est invalide
   2fa_has_been_removed: La 2FA a été supprimée.
   2fa_has_been_set_up_already: La 2FA est déjà configurée.
+  developer_newsletters: Newsletters développeur
   skip: Ignorer
   email_notifications: Notifications par e‑mail
   receive_notification_emails_on_completed_submission: Recevoir des e‑mails de notification lors de la finalisation d’une soumission
@@ -3493,7 +3509,7 @@ fr: &fr
   password_has_been_changed: Le mot de passe a été modifié.
   email_integration: Intégration e‑mail
   send_via_connected_email: Envoyer via l’e‑mail connecté
-  activate_with_wabosign_pro: Activer avec WaboSign Pro
+  activate_with_docuseal_pro: Activer avec WaboSign Pro
   send_signature_request_to_your_recipients_directly_from_your_email: Envoyez des demandes de signature directement depuis votre e‑mail
   connect_gmail: Connecter Gmail
   re_connect_gmail: Reconnecter Gmail
@@ -3514,8 +3530,6 @@ fr: &fr
   sign_out: Se déconnecter
   page_number: Page %{number}
   powered_by: Propulsé par
-  based_on: based on
-  view_on_github: View on GitHub
   qr_code: Code QR
   print: Imprimer
   scan_the_qr_code_above_with_your_phone_camera_to_open_and_sign_this_document: Scannez le code QR ci-dessus avec l'appareil photo de votre téléphone pour ouvrir et signer ce document.
@@ -3575,7 +3589,7 @@ fr: &fr
   upgrade_to_send_unlimited_signature_requests: Passez à la version Pro pour envoyer un nombre illimité de demandes de signature
   add_without_sending: Ajouter sans envoyer
   upgade_now: Mettre à niveau maintenant
-  send_signature_request_emails_without_limits_with_wabosign_pro: Envoyez des e‑mails de demande de signature sans limites avec WaboSign Pro
+  send_signature_request_emails_without_limits_with_docuseal_pro: Envoyez des e‑mails de demande de signature sans limites avec WaboSign Pro
   count_emails_used: "%{count} e‑mails utilisés"
   has_been_connected: a été connecté
   sms_not_configured: SMS non configuré
@@ -3677,7 +3691,7 @@ fr: &fr
   new_user: Nouvel utilisateur
   unarchive: Désarchiver
   last_session: Dernière session
-  unlock_more_user_roles_with_wabosign_pro: Débloquez davantage de rôles utilisateurs avec WaboSign Pro.
+  unlock_more_user_roles_with_docuseal_pro: Débloquez davantage de rôles utilisateurs avec WaboSign Pro.
   view_active: Voir actifs
   team_account: Compte d’équipe
   team_accounts: Comptes d’équipe
@@ -3806,6 +3820,9 @@ fr: &fr
   create_a_new_template_document_form_or_submit_the_existing_one_html: <a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Créez un nouveau modèle</a> de document ou <a href="%{start_form_link}" target="_blank" class="inline underline font-medium">soumettez l’existant</a>
   send_email_copy_with_completed_documents_to_a_specified_bcc_address: Envoyer une copie e‑mail avec les documents complétés à une adresse Cci spécifiée.
   re_send_email: Renvoyer l’e‑mail
+  re_send_emails: Renvoyer e‑mails
+  are_you_sure_you_want_to_re_send_email_to_n_recipients: Êtes‑vous sûr de vouloir renvoyer l’e‑mail d’invitation à %{count} destinataires ?
+  emails_have_been_sent_to_n_recipients: Les e‑mails ont été envoyés à %{count} destinataires.
   send_email: Envoyer l’e‑mail
   copy_share_link: Copier le lien de partage
   copied_to_clipboard: Copié dans le presse‑papiers
@@ -3898,25 +3915,25 @@ fr: &fr
   seamlessly_automate_your_document_signing_process_with_make_com: Automatisez en toute fluidité votre processus de signature de documents avec Make.com.
   find_suitable_zapier_templates_to_automate_your_workflow: Trouvez des modèles Zapier adaptés pour automatiser votre flux de travail.
   get_started: Commencer
-  click_here_to_learn_more_about_user_roles_and_permissions_html: <a href="https://sign.wabo.cc/docs/users-and-roles" class="link" rel="noopener noreferrer nofollow" target="_blank">Cliquez ici</a> pour en savoir plus sur les rôles et permissions des utilisateurs.
+  click_here_to_learn_more_about_user_roles_and_permissions_html: <a href="https://www.wabosign.com/resources/manage-users-and-roles" class="link" rel="noopener noreferrer nofollow" target="_blank">Cliquez ici</a> pour en savoir plus sur les rôles et permissions des utilisateurs.
   count_10_signature_request_emails_sent_this_month_upgrade_to_pro_to_send_unlimited_signature_request_email: "%{count} / 10 e‑mails de demande de signature envoyés ce mois‑ci. Passez à Pro pour envoyer des e‑mails de demande de signature illimités."
   test_mode_emails_limit_will_be_reset_within_24_hours: La limite d’e‑mails en mode test sera réinitialisée sous 24 heures.
-  on_a_scale_of_1_to_10_how_satisfied_are_you_with_the_wabosign_product_: Sur une échelle de 1 à 10, quel est votre niveau de satisfaction du produit WaboSign ?
+  on_a_scale_of_1_to_10_how_satisfied_are_you_with_the_docuseal_product_: Sur une échelle de 1 à 10, quel est votre niveau de satisfaction du produit WaboSign ?
   tell_us_more_about_your_experience: Dites‑nous en plus sur votre expérience
   extremely_dissatisfied: Extrêmement insatisfait
   extremely_satisfied: Extrêmement satisfait
   your_pro_plan_payment_is_overdue: Le paiement de votre offre Pro est en retard.
   click_here_to_update_your_payment_details_and_clear_the_invoice_to_ensure_uninterrupted_service_html: <a href="%{url}" class="link">Cliquez ici</a> pour mettre à jour vos informations de paiement et régler la facture afin de garantir la continuité du service.
   overdue_payment: Paiement en retard
-  your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_wabosign_or_cancel_your_subscription: "Votre offre Pro a été suspendue en raison de factures impayées.\nVous pouvez mettre à jour vos informations de paiement pour régler la facture et continuer à utiliser WaboSign, ou annuler votre abonnement."
+  your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: "Votre offre Pro a été suspendue en raison de factures impayées.\nVous pouvez mettre à jour vos informations de paiement pour régler la facture et continuer à utiliser WaboSign, ou annuler votre abonnement."
   manage_subscription: Gérer l’abonnement
   submission_created_by_email_html: "<b>Soumission créée</b> par %{email}"
   submission_created_by_email_via_source_html: "<b>Soumission créée</b> par %{email} via %{source}"
   submission_created_via_source_html: "<b>Soumission créée</b> via %{source}"
   pro_user_seats_used: Places d’utilisateurs Pro utilisées
   manage_plan: Gérer la formule
-  this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: Cette soumission comporte plusieurs signataires, ce qui empêche l’utilisation d’un lien de partage car il n’est pas clair quel signataire est responsable de quels champs. Pour résoudre cela, suivez ce <a href="https://sign.wabo.cc/docs/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">guide</a> pour définir les détails du signataire par défaut.
-  welcome_to_wabosign: Bienvenue sur WaboSign
+  this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: Cette soumission comporte plusieurs signataires, ce qui empêche l’utilisation d’un lien de partage car il n’est pas clair quel signataire est responsable de quels champs. Pour résoudre cela, suivez ce <a href="https://www.wabosign.com/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">guide</a> pour définir les détails du signataire par défaut.
+  welcome_to_docuseal: Bienvenue sur WaboSign
   start_a_quick_tour_to_learn_how_to_create_and_send_your_first_document: Lancez une visite rapide pour apprendre à créer et envoyer votre premier document
   start_tour: Démarrer la visite
   name_a_z: Nom A‑Z
@@ -3988,13 +4005,13 @@ fr: &fr
   use_otp_code_to_access_the_api_key_html: Utilisez le code <b>%{code}</b> pour accéder à la clé API.
   please_reply_to_this_email_if_you_dont_recognize_this_request: Veuillez répondre à cet e‑mail si vous ne reconnaissez pas cette demande.
   your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: Votre compte utilisateur a été archivé. Contactez votre administrateur pour rétablir l’accès à votre compte.
-  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Votre e‑mail n’a pas pu être joint. Cela peut se produire en cas de faute de frappe dans votre adresse ou si votre boîte aux lettres n’est pas disponible. Veuillez contacter wabosign@wabo.cc pour vous connecter.
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Votre e‑mail n’a pas pu être joint. Cela peut se produire en cas de faute de frappe dans votre adresse ou si votre boîte aux lettres n’est pas disponible. Veuillez contacter support@wabosign.com pour vous connecter.
   efficient_search_with_search_index: Recherche efficace avec index de recherche
   reindex: Réindexer
   build_search_index: Construire l’index de recherche
   require_two_factor_authentication_2fa_with_an_authenticator_app_e_g_google_authenticator_authy_all_users_signing_documents_must_pass_the_second_factor_verification_using_a_secure_code_in_addition_to_their_password: Exiger l’authentification à deux facteurs (2FA) avec une application d’authentification (p. ex., Google Authenticator, Authy). Tous les utilisateurs qui signent des documents doivent passer la vérification du second facteur à l’aide d’un code sécurisé en plus de leur mot de passe.
-  add_a_unique_signature_id_and_timestamp_to_each_signature_for_audit_and_traceability_purposes_along_with_the_timestamp_part_of_wabosigns_21_cfr_part_11_compliance_settings: Ajouter un identifiant de signature unique et un horodatage à chaque signature à des fins d’audit et de traçabilité, avec l’horodatage. Fait partie des paramètres de conformité 21 CFR Part 11 de WaboSign.
-  require_signer_to_provide_a_reason_for_signing_before_completing_their_signature_e_g_approvals_certifications_part_of_wabosigns_21_cfr_part_11_compliance_settings: Exiger que les signataires fournissent un motif de signature avant de finaliser leur signature (p. ex., approbations, certifications). Fait partie des paramètres de conformité 21 CFR Part 11 de WaboSign.
+  add_a_unique_signature_id_and_timestamp_to_each_signature_for_audit_and_traceability_purposes_along_with_the_timestamp_part_of_docuseals_21_cfr_part_11_compliance_settings: Ajouter un identifiant de signature unique et un horodatage à chaque signature à des fins d’audit et de traçabilité, avec l’horodatage. Fait partie des paramètres de conformité 21 CFR Part 11 de WaboSign.
+  require_signer_to_provide_a_reason_for_signing_before_completing_their_signature_e_g_approvals_certifications_part_of_docuseals_21_cfr_part_11_compliance_settings: Exiger que les signataires fournissent un motif de signature avant de finaliser leur signature (p. ex., approbations, certifications). Fait partie des paramètres de conformité 21 CFR Part 11 de WaboSign.
   allow_signers_to_create_signatures_by_typing_their_name_instead_of_drawing_or_uploading_one: Autoriser les signataires à créer des signatures en tapant leur nom au lieu de dessiner ou téléverser une signature.
   allow_signers_to_resubmit_forms_after_completion_useful_when_corrections_or_multiple_submissions_are_needed: Autoriser les signataires à soumettre à nouveau les formulaires après finalisation, utile pour des corrections ou soumissions multiples.
   allow_recipients_to_decline_signing_a_document_the_decline_reason_notification_will_be_sent_to_the_signature_requester: Autoriser les destinataires à refuser de signer un document. Le motif du refus sera notifié au demandeur de signature.
@@ -4070,12 +4087,15 @@ fr: &fr
   mcp_token_has_been_removed: Le jeton MCP a été supprimé.
   enable_mcp_server: Activer le serveur MCP
   all_existing_mcp_connections_will_be_stopped_immediately_when_this_setting_is_disabled: Toutes les connexions MCP existantes seront arrêtées immédiatement lorsque ce paramètre est désactivé.
-  connect_to_product_name_mcp: Se connecter à %{product_name} MCP
+  connect_to_docuseal_mcp: Se connecter à WaboSign MCP
   add_the_following_to_your_mcp_client_configuration: Ajoutez ce qui suit à la configuration de votre client MCP
   works_with_claude_desktop_cursor_windsurf_vs_code_and_any_mcp_compatible_client: Fonctionne avec Claude Desktop, Cursor, Windsurf, VS Code et tout client compatible MCP.
   your_email_address_has_been_changed: Votre adresse e-mail a été modifiée
   the_email_address_for_your_account_has_been_changed_to_new_email: "L'adresse e-mail de votre compte a été modifiée en %{new_email}."
   if_you_did_not_make_this_change_please_contact_us_by_replying_to_this_email: Si vous n'avez pas effectué ce changement, veuillez nous contacter en répondant à cet e-mail.
+  open_file_from: 'Ouvrir le fichier depuis'
+  cancel: Annuler
+  open: Ouvrir
   devise:
     confirmations:
       confirmed: Votre adresse e-mail a été confirmée avec succès.
@@ -4170,7 +4190,7 @@ fr: &fr
     settings: Paramètres
     settings_account_description: Des paramètres de compte complets pour personnaliser l’expérience de signature et inviter d’autres utilisateurs.
     support: Support
-    support_description: Utilisez notre assistant IA en libre‑service ou contactez‑nous à wabosign@wabo.cc pour toute question.
+    support_description: Utilisez notre assistant IA en libre‑service ou contactez‑nous à support@wabosign.com pour toute question.
     settings_template_description: Utilisez ce bouton pour accéder à la page des paramètres de votre compte.
   doorkeeper:
     scopes:
@@ -4278,8 +4298,8 @@ pt: &pt
   you_have_been_invited_to_account_name_product_name_please_sign_up_using_the_link_below_: 'Você foi convidado para %{account_name} %{product_name}. Inscreva-se usando o link abaixo:'
   sent_using_product_name_in_testing_mode_html: 'Enviado usando <a href="%{product_url}">%{product_name}</a> no Modo de Teste'
   sent_using_product_name_free_document_signing_html: 'Enviado usando a assinatura gratuita de documentos de <a href="%{product_url}">%{product_name}</a>.'
-  sent_with_wabosign_pro_html: 'Enviado com <a href="%{product_url}">WaboSign Pro</a>'
-  show_send_with_wabosign_pro_attribution_in_emails_html: Mostrar "Enviado com <span class="link">WaboSign Pro</span>" nos e-mails
+  sent_with_docuseal_pro_html: 'Enviado com <a href="%{product_url}">WaboSign Pro</a>'
+  show_send_with_docuseal_pro_attribution_in_emails_html: Mostrar "Enviado com <span class="link">WaboSign Pro</span>" nos e-mails
   sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Assine documentos com certificado confiável fornecido pela WaboSign. Seus documentos e dados nunca são compartilhados com a WaboSign. O checksum do PDF é fornecido para gerar uma assinatura confiável.
   hi_there: Olá
   thanks: Obrigado
@@ -4325,7 +4345,7 @@ pt: &pt
 
     Obrigado,
     {account.name}
-  view: Visualizar
+  view: Ver
   email: Email
   form_expired_at_html: 'O formulário expirou em <span class="font-semibold">%{time}</span>'
   verification_code_code: 'Código de verificação: %{code}'
@@ -4382,7 +4402,7 @@ pt: &pt
   profile_details: Detalhes do perfil
   sign_up_with_google: Inscrever-se com Google
   sign_up_with_microsoft: Inscrever-se com Microsoft
-  by_creating_an_account_you_agree_to_our_html: 'Ao criar uma conta, você concorda com nossa <a target="_blank" href="https://sign.wabo.cc/privacy">Política de Privacidade</a> e <a target="_blank" href="https://sign.wabo.cc/terms">Termos de Serviço</a>.'
+  by_creating_an_account_you_agree_to_our_html: 'Ao criar uma conta, você concorda com nossa <a target="_blank" href="https://www.wabosign.com/privacy">Política de Privacidade</a> e <a target="_blank" href="https://www.wabosign.com/terms">Termos de Serviço</a>.'
   enter_email_to_continue: Insira o e-mail para continuar
   account: Conta
   preferences: Preferências
@@ -4404,7 +4424,7 @@ pt: &pt
   combine_completed_documents_and_audit_log: Combinar documentos concluídos e log de auditoria
   salesforce_integration: Integração com Salesforce
   salesforce_has_been_connected: Salesforce foi conectado.
-  connect_salesforce_account_to_integrate_with_wabosign: Conecte a conta Salesforce para integrar com o WaboSign
+  connect_salesforce_account_to_integrate_with_docuseal: Conecte a conta Salesforce para integrar com o WaboSign
   re_connect_salesforce: Reconectar Salesforce
   connect_salesforce: Conectar Salesforce
   danger_zone: Zona de perigo
@@ -4433,13 +4453,13 @@ pt: &pt
   resetting_password: Redefinindo senha
   sign_in_with_name_account: 'Entrar com conta %{name}'
   two_factor_code_from_authenticator_app: Código de autenticação de dois fatores do aplicativo Authenticator
-  sign_up_in_wabosign_console_to_upgrade_on_premises_app_is_completely_standalone_console_is_used_only_to_manage_your_license: Inscreva-se no console do WaboSign para fazer o upgrade. O aplicativo local é totalmente independente, o console é usado apenas para gerenciar sua licença.
+  sign_up_in_docuseal_console_to_upgrade_on_premises_app_is_completely_standalone_console_is_used_only_to_manage_your_license: Inscreva-se no console do WaboSign para fazer o upgrade. O aplicativo local é totalmente independente, o console é usado apenas para gerenciar sua licença.
   send_from_email: Enviar do e-mail
   optional: opcional
   save: Salvar
   saving: Salvando
   changes_have_been_saved: As alterações foram salvas.
-  unlock_with_wabosign_pro: Desbloquear com o WaboSign Pro
+  unlock_with_docuseal_pro: Desbloquear com o WaboSign Pro
   use_your_own_certificates_to_sign_and_verify_pdf_files: Use seus próprios certificados para assinar e verificar arquivos PDF.
   upload_certificate: Enviar certificado
   name: Nome
@@ -4483,6 +4503,7 @@ pt: &pt
   code_is_invalid: O código é inválido
   2fa_has_been_removed: 2FA foi removido.
   2fa_has_been_set_up_already: 2FA já foi configurado.
+  developer_newsletters: Newsletters para desenvolvedores
   skip: Pular
   email_notifications: Notificações por e-mail
   receive_notification_emails_on_completed_submission: Receber notificações por e-mail ao concluir uma submissão
@@ -4538,7 +4559,7 @@ pt: &pt
   password_has_been_changed: A senha foi alterada.
   email_integration: Integração de e-mail
   send_via_connected_email: Enviar via e-mail conectado
-  activate_with_wabosign_pro: Ativar com WaboSign Pro
+  activate_with_docuseal_pro: Ativar com WaboSign Pro
   send_signature_request_to_your_recipients_directly_from_your_email: Envie solicitações de assinatura diretamente do seu e-mail
   connect_gmail: Conectar Gmail
   re_connect_gmail: Reconectar Gmail
@@ -4559,8 +4580,6 @@ pt: &pt
   sign_out: Sair
   page_number: 'Página %{number}'
   powered_by: Desenvolvido por
-  based_on: based on
-  view_on_github: View on GitHub
   qr_code: Código QR
   print: Imprimir
   scan_the_qr_code_above_with_your_phone_camera_to_open_and_sign_this_document: Escaneie o código QR acima com a câmera do seu telefone para abrir e assinar este documento.
@@ -4620,7 +4639,7 @@ pt: &pt
   upgrade_to_send_unlimited_signature_requests: Faça upgrade para enviar solicitações de assinatura ilimitadas
   add_without_sending: Adicionar sem enviar
   upgade_now: Fazer upgrade agora
-  send_signature_request_emails_without_limits_with_wabosign_pro: Enviar e-mails de solicitação de assinatura sem limites com o WaboSign Pro
+  send_signature_request_emails_without_limits_with_docuseal_pro: Enviar e-mails de solicitação de assinatura sem limites com o WaboSign Pro
   count_emails_used: '%{count} e-mails usados'
   has_been_connected: foi conectado
   sms_not_configured: SMS não configurado
@@ -4722,7 +4741,7 @@ pt: &pt
   new_user: Novo usuário
   unarchive: Desarquivar
   last_session: Última sessão
-  unlock_more_user_roles_with_wabosign_pro: Desbloqueie mais funções de usuário com WaboSign Pro.
+  unlock_more_user_roles_with_docuseal_pro: Desbloqueie mais funções de usuário com WaboSign Pro.
   view_active: Ver ativos
   team_account: Conta de equipe
   team_accounts: Contas de equipe
@@ -4851,6 +4870,9 @@ pt: &pt
   create_a_new_template_document_form_or_submit_the_existing_one_html: '<a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Criar um novo modelo</a> de documento ou <a href="%{start_form_link}" target="_blank" class="inline underline font-medium">submeter o existente</a>'
   send_email_copy_with_completed_documents_to_a_specified_bcc_address: Envie uma cópia do e-mail com documentos concluídos para um endereço BCC especificado.
   re_send_email: Reenviar e-mail
+  re_send_emails: Reenviar e-mails
+  are_you_sure_you_want_to_re_send_email_to_n_recipients: Tem certeza de que deseja reenviar o e-mail de convite para %{count} destinatários?
+  emails_have_been_sent_to_n_recipients: Os e-mails foram enviados para %{count} destinatários.
   send_email: Enviar e-mail
   copy_share_link: Copiar link de compartilhamento
   copied_to_clipboard: Copiado para a área de transferência
@@ -4943,25 +4965,25 @@ pt: &pt
   seamlessly_automate_your_document_signing_process_with_make_com: Automatize perfeitamente seu processo de assinatura de documentos com o Make.com.
   find_suitable_zapier_templates_to_automate_your_workflow: Encontre modelos Zapier adequados para automatizar seu fluxo de trabalho.
   get_started: Começar
-  click_here_to_learn_more_about_user_roles_and_permissions_html: '<a href="https://sign.wabo.cc/docs/users-and-roles" class="link" rel="noopener noreferrer nofollow" target="_blank">Clique aqui</a> para saber mais sobre os papéis e permissões dos usuários.'
+  click_here_to_learn_more_about_user_roles_and_permissions_html: '<a href="https://www.wabosign.com/resources/manage-users-and-roles" class="link" rel="noopener noreferrer nofollow" target="_blank">Clique aqui</a> para saber mais sobre os papéis e permissões dos usuários.'
   count_10_signature_request_emails_sent_this_month_upgrade_to_pro_to_send_unlimited_signature_request_email: '%{count} / 10 e-mails de solicitação de assinatura enviados este mês. Faça upgrade para Pro para enviar solicitações de assinatura ilimitadas.'
   test_mode_emails_limit_will_be_reset_within_24_hours: O limite de e-mails no modo de teste será redefinido em 24 horas.
-  on_a_scale_of_1_to_10_how_satisfied_are_you_with_the_wabosign_product_: 'Em uma escala de 1 a 10, quão satisfeito você está com o produto WaboSign?'
+  on_a_scale_of_1_to_10_how_satisfied_are_you_with_the_docuseal_product_: 'Em uma escala de 1 a 10, quão satisfeito você está com o produto WaboSign?'
   tell_us_more_about_your_experience: Conte-nos mais sobre sua experiência
   extremely_dissatisfied: Extremamente insatisfeito
   extremely_satisfied: Extremamente satisfeito
   your_pro_plan_payment_is_overdue: O pagamento do seu plano Pro está atrasado.
   click_here_to_update_your_payment_details_and_clear_the_invoice_to_ensure_uninterrupted_service_html: '<a href="%{url}" class="link">Clique aqui</a> para atualizar seus dados de pagamento e quitar a fatura para garantir um serviço ininterrupto.'
   overdue_payment: Pagamento Atrasado
-  your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_wabosign_or_cancel_your_subscription: Seu plano Pro foi suspenso devido a faturas não pagas. Você pode atualizar seus dados de pagamento para quitar a fatura e continuar usando o WaboSign ou cancelar sua assinatura.
+  your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Seu plano Pro foi suspenso devido a faturas não pagas. Você pode atualizar seus dados de pagamento para quitar a fatura e continuar usando o WaboSign ou cancelar sua assinatura.
   manage_subscription: Gerenciar Assinatura
   submission_created_by_email_html: '<b>Envio criado</b> por %{email}'
   submission_created_by_email_via_source_html: '<b>Envio criado</b> por %{email} via %{source}'
   submission_created_via_source_html: '<b>Envio criado</b> via %{source}'
   pro_user_seats_used: Lugares de usuário Pro em uso
   manage_plan: Gerenciar plano
-  this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: 'Este envio tem vários signatários, o que impede o uso de um link de compartilhamento, pois não está claro qual signatário é responsável por quais campos. Para resolver isso, siga este <a href="https://sign.wabo.cc/docs/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">guia</a> para definir os detalhes padrão do signatário.'
-  welcome_to_wabosign: Bem-vindo ao WaboSign
+  this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: 'Este envio tem vários signatários, o que impede o uso de um link de compartilhamento, pois não está claro qual signatário é responsável por quais campos. Para resolver isso, siga este <a href="https://www.wabosign.com/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">guia</a> para definir os detalhes padrão do signatário.'
+  welcome_to_docuseal: Bem-vindo ao WaboSign
   start_a_quick_tour_to_learn_how_to_create_and_send_your_first_document: Comece um tour rápido para aprender a criar e enviar seu primeiro documento.
   start_tour: Iniciar tour
   name_a_z: Nome A-Z
@@ -5037,13 +5059,13 @@ pt: &pt
   use_otp_code_to_access_the_api_key_html: Use o código <b>%{code}</b> para acessar a chave API.
   please_reply_to_this_email_if_you_dont_recognize_this_request: Responda a este e-mail se você não reconhecer esta solicitação.
   your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: Sua conta de usuário foi arquivada. Entre em contato com o administrador para restaurar o acesso à sua conta.
-  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Seu e-mail não pôde ser acessado. Isso pode acontecer se houve um erro de digitação no endereço ou se sua caixa de correio não estiver disponível. Entre em contato com wabosign@wabo.cc para fazer login.
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Seu e-mail não pôde ser acessado. Isso pode acontecer se houve um erro de digitação no endereço ou se sua caixa de correio não estiver disponível. Entre em contato com support@wabosign.com para fazer login.
   efficient_search_with_search_index: Pesquisa eficiente com índice de busca
   reindex: Reindexar
   build_search_index: Construir índice de busca
   require_two_factor_authentication_2fa_with_an_authenticator_app_e_g_google_authenticator_authy_all_users_signing_documents_must_pass_the_second_factor_verification_using_a_secure_code_in_addition_to_their_password: "Exigir autenticação de dois fatores (2FA) com um aplicativo autenticador (ex.: Google Authenticator, Authy). Todos os usuários que assinam documentos devem passar pela verificação do segundo fator usando um código seguro além da senha."
-  add_a_unique_signature_id_and_timestamp_to_each_signature_for_audit_and_traceability_purposes_along_with_the_timestamp_part_of_wabosigns_21_cfr_part_11_compliance_settings: Adicionar um ID de assinatura exclusivo e um carimbo de data/hora a cada assinatura para fins de auditoria e rastreabilidade junto com o carimbo de data/hora. Parte das configurações de conformidade 21 CFR Parte 11 do WaboSign.
-  require_signer_to_provide_a_reason_for_signing_before_completing_their_signature_e_g_approvals_certifications_part_of_wabosigns_21_cfr_part_11_compliance_settings: "Exigir que os signatários forneçam uma razão antes de completar a assinatura (ex.: aprovações, certificações). Parte das configurações de conformidade 21 CFR Parte 11 do WaboSign."
+  add_a_unique_signature_id_and_timestamp_to_each_signature_for_audit_and_traceability_purposes_along_with_the_timestamp_part_of_docuseals_21_cfr_part_11_compliance_settings: Adicionar um ID de assinatura exclusivo e um carimbo de data/hora a cada assinatura para fins de auditoria e rastreabilidade junto com o carimbo de data/hora. Parte das configurações de conformidade 21 CFR Parte 11 do WaboSign.
+  require_signer_to_provide_a_reason_for_signing_before_completing_their_signature_e_g_approvals_certifications_part_of_docuseals_21_cfr_part_11_compliance_settings: "Exigir que os signatários forneçam uma razão antes de completar a assinatura (ex.: aprovações, certificações). Parte das configurações de conformidade 21 CFR Parte 11 do WaboSign."
   allow_signers_to_create_signatures_by_typing_their_name_instead_of_drawing_or_uploading_one: Permitir que os signatários criem assinaturas digitando seu nome em vez de desenhá-las ou carregá-las.
   allow_signers_to_resubmit_forms_after_completion_useful_when_corrections_or_multiple_submissions_are_needed: Permitir que os signatários reenviem formulários após o término, útil quando são necessárias correções ou múltiplos envios.
   allow_recipients_to_decline_signing_a_document_the_decline_reason_notification_will_be_sent_to_the_signature_requester: Permitir que os destinatários recusem assinar um documento. A notificação do motivo da recusa será enviada ao solicitante da assinatura.
@@ -5118,12 +5140,15 @@ pt: &pt
   mcp_token_has_been_removed: O token MCP foi removido.
   enable_mcp_server: Ativar servidor MCP
   all_existing_mcp_connections_will_be_stopped_immediately_when_this_setting_is_disabled: Todas as conexões MCP existentes serão interrompidas imediatamente quando esta configuração for desativada.
-  connect_to_product_name_mcp: Conectar ao %{product_name} MCP
+  connect_to_docuseal_mcp: Conectar ao WaboSign MCP
   add_the_following_to_your_mcp_client_configuration: Adicione o seguinte à configuração do seu cliente MCP
   works_with_claude_desktop_cursor_windsurf_vs_code_and_any_mcp_compatible_client: Funciona com Claude Desktop, Cursor, Windsurf, VS Code e qualquer cliente compatível com MCP.
   your_email_address_has_been_changed: Seu endereço de e-mail foi alterado
   the_email_address_for_your_account_has_been_changed_to_new_email: O endereço de e-mail da sua conta foi alterado para %{new_email}.
   if_you_did_not_make_this_change_please_contact_us_by_replying_to_this_email: Se você não fez essa alteração, entre em contato conosco respondendo a este e-mail.
+  open_file_from: 'Abrir arquivo de'
+  cancel: Cancelar
+  open: Abrir
   devise:
     confirmations:
       confirmed: Seu endereço de e-mail foi confirmado com sucesso.
@@ -5218,7 +5243,7 @@ pt: &pt
     settings: 'Configurações'
     settings_account_description: 'Com configurações completas de conta, você pode personalizar a experiência de assinatura eletrônica e convidar mais usuários.'
     support: 'Suporte'
-    support_description: 'Você pode usar nosso assistente de IA ou nos escrever para wabosign@wabo.cc se tiver dúvidas.'
+    support_description: 'Você pode usar nosso assistente de IA ou nos escrever para support@wabosign.com se tiver dúvidas.'
     settings_template_description: 'Use este botão para acessar a página de configurações da sua conta.'
   doorkeeper:
     scopes:
@@ -5326,8 +5351,8 @@ de: &de
   you_have_been_invited_to_account_name_product_name_please_sign_up_using_the_link_below_: 'Sie wurden zu %{account_name} %{product_name} eingeladen. Bitte registrieren Sie sich über den folgenden Link:'
   sent_using_product_name_in_testing_mode_html: 'Gesendet über <a href="%{product_url}">%{product_name}</a> im Testmodus'
   sent_using_product_name_free_document_signing_html: 'Gesendet mit der kostenlosen Dokumentensignierung von <a href="%{product_url}">%{product_name}</a>.'
-  sent_with_wabosign_pro_html: Gesendet mit <a href="%{product_url}">WaboSign Pro</a>
-  show_send_with_wabosign_pro_attribution_in_emails_html: '"Gesendet mit <span class="link">WaboSign Pro</span>" in E-Mails anzeigen'
+  sent_with_docuseal_pro_html: Gesendet mit <a href="%{product_url}">WaboSign Pro</a>
+  show_send_with_docuseal_pro_attribution_in_emails_html: '"Gesendet mit <span class="link">WaboSign Pro</span>" in E-Mails anzeigen'
   sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Unterzeichnen Sie Dokumente mit einem vertrauenswürdigen Zertifikat von WaboSign. Ihre Dokumente und Daten werden niemals mit WaboSign geteilt. Eine PDF-Prüfsumme wird bereitgestellt, um eine vertrauenswürdige Signatur zu generieren.
   you_have_been_invited_to_submit_the_name_form: 'Sie wurden eingeladen, das Formular "%{name}" einzureichen.'
   you_have_been_invited_to_sign_the_name: 'Sie wurden eingeladen, "%{name}" zu unterschreiben.'
@@ -5430,7 +5455,7 @@ de: &de
   profile_details: Profildetails
   sign_up_with_google: Mit Google registrieren
   sign_up_with_microsoft: Mit Microsoft registrieren
-  by_creating_an_account_you_agree_to_our_html: 'Durch die Erstellung eines Kontos stimmen Sie unseren <a target="_blank" href="https://sign.wabo.cc/privacy">Datenschutzrichtlinien</a> und <a target="_blank" href="https://sign.wabo.cc/terms">Nutzungsbedingungen</a> zu.'
+  by_creating_an_account_you_agree_to_our_html: 'Durch die Erstellung eines Kontos stimmen Sie unseren <a target="_blank" href="https://www.wabosign.com/privacy">Datenschutzrichtlinien</a> und <a target="_blank" href="https://www.wabosign.com/terms">Nutzungsbedingungen</a> zu.'
   enter_email_to_continue: E-Mail eingeben, um fortzufahren
   account: Konto
   preferences: Einstellungen
@@ -5452,7 +5477,7 @@ de: &de
   combine_completed_documents_and_audit_log: Abgeschlossene Dokumente und Prüfprotokoll kombinieren
   salesforce_integration: Salesforce-Integration
   salesforce_has_been_connected: Salesforce wurde verbunden.
-  connect_salesforce_account_to_integrate_with_wabosign: Verbinden Sie Ihr Salesforce-Konto, um es mit WaboSign zu integrieren
+  connect_salesforce_account_to_integrate_with_docuseal: Verbinden Sie Ihr Salesforce-Konto, um es mit WaboSign zu integrieren
   re_connect_salesforce: Salesforce erneut verbinden
   connect_salesforce: Salesforce verbinden
   danger_zone: Gefahrenzone
@@ -5481,13 +5506,13 @@ de: &de
   resetting_password: Passwort wird zurückgesetzt
   sign_in_with_name_account: 'Mit %{name}-Konto anmelden'
   two_factor_code_from_authenticator_app: Zwei-Faktor-Code aus der Authenticator-App
-  sign_up_in_wabosign_console_to_upgrade_on_premises_app_is_completely_standalone_console_is_used_only_to_manage_your_license: Melden Sie sich in der WaboSign-Konsole an, um ein Upgrade durchzuführen. Die lokale App ist vollständig eigenständig; die Konsole wird nur zur Verwaltung Ihrer Lizenz verwendet.
+  sign_up_in_docuseal_console_to_upgrade_on_premises_app_is_completely_standalone_console_is_used_only_to_manage_your_license: Melden Sie sich in der WaboSign-Konsole an, um ein Upgrade durchzuführen. Die lokale App ist vollständig eigenständig; die Konsole wird nur zur Verwaltung Ihrer Lizenz verwendet.
   send_from_email: Von E-Mail senden
   optional: optional
   save: Speichern
   saving: Wird gespeichert
   changes_have_been_saved: Änderungen wurden gespeichert.
-  unlock_with_wabosign_pro: Mit WaboSign Pro freischalten
+  unlock_with_docuseal_pro: Mit WaboSign Pro freischalten
   use_your_own_certificates_to_sign_and_verify_pdf_files: Verwenden Sie Ihre eigenen Zertifikate, um PDF-Dateien zu signieren und zu verifizieren.
   upload_certificate: Zertifikat hochladen
   name: Name
@@ -5531,6 +5556,7 @@ de: &de
   code_is_invalid: Der Code ist ungültig
   2fa_has_been_removed: 2FA wurde entfernt.
   2fa_has_been_set_up_already: 2FA wurde bereits eingerichtet.
+  developer_newsletters: Entwickler-Newsletter
   skip: Überspringen
   email_notifications: E-Mail-Benachrichtigungen
   receive_notification_emails_on_completed_submission: Benachrichtigungs-E-Mails bei abgeschlossener Einreichung erhalten
@@ -5586,7 +5612,7 @@ de: &de
   password_has_been_changed: Das Passwort wurde geändert.
   email_integration: E-Mail-Integration
   send_via_connected_email: Über verbundenes E-Mail-Konto senden
-  activate_with_wabosign_pro: Mit WaboSign Pro aktivieren
+  activate_with_docuseal_pro: Mit WaboSign Pro aktivieren
   send_signature_request_to_your_recipients_directly_from_your_email: Senden Sie Signaturanfragen direkt aus Ihrem E-Mail-Konto
   connect_gmail: Gmail verbinden
   re_connect_gmail: Gmail erneut verbinden
@@ -5607,8 +5633,6 @@ de: &de
   sign_out: Abmelden
   page_number: 'Seite %{number}'
   powered_by: Bereitgestellt von
-  based_on: based on
-  view_on_github: View on GitHub
   qr_code: QR-Code
   print: Drucken
   scan_the_qr_code_above_with_your_phone_camera_to_open_and_sign_this_document: Scannen Sie den QR-Code oben mit Ihrer Handykamera, um dieses Dokument zu öffnen und zu unterzeichnen.
@@ -5668,7 +5692,7 @@ de: &de
   upgrade_to_send_unlimited_signature_requests: Upgrade durchführen, um unbegrenzte Signaturanfragen zu senden
   add_without_sending: Hinzufügen ohne zu senden
   upgade_now: Jetzt upgraden
-  send_signature_request_emails_without_limits_with_wabosign_pro: Signaturanfragen per E-Mail ohne Limits mit WaboSign Pro senden
+  send_signature_request_emails_without_limits_with_docuseal_pro: Signaturanfragen per E-Mail ohne Limits mit WaboSign Pro senden
   count_emails_used: '%{count} E-Mails verwendet'
   has_been_connected: wurde verbunden
   sms_not_configured: SMS nicht konfiguriert
@@ -5770,7 +5794,7 @@ de: &de
   new_user: Neuer Benutzer
   unarchive: Entarchivieren
   last_session: Letzte Sitzung
-  unlock_more_user_roles_with_wabosign_pro: Weitere Benutzerrollen mit WaboSign Pro freischalten.
+  unlock_more_user_roles_with_docuseal_pro: Weitere Benutzerrollen mit WaboSign Pro freischalten.
   view_active: Aktive anzeigen
   team_account: Teamkonto
   team_accounts: Teamkonten
@@ -5899,6 +5923,9 @@ de: &de
   create_a_new_template_document_form_or_submit_the_existing_one_html: <a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Neue Vorlage erstellen</a> oder <a href="%{start_form_link}" target="_blank" class="inline underline font-medium">bestehende einreichen</a>
   send_email_copy_with_completed_documents_to_a_specified_bcc_address: Senden Sie eine E-Mail-Kopie mit abgeschlossenen Dokumenten an eine angegebene BCC-Adresse.
   re_send_email: E-Mail erneut senden
+  re_send_emails: E-Mails senden
+  are_you_sure_you_want_to_re_send_email_to_n_recipients: Sind Sie sicher, dass Sie die Einladungs-E-Mail erneut an %{count} Empfänger senden möchten?
+  emails_have_been_sent_to_n_recipients: Die E-Mails wurden an %{count} Empfänger gesendet.
   send_email: E-Mail senden
   copy_share_link: Freigabelink kopieren
   copied_to_clipboard: In die Zwischenablage kopiert
@@ -5991,25 +6018,25 @@ de: &de
   seamlessly_automate_your_document_signing_process_with_make_com: Automatisieren Sie Ihren Dokumentenunterzeichnungsprozess nahtlos mit Make.com.
   find_suitable_zapier_templates_to_automate_your_workflow: Finden Sie passende Zapier-Vorlagen, um Ihren Workflow zu automatisieren.
   get_started: Loslegen
-  click_here_to_learn_more_about_user_roles_and_permissions_html: '<a href="https://sign.wabo.cc/docs/users-and-roles" class="link" rel="noopener noreferrer nofollow" target="_blank">Klicken Sie hier</a>, um mehr über Benutzerrollen und -berechtigungen zu erfahren.'
+  click_here_to_learn_more_about_user_roles_and_permissions_html: '<a href="https://www.wabosign.com/resources/manage-users-and-roles" class="link" rel="noopener noreferrer nofollow" target="_blank">Klicken Sie hier</a>, um mehr über Benutzerrollen und -berechtigungen zu erfahren.'
   count_10_signature_request_emails_sent_this_month_upgrade_to_pro_to_send_unlimited_signature_request_email: '%{count} / 10 E-Mails für Signaturanfragen wurden diesen Monat gesendet. Upgraden Sie zu Pro, um unbegrenzte Signaturanfragen zu senden.'
   test_mode_emails_limit_will_be_reset_within_24_hours: Das Limit für E-Mails im Testmodus wird innerhalb von 24 Stunden zurückgesetzt.
-  on_a_scale_of_1_to_10_how_satisfied_are_you_with_the_wabosign_product_: 'Auf einer Skala von 1 bis 10: Wie zufrieden sind Sie mit dem WaboSign-Produkt?'
+  on_a_scale_of_1_to_10_how_satisfied_are_you_with_the_docuseal_product_: 'Auf einer Skala von 1 bis 10: Wie zufrieden sind Sie mit dem WaboSign-Produkt?'
   tell_us_more_about_your_experience: Erzählen Sie uns mehr über Ihre Erfahrung
   extremely_dissatisfied: Extrem unzufrieden
   extremely_satisfied: Extrem zufrieden
   your_pro_plan_payment_is_overdue: Ihre Zahlung für den Pro-Plan ist überfällig.
   click_here_to_update_your_payment_details_and_clear_the_invoice_to_ensure_uninterrupted_service_html: '<a href="%{url}" class="link">Klicken Sie hier</a>, um Ihre Zahlungsdaten zu aktualisieren und die Rechnung zu begleichen, um einen unterbrechungsfreien Service sicherzustellen.'
   overdue_payment: Überfällige Zahlung
-  your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_wabosign_or_cancel_your_subscription: Ihr Pro-Plan wurde aufgrund unbezahlter Rechnungen ausgesetzt. Sie können Ihre Zahlungsdaten aktualisieren, um die Rechnung zu begleichen und WaboSign weiterhin zu nutzen, oder Ihr Abonnement kündigen.
+  your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Ihr Pro-Plan wurde aufgrund unbezahlter Rechnungen ausgesetzt. Sie können Ihre Zahlungsdaten aktualisieren, um die Rechnung zu begleichen und WaboSign weiterhin zu nutzen, oder Ihr Abonnement kündigen.
   manage_subscription: Abonnement verwalten
   submission_created_by_email_html: '<b>Einreichung erstellt</b> von %{email}'
   submission_created_by_email_via_source_html: '<b>Einreichung erstellt</b> von %{email} über %{source}'
   submission_created_via_source_html: '<b>Einreichung erstellt</b> über %{source}'
   pro_user_seats_used: Verwendete Pro-Benutzerplätze
   manage_plan: Plan verwalten
-  this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: 'Diese Einreichung hat mehrere Unterzeichner, was die Nutzung eines Freigabelinks verhindert, da unklar ist, welcher Unterzeichner für welche Felder verantwortlich ist. Um dies zu lösen, folgen Sie dieser <a href="https://sign.wabo.cc/docs/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">Anleitung</a>, um die Standarddetails des Unterzeichners festzulegen.'
-  welcome_to_wabosign: Willkommen bei WaboSign
+  this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: 'Diese Einreichung hat mehrere Unterzeichner, was die Nutzung eines Freigabelinks verhindert, da unklar ist, welcher Unterzeichner für welche Felder verantwortlich ist. Um dies zu lösen, folgen Sie dieser <a href="https://www.wabosign.com/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">Anleitung</a>, um die Standarddetails des Unterzeichners festzulegen.'
+  welcome_to_docuseal: Willkommen bei WaboSign
   start_a_quick_tour_to_learn_how_to_create_and_send_your_first_document: Starten Sie eine kurze Tour, um zu lernen, wie Sie Ihr erstes Dokument erstellen und versenden.
   start_tour: Starten
   name_a_z: Name A-Z
@@ -6085,13 +6112,13 @@ de: &de
   use_otp_code_to_access_the_api_key_html: Verwenden Sie den Code <b>%{code}</b>, um auf den API-Schlüssel zuzugreifen.
   please_reply_to_this_email_if_you_dont_recognize_this_request: Bitte antworten Sie auf diese E-Mail, wenn Sie diese Anfrage nicht erkennen.
   your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: Ihr Benutzerkonto wurde archiviert. Wenden Sie sich an Ihren Administrator, um den Zugriff wiederherzustellen.
-  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Ihre E-Mail konnte nicht erreicht werden. Dies kann passieren, wenn sich ein Tippfehler in Ihrer Adresse befindet oder Ihr Postfach nicht verfügbar ist. Bitte kontaktieren Sie wabosign@wabo.cc, um sich anzumelden.
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Ihre E-Mail konnte nicht erreicht werden. Dies kann passieren, wenn sich ein Tippfehler in Ihrer Adresse befindet oder Ihr Postfach nicht verfügbar ist. Bitte kontaktieren Sie support@wabosign.com, um sich anzumelden.
   efficient_search_with_search_index: Effiziente Suche mit Suchindex
   reindex: Neu indexieren
   build_search_index: Suchindex erstellen
   require_two_factor_authentication_2fa_with_an_authenticator_app_e_g_google_authenticator_authy_all_users_signing_documents_must_pass_the_second_factor_verification_using_a_secure_code_in_addition_to_their_password: Zwei-Faktor-Authentifizierung (2FA) mit einer Authentifizierungs-App (z. B. Google Authenticator, Authy) erforderlich. Alle Benutzer, die Dokumente unterzeichnen, müssen zusätzlich zu ihrem Passwort die zweite Faktorprüfung mit einem sicheren Code bestehen.
-  add_a_unique_signature_id_and_timestamp_to_each_signature_for_audit_and_traceability_purposes_along_with_the_timestamp_part_of_wabosigns_21_cfr_part_11_compliance_settings: Fügen Sie jeder Signatur eine eindeutige Signatur-ID und einen Zeitstempel für Prüf- und Nachverfolgbarkeitszwecke hinzu. Teil der WaboSign-Einstellungen zur 21 CFR Part 11-Compliance.
-  require_signer_to_provide_a_reason_for_signing_before_completing_their_signature_e_g_approvals_certifications_part_of_wabosigns_21_cfr_part_11_compliance_settings: Unterzeichner müssen vor Abschluss ihrer Signatur einen Grund für die Unterzeichnung angeben (z. B. Genehmigungen, Zertifizierungen). Teil der WaboSign-Einstellungen zur 21 CFR Part 11-Compliance.
+  add_a_unique_signature_id_and_timestamp_to_each_signature_for_audit_and_traceability_purposes_along_with_the_timestamp_part_of_docuseals_21_cfr_part_11_compliance_settings: Fügen Sie jeder Signatur eine eindeutige Signatur-ID und einen Zeitstempel für Prüf- und Nachverfolgbarkeitszwecke hinzu. Teil der WaboSign-Einstellungen zur 21 CFR Part 11-Compliance.
+  require_signer_to_provide_a_reason_for_signing_before_completing_their_signature_e_g_approvals_certifications_part_of_docuseals_21_cfr_part_11_compliance_settings: Unterzeichner müssen vor Abschluss ihrer Signatur einen Grund für die Unterzeichnung angeben (z. B. Genehmigungen, Zertifizierungen). Teil der WaboSign-Einstellungen zur 21 CFR Part 11-Compliance.
   allow_signers_to_create_signatures_by_typing_their_name_instead_of_drawing_or_uploading_one: Unterzeichner dürfen Signaturen erstellen, indem sie ihren Namen eingeben, statt eine Signatur zu zeichnen oder hochzuladen.
   allow_signers_to_resubmit_forms_after_completion_useful_when_corrections_or_multiple_submissions_are_needed: Unterzeichner dürfen Formulare nach Abschluss erneut einreichen – nützlich für Korrekturen oder mehrere Einreichungen.
   allow_recipients_to_decline_signing_a_document_the_decline_reason_notification_will_be_sent_to_the_signature_requester: Empfänger dürfen die Unterzeichnung eines Dokuments ablehnen. Die Benachrichtigung mit dem Ablehnungsgrund wird an den Anforderer der Signatur gesendet.
@@ -6166,12 +6193,15 @@ de: &de
   mcp_token_has_been_removed: Das MCP-Token wurde entfernt.
   enable_mcp_server: MCP-Server aktivieren
   all_existing_mcp_connections_will_be_stopped_immediately_when_this_setting_is_disabled: Alle bestehenden MCP-Verbindungen werden sofort gestoppt, wenn diese Einstellung deaktiviert wird.
-  connect_to_product_name_mcp: Mit %{product_name} MCP verbinden
+  connect_to_docuseal_mcp: Mit WaboSign MCP verbinden
   add_the_following_to_your_mcp_client_configuration: Fügen Sie Folgendes zu Ihrer MCP-Client-Konfiguration hinzu
   works_with_claude_desktop_cursor_windsurf_vs_code_and_any_mcp_compatible_client: Funktioniert mit Claude Desktop, Cursor, Windsurf, VS Code und jedem MCP-kompatiblen Client.
   your_email_address_has_been_changed: Ihre E-Mail-Adresse wurde geändert
   the_email_address_for_your_account_has_been_changed_to_new_email: Die E-Mail-Adresse Ihres Kontos wurde in %{new_email} geändert.
   if_you_did_not_make_this_change_please_contact_us_by_replying_to_this_email: Wenn Sie diese Änderung nicht vorgenommen haben, kontaktieren Sie uns bitte, indem Sie auf diese E-Mail antworten.
+  open_file_from: 'Datei öffnen von'
+  cancel: Abbrechen
+  open: Öffnen
   devise:
     confirmations:
       confirmed: Ihre E-Mail-Adresse wurde erfolgreich bestätigt.
@@ -6266,7 +6296,7 @@ de: &de
     settings: 'Einstellungen'
     settings_account_description: 'Mit umfangreichen Kontoeinstellungen können Sie das Signiererlebnis anpassen und weitere Benutzer einladen.'
     support: 'Support'
-    support_description: 'Sie können unseren KI-Assistenten nutzen oder uns bei Fragen an wabosign@wabo.cc schreiben.'
+    support_description: 'Sie können unseren KI-Assistenten nutzen oder uns bei Fragen an support@wabosign.com schreiben.'
     settings_template_description: 'Über diese Schaltfläche gelangen Sie zu den Kontoeinstellungen.'
   doorkeeper:
     scopes:
@@ -6371,7 +6401,7 @@ pl:
   profile_details: Szczegóły profilu
   sign_up_with_google: Zarejestruj się przez Google
   sign_up_with_microsoft: Zarejestruj się przez Microsoft
-  by_creating_an_account_you_agree_to_our_html: 'Tworząc konto, akceptujesz naszą <a target="_blank" href="https://sign.wabo.cc/privacy">Politykę Prywatności</a> i <a target="_blank" href="https://sign.wabo.cc/terms">Regulamin</a>.'
+  by_creating_an_account_you_agree_to_our_html: 'Tworząc konto, akceptujesz naszą <a target="_blank" href="https://www.wabosign.com/privacy">Politykę Prywatności</a> i <a target="_blank" href="https://www.wabosign.com/terms">Regulamin</a>.'
   enter_email_to_continue: Wprowadź e-mail, aby kontynuować
   the_code_has_been_sent_to_your_email: Kod został wysłany na Twój e-mail.
   enter_the_verification_code_from_your_email: Wprowadź kod weryfikacyjny z Twojego e-maila.
@@ -6379,8 +6409,6 @@ pl:
   verification_code: Kod Weryfikacyjny
   resend_code: Wyślij Kod Ponownie
   powered_by: 'Napędzany przez'
-  based_on: based on
-  view_on_github: View on GitHub
   count_documents_signed_with_html: '<b>%{count}</b> dokumentów podpisanych za pomocą'
   open_source_documents_software: 'oprogramowanie do dokumentów open source'
   eu_data_residency: Dane w UE
@@ -6400,7 +6428,7 @@ pl:
   your_verification_code_to_access_the_name: 'Twój kod weryfikacyjny do uzyskania dostępu do "%{name}":'
   please_reply_to_this_email_if_you_didnt_request_this: Odpowiedz na ten e-mail, jeśli nie prosiłeś o to.
   your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: Twoje konto użytkownika zostało zarchiwizowane. Skontaktuj się z administratorem, aby przywrócić dostęp do konta.
-  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Nie udało się uzyskać dostępu do Twojego adresu e-mail. Może to być spowodowane literówką w adresie lub niedostępnością skrzynki. Skontaktuj się z wabosign@wabo.cc, aby się zalogować.
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Nie udało się uzyskać dostępu do Twojego adresu e-mail. Może to być spowodowane literówką w adresie lub niedostępnością skrzynki. Skontaktuj się z support@wabosign.com, aby się zalogować.
   verification_required_refresh_the_page_and_pass_2fa: Weryfikacja wymagana, odśwież stronę i przejdź uwierzytelnienie dwuskładnikowe.
   the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_email_html: Nadawca zażądał uwierzytelniania dwuskładnikowego za pośrednictwem hasła jednorazowego wysłanego na Twój adres e-mail <b>%{email}</b>.
   please_contact_the_requester_to_specify_your_email_for_two_factor_authentication: Skontaktuj się z nadawcą, aby podać swój adres e-mail do uwierzytelniania dwuskładnikowego.
@@ -6474,7 +6502,7 @@ uk:
   profile_details: Дані профілю
   sign_up_with_google: Зареєструватися через Google
   sign_up_with_microsoft: Зареєструватися через Microsoft
-  by_creating_an_account_you_agree_to_our_html: 'Створюючи акаунт, ви погоджуєтесь з нашою <a target="_blank" href="https://sign.wabo.cc/privacy">Політикою конфіденційності</a> і <a target="_blank" href="https://sign.wabo.cc/terms">Умовами надання послуг</a>.'
+  by_creating_an_account_you_agree_to_our_html: 'Створюючи акаунт, ви погоджуєтесь з нашою <a target="_blank" href="https://www.wabosign.com/privacy">Політикою конфіденційності</a> і <a target="_blank" href="https://www.wabosign.com/terms">Умовами надання послуг</a>.'
   enter_email_to_continue: Введіть електронну пошту, щоб продовжити
   the_code_has_been_sent_to_your_email: Код було надіслано на вашу електронну пошту.
   enter_the_verification_code_from_your_email: Введіть код перевірки з вашої електронної пошти.
@@ -6482,8 +6510,6 @@ uk:
   verification_code: Код перевірки
   resend_code: Надіслати код знову
   powered_by: 'Працює на базі'
-  based_on: based on
-  view_on_github: View on GitHub
   count_documents_signed_with_html: '<b>%{count}</b> документів підписано за допомогою'
   open_source_documents_software: 'відкрите програмне забезпечення для документів'
   eu_data_residency: 'Зберігання даних в ЄС'
@@ -6503,7 +6529,7 @@ uk:
   your_verification_code_to_access_the_name: 'Ваш код доступу до "%{name}":'
   please_reply_to_this_email_if_you_didnt_request_this: Відповідайте на цей лист, якщо ви цього не запитували.
   your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: Ваш обліковий запис було архівовано. Зверніться до адміністратора, щоб відновити доступ.
-  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Не вдалося отримати доступ до вашої електронної пошти. Це може статися, якщо була допущена помилка в адресі або ваша скринька недоступна. Зверніться до wabosign@wabo.cc, щоб увійти.
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Не вдалося отримати доступ до вашої електронної пошти. Це може статися, якщо була допущена помилка в адресі або ваша скринька недоступна. Зверніться до support@wabosign.com, щоб увійти.
   verification_required_refresh_the_page_and_pass_2fa: Необхідна верифікація, оновіть сторінку та пройдіть двофакторну автентифікацію.
   the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_email_html: Відправник запитав двофакторну автентифікацію за допомогою одноразового пароля, надісланого на вашу електронну пошту <b>%{email}</b>.
   please_contact_the_requester_to_specify_your_email_for_two_factor_authentication: Будь ласка, зв'яжіться з відправником, щоб вказати вашу електронну пошту для двофакторної автентифікації.
@@ -6577,7 +6603,7 @@ cs:
   profile_details: Detaily profilu
   sign_up_with_google: Zaregistrovat se pomocí Googlu
   sign_up_with_microsoft: Zaregistrovat se pomocí Microsoftu
-  by_creating_an_account_you_agree_to_our_html: 'Vytvořením účtu souhlasíte s našimi <a target="_blank" href="https://sign.wabo.cc/privacy">Zásadami ochrany osobních údajů</a> a <a target="_blank" href="https://sign.wabo.cc/terms">Podmínkami služby</a>.'
+  by_creating_an_account_you_agree_to_our_html: 'Vytvořením účtu souhlasíte s našimi <a target="_blank" href="https://www.wabosign.com/privacy">Zásadami ochrany osobních údajů</a> a <a target="_blank" href="https://www.wabosign.com/terms">Podmínkami služby</a>.'
   enter_email_to_continue: Zadejte e-mail pro pokračování
   the_code_has_been_sent_to_your_email: Kód byl odeslán na váš e-mail.
   enter_the_verification_code_from_your_email: Zadejte ověřovací kód z vašeho e-mailu.
@@ -6585,8 +6611,6 @@ cs:
   verification_code: Ověřovací kód
   resend_code: Znovu odeslat kód
   powered_by: 'Poháněno'
-  based_on: based on
-  view_on_github: View on GitHub
   count_documents_signed_with_html: '<b>%{count}</b> dokumentů podepsáno pomocí'
   open_source_documents_software: 'open source software pro dokumenty'
   eu_data_residency: 'Uložení dat v EU'
@@ -6606,7 +6630,7 @@ cs:
   your_verification_code_to_access_the_name: 'Váš ověřovací kód pro přístup k "%{name}":'
   please_reply_to_this_email_if_you_didnt_request_this: Odpovězte na tento e-mail, pokud jste o to nežádali.
   your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: Váš uživatelský účet byl archivován. Kontaktujte svého administrátora pro obnovení přístupu.
-  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Na váš e-mail se nepodařilo doručit zprávu. To se může stát, pokud je v adrese překlep nebo vaše schránka není dostupná. Pro přihlášení kontaktujte wabosign@wabo.cc.
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Na váš e-mail se nepodařilo doručit zprávu. To se může stát, pokud je v adrese překlep nebo vaše schránka není dostupná. Pro přihlášení kontaktujte support@wabosign.com.
   verification_required_refresh_the_page_and_pass_2fa: Ověření vyžadováno. Aktualizujte stránku a dokončete dvoufaktorové ověření.
   the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_email_html: Odesílatel požádal o dvoufaktorové ověření pomocí jednorázového hesla odeslaného na vaši e-mailovou adresu <b>%{email}</b>.
   please_contact_the_requester_to_specify_your_email_for_two_factor_authentication: Prosím kontaktujte odesílatele a uveďte svůj e-mail pro dvoufaktorové ověření.
@@ -6680,7 +6704,7 @@ he:
   profile_details: פרטי הפרופיל
   sign_up_with_google: הירשם עם גוגל
   sign_up_with_microsoft: הירשם עם מיקרוסופט
-  by_creating_an_account_you_agree_to_our_html: 'על ידי יצירת חשבון, אתה מסכים ל<a target="_blank" href="https://sign.wabo.cc/privacy">מדיניות הפרטיות</a> ול<a target="_blank" href="https://sign.wabo.cc/terms">תנאי השירות</a> שלנו.'
+  by_creating_an_account_you_agree_to_our_html: 'על ידי יצירת חשבון, אתה מסכים ל<a target="_blank" href="https://www.wabosign.com/privacy">מדיניות הפרטיות</a> ול<a target="_blank" href="https://www.wabosign.com/terms">תנאי השירות</a> שלנו.'
   enter_email_to_continue: הכנס דוא"ל כדי להמשיך
   the_code_has_been_sent_to_your_email: הקוד נשלח לדוא"ל שלך.
   enter_the_verification_code_from_your_email: הזן את קוד האימות מדוא"ל שלך.
@@ -6688,8 +6712,6 @@ he:
   verification_code: קוד אימות
   resend_code: שלח קוד מחדש
   powered_by: 'מופעל על ידי'
-  based_on: based on
-  view_on_github: View on GitHub
   count_documents_signed_with_html: '<b>%{count}</b> מסמכים נחתמו באמצעות'
   open_source_documents_software: 'תוכנה בקוד פתוח למסמכים'
   eu_data_residency: 'נתונים באיחוד האירופי'
@@ -6709,7 +6731,7 @@ he:
   your_verification_code_to_access_the_name: 'קוד האימות שלך לגישה ל-%{name}:'
   please_reply_to_this_email_if_you_didnt_request_this: 'השב למייל זה אם לא ביקשת זאת.'
   your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: החשבון שלך הועבר לארכיון. פנה למנהל המערכת כדי לשחזר את הגישה.
-  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: לא ניתן היה לגשת לדוא"ל שלך. ייתכן שזה קרה עקב שגיאת כתיב בכתובת או אם תיבת הדואר אינה זמינה. אנא פנה ל־wabosign@wabo.cc כדי להתחבר.
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: לא ניתן היה לגשת לדוא"ל שלך. ייתכן שזה קרה עקב שגיאת כתיב בכתובת או אם תיבת הדואר אינה זמינה. אנא פנה ל־support@wabosign.com כדי להתחבר.
   verification_required_refresh_the_page_and_pass_2fa: נדרש אימות. רענן את הדף והשלם אימות דו-שלבי.
   the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_email_html: השולח ביקש אימות דו-שלבי באמצעות סיסמה חד-פעמית שנשלחה לכתובת הדוא"ל שלך <b>%{email}</b>.
   please_contact_the_requester_to_specify_your_email_for_two_factor_authentication: אנא פנה לשולח וציין את כתובת הדוא"ל שלך לאימות דו-שלבי.
@@ -6786,8 +6808,8 @@ nl: &nl
   you_have_been_invited_to_account_name_product_name_please_sign_up_using_the_link_below_: 'U bent uitgenodigd voor %{account_name} %{product_name}. Meld u aan via de onderstaande link:'
   sent_using_product_name_in_testing_mode_html: Verzonden met <a href="%{product_url}">%{product_name}</a> in testmodus
   sent_using_product_name_free_document_signing_html: Verzonden met <a href="%{product_url}">%{product_name}</a> gratis documentondertekening.
-  sent_with_wabosign_pro_html: Verzonden met <a href="%{product_url}">WaboSign Pro</a>
-  show_send_with_wabosign_pro_attribution_in_emails_html: Toon de vermelding 'Verzonden met <span class="link">WaboSign Pro</span>' in e-mails
+  sent_with_docuseal_pro_html: Verzonden met <a href="%{product_url}">WaboSign Pro</a>
+  show_send_with_docuseal_pro_attribution_in_emails_html: Toon de vermelding 'Verzonden met <span class="link">WaboSign Pro</span>' in e-mails
   ? sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature
   : Onderteken documenten met een vertrouwd certificaat geleverd door WaboSign. Uw documenten en gegevens worden nooit gedeeld met WaboSign. PDF-checksum wordt verstrekt om een vertrouwde handtekening te genereren.
   you_have_been_invited_to_submit_the_name_form: U bent uitgenodigd om het formulier "%{name}" in te dienen.
@@ -6891,7 +6913,7 @@ nl: &nl
   profile_details: Profielgegevens
   sign_up_with_google: Registreren met Google
   sign_up_with_microsoft: Registreren met Microsoft
-  by_creating_an_account_you_agree_to_our_html: Door een account aan te maken gaat u akkoord met ons <a target="_blank" href="https://sign.wabo.cc/privacy">Privacybeleid</a> en onze <a target="_blank" href="https://sign.wabo.cc/terms">Servicevoorwaarden</a>.
+  by_creating_an_account_you_agree_to_our_html: Door een account aan te maken gaat u akkoord met ons <a target="_blank" href="https://www.wabosign.com/privacy">Privacybeleid</a> en onze <a target="_blank" href="https://www.wabosign.com/terms">Servicevoorwaarden</a>.
   enter_email_to_continue: Voer e-mailadres in om door te gaan
   account: Account
   preferences: Voorkeuren
@@ -6913,7 +6935,7 @@ nl: &nl
   combine_completed_documents_and_audit_log: Voltooide documenten en auditlogboek combineren
   salesforce_integration: Salesforce-integratie
   salesforce_has_been_connected: Salesforce is verbonden.
-  connect_salesforce_account_to_integrate_with_wabosign: Verbind een Salesforce-account om te integreren met WaboSign
+  connect_salesforce_account_to_integrate_with_docuseal: Verbind een Salesforce-account om te integreren met WaboSign
   re_connect_salesforce: Salesforce opnieuw verbinden
   connect_salesforce: Salesforce verbinden
   danger_zone: Gevarenzone
@@ -6942,13 +6964,13 @@ nl: &nl
   resetting_password: Wachtwoord resetten
   sign_in_with_name_account: Inloggen met %{name}-account
   two_factor_code_from_authenticator_app: Twee-factorcode van authenticator-app
-  sign_up_in_wabosign_console_to_upgrade_on_premises_app_is_completely_standalone_console_is_used_only_to_manage_your_license: Meld u aan in de WaboSign Console om te upgraden. De on-premises app is volledig zelfstandig; de Console wordt alleen gebruikt om uw licentie te beheren.
+  sign_up_in_docuseal_console_to_upgrade_on_premises_app_is_completely_standalone_console_is_used_only_to_manage_your_license: Meld u aan in de WaboSign Console om te upgraden. De on-premises app is volledig zelfstandig; de Console wordt alleen gebruikt om uw licentie te beheren.
   send_from_email: Verzenden vanaf e-mailadres
   optional: optioneel
   save: Opslaan
   saving: Opslaan
   changes_have_been_saved: Wijzigingen zijn opgeslagen.
-  unlock_with_wabosign_pro: Ontgrendel met WaboSign Pro
+  unlock_with_docuseal_pro: Ontgrendel met WaboSign Pro
   use_your_own_certificates_to_sign_and_verify_pdf_files: Gebruik uw eigen certificaten om PDF-bestanden te ondertekenen en te verifiëren.
   upload_certificate: Certificaat uploaden
   name: Naam
@@ -6992,6 +7014,7 @@ nl: &nl
   code_is_invalid: Code is ongeldig
   2fa_has_been_removed: 2FA is verwijderd.
   2fa_has_been_set_up_already: 2FA is al ingesteld.
+  developer_newsletters: Nieuwsbrieven voor ontwikkelaars
   skip: Overslaan
   email_notifications: E-mailmeldingen
   receive_notification_emails_on_completed_submission: Ontvang e-mailmeldingen bij voltooide inzendingen
@@ -7047,7 +7070,7 @@ nl: &nl
   password_has_been_changed: Wachtwoord is gewijzigd.
   email_integration: E-mailintegratie
   send_via_connected_email: Verzenden via gekoppeld e-mailaccount
-  activate_with_wabosign_pro: Activeren met WaboSign Pro
+  activate_with_docuseal_pro: Activeren met WaboSign Pro
   send_signature_request_to_your_recipients_directly_from_your_email: Stuur een ondertekenverzoek rechtstreeks vanuit uw eigen e-mail naar uw ontvangers
   connect_gmail: Gmail verbinden
   re_connect_gmail: Gmail opnieuw verbinden
@@ -7068,8 +7091,6 @@ nl: &nl
   sign_out: Afmelden
   page_number: Pagina %{number}
   powered_by: Aangedreven door
-  based_on: based on
-  view_on_github: View on GitHub
   qr_code: QR-code
   print: Afdrukken
   scan_the_qr_code_above_with_your_phone_camera_to_open_and_sign_this_document: Scan de bovenstaande QR-code met je telefooncamera om dit document te openen en te ondertekenen.
@@ -7129,7 +7150,7 @@ nl: &nl
   upgrade_to_send_unlimited_signature_requests: Upgrade om onbeperkte ondertekenverzoeken te verzenden
   add_without_sending: Toevoegen zonder te verzenden
   upgade_now: Nu upgraden
-  send_signature_request_emails_without_limits_with_wabosign_pro: Verzend onbeperkt e-mails voor ondertekenverzoeken met WaboSign Pro
+  send_signature_request_emails_without_limits_with_docuseal_pro: Verzend onbeperkt e-mails voor ondertekenverzoeken met WaboSign Pro
   count_emails_used: "%{count} e-mails gebruikt"
   has_been_connected: is verbonden
   sms_not_configured: SMS niet geconfigureerd
@@ -7231,7 +7252,7 @@ nl: &nl
   new_user: Nieuwe gebruiker
   unarchive: Dearchiveren
   last_session: Laatste sessie
-  unlock_more_user_roles_with_wabosign_pro: Ontgrendel meer gebruikersrollen met WaboSign Pro.
+  unlock_more_user_roles_with_docuseal_pro: Ontgrendel meer gebruikersrollen met WaboSign Pro.
   view_active: Actieve items bekijken
   team_account: Teamaccount
   team_accounts: Teamaccounts
@@ -7360,6 +7381,9 @@ nl: &nl
   create_a_new_template_document_form_or_submit_the_existing_one_html: <a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Maak een nieuw sjabloon</a> voor een documentformulier of <a href="%{start_form_link}" target="_blank" class="inline underline font-medium">dien het bestaande in</a>
   send_email_copy_with_completed_documents_to_a_specified_bcc_address: Stuur een e-mailkopie met voltooide documenten naar een opgegeven BCC-adres.
   re_send_email: E-mail opnieuw verzenden
+  re_send_emails: E-mails verzenden
+  are_you_sure_you_want_to_re_send_email_to_n_recipients: Weet je zeker dat je de uitnodigings-e-mail opnieuw wilt verzenden naar %{count} ontvangers?
+  emails_have_been_sent_to_n_recipients: De e-mails zijn verzonden naar %{count} ontvangers.
   send_email: E-mail verzenden
   copy_share_link: Deellink kopiëren
   copied_to_clipboard: Gekopieerd naar klembord
@@ -7452,25 +7476,25 @@ nl: &nl
   seamlessly_automate_your_document_signing_process_with_make_com: Automatiseer uw documentondertekeningsproces naadloos met Make.com.
   find_suitable_zapier_templates_to_automate_your_workflow: Vind geschikte Zapier-sjablonen om uw workflow te automatiseren.
   get_started: Aan de slag
-  click_here_to_learn_more_about_user_roles_and_permissions_html: <a href="https://sign.wabo.cc/docs/users-and-roles" class="link" rel="noopener noreferrer nofollow" target="_blank">Klik hier</a> voor meer informatie over gebruikersrollen en machtigingen.
+  click_here_to_learn_more_about_user_roles_and_permissions_html: <a href="https://www.wabosign.com/resources/manage-users-and-roles" class="link" rel="noopener noreferrer nofollow" target="_blank">Klik hier</a> voor meer informatie over gebruikersrollen en machtigingen.
   count_10_signature_request_emails_sent_this_month_upgrade_to_pro_to_send_unlimited_signature_request_email: "%{count} / 10 e-mails voor ondertekenverzoeken deze maand verzonden. Upgrade naar Pro om onbeperkt e-mails voor ondertekenverzoeken te verzenden."
   test_mode_emails_limit_will_be_reset_within_24_hours: Limiet voor testmodus-e-mails wordt binnen 24 uur opnieuw ingesteld.
-  on_a_scale_of_1_to_10_how_satisfied_are_you_with_the_wabosign_product_: Op een schaal van 1 tot 10, hoe tevreden bent u over het WaboSign-product?
+  on_a_scale_of_1_to_10_how_satisfied_are_you_with_the_docuseal_product_: Op een schaal van 1 tot 10, hoe tevreden bent u over het WaboSign-product?
   tell_us_more_about_your_experience: Vertel ons meer over uw ervaring
   extremely_dissatisfied: Zeer ontevreden
   extremely_satisfied: Zeer tevreden
   your_pro_plan_payment_is_overdue: Uw betaling voor het Pro-abonnement is achterstallig.
   click_here_to_update_your_payment_details_and_clear_the_invoice_to_ensure_uninterrupted_service_html: <a href="%{url}" class="link">Klik hier</a> om uw betaalgegevens bij te werken en de factuur te voldoen om ononderbroken service te garanderen.
   overdue_payment: Achterstallige betaling
-  your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_wabosign_or_cancel_your_subscription: Uw Pro-abonnement is opgeschort vanwege onbetaalde facturen. U kunt uw betaalgegevens bijwerken om de factuur te voldoen en WaboSign te blijven gebruiken of uw abonnement opzeggen.
+  your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Uw Pro-abonnement is opgeschort vanwege onbetaalde facturen. U kunt uw betaalgegevens bijwerken om de factuur te voldoen en WaboSign te blijven gebruiken of uw abonnement opzeggen.
   manage_subscription: Abonnement beheren
   submission_created_by_email_html: "<b>Inzending aangemaakt</b> door %{email}"
   submission_created_by_email_via_source_html: "<b>Inzending aangemaakt</b> door %{email} via %{source}"
   submission_created_via_source_html: "<b>Inzending aangemaakt</b> via %{source}"
   pro_user_seats_used: Gebruikersplaatsen Pro gebruikt
   manage_plan: Abonnement beheren
-  this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: Deze inzending heeft meerdere ondertekenaars, waardoor het gebruik van een deellink niet mogelijk is omdat onduidelijk is welke ondertekenaar verantwoordelijk is voor specifieke velden. Volg deze <a href="https://sign.wabo.cc/docs/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">handleiding</a> om de standaardgegevens van de ondertekenaar te definiëren.
-  welcome_to_wabosign: Welkom bij WaboSign
+  this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: Deze inzending heeft meerdere ondertekenaars, waardoor het gebruik van een deellink niet mogelijk is omdat onduidelijk is welke ondertekenaar verantwoordelijk is voor specifieke velden. Volg deze <a href="https://www.wabosign.com/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">handleiding</a> om de standaardgegevens van de ondertekenaar te definiëren.
+  welcome_to_docuseal: Welkom bij WaboSign
   start_a_quick_tour_to_learn_how_to_create_and_send_your_first_document: Start een korte rondleiding om te leren hoe u uw eerste document maakt en verzendt
   start_tour: Rondleiding starten
   name_a_z: Naam A-Z
@@ -7542,13 +7566,13 @@ nl: &nl
   use_otp_code_to_access_the_api_key_html: Gebruik de code <b>%{code}</b> om toegang te krijgen tot de API-sleutel.
   please_reply_to_this_email_if_you_dont_recognize_this_request: Reageer op deze e-mail als u dit verzoek niet herkent.
   your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: Uw gebruikersaccount is gearchiveerd. Neem contact op met uw beheerder om de toegang tot uw account te herstellen.
-  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Uw e-mailadres kon niet worden bereikt. Dit kan gebeuren als er een typefout in uw adres zit of als uw mailbox niet beschikbaar is. Neem contact op met wabosign@wabo.cc om in te loggen.
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: Uw e-mailadres kon niet worden bereikt. Dit kan gebeuren als er een typefout in uw adres zit of als uw mailbox niet beschikbaar is. Neem contact op met support@wabosign.com om in te loggen.
   efficient_search_with_search_index: Efficiënt zoeken met zoekindex
   reindex: Opnieuw indexeren
   build_search_index: Zoekindex opbouwen
   require_two_factor_authentication_2fa_with_an_authenticator_app_e_g_google_authenticator_authy_all_users_signing_documents_must_pass_the_second_factor_verification_using_a_secure_code_in_addition_to_their_password: Tweeledige verificatie (2FA) met een authenticator-app (bijv. Google Authenticator, Authy) vereisen. Alle gebruikers die documenten ondertekenen moeten naast hun wachtwoord de tweede factor verifiëren met een beveiligde code.
-  add_a_unique_signature_id_and_timestamp_to_each_signature_for_audit_and_traceability_purposes_along_with_the_timestamp_part_of_wabosigns_21_cfr_part_11_compliance_settings: Voeg voor audit- en traceerbaarheidsdoeleinden een unieke handtekening-ID en tijdstempel toe aan elke handtekening. Onderdeel van de 21 CFR Part 11-nalevingsinstellingen van WaboSign.
-  require_signer_to_provide_a_reason_for_signing_before_completing_their_signature_e_g_approvals_certifications_part_of_wabosigns_21_cfr_part_11_compliance_settings: Vereist dat de ondertekenaar vóór het voltooien van zijn handtekening een reden opgeeft (bijv. goedkeuringen, certificeringen). Onderdeel van de 21 CFR Part 11-nalevingsinstellingen van WaboSign.
+  add_a_unique_signature_id_and_timestamp_to_each_signature_for_audit_and_traceability_purposes_along_with_the_timestamp_part_of_docuseals_21_cfr_part_11_compliance_settings: Voeg voor audit- en traceerbaarheidsdoeleinden een unieke handtekening-ID en tijdstempel toe aan elke handtekening. Onderdeel van de 21 CFR Part 11-nalevingsinstellingen van WaboSign.
+  require_signer_to_provide_a_reason_for_signing_before_completing_their_signature_e_g_approvals_certifications_part_of_docuseals_21_cfr_part_11_compliance_settings: Vereist dat de ondertekenaar vóór het voltooien van zijn handtekening een reden opgeeft (bijv. goedkeuringen, certificeringen). Onderdeel van de 21 CFR Part 11-nalevingsinstellingen van WaboSign.
   allow_signers_to_create_signatures_by_typing_their_name_instead_of_drawing_or_uploading_one: Sta ondertekenaars toe handtekeningen te maken door hun naam te typen in plaats van te tekenen of te uploaden.
   allow_signers_to_resubmit_forms_after_completion_useful_when_corrections_or_multiple_submissions_are_needed: Sta ondertekenaars toe formulieren na voltooiing opnieuw in te dienen; nuttig wanneer correcties of meerdere inzendingen nodig zijn.
   allow_recipients_to_decline_signing_a_document_the_decline_reason_notification_will_be_sent_to_the_signature_requester: Sta ontvangers toe het ondertekenen van een document te weigeren. De melding met de reden van weigering wordt naar de aanvrager van de handtekening gestuurd.
@@ -7623,12 +7647,15 @@ nl: &nl
   mcp_token_has_been_removed: Het MCP-token is verwijderd.
   enable_mcp_server: MCP-server inschakelen
   all_existing_mcp_connections_will_be_stopped_immediately_when_this_setting_is_disabled: Alle bestaande MCP-verbindingen worden onmiddellijk gestopt wanneer deze instelling wordt uitgeschakeld.
-  connect_to_product_name_mcp: Verbinden met %{product_name} MCP
+  connect_to_docuseal_mcp: Verbinden met WaboSign MCP
   add_the_following_to_your_mcp_client_configuration: Voeg het volgende toe aan uw MCP-clientconfiguratie
   works_with_claude_desktop_cursor_windsurf_vs_code_and_any_mcp_compatible_client: Werkt met Claude Desktop, Cursor, Windsurf, VS Code en elke MCP-compatibele client.
   your_email_address_has_been_changed: Uw e-mailadres is gewijzigd
   the_email_address_for_your_account_has_been_changed_to_new_email: Het e-mailadres van uw account is gewijzigd naar %{new_email}.
   if_you_did_not_make_this_change_please_contact_us_by_replying_to_this_email: Als u deze wijziging niet hebt aangebracht, neem dan contact met ons op door op deze e-mail te antwoorden.
+  open_file_from: 'Bestand openen van'
+  cancel: Annuleren
+  open: Openen
   devise:
     confirmations:
       confirmed: Uw e-mailadres is succesvol bevestigd.
@@ -7723,7 +7750,7 @@ nl: &nl
     settings: Instellingen
     settings_account_description: Met uitgebreide accountinstellingen kunt u de eSigning-ervaring aanpassen en meer gebruikers uitnodigen.
     support: Ondersteuning
-    support_description: U kunt onze selfservice AI-assistent gebruiken of ons e-mailen op wabosign@wabo.cc als u vragen heeft.
+    support_description: U kunt onze selfservice AI-assistent gebruiken of ons e-mailen op support@wabosign.com als u vragen heeft.
     settings_template_description: Gebruik deze knop om naar uw accountinstellingenpagina te gaan.
   doorkeeper:
     scopes:
@@ -7828,7 +7855,7 @@ ar:
   profile_details: تفاصيل الملف الشخصي
   sign_up_with_google: الاشتراك باستخدام جوجل
   sign_up_with_microsoft: الاشتراك باستخدام مايكروسوفت
-  by_creating_an_account_you_agree_to_our_html: 'من خلال إنشاء حساب، فإنك توافق على <a target="_blank" href="https://sign.wabo.cc/privacy">سياسة الخصوصية</a> و<a target="_blank" href="https://sign.wabo.cc/terms">شروط الخدمة</a> الخاصة بنا.'
+  by_creating_an_account_you_agree_to_our_html: 'من خلال إنشاء حساب، فإنك توافق على <a target="_blank" href="https://www.wabosign.com/privacy">سياسة الخصوصية</a> و<a target="_blank" href="https://www.wabosign.com/terms">شروط الخدمة</a> الخاصة بنا.'
   enter_email_to_continue: أدخل البريد الإلكتروني للمتابعة
   the_code_has_been_sent_to_your_email: تم إرسال الرمز إلى بريدك الإلكتروني.
   enter_the_verification_code_from_your_email: أدخل رمز التحقق من بريدك الإلكتروني.
@@ -7836,8 +7863,6 @@ ar:
   verification_code: رمز التحقق
   resend_code: إعادة إرسال الرمز
   powered_by: 'مشغل بواسطة'
-  based_on: based on
-  view_on_github: View on GitHub
   count_documents_signed_with_html: 'تم توقيع <b>%{count}</b> مستندًا باستخدام'
   open_source_documents_software: 'برنامج مستندات مفتوح المصدر'
   eu_data_residency: 'بيانات في الاتحاد الأوروبي'
@@ -7857,7 +7882,7 @@ ar:
   your_verification_code_to_access_the_name: 'رمز التحقق الخاص بك للوصول إلى "%{name}":'
   please_reply_to_this_email_if_you_didnt_request_this: 'يرجى الرد على هذا البريد إذا لم تطلب ذلك.'
   your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: تمت أرشفة حسابك. يرجى التواصل مع المسؤول لاستعادة الوصول إلى حسابك.
-  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: تعذّر الوصول إلى بريدك الإلكتروني. قد يحدث هذا في حال وجود خطأ في العنوان أو إذا كان صندوق البريد غير متاح. يرجى التواصل مع wabosign@wabo.cc لتسجيل الدخول.
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: تعذّر الوصول إلى بريدك الإلكتروني. قد يحدث هذا في حال وجود خطأ في العنوان أو إذا كان صندوق البريد غير متاح. يرجى التواصل مع support@wabosign.com لتسجيل الدخول.
   verification_required_refresh_the_page_and_pass_2fa: مطلوب التحقق. قم بتحديث الصفحة وأكمل المصادقة الثنائية.
   the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_email_html: طلب المرسل المصادقة الثنائية عبر كلمة مرور لمرة واحدة مرسلة إلى عنوان بريدك الإلكتروني <b>%{email}</b>.
   please_contact_the_requester_to_specify_your_email_for_two_factor_authentication: يرجى الاتصال بالمرسل لتحديد عنوان بريدك الإلكتروني للمصادقة الثنائية.
@@ -7931,7 +7956,7 @@ ko:
   profile_details: 프로필 세부 정보
   sign_up_with_google: Google로 가입
   sign_up_with_microsoft: Microsoft로 가입
-  by_creating_an_account_you_agree_to_our_html: '계정을 생성함으로써, <a target="_blank" href="https://sign.wabo.cc/privacy">개인정보 처리방침</a> 및 <a target="_blank" href="https://sign.wabo.cc/terms">서비스 약관</a>에 동의하게 됩니다.'
+  by_creating_an_account_you_agree_to_our_html: '계정을 생성함으로써, <a target="_blank" href="https://www.wabosign.com/privacy">개인정보 처리방침</a> 및 <a target="_blank" href="https://www.wabosign.com/terms">서비스 약관</a>에 동의하게 됩니다.'
   enter_email_to_continue: 계속하려면 이메일을 입력하세요
   the_code_has_been_sent_to_your_email: 코드가 이메일로 전송되었습니다.
   enter_the_verification_code_from_your_email: 이메일로 받은 인증 코드를 입력하세요.
@@ -7939,8 +7964,6 @@ ko:
   verification_code: 인증 코드
   resend_code: 코드 재전송
   powered_by: '제공:'
-  based_on: based on
-  view_on_github: View on GitHub
   count_documents_signed_with_html: '<b>%{count}</b>개의 문서가 다음을 통해 서명됨'
   open_source_documents_software: '오픈소스 문서 소프트웨어'
   eu_data_residency: 'EU 데이터 저장 위치'
@@ -7960,7 +7983,7 @@ ko:
   your_verification_code_to_access_the_name: '"%{name}"에 액세스하기 위한 인증 코드:'
   please_reply_to_this_email_if_you_didnt_request_this: 요청하지 않았다면 이 이메일에 회신하세요.
   your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: 사용자 계정이 보관되었습니다. 계정 접근을 복원하려면 관리자에게 문의하세요.
-  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: 이메일에 접근할 수 없습니다. 주소에 오타가 있거나 메일박스가 사용 불가능한 경우 발생할 수 있습니다. 로그인하려면 wabosign@wabo.cc에 문의하세요.
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: 이메일에 접근할 수 없습니다. 주소에 오타가 있거나 메일박스가 사용 불가능한 경우 발생할 수 있습니다. 로그인하려면 support@wabosign.com에 문의하세요.
   verification_required_refresh_the_page_and_pass_2fa: 인증이 필요합니다. 페이지를 새로 고치고 2단계 인증을 완료하세요.
   the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_email_html: 발신자가 <b>%{email}</b> 이메일 주소로 전송된 일회용 비밀번호를 통해 2단계 인증을 요청했습니다.
   please_contact_the_requester_to_specify_your_email_for_two_factor_authentication: 2단계 인증을 위해 이메일 주소를 지정하려면 요청자에게 문의하세요.
@@ -8034,7 +8057,7 @@ ja:
   profile_details: プロフィールの詳細
   sign_up_with_google: Googleで登録
   sign_up_with_microsoft: Microsoftで登録
-  by_creating_an_account_you_agree_to_our_html: '<a target="_blank" href="https://sign.wabo.cc/privacy">プライバシーポリシー</a>および<a target="_blank" href="https://sign.wabo.cc/terms">利用規約</a>に同意の上、アカウントを作成します。'
+  by_creating_an_account_you_agree_to_our_html: '<a target="_blank" href="https://www.wabosign.com/privacy">プライバシーポリシー</a>および<a target="_blank" href="https://www.wabosign.com/terms">利用規約</a>に同意の上、アカウントを作成します。'
   enter_email_to_continue: 続行するにはメールを入力してください
   the_code_has_been_sent_to_your_email: コードがあなたのメールに送信されました
   enter_the_verification_code_from_your_email: メールに記載された認証コードを入力してください
@@ -8042,8 +8065,6 @@ ja:
   verification_code: 認証コード
   resend_code: コードを再送信
   powered_by: '提供元：'
-  based_on: based on
-  view_on_github: View on GitHub
   count_documents_signed_with_html: '<b>%{count}</b> 件のドキュメントが以下で署名されました'
   open_source_documents_software: 'オープンソースのドキュメントソフトウェア'
   eu_data_residency: 'EU データ保存場所'
@@ -8063,7 +8084,7 @@ ja:
   your_verification_code_to_access_the_name: '"%{name}" へアクセスするための認証コード：'
   please_reply_to_this_email_if_you_didnt_request_this: このリクエストを行っていない場合は、このメールに返信してください。
   your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: あなたのユーザーアカウントはアーカイブされました。アクセスを復元するには管理者に連絡してください。
-  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: メールにアクセスできませんでした。アドレスの入力ミスやメールボックスが利用できない場合に発生することがあります。ログインするには wabosign@wabo.cc に連絡してください。
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: メールにアクセスできませんでした。アドレスの入力ミスやメールボックスが利用できない場合に発生することがあります。ログインするには support@wabosign.com に連絡してください。
   verification_required_refresh_the_page_and_pass_2fa: 認証が必要です。ページを更新して2段階認証を完了してください。
   the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_email_html: 送信者は、<b>%{email}</b> メールアドレスに送信されたワンタイムパスワードによる2段階認証を要求しました。
   please_contact_the_requester_to_specify_your_email_for_two_factor_authentication: 2段階認証用にメールアドレスを指定するために、送信者にお問い合わせください。

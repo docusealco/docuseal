@@ -14,15 +14,8 @@ Rails.application.routes.draw do
   get 'up' => 'rails/health#show'
   get 'manifest' => 'pwa#manifest'
 
-  # User is always :omniauthable (see app/models/user.rb); the strategy is
-  # registered with a setup proc in config/initializers/devise.rb that pulls
-  # live credentials from ENV or the database at request time.
-  devise_for :users, path: '/', only: %i[sessions passwords omniauth_callbacks],
-                     controllers: {
-                       sessions: 'sessions',
-                       passwords: 'passwords',
-                       omniauth_callbacks: 'users/omniauth_callbacks'
-                     }
+  devise_for :users, path: '/', only: %i[sessions passwords],
+                     controllers: { sessions: 'sessions', passwords: 'passwords' }
 
   devise_scope :user do
     resource :invitation, only: %i[update] do
@@ -63,9 +56,11 @@ Rails.application.routes.draw do
   resources :account_custom_fields, only: %i[create]
   resources :user_configs, only: %i[create]
   resources :encrypted_user_configs, only: %i[destroy]
-  resources :timestamp_server, only: %i[create]
+  resources :timestamp_server, only: %i[create] unless Wabosign.multitenant?
   resources :dashboard, only: %i[index]
   resources :setup, only: %i[index create]
+  resource :newsletter, only: %i[show update]
+  resources :enquiries, only: %i[create]
   resources :users, only: %i[new create edit update destroy] do
     resource :send_reset_password, only: %i[update], controller: 'users_send_reset_password'
   end
@@ -80,6 +75,9 @@ Rails.application.routes.draw do
     resources :resend_email, only: %i[create], controller: 'submissions_resend_email'
   end
   resources :submitters, only: %i[edit update]
+  resources :console_redirect, only: %i[index]
+  resources :upgrade, only: %i[index], controller: 'console_redirect'
+  resources :manage, only: %i[index], controller: 'console_redirect'
   resource :testing_account, only: %i[create destroy]
   resources :testing_api_settings, only: %i[index]
   resources :submitters_autocomplete, only: %i[index]
@@ -102,7 +100,7 @@ Rails.application.routes.draw do
     resource :debug, only: %i[show], controller: 'templates_debug' if Rails.env.development?
     resources :documents, only: %i[index create], controller: 'template_documents'
     resources :clone_and_replace, only: %i[create], controller: 'templates_clone_and_replace'
-    resources :detect_fields, only: %i[create], controller: 'templates_detect_fields'
+    resources :detect_fields, only: %i[create], controller: 'templates_detect_fields' unless Wabosign.multitenant?
     resources :restore, only: %i[create], controller: 'templates_restore'
     resources :archived, only: %i[index], controller: 'templates_archived_submissions'
     resources :submissions, only: %i[new create]
@@ -111,7 +109,7 @@ Rails.application.routes.draw do
     resource :form, only: %i[show], controller: 'templates_form_preview'
     resource :code_modal, only: %i[show], controller: 'templates_code_modal'
     resource :preferences, only: %i[show create destroy], controller: 'templates_preferences'
-    resources :versions, only: %i[index show], controller: 'templates_versions'
+    resources :versions, only: %i[index show create], controller: 'templates_versions'
     resource :share_link, only: %i[show create], controller: 'templates_share_link'
     resource :share_link_qr, only: %i[show], controller: 'templates_share_link_qr'
     resources :recipients, only: %i[create], controller: 'templates_recipients'
@@ -174,18 +172,13 @@ Rails.application.routes.draw do
     resources :download, only: %i[index], controller: 'submitters_download', constraints: { submitter_id: /\d+/ }
     resources :download, only: %i[index], controller: 'submit_form_completed_download'
     resources :send_email, only: %i[create], controller: 'submitters_send_email'
-    resources :send_sms, only: %i[create], controller: 'submitters_send_sms'
   end
 
   scope '/settings', as: :settings do
     unless Wabosign.multitenant?
       resources :storage, only: %i[index create], controller: 'storage_settings'
       resources :search_entries_reindex, only: %i[create]
-      resources :sms, only: %i[index create], controller: 'sms_settings' do
-        collection do
-          post :test_message
-        end
-      end
+      resources :sms, only: %i[index], controller: 'sms_settings'
       resources :mcp, only: %i[index new create destroy], controller: 'mcp_settings'
     end
     if Wabosign.demo? || !Wabosign.multitenant?
@@ -193,7 +186,7 @@ Rails.application.routes.draw do
       resource :reveal_access_token, only: %i[show create], controller: 'reveal_access_token'
     end
     resources :email, only: %i[index create], controller: 'email_smtp_settings'
-    resources :sso, only: %i[index create], controller: 'sso_settings'
+    resources :sso, only: %i[index], controller: 'sso_settings'
     resources :notifications, only: %i[index create], controller: 'notifications_settings'
     resource :esign, only: %i[show create new update destroy], controller: 'esign_settings'
     resources :users, only: %i[index]
@@ -202,7 +195,6 @@ Rails.application.routes.draw do
     resources :integration_users, only: %i[index], path: 'users/:status', controller: 'users',
                                   defaults: { status: :integration }
     resource :personalization, only: %i[show create], controller: 'personalization_settings'
-    resource :account_logo, only: %i[create destroy], controller: 'account_logo'
     resources :webhooks, only: %i[index show new create update destroy], controller: 'webhook_settings' do
       post :resend
 
