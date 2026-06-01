@@ -3,6 +3,10 @@
 module Templates
   COLOR_REGEXP = /\A(#(?:[0-9a-f]{3}|[0-9a-f]{6})|[a-z]+)\z/i
 
+  TEMPLATE_BUILDER_FIELDS = %i[id author_id folder_id external_id name slug
+                               schema fields submitters variables_schema preferences
+                               shared_link source archived_at created_at updated_at].freeze
+
   EXPIRATION_DURATIONS = {
     one_day: 1.day,
     two_days: 2.days,
@@ -90,5 +94,17 @@ module Templates
     elsif EXPIRATION_DURATIONS[default_expire_at_duration]
       Time.current + EXPIRATION_DURATIONS[default_expire_at_duration]
     end
+  end
+
+  def serialize_for_builder(template)
+    data = template.as_json(only: TEMPLATE_BUILDER_FIELDS)
+
+    data['documents'] = template.schema_documents.preload(:blob, { preview_images_attachments: :blob }).as_json(
+      only: %i[id uuid],
+      methods: %i[metadata signed_key],
+      include: { preview_images: { only: %i[id], methods: %i[url metadata filename] } }
+    )
+
+    data
   end
 end

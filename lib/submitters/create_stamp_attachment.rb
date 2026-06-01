@@ -6,12 +6,6 @@ module Submitters
     HEIGHT = 200
     LRM = "\u200E"
 
-    TRANSPARENT_PIXEL = "\x89PNG\r\n\u001A\n\u0000\u0000\u0000\rIHDR\u0000" \
-                        "\u0000\u0000\u0001\u0000\u0000\u0000\u0001\b\u0004" \
-                        "\u0000\u0000\u0000\xB5\u001C\f\u0002\u0000\u0000\u0000" \
-                        "\vIDATx\xDAc\xFC_\u000F\u0000\u0002\x83\u0001\x804\xC3ڨ" \
-                        "\u0000\u0000\u0000\u0000IEND\xAEB`\x82"
-
     module_function
 
     def call(submitter, with_logo: true)
@@ -42,14 +36,15 @@ module Submitters
         if with_logo
           ImageUtils.load_vips(load_logo(submitter).read)
         else
-          Vips::Image.new_from_buffer(TRANSPARENT_PIXEL, '').resize(WIDTH)
+          Vips::Image.black(WIDTH, WIDTH, bands: 4).copy(interpretation: :srgb)
         end
 
       logo = logo.resize([WIDTH / logo.width.to_f, HEIGHT / logo.height.to_f].min)
+      logo = logo.copy(interpretation: :srgb) if logo.interpretation == :multiband
 
-      base_layer = Vips::Image.black(WIDTH, HEIGHT).new_from_image([255, 255, 255]).copy(interpretation: :srgb)
+      base_layer = Vips::Image.black(WIDTH, HEIGHT).new_from_image([255, 255, 255, 255]).copy(interpretation: :srgb)
 
-      opacity_layer = Vips::Image.new_from_buffer(TRANSPARENT_PIXEL, '').resize(WIDTH)
+      opacity_layer = Vips::Image.black(WIDTH, HEIGHT).new_from_image([255, 255, 255, 127]).copy(interpretation: :srgb)
 
       text = build_text_image(submitter)
 

@@ -11,8 +11,6 @@ module Api
       @submitter = Submitter.find_by!(slug: params[:submitter_slug])
 
       unless can_upload?(@submitter)
-        Rollbar.error("Can't upload: #{@submitter.id}") if defined?(Rollbar)
-
         return render json: { error: I18n.t('form_has_been_archived') }, status: :unprocessable_content
       end
 
@@ -33,9 +31,11 @@ module Api
           return render json: { error: "#{params[:type]} error, try to sign on another device" },
                         status: :unprocessable_content
         end
+
+        metadata = { analyzed: true, identified: true, width: image.width, height: image.height }
       end
 
-      attachment = Submitters.create_attachment!(@submitter, file)
+      attachment = Submitters.create_attachment!(@submitter, file, metadata:)
 
       if params[:remember_signature] == 'true' && @submitter.email.present?
         cookies.encrypted[:signature_uuids] = build_new_cookie_signatures_json(@submitter, attachment)

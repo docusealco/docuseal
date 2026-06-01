@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Accounts
-  LINK_EXPIRES_AT = 40.minutes
+  LINK_EXPIRES_AT = ENV.fetch('FILE_URLS_EXPIRE_MINUTES', '40').to_i.minutes
 
   module_function
 

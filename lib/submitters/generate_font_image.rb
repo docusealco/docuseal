@@ -27,7 +27,9 @@ module Submitters
 
       text_mask = Vips::Image.black(text_image.width, text_image.height)
 
-      text_mask.bandjoin(text_image).copy(interpretation: :b_w).write_to_buffer('.png')
+      image = text_mask.bandjoin(text_image).copy(interpretation: :b_w)
+
+      [image.write_to_buffer('.png'), image.width, image.height]
     end
   end
 end

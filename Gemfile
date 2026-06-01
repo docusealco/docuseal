@@ -21,7 +21,6 @@ gem 'faraday'
 gem 'faraday-follow_redirects'
 gem 'google-cloud-storage', require: false
 gem 'hexapdf'
-gem 'image_processing'
 gem 'jwt', require: false
 gem 'lograge'
 gem 'numo-narray-alt', require: false

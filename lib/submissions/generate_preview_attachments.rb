@@ -29,6 +29,8 @@ module Submissions
       with_signature_id_reason =
         configs.find { |c| c.key == AccountConfig::WITH_SIGNATURE_ID_REASON_KEY }&.value != false
 
+      file_links_expire_at = Accounts.link_expires_at(submission.account) if with_file_links
+
       pdfs_index = GenerateResultAttachments.build_pdfs_index(submission, flatten: is_flatten,
                                                                           incremental: is_rotate_incremental)
 
@@ -42,7 +44,8 @@ module Submissions
         GenerateResultAttachments.fill_submitter_fields(s, submission.account, pdfs_index,
                                                         with_signature_id:, is_flatten:, with_headings: index.zero?,
                                                         with_submitter_timezone:, with_file_links:,
-                                                        with_signature_id_reason:, with_timestamp_seconds:)
+                                                        file_links_expire_at:, with_signature_id_reason:,
+                                                        with_timestamp_seconds:)
       end
 
       template = submission.template

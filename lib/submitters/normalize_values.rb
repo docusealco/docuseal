@@ -260,7 +260,7 @@ module Submitters
     end
 
     def find_or_create_blob_from_text(account, text, type)
-      data = Submitters::GenerateFontImage.call(text, font: type)
+      data, width, height = Submitters::GenerateFontImage.call(text, font: type)
 
       checksum = Digest::MD5.base64digest(data)
 
@@ -268,7 +268,9 @@ module Submitters
 
       blob || ActiveStorage::Blob.create_and_upload!(
         io: StringIO.new(data),
-        filename: "#{type}.png"
+        filename: "#{type}.png",
+        content_type: 'image/png',
+        metadata: { analyzed: true, identified: true, width:, height: }
       )
     end
 

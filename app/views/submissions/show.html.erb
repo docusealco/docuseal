@@ -266,10 +266,12 @@
               <div dir="auto">
                 <% if field['type'].in?(%w[signature initials]) %>
                   <div class="w-full bg-base-300 py-1">
-                    <img class="object-contain mx-auto" style="max-height: <%= field['type'] == 'signature' ? 100 : 50 %>px" height="<%= attachments_index[value].metadata['height'] %>" width="<%= attachments_index[value].metadata['width'] %>" src="<%= attachments_index[value].url %>" loading="lazy" alt="<%= field['name'] || field['title'] || field['type'] %>">
+                    <% img_height = attachments_index[value].metadata['height'] %>
+                    <img class="object-contain mx-auto" style="<%= 'max-' if img_height %>height: <%= field['type'] == 'signature' ? 100 : 50 %>px" height="<%= img_height %>" width="<%= attachments_index[value].metadata['width'] %>" src="<%= attachments_index[value].url %>" loading="lazy" alt="<%= field['name'] || field['title'] || field['type'] %>">
                   </div>
                 <% elsif field['type'].in?(['image', 'stamp', 'kba']) && attachments_index[value].image? %>
-                  <img class="object-contain mx-auto max-h-28" style="max-height: 200px" height="<%= attachments_index[value].metadata['height'] %>" width="<%= attachments_index[value].metadata['width'] %>" src="<%= attachments_index[value].url %>" loading="lazy" alt="<%= field['name'] || field['title'] || field['type'] %>">
+                  <% img_height = attachments_index[value].metadata['height'] %>
+                  <img class="object-contain mx-auto" style="<%= 'max-' if img_height %>height: 200px" height="<%= img_height %>" width="<%= attachments_index[value].metadata['width'] %>" src="<%= attachments_index[value].url %>" loading="lazy" alt="<%= field['name'] || field['title'] || field['type'] %>">
                 <% elsif field['type'].in?(['file', 'payment', 'image']) %>
                   <div class="flex flex-col justify-center">
                     <% Array.wrap(value).each do |val| %>
