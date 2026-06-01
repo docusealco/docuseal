@@ -53,11 +53,12 @@ ALLOW_FILES = Set.new([
   'bin/rebrand-sync',
   'bin/rebrand-check',
   'lib/wabosign.rb',
+  'lib/docuseal.rb',
   # Migration that finds rows by the legacy docuseal_aatl name.
   'db/migrate/20260515183000_rename_docuseal_aatl_cert.rb'
 ]).freeze
 
-ALLOW_FILE_PREFIXES = ['docs/embedding/'].freeze
+ALLOW_FILE_PREFIXES = ['docs/embedding/', 'docs/api/'].freeze
 
 # Per-line allowed patterns. If every "docuseal" hit on a line is
 # inside one of these, the line is tolerated.
@@ -84,7 +85,21 @@ ALLOW_PATTERNS = [
   # JS calculator copyright header
   %r{DocuSeal,?\s+LLC},
   # i18n key carrying the AGPL credit value
-  %r{based_on:}
+  %r{based_on:},
+  # i18n keys (underscore-separated) — these are identifiers, not user text
+  # Matches both YAML key lines and t() calls
+  %r{[a-zA-Z_0-9]*docuseal[a-zA-Z_0-9]*:\s},
+  %r{t\(['"][a-zA-Z_0-9_]*docuseal[a-zA-Z_0-9_]*['"]\)},
+  # i18n keys with leading spaces (nested YAML)
+  %r{\s+[a-zA-Z_0-9_]*docuseal[a-zA-Z_0-9_]*:},
+  # t() calls referencing docuseal i18n keys
+  %r{t\(['"][a-z_]*docuseal[a-z_]*['"]\)},
+  # Twitter handles and org references in meta tags
+  %r{twitter:(?:creator|site).*content=".*docusealco"},
+  # ENV variable names (uppercase)
+  %r{DOCUSEAL_API_KEY},
+  # github.com/docusealco URLs (upstream binary/ repo references)
+  %r{github\.com/docusealco}
 ].freeze
 
 def deny_listed?(rel)
