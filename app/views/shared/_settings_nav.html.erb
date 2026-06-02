@@ -64,28 +64,7 @@
           </li>
         <% end %>
       <% end %>
-      <% if !Wabosign.demo? && can?(:manage, EncryptedConfig) && (current_user != true_user || !current_account.linked_account_account) %>
-        <li>
-          <%= content_for(:pro_link) || link_to(Wabosign.multitenant? ? console_redirect_index_path(redir: "#{Wabosign::CONSOLE_URL}/plans") : "#{Wabosign::CLOUD_URL}/sign_up?#{{ redir: "#{Wabosign::CONSOLE_URL}/on_premises" }.to_query}", class: 'text-base hover:bg-base-300', data: { turbo: false }) do %>
-            <%= t('plans') %>
-            <span class="badge badge-warning"><%= t('pro') %></span>
-          <% end %>
-        </li>
-      <% end %>
-      <% if !Wabosign.demo? && can?(:manage, EncryptedConfig) && (current_user == true_user || current_account.testing?) %>
-        <li>
-          <%= link_to Wabosign.multitenant? ? console_redirect_index_path(redir: "#{Wabosign::CONSOLE_URL}#{'/test' if current_account.testing?}/api") : "#{Wabosign::CONSOLE_URL}/on_premises", class: 'text-base hover:bg-base-300', data: { turbo: false } do %>
-            <% if Wabosign.multitenant? %> API <% else %> <%= t('console') %> <% end %>
-          <% end %>
-        </li>
-        <% if Wabosign.multitenant? %>
-          <li>
-            <%= link_to console_redirect_index_path(redir: "#{Wabosign::CONSOLE_URL}#{'/test' if current_account.testing?}/embedding/form"), class: 'text-base hover:bg-base-300', data: { turbo: false } do %>
-              <%= t('embedding') %>
-            <% end %>
-          </li>
-        <% end %>
-        <% if (!Wabosign.multitenant? || can?(:manage, :saml_sso)) && can?(:read, EncryptedConfig.new(key: 'saml_configs', account: current_account)) && true_user == current_user %>
+      <% if (!Wabosign.multitenant? || can?(:manage, :saml_sso)) && can?(:read, EncryptedConfig.new(key: 'saml_configs', account: current_account)) && true_user == current_user %>
           <li>
             <%= link_to 'SSO', settings_sso_index_path, class: 'text-base hover:bg-base-300' %>
           </li>

@@ -142,15 +142,9 @@
                   <%= svg_icon('info_circle', class: 'hidden md:inline-block w-4 h-4 shrink-0') %>
                 </span>
               </div>
-              <% if !Wabosign.multitenant? || can?(:manage, :disable_decline) %>
-                <submit-form data-on="change" class="flex">
-                  <%= f.check_box :value, class: 'toggle', checked: account_config.value != false %>
-                </submit-form>
-              <% else %>
-                <a href="<%= console_redirect_index_path(redir: "#{Wabosign::CONSOLE_URL}/plans") %>" data-turbo="false" data-tip="<%= I18n.t('unlock_with_docuseal_pro') %>" data-on="change" class="flex tooltip">
-                  <%= f.check_box :value, class: 'toggle pointer-events-none', checked: account_config.value != false, disabled: true %>
-                </a>
-              <% end %>
+              <submit-form data-on="change" class="flex">
+                <%= f.check_box :value, class: 'toggle', checked: account_config.value != false %>
+              </submit-form>
             </div>
           <% end %>
         <% end %>
@@ -165,15 +159,9 @@
                   <%= svg_icon('info_circle', class: 'hidden md:inline-block w-4 h-4 shrink-0') %>
                 </span>
               </div>
-              <% if !Wabosign.multitenant? || can?(:manage, :delegate_form) %>
-                <submit-form data-on="change" class="flex">
-                  <%= f.check_box :value, class: 'toggle', checked: account_config.value == true %>
-                </submit-form>
-              <% else %>
-                <a href="<%= console_redirect_index_path(redir: "#{Wabosign::CONSOLE_URL}/plans") %>" data-turbo="false" data-tip="<%= I18n.t('unlock_with_docuseal_pro') %>" class="flex tooltip">
-                  <%= f.check_box :value, class: 'toggle pointer-events-none', checked: account_config.value == true, disabled: true %>
-                </a>
-              <% end %>
+              <submit-form data-on="change" class="flex">
+                <%= f.check_box :value, class: 'toggle', checked: account_config.value == true %>
+              </submit-form>
             </div>
           <% end %>
         <% end %>

@@ -1,5 +1,3 @@
 <div class="mt-2 mb-1">
-  <div class="tooltip w-full" data-tip="<%= t('unlock_with_docuseal_pro') %>">
-    <%= link_to submitter.sent_at? ? t('re_send_sms') : t('send_sms'), Wabosign.multitenant? ? console_redirect_index_path(redir: "#{Wabosign::CONSOLE_URL}/plans") : "#{Wabosign::CLOUD_URL}/sign_up?#{{ redir: "#{Wabosign::CONSOLE_URL}/on_premises" }.to_query}", class: 'btn btn-sm btn-primary text-gray-400 w-full' %>
-  </div>
+  <%= button_to submitter.sent_at? ? t('re_send_sms') : t('send_sms'), submitter_send_sms_index_path(submitter), class: 'btn btn-sm btn-primary w-full' %>
 </div>

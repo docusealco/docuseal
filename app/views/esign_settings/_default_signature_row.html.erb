@@ -8,17 +8,11 @@
       </div>
     </span>
   </td>
+  <td></td>
   <td>
-    <a href="<%= "#{Wabosign::CLOUD_URL}/sign_up?#{{ redir: "#{Wabosign::CONSOLE_URL}/on_premises" }.to_query}" %>" class="btn btn-neutral btn-sm text-white">
-      <%= t('unlock_with_docuseal_pro') %>
-    </a>
-  </td>
-  <td>
-    <div class="tooltip" data-tip="<%= t('unlock_with_docuseal_pro') %>">
-      <%= button_to settings_esign_path, method: :put, params: { name: Wabosign::AATL_CERT_NAME }, class: 'btn btn-outline btn-neutral btn-xs whitespace-nowrap', title: t('make_default'), disabled: true do %>
-        <%= t('make_default') %>
-      <% end %>
-    </div>
+    <%= button_to settings_esign_path, method: :put, params: { name: Wabosign::AATL_CERT_NAME }, class: 'btn btn-outline btn-neutral btn-xs whitespace-nowrap', title: t('make_default'), disabled: true do %>
+      <%= t('make_default') %>
+    <% end %>
   </td>
   <td>
   </td>

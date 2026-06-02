@@ -16,28 +16,7 @@ module Wabosign
   NEWSLETTER_URL = "#{PRODUCT_URL}/newsletters".freeze
   ENQUIRIES_URL = "#{PRODUCT_URL}/enquiries".freeze
   DISCORD_URL = 'https://discord.gg/qygYCDGck9'
-  TWITTER_URL = 'https://twitter.com/docusealco'
-  TWITTER_HANDLE = '@docusealco'
   CHATGPT_URL = "#{PRODUCT_URL}/chat".freeze
-  CONSOLE_URL = if Rails.env.development?
-                  'http://console.localhost.io:3001'
-                elsif ENV['MULTITENANT'] == 'true'
-                  "https://console.#{HOST}"
-                else
-                  'https://console.docuseal.com'
-                end
-  CLOUD_URL = if Rails.env.development?
-                'http://localhost:3000'
-              else
-                'https://docuseal.com'
-              end
-  CDN_URL = if Rails.env.development?
-              'http://localhost:3000'
-            elsif ENV['MULTITENANT'] == 'true'
-              "https://cdn.#{HOST}"
-            else
-              'https://cdn.docuseal.com'
-            end
 
   CERTS = JSON.parse(ENV.fetch('CERTS', '{}'))
   TIMESERVER_URL = ENV.fetch('TIMESERVER_URL', nil)

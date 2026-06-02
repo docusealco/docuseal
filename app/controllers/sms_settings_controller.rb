@@ -46,13 +46,22 @@ class SmsSettingsController < ApplicationController
   end
 
   def build_sms_value
-    params.require(:encrypted_config).permit(
-      :provider, :account_sid, :auth_token, :from_number,
-      :bulkvs_api_key, :bulkvs_sender_id,
-      :signalwire_app_id, :signalwire_app_token,
-      :signalwire_url, :signalwire_message_profile_id,
-      :twilio_sid, :twilio_token, :twilio_from_number,
-      :voipms_user, :voipms_pass, :voipms_sender_id
-    )[:encrypted_config]
+    params.require(:encrypted_config).require(:value).permit(
+      :enabled,
+      :provider,
+      :basic_auth_token,
+      :from_number,
+      :delivery_webhook_url,
+      :twilio_account_sid,
+      :twilio_auth_token,
+      :twilio_from,
+      :voipms_api_username,
+      :voipms_api_password,
+      :voipms_did,
+      :signalwire_space_url,
+      :signalwire_project_id,
+      :signalwire_api_token,
+      :signalwire_from
+    )
   end
 end

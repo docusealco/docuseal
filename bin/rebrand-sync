@@ -58,6 +58,7 @@ DENY_PATHS = Set.new([
   'public/favicon-32x32.png',
   'public/favicon-96x96.png',
   'public/logo.svg',
+  'app/views/shared/_logo.html.erb',
   # Holds UPSTREAM_NAME / UPSTREAM_URL constants — must not be swept.
   'lib/wabosign.rb',
   # Encrypted-config migration matches the literal upstream string to find

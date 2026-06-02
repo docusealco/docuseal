@@ -2,8 +2,8 @@
   <%= f.label :role, class: 'label' %>
   <%= f.select :role, nil, {}, class: 'base-select' do %>
     <option value="admin"><%= t('admin') %></option>
-    <option value="editor" disabled><%= t('editor') %></option>
-    <option value="viewer" disabled><%= t('viewer') %></option>
+    <option value="editor"><%= t('editor') %></option>
+    <option value="viewer"><%= t('viewer') %></option>
   <% end %>
   <% if Wabosign.multitenant? %>
     <label class="label">
@@ -12,9 +12,4 @@
       </span>
     </label>
   <% end %>
-  <a class="text-sm mt-3 px-4 py-2 bg-base-300 rounded-full block" target="_blank" href="<%= Wabosign.multitenant? ? console_redirect_index_path(redir: "#{Wabosign::CONSOLE_URL}/plans") : "#{Wabosign::CLOUD_URL}/sign_up?#{{ redir: "#{Wabosign::CONSOLE_URL}/on_premises" }.to_query}" %>">
-    <%= svg_icon('info_circle', class: 'w-4 h-4 inline align-text-bottom') %>
-    <%= t('unlock_more_user_roles_with_docuseal_pro') %>
-    <span class="link font-medium"><%= t('learn_more') %></span>
-  </a>
 </div>

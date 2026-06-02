@@ -9,5 +9,7 @@
   <% else %>
     <%= t('powered_by') %>
   <% end %>
-  <a href="<%= Wabosign::PRODUCT_URL %><%= local_assigns[:link_path] %>" class="underline"><%= Wabosign.product_name %></a> - <%= t('open_source_documents_software') %>
+  <a href="<%= Wabosign::PRODUCT_URL %><%= local_assigns[:link_path] %>" class="underline" target="_blank"><%= Wabosign.product_name %></a>
+  — <a href="<%= Wabosign::UPSTREAM_URL %>" class="underline" target="_blank"><%= Wabosign::UPSTREAM_NAME %></a> —
+  <%= t('open_source_documents_software') %>
 </div>

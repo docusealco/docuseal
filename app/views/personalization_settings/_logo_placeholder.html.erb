@@ -1,15 +1,21 @@
-<div class="alert my-4">
-  <%= svg_icon('info_circle', class: 'w-6 h-6') %>
-  <div>
-    <p class="font-bold">
-      <%= t('unlock_with_docuseal_pro') %>
-    </p>
-    <p>
-      <%= t('display_your_company_name_and_logo_when_signing_documents') %>
-      <br>
-      <a class="link font-medium" target="_blank" href="<%= Wabosign.multitenant? ? console_redirect_index_path(redir: "#{Wabosign::CONSOLE_URL}/plans") : "#{Wabosign::CLOUD_URL}/sign_up?#{{ redir: "#{Wabosign::CONSOLE_URL}/on_premises" }.to_query}" %>" data-turbo="false">
-        <%= t('learn_more') %>
-      </a>
-    </p>
-  </div>
+<div class="my-4">
+  <% if current_account.logo.attached? %>
+    <div class="flex items-center space-x-4 mb-4">
+      <%= image_tag current_account.logo, class: 'w-16 h-16 object-contain rounded-lg', alt: 'Company logo' %>
+      <div>
+        <p class="font-medium"><%= current_account.logo.filename %></p>
+        <%= button_to t('remove'), account_logo_path, method: :delete, class: 'btn btn-sm btn-outline btn-error mt-1', data: { turbo: false } %>
+      </div>
+    </div>
+  <% end %>
+  <%= form_with url: account_logo_path, local: true, class: 'space-y-3' do |f| %>
+    <div class="form-control">
+      <%= f.label :logo, 'Upload logo', class: 'label' %>
+      <%= f.file_field :logo, accept: 'image/png,image/jpeg,image/svg+xml', class: 'file-input file-input-bordered w-full' %>
+      <span class="label-text-alt mt-1 opacity-70">PNG, JPEG, or SVG. Max 2 MB.</span>
+    </div>
+    <div class="form-control">
+      <%= f.submit 'Upload', class: 'base-button' %>
+    </div>
+  <% end %>
 </div>
