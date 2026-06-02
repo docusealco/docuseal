@@ -20,7 +20,7 @@ RSpec.describe 'Signing Flow Edge Cases' do
                          email: 'second@example.com')
     end
 
-    pending 'prevents the second signer from filling before the first is done: Vue component timing issue with Submitters.current_submitter_order?' do
+    pending 'blocks second signer: Vue timing issue with Submitters.current_submitter_order?' do
       create(:account_config, account:, key: AccountConfig::ENFORCE_SIGNING_ORDER_KEY, value: true)
 
       visit submit_form_path(slug: second_submitter.slug)
@@ -78,7 +78,7 @@ RSpec.describe 'Signing Flow Edge Cases' do
       create(:account_config, account:, key: AccountConfig::ALLOW_TO_RESUBMIT, value: true)
     end
 
-    pending 'allows a submitter to resubmit after completing: Field not found on second visit to start form' do
+    pending 'resubmit flow: field not found on second start form visit' do
       visit start_form_path(slug: template.slug)
 
       fill_in 'Email', with: 'john@example.com'
@@ -116,7 +116,7 @@ RSpec.describe 'Signing Flow Edge Cases' do
       submission.update!(template_fields: fields)
     end
 
-    pending 'completes with the header complete button without filling any fields: Vue teleport timing issue with complete button rendering' do
+    pending 'optional fields: Vue teleport timing issue with complete button' do
       visit submit_form_path(slug: submitter.slug)
 
       find('#expand_form_button').click

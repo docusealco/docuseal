@@ -94,7 +94,7 @@ RSpec.describe 'Feature Toggles' do
                          email: 'second@example.com')
     end
 
-    pending 'blocks the second signer when enabled: Vue component timing issue with Submitters.current_submitter_order?' do
+    pending 'blocks second signer: Vue timing issue with Submitters.current_submitter_order?' do
       create(:account_config, account:, key: AccountConfig::ENFORCE_SIGNING_ORDER_KEY, value: true)
 
       visit submit_form_path(slug: second_submitter.slug)
@@ -143,7 +143,7 @@ RSpec.describe 'Feature Toggles' do
     let(:other_account) { create(:account) }
     let(:other_user) { create(:user, account: other_account) }
 
-    pending 'does not affect users who already have MFA configured: MFA setup requires multitenant mode' do
+    pending 'force MFA: requires multitenant mode' do
       create(:account_config, account: other_account, key: AccountConfig::FORCE_MFA, value: true)
 
       sign_in(other_user)
