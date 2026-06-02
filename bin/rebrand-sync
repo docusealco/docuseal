@@ -49,6 +49,14 @@ DENY_PATHS = Set.new([
   'app/views/shared/_email_attribution.html.erb',
   'bin/rebrand-sync',
   'bin/rebrand-check',
+  # WaboSign brand logo files — must never be touched by the sweep;
+  # restored from ORIG_HEAD by bin/sync-upstream after an upstream merge.
+  'public/favicon.svg',
+  'public/favicon.ico',
+  'public/favicon-16x16.png',
+  'public/favicon-32x32.png',
+  'public/favicon-96x96.png',
+  'public/logo.svg',
   # Holds UPSTREAM_NAME / UPSTREAM_URL constants — must not be swept.
   'lib/wabosign.rb',
   # Encrypted-config migration matches the literal upstream string to find

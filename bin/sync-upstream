@@ -1,0 +1,90 @@
+#!/usr/bin/env bash
+# frozen_string_literal: true
+#
+# bin/sync-upstream — automate upstream DocuSeal sync
+#
+# Usage:
+#   bin/sync-upstream <tag>
+#
+# Example:
+#   bin/sync-upstream 3.0.2
+#
+# Environment:
+#   UPSTREAM_REMOTE  (default: upstream)
+#   UPSTREAM_URL     (default: https://github.com/docusealco/docuseal.git)
+
+set -euo pipefail
+
+UPSTREAM_REMOTE="${UPSTREAM_REMOTE:-upstream}"
+TAG="${1:-}"
+
+if [ -z "$TAG" ]; then
+  echo "Usage: $0 <tag>" >&2
+  echo "  e.g. $0 3.0.2" >&2
+  exit 1
+fi
+
+# Ensure rerere is on so recurring conflict resolutions are cached
+git config rerere.enabled true
+git config rerere.autoupdate true
+
+echo "=== Fetching $UPSTREAM_REMOTE ==="
+git fetch "$UPSTREAM_REMOTE" --tags
+
+# Record the commit at the tag so we can verify later
+TAG_COMMIT="$(git rev-parse --verify "$TAG^{commit}" 2>/dev/null || true)"
+if [ -z "$TAG_COMMIT" ]; then
+  echo "Tag $TAG not found. Double-check the tag name." >&2
+  exit 1
+fi
+
+echo "=== Creating sync/upstream-$TAG from $TAG ==="
+git checkout -b "sync/upstream-$TAG" "$TAG"
+
+echo "=== Applying rebrand sweep ==="
+bin/rebrand-sync
+
+echo "=== Committing rebranded tree ==="
+git add -A
+if git diff --cached --quiet; then
+  echo "Nothing to commit — rebrand-sync produced no changes."
+else
+  git commit -m "Apply WaboSign rebrand sweep to upstream $TAG"
+fi
+
+echo "=== Merging into master ==="
+git checkout master
+git merge --no-ff "sync/upstream-$TAG" -m "Merge upstream $TAG into master"
+
+echo "=== Restoring WaboSign binary assets overwritten by merge ==="
+# Merging an upstream tag may overwrite our brand logo files that rebrand-sync
+# cannot protect (they are binary / opaque-image and bypass the text sweep).
+# Restore them from pre-merge master (ORIG_HEAD).
+LOGO_FILES=(
+  public/favicon.svg
+  public/favicon.ico
+  public/favicon-16x16.png
+  public/favicon-32x32.png
+  public/favicon-96x96.png
+  public/logo.svg
+)
+for f in "${LOGO_FILES[@]}"; do
+  if git show ORIG_HEAD:"$f" &>/dev/null 2>&1; then
+    git checkout ORIG_HEAD -- "$f"
+    echo "  restored: $f"
+  fi
+done
+
+echo "=== Catching new upstream files (post-merge sweep) ==="
+bin/rebrand-sync
+bin/rebrand-check
+
+echo ""
+echo "============================================================"
+echo "Sync of $TAG complete."
+echo "Next steps:"
+echo "  1. bundle install && yarn install"
+echo "  2. Run tests: bundle exec rspec"
+echo "  3. Tag: git tag wabosign-synced-with-$TAG"
+echo "  4. Push: git push origin master --tags"
+echo "============================================================"

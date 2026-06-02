@@ -60,12 +60,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: 20.19.0
       - name: Cache directory path
         id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
+        run: echo "dir=$(yarn cache dir)" >> "$GITHUB_OUTPUT"
       - uses: actions/cache@v4
         id: yarn-cache
         with:
@@ -108,6 +108,57 @@ jobs:
       - name: Run Brakeman
         run: bundle exec brakeman -q --exit-on-warn
 
+  assets_precompile:
+    name: Assets precompile
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 4.0.5
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.19.0
+      - name: Cache gems
+        uses: actions/cache@v4
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gem-
+      - name: Cache node_modules
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+      - name: Install dependencies
+        env:
+          RAILS_ENV: production
+        run: |
+          gem install bundler
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 4
+          yarn install
+      - name: Precompile assets
+        env:
+          RAILS_ENV: production
+          SECRET_KEY_BASE: dummy-for-precompile
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/wabosign_test
+        run: |
+          bundle exec rake assets:precompile
+
+  rebrand_check:
+    name: Rebrand check
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run rebrand-check
+        run: bin/rebrand-check
+
   rspec:
     name: RSpec
     runs-on: ubuntu-latest
@@ -119,7 +170,7 @@ jobs:
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: docuseal_test
+          POSTGRES_DB: wabosign_test
         ports: ["5432:5432"]
         options: >-
           --health-cmd pg_isready
@@ -134,7 +185,7 @@ jobs:
         with:
           ruby-version: 4.0.5
       - name: Set up Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: 20.19.0
       - name: Install Chrome
@@ -171,7 +222,7 @@ jobs:
           RAILS_ENV: test
           NODE_ENV: test
           COVERAGE: true
-          DATABASE_URL: postgres://postgres:postgres@localhost:5432/docuseal_test
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/wabosign_test
         run: |
           bundle exec rake db:create
           bundle exec rake db:migrate

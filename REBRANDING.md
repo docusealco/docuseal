@@ -89,6 +89,11 @@ git checkout master
 git merge --no-ff sync/upstream-<tag>
 # Resolve conflicts. Rerere caches recurring resolutions.
 
+# Restore WaboSign brand assets that the merge may have overwritten:
+git checkout ORIG_HEAD -- public/favicon.svg public/favicon.ico \
+  public/favicon-16x16.png public/favicon-32x32.png \
+  public/favicon-96x96.png public/logo.svg
+
 bin/rebrand-sync                                # catch upstream-only new files
 bin/rebrand-check                               # CI gate
 
@@ -97,6 +102,11 @@ yarn install
 
 # Verify (see "Verification" in the plan), then:
 git tag wabosign-synced-with-<tag>
+```
+
+Or use the automated script:
+```sh
+bin/sync-upstream <tag>
 ```
 
 ### Adding new preserved tokens

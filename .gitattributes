@@ -1,1 +1,9 @@
 *.html linguist-detectable=false
+
+# WaboSign brand binary files — never merge upstream versions; always keep ours
+public/favicon.svg       -merge
+public/favicon.ico       -merge
+public/favicon-16x16.png -merge
+public/favicon-32x32.png -merge
+public/favicon-96x96.png -merge
+public/logo.svg          -merge
