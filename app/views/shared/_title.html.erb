@@ -1,2 +1,2 @@
-<%= render 'shared/logo' %>
-<span>WaboSign</span>
+<%= render 'shared/account_logo', account: current_account %>
+<span><%= current_account&.brand_name.presence || Wabosign::PRODUCT_NAME %></span>
