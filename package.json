@@ -47,7 +47,7 @@
     "postcss-import": "^15.1.0",
     "postcss-loader": "^7.3.0",
     "qr-creator": "^1.0.0",
-    "rollbar": "^2.26.4",
+    "rollbar": "^2.26.5",
     "sass": "^1.62.1",
     "sass-loader": "^16.0.6",
     "shakapacker": "9.5.0",
@@ -63,7 +63,7 @@
     "webpack-assets-manifest": "6.5.0",
     "webpack-bundle-analyzer": "^4.7.0",
     "webpack-cli": "6.0.1",
-    "webpack-dev-server": "^5.2.3",
+    "webpack-dev-server": "^5.2.4",
     "webpack-merge": "6.0.1",
     "webpack-subresource-integrity": "^5.1.0"
   },
@@ -80,6 +80,27 @@
   "browserslist": [
     "last 5 years"
   ],
+  "resolutions": {
+    "axios": "^1.16.0",
+    "form-data": "^4.0.4",
+    "cross-spawn": "^7.0.5",
+    "picomatch": "^2.3.2",
+    "flatted": "^3.4.2",
+    "immutable": "^4.3.8",
+    "svgo": "^3.3.3",
+    "path-to-regexp": "^0.1.13",
+    "follow-redirects": "^1.16.0",
+    "js-yaml": "^4.1.1",
+    "markdown-it": "^14.1.1",
+    "nanoid": "^3.3.8",
+    "micromatch": "^4.0.8",
+    "qs": "^6.15.2",
+    "lodash": "^4.18.0",
+    "serialize-javascript": "^6.0.2",
+    "postcss": "^8.5.10",
+    "rollbar": "^2.26.5",
+    "webpack-dev-server": "^5.2.4"
+  },
   "devDependencies": {
     "@babel/eslint-parser": "^7.21.8",
     "babel-eslint": "^10.1.0",
