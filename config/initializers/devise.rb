@@ -338,12 +338,15 @@ Devise.setup do |config|
   # when this initializer runs. Read ENV directly here so the omniauth strategy
   # can be registered at boot. Controllers/models access the same values via
   # Wabosign::GOOGLE_* once Rails is fully initialized.
+  #
+  # Always register in test so route helpers are available; in other
+  # environments only register when credentials are configured.
   google_client_id = ENV.fetch('GOOGLE_CLIENT_ID', nil)
   google_client_secret = ENV.fetch('GOOGLE_CLIENT_SECRET', nil)
-  if google_client_id.present? && google_client_secret.present?
+  if Rails.env.test? || (google_client_id.present? && google_client_secret.present?)
     config.omniauth :google_oauth2,
-                    google_client_id,
-                    google_client_secret,
+                    google_client_id || 'test-client-id',
+                    google_client_secret || 'test-client-secret',
                     {
                       scope: 'email,profile',
                       prompt: 'select_account',
