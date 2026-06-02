@@ -7,6 +7,8 @@ class UsersController < ApplicationController
   authorize_resource :user, only: %i[new create]
 
   def index
+    authorize!(:manage, current_account)
+
     @users =
       if params[:status] == 'archived'
         @users.archived.where.not(role: 'integration')
