@@ -142,6 +142,8 @@ jobs:
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 4
           yarn install
+          sudo apt-get update
+          sudo apt-get install -y libvips
       - name: Precompile assets
         env:
           RAILS_ENV: production

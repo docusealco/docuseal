@@ -49,6 +49,7 @@ DENY_PATHS = Set.new([
   'app/views/shared/_email_attribution.html.erb',
   'bin/rebrand-sync',
   'bin/rebrand-check',
+  'bin/sync-upstream',
   # WaboSign brand logo files — must never be touched by the sweep;
   # restored from ORIG_HEAD by bin/sync-upstream after an upstream merge.
   'public/favicon.svg',

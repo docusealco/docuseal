@@ -52,6 +52,7 @@ ALLOW_FILES = Set.new([
   'app/views/shared/_email_attribution.html.erb',
   'bin/rebrand-sync',
   'bin/rebrand-check',
+  'bin/sync-upstream',
   'lib/wabosign.rb',
   'lib/docuseal.rb',
   # Migration that finds rows by the legacy docuseal_aatl name.
