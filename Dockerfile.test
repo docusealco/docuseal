@@ -1,0 +1,38 @@
+FROM ruby:4.0.5-slim-bookworm AS base
+
+RUN apt-get update -qq && \
+    apt-get install -y -qq --no-install-recommends \
+      build-essential \
+      libpq-dev \
+      libvips-dev \
+      libyaml-dev \
+      shared-mime-info \
+      wget \
+      curl \
+      git \
+      gnupg2 \
+      ca-certificates \
+      && rm -rf /var/lib/apt/lists/*
+
+# Node.js 20.x + yarn
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get install -y -qq nodejs && \
+    npm install -g yarn && \
+    rm -rf /var/lib/apt/lists/*
+
+# Chrome 125 for Cuprite
+RUN curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor -o /usr/share/keyrings/google-chrome.gpg && \
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list && \
+    apt-get update -qq && \
+    apt-get install -y -qq --no-install-recommends google-chrome-stable && \
+    rm -rf /var/lib/apt/lists/*
+
+# pdfium
+RUN wget -q -O /tmp/pdfium-linux.tgz \
+      "https://github.com/bblanchon/pdfium-binaries/releases/latest/download/pdfium-linux-$(uname -m | sed 's/x86_64/x64/;s/aarch64/arm64/').tgz" && \
+    tar -xzf /tmp/pdfium-linux.tgz --strip-components=1 -C /usr/lib lib/libpdfium.so && \
+    rm -f /tmp/pdfium-linux.tgz
+
+WORKDIR /app
+
+ENV CHROME_PATH=/usr/bin/google-chrome-stable

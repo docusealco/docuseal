@@ -1,0 +1,59 @@
+#!/bin/bash
+set -e
+
+usage() {
+  echo "Usage: bin/test [--build] [--tag TAG] [--file FILE] [SPEC_ARGS...]"
+  echo ""
+  echo "Run tests in Docker matching the CI environment."
+  echo ""
+  echo "Options:"
+  echo "  --build       Rebuild the test image before running"
+  echo "  --tag TAG     Run specs tagged with TAG (e.g. fork_branding)"
+  echo "  --file FILE   Run a specific spec file"
+  echo ""
+  echo "Examples:"
+  echo "  bin/test                          # run all specs"
+  echo "  bin/test --build                  # rebuild image, then run all specs"
+  echo "  bin/test --tag fork_branding      # run fork branding spec"
+  echo "  bin/test --file spec/requests/    # run API request specs"
+  echo "  bin/test spec/system/role_based_access_spec.rb:42  # single test"
+  exit 1
+}
+
+BUILD=false
+SPEC_ARGS=()
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --build) BUILD=true; shift ;;
+    --tag)
+      shift
+      SPEC_ARGS+=("spec/system/${1}_spec.rb")
+      shift
+      ;;
+    --file)
+      shift
+      SPEC_ARGS+=("$1")
+      shift
+      ;;
+    -h|--help) usage ;;
+    *) SPEC_ARGS+=("$1"); shift ;;
+  esac
+done
+
+COMPOSE_FILE="docker-compose.test.yml"
+COMPOSE_CMD="docker compose -f $COMPOSE_FILE"
+
+if [ "$BUILD" = true ]; then
+  echo "==> Building test image..."
+  $COMPOSE_CMD build test
+fi
+
+# Default to bundle exec rspec if no command given
+CMD="bundle exec rspec"
+if [ ${#SPEC_ARGS[@]} -gt 0 ]; then
+  CMD="$CMD ${SPEC_ARGS[@]}"
+fi
+
+echo "==> Running: $CMD"
+$COMPOSE_CMD run --rm test bash -c "bin/docker-test $CMD"

@@ -1,0 +1,18 @@
+#!/bin/bash
+set -e
+
+echo "==> Installing Ruby dependencies..."
+bundle check 2>/dev/null || bundle install --quiet
+
+echo "==> Installing JavaScript dependencies..."
+yarn install --frozen-lockfile 2>/dev/null || yarn install
+
+echo "==> Preparing database..."
+bundle exec rake db:create 2>/dev/null || true
+bundle exec rake db:migrate
+
+echo "==> Precompiling assets..."
+bundle exec rake assets:precompile
+
+echo "==> Running: $@"
+exec "$@"
