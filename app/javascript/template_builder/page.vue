@@ -11,7 +11,7 @@
       :src="image.url"
       :width="width"
       :height="height"
-      class="rounded"
+      class="w-full h-full rounded"
       @load="onImageLoad"
     >
     <div
