@@ -9,8 +9,10 @@ RSpec.describe 'Template CRUD Edge Cases' do
   end
 
   describe 'restoring an archived template' do
-    let!(:template) { create(:template, account:, author: user, archived_at: Time.current,
-                                        except_field_types: %w[phone payment]) }
+    let!(:template) do
+      create(:template, account:, author: user, archived_at: Time.current,
+                        except_field_types: %w[phone payment])
+    end
 
     it 'restores an archived template from the template page' do
       visit template_path(template)
@@ -21,7 +23,7 @@ RSpec.describe 'Template CRUD Edge Cases' do
       expect(template.reload.archived_at).to be_nil
     end
 
-    pending 'lists archived templates on the dedicated index page' do
+    pending 'lists archived templates on the dedicated index page: Restore button selector not matching' do
       visit templates_archived_index_path
 
       expect(page).to have_content(template.name)

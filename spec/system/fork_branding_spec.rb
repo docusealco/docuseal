@@ -20,7 +20,7 @@ RSpec.describe 'Fork Branding' do
     visit settings_personalization_path
 
     expect(page).to have_content('Acme Sign')
-  expect(page).to have_link('Acme Sign', href: root_path)
+    expect(page).to have_link('Acme Sign', href: root_path)
   end
 
   it 'shows the brand name form on the personalization settings page' do

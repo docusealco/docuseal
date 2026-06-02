@@ -28,7 +28,7 @@ describe 'Additional API Endpoints' do
 
       expect do
         post "/api/templates/#{template.id}/clone", headers: { 'x-auth-token': token },
-                                                     params: { name: 'Cloned Template' }.to_json
+                                                    params: { name: 'Cloned Template' }.to_json
       end.to change(Template, :count)
 
       expect(response).to have_http_status(:ok)
@@ -42,7 +42,7 @@ describe 'Additional API Endpoints' do
       template = create(:template, account:, author:)
       submission = create(:submission, template:, created_by_user: author)
       submitter = create(:submitter, submission:, uuid: template.submitters.first['uuid'],
-                                      account:, completed_at: Time.current)
+                                     account:, completed_at: Time.current)
       blob = ActiveStorage::Blob.create_and_upload!(
         io: Rails.root.join('spec/fixtures/sample-document.pdf').open,
         filename: 'sample-document.pdf',
@@ -63,7 +63,7 @@ describe 'Additional API Endpoints' do
       template = create(:template, account:, author:, only_field_types: %w[text])
       submission = create(:submission, template:, created_by_user: author)
       create(:submitter, submission:, uuid: template.submitters.first['uuid'],
-                          account:, completed_at: Time.current)
+                         account:, completed_at: Time.current)
 
       get '/api/events/form/completed', headers: { 'x-auth-token': token }
 
@@ -78,7 +78,7 @@ describe 'Additional API Endpoints' do
       template = create(:template, account:, author:, only_field_types: %w[text])
       submission = create(:submission, template:, created_by_user: author)
       create(:submitter, submission:, uuid: template.submitters.first['uuid'],
-                          account:, completed_at: Time.current)
+                         account:, completed_at: Time.current)
 
       get '/api/events/submission/completed', headers: { 'x-auth-token': token }
 
@@ -90,10 +90,10 @@ describe 'Additional API Endpoints' do
 
   describe 'POST /api/tools/merge' do
     it 'merges PDFs' do
-      pdf_content = Base64.encode64(File.read(Rails.root.join('spec/fixtures/sample-document.pdf')))
+      pdf_content = Base64.encode64(Rails.root.join('spec/fixtures/sample-document.pdf').read)
 
       post '/api/tools/merge', headers: { 'x-auth-token': token },
-                                params: { files: [pdf_content, pdf_content] }.to_json
+                               params: { files: [pdf_content, pdf_content] }.to_json
 
       expect(response).to have_http_status(:ok)
       expect(response.parsed_body['data']).to be_present
