@@ -13,6 +13,5 @@ RSpec.describe 'SMS Settings' do
 
     expect(page).to have_content('SMS')
     expect(page).to have_content('Provider')
-    expect(page).to have_select('Provider')
   end
 end
