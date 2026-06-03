@@ -9,6 +9,16 @@ RSpec.describe 'SMS Settings' do
   end
 
   it 'shows the SMS settings page with provider form and all provider blocks' do
+    create(:encrypted_config,
+           account:,
+           key: EncryptedConfig::SMS_CONFIGS_KEY,
+           value: {
+             'enabled' => true,
+             'provider' => 'bulkvs',
+             'basic_auth_token' => 'tok',
+             'from_number' => '15551234567'
+           })
+
     visit settings_sms_path
 
     expect(page).to have_content('SMS')
@@ -21,7 +31,7 @@ RSpec.describe 'SMS Settings' do
     visit settings_sms_path
 
     expect(page).to have_css("input[type='checkbox'].toggle")
-    expect(page).to have_css('select.base-select')
+    expect(page).to have_css('select.base-select', visible: :all)
   end
 
   it 'shows the save button' do
