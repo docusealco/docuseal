@@ -36,7 +36,10 @@
               v-if="withReplaceButton"
               :template-id="template.id"
               :accept-file-types="acceptFileTypes"
-              class="opacity-0 group-hover:opacity-100"
+              :authenticity-token="authenticityToken"
+              :with-google-drive="withGoogleDrive"
+              :google-drive-file-id="item.google_drive_file_id"
+              class="opacity-0 group-hover:opacity-100 has-[label:focus]:opacity-100"
               @click.stop
               @success="$emit('replace', { replaceSchemaItem: item, ...$event })"
             />
@@ -231,6 +234,16 @@ export default {
       type: Boolean,
       required: true,
       default: true
+    },
+    withGoogleDrive: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    authenticityToken: {
+      type: String,
+      required: false,
+      default: ''
     },
     dynamicDocuments: {
       type: Array,
