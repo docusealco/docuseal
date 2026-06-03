@@ -112,3 +112,64 @@ bin/sync-upstream <tag>
 ### Adding new preserved tokens
 
 When upstream introduces a new SDK identifier, binary URL, or attribution surface that must survive the sweep, edit `PRESERVE` in [bin/rebrand-sync](bin/rebrand-sync) and `ALLOW_PATTERNS` in [bin/rebrand-check](bin/rebrand-check) together. The two must stay in sync — `rebrand-sync` decides what the sweep ignores, `rebrand-check` decides what CI tolerates.
+
+## Post-Merge Verification Checklist
+
+Run through these checks after every upstream merge. The earlier failures are caught by `bin/rebrand-check`; the later ones require manual inspection or `rspec`.
+
+### Automatic (`bin/rebrand-check`)
+- Rebrand check passes (no unintended DocuSeal references)
+- RSpec suite passes (360+ examples, 0 failures)
+
+### Footer / Attribution
+- [ ] `app/views/shared/_powered_by.html.erb` links both WaboSign *and* DocuSeal (upstream AGPL credit)
+- [ ] `app/views/shared/_email_attribution.html.erb` uses WaboSign product name, not DocuSeal
+- [ ] `app/javascript/submission_form/completed.vue` still has the hardcoded DocuSeal upstream credit
+
+### Logo / Branding
+- [ ] `app/views/shared/_logo.html.erb` shows the WaboSign "W" mark (not the DocuSeal abstract shape)
+- [ ] `public/favicon.svg`, `public/logo.svg` show the WaboSign "W" mark
+- [ ] `app/views/shared/_account_logo.html.erb` renders attached logo or falls back to the W mark
+
+### Console / Plans / Pro / Upgrade
+- [ ] `app/controllers/console_redirect_controller.rb` does not exist
+- [ ] `config/routes.rb` has no `console_redirect`, `upgrade`, or `manage` routes
+- [ ] `app/controllers/sessions_controller.rb` has no `console_redirect_index_path` call
+- [ ] `lib/wabosign.rb` has no `CONSOLE_URL`, `CLOUD_URL`, or `CDN_URL` constants
+- [ ] `app/views/shared/_settings_nav.html.erb` has no "Plans" link or "Pro" badge
+- [ ] `app/views/shared/_navbar.html.erb` has no "Console" link in dropdown
+- [ ] `app/views/shared/_navbar_buttons.html.erb` has no "Upgrade" button
+- [ ] No view file contains `unlock_with_docuseal_pro`, `activate_with_docuseal_pro`, or `console_redirect_index_path`
+
+### Feature Gates (all freely available)
+- [ ] `app/views/sms_settings/index.html.erb` shows provider form (BulkVS/Twilio/VoIP.ms/SignalWire) — not a placeholder
+- [ ] `app/views/personalization_settings/_logo_placeholder.html.erb` shows upload form — not a Pro upsell
+- [ ] `app/views/notifications_settings/_reminder_placeholder.html.erb` is empty (reminder form renders freely)
+- [ ] `app/views/submissions/_bulk_send_placeholder.html.erb` is empty (bulk send freely available)
+- [ ] `app/views/submissions/_send_sms_button.html.erb` is a functional button (not Pro-gated tooltip)
+- [ ] `app/views/users/_role_select.html.erb` has no disabled options or Pro upsell link
+- [ ] `app/views/accounts/show.html.erb` has no console-redirect Pro gates on Decline/Delegate toggles
+
+### Google SSO
+- [ ] `app/views/sso_settings/index.html.erb` shows the Google SSO config form (client_id, client_secret, allowed_domains)
+- [ ] `app/views/devise/sessions/_omniauthable.html.erb` has the "Sign in with Google" button
+- [ ] `app/views/sso_settings/_placeholder.html.erb` does not exist (was replaced by the real form)
+- [ ] OmniAuth routes for `auth/google_oauth2` are present in `config/routes.rb`
+
+### E-Signature Settings
+- [ ] `app/views/esign_settings/_default_signature_row.html.erb` does not exist
+- [ ] `config/locales/i18n.yml` has no `wabosign_trusted_signature` or `sign_documents_with_trusted_certificate_*` keys
+
+### Social / Extras
+- [ ] `app/views/shared/_github.html.erb` does not exist (no hardcoded star count)
+- [ ] `app/views/shared/_navbar.html.erb` does not render `shared/github` or `shared/github_button`
+- [ ] `app/views/shared/_settings_nav.html.erb` has no Discord or AI Assistant links in support channels
+- [ ] `config/locales/i18n.yml` has no `discord_community` or `ai_assistant` keys
+
+### SMS (independently developed)
+- [ ] `app/views/sms_settings/index.html.erb` is the full provider form (not placeholder)
+- [ ] `lib/sms.rb` exists with all 4 providers (BulkVS, Twilio, VoIP.ms, SignalWire)
+- [ ] `lib/sms/providers/` directory exists with all 4 provider implementations
+- [ ] `app/controllers/sms_settings_controller.rb` handles `test_message` action
+- [ ] `app/models/encrypted_config.rb` has `SMS_CONFIGS_KEY = 'sms_configs'` constant
+- [ ] `config/routes.rb` has the SMS routes with `test_message` collection route

@@ -8,10 +8,11 @@ RSpec.describe 'SSO Settings' do
     sign_in(user)
   end
 
-  it 'shows SSO settings page' do
+  it 'shows the Google SSO configuration form' do
     visit settings_sso_index_path
 
-    expect(page).to have_content('SSO')
-    expect(page).to have_content('SAML_CONFIGS')
+    expect(page).to have_content('Google SSO')
+    expect(page).to have_content('Client ID')
+    expect(page).to have_content('Client Secret')
   end
 end

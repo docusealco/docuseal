@@ -80,7 +80,6 @@ en: &en
   accessiable_by: Accessible by
   team_access: Team access
   document_download_filename_format: Document download filename format
-  wabosign_trusted_signature: WaboSign Trusted Signature
   hello_name: Hi %{name}
   you_are_invited_to_product_name: You are invited to %{product_name}
   you_have_been_invited_to_account_name_product_name_please_sign_up_using_the_link_below_: 'You have been invited to %{account_name} %{product_name}. Please sign up using the link below:'
@@ -88,7 +87,6 @@ en: &en
   sent_using_product_name_free_document_signing_html: 'Sent using <a href="%{product_url}">%{product_name}</a> free document signing.'
   sent_with_docuseal_pro_html: 'Sent with <a href="%{product_url}">WaboSign Pro</a>'
   show_send_with_docuseal_pro_attribution_in_emails_html: Show "Sent with <span class="link">WaboSign Pro</span>" attribution in emails
-  sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Sign documents with trusted certificate provided by WaboSign. Your documents and data are never shared with WaboSign. PDF checksum is provided to generate a trusted signature.
   you_have_been_invited_to_submit_the_name_form: 'You have been invited to submit the "%{name}" form.'
   you_have_been_invited_to_sign_the_name: 'You have been invited to sign the "%{name}".'
   alternatively_you_can_review_and_download_your_copy_using_the_link_below: "Alternatively, you can review and download your copy using the link below:"
@@ -386,8 +384,6 @@ en: &en
   leave: Leave
   impersonated_as: Impersonated as
   ask_ai: Ask AI
-  ai_assistant: AI Assistant
-  discord_community: Discord Community
   integrations: Integrations
   teams: Teams
   tenants: Tenants
@@ -1136,7 +1132,6 @@ es: &es
   awaiting_completion_by_the_other_party: "Esperando la finalización por la otra parte"
   enforce_recipients_order: 'Hacer cumplir el orden de los destinatarios'
   first_party: 'Primera Parte'
-  wabosign_trusted_signature: Firma de confianza WaboSign
   hello_name: Hola %{name}
   you_are_invited_to_product_name: Estás invitado a %{product_name}
   you_have_been_invited_to_account_name_product_name_please_sign_up_using_the_link_below_: 'Has sido invitado a %{account_name} %{product_name}. Por favor, regístrate usando el enlace a continuación:'
@@ -1144,7 +1139,6 @@ es: &es
   sent_using_product_name_free_document_signing_html: 'Enviado usando la firma de documentos gratuita de <a href="%{product_url}">%{product_name}</a>.'
   sent_with_docuseal_pro_html: 'Enviado con <a href="%{product_url}">WaboSign Pro</a>'
   show_send_with_docuseal_pro_attribution_in_emails_html: Mostrar el mensaje "Enviado con <span class="link">WaboSign Pro</span>" en los correos electrónicos
-  sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Firme documentos con un certificado de confianza proporcionado por WaboSign. Sus documentos y datos nunca se comparten con WaboSign. Se proporciona un checksum de PDF para generar una firma de confianza.
   hi_there: Hola
   thanks: Gracias
   you_have_been_invited_to_submit_the_name_form: 'Has sido invitado/a a enviar el formulario "%{name}".'
@@ -1442,8 +1436,6 @@ es: &es
   leave: Salir
   impersonated_as: Accediendo como
   ask_ai: Preguntar a la IA
-  ai_assistant: Asistente IA
-  discord_community: Comunidad en Discord
   integrations: Integraciones
   teams: Equipos
   tenants: Inquilinos
@@ -2189,7 +2181,6 @@ it: &it
   awaiting_completion_by_the_other_party: "In attesa di completamento da parte dell'altra parte"
   enforce_recipients_order: "Applicare l'ordine dei destinatari"
   first_party: 'Prima parte'
-  wabosign_trusted_signature: "Firma Fiduciaria WaboSign"
   hello_name: Ciao %{name}
   you_are_invited_to_product_name: Sei stato invitato a %{product_name}
   you_have_been_invited_to_account_name_product_name_please_sign_up_using_the_link_below_: 'Sei stato invitato a %{account_name} %{product_name}. Registrati utilizzando il link qui sotto:'
@@ -2197,7 +2188,6 @@ it: &it
   sent_using_product_name_free_document_signing_html: 'Inviato utilizzando la firma di documenti gratuita di <a href="%{product_url}">%{product_name}</a>.'
   sent_with_docuseal_pro_html: 'Inviato con <a href="%{product_url}">WaboSign Pro</a>'
   show_send_with_docuseal_pro_attribution_in_emails_html: Mostra la dicitura "Inviato con <span class="link">WaboSign Pro</span>" nelle email
-  sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: "Firma documenti con un certificato di fiducia fornito da WaboSign. I tuoi documenti e i tuoi dati non vengono mai condivisi con WaboSign. Il checksum PDF è fornito per generare una firma di fiducia."
   hi_there: Ciao
   thanks: Grazie
   you_have_been_invited_to_submit_the_name_form: 'Sei stato invitato a inviare il modulo "%{name}".'
@@ -2495,8 +2485,6 @@ it: &it
   leave: Lascia
   impersonated_as: Impersonato come
   ask_ai: "Chiedi all'IA"
-  ai_assistant: Assistente IA
-  discord_community: Comunità Discord
   integrations: Integrazioni
   teams: Squadre
   tenants: Tenant
@@ -3242,7 +3230,6 @@ fr: &fr
   awaiting_completion_by_the_other_party: En attente de finalisation par l’autre partie
   enforce_recipients_order: Imposer l’ordre des destinataires
   first_party: Première partie
-  wabosign_trusted_signature: Signature de confiance WaboSign
   hello_name: Bonjour %{name}
   you_are_invited_to_product_name: Vous êtes invité à %{product_name}
   you_have_been_invited_to_account_name_product_name_please_sign_up_using_the_link_below_: 'Vous avez été invité à %{account_name} %{product_name}. Veuillez vous inscrire en utilisant le lien ci-dessous :'
@@ -3250,7 +3237,6 @@ fr: &fr
   sent_using_product_name_free_document_signing_html: Envoyé avec <a href="%{product_url}">%{product_name}</a> signature de documents gratuite.
   sent_with_docuseal_pro_html: Envoyé avec <a href="%{product_url}">WaboSign Pro</a>
   show_send_with_docuseal_pro_attribution_in_emails_html: Afficher l’attribution "Envoyé avec <span class="link">WaboSign Pro</span>" dans les e‑mails
-  sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Signez des documents avec un certificat de confiance fourni par WaboSign. Vos documents et données ne sont jamais partagés avec WaboSign. Une empreinte (checksum) PDF est fournie pour générer une signature de confiance.
   hi_there: Bonjour
   thanks: Merci
   you_have_been_invited_to_submit_the_name_form: Vous avez été invité à soumettre le formulaire "%{name}".
@@ -3548,8 +3534,6 @@ fr: &fr
   leave: Quitter
   impersonated_as: Connecté en tant que
   ask_ai: Demander à l’IA
-  ai_assistant: Assistant IA
-  discord_community: Communauté Discord
   integrations: Intégrations
   teams: Équipes
   tenants: Locataires
@@ -4292,7 +4276,6 @@ pt: &pt
   awaiting_completion_by_the_other_party: "Aguardando a conclusão pela outra parte"
   enforce_recipients_order: 'Forçar a ordem dos destinatários'
   first_party: 'Primeira Parte'
-  wabosign_trusted_signature: Assinatura Confiável WaboSign
   hello_name: Olá %{name}
   you_are_invited_to_product_name: Você está convidado para %{product_name}
   you_have_been_invited_to_account_name_product_name_please_sign_up_using_the_link_below_: 'Você foi convidado para %{account_name} %{product_name}. Inscreva-se usando o link abaixo:'
@@ -4300,7 +4283,6 @@ pt: &pt
   sent_using_product_name_free_document_signing_html: 'Enviado usando a assinatura gratuita de documentos de <a href="%{product_url}">%{product_name}</a>.'
   sent_with_docuseal_pro_html: 'Enviado com <a href="%{product_url}">WaboSign Pro</a>'
   show_send_with_docuseal_pro_attribution_in_emails_html: Mostrar "Enviado com <span class="link">WaboSign Pro</span>" nos e-mails
-  sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Assine documentos com certificado confiável fornecido pela WaboSign. Seus documentos e dados nunca são compartilhados com a WaboSign. O checksum do PDF é fornecido para gerar uma assinatura confiável.
   hi_there: Olá
   thanks: Obrigado
   you_have_been_invited_to_submit_the_name_form: 'Você foi convidado a submeter o formulário "%{name}".'
@@ -4598,8 +4580,6 @@ pt: &pt
   leave: Deixar
   impersonated_as: Acessando como
   ask_ai: Perguntar para a IA
-  ai_assistant: Assistente de IA
-  discord_community: Comunidade Discord
   integrations: Integrações
   teams: Equipes
   tenants: Locatários
@@ -5345,7 +5325,6 @@ de: &de
   accessiable_by: Zugänglich für
   team_access: Teamzugang
   document_download_filename_format: Format des Dateinamens beim Herunterladen von Dokumenten
-  wabosign_trusted_signature: WaboSign-Vertrauenssignatur
   hello_name: Hallo %{name}
   you_are_invited_to_product_name: Sie sind zu %{product_name} eingeladen
   you_have_been_invited_to_account_name_product_name_please_sign_up_using_the_link_below_: 'Sie wurden zu %{account_name} %{product_name} eingeladen. Bitte registrieren Sie sich über den folgenden Link:'
@@ -5353,7 +5332,6 @@ de: &de
   sent_using_product_name_free_document_signing_html: 'Gesendet mit der kostenlosen Dokumentensignierung von <a href="%{product_url}">%{product_name}</a>.'
   sent_with_docuseal_pro_html: Gesendet mit <a href="%{product_url}">WaboSign Pro</a>
   show_send_with_docuseal_pro_attribution_in_emails_html: '"Gesendet mit <span class="link">WaboSign Pro</span>" in E-Mails anzeigen'
-  sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Unterzeichnen Sie Dokumente mit einem vertrauenswürdigen Zertifikat von WaboSign. Ihre Dokumente und Daten werden niemals mit WaboSign geteilt. Eine PDF-Prüfsumme wird bereitgestellt, um eine vertrauenswürdige Signatur zu generieren.
   you_have_been_invited_to_submit_the_name_form: 'Sie wurden eingeladen, das Formular "%{name}" einzureichen.'
   you_have_been_invited_to_sign_the_name: 'Sie wurden eingeladen, "%{name}" zu unterschreiben.'
   alternatively_you_can_review_and_download_your_copy_using_the_link_below: 'Alternativ können Sie Ihre Kopie über den untenstehenden Link ansehen und herunterladen:'
@@ -5651,8 +5629,6 @@ de: &de
   leave: Verlassen
   impersonated_as: Eingeloggt als
   ask_ai: KI fragen
-  ai_assistant: KI-Assistent
-  discord_community: Discord-Community
   integrations: Integrationen
   teams: Teams
   tenants: Mandanten
@@ -6802,7 +6778,6 @@ nl: &nl
   accessiable_by: Toegankelijk voor
   team_access: Teamtoegang
   document_download_filename_format: Bestandsnaamformaat voor documentdownload
-  wabosign_trusted_signature: WaboSign Vertrouwde handtekening
   hello_name: Hallo %{name}
   you_are_invited_to_product_name: U bent uitgenodigd voor %{product_name}
   you_have_been_invited_to_account_name_product_name_please_sign_up_using_the_link_below_: 'U bent uitgenodigd voor %{account_name} %{product_name}. Meld u aan via de onderstaande link:'
@@ -7109,8 +7084,6 @@ nl: &nl
   leave: Verlaten
   impersonated_as: Ingelogd als
   ask_ai: AI vragen
-  ai_assistant: AI-assistent
-  discord_community: Discord-community
   integrations: Integraties
   teams: Teams
   tenants: Tenants

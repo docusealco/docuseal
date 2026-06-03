@@ -1,8 +1,77 @@
 <div class="flex flex-wrap space-y-4 md:flex-nowrap md:space-y-0">
   <%= render 'shared/settings_nav' %>
   <div class="flex-grow max-w-xl mx-auto">
-    <h1 class="text-4xl font-bold mb-4">SAML SSO</h1>
-    <%= render 'placeholder' %>
+    <h1 class="text-4xl font-bold mb-4">Google SSO</h1>
+
+    <% creds = Wabosign.google_sso_credentials %>
+    <% value = @encrypted_config.value || {} %>
+
+    <% if creds[:source] == :env %>
+      <div class="alert mb-4">
+        <%= svg_icon('info_circle', class: 'w-6 h-6') %>
+        <div>
+          <p class="font-bold">Google SSO is configured via environment variables</p>
+          <p class="text-gray-700">
+            <code>GOOGLE_CLIENT_ID</code> and <code>GOOGLE_CLIENT_SECRET</code> are set on the running process, so ENV-driven configuration is in effect. ENV always takes precedence over anything saved on this page. Unset the env vars (and restart) to switch to the values configured here.
+          </p>
+        </div>
+      </div>
+    <% elsif creds[:source] == :db %>
+      <div class="alert alert-success mb-4">
+        <%= svg_icon('discount_check_filled', class: 'w-6 h-6') %>
+        <div>
+          <p class="font-bold">Google SSO is enabled</p>
+          <p class="text-gray-700">
+            <% if creds[:allowed_domains].any? %>
+              Allowed Workspace domain<%= 's' if creds[:allowed_domains].size > 1 %>: <code><%= creds[:allowed_domains].join(', ') %></code>.
+            <% else %>
+              <strong>Warning:</strong> no domain allowlist is set. Any Google account can sign in.
+            <% end %>
+          </p>
+        </div>
+      </div>
+    <% else %>
+      <div class="alert mb-4">
+        <%= svg_icon('info_circle', class: 'w-6 h-6') %>
+        <div>
+          <p class="font-bold">Google SSO is not configured</p>
+          <p class="text-gray-700">
+            Fill in your Google Cloud OAuth client details below. The OAuth redirect URI to register in <a href="https://console.cloud.google.com/apis/credentials" target="_blank" rel="noopener" class="link">Google Cloud Console</a> is
+            <code><%= "#{root_url}auth/google_oauth2/callback" rescue '/auth/google_oauth2/callback' %></code>.
+          </p>
+        </div>
+      </div>
+    <% end %>
+
+    <%= form_for @encrypted_config, url: settings_sso_index_path, method: :post, html: { autocomplete: 'off', class: 'space-y-4' } do |f| %>
+      <%= f.fields_for :value do |ff| %>
+        <div class="form-control">
+          <label class="label cursor-pointer" for="encrypted_config_value_enabled">
+            <span class="label-text font-medium">Enable Google SSO</span>
+            <%= ff.check_box :enabled, { class: 'toggle', checked: value['enabled'] == true }, '1', '0' %>
+          </label>
+        </div>
+        <div class="form-control">
+          <%= ff.label :client_id, 'Client ID', class: 'label' %>
+          <%= ff.text_field :client_id, value: value['client_id'], class: 'base-input', placeholder: '1234567890.apps.googleusercontent.com' %>
+        </div>
+        <div class="form-control">
+          <%= ff.label :client_secret, 'Client Secret', class: 'label' %>
+          <%= ff.password_field :client_secret, class: 'base-input', placeholder: value['client_secret'].present? ? '*************' : 'GOCSPX-…' %>
+          <% if value['client_secret'].present? %>
+            <span class="label-text-alt mt-1 opacity-70">Leave blank to keep the saved secret.</span>
+          <% end %>
+        </div>
+        <div class="form-control">
+          <%= ff.label :allowed_domains_csv, 'Allowed Workspace Domains', class: 'label' %>
+          <%= ff.text_field :allowed_domains_csv, value: Array(value['allowed_domains']).join(', '), class: 'base-input', placeholder: 'wabo.cc, partner.example' %>
+          <span class="label-text-alt mt-1 opacity-70">Comma-separated. Only Google accounts whose Workspace <code>hd</code> claim matches one of these domains can sign in. Leave blank to allow any Google account (not recommended).</span>
+        </div>
+      <% end %>
+      <div class="form-control pt-2">
+        <%= f.button button_title(title: t('save'), disabled_with: t('saving')), class: 'base-button' %>
+      </div>
+    <% end %>
   </div>
   <div class="w-0 md:w-52"></div>
 </div>

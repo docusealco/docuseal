@@ -102,18 +102,6 @@
             <%= svg_icon('brand_github', class: 'w-8 h-8') %>
           </a>
         </div>
-        <div class="tooltip" data-tip="<%= t('discord_community') %>">
-          <a href="<%= Wabosign::DISCORD_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
-            <%= svg_icon('brand_discord', class: 'w-8 h-8') %>
-          </a>
-        </div>
-        <%= capture do %>
-          <div class="tooltip" data-tip="<%= t('ai_assistant') %>">
-            <a href="<%= Wabosign::CHATGPT_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
-              <%= svg_icon('brand_openai', class: 'w-8 h-8') %>
-            </a>
-          </div>
-        <% end %>
       </div>
       <a href="mailto:<%= Wabosign::SUPPORT_EMAIL %>" target="_blank" class="w-full block mt-4 underline text-center">
         <%= Wabosign::SUPPORT_EMAIL %>

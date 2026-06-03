@@ -4,9 +4,6 @@
     <a href="<%= root_path %>" class="text-2xl font-bold items-center flex space-x-2">
       <%= render 'shared/title' %>
     </a>
-    <span class="hidden sm:inline">
-      <%= render 'shared/github' if request.path.starts_with?('/settings') %>
-    </span>
   </div>
   <% if signed_in? %>
     <div class="space-x-4 flex items-center">
@@ -14,9 +11,6 @@
         <a href="https://wabosign.com/sign_up" class="btn btn-neutral btn-sm btn-outline inline-flex items-center justify-center" style="height: 37px">
           <%= t('sign_up') %>
         </a>
-        <span class="hidden sm:inline">
-          <%= render 'shared/github_button' %>
-        </span>
       <% else %>
         <div class="flex items-center justify-center space-x-4 mr-1">
           <%= render 'shared/navbar_buttons' %>
