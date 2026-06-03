@@ -32,10 +32,13 @@ RSpec.describe 'SMS Settings' do
 
   it 'shows the test SMS section when SMS is configured and enabled' do
     create(:encrypted_config, account:, key: EncryptedConfig::SMS_CONFIGS_KEY,
-           value: { 'enabled' => true, 'provider' => 'twilio',
-                    'twilio_account_sid' => 'AC123',
-                    'twilio_auth_token' => 'token',
-                    'twilio_from' => '+15551234567' })
+           value: {
+             'enabled' => true,
+             'provider' => 'twilio',
+             'twilio_account_sid' => 'AC123',
+             'twilio_auth_token' => 'token',
+             'twilio_from' => '+15551234567'
+           })
 
     visit settings_sms_path
 
@@ -55,8 +58,12 @@ RSpec.describe 'SMS Settings' do
     context 'when SMS is enabled' do
       before do
         create(:encrypted_config, account:, key: EncryptedConfig::SMS_CONFIGS_KEY,
-               value: { 'enabled' => true, 'provider' => 'bulkvs',
-                        'basic_auth_token' => 'tok', 'from_number' => '15551234567' })
+               value: {
+                 'enabled' => true,
+                 'provider' => 'bulkvs',
+                 'basic_auth_token' => 'tok',
+                 'from_number' => '15551234567'
+               })
       end
 
       it 'shows the provider section on page load' do
@@ -78,8 +85,12 @@ RSpec.describe 'SMS Settings' do
 
     it 'hides the provider section when the toggle is turned off' do
       create(:encrypted_config, account:, key: EncryptedConfig::SMS_CONFIGS_KEY,
-             value: { 'enabled' => true, 'provider' => 'bulkvs',
-                      'basic_auth_token' => 'tok', 'from_number' => '15551234567' })
+             value: {
+               'enabled' => true,
+               'provider' => 'bulkvs',
+               'basic_auth_token' => 'tok',
+               'from_number' => '15551234567'
+             })
 
       visit settings_sms_path
 
@@ -94,8 +105,12 @@ RSpec.describe 'SMS Settings' do
   describe 'provider switching' do
     before do
       create(:encrypted_config, account:, key: EncryptedConfig::SMS_CONFIGS_KEY,
-             value: { 'enabled' => true, 'provider' => 'bulkvs',
-                      'basic_auth_token' => 'tok', 'from_number' => '15551234567' })
+             value: {
+               'enabled' => true,
+               'provider' => 'bulkvs',
+               'basic_auth_token' => 'tok',
+               'from_number' => '15551234567'
+             })
       visit settings_sms_path
     end
 
@@ -151,10 +166,13 @@ RSpec.describe 'SMS Settings' do
 
     it 'retains existing Twilio auth token when left blank on re-save' do
       create(:encrypted_config, account:, key: EncryptedConfig::SMS_CONFIGS_KEY,
-             value: { 'enabled' => true, 'provider' => 'twilio',
-                      'twilio_account_sid' => 'AC123',
-                      'twilio_auth_token' => 'secret_token',
-                      'twilio_from' => '+15551234567' })
+             value: {
+               'enabled' => true,
+               'provider' => 'twilio',
+               'twilio_account_sid' => 'AC123',
+               'twilio_auth_token' => 'secret_token',
+               'twilio_from' => '+15551234567'
+             })
 
       visit settings_sms_path
 
