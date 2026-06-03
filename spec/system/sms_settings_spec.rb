@@ -31,7 +31,9 @@ RSpec.describe 'SMS Settings' do
   end
 
   it 'shows the test SMS section when SMS is configured and enabled' do
-    create(:encrypted_config, account:, key: EncryptedConfig::SMS_CONFIGS_KEY,
+    create(:encrypted_config,
+           account:,
+           key: EncryptedConfig::SMS_CONFIGS_KEY,
            value: {
              'enabled' => true,
              'provider' => 'twilio',
@@ -57,7 +59,9 @@ RSpec.describe 'SMS Settings' do
 
     context 'when SMS is enabled' do
       before do
-        create(:encrypted_config, account:, key: EncryptedConfig::SMS_CONFIGS_KEY,
+        create(:encrypted_config,
+               account:,
+               key: EncryptedConfig::SMS_CONFIGS_KEY,
                value: {
                  'enabled' => true,
                  'provider' => 'bulkvs',
@@ -84,7 +88,9 @@ RSpec.describe 'SMS Settings' do
     end
 
     it 'hides the provider section when the toggle is turned off' do
-      create(:encrypted_config, account:, key: EncryptedConfig::SMS_CONFIGS_KEY,
+      create(:encrypted_config,
+             account:,
+             key: EncryptedConfig::SMS_CONFIGS_KEY,
              value: {
                'enabled' => true,
                'provider' => 'bulkvs',
@@ -104,7 +110,9 @@ RSpec.describe 'SMS Settings' do
 
   describe 'provider switching' do
     before do
-      create(:encrypted_config, account:, key: EncryptedConfig::SMS_CONFIGS_KEY,
+      create(:encrypted_config,
+             account:,
+             key: EncryptedConfig::SMS_CONFIGS_KEY,
              value: {
                'enabled' => true,
                'provider' => 'bulkvs',
@@ -165,7 +173,9 @@ RSpec.describe 'SMS Settings' do
     end
 
     it 'retains existing Twilio auth token when left blank on re-save' do
-      create(:encrypted_config, account:, key: EncryptedConfig::SMS_CONFIGS_KEY,
+      create(:encrypted_config,
+             account:,
+             key: EncryptedConfig::SMS_CONFIGS_KEY,
              value: {
                'enabled' => true,
                'provider' => 'twilio',

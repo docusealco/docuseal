@@ -51,7 +51,9 @@ RSpec.describe 'SMS Settings', type: :request do
     end
 
     it 'preserves existing Twilio auth token when blank is submitted' do
-      create(:encrypted_config, account:, key: EncryptedConfig::SMS_CONFIGS_KEY,
+      create(:encrypted_config,
+             account:,
+             key: EncryptedConfig::SMS_CONFIGS_KEY,
              value: {
                'enabled' => true,
                'provider' => 'twilio',
@@ -77,7 +79,9 @@ RSpec.describe 'SMS Settings', type: :request do
     end
 
     it 'preserves existing BulkVS basic_auth_token when blank is submitted' do
-      create(:encrypted_config, account:, key: EncryptedConfig::SMS_CONFIGS_KEY,
+      create(:encrypted_config,
+             account:,
+             key: EncryptedConfig::SMS_CONFIGS_KEY,
              value: {
                'enabled' => true,
                'provider' => 'bulkvs',
@@ -96,7 +100,9 @@ RSpec.describe 'SMS Settings', type: :request do
     end
 
     it 'preserves existing VoIP.ms API password when blank is submitted' do
-      create(:encrypted_config, account:, key: EncryptedConfig::SMS_CONFIGS_KEY,
+      create(:encrypted_config,
+             account:,
+             key: EncryptedConfig::SMS_CONFIGS_KEY,
              value: {
                'enabled' => true,
                'provider' => 'voipms',
@@ -108,8 +114,11 @@ RSpec.describe 'SMS Settings', type: :request do
       post settings_sms_path, params: {
         encrypted_config: {
           value: {
-            enabled: '1', provider: 'voipms',
-            voipms_api_username: 'user@example.com', voipms_api_password: '', voipms_did: '5551234567'
+            enabled: '1',
+            provider: 'voipms',
+            voipms_api_username: 'user@example.com',
+            voipms_api_password: '',
+            voipms_did: '5551234567'
           }
         }
       }
@@ -119,7 +128,9 @@ RSpec.describe 'SMS Settings', type: :request do
     end
 
     it 'preserves existing SignalWire API token when blank is submitted' do
-      create(:encrypted_config, account:, key: EncryptedConfig::SMS_CONFIGS_KEY,
+      create(:encrypted_config,
+             account:,
+             key: EncryptedConfig::SMS_CONFIGS_KEY,
              value: {
                'enabled' => true,
                'provider' => 'signalwire',
@@ -132,9 +143,12 @@ RSpec.describe 'SMS Settings', type: :request do
       post settings_sms_path, params: {
         encrypted_config: {
           value: {
-            enabled: '1', provider: 'signalwire',
-            signalwire_space_url: 'test.signalwire.com', signalwire_project_id: 'uuid-1234',
-            signalwire_api_token: '', signalwire_from: '+15551234567'
+            enabled: '1',
+            provider: 'signalwire',
+            signalwire_space_url: 'test.signalwire.com',
+            signalwire_project_id: 'uuid-1234',
+            signalwire_api_token: '',
+            signalwire_from: '+15551234567'
           }
         }
       }
