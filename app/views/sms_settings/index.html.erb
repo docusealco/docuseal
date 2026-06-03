@@ -54,7 +54,7 @@
         <div class="form-control">
           <label class="label cursor-pointer" for="encrypted_config_value_enabled">
             <span class="label-text font-medium">Enable SMS</span>
-            <%= ff.check_box :enabled, { class: 'toggle', checked: value['enabled'] == true }, '1', '0' %>
+            <%= ff.check_box :enabled, { class: 'toggle', checked: value['enabled'] == true || value['enabled'] == '1' || value['enabled'] == 'true' }, '1', '0' %>
           </label>
         </div>
         <div class="form-control">
@@ -63,7 +63,8 @@
                         Sms::SUPPORTED_PROVIDERS.map { |p| [provider_labels[p] || p, p] },
                         { selected: selected_provider },
                         class: 'base-select',
-                        id: 'sms_provider_select' %>
+                        id: 'sms_provider_select',
+                        onchange: 'var s=this,v=s.value;document.querySelectorAll("[data-provider-block]").forEach(function(b){b.classList.toggle("hidden",b.dataset.providerBlock!==v)})' %>
         </div>
 
         <div data-provider-block="bulkvs" class="space-y-4<%= ' hidden' unless selected_provider == 'bulkvs' %>">
@@ -185,18 +186,3 @@
   <div class="w-0 md:w-52"></div>
 </div>
 
-<%= javascript_tag nonce: true do %>
-  (function () {
-    const select = document.getElementById('sms_provider_select')
-    if (!select) return
-    const blocks = document.querySelectorAll('[data-provider-block]')
-    const sync = () => {
-      const current = select.value
-      blocks.forEach((block) => {
-        block.classList.toggle('hidden', block.dataset.providerBlock !== current)
-      })
-    }
-    select.addEventListener('change', sync)
-    sync()
-  })()
-<% end %>
