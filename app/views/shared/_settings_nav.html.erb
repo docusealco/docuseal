@@ -23,7 +23,7 @@
             <%= link_to t('storage'), settings_storage_index_path, class: 'text-base hover:bg-base-300' %>
           </li>
         <% end %>
-        <% if can?(:read, EncryptedConfig.new(key: 'submitter_invitation_sms', account: current_account)) && true_user == current_user %>
+        <% if can?(:read, EncryptedConfig.new(key: EncryptedConfig::SMS_CONFIGS_KEY, account: current_account)) && true_user == current_user %>
           <li>
             <%= link_to 'SMS', settings_sms_path, class: 'text-base hover:bg-base-300' %>
           </li>

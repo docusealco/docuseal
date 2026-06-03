@@ -27,7 +27,8 @@ class EncryptedConfig < ApplicationRecord
     ESIGN_CERTS_KEY = 'esign_certs',
     TIMESTAMP_SERVER_URL_KEY = 'timestamp_server_url',
     APP_URL_KEY = 'app_url',
-    GOOGLE_SSO_KEY = 'google_sso'
+    GOOGLE_SSO_KEY = 'google_sso',
+    SMS_CONFIGS_KEY = 'sms_configs'
   ].freeze
 
   belongs_to :account

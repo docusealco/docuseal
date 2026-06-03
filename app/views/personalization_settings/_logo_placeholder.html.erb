@@ -4,11 +4,11 @@
       <%= image_tag current_account.logo, class: 'w-16 h-16 object-contain rounded-lg', alt: 'Company logo' %>
       <div>
         <p class="font-medium"><%= current_account.logo.filename %></p>
-        <%= button_to t('remove'), account_logo_path, method: :delete, class: 'btn btn-sm btn-outline btn-error mt-1', data: { turbo: false } %>
+        <%= button_to t('remove'), settings_account_logo_path, method: :delete, class: 'btn btn-sm btn-outline btn-error mt-1', data: { turbo: false } %>
       </div>
     </div>
   <% end %>
-  <%= form_with url: account_logo_path, local: true, class: 'space-y-3' do |f| %>
+  <%= form_with url: settings_account_logo_path, local: true, class: 'space-y-3' do |f| %>
     <div class="form-control">
       <%= f.label :logo, 'Upload logo', class: 'label' %>
       <%= f.file_field :logo, accept: 'image/png,image/jpeg,image/svg+xml', class: 'file-input file-input-bordered w-full' %>

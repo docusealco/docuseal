@@ -14,10 +14,11 @@ RSpec.describe 'Account Logo' do
     expect(page).to have_content(I18n.t('company_logo'))
   end
 
-  it 'shows a placeholder message in single-tenant mode' do
+  it 'shows the logo upload form' do
     visit settings_personalization_path
 
-    expect(page).to have_content(I18n.t('unlock_with_docuseal_pro'))
+    expect(page).to have_content('Upload logo')
+    expect(page).to have_css('input[type="file"]')
   end
 
   context 'when a logo is attached' do
