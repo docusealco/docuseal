@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class SmsSettingsController < ApplicationController
+  PASSWORD_FIELDS = %w[basic_auth_token twilio_auth_token voipms_api_password signalwire_api_token].freeze
+  private_constant :PASSWORD_FIELDS
+
   before_action :load_encrypted_config
   authorize_resource :encrypted_config, only: :index
   authorize_resource :encrypted_config, parent: false, only: %i[create test_message]
@@ -46,7 +49,7 @@ class SmsSettingsController < ApplicationController
   end
 
   def build_sms_value
-    params.require(:encrypted_config).require(:value).permit(
+    permitted = params.require(:encrypted_config).require(:value).permit(
       :enabled,
       :provider,
       :basic_auth_token,
@@ -62,6 +65,14 @@ class SmsSettingsController < ApplicationController
       :signalwire_project_id,
       :signalwire_api_token,
       :signalwire_from
-    )
+    ).to_h
+
+    existing = @encrypted_config.value.is_a?(Hash) ? @encrypted_config.value : {}
+
+    PASSWORD_FIELDS.each do |field|
+      permitted[field] = existing[field] if permitted[field].blank? && existing[field].present?
+    end
+
+    permitted
   end
 end

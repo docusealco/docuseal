@@ -60,7 +60,9 @@
       </div>
     <% end %>
 
-    <%= form_for @encrypted_config, url: settings_sms_path, method: :post, html: { autocomplete: 'off', class: 'space-y-4', id: 'sms_settings_form' } do |f| %>
+    <%= form_for @encrypted_config, url: settings_sms_path, method: :post,
+          html: { autocomplete: 'off', class: 'space-y-4', id: 'sms_settings_form' },
+          data: { turbo_frame: :_top } do |f| %>
       <%= f.fields_for :value do |ff| %>
         <div class="form-control">
           <label class="label cursor-pointer" for="encrypted_config_value_enabled">
@@ -68,105 +70,107 @@
             <%= ff.check_box :enabled, { class: 'toggle', checked: value['enabled'] == true || value['enabled'] == '1' || value['enabled'] == 'true' }, '1', '0' %>
           </label>
         </div>
-        <div class="form-control">
-          <%= ff.label :provider, 'Provider', class: 'label' %>
-          <%= ff.select :provider,
-                        Sms::SUPPORTED_PROVIDERS.map { |p| [provider_labels[p] || p, p] },
-                        { selected: selected_provider },
-                        class: 'base-select',
-                        id: 'sms_provider_select' %>
-        </div>
+        <div id="sms_provider_section" class="space-y-4<%= ' hidden' unless value['enabled'] == true || value['enabled'] == '1' || value['enabled'] == 'true' %>">
+          <div class="form-control">
+            <%= ff.label :provider, 'Provider', class: 'label' %>
+            <%= ff.select :provider,
+                          Sms::SUPPORTED_PROVIDERS.map { |p| [provider_labels[p] || p, p] },
+                          { selected: selected_provider },
+                          class: 'base-select',
+                          id: 'sms_provider_select' %>
+          </div>
 
-        <div data-provider-block="bulkvs" class="space-y-4<%= ' hidden' unless selected_provider == 'bulkvs' %>">
-          <div class="form-control">
-            <%= ff.label :basic_auth_token, 'BulkVS Basic Auth Token', class: 'label' %>
-            <%= ff.password_field :basic_auth_token, value: '', class: 'base-input', placeholder: value['basic_auth_token'].present? ? '*************' : 'Paste from BulkVS portal' %>
-            <% if value['basic_auth_token'].present? %>
-              <span class="label-text-alt mt-1 opacity-70">Leave blank to keep the saved token.</span>
-            <% else %>
-              <span class="label-text-alt mt-1 opacity-70">In the BulkVS portal, open the API tab and copy the pre-encoded Basic Auth header value (do not include "Basic ").</span>
-            <% end %>
+          <div data-provider-block="bulkvs" class="space-y-4<%= ' hidden' unless selected_provider == 'bulkvs' %>">
+            <div class="form-control">
+              <%= ff.label :basic_auth_token, 'BulkVS Basic Auth Token', class: 'label' %>
+              <%= ff.password_field :basic_auth_token, value: '', class: 'base-input', placeholder: value['basic_auth_token'].present? ? '*************' : 'Paste from BulkVS portal' %>
+              <% if value['basic_auth_token'].present? %>
+                <span class="label-text-alt mt-1 opacity-70">Leave blank to keep the saved token.</span>
+              <% else %>
+                <span class="label-text-alt mt-1 opacity-70">In the BulkVS portal, open the API tab and copy the pre-encoded Basic Auth header value (do not include "Basic ").</span>
+              <% end %>
+            </div>
+            <div class="form-control">
+              <%= ff.label :from_number, 'From Number', class: 'label' %>
+              <%= ff.text_field :from_number, value: value['from_number'], class: 'base-input', placeholder: '15551234567' %>
+              <span class="label-text-alt mt-1 opacity-70">E.164 format (digits only, country code first; e.g. <code>15551234567</code>).</span>
+            </div>
+            <div class="form-control">
+              <%= ff.label :delivery_webhook_url, 'Delivery Status Webhook (optional)', class: 'label' %>
+              <%= ff.url_field :delivery_webhook_url, value: value['delivery_webhook_url'], class: 'base-input', placeholder: 'https://your-app.example/webhooks/sms' %>
+              <span class="label-text-alt mt-1 opacity-70">If set, BulkVS will POST delivery-status events here for each message.</span>
+            </div>
           </div>
-          <div class="form-control">
-            <%= ff.label :from_number, 'From Number', class: 'label' %>
-            <%= ff.text_field :from_number, value: value['from_number'], class: 'base-input', placeholder: '15551234567' %>
-            <span class="label-text-alt mt-1 opacity-70">E.164 format (digits only, country code first; e.g. <code>15551234567</code>).</span>
-          </div>
-          <div class="form-control">
-            <%= ff.label :delivery_webhook_url, 'Delivery Status Webhook (optional)', class: 'label' %>
-            <%= ff.url_field :delivery_webhook_url, value: value['delivery_webhook_url'], class: 'base-input', placeholder: 'https://your-app.example/webhooks/sms' %>
-            <span class="label-text-alt mt-1 opacity-70">If set, BulkVS will POST delivery-status events here for each message.</span>
-          </div>
-        </div>
 
-        <div data-provider-block="twilio" class="space-y-4<%= ' hidden' unless selected_provider == 'twilio' %>">
-          <div class="form-control">
-            <%= ff.label :twilio_account_sid, 'Twilio Account SID', class: 'label' %>
-            <%= ff.text_field :twilio_account_sid, value: value['twilio_account_sid'], class: 'base-input', placeholder: 'AC...' %>
-            <span class="label-text-alt mt-1 opacity-70">From your Twilio Console "Account Info" panel.</span>
+          <div data-provider-block="twilio" class="space-y-4<%= ' hidden' unless selected_provider == 'twilio' %>">
+            <div class="form-control">
+              <%= ff.label :twilio_account_sid, 'Twilio Account SID', class: 'label' %>
+              <%= ff.text_field :twilio_account_sid, value: value['twilio_account_sid'], class: 'base-input', placeholder: 'AC...' %>
+              <span class="label-text-alt mt-1 opacity-70">From your Twilio Console "Account Info" panel.</span>
+            </div>
+            <div class="form-control">
+              <%= ff.label :twilio_auth_token, 'Twilio Auth Token', class: 'label' %>
+              <%= ff.password_field :twilio_auth_token, value: '', class: 'base-input', placeholder: value['twilio_auth_token'].present? ? '*************' : 'Click "show" in the Console to reveal' %>
+              <% if value['twilio_auth_token'].present? %>
+                <span class="label-text-alt mt-1 opacity-70">Leave blank to keep the saved token.</span>
+              <% else %>
+                <span class="label-text-alt mt-1 opacity-70">Found next to the Account SID in the Twilio Console.</span>
+              <% end %>
+            </div>
+            <div class="form-control">
+              <%= ff.label :twilio_from, 'From Number', class: 'label' %>
+              <%= ff.text_field :twilio_from, value: value['twilio_from'], class: 'base-input', placeholder: '+15551234567' %>
+              <span class="label-text-alt mt-1 opacity-70">Twilio number purchased in <strong>Phone Numbers → Manage</strong>. Use full E.164 with leading <code>+</code>.</span>
+            </div>
           </div>
-          <div class="form-control">
-            <%= ff.label :twilio_auth_token, 'Twilio Auth Token', class: 'label' %>
-            <%= ff.password_field :twilio_auth_token, value: '', class: 'base-input', placeholder: value['twilio_auth_token'].present? ? '*************' : 'Click "show" in the Console to reveal' %>
-            <% if value['twilio_auth_token'].present? %>
-              <span class="label-text-alt mt-1 opacity-70">Leave blank to keep the saved token.</span>
-            <% else %>
-              <span class="label-text-alt mt-1 opacity-70">Found next to the Account SID in the Twilio Console.</span>
-            <% end %>
-          </div>
-          <div class="form-control">
-            <%= ff.label :twilio_from, 'From Number', class: 'label' %>
-            <%= ff.text_field :twilio_from, value: value['twilio_from'], class: 'base-input', placeholder: '+15551234567' %>
-            <span class="label-text-alt mt-1 opacity-70">Twilio number purchased in <strong>Phone Numbers → Manage</strong>. Use full E.164 with leading <code>+</code>.</span>
-          </div>
-        </div>
 
-        <div data-provider-block="voipms" class="space-y-4<%= ' hidden' unless selected_provider == 'voipms' %>">
-          <div class="form-control">
-            <%= ff.label :voipms_api_username, 'API Username', class: 'label' %>
-            <%= ff.text_field :voipms_api_username, value: value['voipms_api_username'], class: 'base-input', placeholder: 'your-account@example.com' %>
-            <span class="label-text-alt mt-1 opacity-70">Your VoIP.ms portal login email.</span>
+          <div data-provider-block="voipms" class="space-y-4<%= ' hidden' unless selected_provider == 'voipms' %>">
+            <div class="form-control">
+              <%= ff.label :voipms_api_username, 'API Username', class: 'label' %>
+              <%= ff.text_field :voipms_api_username, value: value['voipms_api_username'], class: 'base-input', placeholder: 'your-account@example.com' %>
+              <span class="label-text-alt mt-1 opacity-70">Your VoIP.ms portal login email.</span>
+            </div>
+            <div class="form-control">
+              <%= ff.label :voipms_api_password, 'API Password', class: 'label' %>
+              <%= ff.password_field :voipms_api_password, value: '', class: 'base-input', placeholder: value['voipms_api_password'].present? ? '*************' : 'Set this at voip.ms/m/api.php' %>
+              <% if value['voipms_api_password'].present? %>
+                <span class="label-text-alt mt-1 opacity-70">Leave blank to keep the saved password.</span>
+              <% else %>
+                <span class="label-text-alt mt-1 opacity-70">Set the dedicated <strong>API password</strong> at <a href="https://voip.ms/m/api.php" target="_blank" rel="noopener" class="link">voip.ms/m/api.php</a> — this is <em>not</em> your portal login password. On the same page, enable API access and whitelist this server's egress IP, or every call will fail with <code>ip_not_authorized</code>.</span>
+              <% end %>
+            </div>
+            <div class="form-control">
+              <%= ff.label :voipms_did, 'DID (Sending Number)', class: 'label' %>
+              <%= ff.text_field :voipms_did, value: value['voipms_did'], class: 'base-input', placeholder: '5551234567' %>
+              <span class="label-text-alt mt-1 opacity-70">An SMS-enabled DID from <strong>Manage DIDs</strong>. Digits only, no <code>+</code>. The DID must have the SMS feature enabled.</span>
+            </div>
           </div>
-          <div class="form-control">
-            <%= ff.label :voipms_api_password, 'API Password', class: 'label' %>
-            <%= ff.password_field :voipms_api_password, value: '', class: 'base-input', placeholder: value['voipms_api_password'].present? ? '*************' : 'Set this at voip.ms/m/api.php' %>
-            <% if value['voipms_api_password'].present? %>
-              <span class="label-text-alt mt-1 opacity-70">Leave blank to keep the saved password.</span>
-            <% else %>
-              <span class="label-text-alt mt-1 opacity-70">Set the dedicated <strong>API password</strong> at <a href="https://voip.ms/m/api.php" target="_blank" rel="noopener" class="link">voip.ms/m/api.php</a> — this is <em>not</em> your portal login password. On the same page, enable API access and whitelist this server's egress IP, or every call will fail with <code>ip_not_authorized</code>.</span>
-            <% end %>
-          </div>
-          <div class="form-control">
-            <%= ff.label :voipms_did, 'DID (Sending Number)', class: 'label' %>
-            <%= ff.text_field :voipms_did, value: value['voipms_did'], class: 'base-input', placeholder: '5551234567' %>
-            <span class="label-text-alt mt-1 opacity-70">An SMS-enabled DID from <strong>Manage DIDs</strong>. Digits only, no <code>+</code>. The DID must have the SMS feature enabled.</span>
-          </div>
-        </div>
 
-        <div data-provider-block="signalwire" class="space-y-4<%= ' hidden' unless selected_provider == 'signalwire' %>">
-          <div class="form-control">
-            <%= ff.label :signalwire_space_url, 'Space URL', class: 'label' %>
-            <%= ff.text_field :signalwire_space_url, value: value['signalwire_space_url'], class: 'base-input', placeholder: 'yourname.signalwire.com' %>
-            <span class="label-text-alt mt-1 opacity-70">From <strong>Dashboard → API</strong>. Omit <code>https://</code>.</span>
-          </div>
-          <div class="form-control">
-            <%= ff.label :signalwire_project_id, 'Project ID', class: 'label' %>
-            <%= ff.text_field :signalwire_project_id, value: value['signalwire_project_id'], class: 'base-input', placeholder: '00000000-0000-0000-0000-000000000000' %>
-            <span class="label-text-alt mt-1 opacity-70">The UUID labelled "Your Project ID" on the API tab.</span>
-          </div>
-          <div class="form-control">
-            <%= ff.label :signalwire_api_token, 'API Token', class: 'label' %>
-            <%= ff.password_field :signalwire_api_token, value: '', class: 'base-input', placeholder: value['signalwire_api_token'].present? ? '*************' : 'PT...' %>
-            <% if value['signalwire_api_token'].present? %>
-              <span class="label-text-alt mt-1 opacity-70">Leave blank to keep the saved token.</span>
-            <% else %>
-              <span class="label-text-alt mt-1 opacity-70">Generate on the API tab. The token must have the <strong>Messaging</strong> scope enabled or sends return 401.</span>
-            <% end %>
-          </div>
-          <div class="form-control">
-            <%= ff.label :signalwire_from, 'From Number', class: 'label' %>
-            <%= ff.text_field :signalwire_from, value: value['signalwire_from'], class: 'base-input', placeholder: '+15551234567' %>
-            <span class="label-text-alt mt-1 opacity-70">A SignalWire number from <strong>Phone Numbers</strong>. Full E.164 with leading <code>+</code>.</span>
+          <div data-provider-block="signalwire" class="space-y-4<%= ' hidden' unless selected_provider == 'signalwire' %>">
+            <div class="form-control">
+              <%= ff.label :signalwire_space_url, 'Space URL', class: 'label' %>
+              <%= ff.text_field :signalwire_space_url, value: value['signalwire_space_url'], class: 'base-input', placeholder: 'yourname.signalwire.com' %>
+              <span class="label-text-alt mt-1 opacity-70">From <strong>Dashboard → API</strong>. Omit <code>https://</code>.</span>
+            </div>
+            <div class="form-control">
+              <%= ff.label :signalwire_project_id, 'Project ID', class: 'label' %>
+              <%= ff.text_field :signalwire_project_id, value: value['signalwire_project_id'], class: 'base-input', placeholder: '00000000-0000-0000-0000-000000000000' %>
+              <span class="label-text-alt mt-1 opacity-70">The UUID labelled "Your Project ID" on the API tab.</span>
+            </div>
+            <div class="form-control">
+              <%= ff.label :signalwire_api_token, 'API Token', class: 'label' %>
+              <%= ff.password_field :signalwire_api_token, value: '', class: 'base-input', placeholder: value['signalwire_api_token'].present? ? '*************' : 'PT...' %>
+              <% if value['signalwire_api_token'].present? %>
+                <span class="label-text-alt mt-1 opacity-70">Leave blank to keep the saved token.</span>
+              <% else %>
+                <span class="label-text-alt mt-1 opacity-70">Generate on the API tab. The token must have the <strong>Messaging</strong> scope enabled or sends return 401.</span>
+              <% end %>
+            </div>
+            <div class="form-control">
+              <%= ff.label :signalwire_from, 'From Number', class: 'label' %>
+              <%= ff.text_field :signalwire_from, value: value['signalwire_from'], class: 'base-input', placeholder: '+15551234567' %>
+              <span class="label-text-alt mt-1 opacity-70">A SignalWire number from <strong>Phone Numbers</strong>. Full E.164 with leading <code>+</code>.</span>
+            </div>
           </div>
         </div>
       <% end %>
@@ -206,16 +210,28 @@
     }
   }
   ready(function() {
-    var select = document.getElementById('sms_provider_select');
+    var toggle  = document.getElementById('encrypted_config_value_enabled');
+    var section = document.getElementById('sms_provider_section');
+    var select  = document.getElementById('sms_provider_select');
     if (!select) return;
-    function sync() {
+
+    function syncSection() {
+      if (!section || !toggle) return;
+      section.classList.toggle('hidden', !toggle.checked);
+    }
+
+    function syncProvider() {
       var v = select.value;
       document.querySelectorAll('[data-provider-block]').forEach(function(b) {
         b.classList.toggle('hidden', b.dataset.providerBlock !== v);
       });
     }
-    select.addEventListener('change', sync);
-    sync();
+
+    if (toggle) toggle.addEventListener('change', syncSection);
+    select.addEventListener('change', syncProvider);
+
+    syncSection();
+    syncProvider();
   });
 })();
 </script>
