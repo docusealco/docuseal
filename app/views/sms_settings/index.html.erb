@@ -4,6 +4,7 @@
     <h1 class="text-4xl font-bold mb-4">SMS</h1>
 
     <% value = @encrypted_config.value || {} %>
+    <% sms_enabled = Sms.enabled?(current_account) %>
     <% sms_live = Sms.enabled_for?(current_account) %>
     <%
       provider_labels = {
@@ -29,6 +30,16 @@
           <p class="text-gray-700">
             Provider: <code><%= provider_labels[value['provider'].to_s] || value['provider'].to_s.upcase %></code>.
             From: <code><%= sending_number %></code>.
+          </p>
+        </div>
+      </div>
+    <% elsif sms_enabled %>
+      <div class="alert alert-warning mb-4">
+        <%= svg_icon('discount_check_filled', class: 'w-6 h-6') %>
+        <div>
+          <p class="font-bold">SMS is enabled but not fully configured</p>
+          <p class="text-gray-700">
+            Select a provider below and fill in its credentials, then save.
           </p>
         </div>
       </div>
@@ -187,16 +198,25 @@
 
 <script>
 (function() {
-  var select = document.getElementById('sms_provider_select');
-  if (!select) return;
-  function sync() {
-    var v = select.value;
-    document.querySelectorAll('[data-provider-block]').forEach(function(b) {
-      b.classList.toggle('hidden', b.dataset.providerBlock !== v);
-    });
+  function ready(fn) {
+    if (document.readyState !== 'loading') {
+      fn();
+    } else {
+      document.addEventListener('DOMContentLoaded', fn);
+    }
   }
-  select.addEventListener('change', sync);
-  sync();
+  ready(function() {
+    var select = document.getElementById('sms_provider_select');
+    if (!select) return;
+    function sync() {
+      var v = select.value;
+      document.querySelectorAll('[data-provider-block]').forEach(function(b) {
+        b.classList.toggle('hidden', b.dataset.providerBlock !== v);
+      });
+    }
+    select.addEventListener('change', sync);
+    sync();
+  });
 })();
 </script>
 

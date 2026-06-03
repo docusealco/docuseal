@@ -20,6 +20,11 @@ module Sms
     record&.value
   end
 
+  def enabled?(account)
+    config = configuration_for(account)
+    config.is_a?(Hash) && !!config['enabled']
+  end
+
   def enabled_for?(account)
     config = configuration_for(account)
     return false unless config.is_a?(Hash)
