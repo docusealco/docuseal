@@ -27,7 +27,7 @@ RSpec.describe 'SMS Settings', type: :request do
     before { sign_in admin }
 
     it 'creates a new SMS config and redirects with notice' do
-      expect {
+      expect do
         post settings_sms_path, params: {
           encrypted_config: {
             value: {
@@ -39,7 +39,7 @@ RSpec.describe 'SMS Settings', type: :request do
             }
           }
         }
-      }.to change(EncryptedConfig, :count).by(1)
+      end.to change(EncryptedConfig, :count).by(1)
 
       expect(response).to redirect_to(settings_sms_path)
       follow_redirect!
@@ -52,10 +52,10 @@ RSpec.describe 'SMS Settings', type: :request do
 
     it 'preserves existing Twilio auth token when blank is submitted' do
       create(:encrypted_config, account:, key: EncryptedConfig::SMS_CONFIGS_KEY,
-                                 value: { 'enabled' => true, 'provider' => 'twilio',
-                                          'twilio_account_sid' => 'AC123',
-                                          'twilio_auth_token' => 'keep_me',
-                                          'twilio_from' => '+15551234567' })
+             value: { 'enabled' => true, 'provider' => 'twilio',
+                      'twilio_account_sid' => 'AC123',
+                      'twilio_auth_token' => 'keep_me',
+                      'twilio_from' => '+15551234567' })
 
       post settings_sms_path, params: {
         encrypted_config: {
@@ -75,9 +75,9 @@ RSpec.describe 'SMS Settings', type: :request do
 
     it 'preserves existing BulkVS basic_auth_token when blank is submitted' do
       create(:encrypted_config, account:, key: EncryptedConfig::SMS_CONFIGS_KEY,
-                                 value: { 'enabled' => true, 'provider' => 'bulkvs',
-                                          'basic_auth_token' => 'keep_me',
-                                          'from_number' => '15551234567' })
+             value: { 'enabled' => true, 'provider' => 'bulkvs',
+                      'basic_auth_token' => 'keep_me',
+                      'from_number' => '15551234567' })
 
       post settings_sms_path, params: {
         encrypted_config: {
@@ -91,10 +91,10 @@ RSpec.describe 'SMS Settings', type: :request do
 
     it 'preserves existing VoIP.ms API password when blank is submitted' do
       create(:encrypted_config, account:, key: EncryptedConfig::SMS_CONFIGS_KEY,
-                                 value: { 'enabled' => true, 'provider' => 'voipms',
-                                          'voipms_api_username' => 'user@example.com',
-                                          'voipms_api_password' => 'keep_me',
-                                          'voipms_did' => '5551234567' })
+             value: { 'enabled' => true, 'provider' => 'voipms',
+                      'voipms_api_username' => 'user@example.com',
+                      'voipms_api_password' => 'keep_me',
+                      'voipms_did' => '5551234567' })
 
       post settings_sms_path, params: {
         encrypted_config: {
@@ -111,11 +111,11 @@ RSpec.describe 'SMS Settings', type: :request do
 
     it 'preserves existing SignalWire API token when blank is submitted' do
       create(:encrypted_config, account:, key: EncryptedConfig::SMS_CONFIGS_KEY,
-                                 value: { 'enabled' => true, 'provider' => 'signalwire',
-                                          'signalwire_space_url' => 'test.signalwire.com',
-                                          'signalwire_project_id' => 'uuid-1234',
-                                          'signalwire_api_token' => 'keep_me',
-                                          'signalwire_from' => '+15551234567' })
+             value: { 'enabled' => true, 'provider' => 'signalwire',
+                      'signalwire_space_url' => 'test.signalwire.com',
+                      'signalwire_project_id' => 'uuid-1234',
+                      'signalwire_api_token' => 'keep_me',
+                      'signalwire_from' => '+15551234567' })
 
       post settings_sms_path, params: {
         encrypted_config: {
