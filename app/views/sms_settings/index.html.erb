@@ -6,21 +6,19 @@
     <% value = @encrypted_config.value || {} %>
     <% sms_enabled = Sms.enabled?(current_account) %>
     <% sms_live = Sms.enabled_for?(current_account) %>
-    <%
-      provider_labels = {
-        'bulkvs' => 'BulkVS',
-        'twilio' => 'Twilio',
-        'voipms' => 'VoIP.ms',
-        'signalwire' => 'SignalWire'
-      }
-      sending_number = case value['provider'].to_s
-                       when 'twilio'     then value['twilio_from']
-                       when 'voipms'     then value['voipms_did']
-                       when 'signalwire' then value['signalwire_from']
-                       else value['from_number']
-                       end
-      selected_provider = value['provider'].presence || 'bulkvs'
-    %>
+    <% provider_labels = {
+         'bulkvs' => 'BulkVS',
+         'twilio' => 'Twilio',
+         'voipms' => 'VoIP.ms',
+         'signalwire' => 'SignalWire'
+       }
+       sending_number = case value['provider'].to_s
+                        when 'twilio'     then value['twilio_from']
+                        when 'voipms'     then value['voipms_did']
+                        when 'signalwire' then value['signalwire_from']
+                        else value['from_number']
+                        end
+       selected_provider = value['provider'].presence || 'bulkvs' %>
 
     <% if sms_live %>
       <div class="alert alert-success mb-4">

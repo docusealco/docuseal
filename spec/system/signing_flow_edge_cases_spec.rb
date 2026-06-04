@@ -20,7 +20,7 @@ RSpec.describe 'Signing Flow Edge Cases' do
                          email: 'second@example.com')
     end
 
-    pending 'blocks second signer: Vue timing issue with Submitters.current_submitter_order?' do
+    it 'blocks second signer', skip: 'Vue timing issue with Submitters.current_submitter_order?' do
       create(:account_config, account:, key: AccountConfig::ENFORCE_SIGNING_ORDER_KEY, value: true)
 
       visit submit_form_path(slug: second_submitter.slug)
@@ -78,7 +78,7 @@ RSpec.describe 'Signing Flow Edge Cases' do
       create(:account_config, account:, key: AccountConfig::ALLOW_TO_RESUBMIT, value: true)
     end
 
-    pending 'resubmit flow: field not found on second start form visit' do
+    it 'resubmit flow', skip: 'field not found on second start form visit' do
       visit start_form_path(slug: template.slug)
 
       fill_in 'Email', with: 'john@example.com'
@@ -116,14 +116,16 @@ RSpec.describe 'Signing Flow Edge Cases' do
       submission.update!(template_fields: fields)
     end
 
-    pending 'optional fields: Vue teleport timing issue with complete button' do
+    it 'optional fields', skip: 'Vue teleport timing issue with complete button' do
       visit submit_form_path(slug: submitter.slug)
 
       find('#expand_form_button').click
 
       expect(page).to have_css('#complete_button_container')
 
-      page.execute_script('document.getElementById("complete_form_button")?.click() || document.querySelector(".complete-button")?.click()')
+      complete_js = 'document.getElementById("complete_form_button")?.click() || ' \
+                    'document.querySelector(".complete-button")?.click()'
+      page.execute_script(complete_js)
 
       expect(page).to have_content('Form has been completed!')
 

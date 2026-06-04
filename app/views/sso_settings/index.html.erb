@@ -5,6 +5,12 @@
 
     <% creds = Wabosign.google_sso_credentials %>
     <% value = @encrypted_config.value || {} %>
+    <% callback_uri =
+         begin
+           "#{root_url}auth/google_oauth2/callback"
+         rescue StandardError
+           '/auth/google_oauth2/callback'
+         end %>
 
     <% if creds[:source] == :env %>
       <div class="alert mb-4">
@@ -37,7 +43,7 @@
           <p class="font-bold">Google SSO is not configured</p>
           <p class="text-gray-700">
             Fill in your Google Cloud OAuth client details below. The OAuth redirect URI to register in <a href="https://console.cloud.google.com/apis/credentials" target="_blank" rel="noopener" class="link">Google Cloud Console</a> is
-            <code><%= "#{root_url}auth/google_oauth2/callback" rescue '/auth/google_oauth2/callback' %></code>.
+            <code><%= callback_uri %></code>.
           </p>
         </div>
       </div>

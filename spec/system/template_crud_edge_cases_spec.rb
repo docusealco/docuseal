@@ -23,7 +23,7 @@ RSpec.describe 'Template CRUD Edge Cases' do
       expect(template.reload.archived_at).to be_nil
     end
 
-    pending 'archived templates index: restore button selector not matching' do
+    it 'archived templates index', skip: 'restore button selector not matching' do
       visit templates_archived_index_path
 
       expect(page).to have_content(template.name)

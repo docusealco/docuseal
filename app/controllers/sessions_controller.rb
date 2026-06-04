@@ -25,9 +25,7 @@ class SessionsController < Devise::SessionsController
   private
 
   def after_sign_in_path_for(...)
-    if params[:redir].present?
-      return params[:redir]
-    end
+    return params[:redir] if params[:redir].present?
 
     super
   end

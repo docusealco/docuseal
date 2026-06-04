@@ -149,6 +149,7 @@ jobs:
           RAILS_ENV: production
           SECRET_KEY_BASE: dummy-for-precompile
           DATABASE_URL: postgres://postgres:postgres@localhost:5432/wabosign_test
+          RUN_MIGRATIONS: 'false'
         run: |
           bundle exec rake assets:precompile
 
