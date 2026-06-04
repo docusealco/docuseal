@@ -1,9 +1,13 @@
 *.html linguist-detectable=false
 
-# WaboSign brand binary files — never merge upstream versions; always keep ours
-public/favicon.svg       -merge
-public/favicon.ico       -merge
-public/favicon-16x16.png -merge
-public/favicon-32x32.png -merge
-public/favicon-96x96.png -merge
-public/logo.svg          -merge
+# WaboSign brand binary files — never merge upstream versions; always keep ours.
+# Keep this list in sync with config/brand_assets.sha256 (the source of truth
+# that bin/fork-check verifies and bin/sync-upstream restores from).
+public/favicon.svg                    -merge
+public/favicon.ico                    -merge
+public/favicon-16x16.png              -merge
+public/favicon-32x32.png              -merge
+public/favicon-96x96.png              -merge
+public/logo.svg                       -merge
+public/apple-touch-icon.png           -merge
+public/apple-touch-icon-precomposed.png -merge

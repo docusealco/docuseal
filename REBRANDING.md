@@ -20,9 +20,9 @@ Scope: ~183 files modified. Decisions were made in a planning conversation befor
 ## AGPL §7(b) attribution
 
 - `Wabosign::UPSTREAM_NAME = 'DocuSeal'` and `Wabosign::UPSTREAM_URL` constants added
-- [app/views/shared/_powered_by.html.erb](app/views/shared/_powered_by.html.erb) and [app/views/shared/_email_attribution.html.erb](app/views/shared/_email_attribution.html.erb) now render a "based on DocuSeal (AGPLv3)" credit alongside the WaboSign brand
+- [app/views/shared/_powered_by.html.erb](app/views/shared/_powered_by.html.erb) renders "WaboSign, a fork of DocuSeal" in the footer; [app/views/shared/_email_attribution.html.erb](app/views/shared/_email_attribution.html.erb) states the fork relationship in the email footer
 - [app/javascript/submission_form/completed.vue](app/javascript/submission_form/completed.vue) carries the same credit on the post-signing completion screen
-- New `based_on` i18n key added to all 14 language sections
+- i18n keys `fork_of` and `product_name_is_a_fork_of_upstream_html` carry the credit text (English; other locales fall back via `config.i18n.fallbacks`). `bin/fork-check` asserts these surfaces keep the credit
 - [README.md](README.md) and [LICENSE_ADDITIONAL_TERMS](LICENSE_ADDITIONAL_TERMS) rewritten
 - New [NOTICE](NOTICE) file added crediting DocuSeal LLC and listing modifications
 
@@ -73,103 +73,81 @@ Upstream lives at `docusealco/docuseal`. Each upstream release is brought in by 
 ### Tooling
 
 - [bin/rebrand-sync](bin/rebrand-sync) — Ruby script that performs the DocuSeal → WaboSign rename sweep across the working tree. Idempotent. Honors a deny-list (see §"Intentionally preserved upstream references" above) and sentinel-protects AGPL §7(b) attribution phrases, SDK custom-element names (`docuseal-form`, `docuseal-builder`), `@docuseal/*` npm packages, and the `github.com/docusealco/{fields-detection,pdfium-binaries,turbo}` binary URLs.
-- [bin/rebrand-check](bin/rebrand-check) — fails (exit 1) if any unintended DocuSeal reference survives. Wired into [.github/workflows/ci.yml](.github/workflows/ci.yml) as the `Rebrand check` job.
+- [bin/rebrand-check](bin/rebrand-check) — fails (exit 1) if any unintended DocuSeal *text* reference survives. Wired into CI as the `Rebrand check` job.
+- [bin/fork-check](bin/fork-check) — fails (exit 1) if any **fork invariant** is broken: re-introduced Pro gate, deleted fork code, overwritten brand asset, lost attribution, dangling partial render, or PRESERVE↔ALLOW_PATTERNS drift. Driven by the declarative manifest [config/fork_invariants.yml](config/fork_invariants.yml). Wired into CI as the `Fork invariants` job. This is the executable form of the old manual post-merge checklist.
+- [config/fork_invariants.yml](config/fork_invariants.yml) — the data behind `bin/fork-check`. Extend **this file** (not the script) when upstream adds a new gate; every entry carries a `why:`.
+- [config/brand_assets.sha256](config/brand_assets.sha256) — checksum baseline of the WaboSign "W" mark assets. The single source of truth for "what is a brand asset": `bin/fork-check` verifies it, `bin/sync-upstream` restores from it, and [.gitattributes](.gitattributes) `-merge` should mirror it.
 - `git config rerere.enabled true && git config rerere.autoupdate true` — once-per-checkout setup; remembers semantic conflict resolutions so the same call is not re-made each release.
-- [.gitattributes](.gitattributes) marks `Gemfile.lock` and `yarn.lock` as `-merge` (regenerate after merge rather than diffing).
+- [.gitattributes](.gitattributes) marks the brand binary assets as `-merge` (always keep ours; never blend an upstream version during a merge).
 
-### Per-sync steps
+### Runbook (for a human or AI agent)
+
+The whole sync — fetch, branch from the tag, sweep, merge, restore brand assets,
+re-sweep, and run both gates — is automated:
 
 ```sh
-git fetch upstream --tags
-git checkout -b sync/upstream-<tag> <tag>      # e.g. 3.0.0
-bin/rebrand-sync
-git add -A && git commit -m "Apply WaboSign rebrand sweep to upstream <tag>"
-
-git checkout master
-git merge --no-ff sync/upstream-<tag>
-# Resolve conflicts. Rerere caches recurring resolutions.
-
-# Restore WaboSign brand assets that the merge may have overwritten:
-git checkout ORIG_HEAD -- public/favicon.svg public/favicon.ico \
-  public/favicon-16x16.png public/favicon-32x32.png \
-  public/favicon-96x96.png public/logo.svg
-
-bin/rebrand-sync                                # catch upstream-only new files
-bin/rebrand-check                               # CI gate
-
-bundle install
-yarn install
-
-# Verify (see "Verification" in the plan), then:
-git tag wabosign-synced-with-<tag>
+bin/sync-upstream <tag>          # e.g. bin/sync-upstream 3.0.2
+# RUN_TESTS=1 bin/sync-upstream <tag>   # also run rspec before declaring done
 ```
 
-Or use the automated script:
-```sh
-bin/sync-upstream <tag>
-```
+When it stops, decide based on which gate failed:
+
+1. **Merge conflict** — resolve it. `rerere` caches recurring resolutions.
+2. **`rebrand-check` failed** — un-rebranded DocuSeal text survived. If a token
+   must be preserved, add it to `PRESERVE` (bin/rebrand-sync) **and**
+   `ALLOW_PATTERNS` (bin/rebrand-check) together (see below).
+3. **`fork-check` failed** — a fork invariant broke. Each violation names the
+   file + the `why:` from the manifest:
+   - re-introduced gate → remove it;
+   - brand asset overwritten → `git checkout ORIG_HEAD -- <path>`;
+   - genuinely new upstream feature/gate → add a scoped invariant to
+     [config/fork_invariants.yml](config/fork_invariants.yml).
+4. Re-run `bin/fork-check` (and `bin/rebrand-check`) until both print `ok`.
+5. `bundle install && yarn install`, then **tag + push only when both gates and
+   `rspec` are green**: `git tag wabosign-synced-with-<tag> && git push origin master --tags`.
+
+The equivalent manual steps (if you are not using the script) are: branch from
+the tag, `bin/rebrand-sync`, commit, `git merge --no-ff` into master, restore
+the brand assets listed in `config/brand_assets.sha256` from `ORIG_HEAD`,
+`bin/rebrand-sync` again, then `bin/rebrand-check && bin/fork-check`.
 
 ### Adding new preserved tokens
 
-When upstream introduces a new SDK identifier, binary URL, or attribution surface that must survive the sweep, edit `PRESERVE` in [bin/rebrand-sync](bin/rebrand-sync) and `ALLOW_PATTERNS` in [bin/rebrand-check](bin/rebrand-check) together. The two must stay in sync — `rebrand-sync` decides what the sweep ignores, `rebrand-check` decides what CI tolerates.
+When upstream introduces a new SDK identifier, binary URL, or attribution surface that must survive the sweep, edit `PRESERVE` in [bin/rebrand-sync](bin/rebrand-sync) and `ALLOW_PATTERNS` in [bin/rebrand-check](bin/rebrand-check) together. The two must stay in sync — `rebrand-sync` decides what the sweep ignores, `rebrand-check` decides what CI tolerates. **This pairing is now CI-enforced:** `bin/fork-check` fails if a `PRESERVE` token containing "docuseal" has no matching `ALLOW_PATTERN`.
 
-## Post-Merge Verification Checklist
+### Adding a new fork invariant
 
-Run through these checks after every upstream merge. The earlier failures are caught by `bin/rebrand-check`; the later ones require manual inspection or `rspec`.
+When upstream re-introduces a gate, deletes fork code, or adds a brand asset, encode the rule in [config/fork_invariants.yml](config/fork_invariants.yml) — not in `bin/fork-check`. Use a path-scoped `must_not_contain` for re-added gates (never ban a token tree-wide unless it is genuinely unique to the gate — `Wabosign.multitenant?` is legitimate in ~19 views), `must_exist`/`must_not_exist` for files, and add new brand files to `config/brand_assets.sha256` (and the `.gitattributes` `-merge` list). Always include a `why:` — it is the institutional memory the next sync will need.
 
-### Automatic (`bin/rebrand-check`)
-- Rebrand check passes (no unintended DocuSeal references)
-- RSpec suite passes (360+ examples, 0 failures)
+## Post-Merge Verification
 
-### Footer / Attribution
-- [ ] `app/views/shared/_powered_by.html.erb` links both WaboSign *and* DocuSeal (upstream AGPL credit)
-- [ ] `app/views/shared/_email_attribution.html.erb` uses WaboSign product name, not DocuSeal
-- [ ] `app/javascript/submission_form/completed.vue` still has the hardcoded DocuSeal upstream credit
+Most of what used to be a 21-item manual checklist is now executed by CI. After a
+sync, the gates below must be green; only a short residue needs a human eye.
 
-### Logo / Branding
-- [ ] `app/views/shared/_logo.html.erb` shows the WaboSign "W" mark (not the DocuSeal abstract shape)
-- [ ] `public/favicon.svg`, `public/logo.svg` show the WaboSign "W" mark
-- [ ] `app/views/shared/_account_logo.html.erb` renders attached logo or falls back to the W mark
+### Automated (CI — must pass)
 
-### Console / Plans / Pro / Upgrade
-- [ ] `app/controllers/console_redirect_controller.rb` does not exist
-- [ ] `config/routes.rb` has no `console_redirect`, `upgrade`, or `manage` routes
-- [ ] `app/controllers/sessions_controller.rb` has no `console_redirect_index_path` call
-- [ ] `lib/wabosign.rb` has no `CONSOLE_URL`, `CLOUD_URL`, or `CDN_URL` constants
-- [ ] `app/views/shared/_settings_nav.html.erb` has no "Plans" link or "Pro" badge
-- [ ] `app/views/shared/_navbar.html.erb` has no "Console" link in dropdown
-- [ ] `app/views/shared/_navbar_buttons.html.erb` has no "Upgrade" button
-- [ ] No view file contains `unlock_with_docuseal_pro`, `activate_with_docuseal_pro`, or `console_redirect_index_path`
+- **`bin/rebrand-check`** — no unintended DocuSeal *text* survived the sweep.
+- **`bin/fork-check`** — every fork invariant holds. The assertions (and the
+  rationale for each) live in [config/fork_invariants.yml](config/fork_invariants.yml):
+  attribution surfaces present; renamed identifiers + SDK tokens present; brand
+  assets match [config/brand_assets.sha256](config/brand_assets.sha256); no
+  re-introduced Pro gates (`ENTERPRISE_PATHS`, `console_redirect_index_path`, the
+  reminder `multitenant?` gate, …); placeholders / `console_redirect_controller` /
+  `lib/docuseal.rb` absent; SMS stack + `lib/ability.rb` present; no dead paywall
+  i18n keys; no dangling partial renders; PRESERVE↔ALLOW_PATTERNS in sync.
+- **`rspec`** — suite passes (also catches Zeitwerk module conflicts at boot).
 
-### Feature Gates (all freely available)
-- [ ] `app/views/sms_settings/index.html.erb` shows provider form (BulkVS/Twilio/VoIP.ms/SignalWire) — not a placeholder
-- [ ] `app/views/personalization_settings/_logo_placeholder.html.erb` shows upload form — not a Pro upsell
-- [ ] `app/views/notifications_settings/_reminder_placeholder.html.erb` is empty (reminder form renders freely)
-- [ ] `app/views/submissions/_bulk_send_placeholder.html.erb` is empty (bulk send freely available)
-- [ ] `app/views/submissions/_send_sms_button.html.erb` is a functional button (not Pro-gated tooltip)
-- [ ] `app/views/users/_role_select.html.erb` has no disabled options or Pro upsell link
-- [ ] `app/views/accounts/show.html.erb` has no console-redirect Pro gates on Decline/Delegate toggles
+When upstream changes something the manifest does not yet know about, **extend
+the manifest** (see "Adding a new fork invariant" above) rather than re-checking
+by hand. That way the next sync inherits the protection.
 
-### Google SSO
-- [ ] `app/views/sso_settings/index.html.erb` shows the Google SSO config form (client_id, client_secret, allowed_domains)
-- [ ] `app/views/devise/sessions/_omniauthable.html.erb` has the "Sign in with Google" button
-- [ ] `app/views/sso_settings/_placeholder.html.erb` does not exist (was replaced by the real form)
-- [ ] OmniAuth routes for `auth/google_oauth2` are present in `config/routes.rb`
+### Human-judgment residue (not automatable)
 
-### E-Signature Settings
-- [ ] `app/views/esign_settings/_default_signature_row.html.erb` does not exist
-- [ ] `config/locales/i18n.yml` has no `wabosign_trusted_signature` or `sign_documents_with_trusted_certificate_*` keys
-
-### Social / Extras
-- [ ] `app/views/shared/_github.html.erb` does not exist (no hardcoded star count)
-- [ ] `app/views/shared/_navbar.html.erb` does not render `shared/github` or `shared/github_button`
-- [ ] `app/views/shared/_settings_nav.html.erb` has no Discord or AI Assistant links in support channels
-- [ ] `config/locales/i18n.yml` has no `discord_community` or `ai_assistant` keys
-
-### SMS (independently developed)
-- [ ] `app/views/sms_settings/index.html.erb` is the full provider form (not placeholder)
-- [ ] `lib/sms.rb` exists with all 4 providers (BulkVS, Twilio, VoIP.ms, SignalWire)
-- [ ] `lib/sms/providers/` directory exists with all 4 provider implementations
-- [ ] `app/controllers/sms_settings_controller.rb` handles `test_message` action
-- [ ] `app/models/encrypted_config.rb` has `SMS_CONFIGS_KEY = 'sms_configs'` constant
-- [ ] `config/routes.rb` has the SMS routes with `test_message` collection route
+- [ ] The rendered WaboSign "W" mark *looks* right (checksum proves the file is
+      unchanged; a human confirms it is the intended asset, e.g. after a
+      deliberate brand update + baseline regen).
+- [ ] Upstream did not introduce a genuinely **new** feature or freemium gate
+      that needs a fork-policy decision (free it, and add an invariant) — skim
+      the merge diff for new `multitenant?` / Pro / Console / placeholder code.
+- [ ] New upstream **UI strings** read correctly after the sweep (the rename is
+      mechanical; some phrasings need a human's rebranding nuance).

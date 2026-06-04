@@ -55,6 +55,7 @@ DENY_PATHS = Set.new([
   # marker), or the guard would silently stop catching that regression.
   'bin/fork-check',
   'config/fork_invariants.yml',
+  'config/brand_assets.sha256',
   # WaboSign brand logo files — must never be touched by the sweep;
   # restored from ORIG_HEAD by bin/sync-upstream after an upstream merge.
   'public/favicon.svg',

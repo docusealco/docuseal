@@ -56,35 +56,67 @@ echo "=== Merging into master ==="
 git checkout master
 git merge --no-ff "sync/upstream-$TAG" -m "Merge upstream $TAG into master"
 
-echo "=== Restoring WaboSign binary assets overwritten by merge ==="
-# Merging an upstream tag may overwrite our brand logo files that rebrand-sync
-# cannot protect (they are binary / opaque-image and bypass the text sweep).
-# Restore them from pre-merge master (ORIG_HEAD).
-LOGO_FILES=(
-  public/favicon.svg
-  public/favicon.ico
-  public/favicon-16x16.png
-  public/favicon-32x32.png
-  public/favicon-96x96.png
-  public/logo.svg
-)
-for f in "${LOGO_FILES[@]}"; do
-  if git show ORIG_HEAD:"$f" &>/dev/null 2>&1; then
+echo "=== Restoring WaboSign brand assets overwritten by merge ==="
+# Merging an upstream tag may overwrite our brand files that rebrand-sync cannot
+# protect (binary / opaque-image, they bypass the text sweep). The authoritative
+# list lives in config/brand_assets.sha256 — derive it from there so a new brand
+# file added to the baseline is automatically restored too. Restore from the
+# pre-merge master (ORIG_HEAD).
+RESTORED=()
+mapfile -t BRAND_FILES < <(awk '!/^#/ && NF {print $2}' config/brand_assets.sha256)
+for f in "${BRAND_FILES[@]}"; do
+  if git show "ORIG_HEAD:$f" &>/dev/null; then
     git checkout ORIG_HEAD -- "$f"
+    RESTORED+=("$f")
     echo "  restored: $f"
   fi
 done
 
 echo "=== Catching new upstream files (post-merge sweep) ==="
 bin/rebrand-sync
-bin/rebrand-check
+
+echo "=== Verifying invariants ==="
+# Both checks must pass before this sync can be considered clean. With
+# `set -e` a failure already aborts, but wrap them so the operator/agent sees a
+# clear remediation path and the half-merged tree is left in place to inspect.
+if ! bin/rebrand-check; then
+  echo "" >&2
+  echo "!! rebrand-check failed: un-rebranded DocuSeal text survived the sweep." >&2
+  echo "   Inspect the lines above; if a token must be preserved, add it to" >&2
+  echo "   PRESERVE (bin/rebrand-sync) AND ALLOW_PATTERNS (bin/rebrand-check)." >&2
+  echo "   The merge is left in place for you to fix; do NOT push until green." >&2
+  exit 1
+fi
+if ! bin/fork-check; then
+  echo "" >&2
+  echo "!! fork-check failed: a fork invariant was broken by this merge." >&2
+  echo "   Each violation above names the file + the reason (from" >&2
+  echo "   config/fork_invariants.yml's why:). Typical fixes:" >&2
+  echo "     - re-introduced gate    -> remove it" >&2
+  echo "     - brand asset overwritten -> git checkout ORIG_HEAD -- <path>" >&2
+  echo "     - new upstream feature  -> add a scoped invariant to the manifest" >&2
+  echo "   The merge is left in place for you to fix; do NOT push until green." >&2
+  exit 1
+fi
+
+if [ "${RUN_TESTS:-0}" = "1" ]; then
+  echo "=== Running test suite (RUN_TESTS=1) ==="
+  bundle exec rspec
+fi
 
 echo ""
 echo "============================================================"
-echo "Sync of $TAG complete."
-echo "Next steps:"
-echo "  1. bundle install && yarn install"
-echo "  2. Run tests: bundle exec rspec"
-echo "  3. Tag: git tag wabosign-synced-with-$TAG"
-echo "  4. Push: git push origin master --tags"
+echo "Sync of $TAG complete. Invariants: rebrand-check + fork-check PASS."
+echo "Brand assets restored: ${#RESTORED[@]}"
+if [ "${RUN_TESTS:-0}" != "1" ]; then
+  echo "Tests: not run (set RUN_TESTS=1 to run rspec, or rely on CI)."
+fi
+echo ""
+echo "Remaining human-judgment review (see REBRANDING.md \"Human-judgment\"):"
+echo "  - Does the rendered WaboSign 'W' mark look right?"
+echo "  - Did upstream add a genuinely new feature/gate needing a fork policy call?"
+echo "  - Do new upstream UI strings need rebranding nuance the sweep can't infer?"
+echo ""
+echo "Then: bundle install && yarn install, tag, and push:"
+echo "  git tag wabosign-synced-with-$TAG && git push origin master --tags"
 echo "============================================================"

@@ -1,0 +1,23 @@
+# WaboSign brand-asset checksum baseline.
+#
+# bin/fork-check verifies every file listed here exists and matches its sha256,
+# failing if one was silently overwritten by an upstream merge (the "W" mark
+# replaced by DocuSeal's logo). bin/sync-upstream restores these from ORIG_HEAD
+# after a merge. This is the single source of truth for "what is a brand asset":
+# .gitattributes (-merge) and the sync-upstream restore list both derive from it.
+#
+# google_g.svg is intentionally NOT here — it is Google's logo for the SSO
+# button, legitimately shared with upstream, not a WaboSign rebrand target.
+#
+# Regenerate after an intentional brand change (review the diff deliberately):
+#   sha256sum $(awk '!/^#/{print $2}' config/brand_assets.sha256) > /tmp/b && \
+#     { grep '^#' config/brand_assets.sha256; cat /tmp/b; } > config/brand_assets.sha256
+#
+0a269a2b86c2413c08c10e8ab75ce0349d9cc59cc470613696d54480a4688ef0  public/favicon.svg
+b78aa6db776b326df6ac48ba75f50541fb3cbcd09c78dc99e14a695ab80b84d6  public/favicon.ico
+8fd83aa2a2f56b993e680a1babb5d6984d3ec8b72b40ac470cf4f3acff9f9ed9  public/favicon-16x16.png
+e8d9b8fe8346b12dd34eed410a4113992b7708d844441b15f607c49c0574f825  public/favicon-32x32.png
+204023b29fdf57cf45ef2352ddb56964ed35ab1be7d58c0dd3ab1b2a45cc6671  public/favicon-96x96.png
+0a269a2b86c2413c08c10e8ab75ce0349d9cc59cc470613696d54480a4688ef0  public/logo.svg
+9b9507aaefcbe06b58c464724d418940c610df480e75b4cc1a58d1939d5d2142  public/apple-touch-icon.png
+9b9507aaefcbe06b58c464724d418940c610df480e75b4cc1a58d1939d5d2142  public/apple-touch-icon-precomposed.png

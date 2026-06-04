@@ -15,6 +15,7 @@
 require 'find'
 require 'set'
 require 'yaml'
+require 'digest'
 
 ROOT = File.expand_path('..', __dir__)
 MANIFEST = File.join(ROOT, 'config/fork_invariants.yml')
@@ -86,6 +87,7 @@ end
 
 manifest = YAML.safe_load(File.read(MANIFEST)) || {}
 violations = []
+warnings = []
 
 # 1. Files that must exist (fork code + brand assets upstream tends to delete).
 Array(manifest['must_exist']).each do |path|
@@ -218,6 +220,49 @@ else
     end
   end
 end
+
+# 9. Brand-asset checksums: each file in config/brand_assets.sha256 must exist
+#    and match its recorded hash, or an upstream merge silently overwrote our
+#    "W" mark. Binary, so it bypasses the text sweep — this is the only guard.
+BRAND_BASELINE = 'config/brand_assets.sha256'
+baselined = []
+if File.exist?(abs(BRAND_BASELINE))
+  read_lines(abs(BRAND_BASELINE)).each do |line|
+    next if line.strip.empty? || line.lstrip.start_with?('#')
+
+    digest, path = line.strip.split(/\s+/, 2)
+    next if digest.nil? || path.nil?
+
+    baselined << path
+    unless File.exist?(abs(path))
+      violations << "brand_asset: missing baselined asset: #{path} (restore: git checkout ORIG_HEAD -- #{path})"
+      next
+    end
+    actual = Digest::SHA256.file(abs(path)).hexdigest
+    next if actual == digest
+
+    violations << "brand_asset: #{path} checksum mismatch — overwritten? " \
+                  "(restore: git checkout ORIG_HEAD -- #{path}, or regenerate the baseline if intentional)"
+  end
+end
+
+# 10. Glob detector (warn-level): a public/ image that looks like a brand asset
+#     but is not in the baseline — upstream may have added it; decide whether to
+#     rebrand + baseline it, or leave it. Never fails the build.
+brand_globs = %w[public/favicon* public/logo* public/apple-touch-icon*]
+brand_globs.each do |g|
+  Dir.glob(abs(g)).each do |p|
+    next unless File.file?(p)
+
+    rel = p.sub(%r{\A#{Regexp.escape(ROOT)}/}, '')
+    next if baselined.include?(rel)
+
+    warnings << "brand-asset candidate not in #{BRAND_BASELINE}: #{rel} " \
+                '(add the WaboSign version to the baseline, or confirm it is upstream-neutral)'
+  end
+end
+
+warnings.each { |w| warn "fork-check: warning: #{w}" } unless warnings.empty?
 
 if violations.empty?
   puts 'fork-check: ok'
