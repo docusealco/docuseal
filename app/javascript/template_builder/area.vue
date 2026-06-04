@@ -198,7 +198,7 @@
           width="100%"
           height="100%"
           class="opacity-50"
-          :style="{ maxHeight: isInlineSize ? '5cqmin' : '40px' }"
+          :style="{ maxHeight: isInlineSize ? '4.4cqmin' : '40px' }"
         />
       </span>
     </div>

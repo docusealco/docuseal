@@ -652,21 +652,18 @@
       >
         <div class="absolute left-0 right-0 bottom-4 flex justify-center">
           <div class="join shadow pointer-events-auto">
-            <span class="join-item bg-base-content text-white pl-4 pr-3 h-9 inline-flex items-center text-sm font-semibold cursor-default">
-              {{ Math.round(zoomLevel * 100) }}%
+            <span class="join-item bg-base-content text-white pl-2 pr-2.5 h-9 items-center text-sm font-medium cursor-default w-16 flex justify-end">
+              <span>
+                {{ Math.round(zoomLevel * 100) }}%
+              </span>
             </span>
-            <div
-              class="tooltip tooltip-top"
-              :data-tip="t('reset_zoom')"
+            <button
+              type="button"
+              class="join-item bg-base-content text-white h-9 pl-2 pr-3 inline-flex items-center justify-center cursor-pointer hover:opacity-90 border-l border-white/20"
+              @click="zoomLevel = 1"
             >
-              <button
-                type="button"
-                class="join-item bg-base-content text-white h-9 pl-2 pr-3 inline-flex items-center justify-center cursor-pointer hover:opacity-90 border-l border-white/20"
-                @click="zoomLevel = 1"
-              >
-                <IconX class="w-5 h-5" />
-              </button>
-            </div>
+              <IconX class="w-4 h-4 stroke-2" />
+            </button>
           </div>
         </div>
       </div>
@@ -2068,7 +2065,7 @@ export default {
       event.preventDefault()
 
       const oldZoom = this.zoomLevel
-      const nextZoom = Math.max(1, Math.min(3, oldZoom - event.deltaY * 0.002))
+      const nextZoom = Math.max(1, Math.min(3, oldZoom - event.deltaY * 0.006))
 
       if (nextZoom === oldZoom) return
 

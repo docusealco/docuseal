@@ -219,8 +219,7 @@ const en = {
   revisions: 'Revisions',
   apply: 'Apply',
   no_revisions_yet: 'No revisions yet',
-  viewing_revision_from: 'Viewing revision from {date}',
-  reset_zoom: 'Reset zoom'
+  viewing_revision_from: 'Viewing revision from {date}'
 }
 
 const es = {
@@ -444,8 +443,7 @@ const es = {
   revisions: 'Revisiones',
   apply: 'Aplicar',
   no_revisions_yet: 'Aún no hay revisiones',
-  viewing_revision_from: 'Viendo revisión del {date}',
-  reset_zoom: 'Restablecer zoom'
+  viewing_revision_from: 'Viendo revisión del {date}'
 }
 
 const it = {
@@ -669,8 +667,7 @@ const it = {
   revisions: 'Revisioni',
   apply: 'Applica',
   no_revisions_yet: 'Nessuna revisione ancora',
-  viewing_revision_from: 'Visualizzazione revisione del {date}',
-  reset_zoom: 'Reimposta zoom'
+  viewing_revision_from: 'Visualizzazione revisione del {date}'
 }
 
 const pt = {
@@ -894,8 +891,7 @@ const pt = {
   revisions: 'Revisões',
   apply: 'Aplicar',
   no_revisions_yet: 'Nenhuma revisão ainda',
-  viewing_revision_from: 'Visualizando revisão de {date}',
-  reset_zoom: 'Redefinir zoom'
+  viewing_revision_from: 'Visualizando revisão de {date}'
 }
 
 const fr = {
@@ -1119,8 +1115,7 @@ const fr = {
   revisions: 'Révisions',
   apply: 'Appliquer',
   no_revisions_yet: 'Aucune révision pour le moment',
-  viewing_revision_from: 'Affichage de la révision du {date}',
-  reset_zoom: 'Réinitialiser le zoom'
+  viewing_revision_from: 'Affichage de la révision du {date}'
 }
 
 const de = {
@@ -1344,8 +1339,7 @@ const de = {
   revisions: 'Revisionen',
   apply: 'Anwenden',
   no_revisions_yet: 'Noch keine Revisionen',
-  viewing_revision_from: 'Ansicht der Revision vom {date}',
-  reset_zoom: 'Zoom zurücksetzen'
+  viewing_revision_from: 'Ansicht der Revision vom {date}'
 }
 
 const nl = {
@@ -1569,8 +1563,7 @@ const nl = {
   revisions: 'Revisies',
   apply: 'Toepassen',
   no_revisions_yet: 'Nog geen revisies',
-  viewing_revision_from: 'Revisie van {date} bekijken',
-  reset_zoom: 'Zoom terugzetten'
+  viewing_revision_from: 'Revisie van {date} bekijken'
 }
 
 export { en, es, it, pt, fr, de, nl }
