@@ -2,7 +2,7 @@
   <%= f.hidden_field :key %>
   <div class="form-control">
     <% record = Struct.new(:first_duration, :second_duration, :third_duration).new(*(f.object.value || {}).values_at('first_duration', 'second_duration', 'third_duration')) %>
-    <% durations = (Wabosign.multitenant? ? AccountConfigs::REMINDER_DURATIONS.except('one_hour', 'two_hours') : AccountConfigs::REMINDER_DURATIONS).keys.map { |v| [t(v.underscore), v] } %>
+    <% durations = AccountConfigs::REMINDER_DURATIONS.keys.map { |v| [t(v.underscore), v] } %>
     <div class="flex flex-col md:flex-row gap-2">
       <div class="w-full">
         <%= f.fields_for :value, record  do |ff| %>

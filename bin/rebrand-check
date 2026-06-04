@@ -53,6 +53,10 @@ ALLOW_FILES = Set.new([
   'bin/rebrand-sync',
   'bin/rebrand-check',
   'bin/sync-upstream',
+  # Fork-invariant guard + its manifest deliberately name "docuseal" tokens
+  # (e.g. lib/docuseal.rb, docuseal-form) as markers to assert on.
+  'bin/fork-check',
+  'config/fork_invariants.yml',
   'lib/wabosign.rb',
   'lib/docuseal.rb',
   # Migration that finds rows by the legacy docuseal_aatl name.

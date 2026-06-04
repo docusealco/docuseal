@@ -1,0 +1,229 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+#
+# bin/fork-check — assert the WaboSign fork invariants declared in
+# config/fork_invariants.yml. Exits 1 (printing every violation) if any
+# invariant is broken; prints "fork-check: ok" and exits 0 otherwise.
+#
+# This is the executable form of the REBRANDING.md post-merge checklist. It
+# catches an upstream merge that re-introduces a Pro gate, deletes fork code,
+# overwrites AGPL attribution, leaves a dangling partial render, or drifts the
+# rename PRESERVE/ALLOW lists apart. To add or change an invariant, edit
+# config/fork_invariants.yml (not this file). Stdlib-only, so the CI job needs
+# no gem install. Wired into CI via .github/workflows/ci.yml.
+
+require 'find'
+require 'set'
+require 'yaml'
+
+ROOT = File.expand_path('..', __dir__)
+MANIFEST = File.join(ROOT, 'config/fork_invariants.yml')
+
+# Files whose job is to *name* the forbidden markers — never scan them in the
+# tree-wide passes, or they would flag themselves.
+SELF_REFERENTIAL = Set.new([
+  'config/fork_invariants.yml',
+  'bin/fork-check',
+  'bin/rebrand-sync',
+  'bin/rebrand-check',
+  'bin/sync-upstream',
+  'REBRANDING.md'
+]).freeze
+
+DENY_PREFIXES = [
+  '.git/', '.github/', 'node_modules/', 'vendor/bundle/', 'vendor/cache/',
+  'tmp/', 'log/', 'pg_data/', 'public/packs/', 'public/packs-test/',
+  'wabosign/', '.claude/', 'coverage/'
+].freeze
+
+BINARY_EXT = Set.new(%w[
+  .png .jpg .jpeg .gif .ico .svg .pdf .zip .tgz .gz .bz2 .xz
+  .woff .woff2 .ttf .eot .otf .pkcs12 .p12 .pem .crt .cer .key
+  .db .sqlite .sqlite3 .so .dylib .dll .exe .onnx
+]).freeze
+
+def abs(rel)
+  File.join(ROOT, rel)
+end
+
+def likely_binary?(path)
+  return true if BINARY_EXT.include?(File.extname(path).downcase)
+
+  File.binread(path, 1024).include?("\x00")
+rescue StandardError
+  false
+end
+
+def marker_list(entry)
+  return [entry['marker']] if entry['marker']
+  return entry['marker_any'] if entry['marker_any']
+  return entry['marker_all'] if entry['marker_all']
+
+  []
+end
+
+def hit?(content, marker)
+  if marker.start_with?('regex:')
+    content.match?(Regexp.new(marker.sub(/\Aregex:/, '')))
+  else
+    content.include?(marker)
+  end
+end
+
+def first_lineno(content, marker)
+  rx = marker.start_with?('regex:') ? Regexp.new(marker.sub(/\Aregex:/, '')) : nil
+  content.each_line.with_index(1) do |line, n|
+    return n if rx ? line.match?(rx) : line.include?(marker)
+  end
+  nil
+end
+
+def read_lines(path)
+  File.readlines(path, encoding: 'UTF-8')
+rescue StandardError
+  []
+end
+
+manifest = YAML.safe_load(File.read(MANIFEST)) || {}
+violations = []
+
+# 1. Files that must exist (fork code + brand assets upstream tends to delete).
+Array(manifest['must_exist']).each do |path|
+  violations << "must_exist: missing required file: #{path}" unless File.exist?(abs(path))
+end
+
+# 2. Files that must not exist (placeholders / console controller / lib/docuseal.rb).
+Array(manifest['must_not_exist']).each do |path|
+  violations << "must_not_exist: forbidden file present: #{path}" if File.exist?(abs(path))
+end
+
+# 3. Markers that must be present in a named file (attribution / identifiers / SDK).
+Array(manifest['must_contain']).each do |entry|
+  path = entry['path']
+  unless File.exist?(abs(path))
+    violations << "must_contain: target file missing: #{path}"
+    next
+  end
+  content = File.read(abs(path))
+  markers = marker_list(entry)
+  if entry['marker_any']
+    unless markers.any? { |m| hit?(content, m) }
+      violations << "must_contain: #{path} contains none of #{markers.inspect} (#{entry['why']})"
+    end
+  else
+    markers.each do |m|
+      violations << "must_contain: #{path} is missing #{m.inspect} (#{entry['why']})" unless hit?(content, m)
+    end
+  end
+end
+
+# 4. Markers that must NOT appear in a named file (re-added Pro gates). Path-scoped.
+Array(manifest['must_not_contain']).each do |entry|
+  path = entry['path']
+  next unless File.exist?(abs(path))
+
+  content = File.read(abs(path))
+  marker_list(entry).each do |m|
+    next unless hit?(content, m)
+
+    violations << "must_not_contain: #{path}:#{first_lineno(content, m)} has forbidden marker #{m.inspect} (#{entry['why']})"
+  end
+end
+
+# 5. Markers banned across the whole tree (kept tiny — prefer path-scoped above).
+global = Array(manifest['forbidden_globally'])
+unless global.empty?
+  Find.find(ROOT) do |p|
+    rel = p.sub(%r{\A#{Regexp.escape(ROOT)}/}, '')
+    if File.directory?(p)
+      Find.prune if rel != '' && DENY_PREFIXES.any? { |d| "#{rel}/".start_with?(d) }
+      next
+    end
+    next if SELF_REFERENTIAL.include?(rel)
+    next if DENY_PREFIXES.any? { |d| rel.start_with?(d) }
+    next if likely_binary?(p)
+
+    read_lines(p).each_with_index do |line, i|
+      global.each do |entry|
+        m = entry['marker']
+        violations << "forbidden_globally: #{rel}:#{i + 1} has #{m.inspect} (#{entry['why']})" if line.include?(m)
+      end
+    end
+  end
+end
+
+# 6. i18n keys that must never reappear (dead paywall/feature strings).
+i18n_keys = Array(manifest['forbidden_i18n_keys'])
+i18n_path = 'config/locales/i18n.yml'
+if !i18n_keys.empty? && File.exist?(abs(i18n_path))
+  read_lines(abs(i18n_path)).each_with_index do |line, i|
+    i18n_keys.each do |k|
+      violations << "forbidden_i18n_keys: #{i18n_path}:#{i + 1} defines #{k}" if line.match?(/^\s*#{Regexp.escape(k)}:/)
+    end
+  end
+end
+
+# 7. Dangling partial renders: every render 'dir/name' must resolve to a file.
+views_root = abs('app/views')
+if File.directory?(views_root)
+  render_rx = %r{\brender\b(?:\s+partial:)?\s+['"]([a-z0-9_]+(?:/[a-z0-9_]+)+)['"]}
+  Find.find(views_root) do |p|
+    next if File.directory?(p)
+    next unless p.end_with?('.erb')
+
+    rel = p.sub(%r{\A#{Regexp.escape(ROOT)}/}, '')
+    read_lines(p).each_with_index do |line, i|
+      line.scan(render_rx).each do |(ref)|
+        dir, base = File.split(ref)
+        next unless Dir.glob(abs(File.join('app/views', dir, "_#{base}.*"))).empty?
+
+        violations << "dangling_partial: #{rel}:#{i + 1} renders '#{ref}' but app/views/#{dir}/_#{base}.* is missing"
+      end
+    end
+  end
+end
+
+# 8. PRESERVE (rebrand-sync) <-> ALLOW_PATTERNS (rebrand-check) consistency.
+#    Every preserved token containing "docuseal" must be tolerated by at least
+#    one allow-pattern, or the rename sweep and the survivor-check have drifted.
+def extract_block(path, regex)
+  File.read(path).match(regex)&.captures&.first
+end
+
+preserve_src = extract_block(abs('bin/rebrand-sync'), /^PRESERVE = \{\n(.*?)^\}\.freeze/m)
+allow_src = extract_block(abs('bin/rebrand-check'), /^ALLOW_PATTERNS = \[\n(.*?)^\]\.freeze/m)
+
+if preserve_src.nil? || allow_src.nil?
+  violations << 'consistency: could not locate PRESERVE and/or ALLOW_PATTERNS blocks ' \
+                '(bin/fork-check parser needs updating)'
+else
+  preserve_tokens = preserve_src.scan(/^\s*'([^']+)'\s*=>/).flatten
+  allow_patterns = []
+  allow_src.each_line do |l|
+    l.scan(/%r\{(.*?)\}/) { |c| allow_patterns << Regexp.new(c.first) }
+  end
+
+  if preserve_tokens.empty? || allow_patterns.empty?
+    violations << 'consistency: PRESERVE/ALLOW_PATTERNS extraction yielded zero entries (parser drift)'
+  else
+    preserve_tokens.select { |t| t.match?(/docuseal/i) }.each do |tok|
+      # SDK element tokens only ever appear wrapped (<tag>, "quoted", &lt;encoded),
+      # and the allow-patterns require that context — so test the token in the
+      # contexts the sweep actually protects, not just bare.
+      candidates = [tok, "<#{tok} ", "<#{tok}>", "</#{tok}>", "&lt;/#{tok}", "'#{tok}'", "\"#{tok}\""]
+      next if candidates.any? { |c| allow_patterns.any? { |re| c.match?(re) } }
+
+      violations << "consistency: PRESERVE token #{tok.inspect} (rebrand-sync) has no matching " \
+                    'ALLOW_PATTERN (rebrand-check); the lists have drifted'
+    end
+  end
+end
+
+if violations.empty?
+  puts 'fork-check: ok'
+  exit 0
+else
+  warn "fork-check: #{violations.size} invariant violation(s):"
+  violations.each { |v| warn "  #{v}" }
+  exit 1
+end

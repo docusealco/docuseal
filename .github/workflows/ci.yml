@@ -162,6 +162,15 @@ jobs:
       - name: Run rebrand-check
         run: bin/rebrand-check
 
+  fork_check:
+    name: Fork invariants
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run fork-check
+        run: bin/fork-check
+
   rspec:
     name: RSpec
     runs-on: ubuntu-latest

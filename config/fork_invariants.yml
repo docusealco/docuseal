@@ -1,0 +1,126 @@
+# WaboSign fork invariants — the executable form of the REBRANDING.md
+# "Post-Merge Verification Checklist".
+#
+# bin/fork-check reads this file and fails (exit 1) if any invariant is
+# violated. It runs in CI on every push, so an upstream merge that re-introduces
+# a Pro gate, deletes fork code, overwrites attribution, or leaves a dangling
+# partial fails the build instead of shipping silently.
+#
+# HOW TO EXTEND (for the next human or AI agent doing an upstream sync):
+#   - Upstream re-added a paywall/gate?  Add a `must_not_contain` entry SCOPED to
+#     the exact file (see the multitenant? note below — never ban a token tree-
+#     wide unless it is genuinely unique to the gate).
+#   - Upstream deleted fork code / a brand asset?  Add a `must_exist` entry.
+#   - Upstream re-added a placeholder / console controller?  Add `must_not_exist`.
+#   - Always include a `why:` — it is the institutional memory the last sync
+#     wished it had.
+#
+# Marker semantics (must_contain / must_not_contain / forbidden_globally):
+#   marker:      "<text>"          single literal substring
+#   marker_any:  ["a", "b"]        at least one present (contain) / none present (not_contain)
+#   marker_all:  ["a", "b"]        all present (must_contain only)
+#   Prefix any marker value with "regex:" to match as a Ruby regular expression.
+
+# ---------------------------------------------------------------------------
+# Files that MUST exist. Upstream merges have deleted these fork-specific files
+# (damage class #3) and overwritten brand assets (damage class #1).
+# ---------------------------------------------------------------------------
+must_exist:
+  # Independently-developed SMS stack (not in upstream OSS edition)
+  - lib/sms.rb
+  - lib/sms/providers/bulkvs.rb
+  - lib/sms/providers/twilio.rb
+  - lib/sms/providers/voipms.rb
+  - lib/sms/providers/signalwire.rb
+  - app/controllers/sms_settings_controller.rb
+  # Role-based authorization (fork feature; deleted by the 3.0.2 sync)
+  - lib/ability.rb
+  # Brand assets (binary; bypass the text sweep, so easy to lose silently)
+  - public/favicon.svg
+  - public/favicon.ico
+  - public/favicon-16x16.png
+  - public/favicon-32x32.png
+  - public/favicon-96x96.png
+  - public/logo.svg
+
+# ---------------------------------------------------------------------------
+# Files that MUST NOT exist. Upstream re-adds these on a sync.
+# ---------------------------------------------------------------------------
+must_not_exist:
+  # Re-adding this defines a `Docuseal` module that collides with lib/wabosign.rb
+  # under Zeitwerk → boot failure (damage class #4).
+  - lib/docuseal.rb
+  # Console/Upgrade redirect controller — there is no Console in WaboSign.
+  - app/controllers/console_redirect_controller.rb
+  # Pro-gated placeholder views that replace the real free forms.
+  - app/views/esign_settings/_default_signature_row.html.erb
+  - app/views/sso_settings/_placeholder.html.erb
+
+# ---------------------------------------------------------------------------
+# Markers that MUST be present in a specific file (damage classes #5 attribution
+# and #3 renamed identifiers / SDK contract). Reading is scoped to the one file.
+# ---------------------------------------------------------------------------
+must_contain:
+  # --- AGPL §7(b) upstream attribution (must stay visible in interactive UIs) ---
+  - path: app/views/shared/_powered_by.html.erb
+    marker: "UPSTREAM_NAME"
+    why: "Footer credit links DocuSeal via Wabosign::UPSTREAM_NAME/URL — AGPL §7(b)."
+  - path: app/views/shared/_email_attribution.html.erb
+    marker: "product_name_is_a_fork_of_upstream_html"
+    why: "Email footer must state WaboSign is a fork of DocuSeal — AGPL §7(b)."
+  - path: app/javascript/submission_form/completed.vue
+    marker_any: ["fork_of", "DocuSeal"]
+    why: "Post-signing completion screen carries the DocuSeal fork credit."
+  - path: app/javascript/submission_form/calculator.js
+    marker: "DocuSeal"
+    why: "Upstream copyright header on this JS port must be retained."
+
+  # --- Renamed identifiers (sweep must have run; module must be Wabosign) ---
+  - path: lib/wabosign.rb
+    marker_all: ["module Wabosign", "PRODUCT_NAME", "AATL_CERT_NAME = 'wabosign_aatl'"]
+    why: "Core fork module + product/cert identity. Upstream resets these to DocuSeal."
+  - path: config/application.rb
+    marker: "module WaboSign"
+    why: "Rails app module must be the rebranded WaboSign, not DocuSeal."
+
+  # --- SDK embedding contract (intentionally keeps the docuseal-* names) ---
+  - path: app/views/templates/_embedding.html.erb
+    marker: "docuseal-form"
+    why: "Embedding docs must keep <docuseal-form> — SDK contract with downstream."
+  - path: app/controllers/embed_scripts_controller.rb
+    marker_any: ["docuseal-form", "docuseal-builder"]
+    why: "Custom-element registration keeps docuseal-* names for SDK compatibility."
+
+# ---------------------------------------------------------------------------
+# Markers that MUST NOT appear in a specific file (damage class #2 — re-added
+# Pro/freemium gates). ALWAYS path-scoped: e.g. `Wabosign.multitenant?` is
+# legitimate in ~19 other views, so banning it tree-wide would be wrong.
+# ---------------------------------------------------------------------------
+must_not_contain:
+  - path: app/controllers/errors_controller.rb
+    marker_any: ["ENTERPRISE_PATHS", "ENTERPRISE_FEATURE_MESSAGE", "Pro Edition"]
+    why: "3.0.2 re-added a 404-with-Pro-upsell paywall on HTML/PDF/DOCX export.
+          WaboSign ships every format free."
+  - path: app/views/notifications_settings/_reminder_form.html.erb
+    marker: "Wabosign.multitenant?"
+    why: "Re-added reminder-duration gate (hid one_hour/two_hours unless multitenant).
+          multitenant? is legitimate in ~19 OTHER views, so this ban is scoped here."
+
+# ---------------------------------------------------------------------------
+# Markers safe to ban across the whole tree (genuinely unique to a removed
+# feature). Keep this list tiny — prefer path-scoped must_not_contain.
+# ---------------------------------------------------------------------------
+forbidden_globally:
+  - marker: "console_redirect_index_path"
+    why: "There is no Console in WaboSign; upstream re-adds these call sites."
+
+# ---------------------------------------------------------------------------
+# i18n keys that must never reappear in config/locales/i18n.yml. These are dead
+# paywall/feature strings from upstream that get rebranded by the sweep (so they
+# read 'WaboSign Pro') but reference features WaboSign does not ship (damage #6).
+# ---------------------------------------------------------------------------
+forbidden_i18n_keys:
+  - unlock_with_docuseal_pro
+  - discord_community
+  - ai_assistant
+  - wabosign_trusted_signature

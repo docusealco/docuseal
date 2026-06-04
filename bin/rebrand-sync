@@ -50,6 +50,11 @@ DENY_PATHS = Set.new([
   'bin/rebrand-sync',
   'bin/rebrand-check',
   'bin/sync-upstream',
+  # Fork-invariant guard + manifest: the sweep must not rewrite the "docuseal"
+  # tokens they intentionally assert on (e.g. the lib/docuseal.rb must_not_exist
+  # marker), or the guard would silently stop catching that regression.
+  'bin/fork-check',
+  'config/fork_invariants.yml',
   # WaboSign brand logo files — must never be touched by the sweep;
   # restored from ORIG_HEAD by bin/sync-upstream after an upstream merge.
   'public/favicon.svg',
