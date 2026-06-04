@@ -8,3 +8,6 @@
     <%= t('sent_using_product_name_free_document_signing_html', product_url: "#{Wabosign::PRODUCT_EMAIL_URL}/start", product_name: Wabosign.product_name) %>
   <% end %>
 </p>
+<p>
+  <%= t('product_name_is_a_fork_of_upstream_html', product_name: Wabosign.product_name, upstream_name: Wabosign::UPSTREAM_NAME, upstream_url: Wabosign::UPSTREAM_URL) %>
+</p>

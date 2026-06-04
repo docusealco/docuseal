@@ -102,7 +102,12 @@
     >
       {{ t('powered_by') }}
       <a
-        href="https://www.docuseal.com/start"
+        href="https://github.com/wabolabs/wabosign"
+        target="_blank"
+        class="underline"
+      >WaboSign</a>, {{ t('fork_of') }}
+      <a
+        href="https://github.com/docusealco/docuseal"
         target="_blank"
         class="underline"
       >DocuSeal</a> - {{ t('open_source_documents_software') }}

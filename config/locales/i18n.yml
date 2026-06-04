@@ -85,6 +85,7 @@ en: &en
   you_have_been_invited_to_account_name_product_name_please_sign_up_using_the_link_below_: 'You have been invited to %{account_name} %{product_name}. Please sign up using the link below:'
   sent_using_product_name_in_testing_mode_html: 'Sent using <a href="%{product_url}">%{product_name}</a> in testing mode'
   sent_using_product_name_free_document_signing_html: 'Sent using <a href="%{product_url}">%{product_name}</a> free document signing.'
+  product_name_is_a_fork_of_upstream_html: '%{product_name} is a fork of <a href="%{upstream_url}">%{upstream_name}</a>.'
   sent_with_docuseal_pro_html: 'Sent with <a href="%{product_url}">WaboSign Pro</a>'
   show_send_with_docuseal_pro_attribution_in_emails_html: Show "Sent with <span class="link">WaboSign Pro</span>" attribution in emails
   you_have_been_invited_to_submit_the_name_form: 'You have been invited to submit the "%{name}" form.'
@@ -245,7 +246,6 @@ en: &en
   save: Save
   saving: Saving
   changes_have_been_saved: Changes have been saved.
-  unlock_with_docuseal_pro: Unlock with WaboSign Pro
   use_your_own_certificates_to_sign_and_verify_pdf_files: Use your own certificates to sign and verify PDF files.
   upload_certificate: Upload Certificate
   name: Name
@@ -366,6 +366,7 @@ en: &en
   sign_out: Sign out
   page_number: 'Page %{number}'
   powered_by: Powered by
+  fork_of: a fork of
   qr_code: QR Code
   print: Print
   scan_the_qr_code_above_with_your_phone_camera_to_open_and_sign_this_document: Scan the QR code above with your phone camera to open and sign this document.
@@ -1297,7 +1298,6 @@ es: &es
   save: Guardar
   saving: Guardando
   changes_have_been_saved: Los cambios han sido guardados.
-  unlock_with_docuseal_pro: Desbloquear con WaboSign Pro
   use_your_own_certificates_to_sign_and_verify_pdf_files: Usa tus propios certificados para firmar y verificar archivos PDF.
   upload_certificate: Subir certificado
   name: Nombre
@@ -2346,7 +2346,6 @@ it: &it
   save: Salva
   saving: Salvataggio in corso
   changes_have_been_saved: Le modifiche sono state salvate.
-  unlock_with_docuseal_pro: Sblocca con WaboSign Pro
   use_your_own_certificates_to_sign_and_verify_pdf_files: Usa i tuoi certificati per firmare e verificare i file PDF.
   upload_certificate: Carica certificato
   name: Nome
@@ -3395,7 +3394,6 @@ fr: &fr
   save: Enregistrer
   saving: Enregistrement
   changes_have_been_saved: Les modifications ont été enregistrées.
-  unlock_with_docuseal_pro: Débloquer avec WaboSign Pro
   use_your_own_certificates_to_sign_and_verify_pdf_files: Utilisez vos propres certificats pour signer et vérifier des fichiers PDF.
   upload_certificate: Téléverser un certificat
   name: Nom
@@ -4441,7 +4439,6 @@ pt: &pt
   save: Salvar
   saving: Salvando
   changes_have_been_saved: As alterações foram salvas.
-  unlock_with_docuseal_pro: Desbloquear com o WaboSign Pro
   use_your_own_certificates_to_sign_and_verify_pdf_files: Use seus próprios certificados para assinar e verificar arquivos PDF.
   upload_certificate: Enviar certificado
   name: Nome
@@ -5490,7 +5487,6 @@ de: &de
   save: Speichern
   saving: Wird gespeichert
   changes_have_been_saved: Änderungen wurden gespeichert.
-  unlock_with_docuseal_pro: Mit WaboSign Pro freischalten
   use_your_own_certificates_to_sign_and_verify_pdf_files: Verwenden Sie Ihre eigenen Zertifikate, um PDF-Dateien zu signieren und zu verifizieren.
   upload_certificate: Zertifikat hochladen
   name: Name
@@ -6945,7 +6941,6 @@ nl: &nl
   save: Opslaan
   saving: Opslaan
   changes_have_been_saved: Wijzigingen zijn opgeslagen.
-  unlock_with_docuseal_pro: Ontgrendel met WaboSign Pro
   use_your_own_certificates_to_sign_and_verify_pdf_files: Gebruik uw eigen certificaten om PDF-bestanden te ondertekenen en te verifiëren.
   upload_certificate: Certificaat uploaden
   name: Naam
