@@ -271,7 +271,7 @@ GEM
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     jmespath (1.6.2)
-    json (2.19.7)
+    json (2.19.8)
     jwt (3.2.0)
       base64
     language_server-protocol (3.17.0.5)
@@ -334,9 +334,6 @@ GEM
     nokogiri (1.19.3-x86_64-linux-musl)
       racc (~> 1.4)
     numo-narray-alt (0.10.3)
-    oj (3.16.16)
-      bigdecimal (>= 3.0)
-      ostruct (>= 0.2)
     onnxruntime (0.10.1-aarch64-linux)
       ffi
     onnxruntime (0.10.1-arm64-darwin)
@@ -346,7 +343,6 @@ GEM
     openssl (4.0.1)
     orm_adapter (0.5.0)
     os (1.1.4)
-    ostruct (0.6.3)
     package_json (0.2.0)
     pagy (43.4.4)
       json
@@ -623,7 +619,6 @@ DEPENDENCIES
   letter_opener_web
   lograge
   numo-narray-alt
-  oj
   onnxruntime
   pagy
   pg
