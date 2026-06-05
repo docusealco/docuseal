@@ -2,42 +2,42 @@
   <div class="inline-flex items-stretch replace-document-control">
     <label
       :for="inputId"
-      class="btn btn-neutral btn-xs text-white transition-none replace-document-button"
-      :class="[{ 'opacity-100': isLoading }, showGoogleDriveDropdown ? 'rounded-r-none pr-1.5' : '']"
+      class="btn btn-neutral btn-xs transition-none replace-document-button"
+      :class="{ 'opacity-100': isLoading, 'pr-0': showGoogleDriveDropdown && !isLoading }"
     >
-      {{ message }}
-    </label>
-    <span
-      v-if="showGoogleDriveDropdown"
-      class="dropdown dropdown-end"
-      @click.stop
-    >
-      <label
-        tabindex="0"
-        class="btn btn-neutral btn-xs text-white rounded-l-none border-l border-white/30 px-1 transition-none cursor-pointer flex items-center"
-      >
-        <IconChevronDown
-          width="12"
-          stroke-width="2.5"
-        />
-      </label>
-      <ul
-        tabindex="0"
-        :style="{  minWidth: '130px', backgroundColor: backgroundColor }"
-        class="mt-1.5 dropdown-content p-1 shadow-lg rounded-lg border border-neutral-200 z-50 bg-white"
-      >
-        <li>
-          <button
-            type="button"
-            class="w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center justify-between text-sm"
-            @click.prevent="openGoogleDriveModal"
+      <div class="flex items-center justify-between w-full h-full">
+        <span class="flex items-center space-x-2 w-full justify-center text-white">
+          {{ message }}
+        </span>
+        <span
+          v-if="showGoogleDriveDropdown && !isLoading"
+          class="dropdown dropdown-end inline h-full"
+          style="width: 30px"
+        >
+          <label
+            tabindex="0"
+            class="flex items-center h-full cursor-pointer text-white"
           >
-            <IconBrandGoogleDrive class="w-4 h-4 flex-shrink-0" />
-            <span>Google Drive</span>
-          </button>
-        </li>
-      </ul>
-    </span>
+            <IconChevronDown class="w-4 h-4 flex-shrink-0" />
+          </label>
+          <ul
+            tabindex="0"
+            :style="{ backgroundColor }"
+            class="dropdown-content p-2 mt-2 shadow menu text-base mb-1 rounded-box text-right !text-base-content"
+          >
+            <li>
+              <button
+                type="button"
+                @click.prevent="openGoogleDriveModal"
+              >
+                <IconBrandGoogleDrive class="w-4 h-4 flex-shrink-0" />
+                <span class="whitespace-nowrap text-sm normal-case font-medium">Google Drive</span>
+              </button>
+            </li>
+          </ul>
+        </span>
+      </div>
+    </label>
     <form
       ref="form"
       class="hidden"

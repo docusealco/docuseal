@@ -673,7 +673,7 @@ const it = {
   no_revisions_yet: 'Nessuna revisione ancora',
   viewing_revision_from: 'Visualizzazione revisione del {date}',
   connect_google_drive: 'Connetti Google Drive',
-  submitting: 'Invio in corso'
+  submitting: 'Invio'
 }
 
 const pt = {
@@ -1125,7 +1125,7 @@ const fr = {
   no_revisions_yet: 'Aucune révision pour le moment',
   viewing_revision_from: 'Affichage de la révision du {date}',
   connect_google_drive: 'Connecter Google Drive',
-  submitting: 'Soumission en cours'
+  submitting: 'Soumission'
 }
 
 const de = {
@@ -1351,7 +1351,7 @@ const de = {
   no_revisions_yet: 'Noch keine Revisionen',
   viewing_revision_from: 'Ansicht der Revision vom {date}',
   connect_google_drive: 'Google Drive verbinden',
-  submitting: 'Wird eingereicht'
+  submitting: 'Übermittlung'
 }
 
 const nl = {
