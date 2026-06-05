@@ -53,7 +53,7 @@
         name="files[]"
         type="file"
         :accept="acceptFileTypes"
-        @change="upload"
+        @change="upload()"
       >
     </form>
     <GoogleDrivePickerModal

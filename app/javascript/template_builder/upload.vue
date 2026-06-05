@@ -88,7 +88,7 @@
         type="file"
         :accept="acceptFileTypes"
         multiple
-        @change="upload"
+        @change="upload()"
       >
     </form>
   </div>
