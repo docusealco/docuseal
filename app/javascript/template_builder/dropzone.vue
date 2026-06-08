@@ -62,7 +62,7 @@
           name="files[]"
           :accept="acceptFileTypes"
           multiple
-          @change="upload"
+          @change="upload()"
         >
       </form>
     </label>

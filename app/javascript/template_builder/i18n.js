@@ -219,7 +219,9 @@ const en = {
   revisions: 'Revisions',
   apply: 'Apply',
   no_revisions_yet: 'No revisions yet',
-  viewing_revision_from: 'Viewing revision from {date}'
+  viewing_revision_from: 'Viewing revision from {date}',
+  connect_google_drive: 'Connect Google Drive',
+  submitting: 'Submitting'
 }
 
 const es = {
@@ -443,7 +445,9 @@ const es = {
   revisions: 'Revisiones',
   apply: 'Aplicar',
   no_revisions_yet: 'Aún no hay revisiones',
-  viewing_revision_from: 'Viendo revisión del {date}'
+  viewing_revision_from: 'Viendo revisión del {date}',
+  connect_google_drive: 'Conectar Google Drive',
+  submitting: 'Enviando'
 }
 
 const it = {
@@ -667,7 +671,9 @@ const it = {
   revisions: 'Revisioni',
   apply: 'Applica',
   no_revisions_yet: 'Nessuna revisione ancora',
-  viewing_revision_from: 'Visualizzazione revisione del {date}'
+  viewing_revision_from: 'Visualizzazione revisione del {date}',
+  connect_google_drive: 'Connetti Google Drive',
+  submitting: 'Invio'
 }
 
 const pt = {
@@ -891,7 +897,9 @@ const pt = {
   revisions: 'Revisões',
   apply: 'Aplicar',
   no_revisions_yet: 'Nenhuma revisão ainda',
-  viewing_revision_from: 'Visualizando revisão de {date}'
+  viewing_revision_from: 'Visualizando revisão de {date}',
+  connect_google_drive: 'Conectar Google Drive',
+  submitting: 'Enviando'
 }
 
 const fr = {
@@ -1115,7 +1123,9 @@ const fr = {
   revisions: 'Révisions',
   apply: 'Appliquer',
   no_revisions_yet: 'Aucune révision pour le moment',
-  viewing_revision_from: 'Affichage de la révision du {date}'
+  viewing_revision_from: 'Affichage de la révision du {date}',
+  connect_google_drive: 'Connecter Google Drive',
+  submitting: 'Soumission'
 }
 
 const de = {
@@ -1339,7 +1349,9 @@ const de = {
   revisions: 'Revisionen',
   apply: 'Anwenden',
   no_revisions_yet: 'Noch keine Revisionen',
-  viewing_revision_from: 'Ansicht der Revision vom {date}'
+  viewing_revision_from: 'Ansicht der Revision vom {date}',
+  connect_google_drive: 'Google Drive verbinden',
+  submitting: 'Übermittlung'
 }
 
 const nl = {
@@ -1563,7 +1575,9 @@ const nl = {
   revisions: 'Revisies',
   apply: 'Toepassen',
   no_revisions_yet: 'Nog geen revisies',
-  viewing_revision_from: 'Revisie van {date} bekijken'
+  viewing_revision_from: 'Revisie van {date} bekijken',
+  connect_google_drive: 'Verbind Google Drive',
+  submitting: 'Indienen'
 }
 
 export { en, es, it, pt, fr, de, nl }

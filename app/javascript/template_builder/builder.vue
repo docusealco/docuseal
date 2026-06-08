@@ -309,6 +309,8 @@
           :data-document-uuid="item.attachment_uuid"
           :accept-file-types="acceptFileTypes"
           :with-replace-button="withUploadButton"
+          :with-google-drive="withGoogleDrive"
+          :authenticity-token="authenticityToken"
           :editable="editable"
           :dynamic-documents="dynamicDocuments"
           :with-dynamic-documents="withDynamicDocuments"
@@ -355,12 +357,17 @@
       </div>
       <div
         id="pages_container"
-        class="w-full overflow-x-hidden mt-0.5 pt-0.5"
-        :class="isMobile ? 'overflow-y-auto' : 'overflow-y-hidden md:overflow-y-auto'"
+        ref="pagesContainer"
+        class="w-full mt-0.5 pt-0.5"
+        :class="[
+          isMobile ? 'overflow-y-auto' : 'overflow-y-hidden md:overflow-y-auto',
+          zoomLevel > 1 ? 'overflow-x-auto' : 'overflow-x-hidden'
+        ]"
       >
         <div
           ref="documents"
           class="pr-3.5 pl-0.5"
+          :style="zoomLevel > 1 ? { width: `${zoomLevel * 100}%` } : null"
         >
           <template v-if="!sortedDocuments.length && (withUploadButton || withAddPageButton)">
             <Dropzone
@@ -451,6 +458,8 @@
                 :with-arrows="template.schema.length > 1"
                 :item="template.schema.find((item) => item.attachment_uuid === document.uuid)"
                 :with-replace-button="withUploadButton"
+                :with-google-drive="withGoogleDrive"
+                :authenticity-token="authenticityToken"
                 :accept-file-types="acceptFileTypes"
                 :document="document"
                 :template="template"
@@ -633,6 +642,36 @@
         </div>
       </div>
     </Transition>
+    <Transition
+      enter-active-class="transition-all duration-200 ease-out"
+      enter-from-class="translate-y-4 opacity-0"
+      enter-to-class="translate-y-0 opacity-100"
+      leave-active-class="transition-all duration-200 ease-in"
+      leave-from-class="translate-y-0 opacity-100"
+      leave-to-class="translate-y-4 opacity-0"
+    >
+      <div
+        v-if="zoomLevel > 1"
+        class="sticky bottom-0 z-40 pointer-events-none"
+      >
+        <div class="absolute left-0 right-0 bottom-4 flex justify-center">
+          <div class="join shadow pointer-events-auto">
+            <span class="join-item bg-base-content text-white pl-2 pr-2.5 h-9 items-center text-sm font-medium cursor-default w-16 flex justify-end">
+              <span>
+                {{ Math.round(zoomLevel * 100) }}%
+              </span>
+            </span>
+            <button
+              type="button"
+              class="join-item bg-base-content text-white h-9 pl-2 pr-3 inline-flex items-center justify-center cursor-pointer hover:opacity-90 border-l border-white/20"
+              @click="zoomLevel = 1"
+            >
+              <IconX class="w-4 h-4 stroke-2" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </Transition>
     <div
       id="docuseal_modal_container"
       class="modal-container"
@@ -664,7 +703,7 @@ import DocumentControls from './controls'
 import MobileFields from './mobile_fields'
 import FieldSubmitter from './field_submitter'
 import RevisionsModal from './revisions_modal'
-import { IconPlus, IconUsersPlus, IconDeviceFloppy, IconChevronDown, IconEye, IconWritingSign, IconInnerShadowTop, IconInfoCircle, IconAdjustments, IconDownload, IconHistory } from '@tabler/icons-vue'
+import { IconPlus, IconUsersPlus, IconDeviceFloppy, IconChevronDown, IconEye, IconWritingSign, IconInnerShadowTop, IconInfoCircle, IconAdjustments, IconDownload, IconHistory, IconX } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
 import { ref, computed, toRaw, defineAsyncComponent } from 'vue'
 import * as i18n from './i18n'
@@ -706,6 +745,7 @@ export default {
     IconEye,
     IconHistory,
     IconDeviceFloppy,
+    IconX,
     RevisionsModal
   },
   provide () {
@@ -1063,7 +1103,8 @@ export default {
       isMathLoaded: false,
       isRevisionsModalOpen: false,
       revisions: [],
-      beforeRevisionSnapshot: null
+      beforeRevisionSnapshot: null,
+      zoomLevel: 1
     }
   },
   computed: {
@@ -1313,6 +1354,8 @@ export default {
         this.pendingFieldAttachmentUuids.push(item.attachment_uuid)
       }
     })
+
+    this.$refs.pagesContainer.addEventListener('wheel', this.onPagesWheel, { passive: false })
   },
   unmounted () {
     document.removeEventListener('keyup', this.onKeyUp)
@@ -1320,6 +1363,8 @@ export default {
 
     window.removeEventListener('resize', this.onWindowResize)
     window.removeEventListener('dragleave', this.onWindowDragLeave)
+
+    this.$refs.pagesContainer.removeEventListener('wheel', this.onPagesWheel)
   },
   beforeUpdate () {
     this.documentRefs = []
@@ -2017,6 +2062,30 @@ export default {
       const breakpointLg = 1024
 
       this.isBreakpointLg = this.$el.getRootNode().querySelector('div[data-v-app]').offsetWidth < breakpointLg
+    },
+    onPagesWheel (event) {
+      if (!event.ctrlKey && !event.metaKey) return
+
+      event.preventDefault()
+
+      const oldZoom = this.zoomLevel
+      const nextZoom = Math.max(1, Math.min(3, oldZoom - event.deltaY * 0.006))
+
+      if (nextZoom === oldZoom) return
+
+      const rect = this.$refs.pagesContainer.getBoundingClientRect()
+      const cursorX = event.clientX - rect.left
+      const cursorY = event.clientY - rect.top
+      const ratio = nextZoom / oldZoom
+      const nextScrollLeft = (this.$refs.pagesContainer.scrollLeft + cursorX) * ratio - cursorX
+      const nextScrollTop = (this.$refs.pagesContainer.scrollTop + cursorY) * ratio - cursorY
+
+      this.zoomLevel = nextZoom
+
+      this.$nextTick(() => {
+        this.$refs.pagesContainer.scrollLeft = nextScrollLeft
+        this.$refs.pagesContainer.scrollTop = nextScrollTop
+      })
     },
     setDocumentRefs (el) {
       if (el) {

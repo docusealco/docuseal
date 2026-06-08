@@ -24,7 +24,6 @@ gem 'hexapdf'
 gem 'jwt', require: false
 gem 'lograge'
 gem 'numo-narray-alt', require: false
-gem 'oj'
 gem 'onnxruntime', require: false
 gem 'pagy'
 gem 'pg', require: false

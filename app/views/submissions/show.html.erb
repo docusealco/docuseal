@@ -227,7 +227,7 @@
               <div class="flex items-center space-x-1 mt-1">
                 <span>
                   <%= t('reason') %>:
-                  <%= simple_format(h(submitter.submission_events.find_by(event_type: :decline_form).data['reason'])) %>
+                  <%= simple_format(h(submitter.submission_events.find_by(event_type: :decline_form).data['reason']), {}, sanitize: false) %>
                 </span>
               </div>
             <% end %>
