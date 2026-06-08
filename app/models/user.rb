@@ -132,19 +132,37 @@ class User < ApplicationRecord
     return nil if email.blank?
     return nil unless Docuseal.clerk_email_allowed?(email)
 
-    account = Account.first
-    return nil if account.blank?
-
     user = active.find_by(email:)
     return user if user
 
     first, *rest = auth.info.name.to_s.split(' ', 2)
 
+    provision_clerk_admin(
+      email:,
+      first_name: auth.info.first_name.presence || first,
+      last_name: auth.info.last_name.presence || rest.join(' ')
+    )
+  end
+
+  # The single chokepoint for auto-provisioning a Devise user from Clerk SSO,
+  # used by every SSO entrypoint (the OIDC callback and the apex-cookie bridge).
+  # Fails closed: it refuses to create anyone unless their domain is on the
+  # explicit admin allowlist, so SSO can never silently mint an admin. docuseal
+  # has no non-admin console role, so an allowed-but-not-admin email gets no
+  # account rather than an elevated one.
+  def self.provision_clerk_admin(email:, first_name:, last_name:)
+    email = email.to_s.downcase
+    return nil if email.blank?
+    return nil unless Docuseal.clerk_email_admin?(email)
+
+    account = Account.first
+    return nil if account.blank?
+
     create!(
       account:,
       email:,
-      first_name: auth.info.first_name.presence || first,
-      last_name: auth.info.last_name.presence || rest.join(' '),
+      first_name: first_name.presence,
+      last_name: last_name.presence,
       role: ADMIN_ROLE,
       password: Devise.friendly_token(40)
     )

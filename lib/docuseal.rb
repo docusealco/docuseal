@@ -38,11 +38,15 @@ module Docuseal
   CERTS = JSON.parse(ENV.fetch('CERTS', '{}'))
   TIMESERVER_URL = ENV.fetch('TIMESERVER_URL', nil)
 
+  def self.parse_email_domains(env_key)
+    ENV.fetch(env_key, '').split(',').map { |d| d.strip.downcase }.compact_blank.freeze
+  end
+
   CLERK_DISCOVERY_URL = ENV.fetch('CLERK_DISCOVERY_URL', nil)
   CLERK_CLIENT_ID = ENV.fetch('CLERK_CLIENT_ID', nil)
   CLERK_CLIENT_SECRET = ENV.fetch('CLERK_CLIENT_SECRET', nil)
-  CLERK_ALLOWED_EMAIL_DOMAINS = ENV.fetch('CLERK_ALLOWED_EMAIL_DOMAINS', '')
-                                   .split(',').map { |d| d.strip.downcase }.compact_blank.freeze
+  CLERK_ALLOWED_EMAIL_DOMAINS = parse_email_domains('CLERK_ALLOWED_EMAIL_DOMAINS')
+  CLERK_ADMIN_EMAIL_DOMAINS = parse_email_domains('CLERK_ADMIN_EMAIL_DOMAINS')
 
   VERSION_FILE_PATH = Rails.root.join('.version')
   VERSION_FILE2_PATH = Rails.public_path.join('version')
@@ -71,11 +75,24 @@ module Docuseal
     CLERK_DISCOVERY_URL.present? && CLERK_CLIENT_ID.present? && CLERK_CLIENT_SECRET.present?
   end
 
-  def clerk_email_allowed?(email)
-    return true if CLERK_ALLOWED_EMAIL_DOMAINS.empty?
+  # Fail closed: an unset/empty allowlist matches no one rather than everyone.
+  def email_in_domains?(email, allowed_domains)
+    return false if allowed_domains.empty?
 
     domain = email.to_s.split('@').last.to_s.downcase
-    CLERK_ALLOWED_EMAIL_DOMAINS.include?(domain)
+    return false if domain.blank?
+
+    allowed_domains.include?(domain)
+  end
+
+  def clerk_email_allowed?(email)
+    email_in_domains?(email, CLERK_ALLOWED_EMAIL_DOMAINS)
+  end
+
+  # Admin must be granted explicitly via its own allowlist; never inferred from
+  # mere sign-in eligibility.
+  def clerk_email_admin?(email)
+    email_in_domains?(email, CLERK_ADMIN_EMAIL_DOMAINS)
   end
 
   def advanced_formats?

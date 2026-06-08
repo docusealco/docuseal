@@ -47,20 +47,10 @@ module ClerkDeviseBridge
   end
 
   def provision_user_for_clerk(email, clerk_user)
-    account = Account.first
-    return nil unless account
-
     first_name = clerk_user.respond_to?(:first_name) ? clerk_user.first_name : nil
     last_name = clerk_user.respond_to?(:last_name) ? clerk_user.last_name : nil
 
-    User.create!(
-      account: account,
-      email: email,
-      first_name: first_name.presence,
-      last_name: last_name.presence,
-      role: User::ADMIN_ROLE,
-      password: Devise.friendly_token(40)
-    )
+    User.provision_clerk_admin(email: email, first_name: first_name, last_name: last_name)
   rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotUnique => e
     Rails.logger.warn("[clerk-bridge] provision failed for #{email}: #{e.message}")
     User.active.find_by(email: email)
