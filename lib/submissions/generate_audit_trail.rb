@@ -347,6 +347,13 @@ module Submissions
 
           field_name = grouped_value_field_names[value].presence || field['title'].presence || field['name'].to_s
 
+          field_type = field['type']
+
+          if field_type == 'image' &&
+             submitter.attachments.find { |a| a.uuid == value }.then { |a| !a.image? || a.content_type == 'image/heic' }
+            field_type = 'file'
+          end
+
           [
             composer.formatted_text_box(
               [
@@ -359,7 +366,7 @@ module Submissions
               text_align: field_name.to_s.match?(RTL_REGEXP) ? :right : :left,
               line_spacing: 1.3, padding: [0, 0, 2, 0]
             ),
-            if field['type'].in?(%w[image signature initials stamp kba]) &&
+            if field_type.in?(%w[image signature initials stamp kba]) &&
                (attachment = submitter.attachments.find { |a| a.uuid == value }) &&
                attachment.image?
 
@@ -394,7 +401,7 @@ module Submissions
 
               composer.image(io, width:, height:, margin: [5, 0, 10, 0])
               composer.formatted_text_box([{ text: '' }])
-            elsif field['type'].in?(%w[file payment image])
+            elsif field_type.in?(%w[file payment image])
               if field['type'] == 'payment'
                 unit = CURRENCY_SYMBOLS[field['preferences']['currency']] || field['preferences']['currency']
 
@@ -419,7 +426,7 @@ module Submissions
                 end,
                 padding: [0, 0, 10, 0]
               )
-            elsif field['type'] == 'checkbox'
+            elsif field_type == 'checkbox'
               composer.formatted_text_box([{ text: value.to_s.titleize }], padding: [0, 0, 10, 0])
             else
               if field['type'] == 'date'

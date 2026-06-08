@@ -294,8 +294,11 @@ module Submissions
           canvas.font(FONT_NAME, size: font_size)
 
           field_type = field['type']
-          field_type = 'file' if field_type == 'image' &&
-                                 !submitter.attachments.find { |a| a.uuid == value }.image?
+
+          if field_type == 'image' &&
+             submitter.attachments.find { |a| a.uuid == value }.then { |a| !a.image? || a.content_type == 'image/heic' }
+            field_type = 'file'
+          end
 
           if field_type == 'signature' && field.dig('preferences', 'with_signature_id').in?([true, false])
             with_signature_id = field['preferences']['with_signature_id']
