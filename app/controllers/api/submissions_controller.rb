@@ -54,6 +54,12 @@ module Api
 
       return render json: { error: 'Template not found' }, status: :unprocessable_content if @template.nil?
 
+      if @template.archived_at?
+        Rollbar.warning("Archived template submission: #{@template.id}") if defined?(Rollbar)
+
+        return render json: { error: 'Template has been archived' }, status: :unprocessable_content
+      end
+
       if @template.fields.blank?
         Rollbar.warning("Template does not contain fields: #{@template.id}") if defined?(Rollbar)
 
