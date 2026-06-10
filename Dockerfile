@@ -2,16 +2,20 @@ FROM ruby:4.0.5-alpine AS download
 
 WORKDIR /fonts
 
-RUN apk --no-cache add wget && \
+RUN apk --no-cache add wget unzip && \
     wget https://github.com/satbyy/go-noto-universal/releases/download/v7.0/GoNotoKurrent-Regular.ttf && \
     wget https://github.com/satbyy/go-noto-universal/releases/download/v7.0/GoNotoKurrent-Bold.ttf && \
     wget https://github.com/impallari/DancingScript/raw/master/fonts/DancingScript-Regular.otf && \
     wget https://raw.githubusercontent.com/impallari/DancingScript/master/OFL.txt && \
     wget https://raw.githubusercontent.com/notofonts/noto-fonts/refs/heads/main/LICENSE && \
     wget -O /model.onnx "https://github.com/docusealco/fields-detection/releases/download/2.0.0/model_704_int8.onnx" && \
-    wget -O pdfium-linux.tgz "https://github.com/bblanchon/pdfium-binaries/releases/latest/download/pdfium-linux-musl-$(uname -m | sed 's/x86_64/x64/;s/aarch64/arm64/').tgz" && \
+    wget -O pdfium-linux.zip "https://github.com/docusealco/pdfium-binaries/releases/download/20260613/pdfium-musl-$(uname -m).zip" && \
+    case "$(uname -m)" in \
+      x86_64)  echo "2c953ff72ee2dda07e7fc577e25841cc3d6464468a7c5adfaea574efcbc3b90b  pdfium-linux.zip" ;; \
+      aarch64) echo "23bbe287d2753fdb05741c7660647eb0ef0d2e4da2ce0722bfa9d9d455bd64e2  pdfium-linux.zip" ;; \
+    esac | sha256sum -c - && \
     mkdir -p /pdfium-linux && \
-    tar -xzf pdfium-linux.tgz -C /pdfium-linux
+    unzip -q pdfium-linux.zip -d /pdfium-linux
 
 FROM ruby:4.0.5-alpine AS webpack
 
@@ -48,7 +52,7 @@ ENV OPENSSL_CONF=/etc/openssl_legacy.cnf
 
 WORKDIR /app
 
-RUN apk add --no-cache libpq vips redis onnxruntime && \
+RUN apk add --no-cache libpq vips redis onnxruntime leptonica && \
     rm -f /usr/bin/onnx_test_runner /usr/bin/onnxruntime_test
 
 RUN addgroup -g 2000 docuseal && adduser -u 2000 -G docuseal -s /bin/sh -D -h /home/docuseal docuseal
@@ -82,7 +86,7 @@ COPY --chown=docuseal:docuseal .version ./public/version
 
 COPY --chown=docuseal:docuseal --from=download /fonts/GoNotoKurrent-Regular.ttf /fonts/GoNotoKurrent-Bold.ttf /fonts/DancingScript-Regular.otf /fonts/OFL.txt /fonts/LICENSE /fonts/
 COPY --from=download /pdfium-linux/lib/libpdfium.so /usr/lib/libpdfium.so
-COPY --from=download /pdfium-linux/licenses/pdfium.txt /usr/lib/libpdfium-LICENSE.txt
+COPY --from=download /pdfium-linux/licenses/ /usr/lib/libpdfium-licenses/
 COPY --chown=docuseal:docuseal --from=download /model.onnx /app/tmp/model.onnx
 COPY --chown=docuseal:docuseal --from=webpack /app/public/packs ./public/packs
 

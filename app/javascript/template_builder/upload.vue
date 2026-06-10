@@ -128,31 +128,39 @@ function convertImage (sourceFile, targetType, quality) {
   })
 }
 
-async function convertImagesInInput (input) {
-  if (!input.files || input.files.length === 0) return
+export async function convertUnsupportedImages (files) {
+  const converted = []
 
-  const dt = new DataTransfer()
-  let didConvert = false
-
-  for (const file of Array.from(input.files)) {
-    let converted = file
+  for (const file of Array.from(files)) {
+    let result = file
 
     try {
       if (['image/bmp', 'image/vnd.microsoft.icon', 'image/svg+xml', 'image/gif'].includes(file.type)) {
-        converted = await convertImage(file, 'image/png')
-        didConvert = true
+        result = await convertImage(file, 'image/png')
       } else if (['image/heic', 'image/heif', 'image/heic-sequence', 'image/heif-sequence', 'image/avif', 'image/avif-sequence', 'image/webp'].includes(file.type)) {
-        converted = await convertImage(file, 'image/jpeg', 0.9)
-        didConvert = true
+        result = await convertImage(file, 'image/jpeg', 0.9)
       }
     } catch (e) {
       alert(e.message)
     }
 
-    dt.items.add(converted)
+    converted.push(result)
   }
 
-  if (didConvert) {
+  return converted
+}
+
+async function convertImagesInInput (input) {
+  if (!input.files || input.files.length === 0) return
+
+  const originals = Array.from(input.files)
+  const converted = await convertUnsupportedImages(originals)
+
+  if (converted.some((file, index) => file !== originals[index])) {
+    const dt = new DataTransfer()
+
+    converted.forEach((file) => dt.items.add(file))
+
     input.files = dt.files
   }
 }

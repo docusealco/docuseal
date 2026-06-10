@@ -99,6 +99,9 @@ Rails.application.routes.draw do
     resources :clone, only: %i[new create], controller: 'templates_clone'
     resource :debug, only: %i[show], controller: 'templates_debug' if Rails.env.development?
     resources :documents, only: %i[index create], controller: 'template_documents'
+    resources :documents_modify, only: %i[create], controller: 'template_documents_modify'
+    resources :documents_page_objects, only: %i[index], controller: 'template_documents_page_objects'
+    resources :documents_crop, only: %i[index create], controller: 'template_documents_crop'
     resources :clone_and_replace, only: %i[create], controller: 'templates_clone_and_replace'
     resources :detect_fields, only: %i[create], controller: 'templates_detect_fields' unless Docuseal.multitenant?
     resources :restore, only: %i[create], controller: 'templates_restore'
