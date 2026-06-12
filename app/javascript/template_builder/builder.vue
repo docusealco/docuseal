@@ -363,6 +363,7 @@
           isMobile ? 'overflow-y-auto' : 'overflow-y-hidden md:overflow-y-auto',
           zoomLevel > 1 ? 'overflow-x-auto' : 'overflow-x-hidden'
         ]"
+        @wheel="onPagesWheel"
       >
         <div
           ref="documents"
@@ -1354,8 +1355,6 @@ export default {
         this.pendingFieldAttachmentUuids.push(item.attachment_uuid)
       }
     })
-
-    this.$refs.pagesContainer.addEventListener('wheel', this.onPagesWheel, { passive: false })
   },
   unmounted () {
     document.removeEventListener('keyup', this.onKeyUp)
@@ -1363,8 +1362,6 @@ export default {
 
     window.removeEventListener('resize', this.onWindowResize)
     window.removeEventListener('dragleave', this.onWindowDragLeave)
-
-    this.$refs.pagesContainer.removeEventListener('wheel', this.onPagesWheel)
   },
   beforeUpdate () {
     this.documentRefs = []
