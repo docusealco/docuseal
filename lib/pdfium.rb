@@ -737,7 +737,7 @@ class Pdfium
         left = rect['x'].to_f * width
         top = height - (rect['y'].to_f * height)
 
-        [left, top - (rect['h'].to_f * height), left + (rect['w'].to_f * width), top]
+        [left, top - (rect['h'].to_f * height), left + (rect['w'].to_f * width), top, rect['color']]
       end
 
       unwrap_form_objects(rect_bounds)
@@ -982,7 +982,9 @@ class Pdfium
     end
 
     def draw_redaction_rects(rect_bounds)
-      rect_bounds.each do |left, bottom, right, top|
+      rect_bounds.each do |left, bottom, right, top, color|
+        next if color == 'white'
+
         rect_object = Pdfium.FPDFPageObj_CreateNewRect(left, bottom, right - left, top - bottom)
 
         raise PdfiumError, 'Failed to create redaction rect' if rect_object.null?
@@ -1057,7 +1059,7 @@ class Pdfium
       a, b, c, d, e, f = matrix
       det = (a * d) - (b * c)
 
-      rect_bounds.filter_map do |left, bottom, right, top|
+      rect_bounds.filter_map do |left, bottom, right, top, color|
         corners = [[left, bottom], [right, bottom], [left, top], [right, top]].map do |x, y|
           u = ((d * (x - e)) - (c * (y - f))) / det
           v = ((a * (y - f)) - (b * (x - e))) / det
@@ -1075,7 +1077,8 @@ class Pdfium
 
         [px_left, px_top,
          (xs.max.ceil - px_left).clamp(1, image_width - px_left),
-         (ys.max.ceil - px_top).clamp(1, image_height - px_top)]
+         (ys.max.ceil - px_top).clamp(1, image_height - px_top),
+         color]
       end
     end
 

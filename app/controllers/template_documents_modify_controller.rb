@@ -10,7 +10,7 @@ class TemplateDocumentsModifyController < ApplicationController
       params.require(:documents).map do |item|
         item.permit(:attachment_uuid,
                     pages: [:attachment_uuid, :page, :rotate,
-                            { redact: [%i[x y w h]], replaced_page: %i[attachment_uuid page] }]).to_h
+                            { redact: [%i[x y w h color]], replaced_page: %i[attachment_uuid page] }]).to_h
       end
 
     Templates::ModifyDocuments.call(@template, documents_layout)

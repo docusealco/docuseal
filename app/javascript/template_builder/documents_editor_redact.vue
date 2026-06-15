@@ -22,7 +22,8 @@
           <div
             v-for="(rect, rectIndex) in redactRects"
             :key="`rect-${rectIndex}`"
-            class="absolute bg-black pointer-events-none"
+            class="absolute pointer-events-none"
+            :class="color === 'white' ? 'bg-white' : 'bg-black'"
             :style="{
               left: `${rect.x * 100}%`,
               top: `${rect.y * 100}%`,
@@ -47,6 +48,26 @@
       </div>
     </div>
     <div class="w-56 flex-none border-l px-4 py-4 space-y-2">
+      <div class="flex items-center justify-between mb-1">
+        <span class="text-sm pl-1">{{ t('color') }}</span>
+        <div
+          class="join rounded"
+          style="height: 28px"
+        >
+          <button
+            v-for="option in colors"
+            :key="option"
+            class="btn btn-sm join-item !h-7 !min-h-0 bg-white input-bordered hover:border-base-content/20 hover:bg-base-100/50 px-2"
+            :class="{ '!bg-base-200': color === option }"
+            @click.prevent="color = option"
+          >
+            <span
+              class="block w-10 h-4 border border-base-content/30"
+              :style="{ backgroundColor: option }"
+            />
+          </button>
+        </div>
+      </div>
       <button
         class="btn btn-sm w-full justify-start normal-case font-normal rounded disabled:bg-base-300"
         :disabled="!hasRedactions && !wasReset"
@@ -122,11 +143,15 @@ export default {
       selectedNodes: {},
       freeRects: [],
       rects: [],
+      color: 'black',
       wasReset: false,
       marquee: null
     }
   },
   computed: {
+    colors () {
+      return ['black', 'white']
+    },
     rotate () {
       return this.page.rotate || 0
     },
@@ -186,6 +211,10 @@ export default {
     }
   },
   created () {
+    if ((this.page.redact || []).some((rect) => rect.color === 'white')) {
+      this.color = 'white'
+    }
+
     if (this.imagePage) {
       this.rects = (this.page.redact || []).map((rect) => ({ ...rect }))
 
@@ -238,7 +267,17 @@ export default {
       return { x, y }
     },
     apply () {
-      this.$emit('apply', this.redactRects)
+      const rects = this.redactRects.map((rect) => {
+        const next = { x: rect.x, y: rect.y, w: rect.w, h: rect.h }
+
+        if (this.color === 'white') {
+          next.color = 'white'
+        }
+
+        return next
+      })
+
+      this.$emit('apply', rects)
     },
     reset () {
       this.wasReset = true

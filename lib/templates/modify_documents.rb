@@ -299,19 +299,17 @@ module Templates
         else image
         end
 
-      ink = Array.new(image.bands, 0.0)
-
-      pixel_rects.each do |left, top, rect_width, rect_height|
-        image = image.draw_rect(ink, left, top, rect_width, rect_height, fill: true)
+      pixel_rects.each do |left, top, rect_width, rect_height, color|
+        image = image.draw_rect(redaction_ink(image.bands, color), left, top, rect_width, rect_height, fill: true)
       end
 
       image.write_to_buffer('.jpg', Q: 50, strip: true)
     end
 
     def draw_image_redaction(image, rects)
-      ink = Array.new(image.bands) { |band| band == 3 ? 255.0 : 0.0 }
-
       rects.each do |rect|
+        ink = redaction_ink(image.bands, rect['color'])
+
         left = (rect['x'].to_f * image.width).floor.clamp(0, image.width - 1)
         top = (rect['y'].to_f * image.height).floor.clamp(0, image.height - 1)
         rect_width = (rect['w'].to_f * image.width).ceil.clamp(1, image.width - left)
@@ -321,6 +319,12 @@ module Templates
       end
 
       image
+    end
+
+    def redaction_ink(bands, color)
+      value = color == 'white' ? 255.0 : 0.0
+
+      Array.new(bands) { |band| band == 3 ? 255.0 : value }
     end
 
     def open_or_build_pdf(attachment, redact: nil, rotate: nil, pdf_size: nil, default_size: nil)
