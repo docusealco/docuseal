@@ -528,7 +528,7 @@ export default {
           return this.formatDate(
             this.modelValue === '{{date}}' ? new Date() : new Date(this.modelValue),
             this.field.preferences?.format || (this.locale.endsWith('-US') ? 'MM/DD/YYYY' : 'DD/MM/YYYY'),
-            { withTimePlaceholders: this.modelValue === '{{date}}' }
+            { withTimePlaceholders: this.modelValue === '{{date}}', utc: this.modelValue !== '{{date}}' }
           )
         } catch {
           return this.modelValue
@@ -651,7 +651,7 @@ export default {
         return number
       }
     },
-    formatDate (date, format, { withTimePlaceholders = false } = {}) {
+    formatDate (date, format, { withTimePlaceholders = false, utc = true } = {}) {
       const monthFormats = { M: 'numeric', MM: '2-digit', MMM: 'short', MMMM: 'long' }
       const dayFormats = { D: 'numeric', DD: '2-digit' }
       const yearFormats = { YYYY: 'numeric', YYY: 'numeric', YY: '2-digit' }
@@ -673,7 +673,7 @@ export default {
       if (format.match(/m+/)) opts.minute = minuteFormats[format.match(/m+/)[0]]
       if (format.match(/s+/)) opts.second = secondFormats[format.match(/s+/)[0]]
       if (/z/.test(format)) opts.timeZoneName = 'short'
-      if (!hasTime) opts.timeZone = 'UTC'
+      if (!hasTime && utc) opts.timeZone = 'UTC'
 
       const partTypes = {
         M: 'month',

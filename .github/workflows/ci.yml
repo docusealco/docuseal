@@ -104,7 +104,7 @@ jobs:
           bundle install --jobs 4 --retry 4
           yarn install
           sudo apt-get update
-          sudo apt-get install libvips
+          sudo apt-get install libvips liblept5
       - name: Run Brakeman
         run: bundle exec brakeman -q --exit-on-warn
 
@@ -162,7 +162,7 @@ jobs:
           bundle install --jobs 4 --retry 4
           yarn install
           sudo apt-get update
-          sudo apt-get install -y libvips
+          sudo apt-get install -y libvips liblept5
           wget -O pdfium-linux.tgz "https://github.com/bblanchon/pdfium-binaries/releases/latest/download/pdfium-linux-$(uname -m | sed 's/x86_64/x64/;s/aarch64/arm64/').tgz"
           sudo tar -xzf pdfium-linux.tgz --strip-components=1 -C /usr/lib lib/libpdfium.so
           rm -f pdfium-linux.tgz

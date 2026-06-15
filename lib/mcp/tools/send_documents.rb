@@ -75,6 +75,10 @@ module Mcp
 
         return { content: [{ type: 'text', text: 'Template not found' }], isError: true } unless template
 
+        if template.archived_at?
+          return { content: [{ type: 'text', text: 'Template has been archived' }], isError: true }
+        end
+
         current_ability.authorize!(:create, Submission.new(template:, account_id: current_user.account_id))
 
         return { content: [{ type: 'text', text: 'Template has no fields' }], isError: true } if template.fields.blank?

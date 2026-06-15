@@ -96,6 +96,27 @@ module Templates
     end
   end
 
+  def cleanup_document_attachment(attachment)
+    return unless attachment.blob.content_type == 'application/pdf'
+
+    io = StringIO.new
+
+    Pdfium::Document.open_bytes(attachment.blob.download) do |doc|
+      doc.cleanup
+      doc.save(io)
+    end
+
+    blob = ActiveStorage::Blob.create_and_upload!(
+      io: io.tap(&:rewind),
+      filename: attachment.blob.filename.to_s,
+      content_type: 'application/pdf'
+    )
+
+    attachment.update!(blob_id: blob.id)
+
+    attachment
+  end
+
   def serialize_for_builder(template)
     data = template.as_json(only: TEMPLATE_BUILDER_FIELDS)
 

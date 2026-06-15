@@ -320,6 +320,7 @@
           @replace="onDocumentReplace"
           @up="moveDocument(item, -1)"
           @reorder="reorderFields"
+          @edit="editModalDocumentUuid = item.attachment_uuid"
           @down="moveDocument(item, 1)"
           @change="save"
         />
@@ -363,6 +364,7 @@
           isMobile ? 'overflow-y-auto' : 'overflow-y-hidden md:overflow-y-auto',
           zoomLevel > 1 ? 'overflow-x-auto' : 'overflow-x-hidden'
         ]"
+        @wheel="onPagesWheel"
       >
         <div
           ref="documents"
@@ -684,6 +686,17 @@
         @close="isRevisionsModalOpen = false"
         @apply="onRevisionApply"
       />
+      <DocumentsEditorModal
+        v-if="editModalDocumentUuid"
+        :template="template"
+        :authenticity-token="authenticityToken"
+        :accept-file-types="acceptFileTypes"
+        :base-url="baseUrl"
+        :page-preview-format="pagePreviewFormat"
+        :scroll-to-attachment-uuid="editModalDocumentUuid"
+        @saved="onDocumentsModified"
+        @close="editModalDocumentUuid = null"
+      />
     </div>
   </div>
 </template>
@@ -703,6 +716,7 @@ import DocumentControls from './controls'
 import MobileFields from './mobile_fields'
 import FieldSubmitter from './field_submitter'
 import RevisionsModal from './revisions_modal'
+import DocumentsEditorModal from './documents_editor_modal'
 import { IconPlus, IconUsersPlus, IconDeviceFloppy, IconChevronDown, IconEye, IconWritingSign, IconInnerShadowTop, IconInfoCircle, IconAdjustments, IconDownload, IconHistory, IconX } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
 import { ref, computed, toRaw, defineAsyncComponent } from 'vue'
@@ -746,7 +760,8 @@ export default {
     IconHistory,
     IconDeviceFloppy,
     IconX,
-    RevisionsModal
+    RevisionsModal,
+    DocumentsEditorModal
   },
   provide () {
     return {
@@ -1102,6 +1117,7 @@ export default {
       isDragFile: false,
       isMathLoaded: false,
       isRevisionsModalOpen: false,
+      editModalDocumentUuid: null,
       revisions: [],
       beforeRevisionSnapshot: null,
       zoomLevel: 1
@@ -1354,8 +1370,6 @@ export default {
         this.pendingFieldAttachmentUuids.push(item.attachment_uuid)
       }
     })
-
-    this.$refs.pagesContainer.addEventListener('wheel', this.onPagesWheel, { passive: false })
   },
   unmounted () {
     document.removeEventListener('keyup', this.onKeyUp)
@@ -1363,8 +1377,6 @@ export default {
 
     window.removeEventListener('resize', this.onWindowResize)
     window.removeEventListener('dragleave', this.onWindowDragLeave)
-
-    this.$refs.pagesContainer.removeEventListener('wheel', this.onPagesWheel)
   },
   beforeUpdate () {
     this.documentRefs = []
@@ -1681,7 +1693,7 @@ export default {
 
         ref.x = e.clientX - ref.offsetX
         ref.y = e.clientY - ref.offsetY
-      } else if (e.dataTransfer?.types?.includes('Files')) {
+      } else if (e.dataTransfer?.types?.includes('Files') && !this.editModalDocumentUuid) {
         this.isDragFile = true
       }
     },
@@ -2124,6 +2136,10 @@ export default {
       }
     },
     onKeyDown (event) {
+      if (this.editModalDocumentUuid) {
+        return
+      }
+
       if (event.key === 'Tab' && document.activeElement === document.body) {
         event.stopImmediatePropagation()
         event.preventDefault()
@@ -3141,6 +3157,22 @@ export default {
     },
     onDocumentsReplaceAndTemplateClone (template) {
       window.Turbo.visit(`/templates/${template.id}/edit`)
+    },
+    onDocumentsModified (data) {
+      this.template.schema = data.schema
+      this.template.fields = data.fields
+      this.template.submitters = data.submitters
+      this.template.documents = data.documents
+
+      this.selectedAreasRef.value = []
+
+      if (!this.template.submitters.find((s) => s.uuid === this.selectedSubmitter?.uuid)) {
+        this.selectedSubmitter = this.template.submitters[0]
+      }
+
+      this.editModalDocumentUuid = null
+
+      this.save()
     },
     moveDocument (item, direction) {
       const currentIndex = this.template.schema.indexOf(item)
