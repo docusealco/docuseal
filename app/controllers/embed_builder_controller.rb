@@ -38,7 +38,7 @@ class EmbedBuilderController < ApplicationController
     session[EmbedScoped::SESSION_KEY] = {
       'external_id' => payload['external_id'].presence,
       'template_id' => template_id,
-      'exp' => (Time.now + EmbedScoped::SESSION_TTL).to_i
+      'exp' => (Time.current + EmbedScoped::SESSION_TTL).to_i
     }.compact
 
     redirect_to(builder_target(template_id, payload))

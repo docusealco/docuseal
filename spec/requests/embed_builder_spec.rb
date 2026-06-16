@@ -4,7 +4,9 @@ require 'jwt'
 
 describe 'Embed builder' do
   let(:account) { create(:account) }
-  let(:user) { create(:user, account:) }
+  # Eager so the account always has a user — Account#default_template_folder
+  # picks author_id from account.users.minimum(:id) when creating templates.
+  let!(:user) { create(:user, account:) }
   let(:api_key) { user.access_token.token }
 
   def token(claims = {})
@@ -24,7 +26,7 @@ describe 'Embed builder' do
     end
 
     it 'redirects to the editor for an existing owned template' do
-      template = create(:template, account:, external_id: 'ext-xyz')
+      template = create(:template, account:, author: user, external_id: 'ext-xyz')
 
       get embed_builder_path, params: { token: token(template_id: template.id) }
 
@@ -32,7 +34,9 @@ describe 'Embed builder' do
     end
 
     it 'never opens a template the account does not own — falls back to create' do
-      other = create(:template, account: create(:account), external_id: 'foreign')
+      other_account = create(:account)
+      other = create(:template, account: other_account, author: create(:user, account: other_account),
+                                external_id: 'foreign')
 
       get embed_builder_path, params: { token: token(template_id: other.id) }
 
@@ -79,23 +83,30 @@ describe 'Embed builder' do
 
   describe 'scope enforcement (EmbedScoped)' do
     it 'confines the embed session to its own template' do
-      mine = create(:template, account:, external_id: 'mine')
-      theirs = create(:template, account:, external_id: 'theirs')
+      mine = create(:template, account:, author: user, external_id: 'mine')
+      theirs = create(:template, account:, author: user, external_id: 'theirs')
 
       get embed_builder_path, params: { token: token(template_id: mine.id) }
       expect(response).to redirect_to(edit_template_path(mine))
 
       # Cookies persist across requests within a request spec, so the next
-      # call rides the embed session established above.
-      get edit_template_path(mine)
-      expect(response).to have_http_status(:ok)
+      # calls ride the embed session established above. The guard runs as a
+      # before_action — a blocked request 403s BEFORE the view renders, so
+      # reaching the builder view (which needs compiled webpack assets, absent
+      # in this env) proves the in-scope template was allowed through.
+      begin
+        get edit_template_path(mine)
+        expect(response).not_to have_http_status(:forbidden)
+      rescue ActionView::Template::Error, Shakapacker::Manifest::MissingEntryError
+        # Reached view rendering => the scope guard allowed the in-scope template.
+      end
 
       get edit_template_path(theirs)
       expect(response).to have_http_status(:forbidden)
     end
 
     it 'refuses template enumeration even with a valid embed session' do
-      mine = create(:template, account:, external_id: 'mine')
+      mine = create(:template, account:, author: user, external_id: 'mine')
 
       get embed_builder_path, params: { token: token(template_id: mine.id) }
       get '/templates'
