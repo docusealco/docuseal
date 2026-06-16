@@ -5,32 +5,17 @@
 //
 // What this does:
 //   1. Reads the JWT minted by the embedding app from `data-token`.
-//   2. Decodes its payload to discover `document_urls`, `name`,
-//      `external_id`, and `template_id`.
-//   3. Iframes either `/templates/:id/edit` (existing template) or
-//      `/new?url=...&filename=...&external_id=...` (fresh upload flow).
-//   4. Relays the inner builder's `save` postMessage up as a DOM
-//      `CustomEvent('save')` on the outer element so `@docuseal/react`'s
-//      `onSave` callback fires.
-//
-// JWT signature is NOT verified here — host DocuSeal session cookies carry
-// auth, and the calling app signs with the shared secret it controls.
+//   2. Iframes the token-authenticated entry point `/embed/builder?token=…`.
+//      That endpoint verifies the JWT against the account API key, signs the
+//      owner in (a first-party DocuSeal session, scoped to one template), and
+//      redirects into the builder — `/templates/:id/edit` for an existing
+//      template, or `/new?url=…` for a fresh upload. The token is the only
+//      credential; no cross-origin cookies are involved.
+//   3. Relays the inner builder's `save` postMessage up as a DOM
+//      `CustomEvent('save')` so `@docuseal/react`'s `onSave` callback fires.
 (function () {
-  function decodeJwtPayload(token) {
-    try {
-      var part = token.split('.')[1]
-      if (!part) return null
-      var b64 = part.replace(/-/g, '+').replace(/_/g, '/')
-      var pad = b64.length % 4
-      if (pad) b64 += '='.repeat(4 - pad)
-      return JSON.parse(decodeURIComponent(escape(atob(b64))))
-    } catch (e) {
-      return null
-    }
-  }
-
-  // Discover the DocuSeal host from this script's own src so embedders
-  // don't have to set data-host on every element.
+  // Discover the DocuSeal host from this script's own src so embedders don't
+  // have to set data-host on every element.
   var SCRIPT_HOST = (function () {
     try {
       var current = document.currentScript
@@ -50,10 +35,9 @@
     }
   })()
 
-  // Relay `save` postMessage from the iframe (templates_builder fires it
-  // after a successful manual SAVE) up as a DOM `save` CustomEvent on the
-  // outer <docuseal-builder> element so React listeners can close the
-  // embedding sheet.
+  // Relay `save` postMessage from the iframe (the builder fires it after a
+  // successful manual SAVE) up as a DOM `save` CustomEvent on the outer
+  // <docuseal-builder> element so React listeners can close the embedding sheet.
   if (!window.__docusealEmbedListenerInstalled) {
     window.__docusealEmbedListenerInstalled = true
     window.addEventListener('message', function (ev) {
@@ -81,27 +65,12 @@
       if (!token) return
       this._mounted = true
       var host = this.getAttribute('data-host') || SCRIPT_HOST || window.location.host
-      var payload = decodeJwtPayload(token) || {}
-      var docUrl = (payload.document_urls && payload.document_urls[0]) || ''
-      var name = payload.name || 'Untitled'
-      var filename = name.replace(/[^A-Za-z0-9_\-]+/g, '_') + '.pdf'
 
-      // Match parent page scheme. Both ends run TLS locally (mkcert), so
-      // https parent -> https iframe with no mixed-content blocking.
+      // Match parent page scheme. Both ends run TLS, so https parent -> https
+      // iframe with no mixed-content blocking.
       var origin = window.location.protocol + '//' + host
-      var src
-      if (payload.template_id) {
-        // Existing template: open the editor directly so prior field
-        // edits are preserved. Posting to /new would create another
-        // template and orphan the original.
-        src = origin + '/templates/' + encodeURIComponent(payload.template_id) + '/edit'
-      } else {
-        var qs = new URLSearchParams()
-        if (docUrl) qs.set('url', docUrl)
-        qs.set('filename', filename)
-        if (payload.external_id) qs.set('external_id', payload.external_id)
-        src = origin + '/new?' + qs.toString()
-      }
+      var src = origin + '/embed/builder?token=' + encodeURIComponent(token)
+
       var iframe = document.createElement('iframe')
       iframe.src = src
       iframe.style.cssText = 'width:100%;height:100%;min-height:600px;border:0;display:block'
