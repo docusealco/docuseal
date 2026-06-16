@@ -147,10 +147,14 @@ class ApplicationController < ActionController::Base
 
       policy.directives['connect-src'] << 'ws:' if Rails.env.development?
 
-      # Allow the embedding app (set via EMBED_ALLOWED_ORIGIN) to iframe
-      # this DocuSeal instance. Required by the self-hosted JWT shim in
-      # `embed_scripts_controller.rb`.
-      policy.frame_ancestors :self, ENV['EMBED_ALLOWED_ORIGIN'] if ENV['EMBED_ALLOWED_ORIGIN'].present?
+      # Allow the embedding app(s) to iframe this DocuSeal instance. Required
+      # by the self-hosted JWT embed (embed_scripts_controller.rb + the
+      # token-auth EmbedBuilderController). EMBED_ALLOWED_ORIGIN may list
+      # several space-separated origins (e.g. an apex plus an app subdomain:
+      # "https://example.com https://app.example.com") — each becomes its own
+      # frame-ancestors source.
+      embed_origins = ENV['EMBED_ALLOWED_ORIGIN'].to_s.split
+      policy.frame_ancestors(:self, *embed_origins) if embed_origins.any?
     end
   end
 end
