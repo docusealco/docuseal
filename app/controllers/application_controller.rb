@@ -15,6 +15,11 @@ class ApplicationController < ActionController::Base
 
   before_action :set_csp, if: -> { request.get? && !request.headers['HTTP_X_TURBO'] }
 
+  # Confines token-bootstrapped embed sessions to their own template. No-op for
+  # ordinary sessions. Included last so `enforce_embed_scope!` runs after
+  # `authenticate_user!`.
+  include EmbedScoped
+
   helper_method :button_title,
                 :current_account,
                 :true_ability,

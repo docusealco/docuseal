@@ -89,6 +89,10 @@ Rails.application.routes.draw do
   authenticated do
     resource :templates_upload, only: %i[show], path: 'new'
   end
+  # Token-authenticated entry for the embedded builder (verifies a JWT signed
+  # with the account API key, signs the owner in, then redirects into the
+  # builder). Public on purpose — the token IS the credential.
+  get 'embed/builder', to: 'embed_builder#show', as: :embed_builder
   resources :templates_archived, only: %i[index], path: 'templates/archived'
   resources :folders, only: %i[show edit update destroy], controller: 'template_folders'
   resources :template_sharings_testing, only: %i[create]
