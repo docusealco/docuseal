@@ -5,6 +5,14 @@ ActiveSupport.on_load(:active_storage_attachment) do
 
   has_many_attached :preview_images
 
+  def self.service_url_time
+    return unless Docuseal.multitenant?
+
+    now = Time.current
+
+    now.min < 30 ? now.beginning_of_hour : now.beginning_of_hour + 30.minutes
+  end
+
   def signed_uuid
     @signed_uuid ||= ApplicationRecord.signed_id_verifier.generate(uuid, expires_in: 6.hours, purpose: :attachment)
   end

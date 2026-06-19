@@ -83,11 +83,12 @@
     <div class="overflow-y-auto overflow-x-hidden hidden lg:block w-52 flex-none pr-3 mt-0.5 pt-0.5" tabindex="0">
       <% values = @submission.submitters.reduce({}) { |acc, sub| acc.merge(sub.values) } %>
       <% schema = Submissions.filtered_conditions_schema(@submission, values:) %>
+      <% service_url_time = ActiveStorage::Attachment.service_url_time %>
       <% schema.each do |item| %>
         <% document = @submission.schema_documents.find { |a| item['attachment_uuid'] == a.uuid } %>
         <% if document.preview_images.first %>
           <scroll-to data-selector-id="page-<%= document.uuid %>-0" class="block cursor-pointer">
-            <img src="<%= (document.preview_images.find { |e| e.filename.base.to_i.zero? } || document.preview_images.first).url %>" width="<%= document.preview_images.first.metadata['width'] %>" height="<%= document.preview_images.first.metadata['height'] %>" class="rounded border" loading="lazy" alt="<%= item['name'].presence || document.filename.base %>">
+            <img src="<%= (document.preview_images.find { |e| e.filename.base.to_i.zero? } || document.preview_images.first).url(time: service_url_time) %>" width="<%= document.preview_images.first.metadata['width'] %>" height="<%= document.preview_images.first.metadata['height'] %>" class="rounded border" loading="lazy" alt="<%= item['name'].presence || document.filename.base %>">
             <div class="pb-2 pt-1.5 text-center" dir="auto">
               <%= item['name'].presence || document.filename.base %>
             </div>
@@ -111,7 +112,7 @@
           <% (document.metadata.dig('pdf', 'number_of_pages') || (document.preview_images.loaded? ? preview_images_index.size : document.preview_images.size)).times do |index| %>
             <% page = preview_images_index[index] || page_blob_struct.new(metadata: lazyload_metadata, url: preview_document_page_path(document.signed_key, "#{index}#{Templates::ProcessDocument::PREVIEW_FORMAT}")) %>
             <page-container id="<%= "page-#{document.uuid}-#{index}" %>" class="block before:border before:absolute before:top-0 before:bottom-0 before:left-0 before:right-0 before:rounded relative mb-4" style="container-type: size; aspect-ratio: <%= width = page.metadata['width'] %> / <%= height = page.metadata['height'] %>">
-              <img loading="lazy" src="<%= page.url %>" width="<%= width %>" class="rounded" height="<%= height %>" alt="<%= "#{item['name']} - #{t('page')} #{index + 1}" %>">
+              <img loading="lazy" src="<%= page.is_a?(ActiveStorage::Attachment) ? page.url(time: service_url_time) : page.url %>" width="<%= width %>" class="rounded" height="<%= height %>" alt="<%= "#{item['name']} - #{t('page')} #{index + 1}" %>">
               <div class="top-0 bottom-0 left-0 right-0 absolute">
                 <% document_annots_index[index]&.each do |annot| %>
                   <%= render 'submissions/annotation', annot: %>
@@ -267,11 +268,11 @@
                 <% if field['type'].in?(%w[signature initials]) %>
                   <div class="w-full bg-base-300 py-1">
                     <% img_height = attachments_index[value].metadata['height'] %>
-                    <img class="object-contain mx-auto" style="<%= 'max-' if img_height %>height: <%= field['type'] == 'signature' ? 100 : 50 %>px" height="<%= img_height %>" width="<%= attachments_index[value].metadata['width'] %>" src="<%= attachments_index[value].url %>" loading="lazy" alt="<%= field['name'] || field['title'] || field['type'] %>">
+                    <img class="object-contain mx-auto" style="<%= 'max-' if img_height %>height: <%= field['type'] == 'signature' ? 100 : 50 %>px" height="<%= img_height %>" width="<%= attachments_index[value].metadata['width'] %>" src="<%= attachments_index[value].url(time: service_url_time) %>" loading="lazy" alt="<%= field['name'] || field['title'] || field['type'] %>">
                   </div>
                 <% elsif field['type'].in?(['image', 'stamp', 'kba']) && attachments_index[value].image? %>
                   <% img_height = attachments_index[value].metadata['height'] %>
-                  <img class="object-contain mx-auto" style="<%= 'max-' if img_height %>height: 200px" height="<%= img_height %>" width="<%= attachments_index[value].metadata['width'] %>" src="<%= attachments_index[value].url %>" loading="lazy" alt="<%= field['name'] || field['title'] || field['type'] %>">
+                  <img class="object-contain mx-auto" style="<%= 'max-' if img_height %>height: 200px" height="<%= img_height %>" width="<%= attachments_index[value].metadata['width'] %>" src="<%= attachments_index[value].url(time: service_url_time) %>" loading="lazy" alt="<%= field['name'] || field['title'] || field['type'] %>">
                 <% elsif field['type'].in?(['file', 'payment', 'image']) %>
                   <div class="flex flex-col justify-center">
                     <% Array.wrap(value).each do |val| %>

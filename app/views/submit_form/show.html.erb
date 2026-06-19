@@ -6,6 +6,7 @@
 <% values = @submitter.submission.submitters.reduce({}) { |acc, sub| acc.merge(sub.values) } %>
 <% submitters_index = @submitter.submission.submitters.index_by(&:uuid) %>
 <% page_blob_struct = Struct.new(:url, :metadata) %>
+<% service_url_time = ActiveStorage::Attachment.service_url_time %>
 <% schema = Submissions.filtered_conditions_schema(@submitter.submission, values:, include_submitter_uuid: @submitter.uuid) %>
 <% font_scale = 1000.0 / PdfUtils::US_LETTER_W %>
 <% decline_modal_id = nil %>
@@ -138,7 +139,7 @@
           <% (document.metadata.dig('pdf', 'number_of_pages') || (document.preview_images.loaded? ? preview_images_index.size : document.preview_images.size)).times do |index| %>
             <% page = preview_images_index[index] || page_blob_struct.new(metadata: lazyload_metadata, url: preview_document_page_path(document.signed_key, "#{index}#{Templates::ProcessDocument::PREVIEW_FORMAT}")) %>
             <page-container class="block relative my-4 shadow-md" style="container-type: size; aspect-ratio: <%= width = page.metadata['width'] %> / <%= height = page.metadata['height'] %>">
-              <img loading="lazy" src="<%= page.url %>" width="<%= width %>" height="<%= height %>" alt="<%= "#{item['name']} - #{t('page')} #{index + 1}" %>">
+              <img loading="lazy" src="<%= page.is_a?(ActiveStorage::Attachment) ? page.url(time: service_url_time) : page.url %>" width="<%= width %>" height="<%= height %>" alt="<%= "#{item['name']} - #{t('page')} #{index + 1}" %>">
               <div id="page-<%= [document.uuid, index].join('-') %>" class="top-0 bottom-0 left-0 right-0 absolute">
                 <% if annots = document_annots_index[index] %>
                   <%= render 'submit_form/annotations', annots: %>
