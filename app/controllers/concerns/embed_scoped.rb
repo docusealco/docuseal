@@ -26,6 +26,13 @@ module EmbedScoped
   # create/upload flow, the signing/asset surfaces, and the few endpoints the
   # builder's own browser code calls. None expose another account's templates.
   UNSCOPED_ALLOW = [
+    # The JWT re-entry point itself. It runs BEHIND this before_action, so once
+    # a prior scope is pinned in the session cookie, re-opening the builder
+    # (the same template again, or a different one) would 403 here before
+    # EmbedBuilderController gets to re-establish the scope from the new token.
+    # The token — not the session — authenticates this endpoint, so always let
+    # it through; the controller then overwrites the scope.
+    %r{\A/embed/builder(?:[/?]|\z)},
     %r{\A/new(?:[/?]|\z)},
     %r{\A/templates/new(?:[/?]|\z)},
     %r{\A/templates_uploads?(?:[/?]|\z)},

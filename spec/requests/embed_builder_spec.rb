@@ -113,5 +113,30 @@ describe 'Embed builder' do
 
       expect(response).to have_http_status(:forbidden)
     end
+
+    it 're-enters /embed/builder with a pinned scope and re-scopes to the new template' do
+      first  = create(:template, account:, author: user, external_id: 'first')
+      second = create(:template, account:, author: user, external_id: 'second')
+
+      # First open pins the embed scope to `first` in the session cookie.
+      get embed_builder_path, params: { token: token(template_id: first.id) }
+      expect(response).to redirect_to(edit_template_path(first))
+
+      # Re-opening the builder for a DIFFERENT template (the cookie still carries
+      # the `first` scope) must NOT 403 — /embed/builder is the re-entry point
+      # that re-establishes scope from the new token. Regression: it used to
+      # 403 here because the stale scope blocked its own re-entry endpoint.
+      get embed_builder_path, params: { token: token(template_id: second.id) }
+      expect(response).not_to have_http_status(:forbidden)
+      expect(response).to redirect_to(edit_template_path(second))
+
+      # The new scope now allows the second template's editor.
+      begin
+        get edit_template_path(second)
+        expect(response).not_to have_http_status(:forbidden)
+      rescue ActionView::Template::Error, Shakapacker::Manifest::MissingEntryError
+        # Reached view rendering => the re-scoped template was allowed through.
+      end
+    end
   end
 end
