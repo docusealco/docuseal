@@ -108,7 +108,8 @@ class StartFormController < ApplicationController
   end
 
   def can_resubmit?(submitter)
-    submitter.account.account_configs.find_or_initialize_by(key: AccountConfig::ALLOW_TO_RESUBMIT).value != false
+    %w[api embed mcp].exclude?(submitter.submission.source) &&
+      submitter.account.account_configs.find_or_initialize_by(key: AccountConfig::ALLOW_TO_RESUBMIT).value != false
   end
 
   def authorize_start!
