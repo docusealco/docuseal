@@ -12,7 +12,11 @@ module Templates
     CONCURRENCY = 2
     Q = 95
     JPEG_Q = ENV.fetch('PAGE_QUALITY', '35').to_i
-    MAX_WIDTH = 1400
+    # Width (px) every page/preview image is rasterized to. US-Letter at 1400px
+    # is only ~165 DPI, which reads as a blurry scan in the builder/preview;
+    # 2200px is ~260 DPI. Env-overridable (`PAGE_MAX_WIDTH`) so storage/CPU can
+    # be dialed back per environment.
+    MAX_WIDTH = ENV.fetch('PAGE_MAX_WIDTH', '2200').to_i
     MAX_NUMBER_OF_PAGES_PROCESSED = 15
     MAX_FLATTEN_FILE_SIZE = 20.megabytes
     GENERATE_PREVIEW_SIZE_LIMIT = 50.megabytes
@@ -140,10 +144,12 @@ module Templates
 
       data =
         if format == FORMAT
-          bitdepth = 2**page.stats.to_a[1..3].pluck(2).uniq.size
-
-          page.write_to_buffer(format, compression: 6, filter: 0, bitdepth:,
-                                       palette: true, Q: Q, dither: 0)
+          # Full-colour PNG. The old palette path quantized each page to as few
+          # as 4–256 colours, which bands anti-aliased text and any colour logo
+          # — the second cause (with the low render width) of the "low quality
+          # image" look. Truecolour keeps edges crisp at the cost of larger
+          # blobs, acceptable for the handful of pages a template has.
+          page.write_to_buffer(format, compression: 6, filter: 0)
         else
           page.write_to_buffer(format, interlace: true, Q: JPEG_Q)
         end
