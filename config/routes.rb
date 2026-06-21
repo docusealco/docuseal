@@ -48,6 +48,14 @@ Rails.application.routes.draw do
       resources :form_events, only: %i[index], path: 'form/:type'
       resources :submission_events, only: %i[index], path: 'submission/:type'
     end
+    # Server-to-server endpoints used by the parent EHR app to provision a
+    # DocuSeal account per tenant and create templates scoped to it. The
+    # provision endpoint authenticates with its own HMAC token (not an API
+    # access token); the templates endpoint uses the standard X-Auth-Token.
+    namespace :internal do
+      resource :provision_account, only: %i[create], controller: 'provision_accounts'
+      resources :templates, only: %i[create]
+    end
   end
 
   resources :verify_pdf_signature, only: %i[create]
