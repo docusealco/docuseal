@@ -1,5 +1,8 @@
 <template>
-  <div class="inline-flex items-stretch replace-document-control">
+  <div
+    class="inline-flex items-stretch replace-document-control"
+    :class="{ 'opacity-100': isLoading }"
+  >
     <label
       :for="inputId"
       class="btn btn-neutral btn-xs transition-none replace-document-button"

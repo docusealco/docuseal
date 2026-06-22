@@ -25,7 +25,10 @@ class PreviewDocumentPageController < ActionController::API
     preview_image = attachment.preview_images.joins(:blob)
                               .find_by(blob: { filename: ["#{params[:id]}.png", "#{params[:id]}.jpg"] })
 
-    return redirect_to preview_image.url, allow_other_host: true if preview_image
+    if preview_image
+      return redirect_to preview_image.url(time: ActiveStorage::Attachment.service_url_time),
+                         allow_other_host: true
+    end
 
     file_path =
       if attachment.service.name == :disk
@@ -37,7 +40,7 @@ class PreviewDocumentPageController < ActionController::API
     preview_image =
       Templates::ProcessDocument.generate_pdf_preview_from_file(attachment, file_path, params[:id].to_i)
 
-    redirect_to preview_image.url, allow_other_host: true
+    redirect_to preview_image.url(time: ActiveStorage::Attachment.service_url_time), allow_other_host: true
   end
 
   def find_or_create_document_tempfile_path(attachment)

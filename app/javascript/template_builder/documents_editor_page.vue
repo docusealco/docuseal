@@ -36,7 +36,8 @@
         <div
           v-for="(rect, rectIndex) in page.redact"
           :key="`redact-${rectIndex}`"
-          class="absolute bg-black"
+          class="absolute"
+          :class="rect.color === 'white' ? 'bg-white' : 'bg-black'"
           :style="{
             left: `${rect.x * 100}%`,
             top: `${rect.y * 100}%`,
