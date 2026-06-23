@@ -27,6 +27,7 @@
         >
           <button
             id="type_text_button"
+            ref="typeTextButton"
             type="button"
             :aria-label="t('draw_signature')"
             class="btn btn-outline btn-sm font-medium type-text-button"
@@ -49,6 +50,7 @@
         >
           <button
             id="type_text_button"
+            ref="typeTextButton"
             type="button"
             :aria-label="t('type_text')"
             class="btn btn-outline btn-sm font-medium inline-flex flex-nowrap type-text-button"
@@ -71,7 +73,7 @@
         >
           <button
             type="button"
-            :aria-label="t('take_photo')"
+            :aria-label="t('upload')"
             class="btn btn-outline btn-sm font-medium inline-flex flex-nowrap upload-image-button"
             @click="$refs.takePhotoInput.click()"
           >
@@ -199,7 +201,7 @@
       <canvas
         v-show="!modelValue && !computedPreviousValue"
         ref="canvas"
-        role="application"
+        role="img"
         :aria-label="t('signature_drawing_area')"
         style="padding: 1px; 0"
         class="bg-white border border-base-300 rounded-2xl w-full draw-canvas"
@@ -716,10 +718,12 @@ export default {
       this.clear()
       this.isTextSignature = !this.isTextSignature
 
-      if (this.isTextSignature) {
-        this.$nextTick(() => {
+      this.$nextTick(() => {
+        if (this.isTextSignature) {
           if (this.$refs.textInput) {
-            if (!this.submitter.name) {
+            if (this.submitter.name) {
+              this.$refs.typeTextButton?.focus()
+            } else {
               this.$refs.textInput.focus()
             }
 
@@ -727,8 +731,10 @@ export default {
 
             this.$emit('start')
           }
-        })
-      }
+        } else {
+          this.$refs.typeTextButton?.focus()
+        }
+      })
     },
     async initTypedSignature () {
       if (this.signatureText) {
