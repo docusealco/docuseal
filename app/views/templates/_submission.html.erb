@@ -7,7 +7,7 @@
         <div class="font-medium items-start w-full group-hover:link text-sm flex space-x-1">
           <%= svg_icon('file_text', class: 'w-4 h-4 mt-0.5 flex-shrink-0') %>
           <span style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;">
-            <% (submission.name || template.name).split(/(_)/).each do |item| %><%= item %><wbr><% end %>
+            <% (submission.name || template&.name).to_s.split(/(_)/).each do |item| %><%= item %><wbr><% end %>
             <%= svg_icon('arrow_right', class: 'w-4 h-4 sm:inline group-hover:visible invisible hidden') %>
           </span>
         </div>

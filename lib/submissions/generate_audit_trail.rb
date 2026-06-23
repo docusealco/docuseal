@@ -61,7 +61,7 @@ module Submissions
         ActiveStorage::Attachment.create!(
           blob: ActiveStorage::Blob.create_and_upload!(
             io: io.tap(&:rewind), filename: "#{I18n.t('audit_log')} - " \
-                                            "#{submission.name || submission.template.name}.pdf"
+                                            "#{submission.name || submission.template&.name}.pdf"
           ),
           name: 'audit_trail',
           record: submission
