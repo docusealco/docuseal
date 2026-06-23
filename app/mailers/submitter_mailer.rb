@@ -144,6 +144,7 @@ class SubmitterMailer < ApplicationMailer
   end
 
   def otp_verification_email(submitter, locale: nil)
+    @current_account = submitter.account
     @submitter = submitter
     @otp_code = EmailVerificationCodes.generate([submitter.email.downcase.strip, submitter.slug].join(':'))
 
