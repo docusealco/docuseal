@@ -305,9 +305,7 @@ module Submitters
 
       return unless blob
 
-      return blob unless blob.attachments.exists?
-
-      return blob if account.submitters.exists?(id: blob.attachments.where(record_type: 'Submitter').select(:record_id))
+      return blob if blob.attachments.take&.record&.account_id == account.id
 
       nil
     end
