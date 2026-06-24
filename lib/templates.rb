@@ -47,6 +47,21 @@ module Templates
     nil
   end
 
+  def shared(current_user)
+    account = current_user.account
+
+    return Template.none if Docuseal.multitenant? ? !account.testing? : !account.linked_account_account
+
+    shared_account_ids = [current_user.account_id]
+    shared_account_ids << TemplateSharing::ALL_ID if !Docuseal.multitenant? && !account.testing?
+
+    exists_access = TemplateAccess.where(TemplateAccess.arel_table[:template_id].eq(Template.arel_table[:id]))
+                                  .select(1).arel.exists
+
+    Template.where(id: TemplateSharing.where(account_id: shared_account_ids).select(:template_id))
+            .where.not(exists_access)
+  end
+
   def search(current_user, templates, keyword)
     if Docuseal.fulltext_search?
       fulltext_search(current_user, templates, keyword)

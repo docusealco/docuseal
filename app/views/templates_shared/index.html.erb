@@ -1,0 +1,29 @@
+<div>
+  <%= link_to root_path, class: 'flex items-center' do %>
+    <%= svg_icon('chevron_left', class: 'w-5 h-5') %>
+    <span style="margin-left: 3px"><%= t('home') %></span>
+  <% end %>
+</div>
+<div class="relative flex justify-between items-center w-full mb-4">
+  <h1 class="text-2xl truncate md:text-3xl font-bold flex items-center flex-grow min-w-0 space-x-2 md:flex <%= 'hidden' if params[:q].present? %>">
+    <%= svg_icon('folder', class: 'w-9 h-9 flex-shrink-0') %>
+    <span class="truncate capitalize"><%= t('shared') %></span>
+  </h1>
+  <div class="flex space-x-2">
+    <% if params[:q].present? || @pagy.pages > 1 %>
+      <%= render 'shared/search_input' %>
+    <% end %>
+  </div>
+</div>
+<% if @pagy.count.nil? || @pagy.count > 0 %>
+  <div class="grid gap-4 md:grid-cols-3">
+    <%= render partial: 'templates/template', collection: @templates %>
+  </div>
+<% elsif params[:q].present? %>
+  <div class="text-center">
+    <div class="mt-16 text-3xl font-semibold">
+      <%= t('templates_not_found') %>
+    </div>
+  </div>
+<% end %>
+<%= render 'shared/pagination', pagy: @pagy, items_name: 'templates' %>
