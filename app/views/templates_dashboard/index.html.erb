@@ -45,8 +45,8 @@
     <% end %>
   <% end %>
   <% templates_order_select_html = capture do %>
-    <% if params[:q].blank? && @pagy.pages > 1 %>
-      <%= render 'shared/templates_order_select', with_recently_used: @pagy.count.present? && @pagy.count < 10_000 && !can?(:manage, :countless), selected_order: %>
+    <% if params[:q].blank? && @pagy.pages > 1 && !can?(:manage, :countless) %>
+      <%= render 'shared/templates_order_select', with_recently_used: @pagy.count.present? && @pagy.count < 10_000, selected_order: %>
     <% end %>
   <% end %>
   <% if @template_folders.present? || @show_default_folder || @show_shared_folder %>

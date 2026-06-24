@@ -102,11 +102,10 @@ class TemplatesDashboardController < ApplicationController
 
   def selected_order
     @selected_order ||=
-      if cookies.permanent[:dashboard_templates_order].blank? ||
-         (cookies.permanent[:dashboard_templates_order] == 'used_at' && can?(:manage, :countless))
+      if can?(:manage, :countless)
         'created_at'
       else
-        cookies.permanent[:dashboard_templates_order]
+        cookies.permanent[:dashboard_templates_order].presence || 'created_at'
       end
   end
 
