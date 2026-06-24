@@ -11,7 +11,7 @@
         <%= svg_icon('user', class: 'w-4 h-4') %>
         <span><%= template.author.full_name.presence || template.author.email.to_s.sub(/\+\w+@/, '@') %></span>
         <% if template.account_id != current_account.id %>
-          <span class="badge badge-neutral badge-outline badge-sm text-[10px] uppercase"><%= t('shared') %></span>
+          <span class="badge badge-neutral badge-outline badge-sm text-[10px] uppercase !border-base-content/60"><%= t('shared') %></span>
         <% end %>
       </p>
       <p class="flex text-xs text-base-content/60">
