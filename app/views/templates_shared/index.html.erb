@@ -1,13 +1,16 @@
 <div>
-  <%= link_to root_path, class: 'flex items-center' do %>
+  <%= link_to(@is_archived ? templates_shared_index_path : root_path, class: 'flex items-center') do %>
     <%= svg_icon('chevron_left', class: 'w-5 h-5') %>
-    <span style="margin-left: 3px"><%= t('home') %></span>
+    <span style="margin-left: 3px"><%= @is_archived ? t('back_to_active') : t('home') %></span>
   <% end %>
 </div>
 <div class="relative flex justify-between items-center w-full mb-4">
   <h1 class="text-2xl truncate md:text-3xl font-bold flex items-center flex-grow min-w-0 space-x-2 md:flex <%= 'hidden' if params[:q].present? %>">
     <%= svg_icon('folder', class: 'w-9 h-9 flex-shrink-0') %>
     <span class="truncate capitalize"><%= t('shared') %></span>
+    <% if @is_archived %>
+      <span class="badge badge-outline badge-lg align-middle"><%= t('archived') %></span>
+    <% end %>
   </h1>
   <div class="flex space-x-2">
     <% if params[:q].present? || @pagy.pages > 1 %>
@@ -15,6 +18,13 @@
     <% end %>
   </div>
 </div>
+<% view_archived_html = capture do %>
+  <% if @has_archived %>
+    <div>
+      <a href="<%= templates_shared_index_path(archived: true) %>" class="link text-sm"><%= t('view_archived') %></a>
+    </div>
+  <% end %>
+<% end %>
 <% if @pagy.count.nil? || @pagy.count > 0 %>
   <div class="grid gap-4 md:grid-cols-3">
     <%= render partial: 'templates/template', collection: @templates %>
@@ -26,4 +36,10 @@
     </div>
   </div>
 <% end %>
-<%= render 'shared/pagination', pagy: @pagy, items_name: 'templates' %>
+<% if @pagy.pages > 1 %>
+  <%= render 'shared/pagination', pagy: @pagy, items_name: 'templates', left_additional_html: view_archived_html %>
+<% else %>
+  <div class="mt-2">
+    <%= view_archived_html %>
+  </div>
+<% end %>

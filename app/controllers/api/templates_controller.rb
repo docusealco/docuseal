@@ -48,7 +48,7 @@ module Api
 
       archived = params.key?(:archived) ? params[:archived] : params.dig(:template, :archived)
 
-      if archived.in?([true, false])
+      if archived.in?([true, false]) && current_ability.can?(:destroy, @template)
         @template.archived_at = archived == true ? Time.current : nil
       end
 

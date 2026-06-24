@@ -14,7 +14,7 @@
 </div>
 <% if @pagy.count.nil? || @pagy.count > 0 %>
   <div class="grid gap-4 md:grid-cols-3">
-    <%= render partial: 'templates/template', collection: @templates %>
+    <%= render partial: 'templates/template', collection: @templates, locals: { with_folder: true } %>
   </div>
 <% elsif params[:q].present? %>
   <div class="text-center">

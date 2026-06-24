@@ -91,7 +91,7 @@
       <% end %>
     <% end %>
     <% if template.archived_at? %>
-      <% if can?(:create, template) %>
+      <% if can?(:destroy, template) %>
         <%= button_to button_title(title: t('restore'), disabled_with: t('restoring')[..-4], icon: svg_icon('rotate', class: 'w-6 h-6')), template_restore_index_path(template), class: 'btn btn-outline btn-sm flex-1' %>
       <% end %>
       <%= link_to template_preview_path(template), class: 'btn btn-outline btn-sm flex-1' do %>

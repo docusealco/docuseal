@@ -4,10 +4,16 @@ class TemplatesSharedController < ApplicationController
   def index
     authorize!(:read, Template)
 
+    @is_archived = params[:archived] == 'true'
+
     @templates = Templates.shared(current_user)
-                          .active
-                          .preload(:author, :template_accesses, :template_sharings)
-                          .order(id: :desc)
+
+    @has_archived = !@is_archived && @templates.archived.exists?
+
+    @templates = @is_archived ? @templates.archived : @templates.active
+
+    @templates = @templates.preload(:author, :template_accesses, :template_sharings)
+                           .order(id: :desc)
 
     @templates = Templates.search(current_user, @templates, params[:q])
 

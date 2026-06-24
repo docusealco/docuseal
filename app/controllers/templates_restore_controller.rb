@@ -4,7 +4,7 @@ class TemplatesRestoreController < ApplicationController
   load_and_authorize_resource :template
 
   def create
-    authorize!(:update, @template)
+    authorize!(:destroy, @template)
 
     @template.update!(archived_at: nil)
 
