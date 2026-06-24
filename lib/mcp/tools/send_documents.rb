@@ -73,7 +73,9 @@ module Mcp
       def call(arguments, current_user, current_ability)
         template = Template.accessible_by(current_ability).find_by(id: arguments['template_id'])
 
-        return { content: [{ type: 'text', text: 'Template not found' }], isError: true } unless template
+        if !template || !current_ability.can?(:read, template)
+          return { content: [{ type: 'text', text: 'Template not found' }], isError: true }
+        end
 
         if template.archived_at?
           return { content: [{ type: 'text', text: 'Template has been archived' }], isError: true }
