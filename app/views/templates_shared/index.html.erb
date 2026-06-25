@@ -42,7 +42,7 @@
     <div class="space-y-4 mt-4">
       <%= render partial: 'templates/submission', collection: @related_submissions, locals: { with_template: true } %>
     </div>
-    <%= render 'shared/pagination', pagy: @related_submissions_pagy, items_name: 'submissions' %>
+    <%= render 'shared/pagination', pagy: @related_submissions_pagy, items_name: 'submissions', next_page_path: @is_archived ? submissions_archived_index_path(q: params[:q]) : submissions_path(q: params[:q]) %>
   <% end %>
 <% end %>
 <% if @pagy.pages > 1 %>
