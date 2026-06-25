@@ -81,6 +81,7 @@
           <select
             id="country_code_select"
             class="absolute top-0 bottom-0 right-0 left-0 opacity-0 w-full h-full cursor-pointer"
+            :aria-label="t('country_code')"
             :disabled="!!defaultValue"
             @change="onCountrySelect(countries.find((country) => country.flag === $event.target.value))"
           >

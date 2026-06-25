@@ -35,7 +35,7 @@
         :placeholder="t('email')"
         type="email"
         :required="submitters.includes(submitter)"
-        autofocus="true"
+        :autofocus="index === 0"
         name="submission[submitters][][email]"
       >
     </div>

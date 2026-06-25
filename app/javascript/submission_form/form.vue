@@ -289,6 +289,7 @@
               :id="currentField.uuid"
               dir="auto"
               :required="currentField.required"
+              :aria-label="showFieldNames && (currentField.name || currentField.title) ? undefined : (currentField.name || currentField.title || t('select_your_option'))"
               :aria-describedby="currentField.description ? currentField.uuid + '-desc' : undefined"
               class="select base-input !text-2xl w-full text-center font-normal"
               :class="{ 'text-gray-300': !values[currentField.uuid] }"

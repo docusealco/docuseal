@@ -230,6 +230,8 @@
           >
             <canvas
               ref="qrCanvas"
+              role="img"
+              :aria-label="t('scan_the_qr_code_with_the_camera_app_to_open_the_form_on_mobile_and_draw_your_signature')"
               class="h-full"
               width="132"
               height="132"
@@ -244,6 +246,7 @@
       ref="textInput"
       class="base-input !text-2xl w-full mt-6"
       :required="field.required && !isSignatureStarted"
+      :aria-label="field.name || t('signature')"
       :placeholder="`${t('type_signature_here')}...`"
       type="text"
       @input="updateWrittenSignature"
@@ -253,6 +256,7 @@
       class="select base-input !text-2xl w-full mt-6 text-center"
       :class="{ 'text-gray-300': !reason }"
       required
+      :aria-label="t('select_a_reason')"
       :name="`values[${field.preferences.reason_field_uuid}]`"
       @change="$event.target.value === 'other' ? [reason = '', isOtherReason = true] : $emit('update:reason', $event.target.value)"
     >
@@ -298,6 +302,7 @@
       class="base-input !text-2xl w-full mt-6"
       required
       :name="`values[${field.preferences.reason_field_uuid}]`"
+      :aria-label="t('select_a_reason')"
       :placeholder="t('type_here_')"
       :value="reason"
       type="text"
