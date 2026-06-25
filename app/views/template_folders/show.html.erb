@@ -30,7 +30,7 @@
       <% end %>
     </h1>
     <div class="flex space-x-2">
-      <% if params[:q].present? || @pagy.pages > 1 || @template_folders.present? %>
+      <% if params[:q].present? || @pagy.count.nil? || @pagy.count > 0 || @template_folders.present? %>
         <%= render 'shared/search_input' %>
       <% end %>
       <% if can?(:create, ::Template) %>

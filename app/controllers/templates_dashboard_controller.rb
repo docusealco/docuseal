@@ -38,7 +38,9 @@ class TemplatesDashboardController < ApplicationController
 
       @pagy, @templates = load_templates(@templates, @pagy.count)
 
-      load_related_submissions if params[:q].present? && @templates.blank?
+      if params[:q].present? && @templates.blank?
+        @related_submissions_pagy, @related_submissions = load_related_submissions
+      end
     end
   end
 
@@ -110,17 +112,17 @@ class TemplatesDashboardController < ApplicationController
   end
 
   def load_related_submissions
-    @related_submissions = Submission.accessible_by(current_ability)
-                                     .left_joins(:template)
-                                     .where(archived_at: nil)
-                                     .where(templates: { archived_at: nil })
-                                     .preload(:template_accesses, :created_by_user,
-                                              template: :author,
-                                              submitters: :start_form_submission_events)
+    related_submissions = Submission.accessible_by(current_ability)
+                                    .left_joins(:template)
+                                    .where(archived_at: nil)
+                                    .where(templates: { archived_at: nil })
+                                    .preload(:template_accesses, :created_by_user,
+                                             template: :author,
+                                             submitters: :start_form_submission_events)
 
-    @related_submissions = Submissions.search(current_user, @related_submissions, params[:q])
-                                      .order(id: :desc)
+    related_submissions = Submissions.search(current_user, related_submissions, params[:q])
+                                     .order(id: :desc)
 
-    @related_submissions_pagy, @related_submissions = pagy_auto(@related_submissions, limit: 5)
+    pagy_auto(related_submissions, limit: 5)
   end
 end
