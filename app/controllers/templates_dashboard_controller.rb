@@ -36,7 +36,7 @@ class TemplatesDashboardController < ApplicationController
         @templates = @templates.where(folder_id: @default_folder.id) if params[:q].blank?
       end
 
-      @pagy, @templates = load_templates(@templates, @pagy.count)
+      @pagy, @templates = load_templates(@templates, @pagy.count, show_shared_inline: @show_shared_inline)
 
       if params[:q].present? && @templates.blank?
         @related_submissions_pagy, @related_submissions = load_related_submissions
@@ -46,9 +46,16 @@ class TemplatesDashboardController < ApplicationController
 
   private
 
-  def load_templates(templates, folders_count)
+  def load_templates(templates, folders_count, show_shared_inline: false)
     templates = templates.preload(:author, :template_accesses)
-    templates = Templates.search(current_user, templates, params[:q])
+
+    templates =
+      if show_shared_inline
+        Templates.search_shared(current_user, templates, params[:q])
+      else
+        Templates.search(current_user, templates, params[:q])
+      end
+
     templates = Templates::Order.call(templates, current_user, selected_order)
 
     limit =

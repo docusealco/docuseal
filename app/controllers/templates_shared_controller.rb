@@ -15,7 +15,7 @@ class TemplatesSharedController < ApplicationController
     @templates = @templates.preload(:author, :template_accesses, :template_sharings)
                            .order(id: :desc)
 
-    @templates = Templates.search(current_user, @templates, params[:q])
+    @templates = Templates.search_shared(current_user, @templates, params[:q])
 
     @pagy, @templates = pagy_auto(@templates, limit: 12)
 

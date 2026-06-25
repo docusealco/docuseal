@@ -70,6 +70,21 @@ module Templates
     end
   end
 
+  def search_shared(current_user, templates, keyword)
+    return templates if keyword.blank?
+
+    if Docuseal.fulltext_search?
+      templates.where(
+        id: SearchEntry.where(record_type: 'Template')
+                       .where(account_id: current_user.account.linked_account_account&.account_id)
+                       .where(*SearchEntries.build_tsquery(keyword))
+                       .select(:record_id)
+      )
+    else
+      plain_search(templates, keyword)
+    end
+  end
+
   def plain_search(templates, keyword)
     return templates if keyword.blank?
 
@@ -83,8 +98,7 @@ module Templates
 
     templates.where(
       id: SearchEntry.where(record_type: 'Template')
-                     .where(account_id: [current_user.account_id,
-                                         current_user.account.linked_account_account&.account_id].compact)
+                     .where(account_id: current_user.account_id)
                      .where(*SearchEntries.build_tsquery(keyword))
                      .select(:record_id)
     )
