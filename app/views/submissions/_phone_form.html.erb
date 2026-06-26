@@ -56,7 +56,7 @@
   </dynamic-list>
   <%= local_assigns[:variables_form] %>
   <div>
-    <%= render('submitters_order', f:, template:) if Accounts.can_send_emails?(current_account) %>
+    <%= render 'submitters_order', f:, template: %>
     <%= render 'send_sms', f:, checked: true %>
     <%= render 'extra_phone_fields', f: %>
   </div>

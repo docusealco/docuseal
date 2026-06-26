@@ -2,7 +2,6 @@
 <% template_submitters = local_assigns[:submitter]&.submission&.template_submitters || template.submitters %>
 <% message_field_id = "message_field_#{SecureRandom.hex(3)}" %>
 <div class="form-control">
-  <% can_send_emails = Accounts.can_send_emails?(current_account, on_events: can?(:manage, :countless)) %>
   <div class="flex justify-between items-center">
     <%= f.label :send_email, for: uuid = SecureRandom.uuid, class: 'flex items-center cursor-pointer' do %>
       <%= f.check_box :send_email, id: uuid, class: 'base-checkbox', disabled: !can_send_emails || local_assigns[:disable_email], checked: can_send_emails && !local_assigns.key?(:resend_email) && !local_assigns[:disable_email] && template&.preferences&.dig('request_email_enabled') != false %>
