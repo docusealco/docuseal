@@ -30,7 +30,7 @@ class TemplateFoldersController < ApplicationController
           (@template_folders.size < 7 ? 9 : 6)
         end
 
-      @pagy, @templates = pagy_auto(@templates, limit:)
+      @pagy, @templates = pagy_auto(@templates.select_for_list, limit:)
 
       if params[:q].present? && @templates.blank?
         @related_submissions_pagy, @related_submissions = load_related_submissions(@template_folder)
@@ -82,6 +82,6 @@ class TemplateFoldersController < ApplicationController
     related_submissions = Submissions.search(current_user, related_submissions, params[:q])
                                      .order(id: :desc)
 
-    pagy_auto(related_submissions, limit: 5)
+    pagy_auto(related_submissions.select_for_list, limit: 5)
   end
 end

@@ -36,7 +36,8 @@ class TemplatesDashboardController < ApplicationController
         @templates = @templates.where(folder_id: @default_folder.id) if params[:q].blank?
       end
 
-      @pagy, @templates = load_templates(@templates, @pagy.count, show_shared_inline: @show_shared_inline)
+      @pagy, @templates = load_templates(@templates.select_for_list, @pagy.count,
+                                         show_shared_inline: @show_shared_inline)
 
       if params[:q].present? && @templates.blank?
         @related_submissions_pagy, @related_submissions = load_related_submissions
@@ -130,6 +131,6 @@ class TemplatesDashboardController < ApplicationController
     related_submissions = Submissions.search(current_user, related_submissions, params[:q])
                                      .order(id: :desc)
 
-    pagy_auto(related_submissions, limit: 5)
+    pagy_auto(related_submissions.select_for_list, limit: 5)
   end
 end

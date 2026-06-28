@@ -17,7 +17,7 @@ class TemplatesSharedController < ApplicationController
 
     @templates = Templates.search_shared(current_user, @templates, params[:q])
 
-    @pagy, @templates = pagy_auto(@templates, limit: 12)
+    @pagy, @templates = pagy_auto(@templates.select_for_list, limit: 12)
 
     return unless params[:q].present? && @templates.blank?
 
@@ -42,6 +42,6 @@ class TemplatesSharedController < ApplicationController
     related_submissions = Submissions.search(current_user, related_submissions, params[:q])
                                      .order(id: :desc)
 
-    pagy_auto(related_submissions, limit: 5)
+    pagy_auto(related_submissions.select_for_list, limit: 5)
   end
 end

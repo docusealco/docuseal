@@ -7,7 +7,7 @@ class SubmissionsArchivedController < ApplicationController
     @submissions = @submissions.left_joins(:template)
     @submissions = @submissions.where.not(archived_at: nil)
                                .or(@submissions.where.not(templates: { archived_at: nil }))
-                               .preload(:template_accesses, :created_by_user, template: :author)
+                               .preload(:template_accesses, :created_by_user)
 
     @submissions = Submissions.search(current_user, @submissions, params[:q], search_template: true)
     @submissions = Submissions::Filter.call(@submissions, current_user, params)
@@ -18,6 +18,15 @@ class SubmissionsArchivedController < ApplicationController
                      @submissions.order(id: :desc)
                    end
 
-    @pagy, @submissions = pagy_auto(@submissions.preload(submitters: :start_form_submission_events))
+    @pagy, @submissions = pagy_auto(@submissions.select_for_list.preload(submitters: :start_form_submission_events))
+
+    template_scope = @submissions.all?(&:template_submitters) ? Template.select_for_list : nil
+
+    ActiveRecord::Associations::Preloader.new(records: @submissions,
+                                              associations: :template,
+                                              scope: template_scope).call
+
+    ActiveRecord::Associations::Preloader.new(records: @submissions.filter_map(&:template),
+                                              associations: :author).call
   end
 end
