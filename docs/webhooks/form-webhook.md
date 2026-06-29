@@ -1,6 +1,6 @@
 # Form Webhook
 
-During the form filling and signing process, 3 types of events may occur and are dispatched at different stages:
+During the form filling and signing process, 4 types of events may occur and are dispatched at different stages:
 
 - **'form.viewed'** event is triggered when the submitter first opens the form.
 - **'form.started'** event is triggered when the submitter initiates filling out the form.
@@ -19,13 +19,16 @@ During the form filling and signing process, 3 types of events may occur and are
     "enum": [
       "form.viewed",
       "form.started",
-      "form.completed"
+      "form.completed",
+      "form.declined"
     ]
   },
   "timestamp": {
     "type": "string",
     "description": "The event timestamp.",
-    "example": "2023-09-24T11:20:42Z",
+    "examples": [
+      "2023-09-24T11:20:42Z"
+    ],
     "format": "date-time"
   },
   "data": {
@@ -36,20 +39,20 @@ During the form filling and signing process, 3 types of events may occur and are
         "type": "number",
         "description": "The submitter's unique identifier."
       },
-      "submission_id": {
-        "type": "number",
-        "description": "The unique submission identifier."
-      },
       "email": {
         "type": "string",
         "description": "The submitter's email address",
         "format": "email",
-        "example": "john.doe@example.com"
+        "examples": [
+          "john.doe@example.com"
+        ]
       },
       "ua": {
         "type": "string",
         "description": "The user agent string that provides information about the submitter's web browser.",
-        "example": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36"
+        "examples": [
+          "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36"
+        ]
       },
       "ip": {
         "type": "string",
@@ -62,20 +65,20 @@ During the form filling and signing process, 3 types of events may occur and are
       "phone": {
         "type": "string",
         "description": "The submitter's phone number, formatted according to the E.164 standard.",
-        "example": "+1234567890"
+        "examples": [
+          "+1234567890"
+        ]
       },
       "role": {
         "type": "string",
         "description": "The submitter's role name or title.",
-        "example": "First Party"
+        "examples": [
+          "First Party"
+        ]
       },
       "external_id": {
         "type": "string",
         "description": "Your application-specific unique string key to identify submitter within your app."
-      },
-      "application_key": {
-        "type": "string",
-        "description": "Your application-specific unique string key to identify submitter within your app. Backward compatibility with the previous version of the API. Use external_id instead."
       },
       "decline_reason": {
         "type": "string",
@@ -83,6 +86,7 @@ During the form filling and signing process, 3 types of events may occur and are
       },
       "sent_at": {
         "type": "string",
+        "description": "The date and time when the signing request was sent to the submitter.",
         "format": "date-time"
       },
       "status": {
@@ -98,22 +102,27 @@ During the form filling and signing process, 3 types of events may occur and are
       },
       "opened_at": {
         "type": "string",
+        "description": "The date and time when the submitter opened the signing form.",
         "format": "date-time"
       },
       "completed_at": {
         "type": "string",
+        "description": "The date and time when the submitter completed the signing form.",
         "format": "date-time"
       },
       "declined_at": {
         "type": "string",
+        "description": "The date and time when the submitter declined the signing form.",
         "format": "date-time"
       },
       "created_at": {
         "type": "string",
+        "description": "The date and time when the submitter was created.",
         "format": "date-time"
       },
       "updated_at": {
         "type": "string",
+        "description": "The date and time when the submitter was last updated.",
         "format": "date-time"
       },
       "submission": {
@@ -189,6 +198,7 @@ During the form filling and signing process, 3 types of events may occur and are
       },
       "preferences": {
         "type": "object",
+        "description": "Submitter preferences for notifications.",
         "properties": {
           "send_email": {
             "type": "boolean",
@@ -210,7 +220,7 @@ During the form filling and signing process, 3 types of events may occur and are
               "type": "string",
               "description": "The field name."
             },
-            "values": {
+            "value": {
               "type": "string",
               "description": "The field value."
             }
@@ -231,6 +241,7 @@ During the form filling and signing process, 3 types of events may occur and are
       },
       "documents": {
         "type": "array",
+        "description": "List of completed documents signed by the submitter.",
         "items": {
           "type": "object",
           "properties": {

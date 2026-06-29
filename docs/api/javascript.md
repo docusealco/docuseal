@@ -54,7 +54,7 @@ const { data, pagination } = await docuseal.listSubmissions({ limit: 10 });
       "schema": {
         "type": "string"
       },
-      "description": "Filter submissions based on submitters name, email or phone partial match."
+      "description": "Filter submissions based on submitter's name, email or phone partial match."
     },
     {
       "name": "slug",
@@ -188,6 +188,17 @@ const submission = await docuseal.getSubmissionDocuments(1001);
       },
       "description": "The unique identifier of the submission.",
       "example": 1001
+    },
+    {
+      "name": "merge",
+      "in": "query",
+      "required": false,
+      "schema": {
+        "type": "boolean",
+        "default": false
+      },
+      "description": "When `true`, merges all documents into a single PDF.",
+      "example": false
     }
   ]
 }
@@ -241,7 +252,9 @@ const submission = await docuseal.createSubmission({
             "template_id": {
               "type": "integer",
               "description": "The unique identifier of the template. Document template forms can be created via the Web UI, <a href=\"https://www.docuseal.com/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form\" class=\"link\">PDF and DOCX API</a>, or <a href=\"https://www.docuseal.com/guides/create-pdf-document-fillable-form-with-html-api\" class=\"link\">HTML API</a>.",
-              "example": 1000001
+              "examples": [
+                1000001
+              ]
             },
             "send_email": {
               "type": "boolean",
@@ -277,10 +290,22 @@ const submission = await docuseal.createSubmission({
             "expire_at": {
               "type": "string",
               "description": "Specify the expiration date and time after which the submission becomes unavailable for signature.",
-              "example": "2024-09-01 12:00:00 UTC"
+              "examples": [
+                "2024-09-01 12:00:00 UTC"
+              ]
+            },
+            "variables": {
+              "type": "object",
+              "description": "Dynamic content variables object. Variable values can be strings, numbers, arrays, objects, or HTML content used to generate styled text, paragraphs, and tables in dynamic template documents.",
+              "examples": [
+                {
+                  "variable_name": "value"
+                }
+              ]
             },
             "message": {
               "type": "object",
+              "description": "Custom signature request email message.",
               "properties": {
                 "subject": {
                   "type": "string",
@@ -297,9 +322,6 @@ const submission = await docuseal.createSubmission({
               "description": "The list of submitters for the submission.",
               "items": {
                 "type": "object",
-                "required": [
-                  "email"
-                ],
                 "properties": {
                   "name": {
                     "type": "string",
@@ -308,18 +330,24 @@ const submission = await docuseal.createSubmission({
                   "role": {
                     "type": "string",
                     "description": "The role name or title of the submitter.",
-                    "example": "First Party"
+                    "examples": [
+                      "First Party"
+                    ]
                   },
                   "email": {
                     "type": "string",
                     "description": "The email address of the submitter.",
                     "format": "email",
-                    "example": "john.doe@example.com"
+                    "examples": [
+                      "john.doe@example.com"
+                    ]
                   },
                   "phone": {
                     "type": "string",
                     "description": "The phone number of the submitter, formatted according to the E.164 standard.",
-                    "example": "+1234567890"
+                    "examples": [
+                      "+1234567890"
+                    ]
                   },
                   "values": {
                     "type": "object",
@@ -336,7 +364,9 @@ const submission = await docuseal.createSubmission({
                   "metadata": {
                     "type": "object",
                     "description": "Metadata object with additional submitter information.",
-                    "example": "{ \"customField\": \"value\" }"
+                    "examples": [
+                      "{ \"customField\": \"value\" }"
+                    ]
                   },
                   "send_email": {
                     "type": "boolean",
@@ -372,6 +402,7 @@ const submission = await docuseal.createSubmission({
                   },
                   "message": {
                     "type": "object",
+                    "description": "Custom signature request email message for the submitter.",
                     "properties": {
                       "subject": {
                         "type": "string",
@@ -395,7 +426,9 @@ const submission = await docuseal.createSubmission({
                         "name": {
                           "type": "string",
                           "description": "Document template field name.",
-                          "example": "First Name"
+                          "examples": [
+                            "First Name"
+                          ]
                         },
                         "default_value": {
                           "oneOf": [
@@ -426,7 +459,9 @@ const submission = await docuseal.createSubmission({
                             }
                           ],
                           "description": "Default value of the field. Use base64 encoded file or a public URL to the image file to set default signature or image fields.",
-                          "example": "Acme"
+                          "examples": [
+                            "Acme"
+                          ]
                         },
                         "readonly": {
                           "type": "boolean",
@@ -447,11 +482,14 @@ const submission = await docuseal.createSubmission({
                         },
                         "validation": {
                           "type": "object",
+                          "description": "Field validation rules.",
                           "properties": {
                             "pattern": {
                               "type": "string",
                               "description": "HTML field validation pattern string based on https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/pattern specification.",
-                              "example": "[A-Z]{4}"
+                              "examples": [
+                                "[A-Z]{4}"
+                              ]
                             },
                             "message": {
                               "type": "string",
@@ -487,11 +525,14 @@ const submission = await docuseal.createSubmission({
                         },
                         "preferences": {
                           "type": "object",
+                          "description": "Field display preferences.",
                           "properties": {
                             "font_size": {
                               "type": "integer",
                               "description": "Font size of the field value in pixels.",
-                              "example": 12
+                              "examples": [
+                                12
+                              ]
                             },
                             "font_type": {
                               "type": "string",
@@ -553,12 +594,16 @@ const submission = await docuseal.createSubmission({
                             "format": {
                               "type": "string",
                               "description": "The data format for different field types.<br>- Date field: accepts formats such as DD/MM/YYYY (default: MM/DD/YYYY).<br>- Signature field: accepts drawn, typed, drawn_or_typed (default), or upload.<br>- Number field: accepts currency formats such as usd, eur, gbp.",
-                              "example": "DD/MM/YYYY"
+                              "examples": [
+                                "DD/MM/YYYY"
+                              ]
                             },
                             "price": {
                               "type": "number",
                               "description": "Price value of the payment field. Only for payment fields.",
-                              "example": 99.99
+                              "examples": [
+                                99.99
+                              ]
                             },
                             "currency": {
                               "type": "string",
@@ -682,7 +727,9 @@ const submission = await docuseal.createSubmissionFromPdf({
             "name": {
               "type": "string",
               "description": "Name of the document submission.",
-              "example": "Test Submission Document"
+              "examples": [
+                "Test Submission Document"
+              ]
             },
             "send_email": {
               "type": "boolean",
@@ -718,7 +765,9 @@ const submission = await docuseal.createSubmissionFromPdf({
             "expire_at": {
               "type": "string",
               "description": "Specify the expiration date and time after which the submission becomes unavailable for signature.",
-              "example": "2024-09-01 12:00:00 UTC"
+              "examples": [
+                "2024-09-01 12:00:00 UTC"
+              ]
             },
             "template_ids": {
               "type": "array",
@@ -730,6 +779,7 @@ const submission = await docuseal.createSubmissionFromPdf({
             },
             "documents": {
               "type": "array",
+              "description": "An array of PDF documents to create a submission.",
               "items": {
                 "type": "object",
                 "required": [
@@ -742,7 +792,9 @@ const submission = await docuseal.createSubmissionFromPdf({
                     "description": "Name of the document."
                   },
                   "file": {
-                    "example": "base64",
+                    "examples": [
+                      "base64"
+                    ],
                     "type": "string",
                     "format": "base64",
                     "description": "Base64-encoded content of the PDF file or downloadable file URL."
@@ -778,6 +830,7 @@ const submission = await docuseal.createSubmissionFromPdf({
                             "payment",
                             "phone",
                             "verification",
+                            "kba",
                             "strikethrough"
                           ]
                         },
@@ -799,6 +852,7 @@ const submission = await docuseal.createSubmissionFromPdf({
                         },
                         "areas": {
                           "type": "array",
+                          "description": "List of areas where the field is located in the document.",
                           "items": {
                             "type": "object",
                             "required": [
@@ -828,7 +882,9 @@ const submission = await docuseal.createSubmissionFromPdf({
                               "page": {
                                 "type": "integer",
                                 "description": "Page number of the field area. Starts from 1.",
-                                "example": 1
+                                "examples": [
+                                  1
+                                ]
                               },
                               "option": {
                                 "type": "string",
@@ -843,9 +899,11 @@ const submission = await docuseal.createSubmissionFromPdf({
                           "items": {
                             "type": "string"
                           },
-                          "example": [
-                            "Option A",
-                            "Option B"
+                          "examples": [
+                            [
+                              "Option A",
+                              "Option B"
+                            ]
                           ]
                         }
                       }
@@ -863,9 +921,6 @@ const submission = await docuseal.createSubmissionFromPdf({
               "description": "The list of submitters for the submission.",
               "items": {
                 "type": "object",
-                "required": [
-                  "email"
-                ],
                 "properties": {
                   "name": {
                     "type": "string",
@@ -874,18 +929,24 @@ const submission = await docuseal.createSubmissionFromPdf({
                   "role": {
                     "type": "string",
                     "description": "The role name or title of the submitter.",
-                    "example": "First Party"
+                    "examples": [
+                      "First Party"
+                    ]
                   },
                   "email": {
                     "type": "string",
                     "description": "The email address of the submitter.",
                     "format": "email",
-                    "example": "john.doe@example.com"
+                    "examples": [
+                      "john.doe@example.com"
+                    ]
                   },
                   "phone": {
                     "type": "string",
                     "description": "The phone number of the submitter, formatted according to the E.164 standard.",
-                    "example": "+1234567890"
+                    "examples": [
+                      "+1234567890"
+                    ]
                   },
                   "values": {
                     "type": "object",
@@ -902,7 +963,9 @@ const submission = await docuseal.createSubmissionFromPdf({
                   "metadata": {
                     "type": "object",
                     "description": "Metadata object with additional submitter information.",
-                    "example": "{ \"customField\": \"value\" }"
+                    "examples": [
+                      "{ \"customField\": \"value\" }"
+                    ]
                   },
                   "send_email": {
                     "type": "boolean",
@@ -952,7 +1015,9 @@ const submission = await docuseal.createSubmissionFromPdf({
                         "name": {
                           "type": "string",
                           "description": "Document field name.",
-                          "example": "First Name"
+                          "examples": [
+                            "First Name"
+                          ]
                         },
                         "default_value": {
                           "oneOf": [
@@ -983,7 +1048,9 @@ const submission = await docuseal.createSubmissionFromPdf({
                             }
                           ],
                           "description": "Default value of the field. Use base64 encoded file or a public URL to the image file to set default signature or image fields.",
-                          "example": "Acme"
+                          "examples": [
+                            "Acme"
+                          ]
                         },
                         "readonly": {
                           "type": "boolean",
@@ -1004,11 +1071,14 @@ const submission = await docuseal.createSubmissionFromPdf({
                         },
                         "validation": {
                           "type": "object",
+                          "description": "Field validation rules.",
                           "properties": {
                             "pattern": {
                               "type": "string",
                               "description": "HTML field validation pattern string based on https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/pattern specification.",
-                              "example": "[A-Z]{4}"
+                              "examples": [
+                                "[A-Z]{4}"
+                              ]
                             },
                             "message": {
                               "type": "string",
@@ -1044,11 +1114,14 @@ const submission = await docuseal.createSubmissionFromPdf({
                         },
                         "preferences": {
                           "type": "object",
+                          "description": "Field display preferences.",
                           "properties": {
                             "font_size": {
                               "type": "integer",
                               "description": "Font size of the field value in pixels.",
-                              "example": 12
+                              "examples": [
+                                12
+                              ]
                             },
                             "font_type": {
                               "type": "string",
@@ -1110,12 +1183,16 @@ const submission = await docuseal.createSubmissionFromPdf({
                             "format": {
                               "type": "string",
                               "description": "The data format for different field types.<br>- Date field: accepts formats such as DD/MM/YYYY (default: MM/DD/YYYY).<br>- Signature field: accepts drawn, typed, drawn_or_typed (default), or upload.<br>- Number field: accepts currency formats such as usd, eur, gbp.",
-                              "example": "DD/MM/YYYY"
+                              "examples": [
+                                "DD/MM/YYYY"
+                              ]
                             },
                             "price": {
                               "type": "number",
                               "description": "Price value of the payment field. Only for payment fields.",
-                              "example": 99.99
+                              "examples": [
+                                99.99
+                              ]
                             },
                             "currency": {
                               "type": "string",
@@ -1165,6 +1242,7 @@ const submission = await docuseal.createSubmissionFromPdf({
             },
             "message": {
               "type": "object",
+              "description": "Custom signature request email message.",
               "properties": {
                 "subject": {
                   "type": "string",
@@ -1201,7 +1279,7 @@ const submission = await docuseal.createSubmissionFromPdf({
 
 ### Create a submission from DOCX
 
-The API endpoint provides functionality to create a one-off submission request from a DOCX file with dynamic content variables. Use <code>[[variable_name]]</code> text tags to define dynamic content variables in the document. See <a href="https://www.docuseal.com/examples/demo_template.docx" target="_blank" class="link font-bold">https://www.docuseal.com/examples/demo_template.docx</a> for the specific text variable syntax, including dynamic content tables and list. You can also use the <code>{{signature}}</code> field syntax to define fillable fields, as in a PDF.<br><b>Related Guides</b><br><a href="https://www.docuseal.com/guides/use-dynamic-content-variables-in-docx-to-create-personalized-documents" class="link">Use dynamic content variables in DOCX to create personalized documents</a>
+The API endpoint provides functionality to create a one-off submission request from a DOCX file with dynamic content variables. Use <code>[[variable_name]]</code> text tags to define dynamic content variables in the document. See <a href="https://www.docuseal.com/examples/demo_template.docx" target="_blank" class="link font-bold">https://www.docuseal.com/examples/demo_template.docx</a> for the specific text variable syntax, including dynamic content tables and lists. You can also use the <code>{{signature}}</code> field syntax to define fillable fields, as in a PDF.<br><b>Related Guides</b><br><a href="https://www.docuseal.com/guides/use-dynamic-content-variables-in-docx-to-create-personalized-documents" class="link">Use dynamic content variables in DOCX to create personalized documents</a>
 
 ```javascript
 const docuseal = require("@docuseal/api");
@@ -1255,7 +1333,9 @@ const submission = await docuseal.createSubmissionFromDocx({
             "name": {
               "type": "string",
               "description": "Name of the document submission.",
-              "example": "Test Submission Document"
+              "examples": [
+                "Test Submission Document"
+              ]
             },
             "send_email": {
               "type": "boolean",
@@ -1270,9 +1350,11 @@ const submission = await docuseal.createSubmissionFromDocx({
             "variables": {
               "type": "object",
               "description": "Dynamic content variables object. Variable values can be strings, numbers, arrays, objects, or HTML content used to generate styled text, paragraphs, and tables in DOCX.",
-              "example": {
-                "variable_name": "value"
-              }
+              "examples": [
+                {
+                  "variable_name": "value"
+                }
+              ]
             },
             "order": {
               "type": "string",
@@ -1298,7 +1380,9 @@ const submission = await docuseal.createSubmissionFromDocx({
             "expire_at": {
               "type": "string",
               "description": "Specify the expiration date and time after which the submission becomes unavailable for signature.",
-              "example": "2024-09-01 12:00:00 UTC"
+              "examples": [
+                "2024-09-01 12:00:00 UTC"
+              ]
             },
             "template_ids": {
               "type": "array",
@@ -1310,6 +1394,7 @@ const submission = await docuseal.createSubmissionFromDocx({
             },
             "documents": {
               "type": "array",
+              "description": "An array of DOCX documents to create a submission.",
               "items": {
                 "type": "object",
                 "required": [
@@ -1322,7 +1407,9 @@ const submission = await docuseal.createSubmissionFromDocx({
                     "description": "Name of the document."
                   },
                   "file": {
-                    "example": "base64",
+                    "examples": [
+                      "base64"
+                    ],
                     "type": "string",
                     "format": "base64",
                     "description": "Base64-encoded content of the PDF or DOCX file or downloadable file URL."
@@ -1339,9 +1426,6 @@ const submission = await docuseal.createSubmissionFromDocx({
               "description": "The list of submitters for the submission.",
               "items": {
                 "type": "object",
-                "required": [
-                  "email"
-                ],
                 "properties": {
                   "name": {
                     "type": "string",
@@ -1350,18 +1434,24 @@ const submission = await docuseal.createSubmissionFromDocx({
                   "role": {
                     "type": "string",
                     "description": "The role name or title of the submitter.",
-                    "example": "First Party"
+                    "examples": [
+                      "First Party"
+                    ]
                   },
                   "email": {
                     "type": "string",
                     "description": "The email address of the submitter.",
                     "format": "email",
-                    "example": "john.doe@example.com"
+                    "examples": [
+                      "john.doe@example.com"
+                    ]
                   },
                   "phone": {
                     "type": "string",
                     "description": "The phone number of the submitter, formatted according to the E.164 standard.",
-                    "example": "+1234567890"
+                    "examples": [
+                      "+1234567890"
+                    ]
                   },
                   "values": {
                     "type": "object",
@@ -1378,7 +1468,9 @@ const submission = await docuseal.createSubmissionFromDocx({
                   "metadata": {
                     "type": "object",
                     "description": "Metadata object with additional submitter information.",
-                    "example": "{ \"customField\": \"value\" }"
+                    "examples": [
+                      "{ \"customField\": \"value\" }"
+                    ]
                   },
                   "send_email": {
                     "type": "boolean",
@@ -1428,7 +1520,9 @@ const submission = await docuseal.createSubmissionFromDocx({
                         "name": {
                           "type": "string",
                           "description": "Document field name.",
-                          "example": "First Name"
+                          "examples": [
+                            "First Name"
+                          ]
                         },
                         "default_value": {
                           "oneOf": [
@@ -1459,7 +1553,9 @@ const submission = await docuseal.createSubmissionFromDocx({
                             }
                           ],
                           "description": "Default value of the field. Use base64 encoded file or a public URL to the image file to set default signature or image fields.",
-                          "example": "Acme"
+                          "examples": [
+                            "Acme"
+                          ]
                         },
                         "readonly": {
                           "type": "boolean",
@@ -1480,11 +1576,14 @@ const submission = await docuseal.createSubmissionFromDocx({
                         },
                         "validation": {
                           "type": "object",
+                          "description": "Field validation rules.",
                           "properties": {
                             "pattern": {
                               "type": "string",
                               "description": "HTML field validation pattern string based on https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/pattern specification.",
-                              "example": "[A-Z]{4}"
+                              "examples": [
+                                "[A-Z]{4}"
+                              ]
                             },
                             "message": {
                               "type": "string",
@@ -1520,11 +1619,14 @@ const submission = await docuseal.createSubmissionFromDocx({
                         },
                         "preferences": {
                           "type": "object",
+                          "description": "Field display preferences.",
                           "properties": {
                             "font_size": {
                               "type": "integer",
                               "description": "Font size of the field value in pixels.",
-                              "example": 12
+                              "examples": [
+                                12
+                              ]
                             },
                             "font_type": {
                               "type": "string",
@@ -1586,12 +1688,16 @@ const submission = await docuseal.createSubmissionFromDocx({
                             "format": {
                               "type": "string",
                               "description": "The data format for different field types.<br>- Date field: accepts formats such as DD/MM/YYYY (default: MM/DD/YYYY).<br>- Signature field: accepts drawn, typed, drawn_or_typed (default), or upload.<br>- Number field: accepts currency formats such as usd, eur, gbp.",
-                              "example": "DD/MM/YYYY"
+                              "examples": [
+                                "DD/MM/YYYY"
+                              ]
                             },
                             "price": {
                               "type": "number",
                               "description": "Price value of the payment field. Only for payment fields.",
-                              "example": 99.99
+                              "examples": [
+                                99.99
+                              ]
                             },
                             "currency": {
                               "type": "string",
@@ -1641,6 +1747,7 @@ const submission = await docuseal.createSubmissionFromDocx({
             },
             "message": {
               "type": "object",
+              "description": "Custom signature request email message.",
               "properties": {
                 "subject": {
                   "type": "string",
@@ -1659,7 +1766,7 @@ const submission = await docuseal.createSubmissionFromDocx({
             },
             "remove_tags": {
               "type": "boolean",
-              "description": "Pass `false` to disable the removal of {{text}} tags from the PDF. This can be used along with transparent text tags for faster and more robust PDF processing.",
+              "description": "Pass `false` to disable the removal of {{text}} tags from the document. This can be used along with transparent text tags for faster and more robust document processing.",
               "default": true
             }
           }
@@ -1730,8 +1837,10 @@ and typesetting industry</p>
           "properties": {
             "name": {
               "type": "string",
-              "description": "Name of the document submission",
-              "example": "Test Submission Document"
+              "description": "Name of the document submission.",
+              "examples": [
+                "Test Submission Document"
+              ]
             },
             "send_email": {
               "type": "boolean",
@@ -1767,7 +1876,9 @@ and typesetting industry</p>
             "expire_at": {
               "type": "string",
               "description": "Specify the expiration date and time after which the submission becomes unavailable for signature.",
-              "example": "2024-09-01 12:00:00 UTC"
+              "examples": [
+                "2024-09-01 12:00:00 UTC"
+              ]
             },
             "template_ids": {
               "type": "array",
@@ -1789,12 +1900,16 @@ and typesetting industry</p>
                   "name": {
                     "type": "string",
                     "description": "Document name. Random uuid will be assigned when not specified.",
-                    "example": "Test Document"
+                    "examples": [
+                      "Test Document"
+                    ]
                   },
                   "html": {
                     "type": "string",
                     "description": "HTML document content with field tags.",
-                    "example": "<p>Lorem Ipsum is simply dummy text of the\n<text-field\n  name=\"Industry\"\n  role=\"First Party\"\n  required=\"false\"\n  style=\"width: 80px; height: 16px; display: inline-block; margin-bottom: -4px\">\n</text-field>\nand typesetting industry</p>\n"
+                    "examples": [
+                      "<p>Lorem Ipsum is simply dummy text of the\n<text-field\n  name=\"Industry\"\n  role=\"First Party\"\n  required=\"false\"\n  style=\"width: 80px; height: 16px; display: inline-block; margin-bottom: -4px\">\n</text-field>\nand typesetting industry</p>\n"
+                    ]
                   },
                   "html_header": {
                     "type": "string",
@@ -1821,7 +1936,9 @@ and typesetting industry</p>
                       "A5",
                       "A6"
                     ],
-                    "example": "A4"
+                    "examples": [
+                      "A4"
+                    ]
                   },
                   "position": {
                     "type": "integer",
@@ -1835,9 +1952,6 @@ and typesetting industry</p>
               "description": "The list of submitters for the submission.",
               "items": {
                 "type": "object",
-                "required": [
-                  "email"
-                ],
                 "properties": {
                   "name": {
                     "type": "string",
@@ -1846,18 +1960,24 @@ and typesetting industry</p>
                   "role": {
                     "type": "string",
                     "description": "The role name or title of the submitter.",
-                    "example": "First Party"
+                    "examples": [
+                      "First Party"
+                    ]
                   },
                   "email": {
                     "type": "string",
                     "description": "The email address of the submitter.",
                     "format": "email",
-                    "example": "john.doe@example.com"
+                    "examples": [
+                      "john.doe@example.com"
+                    ]
                   },
                   "phone": {
                     "type": "string",
                     "description": "The phone number of the submitter, formatted according to the E.164 standard.",
-                    "example": "+1234567890"
+                    "examples": [
+                      "+1234567890"
+                    ]
                   },
                   "values": {
                     "type": "object",
@@ -1874,7 +1994,9 @@ and typesetting industry</p>
                   "metadata": {
                     "type": "object",
                     "description": "Metadata object with additional submitter information.",
-                    "example": "{ \"customField\": \"value\" }"
+                    "examples": [
+                      "{ \"customField\": \"value\" }"
+                    ]
                   },
                   "send_email": {
                     "type": "boolean",
@@ -1924,7 +2046,9 @@ and typesetting industry</p>
                         "name": {
                           "type": "string",
                           "description": "Document field name.",
-                          "example": "First Name"
+                          "examples": [
+                            "First Name"
+                          ]
                         },
                         "default_value": {
                           "oneOf": [
@@ -1955,7 +2079,9 @@ and typesetting industry</p>
                             }
                           ],
                           "description": "Default value of the field. Use base64 encoded file or a public URL to the image file to set default signature or image fields.",
-                          "example": "Acme"
+                          "examples": [
+                            "Acme"
+                          ]
                         },
                         "readonly": {
                           "type": "boolean",
@@ -1976,11 +2102,14 @@ and typesetting industry</p>
                         },
                         "validation": {
                           "type": "object",
+                          "description": "Field validation rules.",
                           "properties": {
                             "pattern": {
                               "type": "string",
                               "description": "HTML field validation pattern string based on https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/pattern specification.",
-                              "example": "[A-Z]{4}"
+                              "examples": [
+                                "[A-Z]{4}"
+                              ]
                             },
                             "message": {
                               "type": "string",
@@ -2016,11 +2145,14 @@ and typesetting industry</p>
                         },
                         "preferences": {
                           "type": "object",
+                          "description": "Field display preferences.",
                           "properties": {
                             "font_size": {
                               "type": "integer",
                               "description": "Font size of the field value in pixels.",
-                              "example": 12
+                              "examples": [
+                                12
+                              ]
                             },
                             "font_type": {
                               "type": "string",
@@ -2082,12 +2214,16 @@ and typesetting industry</p>
                             "format": {
                               "type": "string",
                               "description": "The data format for different field types.<br>- Date field: accepts formats such as DD/MM/YYYY (default: MM/DD/YYYY).<br>- Signature field: accepts drawn, typed, drawn_or_typed (default), or upload.<br>- Number field: accepts currency formats such as usd, eur, gbp.",
-                              "example": "DD/MM/YYYY"
+                              "examples": [
+                                "DD/MM/YYYY"
+                              ]
                             },
                             "price": {
                               "type": "number",
                               "description": "Price value of the payment field. Only for payment fields.",
-                              "example": 99.99
+                              "examples": [
+                                99.99
+                              ]
                             },
                             "currency": {
                               "type": "string",
@@ -2137,6 +2273,7 @@ and typesetting industry</p>
             },
             "message": {
               "type": "object",
+              "description": "Custom signature request email message.",
               "properties": {
                 "subject": {
                   "type": "string",
@@ -2282,7 +2419,7 @@ const { data, pagination } = await docuseal.listSubmitters({ limit: 10 });
       "schema": {
         "type": "string"
       },
-      "description": "The unique applications-specific identifier provided for a submitter when initializing a signature request. It allows you to receive only submitters with a specified external id."
+      "description": "The unique application-specific identifier provided for a submitter when initializing a signature request. It allows you to receive only submitters with a specified external ID."
     },
     {
       "name": "limit",
@@ -2300,7 +2437,7 @@ const { data, pagination } = await docuseal.listSubmitters({ limit: 10 });
       "schema": {
         "type": "integer"
       },
-      "description": "The unique identifier of the submitter to start the list from. It allows you to receive only submitters with id greater than the specified value. Pass ID value from the `pagination.next` response to load the next batch of submitters."
+      "description": "The unique identifier of the submitter to start the list from. It allows you to receive only submitters with an ID greater than the specified value. Pass ID value from the `pagination.next` response to load the next batch of submitters."
     },
     {
       "name": "before",
@@ -2309,7 +2446,7 @@ const { data, pagination } = await docuseal.listSubmitters({ limit: 10 });
       "schema": {
         "type": "integer"
       },
-      "description": "The unique identifier of the submitter to end the list with. It allows you to receive only submitters with id less than the specified value."
+      "description": "The unique identifier of the submitter to end the list with. It allows you to receive only submitters with an ID less than the specified value."
     }
   ]
 }
@@ -2413,12 +2550,16 @@ const submitter = await docuseal.updateSubmitter(500001, {
               "type": "string",
               "description": "The email address of the submitter.",
               "format": "email",
-              "example": "john.doe@example.com"
+              "examples": [
+                "john.doe@example.com"
+              ]
             },
             "phone": {
               "type": "string",
               "description": "The phone number of the submitter, formatted according to the E.164 standard.",
-              "example": "+1234567890"
+              "examples": [
+                "+1234567890"
+              ]
             },
             "values": {
               "type": "object",
@@ -2448,7 +2589,9 @@ const submitter = await docuseal.updateSubmitter(500001, {
             "metadata": {
               "type": "object",
               "description": "Metadata object with additional submitter information.",
-              "example": "{ \"customField\": \"value\" }"
+              "examples": [
+                "{ \"customField\": \"value\" }"
+              ]
             },
             "completed_redirect_url": {
               "type": "string",
@@ -2459,8 +2602,14 @@ const submitter = await docuseal.updateSubmitter(500001, {
               "description": "Set to `true` to require phone 2FA verification via a one-time code sent to the phone number in order to access the documents.",
               "default": false
             },
+            "require_email_2fa": {
+              "type": "boolean",
+              "description": "Set to `true` to require email 2FA verification via a one-time code sent to the email address in order to access the documents.",
+              "default": false
+            },
             "message": {
               "type": "object",
+              "description": "Custom signature request email message.",
               "properties": {
                 "subject": {
                   "type": "string",
@@ -2484,7 +2633,9 @@ const submitter = await docuseal.updateSubmitter(500001, {
                   "name": {
                     "type": "string",
                     "description": "Document template field name.",
-                    "example": "First Name"
+                    "examples": [
+                      "First Name"
+                    ]
                   },
                   "default_value": {
                     "oneOf": [
@@ -2515,7 +2666,9 @@ const submitter = await docuseal.updateSubmitter(500001, {
                       }
                     ],
                     "description": "Default value of the field. Use base64 encoded file or a public URL to the image file to set default signature or image fields.",
-                    "example": "Acme"
+                    "examples": [
+                      "Acme"
+                    ]
                   },
                   "readonly": {
                     "type": "boolean",
@@ -2528,11 +2681,14 @@ const submitter = await docuseal.updateSubmitter(500001, {
                   },
                   "validation": {
                     "type": "object",
+                    "description": "Field validation rules.",
                     "properties": {
                       "pattern": {
                         "type": "string",
                         "description": "HTML field validation pattern string based on https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/pattern specification.",
-                        "example": "[A-Z]{4}"
+                        "examples": [
+                          "[A-Z]{4}"
+                        ]
                       },
                       "message": {
                         "type": "string",
@@ -2568,11 +2724,14 @@ const submitter = await docuseal.updateSubmitter(500001, {
                   },
                   "preferences": {
                     "type": "object",
+                    "description": "Field display preferences.",
                     "properties": {
                       "font_size": {
                         "type": "integer",
                         "description": "Font size of the field value in pixels.",
-                        "example": 12
+                        "examples": [
+                          12
+                        ]
                       },
                       "font_type": {
                         "type": "string",
@@ -2634,12 +2793,16 @@ const submitter = await docuseal.updateSubmitter(500001, {
                       "format": {
                         "type": "string",
                         "description": "The data format for different field types.<br>- Date field: accepts formats such as DD/MM/YYYY (default: MM/DD/YYYY).<br>- Signature field: accepts drawn, typed, drawn_or_typed (default), or upload.<br>- Number field: accepts currency formats such as usd, eur, gbp.",
-                        "example": "DD/MM/YYYY"
+                        "examples": [
+                          "DD/MM/YYYY"
+                        ]
                       },
                       "price": {
                         "type": "number",
                         "description": "Price value of the payment field. Only for payment fields.",
-                        "example": 99.99
+                        "examples": [
+                          99.99
+                        ]
                       },
                       "currency": {
                         "type": "string",
@@ -2736,7 +2899,7 @@ const { data, pagination } = await docuseal.listTemplates({ limit: 10 });
       "schema": {
         "type": "string"
       },
-      "description": "The unique applications-specific identifier provided for the template via API or Embedded template form builder. It allows you to receive only templates with your specified external id."
+      "description": "The unique application-specific identifier provided for the template via API or Embedded template form builder. It allows you to receive only templates with your specified external ID."
     },
     {
       "name": "folder",
@@ -2772,7 +2935,7 @@ const { data, pagination } = await docuseal.listTemplates({ limit: 10 });
       "schema": {
         "type": "integer"
       },
-      "description": "The unique identifier of the template to start the list from. It allows you to receive only templates with id greater than the specified value. Pass ID value from the `pagination.next` response to load the next batch of templates."
+      "description": "The unique identifier of the template to start the list from. It allows you to receive only templates with an ID greater than the specified value. Pass ID value from the `pagination.next` response to load the next batch of templates."
     },
     {
       "name": "before",
@@ -2781,7 +2944,7 @@ const { data, pagination } = await docuseal.listTemplates({ limit: 10 });
       "schema": {
         "type": "integer"
       },
-      "description": "The unique identifier of the template to end the list with. It allows you to receive only templates with id less than the specified value."
+      "description": "The unique identifier of the template to end the list with. It allows you to receive only templates with an ID less than the specified value."
     }
   ]
 }
@@ -2886,25 +3049,30 @@ const template = await docuseal.createTemplateFromPdf({
           "properties": {
             "name": {
               "type": "string",
-              "description": "Name of the template",
-              "example": "Test PDF"
+              "description": "Name of the template.",
+              "examples": [
+                "Test PDF"
+              ]
             },
             "folder_name": {
               "type": "string",
-              "description": "The folder's name to which the template should be created."
+              "description": "The folder's name in which the template should be created."
             },
             "external_id": {
               "type": "string",
               "description": "Your application-specific unique string key to identify this template within your app. Existing template with specified `external_id` will be updated with a new PDF.",
-              "example": "unique-key"
+              "examples": [
+                "unique-key"
+              ]
             },
             "shared_link": {
               "type": "boolean",
-              "description": "set to `true` to make the template available via a shared link. This will allow anyone with the link to create a submission from this template.",
+              "description": "Set to `true` to make the template available via a shared link. This will allow anyone with the link to create a submission from this template.",
               "default": true
             },
             "documents": {
               "type": "array",
+              "description": "An array of PDF documents to create a template.",
               "items": {
                 "type": "object",
                 "required": [
@@ -2917,7 +3085,9 @@ const template = await docuseal.createTemplateFromPdf({
                     "description": "Name of the document."
                   },
                   "file": {
-                    "example": "base64",
+                    "examples": [
+                      "base64"
+                    ],
                     "type": "string",
                     "format": "base64",
                     "description": "Base64-encoded content of the PDF file or downloadable file URL."
@@ -2953,6 +3123,7 @@ const template = await docuseal.createTemplateFromPdf({
                             "payment",
                             "phone",
                             "verification",
+                            "kba",
                             "strikethrough"
                           ]
                         },
@@ -2974,6 +3145,7 @@ const template = await docuseal.createTemplateFromPdf({
                         },
                         "areas": {
                           "type": "array",
+                          "description": "List of areas where the field is located in the document.",
                           "items": {
                             "type": "object",
                             "required": [
@@ -3003,7 +3175,9 @@ const template = await docuseal.createTemplateFromPdf({
                               "page": {
                                 "type": "integer",
                                 "description": "Page number of the field area. Starts from 1.",
-                                "example": 1
+                                "examples": [
+                                  1
+                                ]
                               },
                               "option": {
                                 "type": "string",
@@ -3018,18 +3192,23 @@ const template = await docuseal.createTemplateFromPdf({
                           "items": {
                             "type": "string"
                           },
-                          "example": [
-                            "Option A",
-                            "Option B"
+                          "examples": [
+                            [
+                              "Option A",
+                              "Option B"
+                            ]
                           ]
                         },
                         "validation": {
                           "type": "object",
+                          "description": "Field validation rules.",
                           "properties": {
                             "pattern": {
                               "type": "string",
                               "description": "HTML field validation pattern string based on https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/pattern specification.",
-                              "example": "[A-Z]{4}"
+                              "examples": [
+                                "[A-Z]{4}"
+                              ]
                             },
                             "message": {
                               "type": "string",
@@ -3065,11 +3244,14 @@ const template = await docuseal.createTemplateFromPdf({
                         },
                         "preferences": {
                           "type": "object",
+                          "description": "Field display preferences.",
                           "properties": {
                             "font_size": {
                               "type": "integer",
                               "description": "Font size of the field value in pixels.",
-                              "example": 12
+                              "examples": [
+                                12
+                              ]
                             },
                             "font_type": {
                               "type": "string",
@@ -3131,12 +3313,16 @@ const template = await docuseal.createTemplateFromPdf({
                             "format": {
                               "type": "string",
                               "description": "The data format for different field types.<br>- Date field: accepts formats such as DD/MM/YYYY (default: MM/DD/YYYY).<br>- Signature field: accepts drawn, typed, drawn_or_typed (default), or upload.<br>- Number field: accepts currency formats such as usd, eur, gbp.",
-                              "example": "DD/MM/YYYY"
+                              "examples": [
+                                "DD/MM/YYYY"
+                              ]
                             },
                             "price": {
                               "type": "number",
                               "description": "Price value of the payment field. Only for payment fields.",
-                              "example": 99.99
+                              "examples": [
+                                99.99
+                              ]
                             },
                             "currency": {
                               "type": "string",
@@ -3197,7 +3383,7 @@ const template = await docuseal.createTemplateFromPdf({
 
 ### Create a template from Word DOCX
 
-The API endpoint provides the functionality to create a fillable document template for existing Microsoft Word document. Use <code>{{Field Name;role=Signer1;type=date}}</code> text tags to define fillable fields in the document. See <a href="https://www.docuseal.com/examples/fieldtags.docx" target="_blank" class="link font-bold" >https://www.docuseal.com/examples/fieldtags.docx</a> for more text tag formats. Or specify the exact pixel coordinates of the document fields using `fields` param.<br><b>Related Guides</b><br><a href="https://www.docuseal.com/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form" class="link">Use embedded text field tags to create a fillable form</a>
+The API endpoint provides the functionality to create a fillable document template for an existing Microsoft Word document. Use <code>{{Field Name;role=Signer1;type=date}}</code> text tags to define fillable fields in the document. See <a href="https://www.docuseal.com/examples/fieldtags.docx" target="_blank" class="link font-bold" >https://www.docuseal.com/examples/fieldtags.docx</a> for more text tag formats. Or specify the exact pixel coordinates of the document fields using `fields` param.<br><b>Related Guides</b><br><a href="https://www.docuseal.com/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form" class="link">Use embedded text field tags to create a fillable form</a>
 
 
 ```javascript
@@ -3241,25 +3427,30 @@ const template = await docuseal.createTemplateFromDocx({
           "properties": {
             "name": {
               "type": "string",
-              "description": "Name of the template",
-              "example": "Test DOCX"
+              "description": "Name of the template.",
+              "examples": [
+                "Test DOCX"
+              ]
             },
             "external_id": {
               "type": "string",
               "description": "Your application-specific unique string key to identify this template within your app. Existing template with specified `external_id` will be updated with a new document.",
-              "example": "unique-key"
+              "examples": [
+                "unique-key"
+              ]
             },
             "folder_name": {
               "type": "string",
-              "description": "The folder's name to which the template should be created."
+              "description": "The folder's name in which the template should be created."
             },
             "shared_link": {
               "type": "boolean",
-              "description": "set to `true` to make the template available via a shared link. This will allow anyone with the link to create a submission from this template.",
+              "description": "Set to `true` to make the template available via a shared link. This will allow anyone with the link to create a submission from this template.",
               "default": true
             },
             "documents": {
               "type": "array",
+              "description": "An array of DOCX documents to create a template.",
               "items": {
                 "type": "object",
                 "required": [
@@ -3273,9 +3464,16 @@ const template = await docuseal.createTemplateFromDocx({
                   },
                   "file": {
                     "type": "string",
-                    "example": "base64",
+                    "examples": [
+                      "base64"
+                    ],
                     "format": "base64",
-                    "description": "Base64-encoded content of the DOCX file or downloadable file URL"
+                    "description": "Base64-encoded content of the DOCX file or downloadable file URL."
+                  },
+                  "dynamic": {
+                    "type": "boolean",
+                    "description": "Set to `true` to make the document dynamic. When enabled, the DOCX document content can be edited or use [[variables]] in the template editor.",
+                    "default": false
                   },
                   "fields": {
                     "description": "Fields are optional if you use {{...}} text tags to define fields in the document.",
@@ -3308,6 +3506,7 @@ const template = await docuseal.createTemplateFromDocx({
                             "payment",
                             "phone",
                             "verification",
+                            "kba",
                             "strikethrough"
                           ]
                         },
@@ -3329,6 +3528,7 @@ const template = await docuseal.createTemplateFromDocx({
                         },
                         "areas": {
                           "type": "array",
+                          "description": "List of areas where the field is located in the document.",
                           "items": {
                             "type": "object",
                             "properties": {
@@ -3365,18 +3565,23 @@ const template = await docuseal.createTemplateFromDocx({
                           "items": {
                             "type": "string"
                           },
-                          "example": [
-                            "Option A",
-                            "Option B"
+                          "examples": [
+                            [
+                              "Option A",
+                              "Option B"
+                            ]
                           ]
                         },
                         "validation": {
                           "type": "object",
+                          "description": "Field validation rules.",
                           "properties": {
                             "pattern": {
                               "type": "string",
                               "description": "HTML field validation pattern string based on https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/pattern specification.",
-                              "example": "[A-Z]{4}"
+                              "examples": [
+                                "[A-Z]{4}"
+                              ]
                             },
                             "message": {
                               "type": "string",
@@ -3412,11 +3617,14 @@ const template = await docuseal.createTemplateFromDocx({
                         },
                         "preferences": {
                           "type": "object",
+                          "description": "Field display preferences.",
                           "properties": {
                             "font_size": {
                               "type": "integer",
                               "description": "Font size of the field value in pixels.",
-                              "example": 12
+                              "examples": [
+                                12
+                              ]
                             },
                             "font_type": {
                               "type": "string",
@@ -3478,12 +3686,16 @@ const template = await docuseal.createTemplateFromDocx({
                             "format": {
                               "type": "string",
                               "description": "The data format for different field types.<br>- Date field: accepts formats such as DD/MM/YYYY (default: MM/DD/YYYY).<br>- Signature field: accepts drawn, typed, drawn_or_typed (default), or upload.<br>- Number field: accepts currency formats such as usd, eur, gbp.",
-                              "example": "DD/MM/YYYY"
+                              "examples": [
+                                "DD/MM/YYYY"
+                              ]
                             },
                             "price": {
                               "type": "number",
                               "description": "Price value of the payment field. Only for payment fields.",
-                              "example": 99.99
+                              "examples": [
+                                99.99
+                              ]
                             },
                             "currency": {
                               "type": "string",
@@ -3581,7 +3793,9 @@ and typesetting industry</p>
             "html": {
               "type": "string",
               "description": "HTML template with field tags.",
-              "example": "<p>Lorem Ipsum is simply dummy text of the\n<text-field\n  name=\"Industry\"\n  role=\"First Party\"\n  required=\"false\"\n  style=\"width: 80px; height: 16px; display: inline-block; margin-bottom: -4px\">\n</text-field>\nand typesetting industry</p>\n"
+              "examples": [
+                "<p>Lorem Ipsum is simply dummy text of the\n<text-field\n  name=\"Industry\"\n  role=\"First Party\"\n  required=\"false\"\n  style=\"width: 80px; height: 16px; display: inline-block; margin-bottom: -4px\">\n</text-field>\nand typesetting industry</p>\n"
+              ]
             },
             "html_header": {
               "type": "string",
@@ -3594,7 +3808,9 @@ and typesetting industry</p>
             "name": {
               "type": "string",
               "description": "Template name. Random uuid will be assigned when not specified.",
-              "example": "Test Template"
+              "examples": [
+                "Test Template"
+              ]
             },
             "size": {
               "type": "string",
@@ -3613,20 +3829,24 @@ and typesetting industry</p>
                 "A5",
                 "A6"
               ],
-              "example": "A4"
+              "examples": [
+                "A4"
+              ]
             },
             "external_id": {
               "type": "string",
               "description": "Your application-specific unique string key to identify this template within your app. Existing template with specified `external_id` will be updated with a new HTML.",
-              "example": "714d974e-83d8-11ee-b962-0242ac120002"
+              "examples": [
+                "714d974e-83d8-11ee-b962-0242ac120002"
+              ]
             },
             "folder_name": {
               "type": "string",
-              "description": "The folder's name to which the template should be created."
+              "description": "The folder's name in which the template should be created."
             },
             "shared_link": {
               "type": "boolean",
-              "description": "set to `true` to make the template available via a shared link. This will allow anyone with the link to create a submission from this template.",
+              "description": "Set to `true` to make the template available via a shared link. This will allow anyone with the link to create a submission from this template.",
               "default": true
             },
             "documents": {
@@ -3641,12 +3861,16 @@ and typesetting industry</p>
                   "html": {
                     "type": "string",
                     "description": "HTML template with field tags.",
-                    "example": "<p>Lorem Ipsum is simply dummy text of the\n<text-field\n  name=\"Industry\"\n  role=\"First Party\"\n  required=\"false\"\n  style=\"width: 80px; height: 16px; display: inline-block; margin-bottom: -4px\">\n</text-field>\nand typesetting industry</p>\n"
+                    "examples": [
+                      "<p>Lorem Ipsum is simply dummy text of the\n<text-field\n  name=\"Industry\"\n  role=\"First Party\"\n  required=\"false\"\n  style=\"width: 80px; height: 16px; display: inline-block; margin-bottom: -4px\">\n</text-field>\nand typesetting industry</p>\n"
+                    ]
                   },
                   "name": {
                     "type": "string",
                     "description": "Document name. Random uuid will be assigned when not specified.",
-                    "example": "Test Document"
+                    "examples": [
+                      "Test Document"
+                    ]
                   }
                 }
               }
@@ -3661,7 +3885,7 @@ and typesetting industry</p>
 
 ### Clone a template
 
-The API endpoint allows you to clone existing template into a new template.
+The API endpoint allows you to clone an existing template into a new template.
 
 ```javascript
 const docuseal = require("@docuseal/api");
@@ -3693,7 +3917,7 @@ const template = await docuseal.cloneTemplate(1000001, {
       "schema": {
         "type": "integer"
       },
-      "description": "The unique identifier of the documents template.",
+      "description": "The unique identifier of the document template.",
       "example": 1000001
     }
   ],
@@ -3707,7 +3931,9 @@ const template = await docuseal.cloneTemplate(1000001, {
             "name": {
               "type": "string",
               "description": "Template name. Existing name with (Clone) suffix will be used if not specified.",
-              "example": "Cloned Template"
+              "examples": [
+                "Cloned Template"
+              ]
             },
             "folder_name": {
               "type": "string",
@@ -3772,15 +3998,19 @@ const template = await docuseal.mergeTemplates({
               "items": {
                 "type": "integer"
               },
-              "example": [
-                321,
-                432
+              "examples": [
+                [
+                  321,
+                  432
+                ]
               ]
             },
             "name": {
               "type": "string",
               "description": "Template name. Existing name with (Merged) suffix will be used if not specified.",
-              "example": "Merged Template"
+              "examples": [
+                "Merged Template"
+              ]
             },
             "folder_name": {
               "type": "string",
@@ -3792,7 +4022,7 @@ const template = await docuseal.mergeTemplates({
             },
             "shared_link": {
               "type": "boolean",
-              "description": "set to `true` to make the template available via a shared link. This will allow anyone with the link to create a submission from this template.",
+              "description": "Set to `true` to make the template available via a shared link. This will allow anyone with the link to create a submission from this template.",
               "default": true
             },
             "roles": {
@@ -3801,9 +4031,11 @@ const template = await docuseal.mergeTemplates({
               "items": {
                 "type": "string"
               },
-              "example": [
-                "Agent",
-                "Customer"
+              "examples": [
+                [
+                  "Agent",
+                  "Customer"
+                ]
               ]
             }
           }
@@ -3862,13 +4094,17 @@ const template = await docuseal.updateTemplate(1000001, {
           "properties": {
             "name": {
               "type": "string",
-              "description": "The name of the template",
-              "example": "New Document Name"
+              "description": "The name of the template.",
+              "examples": [
+                "New Document Name"
+              ]
             },
             "folder_name": {
               "type": "string",
               "description": "The folder's name to which the template should be moved.",
-              "example": "New Folder"
+              "examples": [
+                "New Folder"
+              ]
             },
             "roles": {
               "type": "array",
@@ -3876,9 +4112,11 @@ const template = await docuseal.updateTemplate(1000001, {
               "items": {
                 "type": "string"
               },
-              "example": [
-                "Agent",
-                "Customer"
+              "examples": [
+                [
+                  "Agent",
+                  "Customer"
+                ]
               ]
             },
             "archived": {
@@ -3931,7 +4169,7 @@ const template = await docuseal.updateTemplateDocuments(1000001, {
       "schema": {
         "type": "integer"
       },
-      "description": "The unique identifier of the documents template.",
+      "description": "The unique identifier of the document template.",
       "example": 1000001
     }
   ],
@@ -3951,7 +4189,9 @@ const template = await docuseal.updateTemplateDocuments(1000001, {
                   "name": {
                     "type": "string",
                     "description": "Document name. Random uuid will be assigned when not specified.",
-                    "example": "Test Template"
+                    "examples": [
+                      "Test Template"
+                    ]
                   },
                   "file": {
                     "type": "string",
@@ -3965,7 +4205,9 @@ const template = await docuseal.updateTemplateDocuments(1000001, {
                   "position": {
                     "type": "integer",
                     "description": "Position of the document. By default will be added as the last document in the template.",
-                    "example": 0
+                    "examples": [
+                      0
+                    ]
                   },
                   "replace": {
                     "type": "boolean",

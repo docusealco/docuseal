@@ -16,13 +16,17 @@ Get submission creation, completion, expiration, and archiving notifications usi
     "description": "The event type.",
     "enum": [
       "submission.created",
+      "submission.completed",
+      "submission.expired",
       "submission.archived"
     ]
   },
   "timestamp": {
     "type": "string",
     "description": "The event timestamp.",
-    "example": "2023-09-24T11:20:42Z",
+    "examples": [
+      "2023-09-24T11:20:42Z"
+    ],
     "format": "date-time"
   },
   "data": {
@@ -33,8 +37,26 @@ Get submission creation, completion, expiration, and archiving notifications usi
         "type": "number",
         "description": "The submission's unique identifier."
       },
-      "archived_at": {
+      "name": {
         "type": "string",
+        "description": "Name of the document submission."
+      },
+      "slug": {
+        "type": "string",
+        "description": "Unique slug of the submission."
+      },
+      "expire_at": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "The date and time when the submission will expire."
+      },
+      "archived_at": {
+        "type": [
+          "string",
+          "null"
+        ],
         "description": "The submission archive date."
       },
       "created_at": {
@@ -65,8 +87,18 @@ Get submission creation, completion, expiration, and archiving notifications usi
         ]
       },
       "audit_log_url": {
-        "type": "string",
+        "type": [
+          "string",
+          "null"
+        ],
         "description": "Audit log file URL."
+      },
+      "combined_document_url": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "Combined PDF file URL with documents and Audit Log."
       },
       "submitters": {
         "type": "array",
@@ -90,26 +122,40 @@ Get submission creation, completion, expiration, and archiving notifications usi
               "type": "string",
               "description": "The email address of the submitter.",
               "format": "email",
-              "example": "john.doe@example.com"
+              "examples": [
+                "john.doe@example.com"
+              ]
             },
             "slug": {
               "type": "string",
               "description": "The unique slug of the document template."
             },
             "sent_at": {
-              "type": "string",
+              "type": [
+                "string",
+                "null"
+              ],
               "description": "The date and time when the signing request was sent to the submitter."
             },
             "opened_at": {
-              "type": "string",
+              "type": [
+                "string",
+                "null"
+              ],
               "description": "The date and time when the submitter opened the signing form."
             },
             "completed_at": {
-              "type": "string",
+              "type": [
+                "string",
+                "null"
+              ],
               "description": "The date and time when the submitter completed the signing form."
             },
             "declined_at": {
-              "type": "string",
+              "type": [
+                "string",
+                "null"
+              ],
               "description": "The date and time when the submitter declined the signing form."
             },
             "created_at": {
@@ -121,27 +167,42 @@ Get submission creation, completion, expiration, and archiving notifications usi
               "description": "The date and time when the submitter was last updated."
             },
             "name": {
-              "type": "string",
+              "type": [
+                "string",
+                "null"
+              ],
               "description": "The name of the submitter."
             },
             "phone": {
-              "type": "string",
+              "type": [
+                "string",
+                "null"
+              ],
               "description": "The phone number of the submitter, formatted according to the E.164 standard.",
-              "example": "+1234567890"
+              "examples": [
+                "+1234567890"
+              ]
             },
             "role": {
               "type": "string",
               "description": "The role name or title of the submitter.",
-              "example": "First Party"
+              "examples": [
+                "First Party"
+              ]
             },
             "external_id": {
-              "type": "string",
+              "type": [
+                "string",
+                "null"
+              ],
               "description": "Your application-specific unique string key to identify this submitter within your app."
             },
             "metadata": {
               "type": "object",
               "description": "Metadata object with additional submitter information.",
-              "example": "{ 'customField': 'value' }"
+              "examples": [
+                "{ 'customField': 'value' }"
+              ]
             },
             "status": {
               "type": "string",
@@ -153,10 +214,6 @@ Get submission creation, completion, expiration, and archiving notifications usi
                 "sent",
                 "awaiting"
               ]
-            },
-            "application_key": {
-              "type": "string",
-              "description": "Your application-specific unique string key to identify this submitter within your app."
             },
             "values": {
               "type": "object",
@@ -222,6 +279,7 @@ Get submission creation, completion, expiration, and archiving notifications usi
       },
       "created_by_user": {
         "type": "object",
+        "description": "User who created the submission.",
         "properties": {
           "id": {
             "type": "integer",
@@ -243,6 +301,7 @@ Get submission creation, completion, expiration, and archiving notifications usi
       },
       "submission_events": {
         "type": "array",
+        "description": "List of submission events.",
         "items": {
           "type": "object",
           "properties": {
