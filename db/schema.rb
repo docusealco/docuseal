@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_27_083558) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_28_120000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
   enable_extension "pg_catalog.plpgsql"
@@ -212,6 +212,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_27_083558) do
     t.index ["email"], name: "index_email_events_on_email_event_types", where: "((event_type)::text = ANY (ARRAY[('bounce'::character varying)::text, ('soft_bounce'::character varying)::text, ('permanent_bounce'::character varying)::text, ('complaint'::character varying)::text, ('soft_complaint'::character varying)::text]))"
     t.index ["emailable_type", "emailable_id"], name: "index_email_events_on_emailable"
     t.index ["message_id"], name: "index_email_events_on_message_id"
+  end
+
+  create_table "email_message_assets", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.datetime "created_at", null: false
+    t.text "data", null: false
+    t.string "sha1", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id", "sha1"], name: "index_email_message_assets_on_account_id_and_sha1", unique: true
   end
 
   create_table "email_messages", force: :cascade do |t|
@@ -579,6 +588,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_27_083558) do
   add_foreign_key "dynamic_document_versions", "dynamic_documents"
   add_foreign_key "dynamic_documents", "templates"
   add_foreign_key "email_events", "accounts"
+  add_foreign_key "email_message_assets", "accounts"
   add_foreign_key "email_messages", "accounts"
   add_foreign_key "email_messages", "users", column: "author_id"
   add_foreign_key "encrypted_configs", "accounts"

@@ -33,6 +33,15 @@ class EmailMessage < ApplicationRecord
 
   before_validation :set_sha1, on: :create
 
+  def normalized_body
+    @normalized_body ||=
+      if body&.include?(EmailMessages::ASSET_PREFIX)
+        EmailMessages.rebuild_body_with_assets(account_id, body)
+      else
+        body
+      end
+  end
+
   def set_sha1
     self.sha1 = Digest::SHA1.hexdigest({ subject:, body: }.to_json)
   end
