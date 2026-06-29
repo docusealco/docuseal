@@ -125,7 +125,7 @@ module Submissions
           tsa_url:,
           pkcs:,
           uuid: images_pdf_uuid(original_documents.select(&:image?)),
-          name: submission.name || submission.template.name
+          name: submission.name || submission.template&.name
         )
 
       ApplicationRecord.no_touching do

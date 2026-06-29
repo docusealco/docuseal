@@ -289,6 +289,7 @@
               :id="currentField.uuid"
               dir="auto"
               :required="currentField.required"
+              :aria-label="showFieldNames && (currentField.name || currentField.title) ? undefined : (currentField.name || currentField.title || t('select_your_option'))"
               :aria-describedby="currentField.description ? currentField.uuid + '-desc' : undefined"
               class="select base-input !text-2xl w-full text-center font-normal"
               :class="{ 'text-gray-300': !values[currentField.uuid] }"
@@ -317,7 +318,7 @@
           <div v-else-if="currentField.type === 'radio'">
             <label
               v-if="showFieldNames && (currentField.name || currentField.title)"
-              :for="currentField.uuid"
+              :id="currentField.uuid + '-radio-label'"
               dir="auto"
               class="label text-xl sm:text-2xl py-0 mb-2 sm:mb-3.5 field-name-label"
               :class="{ 'mb-2': !currentField.description }"
@@ -356,6 +357,8 @@
               </div>
               <div
                 class="space-y-3.5 mx-auto"
+                role="radiogroup"
+                :aria-labelledby="(currentField.name || currentField.title) ? currentField.uuid + '-radio-label' : null"
                 :class="{ hidden: !showFieldNames || (currentField.options.every((e) => !e.value) && currentField.options.length > 4) }"
               >
                 <div

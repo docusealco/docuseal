@@ -11,7 +11,7 @@
         <%= svg_icon('user', class: 'w-4 h-4') %>
         <span><%= template.author.full_name.presence || template.author.email.to_s.sub(/\+\w+@/, '@') %></span>
         <% if template.account_id != current_account.id %>
-          <span class="badge badge-neutral badge-outline badge-sm text-[10px] uppercase"><%= t('shared') %></span>
+          <span class="badge badge-neutral badge-outline badge-sm text-[10px] uppercase !border-base-content/60"><%= t('shared') %></span>
         <% end %>
       </p>
       <p class="flex text-xs text-base-content/60">
@@ -19,7 +19,7 @@
           <%= svg_icon('calendar', class: 'w-4 h-4') %>
           <span><%= l(template.created_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) %></span>
         </span>
-        <% if template.archived_at? %>
+        <% if local_assigns[:with_folder] %>
           <span class="flex items-center space-x-1 w-1/2">
             <%= svg_icon('folder', class: 'w-4 h-4 flex-shrink-0') %>
             <span class="truncate"><%= template.folder.full_name %></span>
@@ -37,14 +37,14 @@
           </a>
         </span>
       <% end %>
-      <% if template.archived_at? && can?(:update, template) %>
+      <% if template.archived_at? && can?(:destroy, template) %>
         <span class="tooltip tooltip-left" data-tip="<%= t('restore') %>">
           <%= button_to template_restore_index_path(template), class: 'btn btn-xs hover:btn-outline bg-base-200 btn-circle' do %>
             <%= svg_icon('rotate', class: 'w-4 h-4 enabled') %>
             <%= svg_icon('loader', class: 'w-4 h-4 animate-spin disabled') %>
           <% end %>
         </span>
-      <% elsif can?(:update, template) %>
+      <% elsif !template.archived_at? && can?(:update, template) %>
         <span class="tooltip tooltip-left" data-tip="<%= t('edit') %>">
           <a href="<%= edit_template_path(template) %>" class="btn btn-xs hover:btn-outline bg-base-200 btn-circle">
             <%= svg_icon('pencil', class: 'w-4 h-4') %>

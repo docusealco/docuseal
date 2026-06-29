@@ -47,9 +47,39 @@ module Templates
     nil
   end
 
+  def shared(current_user)
+    account = current_user.account
+
+    return Template.none if Docuseal.multitenant? ? !account.testing? : !account.linked_account_account
+
+    shared_account_ids = [current_user.account_id]
+    shared_account_ids << TemplateSharing::ALL_ID if !Docuseal.multitenant? && !account.testing?
+
+    exists_access = TemplateAccess.where(TemplateAccess.arel_table[:template_id].eq(Template.arel_table[:id]))
+                                  .select(1).arel.exists
+
+    Template.where(id: TemplateSharing.where(account_id: shared_account_ids).select(:template_id))
+            .where.not(exists_access)
+  end
+
   def search(current_user, templates, keyword)
     if Docuseal.fulltext_search?
       fulltext_search(current_user, templates, keyword)
+    else
+      plain_search(templates, keyword)
+    end
+  end
+
+  def search_shared(current_user, templates, keyword)
+    return templates if keyword.blank?
+
+    if Docuseal.fulltext_search?
+      templates.where(
+        id: SearchEntry.where(record_type: 'Template')
+                       .where(account_id: current_user.account.linked_account_account&.account_id)
+                       .where(*SearchEntries.build_tsquery(keyword))
+                       .select(:record_id)
+      )
     else
       plain_search(templates, keyword)
     end
@@ -68,8 +98,7 @@ module Templates
 
     templates.where(
       id: SearchEntry.where(record_type: 'Template')
-                     .where(account_id: [current_user.account_id,
-                                         current_user.account.linked_account_account&.account_id].compact)
+                     .where(account_id: current_user.account_id)
                      .where(*SearchEntries.build_tsquery(keyword))
                      .select(:record_id)
     )

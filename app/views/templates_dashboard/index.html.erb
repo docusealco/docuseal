@@ -23,7 +23,7 @@
       </h1>
     </div>
     <div class="flex space-x-2">
-      <% if params[:q].present? || @pagy.pages > 1 || @template_folders.present? %>
+      <% if params[:q].present? || @pagy.count.nil? || @pagy.count > 1 || @template_folders.present? %>
         <%= render 'shared/search_input' %>
       <% end %>
       <% if can?(:create, ::Template) %>
@@ -45,12 +45,18 @@
     <% end %>
   <% end %>
   <% templates_order_select_html = capture do %>
-    <% if params[:q].blank? && @pagy.pages > 1 %>
-      <%= render 'shared/templates_order_select', with_recently_used: @pagy.count.present? && @pagy.count < 10_000 && !can?(:manage, :countless), selected_order: %>
+    <% if params[:q].blank? && @pagy.pages > 1 && !can?(:manage, :countless) %>
+      <%= render 'shared/templates_order_select', with_recently_used: @pagy.count.present? && @pagy.count < 10_000, selected_order: %>
     <% end %>
   <% end %>
-  <% if @template_folders.present? %>
+  <% if @template_folders.present? || @show_default_folder || @show_shared_folder %>
     <div class="grid gap-4 md:grid-cols-3 <%= 'mb-6' if @templates.present? %>">
+      <% if @show_default_folder %>
+        <%= render 'template_folders/folder', folder: @default_folder %>
+      <% end %>
+      <% if @show_shared_folder %>
+        <%= render 'template_folders/shared_folder' %>
+      <% end %>
       <%= render partial: 'template_folders/folder', collection: @template_folders, as: :folder %>
     </div>
   <% end %>

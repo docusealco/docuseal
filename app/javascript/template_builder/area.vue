@@ -726,6 +726,10 @@ export default {
         return
       }
 
+      if (this.inputMode && (this.isValueInput || this.isCheckboxInput || this.isSelectInput)) {
+        return
+      }
+
       document.activeElement?.blur()
 
       e.preventDefault()

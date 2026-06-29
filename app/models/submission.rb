@@ -107,6 +107,11 @@ class Submission < ApplicationRecord
                       .and(Submitter.arel_table[:completed_at].eq(nil))).select(1).arel.exists)
   }
 
+  scope :select_for_list, lambda {
+    select(:id, :name, :created_by_user_id, :account_id,
+           :created_at, :archived_at, :expire_at, :template_id, :template_submitters)
+  }
+
   enum :source, {
     invite: 'invite',
     bulk: 'bulk',

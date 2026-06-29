@@ -48,7 +48,7 @@ module Api
 
       archived = params.key?(:archived) ? params[:archived] : params.dig(:template, :archived)
 
-      if archived.in?([true, false])
+      if archived.in?([true, false]) && current_ability.can?(:destroy, @template)
         @template.archived_at = archived == true ? Time.current : nil
       end
 
@@ -57,7 +57,10 @@ module Api
       SearchEntries.enqueue_reindex(@template)
 
       WebhookUrls.enqueue_events(@template, 'template.updated')
-      WebhookUrls.enqueue_events(@template, 'template.archived') if archived == true
+
+      if @template.saved_change_to_archived_at? && @template.archived_at?
+        WebhookUrls.enqueue_events(@template, 'template.archived')
+      end
 
       render json: @template.as_json(only: %i[id updated_at])
     end

@@ -97,7 +97,7 @@ class SubmitterMailer < ApplicationMailer
            to: user.role == 'integration' ? user.friendly_name.sub(/\+\w+@/, '@') : user.friendly_name,
            reply_to: @submitter.friendly_name,
            subject: I18n.t(:name_declined_by_submitter,
-                           name: (@submission.name || @submission.template.name).truncate(20),
+                           name: (@submission.name || @submission.template&.name).to_s.truncate(20),
                            submitter: @submitter.name || @submitter.email || @submitter.phone))
     end
   end
@@ -144,6 +144,7 @@ class SubmitterMailer < ApplicationMailer
   end
 
   def otp_verification_email(submitter, locale: nil)
+    @current_account = submitter.account
     @submitter = submitter
     @otp_code = EmailVerificationCodes.generate([submitter.email.downcase.strip, submitter.slug].join(':'))
 

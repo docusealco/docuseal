@@ -42,6 +42,7 @@
           class="absolute w-5 h-5 -ml-2.5 -mt-2.5 rounded-full bg-white border-2 border-neutral-600 cursor-move shadow"
           :style="{ left: `${corner.x * 100}%`, top: `${corner.y * 100}%` }"
           @mousedown.prevent="onCornerMousedown(cornerIndex)"
+          @touchstart.prevent="onCornerTouchstart(cornerIndex)"
         />
       </div>
     </div>
@@ -218,6 +219,9 @@ export default {
   beforeUnmount () {
     window.removeEventListener('mousemove', this.onMousemove)
     window.removeEventListener('mouseup', this.onMouseup)
+    window.removeEventListener('touchmove', this.onTouchmove)
+    window.removeEventListener('touchend', this.onTouchend)
+    window.removeEventListener('touchcancel', this.onTouchend)
   },
   methods: {
     transformPoint (point, rotate, flipH, flipV) {
@@ -276,24 +280,45 @@ export default {
         y: Math.min(Math.max((event.clientY - rect.top) / rect.height, 0), 1)
       }
     },
-    onCornerMousedown (index) {
+    startCornerDrag (index) {
       this.draggingIndex = index
       this.cornersTouched = true
+    },
+    dragCorner (point) {
+      if (this.draggingIndex === null) {
+        return
+      }
+
+      this.corners[this.draggingIndex] = this.inverseTransformPoint(this.pagePoint(point), this.rotate, this.flipH, this.flipV)
+    },
+    onCornerMousedown (index) {
+      this.startCornerDrag(index)
 
       window.addEventListener('mousemove', this.onMousemove)
       window.addEventListener('mouseup', this.onMouseup, { once: true })
     },
     onMousemove (event) {
-      if (this.draggingIndex === null) {
-        return
-      }
-
-      const point = this.inverseTransformPoint(this.pagePoint(event), this.rotate, this.flipH, this.flipV)
-
-      this.corners[this.draggingIndex] = point
+      this.dragCorner(event)
     },
     onMouseup () {
       window.removeEventListener('mousemove', this.onMousemove)
+
+      this.draggingIndex = null
+    },
+    onCornerTouchstart (index) {
+      this.startCornerDrag(index)
+
+      window.addEventListener('touchmove', this.onTouchmove, { passive: false })
+      window.addEventListener('touchend', this.onTouchend)
+      window.addEventListener('touchcancel', this.onTouchend)
+    },
+    onTouchmove (event) {
+      this.dragCorner(event.touches[0])
+    },
+    onTouchend () {
+      window.removeEventListener('touchmove', this.onTouchmove)
+      window.removeEventListener('touchend', this.onTouchend)
+      window.removeEventListener('touchcancel', this.onTouchend)
 
       this.draggingIndex = null
     },

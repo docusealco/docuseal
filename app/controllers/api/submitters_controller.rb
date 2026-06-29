@@ -104,7 +104,7 @@ module Api
 
     private
 
-    def maybe_filder_by_completed_at(submitters, params)
+    def maybe_filter_by_completed_at(submitters, params)
       if params[:completed_after].present?
         submitters = submitters.where(completed_at: Time.zone.parse(params[:completed_after])..)
       end
@@ -177,7 +177,7 @@ module Api
         submitters = submitters.joins(:submission).where(submissions: { template_id: params[:template_id] })
       end
 
-      maybe_filder_by_completed_at(submitters, params)
+      maybe_filter_by_completed_at(submitters, params)
     end
 
     def assign_external_id(submitter, attrs)

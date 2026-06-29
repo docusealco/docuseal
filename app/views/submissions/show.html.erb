@@ -12,7 +12,7 @@
   <div class="flex justify-between py-1.5 items-center pr-4 sticky top-0 md:relative z-10 bg-base-100">
     <a href="<%= signed_in? && @submission.account_id == current_account&.id && @submission.template ? template_path(@submission.template) : '/' %>" class="flex items-center space-x-3 py-1">
       <span><%= render 'submissions/logo' %></span>
-      <h1 class="text-xl md:text-3xl font-semibold focus:text-clip" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;"><% (@submission.name || @submission.template.name).split(/(_)/).each do |item| %><%= item %><wbr><% end %></h1>
+      <h1 class="text-xl md:text-3xl font-semibold focus:text-clip" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;"><% (@submission.name || @submission.template&.name).to_s.split(/(_)/).each do |item| %><%= item %><wbr><% end %></h1>
     </a>
     <div class="space-x-3 flex items-center">
       <% is_all_completed = @submission.submitters.to_a.all?(&:completed_at?) %>
@@ -232,7 +232,7 @@
                 </span>
               </div>
             <% end %>
-            <% if signed_in? && submitter && submitter.email && !submitter.completed_at && !@submission.archived_at? && !@submission.template&.archived_at? && can?(:update, @submission) && Accounts.can_send_emails?(current_account) && !@submission.expired? && !submitter.declined_at? %>
+            <% if signed_in? && submitter && submitter.email && !submitter.completed_at && !@submission.archived_at? && !@submission.template&.archived_at? && can?(:update, @submission) && (Docuseal.multitenant? || Accounts.can_send_emails?(current_account)) && !@submission.expired? && !submitter.declined_at? %>
               <div class="mt-2 mb-1">
                 <%= button_to button_title(title: submitter.sent_at? ? t('re_send_email') : t('send_email'), disabled_with: t('sending')), submitter_send_email_index_path(submitter), class: 'btn btn-sm btn-primary w-full' %>
               </div>

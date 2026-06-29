@@ -31,9 +31,12 @@
       <% else %>
         <div class="flex items-center justify-between">
           <div class="flex items-center">
-            <div class="flex items-center space-x-1 mt-1 peer">
-              <span class="badge badge-neutral badge-outline badge-md text-xs text-white uppercase"><%= t('shared') %></span>
-            </div>
+            <a href="<%= templates_shared_index_path %>" class="flex items-center space-x-1 mt-1">
+              <%= svg_icon('folder', class: 'w-5 h-5 flex-shrink-0') %>
+              <span class="text-sm capitalize">
+                <%= t('shared') %>
+              </span>
+            </a>
           </div>
         </div>
       <% end %>
@@ -88,7 +91,7 @@
       <% end %>
     <% end %>
     <% if template.archived_at? %>
-      <% if can?(:create, template) %>
+      <% if can?(:destroy, template) %>
         <%= button_to button_title(title: t('restore'), disabled_with: t('restoring')[..-4], icon: svg_icon('rotate', class: 'w-6 h-6')), template_restore_index_path(template), class: 'btn btn-outline btn-sm flex-1' %>
       <% end %>
       <%= link_to template_preview_path(template), class: 'btn btn-outline btn-sm flex-1' do %>

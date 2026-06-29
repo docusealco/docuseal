@@ -30,7 +30,7 @@
       <% end %>
     </h1>
     <div class="flex space-x-2">
-      <% if params[:q].present? || @pagy.pages > 1 || @template_folders.present? %>
+      <% if params[:q].present? || @pagy.count.nil? || @pagy.count > 0 || @template_folders.present? %>
         <%= render 'shared/search_input' %>
       <% end %>
       <% if can?(:create, ::Template) %>
@@ -54,8 +54,8 @@
       <%= render partial: 'templates/template', collection: @templates %>
     </div>
     <% templates_order_select_html = capture do %>
-      <% if params[:q].blank? && @pagy.pages > 1 %>
-        <%= render 'shared/templates_order_select', with_recently_used: @pagy.count.present? && @pagy.count < 10_000 && !can?(:manage, :countless), selected_order: %>
+      <% if params[:q].blank? && @pagy.pages > 1 && !can?(:manage, :countless) %>
+        <%= render 'shared/templates_order_select', with_recently_used: @pagy.count.present? && @pagy.count < 10_000, selected_order: %>
       <% end %>
     <% end %>
     <%= render 'shared/pagination', pagy: @pagy, items_name: @templates.present? ? 'templates' : 'template_folders', right_additional_html: templates_order_select_html %>

@@ -6,6 +6,7 @@
         class="relative mx-auto select-none cursor-crosshair"
         :style="pageStyle"
         @mousedown.prevent="onMousedown"
+        @touchstart.prevent="onTouchstart"
       >
         <img
           :src="imageUrl"
@@ -251,6 +252,9 @@ export default {
   beforeUnmount () {
     window.removeEventListener('mousemove', this.onMousemove)
     window.removeEventListener('mouseup', this.onMouseup)
+    window.removeEventListener('touchmove', this.onTouchmove)
+    window.removeEventListener('touchend', this.onTouchend)
+    window.removeEventListener('touchcancel', this.onTouchend)
   },
   methods: {
     inverseRotatePoint (point, rotate) {
@@ -357,27 +361,61 @@ export default {
         y: Math.min(Math.max((event.clientY - rect.top) / rect.height, 0), 1)
       }
     },
+    startMarquee (point) {
+      const start = this.pagePoint(point)
+
+      this.marquee = { x1: start.x, y1: start.y, x2: start.x, y2: start.y }
+    },
+    updateMarquee (point) {
+      if (!this.marquee) {
+        return
+      }
+
+      const next = this.pagePoint(point)
+
+      this.marquee.x2 = next.x
+      this.marquee.y2 = next.y
+    },
     onMousedown (event) {
       if (event.button !== 0 || (!this.imagePage && !this.textNodes)) {
         return
       }
 
-      const point = this.pagePoint(event)
-
-      this.marquee = { x1: point.x, y1: point.y, x2: point.x, y2: point.y }
+      this.startMarquee(event)
 
       window.addEventListener('mousemove', this.onMousemove)
       window.addEventListener('mouseup', this.onMouseup, { once: true })
     },
     onMousemove (event) {
-      const point = this.pagePoint(event)
-
-      this.marquee.x2 = point.x
-      this.marquee.y2 = point.y
+      this.updateMarquee(event)
     },
     onMouseup () {
       window.removeEventListener('mousemove', this.onMousemove)
 
+      this.finishMarquee()
+    },
+    onTouchstart (event) {
+      if (!this.imagePage && !this.textNodes) {
+        return
+      }
+
+      this.startMarquee(event.touches[0])
+
+      window.addEventListener('touchmove', this.onTouchmove, { passive: false })
+      window.addEventListener('touchend', this.onTouchend)
+      window.addEventListener('touchcancel', this.onTouchend)
+    },
+    onTouchmove (event) {
+      this.updateMarquee(event.touches[0])
+    },
+    onTouchend () {
+      window.removeEventListener('touchmove', this.onTouchmove)
+      window.removeEventListener('touchend', this.onTouchend)
+      window.removeEventListener('touchcancel', this.onTouchend)
+
+      this.finishMarquee()
+    },
+    finishMarquee () {
       if (!this.marquee) {
         return
       }
