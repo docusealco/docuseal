@@ -17,10 +17,10 @@ module Api
       submissions = Submissions.search(current_user, @submissions, params[:q])
       submissions = filter_submissions(submissions, params)
 
-      with_fields = params[:include].to_s.include?('fields')
+      with_fields = params[:include].to_s.include?('fields') || params[:include].to_s.include?('combined_document_url')
 
       submissions = paginate(
-        submissions.select(with_fields ? SUBMISSION_COLUMNS + %i[template_fields] : SUBMISSION_COLUMNS)
+        submissions.select(with_fields ? nil : SUBMISSION_COLUMNS)
                    .preload(:created_by_user, :submitters, combined_document_attachment: :blob,
                                                            audit_trail_attachment: :blob)
       )
@@ -28,7 +28,7 @@ module Api
       ActiveRecord::Associations::Preloader.new(
         records: submissions,
         associations: :template,
-        scope: Template.select(with_fields ? TEMPLATE_COLUMNS + %i[fields] : TEMPLATE_COLUMNS)
+        scope: with_fields ? nil : Template.select(TEMPLATE_COLUMNS)
       ).call
 
       ActiveRecord::Associations::Preloader.new(records: submissions.filter_map(&:template),
