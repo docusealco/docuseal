@@ -127,14 +127,18 @@ module Submissions
         end
       end
 
-      submission.template_fields = template.fields.deep_dup
+      submission.template_fields = template.fields.deep_dup.filter_map do |field|
+        next field if field['areas'].blank?
 
-      submission.template_fields.each do |field|
-        field['areas'].to_a.each do |area|
+        field['areas'] = field['areas'].filter_map do |area|
           dynamic_area = areas_index[area['uuid']]
 
-          area.merge!(dynamic_area) if dynamic_area
+          next area.merge(dynamic_area) if dynamic_area
+
+          area if area.key?('page')
         end
+
+        field if field['areas'].present?
       end
 
       submission
