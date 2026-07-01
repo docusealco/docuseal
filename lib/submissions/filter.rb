@@ -104,16 +104,15 @@ module Submissions
     def filter_by_completed_at(submissions, filters)
       return submissions unless filters[:completed_at_from].present? || filters[:completed_at_to].present?
 
-      completed_arel = Submitter.arel_table[:completed_at].maximum
-      submissions = submissions.completed.joins(:submitters).group(:id)
+      submissions = submissions.completed
 
       if filters[:completed_at_from].present?
-        submissions = submissions.having(completed_arel.gteq(filters[:completed_at_from]))
+        submissions = submissions.where(completed_at: filters[:completed_at_from]..)
       end
 
       return submissions if filters[:completed_at_to].blank?
 
-      submissions.having(completed_arel.lteq(filters[:completed_at_to].end_of_day))
+      submissions.where(completed_at: ..filters[:completed_at_to].end_of_day)
     end
 
     def normalize_filter_params(params, current_user)

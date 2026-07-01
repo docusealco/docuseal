@@ -37,7 +37,7 @@
         </div>
         <% unless can?(:manage, :countless) %>
           <div class="badge badge-neutral badge-outline font-medium">
-            <%= params[:status].blank? && filter_params.blank? ? @pagy.count : @base_submissions.unscope(:group, :order).select(:id).distinct.count %>
+            <%= params[:status].blank? && filter_params.blank? ? @pagy.count : @base_submissions.count %>
           </div>
         <% end %>
       </a>
@@ -48,7 +48,7 @@
         </div>
         <% unless can?(:manage, :countless) %>
           <div class="badge badge-neutral badge-outline font-medium">
-            <%= params[:status] == 'pending' && filter_params.blank? ? @pagy.count : @base_submissions.pending.unscope(:group, :order).select(:id).distinct.count %>
+            <%= params[:status] == 'pending' && filter_params.blank? ? @pagy.count : @base_submissions.pending.count %>
           </div>
         <% end %>
       </a>
@@ -59,7 +59,7 @@
         </div>
         <% unless can?(:manage, :countless) %>
           <div class="badge badge-neutral badge-outline font-medium">
-            <%= params[:status] == 'completed' && filter_params.blank? ? @pagy.count : @base_submissions.completed.unscope(:group, :order).select(:id).distinct.count %>
+            <%= params[:status] == 'completed' && filter_params.blank? ? @pagy.count : @base_submissions.completed.count %>
           </div>
         <% end %>
       </a>

@@ -37,19 +37,22 @@ module Submissions
 
     arel_table = Submitter.arel_table
 
-    arel = arel_table[:email].lower.matches(term)
-                             .or(arel_table[:phone].matches(term))
-                             .or(arel_table[:name].lower.matches(term))
+    submitter_arel = arel_table[:email].lower.matches(term)
+                                       .or(arel_table[:phone].matches(term))
+                                       .or(arel_table[:name].lower.matches(term))
 
-    arel = arel.or(Arel::Table.new(:submitters)[:values].matches(term)) if search_values
+    submitter_arel = submitter_arel.or(arel_table[:values].matches(term)) if search_values
+
+    arel = Submitter.where(arel_table[:submission_id].eq(Submission.arel_table[:id]))
+                    .where(submitter_arel).select(1).arel.exists
 
     if search_template
       submissions = submissions.left_joins(:template)
 
-      arel = arel.or(Template.arel_table[:name].lower.matches("%#{sanitized}%"))
+      arel = arel.or(Template.arel_table[:name].lower.matches(term))
     end
 
-    submissions.joins(:submitters).where(arel).group(:id)
+    submissions.where(arel)
   end
 
   def fulltext_search(current_user, submissions, keyword, search_template: false)

@@ -15,7 +15,7 @@
       <h1 class="text-xl md:text-3xl font-semibold focus:text-clip" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;"><% (@submission.name || @submission.template&.name).to_s.split(/(_)/).each do |item| %><%= item %><wbr><% end %></h1>
     </a>
     <div class="space-x-3 flex items-center">
-      <% is_all_completed = @submission.submitters.to_a.all?(&:completed_at?) %>
+      <% is_all_completed = @submission.completed_at? %>
       <% if signed_in? && can?(:destroy, @submission) && @submission.archived_at? && !is_all_completed %>
         <%= button_to button_title(title: t('unarchive'), disabled_with: t('unarchive')[0..-2], icon: svg_icon('rotate', class: 'w-6 h-6')), submission_unarchive_index_path(@submission), class: 'btn btn-primary btn-ghost text-base hidden md:flex' %>
       <% end %>

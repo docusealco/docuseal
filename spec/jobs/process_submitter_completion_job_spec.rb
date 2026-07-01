@@ -10,6 +10,8 @@ RSpec.describe ProcessSubmitterCompletionJob do
   before do
     create(:encrypted_config, key: EncryptedConfig::ESIGN_CERTS_KEY,
                               value: GenerateCertificate.call.transform_values(&:to_pem))
+
+    Submissions.maybe_update_completed_at(submitter.submission)
   end
 
   describe '#perform' do

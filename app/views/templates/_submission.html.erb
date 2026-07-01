@@ -28,7 +28,7 @@
   <% end %>
   <div class="w-full flex flex-col md:flex-row space-y-4 md:space-y-0 md:justify-between px-5 md:px-6 pb-5 md:items-center pt-5 relative cursor-pointer">
     <% submitters = (submission.template_submitters || submission.template.submitters).filter_map { |item| submission.submitters.find { |e| e.uuid == item['uuid'] } } %>
-    <% is_submission_completed = submitters.all?(&:completed_at?) && submitters.size.positive? %>
+    <% is_submission_completed = submission.completed_at? %>
     <% if submitters.size == 1 %>
       <div>
         <% submitter = submitters.first %>

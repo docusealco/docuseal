@@ -207,6 +207,8 @@ RSpec.describe 'Template' do
         submitter.update!(completed_at: rand(2..5).days.ago)
       end
 
+      (last_week_submissions + this_week_submissions).each { |s| Submissions.maybe_update_completed_at(s) }
+
       visit template_path(template)
 
       (last_week_submissions + this_week_submissions).map(&:submitters).flatten.last(10).uniq.each do |submitter|

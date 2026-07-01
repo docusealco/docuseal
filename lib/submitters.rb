@@ -108,7 +108,7 @@ module Submitters
     if AccountConfig.exists?(account_id: submitter.submission.account_id,
                              key: AccountConfig::COMBINE_PDF_RESULT_KEY,
                              value: true) &&
-       submitter.submission.submitters.all?(&:completed_at?) &&
+       submitter.submission.completed_at? &&
        submitter.submission.template_fields.none? { |f| f['type'] == 'verification' }
       return [submitter.submission.combined_document_attachment || Submissions::EnsureCombinedGenerated.call(submitter)]
     end
@@ -207,7 +207,7 @@ module Submitters
 
     filename = filename.gsub('{document.name}', blob.filename.base)
     filename = filename.gsub(' - {submission.status}') do
-      if submitter.submission.submitters.all?(&:completed_at?)
+      if submitter.submission.completed_at?
         status =
           if submitter.submission.template_fields.any? { |f| f['type'] == 'signature' }
             I18n.t(:signed)
@@ -264,7 +264,7 @@ module Submitters
   end
 
   def build_combined_url(submitter, ttl: FILES_TTL)
-    return if submitter.submission.submitters.exists?(completed_at: nil)
+    return unless submitter.submission.completed_at?
     return if submitter.submission.submitters.order(:completed_at).last != submitter
 
     attachment = submitter.submission.combined_document_attachment

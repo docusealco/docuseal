@@ -93,11 +93,9 @@ module Submitters
     end
 
     def build_submission_status(submission)
-      submitters = submission.submitters
-
-      if submitters.all?(&:completed_at?)
+      if submission.completed_at?
         'completed'
-      elsif submitters.any?(&:declined_at?)
+      elsif submission.submitters.any?(&:declined_at?)
         'declined'
       else
         submission.expired? ? 'expired' : 'pending'

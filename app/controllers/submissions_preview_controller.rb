@@ -25,7 +25,7 @@ class SubmissionsPreviewController < ApplicationController
 
     raise ActionController::RoutingError, I18n.t('not_found') if @submission.account.archived_at?
 
-    if !@submission.submitters.all?(&:completed_at?) && !signature_valid &&
+    if !@submission.completed_at? && !signature_valid &&
        (!current_user || !current_ability.can?(:read, @submission))
       raise ActionController::RoutingError, I18n.t('not_found')
     end

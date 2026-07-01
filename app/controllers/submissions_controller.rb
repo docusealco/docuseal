@@ -21,7 +21,7 @@ class SubmissionsController < ApplicationController
   def show
     @submission = Submissions.preload_with_pages(@submission)
 
-    unless @submission.submitters.all?(&:completed_at?)
+    unless @submission.completed_at?
       ActiveRecord::Associations::Preloader.new(
         records: [@submission],
         associations: [{ submitters: :start_form_submission_events }]

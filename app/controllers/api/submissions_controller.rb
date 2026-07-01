@@ -2,7 +2,7 @@
 
 module Api
   class SubmissionsController < ApiBaseController
-    SUBMISSION_COLUMNS = %i[id name slug source submitters_order expire_at created_at updated_at
+    SUBMISSION_COLUMNS = %i[id name slug source submitters_order expire_at completed_at created_at updated_at
                             archived_at variables template_id template_submitters created_by_user_id].freeze
     TEMPLATE_COLUMNS = %i[id name external_id created_at updated_at folder_id submitters].freeze
 
@@ -12,6 +12,8 @@ module Api
     before_action only: :create do
       authorize!(:create, Submission)
     end
+
+    before_action :maybe_return_template_error, only: :create
 
     def index
       submissions = Submissions.search(current_user, @submissions, params[:q])
@@ -58,7 +60,7 @@ module Api
         end
       end
 
-      if @submission.audit_trail_attachment.blank? && submitters.all?(&:completed_at?)
+      if @submission.audit_trail_attachment.blank? && @submission.completed_at?
         @submission.audit_trail_attachment = Submissions::EnsureAuditGenerated.call(@submission)
       end
 
@@ -67,20 +69,6 @@ module Api
 
     def create
       Params::SubmissionCreateValidator.call(params)
-
-      return render json: { error: 'Template not found' }, status: :unprocessable_content if @template.nil?
-
-      if @template.archived_at?
-        Rollbar.warning("Archived template submission: #{@template.id}") if defined?(Rollbar)
-
-        return render json: { error: 'Template has been archived' }, status: :unprocessable_content
-      end
-
-      if @template.fields.blank?
-        Rollbar.warning("Template does not contain fields: #{@template.id}") if defined?(Rollbar)
-
-        return render json: { error: 'Template does not contain fields' }, status: :unprocessable_content
-      end
 
       params[:send_email] = true unless params.key?(:send_email)
       params[:send_sms] = false unless params.key?(:send_sms)
@@ -128,6 +116,22 @@ module Api
     end
 
     private
+
+    def maybe_return_template_error
+      return render json: { error: 'Template not found' }, status: :unprocessable_content if @template.nil?
+
+      if @template.archived_at?
+        Rollbar.warning("Archived template submission: #{@template.id}") if defined?(Rollbar)
+
+        return render json: { error: 'Template has been archived' }, status: :unprocessable_content
+      end
+
+      return if @template.fields.present?
+
+      Rollbar.warning("Template does not contain fields: #{@template.id}") if defined?(Rollbar)
+
+      render json: { error: 'Template does not contain fields' }, status: :unprocessable_content
+    end
 
     def filter_submissions(submissions, params)
       submissions = submissions.where(template_id: params[:template_id]) if params[:template_id].present?
