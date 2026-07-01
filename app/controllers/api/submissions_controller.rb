@@ -92,10 +92,16 @@ module Api
       Submissions.send_signature_requests(submissions)
 
       submissions.each do |submission|
+        if submission.submitters.all?(&:completed_at?) && Submissions.maybe_update_completed_at(submission)
+          last_submitter = submission.submitters.max_by(&:completed_at)
+        end
+
         submission.submitters.each do |submitter|
           next unless submitter.completed_at?
 
-          ProcessSubmitterCompletionJob.perform_async('submitter_id' => submitter.id, 'send_invitation_email' => false)
+          ProcessSubmitterCompletionJob.perform_async('submitter_id' => submitter.id,
+                                                      'is_last' => submitter == last_submitter,
+                                                      'send_invitation_email' => false)
         end
       end
 

@@ -5,6 +5,22 @@ module Submissions
 
   module_function
 
+  def maybe_update_completed_at(submission)
+    incomplete_submitter = Submitter.where(submission_id: submission.id, completed_at: nil).select(1)
+
+    max_completed_at =
+      Arel::Nodes::Grouping.new(
+        Submitter.arel_table.project(Submitter.arel_table[:completed_at].maximum)
+                 .where(Submitter.arel_table[:submission_id].eq(Submission.arel_table[:id]))
+                 .ast
+      )
+
+    Submission.where(id: submission.id, completed_at: nil)
+              .where.not(incomplete_submitter.arel.exists)
+              .update_all(completed_at: max_completed_at)
+              .positive?
+  end
+
   def search(current_user, submissions, keyword, search_values: false, search_template: false)
     if Docuseal.fulltext_search?
       fulltext_search(current_user, submissions, keyword, search_template:)

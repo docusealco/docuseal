@@ -32,7 +32,11 @@ module Submitters
 
       submitter.submission.save!
 
-      ProcessSubmitterCompletionJob.perform_async('submitter_id' => submitter.id) if submitter.completed_at?
+      if submitter.completed_at?
+        is_last = Submissions.maybe_update_completed_at(submitter.submission)
+
+        ProcessSubmitterCompletionJob.perform_async('submitter_id' => submitter.id, 'is_last' => is_last)
+      end
 
       submitter
     end

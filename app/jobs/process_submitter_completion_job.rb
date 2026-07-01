@@ -5,30 +5,37 @@ class ProcessSubmitterCompletionJob
 
   def perform(params = {})
     submitter = Submitter.find(params['submitter_id'])
+    submission = submitter.submission
 
     create_completed_submitter!(submitter)
 
-    is_all_completed = !submitter.submission.submitters.exists?(completed_at: nil)
+    is_last =
+      if params.key?('is_last')
+        params['is_last']
+      else
+        !submission.submitters.exists?(completed_at: nil) &&
+          submitter.completed_at == submission.submitters.maximum(:completed_at)
+      end
 
     Submissions::EnsureResultGenerated.call(submitter)
 
-    if is_all_completed && submitter.completed_at == submitter.submission.submitters.maximum(:completed_at)
-      if submitter.submission.account.account_configs.exists?(key: AccountConfig::COMBINE_PDF_RESULT_KEY, value: true)
+    if is_last
+      if submission.account.account_configs.exists?(key: AccountConfig::COMBINE_PDF_RESULT_KEY, value: true)
         Submissions::EnsureCombinedGenerated.call(submitter)
       end
 
-      Submissions::EnsureAuditGenerated.call(submitter.submission)
+      Submissions::EnsureAuditGenerated.call(submission)
 
       enqueue_completed_emails(submitter)
     end
 
     create_completed_documents!(submitter)
 
-    if !is_all_completed && submitter.submission.submitters_order_preserved? && params['send_invitation_email'] != false
+    if !submission.completed_at && submission.submitters_order_preserved? && params['send_invitation_email'] != false
       enqueue_next_submitter_request_notification(submitter)
     end
 
-    enqueue_completed_webhooks(submitter, is_all_completed:)
+    enqueue_completed_webhooks(submitter, is_last:)
   end
 
   def create_completed_submitter!(submitter)
@@ -77,7 +84,7 @@ class ProcessSubmitterCompletionJob
     end
   end
 
-  def enqueue_completed_webhooks(submitter, is_all_completed: false)
+  def enqueue_completed_webhooks(submitter, is_last: false)
     event_uuids = {}
 
     WebhookUrls.for_account_id(submitter.account_id, %w[form.completed submission.completed]).each do |webhook|
@@ -89,7 +96,7 @@ class ProcessSubmitterCompletionJob
                                                          'webhook_url_id' => webhook.id)
       end
 
-      next unless webhook.events.include?('submission.completed') && is_all_completed
+      next unless webhook.events.include?('submission.completed') && is_last
 
       event_uuids['submission.completed'] ||= SecureRandom.uuid
 

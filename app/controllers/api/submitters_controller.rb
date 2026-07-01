@@ -73,7 +73,9 @@ module Api
       end
 
       if @submitter.completed_at?
-        ProcessSubmitterCompletionJob.perform_async('submitter_id' => @submitter.id)
+        is_last = Submissions.maybe_update_completed_at(@submitter.submission)
+
+        ProcessSubmitterCompletionJob.perform_async('submitter_id' => @submitter.id, 'is_last' => is_last)
       elsif normalized_params[:send_email] || normalized_params[:send_sms]
         Submitters.send_signature_requests([@submitter])
       end
