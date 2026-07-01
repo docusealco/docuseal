@@ -84,7 +84,7 @@ module Submitters
     submitter_ids = SearchEntry.where(record_type: 'Submitter')
                                .where(account_id: current_user.account_id)
                                .where(*query)
-                               .limit(500)
+                               .limit(keyword.length > 2 ? 500 : 5000)
                                .pluck(:record_id)
 
     submitters.where(id: submitter_ids.first(100))
