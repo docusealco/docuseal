@@ -16,7 +16,7 @@
     </a>
     <div class="space-x-3 flex items-center">
       <% is_all_completed = @submission.submitters.to_a.all?(&:completed_at?) %>
-      <% if signed_in? && can?(:create, @submission) && @submission.archived_at? && !is_all_completed %>
+      <% if signed_in? && can?(:destroy, @submission) && @submission.archived_at? && !is_all_completed %>
         <%= button_to button_title(title: t('unarchive'), disabled_with: t('unarchive')[0..-2], icon: svg_icon('rotate', class: 'w-6 h-6')), submission_unarchive_index_path(@submission), class: 'btn btn-primary btn-ghost text-base hidden md:flex' %>
       <% end %>
       <% if @submission.audit_trail.present? %>
@@ -37,9 +37,12 @@
         <% end %>
       <% end %>
       <% if @submission.submitters.to_a.any?(&:completed_at?) %>
+        <% show_combined_download = is_all_completed && !is_combined_enabled %>
+        <% show_unarchive = signed_in? && can?(:destroy, @submission) && @submission.archived_at? && is_all_completed %>
+        <% show_download_dropdown = show_combined_download || show_unarchive %>
         <% if is_all_completed || !is_combined_enabled %>
           <div class="join relative">
-            <download-button role="button" tabindex="0" aria-label="<%= t('download') %>" data-src="<%= local_assigns[:is_preview] ? (@sig_submitter ? submit_form_documents_path(@sig_submitter.slug, { sig: params[:sig], combined: is_combined_enabled }.compact_blank) : submissions_preview_download_index_path(@submission.slug, combined: is_combined_enabled.presence)) : submission_download_index_path(@submission, combined: is_combined_enabled.presence) %>" class="base-button <%= '!rounded-r-none !pr-2' if is_all_completed && !is_combined_enabled %>">
+            <download-button role="button" tabindex="0" aria-label="<%= t('download') %>" data-src="<%= local_assigns[:is_preview] ? (@sig_submitter ? submit_form_documents_path(@sig_submitter.slug, { sig: params[:sig], combined: is_combined_enabled }.compact_blank) : submissions_preview_download_index_path(@submission.slug, combined: is_combined_enabled.presence)) : submission_download_index_path(@submission, combined: is_combined_enabled.presence) %>" class="base-button <%= '!rounded-r-none !pr-2' if show_download_dropdown %>">
               <span class="flex items-center justify-center space-x-2" data-target="download-button.defaultButton">
                 <%= svg_icon('download', class: 'w-6 h-6') %>
                 <span class="hidden md:inline"><%= t('download') %></span>
@@ -49,26 +52,36 @@
                 <span class="hidden md:inline"><%= t('downloading') %></span>
               </span>
             </download-button>
-            <% if is_all_completed && !is_combined_enabled %>
-              <div class="dropdown dropdown-end">
+            <% if show_download_dropdown %>
+              <div class="dropdown dropdown-end has-[button:disabled]:dropdown-open">
                 <label tabindex="0" aria-label="<%= t('download') %>" class="base-button !rounded-l-none !pl-1 !pr-2 !border-l-neutral-500">
                   <span class="text-sm align-text-top">
                     <%= svg_icon('chevron_down', class: 'w-6 h-6 flex-shrink-0 stroke-2') %>
                   </span>
                 </label>
                 <ul class="z-10 dropdown-content p-2 mt-2 shadow menu text-base bg-base-100 rounded-box text-right">
-                  <li>
-                    <download-button role="button" tabindex="0" data-src="<%= local_assigns[:is_preview] ? (@sig_submitter ? submit_form_documents_path(@sig_submitter.slug, { sig: params[:sig], combined: true }.compact) : submissions_preview_download_index_path(@submission.slug, combined: true)) : submission_download_index_path(@submission, combined: true) %>" class="flex items-center">
-                      <span class="flex items-center justify-center space-x-2" data-target="download-button.defaultButton">
-                        <%= svg_icon('download', class: 'w-6 h-6 flex-shrink-0') %>
-                        <span class="whitespace-nowrap"><%= t('download_combined_pdf') %></span>
-                      </span>
-                      <span class="flex items-center justify-center space-x-2 hidden" data-target="download-button.loadingButton">
-                        <%= svg_icon('loader', class: 'w-6 h-6 animate-spin') %>
-                        <span><%= t('downloading') %></span>
-                      </span>
-                    </download-button>
-                  </li>
+                  <% if show_combined_download %>
+                    <li>
+                      <download-button role="button" tabindex="0" data-src="<%= local_assigns[:is_preview] ? (@sig_submitter ? submit_form_documents_path(@sig_submitter.slug, { sig: params[:sig], combined: true }.compact) : submissions_preview_download_index_path(@submission.slug, combined: true)) : submission_download_index_path(@submission, combined: true) %>" class="flex items-center">
+                        <span class="flex items-center justify-center space-x-2" data-target="download-button.defaultButton">
+                          <%= svg_icon('download', class: 'w-6 h-6 flex-shrink-0') %>
+                          <span class="whitespace-nowrap"><%= t('download_combined_pdf') %></span>
+                        </span>
+                        <span class="flex items-center justify-center space-x-2 hidden" data-target="download-button.loadingButton">
+                          <%= svg_icon('loader', class: 'w-6 h-6 animate-spin') %>
+                          <span><%= t('downloading') %></span>
+                        </span>
+                      </download-button>
+                    </li>
+                  <% end %>
+                  <% if show_unarchive %>
+                    <li>
+                      <button form="submission_unarchive_form">
+                        <%= button_title(title: t('unarchive'), disabled_with: t('unarchive'), icon: svg_icon('rotate', class: 'w-6 h-6 flex-shrink-0')) %>
+                      </button>
+                      <%= button_to '', submission_unarchive_index_path(@submission), form: { id: 'submission_unarchive_form' }, form_class: 'hidden' %>
+                    </li>
+                  <% end %>
                 </ul>
               </div>
             <% end %>
