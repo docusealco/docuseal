@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_01_123007) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_01_165617) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
   enable_extension "pg_catalog.plpgsql"
@@ -374,7 +374,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_01_123007) do
     t.datetime "updated_at", null: false
     t.text "variables"
     t.text "variables_schema"
+    t.index ["account_id", "completed_at"], name: "index_submissions_on_account_id_and_completed_at", where: "((completed_at IS NOT NULL) AND (archived_at IS NULL))"
     t.index ["account_id", "id"], name: "index_submissions_on_account_id_and_id"
+    t.index ["account_id", "id"], name: "index_submissions_on_account_id_and_id_pending", where: "((completed_at IS NULL) AND (archived_at IS NULL))"
     t.index ["account_id", "template_id", "id"], name: "index_submissions_on_account_id_and_template_id_and_id", where: "(archived_at IS NULL)"
     t.index ["account_id", "template_id", "id"], name: "index_submissions_on_account_id_and_template_id_and_id_archived", where: "(archived_at IS NOT NULL)"
     t.index ["created_by_user_id"], name: "index_submissions_on_created_by_user_id"
