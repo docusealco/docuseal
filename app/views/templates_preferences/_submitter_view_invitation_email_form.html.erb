@@ -21,7 +21,7 @@
       </div>
       <div class="form-control">
         <%= ff.label :invitation_view_email_body, t('email_body'), class: 'label' %>
-        <%= render 'personalization_settings/markdown_editor', name: ff.field_name(:invitation_view_email_body), value: ff.object.invitation_view_email_body, variables: AccountConfig::EMAIL_VARIABLES[AccountConfig::SUBMITTER_VIEW_INVITATION_EMAIL_KEY] %>
+        <%= render 'personalization_settings/email_body_editor', name: ff.field_name(:invitation_view_email_body), value: ff.object.invitation_view_email_body, variables: AccountConfig::EMAIL_VARIABLES[AccountConfig::SUBMITTER_VIEW_INVITATION_EMAIL_KEY], html_textarea: true %>
       </div>
     <% end %>
   <% end %>

@@ -9,8 +9,9 @@ function loadCodeMirror () {
       import(/* webpackChunkName: "email-editor" */ '@codemirror/commands'),
       import(/* webpackChunkName: "email-editor" */ '@codemirror/language'),
       import(/* webpackChunkName: "email-editor" */ '@codemirror/lang-html'),
+      import(/* webpackChunkName: "email-editor" */ '@codemirror/lint'),
       import(/* webpackChunkName: "email-editor" */ '@specious/htmlflow')
-    ]).then(([view, commands, language, html, htmlflow]) => {
+    ]).then(([view, commands, language, html, lint, htmlflow]) => {
       return {
         minimalSetup: [
           commands.history(),
@@ -19,6 +20,8 @@ function loadCodeMirror () {
         ],
         EditorView: view.EditorView,
         html: html.html,
+        htmlLanguage: html.htmlLanguage,
+        linter: lint.linter,
         htmlflow: htmlflow.default || htmlflow
       }
     })
@@ -46,6 +49,70 @@ export default targetable(class extends HTMLElement {
 
     this.previewViewTab.addEventListener('click', this.showPreviewView)
     this.codeViewTab.addEventListener('click', this.showCodeView)
+
+    this.form = this.closest('form')
+    this.form?.addEventListener('submit', this.validateOnSubmit)
+  }
+
+  disconnectedCallback () {
+    this.form?.removeEventListener('submit', this.validateOnSubmit)
+  }
+
+  validateOnSubmit = (e) => {
+    if (!this.htmlLanguage) return
+
+    const bodyType = this.form.querySelector('input[name$="[body_type]"]:checked')?.value
+
+    if (bodyType && bodyType !== 'html') return
+
+    const diagnostics = this.buildDiagnostics(this.input.value)
+
+    if (diagnostics.length === 0) return
+
+    e.preventDefault()
+
+    this.showCodeView()
+
+    const pos = Math.min(diagnostics[0].from, this.editorView.state.doc.length)
+
+    this.editorView.dispatch({ selection: { anchor: pos }, scrollIntoView: true })
+    this.editorView.focus()
+
+    alert(diagnostics[0].message)
+  }
+
+  buildDiagnostics (value) {
+    const diagnostics = []
+
+    if (!value.trim()) return diagnostics
+
+    if (!/^\s*(<!doctype[^>]*>\s*)?<html/i.test(value)) {
+      diagnostics.push({
+        from: 0,
+        to: Math.min(5, value.length),
+        severity: 'error',
+        message: 'The email template must start with the <html> tag'
+      })
+    }
+
+    const seen = new Set()
+
+    this.htmlLanguage.parser.parse(value).iterate({
+      enter: (node) => {
+        if (!node.type.isError || seen.has(node.from) || seen.size >= 20) return
+
+        seen.add(node.from)
+
+        diagnostics.push({
+          from: node.from,
+          to: Math.min(node.to + 1, value.length),
+          severity: 'error',
+          message: 'The email template contains invalid HTML'
+        })
+      }
+    })
+
+    return diagnostics
   }
 
   showCodeView = () => {
@@ -76,7 +143,9 @@ export default targetable(class extends HTMLElement {
     this.input = this.querySelector('input[type="hidden"]')
     this.input.style.display = 'none'
 
-    const { EditorView, minimalSetup, html, htmlflow } = await loadCodeMirror()
+    const { EditorView, minimalSetup, html, htmlLanguage, linter, htmlflow } = await loadCodeMirror()
+
+    this.htmlLanguage = htmlLanguage
 
     this.editorView = new EditorView({
       doc: this.input.value,
@@ -85,8 +154,11 @@ export default targetable(class extends HTMLElement {
         html(),
         minimalSetup,
         EditorView.lineWrapping,
+        linter((view) => this.buildDiagnostics(view.state.doc.toString()), { delay: 600 }),
         EditorView.updateListener.of(update => {
-          if (update.docChanged) this.input.value = update.state.doc.toString()
+          if (update.docChanged) {
+            this.input.value = update.state.doc.toString()
+          }
         }),
         EditorView.theme({
           '&': {

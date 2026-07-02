@@ -21,7 +21,7 @@
       </div>
       <div class="form-control">
         <%= ff.label :documents_copy_email_body, t('email_body'), class: 'label' %>
-        <%= render 'personalization_settings/markdown_editor', name: ff.field_name(:documents_copy_email_body), value: ff.object.documents_copy_email_body, variables: AccountConfig::EMAIL_VARIABLES[AccountConfig::SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY] %>
+        <%= render 'personalization_settings/email_body_editor', name: ff.field_name(:documents_copy_email_body), value: ff.object.documents_copy_email_body, variables: AccountConfig::EMAIL_VARIABLES[AccountConfig::SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY], html_textarea: true %>
       </div>
       <% if can?(:manage, :reply_to) %>
         <div class="form-control">

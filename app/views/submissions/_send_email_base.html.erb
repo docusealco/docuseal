@@ -39,10 +39,11 @@
 </div>
 <% config = AccountConfigs.find_or_initialize_for_key(current_account, AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY) %>
 <% view_config = AccountConfigs.find_or_initialize_for_key(current_account, AccountConfig::SUBMITTER_VIEW_INVITATION_EMAIL_KEY) %>
+<% config_body = (config.value['body_type'] == 'html' && config.value['html_body'].presence) || config.value['body'] %>
 <% view_template_subject = template&.preferences&.dig('invitation_view_email_subject').presence %>
 <% view_template_body = template&.preferences&.dig('invitation_view_email_body').presence %>
 <% default_subject = template&.preferences&.dig('request_email_subject').presence || config.value['subject'] %>
-<% default_body = template&.preferences&.dig('request_email_body').presence || config.value['body'] %>
+<% default_body = template&.preferences&.dig('request_email_body').presence || config_body %>
 <% is_edit_viewer = local_assigns[:submitter] && local_assigns[:viewer_submitter_uuids].include?(local_assigns[:submitter].uuid) %>
 <div id="<%= message_field_id %>" class="card card-compact bg-base-300/40 hidden">
   <div class="card-body">
@@ -67,8 +68,8 @@
       <div class="form-control">
         <%= f.label :message, t('body'), class: 'label' %>
         <% body_variables = AccountConfig::EMAIL_VARIABLES[AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY] %>
-        <%= render 'personalization_settings/markdown_editor', name: f.field_name(:body), value: local_assigns[:submitter_email_message]&.normalized_body.presence || (is_edit_viewer ? view_template_body : nil) || submitter_preferences_index.dig(local_assigns[:submitter]&.uuid, 'request_email_body').presence || (is_edit_viewer ? view_config.value['body'] : default_body), variables: body_variables %>
-        <% unless local_assigns.fetch(:disable_save_as_default_template_option, false) %>
+        <%= render 'personalization_settings/email_body_editor', name: f.field_name(:body), value: local_assigns[:submitter_email_message]&.normalized_body.presence || (is_edit_viewer ? view_template_body : nil) || submitter_preferences_index.dig(local_assigns[:submitter]&.uuid, 'request_email_body').presence || (is_edit_viewer ? view_config.value['body'] : default_body), variables: body_variables %>
+        <% if !local_assigns.fetch(:disable_save_as_default_template_option, false) && config.value['body_type'] != 'html' %>
           <label for="<%= uuid = SecureRandom.uuid %>" class="flex items-center cursor-pointer">
             <%= check_box_tag :save_message, id: uuid, class: 'base-checkbox', checked: false %>
             <span class="label"><%= t('save_as_default_template_message') %></span>
@@ -103,7 +104,7 @@
               </div>
               <div class="form-control">
                 <%= ff.label :message, t('body'), class: 'label' %>
-                <%= render 'personalization_settings/markdown_editor', name: ff.field_name(:body), value: local_assigns[:submitter_email_message]&.normalized_body.presence || (is_viewer ? view_template_body : nil) || submitter_preferences_index.dig(submitter['uuid'], 'request_email_body').presence || (is_viewer ? view_config.value['body'] : default_body), variables: body_variables %>
+                <%= render 'personalization_settings/email_body_editor', name: ff.field_name(:body), value: local_assigns[:submitter_email_message]&.normalized_body.presence || (is_viewer ? view_template_body : nil) || submitter_preferences_index.dig(submitter['uuid'], 'request_email_body').presence || (is_viewer ? view_config.value['body'] : default_body), variables: body_variables %>
               </div>
             </div>
           <% end %>
