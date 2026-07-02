@@ -452,7 +452,7 @@
     class="pb-0.5 mt-0.5"
   >
   <li
-    v-if="['text', 'number', 'date', 'select', 'heading', 'cells'].includes(field.type)"
+    v-if="['text', 'number', 'date', 'select', 'heading', 'cells'].includes(field.type) || (['radio', 'multiple'].includes(field.type) && field.areas?.every((a) => !a.option_uuid))"
     class="field-settings-font"
   >
     <label

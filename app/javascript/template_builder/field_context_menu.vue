@@ -600,7 +600,8 @@ export default {
       }
     },
     showFont () {
-      return ['text', 'number', 'date', 'select', 'heading', 'cells'].includes(this.field.type)
+      return ['text', 'number', 'date', 'select', 'heading', 'cells'].includes(this.field.type) ||
+        (['radio', 'multiple'].includes(this.field.type) && this.field.areas?.every((a) => !a.option_uuid))
     },
     showDescription () {
       return !['stamp', 'heading', 'strikethrough'].includes(this.field.type)
