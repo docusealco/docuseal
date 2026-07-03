@@ -31,7 +31,8 @@ class ProcessSubmitterCompletionJob
 
     create_completed_documents!(submitter)
 
-    if !submission.completed_at && submission.submitters_order_preserved? && params['send_invitation_email'] != false
+    if !submission.completed_at && submission.submitters_order_preserved? && params['send_invitation_email'] != false &&
+       Submission.exists?(id: submission.id, completed_at: nil)
       enqueue_next_submitter_request_notification(submitter)
     end
 
