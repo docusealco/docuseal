@@ -309,6 +309,8 @@
           :data-document-uuid="item.attachment_uuid"
           :accept-file-types="acceptFileTypes"
           :with-replace-button="withUploadButton"
+          :with-google-drive="withGoogleDrive"
+          :authenticity-token="authenticityToken"
           :editable="editable"
           :dynamic-documents="dynamicDocuments"
           :with-dynamic-documents="withDynamicDocuments"
@@ -318,6 +320,7 @@
           @replace="onDocumentReplace"
           @up="moveDocument(item, -1)"
           @reorder="reorderFields"
+          @edit="editModalDocumentUuid = item.attachment_uuid"
           @down="moveDocument(item, 1)"
           @change="save"
         />
@@ -355,12 +358,18 @@
       </div>
       <div
         id="pages_container"
-        class="w-full overflow-x-hidden mt-0.5 pt-0.5"
-        :class="isMobile ? 'overflow-y-auto' : 'overflow-y-hidden md:overflow-y-auto'"
+        ref="pagesContainer"
+        class="w-full mt-0.5 pt-0.5"
+        :class="[
+          isMobile ? 'overflow-y-auto' : 'overflow-y-hidden md:overflow-y-auto',
+          zoomLevel > 1 ? 'overflow-x-auto' : 'overflow-x-hidden'
+        ]"
+        @wheel="onPagesWheel"
       >
         <div
           ref="documents"
           class="pr-3.5 pl-0.5"
+          :style="zoomLevel > 1 ? { width: `${zoomLevel * 100}%` } : null"
         >
           <template v-if="!sortedDocuments.length && (withUploadButton || withAddPageButton)">
             <Dropzone
@@ -451,6 +460,8 @@
                 :with-arrows="template.schema.length > 1"
                 :item="template.schema.find((item) => item.attachment_uuid === document.uuid)"
                 :with-replace-button="withUploadButton"
+                :with-google-drive="withGoogleDrive"
+                :authenticity-token="authenticityToken"
                 :accept-file-types="acceptFileTypes"
                 :document="document"
                 :template="template"
@@ -633,6 +644,36 @@
         </div>
       </div>
     </Transition>
+    <Transition
+      enter-active-class="transition-all duration-200 ease-out"
+      enter-from-class="translate-y-4 opacity-0"
+      enter-to-class="translate-y-0 opacity-100"
+      leave-active-class="transition-all duration-200 ease-in"
+      leave-from-class="translate-y-0 opacity-100"
+      leave-to-class="translate-y-4 opacity-0"
+    >
+      <div
+        v-if="zoomLevel > 1"
+        class="sticky bottom-0 z-40 pointer-events-none"
+      >
+        <div class="absolute left-0 right-0 bottom-4 flex justify-center">
+          <div class="join shadow pointer-events-auto">
+            <span class="join-item bg-base-content text-white pl-2 pr-2.5 h-9 items-center text-sm font-medium cursor-default w-16 flex justify-end">
+              <span>
+                {{ Math.round(zoomLevel * 100) }}%
+              </span>
+            </span>
+            <button
+              type="button"
+              class="join-item bg-base-content text-white h-9 pl-2 pr-3 inline-flex items-center justify-center cursor-pointer hover:opacity-90 border-l border-white/20"
+              @click="zoomLevel = 1"
+            >
+              <IconX class="w-4 h-4 stroke-2" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </Transition>
     <div
       id="docuseal_modal_container"
       class="modal-container"
@@ -644,6 +685,17 @@
         :locale="locale"
         @close="isRevisionsModalOpen = false"
         @apply="onRevisionApply"
+      />
+      <DocumentsEditorModal
+        v-if="editModalDocumentUuid"
+        :template="template"
+        :authenticity-token="authenticityToken"
+        :accept-file-types="acceptFileTypes"
+        :base-url="baseUrl"
+        :page-preview-format="pagePreviewFormat"
+        :scroll-to-attachment-uuid="editModalDocumentUuid"
+        @saved="onDocumentsModified"
+        @close="editModalDocumentUuid = null"
       />
     </div>
   </div>
@@ -664,7 +716,8 @@ import DocumentControls from './controls'
 import MobileFields from './mobile_fields'
 import FieldSubmitter from './field_submitter'
 import RevisionsModal from './revisions_modal'
-import { IconPlus, IconUsersPlus, IconDeviceFloppy, IconChevronDown, IconEye, IconWritingSign, IconInnerShadowTop, IconInfoCircle, IconAdjustments, IconDownload, IconHistory } from '@tabler/icons-vue'
+import DocumentsEditorModal from './documents_editor_modal'
+import { IconPlus, IconUsersPlus, IconDeviceFloppy, IconChevronDown, IconEye, IconWritingSign, IconInnerShadowTop, IconInfoCircle, IconAdjustments, IconDownload, IconHistory, IconX } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
 import { ref, computed, toRaw, defineAsyncComponent } from 'vue'
 import * as i18n from './i18n'
@@ -706,7 +759,9 @@ export default {
     IconEye,
     IconHistory,
     IconDeviceFloppy,
-    RevisionsModal
+    IconX,
+    RevisionsModal,
+    DocumentsEditorModal
   },
   provide () {
     return {
@@ -1062,8 +1117,10 @@ export default {
       isDragFile: false,
       isMathLoaded: false,
       isRevisionsModalOpen: false,
+      editModalDocumentUuid: null,
       revisions: [],
-      beforeRevisionSnapshot: null
+      beforeRevisionSnapshot: null,
+      zoomLevel: 1
     }
   },
   computed: {
@@ -1639,7 +1696,7 @@ export default {
 
         ref.x = e.clientX - ref.offsetX
         ref.y = e.clientY - ref.offsetY
-      } else if (e.dataTransfer?.types?.includes('Files')) {
+      } else if (e.dataTransfer?.types?.includes('Files') && !this.editModalDocumentUuid) {
         this.isDragFile = true
       }
     },
@@ -2021,6 +2078,30 @@ export default {
 
       this.isBreakpointLg = this.$el.getRootNode().querySelector('div[data-v-app]').offsetWidth < breakpointLg
     },
+    onPagesWheel (event) {
+      if (!event.ctrlKey && !event.metaKey) return
+
+      event.preventDefault()
+
+      const oldZoom = this.zoomLevel
+      const nextZoom = Math.max(1, Math.min(3, oldZoom - event.deltaY * 0.006))
+
+      if (nextZoom === oldZoom) return
+
+      const rect = this.$refs.pagesContainer.getBoundingClientRect()
+      const cursorX = event.clientX - rect.left
+      const cursorY = event.clientY - rect.top
+      const ratio = nextZoom / oldZoom
+      const nextScrollLeft = (this.$refs.pagesContainer.scrollLeft + cursorX) * ratio - cursorX
+      const nextScrollTop = (this.$refs.pagesContainer.scrollTop + cursorY) * ratio - cursorY
+
+      this.zoomLevel = nextZoom
+
+      this.$nextTick(() => {
+        this.$refs.pagesContainer.scrollLeft = nextScrollLeft
+        this.$refs.pagesContainer.scrollTop = nextScrollTop
+      })
+    },
     setDocumentRefs (el) {
       if (el) {
         this.documentRefs.push(el)
@@ -2058,6 +2139,10 @@ export default {
       }
     },
     onKeyDown (event) {
+      if (this.editModalDocumentUuid) {
+        return
+      }
+
       if (event.key === 'Tab' && document.activeElement === document.body) {
         event.stopImmediatePropagation()
         event.preventDefault()
@@ -2514,6 +2599,11 @@ export default {
         this.drawOption = null
 
         this.selectedAreasRef.value = [area]
+
+        area.x = Math.min(Math.max(area.x, 0), 1)
+        area.y = Math.min(Math.max(area.y, 0), 1)
+        area.w = Math.min(Math.max(area.w, 0), 1)
+        area.h = Math.min(Math.max(area.h, 0), 1)
 
         this.save()
       } else {
@@ -3071,6 +3161,22 @@ export default {
     onDocumentsReplaceAndTemplateClone (template) {
       window.Turbo.visit(`/templates/${template.id}/edit`)
     },
+    onDocumentsModified (data) {
+      this.template.schema = data.schema
+      this.template.fields = data.fields
+      this.template.submitters = data.submitters
+      this.template.documents = data.documents
+
+      this.selectedAreasRef.value = []
+
+      if (!this.template.submitters.find((s) => s.uuid === this.selectedSubmitter?.uuid)) {
+        this.selectedSubmitter = this.template.submitters[0]
+      }
+
+      this.editModalDocumentUuid = null
+
+      this.save()
+    },
     moveDocument (item, direction) {
       const currentIndex = this.template.schema.indexOf(item)
 
@@ -3144,10 +3250,14 @@ export default {
 
           const dynamicDocumentSaves = dynamicDocumentRefs.map((ref) => ref.saveBody())
 
-          Promise.all([this.save({ force: true, revision: this.withRevisions }), ...dynamicDocumentSaves]).then(() => {
-            if (window.parent !== window) {
+          Promise.all([this.save({ force: true }), ...dynamicDocumentSaves]).then(() => {
+            if (this.withRevisions) {
+              this.captureRevision()
+            }
+              if (window.parent !== window) {
               window.parent.postMessage({ source: 'docuseal-embed', type: 'save', template_id: this.template.id }, '*')
             }
+
             window.Turbo.visit(`/templates/${this.template.id}`)
           }).finally(() => {
             this.isSaving = false
@@ -3378,7 +3488,7 @@ export default {
         }
       })
     },
-    save ({ force = false, revision = false } = {}) {
+    save ({ force = false } = {}) {
       this.pendingFieldAttachmentUuids = []
 
       if (this.beforeRevisionSnapshot) {
@@ -3410,14 +3520,19 @@ export default {
             submitters: this.template.submitters,
             fields: this.template.fields,
             variables_schema: this.template.variables_schema
-          },
-          ...(revision ? { revision: true } : {})
+          }
         }),
         headers: { 'Content-Type': 'application/json' }
       }).then(() => {
         if (this.onSave) {
           this.onSave(this.template)
         }
+      })
+    },
+    captureRevision () {
+      return this.baseFetch(`/templates/${this.template.id}/versions`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
       })
     },
     onDynamicDocumentUpdate () {

@@ -30,9 +30,9 @@ module Mcp
       def call(arguments, _current_user, current_ability)
         template = Template.accessible_by(current_ability).find_by(id: arguments['template_id'])
 
-        return { content: [{ type: 'text', text: 'Template not found' }], isError: true } unless template
-
-        current_ability.authorize!(:read, template)
+        if !template || !current_ability.can?(:read, template)
+          return { content: [{ type: 'text', text: 'Template not found' }], isError: true }
+        end
 
         submitters_index = template.submitters.index_by { |s| s['uuid'] }
 

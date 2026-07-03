@@ -13,7 +13,7 @@ class SubmittersController < ApplicationController
   def update
     submission = @submitter.submission
 
-    if @submitter.submission_events.exists?(event_type: 'start_form') || submission.archived_at? || submission.expired?
+    unless submitter_editable?(submission)
       return redirect_back fallback_location: submission_path(submission), alert: I18n.t('submitter_cannot_be_updated')
     end
 
@@ -47,6 +47,12 @@ class SubmittersController < ApplicationController
   end
 
   private
+
+  def submitter_editable?(submission)
+    !@submitter.submission_events.exists?(event_type: 'start_form') &&
+      !@submitter.completed_at? && !@submitter.declined_at? &&
+      !submission.archived_at? && !submission.expired? && !submission.template&.archived_at?
+  end
 
   def maybe_resend_email_sms(submitter, params)
     if params[:send_email] == '1' && submitter.email.present?

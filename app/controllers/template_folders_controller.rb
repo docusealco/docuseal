@@ -30,9 +30,11 @@ class TemplateFoldersController < ApplicationController
           (@template_folders.size < 7 ? 9 : 6)
         end
 
-      @pagy, @templates = pagy_auto(@templates, limit:)
+      @pagy, @templates = pagy_auto(@templates.select_for_list, limit:)
 
-      load_related_submissions if params[:q].present? && @templates.blank?
+      if params[:q].present? && @templates.blank?
+        @related_submissions_pagy, @related_submissions = load_related_submissions(@template_folder)
+      end
     else
       @pagy, @template_folders = pagy(@template_folders, limit: FOLDERS_PER_PAGE)
 
@@ -55,11 +57,10 @@ class TemplateFoldersController < ApplicationController
 
   def selected_order
     @selected_order ||=
-      if cookies.permanent[:dashboard_templates_order].blank? ||
-         (cookies.permanent[:dashboard_templates_order] == 'used_at' && can?(:manage, :countless))
+      if can?(:manage, :countless)
         'created_at'
       else
-        cookies.permanent[:dashboard_templates_order]
+        cookies.permanent[:dashboard_templates_order].presence || 'created_at'
       end
   end
 
@@ -67,20 +68,20 @@ class TemplateFoldersController < ApplicationController
     params.require(:template_folder).permit(:name)
   end
 
-  def load_related_submissions
-    @related_submissions =
+  def load_related_submissions(template_folder)
+    related_submissions =
       Submission.accessible_by(current_ability)
                 .where(archived_at: nil)
                 .where(template_id: current_account.templates.active
-                                                   .where(folder: [@template_folder, *@template_folder.subfolders])
+                                                   .where(folder: [template_folder, *template_folder.subfolders])
                                                    .select(:id))
                 .preload(:template_accesses, :created_by_user,
                          template: :author,
                          submitters: :start_form_submission_events)
 
-    @related_submissions = Submissions.search(current_user, @related_submissions, params[:q])
-                                      .order(id: :desc)
+    related_submissions = Submissions.search(current_user, related_submissions, params[:q])
+                                     .order(id: :desc)
 
-    @related_submissions_pagy, @related_submissions = pagy_auto(@related_submissions, limit: 5)
+    pagy_auto(related_submissions.select_for_list, limit: 5)
   end
 end

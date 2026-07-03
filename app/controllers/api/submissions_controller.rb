@@ -2,6 +2,10 @@
 
 module Api
   class SubmissionsController < ApiBaseController
+    SUBMISSION_COLUMNS = %i[id name slug source submitters_order expire_at created_at updated_at
+                            archived_at variables template_id template_submitters created_by_user_id].freeze
+    TEMPLATE_COLUMNS = %i[id name external_id created_at updated_at folder_id submitters].freeze
+
     load_and_authorize_resource :template, only: :create
     load_and_authorize_resource :submission, only: %i[show index destroy]
 
@@ -13,10 +17,22 @@ module Api
       submissions = Submissions.search(current_user, @submissions, params[:q])
       submissions = filter_submissions(submissions, params)
 
-      submissions = paginate(submissions.preload(:created_by_user, :submitters,
-                                                 template: { folder: :parent_folder },
-                                                 combined_document_attachment: :blob,
-                                                 audit_trail_attachment: :blob))
+      with_fields = params[:include].to_s.include?('fields') || params[:include].to_s.include?('combined_document_url')
+
+      submissions = paginate(
+        submissions.select(with_fields ? nil : SUBMISSION_COLUMNS)
+                   .preload(:created_by_user, :submitters, combined_document_attachment: :blob,
+                                                           audit_trail_attachment: :blob)
+      )
+
+      ActiveRecord::Associations::Preloader.new(
+        records: submissions,
+        associations: :template,
+        scope: with_fields ? nil : Template.select(TEMPLATE_COLUMNS)
+      ).call
+
+      ActiveRecord::Associations::Preloader.new(records: submissions.filter_map(&:template),
+                                                associations: { folder: :parent_folder }).call
 
       expires_at = Accounts.link_expires_at(current_account)
 
@@ -53,6 +69,12 @@ module Api
       Params::SubmissionCreateValidator.call(params)
 
       return render json: { error: 'Template not found' }, status: :unprocessable_content if @template.nil?
+
+      if @template.archived_at?
+        Rollbar.warning("Archived template submission: #{@template.id}") if defined?(Rollbar)
+
+        return render json: { error: 'Template has been archived' }, status: :unprocessable_content
+      end
 
       if @template.fields.blank?
         Rollbar.warning("Template does not contain fields: #{@template.id}") if defined?(Rollbar)

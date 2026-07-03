@@ -10,11 +10,17 @@ class TemplatesArchivedController < ApplicationController
 
     @templates = Templates.search(current_user, @templates, params[:q])
 
-    @pagy, @templates = pagy_auto(@templates, limit: 12)
+    @pagy, @templates = pagy_auto(@templates.select_for_list, limit: 12)
 
     return unless params[:q].present? && @templates.blank?
 
-    @related_submissions =
+    @related_submissions_pagy, @related_submissions = load_related_submissions
+  end
+
+  private
+
+  def load_related_submissions
+    related_submissions =
       Submission.accessible_by(current_ability)
                 .joins(:template)
                 .where.not(templates: { archived_at: nil })
@@ -22,9 +28,9 @@ class TemplatesArchivedController < ApplicationController
                          template: :author,
                          submitters: :start_form_submission_events)
 
-    @related_submissions = Submissions.search(current_user, @related_submissions, params[:q])
-                                      .order(id: :desc)
+    related_submissions = Submissions.search(current_user, related_submissions, params[:q])
+                                     .order(id: :desc)
 
-    @related_submissions_pagy, @related_submissions = pagy_auto(@related_submissions, limit: 5)
+    pagy_auto(related_submissions.select_for_list, limit: 5)
   end
 end

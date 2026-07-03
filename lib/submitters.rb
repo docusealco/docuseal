@@ -122,27 +122,21 @@ module Submitters
     end
   end
 
-  def create_attachment!(submitter, params)
-    blob =
-      if (file = params[:file])
-        extension = File.extname(file.original_filename).delete_prefix('.').downcase
+  def create_attachment!(submitter, file, metadata: {})
+    raise ParamsError, 'file param is missing' if file.blank?
 
-        if DANGEROUS_EXTENSIONS.include?(extension)
-          raise MaliciousFileExtension, "File type '.#{extension}' is not allowed."
-        end
+    extension = File.extname(file.original_filename).delete_prefix('.').downcase
 
-        ActiveStorage::Blob.create_and_upload!(io: file.open,
-                                               filename: file.original_filename,
-                                               content_type: file.content_type)
-      else
-        raise ParamsError, 'file param is missing'
-      end
+    if DANGEROUS_EXTENSIONS.include?(extension)
+      raise MaliciousFileExtension, "File type '.#{extension}' is not allowed."
+    end
 
-    ActiveStorage::Attachment.create!(
-      blob:,
-      name: 'attachments',
-      record: submitter
-    )
+    blob = ActiveStorage::Blob.create_and_upload!(io: file.tap(&:rewind).open,
+                                                  filename: file.original_filename,
+                                                  content_type: file.content_type,
+                                                  metadata:)
+
+    ActiveStorage::Attachment.create!(blob:, name: 'attachments', record: submitter)
   end
 
   def normalize_preferences(account, user, params)

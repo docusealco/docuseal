@@ -1,5 +1,6 @@
 import { actionable } from '@github/catalyst/lib/actionable'
 import { target, targetable } from '@github/catalyst/lib/targetable'
+import { convertImagesInInput } from './convert_upload'
 
 export default actionable(targetable(class extends HTMLElement {
   static [target.static] = [
@@ -38,16 +39,20 @@ export default actionable(targetable(class extends HTMLElement {
     this.classList.add('border-base-300', 'hover:bg-base-200/30')
   }
 
-  onDrop (e) {
+  async onDrop (e) {
     e.preventDefault()
 
     this.input.files = e.dataTransfer.files
 
-    this.uploadFiles(e.dataTransfer.files)
+    await convertImagesInInput(this.input)
+
+    this.uploadFiles(this.input.files)
   }
 
-  onSelectFiles (e) {
+  async onSelectFiles (e) {
     e.preventDefault()
+
+    await convertImagesInInput(this.input)
 
     this.uploadFiles(this.input.files)
   }

@@ -27,8 +27,11 @@ class Pdfium
   typedef :pointer, :FPDF_TEXTPAGE
   typedef :pointer, :FPDF_PAGEOBJECT
   typedef :pointer, :FPDF_PATHSEGMENT
+  typedef :pointer, :FPDF_FONT
 
   MAX_SIZE = 32_767
+
+  BLANK_TEXT_CODEPOINTS = [0x00, 0x09, 0x0A, 0x0D, 0x20, 0xA0].freeze
 
   FPDF_ANNOT = 0x01
   FPDF_LCD_TEXT = 0x02
@@ -69,6 +72,16 @@ class Pdfium
     end
   end
 
+  ImageNode = Struct.new(:x, :y, :w, :h) do
+    def endx
+      @endx ||= x + w
+    end
+
+    def endy
+      @endy ||= y + h
+    end
+  end
+
   # rubocop:disable Naming/ClassAndModuleCamelCase
   class FPDF_LIBRARY_CONFIG < FFI::Struct
     layout :version, :int,
@@ -101,7 +114,20 @@ class Pdfium
   attach_function :FPDFBitmap_GetWidth, [:FPDF_BITMAP], :int
   attach_function :FPDFBitmap_GetHeight, [:FPDF_BITMAP], :int
   attach_function :FPDFBitmap_GetStride, [:FPDF_BITMAP], :int
+  attach_function :FPDFBitmap_GetFormat, [:FPDF_BITMAP], :int
   attach_function :FPDFBitmap_FillRect, %i[FPDF_BITMAP int int int int ulong], :void
+
+  FPDF_BITMAP_GRAY = 1
+  FPDF_BITMAP_BGR = 2
+  FPDF_BITMAP_BGRX = 3
+  FPDF_BITMAP_BGRA = 4
+
+  BITMAP_FORMAT_BANDS = {
+    FPDF_BITMAP_GRAY => [:gray, 1],
+    FPDF_BITMAP_BGR => [:bgr, 3],
+    FPDF_BITMAP_BGRX => [:bgrx, 4],
+    FPDF_BITMAP_BGRA => [:bgra, 4]
+  }.freeze
 
   attach_function :FPDF_RenderPageBitmap, %i[FPDF_BITMAP FPDF_PAGE int int int int int int], :void
 
@@ -116,6 +142,7 @@ class Pdfium
   attach_function :FPDFText_CountRects, %i[FPDF_TEXTPAGE int int], :int
   attach_function :FPDFText_GetRect, %i[FPDF_TEXTPAGE int pointer pointer pointer pointer], :int
   attach_function :FPDFText_GetFontSize, %i[FPDF_TEXTPAGE int], :double
+  attach_function :FPDFText_GetLooseCharBox, %i[FPDF_TEXTPAGE int pointer], :int
 
   # Page object functions for extracting paths/lines
   attach_function :FPDFPage_CountObjects, [:FPDF_PAGE], :int
@@ -130,6 +157,29 @@ class Pdfium
   # Text page object functions (per-run Tj/TJ extraction)
   attach_function :FPDFTextObj_GetText, %i[FPDF_PAGEOBJECT FPDF_TEXTPAGE pointer ulong], :ulong
   attach_function :FPDFTextObj_GetFontSize, %i[FPDF_PAGEOBJECT pointer], :int
+
+  attach_function :FPDFPage_InsertObject, %i[FPDF_PAGE FPDF_PAGEOBJECT], :void
+  attach_function :FPDFPage_RemoveObject, %i[FPDF_PAGE FPDF_PAGEOBJECT], :int
+  attach_function :FPDFPage_GenerateContent, [:FPDF_PAGE], :int
+  attach_function :FPDFPageObj_Destroy, [:FPDF_PAGEOBJECT], :void
+  attach_function :FPDFText_GetTextObject, %i[FPDF_TEXTPAGE int], :FPDF_PAGEOBJECT
+  attach_function :FPDFTextObj_GetFont, [:FPDF_PAGEOBJECT], :FPDF_FONT
+  attach_function :FPDFText_LoadStandardFont, %i[FPDF_DOCUMENT string], :FPDF_FONT
+  attach_function :FPDFPageObj_CreateTextObj, %i[FPDF_DOCUMENT FPDF_FONT float], :FPDF_PAGEOBJECT
+  attach_function :FPDFText_SetText, %i[FPDF_PAGEOBJECT pointer], :int
+  attach_function :FPDFPageObj_GetMatrix, %i[FPDF_PAGEOBJECT pointer], :int
+  attach_function :FPDFPageObj_SetMatrix, %i[FPDF_PAGEOBJECT pointer], :int
+  attach_function :FPDFPageObj_CreateNewRect, %i[float float float float], :FPDF_PAGEOBJECT
+  attach_function :FPDFPageObj_SetFillColor, %i[FPDF_PAGEOBJECT uint uint uint uint], :int
+  attach_function :FPDFPath_SetDrawMode, %i[FPDF_PAGEOBJECT int int], :int
+
+  attach_function :FPDFFormObj_CountObjects, [:FPDF_PAGEOBJECT], :int
+  attach_function :FPDFFormObj_GetObject, %i[FPDF_PAGEOBJECT ulong], :FPDF_PAGEOBJECT
+  attach_function :FPDFFormObj_RemoveObject, %i[FPDF_PAGEOBJECT FPDF_PAGEOBJECT], :int
+  attach_function :FPDFPageObj_Transform, %i[FPDF_PAGEOBJECT double double double double double double], :void
+
+  attach_function :FPDFImageObj_GetBitmap, [:FPDF_PAGEOBJECT], :FPDF_BITMAP
+  attach_function :FPDFImageObj_LoadJpegFileInline, %i[pointer int FPDF_PAGEOBJECT pointer], :int
 
   # Page object types
   FPDF_PAGEOBJ_UNKNOWN = 0
@@ -216,7 +266,6 @@ class Pdfium
   attach_function :FPDFPage_SetRotation, %i[FPDF_PAGE int], :void
   attach_function :FPDFPage_TransFormWithClip, %i[FPDF_PAGE pointer pointer], :int
   attach_function :FPDFPage_TransformAnnots, %i[FPDF_PAGE double double double double double double], :void
-  attach_function :FPDFPage_GenerateContent, [:FPDF_PAGE], :int
   attach_function :FPDFPage_GetMediaBox, %i[FPDF_PAGE pointer pointer pointer pointer], :int
   attach_function :FPDFPage_SetMediaBox, %i[FPDF_PAGE float float float float], :void
   attach_function :FPDFPage_GetCropBox, %i[FPDF_PAGE pointer pointer pointer pointer], :int
@@ -241,6 +290,12 @@ class Pdfium
     layout :version, :int,
            :WriteBlock, :pointer
   end
+
+  class FPDF_FILEACCESS < FFI::Struct
+    layout :m_FileLen, :ulong,
+           :m_GetBlock, :pointer,
+           :m_Param, :pointer
+  end
   # rubocop:enable Naming/ClassAndModuleCamelCase
 
   attach_function :FPDF_SaveAsCopy, %i[FPDF_DOCUMENT pointer ulong], :int
@@ -255,6 +310,12 @@ class Pdfium
     attach_function :FPDF_ImportPages, %i[FPDF_DOCUMENT FPDF_DOCUMENT string int], :int
   rescue FFI::NotFoundError
     define_singleton_method(:FPDF_ImportPages) { |*| raise PdfiumError, 'FPDF_ImportPages is not available' } # rubocop:disable Naming/MethodName
+  end
+
+  begin
+    attach_function :FPDF_RemoveOrphanObjects, [:FPDF_DOCUMENT], :int
+  rescue FFI::NotFoundError
+    define_singleton_method(:FPDF_RemoveOrphanObjects) { |*| -1 } # rubocop:disable Naming/MethodName
   end
 
   FPDF_ERR_SUCCESS = 0
@@ -281,6 +342,10 @@ class Pdfium
     PDFIUM_ERRORS[code] || "Unknown error code: #{code}"
   end
 
+  def self.with_instance(instance = nil)
+    yield instance
+  end
+
   def self.check_last_error(context_message = 'PDFium operation failed')
     error_code = FPDF_GetLastError()
 
@@ -303,6 +368,7 @@ class Pdfium
       @source_buffer = source_buffer
       @form_handle = FFI::Pointer::NULL
       @form_fill_info_mem = FFI::Pointer::NULL
+      @presave_hooks = {}
 
       init_form_fill_environment
     end
@@ -322,10 +388,10 @@ class Pdfium
       @page_count ||= Pdfium.FPDF_GetPageCount(@document_ptr)
     end
 
-    def import_pages(src_doc)
+    def import_pages(src_doc, pages: nil, index: nil)
       ensure_not_closed!
 
-      result = Pdfium.FPDF_ImportPages(@document_ptr, src_doc.document_ptr, nil, page_count)
+      result = Pdfium.FPDF_ImportPages(@document_ptr, src_doc.document_ptr, pages, index || page_count)
 
       raise PdfiumError, 'Failed to import pages' if result.zero?
 
@@ -418,6 +484,8 @@ class Pdfium
     def save(io, flags: Pdfium::FPDF_NO_INCREMENTAL)
       ensure_not_closed!
 
+      run_presave_hooks
+
       file_write_mem = FFI::MemoryPointer.new(FPDF_FILEWRITE.size)
 
       file_write_struct = FPDF_FILEWRITE.new(file_write_mem)
@@ -437,6 +505,24 @@ class Pdfium
       end
 
       io
+    end
+
+    def cleanup
+      ensure_not_closed!
+
+      Pdfium.FPDF_RemoveOrphanObjects(@document_ptr)
+    end
+
+    def standard_font
+      @standard_font ||= Pdfium.FPDFText_LoadStandardFont(@document_ptr, 'Helvetica')
+    end
+
+    def add_presave_hook(key, &block)
+      @presave_hooks[key] ||= block
+    end
+
+    def run_presave_hooks
+      @presave_hooks.each_value(&:call)
     end
 
     def close
@@ -493,6 +579,16 @@ class Pdfium
 
     def height
       @height ||= Pdfium.FPDF_GetPageHeightF(@page_ptr)
+    end
+
+    def rotation
+      @rotation ||= Pdfium.FPDFPage_GetRotation(@page_ptr)
+    end
+
+    def rotation=(value)
+      Pdfium.FPDFPage_SetRotation(@page_ptr, value)
+
+      @rotation = value
     end
 
     def closed?
@@ -583,12 +679,7 @@ class Pdfium
 
       return @text_nodes if char_count.zero?
 
-      left_ptr = FFI::MemoryPointer.new(:double)
-      right_ptr = FFI::MemoryPointer.new(:double)
-      bottom_ptr = FFI::MemoryPointer.new(:double)
-      top_ptr = FFI::MemoryPointer.new(:double)
-      origin_x_ptr = FFI::MemoryPointer.new(:double)
-      origin_y_ptr = FFI::MemoryPointer.new(:double)
+      loose_rect_ptr = FFI::MemoryPointer.new(:float, 4)
 
       i = 0
 
@@ -611,30 +702,16 @@ class Pdfium
 
         char = codepoint.chr(Encoding::UTF_8)
 
-        result = Pdfium.FPDFText_GetCharBox(text_page, box_index, left_ptr, right_ptr, bottom_ptr, top_ptr)
+        next if Pdfium.FPDFText_GetLooseCharBox(text_page, box_index, loose_rect_ptr).zero?
 
-        next if result.zero?
+        loose_left, loose_top, loose_right, loose_bottom = loose_rect_ptr.read_array_of_float(4)
 
-        left = left_ptr.read_double
-        right = right_ptr.read_double
+        next if loose_right <= loose_left || loose_top <= loose_bottom
 
-        Pdfium.FPDFText_GetCharOrigin(text_page, box_index, origin_x_ptr, origin_y_ptr)
-
-        origin_y = origin_y_ptr.read_double
-        origin_x = origin_x_ptr.read_double
-
-        font_size = Pdfium.FPDFText_GetFontSize(text_page, box_index)
-        font_size = 8 if font_size == 1
-
-        abs_x = left
-        abs_y = height - origin_y - (font_size * 0.8)
-        abs_width = right - left
-        abs_height = font_size
-
-        x = origin_x / width
-        y = abs_y / height
-        node_width = (abs_width + ((abs_x - origin_x).abs * 2)) / width
-        node_height = abs_height / height
+        x = loose_left / width
+        y = (height - loose_top) / height
+        node_width = (loose_right - loose_left) / width
+        node_height = (loose_top - loose_bottom) / height
 
         @text_nodes << TextNode.new(char, x, y, node_width, node_height)
       ensure
@@ -648,6 +725,381 @@ class Pdfium
       end
     ensure
       Pdfium.FPDFText_ClosePage(text_page) if text_page && !text_page.null?
+    end
+
+    def redact(rects, &image_processor)
+      ensure_not_closed!
+
+      flatten
+      rotate
+
+      rect_bounds = rects.map do |rect|
+        left = rect['x'].to_f * width
+        top = height - (rect['y'].to_f * height)
+
+        [left, top - (rect['h'].to_f * height), left + (rect['w'].to_f * width), top, rect['color']]
+      end
+
+      unwrap_form_objects(rect_bounds)
+
+      remove_redacted_chars(rect_bounds)
+      redact_image_objects(rect_bounds, &image_processor) if image_processor
+      draw_redaction_rects(rect_bounds)
+
+      raise PdfiumError, 'Failed to generate page content' if Pdfium.FPDFPage_GenerateContent(@page_ptr).zero?
+
+      remove_blank_text_objects
+
+      @document.add_presave_hook(:cleanup) { @document.cleanup }
+
+      reset_text_memoization
+
+      nil
+    end
+
+    def remove_blank_text_objects
+      text_page = Pdfium.FPDFText_LoadPage(@page_ptr)
+
+      return if text_page.null?
+
+      blanks = []
+
+      begin
+        Pdfium.FPDFPage_CountObjects(@page_ptr).times do |index|
+          object_ptr = Pdfium.FPDFPage_GetObject(@page_ptr, index)
+
+          next if object_ptr.null?
+          next unless Pdfium.FPDFPageObj_GetType(object_ptr) == Pdfium::FPDF_PAGEOBJ_TEXT
+
+          needed_bytes = Pdfium.FPDFTextObj_GetText(object_ptr, text_page, FFI::Pointer::NULL, 0)
+
+          next if needed_bytes < 2
+
+          buffer = FFI::MemoryPointer.new(:uint8, needed_bytes)
+          written = Pdfium.FPDFTextObj_GetText(object_ptr, text_page, buffer, needed_bytes)
+
+          next if written < 2
+
+          content = buffer.read_bytes(written - 2).force_encoding('UTF-16LE').encode('UTF-8')
+
+          blanks << object_ptr if content.codepoints.all? { |code| BLANK_TEXT_CODEPOINTS.include?(code) }
+        end
+      ensure
+        Pdfium.FPDFText_ClosePage(text_page)
+      end
+
+      return if blanks.empty?
+
+      blanks.each { |object_ptr| remove_page_object(object_ptr) }
+
+      Pdfium.FPDFPage_GenerateContent(@page_ptr)
+    end
+
+    def remove_redacted_chars(rect_bounds)
+      text_page = Pdfium.FPDFText_LoadPage(@page_ptr)
+
+      raise PdfiumError, 'Failed to load text page' if text_page.null?
+
+      begin
+        text_objects_chars = collect_text_objects_chars(text_page, rect_bounds)
+      ensure
+        Pdfium.FPDFText_ClosePage(text_page)
+      end
+
+      text_objects_chars.each_value do |entry|
+        next if entry[:chars].none? { |char| char[:redacted] }
+
+        rebuild_text_object_survivors(entry) unless entry[:chars].all? { |char| char[:redacted] }
+
+        remove_page_object(entry[:ptr])
+      end
+    end
+
+    def unwrap_form_objects(rect_bounds = nil)
+      unwrapped = false
+      matrix_ptr = FFI::MemoryPointer.new(:float, 6)
+
+      loop do
+        form_ptr = find_form_object(rect_bounds)
+
+        break if form_ptr.nil?
+
+        unwrapped = true
+
+        matrix =
+          if Pdfium.FPDFPageObj_GetMatrix(form_ptr, matrix_ptr).zero?
+            [1.0, 0.0, 0.0, 1.0, 0.0, 0.0]
+          else
+            matrix_ptr.read_array_of_float(6)
+          end
+
+        (Pdfium.FPDFFormObj_CountObjects(form_ptr) - 1).downto(0) do |index|
+          child_ptr = Pdfium.FPDFFormObj_GetObject(form_ptr, index)
+
+          next if child_ptr.null?
+
+          raise PdfiumError, 'Failed to unwrap form object' if Pdfium.FPDFFormObj_RemoveObject(form_ptr,
+                                                                                               child_ptr).zero?
+
+          Pdfium.FPDFPageObj_Transform(child_ptr, *matrix)
+          Pdfium.FPDFPage_InsertObject(@page_ptr, child_ptr)
+        end
+
+        remove_page_object(form_ptr)
+      end
+
+      Pdfium.FPDFPage_GenerateContent(@page_ptr) if unwrapped
+
+      reset_text_memoization if unwrapped
+    end
+
+    def find_form_object(rect_bounds = nil)
+      bounds_ptrs = Array.new(4) { FFI::MemoryPointer.new(:float) }
+
+      Pdfium.FPDFPage_CountObjects(@page_ptr).times do |index|
+        object_ptr = Pdfium.FPDFPage_GetObject(@page_ptr, index)
+
+        next if object_ptr.null?
+        next unless Pdfium.FPDFPageObj_GetType(object_ptr) == FPDF_PAGEOBJ_FORM
+
+        return object_ptr if rect_bounds.nil?
+
+        next if Pdfium.FPDFPageObj_GetBounds(object_ptr, *bounds_ptrs).zero?
+
+        left, bottom, right, top = bounds_ptrs.map(&:read_float)
+
+        intersects = rect_bounds.any? do |rl, rb, rr, rt|
+          left < rr && right > rl && bottom < rt && top > rb
+        end
+
+        return object_ptr if intersects
+      end
+
+      nil
+    end
+
+    def collect_text_objects_chars(text_page, rect_bounds)
+      char_count = Pdfium.FPDFText_CountChars(text_page)
+
+      left_ptr, right_ptr, bottom_ptr, top_ptr, origin_x_ptr, origin_y_ptr =
+        Array.new(6) { FFI::MemoryPointer.new(:double) }
+
+      text_objects_chars = {}
+
+      index = 0
+
+      while index < char_count
+        object_ptr = Pdfium.FPDFText_GetTextObject(text_page, index)
+        codepoint = Pdfium.FPDFText_GetUnicode(text_page, index)
+        box_index = index
+
+        if codepoint.between?(0xD800, 0xDBFF) && (index + 1 < char_count)
+          codepoint2 = Pdfium.FPDFText_GetUnicode(text_page, index + 1)
+
+          if codepoint2.between?(0xDC00, 0xDFFF)
+            codepoint = 0x10000 + ((codepoint - 0xD800) << 10) + (codepoint2 - 0xDC00)
+
+            index += 1
+          end
+        end
+
+        index += 1
+
+        next if object_ptr.null?
+        next if Pdfium.FPDFText_GetCharBox(text_page, box_index, left_ptr, right_ptr, bottom_ptr, top_ptr).zero?
+
+        center_x = (left_ptr.read_double + right_ptr.read_double) / 2.0
+        center_y = (bottom_ptr.read_double + top_ptr.read_double) / 2.0
+
+        Pdfium.FPDFText_GetCharOrigin(text_page, box_index, origin_x_ptr, origin_y_ptr)
+
+        entry = text_objects_chars[object_ptr.address] ||= { ptr: object_ptr, chars: [] }
+
+        entry[:chars] << {
+          codepoint:,
+          origin_x: origin_x_ptr.read_double,
+          origin_y: origin_y_ptr.read_double,
+          redacted: rect_bounds.any? do |left, bottom, right, top|
+            center_x.between?(left, right) && center_y.between?(bottom, top)
+          end
+        }
+      end
+
+      text_objects_chars
+    end
+
+    def rebuild_text_object_survivors(entry)
+      font_ptr = @document.standard_font
+
+      font_size_ptr = FFI::MemoryPointer.new(:float)
+      font_size = Pdfium.FPDFTextObj_GetFontSize(entry[:ptr], font_size_ptr).zero? ? 12.0 : font_size_ptr.read_float
+
+      matrix_ptr = FFI::MemoryPointer.new(:float, 6)
+
+      matrix =
+        if Pdfium.FPDFPageObj_GetMatrix(entry[:ptr], matrix_ptr).zero?
+          [1.0, 0.0, 0.0, 1.0, 0.0, 0.0]
+        else
+          matrix_ptr.read_array_of_float(6)
+        end
+
+      entry[:chars].reject { |char| char[:redacted] }.each do |char|
+        new_object = Pdfium.FPDFPageObj_CreateTextObj(@document.document_ptr, font_ptr, font_size)
+
+        next if new_object.null?
+
+        text_data = [char[:codepoint]].pack('U').encode(Encoding::UTF_16LE).b + "\x00\x00".b
+
+        text_buffer = FFI::MemoryPointer.new(:char, text_data.bytesize)
+        text_buffer.put_bytes(0, text_data)
+
+        if Pdfium.FPDFText_SetText(new_object, text_buffer).zero?
+          Pdfium.FPDFPageObj_Destroy(new_object)
+
+          next
+        end
+
+        matrix_ptr.write_array_of_float([matrix[0], matrix[1], matrix[2], matrix[3],
+                                         char[:origin_x], char[:origin_y]])
+
+        Pdfium.FPDFPageObj_SetMatrix(new_object, matrix_ptr)
+        Pdfium.FPDFPage_InsertObject(@page_ptr, new_object)
+      end
+    end
+
+    def reset_text_memoization
+      remove_instance_variable(:@text) if defined?(@text)
+
+      @text_nodes = nil
+      @text_objects = nil
+      @line_nodes = nil
+    end
+
+    def remove_page_object(object_ptr)
+      raise PdfiumError, 'Failed to remove page object' if Pdfium.FPDFPage_RemoveObject(@page_ptr, object_ptr).zero?
+
+      Pdfium.FPDFPageObj_Destroy(object_ptr)
+    end
+
+    def draw_redaction_rects(rect_bounds)
+      rect_bounds.each do |left, bottom, right, top, color|
+        next if color == 'white'
+
+        rect_object = Pdfium.FPDFPageObj_CreateNewRect(left, bottom, right - left, top - bottom)
+
+        raise PdfiumError, 'Failed to create redaction rect' if rect_object.null?
+
+        Pdfium.FPDFPageObj_SetFillColor(rect_object, 0, 0, 0, 255)
+        Pdfium.FPDFPath_SetDrawMode(rect_object, 1, 0)
+        Pdfium.FPDFPage_InsertObject(@page_ptr, rect_object)
+      end
+    end
+
+    def redact_image_objects(rect_bounds)
+      bounds_ptrs = Array.new(4) { FFI::MemoryPointer.new(:float) }
+      matrix_ptr = FFI::MemoryPointer.new(:float, 6)
+
+      Pdfium.FPDFPage_CountObjects(@page_ptr).times do |index|
+        object_ptr = Pdfium.FPDFPage_GetObject(@page_ptr, index)
+
+        next if object_ptr.null?
+        next unless Pdfium.FPDFPageObj_GetType(object_ptr) == FPDF_PAGEOBJ_IMAGE
+        next if Pdfium.FPDFPageObj_GetBounds(object_ptr, *bounds_ptrs).zero?
+
+        obj_left, obj_bottom, obj_right, obj_top = bounds_ptrs.map(&:read_float)
+
+        overlapping = rect_bounds.select do |left, bottom, right, top|
+          obj_left < right && obj_right > left && obj_bottom < top && obj_top > bottom
+        end
+
+        next if overlapping.empty?
+
+        raise PdfiumError, 'Failed to get image matrix' if Pdfium.FPDFPageObj_GetMatrix(object_ptr, matrix_ptr).zero?
+
+        matrix = matrix_ptr.read_array_of_float(6)
+
+        next if ((matrix[0] * matrix[3]) - (matrix[1] * matrix[2])).abs < 1e-9
+
+        bitmap = extract_image_bitmap(object_ptr)
+        pixel_rects = image_pixel_rects(matrix, bitmap[:width], bitmap[:height], overlapping)
+
+        next if pixel_rects.empty?
+
+        jpeg = yield(bitmap, pixel_rects)
+
+        load_image_jpeg(object_ptr, jpeg) if jpeg
+      end
+    end
+
+    def extract_image_bitmap(object_ptr)
+      bitmap_ptr = Pdfium.FPDFImageObj_GetBitmap(object_ptr)
+
+      raise PdfiumError, 'Failed to get image bitmap' if bitmap_ptr.nil? || bitmap_ptr.null?
+
+      format, bands = BITMAP_FORMAT_BANDS[Pdfium.FPDFBitmap_GetFormat(bitmap_ptr)]
+
+      raise PdfiumError, 'Unsupported image bitmap format' if format.nil?
+
+      image_width = Pdfium.FPDFBitmap_GetWidth(bitmap_ptr)
+      image_height = Pdfium.FPDFBitmap_GetHeight(bitmap_ptr)
+      stride = Pdfium.FPDFBitmap_GetStride(bitmap_ptr)
+
+      data = Pdfium.FPDFBitmap_GetBuffer(bitmap_ptr).read_bytes(stride * image_height)
+
+      row_size = image_width * bands
+
+      data = Array.new(image_height) { |row| data.byteslice(row * stride, row_size) }.join if stride != row_size
+
+      { data:, width: image_width, height: image_height, bands:, format: }
+    ensure
+      Pdfium.FPDFBitmap_Destroy(bitmap_ptr) if bitmap_ptr && !bitmap_ptr.null?
+    end
+
+    def image_pixel_rects(matrix, image_width, image_height, rect_bounds)
+      a, b, c, d, e, f = matrix
+      det = (a * d) - (b * c)
+
+      rect_bounds.filter_map do |left, bottom, right, top, color|
+        corners = [[left, bottom], [right, bottom], [left, top], [right, top]].map do |x, y|
+          u = ((d * (x - e)) - (c * (y - f))) / det
+          v = ((a * (y - f)) - (b * (x - e))) / det
+
+          [u * image_width, (1 - v) * image_height]
+        end
+
+        xs = corners.map(&:first)
+        ys = corners.map(&:last)
+
+        next if xs.max <= 0 || xs.min >= image_width || ys.max <= 0 || ys.min >= image_height
+
+        px_left = xs.min.floor.clamp(0, image_width - 1)
+        px_top = ys.min.floor.clamp(0, image_height - 1)
+
+        [px_left, px_top,
+         (xs.max.ceil - px_left).clamp(1, image_width - px_left),
+         (ys.max.ceil - px_top).clamp(1, image_height - px_top),
+         color]
+      end
+    end
+
+    def load_image_jpeg(object_ptr, jpeg)
+      get_block = FFI::Function.new(:int, %i[pointer ulong pointer ulong]) do |_param, position, out, size|
+        out.put_bytes(0, jpeg.byteslice(position, size) || ''.b)
+
+        1
+      end
+
+      file_access = Pdfium::FPDF_FILEACCESS.new
+      file_access[:m_FileLen] = jpeg.bytesize
+      file_access[:m_GetBlock] = get_block
+      file_access[:m_Param] = FFI::Pointer::NULL
+
+      pages_ptr = FFI::MemoryPointer.new(:pointer, 1)
+      pages_ptr.write_pointer(@page_ptr)
+
+      result = Pdfium.FPDFImageObj_LoadJpegFileInline(pages_ptr, 1, object_ptr, file_access)
+
+      raise PdfiumError, 'Failed to load redacted image' if result.zero?
     end
 
     def text_objects
@@ -801,6 +1253,35 @@ class Pdfium
       @line_nodes = @line_nodes.sort { |a, b| a.endy == b.endy ? a.x <=> b.x : a.endy <=> b.endy }
     end
 
+    def image_nodes
+      ensure_not_closed!
+
+      nodes = []
+
+      bounds_ptrs = Array.new(4) { FFI::MemoryPointer.new(:float) }
+
+      Pdfium.FPDFPage_CountObjects(@page_ptr).times do |index|
+        object_ptr = Pdfium.FPDFPage_GetObject(@page_ptr, index)
+
+        next if object_ptr.null?
+        next unless Pdfium.FPDFPageObj_GetType(object_ptr) == FPDF_PAGEOBJ_IMAGE
+        next if Pdfium.FPDFPageObj_GetBounds(object_ptr, *bounds_ptrs).zero?
+
+        obj_left, obj_bottom, obj_right, obj_top = bounds_ptrs.map(&:read_float)
+
+        left = (obj_left / width).clamp(0, 1)
+        top = ((height - obj_top) / height).clamp(0, 1)
+        right = (obj_right / width).clamp(0, 1)
+        bottom = ((height - obj_bottom) / height).clamp(0, 1)
+
+        next if right - left <= 0 || bottom - top <= 0
+
+        nodes << ImageNode.new(left, top, right - left, bottom - top)
+      end
+
+      nodes
+    end
+
     def rotate
       ensure_not_closed!
 
@@ -864,7 +1345,8 @@ class Pdfium
 
       Pdfium.FPDFPage_TransFormWithClip(page_ptr, matrix_ptr, FFI::Pointer::NULL)
       Pdfium.FPDFPage_SetRotation(page_ptr, 0)
-      Pdfium.FPDFPage_GenerateContent(page_ptr)
+
+      reload
 
       true
     end
@@ -880,7 +1362,23 @@ class Pdfium
         raise PdfiumError, "Failed to flatten page #{page_index}"
       end
 
+      reload if result == Pdfium::FLATTEN_SUCCESS
+
       result
+    end
+
+    def reload
+      Pdfium.FPDF_ClosePage(@page_ptr)
+
+      @page_ptr = Pdfium.FPDF_LoadPage(@document.document_ptr, @page_index)
+
+      raise PdfiumError, "Failed to reload page #{page_index}" if @page_ptr.null?
+
+      @rotation = nil
+      @width = nil
+      @height = nil
+
+      reset_text_memoization
     end
 
     def close

@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-ruby '~> 4.0'
+ruby '4.0.5'
 
 gem 'addressable'
 gem 'arabic-letter-connector', require: false
@@ -21,11 +21,9 @@ gem 'faraday'
 gem 'faraday-follow_redirects'
 gem 'google-cloud-storage', require: false
 gem 'hexapdf'
-gem 'image_processing'
 gem 'jwt', require: false
 gem 'lograge'
 gem 'numo-narray-alt', require: false
-gem 'oj'
 gem 'onnxruntime', require: false
 gem 'pagy'
 gem 'pg', require: false

@@ -36,7 +36,7 @@
     <% if signature %>
       <div class="flex justify-center mb-4 relative">
         <%= button_to button_title(title: t('remove'), disabled_with: t('removing')), user_signature_path, method: :delete, class: 'right-0 top-0 absolute link' %>
-        <img src="<%= signature.url %>" style="max-height: 200px; width: auto" width="<%= signature.metadata['width'] %>" height="<%= signature.metadata['height'] %>">
+        <img src="<%= signature.url(time: ActiveStorage::Attachment.service_url_time) %>" style="height: 130px; width: 100%; object-fit: contain;">
       </div>
     <% end %>
     <a href="<%= edit_user_signature_path %>" data-turbo-frame="modal" class="base-button w-full">
@@ -49,7 +49,7 @@
     <% if initials %>
       <div class="flex justify-center mb-4 relative">
         <%= button_to button_title(title: t('remove'), disabled_with: t('removing')), user_initials_path, method: :delete, class: 'right-0 top-0 absolute link' %>
-        <img src="<%= initials.url %>" style="max-height: 200px; width: auto" width="<%= initials.metadata['width'] %>" height="<%= initials.metadata['height'] %>">
+        <img src="<%= initials.url(time: ActiveStorage::Attachment.service_url_time) %>" style="height: 130px; width: 100%; object-fit: contain;">
       </div>
     <% end %>
     <a href="<%= edit_user_initials_path %>" data-turbo-frame="modal" class="base-button w-full">
@@ -70,7 +70,7 @@
           <div class="form-control">
             <%= f.label :current_password, t('current_password'), class: 'label' %>
             <%= f.password_field :current_password, autocomplete: 'current-password', class: 'base-input' %>
-            <% if Accounts.can_send_emails?(current_account) %>
+            <% if Docuseal.multitenant? || Accounts.can_send_emails?(current_account) %>
               <span class="label-text-alt mt-1">
                 <%= t('dont_remember_your_current_password_click_here_to_reset_it_html') %>
               </span>

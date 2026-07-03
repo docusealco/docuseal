@@ -133,7 +133,7 @@ RSpec.describe 'Signing Form' do
 
       # Cell step
       fill_in 'Cell code', with: '123'
-      click_on 'Complete'
+      find('#submit_form_button').click
 
       expect(page).to have_button('Download')
       expect(page).to have_content('Document has been signed!')
@@ -220,7 +220,7 @@ RSpec.describe 'Signing Form' do
 
       # Cell step
       fill_in 'Cell code', with: '123'
-      click_on 'Complete'
+      find('#submit_form_button').click
 
       expect(page).to have_button('Download')
       expect(page).to have_content('Document has been signed!')
@@ -308,7 +308,7 @@ RSpec.describe 'Signing Form' do
       click_button 'next'
 
       fill_in 'Cell code', with: '123'
-      click_on 'Complete'
+      find('#submit_form_button').click
 
       expect(page).to have_button('Download')
       expect(page).to have_content('Document has been signed!')
@@ -398,7 +398,7 @@ RSpec.describe 'Signing Form' do
 
       # Cell step
       fill_in 'Cell code', with: '123'
-      click_on 'Complete'
+      find('#submit_form_button').click
 
       expect(page).to have_button('Download')
       expect(page).to have_content('Document has been signed!')
@@ -443,7 +443,7 @@ RSpec.describe 'Signing Form' do
       expect(input[:placeholder]).to eq 'Type here...'
 
       fill_in 'First Name', with: 'Mary'
-      click_button 'Complete'
+      find('#submit_form_button').click
 
       expect(page).to have_content('Form has been completed!')
 
@@ -468,7 +468,7 @@ RSpec.describe 'Signing Form' do
       expect(page).not_to have_selector(:css, 'div[data-tip="Toggle Multiline Text"]')
 
       fill_in 'First Name', with: 'Very long text'
-      click_button 'Complete'
+      find('#submit_form_button').click
 
       expect(page).to have_content('Form has been completed!')
 
@@ -494,7 +494,7 @@ RSpec.describe 'Signing Form' do
       expect(input[:required]).to be_truthy
 
       fill_in 'Birthday', with: I18n.l(25.years.ago, format: '%Y-%m-%d')
-      click_button 'Complete'
+      find('#submit_form_button').click
 
       expect(page).to have_content('Form has been completed!')
 
@@ -517,7 +517,7 @@ RSpec.describe 'Signing Form' do
 
       expect(input[:value]).to eq Time.zone.now.strftime('%Y-%m-%d')
 
-      click_button 'Complete'
+      find('#submit_form_button').click
 
       expect(page).to have_content('Form has been completed!')
 
@@ -539,7 +539,7 @@ RSpec.describe 'Signing Form' do
       visit submit_form_path(slug: submitter.slug)
 
       check 'Do you agree?'
-      click_button 'Complete'
+      find('#submit_form_button').click
 
       expect(page).to have_content('Form has been completed!')
 
@@ -563,7 +563,7 @@ RSpec.describe 'Signing Form' do
       %w[Girl Boy].map { |v| find_field(v) }.each { |input| expect(input[:required]).to be_truthy }
 
       choose 'Boy'
-      click_button 'Complete'
+      find('#submit_form_button').click
 
       expect(page).to have_content('Form has been completed!')
 
@@ -670,7 +670,7 @@ RSpec.describe 'Signing Form' do
       expect(input[:placeholder]).to eq 'Type here...'
 
       fill_in 'House number', with: '4'
-      click_button 'Complete'
+      find('#submit_form_button').click
 
       expect(page).to have_content('Form has been completed!')
 
@@ -692,7 +692,7 @@ RSpec.describe 'Signing Form' do
       visit submit_form_path(slug: submitter.slug)
 
       %w[Red Green].each { |color| check color }
-      click_button 'Complete'
+      find('#submit_form_button').click
 
       expect(page).to have_content('Form has been completed!')
 
@@ -715,7 +715,7 @@ RSpec.describe 'Signing Form' do
 
       select 'Female', from: 'Gender'
 
-      click_button 'Complete'
+      find('#submit_form_button').click
 
       expect(page).to have_content('Form has been completed!')
 
@@ -738,7 +738,7 @@ RSpec.describe 'Signing Form' do
 
       find('#expand_form_button').click
       fill_in 'initials_text_input', with: 'John Doe'
-      click_button 'Complete'
+      find('#submit_form_button').click
 
       expect(page).to have_content('Document has been signed!')
 
@@ -754,7 +754,7 @@ RSpec.describe 'Signing Form' do
       find('#expand_form_button').click
       click_button 'Draw'
       draw_canvas
-      click_button 'Complete'
+      find('#submit_form_button').click
 
       expect(page).to have_content('Document has been signed!')
 
@@ -773,7 +773,7 @@ RSpec.describe 'Signing Form' do
 
       sleep 0.1
 
-      click_button 'Complete'
+      find('#submit_form_button').click
 
       expect(page).to have_content('Document has been signed!')
 
@@ -797,7 +797,7 @@ RSpec.describe 'Signing Form' do
       find('#expand_form_button').click
       find('#dropzone').click
       find('input[type="file"]', visible: false).attach_file(Rails.root.join('spec/fixtures/sample-image.png'))
-      click_button 'Complete'
+      find('#submit_form_button').click
 
       expect(page).to have_content('Form has been completed!')
 
@@ -821,7 +821,7 @@ RSpec.describe 'Signing Form' do
       find('#expand_form_button').click
       find('#dropzone').click
       find('input[type="file"]', visible: false).attach_file(Rails.root.join('spec/fixtures/sample-document.pdf'))
-      click_button 'Complete'
+      find('#submit_form_button').click
 
       expect(page).to have_content('Form has been completed!')
 
@@ -848,7 +848,7 @@ RSpec.describe 'Signing Form' do
       expect(input[:placeholder]).to eq 'Type here...'
 
       fill_in 'Cell code', with: '456'
-      click_button 'Complete'
+      find('#submit_form_button').click
 
       expect(page).to have_content('Form has been completed!')
 
@@ -967,7 +967,7 @@ RSpec.describe 'Signing Form' do
       click_button 'next'
 
       fill_in 'Comment', with: 'This is a comment'
-      click_button 'Complete'
+      find('#submit_form_button').click
 
       expect(page).to have_content('Form has been completed!')
 
@@ -992,7 +992,7 @@ RSpec.describe 'Signing Form' do
       click_button 'next'
 
       fill_in 'Comment', with: 'This is a comment'
-      click_button 'Complete'
+      find('#submit_form_button').click
 
       expect(page).to have_content('Form has been completed!')
 
@@ -1015,7 +1015,7 @@ RSpec.describe 'Signing Form' do
       click_button 'next'
 
       fill_in 'Phone (optional)', with: ''
-      click_button 'Complete'
+      find('#submit_form_button').click
 
       expect(page).to have_content('Form has been completed!')
 
@@ -1038,7 +1038,7 @@ RSpec.describe 'Signing Form' do
       click_button 'next'
 
       fill_in 'Phone (optional)', with: '+1 (773) 229-8825'
-      click_button 'Complete'
+      find('#submit_form_button').click
 
       expect(page).to have_content('Form has been completed!')
 
@@ -1068,7 +1068,7 @@ RSpec.describe 'Signing Form' do
       visit submit_form_path(slug: first_submitter.slug)
 
       fill_in 'First Name', with: 'Jahn'
-      click_button 'Complete'
+      find('#submit_form_button').click
 
       visit submit_form_path(slug: second_submitter.slug)
 
@@ -1229,7 +1229,7 @@ RSpec.describe 'Signing Form' do
       click_button 'Submit'
 
       fill_in 'First Name', with: 'Mary'
-      click_button 'Complete'
+      find('#submit_form_button').click
 
       expect(page).to have_content('Form has been completed!')
 
@@ -1264,7 +1264,7 @@ RSpec.describe 'Signing Form' do
       click_button 'Submit'
 
       fill_in 'First Name', with: 'Mary'
-      click_button 'Complete'
+      find('#submit_form_button').click
 
       expect(page).to have_content('Form has been completed!')
 
@@ -1272,6 +1272,49 @@ RSpec.describe 'Signing Form' do
 
       expect(submitter.completed_at).to be_present
       expect(field_value(submitter, 'First Name')).to eq 'Mary'
+    end
+  end
+
+  context 'when header complete button' do
+    let(:template) { create(:template, account:, author:, only_field_types: %w[text date]) }
+    let(:submission) { create(:submission, :with_submitters, template:) }
+    let(:submitter) { submission.submitters.first }
+
+    before do
+      template.fields.second['required'] = false
+      template.save!
+      submission.update(template_fields: template.fields)
+    end
+
+    it 'shows header complete button and hides download after filling required fields' do
+      visit submit_form_path(slug: submitter.slug)
+
+      expect(page).to have_button('Decline')
+      expect(page).to have_css('download-button[aria-label="Download"]', visible: true)
+      expect(page).not_to have_css('#complete_button_container button')
+
+      fill_in 'First Name', with: 'John Doe'
+      click_button 'next'
+
+      expect(page).to have_css('#complete_button_container button')
+      expect(page).to have_button('Decline')
+      expect(page).to have_css('download-button[aria-label="Download"]', visible: :hidden)
+    end
+
+    it 'completes the form via header complete button skipping optional fields' do
+      visit submit_form_path(slug: submitter.slug)
+
+      fill_in 'First Name', with: 'John Doe'
+      click_button 'next'
+
+      find('#complete_button_container button').click
+
+      expect(page).to have_content('Form has been completed!')
+
+      submitter.reload
+
+      expect(submitter.completed_at).to be_present
+      expect(field_value(submitter, 'First Name')).to eq 'John Doe'
     end
   end
 end

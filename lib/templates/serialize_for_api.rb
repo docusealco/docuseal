@@ -14,26 +14,24 @@ module Templates
 
     module_function
 
-    def call(template, schema_documents: template.schema_documents.preload(:blob), preview_image_attachments: nil,
-             expires_at: Accounts.link_expires_at(Account.new(id: template.account_id)))
+    def call(template, schema_documents: template.schema_documents.preload(:blob), dynamic_documents: nil,
+             preview_image_attachments: nil, expires_at: Accounts.link_expires_at(Account.new(id: template.account_id)))
       json = template.as_json(SERIALIZE_PARAMS)
 
-      preview_image_attachments ||=
-        ActiveStorage::Attachment.joins(:blob)
-                                 .where(blob: { filename: ['0.jpg', '0.png'] })
-                                 .where(record_id: schema_documents.map(&:id),
-                                        record_type: 'ActiveStorage::Attachment',
-                                        name: :preview_images)
-                                 .preload(:blob)
+      dynamic_documents ||= preload_dynamic_documents(template)
+
+      preview_image_attachments ||= preload_preview_image_attachments(schema_documents, dynamic_documents)
 
       json['documents'] = template.schema.filter_map do |item|
-        attachment = schema_documents.find { |e| e.uuid == item['attachment_uuid'] }
+        if item['dynamic']
+          dynamic_document = dynamic_documents.find { |e| e.uuid == item['attachment_uuid'] }
 
-        unless attachment
-          Rollbar.error("Documents missing: #{template.id}") if defined?(Rollbar)
-
-          next
+          attachment = dynamic_document.current_version&.document_attachment
         end
+
+        attachment ||= schema_documents.find { |e| e.uuid == item['attachment_uuid'] }
+
+        next unless attachment
 
         first_page_blob = preview_image_attachments.find { |e| e.record_id == attachment.id }&.blob
         first_page_blob ||= attachment.preview_images.joins(:blob).find_by(blob: { filename: ['0.jpg', '0.png'] })&.blob
@@ -48,6 +46,27 @@ module Templates
       end
 
       json
+    end
+
+    def preload_dynamic_documents(template)
+      return DynamicDocument.none if template.schema.none? { |item| item['dynamic'] }
+
+      template.schema_dynamic_documents
+              .preload(current_version: { document_attachment: :blob })
+              .select(:id, :uuid, :template_id, :sha1, :created_at, :updated_at)
+    end
+
+    def preload_preview_image_attachments(schema_documents, dynamic_documents)
+      record_ids =
+        schema_documents.map(&:id) +
+        dynamic_documents.filter_map { |d| d.current_version&.document_attachment&.id }
+
+      ActiveStorage::Attachment.joins(:blob)
+                               .where(blob: { filename: ['0.jpg', '0.png'] })
+                               .where(record_id: record_ids,
+                                      record_type: 'ActiveStorage::Attachment',
+                                      name: :preview_images)
+                               .preload(:blob)
     end
   end
 end

@@ -9,6 +9,7 @@ module Api
 
     before_action :set_cors_headers
     before_action :set_noindex_headers
+    before_action :set_security_headers
 
     # rubocop:disable Metrics
     def show
@@ -17,6 +18,12 @@ module Api
       blob = ActiveStorage::Blob.find_signed(params[:signed_blob_id] || params[:signed_id])
 
       return head :not_found unless blob
+
+      if Submitters::DANGEROUS_EXTENSIONS.include?(blob.filename.extension.to_s.downcase)
+        Rollbar.error('Dangerous extension') if defined?(Rollbar)
+
+        return head :unprocessable_content
+      end
 
       is_permitted = blob.attachments.any? do |a|
         (current_user && a.record.account.id == current_user.account_id) ||

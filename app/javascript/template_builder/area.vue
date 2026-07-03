@@ -197,7 +197,8 @@
           v-else-if="!isCheckboxInput"
           width="100%"
           height="100%"
-          class="max-h-10 opacity-50"
+          class="opacity-50"
+          :style="{ maxHeight: isInlineSize ? '4.4cqmin' : '40px' }"
         />
       </span>
     </div>
@@ -620,6 +621,10 @@ export default {
         return new Intl.NumberFormat('de-DE').format(number)
       } else if (format === 'space') {
         return new Intl.NumberFormat('fr-FR').format(number)
+      } else if (format === 'percent') {
+        return `${number}%`
+      } else if (format === 'percent_space') {
+        return `${String(number).replace('.', ',')} %`
       } else {
         return number
       }
@@ -716,16 +721,12 @@ export default {
         }
       }
     },
-    drag (e) {
-      if (e.target.id === 'mask' && this.editable) {
-        this.isDragged = true
-
-        this.area.x = (e.offsetX - this.dragFrom.x) / e.target.clientWidth
-        this.area.y = (e.offsetY - this.dragFrom.y) / e.target.clientHeight
-      }
-    },
     startTouchDrag (e) {
       if (e.target !== this.$refs.touchTarget && e.target !== this.$refs.touchValueTarget) {
+        return
+      }
+
+      if (this.inputMode && (this.isValueInput || this.isCheckboxInput || this.isSelectInput)) {
         return
       }
 
@@ -768,6 +769,8 @@ export default {
       this.$el.getRootNode().removeEventListener('touchend', this.stopTouchDrag)
 
       this.maybeChangeAreaPage(this.area)
+
+      this.clampAreaBounds(this.area)
 
       if (this.isDragged) {
         this.save()
@@ -836,6 +839,8 @@ export default {
 
       this.maybeChangeAreaPage(this.area)
 
+      this.clampAreaBounds(this.area)
+
       if (this.isMoved) {
         this.save()
       }
@@ -860,18 +865,6 @@ export default {
         area.y = area.y - 1 - (16.0 / this.$parent.$refs.mask.previousSibling.offsetHeight)
       }
     },
-    stopDrag () {
-      this.$el.getRootNode().removeEventListener('mousemove', this.drag)
-      this.$el.getRootNode().removeEventListener('mouseup', this.stopDrag)
-
-      if (this.isDragged) {
-        this.save()
-      }
-
-      this.isDragged = false
-
-      this.$emit('stop-drag')
-    },
     startResize () {
       if (!this.selectedAreasRef.value.includes(this.area)) {
         this.selectedAreasRef.value = [this.area]
@@ -885,6 +878,8 @@ export default {
     stopResize () {
       this.$el.getRootNode().removeEventListener('mousemove', this.resize)
       this.$el.getRootNode().removeEventListener('mouseup', this.stopResize)
+
+      this.clampAreaBounds(this.area)
 
       this.$emit('stop-resize')
 
@@ -924,9 +919,17 @@ export default {
       this.$el.getRootNode().removeEventListener('touchmove', this.touchResize)
       this.$el.getRootNode().removeEventListener('touchend', this.stopTouchResize)
 
+      this.clampAreaBounds(this.area)
+
       this.$emit('stop-resize')
 
       this.save()
+    },
+    clampAreaBounds (area) {
+      area.x = Math.min(Math.max(area.x, 0), 1)
+      area.y = Math.min(Math.max(area.y, 0), 1)
+      area.w = Math.min(Math.max(area.w, 0), 1)
+      area.h = Math.min(Math.max(area.h, 0), 1)
     }
   }
 }

@@ -4,16 +4,8 @@ module Abilities
   module TemplateConditions
     module_function
 
-    def collection(user, ability: nil)
-      templates = Template.where(account_id: user.account_id)
-
-      return templates unless user.account.testing?
-
-      shared_ids =
-        TemplateSharing.where({ ability:, account_id: [user.account_id, TemplateSharing::ALL_ID] }.compact)
-                       .select(:template_id)
-
-      Template.where(Template.arel_table[:id].in(templates.select(:id).arel.union(:all, shared_ids.arel)))
+    def collection(user)
+      Template.where(account_id: user.account_id)
     end
 
     def entity(template, user:, ability: nil)

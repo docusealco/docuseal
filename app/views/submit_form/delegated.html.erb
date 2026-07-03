@@ -10,7 +10,7 @@
             <%= svg_icon('user_share', class: 'w-10 h-10') %>
           </div>
           <div dir="auto">
-            <p class="text-lg font-bold mb-1"><%= @submitter.submission.name || @submitter.submission.template.name %></p>
+            <p class="text-lg font-bold mb-1"><%= @submitter.submission.name || @submitter.submission.template&.name %></p>
             <p class="text-sm"><%= t('document_has_been_delegated_on_html', time: l(@submitter.submission_events.order(event_timestamp: :desc).find_by!(event_type: :delegate_form).event_timestamp, format: :long)) %></p>
           </div>
         </div>

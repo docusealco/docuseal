@@ -16,7 +16,12 @@ class TemplatesDetectFieldsController < ApplicationController
     page_number = params[:page].presence&.to_i
 
     documents.each do |document|
-      io = StringIO.new(document.download)
+      io =
+        if document.image?
+          StringIO.new(document.preview_images.joins(:blob).find_by(blob: { filename: ['0.png', '0.jpg'] }).download)
+        else
+          StringIO.new(document.download)
+        end
 
       Templates::DetectFields.call(io, attachment: document, page_number:) do |(attachment_uuid, page, fields)|
         sse.write({ attachment_uuid:, page:, fields: })

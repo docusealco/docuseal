@@ -10,6 +10,9 @@
       v-if="withReplaceButton"
       :template-id="template.id"
       :accept-file-types="acceptFileTypes"
+      :authenticity-token="authenticityToken"
+      :with-google-drive="withGoogleDrive"
+      :google-drive-file-id="item.google_drive_file_id"
       @click.stop
       @success="$emit('replace', { replaceSchemaItem: item, ...$event })"
     />
@@ -72,6 +75,16 @@ export default {
       type: Boolean,
       required: true,
       default: true
+    },
+    withGoogleDrive: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    authenticityToken: {
+      type: String,
+      required: false,
+      default: ''
     },
     withArrows: {
       type: Boolean,

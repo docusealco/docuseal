@@ -610,7 +610,7 @@ export default {
     IconTypography,
     IconX
   },
-  inject: ['template', 't', 'dateFormats'],
+  inject: ['template', 't', 'dateFormats', 'locale'],
   props: {
     field: {
       type: Object,
@@ -691,15 +691,18 @@ export default {
       }
     },
     numberFormats () {
-      return [
-        'none',
-        'usd',
-        'eur',
-        'gbp',
-        'comma',
-        'dot',
-        'space'
-      ]
+      const formats = ['none', 'usd', 'eur', 'gbp', 'comma', 'dot', 'space']
+      const spaceLocales = ['fr-FR', 'es-ES', 'pt-PT', 'de-DE', 'it-IT', 'nl-NL']
+
+      formats.push(spaceLocales.includes(this.locale) ? 'percent_space' : 'percent')
+
+      const selectedFormat = this.field.preferences?.format
+
+      if (selectedFormat && !formats.includes(selectedFormat)) {
+        formats.push(selectedFormat)
+      }
+
+      return formats
     },
     availableDateFormats () {
       const formats = this.dateFormats.length
@@ -824,6 +827,10 @@ export default {
         return new Intl.NumberFormat('de-DE').format(number)
       } else if (format === 'space') {
         return new Intl.NumberFormat('fr-FR').format(number)
+      } else if (format === 'percent') {
+        return `${number}%`
+      } else if (format === 'percent_space') {
+        return `${String(number).replace('.', ',')} %`
       } else {
         return number
       }

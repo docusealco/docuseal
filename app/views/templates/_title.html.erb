@@ -31,9 +31,12 @@
       <% else %>
         <div class="flex items-center justify-between">
           <div class="flex items-center">
-            <div class="flex items-center space-x-1 mt-1 peer">
-              <span class="badge badge-neutral badge-outline badge-md text-xs text-white uppercase"><%= t('shared') %></span>
-            </div>
+            <a href="<%= templates_shared_index_path %>" class="flex items-center space-x-1 mt-1">
+              <%= svg_icon('folder', class: 'w-5 h-5 flex-shrink-0') %>
+              <span class="text-sm capitalize">
+                <%= t('shared') %>
+              </span>
+            </a>
           </div>
         </div>
       <% end %>
@@ -60,7 +63,7 @@
   </div>
   <div class="flex flex-wrap gap-2 w-full md:w-fit md:justify-between md:flex-none md:pt-1">
     <% if !template.archived_at? && can?(:destroy, template) %>
-      <%= button_to button_title(title: t('archive'), disabled_with: t('archiving'), title_class: 'inline', icon: svg_icon('archive', class: 'w-6 h-6')), template_path(template), class: 'btn btn-outline btn-sm w-full', form_class: 'flex-1', method: :delete, data: { turbo_confirm: t('are_you_sure_') } %>
+      <%= button_to button_title(title: t('archive'), disabled_with: t('archiving')[..-4], title_class: 'inline', icon: svg_icon('archive', class: 'w-6 h-6')), template_path(template), class: 'btn btn-outline btn-sm w-full', form_class: 'flex-1', method: :delete %>
     <% end %>
     <% if can?(:create, current_account.templates.new(author: current_user)) %>
       <%= link_to new_template_clone_path(template), class: 'btn btn-outline btn-sm flex-1', data: { turbo_frame: :modal } do %>
@@ -88,8 +91,8 @@
       <% end %>
     <% end %>
     <% if template.archived_at? %>
-      <% if can?(:create, template) %>
-        <%= button_to button_title(title: t('restore'), disabled_with: t('restoring'), icon: svg_icon('rotate', class: 'w-6 h-6')), template_restore_index_path(template), class: 'btn btn-outline btn-sm flex-1' %>
+      <% if can?(:destroy, template) %>
+        <%= button_to button_title(title: t('restore'), disabled_with: t('restoring')[..-4], icon: svg_icon('rotate', class: 'w-6 h-6')), template_restore_index_path(template), class: 'btn btn-outline btn-sm flex-1' %>
       <% end %>
       <%= link_to template_preview_path(template), class: 'btn btn-outline btn-sm flex-1' do %>
         <span class="flex items-center justify-center space-x-2">

@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 class SubmissionsController < ApplicationController
-  before_action :load_template, only: %i[new create]
-  authorize_resource :template, only: %i[new create]
-
+  load_and_authorize_resource :template, only: %i[new create]
   load_and_authorize_resource :submission, only: %i[show destroy]
 
   prepend_before_action :maybe_redirect_com, only: %i[show]
@@ -38,6 +36,8 @@ class SubmissionsController < ApplicationController
   end
 
   def create
+    return redirect_to template_path(@template), alert: I18n.t('template_has_been_archived') if @template.archived_at?
+
     save_template_message(@template, params) if params[:save_message] == '1'
 
     [params.delete(:subject), params.delete(:body)] if params[:is_custom_message] != '1'
@@ -110,9 +110,5 @@ class SubmissionsController < ApplicationController
 
   def submissions_params
     params.permit(submission: { submitters: [:uuid, :email, :phone, :name, { values: {} }] })
-  end
-
-  def load_template
-    @template = Template.accessible_by(current_ability).find(params[:template_id])
   end
 end

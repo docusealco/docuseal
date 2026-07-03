@@ -3,6 +3,7 @@
 <% prefillable_fields = @template.fields.select { |f| f['prefillable'] } %>
 <% default_tab = cookies.permanent[:add_recipients_tab].presence || 'email' %>
 <% recipient_form_fields = Accounts.load_recipient_form_fields(current_account) if prefillable_fields.blank? %>
+<% can_send_emails = Accounts.can_send_emails?(current_account) %>
 <% only_detailed = require_phone_2fa || require_email_2fa || prefillable_fields.present? || recipient_form_fields.present? %>
 <% with_list = @template.variables_schema.blank? %>
 <% variables_form = render 'variables_form', schema: @template.variables_schema if @template.variables_schema.present? && @template.variables_schema.any? { |_, v| !v['disabled'] } %>
@@ -25,18 +26,18 @@
   <div class="px-5 mb-5 mt-4">
     <% unless only_detailed %>
       <div id="email" class="<%= 'hidden' if default_tab != 'email' %>">
-        <%= render 'email_form', template: @template, variables_form: %>
+        <%= render 'email_form', template: @template, variables_form:, can_send_emails: %>
       </div>
       <div id="phone" class="<%= 'hidden' if default_tab != 'phone' %>">
         <%= render 'phone_form', template: @template, variables_form: %>
       </div>
     <% end %>
     <div id="detailed" class="<%= 'hidden' if !only_detailed && default_tab != 'detailed' %>">
-      <%= render 'detailed_form', template: @template, require_phone_2fa:, require_email_2fa:, prefillable_fields:, recipient_form_fields:, variables_form: %>
+      <%= render 'detailed_form', template: @template, require_phone_2fa:, require_email_2fa:, prefillable_fields:, recipient_form_fields:, variables_form:, can_send_emails: %>
     </div>
     <% if with_list %>
       <div id="list" class="hidden">
-        <%= render 'list_form', template: @template %>
+        <%= render 'list_form', template: @template, can_send_emails: %>
       </div>
     <% end %>
     <%= render 'submissions/error' %>

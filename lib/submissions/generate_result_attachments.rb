@@ -11,9 +11,6 @@ module Submissions
                   'Helvetica'
                 end
 
-    ICO_REGEXP = %r{\Aimage/(?:x-icon|vnd\.microsoft\.icon)\z}
-    BMP_REGEXP = %r{\Aimage/(?:bmp|x-bmp|x-ms-bmp)\z}
-
     FONT_BOLD_NAME = if File.exist?(FONT_BOLD_PATH)
                        FONT_BOLD_PATH
                      else
@@ -128,7 +125,7 @@ module Submissions
           tsa_url:,
           pkcs:,
           uuid: images_pdf_uuid(original_documents.select(&:image?)),
-          name: submission.name || submission.template.name
+          name: submission.name || submission.template&.name
         )
 
       ApplicationRecord.no_touching do
@@ -153,6 +150,8 @@ module Submissions
       with_file_links = configs.find { |c| c.key == AccountConfig::WITH_FILE_LINKS_KEY }&.value == true
       with_signature_id_reason =
         configs.find { |c| c.key == AccountConfig::WITH_SIGNATURE_ID_REASON_KEY }&.value != false
+
+      file_links_expire_at = Accounts.link_expires_at(submitter.account) if with_file_links
 
       pdfs_index = build_pdfs_index(submitter.submission, submitter:, flatten: is_flatten,
                                                           incremental: is_rotate_incremental)
@@ -201,12 +200,14 @@ module Submissions
                                                                       with_submitter_timezone:,
                                                                       with_file_links:,
                                                                       with_timestamp_seconds:,
-                                                                      with_signature_id_reason:)
+                                                                      with_signature_id_reason:,
+                                                                      file_links_expire_at:)
     end
 
     def fill_submitter_fields(submitter, account, pdfs_index, with_signature_id:, is_flatten:, with_headings: nil,
                               with_submitter_timezone: false, with_signature_id_reason: true,
-                              with_timestamp_seconds: false, with_file_links: nil)
+                              with_timestamp_seconds: false, with_file_links: nil,
+                              file_links_expire_at: Accounts.link_expires_at(account))
       cell_layouters = Hash.new do |hash, valign|
         hash[valign] = HexaPDF::Layout::TextLayouter.new(text_valign: valign.to_sym, text_align: :center)
       end
@@ -293,8 +294,11 @@ module Submissions
           canvas.font(FONT_NAME, size: font_size)
 
           field_type = field['type']
-          field_type = 'file' if field_type == 'image' &&
-                                 !submitter.attachments.find { |a| a.uuid == value }.image?
+
+          if field_type == 'image' &&
+             submitter.attachments.find { |a| a.uuid == value }.then { |a| !a.image? || a.content_type == 'image/heic' }
+            field_type = 'file'
+          end
 
           if field_type == 'signature' && field.dig('preferences', 'with_signature_id').in?([true, false])
             with_signature_id = field['preferences']['with_signature_id']
@@ -313,7 +317,10 @@ module Submissions
 
             image =
               begin
-                load_vips_image(attachment, attachments_data_cache).autorot
+                attachments_data_cache[attachment.uuid] ||= attachment.download
+
+                ImageUtils.load_vips(attachments_data_cache[attachment.uuid],
+                                     content_type: attachment.content_type, autorot: true)
               rescue Vips::Error
                 next unless attachment.content_type.starts_with?('image/')
                 next if attachment.byte_size.zero?
@@ -358,7 +365,8 @@ module Submissions
               image_x = area_x + ((half_width - image_width) / 2.0)
               image_y = height - area_y - image_height
 
-              io = StringIO.new(image.resize([scale * 4, 1].select(&:positive?).min).write_to_buffer('.png'))
+              io =
+                StringIO.new(image.resize([scale * 4, 1].select(&:positive?).min).write_to_buffer('.png', strip: true))
 
               canvas.image(io, at: [image_x, image_y], width: image_width, height: image_height)
 
@@ -425,7 +433,8 @@ module Submissions
 
               scale = [area_w / image.width, image_height / image.height].min
 
-              io = StringIO.new(image.resize([scale * 4, 1].select(&:positive?).min).write_to_buffer('.png'))
+              io =
+                StringIO.new(image.resize([scale * 4, 1].select(&:positive?).min).write_to_buffer('.png', strip: true))
 
               layouter.fit([text], area_w, base_font_size / 0.65)
                       .draw(canvas, area_x + TEXT_LEFT_MARGIN,
@@ -451,7 +460,10 @@ module Submissions
 
             image =
               begin
-                load_vips_image(attachment, attachments_data_cache).autorot
+                attachments_data_cache[attachment.uuid] ||= attachment.download
+
+                ImageUtils.load_vips(attachments_data_cache[attachment.uuid],
+                                     content_type: attachment.content_type, autorot: true)
               rescue Vips::Error
                 next unless attachment.content_type.starts_with?('image/')
                 next if attachment.byte_size.zero?
@@ -462,7 +474,14 @@ module Submissions
             scale = [(area['w'] * width) / image.width,
                      (area['h'] * height) / image.height].min
 
-            io = StringIO.new(image.resize([scale * 4, 1].select(&:positive?).min).write_to_buffer('.png'))
+            resized_image = image.resize([scale * 4, 1].select(&:positive?).min)
+
+            io =
+              if field_type == 'image' && !resized_image.has_alpha?
+                StringIO.new(resized_image.colourspace(:srgb).write_to_buffer('.jpg', strip: true))
+              else
+                StringIO.new(resized_image.write_to_buffer('.png', strip: true))
+              end
 
             canvas.image(
               io,
@@ -504,7 +523,7 @@ module Submissions
 
               url =
                 if with_file_links
-                  ActiveStorage::Blob.proxy_url(attachment.blob)
+                  ActiveStorage::Blob.proxy_url(attachment.blob, expires_at: file_links_expire_at)
                 else
                   r.submissions_preview_url(submission.slug, **Docuseal.default_url_options)
                 end
@@ -731,7 +750,7 @@ module Submissions
       pdf.trailer.info[:Creator] = info_creator
 
       if Docuseal.pdf_format == 'pdf/a-3b'
-        pdf.task(:pdfa, level: '3b')
+        pdfa_listener = pdf.task(:pdfa, level: '3b')
         pdf.config['font.map'] = PDFA_FONT_MAP
       end
 
@@ -747,12 +766,14 @@ module Submissions
 
         begin
           pdf.sign(io, write_options: { validate: false }, **sign_params)
-        rescue HexaPDF::Error, NoMethodError => e
+        rescue HexaPDF::Error, NoMethodError, TypeError => e
           Rollbar.error(e) if defined?(Rollbar)
+
+          pdf.instance_variable_get(:@listeners)[:complete_objects].delete(pdfa_listener) if pdfa_listener
 
           begin
             pdf.sign(io, write_options: { validate: false, incremental: false }, **sign_params)
-          rescue HexaPDF::Error
+          rescue HexaPDF::Error, TypeError
             pdf.validate(auto_correct: true)
             pdf.sign(io, write_options: { validate: false, incremental: false }, **sign_params)
           end
@@ -1012,20 +1033,6 @@ module Submissions
 
     def generate_detached_signature_attachments(_submitter)
       []
-    end
-
-    def load_vips_image(attachment, cache = {})
-      cache[attachment.uuid] ||= attachment.download
-
-      data = cache[attachment.uuid]
-
-      if ICO_REGEXP.match?(attachment.content_type)
-        LoadIco.call(data)
-      elsif BMP_REGEXP.match?(attachment.content_type)
-        LoadBmp.call(data)
-      else
-        Vips::Image.new_from_buffer(data, '')
-      end
     end
 
     def r

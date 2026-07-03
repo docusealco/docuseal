@@ -25,6 +25,20 @@ module DocuSeal
 
     config.active_storage.draw_routes = ENV['MULTITENANT'] != 'true'
 
+    config.active_storage.analyzers = []
+
+    config.active_storage.previewers = []
+
+    config.active_storage.variant_processor = :disabled
+
+    config.active_storage.content_types_to_serve_as_binary += %w[
+      application/javascript
+      text/javascript
+      application/ecmascript
+      text/ecmascript
+      application/wasm
+    ]
+
     config.i18n.available_locales = %i[en en-US en-GB es-ES fr-FR pt-PT de-DE it-IT nl-NL
                                        es it de fr nl pl uk cs pt he ar ko ja]
     config.i18n.fallbacks = [:en]

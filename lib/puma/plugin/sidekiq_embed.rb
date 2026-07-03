@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'puma/plugin'
+require 'redis_client'
 
 # rubocop:disable Metrics
 Puma::Plugin.create do
@@ -68,7 +69,7 @@ Puma::Plugin.create do
 
       break
     rescue RedisClient::CannotConnectError
-      raise('Unable to connect to redis') if attempt > 10
+      raise('Unable to connect to redis') if attempt > 30
     end
   end
 end

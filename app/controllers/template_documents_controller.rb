@@ -10,6 +10,8 @@ class TemplateDocumentsController < ApplicationController
   end
 
   def create
+    authorize!(:update, @template)
+
     if params[:blobs].blank? && params[:files].blank?
       return render json: { error: I18n.t('file_is_missing') }, status: :unprocessable_content
     end

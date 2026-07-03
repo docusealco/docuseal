@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
 class TemplatesController < ApplicationController
-  TEMPLATE_FIELDS = %i[id author_id folder_id external_id name slug
-                       schema fields submitters variables_schema preferences
-                       shared_link source archived_at created_at updated_at].freeze
-
   load_and_authorize_resource :template
 
   def show
@@ -23,7 +19,8 @@ class TemplatesController < ApplicationController
                     submissions.order(id: :desc)
                   end
 
-    @pagy, @submissions = pagy_auto(submissions.preload(:template_accesses, submitters: :start_form_submission_events))
+    @pagy, @submissions =
+      pagy_auto(submissions.select_for_list.preload(:template_accesses, submitters: :start_form_submission_events))
   rescue ActiveRecord::RecordNotFound
     redirect_to root_path
   end
@@ -31,19 +28,7 @@ class TemplatesController < ApplicationController
   def new; end
 
   def edit
-    ActiveRecord::Associations::Preloader.new(
-      records: [@template],
-      associations: [{ schema_documents: [:blob, { preview_images_attachments: :blob }] }]
-    ).call
-
-    @template_data =
-      @template.as_json(only: TEMPLATE_FIELDS).merge(
-        documents: @template.schema_documents.as_json(
-          only: %i[id uuid],
-          methods: %i[metadata signed_key],
-          include: { preview_images: { only: %i[id], methods: %i[url metadata filename] } }
-        )
-      ).to_json
+    @template_data = Templates.serialize_for_builder(@template)
 
     render :edit, layout: 'plain'
   end
@@ -76,8 +61,6 @@ class TemplatesController < ApplicationController
     SearchEntries.enqueue_reindex(@template) if is_name_changed
 
     WebhookUrls.enqueue_events(@template, 'template.updated')
-
-    TemplateVersions.find_or_create_for(@template, author: current_user) if params[:revision]
 
     head :ok
   end

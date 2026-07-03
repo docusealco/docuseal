@@ -36,7 +36,10 @@
               v-if="withReplaceButton"
               :template-id="template.id"
               :accept-file-types="acceptFileTypes"
-              class="opacity-0 group-hover:opacity-100"
+              :authenticity-token="authenticityToken"
+              :with-google-drive="withGoogleDrive"
+              :google-drive-file-id="item.google_drive_file_id"
+              class="opacity-0 group-hover:opacity-100 has-[label:focus]:opacity-100"
               @click.stop
               @success="$emit('replace', { replaceSchemaItem: item, ...$event })"
             />
@@ -69,6 +72,15 @@
                 style="min-width: 170px"
                 @click="closeDropdown"
               >
+                <li v-if="!item.dynamic">
+                  <button
+                    class="w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center space-x-2 text-sm whitespace-nowrap"
+                    @click.stop="$emit('edit', item); closeDropdown()"
+                  >
+                    <IconPencil class="w-4 h-4" />
+                    <span>{{ t('edit') }}</span>
+                  </button>
+                </li>
                 <li>
                   <button
                     class="w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center justify-between text-sm"
@@ -181,7 +193,7 @@
 <script>
 import Contenteditable from './contenteditable'
 import Upload from './upload'
-import { IconRouteAltLeft, IconSortDescending2, IconDotsVertical, IconTrashX, IconBolt, IconInnerShadowTop } from '@tabler/icons-vue'
+import { IconRouteAltLeft, IconSortDescending2, IconDotsVertical, IconTrashX, IconBolt, IconInnerShadowTop, IconPencil } from '@tabler/icons-vue'
 import ConditionsModal from './conditions_modal'
 import ReplaceButton from './replace'
 import GoogleDriveDocumentSettings from './google_drive_document_settings'
@@ -201,7 +213,8 @@ export default {
     IconSortDescending2,
     IconDotsVertical,
     IconTrashX,
-    IconBolt
+    IconBolt,
+    IconPencil
   },
   inject: ['t', 'getFieldTypeIndex', 'baseFetch'],
   props: {
@@ -232,6 +245,16 @@ export default {
       required: true,
       default: true
     },
+    withGoogleDrive: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    authenticityToken: {
+      type: String,
+      required: false,
+      default: ''
+    },
     dynamicDocuments: {
       type: Array,
       required: true
@@ -247,7 +270,7 @@ export default {
       default: true
     }
   },
-  emits: ['scroll-to', 'change', 'remove', 'up', 'down', 'replace', 'reorder'],
+  emits: ['scroll-to', 'change', 'remove', 'up', 'down', 'replace', 'reorder', 'edit'],
   data () {
     return {
       isShowConditionsModal: false,

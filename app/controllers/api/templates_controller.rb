@@ -9,20 +9,7 @@ module Api
 
       templates = paginate(templates.preload(:author, folder: :parent_folder))
 
-      schema_documents =
-        ActiveStorage::Attachment.where(record_id: templates.map(&:id),
-                                        record_type: 'Template',
-                                        name: :documents,
-                                        uuid: templates.flat_map { |t| t.schema.pluck('attachment_uuid') })
-                                 .preload(:blob)
-
-      preview_image_attachments =
-        ActiveStorage::Attachment.joins(:blob)
-                                 .where(blob: { filename: ['0.png', '0.jpg'] })
-                                 .where(record_id: schema_documents.map(&:id),
-                                        record_type: 'ActiveStorage::Attachment',
-                                        name: :preview_images)
-                                 .preload(:blob)
+      schema_documents, dynamic_documents, preview_image_attachments = preload_relations(templates)
 
       expires_at = Accounts.link_expires_at(current_account)
 
@@ -30,6 +17,7 @@ module Api
         data: templates.map do |t|
           Templates::SerializeForApi.call(t,
                                           schema_documents: schema_documents.select { |e| e.record_id == t.id },
+                                          dynamic_documents:,
                                           preview_image_attachments:,
                                           expires_at:)
         end,
@@ -60,7 +48,7 @@ module Api
 
       archived = params.key?(:archived) ? params[:archived] : params.dig(:template, :archived)
 
-      if archived.in?([true, false])
+      if archived.in?([true, false]) && current_ability.can?(:destroy, @template)
         @template.archived_at = archived == true ? Time.current : nil
       end
 
@@ -69,7 +57,10 @@ module Api
       SearchEntries.enqueue_reindex(@template)
 
       WebhookUrls.enqueue_events(@template, 'template.updated')
-      WebhookUrls.enqueue_events(@template, 'template.archived') if archived == true
+
+      if @template.saved_change_to_archived_at? && @template.archived_at?
+        WebhookUrls.enqueue_events(@template, 'template.archived')
+      end
 
       render json: @template.as_json(only: %i[id updated_at])
     end
@@ -87,6 +78,41 @@ module Api
     end
 
     private
+
+    def preload_relations(templates)
+      schema_documents =
+        ActiveStorage::Attachment.where(record_id: templates.map(&:id),
+                                        record_type: 'Template',
+                                        name: :documents,
+                                        uuid: templates.flat_map { |t| t.schema.pluck('attachment_uuid') })
+                                 .preload(:blob)
+
+      dynamic_document_uuids =
+        templates.flat_map { |t| t.schema.select { |item| item['dynamic'] }.pluck('attachment_uuid') }
+
+      dynamic_documents =
+        if dynamic_document_uuids.present?
+          DynamicDocument.where(template: templates.map(&:id))
+                         .where(uuid: dynamic_document_uuids)
+                         .preload(current_version: { document_attachment: :blob })
+                         .select(:id, :uuid, :template_id, :sha1, :created_at, :updated_at)
+        else
+          DynamicDocument.none
+        end
+
+      preview_attachment_ids =
+        schema_documents.map(&:id) + dynamic_documents.filter_map { |d| d.current_version&.document_attachment&.id }
+
+      preview_image_attachments =
+        ActiveStorage::Attachment.joins(:blob)
+                                 .where(blob: { filename: ['0.png', '0.jpg'] })
+                                 .where(record_id: preview_attachment_ids,
+                                        record_type: 'ActiveStorage::Attachment',
+                                        name: :preview_images)
+                                 .preload(:blob)
+
+      [schema_documents, dynamic_documents, preview_image_attachments]
+    end
 
     def filter_templates(templates, params)
       templates = Templates.search(current_user, templates, params[:q])

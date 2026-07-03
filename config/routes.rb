@@ -80,6 +80,7 @@ Rails.application.routes.draw do
     resources :unarchive, only: %i[create], controller: 'submissions_unarchive'
     resources :events, only: %i[index], controller: 'submission_events'
     resources :download, only: %i[index], controller: 'submissions_download'
+    resources :resend_email, only: %i[create], controller: 'submissions_resend_email'
   end
   resources :submitters, only: %i[edit update]
   resources :console_redirect, only: %i[index]
@@ -102,6 +103,7 @@ Rails.application.routes.draw do
   # builder). Public on purpose — the token IS the credential.
   get 'embed/builder', to: 'embed_builder#show', as: :embed_builder
   resources :templates_archived, only: %i[index], path: 'templates/archived'
+  resources :templates_shared, only: %i[index], path: 'templates/shared'
   resources :folders, only: %i[show edit update destroy], controller: 'template_folders'
   resources :template_sharings_testing, only: %i[create]
   resources :templates, only: %i[index], controller: 'templates_dashboard'
@@ -110,6 +112,9 @@ Rails.application.routes.draw do
     resources :clone, only: %i[new create], controller: 'templates_clone'
     resource :debug, only: %i[show], controller: 'templates_debug' if Rails.env.development?
     resources :documents, only: %i[index create], controller: 'template_documents'
+    resources :documents_modify, only: %i[create], controller: 'template_documents_modify'
+    resources :documents_page_objects, only: %i[index], controller: 'template_documents_page_objects'
+    resources :documents_crop, only: %i[index create], controller: 'template_documents_crop'
     resources :clone_and_replace, only: %i[create], controller: 'templates_clone_and_replace'
     resources :detect_fields, only: %i[create], controller: 'templates_detect_fields' unless Docuseal.multitenant?
     resources :restore, only: %i[create], controller: 'templates_restore'
@@ -120,7 +125,7 @@ Rails.application.routes.draw do
     resource :form, only: %i[show], controller: 'templates_form_preview'
     resource :code_modal, only: %i[show], controller: 'templates_code_modal'
     resource :preferences, only: %i[show create destroy], controller: 'templates_preferences'
-    resources :versions, only: %i[index show], controller: 'templates_versions'
+    resources :versions, only: %i[index show create], controller: 'templates_versions'
     resource :share_link, only: %i[show create], controller: 'templates_share_link'
     resource :share_link_qr, only: %i[show], controller: 'templates_share_link_qr'
     resources :recipients, only: %i[create], controller: 'templates_recipients'

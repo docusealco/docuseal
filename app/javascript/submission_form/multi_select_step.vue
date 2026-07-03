@@ -1,7 +1,7 @@
 <template>
   <label
     v-if="showFieldNames && (field.name || field.title)"
-    :for="field.uuid"
+    :id="field.uuid + '-group-label'"
     dir="auto"
     class="label text-xl sm:text-2xl py-0 mb-2 sm:mb-3.5 field-name-label"
     :class="{ 'mb-2': !field.description }"
@@ -44,6 +44,8 @@
     <div
       class="space-y-3.5 mx-auto"
       :class="{ hidden: !showOptions }"
+      role="group"
+      :aria-labelledby="showFieldNames && (field.name || field.title) ? field.uuid + '-group-label' : undefined"
     >
       <div
         v-for="(option, index) in field.options"
