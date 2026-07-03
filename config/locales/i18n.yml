@@ -246,6 +246,8 @@ en: &en
   optional: optional
   save: Save
   saving: Saving
+  access_denied: You are not authorized to access this page.
+  remove_logo: Remove Logo
   changes_have_been_saved: Changes have been saved.
   unlock_with_docuseal_pro: Unlock with DocuSeal Pro
   use_your_own_certificates_to_sign_and_verify_pdf_files: Use your own certificates to sign and verify PDF files.

@@ -18,6 +18,8 @@
 #  index_accounts_on_uuid  (uuid) UNIQUE
 #
 class Account < ApplicationRecord
+  has_one_attached :logo
+
   attribute :uuid, :string, default: -> { SecureRandom.uuid }
 
   has_many :users, dependent: :destroy

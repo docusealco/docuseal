@@ -13,6 +13,7 @@ class PersonalizationSettingsController < ApplicationController
 
   InvalidKey = Class.new(StandardError)
 
+  before_action :require_admin!
   before_action :load_and_authorize_account_config, only: :create
 
   def show

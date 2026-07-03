@@ -1,1 +1,17 @@
-<%= render 'logo_placeholder' %>
+<%= form_with url: logo_settings_path, method: :patch, multipart: true do |f| %>
+  <% if current_account.logo.attached? %>
+    <div class="mb-4">
+      <%= image_tag url_for(current_account.logo), class: 'h-16 object-contain' %>
+    </div>
+  <% end %>
+  <div class="flex flex-col gap-2">
+    <%= f.file_field :logo, accept: 'image/*', class: 'file-input file-input-bordered w-full max-w-xs' %>
+    <div class="flex gap-2 mt-2">
+      <%= f.submit t('save'), class: 'btn btn-primary btn-sm' %>
+      <% if current_account.logo.attached? %>
+        <%= f.submit t('remove_logo'), name: 'remove_logo', value: '1', class: 'btn btn-ghost btn-sm',
+            data: { turbo_confirm: t('are_you_sure_') } %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

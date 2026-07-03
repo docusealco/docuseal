@@ -1,2 +1,6 @@
-<%= render 'shared/logo' %>
-<span>DocuSeal</span>
+<% if current_account&.logo&.attached? %>
+  <%= image_tag url_for(current_account.logo), class: 'h-9 object-contain max-w-[180px]', alt: current_account.name %>
+<% else %>
+  <%= render 'shared/logo' %>
+  <span>DocuSeal</span>
+<% end %>

@@ -121,6 +121,10 @@ class ApplicationController < ActionController::Base
     Docuseal.default_url_options[:host]
   end
 
+  def require_admin!
+    redirect_to root_path, alert: t('access_denied') unless current_user&.admin?
+  end
+
   def maybe_redirect_com
     return if request.domain != 'docuseal.co'
 
