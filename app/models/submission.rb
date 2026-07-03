@@ -96,8 +96,8 @@ class Submission < ApplicationRecord
   }
   scope :completed, -> { where.not(completed_at: nil) }
   scope :declined, lambda {
-    where(Submitter.where(Submitter.arel_table[:submission_id].eq(Submission.arel_table[:id])
-     .and(Submitter.arel_table[:declined_at].not_eq(nil))).select(1).arel.exists)
+    where(Submitter.where(Submitter.arel_table[:submission_id].eq(Submission.arel_table[:id]))
+                   .where.not(declined_at: nil).limit(1).arel.exists)
   }
   scope :expired, -> { where(expire_at: ..Time.current).where(completed_at: nil) }
 
