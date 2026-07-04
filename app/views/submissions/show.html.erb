@@ -15,8 +15,7 @@
       <h1 class="text-xl md:text-3xl font-semibold focus:text-clip" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;"><% (@submission.name || @submission.template&.name).to_s.split(/(_)/).each do |item| %><%= item %><wbr><% end %></h1>
     </a>
     <div class="space-x-3 flex items-center">
-      <% is_all_completed = @submission.completed_at? %>
-      <% if signed_in? && can?(:destroy, @submission) && @submission.archived_at? && !is_all_completed %>
+      <% if signed_in? && can?(:destroy, @submission) && @submission.archived_at? && !@submission.completed_at? %>
         <%= button_to button_title(title: t('unarchive'), disabled_with: t('unarchive')[0..-2], icon: svg_icon('rotate', class: 'w-6 h-6')), submission_unarchive_index_path(@submission), class: 'btn btn-primary btn-ghost text-base hidden md:flex' %>
       <% end %>
       <% if @submission.audit_trail.present? %>
@@ -30,17 +29,17 @@
           <span class="hidden md:block"><%= t('event_log') %></span>
         <% end %>
       <% end %>
-      <% if signed_in? && !is_all_completed && can?(:manage, :resend_all) && @submission.submitters.to_a.size > 3 && !@submission.archived_at? && !@submission.template&.archived_at? && !@submission.expired? && can?(:update, @submission) %>
+      <% if signed_in? && !@submission.completed_at? && can?(:manage, :resend_all) && @submission.submitters.to_a.size > 3 && !@submission.archived_at? && !@submission.template&.archived_at? && !@submission.expired? && can?(:update, @submission) %>
         <% pending_submitters_count = @submission.submitters.to_a.count { |s| !s.completed_at? && s.email.present? && !s.declined_at? } %>
         <% if pending_submitters_count.positive? %>
           <%= button_to button_title(title: t('re_send_emails'), title_class: 'hidden md:inline', disabled_with: t('sending'), icon: svg_icon('mail_forward', class: 'w-6 h-6')), submission_resend_email_index_path(@submission), class: 'white-button', data: { turbo_confirm: t('are_you_sure_you_want_to_re_send_email_to_n_recipients', count: pending_submitters_count) } %>
         <% end %>
       <% end %>
       <% if @submission.submitters.to_a.any?(&:completed_at?) %>
-        <% show_combined_download = is_all_completed && !is_combined_enabled %>
-        <% show_unarchive = signed_in? && can?(:destroy, @submission) && @submission.archived_at? && is_all_completed %>
+        <% show_combined_download = @submission.completed_at? && !is_combined_enabled %>
+        <% show_unarchive = signed_in? && can?(:destroy, @submission) && @submission.archived_at? && @submission.completed_at? %>
         <% show_download_dropdown = show_combined_download || show_unarchive %>
-        <% if is_all_completed || !is_combined_enabled %>
+        <% if @submission.completed_at? || !is_combined_enabled %>
           <div class="join relative">
             <download-button role="button" tabindex="0" aria-label="<%= t('download') %>" data-src="<%= local_assigns[:is_preview] ? (@sig_submitter ? submit_form_documents_path(@sig_submitter.slug, { sig: params[:sig], combined: is_combined_enabled }.compact_blank) : submissions_preview_download_index_path(@submission.slug, combined: is_combined_enabled.presence)) : submission_download_index_path(@submission, combined: is_combined_enabled.presence) %>" class="base-button <%= '!rounded-r-none !pr-2' if show_download_dropdown %>">
               <span class="flex items-center justify-center space-x-2" data-target="download-button.defaultButton">

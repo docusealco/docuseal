@@ -5,7 +5,8 @@ RSpec.describe 'Submission' do
   let(:user) { create(:user, account:) }
   let(:template) { create(:template, account:, author: user) }
   let(:submission) do
-    create(:submission, :with_submitters, template:, created_by_user: user, archived_at: Time.current)
+    create(:submission, :with_submitters, template:, created_by_user: user,
+                                          archived_at: Time.current, completed_at: Time.current)
   end
 
   before do
