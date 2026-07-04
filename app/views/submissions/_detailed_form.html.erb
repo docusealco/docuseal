@@ -92,7 +92,7 @@
   <%= local_assigns[:variables_form] %>
   <div>
     <%= render('submitters_order', f:, template:) if can_send_emails %>
-    <%= render 'send_email', f:, template:, can_send_emails: %>
+    <%= render 'send_email', f:, template:, can_send_emails:, viewer_submitter_uuids: local_assigns[:viewer_submitter_uuids] %>
     <% if has_phone_field %>
       <%= render 'send_sms', f: %>
     <% end %>

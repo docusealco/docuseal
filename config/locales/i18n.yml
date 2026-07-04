@@ -92,16 +92,20 @@ en: &en
   sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Sign documents with trusted certificate provided by DocuSeal. Your documents and data are never shared with DocuSeal. PDF checksum is provided to generate a trusted signature.
   you_have_been_invited_to_submit_the_name_form: 'You have been invited to submit the "%{name}" form.'
   you_have_been_invited_to_sign_the_name: 'You have been invited to sign the "%{name}".'
+  you_have_been_invited_to_view_the_name: 'You have been invited to view the "%{name}".'
   alternatively_you_can_review_and_download_your_copy_using_the_link_below: "Alternatively, you can review and download your copy using the link below:"
   please_check_the_copy_of_your_name_in_the_email_attachments: 'Please check the copy of your "%{name}" in the email attachments.'
   awaiting_completion_by_the_other_party: "Awaiting completion by the other party"
   review_and_sign: Review and Sign
+  view_document: View Document
   review_and_submit: Review and Submit
   please_contact_us_by_replying_to_this_email_if_you_have_any_questions: "Please contact us by replying to this email if you have any questions."
   submitter_invitation_sms_body_sign: '{account.name} has invited you to sign a document: {submitter.link}'
+  submitter_invitation_sms_body_view: '{account.name} has invited you to view a document: {submitter.link}'
   verification_code_sms_body: 'Verification code: {code}'
   you_are_invited_to_submit_a_form: 'You are invited to submit a form'
   you_are_invited_to_sign_a_document: 'You are invited to sign a document'
+  you_are_invited_to_view_a_document: 'You are invited to view a document'
   you_are_invited_to_sign_documents: 'You are invited to sign documents'
   your_document_copy: 'Your document copy'
   name_has_been_completed_by_submitters: '"%{name}" has been completed by %{submitters}.'
@@ -112,6 +116,17 @@ en: &en
     You have been invited to sign the "{template.name}".
 
     [Review and Sign]({submitter.link})
+
+    Please contact us by replying to this email if you have any questions.
+
+    Thanks,
+    {account.name}
+  submitter_invitation_email_view_body: |
+    Hi there,
+
+    You have been invited to view the "{template.name}".
+
+    [View Document]({submitter.link})
 
     Please contact us by replying to this email if you have any questions.
 
@@ -307,6 +322,8 @@ en: &en
   invalid_timeserver: Invalid Timeserver
   email_templates: Email Templates
   signature_request_email: Signature request email
+  view_documents_email: View documents email
+  view_only: View only
   signature_request_reminder_email: Signature request reminder email
   signature_request_sms: Signature Request SMS
   verification_code_sms: Verification Code SMS
@@ -569,6 +586,7 @@ en: &en
   form_has_been_archived: Form has been archived.
   form_has_been_expired: Form has been expired.
   form_has_been_declined: Form has been declined.
+  form_is_view_only: Form is view only.
   file_is_missing: File is missing
   folder_name_has_been_updated: Folder name has been updated.
   unable_to_rename_folder: Unable to rename folder.
@@ -653,6 +671,10 @@ en: &en
   signers: Signers
   not_invited_yet:  Not invited yet
   not_completed_yet: Not completed yet
+  not_completed: Not completed
+  not_viewed_yet: Not viewed yet
+  not_viewed: Not viewed
+  viewed_on_time: 'Viewed on %{time}'
   declined_on_time: 'Declined on %{time}'
   expire_on_time: 'Expire on %{time}'
   sign_in_person: Sign In-person
@@ -1151,15 +1173,19 @@ es: &es
   thanks: Gracias
   you_have_been_invited_to_submit_the_name_form: 'Has sido invitado/a a enviar el formulario "%{name}".'
   you_have_been_invited_to_sign_the_name: 'Has sido invitado/a a firmar el "%{name}".'
+  you_have_been_invited_to_view_the_name: 'Has sido invitado/a a ver el "%{name}".'
   alternatively_you_can_review_and_download_your_copy_using_the_link_below: "Alternativamente, puedes revisar y descargar tu copia usando el enlace a continuación:"
   please_check_the_copy_of_your_name_in_the_email_attachments: 'Por favor, revisa la copia de tu "%{name}" en los archivos adjuntos del correo electrónico.'
   review_and_sign: Revisar y Firmar
+  view_document: Ver documento
   review_and_submit: Revisar y Enviar
   please_contact_us_by_replying_to_this_email_if_you_have_any_questions: "Por favor, contáctanos respondiendo a este correo si tienes alguna pregunta."
   submitter_invitation_sms_body_sign: '{account.name} te ha invitado a firmar un documento: {submitter.link}'
+  submitter_invitation_sms_body_view: '{account.name} te ha invitado a ver un documento: {submitter.link}'
   verification_code_sms_body: 'Código de verificación: {code}'
   you_are_invited_to_submit_a_form: 'Estás invitado/a a enviar un formulario'
   you_are_invited_to_sign_a_document: 'Estás invitado/a a firmar un documento'
+  you_are_invited_to_view_a_document: 'Estás invitado/a a ver un documento'
   you_are_invited_to_sign_documents: 'Estás invitado/a a firmar documentos'
   your_document_copy: 'Tu copia del documento'
   name_has_been_completed_by_submitters: '"%{name}" ha sido completado por %{submitters}.'
@@ -1170,6 +1196,17 @@ es: &es
     Has sido invitado/a a firmar el "{template.name}".
 
     [Revisar y Firmar]({submitter.link})
+
+    Por favor, contáctanos respondiendo a este correo si tienes alguna pregunta.
+
+    Gracias,
+    {account.name}
+  submitter_invitation_email_view_body: |
+    Hola,
+
+    Has sido invitado/a a ver el "{template.name}".
+
+    [Ver documento]({submitter.link})
 
     Por favor, contáctanos respondiendo a este correo si tienes alguna pregunta.
 
@@ -1364,6 +1401,8 @@ es: &es
   invalid_timeserver: Servidor de tiempo inválido
   email_templates: Plantillas de correo electrónico
   signature_request_email: Correo de solicitud de firma
+  view_documents_email: Correo de visualización de documentos
+  view_only: Solo lectura
   signature_request_reminder_email: Correo de recordatorio de solicitud de firma
   signature_request_sms: SMS de solicitud de firma
   verification_code_sms: SMS de código de verificación
@@ -1626,6 +1665,7 @@ es: &es
   form_has_been_archived: El formulario ha sido archivado.
   form_has_been_expired: El formulario ha expirado.
   form_has_been_declined: El formulario ha sido rechazado.
+  form_is_view_only: El formulario es de solo lectura.
   file_is_missing: Falta el archivo
   folder_name_has_been_updated: El nombre de la carpeta ha sido actualizado.
   unable_to_rename_folder: No se pudo renombrar la carpeta.
@@ -1710,6 +1750,10 @@ es: &es
   signers: Firmantes
   not_invited_yet: Aún no invitado
   not_completed_yet: Aún no completado
+  not_completed: No completado
+  not_viewed_yet: Aún no visto
+  not_viewed: No visto
+  viewed_on_time: 'Visto el %{time}'
   declined_on_time: 'Rechazado el %{time}'
   expire_on_time: 'Expira el %{time}'
   sign_in_person: Firma en persona
@@ -2205,15 +2249,19 @@ it: &it
   thanks: Grazie
   you_have_been_invited_to_submit_the_name_form: 'Sei stato invitato a inviare il modulo "%{name}".'
   you_have_been_invited_to_sign_the_name: 'Sei stato invitato a firmare il "%{name}".'
+  you_have_been_invited_to_view_the_name: 'Sei stato invitato a visualizzare il "%{name}".'
   alternatively_you_can_review_and_download_your_copy_using_the_link_below: "In alternativa, puoi rivedere e scaricare la tua copia utilizzando il link qui sotto:"
   please_check_the_copy_of_your_name_in_the_email_attachments: "Per favore, controlla la copia del tuo \"%{name}\" negli allegati dell'email."
   review_and_sign: Rivedi e Firma
+  view_document: Visualizza documento
   review_and_submit: Rivedi e Invia
   please_contact_us_by_replying_to_this_email_if_you_have_any_questions: "Per favore, contattaci rispondendo a questa email se hai domande."
   submitter_invitation_sms_body_sign: '{account.name} ti ha invitato a firmare un documento: {submitter.link}'
+  submitter_invitation_sms_body_view: '{account.name} ti ha invitato a visualizzare un documento: {submitter.link}'
   verification_code_sms_body: 'Codice di verifica: {code}'
   you_are_invited_to_submit_a_form: 'Sei stato invitato a inviare un modulo'
   you_are_invited_to_sign_a_document: 'Sei stato invitato a firmare un documento'
+  you_are_invited_to_view_a_document: 'Sei stato invitato a visualizzare un documento'
   you_are_invited_to_sign_documents: 'Sei stato invitato a firmare dei documenti'
   your_document_copy: 'La tua copia del documento'
   name_has_been_completed_by_submitters: '"%{name}" è stato completato da %{submitters}.'
@@ -2224,6 +2272,17 @@ it: &it
     Sei stato invitato a firmare il "{template.name}".
 
     [Rivedi e Firma]({submitter.link})
+
+    Per favore, contattaci rispondendo a questa email se hai domande.
+
+    Grazie,
+    {account.name}
+  submitter_invitation_email_view_body: |
+    Ciao,
+
+    Sei stato invitato a visualizzare il "{template.name}".
+
+    [Visualizza documento]({submitter.link})
 
     Per favore, contattaci rispondendo a questa email se hai domande.
 
@@ -2418,6 +2477,8 @@ it: &it
   invalid_timeserver: Server di timestamp non valido
   email_templates: Modelli email
   signature_request_email: Email di richiesta di firma
+  view_documents_email: Email di visualizzazione documenti
+  view_only: Sola lettura
   signature_request_reminder_email: Email di promemoria di richiesta di firma
   signature_request_sms: SMS di richiesta di firma
   verification_code_sms: SMS con codice di verifica
@@ -2680,6 +2741,7 @@ it: &it
   form_has_been_archived: Il modulo è stato archiviato.
   form_has_been_expired: Il modulo è scaduto.
   form_has_been_declined: Il modulo è stato rifiutato.
+  form_is_view_only: Il modulo è di sola lettura.
   file_is_missing: File mancante
   folder_name_has_been_updated: Il nome della cartella è stato aggiornato.
   unable_to_rename_folder: Impossibile rinominare la cartella.
@@ -2764,6 +2826,10 @@ it: &it
   signers: Firmatari
   not_invited_yet: Non ancora invitato
   not_completed_yet: Non ancora completato
+  not_completed: Non completato
+  not_viewed_yet: Non ancora visualizzato
+  not_viewed: Non visualizzato
+  viewed_on_time: 'Visualizzato il %{time}'
   declined_on_time: 'Rifiutato il %{time}'
   expire_on_time: 'Scade il %{time}'
   sign_in_person: Firma di persona
@@ -3259,15 +3325,19 @@ fr: &fr
   thanks: Merci
   you_have_been_invited_to_submit_the_name_form: Vous avez été invité à soumettre le formulaire "%{name}".
   you_have_been_invited_to_sign_the_name: Vous avez été invité à signer "%{name}".
+  you_have_been_invited_to_view_the_name: Vous avez été invité à consulter "%{name}".
   alternatively_you_can_review_and_download_your_copy_using_the_link_below: 'Vous pouvez également consulter et télécharger votre exemplaire à l’aide du lien ci‑dessous :'
   please_check_the_copy_of_your_name_in_the_email_attachments: Veuillez vérifier la copie de votre "%{name}" dans les pièces jointes de l’e‑mail.
   review_and_sign: Examiner et signer
+  view_document: Consulter le document
   review_and_submit: Examiner et soumettre
   please_contact_us_by_replying_to_this_email_if_you_have_any_questions: Veuillez nous contacter en répondant à cet e‑mail si vous avez des questions.
   submitter_invitation_sms_body_sign: "{account.name} vous a invité à signer un document : {submitter.link}"
+  submitter_invitation_sms_body_view: "{account.name} vous a invité à consulter un document : {submitter.link}"
   verification_code_sms_body: 'Code de vérification : {code}'
   you_are_invited_to_submit_a_form: Vous êtes invité à soumettre un formulaire
   you_are_invited_to_sign_a_document: Vous êtes invité à signer un document
+  you_are_invited_to_view_a_document: Vous êtes invité à consulter un document
   you_are_invited_to_sign_documents: Vous êtes invité à signer des documents
   your_document_copy: Votre copie de document
   name_has_been_completed_by_submitters: '"%{name}" a été complété par %{submitters}.'
@@ -3280,6 +3350,17 @@ fr: &fr
     [Examiner et signer]({submitter.link})
 
     Veuillez nous contacter en répondant à cet e‑mail si vous avez des questions.
+
+    Merci,
+    {account.name}
+  submitter_invitation_email_view_body: |
+    Bonjour,
+
+    Vous avez été invité à consulter "{template.name}".
+
+    [Consulter le document]({submitter.link})
+
+    Veuillez nous contacter en répondant à cet e-mail si vous avez des questions.
 
     Merci,
     {account.name}
@@ -3472,6 +3553,8 @@ fr: &fr
   invalid_timeserver: Serveur d’horodatage invalide
   email_templates: Modèles d’e‑mail
   signature_request_email: E‑mail de demande de signature
+  view_documents_email: E-mail de consultation des documents
+  view_only: Lecture seule
   signature_request_reminder_email: E‑mail de rappel de demande de signature
   signature_request_sms: SMS de demande de signature
   verification_code_sms: SMS de code de vérification
@@ -3734,6 +3817,7 @@ fr: &fr
   form_has_been_archived: Le formulaire a été archivé.
   form_has_been_expired: Le formulaire a expiré.
   form_has_been_declined: Le formulaire a été refusé.
+  form_is_view_only: Le formulaire est en lecture seule.
   file_is_missing: Fichier manquant
   folder_name_has_been_updated: Le nom du dossier a été mis à jour.
   unable_to_rename_folder: Impossible de renommer le dossier.
@@ -3818,6 +3902,10 @@ fr: &fr
   signers: Signataires
   not_invited_yet: Pas encore invité
   not_completed_yet: Pas encore terminé
+  not_completed: Non terminé
+  not_viewed_yet: Pas encore consulté
+  not_viewed: Non consulté
+  viewed_on_time: Consulté le %{time}
   declined_on_time: Refusé le %{time}
   expire_on_time: Expire le %{time}
   sign_in_person: Signer en personne
@@ -4310,15 +4398,19 @@ pt: &pt
   thanks: Obrigado
   you_have_been_invited_to_submit_the_name_form: 'Você foi convidado a submeter o formulário "%{name}".'
   you_have_been_invited_to_sign_the_name: 'Você foi convidado a assinar "%{name}".'
+  you_have_been_invited_to_view_the_name: 'Você foi convidado a visualizar "%{name}".'
   alternatively_you_can_review_and_download_your_copy_using_the_link_below: 'Você pode revisar e baixar sua cópia usando o link abaixo:'
   please_check_the_copy_of_your_name_in_the_email_attachments: 'Por favor, verifique a cópia de "%{name}" nos anexos do e-mail.'
   review_and_sign: Revisar e assinar
+  view_document: Visualizar documento
   review_and_submit: Revisar e submeter
   please_contact_us_by_replying_to_this_email_if_you_have_any_questions: 'Por favor, entre em contato conosco respondendo a este e-mail se você tiver alguma dúvida.'
   submitter_invitation_sms_body_sign: '{account.name} convidou você para assinar um documento: {submitter.link}'
+  submitter_invitation_sms_body_view: '{account.name} convidou você para visualizar um documento: {submitter.link}'
   verification_code_sms_body: 'Código de verificação: {code}'
   you_are_invited_to_submit_a_form: Você foi convidado a submeter um formulário
   you_are_invited_to_sign_a_document: Você foi convidado a assinar um documento
+  you_are_invited_to_view_a_document: Você foi convidado a visualizar um documento
   you_are_invited_to_sign_documents: Você foi convidado a assinar documentos
   your_document_copy: Sua cópia do documento
   name_has_been_completed_by_submitters: '"%{name}" foi concluído por %{submitters}.'
@@ -4329,6 +4421,17 @@ pt: &pt
     Você foi convidado a assinar "{template.name}".
 
     [Revisar e assinar]({submitter.link})
+
+    Por favor, entre em contato conosco respondendo a este e-mail se você tiver alguma dúvida.
+
+    Obrigado,
+    {account.name}
+  submitter_invitation_email_view_body: |
+    Olá,
+
+    Você foi convidado a visualizar "{template.name}".
+
+    [Visualizar documento]({submitter.link})
 
     Por favor, entre em contato conosco respondendo a este e-mail se você tiver alguma dúvida.
 
@@ -4523,6 +4626,8 @@ pt: &pt
   invalid_timeserver: Servidor de carimbo de tempo inválido
   email_templates: Modelos de e-mail
   signature_request_email: E-mail de solicitação de assinatura
+  view_documents_email: E-mail de visualização de documentos
+  view_only: Somente leitura
   signature_request_reminder_email: E-mail de lembrete de solicitação de assinatura
   signature_request_sms: SMS de solicitação de assinatura
   verification_code_sms: SMS com código de verificação
@@ -4785,6 +4890,7 @@ pt: &pt
   form_has_been_archived: O formulário foi arquivado.
   form_has_been_expired: O formulário expirou.
   form_has_been_declined: O formulário foi recusado.
+  form_is_view_only: O formulário é somente leitura.
   file_is_missing: O arquivo está ausente
   folder_name_has_been_updated: O nome da pasta foi atualizado.
   unable_to_rename_folder: Não foi possível renomear a pasta.
@@ -4869,6 +4975,10 @@ pt: &pt
   signers: Signatários
   not_invited_yet: Ainda não convidado
   not_completed_yet: Ainda não concluído
+  not_completed: Não concluído
+  not_viewed_yet: Ainda não visualizado
+  not_viewed: Não visualizado
+  viewed_on_time: 'Visualizado em %{time}'
   declined_on_time: 'Recusado em %{time}'
   expire_on_time: 'Expira em %{time}'
   sign_in_person: Assinar pessoalmente
@@ -5362,16 +5472,20 @@ de: &de
   sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Unterzeichnen Sie Dokumente mit einem vertrauenswürdigen Zertifikat von DocuSeal. Ihre Dokumente und Daten werden niemals mit DocuSeal geteilt. Eine PDF-Prüfsumme wird bereitgestellt, um eine vertrauenswürdige Signatur zu generieren.
   you_have_been_invited_to_submit_the_name_form: 'Sie wurden eingeladen, das Formular "%{name}" einzureichen.'
   you_have_been_invited_to_sign_the_name: 'Sie wurden eingeladen, "%{name}" zu unterschreiben.'
+  you_have_been_invited_to_view_the_name: 'Sie wurden eingeladen, "%{name}" anzusehen.'
   alternatively_you_can_review_and_download_your_copy_using_the_link_below: 'Alternativ können Sie Ihre Kopie über den untenstehenden Link ansehen und herunterladen:'
   please_check_the_copy_of_your_name_in_the_email_attachments: 'Bitte prüfen Sie die Kopie von "%{name}" im E-Mail-Anhang.'
   awaiting_completion_by_the_other_party: "Warten auf die Fertigstellung durch die andere Partei"
   review_and_sign: Prüfen und unterschreiben
+  view_document: Dokument ansehen
   review_and_submit: Prüfen und einreichen
   please_contact_us_by_replying_to_this_email_if_you_have_any_questions: 'Bitte kontaktieren Sie uns, indem Sie auf diese E-Mail antworten, falls Sie Fragen haben.'
   submitter_invitation_sms_body_sign: '{account.name} hat Sie eingeladen, ein Dokument zu unterschreiben: {submitter.link}'
+  submitter_invitation_sms_body_view: '{account.name} hat Sie eingeladen, ein Dokument anzusehen: {submitter.link}'
   verification_code_sms_body: 'Verifizierungscode: {code}'
   you_are_invited_to_submit_a_form: Sie sind eingeladen, ein Formular einzureichen
   you_are_invited_to_sign_a_document: Sie sind eingeladen, ein Dokument zu unterschreiben
+  you_are_invited_to_view_a_document: Sie sind eingeladen, ein Dokument anzusehen
   you_are_invited_to_sign_documents: Sie sind eingeladen, Dokumente zu unterschreiben
   your_document_copy: Ihre Dokumentkopie
   name_has_been_completed_by_submitters: '"%{name}" wurde von %{submitters} abgeschlossen.'
@@ -5382,6 +5496,17 @@ de: &de
     Sie wurden eingeladen, "{template.name}" zu unterschreiben.
 
     [Prüfen und unterschreiben]({submitter.link})
+
+    Bitte kontaktieren Sie uns, indem Sie auf diese E-Mail antworten, falls Sie Fragen haben.
+
+    Danke,
+    {account.name}
+  submitter_invitation_email_view_body: |
+    Hallo,
+
+    Sie wurden eingeladen, "{template.name}" anzusehen.
+
+    [Dokument ansehen]({submitter.link})
 
     Bitte kontaktieren Sie uns, indem Sie auf diese E-Mail antworten, falls Sie Fragen haben.
 
@@ -5577,6 +5702,8 @@ de: &de
   invalid_timeserver: Ungültiger Zeitstempelserver
   email_templates: E-Mail-Vorlagen
   signature_request_email: E-Mail für Signaturanfrage
+  view_documents_email: E-Mail zur Dokumentenansicht
+  view_only: Nur Ansicht
   signature_request_reminder_email: E-Mail-Erinnerung für Signaturanfrage
   signature_request_sms: SMS für Signaturanfrage
   verification_code_sms: SMS mit Verifizierungscode
@@ -5839,6 +5966,7 @@ de: &de
   form_has_been_archived: Das Formular wurde archiviert.
   form_has_been_expired: Das Formular ist abgelaufen.
   form_has_been_declined: Das Formular wurde abgelehnt.
+  form_is_view_only: Das Formular ist schreibgeschützt.
   file_is_missing: Datei fehlt
   folder_name_has_been_updated: Der Ordnername wurde aktualisiert.
   unable_to_rename_folder: Der Ordner konnte nicht umbenannt werden.
@@ -5923,6 +6051,10 @@ de: &de
   signers: Unterzeichner
   not_invited_yet: Noch nicht eingeladen
   not_completed_yet: Noch nicht abgeschlossen
+  not_completed: Nicht abgeschlossen
+  not_viewed_yet: Noch nicht angesehen
+  not_viewed: Nicht angesehen
+  viewed_on_time: 'Angesehen am %{time}'
   declined_on_time: 'Abgelehnt am %{time}'
   expire_on_time: 'Läuft ab am %{time}'
   sign_in_person: Vor Ort unterschreiben
@@ -6821,16 +6953,20 @@ nl: &nl
   : Onderteken documenten met een vertrouwd certificaat geleverd door DocuSeal. Uw documenten en gegevens worden nooit gedeeld met DocuSeal. PDF-checksum wordt verstrekt om een vertrouwde handtekening te genereren.
   you_have_been_invited_to_submit_the_name_form: U bent uitgenodigd om het formulier "%{name}" in te dienen.
   you_have_been_invited_to_sign_the_name: U bent uitgenodigd om "%{name}" te ondertekenen.
+  you_have_been_invited_to_view_the_name: U bent uitgenodigd om "%{name}" te bekijken.
   alternatively_you_can_review_and_download_your_copy_using_the_link_below: 'U kunt uw exemplaar ook bekijken en downloaden via de onderstaande link:'
   please_check_the_copy_of_your_name_in_the_email_attachments: Controleer de kopie van uw "%{name}" in de e-mailbijlagen.
   awaiting_completion_by_the_other_party: In afwachting van voltooiing door de andere partij
   review_and_sign: Bekijken en ondertekenen
+  view_document: Document bekijken
   review_and_submit: Bekijken en indienen
   please_contact_us_by_replying_to_this_email_if_you_have_any_questions: Neem contact met ons op door op deze e-mail te antwoorden als u vragen heeft.
   submitter_invitation_sms_body_sign: "{account.name} heeft u uitgenodigd om een document te ondertekenen: {submitter.link}"
+  submitter_invitation_sms_body_view: "{account.name} heeft u uitgenodigd om een document te bekijken: {submitter.link}"
   verification_code_sms_body: 'Verificatiecode: {code}'
   you_are_invited_to_submit_a_form: U bent uitgenodigd om een formulier in te dienen
   you_are_invited_to_sign_a_document: U bent uitgenodigd om een document te ondertekenen
+  you_are_invited_to_view_a_document: U bent uitgenodigd om een document te bekijken
   you_are_invited_to_sign_documents: U bent uitgenodigd om documenten te ondertekenen
   your_document_copy: Uw documentkopie
   name_has_been_completed_by_submitters: '"%{name}" is voltooid door %{submitters}.'
@@ -6841,6 +6977,17 @@ nl: &nl
     U bent uitgenodigd om "{template.name}" te ondertekenen.
 
     [Bekijken en ondertekenen]({submitter.link})
+
+    Neem contact met ons op door op deze e-mail te antwoorden als u vragen heeft.
+
+    Bedankt,
+    {account.name}
+  submitter_invitation_email_view_body: |
+    Hallo,
+
+    U bent uitgenodigd om "{template.name}" te bekijken.
+
+    [Document bekijken]({submitter.link})
 
     Neem contact met ons op door op deze e-mail te antwoorden als u vragen heeft.
 
@@ -7036,6 +7183,8 @@ nl: &nl
   invalid_timeserver: Ongeldige tijdserver
   email_templates: E-mailsjablonen
   signature_request_email: E-mail voor handtekeningverzoek
+  view_documents_email: E-mail voor documentweergave
+  view_only: Alleen bekijken
   signature_request_reminder_email: E-mailherinnering voor handtekeningverzoek
   signature_request_sms: SMS voor handtekeningverzoek
   verification_code_sms: Verificatiecode-SMS
@@ -7298,6 +7447,7 @@ nl: &nl
   form_has_been_archived: Formulier is gearchiveerd.
   form_has_been_expired: Formulier is verlopen.
   form_has_been_declined: Formulier is geweigerd.
+  form_is_view_only: Formulier is alleen-lezen.
   file_is_missing: Bestand ontbreekt
   folder_name_has_been_updated: Mapnaam is bijgewerkt.
   unable_to_rename_folder: Kan map niet hernoemen.
@@ -7382,6 +7532,10 @@ nl: &nl
   signers: Ondertekenaars
   not_invited_yet: Nog niet uitgenodigd
   not_completed_yet: Nog niet voltooid
+  not_completed: Niet voltooid
+  not_viewed_yet: Nog niet bekeken
+  not_viewed: Niet bekeken
+  viewed_on_time: Bekeken op %{time}
   declined_on_time: Geweigerd op %{time}
   expire_on_time: Verloopt op %{time}
   sign_in_person: In persoon ondertekenen

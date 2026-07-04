@@ -177,6 +177,7 @@ module Submitters
     end
   end
 
+  # rubocop:disable Metrics
   def current_submitter_order?(submitter)
     submission = submitter.submission
 
@@ -189,6 +190,14 @@ module Submitters
         current_group_index = submitter_groups.find_index { |_, group| group.any? { |s| s['uuid'] == submitter.uuid } }
 
         submitter_groups.first(current_group_index).flat_map(&:last)
+      elsif submitter.viewer?
+        current_index = submitter_items.find_index { |e| e['uuid'] == submitter.uuid }
+
+        preceding_submitter_index = submitter_items[0...current_index].rindex do |e|
+          !submission.submitters.find { |s| s.uuid == e['uuid'] }&.viewer?
+        end
+
+        submitter_items.first(preceding_submitter_index || 0)
       else
         submitter_items.first(submitter_items.find_index { |e| e['uuid'] == submitter.uuid })
       end
@@ -196,9 +205,10 @@ module Submitters
     before_items.all? do |item|
       submitter = submission.submitters.find { |e| e.uuid == item['uuid'] }
 
-      submitter.nil? || submitter.completed_at?
+      submitter.nil? || submitter.viewer? || submitter.completed_at?
     end
   end
+  # rubocop:enable Metrics
 
   def build_document_filename(submitter, blob, filename_format)
     return blob.filename.to_s if filename_format.blank?

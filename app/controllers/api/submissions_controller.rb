@@ -80,8 +80,9 @@ module Api
       Submissions.send_signature_requests(submissions)
 
       submissions.each do |submission|
-        if submission.submitters.all?(&:completed_at?) && Submissions.maybe_update_completed_at(submission)
-          last_submitter = submission.submitters.max_by(&:completed_at)
+        if submission.submitters.all? { |s| s.viewer? || s.completed_at? } &&
+           Submissions.maybe_update_completed_at(submission)
+          last_submitter = submission.submitters.reject(&:viewer?).max_by(&:completed_at)
         end
 
         submission.submitters.each do |submitter|

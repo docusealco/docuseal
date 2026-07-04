@@ -1,6 +1,9 @@
 <div id="<%= AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY %>_form">
   <% template_email_preferences_values = @template.preferences.values_at('request_email_subject', 'request_email_body').compact_blank %>
   <% default_template_email_preferences_values = AccountConfigs.find_or_initialize_for_key(current_account, AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY).value.values_at('subject', 'body') %>
+  <% viewer_default_email_preferences_values = AccountConfigs.find_or_initialize_for_key(current_account, AccountConfig::SUBMITTER_VIEW_INVITATION_EMAIL_KEY).value.values_at('subject', 'body') %>
+  <% viewer_template_email_preferences_values = @template.preferences.values_at('invitation_view_email_subject', 'invitation_view_email_body').compact_blank.presence %>
+  <% field_submitter_uuids = Set.new(@template.fields.pluck('submitter_uuid')) %>
   <% is_custom_template_email = template_email_preferences_values.present? %>
   <% multiple_submitters = @template.submitters.size > 1 && @template.submitters.size < 5 %>
   <% if is_custom_template_email || @template.preferences['submitters'].to_a.any? %>
@@ -49,7 +52,7 @@
           <div id="request_email_<%= submitter['uuid'] %>" class="<%= 'hidden' if index != 0 %>">
             <% submitter_preferences = f.object.preferences['submitters'].to_a.find { |e| e['uuid'] == submitter['uuid'] } || {} %>
             <% submitter_email_preferences_values = submitter_preferences.values_at('request_email_subject', 'request_email_body').compact_blank.presence %>
-            <% submitter_email_values = submitter_email_preferences_values || template_email_preferences_values.presence || default_template_email_preferences_values %>
+            <% submitter_email_values = field_submitter_uuids.include?(submitter['uuid']) ? (submitter_email_preferences_values || template_email_preferences_values.presence || default_template_email_preferences_values) : (viewer_template_email_preferences_values || submitter_email_preferences_values || viewer_default_email_preferences_values) %>
             <%= hidden_field_tag 'template[preferences][submitters][][uuid]', submitter['uuid'] %>
             <div class="form-control">
               <div class="flex justify-between">

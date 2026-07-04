@@ -282,6 +282,9 @@ module Submissions
           [
             composer.document.layout.formatted_text_box(
               [
+                submitter.viewer? && {
+                  text: "#{I18n.t('view_only')}\n"
+                },
                 submitter.email && (click_email_event || verify_email_event) && {
                   text: "#{I18n.t('email_verification')}: #{I18n.t('verified')}\n"
                 },

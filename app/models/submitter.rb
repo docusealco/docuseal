@@ -116,6 +116,12 @@ class Submitter < ApplicationRecord
     end
   end
 
+  def viewer?
+    return false if submission.template_submitters.blank?
+
+    submission.template_submitters.any? { |s| s['uuid'] == uuid && s['is_viewer'] }
+  end
+
   private
 
   def anonymize_email_events

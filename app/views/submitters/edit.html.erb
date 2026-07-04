@@ -17,7 +17,8 @@
         </submitter-item>
       </div>
       <div>
-        <%= render 'submissions/send_email', f:, template: @submitter.template, submitter: @submitter, resend_email: @submitter.sent_at?, submitter_email_message: @submitter_email_message, disable_save_as_default_template_option: true, message_per_submitter: false, can_send_emails: Accounts.can_send_emails?(current_account) %>
+        <% viewer_submitter_uuids = Set.new((@submitter.submission.template_submitters || @submitter.template.submitters).pluck('uuid')) - Set.new((@submitter.submission.template_fields || @submitter.template.fields).to_a.pluck('submitter_uuid')) %>
+        <%= render 'submissions/send_email', f:, template: @submitter.template, submitter: @submitter, resend_email: @submitter.sent_at?, submitter_email_message: @submitter_email_message, disable_save_as_default_template_option: true, message_per_submitter: false, can_send_emails: Accounts.can_send_emails?(current_account), viewer_submitter_uuids: %>
         <%= render 'submissions/send_sms', f:, resend_sms: @submitter.sent_at? %>
       </div>
       <div class="form-control mt-4">

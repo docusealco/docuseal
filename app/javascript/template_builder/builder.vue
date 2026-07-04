@@ -3206,15 +3206,6 @@ export default {
         e.preventDefault()
 
         alert(this.t('please_draw_fields_to_prepare_the_document'))
-      } else {
-        const submitterWithoutFields =
-          this.template.submitters.find((submitter) => !this.template.fields.some((f) => f.submitter_uuid === submitter.uuid))
-
-        if (submitterWithoutFields) {
-          e.preventDefault()
-
-          alert(this.t('please_add_fields_for_the_submitter_name_or_remove_the_submitter_name_if_not_needed').replaceAll('{submitter_name}', submitterWithoutFields.name))
-        }
       }
     },
     onSaveClick () {
@@ -3231,32 +3222,25 @@ export default {
       if (!this.template.fields.length) {
         alert(this.t('please_draw_fields_to_prepare_the_document'))
       } else {
-        const submitterWithoutFields =
-          this.template.submitters.find((submitter) => !this.template.fields.some((f) => f.submitter_uuid === submitter.uuid))
+        this.isSaving = true
 
-        if (submitterWithoutFields) {
-          alert(this.t('please_add_fields_for_the_submitter_name_or_remove_the_submitter_name_if_not_needed').replaceAll('{submitter_name}', submitterWithoutFields.name))
-        } else {
-          this.isSaving = true
+        const dynamicDocumentRefs = this.documentRefs.filter((ref) => ref.isDynamic)
 
-          const dynamicDocumentRefs = this.documentRefs.filter((ref) => ref.isDynamic)
+        dynamicDocumentRefs.map((ref) => ref.update())
 
-          dynamicDocumentRefs.map((ref) => ref.update())
+        this.rebuildVariablesSchema({ disable: false })
 
-          this.rebuildVariablesSchema({ disable: false })
+        const dynamicDocumentSaves = dynamicDocumentRefs.map((ref) => ref.saveBody())
 
-          const dynamicDocumentSaves = dynamicDocumentRefs.map((ref) => ref.saveBody())
+        Promise.all([this.save({ force: true }), ...dynamicDocumentSaves]).then(() => {
+          if (this.withRevisions) {
+            this.captureRevision()
+          }
 
-          Promise.all([this.save({ force: true }), ...dynamicDocumentSaves]).then(() => {
-            if (this.withRevisions) {
-              this.captureRevision()
-            }
-
-            window.Turbo.visit(`/templates/${this.template.id}`)
-          }).finally(() => {
-            this.isSaving = false
-          })
-        }
+          window.Turbo.visit(`/templates/${this.template.id}`)
+        }).finally(() => {
+          this.isSaving = false
+        })
       }
     },
     scrollToArea (area) {

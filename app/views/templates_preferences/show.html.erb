@@ -109,6 +109,18 @@
           <%= render 'templates_preferences/submitter_invitation_email_form' %>
         </div>
       </div>
+      <% field_submitter_uuids = Set.new(@template.fields.pluck('submitter_uuid')) %>
+      <% unless @template.submitters.all? { |s| field_submitter_uuids.include?(s['uuid']) } %>
+        <div class="collapse collapse-arrow join-item border border-base-300">
+          <input type="checkbox" name="accordion">
+          <div class="collapse-title text-xl font-medium">
+            <%= t('view_documents_email') %>
+          </div>
+          <div class="collapse-content">
+            <%= render 'templates_preferences/submitter_view_invitation_email_form' %>
+          </div>
+        </div>
+      <% end %>
       <%= render 'templates_preferences/submitter_invitation_reminder_email_collapse' %>
       <div class="collapse collapse-arrow join-item border border-base-300">
         <input type="checkbox" name="accordion">

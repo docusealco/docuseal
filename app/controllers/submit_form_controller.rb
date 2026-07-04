@@ -71,6 +71,12 @@ class SubmitFormController < ApplicationController
                     status: :unprocessable_content
     end
 
+    if @submitter.viewer?
+      Rollbar.warning("Submit viewer: #{@submitter.id}") if defined?(Rollbar)
+
+      return render json: { error: I18n.t('form_is_view_only') }, status: :unprocessable_content
+    end
+
     Submitters::SubmitValues.call(@submitter, params, request)
 
     head :ok

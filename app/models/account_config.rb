@@ -22,6 +22,7 @@
 #
 class AccountConfig < ApplicationRecord
   SUBMITTER_INVITATION_EMAIL_KEY = 'submitter_invitation_email'
+  SUBMITTER_VIEW_INVITATION_EMAIL_KEY = 'submitter_view_invitation_email'
   SUBMITTER_INVITATION_REMINDER_EMAIL_KEY = 'submitter_invitation_reminder_email'
   SUBMITTER_COMPLETED_EMAIL_KEY = 'submitter_completed_email'
   SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY = 'submitter_documents_copy_email'
@@ -63,6 +64,7 @@ class AccountConfig < ApplicationRecord
 
   EMAIL_VARIABLES = {
     SUBMITTER_INVITATION_EMAIL_KEY => %w[template.name submitter.link account.name].freeze,
+    SUBMITTER_VIEW_INVITATION_EMAIL_KEY => %w[template.name submitter.link account.name].freeze,
     SUBMITTER_COMPLETED_EMAIL_KEY => %w[template.name submission.submitters submission.link].freeze,
     SUBMITTER_INVITATION_REMINDER_EMAIL_KEY => %w[template.name submitter.link account.name].freeze,
     SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY => %w[template.name documents.link account.name].freeze
@@ -73,6 +75,12 @@ class AccountConfig < ApplicationRecord
       {
         'subject' => I18n.t(:you_are_invited_to_sign_a_document),
         'body' => I18n.t(:submitter_invitation_email_sign_body)
+      }
+    },
+    SUBMITTER_VIEW_INVITATION_EMAIL_KEY => lambda {
+      {
+        'subject' => I18n.t(:you_are_invited_to_view_a_document),
+        'body' => I18n.t(:submitter_invitation_email_view_body)
       }
     },
     SUBMITTER_INVITATION_REMINDER_EMAIL_KEY => lambda {

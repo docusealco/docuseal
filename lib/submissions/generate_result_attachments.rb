@@ -996,7 +996,8 @@ module Submissions
     end
 
     def single_sign_reason(submitter)
-      signers = submitter.submission.submitters.sort_by(&:completed_at).map { |s| s.email || s.name || s.phone }
+      signers = submitter.submission.submitters.reject(&:viewer?)
+                         .sort_by(&:completed_at).map { |s| s.email || s.name || s.phone }
 
       format(SIGN_REASON, name: signers.reverse.join(', '))
     end
@@ -1015,7 +1016,7 @@ module Submissions
 
       return sign_reason(reason_name) if config.value == 'multiple'
 
-      if !submitter.submission.submitters.exists?(completed_at: nil) &&
+      if submitter.submission.completed_at? &&
          submitter.completed_at == submitter.submission.submitters.maximum(:completed_at)
         return single_sign_reason(submitter)
       end

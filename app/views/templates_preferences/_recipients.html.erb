@@ -1,5 +1,6 @@
 <% close_on_submit = local_assigns.fetch(:close_on_submit, true) %>
 <% is_order_set = template.submitters.any? { |s| s['order'] } %>
+<% field_submitter_uuids = Set.new(template.fields.pluck('submitter_uuid')) %>
 <%= form_for template, url: template_recipients_path(template), method: :post, html: { autocomplete: 'off', class: 'mt-1', id: :submitters_form }, data: { close_on_submit: } do |f| %>
   <% unless close_on_submit %>
     <toggle-on-submit data-element-id="form_saved_alert"></toggle-on-submit>
@@ -10,6 +11,7 @@
         <%= f.fields_for :submitters, item = Struct.new(:name, :uuid, :is_requester, :email, :invite_by_uuid, :invite_via_field_uuid, :optional_invite_by_uuid, :linked_to_uuid, :order, :option).new(*submitter.values_at('name', 'uuid', 'is_requester', 'email', 'invite_by_uuid', 'invite_via_field_uuid', 'optional_invite_by_uuid', 'linked_to_uuid', 'order')), index: do |ff| %>
           <% item.option = item.is_requester.present? ? 'is_requester' : (item.email.present? ? 'email' : (item.linked_to_uuid.present? ? "linked_to_#{item.linked_to_uuid}" : (item.invite_by_uuid.present? ? "invite_by_#{item.invite_by_uuid}" : (item.optional_invite_by_uuid.present? ? "optional_invite_by_#{item.optional_invite_by_uuid}" : (item.invite_via_field_uuid.present? ? 'invite_via_field' : ''))))) %>
           <%= ff.hidden_field :uuid %>
+          <% is_viewer_row = field_submitter_uuids.exclude?(submitter['uuid']) %>
           <div class="form-control">
             <div class="flex justify-between">
               <%= ff.text_field :name, class: 'w-full outline-none border-transparent focus:border-transparent focus:ring-0 bg-base-100 px-1 peer mb-2', autocomplete: 'off', placeholder: "#{index + 1}#{(index + 1).ordinal} Party", required: true %>
@@ -21,6 +23,8 @@
                     <mount-on-click data-template-id="order_fields" class="link whitespace-nowrap text-sm mt-1 mr-1 block">
                       <%= t('edit_order') %>
                     </mount-on-click>
+                  <% elsif is_viewer_row %>
+                    <span class="inline-flex items-center justify-center h-6 px-2 rounded-full bg-base-200 text-base-content text-xs font-medium normal-case whitespace-nowrap"><%= t('view_only') %></span>
                   <% end %>
                 </div>
               <% end %>
@@ -141,11 +145,13 @@
 </div>
 <% if template.submitters.size > 2 && !is_order_set %>
   <template id="order_fields">
+    <% last_viewer_order = -1 %>
     <% template.submitters.each_with_index do |submitter, index| %>
+      <% default_order = field_submitter_uuids.include?(submitter['uuid']) ? (last_viewer_order += 1) : [last_viewer_order, 0].max %>
       <turbo-stream action="replace" target="order_<%= submitter['uuid'] %>">
         <template>
           <div id="order_<%= submitter['uuid'] %>">
-            <%= select_tag "template[submitters][#{index}][order]", options_for_select(template.submitters.map.with_index { |_, i| [(i + 1).ordinalize, i] }, submitter['order'].presence || index), class: 'select select-xs text-sm input-bordered bg-white pl-3.5' %>
+            <%= select_tag "template[submitters][#{index}][order]", options_for_select(template.submitters.map.with_index { |_, i| [(i + 1).ordinalize, i] }, default_order), class: 'select select-xs text-sm input-bordered bg-white pl-3.5' %>
           </div>
         </template>
       </turbo-stream>

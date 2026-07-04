@@ -45,6 +45,45 @@ class SubmitterMailer < ApplicationMailer
     end
   end
 
+  def invitation_view_email(submitter)
+    @current_account = submitter.submission.account
+    @submitter = submitter
+
+    if submitter.preferences['email_message_uuid']
+      @email_message = submitter.account.email_messages.find_by(uuid: submitter.preferences['email_message_uuid'])
+    end
+
+    template_submitters_index = @email_message.blank? ? build_submitter_preferences_index(@submitter) : {}
+
+    @body = @email_message&.normalized_body.presence ||
+            @submitter.template&.preferences&.dig('invitation_view_email_body').presence ||
+            template_submitters_index.dig(@submitter.uuid, 'request_email_body').presence
+
+    @subject = @email_message&.subject.presence ||
+               @submitter.template&.preferences&.dig('invitation_view_email_subject').presence ||
+               template_submitters_index.dig(@submitter.uuid, 'request_email_subject').presence
+
+    @email_config = AccountConfigs.find_for_account(@current_account, AccountConfig::SUBMITTER_VIEW_INVITATION_EMAIL_KEY)
+    @body ||= fetch_config_email_body(@email_config, @submitter)
+
+    assign_message_metadata('submitter_view_invitation', @submitter)
+
+    reply_to = build_submitter_reply_to(@submitter, email_config: @email_config)
+
+    maybe_set_custom_domain(@submitter)
+
+    I18n.with_locale(@current_account.locale) do
+      subject = build_invite_subject(@subject, @email_config, submitter)
+
+      mail(
+        to: @submitter.friendly_name,
+        from: from_address_for_submitter(submitter),
+        subject:,
+        reply_to:
+      )
+    end
+  end
+
   def completed_email(submitter, user, to: nil)
     @current_account = submitter.submission.account
     @submitter = submitter
@@ -216,6 +255,8 @@ class SubmitterMailer < ApplicationMailer
   def build_invite_subject(subject, email_config, submitter)
     if email_config || subject
       ReplaceEmailVariables.call(subject || email_config.value['subject'], submitter:)
+    elsif submitter.viewer?
+      I18n.t(:you_are_invited_to_view_a_document)
     elsif submitter.with_signature_fields?
       I18n.t(:you_are_invited_to_sign_a_document)
     else

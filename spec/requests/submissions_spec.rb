@@ -259,6 +259,35 @@ describe 'Submission API' do
     end
   end
 
+  describe 'view-only (CC) party' do
+    let(:viewer_template) { create(:template, account:, author:, submitter_count: 2, only_field_types: %w[text]) }
+    let(:viewer_uuid) { viewer_template.submitters.second['uuid'] }
+
+    before do
+      viewer_template.update!(fields: viewer_template.fields.reject { |f| f['submitter_uuid'] == viewer_uuid })
+    end
+
+    it 'stamps the field-less party as view-only on POST /api/submissions' do
+      post '/api/submissions', headers: { 'x-auth-token': author.access_token.token }, params: {
+        template_id: viewer_template.id,
+        submitters: [
+          { role: 'First Party', email: 'signer@example.com' },
+          { role: 'Second Party', email: 'viewer@example.com' }
+        ]
+      }.to_json
+
+      expect(response).to have_http_status(:ok)
+
+      submission = Submission.last
+      viewer = submission.submitters.find { |e| e.uuid == viewer_uuid }
+      signer = submission.submitters.find { |e| e.uuid != viewer_uuid }
+
+      expect(viewer.viewer?).to be(true)
+      expect(signer.viewer?).to be(false)
+      expect(submission.template_submitters.find { |e| e['uuid'] == viewer_uuid }['is_viewer']).to be(true)
+    end
+  end
+
   private
 
   def index_submission_body(submission)

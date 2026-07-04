@@ -58,7 +58,7 @@ class SubmittersController < ApplicationController
     if params[:send_email] == '1' && submitter.email.present?
       is_sent_recently = Docuseal.multitenant? &&
                          EmailEvent.exists?(email: submitter.email,
-                                            tag: 'submitter_invitation',
+                                            tag: %w[submitter_invitation submitter_view_invitation],
                                             emailable: submitter,
                                             event_type: 'send',
                                             created_at: 4.hours.ago..Time.current)

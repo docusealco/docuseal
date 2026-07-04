@@ -1317,4 +1317,27 @@ RSpec.describe 'Signing Form' do
       expect(field_value(submitter, 'First Name')).to eq 'John Doe'
     end
   end
+
+  context 'when a view-only party opens the form' do
+    let(:template) { create(:template, account:, author:, submitter_count: 2, only_field_types: %w[text]) }
+    let(:viewer_uuid) { template.submitters.second['uuid'] }
+    let(:submission) do
+      create(:submission, template:).tap do |s|
+        s.update!(
+          template_fields: s.template_fields.reject { |f| f['submitter_uuid'] == viewer_uuid },
+          template_submitters: s.template_submitters.map do |ts|
+            ts['uuid'] == viewer_uuid ? ts.merge('is_viewer' => true) : ts
+          end
+        )
+      end
+    end
+    let(:viewer) { create(:submitter, submission:, uuid: viewer_uuid, account:, email: 'viewer@example.com') }
+
+    it 'opens the document form read-only for a view-only party' do
+      visit submit_form_path(slug: viewer.slug)
+
+      expect(page).to have_content(template.name)
+      expect(page).to have_no_css('#form_container')
+    end
+  end
 end
