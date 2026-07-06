@@ -26,6 +26,7 @@ RSpec.describe 'Submission Preview' do
           create(:encrypted_config, account:, key: EncryptedConfig::EMAIL_SMTP_KEY, value: '{}')
 
           submission.submitters.each { |s| s.update(completed_at: 1.day.ago) }
+          Submissions.maybe_update_completed_at(submission)
 
           visit submissions_preview_path(slug: submission.slug)
         end
@@ -47,6 +48,7 @@ RSpec.describe 'Submission Preview' do
 
       it "doesn't display the email form if SMTP is not configured" do
         submission.submitters.each { |s| s.update(completed_at: 1.day.ago) }
+        Submissions.maybe_update_completed_at(submission)
 
         visit submissions_preview_path(slug: submission.slug)
 

@@ -5,6 +5,22 @@ module Submissions
 
   module_function
 
+  def maybe_update_completed_at(submission)
+    incomplete_submitter = Submitter.where(submission_id: submission.id, completed_at: nil).select(1)
+
+    max_completed_at =
+      Arel::Nodes::Grouping.new(
+        Submitter.arel_table.project(Submitter.arel_table[:completed_at].maximum)
+                 .where(Submitter.arel_table[:submission_id].eq(Submission.arel_table[:id]))
+                 .ast
+      )
+
+    Submission.where(id: submission.id, completed_at: nil)
+              .where.not(incomplete_submitter.arel.exists)
+              .update_all(completed_at: max_completed_at)
+              .positive?
+  end
+
   def search(current_user, submissions, keyword, search_values: false, search_template: false)
     if Docuseal.fulltext_search?
       fulltext_search(current_user, submissions, keyword, search_template:)
@@ -21,19 +37,22 @@ module Submissions
 
     arel_table = Submitter.arel_table
 
-    arel = arel_table[:email].lower.matches(term)
-                             .or(arel_table[:phone].matches(term))
-                             .or(arel_table[:name].lower.matches(term))
+    submitter_arel = arel_table[:email].lower.matches(term)
+                                       .or(arel_table[:phone].matches(term))
+                                       .or(arel_table[:name].lower.matches(term))
 
-    arel = arel.or(Arel::Table.new(:submitters)[:values].matches(term)) if search_values
+    submitter_arel = submitter_arel.or(arel_table[:values].matches(term)) if search_values
+
+    arel = Submitter.where(arel_table[:submission_id].eq(Submission.arel_table[:id]))
+                    .where(submitter_arel).select(1).arel.exists
 
     if search_template
       submissions = submissions.left_joins(:template)
 
-      arel = arel.or(Template.arel_table[:name].lower.matches("%#{sanitized}%"))
+      arel = arel.or(Template.arel_table[:name].lower.matches(term))
     end
 
-    submissions.joins(:submitters).where(arel).group(:id)
+    submissions.where(arel)
   end
 
   def fulltext_search(current_user, submissions, keyword, search_template: false)

@@ -4,7 +4,7 @@ class SubmissionsUnarchiveController < ApplicationController
   load_and_authorize_resource :submission
 
   def create
-    authorize!(:update, @submission)
+    authorize!(:destroy, @submission)
 
     @submission.update!(archived_at: nil)
 

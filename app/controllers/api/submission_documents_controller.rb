@@ -9,7 +9,7 @@ module Api
                  (@submission.schema_documents || @submission.template.schema_documents).size > 1
 
       documents =
-        if @submission.submitters.all?(&:completed_at?)
+        if @submission.completed_at?
           build_completed_documents(@submission, merge: is_merge)
         else
           build_preview_documents(@submission, merge: is_merge)

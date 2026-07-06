@@ -40,7 +40,6 @@ module Submissions
       submissions.where(created_by_user_id: user&.id || -1)
     end
 
-    # rubocop:disable Metrics/MethodLength
     def filter_by_status(submissions, filters)
       case filters[:status]
       when 'pending'
@@ -52,33 +51,24 @@ module Submissions
       when 'expired'
         submissions.expired
       when 'sent'
-        submissions.joins(:submitters)
-                   .where(submitters: { opened_at: nil, completed_at: nil, declined_at: nil })
-                   .where.not(submitters: { sent_at: nil })
-                   .group(:id)
+        submissions.where(Submitter.where(Submitter.arel_table[:submission_id].eq(Submission.arel_table[:id]))
+                                   .where(opened_at: nil, completed_at: nil, declined_at: nil)
+                                   .where.not(sent_at: nil)
+                                   .limit(1).arel.exists)
       when 'opened'
-        submissions.joins(:submitters)
-                   .where(submitters: { completed_at: nil, declined_at: nil })
-                   .where.not(submitters: { opened_at: nil })
-                   .group(:id)
+        submissions.where(Submitter.where(Submitter.arel_table[:submission_id].eq(Submission.arel_table[:id]))
+                                   .where(completed_at: nil, declined_at: nil)
+                                   .where.not(opened_at: nil)
+                                   .limit(1).arel.exists)
       when 'partially_completed'
-        submissions.joins(:submitters)
-                   .group(:id)
-                   .having(Arel::Nodes::NamedFunction.new(
-                     'COUNT', [Arel::Nodes::NamedFunction.new('NULLIF',
-                                                              [Submitter.arel_table[:completed_at].eq(nil),
-                                                               Arel::Nodes.build_quoted(false)])]
-                   ).gt(0))
-                   .having(Arel::Nodes::NamedFunction.new(
-                     'COUNT', [Arel::Nodes::NamedFunction.new('NULLIF',
-                                                              [Submitter.arel_table[:completed_at].not_eq(nil),
-                                                               Arel::Nodes.build_quoted(false)])]
-                   ).gt(0))
+        submissions.where(completed_at: nil)
+                   .where(Submitter.where(Submitter.arel_table[:submission_id].eq(Submission.arel_table[:id]))
+                                   .where.not(completed_at: nil)
+                                   .limit(1).arel.exists)
       else
         submissions
       end
     end
-    # rubocop:enable Metrics/MethodLength
 
     def filter_by_created_at(submissions, filters)
       submissions = submissions.where(created_at: filters[:created_at_from]..) if filters[:created_at_from].present?
@@ -104,16 +94,15 @@ module Submissions
     def filter_by_completed_at(submissions, filters)
       return submissions unless filters[:completed_at_from].present? || filters[:completed_at_to].present?
 
-      completed_arel = Submitter.arel_table[:completed_at].maximum
-      submissions = submissions.completed.joins(:submitters).group(:id)
+      submissions = submissions.completed
 
       if filters[:completed_at_from].present?
-        submissions = submissions.having(completed_arel.gteq(filters[:completed_at_from]))
+        submissions = submissions.where(completed_at: filters[:completed_at_from]..)
       end
 
       return submissions if filters[:completed_at_to].blank?
 
-      submissions.having(completed_arel.lteq(filters[:completed_at_to].end_of_day))
+      submissions.where(completed_at: ..filters[:completed_at_to].end_of_day)
     end
 
     def normalize_filter_params(params, current_user)

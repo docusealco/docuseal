@@ -6,6 +6,7 @@
 #
 #  id                  :bigint           not null, primary key
 #  archived_at         :datetime
+#  completed_at        :datetime
 #  expire_at           :datetime
 #  name                :text
 #  preferences         :text             not null
@@ -25,7 +26,9 @@
 #
 # Indexes
 #
+#  index_submissions_on_account_id_and_completed_at                 (account_id,completed_at) WHERE ((completed_at IS NOT NULL) AND (archived_at IS NULL))
 #  index_submissions_on_account_id_and_id                           (account_id,id)
+#  index_submissions_on_account_id_and_id_pending                   (account_id,id) WHERE ((completed_at IS NULL) AND (archived_at IS NULL))
 #  index_submissions_on_account_id_and_template_id_and_id           (account_id,template_id,id) WHERE (archived_at IS NULL)
 #  index_submissions_on_account_id_and_template_id_and_id_archived  (account_id,template_id,id) WHERE (archived_at IS NOT NULL)
 #  index_submissions_on_created_by_user_id                          (created_by_user_id)
@@ -89,26 +92,17 @@ class Submission < ApplicationRecord
   scope :active, -> { where(archived_at: nil) }
   scope :archived, -> { where.not(archived_at: nil) }
   scope :pending, lambda {
-    where(expire_at: nil).or(where(expire_at: Time.current..))
-                         .where(Submitter.where(Submitter.arel_table[:submission_id].eq(Submission.arel_table[:id])
-                                         .and(Submitter.arel_table[:completed_at].eq(nil))).select(1).arel.exists)
+    where(expire_at: nil).or(where(expire_at: Time.current..)).where(completed_at: nil)
   }
-  scope :completed, lambda {
-    where.not(Submitter.where(Submitter.arel_table[:submission_id].eq(Submission.arel_table[:id])
-     .and(Submitter.arel_table[:completed_at].eq(nil))).select(1).arel.exists)
-  }
+  scope :completed, -> { where.not(completed_at: nil) }
   scope :declined, lambda {
-    where(Submitter.where(Submitter.arel_table[:submission_id].eq(Submission.arel_table[:id])
-     .and(Submitter.arel_table[:declined_at].not_eq(nil))).select(1).arel.exists)
+    where(Submitter.where(Submitter.arel_table[:submission_id].eq(Submission.arel_table[:id]))
+                   .where.not(declined_at: nil).limit(1).arel.exists)
   }
-  scope :expired, lambda {
-    where(expire_at: ..Time.current)
-      .where(Submitter.where(Submitter.arel_table[:submission_id].eq(Submission.arel_table[:id])
-                      .and(Submitter.arel_table[:completed_at].eq(nil))).select(1).arel.exists)
-  }
+  scope :expired, -> { where(expire_at: ..Time.current).where(completed_at: nil) }
 
   scope :select_for_list, lambda {
-    select(:id, :name, :created_by_user_id, :account_id,
+    select(:id, :name, :created_by_user_id, :account_id, :completed_at,
            :created_at, :archived_at, :expire_at, :template_id, :template_submitters)
   }
 

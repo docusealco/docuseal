@@ -116,15 +116,6 @@ module Mcp
 
         Submissions.send_signature_requests(submissions)
 
-        submissions.each do |submission|
-          submission.submitters.each do |submitter|
-            next unless submitter.completed_at?
-
-            ProcessSubmitterCompletionJob.perform_async('submitter_id' => submitter.id,
-                                                        'send_invitation_email' => false)
-          end
-        end
-
         SearchEntries.enqueue_reindex(submissions)
 
         submission = submissions.first

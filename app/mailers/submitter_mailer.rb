@@ -16,7 +16,7 @@ class SubmitterMailer < ApplicationMailer
 
     template_submitters_index = @email_message.blank? ? build_submitter_preferences_index(@submitter) : {}
 
-    @body = @email_message&.body.presence ||
+    @body = @email_message&.normalized_body.presence ||
             template_submitters_index.dig(@submitter.uuid, 'request_email_body').presence ||
             @submitter.template&.preferences&.dig('request_email_body').presence
 

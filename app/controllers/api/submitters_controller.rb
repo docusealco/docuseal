@@ -4,6 +4,8 @@ module Api
   class SubmittersController < ApiBaseController
     load_and_authorize_resource :submitter
 
+    before_action :maybe_return_submitter_error, only: :update
+
     def index
       submitters = Submitters.search(current_user, @submitters, params[:q])
 
@@ -36,14 +38,6 @@ module Api
 
     # rubocop:disable Metrics/MethodLength
     def update
-      if @submitter.completed_at?
-        return render json: { error: 'Submitter has already completed the submission.' }, status: :unprocessable_content
-      end
-
-      if @submitter.declined_at?
-        return render json: { error: 'Submitter has already declined the submission.' }, status: :unprocessable_content
-      end
-
       submission = @submitter.submission
       role = submission.template_submitters.find { |e| e['uuid'] == @submitter.uuid }['name']
 
@@ -73,7 +67,9 @@ module Api
       end
 
       if @submitter.completed_at?
-        ProcessSubmitterCompletionJob.perform_async('submitter_id' => @submitter.id)
+        is_last = Submissions.maybe_update_completed_at(@submitter.submission)
+
+        ProcessSubmitterCompletionJob.perform_async('submitter_id' => @submitter.id, 'is_last' => is_last)
       elsif normalized_params[:send_email] || normalized_params[:send_sms]
         Submitters.send_signature_requests([@submitter])
       end
@@ -103,6 +99,16 @@ module Api
     end
 
     private
+
+    def maybe_return_submitter_error
+      if @submitter.completed_at?
+        return render json: { error: 'Submitter has already completed the submission.' }, status: :unprocessable_content
+      end
+
+      return unless @submitter.declined_at?
+
+      render json: { error: 'Submitter has already declined the submission.' }, status: :unprocessable_content
+    end
 
     def maybe_filter_by_completed_at(submitters, params)
       if params[:completed_after].present?
