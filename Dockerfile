@@ -14,7 +14,7 @@ ENV NODE_ENV=production
 WORKDIR /app
 
 RUN apk add --no-cache nodejs yarn git build-base && \
-    gem install shakapacker
+    gem install shakapacker -v 7.1.0
 
 COPY ./package.json ./yarn.lock ./
 
@@ -30,7 +30,7 @@ COPY ./tailwind.application.config.js ./tailwind.application.config.js ./
 COPY ./app/javascript ./app/javascript
 COPY ./app/views ./app/views
 
-RUN echo "gem 'shakapacker'" > Gemfile && ./bin/shakapacker
+RUN echo "gem 'shakapacker', '7.1.0'" > Gemfile && ./bin/shakapacker
 
 FROM ruby:3.2.2-alpine3.18 as app
 

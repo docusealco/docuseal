@@ -47,4 +47,6 @@ configs.module = merge({
   ]
 }, configs.module)
 
+configs.target = 'web'
+
 module.exports = configs
