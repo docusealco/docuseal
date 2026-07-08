@@ -56,7 +56,7 @@ module Api
 
       @template.update!(template_params)
 
-      SearchEntries.enqueue_reindex(@template)
+      SearchEntries.enqueue_reindex(@template) if @template.saved_change_to_name?
 
       WebhookUrls.enqueue_events(@template, 'template.updated')
 

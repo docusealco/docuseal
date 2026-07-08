@@ -259,6 +259,62 @@ describe 'Submission API' do
     end
   end
 
+  describe 'PUT /api/submissions/:id' do
+    it 'updates the submission name' do
+      submission = create(:submission, :with_submitters, template: templates[0], created_by_user: author)
+
+      put "/api/submissions/#{submission.id}", headers: { 'x-auth-token': author.access_token.token }, params: {
+        name: 'Updated Name'
+      }.to_json
+
+      expect(response).to have_http_status(:ok)
+      expect(submission.reload.name).to eq('Updated Name')
+      expect(response.parsed_body['name']).to eq('Updated Name')
+    end
+
+    it 'updates the expiration date' do
+      submission = create(:submission, :with_submitters, template: templates[0], created_by_user: author)
+      expire_at = 1.week.from_now.change(usec: 0)
+
+      put "/api/submissions/#{submission.id}", headers: { 'x-auth-token': author.access_token.token }, params: {
+        expire_at: expire_at.iso8601
+      }.to_json
+
+      expect(response).to have_http_status(:ok)
+      expect(submission.reload.expire_at).to be_within(1.second).of(expire_at)
+    end
+
+    it 'clears the expiration date when passed nil' do
+      submission = create(:submission, :with_submitters, template: templates[0], created_by_user: author,
+                                                         expire_at: 1.week.from_now)
+
+      put "/api/submissions/#{submission.id}", headers: { 'x-auth-token': author.access_token.token }, params: {
+        expire_at: nil
+      }.to_json
+
+      expect(response).to have_http_status(:ok)
+      expect(submission.reload.expire_at).to be_nil
+    end
+
+    it 'archives and unarchives the submission' do
+      submission = create(:submission, :with_submitters, template: templates[0], created_by_user: author)
+
+      put "/api/submissions/#{submission.id}", headers: { 'x-auth-token': author.access_token.token }, params: {
+        archived: true
+      }.to_json
+
+      expect(response).to have_http_status(:ok)
+      expect(submission.reload.archived_at).not_to be_nil
+
+      put "/api/submissions/#{submission.id}", headers: { 'x-auth-token': author.access_token.token }, params: {
+        archived: false
+      }.to_json
+
+      expect(response).to have_http_status(:ok)
+      expect(submission.reload.archived_at).to be_nil
+    end
+  end
+
   describe 'view-only (CC) party' do
     let(:viewer_template) { create(:template, account:, author:, submitter_count: 2, only_field_types: %w[text]) }
     let(:viewer_uuid) { viewer_template.submitters.second['uuid'] }

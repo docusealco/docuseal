@@ -93,9 +93,12 @@ class StartFormController < ApplicationController
 
     SearchEntries.enqueue_reindex(submitter)
 
-    return unless submitter.submission.expire_at?
+    expire_at = submitter.submission.expire_at
 
-    ProcessSubmissionExpiredJob.perform_at(submitter.submission.expire_at, 'submission_id' => submitter.submission_id)
+    return unless expire_at
+
+    ProcessSubmissionExpiredJob.perform_at(expire_at, 'submission_id' => submitter.submission_id,
+                                                      'expire_at' => expire_at.to_i)
   end
 
   def load_resubmit_submitter

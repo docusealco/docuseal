@@ -7,7 +7,7 @@ module Api
     TEMPLATE_COLUMNS = %i[id name external_id created_at updated_at folder_id submitters].freeze
 
     load_and_authorize_resource :template, only: :create
-    load_and_authorize_resource :submission, only: %i[show index destroy]
+    load_and_authorize_resource :submission, only: %i[show index update destroy]
 
     before_action only: :create do
       authorize!(:create, Submission)
@@ -104,6 +104,25 @@ module Api
       render json: { error: e.message }, status: :unprocessable_content
     end
 
+    def update
+      @submission = assign_submission_attrs(@submission, submission_params)
+
+      @submission.save!
+
+      if @submission.saved_change_to_archived_at? && @submission.archived_at?
+        WebhookUrls.enqueue_events(@submission, 'submission.archived')
+      end
+
+      if @submission.saved_change_to_expire_at? && @submission.expire_at?
+        ProcessSubmissionExpiredJob.perform_at(@submission.expire_at, 'submission_id' => @submission.id,
+                                                                      'expire_at' => @submission.expire_at.to_i)
+      end
+
+      SearchEntries.enqueue_reindex(@submission) if @submission.saved_change_to_name?
+
+      render json: Submissions::SerializeForApi.call(@submission, nil, params, with_events: false)
+    end
+
     def destroy
       if params[:permanently].in?(['true', true])
         @submission.destroy!
@@ -117,6 +136,25 @@ module Api
     end
 
     private
+
+    def assign_submission_attrs(submission, attrs)
+      archived = attrs.key?(:archived) ? attrs[:archived] : attrs[:archived_at]
+
+      if archived.in?([true, false, 'true', 'false']) && current_ability.can?(:destroy, submission)
+        submission.archived_at = archived.in?(Submitters::TRUE_VALUES) ? Time.current : nil
+      end
+
+      submission.name = attrs[:name] if attrs.key?(:name)
+      submission.expire_at = attrs[:expire_at].presence if attrs.key?(:expire_at)
+
+      submission
+    end
+
+    def submission_params
+      submission_params = params.key?(:submission) ? params.require(:submission) : params
+
+      submission_params.permit(:name, :expire_at, :archived, :archived_at)
+    end
 
     def maybe_return_template_error
       return render json: { error: 'Template not found' }, status: :unprocessable_content if @template.nil?
