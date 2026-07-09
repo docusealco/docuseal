@@ -92,8 +92,6 @@ class SubmitterMailer < ApplicationMailer
 
     template_preferences = @submission.template&.preferences || {}
 
-    Submissions::EnsureResultGenerated.call(submitter)
-
     @email_config = AccountConfigs.find_for_account(@current_account, AccountConfig::SUBMITTER_COMPLETED_EMAIL_KEY)
 
     add_completed_email_attachments!(
@@ -147,8 +145,6 @@ class SubmitterMailer < ApplicationMailer
     @sig = submitter.signed_id(expires_in: SIGN_TTL, purpose: :download_completed) if sig
 
     template_preferences = @submitter.template&.preferences || {}
-
-    Submissions::EnsureResultGenerated.call(@submitter)
 
     @email_config = AccountConfigs.find_for_account(@current_account, AccountConfig::SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY)
 
@@ -211,7 +207,7 @@ class SubmitterMailer < ApplicationMailer
   end
 
   def add_completed_email_attachments!(submitter, with_audit_log: true, with_documents: true)
-    documents = with_documents ? Submitters.select_attachments_for_download(submitter) : []
+    documents = with_documents ? select_completed_documents(submitter) : []
 
     filename_format = AccountConfig.find_or_initialize_by(account_id: submitter.account_id,
                                                           key: AccountConfig::DOCUMENT_FILENAME_FORMAT_KEY)&.value
@@ -266,6 +262,14 @@ class SubmitterMailer < ApplicationMailer
 
   def build_submitter_preferences_index(submitter)
     submitter.template&.preferences&.dig('submitters').to_a.index_by { |e| e['uuid'] }
+  end
+
+  def select_completed_documents(submitter)
+    last_submitter = Submitter.where(submission_id: submitter.submission_id).completed.order(:completed_at).last
+
+    Submissions::EnsureResultGenerated.call(last_submitter)
+
+    Submitters.select_attachments_for_download(last_submitter)
   end
 
   def add_attachments_with_size_limit(submitter, storage_attachments, current_size, filename_format = nil)

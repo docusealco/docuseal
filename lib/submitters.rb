@@ -105,7 +105,7 @@ module Submitters
   end
 
   def select_attachments_for_download(submitter)
-    if AccountConfig.exists?(account_id: submitter.submission.account_id,
+    if AccountConfig.exists?(account_id: submitter.account_id,
                              key: AccountConfig::COMBINE_PDF_RESULT_KEY,
                              value: true) &&
        submitter.submission.completed_at? &&
@@ -229,10 +229,12 @@ module Submitters
       end
     end
 
-    filename = filename.gsub(
-      '{submission.completed_at}',
-      I18n.l(submitter.completed_at.in_time_zone(submitter.account.timezone), format: :short)
-    )
+    filename = filename.gsub('{submission.completed_at}') do
+      completed_at = submitter.submission.completed_at ||
+                     submitter.submission.submitters.select(&:completed_at).max_by(&:completed_at).completed_at
+
+      I18n.l(completed_at.in_time_zone(submitter.account.timezone), format: :short)
+    end
 
     "#{filename}.#{blob.filename.extension}"
   end
@@ -275,7 +277,7 @@ module Submitters
 
   def build_combined_url(submitter, ttl: FILES_TTL)
     return unless submitter.submission.completed_at?
-    return if submitter.submission.submitters.order(:completed_at).last != submitter
+    return if submitter.submission.submitters.completed.order(:completed_at).last != submitter
 
     attachment = submitter.submission.combined_document_attachment
     attachment ||= Submissions::EnsureCombinedGenerated.call(submitter)

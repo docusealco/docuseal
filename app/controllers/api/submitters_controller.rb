@@ -101,7 +101,7 @@ module Api
     private
 
     def maybe_return_submitter_error
-      if @submitter.completed_at?
+      if @submitter.completed_at? || @submitter.submission.completed_at?
         return render json: { error: 'Submitter has already completed the submission.' }, status: :unprocessable_content
       end
 

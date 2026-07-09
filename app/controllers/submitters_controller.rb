@@ -50,7 +50,7 @@ class SubmittersController < ApplicationController
 
   def submitter_editable?(submission)
     !@submitter.submission_events.exists?(event_type: 'start_form') &&
-      !@submitter.completed_at? && !@submitter.declined_at? &&
+      !@submitter.completed_at? && !@submitter.declined_at? && !submission.completed_at? &&
       !submission.archived_at? && !submission.expired? && !submission.template&.archived_at?
   end
 

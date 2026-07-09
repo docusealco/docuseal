@@ -141,14 +141,15 @@ class StartFormController < ApplicationController
 
     submitter ||=
       Submitter
-      .where(submission: template.submissions.where(expire_at: Time.current..)
-                                 .or(template.submissions.where(expire_at: nil)).where(archived_at: nil))
+      .where(submission: template.submissions.non_expired.active)
       .order(id: :desc)
       .where(declined_at: nil)
       .where(external_id: nil)
       .where(template.preferences['shared_link_2fa'] == true ? {} : { ip: [nil, request.remote_ip] })
       .then { |rel| params[:resubmit].present? || params[:selfsign].present? ? rel.where(completed_at: nil) : rel }
       .find_or_initialize_by(find_params)
+
+    submitter = Submitter.new(find_params) if submitter.submission&.completed_at? && submitter.viewer?
 
     submitter.name = required_params['name'] if submitter.new_record?
 

@@ -92,9 +92,8 @@ class Submission < ApplicationRecord
 
   scope :active, -> { where(archived_at: nil) }
   scope :archived, -> { where.not(archived_at: nil) }
-  scope :pending, lambda {
-    where(expire_at: nil).or(where(expire_at: Time.current..)).where(completed_at: nil)
-  }
+  scope :non_expired, -> { where(expire_at: nil).or(where(expire_at: Time.current..)) }
+  scope :pending, -> { non_expired.where(completed_at: nil) }
   scope :completed, -> { where.not(completed_at: nil) }
   scope :declined, lambda {
     where(Submitter.where(Submitter.arel_table[:submission_id].eq(Submission.arel_table[:id]))
