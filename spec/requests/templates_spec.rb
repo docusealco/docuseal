@@ -230,6 +230,7 @@ describe 'Templates API' do
           name: 'sample-document'
         }
       ],
+      variables_schema: template.variables_schema || {},
       shared_link: template.shared_link,
       author_id: author.id,
       archived_at: nil,
