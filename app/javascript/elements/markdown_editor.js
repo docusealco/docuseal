@@ -35,7 +35,7 @@ function loadTiptap () {
   }))
 }
 
-class LinkTooltip {
+export class LinkTooltip {
   constructor (container, editor, templateEl) {
     this.container = container
     this.editor = editor

@@ -830,6 +830,7 @@ export default {
       } else if (format === 'percent') {
         return `${number}%`
       } else if (format === 'percent_space') {
+        // eslint-disable-next-line no-irregular-whitespace
         return `${String(number).replace('.', ',')} %`
       } else {
         return number

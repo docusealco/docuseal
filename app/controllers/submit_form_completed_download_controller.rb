@@ -19,7 +19,7 @@ class SubmitFormCompletedDownloadController < ApplicationController
 
     @submitter ||= Submitter.find_by!(slug: submitter_slug)
 
-    Submissions::EnsureResultGenerated.call(@submitter)
+    Submissions::EnsureResultGenerated.call(@submitter) if @submitter.completed_at?
 
     last_submitter = @submitter.submission.submitters.where.not(completed_at: nil).order(:completed_at).last
 
@@ -28,11 +28,7 @@ class SubmitFormCompletedDownloadController < ApplicationController
     Submissions::EnsureResultGenerated.call(last_submitter)
 
     if !signature_valid && !current_user_submitter?(last_submitter)
-      unless Submitters::AuthorizedForForm.call(@submitter, current_user, request)
-        Rollbar.info("2FA download error: #{last_submitter.id}") if defined?(Rollbar)
-
-        return head :not_found
-      end
+      return head :not_found unless Submitters::AuthorizedForForm.call(@submitter, current_user, request)
 
       if last_submitter.completed_at < TTL.ago
         Rollbar.info("TTL: #{last_submitter.id}") if defined?(Rollbar)

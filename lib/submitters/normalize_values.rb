@@ -305,7 +305,13 @@ module Submitters
 
       return unless blob
 
-      return blob if blob.attachments.take&.record&.account_id == account.id
+      attachment = blob.attachments.take
+
+      return if attachment.nil? ||
+                attachment.record_type != 'Submitter' ||
+                attachment.name != 'attachments'
+
+      return blob if attachment.record&.account_id == account.id
 
       nil
     end

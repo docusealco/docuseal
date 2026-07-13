@@ -59,6 +59,7 @@ module Templates
                                   .select(1).arel.exists
 
     Template.where(id: TemplateSharing.where(account_id: shared_account_ids).select(:template_id))
+            .where(account_id: account.linked_account_account.account_id)
             .where.not(exists_access)
   end
 

@@ -84,7 +84,7 @@ module Submitters
     submitter_ids = SearchEntry.where(record_type: 'Submitter')
                                .where(account_id: current_user.account_id)
                                .where(*query)
-                               .limit(keyword.length > 2 ? 500 : 5000)
+                               .limit(keyword.strip.length > 2 ? 500 : 5000)
                                .pluck(:record_id)
 
     submitters.where(id: submitter_ids.first(100))
@@ -105,7 +105,7 @@ module Submitters
   end
 
   def select_attachments_for_download(submitter)
-    if AccountConfig.exists?(account_id: submitter.submission.account_id,
+    if AccountConfig.exists?(account_id: submitter.account_id,
                              key: AccountConfig::COMBINE_PDF_RESULT_KEY,
                              value: true) &&
        submitter.submission.completed_at? &&
@@ -177,6 +177,7 @@ module Submitters
     end
   end
 
+  # rubocop:disable Metrics
   def current_submitter_order?(submitter)
     submission = submitter.submission
 
@@ -189,6 +190,14 @@ module Submitters
         current_group_index = submitter_groups.find_index { |_, group| group.any? { |s| s['uuid'] == submitter.uuid } }
 
         submitter_groups.first(current_group_index).flat_map(&:last)
+      elsif submitter.viewer?
+        current_index = submitter_items.find_index { |e| e['uuid'] == submitter.uuid }
+
+        preceding_submitter_index = submitter_items[0...current_index].rindex do |e|
+          !submission.submitters.find { |s| s.uuid == e['uuid'] }&.viewer?
+        end
+
+        submitter_items.first(preceding_submitter_index || 0)
       else
         submitter_items.first(submitter_items.find_index { |e| e['uuid'] == submitter.uuid })
       end
@@ -196,9 +205,10 @@ module Submitters
     before_items.all? do |item|
       submitter = submission.submitters.find { |e| e.uuid == item['uuid'] }
 
-      submitter.nil? || submitter.completed_at?
+      submitter.nil? || submitter.viewer? || submitter.completed_at?
     end
   end
+  # rubocop:enable Metrics
 
   def build_document_filename(submitter, blob, filename_format)
     return blob.filename.to_s if filename_format.blank?
@@ -219,10 +229,12 @@ module Submitters
       end
     end
 
-    filename = filename.gsub(
-      '{submission.completed_at}',
-      I18n.l(submitter.completed_at.in_time_zone(submitter.account.timezone), format: :short)
-    )
+    filename = filename.gsub('{submission.completed_at}') do
+      completed_at = submitter.submission.completed_at ||
+                     submitter.submission.submitters.select(&:completed_at).max_by(&:completed_at).completed_at
+
+      I18n.l(completed_at.in_time_zone(submitter.account.timezone), format: :short)
+    end
 
     "#{filename}.#{blob.filename.extension}"
   end
@@ -265,7 +277,7 @@ module Submitters
 
   def build_combined_url(submitter, ttl: FILES_TTL)
     return unless submitter.submission.completed_at?
-    return if submitter.submission.submitters.order(:completed_at).last != submitter
+    return if submitter.submission.submitters.completed.order(:completed_at).last != submitter
 
     attachment = submitter.submission.combined_document_attachment
     attachment ||= Submissions::EnsureCombinedGenerated.call(submitter)

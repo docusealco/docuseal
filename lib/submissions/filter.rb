@@ -19,6 +19,8 @@ module Submissions
       created_at_to
     ].freeze
 
+    BIGINT_MAX = (2**63) - 1
+
     module_function
 
     def call(submissions, current_user, params)
@@ -71,13 +73,37 @@ module Submissions
     end
 
     def filter_by_created_at(submissions, filters)
-      submissions = submissions.where(created_at: filters[:created_at_from]..) if filters[:created_at_from].present?
+      if filters[:created_at_from].present?
+        submissions = submissions.where(min_created_at_id_arel(filters[:created_at_from]))
+      end
 
       if filters[:created_at_to].present?
-        submissions = submissions.where(created_at: ..filters[:created_at_to].end_of_day)
+        submissions = submissions.where(max_created_at_id_arel(filters[:created_at_to].end_of_day))
       end
 
       submissions
+    end
+
+    def min_created_at_id_arel(time)
+      submissions = Submission.arel_table
+
+      first_id = submissions.project(submissions[:id])
+                            .where(submissions[:created_at].gteq(time))
+                            .order(submissions[:created_at].asc, submissions[:id].asc)
+                            .take(1)
+
+      submissions[:id].gteq(Arel::Nodes::NamedFunction.new('COALESCE', [first_id, BIGINT_MAX]))
+    end
+
+    def max_created_at_id_arel(time)
+      submissions = Submission.arel_table
+
+      last_id = submissions.project(submissions[:id])
+                           .where(submissions[:created_at].lteq(time))
+                           .order(submissions[:created_at].desc, submissions[:id].desc)
+                           .take(1)
+
+      submissions[:id].lteq(Arel::Nodes::NamedFunction.new('COALESCE', [last_id, 0]))
     end
 
     def filter_by_folder(submissions, filters, current_user)

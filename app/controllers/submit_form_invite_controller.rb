@@ -48,6 +48,7 @@ class SubmitFormInviteController < ApplicationController
       !submitter.submission.archived_at? &&
       !submitter.submission.expired? &&
       !submitter.submission.template&.archived_at? &&
+      !submitter.viewer? &&
       Submitters::AuthorizedForForm.call(submitter, current_user, request)
   end
 

@@ -23,7 +23,7 @@
             <%= @submitter.submission.name || @submitter.submission.template&.name %>
           </h1>
           <div class="flex items-center gap-2 group" style="margin-left: 20px; flex-shrink: 0">
-            <% if @form_configs[:with_decline] %>
+            <% if @form_configs[:with_decline] && !@submitter.viewer? %>
               <modal-button data-target="<%= decline_modal_id = SecureRandom.uuid %>" class="hidden group-has-[.complete-button]:flex">
                 <button type="button" class="btn btn-sm md:!px-5 px-2" aria-label="<%= t(:decline) %>">
                   <span class="hidden md:inline"><%= t(:decline) %></span>
@@ -34,11 +34,11 @@
               </modal-button>
             <% end %>
             <span id="complete_button_container" class="peer contents"></span>
-            <% if @form_configs[:with_delegate] %>
+            <% if @form_configs[:with_delegate] && !@submitter.viewer? %>
               <modal-button data-target="<%= delegate_modal_id = SecureRandom.uuid %>" class="hidden peer-empty:flex">
                 <button id="delegate_button" type="button" class="btn btn-sm !px-5"><%= t(:delegate) %></button>
               </modal-button>
-              <% if @form_configs[:with_decline] %>
+              <% if @form_configs[:with_decline] && !@submitter.viewer? %>
                 <modal-button data-target="<%= decline_modal_id %>" class="hidden peer-empty:flex">
                   <button id="decline_button" type="button" class="btn btn-sm px-2" aria-label="<%= t(:decline) %>">
                     <%= svg_icon('x', class: 'w-5 h-5') %>
@@ -56,7 +56,7 @@
                 </download-button>
               <% end %>
             <% else %>
-              <% if @form_configs[:with_decline] %>
+              <% if @form_configs[:with_decline] && !@submitter.viewer? %>
                 <modal-button data-target="<%= decline_modal_id %>" class="hidden peer-empty:flex">
                   <button id="decline_button" type="button" class="btn btn-sm !px-5"><%= t(:decline) %></button>
                 </modal-button>
@@ -77,7 +77,7 @@
           </div>
         </header>
         <scroll-buttons inert class="fixed right-5 top-2 hidden md:flex gap-1 z-50 ease-in-out opacity-0 -translate-y-10 group">
-          <% if @form_configs[:with_decline] %>
+          <% if @form_configs[:with_decline] && !@submitter.viewer? %>
             <modal-button data-target="<%= decline_modal_id %>" class="hidden group-has-[.complete-button]:flex">
               <button type="button" class="btn btn-sm px-2" aria-label="<%= t(:decline) %>">
                 <%= svg_icon('x', class: 'w-5 h-5') %>
@@ -85,7 +85,7 @@
             </modal-button>
           <% end %>
           <span id="complete_button_container_scroll" class="peer contents"></span>
-          <% if @form_configs[:with_delegate] %>
+          <% if @form_configs[:with_delegate] && !@submitter.viewer? %>
             <modal-button data-target="<%= delegate_modal_id %>" class="hidden peer-empty:flex">
               <button id="delegate_button_mobile" type="button" class="btn btn-sm px-0" aria-label="<%= t(:delegate) %>">
                 <span class="min-[1366px]:inline hidden px-3">
@@ -96,7 +96,7 @@
                 </span>
               </button>
             </modal-button>
-            <% if @form_configs[:with_decline] %>
+            <% if @form_configs[:with_decline] && !@submitter.viewer? %>
               <modal-button data-target="<%= decline_modal_id %>" class="hidden peer-empty:flex">
                 <button id="decline_button_mobile" type="button" class="btn btn-sm px-2" aria-label="<%= t(:decline) %>">
                   <%= svg_icon('x', class: 'w-5 h-5') %>
@@ -104,7 +104,7 @@
               </modal-button>
             <% end %>
           <% else %>
-            <% if @form_configs[:with_decline] %>
+            <% if @form_configs[:with_decline] && !@submitter.viewer? %>
               <modal-button data-target="<%= decline_modal_id %>" class="hidden peer-empty:flex">
                 <button id="decline_button_mobile" type="button" class="btn btn-sm px-0" aria-label="<%= t(:decline) %>">
                   <span class="min-[1366px]:inline hidden px-3">
@@ -177,12 +177,12 @@
     </div>
   </div>
 </div>
-<% if @form_configs[:with_decline] %>
+<% if @form_configs[:with_decline] && !@submitter.viewer? %>
   <%= render 'shared/html_modal', title: t(:decline), uuid: decline_modal_id do %>
     <%= render 'submit_form/decline_form', submitter: @submitter %>
   <% end %>
 <% end %>
-<% if @form_configs[:with_delegate] %>
+<% if @form_configs[:with_delegate] && !@submitter.viewer? %>
   <%= render 'shared/html_modal', title: t(:delegate), uuid: delegate_modal_id do %>
     <%= render 'submit_form/delegate_form', submitter: @submitter %>
   <% end %>

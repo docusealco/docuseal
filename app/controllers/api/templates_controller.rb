@@ -5,6 +5,8 @@ module Api
     load_and_authorize_resource :template
 
     def index
+      @templates = Templates.shared(current_user) if params[:shared].in?(['true', true])
+
       templates = filter_templates(@templates, params)
 
       templates = paginate(templates.preload(:author, folder: :parent_folder))
@@ -54,7 +56,7 @@ module Api
 
       @template.update!(template_params)
 
-      SearchEntries.enqueue_reindex(@template)
+      SearchEntries.enqueue_reindex(@template) if @template.saved_change_to_name?
 
       WebhookUrls.enqueue_events(@template, 'template.updated')
 
@@ -115,7 +117,13 @@ module Api
     end
 
     def filter_templates(templates, params)
-      templates = Templates.search(current_user, templates, params[:q])
+      templates =
+        if params[:shared].in?(['true', true])
+          Templates.search_shared(current_user, templates, params[:q])
+        else
+          Templates.search(current_user, templates, params[:q])
+        end
+
       templates = params[:archived].in?(['true', true]) ? templates.archived : templates.active
       templates = templates.where(external_id: params[:application_key]) if params[:application_key].present?
       templates = templates.where(external_id: params[:external_id]) if params[:external_id].present?

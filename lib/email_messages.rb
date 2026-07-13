@@ -8,8 +8,13 @@ module EmailMessages
   ASSET_REGEXP = Regexp.union(STYLE_REGEXP, BASE64_REGEXP)
   ASSET_PREFIX = '[[asset:'
   PLACEHOLDER_REGEXP = /\[\[asset:(\h{40})\]\]/
+  HTML_MIME_TYPES = ['text/html', 'application/xhtml+xml'].freeze
 
   module_function
+
+  def html_body?(content)
+    content.present? && HTML_MIME_TYPES.include?(Marcel::MimeType.for(content.dup))
+  end
 
   def find_or_create_for_account_user(account, user, subject, body)
     subject = I18n.t(:you_are_invited_to_sign_a_document) if subject.blank?

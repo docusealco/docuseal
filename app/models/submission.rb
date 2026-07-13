@@ -31,6 +31,7 @@
 #  index_submissions_on_account_id_and_id_pending                   (account_id,id) WHERE ((completed_at IS NULL) AND (archived_at IS NULL))
 #  index_submissions_on_account_id_and_template_id_and_id           (account_id,template_id,id) WHERE (archived_at IS NULL)
 #  index_submissions_on_account_id_and_template_id_and_id_archived  (account_id,template_id,id) WHERE (archived_at IS NOT NULL)
+#  index_submissions_on_created_at                                  (created_at)
 #  index_submissions_on_created_by_user_id                          (created_by_user_id)
 #  index_submissions_on_slug                                        (slug) UNIQUE
 #  index_submissions_on_template_id                                 (template_id)
@@ -91,9 +92,8 @@ class Submission < ApplicationRecord
 
   scope :active, -> { where(archived_at: nil) }
   scope :archived, -> { where.not(archived_at: nil) }
-  scope :pending, lambda {
-    where(expire_at: nil).or(where(expire_at: Time.current..)).where(completed_at: nil)
-  }
+  scope :non_expired, -> { where(expire_at: nil).or(where(expire_at: Time.current..)) }
+  scope :pending, -> { non_expired.where(completed_at: nil) }
   scope :completed, -> { where.not(completed_at: nil) }
   scope :declined, lambda {
     where(Submitter.where(Submitter.arel_table[:submission_id].eq(Submission.arel_table[:id]))

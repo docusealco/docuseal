@@ -29,7 +29,7 @@ Rails.application.routes.draw do
     resources :submitter_email_clicks, only: %i[create]
     resources :submitter_form_views, only: %i[create]
     resources :submitters, only: %i[index show update]
-    resources :submissions, only: %i[index show create destroy] do
+    resources :submissions, only: %i[index show create update destroy] do
       resources :documents, only: %i[index], controller: 'submission_documents'
       collection do
         resources :init, only: %i[create], controller: 'submissions'
@@ -189,7 +189,7 @@ Rails.application.routes.draw do
       resources :api, only: %i[index create], controller: 'api_settings'
       resource :reveal_access_token, only: %i[show create], controller: 'reveal_access_token'
     end
-    resources :email, only: %i[index create], controller: 'email_smtp_settings'
+    resources :email, only: %i[index create destroy], controller: 'email_smtp_settings'
     resources :sso, only: %i[index], controller: 'sso_settings'
     resources :notifications, only: %i[index create], controller: 'notifications_settings'
     resource :esign, only: %i[show create new update destroy], controller: 'esign_settings'

@@ -12,6 +12,7 @@ class ProcessSubmissionExpiredJob
     return if submission.template&.archived_at?
     return if submission.submitters.where.not(declined_at: nil).exists?
     return if submission.completed_at?
+    return if params['expire_at'] && submission.expire_at&.to_i != params['expire_at']
 
     WebhookUrls.enqueue_events(submission, 'submission.expired')
   end

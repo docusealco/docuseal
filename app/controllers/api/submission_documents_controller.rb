@@ -30,7 +30,7 @@ module Api
     private
 
     def build_completed_documents(submission, merge: false)
-      last_submitter = submission.submitters.max_by(&:completed_at)
+      last_submitter = submission.submitters.select(&:completed_at?).max_by(&:completed_at)
 
       if merge
         if submission.merged_document_attachment.blank?

@@ -1,6 +1,7 @@
 <% require_phone_2fa = @template.preferences['require_phone_2fa'] == true %>
 <% require_email_2fa = @template.preferences['require_email_2fa'] == true %>
 <% prefillable_fields = @template.fields.select { |f| f['prefillable'] } %>
+<% viewer_submitter_uuids = Set.new(@template.submitters.pluck('uuid')) - Set.new(@template.fields.to_a.pluck('submitter_uuid')) %>
 <% default_tab = cookies.permanent[:add_recipients_tab].presence || 'email' %>
 <% recipient_form_fields = Accounts.load_recipient_form_fields(current_account) if prefillable_fields.blank? %>
 <% can_send_emails = Accounts.can_send_emails?(current_account) %>
@@ -26,18 +27,18 @@
   <div class="px-5 mb-5 mt-4">
     <% unless only_detailed %>
       <div id="email" class="<%= 'hidden' if default_tab != 'email' %>">
-        <%= render 'email_form', template: @template, variables_form:, can_send_emails: %>
+        <%= render 'email_form', template: @template, variables_form:, can_send_emails:, viewer_submitter_uuids: %>
       </div>
       <div id="phone" class="<%= 'hidden' if default_tab != 'phone' %>">
         <%= render 'phone_form', template: @template, variables_form: %>
       </div>
     <% end %>
     <div id="detailed" class="<%= 'hidden' if !only_detailed && default_tab != 'detailed' %>">
-      <%= render 'detailed_form', template: @template, require_phone_2fa:, require_email_2fa:, prefillable_fields:, recipient_form_fields:, variables_form:, can_send_emails: %>
+      <%= render 'detailed_form', template: @template, require_phone_2fa:, require_email_2fa:, prefillable_fields:, recipient_form_fields:, variables_form:, can_send_emails:, viewer_submitter_uuids: %>
     </div>
     <% if with_list %>
       <div id="list" class="hidden">
-        <%= render 'list_form', template: @template, can_send_emails: %>
+        <%= render 'list_form', template: @template, can_send_emails:, viewer_submitter_uuids: %>
       </div>
     <% end %>
     <%= render 'submissions/error' %>

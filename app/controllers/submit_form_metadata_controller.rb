@@ -7,13 +7,7 @@ class SubmitFormMetadataController < ApplicationController
   def index
     @submitter = Submitter.find_by!(slug: params[:submit_form_slug])
 
-    return head :not_found if @submitter.declined_at? ||
-                              @submitter.completed_at? ||
-                              @submitter.submission.archived_at? ||
-                              @submitter.submission.expired? ||
-                              @submitter.submission.template&.archived_at? ||
-                              @submitter.account.archived_at? ||
-                              !Submitters::AuthorizedForForm.call(@submitter, current_user, request)
+    return head :not_found unless authorized_submitter?(@submitter)
 
     submission = @submitter.submission
     values = submission.submitters.reduce({}) { |acc, sub| acc.merge(sub.values) }
@@ -33,5 +27,18 @@ class SubmitFormMetadataController < ApplicationController
     end
 
     render json: { text_runs: }
+  end
+
+  private
+
+  def authorized_submitter?(submitter)
+    !submitter.declined_at? &&
+      !submitter.completed_at? &&
+      !submitter.submission.archived_at? &&
+      !submitter.submission.completed_at? &&
+      !submitter.submission.expired? &&
+      !submitter.submission.template&.archived_at? &&
+      !submitter.account.archived_at? &&
+      Submitters::AuthorizedForForm.call(submitter, current_user, request)
   end
 end

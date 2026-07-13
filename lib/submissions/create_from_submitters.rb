@@ -90,6 +90,8 @@ module Submissions
 
         maybe_add_invite_submitters(submission, template, attrs[:submitters])
 
+        assign_submitters_is_viewer(submission)
+
         submission.template = nil unless with_template
 
         submission.tap(&:save!)
@@ -98,6 +100,34 @@ module Submissions
       maybe_enqueue_expire_at(submissions)
 
       submissions
+    end
+
+    def assign_submitters_is_viewer(submission)
+      template_fields = submission.template_fields || submission.template.fields
+      field_submitter_uuids = Set.new(template_fields.pluck('submitter_uuid'))
+
+      viewer_template_submitters =
+        submission.template_submitters.select { |s| field_submitter_uuids.exclude?(s['uuid']) }
+
+      return submission if viewer_template_submitters.blank?
+
+      viewer_template_submitters.each { |s| s['is_viewer'] = true }
+
+      return submission if submission.template_submitters.any? { |s| s['order'] }
+
+      first_submitter = submission.submitters.find(&:sent_at)
+
+      return submission unless first_submitter
+
+      submitters_index = submission.submitters.reject(&:completed_at?).index_by(&:uuid)
+
+      Submissions.find_first_viewers(first_submitter, submitters_index).each do |viewer|
+        next if viewer.preferences['send_email'] == false || viewer.email.blank?
+
+        viewer.sent_at ||= first_submitter.sent_at
+      end
+
+      submission
     end
 
     def maybe_set_dynamic_documents(submission)
@@ -148,7 +178,8 @@ module Submissions
       submissions.each do |submission|
         next unless submission.expire_at?
 
-        ProcessSubmissionExpiredJob.perform_at(submission.expire_at, 'submission_id' => submission.id)
+        ProcessSubmissionExpiredJob.perform_at(submission.expire_at, 'submission_id' => submission.id,
+                                                                     'expire_at' => submission.expire_at.to_i)
       end
     end
 

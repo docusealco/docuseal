@@ -178,7 +178,7 @@
                   <%= (@submission.template_submitters || @submission.template.submitters).find { |e| e['uuid'] == submitter&.uuid }&.dig('name') || "#{(index + 1).ordinalize} Submitter" %>
                 </span>
               </div>
-              <% if signed_in? && can?(:update, @submission) && submitter && !submitter.completed_at? && !submitter.declined_at? && !@submission.archived_at? && !@submission.template&.archived_at? && !@submission.expired? && !submitter.start_form_submission_events.any? %>
+              <% if signed_in? && can?(:update, @submission) && submitter && !submitter.completed_at? && !@submission.completed_at? && !submitter.declined_at? && !@submission.archived_at? && !@submission.template&.archived_at? && !@submission.expired? && !submitter.start_form_submission_events.any? %>
                 <span class="tooltip tooltip-left" data-tip="<%= t('edit') %>">
                   <%= link_to edit_submitter_path(submitter), class: 'shrink-0 inline md:hidden md:group-hover:inline', data: { turbo_frame: 'modal' } do %>
                     <%= svg_icon('pencil', class: 'w-5 h-5') %>
@@ -211,7 +211,11 @@
               </div>
             <% end %>
             <div class="flex items-center space-x-1 mt-1">
-              <% if @submission.expire_at? && submitter && !submitter.completed_at? %>
+              <% if submitter&.viewer? %>
+                <%= svg_icon(submitter.opened_at? ? 'file_check' : 'file_unknown', class: 'w-5 h-5') %>
+              <% elsif submitter && !submitter.completed_at? && @submission.completed_at? %>
+                <%= svg_icon('writing_off', class: 'w-5 h-5') %>
+              <% elsif @submission.expire_at? && submitter && !submitter.completed_at? %>
                 <%= svg_icon('clock_exclamation', class: 'w-5 h-5') %>
               <% else %>
                 <%= svg_icon('writing', class: 'w-5 h-5') %>
@@ -219,9 +223,19 @@
               <span>
                 <% if submitter&.declined_at? %>
                   <%= t('declined_on_time', time: l(submitter.declined_at.in_time_zone(@submission.account.timezone), format: :short, locale: @submission.account.locale)) %>
+                <% elsif submitter&.viewer? %>
+                  <% if submitter.opened_at? %>
+                    <%= t('viewed_on_time', time: l(submitter.opened_at.in_time_zone(@submission.account.timezone), format: :short, locale: @submission.account.locale)) %>
+                  <% elsif @submission.completed_at? %>
+                    <%= t('not_viewed') %>
+                  <% else %>
+                    <%= t('not_viewed_yet') %>
+                  <% end %>
                 <% elsif submitter %>
                   <% if submitter.completed_at? %>
                     <%= l(submitter.completed_at.in_time_zone(@submission.account.timezone), format: :long, locale: @submission.account.locale) %>
+                  <% elsif @submission.completed_at? %>
+                    <%= t('not_completed') %>
                   <% elsif @submission.expire_at? %>
                     <% if @submission.expired? %>
                       <%= t(:expired) %>
@@ -244,15 +258,15 @@
                 </span>
               </div>
             <% end %>
-            <% if signed_in? && submitter && submitter.email && !submitter.completed_at && !@submission.archived_at? && !@submission.template&.archived_at? && can?(:update, @submission) && (Docuseal.multitenant? || Accounts.can_send_emails?(current_account)) && !@submission.expired? && !submitter.declined_at? %>
+            <% if signed_in? && submitter && submitter.email && !submitter.completed_at && !@submission.completed_at? && !@submission.archived_at? && !@submission.template&.archived_at? && can?(:update, @submission) && (Docuseal.multitenant? || Accounts.can_send_emails?(current_account)) && !@submission.expired? && !submitter.declined_at? %>
               <div class="mt-2 mb-1">
                 <%= button_to button_title(title: submitter.sent_at? ? t('re_send_email') : t('send_email'), disabled_with: t('sending')), submitter_send_email_index_path(submitter), class: 'btn btn-sm btn-primary w-full' %>
               </div>
             <% end %>
-            <% if signed_in? && submitter && submitter.phone && !submitter.completed_at && !@submission.archived_at? && !@submission.template&.archived_at? && can?(:update, @submission) && !@submission.expired? && !submitter.declined_at? %>
+            <% if signed_in? && submitter && submitter.phone && !submitter.completed_at && !@submission.completed_at? && !@submission.archived_at? && !@submission.template&.archived_at? && can?(:update, @submission) && !@submission.expired? && !submitter.declined_at? %>
               <%= render 'submissions/send_sms_button', submitter: %>
             <% end %>
-            <% if signed_in? && submitter && !submitter.completed_at? && !@submission.archived_at? && !@submission.template&.archived_at? && can?(:create, @submission) && !@submission.expired? && !submitter.declined_at? %>
+            <% if signed_in? && submitter && !submitter.viewer? && !submitter.completed_at? && !@submission.completed_at? && !@submission.archived_at? && !@submission.template&.archived_at? && can?(:create, @submission) && !@submission.expired? && !submitter.declined_at? %>
               <div class="mt-2 mb-1">
                 <a class="btn btn-sm btn-primary w-full" target="_blank" href="<%= submit_form_path(slug: submitter.slug) %>">
                   <%= t('sign_in_person') %>

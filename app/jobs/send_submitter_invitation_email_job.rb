@@ -19,7 +19,12 @@ class SendSubmitterInvitationEmailJob
       return
     end
 
-    mail = SubmitterMailer.invitation_email(submitter)
+    mail =
+      if submitter.viewer?
+        SubmitterMailer.invitation_view_email(submitter)
+      else
+        SubmitterMailer.invitation_email(submitter)
+      end
 
     Submitters::ValidateSending.call(submitter, mail)
 
