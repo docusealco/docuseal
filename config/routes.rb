@@ -189,7 +189,7 @@ Rails.application.routes.draw do
       resources :api, only: %i[index create], controller: 'api_settings'
       resource :reveal_access_token, only: %i[show create], controller: 'reveal_access_token'
     end
-    resources :email, only: %i[index create], controller: 'email_smtp_settings'
+    resources :email, only: %i[index create destroy], controller: 'email_smtp_settings'
     resources :sso, only: %i[index], controller: 'sso_settings'
     resources :notifications, only: %i[index create], controller: 'notifications_settings'
     resource :esign, only: %i[show create new update destroy], controller: 'esign_settings'

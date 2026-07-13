@@ -57,6 +57,11 @@
         <%= f.button button_title(title: t('save'), disabled_with: t('saving')), class: 'base-button' %>
       </div>
     <% end %>
+    <% if Docuseal.multitenant? && @encrypted_config.persisted? %>
+      <div class="flex justify-center pt-2">
+        <%= button_to t('reset_default'), settings_email_path(@encrypted_config), method: :delete, class: 'link', data: { turbo_confirm: t('are_you_sure_') } %>
+      </div>
+    <% end %>
   </div>
   <div class="w-0 md:w-52"></div>
 </div>
