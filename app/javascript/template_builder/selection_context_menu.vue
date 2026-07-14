@@ -9,6 +9,62 @@
       @mousedown.stop
       @pointerdown.stop
     >
+      <label
+        v-if="requiredFields.length"
+        class="field-settings-required w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center space-x-2 text-sm cursor-pointer"
+        @click.stop
+      >
+        <input
+          :checked="isAllRequired"
+          :indeterminate="isMixedRequired"
+          type="checkbox"
+          class="toggle toggle-xs"
+          :disabled="!editable"
+          @change="handleToggleRequired($event.target.checked)"
+          @click.stop
+        >
+        <span>{{ t('required') }}</span>
+      </label>
+      <label
+        v-if="readOnlyFields.length"
+        class="field-settings-read-only w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center space-x-2 text-sm cursor-pointer"
+        @click.stop
+      >
+        <input
+          :checked="isAllReadOnly"
+          :indeterminate="isMixedReadOnly"
+          type="checkbox"
+          class="toggle toggle-xs"
+          :disabled="!editable"
+          @change="handleToggleReadOnly($event.target.checked)"
+          @click.stop
+        >
+        <span>{{ t('read_only') }}</span>
+      </label>
+      <hr
+        v-if="requiredFields.length || readOnlyFields.length"
+        class="my-1 border-neutral-200"
+      >
+      <button
+        v-if="showFont"
+        class="w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center space-x-2 text-sm"
+        @click.stop="openFontModal"
+      >
+        <IconTypography class="w-4 h-4" />
+        <span>{{ t('font') }}</span>
+      </button>
+      <button
+        v-if="showCondition"
+        class="w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center space-x-2 text-sm"
+        @click.stop="openConditionModal"
+      >
+        <IconRouteAltLeft class="w-4 h-4" />
+        <span>{{ t('condition') }}</span>
+      </button>
+      <hr
+        v-if="showFont || showCondition"
+        class="my-1 border-neutral-200"
+      >
       <ContextSubmenu
         :icon="IconLayoutAlignMiddle"
         :label="t('align')"
@@ -61,26 +117,6 @@
           <span>{{ t('height') }}</span>
         </button>
       </ContextSubmenu>
-      <hr
-        v-if="showFont || showCondition"
-        class="my-1 border-neutral-200"
-      >
-      <button
-        v-if="showFont"
-        class="w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center space-x-2 text-sm"
-        @click.stop="openFontModal"
-      >
-        <IconTypography class="w-4 h-4" />
-        <span>{{ t('font') }}</span>
-      </button>
-      <button
-        v-if="showCondition"
-        class="w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center space-x-2 text-sm"
-        @click.stop="openConditionModal"
-      >
-        <IconRouteAltLeft class="w-4 h-4" />
-        <span>{{ t('condition') }}</span>
-      </button>
       <hr class="my-1 border-neutral-200">
       <button
         class="w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center justify-between text-sm"
@@ -192,6 +228,24 @@ export default {
         return this.template.fields.find((f) => f.areas?.includes(area))
       }).filter(Boolean)
     },
+    requiredFields () {
+      return this.selectedFields.filter((f) => !['phone', 'stamp', 'verification', 'strikethrough', 'heading'].includes(f.type))
+    },
+    readOnlyFields () {
+      return this.selectedFields.filter((f) => ['text', 'number', 'radio', 'multiple', 'select'].includes(f.type))
+    },
+    isAllRequired () {
+      return this.requiredFields.every((f) => f.required)
+    },
+    isMixedRequired () {
+      return !this.isAllRequired && this.requiredFields.some((f) => f.required)
+    },
+    isAllReadOnly () {
+      return this.readOnlyFields.every((f) => f.readonly)
+    },
+    isMixedReadOnly () {
+      return !this.isAllReadOnly && this.readOnlyFields.some((f) => f.readonly)
+    },
     isMac () {
       return (navigator.userAgentData?.platform || navigator.platform)?.toLowerCase()?.includes('mac')
     },
@@ -233,6 +287,16 @@ export default {
           this.contextMenu.y = this.contextMenu.y - overflow - 4
         }
       }
+    },
+    handleToggleRequired (value) {
+      this.requiredFields.forEach((field) => { field.required = value })
+
+      this.save()
+    },
+    handleToggleReadOnly (value) {
+      this.readOnlyFields.forEach((field) => { field.readonly = value })
+
+      this.save()
     },
     onKeyDown (event) {
       if (event.key === 'Escape') {

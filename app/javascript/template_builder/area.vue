@@ -319,7 +319,7 @@ export default {
       default: false
     }
   },
-  emits: ['start-resize', 'stop-resize', 'start-drag', 'stop-drag', 'remove', 'scroll-to', 'add-custom-field', 'click-title'],
+  emits: ['start-resize', 'stop-resize', 'start-drag', 'stop-drag', 'remove', 'scroll-to', 'add-custom-field', 'click-title', 'multi-select'],
   data () {
     return {
       isContenteditable: false,
@@ -797,6 +797,8 @@ export default {
         } else {
           this.selectedAreasRef.value.splice(this.selectedAreasRef.value.indexOf(this.area), 1)
         }
+
+        this.$emit('multi-select', e)
 
         return
       }
