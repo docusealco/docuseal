@@ -5,6 +5,10 @@
   <div>
     <%== RQRCode::QRCode.new(@provision_url).as_svg(viewbox: true, svg_attributes: { class: 'md:w-80 md:h-80 my-4 mx-auto' }) %>
   </div>
+  <div class="text-center my-2">
+    <p class="text-sm text-base-content/70"><%= t('or_enter_this_key_manually') %>:</p>
+    <code class="font-mono text-sm select-all bg-base-200 px-2 py-1 rounded break-all"><%= current_user.otp_secret %></code>
+  </div>
   <div class="form-control my-6 space-y-2">
     <%= f.text_field :otp_attempt, required: true, placeholder: 'XXX-XXX', class: 'base-input text-center' %>
     <span>
