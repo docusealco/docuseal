@@ -18,7 +18,8 @@ module Submissions
                                                                AccountConfig::WITH_TIMESTAMP_SECONDS_KEY,
                                                                AccountConfig::ROTATE_INCREMENTAL_PDF_KEY,
                                                                AccountConfig::WITH_FILE_LINKS_KEY,
-                                                               AccountConfig::WITH_SIGNATURE_ID_REASON_KEY])
+                                                               AccountConfig::WITH_SIGNATURE_ID_REASON_KEY,
+                                                               AccountConfig::WITH_SIGNATURE_ID_COMPLETED_AT_KEY])
 
       with_signature_id = configs.find { |c| c.key == AccountConfig::WITH_SIGNATURE_ID }&.value == true
       with_file_links = configs.find { |c| c.key == AccountConfig::WITH_FILE_LINKS_KEY }&.value == true
@@ -28,6 +29,8 @@ module Submissions
       with_timestamp_seconds = configs.find { |c| c.key == AccountConfig::WITH_TIMESTAMP_SECONDS_KEY }&.value == true
       with_signature_id_reason =
         configs.find { |c| c.key == AccountConfig::WITH_SIGNATURE_ID_REASON_KEY }&.value != false
+      with_signature_id_completed_at =
+        configs.find { |c| c.key == AccountConfig::WITH_SIGNATURE_ID_COMPLETED_AT_KEY }&.value == true
 
       file_links_expire_at = Accounts.link_expires_at(submission.account) if with_file_links
 
@@ -45,7 +48,7 @@ module Submissions
                                                         with_signature_id:, is_flatten:, with_headings: index.zero?,
                                                         with_submitter_timezone:, with_file_links:,
                                                         file_links_expire_at:, with_signature_id_reason:,
-                                                        with_timestamp_seconds:)
+                                                        with_timestamp_seconds:, with_signature_id_completed_at:)
       end
 
       template = submission.template
