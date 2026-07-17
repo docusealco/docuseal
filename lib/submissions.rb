@@ -157,29 +157,38 @@ module Submissions
     submissions.each_with_index do |submission, index|
       delay_seconds = (delay + index).seconds if delay
 
-      template_submitters = submission.template_submitters
       submitters_index = submission.submitters.reject(&:completed_at?).index_by(&:uuid)
 
-      if template_submitters.any? { |s| s['order'] }
-        min_order = template_submitters.map.with_index { |s, i| s['order'] || i }.min
-
-        first_submitters = template_submitters.filter_map do |s|
-          submitters_index[s['uuid']] if s['order'] == min_order
-        end
+      if submission.template_submitters.any? { |s| s['order'] }
+        first_submitters = find_first_order_submitters(submission, submitters_index)
 
         Submitters.send_signature_requests(first_submitters, delay_seconds:)
       elsif submission.submitters_order_preserved?
-        first_submitter = template_submitters.filter_map { |s| submitters_index[s['uuid']] }.find { |s| !s.viewer? }
+        first_submitter = find_first_submitter(submission, submitters_index)
 
         if first_submitter
           first_viewers = find_first_viewers(first_submitter, submitters_index)
 
           Submitters.send_signature_requests([first_submitter, *first_viewers], delay_seconds:)
+        elsif submission.submitters.all?(&:viewer?)
+          Submitters.send_signature_requests(submitters_index.values, delay_seconds:)
         end
       else
         Submitters.send_signature_requests(submitters_index.values, delay_seconds:)
       end
     end
+  end
+
+  def find_first_order_submitters(submission, submitters_index)
+    template_submitters = submission.template_submitters
+
+    min_order = template_submitters.map.with_index { |s, i| s['order'] || i }.min
+
+    template_submitters.filter_map { |s| submitters_index[s['uuid']] if s['order'] == min_order }
+  end
+
+  def find_first_submitter(submission, submitters_index)
+    submission.template_submitters.filter_map { |s| submitters_index[s['uuid']] }.find { |s| !s.viewer? }
   end
 
   def find_first_viewers(first_submitter, submitters_index)
