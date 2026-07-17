@@ -5,7 +5,7 @@
   <% viewer_template_email_preferences_values = @template.preferences.values_at('invitation_view_email_subject', 'invitation_view_email_body').compact_blank.presence %>
   <% field_submitter_uuids = Set.new(@template.fields.pluck('submitter_uuid')) %>
   <% is_custom_template_email = template_email_preferences_values.present? %>
-  <% multiple_submitters = @template.submitters.size > 1 && @template.submitters.size < 5 %>
+  <% multiple_submitters = @template.submitters.size > 1 && @template.submitters.size < 11 %>
   <% if is_custom_template_email || @template.preferences['submitters'].to_a.any? %>
     <%= button_to nil, template_preferences_path(@template), id: 'submitter_invitation_email_reset_link', method: :delete, class: 'hidden', params: { config_key: AccountConfig::SUBMITTER_INVITATION_EMAIL_KEY }, data: { turbo_confirm: t('are_you_sure_') }, form: { data: { close_on_submit: false } } %>
   <% end %>
@@ -39,11 +39,13 @@
       <div class="hidden peer-checked:block">
         <% options = @template.submitters.map { |e| [e['name'], "request_email_#{e['uuid']}"] } %>
         <toggle-visible data-element-ids="<%= options.map(&:last).to_json %>" class="flex relative px-1">
-          <ul class="tabs w-full flex flex-nowrap mb-2">
+          <ul class="tabs w-full min-w-0 flex flex-nowrap mb-2">
             <% options.each_with_index do |(label, val), index| %>
-              <div class="w-full">
+              <div class="w-full min-w-0 has-[:checked]:min-w-fit">
                 <%= f.radio_button :selected, val, checked: index.zero?, id: "#{val}_radio", data: { action: 'click:toggle-visible#trigger' }, class: 'hidden peer' %>
-                <%= f.label :selected, label, value: val, for: "#{val}_radio", class: 'tab w-full tab-lifted peer-checked:tab-active' %>
+                <%= f.label :selected, value: val, for: "#{val}_radio", class: 'tab w-full tab-lifted peer-checked:tab-active !px-2' do %>
+                  <span class="truncate" title="<%= label %>"><%= label %></span>
+                <% end %>
               </div>
             <% end %>
           </ul>

@@ -47,7 +47,7 @@
 <% is_edit_viewer = local_assigns[:submitter] && local_assigns[:viewer_submitter_uuids].include?(local_assigns[:submitter].uuid) %>
 <div id="<%= message_field_id %>" class="card card-compact bg-base-300/40 hidden">
   <div class="card-body">
-    <%= tag.input id: toggle_uuid = SecureRandom.uuid, value: '1', name: 'request_email_per_submitter', class: 'peer', type: 'checkbox', hidden: true, checked: local_assigns[:message_per_submitter] != false && template_submitters.size < 5 && template&.preferences&.dig('submitters').to_a.size > 1 %>
+    <%= tag.input id: toggle_uuid = SecureRandom.uuid, value: '1', name: 'request_email_per_submitter', class: 'peer', type: 'checkbox', hidden: true, checked: local_assigns[:message_per_submitter] != false && template_submitters.size < 11 && template&.preferences&.dig('submitters').to_a.size > 1 %>
     <% if local_assigns[:viewer_submitter_uuids].present? && local_assigns[:submitter].blank? %>
       <% (template_submitters.pluck('uuid') - local_assigns[:viewer_submitter_uuids].to_a).each do |signer_uuid| %>
         <%= hidden_field_tag 'email_message_submitter_uuids[]', signer_uuid %>
@@ -57,7 +57,7 @@
       <div class="form-control">
         <div class="flex justify-between">
           <%= f.label :subject, t('subject'), class: 'label' %>
-          <% if template_submitters.size > 1 && template_submitters.size < 5 && local_assigns[:message_per_submitter] != false %>
+          <% if template_submitters.size > 1 && template_submitters.size < 11 && local_assigns[:message_per_submitter] != false %>
             <label for="<%= toggle_uuid %>" class="label underline">
               <%= t('edit_per_party') %>
             </label>
@@ -78,16 +78,18 @@
       </div>
       <%= render 'submissions/message_fields' %>
     </div>
-    <% if template_submitters.size > 1 && template_submitters.size < 5 && local_assigns[:message_per_submitter] != false %>
+    <% if template_submitters.size > 1 && template_submitters.size < 11 && local_assigns[:message_per_submitter] != false %>
       <div class="hidden peer-checked:block form-control space-y-2">
         <% uuid = SecureRandom.uuid %>
         <% options = template_submitters.map { |e| [e['name'], "request_email_#{uuid}_#{e['uuid']}"] } %>
         <toggle-visible data-element-ids="<%= options.map(&:last).to_json %>" class="flex relative px-1">
-          <ul class="tabs w-full flex flex-nowrap">
+          <ul class="tabs w-full min-w-0 flex flex-nowrap">
             <% options.each_with_index do |(label, val), index| %>
-              <div class="w-full">
+              <div class="w-full min-w-0 has-[:checked]:min-w-fit">
                 <%= f.radio_button :selected, val, checked: index.zero?, id: "#{val}_radio", data: { action: 'click:toggle-visible#trigger' }, class: 'hidden peer' %>
-                <%= f.label :selected, label, value: val, for: "#{val}_radio", class: 'tab w-full tab-lifted peer-checked:tab-active !bg-transparent' %>
+                <%= f.label :selected, value: val, for: "#{val}_radio", class: 'tab w-full tab-lifted peer-checked:tab-active !bg-transparent !px-2' do %>
+                  <span class="truncate" title="<%= label %>"><%= label %></span>
+                <% end %>
               </div>
             <% end %>
           </ul>
