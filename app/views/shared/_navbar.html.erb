@@ -75,7 +75,7 @@
               <%= svg_icon('logout', class: 'w-5 h-5 flex-shrink-0 stroke-2 inline') %>
               <span class="whitespace-nowrap"><%= t('sign_out') %></span>
             </button>
-            <%= button_to '', destroy_user_session_path, method: :delete, data: { turbo: false }, form: { id: 'destroy_user_session_form' }, form_class: 'hidden' %>
+            <%= button_to '', destroy_user_session_path, method: :delete, form: { id: 'destroy_user_session_form', data: { turbo: false } }, form_class: 'hidden' %>
           </li>
         </ul>
       </div>
