@@ -213,9 +213,9 @@ module Submitters
   def build_document_filename(submitter, blob, filename_format)
     return blob.filename.to_s if filename_format.blank?
 
-    filename = ReplaceEmailVariables.call(filename_format, submitter:)
+    filename = filename_format.gsub('{document.name}', blob.filename.base)
+    filename = ReplaceEmailVariables.call(filename, submitter:)
 
-    filename = filename.gsub('{document.name}', blob.filename.base)
     filename = filename.gsub(' - {submission.status}') do
       if submitter.submission.completed_at?
         status =

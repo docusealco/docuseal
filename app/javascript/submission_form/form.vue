@@ -1575,6 +1575,7 @@ export default {
       }
     },
     goToStep (stepIndex, scrollToArea = false, clickUpload = false) {
+      this.isInvite = false
       this.currentStep = stepIndex
       this.showFillAllRequiredFields = false
 
@@ -1599,6 +1600,10 @@ export default {
       })
     },
     saveStep (formData) {
+      if (!formData && !this.$refs.form) {
+        return
+      }
+
       const currentFieldUuids = this.currentStepFields.map((f) => f.uuid)
       const currentFieldType = this.currentField.type
 

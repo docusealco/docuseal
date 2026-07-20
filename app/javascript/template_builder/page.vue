@@ -57,6 +57,7 @@
         @scroll-to="$emit('scroll-to', $event)"
         @add-custom-field="$emit('add-custom-field', $event)"
         @contextmenu="openAreaContextMenu($event, item.area, item.field)"
+        @multi-select="openMultiSelectContextMenu"
         @click-title="closeContextMenu"
       />
       <FieldArea
@@ -408,6 +409,12 @@ export default {
         return
       }
 
+      if (this.selectedAreasRef.value.length >= 2) {
+        this.openSelectionContextMenu(event)
+
+        return
+      }
+
       event.preventDefault()
       event.stopPropagation()
 
@@ -441,6 +448,13 @@ export default {
         relativeX: (event.clientX - rect.left) / rect.width,
         relativeY: (event.clientY - rect.top) / rect.height,
         areas: this.selectedAreasRef.value
+      }
+    },
+    openMultiSelectContextMenu (event) {
+      if (this.selectedAreasRef.value.length >= 2) {
+        this.openSelectionContextMenu(event)
+      } else {
+        this.closeContextMenu()
       }
     },
     handleSelectionCopy () {

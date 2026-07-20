@@ -29,7 +29,8 @@
           <div>
             <% timezone = local_assigns[:with_submitter_timezone] ? (submitter.timezone || local_assigns[:timezone]) : local_assigns[:timezone] %>
             <% time_format = local_assigns[:with_timestamp_seconds] ? :detailed : :long %>
-            <%= l(attachment.created_at.in_time_zone(timezone), format: time_format, locale: local_assigns[:locale]) %> <%= TimeUtils.timezone_abbr(timezone, attachment.created_at) %>
+            <% signature_timestamp = (local_assigns[:with_signature_id_completed_at] ? submitter.completed_at : nil) || attachment.created_at %>
+            <%= l(signature_timestamp.in_time_zone(timezone), format: time_format, locale: local_assigns[:locale]) %> <%= TimeUtils.timezone_abbr(timezone, signature_timestamp) %>
           </div>
         </div>
       <% end %>

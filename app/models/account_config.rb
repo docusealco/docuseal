@@ -48,6 +48,7 @@ class AccountConfig < ApplicationRecord
   WITH_SIGNATURE_ID = 'with_signature_id'
   WITH_FILE_LINKS_KEY = 'with_file_links'
   WITH_SIGNATURE_ID_REASON_KEY = 'with_signature_id_reason'
+  WITH_SIGNATURE_ID_COMPLETED_AT_KEY = 'with_signature_id_completed_at'
   RECIPIENT_FORM_FIELDS_KEY = 'recipient_form_fields'
   WITH_AUDIT_VALUES_KEY = 'with_audit_values'
   WITH_AUDIT_SENDER_KEY = 'with_audit_sender'
@@ -59,6 +60,7 @@ class AccountConfig < ApplicationRecord
   COMBINE_PDF_RESULT_KEY = 'combine_pdf_result_key'
   DOCUMENT_FILENAME_FORMAT_KEY = 'document_filename_format'
   TEMPLATE_CUSTOM_FIELDS_KEY = 'template_custom_fields'
+  TEMPLATE_DATE_FORMATS_KEY = 'template_date_formats'
   POLICY_LINKS_KEY = 'policy_links'
   ENABLE_MCP_KEY = 'enable_mcp'
 

@@ -4,9 +4,9 @@ module Templates
   module SerializeForApi
     SERIALIZE_PARAMS = {
       only: %w[
-        id archived_at fields name preferences schema
-        slug source submitters created_at updated_at
-        author_id external_id folder_id shared_link
+        id name slug schema submitters fields variables_schema
+        preferences source created_at updated_at archived_at author_id
+        external_id folder_id shared_link
       ],
       methods: %i[application_key folder_name],
       include: { author: { only: %i[id email first_name last_name] } }
@@ -22,7 +22,16 @@ module Templates
 
       preview_image_attachments ||= preload_preview_image_attachments(schema_documents, dynamic_documents)
 
-      json['documents'] = template.schema.filter_map do |item|
+      json['variables_schema'] ||= {}
+
+      json['documents'] = build_documents_array(template, schema_documents, dynamic_documents,
+                                                preview_image_attachments, expires_at)
+
+      json
+    end
+
+    def build_documents_array(template, schema_documents, dynamic_documents, preview_image_attachments, expires_at)
+      template.schema.filter_map do |item|
         if item['dynamic']
           dynamic_document = dynamic_documents.find { |e| e.uuid == item['attachment_uuid'] }
 
@@ -44,8 +53,6 @@ module Templates
           'filename' => attachment.filename
         }
       end
-
-      json
     end
 
     def preload_dynamic_documents(template)
