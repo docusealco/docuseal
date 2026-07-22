@@ -9,7 +9,7 @@
           <%= t('submissions') %>
         </h2>
       </div>
-      <div class="flex justify-end space-x-2">
+      <div class="flex justify-end space-x-2 max-md:focus-within:grow <%= 'max-md:grow' if params[:q].present? %>">
         <% if params[:q].present? || params[:status].present? || filter_params.present? || @pagy.pages > 1 %>
           <%= render 'shared/search_input', title_selector: 'h2' %>
         <% end %>

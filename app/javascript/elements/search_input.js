@@ -2,15 +2,14 @@ export default class extends HTMLElement {
   connectedCallback () {
     this.input.addEventListener('focus', () => {
       if (this.title) {
-        this.title.classList.add('hidden', 'md:block')
-        this.input.classList.add('w-60')
+        this.titleContainer.classList.add('max-md:hidden')
       }
     })
 
     this.input.addEventListener('blur', (e) => {
       if (this.title && !e.target.value) {
         this.title.classList.remove('hidden')
-        this.input.classList.remove('w-60')
+        this.titleContainer.classList.remove('max-md:hidden')
       }
     })
 
@@ -21,6 +20,20 @@ export default class extends HTMLElement {
         this.input.focus()
       }
     })
+
+    document.addEventListener('turbo:before-cache', this.onBeforeCache)
+  }
+
+  disconnectedCallback () {
+    document.removeEventListener('turbo:before-cache', this.onBeforeCache)
+  }
+
+  onBeforeCache = () => {
+    this.input.value = this.input.getAttribute('value') || ''
+
+    if (this.title) {
+      this.titleContainer.classList.remove('max-md:hidden')
+    }
   }
 
   get input () {
@@ -29,6 +42,16 @@ export default class extends HTMLElement {
 
   get title () {
     return document.querySelector(this.dataset.title)
+  }
+
+  get titleContainer () {
+    const parent = this.title.parentElement
+
+    if (parent && !parent.contains(this)) {
+      return parent
+    }
+
+    return this.title
   }
 
   get button () {

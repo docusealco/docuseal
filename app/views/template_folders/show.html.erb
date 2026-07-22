@@ -29,7 +29,7 @@
         </span>
       <% end %>
     </h1>
-    <div class="flex space-x-2">
+    <div class="flex space-x-2 max-md:focus-within:grow <%= 'max-md:grow' if params[:q].present? %>">
       <% if params[:q].present? || @pagy.count.nil? || @pagy.count > 0 || @template_folders.present? %>
         <%= render 'shared/search_input' %>
       <% end %>

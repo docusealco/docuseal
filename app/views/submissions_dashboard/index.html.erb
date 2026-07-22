@@ -2,7 +2,7 @@
 <% is_show_tabs = (@pagy.count.nil? || @pagy.count >= 5) || params[:status].present? || filter_params.present? %>
 <% if Docuseal.demo? %><%= render 'shared/demo_alert' %><% end %>
 <div class="flex justify-between items-center w-full mb-4">
-  <div class="flex items-center flex-grow min-w-0">
+  <div class="flex items-center flex-grow min-w-0 <%= 'max-md:hidden' if params[:q].present? %>">
     <div class="mr-2">
       <%= render 'dashboard/toggle_view', selected: 'submissions' %>
     </div>
@@ -10,7 +10,7 @@
       <%= t('submissions') %>
     </h1>
   </div>
-  <div class="flex space-x-2">
+  <div class="flex space-x-2 max-md:focus-within:grow <%= 'max-md:grow' if params[:q].present? %>">
     <% if params[:q].present? || @pagy.pages > 1 || filter_params.present? %>
       <%= render 'shared/search_input' %>
     <% end %>
