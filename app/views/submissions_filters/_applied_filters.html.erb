@@ -11,7 +11,7 @@
   </div>
 <% end %>
 <% if params[:folder].present? %>
-  <div class="tooltip tooltip-bottom flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-36 border-neutral-700" data-tip="<%= t('folder') %>">
+  <div class="tooltip tooltip-no-touch tooltip-bottom flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-36 border-neutral-700" data-tip="<%= t('folder') %>">
     <%= link_to submissions_filter_path('folder', query_params.merge(path: url_for, with_remove: true)), data: { turbo_frame: 'modal' }, class: 'flex items-center space-x-1 flex-1 min-w-0 pr-1' do %>
       <%= svg_icon('folder', class: 'w-5 h-5 shrink-0') %>
       <span class="font-normal truncate"><%= params[:folder] %></span>
@@ -22,7 +22,7 @@
   </div>
 <% end %>
 <% if params[:author].present? %>
-  <div class="tooltip tooltip-bottom flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-36 border-neutral-700" data-tip="<%= t('author') %>">
+  <div class="tooltip tooltip-no-touch tooltip-bottom flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-36 border-neutral-700" data-tip="<%= t('author') %>">
     <%= link_to submissions_filter_path('author', query_params.merge(path: url_for, with_remove: true)), data: { turbo_frame: 'modal' }, class: 'flex items-center space-x-1 flex-1 min-w-0 pr-1' do %>
       <%= svg_icon('user', class: 'w-5 h-5 shrink-0') %>
       <span class="font-normal truncate"><%= current_account.users.accessible_by(current_ability).where(account: current_account).find_by(email: params[:author])&.full_name || 'NA' %></span>
@@ -33,7 +33,7 @@
   </div>
 <% end %>
 <% if query_params[:completed_at_from].present? || query_params[:completed_at_to].present? %>
-  <div class="tooltip tooltip-bottom flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-36 border-neutral-700" data-tip="<%= t('completed_at') %>">
+  <div class="tooltip tooltip-no-touch tooltip-bottom flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-36 border-neutral-700" data-tip="<%= t('completed_at') %>">
     <%= link_to submissions_filter_path('completed_at', query_params.merge(path: url_for, with_remove: true)), data: { turbo_frame: 'modal' }, class: 'flex items-center space-x-1 flex-1 min-w-0 pr-1' do %>
       <%= svg_icon('calendar_check', class: 'w-5 h-5 shrink-0') %>
       <span class="flex flex-row md:flex-col font-normal text-left md:text-center md:text-xs">
@@ -52,7 +52,7 @@
   </div>
 <% end %>
 <% if query_params[:created_at_from].present? || query_params[:created_at_to].present? %>
-  <div class="tooltip tooltip-bottom flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-36 border-neutral-700" data-tip="<%= t('created_at') %>">
+  <div class="tooltip tooltip-no-touch tooltip-bottom flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-36 border-neutral-700" data-tip="<%= t('created_at') %>">
     <%= link_to submissions_filter_path('created_at', query_params.merge(path: url_for, with_remove: true)), data: { turbo_frame: 'modal' }, class: 'flex items-center space-x-1 flex-1 min-w-0 pr-1' do %>
       <%= svg_icon('calendar', class: 'w-5 h-5 shrink-0') %>
       <span class="flex flex-row md:flex-col font-normal text-left md:text-center md:text-xs">
