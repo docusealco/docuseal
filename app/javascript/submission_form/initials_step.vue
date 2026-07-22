@@ -169,7 +169,7 @@
       class="base-input !text-2xl w-full mt-6 text-center"
       :required="field.required && !isInitialsStarted"
       :aria-label="field.name || t('initials')"
-      :placeholder="`${t('type_initial_here')}...`"
+      :placeholder="`${t('type_initial_here')}${field.required ? '...' : ' (' + t('optional') + ')'}`"
       type="text"
       @focus="$emit('focus')"
       @input="updateWrittenInitials"
@@ -293,7 +293,7 @@ export default {
 
             if (!this.isDrawInitials) {
               this.$nextTick(() => {
-                if (this.$refs.textInput) {
+                if (this.$refs.textInput && this.field.required === true) {
                   this.initTextInitial()
                 }
               })

@@ -247,7 +247,7 @@
       class="base-input !text-2xl w-full mt-6"
       :required="field.required && !isSignatureStarted"
       :aria-label="field.name || t('signature')"
-      :placeholder="`${t('type_signature_here')}...`"
+      :placeholder="`${t('type_signature_here')}${field.required ? '...' : ' (' + t('optional') + ')'}`"
       type="text"
       @input="updateWrittenSignature"
     >
@@ -535,7 +535,7 @@ export default {
               this.$nextTick(() => this.drawSignatureSrc())
             } else if (this.isTextSignature) {
               this.$nextTick(() => {
-                if (this.$refs.textInput) {
+                if (this.$refs.textInput && this.field.required === true) {
                   this.initTypedSignature()
                 }
               })
