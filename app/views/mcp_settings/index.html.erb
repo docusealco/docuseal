@@ -98,7 +98,7 @@
         <div class="flex items-center gap-4 py-2.5">
           <div class="flex items-center space-x-1">
             <span class="text-left"><%= t('enable_mcp_server') %></span>
-            <span class="tooltip tooltip-top flex cursor-pointer" data-tip="<%= t('all_existing_mcp_connections_will_be_stopped_immediately_when_this_setting_is_disabled') %>">
+            <span class="tooltip tooltip-top hidden md:flex cursor-pointer" data-tip="<%= t('all_existing_mcp_connections_will_be_stopped_immediately_when_this_setting_is_disabled') %>">
               <%= svg_icon('info_circle', class: 'hidden md:inline-block w-4 h-4 shrink-0') %>
             </span>
           </div>
