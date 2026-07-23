@@ -4,15 +4,15 @@
     <span style="margin-left: 3px"><%= @is_archived ? t('back_to_active') : t('home') %></span>
   <% end %>
 </div>
-<div class="relative flex justify-between items-center w-full mb-4">
-  <h1 class="text-2xl truncate md:text-3xl font-bold flex items-center flex-grow min-w-0 space-x-2 md:flex <%= 'hidden' if params[:q].present? %>">
+<div class="group/header relative flex justify-between items-center w-full mb-4">
+  <h1 class="text-2xl truncate md:text-3xl font-bold flex items-center flex-grow min-w-0 space-x-2 md:flex max-md:group-has-[search-input:focus-within]/header:hidden <%= 'hidden' if params[:q].present? %>">
     <%= svg_icon('folder', class: 'w-9 h-9 flex-shrink-0') %>
     <span class="truncate capitalize"><%= t('shared') %></span>
     <% if @is_archived %>
       <span class="badge badge-outline badge-lg align-middle"><%= t('archived') %></span>
     <% end %>
   </h1>
-  <div class="flex space-x-2 max-md:focus-within:grow <%= 'max-md:grow' if params[:q].present? %>">
+  <div class="flex space-x-2 max-md:has-[search-input:focus-within]:grow <%= 'max-md:grow' if params[:q].present? %>">
     <% if params[:q].present? || @pagy.count.nil? || @pagy.count > 1 %>
       <%= render 'shared/search_input' %>
     <% end %>

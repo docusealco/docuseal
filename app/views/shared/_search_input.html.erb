@@ -14,7 +14,7 @@
       </a>
     </div>
   <% end %>
-  <search-input data-title="<%= local_assigns[:title_selector] || 'h1' %>" class="group flex items-center max-md:focus-within:flex-1 <%= 'max-md:flex-1' if params[:q].present? %>">
+  <search-input class="group flex items-center max-md:focus-within:flex-1 <%= 'max-md:flex-1' if params[:q].present? %>">
     <input id="search" name="q" value="<%= params[:q] %>" enterkeyhint="search" class="input text-lg pr-10 -mr-12 w-0 md:w-60 max-md:group-focus-within:w-full <%= 'pl-8 input-outlined max-md:w-full' if params[:q].present? %>" placeholder="<%= local_assigns[:placeholder] %>">
     <button type="submit" title="<%= t('search') %>" class="btn btn-ghost btn-circle">
       <span class="enabled">

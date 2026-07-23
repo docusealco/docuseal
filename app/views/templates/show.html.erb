@@ -3,15 +3,15 @@
 <% is_show_tabs = @pagy.pages > 1 || params[:q].present? || params[:status].present? || filter_params.present? %>
 <% if @pagy.count.nil? || !@pagy.count.zero? || params[:q].present? || params[:status].present? || filter_params.present? %>
   <div class="<%= is_show_tabs ? 'mb-4' : 'mb-6' %>">
-    <div class="flex justify-between items-center md:items-end">
-      <div>
+    <div class="group/header flex justify-between items-center md:items-end">
+      <div class="max-md:group-has-[search-input:focus-within]/header:hidden">
         <h2 class="text-3xl font-bold md:block <%= 'hidden' if params[:q].present? %>">
           <%= t('submissions') %>
         </h2>
       </div>
-      <div class="flex justify-end space-x-2 max-md:focus-within:grow <%= 'max-md:grow' if params[:q].present? %>">
+      <div class="flex justify-end space-x-2 max-md:has-[search-input:focus-within]:grow <%= 'max-md:grow' if params[:q].present? %>">
         <% if params[:q].present? || params[:status].present? || filter_params.present? || @pagy.pages > 1 %>
-          <%= render 'shared/search_input', title_selector: 'h2' %>
+          <%= render 'shared/search_input' %>
         <% end %>
         <%= link_to new_template_submissions_export_path(@template, params.permit(:q, *Submissions::Filter::ALLOWED_PARAMS)), class: 'hidden md:flex btn btn-ghost text-base', data: { turbo_frame: 'modal' } do %>
           <%= svg_icon('download', class: 'w-6 h-6 stroke-2') %>
