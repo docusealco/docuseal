@@ -178,6 +178,8 @@ Rails.application.routes.draw do
     resources :send_email, only: %i[create], controller: 'submitters_send_email'
   end
 
+  get 'settings' => 'settings_index#index', as: :settings_index
+
   scope '/settings', as: :settings do
     unless Docuseal.multitenant?
       resources :storage, only: %i[index create], controller: 'storage_settings'
