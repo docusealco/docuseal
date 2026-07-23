@@ -1,5 +1,5 @@
 <div>
-  <%= link_to @template_folder.parent_folder ? folder_path(@template_folder.parent_folder) : root_path, class: 'flex items-center' do %>
+  <%= link_to @template_folder.parent_folder ? folder_path(@template_folder.parent_folder) : root_path, class: 'flex items-center mb-1 md:mb-0' do %>
     <%= svg_icon('chevron_left', class: 'w-5 h-5') %>
     <span style="margin-left: 3px"><%= @template_folder.parent_folder&.name || t('home') %></span>
   <% end %>

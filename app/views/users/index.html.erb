@@ -2,7 +2,7 @@
   <%= render 'shared/settings_nav' %>
   <div class="md:flex-grow">
     <div class="flex flex-col md:flex-row md:flex-wrap gap-2 md:justify-between md:items-end mb-4 min-h-12">
-      <h1 class="text-4xl font-bold">
+      <h1 class="text-3xl md:text-4xl font-bold">
         <% if params[:status] == 'archived' %>
           <%= t('archived_users') %>
         <% elsif params[:status] == 'integration' %>

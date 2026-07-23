@@ -2,7 +2,7 @@
   <%= render 'shared/settings_nav' %>
   <div class="md:flex-grow">
     <div class="max-w-xl">
-      <h1 class="text-4xl font-bold mb-4">
+      <h1 class="text-3xl md:text-4xl font-bold mb-4">
         <%= t('pdf_signature') %>
       </h1>
       <div id="result">
@@ -41,7 +41,7 @@
       <% end %>
     </div>
     <div class="flex flex-col md:flex-row gap-2 md:justify-between md:items-end mb-4 mt-8">
-      <h2 class="text-3xl font-bold">
+      <h2 class="text-2xl md:text-3xl font-bold">
         <%= t('signing_certificates') %>
       </h2>
       <% if can?(:create, @encrypted_config) %>
@@ -109,7 +109,7 @@
     <% if !Docuseal.multitenant? && can?(:manage, encrypted_config) %>
       <div class="flex-grow max-w-xl">
         <div class="flex justify-between items-end mb-4 mt-8">
-          <h2 class="text-3xl font-bold">
+          <h2 class="text-2xl md:text-3xl font-bold">
             <%= t('timestamp_server') %>
           </h2>
         </div>
@@ -137,7 +137,7 @@
     <% if can?(:manage, account_config) %>
       <div class="px-1 mt-8 max-w-xl">
         <div class="flex justify-between items-end mb-4 mt-8">
-          <h2 class="text-3xl font-bold">
+          <h2 class="text-2xl md:text-3xl font-bold">
             <%= t('preferences') %>
           </h2>
         </div>
