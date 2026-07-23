@@ -1,5 +1,5 @@
 <% status_badges = { 'awaiting' => 'badge-info', 'sent' => 'badge-info', 'completed' => 'badge-success', 'opened' => 'badge-warning', 'declined' => 'badge-error' } %>
-<div class="bg-base-200 rounded-2xl flex flex-col sm:flex-row items-strech">
+<div class="bg-base-200 rounded-2xl flex flex-col sm:flex-row">
   <% if local_assigns[:with_template] %>
     <% template = submission.template %>
     <a href="<%= template ? template_path(template) : submission_path(submission) %>" class="px-5 sm:pr-3 py-3 group sm:rounded-l-2xl sm:rounded-tr-none rounded-t-2xl flex sm:flex-col justify-between sm:w-52 w-full flex-shrink-0 bg-base-300/60 space-x-2 sm:space-x-0">

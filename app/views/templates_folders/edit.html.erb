@@ -10,9 +10,7 @@
             <span class="flex items-center mt-1">
               <%= svg_icon('folder', class: 'w-5 h-5 flex-shrink-0 group-hover:hidden mr-1') %>
               <%= svg_icon('folder_share', class: 'w-5 h-5 flex-shrink-0 hidden group-hover:inline mr-1') %>
-              <span class="text-md">
-                <%= @template.folder.parent_folder&.name || @template.folder.name %>
-              </span>
+              <span><%= @template.folder.parent_folder&.name || @template.folder.name %></span>
             </span>
           </label>
         </div>
