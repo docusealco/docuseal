@@ -1,8 +1,9 @@
 <% query_params = params.permit(:q).merge(filter_params) %>
-<div class="dropdown dropdown-end">
-  <label tabindex="0" class="cursor-pointer flex h-10 px-3 py-1 space-x-1 text-lg items-center justify-between border text-center text-neutral rounded-xl border-neutral-300 hover:border-neutral-700">
+<% advanced_filters = filter_params.then { |f| f[:status].in?(%w[pending completed]) ? f.except(:status) : f } %>
+<div class="dropdown dropdown-end shrink-0">
+  <label tabindex="0" class="cursor-pointer flex h-10 py-1 w-10 md:w-auto px-0 md:px-3 space-x-0 md:space-x-1 justify-center md:justify-between text-lg items-center border text-center text-neutral rounded-xl <%= advanced_filters.present? ? 'border-neutral-700 md:border-neutral-300' : 'border-neutral-300' %> hover:border-neutral-700">
     <%= svg_icon('filter', class: 'w-5 h-5 flex-shrink-0 stroke-2') %>
-    <span class="<%= filter_params.then { |f| f[:status].in?(%w[pending completed]) ? f.except(:status) : f }.present? ? 'md:hidden' : '' %>">Filter</span>
+    <span class="hidden <%= 'md:inline' if advanced_filters.blank? %>">Filter</span>
   </label>
   <ul tabindex="0" class="z-10 dropdown-content p-2 mt-2 shadow menu text-base bg-base-100 rounded-box min-w-[180px] text-right">
     <li class="flex">
@@ -17,7 +18,7 @@
         <span><%= t('created_at') %></span>
       <% end %>
     </li>
-    <li class="flex">
+    <li class="hidden md:flex">
       <%= link_to submissions_filter_path('status', query_params.merge(path: url_for)), data: { turbo_frame: 'modal' } do %>
         <%= svg_icon('info_circle', class: 'w-5 h-5 flex-shrink-0 stroke-2') %>
         <span><%= t('status') %></span>
