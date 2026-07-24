@@ -1,9 +1,9 @@
 <tr class="group">
   <td class="flex items-center space-x-1">
     <%= svg_icon('discount_check_filled', class: 'w-6 h-6 shrink-0 text-green-500') %>
-    <span class="flex items-center whitespace-nowrap">
-      <%= t('docuseal_trusted_signature') %>
-      <div class="tooltip ml-1 shrink-0" data-tip="<%= t('sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature') %>">
+    <span class="flex items-center">
+      <span class="whitespace-nowrap"><%= t('docuseal_trusted_signature') %></span>
+      <div class="tooltip tooltip-top ml-1 shrink-0" data-tip="<%= t('sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature') %>">
         <%= svg_icon('circle_question', class: 'w-4 h-4 stroke-1 shrink-0') %>
       </div>
     </span>
