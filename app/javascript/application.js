@@ -57,6 +57,7 @@ import BarChart from './elements/bar_chart'
 import FieldCondition from './elements/field_condition'
 import ConfirmUpload from './elements/confirm_upload'
 import ScrollFade from './elements/scroll_fade'
+import ConvertModalLinks from './elements/convert_modal_links'
 
 import * as TurboInstantClick from './lib/turbo_instant_click'
 
@@ -152,6 +153,7 @@ safeRegisterElement('bar-chart', BarChart)
 safeRegisterElement('field-condition', FieldCondition)
 safeRegisterElement('confirm-upload', ConfirmUpload)
 safeRegisterElement('scroll-fade', ScrollFade)
+safeRegisterElement('convert-modal-links', ConvertModalLinks)
 
 safeRegisterElement('template-builder', class extends HTMLElement {
   connectedCallback () {
