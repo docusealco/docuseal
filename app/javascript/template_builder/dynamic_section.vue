@@ -646,9 +646,7 @@ export default {
         return
       }
 
-      const container = document.createElement('div')
-
-      container.innerHTML = clipboardHtml
+      const container = new DOMParser().parseFromString(clipboardHtml, 'text/html').body
 
       const fieldNodes = [...container.querySelectorAll('dynamic-field[data-field][data-area]')]
 
