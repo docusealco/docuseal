@@ -146,10 +146,14 @@ module Leptonica
   end
 
   def build_pix(image)
+    buffer = image.write_to_memory
+
+    raise LeptonicaError, 'Failed to read image' if buffer.bytesize != image.width * image.height * 4
+
     pix = checked(pixCreate(image.width, image.height, 32), 'Failed to read image')
 
     pixSetSpp(pix, 3)
-    pixGetData(pix).put_bytes(0, image.write_to_memory)
+    pixGetData(pix).put_bytes(0, buffer)
 
     raise LeptonicaError, 'Failed to read image' unless pixEndianByteSwap(pix).zero?
 
@@ -159,9 +163,10 @@ module Leptonica
   def load_image(image_data)
     image = ImageUtils.load_vips(image_data)
 
-    image = image.colourspace(:srgb) if image.interpretation != :srgb
     image = image.cast(:uchar) if image.format != :uchar
-    image = image.bandjoin(255) unless image.has_alpha?
+    image = image.colourspace(:srgb) if image.interpretation != :srgb
+    image = image.extract_band(0, n: 4) if image.bands > 4
+    image = image.bandjoin([255] * (4 - image.bands)) if image.bands < 4
 
     image
   end
