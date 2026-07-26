@@ -111,7 +111,7 @@ const DROP_ATTRS = [
   'background', 'data', 'cite', 'ping', 'longdesc', 'manifest', 'profile'
 ]
 
-const SAFE_URL_REGEXP = /^(?:https?:\/\/|data:image\/|blob:|mailto:|tel:|\{)/i
+const SAFE_URL_REGEXP = /^(?:https?:\/\/|data:image\/|blob:|mailto:|tel:|\{|#)/i
 
 function isSafeAttr (name, value) {
   const lowerName = name.toLowerCase()
