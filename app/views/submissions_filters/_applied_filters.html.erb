@@ -1,40 +1,40 @@
 <% query_params = params.permit(:q).merge(filter_params) %>
 <% if icon = { 'declined' => 'x_circle', 'expired' => 'clock_cancel', 'partially_completed' => 'clock_edit', 'sent' => 'send', 'opened' => 'mail_opened' }[params[:status]] %>
-  <div class="flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-34 border-neutral-700">
-    <%= link_to submissions_filter_path('status', query_params.merge(path: url_for, with_remove: true)), data: { turbo_frame: 'modal' }, class: 'flex items-center space-x-1 w-full pr-1 md:max-w-[140px]' do %>
+  <div class="flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-36 border-neutral-700">
+    <%= link_to submissions_filter_path('status', query_params.merge(path: url_for, with_remove: true)), data: { turbo_frame: 'modal' }, class: 'flex items-center space-x-1 flex-1 min-w-0 pr-1' do %>
       <%= svg_icon(icon, class: 'w-5 h-5 shrink-0') %>
       <span class="font-normal truncate"><%= t(params[:status]) %></span>
     <% end %>
-    <%= link_to url_for(params: request.query_parameters.except('status')), class: 'rounded-lg ml-1 hover:bg-base-content hover:text-white' do %>
+    <%= link_to url_for(params: request.query_parameters.except('status')), class: 'rounded-lg ml-1 shrink-0 hover:bg-base-content hover:text-white' do %>
       <%= svg_icon('x', class: 'w-5 h-5') %>
     <% end %>
   </div>
 <% end %>
 <% if params[:folder].present? %>
-  <div class="tooltip tooltip-bottom flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-34 border-neutral-700" data-tip="<%= t('folder') %>">
-    <%= link_to submissions_filter_path('folder', query_params.merge(path: url_for, with_remove: true)), data: { turbo_frame: 'modal' }, class: 'flex items-center space-x-1 w-full pr-1 md:max-w-[140px]' do %>
+  <div class="tooltip tooltip-bottom flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-36 border-neutral-700" data-tip="<%= t('folder') %>">
+    <%= link_to submissions_filter_path('folder', query_params.merge(path: url_for, with_remove: true)), data: { turbo_frame: 'modal' }, class: 'flex items-center space-x-1 flex-1 min-w-0 pr-1' do %>
       <%= svg_icon('folder', class: 'w-5 h-5 shrink-0') %>
       <span class="font-normal truncate"><%= params[:folder] %></span>
     <% end %>
-    <%= link_to url_for(params: request.query_parameters.except('folder')), class: 'rounded-lg ml-1 hover:bg-base-content hover:text-white' do %>
+    <%= link_to url_for(params: request.query_parameters.except('folder')), class: 'rounded-lg ml-1 shrink-0 hover:bg-base-content hover:text-white' do %>
       <%= svg_icon('x', class: 'w-5 h-5') %>
     <% end %>
   </div>
 <% end %>
 <% if params[:author].present? %>
-  <div class="tooltip tooltip-bottom flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-34 border-neutral-700" data-tip="<%= t('author') %>">
-    <%= link_to submissions_filter_path('author', query_params.merge(path: url_for, with_remove: true)), data: { turbo_frame: 'modal' }, class: 'flex items-center space-x-1 w-full pr-1 md:max-w-[140px]' do %>
+  <div class="tooltip tooltip-bottom flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-36 border-neutral-700" data-tip="<%= t('author') %>">
+    <%= link_to submissions_filter_path('author', query_params.merge(path: url_for, with_remove: true)), data: { turbo_frame: 'modal' }, class: 'flex items-center space-x-1 flex-1 min-w-0 pr-1' do %>
       <%= svg_icon('user', class: 'w-5 h-5 shrink-0') %>
       <span class="font-normal truncate"><%= current_account.users.accessible_by(current_ability).where(account: current_account).find_by(email: params[:author])&.full_name || 'NA' %></span>
     <% end %>
-    <%= link_to url_for(params: request.query_parameters.except('author')), class: 'rounded-lg ml-1 hover:bg-base-content hover:text-white' do %>
+    <%= link_to url_for(params: request.query_parameters.except('author')), class: 'rounded-lg ml-1 shrink-0 hover:bg-base-content hover:text-white' do %>
       <%= svg_icon('x', class: 'w-5 h-5') %>
     <% end %>
   </div>
 <% end %>
 <% if query_params[:completed_at_from].present? || query_params[:completed_at_to].present? %>
-  <div class="tooltip tooltip-bottom flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-34 border-neutral-700" data-tip="<%= t('completed_at') %>">
-    <%= link_to submissions_filter_path('completed_at', query_params.merge(path: url_for, with_remove: true)), data: { turbo_frame: 'modal' }, class: 'flex items-center space-x-1 w-full pr-1 md:max-w-[140px]' do %>
+  <div class="tooltip tooltip-bottom flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-36 border-neutral-700" data-tip="<%= t('completed_at') %>">
+    <%= link_to submissions_filter_path('completed_at', query_params.merge(path: url_for, with_remove: true)), data: { turbo_frame: 'modal' }, class: 'flex items-center space-x-1 flex-1 min-w-0 pr-1' do %>
       <%= svg_icon('calendar_check', class: 'w-5 h-5 shrink-0') %>
       <span class="flex flex-row md:flex-col font-normal text-left md:text-center md:text-xs">
         <% if query_params[:completed_at_from] == query_params[:completed_at_to] %>
@@ -46,14 +46,14 @@
         <% end %>
       </span>
     <% end %>
-    <%= link_to url_for(params: request.query_parameters.except('completed_at_from', 'completed_at_to')), class: 'rounded-lg ml-1 hover:bg-base-content hover:text-white' do %>
+    <%= link_to url_for(params: request.query_parameters.except('completed_at_from', 'completed_at_to')), class: 'rounded-lg ml-1 shrink-0 hover:bg-base-content hover:text-white' do %>
       <%= svg_icon('x', class: 'w-5 h-5') %>
     <% end %>
   </div>
 <% end %>
 <% if query_params[:created_at_from].present? || query_params[:created_at_to].present? %>
-  <div class="tooltip tooltip-bottom flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-34 border-neutral-700" data-tip="<%= t('created_at') %>">
-    <%= link_to submissions_filter_path('created_at', query_params.merge(path: url_for, with_remove: true)), data: { turbo_frame: 'modal' }, class: 'flex items-center space-x-1 w-full pr-1 md:max-w-[140px]' do %>
+  <div class="tooltip tooltip-bottom flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-36 border-neutral-700" data-tip="<%= t('created_at') %>">
+    <%= link_to submissions_filter_path('created_at', query_params.merge(path: url_for, with_remove: true)), data: { turbo_frame: 'modal' }, class: 'flex items-center space-x-1 flex-1 min-w-0 pr-1' do %>
       <%= svg_icon('calendar', class: 'w-5 h-5 shrink-0') %>
       <span class="flex flex-row md:flex-col font-normal text-left md:text-center md:text-xs">
         <% if query_params[:created_at_from] == query_params[:created_at_to] %>
@@ -65,7 +65,7 @@
         <% end %>
       </span>
     <% end %>
-    <%= link_to url_for(params: request.query_parameters.except('created_at_to', 'created_at_from')), class: 'rounded-lg ml-1 hover:bg-base-content hover:text-white' do %>
+    <%= link_to url_for(params: request.query_parameters.except('created_at_to', 'created_at_from')), class: 'rounded-lg ml-1 shrink-0 hover:bg-base-content hover:text-white' do %>
       <%= svg_icon('x', class: 'w-5 h-5') %>
     <% end %>
   </div>

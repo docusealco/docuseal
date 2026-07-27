@@ -65,6 +65,7 @@ RSpec.configure do |config|
 
   config.before do
     Sidekiq::Worker.clear_all
+    Faker::UniqueGenerator.clear
   end
 
   config.before do |example|

@@ -7,12 +7,12 @@
     <button type="submit"></button>
     <input id="dashboard_dropzone_input" name="files[]" type="file" multiple>
   <% end %>
-  <div class="flex justify-between items-center w-full mb-4 relative">
+  <div class="group/header flex justify-between items-center w-full mb-4 relative">
     <% unless show_dropzone %>
       <%= render 'templates/dashboard_dropzone', style: 'height: 114px' %>
     <% end %>
     <%= render 'templates/dashboard_folder_dropzone', style: 'height: 114px' %>
-    <div class="flex items-center flex-grow min-w-0">
+    <div class="flex items-center flex-grow min-w-0 max-md:group-has-[search-input:focus-within]/header:hidden <%= 'max-md:hidden' if params[:q].present? %>">
       <% if has_archived || @pagy.count.nil? || @pagy.count > 0 || @template_folders.present? %>
         <div class="mr-2">
           <%= render 'dashboard/toggle_view', selected: 'templates' %>
@@ -22,7 +22,7 @@
         <%= t('document_templates_html') %>
       </h1>
     </div>
-    <div class="flex space-x-2">
+    <div class="flex space-x-2 max-md:has-[search-input:focus-within]:grow <%= 'max-md:grow' if params[:q].present? %>">
       <% if params[:q].present? || @pagy.count.nil? || @pagy.count > 1 || @template_folders.present? %>
         <%= render 'shared/search_input' %>
       <% end %>

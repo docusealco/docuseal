@@ -1,33 +1,33 @@
 <% filter_params = params.permit(Submissions::Filter::ALLOWED_PARAMS).compact_blank %>
 <% with_filters = @pagy.pages > 1 || params[:q].present? || filter_params.present? %>
 <%= render 'templates/title', template: @template %>
-<div class="flex flex-col md:flex-row md:items-center mb-6 gap-3">
-  <div class="flex w-full justify-between md:items-end items-end">
-    <div>
-      <div>
-        <%= link_to template_path(@template), class: 'flex items-center' do %>
-          <%= svg_icon('chevron_left', class: 'w-5 h-5') %>
-          <span style="margin-left: 3px"><%= t('back_to_active') %></span>
-        <% end %>
-      </div>
-      <h1 class="text-3xl font-bold md:block"><%= t('submissions') %> <span class="badge badge-outline badge-lg align-middle"><%= t('archived') %></span></h1>
+<div>
+  <%= link_to template_path(@template), class: 'flex items-center mb-1 md:mb-0' do %>
+    <%= svg_icon('chevron_left', class: 'w-5 h-5') %>
+    <span style="margin-left: 3px"><%= t('back_to_active') %></span>
+  <% end %>
+</div>
+<div class="flex flex-col md:flex-row md:items-center mb-4 gap-3">
+  <div class="group/header flex w-full md:flex-1 min-w-0 justify-between items-center">
+    <div class="max-md:group-has-[search-input:focus-within]/header:hidden">
+      <h2 class="text-2xl md:text-3xl font-bold md:block"><%= t('submissions') %> <span class="badge badge-outline badge-lg align-middle"><%= t('archived') %></span></h2>
     </div>
-    <div class="flex space-x-2 justify-end">
+    <div class="max-md:has-[search-input:focus-within]:grow <%= 'max-md:grow' if params[:q].present? %>">
       <% if with_filters %>
         <%= render 'shared/search_input' %>
       <% end %>
-      <%= link_to new_template_submissions_export_path(@template, archived: true), class: 'btn btn-ghost text-base', data: { turbo_frame: 'modal' } do %>
+    </div>
+  </div>
+  <div class="flex flex-wrap justify-end items-center gap-2">
+    <%= render 'submissions_filters/applied_filters', filter_params: %>
+    <div class="shrink-0 md:order-first">
+      <%= link_to new_template_submissions_export_path(@template, archived: true), class: 'btn btn-ghost text-base h-10 min-h-10', data: { turbo_frame: 'modal' } do %>
         <%= svg_icon('download', class: 'w-6 h-6 stroke-2') %>
         <span><%= t('export') %></span>
       <% end %>
     </div>
+    <%= render 'submissions_filters/filter_button', filter_params: %>
   </div>
-  <% if with_filters %>
-    <div class="flex flex-col items-end md:flex-row gap-2">
-      <%= render 'submissions_filters/applied_filters', filter_params: %>
-      <%= render 'submissions_filters/filter_button', filter_params: %>
-    </div>
-  <% end %>
 </div>
 <% if @pagy.count.nil? || @pagy.count > 0 %>
   <div class="space-y-4">

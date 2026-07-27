@@ -5,7 +5,7 @@
   <% end %>
 </div>
 <dashboard-dropzone>
-  <div class="relative flex justify-between items-center w-full mb-4">
+  <div class="group/header relative flex justify-between items-center w-full mb-4">
     <%= form_for '', url: '', id: form_id = SecureRandom.uuid, method: :post, class: 'hidden', data: { target: 'dashboard-dropzone.form' }, html: { enctype: 'multipart/form-data' } do %>
       <input name="form_id" value="<%= form_id %>">
       <input name="folder_name" value="<%= @template_folder.full_name %>">
@@ -16,7 +16,7 @@
     <% unless @template_folder.parent_folder %>
       <%= render 'templates/dashboard_folder_dropzone', style: 'height: 137px' %>
     <% end %>
-    <h1 class="text-2xl truncate md:text-3xl font-bold flex items-center flex-grow min-w-0 space-x-2 md:flex <%= 'hidden' if params[:q].present? %>">
+    <h1 class="text-2xl truncate md:text-3xl font-bold flex items-center flex-grow min-w-0 space-x-2 md:flex max-md:group-has-[search-input:focus-within]/header:hidden <%= 'hidden' if params[:q].present? %>">
       <%= svg_icon('folder', class: 'w-9 h-9 flex-shrink-0') %>
       <span class="peer truncate">
         <%= @template_folder.name %>
@@ -29,7 +29,7 @@
         </span>
       <% end %>
     </h1>
-    <div class="flex space-x-2">
+    <div class="flex space-x-2 max-md:has-[search-input:focus-within]:grow <%= 'max-md:grow' if params[:q].present? %>">
       <% if params[:q].present? || @pagy.count.nil? || @pagy.count > 0 || @template_folders.present? %>
         <%= render 'shared/search_input' %>
       <% end %>
