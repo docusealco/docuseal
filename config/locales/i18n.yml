@@ -930,6 +930,7 @@ en: &en
   please_verify_your_email_address_to_continue: Please verify your email address to continue.
   verification_code_sent_click_link_or_enter_code: A verification code has been sent to your email. Click the email link or enter the one time code to confirm your email.
   use_otp_code_to_verify_email_or_click_link_below_html: 'Use <b>%{code}</b> code to verify your email or click the link below:'
+  use_otp_code_to_verify_email_html: 'Use <b>%{code}</b> code to verify your email:'
   verify_your_email: Verify your email
   your_email_has_been_confirmed: Your email has been confirmed.
   invalid_or_expired_verification_code: Invalid or expired verification code.
@@ -2007,6 +2008,7 @@ es: &es
   please_verify_your_email_address_to_continue: Por favor, verifica tu dirección de correo electrónico para continuar.
   verification_code_sent_click_link_or_enter_code: Se ha enviado un código de verificación a tu correo. Puedes hacer clic en el enlace del correo o ingresar el código a continuación.
   use_otp_code_to_verify_email_or_click_link_below_html: 'Usa el código <b>%{code}</b> para verificar tu correo electrónico o haz clic en el enlace a continuación:'
+  use_otp_code_to_verify_email_html: 'Usa el código <b>%{code}</b> para verificar tu correo electrónico:'
   verify_your_email: Verificar tu correo electrónico
   your_email_has_been_confirmed: Tu correo electrónico ha sido confirmado.
   invalid_or_expired_verification_code: Código de verificación inválido o expirado.
@@ -3084,6 +3086,7 @@ it: &it
   please_verify_your_email_address_to_continue: Verifica il tuo indirizzo email per continuare.
   verification_code_sent_click_link_or_enter_code: "È stato inviato un codice di verifica alla tua email. Puoi cliccare il link nell'email o inserire il codice qui sotto."
   use_otp_code_to_verify_email_or_click_link_below_html: 'Usa il codice <b>%{code}</b> per verificare la tua email o clicca il link qui sotto:'
+  use_otp_code_to_verify_email_html: 'Usa il codice <b>%{code}</b> per verificare la tua email:'
   verify_your_email: Verifica la tua email
   your_email_has_been_confirmed: La tua email è stata confermata.
   invalid_or_expired_verification_code: Codice di verifica non valido o scaduto.
@@ -4158,6 +4161,7 @@ fr: &fr
   please_verify_your_email_address_to_continue: "Veuillez vérifier votre adresse e-mail pour continuer."
   verification_code_sent_click_link_or_enter_code: "Un code de vérification a été envoyé à votre adresse e-mail. Vous pouvez cliquer sur le lien dans l'e-mail ou saisir le code ci-dessous."
   use_otp_code_to_verify_email_or_click_link_below_html: "Utilisez le code <b>%{code}</b> pour vérifier votre e-mail ou cliquez sur le lien ci-dessous :"
+  use_otp_code_to_verify_email_html: "Utilisez le code <b>%{code}</b> pour vérifier votre e-mail :"
   verify_your_email: "Vérifier votre e-mail"
   your_email_has_been_confirmed: "Votre adresse e-mail a été confirmée."
   invalid_or_expired_verification_code: "Code de vérification invalide ou expiré."
@@ -5235,6 +5239,7 @@ pt: &pt
   please_verify_your_email_address_to_continue: Verifique seu endereço de e-mail para continuar.
   verification_code_sent_click_link_or_enter_code: Um código de verificação foi enviado para seu e-mail. Você pode clicar no link do e-mail ou inserir o código abaixo.
   use_otp_code_to_verify_email_or_click_link_below_html: 'Use o código <b>%{code}</b> para verificar seu e-mail ou clique no link abaixo:'
+  use_otp_code_to_verify_email_html: 'Use o código <b>%{code}</b> para verificar seu e-mail:'
   verify_your_email: Verificar seu e-mail
   your_email_has_been_confirmed: Seu e-mail foi confirmado.
   invalid_or_expired_verification_code: Código de verificação inválido ou expirado.
@@ -6312,6 +6317,7 @@ de: &de
   please_verify_your_email_address_to_continue: Bitte bestätigen Sie Ihre E-Mail-Adresse, um fortzufahren.
   verification_code_sent_click_link_or_enter_code: Ein Verifizierungscode wurde an Ihre E-Mail gesendet. Sie können auf den Link in der E-Mail klicken oder den Code unten eingeben.
   use_otp_code_to_verify_email_or_click_link_below_html: 'Verwenden Sie den Code <b>%{code}</b>, um Ihre E-Mail zu bestätigen, oder klicken Sie auf den Link unten:'
+  use_otp_code_to_verify_email_html: 'Verwenden Sie den Code <b>%{code}</b>, um Ihre E-Mail zu bestätigen:'
   verify_your_email: E-Mail bestätigen
   your_email_has_been_confirmed: Ihre E-Mail-Adresse wurde bestätigt.
   invalid_or_expired_verification_code: Ungültiger oder abgelaufener Verifizierungscode.
@@ -7790,6 +7796,7 @@ nl: &nl
   please_verify_your_email_address_to_continue: Bevestig uw e-mailadres om door te gaan.
   verification_code_sent_click_link_or_enter_code: Er is een verificatiecode naar uw e-mail gestuurd. U kunt op de link in de e-mail klikken of de code hieronder invoeren.
   use_otp_code_to_verify_email_or_click_link_below_html: 'Gebruik code <b>%{code}</b> om uw e-mail te verifiëren of klik op de link hieronder:'
+  use_otp_code_to_verify_email_html: 'Gebruik code <b>%{code}</b> om uw e-mail te verifiëren:'
   verify_your_email: Uw e-mail verifiëren
   your_email_has_been_confirmed: Uw e-mailadres is bevestigd.
   invalid_or_expired_verification_code: Ongeldige of verlopen verificatiecode.
