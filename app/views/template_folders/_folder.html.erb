@@ -4,7 +4,7 @@
   <% if !is_long %>
     <%= svg_icon(icon, class: 'w-6 h-6') %>
   <% end %>
-  <div class="text-lg font-semibold mt-1" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: <%= is_long ? 2 : 1 %>;">
+  <div class="text-lg font-semibold mt-1 break-all" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: <%= is_long ? 2 : 1 %>;">
     <% if is_long %>
       <%= svg_icon(icon, class: 'w-6 h-6 inline') %>
     <% end %>
