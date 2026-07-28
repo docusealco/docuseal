@@ -39,7 +39,7 @@
           required
           maxlength="6"
           autofocus
-          inputmode="decimal"
+          inputmode="numeric"
           @input="onInputCode"
         >
         <div class="flex justify-between mt-2 -mb-2 md:-mb-4">

@@ -6,7 +6,7 @@
     <%== RQRCode::QRCode.new(@provision_url).as_svg(viewbox: true, svg_attributes: { class: 'md:w-80 md:h-80 my-4 mx-auto' }).sub(/\A<\?xml[^>]*\?>/, '') %>
   </div>
   <div class="form-control my-6 space-y-2">
-    <%= f.text_field :otp_attempt, required: true, placeholder: 'XXX-XXX', class: 'base-input text-center' %>
+    <%= f.text_field :otp_attempt, required: true, inputmode: 'numeric', placeholder: 'XXXXXX', class: 'base-input text-center' %>
     <span>
       <%= @error_message %>
     </span>
