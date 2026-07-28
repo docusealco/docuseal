@@ -560,6 +560,7 @@
             :fields="formulaFields"
             :values="values"
             :readonly-values="readonlyFieldValues"
+            :provider="paymentProvider"
             @attached="attachments.push($event)"
             @focus="scrollIntoField(currentField)"
             @submit="!isSubmitting && submitStep()"
@@ -996,6 +997,11 @@ export default {
       default: true
     },
     language: {
+      type: String,
+      required: false,
+      default: ''
+    },
+    paymentProvider: {
       type: String,
       required: false,
       default: ''

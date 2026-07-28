@@ -779,7 +779,10 @@ export default {
       withVerification: this.withVerification,
       withKba: this.withKba,
       withPayment: this.withPayment,
-      isPaymentConnected: this.isPaymentConnected,
+      isStripeConnected: this.isStripeConnected,
+      withStripe: this.withStripe,
+      withPaypal: this.withPaypal,
+      isPaypalConnected: this.isPaypalConnected,
       withFormula: this.withFormula,
       withConditions: this.withConditions,
       withCustomFields: this.withCustomFields,
@@ -1049,7 +1052,22 @@ export default {
       required: false,
       default: false
     },
-    isPaymentConnected: {
+    isStripeConnected: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    withStripe: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+    withPaypal: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    isPaypalConnected: {
       type: Boolean,
       required: false,
       default: false
@@ -1362,6 +1380,10 @@ export default {
     this.$nextTick(() => {
       if (document.location.search?.includes('stripe_connect_success')) {
         document.querySelector('form[action="/auth/stripe_connect"]')?.closest('.dropdown')?.querySelector('label')?.focus()
+      }
+
+      if (document.location.search?.includes('paypal_connect_success')) {
+        document.querySelector('a[href^="/auth/paypal_connect"]')?.closest('.dropdown')?.querySelector('label')?.focus()
       }
     })
 

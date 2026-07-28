@@ -18,6 +18,6 @@ class TemplatesFormPreviewController < ApplicationController
     @attachments_index = ActiveStorage::Attachment.where(record: @submitter.submission.submitters, name: :attachments)
                                                   .preload(:blob).index_by(&:uuid)
 
-    @form_configs = Submitters::FormConfigs.call(@submitter)
+    @form_configs = Submitters::FormConfigs.call(@submitter, SubmitFormController::CONFIG_KEYS)
   end
 end
