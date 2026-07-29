@@ -1,166 +1,168 @@
 <% expanded = local_assigns[:expanded] %>
-<% unless expanded %>
-  <div class="md:hidden w-full">
-    <a href="<%= settings_index_path %>" class="flex items-center space-x-0.5 font-medium">
-      <%= svg_icon('arrow_left', class: 'w-4 h-4 stroke-2') %>
-      <span><%= t('settings') %></span>
-    </a>
-  </div>
-<% end %>
-<div class="<%= expanded ? 'block -mx-3 md:mx-0' : 'hidden md:block w-full md:w-52 flex-none' %>">
-  <menu-active>
-    <ul id="account_settings_menu" class="menu px-0">
-      <% unless expanded %>
-        <li class="menu-title py-0 !bg-transparent mb-3 -mt-5">
-          <a href="<%= root_path %>" class="!bg-transparent !text-neutral font-medium flex items-center space-x-0.5">
-            <%= svg_icon('arrow_left', class: 'w-4 h-4 stroke-2') %>
-            <span><%= t('back') %></span>
-          </a>
-        </li>
-      <% end %>
-      <li class="menu-title py-0 !bg-transparent">
-        <span class="!bg-transparent"><%= t('settings') %></span>
-      </li>
-      <li></li>
-      <li>
-        <%= link_to t('profile'), settings_profile_index_path, class: 'text-base hover:bg-base-300' %>
-      </li>
-      <li>
-        <%= link_to t('account'), settings_account_path, class: 'text-base hover:bg-base-300' %>
-      </li>
-      <% if (!Docuseal.multitenant? || EncryptedConfig.exists?(key: EncryptedConfig::EMAIL_SMTP_KEY, account: current_account)) && can?(:read, EncryptedConfig.new(key: EncryptedConfig::EMAIL_SMTP_KEY, account: current_account)) && ENV['SMTP_ADDRESS'].blank? && true_user == current_user %>
-        <li>
-          <%= link_to t('email'), settings_email_index_path, class: 'text-base hover:bg-base-300' %>
-        </li>
-      <% end %>
-      <% unless Docuseal.multitenant? %>
-        <% if can?(:read, EncryptedConfig.new(key: EncryptedConfig::FILES_STORAGE_KEY, account: current_account)) && true_user == current_user && ENV['S3_ATTACHMENTS_BUCKET'].blank? && ENV['GCS_BUCKET'].blank? && ENV['AZURE_CONTAINER'].blank? %>
-          <li>
-            <%= link_to t('storage'), settings_storage_index_path, class: 'text-base hover:bg-base-300' %>
+<div class="<%= expanded ? 'block -mx-3 md:mx-0' : 'w-full md:w-52 flex-none' %>">
+  <% unless expanded %>
+    <div class="md:hidden w-full">
+      <a href="<%= settings_index_path %>" class="flex items-center space-x-0.5 font-medium">
+        <%= svg_icon('arrow_left', class: 'w-4 h-4 stroke-2') %>
+        <span><%= t('settings') %></span>
+      </a>
+    </div>
+  <% end %>
+  <div class="<%= 'hidden md:block' unless expanded %>">
+    <menu-active>
+      <ul id="account_settings_menu" class="menu px-0">
+        <% unless expanded %>
+          <li class="menu-title py-0 !bg-transparent mb-3 -mt-5">
+            <a href="<%= root_path %>" class="!bg-transparent !text-neutral font-medium flex items-center space-x-0.5">
+              <%= svg_icon('arrow_left', class: 'w-4 h-4 stroke-2') %>
+              <span><%= t('back') %></span>
+            </a>
           </li>
         <% end %>
-        <% if can?(:read, EncryptedConfig.new(key: 'submitter_invitation_sms', account: current_account)) && true_user == current_user %>
+        <li class="menu-title py-0 !bg-transparent">
+          <span class="!bg-transparent"><%= t('settings') %></span>
+        </li>
+        <li></li>
+        <li>
+          <%= link_to t('profile'), settings_profile_index_path, class: 'text-base hover:bg-base-300' %>
+        </li>
+        <li>
+          <%= link_to t('account'), settings_account_path, class: 'text-base hover:bg-base-300' %>
+        </li>
+        <% if (!Docuseal.multitenant? || EncryptedConfig.exists?(key: EncryptedConfig::EMAIL_SMTP_KEY, account: current_account)) && can?(:read, EncryptedConfig.new(key: EncryptedConfig::EMAIL_SMTP_KEY, account: current_account)) && ENV['SMTP_ADDRESS'].blank? && true_user == current_user %>
           <li>
-            <%= link_to 'SMS', settings_sms_path, class: 'text-base hover:bg-base-300' %>
+            <%= link_to t('email'), settings_email_index_path, class: 'text-base hover:bg-base-300' %>
           </li>
         <% end %>
-      <% end %>
-      <% if can?(:read, AccountConfig) %>
-        <li>
-          <%= link_to t('notifications'), settings_notifications_path, class: 'text-base hover:bg-base-300' %>
-        </li>
-      <% end %>
-      <% if can?(:read, EncryptedConfig.new(key: EncryptedConfig::ESIGN_CERTS_KEY, account: current_account)) %>
-        <li>
-          <%= link_to t('e_signature'), settings_esign_path, class: 'text-base hover:bg-base-300' %>
-        </li>
-      <% end %>
-      <% if can?(:read, AccountConfig) %>
-        <li>
-          <%= link_to t('personalization'), settings_personalization_path, class: 'text-base hover:bg-base-300' %>
-        </li>
-      <% end %>
-      <% if can?(:read, User) %>
-        <li>
-          <%= link_to t('users'), settings_users_path, class: 'text-base hover:bg-base-300' %>
-        </li>
-      <% end %>
-      <%= render 'shared/settings_nav_extra' %>
-      <% if Docuseal.demo? || !Docuseal.multitenant? %>
-        <% if can?(:read, AccessToken) %>
-          <li>
-            <%= link_to 'API', settings_api_index_path, class: 'text-base hover:bg-base-300' %>
-          </li>
-        <% end %>
-      <% end %>
-      <% if Docuseal.demo? || !Docuseal.multitenant? || (current_user != true_user && !current_account.testing?) %>
-        <% if can?(:read, WebhookUrl) %>
-          <li>
-            <%= link_to 'Webhooks', settings_webhooks_path, class: 'text-base hover:bg-base-300' %>
-          </li>
-        <% end %>
-      <% end %>
-      <% if !Docuseal.demo? && can?(:manage, EncryptedConfig) && (current_user != true_user || !current_account.linked_account_account) %>
-        <li>
-          <%= content_for(:pro_link) || link_to(Docuseal.multitenant? ? console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}/plans") : "#{Docuseal::CLOUD_URL}/sign_up?#{{ redir: "#{Docuseal::CONSOLE_URL}/on_premises" }.to_query}", class: 'text-base hover:bg-base-300', data: { turbo: false }) do %>
-            <%= t('plans') %>
-            <span class="badge badge-warning"><%= t('pro') %></span>
-          <% end %>
-        </li>
-      <% end %>
-      <% if !Docuseal.demo? && can?(:manage, EncryptedConfig) && (current_user == true_user || current_account.testing?) %>
-        <li>
-          <%= link_to Docuseal.multitenant? ? console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}#{'/test' if current_account.testing?}/api") : "#{Docuseal::CONSOLE_URL}/on_premises", class: 'text-base hover:bg-base-300', data: { turbo: false } do %>
-            <% if Docuseal.multitenant? %> API <% else %> <%= t('console') %> <% end %>
-          <% end %>
-        </li>
-        <% if Docuseal.multitenant? %>
-          <li>
-            <%= link_to console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}#{'/test' if current_account.testing?}/embedding/form"), class: 'text-base hover:bg-base-300', data: { turbo: false } do %>
-              <%= t('embedding') %>
-            <% end %>
-          </li>
-        <% end %>
-        <% if (!Docuseal.multitenant? || can?(:manage, :saml_sso)) && can?(:read, EncryptedConfig.new(key: 'saml_configs', account: current_account)) && true_user == current_user %>
-          <li>
-            <%= link_to 'SSO', settings_sso_index_path, class: 'text-base hover:bg-base-300' %>
-          </li>
-        <% end %>
-        <% if !Docuseal.multitenant? && can?(:read, McpToken) && can?(:manage, :mcp) %>
-          <li>
-            <%= link_to 'MCP', settings_mcp_index_path, class: 'text-base hover:bg-base-300' %>
-          </li>
-        <% end %>
-        <%= render 'shared/settings_nav_extra2' %>
-        <% if (can?(:manage, EncryptedConfig) && current_user == true_user) || (current_user != true_user && current_account.testing?) %>
-          <%= form_for '', url: testing_account_path, method: current_account.testing? ? :delete : :post, html: { class: 'w-full' } do |f| %>
+        <% unless Docuseal.multitenant? %>
+          <% if can?(:read, EncryptedConfig.new(key: EncryptedConfig::FILES_STORAGE_KEY, account: current_account)) && true_user == current_user && ENV['S3_ATTACHMENTS_BUCKET'].blank? && ENV['GCS_BUCKET'].blank? && ENV['AZURE_CONTAINER'].blank? %>
             <li>
-              <label class="flex items-center text-base hover:bg-base-300 w-full justify-between" for="testing_toggle">
-                <span class="mr-2 w-full">
-                  <%= t('test_mode') %>
-                </span>
-                <submit-form data-on="change" class="flex">
-                  <%= f.check_box :testing_toggle, class: 'toggle toggle-sm', checked: current_account.testing? %>
-                </submit-form>
-              </label>
+              <%= link_to t('storage'), settings_storage_index_path, class: 'text-base hover:bg-base-300' %>
+            </li>
+          <% end %>
+          <% if can?(:read, EncryptedConfig.new(key: 'submitter_invitation_sms', account: current_account)) && true_user == current_user %>
+            <li>
+              <%= link_to 'SMS', settings_sms_path, class: 'text-base hover:bg-base-300' %>
             </li>
           <% end %>
         <% end %>
-      <% end %>
-    </ul>
-  </menu-active>
-  <% if Docuseal.multitenant? || cannot?(:manage, :tenants) %>
-    <div id="support_channels" class="mx-4 border-t border-base-300 <%= 'hidden md:block' unless expanded %>">
-      <div class="text-sm mt-3">
-        <%= t('need_help_ask_a_question_') %>
-      </div>
-      <div class="flex mt-3 space-x-3">
-        <div class="tooltip tooltip-no-touch" data-tip="GitHub">
-          <a href="<%= Docuseal::GITHUB_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
-            <%= svg_icon('brand_github', class: 'w-8 h-8') %>
-          </a>
+        <% if can?(:read, AccountConfig) %>
+          <li>
+            <%= link_to t('notifications'), settings_notifications_path, class: 'text-base hover:bg-base-300' %>
+          </li>
+        <% end %>
+        <% if can?(:read, EncryptedConfig.new(key: EncryptedConfig::ESIGN_CERTS_KEY, account: current_account)) %>
+          <li>
+            <%= link_to t('e_signature'), settings_esign_path, class: 'text-base hover:bg-base-300' %>
+          </li>
+        <% end %>
+        <% if can?(:read, AccountConfig) %>
+          <li>
+            <%= link_to t('personalization'), settings_personalization_path, class: 'text-base hover:bg-base-300' %>
+          </li>
+        <% end %>
+        <% if can?(:read, User) %>
+          <li>
+            <%= link_to t('users'), settings_users_path, class: 'text-base hover:bg-base-300' %>
+          </li>
+        <% end %>
+        <%= render 'shared/settings_nav_extra' %>
+        <% if Docuseal.demo? || !Docuseal.multitenant? %>
+          <% if can?(:read, AccessToken) %>
+            <li>
+              <%= link_to 'API', settings_api_index_path, class: 'text-base hover:bg-base-300' %>
+            </li>
+          <% end %>
+        <% end %>
+        <% if Docuseal.demo? || !Docuseal.multitenant? || (current_user != true_user && !current_account.testing?) %>
+          <% if can?(:read, WebhookUrl) %>
+            <li>
+              <%= link_to 'Webhooks', settings_webhooks_path, class: 'text-base hover:bg-base-300' %>
+            </li>
+          <% end %>
+        <% end %>
+        <% if !Docuseal.demo? && can?(:manage, EncryptedConfig) && (current_user != true_user || !current_account.linked_account_account) %>
+          <li>
+            <%= content_for(:pro_link) || link_to(Docuseal.multitenant? ? console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}/plans") : "#{Docuseal::CLOUD_URL}/sign_up?#{{ redir: "#{Docuseal::CONSOLE_URL}/on_premises" }.to_query}", class: 'text-base hover:bg-base-300', data: { turbo: false }) do %>
+              <%= t('plans') %>
+              <span class="badge badge-warning"><%= t('pro') %></span>
+            <% end %>
+          </li>
+        <% end %>
+        <% if !Docuseal.demo? && can?(:manage, EncryptedConfig) && (current_user == true_user || current_account.testing?) %>
+          <li>
+            <%= link_to Docuseal.multitenant? ? console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}#{'/test' if current_account.testing?}/api") : "#{Docuseal::CONSOLE_URL}/on_premises", class: 'text-base hover:bg-base-300', data: { turbo: false } do %>
+              <% if Docuseal.multitenant? %> API <% else %> <%= t('console') %> <% end %>
+            <% end %>
+          </li>
+          <% if Docuseal.multitenant? %>
+            <li>
+              <%= link_to console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}#{'/test' if current_account.testing?}/embedding/form"), class: 'text-base hover:bg-base-300', data: { turbo: false } do %>
+                <%= t('embedding') %>
+              <% end %>
+            </li>
+          <% end %>
+          <% if (!Docuseal.multitenant? || can?(:manage, :saml_sso)) && can?(:read, EncryptedConfig.new(key: 'saml_configs', account: current_account)) && true_user == current_user %>
+            <li>
+              <%= link_to 'SSO', settings_sso_index_path, class: 'text-base hover:bg-base-300' %>
+            </li>
+          <% end %>
+          <% if !Docuseal.multitenant? && can?(:read, McpToken) && can?(:manage, :mcp) %>
+            <li>
+              <%= link_to 'MCP', settings_mcp_index_path, class: 'text-base hover:bg-base-300' %>
+            </li>
+          <% end %>
+          <%= render 'shared/settings_nav_extra2' %>
+          <% if (can?(:manage, EncryptedConfig) && current_user == true_user) || (current_user != true_user && current_account.testing?) %>
+            <%= form_for '', url: testing_account_path, method: current_account.testing? ? :delete : :post, html: { class: 'w-full' } do |f| %>
+              <li>
+                <label class="flex items-center text-base hover:bg-base-300 w-full justify-between" for="testing_toggle">
+                  <span class="mr-2 w-full">
+                    <%= t('test_mode') %>
+                  </span>
+                  <submit-form data-on="change" class="flex">
+                    <%= f.check_box :testing_toggle, class: 'toggle toggle-sm', checked: current_account.testing? %>
+                  </submit-form>
+                </label>
+              </li>
+            <% end %>
+          <% end %>
+        <% end %>
+      </ul>
+    </menu-active>
+    <% if Docuseal.multitenant? || cannot?(:manage, :tenants) %>
+      <div id="support_channels" class="mx-4 border-t border-base-300 <%= 'hidden md:block' unless expanded %>">
+        <div class="text-sm mt-3">
+          <%= t('need_help_ask_a_question_') %>
         </div>
-        <div class="tooltip tooltip-no-touch" data-tip="<%= t('discord_community') %>">
-          <a href="<%= Docuseal::DISCORD_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
-            <%= svg_icon('brand_discord', class: 'w-8 h-8') %>
-          </a>
-        </div>
-        <%= capture do %>
-          <div class="tooltip tooltip-no-touch" data-tip="<%= t('ai_assistant') %>">
-            <a href="<%= Docuseal::CHATGPT_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
-              <%= svg_icon('message', class: 'w-8 h-8') %>
+        <div class="flex mt-3 space-x-3">
+          <div class="tooltip tooltip-no-touch" data-tip="GitHub">
+            <a href="<%= Docuseal::GITHUB_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
+              <%= svg_icon('brand_github', class: 'w-8 h-8') %>
             </a>
           </div>
+          <div class="tooltip tooltip-no-touch" data-tip="<%= t('discord_community') %>">
+            <a href="<%= Docuseal::DISCORD_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
+              <%= svg_icon('brand_discord', class: 'w-8 h-8') %>
+            </a>
+          </div>
+          <%= capture do %>
+            <div class="tooltip tooltip-no-touch" data-tip="<%= t('ai_assistant') %>">
+              <a href="<%= Docuseal::CHATGPT_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
+                <%= svg_icon('message', class: 'w-8 h-8') %>
+              </a>
+            </div>
+          <% end %>
+        </div>
+        <a href="mailto:<%= Docuseal::SUPPORT_EMAIL %>" target="_blank" class="w-full block mt-4 underline text-center">
+          <%= Docuseal::SUPPORT_EMAIL %>
+        </a>
+        <% if Docuseal.version.present? && !Docuseal.multitenant? && can?(:manage, EncryptedConfig) %>
+          <a href="https://github.com/docusealco/docuseal/releases" target="_blank" class="badge badge-outline text-xs block mx-auto mt-4">
+            v<%= Docuseal.version %>
+          </a>
         <% end %>
       </div>
-      <a href="mailto:<%= Docuseal::SUPPORT_EMAIL %>" target="_blank" class="w-full block mt-4 underline text-center">
-        <%= Docuseal::SUPPORT_EMAIL %>
-      </a>
-      <% if Docuseal.version.present? && !Docuseal.multitenant? && can?(:manage, EncryptedConfig) %>
-        <a href="https://github.com/docusealco/docuseal/releases" target="_blank" class="badge badge-outline text-xs block mx-auto mt-4">
-          v<%= Docuseal.version %>
-        </a>
-      <% end %>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
