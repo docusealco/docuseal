@@ -2,7 +2,7 @@
 <div class="<%= expanded ? 'block -mx-3 md:mx-0' : 'w-full md:w-52 flex-none' %>">
   <% unless expanded %>
     <div class="md:hidden w-full">
-      <a href="<%= settings_index_path %>" class="flex items-center space-x-0.5 font-medium">
+      <a href="<%= settings_path %>" class="flex items-center space-x-0.5 font-medium">
         <%= svg_icon('arrow_left', class: 'w-4 h-4 stroke-2') %>
         <span><%= t('settings') %></span>
       </a>

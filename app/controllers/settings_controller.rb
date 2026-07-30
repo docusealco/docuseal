@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SettingsIndexController < ApplicationController
+class SettingsController < ApplicationController
   skip_authorization_check
 
   def index; end
