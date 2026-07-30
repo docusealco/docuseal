@@ -45,8 +45,8 @@
 <% default_subject = template&.preferences&.dig('request_email_subject').presence || config.value['subject'] %>
 <% default_body = template&.preferences&.dig('request_email_body').presence || config_body %>
 <% is_edit_viewer = local_assigns[:submitter] && local_assigns[:viewer_submitter_uuids].include?(local_assigns[:submitter].uuid) %>
-<div id="<%= message_field_id %>" class="card card-compact bg-base-300/40 hidden">
-  <div class="card-body">
+<div id="<%= message_field_id %>" class="relative flex flex-col rounded-2xl md:bg-base-300/40 hidden">
+  <div class="flex flex-auto flex-col gap-2 md:text-sm md:p-4">
     <%= tag.input id: toggle_uuid = SecureRandom.uuid, value: '1', name: 'request_email_per_submitter', class: 'peer', type: 'checkbox', hidden: true, checked: local_assigns[:message_per_submitter] != false && template_submitters.size < 11 && template&.preferences&.dig('submitters').to_a.size > 1 %>
     <% if local_assigns[:viewer_submitter_uuids].present? && local_assigns[:submitter].blank? %>
       <% (template_submitters.pluck('uuid') - local_assigns[:viewer_submitter_uuids].to_a).each do |signer_uuid| %>

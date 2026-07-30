@@ -160,6 +160,7 @@ safeRegisterElement('history-back', HistoryBack)
 safeRegisterElement('template-builder', class extends HTMLElement {
   connectedCallback () {
     document.addEventListener('turbo:submit-end', this.onSubmit)
+    document.addEventListener('turbo:before-cache', this.onBeforeCache)
 
     this.appElem = document.createElement('div')
 
@@ -243,8 +244,14 @@ safeRegisterElement('template-builder', class extends HTMLElement {
     }
   }
 
+  onBeforeCache = () => {
+    this.app?.unmount()
+    this.appElem?.remove()
+  }
+
   disconnectedCallback () {
     document.removeEventListener('turbo:submit-end', this.onSubmit)
+    document.removeEventListener('turbo:before-cache', this.onBeforeCache)
 
     this.app?.unmount()
     this.appElem?.remove()
@@ -253,6 +260,8 @@ safeRegisterElement('template-builder', class extends HTMLElement {
 
 safeRegisterElement('import-list', class extends HTMLElement {
   connectedCallback () {
+    document.addEventListener('turbo:before-cache', this.onBeforeCache)
+
     this.appElem = document.createElement('div')
 
     this.app = createApp(ImportList, {
@@ -267,7 +276,14 @@ safeRegisterElement('import-list', class extends HTMLElement {
     this.appendChild(this.appElem)
   }
 
+  onBeforeCache = () => {
+    this.app?.unmount()
+    this.appElem?.remove()
+  }
+
   disconnectedCallback () {
+    document.removeEventListener('turbo:before-cache', this.onBeforeCache)
+
     this.app?.unmount()
     this.appElem?.remove()
   }

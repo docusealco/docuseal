@@ -281,6 +281,10 @@
             :href="`/templates/${template.id}`"
             class="base-button"
           >
+            <IconX
+              width="20"
+              class="md:hidden stroke-2"
+            />
             <span class="hidden md:inline">
               {{ t('back') }}
             </span>

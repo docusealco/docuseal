@@ -473,7 +473,7 @@ en: &en
   back_to_active: Back to Active
   submissions: Submissions
   templates: Templates
-  document_templates_html: <span class="hidden md:inline">Document</span> Templates
+  document_templates_html: <span class="hidden lg:inline">Document</span> Templates
   archived: Archived
   search: Search
   submissions_not_found: Submissions not Found
@@ -965,6 +965,7 @@ en: &en
   undo: Undo
   redo: Redo
   add_variable: Add variable
+  variable: Variable
   enter_a_url_or_variable_name: Enter a URL or variable name
   new_token: New token
   token: Token
@@ -1572,7 +1573,7 @@ es: &es
   back_to_active: Volver a activo
   submissions: Envíos
   templates: Plantillas
-  document_templates_html: Plantillas <span class="hidden md:inline">de documento</span>
+  document_templates_html: Plantillas <span class="hidden lg:inline">de documento</span>
   archived: Archivado
   search: Buscar
   submissions_not_found: Envíos no encontrados
@@ -2061,6 +2062,7 @@ es: &es
   undo: Deshacer
   redo: Rehacer
   add_variable: Agregar variable
+  variable: Variable
   enter_a_url_or_variable_name: Ingrese una URL o nombre de variable
   new_token: Nuevo token
   token: Token
@@ -2668,7 +2670,7 @@ it: &it
   back_to_active: Torna attivo
   submissions: Invii
   templates: Modelli
-  document_templates_html: Modelli <span class="hidden md:inline">di documento</span>
+  document_templates_html: Modelli <span class="hidden lg:inline">di documento</span>
   archived: Archiviato
   search: Cerca
   submissions_not_found: Invii non trovati
@@ -3157,6 +3159,7 @@ it: &it
   undo: Annulla
   redo: Ripeti
   add_variable: Aggiungi variabile
+  variable: Variabile
   enter_a_url_or_variable_name: Inserisci un URL o nome variabile
   new_token: Nuovo token
   token: Token
@@ -3764,7 +3767,7 @@ fr: &fr
   back_to_active: Retour aux actifs
   submissions: Soumissions
   templates: Modèles
-  document_templates_html: Modèles <span class="hidden md:inline">de documents</span>
+  document_templates_html: Modèles <span class="hidden lg:inline">de documents</span>
   archived: Archivé
   search: Rechercher
   submissions_not_found: Soumissions introuvables
@@ -4250,6 +4253,7 @@ fr: &fr
   undo: Annuler
   redo: Rétablir
   add_variable: Ajouter une variable
+  variable: Variable
   enter_a_url_or_variable_name: Entrez une URL ou un nom de variable
   new_token: Nouveau jeton
   token: Jeton
@@ -4857,7 +4861,7 @@ pt: &pt
   back_to_active: Voltar para ativo
   submissions: Submissões
   templates: Modelos
-  document_templates_html: Modelos <span class="hidden md:inline">de documento</span>
+  document_templates_html: Modelos <span class="hidden lg:inline">de documento</span>
   archived: Arquivado
   search: Buscar
   submissions_not_found: Submissões não encontradas
@@ -5346,6 +5350,7 @@ pt: &pt
   undo: Desfazer
   redo: Refazer
   add_variable: Adicionar variável
+  variable: Variável
   enter_a_url_or_variable_name: Digite uma URL ou nome de variável
   new_token: Novo token
   token: Token
@@ -5953,7 +5958,7 @@ de: &de
   back_to_active: Zurück zu Aktiv
   submissions: Einreichungen
   templates: Vorlagen
-  document_templates_html: <span class="md:hidden">Vorlagen</span><span class="hidden md:inline">Dokumentvorlagen</span>
+  document_templates_html: <span class="lg:hidden">Vorlagen</span><span class="hidden lg:inline">Dokumentvorlagen</span>
   archived: Archiviert
   search: Suchen
   submissions_not_found: Einreichungen nicht gefunden
@@ -6442,6 +6447,7 @@ de: &de
   undo: Rückgängig
   redo: Wiederholen
   add_variable: Variable hinzufügen
+  variable: Variable
   enter_a_url_or_variable_name: Geben Sie eine URL oder einen Variablennamen ein
   new_token: Neues Token
   token: Token
@@ -7454,7 +7460,7 @@ nl: &nl
   back_to_active: Terug naar Actief
   submissions: Inzendingen
   templates: Sjablonen
-  document_templates_html: <span class="md:hidden">Sjablonen</span><span class="hidden md:inline">Documentsjablonen</span>
+  document_templates_html: <span class="lg:hidden">Sjablonen</span><span class="hidden lg:inline">Documentsjablonen</span>
   archived: Gearchiveerd
   search: Zoeken
   submissions_not_found: Geen inzendingen gevonden
@@ -7939,6 +7945,7 @@ nl: &nl
   undo: Ongedaan maken
   redo: Opnieuw
   add_variable: Variabele toevoegen
+  variable: Variabele
   enter_a_url_or_variable_name: Voer een URL of variabelenaam in
   new_token: Nieuw token
   token: Token

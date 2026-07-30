@@ -20,7 +20,7 @@
               </span>
             </a>
             <% if can?(:update, template) %>
-              <span class="pl-1 tooltip tooltip-right md:opacity-0 hover:opacity-100 peer-hover:opacity-100" data-tip="<%= t('move') %>">
+              <span class="pl-1 tooltip tooltip-right tooltip-no-touch md:opacity-0 hover:opacity-100 peer-hover:opacity-100" data-tip="<%= t('move') %>">
                 <a href="<%= edit_template_folder_path(template.id, subfolder: @template.folder.parent_folder.present?) %>" data-turbo-frame="modal">
                   <%= svg_icon('pencil_share', class: 'w-5 h-5') %>
                 </a>
@@ -44,7 +44,7 @@
     <% if !template.archived_at? %>
       <div class="flex items-center space-x-2">
         <% if can?(:update, template) %>
-          <div class="tooltip hidden md:block" data-tip="<%= t('preferences') %>">
+          <div class="tooltip tooltip-no-touch hidden md:block" data-tip="<%= t('preferences') %>">
             <%= link_to template_preferences_path(template), class: 'btn border border-base-200 bg-base-200 hover:bg-base-300 hover:border-base-300 btn-sm flex-1 hidden md:flex', data: { turbo_frame: :modal } do %>
               <span class="flex items-center justify-center space-x-2">
                 <%= svg_icon('adjustments_horizontal', class: 'w-6 h-6') %>
