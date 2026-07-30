@@ -132,10 +132,10 @@
     </menu-active>
     <% if Docuseal.multitenant? || cannot?(:manage, :tenants) %>
       <div id="support_channels" class="mx-4 border-t border-base-300 <%= 'hidden md:block' unless expanded %>">
-        <div class="text-sm mt-3">
+        <div class="text-sm text-center mt-3">
           <%= t('need_help_ask_a_question_') %>
         </div>
-        <div class="flex mt-3 space-x-3">
+        <div class="flex justify-center mt-3 space-x-3">
           <div class="tooltip tooltip-no-touch" data-tip="GitHub">
             <a href="<%= Docuseal::GITHUB_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
               <%= svg_icon('brand_github', class: 'w-8 h-8') %>
