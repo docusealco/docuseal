@@ -42,10 +42,6 @@ export default actionable(class extends HTMLElement {
   close = (e) => {
     e?.preventDefault()
 
-    if (!this.closest('turbo-frame')?.src && window.history.length > 1) {
-      window.history.back()
-    } else {
-      this.remove()
-    }
+    this.remove()
   }
 })

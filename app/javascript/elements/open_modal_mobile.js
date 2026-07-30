@@ -1,8 +1,9 @@
 export default class extends HTMLElement {
   connectedCallback () {
     if (!this.isMobile()) return
+    if (window.innerWidth >= 768) return
 
-    document.querySelectorAll('a[data-turbo-frame="modal"]').forEach((link) => {
+    this.querySelectorAll('a[data-turbo-frame]').forEach((link) => {
       link.dataset.turboFrame = '_top'
     })
   }

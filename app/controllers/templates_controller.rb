@@ -25,7 +25,9 @@ class TemplatesController < ApplicationController
     redirect_to root_path
   end
 
-  def new; end
+  def new
+    render :new, layout: 'plain'
+  end
 
   def edit
     @template_data = Templates.serialize_for_builder(@template)

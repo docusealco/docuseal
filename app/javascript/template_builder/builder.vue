@@ -164,7 +164,7 @@
             v-if="withSendButton"
             id="send_button"
             :href="`/templates/${template.id}/submissions/new?with_link=true`"
-            data-turbo-frame="modal"
+            :data-turbo-frame="isMobile && isBreakpointLg ? '_top' : 'modal'"
             class="white-button md:!px-6"
             @click="maybeShowErrorTemplateAlert"
           >
@@ -229,7 +229,7 @@
                 <li>
                   <a
                     :href="`/templates/${template.id}/preferences`"
-                    data-turbo-frame="modal"
+                    :data-turbo-frame="isMobile && isBreakpointLg ? '_top' : 'modal'"
                     class="flex space-x-2"
                     @click="closeDropdown"
                   >

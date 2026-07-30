@@ -18,10 +18,12 @@
           <span><%= t('export') %></span>
         <% end %>
         <% if !@template.archived_at? && can?(:create, Submission) %>
-          <%= link_to new_template_submission_path(@template), id: 'add_recipients_button', class: 'white-button !border', data: { turbo_frame: 'modal' } do %>
-            <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
-            <%= t('add_recipients_html') %>
-          <% end %>
+          <open-modal-mobile class="flex">
+            <%= link_to new_template_submission_path(@template), id: 'add_recipients_button', class: 'white-button !border', data: { turbo_frame: 'modal' } do %>
+              <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
+              <%= t('add_recipients_html') %>
+            <% end %>
+          </open-modal-mobile>
         <% end %>
       </div>
     </div>
