@@ -344,7 +344,7 @@ GEM
     orm_adapter (0.5.0)
     os (1.1.4)
     package_json (0.2.0)
-    pagy (43.4.4)
+    pagy (43.6.1)
       json
       uri
       yaml
