@@ -61,7 +61,10 @@
               @input="resizeTextarea"
             />
           </div>
-          <div class="mb-3 mt-1">
+          <div
+            v-if="field.type !== 'text'"
+            class="mb-3 mt-1"
+          >
             <div
               target="blank"
               class="text-sm mb-2 inline space-x-2 font-mono"
@@ -161,7 +164,9 @@ export default {
   computed: {
     fields () {
       return this.template.fields.reduce((acc, f) => {
-        if (f !== this.field && this.isNumberField(f) && (!f.preferences?.formula || !f.preferences.formula.includes(this.field.uuid))) {
+        const isAllowed = this.field.type === 'text' ? this.isTextField(f) : this.isNumberField(f)
+
+        if (f !== this.field && isAllowed && (!f.preferences?.formula || !f.preferences.formula.includes(this.field.uuid))) {
           acc.push(f)
         }
 
@@ -178,6 +183,9 @@ export default {
   methods: {
     isNumberField (field) {
       return field.type === 'number' || (['radio', 'select'].includes(field.type) && field.options?.every((o) => String(o.value).match(/^[\d.-]+$/)))
+    },
+    isTextField (field) {
+      return ['text', 'number', 'select', 'radio', 'cells', 'phone'].includes(field.type)
     },
     humanizeFormula (text) {
       return text.replace(/{{(.*?)}}/g, (match, uuid) => {

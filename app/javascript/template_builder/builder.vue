@@ -1259,7 +1259,7 @@ export default {
 
       return formulaFields.reduce((acc, f) => {
         if (this.conditionalFieldIndex[f.uuid] !== false) {
-          acc[f.uuid] = this.calculateFormula(f)
+          acc[f.uuid] = f.type === 'text' ? this.evalTextFormula(f) : this.calculateFormula(f)
         }
 
         return acc
@@ -1525,6 +1525,25 @@ export default {
       })
 
       return this.math.evaluate(transformedFormula.toLowerCase())
+    },
+    evalTextFormula (field, depth = 0) {
+      if (depth > 10) return ''
+
+      return field.preferences.formula.replace(/{{(.*?)}}/g, (match, uuid) => {
+        const formulaField = this.fieldsUuidIndex[uuid]
+
+        if (formulaField?.preferences?.formula) {
+          if (formulaField.type === 'text') {
+            return this.evalTextFormula(formulaField, depth + 1)
+          } else if (this.isMathLoaded) {
+            return this.calculateFormula(formulaField)
+          }
+        }
+
+        const value = formulaField?.default_value
+
+        return Array.isArray(value) ? value.join(', ') : (value ?? '')
+      })
     },
     hasFormulaDependencyValue (field) {
       const normalized = this.normalizeFormula(field.preferences.formula)

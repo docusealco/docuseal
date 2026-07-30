@@ -611,7 +611,7 @@ export default {
       return this.withCondition && !['stamp', 'heading'].includes(this.field.type)
     },
     showFormula () {
-      return this.field.type === 'number' || this.field.type === 'payment'
+      return this.field.type === 'number' || this.field.type === 'payment' || !!this.field.preferences?.formula
     },
     showRequired () {
       return this.withRequired && !['phone', 'stamp', 'verification', 'strikethrough', 'heading'].includes(this.field.type)

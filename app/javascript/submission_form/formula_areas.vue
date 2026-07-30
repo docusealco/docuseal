@@ -12,8 +12,8 @@
         :to="findPageElementForArea(area)"
       >
         <FieldArea
-          v-if="isMathLoaded"
-          :model-value="calculateFormula(field)"
+          v-if="isMathLoaded || field.type === 'text'"
+          :model-value="field.type === 'text' ? evalTextFormula(field) : calculateFormula(field)"
           :is-inline-size="isInlineSize"
           :field="field"
           :area="area"
@@ -95,6 +95,25 @@ export default {
       })
 
       return this.math.evaluate(transformedFormula.toLowerCase())
+    },
+    evalTextFormula (field, depth = 0) {
+      if (depth > 10) return ''
+
+      return field.preferences.formula.replace(/{{(.*?)}}/g, (match, uuid) => {
+        const formulaField = this.fieldsUuidIndex[uuid]
+
+        if (formulaField?.preferences?.formula) {
+          if (formulaField.type === 'text') {
+            return this.evalTextFormula(formulaField, depth + 1)
+          } else if (this.isMathLoaded) {
+            return this.calculateFormula(formulaField)
+          }
+        }
+
+        const value = this.readonlyValues[uuid] ?? this.values[uuid]
+
+        return Array.isArray(value) ? value.join(', ') : (value ?? '')
+      })
     }
   }
 }

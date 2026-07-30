@@ -220,9 +220,16 @@ module Submitters
             submitter.values
           end
 
-        formula = normalize_formula(formula, submitter.submission, submission_values:)
+        values = submission_values.merge(acc.compact_blank)
 
-        acc[field['uuid']] = calculate_formula_value(formula, submission_values.merge(acc.compact_blank))
+        acc[field['uuid']] =
+          if field['type'] == 'text'
+            eval_text_formula_value(formula, values, submitter.submission)
+          else
+            normalized_formula = normalize_formula(formula, submitter.submission, submission_values:)
+
+            calculate_formula_value(normalized_formula, values)
+          end
       end
 
       computed_values.compact_blank
@@ -248,6 +255,10 @@ module Submitters
 
     def calculate_formula_value(_formula, _values)
       0
+    end
+
+    def eval_text_formula_value(_formula, _values, _submission)
+      ''
     end
 
     def replace_current_date_placeholders(submitter)
