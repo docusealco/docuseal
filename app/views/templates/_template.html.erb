@@ -15,12 +15,12 @@
         <% end %>
       </p>
       <p class="flex text-xs text-base-content/60">
-        <span class="flex items-center space-x-1 w-1/2 whitespace-nowrap">
+        <span class="flex items-center space-x-1 w-1/2 md:w-2/3 lg:w-1/2 whitespace-nowrap">
           <%= svg_icon('calendar', class: 'w-4 h-4 flex-shrink-0') %>
           <span><%= l(template.created_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) %></span>
         </span>
         <% if local_assigns[:with_folder] %>
-          <span class="flex items-center space-x-1 w-1/2">
+          <span class="flex items-center space-x-1 w-1/2 md:w-1/3 lg:w-1/2">
             <%= svg_icon('folder', class: 'w-4 h-4 flex-shrink-0') %>
             <span class="truncate"><%= template.folder.full_name %></span>
           </span>
