@@ -1,5 +1,6 @@
 export default class extends HTMLElement {
   connectedCallback () {
+    if (this.dataset.disabled === 'true') return
     if (!this.isMobile()) return
     if (window.innerWidth >= 768) return
 
