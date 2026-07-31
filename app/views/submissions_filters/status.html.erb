@@ -3,9 +3,9 @@
     <div class="form-control w-full">
       <div id="status" class="radio-select grid grid-cols-2 gap-2 px-1">
         <% ['', 'pending', 'completed', 'partially_completed', 'sent', 'opened', 'declined', 'expired'].each do |status| %>
-          <label class="radio-label cursor-pointer inline-flex items-center space-x-2">
-            <%= radio_button_tag 'status', status, params[:status] == status || (status == '' && params[:status].blank?), class: 'base-radio' %>
-            <span><%= t(status.presence || 'all') %></span>
+          <label class="radio-label cursor-pointer inline-flex items-center space-x-2 min-w-0">
+            <%= radio_button_tag 'status', status, params[:status] == status || (status == '' && params[:status].blank?), class: 'base-radio shrink-0' %>
+            <span class="truncate"><%= t(status.presence || 'all') %></span>
           </label>
         <% end %>
       </div>

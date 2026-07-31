@@ -18,9 +18,9 @@
       <% end %>
     </div>
   </div>
-  <div class="flex flex-nowrap md:flex-wrap justify-end items-center gap-2">
-    <%= render 'submissions_filters/applied_filters', filter_params: %>
-    <div class="shrink-0 md:order-first">
+  <div class="flex flex-nowrap md:flex-wrap md:justify-end items-center gap-2">
+    <%= render 'submissions_filters/applied_filters', filter_params:, with_status: true %>
+    <div class="hidden md:block shrink-0 md:order-first">
       <%= link_to new_template_submissions_export_path(@template, archived: true), class: 'btn btn-ghost text-base h-10 min-h-10', data: { turbo_frame: 'modal' } do %>
         <%= svg_icon('download', class: 'w-6 h-6 stroke-2') %>
         <span class="hidden md:inline"><%= t('export') %></span>

@@ -3,20 +3,15 @@
 <% ordered_filters = request.query_parameters.keys.filter_map { |key| filter_names.find { |name| key.start_with?(name) } }.uniq %>
 <% chip_order = ordered_filters.reverse.each_with_index.to_h { |name, index| [name, index + 1] } %>
 <% chip_order.default = ordered_filters.size + 1 %>
-<scroll-fade class="flex items-center gap-2 overflow-x-auto flex-1 min-w-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [&::-webkit-scrollbar]:h-0 [&::-webkit-scrollbar]:w-0 md:contents">
-  <% if local_assigns[:with_status] %>
-    <% status_icons = { 'all' => 'list', 'pending' => 'clock', 'completed' => 'circle_check', 'partially_completed' => 'clock_edit', 'sent' => 'send', 'opened' => 'mail_opened', 'declined' => 'x_circle', 'expired' => 'clock_cancel' } %>
-    <% current_status = status_icons.key?(params[:status].to_s) ? params[:status] : 'all' %>
-    <a href="<%= submissions_filter_path('status', query_params.merge(path: url_for)) %>" data-turbo-frame="modal" class="order-<%= current_status == 'all' ? 'none' : chip_order['status'] %> md:hidden flex h-10 px-2 py-1 space-x-1 text-base items-center border text-neutral rounded-xl shrink-0 <%= current_status == 'all' ? 'border-neutral-300' : 'border-neutral-700' %>">
-      <%= svg_icon(status_icons[current_status], class: 'w-5 h-5 shrink-0') %>
-      <span><%= t(current_status) %></span>
-      <%= svg_icon('chevron_down', class: 'w-4 h-4 shrink-0') %>
-    </a>
-  <% end %>
-  <% if icon = { 'declined' => 'x_circle', 'expired' => 'clock_cancel', 'partially_completed' => 'clock_edit', 'sent' => 'send', 'opened' => 'mail_opened' }[params[:status]] %>
-    <div class="order-<%= chip_order['status'] %> md:order-none <%= 'hidden md:flex' if local_assigns[:with_status] %> flex h-10 px-2 py-1 text-base md:text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl shrink-0 max-w-[60vw] md:w-36 border-neutral-700">
+<% status_icon = { 'declined' => 'x_circle', 'expired' => 'clock_cancel', 'partially_completed' => 'clock_edit', 'sent' => 'send', 'opened' => 'mail_opened' }[params[:status]] %>
+<% status_icons = { 'all' => 'list', 'pending' => 'clock', 'completed' => 'circle_check' } %>
+<% current_status = status_icons.key?(params[:status].to_s) ? params[:status].to_s : 'all' %>
+<% with_status_button = local_assigns[:with_status] && status_icon.blank? %>
+<% chips_html = capture do %>
+  <% if status_icon %>
+    <div class="order-none flex h-10 px-2 py-1 text-base md:text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl shrink-0 max-w-[60vw] md:w-36 border-neutral-700">
       <%= link_to submissions_filter_path('status', query_params.merge(path: url_for, with_remove: true)), data: { turbo_frame: 'modal' }, class: 'flex items-center space-x-1 flex-1 min-w-0 pr-1' do %>
-        <%= svg_icon(icon, class: 'w-5 h-5 shrink-0') %>
+        <%= svg_icon(status_icon, class: 'w-5 h-5 shrink-0') %>
         <span class="font-normal truncate"><%= t(params[:status]) %></span>
       <% end %>
       <%= link_to url_for(params: request.query_parameters.except('status')), class: 'rounded-lg ml-1 shrink-0 hover:bg-base-content hover:text-white' do %>
@@ -82,4 +77,35 @@
       <% end %>
     </div>
   <% end %>
-</scroll-fade>
+<% end %>
+<% if with_status_button && chips_html.blank? %>
+  <div class="dropdown md:hidden shrink-0">
+    <label tabindex="0" class="cursor-pointer flex h-10 px-2 py-1 space-x-1 text-base items-center border text-neutral rounded-xl <%= current_status == 'all' ? 'border-neutral-300' : 'border-neutral-700' %>">
+      <%= svg_icon(status_icons[current_status], class: 'w-5 h-5 shrink-0') %>
+      <span><%= t(current_status) %></span>
+      <%= svg_icon('chevron_down', class: 'w-4 h-4 shrink-0') %>
+    </label>
+    <ul tabindex="0" class="z-10 dropdown-content p-2 mt-2 shadow menu text-base bg-base-100 rounded-box min-w-[180px]">
+      <% { 'all' => request.query_parameters.except('status'), 'pending' => request.query_parameters.merge('status' => 'pending'), 'completed' => request.query_parameters.merge('status' => 'completed') }.each do |status, status_params| %>
+        <li>
+          <%= link_to url_for(params: status_params), class: ('bg-base-200' if current_status == status) do %>
+            <%= svg_icon(status_icons[status], class: 'w-5 h-5 shrink-0') %>
+            <span><%= t(status) %></span>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<% if chips_html.present? %>
+  <scroll-fade class="flex items-center gap-2 overflow-x-auto flex-1 min-w-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [&::-webkit-scrollbar]:h-0 [&::-webkit-scrollbar]:w-0 md:contents">
+    <% if with_status_button %>
+      <a href="<%= submissions_filter_path('status', query_params.merge(path: url_for)) %>" data-turbo-frame="modal" class="order-none md:hidden flex h-10 px-2 py-1 space-x-1 text-base items-center border text-neutral rounded-xl shrink-0 <%= current_status == 'all' ? 'border-neutral-300' : 'border-neutral-700' %>">
+        <%= svg_icon(status_icons[current_status], class: 'w-5 h-5 shrink-0') %>
+        <span><%= t(current_status) %></span>
+        <%= svg_icon('chevron_down', class: 'w-4 h-4 shrink-0') %>
+      </a>
+    <% end %>
+    <%= chips_html %>
+  </scroll-fade>
+<% end %>
