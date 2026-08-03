@@ -76,6 +76,8 @@ docker run --name docuseal -p 3000:3000 -v.:/data docuseal/docuseal
 
 By default DocuSeal docker container uses an SQLite database to store data and configurations. Alternatively, it is possible to use PostgreSQL or MySQL databases by specifying the `DATABASE_URL` env variable.
 
+When using PostgreSQL providers that offer a pooled connection string for application traffic and a direct connection string for schema changes, keep `DATABASE_URL` set to the application connection and set `MIGRATION_DATABASE_URL` to the direct connection string. This lets DocuSeal run startup migrations, such as adding `NOT NULL` constraints, outside transaction poolers that do not support all migration operations.
+
 #### Docker Compose
 
 Download docker-compose.yml into your private server:
