@@ -85,15 +85,40 @@
       <span><%= t(current_status) %></span>
       <%= svg_icon('chevron_down', class: 'w-4 h-4 shrink-0') %>
     </label>
-    <ul tabindex="0" class="z-10 dropdown-content p-2 mt-2 shadow menu text-base bg-base-100 rounded-box min-w-[180px]">
-      <% { 'all' => request.query_parameters.except('status'), 'pending' => request.query_parameters.merge('status' => 'pending'), 'completed' => request.query_parameters.merge('status' => 'completed') }.each do |status, status_params| %>
-        <li>
-          <%= link_to url_for(params: status_params), class: ('bg-base-200' if current_status == status) do %>
-            <%= svg_icon(status_icons[status], class: 'w-5 h-5 shrink-0') %>
-            <span><%= t(status) %></span>
+    <ul tabindex="0" class="z-10 dropdown-content p-2 mt-2 shadow menu text-base bg-base-100 rounded-box" style="min-width: 180px;">
+      <li>
+        <%= link_to url_for(params: request.query_parameters.except('status')), class: ('bg-base-200' if current_status == 'all') do %>
+          <%= svg_icon('list', class: 'w-5 h-5 shrink-0') %>
+          <span><%= t('all') %></span>
+          <% if local_assigns[:all_count] %>
+            <span class="badge badge-sm badge-ghost font-medium px-2 ml-auto">
+              <%= local_assigns[:all_count] %>
+            </span>
           <% end %>
-        </li>
-      <% end %>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to url_for(params: request.query_parameters.merge('status' => 'pending')), class: ('bg-base-200' if current_status == 'pending') do %>
+          <%= svg_icon('clock', class: 'w-5 h-5 shrink-0') %>
+          <span><%= t('pending') %></span>
+          <% if local_assigns[:pending_count] %>
+            <span class="badge badge-sm badge-ghost font-medium px-2 ml-auto">
+              <%= local_assigns[:pending_count] %>
+            </span>
+          <% end %>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to url_for(params: request.query_parameters.merge('status' => 'completed')), class: ('bg-base-200' if current_status == 'completed') do %>
+          <%= svg_icon('circle_check', class: 'w-5 h-5 shrink-0') %>
+          <span><%= t('completed') %></span>
+          <% if local_assigns[:completed_count] %>
+            <span class="badge badge-sm badge-ghost font-medium px-2 ml-auto">
+              <%= local_assigns[:completed_count] %>
+            </span>
+          <% end %>
+        <% end %>
+      </li>
     </ul>
   </div>
 <% end %>

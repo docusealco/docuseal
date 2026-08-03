@@ -39,7 +39,7 @@
         </div>
         <% unless can?(:manage, :countless) %>
           <div class="badge badge-neutral badge-outline font-medium">
-            <%= params[:status].blank? && filter_params.blank? ? @pagy.count : @base_submissions.count %>
+            <%= all_count = params[:status].blank? && filter_params.blank? ? @pagy.count : @base_submissions.count %>
           </div>
         <% end %>
       </a>
@@ -50,7 +50,7 @@
         </div>
         <% unless can?(:manage, :countless) %>
           <div class="badge badge-neutral badge-outline font-medium">
-            <%= params[:status] == 'pending' && filter_params.blank? ? @pagy.count : @base_submissions.pending.count %>
+            <%= pending_count = params[:status] == 'pending' && filter_params.blank? ? @pagy.count : @base_submissions.pending.count %>
           </div>
         <% end %>
       </a>
@@ -61,13 +61,13 @@
         </div>
         <% unless can?(:manage, :countless) %>
           <div class="badge badge-neutral badge-outline font-medium">
-            <%= params[:status] == 'completed' && filter_params.blank? ? @pagy.count : @base_submissions.completed.count %>
+            <%= completed_count = params[:status] == 'completed' && filter_params.blank? ? @pagy.count : @base_submissions.completed.count %>
           </div>
         <% end %>
       </a>
     </div>
     <div class="flex items-center md:items-end gap-2 w-full md:w-fit">
-      <%= render 'submissions_filters/applied_filters', filter_params:, with_status: true %>
+      <%= render 'submissions_filters/applied_filters', filter_params:, with_status: true, all_count:, pending_count:, completed_count: %>
       <%= render 'submissions_filters/filter_button', filter_params: %>
       <% unless @template.archived_at? %>
         <%= render 'submissions_filters/actions', filter_params: filter_params.merge(template_id: @template.id) %>
