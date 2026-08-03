@@ -13,6 +13,8 @@ class TemplatesFormPreviewController < ApplicationController
 
     @submitter.submission.submitters = @template.submitters.map { |item| Submitter.new(uuid: item['uuid']) }
 
+    Submissions::CreateFromSubmitters.maybe_set_dynamic_documents(@submitter.submission, preview: true)
+
     Submissions.preload_with_pages(@submitter.submission)
 
     @attachments_index = ActiveStorage::Attachment.where(record: @submitter.submission.submitters, name: :attachments)

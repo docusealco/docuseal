@@ -202,7 +202,7 @@
             </button>
             <div
               class="dropdown dropdown-end"
-              :class="{ 'dropdown-open': isDownloading }"
+              :class="{ 'dropdown-open': isDownloading || isPreviewLoading }"
             >
               <label
                 tabindex="0"
@@ -221,8 +221,16 @@
                     :href="`/templates/${template.id}/form`"
                     data-turbo="false"
                     class="flex items-center justify-center space-x-2"
+                    @click.exact="isPreviewLoading = true"
                   >
-                    <IconEye class="w-6 h-6 flex-shrink-0" />
+                    <IconInnerShadowTop
+                      v-if="isPreviewLoading"
+                      class="animate-spin w-6 h-6 flex-shrink-0"
+                    />
+                    <IconEye
+                      v-else
+                      class="w-6 h-6 flex-shrink-0"
+                    />
                     <span class="whitespace-nowrap">{{ t('save_and_preview') }}</span>
                   </a>
                 </li>
@@ -1122,6 +1130,7 @@ export default {
       documentRefs: [],
       isBreakpointLg: false,
       isDownloading: false,
+      isPreviewLoading: false,
       isLoadingBlankPage: false,
       isSaving: false,
       isDetectingPageFields: false,
