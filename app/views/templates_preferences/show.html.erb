@@ -3,14 +3,14 @@
   <% show_recipients = @template.submitters.to_a.length > 1 %>
   <% options = [[t('general'), 'general']] %>
   <% options << [t('recipients'), 'recipients'] if show_recipients %>
-  <% options << [t('api_and_embedding'), 'api'] if show_api %>
+  <% options << [safe_join([tag.span('API', class: 'md:hidden'), tag.span(t('api_and_embedding'), class: 'hidden md:inline')]), 'api'] if show_api %>
   <% if options.size > 1 %>
     <toggle-visible data-element-ids="<%= options.map(&:last).to_json %>" class="relative text-center mt-3 block">
       <div class="join">
         <% options.each_with_index do |(label, value), index| %>
           <span>
             <%= radio_button_tag 'option', value, value == 'general', class: 'peer hidden', data: { action: 'change:toggle-visible#trigger' } %>
-            <label for="option_<%= value %>" class="<%= '!rounded-s-full' if index.zero? %> btn btn-focus btn-sm join-item peer-checked:btn-active normal-case <%= 'px-8 md:px-0' if value.in?(%w[general recipients]) %> <%= options.size > 2 ? 'md:w-44' : 'md:w-48' %>">
+            <label for="option_<%= value %>" class="<%= '!rounded-s-full' if index.zero? %> btn btn-sm join-item peer-checked:btn-active normal-case px-8 md:px-0 <%= 'min-w-28 md:min-w-0' if value == 'api' %> <%= options.size > 2 ? 'md:w-44' : 'md:w-48' %>">
               <%= label %>
             </label>
           </span>

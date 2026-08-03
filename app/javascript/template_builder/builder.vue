@@ -164,7 +164,7 @@
             v-if="withSendButton"
             id="send_button"
             :href="`/templates/${template.id}/submissions/new?with_link=true`"
-            data-turbo-frame="modal"
+            :data-turbo-frame="isMobile && isBreakpointLg ? '_top' : 'modal'"
             class="white-button md:!px-6"
             @click="maybeShowErrorTemplateAlert"
           >
@@ -202,7 +202,7 @@
             </button>
             <div
               class="dropdown dropdown-end"
-              :class="{ 'dropdown-open': isDownloading }"
+              :class="{ 'dropdown-open': isDownloading || isPreviewLoading }"
             >
               <label
                 tabindex="0"
@@ -221,15 +221,23 @@
                     :href="`/templates/${template.id}/form`"
                     data-turbo="false"
                     class="flex items-center justify-center space-x-2"
+                    @click.exact="isPreviewLoading = true"
                   >
-                    <IconEye class="w-6 h-6 flex-shrink-0" />
+                    <IconInnerShadowTop
+                      v-if="isPreviewLoading"
+                      class="animate-spin w-6 h-6 flex-shrink-0"
+                    />
+                    <IconEye
+                      v-else
+                      class="w-6 h-6 flex-shrink-0"
+                    />
                     <span class="whitespace-nowrap">{{ t('save_and_preview') }}</span>
                   </a>
                 </li>
                 <li>
                   <a
                     :href="`/templates/${template.id}/preferences`"
-                    data-turbo-frame="modal"
+                    :data-turbo-frame="isMobile && isBreakpointLg ? '_top' : 'modal'"
                     class="flex space-x-2"
                     @click="closeDropdown"
                   >
@@ -281,6 +289,10 @@
             :href="`/templates/${template.id}`"
             class="base-button"
           >
+            <IconX
+              width="20"
+              class="md:hidden stroke-2"
+            />
             <span class="hidden md:inline">
               {{ t('back') }}
             </span>
@@ -779,7 +791,10 @@ export default {
       withVerification: this.withVerification,
       withKba: this.withKba,
       withPayment: this.withPayment,
-      isPaymentConnected: this.isPaymentConnected,
+      isStripeConnected: this.isStripeConnected,
+      withStripe: this.withStripe,
+      withPaypal: this.withPaypal,
+      isPaypalConnected: this.isPaypalConnected,
       withFormula: this.withFormula,
       withConditions: this.withConditions,
       withCustomFields: this.withCustomFields,
@@ -1049,7 +1064,22 @@ export default {
       required: false,
       default: false
     },
-    isPaymentConnected: {
+    isStripeConnected: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    withStripe: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+    withPaypal: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    isPaypalConnected: {
       type: Boolean,
       required: false,
       default: false
@@ -1100,6 +1130,7 @@ export default {
       documentRefs: [],
       isBreakpointLg: false,
       isDownloading: false,
+      isPreviewLoading: false,
       isLoadingBlankPage: false,
       isSaving: false,
       isDetectingPageFields: false,
@@ -1241,7 +1272,7 @@ export default {
 
       return formulaFields.reduce((acc, f) => {
         if (this.conditionalFieldIndex[f.uuid] !== false) {
-          acc[f.uuid] = this.calculateFormula(f)
+          acc[f.uuid] = f.type === 'text' ? this.evalTextFormula(f) : this.calculateFormula(f)
         }
 
         return acc
@@ -1362,6 +1393,10 @@ export default {
     this.$nextTick(() => {
       if (document.location.search?.includes('stripe_connect_success')) {
         document.querySelector('form[action="/auth/stripe_connect"]')?.closest('.dropdown')?.querySelector('label')?.focus()
+      }
+
+      if (document.location.search?.includes('paypal_connect_success')) {
+        document.querySelector('a[href^="/auth/paypal_connect"]')?.closest('.dropdown')?.querySelector('label')?.focus()
       }
     })
 
@@ -1503,6 +1538,25 @@ export default {
       })
 
       return this.math.evaluate(transformedFormula.toLowerCase())
+    },
+    evalTextFormula (field, depth = 0) {
+      if (depth > 10) return ''
+
+      return field.preferences.formula.replace(/{{(.*?)}}/g, (match, uuid) => {
+        const formulaField = this.fieldsUuidIndex[uuid]
+
+        if (formulaField?.preferences?.formula) {
+          if (formulaField.type === 'text') {
+            return this.evalTextFormula(formulaField, depth + 1)
+          } else if (this.isMathLoaded) {
+            return this.calculateFormula(formulaField)
+          }
+        }
+
+        const value = formulaField?.default_value
+
+        return Array.isArray(value) ? value.join(', ') : (value ?? '')
+      })
     },
     hasFormulaDependencyValue (field) {
       const normalized = this.normalizeFormula(field.preferences.formula)

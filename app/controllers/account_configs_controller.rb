@@ -37,7 +37,7 @@ class AccountConfigsController < ApplicationController
   end
 
   def destroy
-    raise InvalidKey unless allowed_keys.include?(@account_config.key)
+    raise InvalidKey unless allowed_destroy_keys.include?(@account_config.key)
 
     @account_config.destroy!
 
@@ -47,6 +47,10 @@ class AccountConfigsController < ApplicationController
   private
 
   def allowed_keys
+    ALLOWED_KEYS
+  end
+
+  def allowed_destroy_keys
     ALLOWED_KEYS
   end
 

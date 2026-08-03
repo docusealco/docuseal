@@ -14,7 +14,9 @@ class TemplatesPreferencesController < ApplicationController
                                                        completed_notification_email_body]
   }.freeze
 
-  def show; end
+  def show
+    render :show, layout: 'plain'
+  end
 
   def create
     authorize!(:update, @template)

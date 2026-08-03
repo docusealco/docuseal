@@ -33,6 +33,8 @@ class SubmissionsController < ApplicationController
 
   def new
     authorize!(:new, Submission)
+
+    render :new, layout: 'plain'
   end
 
   def create

@@ -3,6 +3,9 @@
 class ProcessSubmitterCompletionJob
   include Sidekiq::Job
 
+  BCC_LIMIT = 14
+  TooManyBcc = Class.new(StandardError)
+
   def perform(params = {})
     submitter = Submitter.find(params['submitter_id'])
     submission = submitter.submission
@@ -133,14 +136,22 @@ class ProcessSubmitterCompletionJob
           true
         end
 
-      build_bcc_addresses(submission).each do |to|
-        next if is_sent_to_user && to == user.email
-
-        SubmitterMailer.completed_email(submitter, user, to:).deliver_later!
-      end
+      enqueue_bcc_completed_emails(submitter, user, is_sent_to_user)
     end
 
     maybe_enqueue_copy_emails(submitter)
+  end
+
+  def enqueue_bcc_completed_emails(submitter, user, is_sent_to_user)
+    bcc_addresses = build_bcc_addresses(submitter.submission)
+
+    raise TooManyBcc, submitter.account_id if Docuseal.multitenant? && bcc_addresses.size > BCC_LIMIT
+
+    bcc_addresses.each do |to|
+      next if is_sent_to_user && to == user.email
+
+      SubmitterMailer.completed_email(submitter, user, to:).deliver_later!
+    end
   end
 
   def maybe_enqueue_copy_emails(submitter)

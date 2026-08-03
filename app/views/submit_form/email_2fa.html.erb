@@ -33,7 +33,7 @@
         <%= form_for '', url: submit_form_email_2fa_path, method: :post, html: { class: 'space-y-4', id: 'code_form' } do |f| %>
           <div dir="auto" class="form-control !mt-0">
             <%= f.hidden_field :submitter_slug, value: @submitter.slug %>
-            <%= f.text_field :one_time_code, required: true, class: 'base-input text-center', placeholder: 'XXX-XXX' %>
+            <%= f.text_field :one_time_code, required: true, inputmode: 'numeric', class: 'base-input text-center', placeholder: 'XXXXXX' %>
             <div class="flex justify-between items-center mt-1">
               <span>
                 <% if flash[:alert] %>

@@ -130,13 +130,13 @@ module Submissions
       submission
     end
 
-    def maybe_set_dynamic_documents(submission)
+    def maybe_set_dynamic_documents(submission, preview: false)
       return submission unless submission.template_id?
 
       template = submission.template
 
-      return submission if template.variables_schema.present? ||
-                           submission.variables_schema.present?
+      return submission if !preview && (template.variables_schema.present? ||
+                                        submission.variables_schema.present?)
 
       return submission if template.schema.none? { |e| e['dynamic'] }
 

@@ -8,6 +8,8 @@ class SubmittersController < ApplicationController
       if @submitter.preferences['email_message_uuid'].present?
         @submitter.account.email_messages.find_by(uuid: @submitter.preferences['email_message_uuid'])
       end
+
+    render :edit, layout: 'plain'
   end
 
   def update

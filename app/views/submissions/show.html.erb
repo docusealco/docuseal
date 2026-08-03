@@ -25,10 +25,12 @@
           <span class="hidden md:inline"><%= t('audit_log') %></span>
         </a>
       <% elsif signed_in? %>
-        <%= link_to submission_events_path(@submission), class: 'white-button', data: { turbo_frame: :modal } do %>
-          <%= svg_icon('logs', class: 'w-6 h-6') %>
-          <span class="hidden md:block"><%= t('event_log') %></span>
-        <% end %>
+        <open-modal-mobile class="flex">
+          <%= link_to submission_events_path(@submission), class: 'white-button', data: { turbo_frame: :modal } do %>
+            <%= svg_icon('logs', class: 'w-6 h-6') %>
+            <span class="hidden md:block"><%= t('event_log') %></span>
+          <% end %>
+        </open-modal-mobile>
       <% end %>
       <% if signed_in? && !@submission.completed_at? && can?(:manage, :resend_all) && @submission.submitters.to_a.size > 3 && !@submission.archived_at? && !@submission.template&.archived_at? && !@submission.expired? && can?(:update, @submission) %>
         <% pending_submitters_count = @submission.submitters.to_a.count { |s| !s.completed_at? && s.email.present? && !s.declined_at? } %>
@@ -180,10 +182,12 @@
                 </span>
               </div>
               <% if signed_in? && can?(:update, @submission) && submitter && !submitter.completed_at? && !@submission.completed_at? && !submitter.declined_at? && !@submission.archived_at? && !@submission.template&.archived_at? && !@submission.expired? && !submitter.start_form_submission_events.any? %>
-                <span class="tooltip tooltip-left" data-tip="<%= t('edit') %>">
-                  <%= link_to edit_submitter_path(submitter), class: 'shrink-0 inline md:hidden md:group-hover:inline', data: { turbo_frame: 'modal' } do %>
-                    <%= svg_icon('pencil', class: 'w-5 h-5') %>
-                  <% end %>
+                <span class="tooltip tooltip-left tooltip-no-touch" data-tip="<%= t('edit') %>">
+                  <open-modal-mobile>
+                    <%= link_to edit_submitter_path(submitter), class: 'shrink-0 inline md:hidden md:group-hover:inline', data: { turbo_frame: 'modal' } do %>
+                      <%= svg_icon('pencil', class: 'w-5 h-5') %>
+                    <% end %>
+                  </open-modal-mobile>
                 </span>
               <% end %>
             </div>

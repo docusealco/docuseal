@@ -500,7 +500,7 @@
     </label>
   </li>
   <li
-    v-if="field.type == 'number'"
+    v-if="field.type == 'number' || field.preferences?.formula"
     class="field-settings-formula"
   >
     <label

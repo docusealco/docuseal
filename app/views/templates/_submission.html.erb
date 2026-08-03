@@ -1,5 +1,5 @@
 <% status_badges = { 'awaiting' => 'badge-info', 'sent' => 'badge-info', 'completed' => 'badge-success', 'opened' => 'badge-warning', 'declined' => 'badge-error' } %>
-<div class="bg-base-200 rounded-2xl flex flex-col sm:flex-row items-strech">
+<div class="bg-base-200 rounded-2xl flex flex-col sm:flex-row">
   <% if local_assigns[:with_template] %>
     <% template = submission.template %>
     <a href="<%= template ? template_path(template) : submission_path(submission) %>" class="px-5 sm:pr-3 py-3 group sm:rounded-l-2xl sm:rounded-tr-none rounded-t-2xl flex sm:flex-col justify-between sm:w-52 w-full flex-shrink-0 bg-base-300/60 space-x-2 sm:space-x-0">
@@ -52,10 +52,12 @@
                 <%= submitter.name || submitter.email || submitter.phone %>
               </a>
               <% if !submitter.completed_at? && !submission.completed_at? && can?(:update, submission) && !submitter.start_form_submission_events.any? && !submission.archived_at? && !submission.expired? && !submitter.declined_at? %>
-                <span class="pl-0.5 tooltip tooltip-top md:opacity-0 md:hover:opacity-100 md:peer-hover:opacity-100" data-tip="<%= t('edit') %>">
-                  <%= link_to edit_submitter_path(submitter), class: 'shrink-0', data: { turbo_frame: 'modal' } do %>
-                    <%= svg_icon('pencil', class: 'w-5 h-5') %>
-                  <% end %>
+                <span class="pl-0.5 tooltip tooltip-top tooltip-no-touch md:opacity-0 md:hover:opacity-100 md:peer-hover:opacity-100" data-tip="<%= t('edit') %>">
+                  <open-modal-mobile>
+                    <%= link_to edit_submitter_path(submitter), class: 'shrink-0', data: { turbo_frame: 'modal' } do %>
+                      <%= svg_icon('pencil', class: 'w-5 h-5') %>
+                    <% end %>
+                  </open-modal-mobile>
                 </span>
               <% end %>
             </span>
@@ -102,12 +104,12 @@
           </a>
         </div>
         <% if !submission.archived_at? && !template&.archived_at? && can?(:destroy, submission) %>
-          <span data-tip="<%= t('archive') %>" class="sm:tooltip tooltip-top">
+          <span data-tip="<%= t('archive') %>" class="tooltip tooltip-top tooltip-no-touch">
             <%= button_to button_title(title: nil, disabled_with: nil, icon: svg_icon('archive', class: 'w-6 h-6'), icon_disabled: svg_icon('loader', class: 'w-6 h-6 animate-spin')), submission_path(submission), class: 'btn btn-outline btn-sm w-full md:w-fit', form: { class: 'flex' }, title: t('archive'), method: :delete %>
           </span>
         <% end %>
         <% if local_assigns[:archived] && can?(:destroy, submission) %>
-          <span data-tip="<%= t('remove') %>" class="sm:tooltip tooltip-top">
+          <span data-tip="<%= t('remove') %>" class="tooltip tooltip-top tooltip-no-touch">
             <%= button_to button_title(title: nil, disabled_with: nil, icon: svg_icon('trash', class: 'w-6 h-6'), icon_disabled: svg_icon('loader', class: 'w-6 h-6 animate-spin')), submission_path(submission, permanently: true), class: 'btn btn-outline btn-sm w-full md:w-fit', form: { class: 'flex' }, title: t('remove'), method: :delete, data: { turbo_confirm: t('submission_deletion_is_irreversible_and_will_permanently_remove_all_associated_signed_documents_with_it_are_you_sure_') } %>
           </span>
         <% end %>
@@ -117,7 +119,7 @@
         <div class="flex flex-col md:flex-row md:items-center gap-3">
           <% if is_submission_completed %>
             <% latest_submitter = submitters.select(&:completed_at?).max_by(&:completed_at) %>
-            <a href="<%= submission_path(submission) %>" class="z-[1] tooltip flex" data-tip="<%= l(latest_submitter.status_event_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) %>">
+            <a href="<%= submission_path(submission) %>" class="z-[1] tooltip tooltip-no-touch flex" data-tip="<%= l(latest_submitter.status_event_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) %>">
               <span class="badge <%= status_badges[latest_submitter.status] %> md:w-32 bg-opacity-50 badge-lg uppercase text-sm font-semibold">
                 <%= t(latest_submitter.status) %>
               </span>
@@ -134,7 +136,7 @@
               <div class="relative flex justify-between items-start md:items-center space-x-3">
                 <span class="flex flex-col md:flex-row md:items-center gap-2">
                   <% if !is_submission_completed && !submission.expired? %>
-                    <a href="<%= submission_path(submission) %>" class="z-[1] tooltip flex" data-tip="<%= l(submitter.status_event_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) %>">
+                    <a href="<%= submission_path(submission) %>" class="z-[1] tooltip tooltip-no-touch flex" data-tip="<%= l(submitter.status_event_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) %>">
                       <span class="badge md:w-24 <%= status_badges[submitter.status] %> bg-opacity-50 uppercase text-xs font-semibold">
                         <%= t(submitter.status) %>
                       </span>
@@ -145,10 +147,12 @@
                       <%= submitter.name || submitter.email || submitter.phone %>
                     </a>
                     <% if !submitter.completed_at? && !submission.completed_at? && can?(:update, submission) && !submitter.start_form_submission_events.any? && !submission.archived_at? && !submission.expired? && !submitter.declined_at? %>
-                      <span class="pl-0.5 tooltip tooltip-top md:opacity-0 md:hover:opacity-100 md:peer-hover:opacity-100" data-tip="<%= t('edit') %>">
-                        <%= link_to edit_submitter_path(submitter), class: 'shrink-0', data: { turbo_frame: 'modal' } do %>
-                          <%= svg_icon('pencil', class: 'w-5 h-5') %>
-                        <% end %>
+                      <span class="pl-0.5 tooltip tooltip-top tooltip-no-touch md:opacity-0 md:hover:opacity-100 md:peer-hover:opacity-100" data-tip="<%= t('edit') %>">
+                        <open-modal-mobile>
+                          <%= link_to edit_submitter_path(submitter), class: 'shrink-0', data: { turbo_frame: 'modal' } do %>
+                            <%= svg_icon('pencil', class: 'w-5 h-5') %>
+                          <% end %>
+                        </open-modal-mobile>
                       </span>
                     <% end %>
                   </span>
@@ -209,12 +213,12 @@
           </a>
         </div>
         <% if !submission.archived_at? && !template&.archived_at? %>
-          <span data-tip="<%= t('archive') %>" class="sm:tooltip tooltip-top">
+          <span data-tip="<%= t('archive') %>" class="tooltip tooltip-top tooltip-no-touch">
             <%= button_to button_title(title: nil, disabled_with: nil, icon: svg_icon('archive', class: 'w-6 h-6'), icon_disabled: svg_icon('loader', class: 'w-6 h-6 animate-spin')), submission_path(submission), class: 'btn btn-outline btn-sm w-full md:w-fit', form: { class: 'flex' }, title: t('archive'), method: :delete %>
           </span>
         <% end %>
         <% if local_assigns[:archived] && can?(:destroy, submission) %>
-          <span data-tip="<%= t('remove') %>" class="sm:tooltip tooltip-top">
+          <span data-tip="<%= t('remove') %>" class="tooltip tooltip-top tooltip-no-touch">
             <%= button_to button_title(title: nil, disabled_with: nil, icon: svg_icon('trash', class: 'w-6 h-6'), icon_disabled: svg_icon('loader', class: 'w-6 h-6 animate-spin')), submission_path(submission, permanently: true), class: 'btn btn-outline btn-sm w-full md:w-fit', form: { class: 'flex' }, title: t('remove'), method: :delete, data: { turbo_confirm: t('submission_deletion_is_irreversible_and_will_permanently_remove_all_associated_signed_documents_with_it_are_you_sure_') } %>
           </span>
         <% end %>

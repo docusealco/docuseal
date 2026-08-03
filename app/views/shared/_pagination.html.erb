@@ -1,14 +1,17 @@
 <% if pagy.pages > 1 %>
-  <div class="flex my-6 justify-center md:justify-between">
-    <div class="hidden md:block text-sm">
-      <% if pagy.count.nil? %>
-        <%= t("pagination.#{local_assigns.fetch(:items_name, 'items')}.range_without_total", from: local_assigns.fetch(:from, pagy.from), to: local_assigns.fetch(:to, pagy.to)) %>
-      <% else %>
-        <%= t("pagination.#{local_assigns.fetch(:items_name, 'items')}.range_with_total", from: local_assigns.fetch(:from, pagy.from), to: local_assigns.fetch(:to, pagy.to), count: local_assigns.fetch(:count, pagy.count)) %>
-      <% end %>
-      <%= local_assigns[:left_additional_html] %>
+  <% left_additional_html = local_assigns[:left_additional_html] %>
+  <div class="flex flex-col md:flex-row md:items-center <%= left_additional_html.present? ? 'mt-3' : 'mt-6' %> mb-6 md:my-6 justify-center md:justify-between">
+    <div class="text-sm <%= 'mb-2 md:mb-0' if left_additional_html.present? %>">
+      <span class="hidden md:inline">
+        <% if pagy.count.nil? %>
+          <%= t("pagination.#{local_assigns.fetch(:items_name, 'items')}.range_without_total", from: local_assigns.fetch(:from, pagy.from), to: local_assigns.fetch(:to, pagy.to)) %>
+        <% else %>
+          <%= t("pagination.#{local_assigns.fetch(:items_name, 'items')}.range_with_total", from: local_assigns.fetch(:from, pagy.from), to: local_assigns.fetch(:to, pagy.to), count: local_assigns.fetch(:count, pagy.count)) %>
+        <% end %>
+      </span>
+      <%= left_additional_html %>
     </div>
-    <div class="flex items-center space-x-1.5">
+    <div class="flex items-center space-x-1.5 justify-center md:justify-end">
       <%= local_assigns[:right_additional_html] %>
       <div class="join">
         <% if pagy.previous %>

@@ -2,7 +2,7 @@
   <%= render 'shared/settings_nav' %>
   <div class="md:flex-grow">
     <div class="flex flex-col md:flex-row md:flex-wrap gap-2 md:justify-between md:items-end mb-4 min-h-12">
-      <h1 class="text-4xl font-bold">
+      <h1 class="text-3xl md:text-4xl font-bold">
         <%= t('mcp_server') %>
       </h1>
       <div class="flex flex-col md:flex-row gap-y-2 gap-x-4 md:items-center">
@@ -67,7 +67,7 @@
         </thead>
         <tbody>
           <% @mcp_tokens.each do |mcp_token| %>
-            <tr scope="row">
+            <tr>
               <td>
                 <%= mcp_token.name %>
               </td>
@@ -98,8 +98,8 @@
         <div class="flex items-center gap-4 py-2.5">
           <div class="flex items-center space-x-1">
             <span class="text-left"><%= t('enable_mcp_server') %></span>
-            <span class="tooltip tooltip-top flex cursor-pointer" data-tip="<%= t('all_existing_mcp_connections_will_be_stopped_immediately_when_this_setting_is_disabled') %>">
-              <%= svg_icon('info_circle', class: 'hidden md:inline-block w-4 h-4 shrink-0') %>
+            <span class="tooltip tooltip-top hidden md:flex cursor-pointer" data-tip="<%= t('all_existing_mcp_connections_will_be_stopped_immediately_when_this_setting_is_disabled') %>">
+              <%= svg_icon('info_circle', class: 'w-4 h-4 shrink-0') %>
             </span>
           </div>
           <submit-form data-on="change" class="flex">

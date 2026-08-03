@@ -20,7 +20,7 @@
               </span>
             </a>
             <% if can?(:update, template) %>
-              <span class="pl-1 tooltip tooltip-right md:opacity-0 hover:opacity-100 peer-hover:opacity-100" data-tip="<%= t('move') %>">
+              <span class="pl-1 tooltip tooltip-right tooltip-no-touch md:opacity-0 hover:opacity-100 peer-hover:opacity-100" data-tip="<%= t('move') %>">
                 <a href="<%= edit_template_folder_path(template.id, subfolder: @template.folder.parent_folder.present?) %>" data-turbo-frame="modal">
                   <%= svg_icon('pencil_share', class: 'w-5 h-5') %>
                 </a>
@@ -44,7 +44,7 @@
     <% if !template.archived_at? %>
       <div class="flex items-center space-x-2">
         <% if can?(:update, template) %>
-          <div class="tooltip" data-tip="<%= t('preferences') %>">
+          <div class="tooltip tooltip-no-touch hidden md:block" data-tip="<%= t('preferences') %>">
             <%= link_to template_preferences_path(template), class: 'btn border border-base-200 bg-base-200 hover:bg-base-300 hover:border-base-300 btn-sm flex-1 hidden md:flex', data: { turbo_frame: :modal } do %>
               <span class="flex items-center justify-center space-x-2">
                 <%= svg_icon('adjustments_horizontal', class: 'w-6 h-6') %>
@@ -52,12 +52,14 @@
             <% end %>
           </div>
         <% end %>
-        <%= link_to template_share_link_path(template), class: 'absolute md:relative bottom-0 right-0 btn btn-xs md:btn-sm whitespace-nowrap btn-neutral text-white mt-1 px-2', data: { turbo_frame: :modal } do %>
-          <span class="flex items-center justify-center space-x-2">
-            <%= svg_icon('link', class: 'w-4 h-4 md:w-6 md:h-6') %>
-            <span><%= t('link') %></span>
-          </span>
-        <% end %>
+        <open-modal-mobile class="absolute md:relative bottom-0 right-0 mt-1">
+          <%= link_to template_share_link_path(template), class: 'btn btn-xs md:btn-sm whitespace-nowrap btn-neutral text-white px-2', data: { turbo_frame: :modal } do %>
+            <span class="flex items-center justify-center space-x-2">
+              <%= svg_icon('link', class: 'w-4 h-4 md:w-6 md:h-6') %>
+              <span><%= t('link') %></span>
+            </span>
+          <% end %>
+        </open-modal-mobile>
       </div>
     <% end %>
   </div>
@@ -66,40 +68,48 @@
       <%= button_to button_title(title: t('archive'), disabled_with: t('archiving')[..-4], title_class: 'inline', icon: svg_icon('archive', class: 'w-6 h-6')), template_path(template), class: 'btn btn-outline btn-sm w-full', form_class: 'flex-1', method: :delete %>
     <% end %>
     <% if can?(:create, current_account.templates.new(author: current_user)) %>
-      <%= link_to new_template_clone_path(template), class: 'btn btn-outline btn-sm flex-1', data: { turbo_frame: :modal } do %>
-        <span class="flex items-center justify-center space-x-2">
-          <%= svg_icon('copy', class: 'w-6 h-6') %>
-          <span class="inline"><%= t('clone') %></span>
-        </span>
-      <% end %>
+      <div class="flex-1">
+        <%= link_to new_template_clone_path(template), class: 'btn btn-outline btn-sm w-full', data: { turbo_frame: :modal } do %>
+          <span class="flex items-center justify-center space-x-2">
+            <%= svg_icon('copy', class: 'w-6 h-6') %>
+            <span class="inline"><%= t('clone') %></span>
+          </span>
+        <% end %>
+      </div>
     <% end %>
     <% if !template.archived_at? %>
       <% if can?(:update, template) %>
-        <%= link_to edit_template_path(template), class: 'btn btn-outline btn-sm flex-1' do %>
-          <span class="flex items-center justify-center space-x-2">
-            <%= svg_icon('pencil', class: 'w-6 h-6') %>
-            <span><%= t('edit') %></span>
-          </span>
-        <% end %>
+        <div class="flex-1">
+          <%= link_to edit_template_path(template), class: 'btn btn-outline btn-sm w-full' do %>
+            <span class="flex items-center justify-center space-x-2">
+              <%= svg_icon('pencil', class: 'w-6 h-6') %>
+              <span><%= t('edit') %></span>
+            </span>
+          <% end %>
+        </div>
       <% elsif can?(:read, template) && !template.archived_at? %>
-        <%= link_to template_preview_path(template), class: 'btn btn-outline btn-sm flex-1' do %>
+        <div class="flex-1">
+          <%= link_to template_preview_path(template), class: 'btn btn-outline btn-sm w-full' do %>
+            <span class="flex items-center justify-center space-x-2">
+              <%= svg_icon('file_text', class: 'w-6 h-6') %>
+              <span><%= t('preview') %></span>
+            </span>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+    <% if template.archived_at? %>
+      <% if can?(:destroy, template) %>
+        <%= button_to button_title(title: t('restore'), disabled_with: t('restoring')[..-4], icon: svg_icon('rotate', class: 'w-6 h-6')), template_restore_index_path(template), class: 'btn btn-outline btn-sm w-full', form_class: 'flex-1' %>
+      <% end %>
+      <div class="flex-1">
+        <%= link_to template_preview_path(template), class: 'btn btn-outline btn-sm w-full' do %>
           <span class="flex items-center justify-center space-x-2">
             <%= svg_icon('file_text', class: 'w-6 h-6') %>
             <span><%= t('preview') %></span>
           </span>
         <% end %>
-      <% end %>
-    <% end %>
-    <% if template.archived_at? %>
-      <% if can?(:destroy, template) %>
-        <%= button_to button_title(title: t('restore'), disabled_with: t('restoring')[..-4], icon: svg_icon('rotate', class: 'w-6 h-6')), template_restore_index_path(template), class: 'btn btn-outline btn-sm flex-1' %>
-      <% end %>
-      <%= link_to template_preview_path(template), class: 'btn btn-outline btn-sm flex-1' do %>
-        <span class="flex items-center justify-center space-x-2">
-          <%= svg_icon('file_text', class: 'w-6 h-6') %>
-          <span><%= t('preview') %></span>
-        </span>
-      <% end %>
+      </div>
     <% end %>
   </div>
 </div>

@@ -53,6 +53,25 @@ en: &en
   require_all_recipients: Require all recipients
   stripe_account_has_been_connected: Stripe account has been connected.
   re_connect_stripe: Re-connect Stripe
+  paypal_integration: PayPal Integration
+  paypal_account_has_been_connected: PayPal account has been connected.
+  re_connect_paypal: Re-connect PayPal
+  disconnect: Disconnect
+  failed_to_connect_paypal: Failed to connect PayPal. Please try again.
+  paypal_connect_not_completed: PayPal connection was not completed.
+  payment_receipt: Payment Receipt
+  amount_paid: Amount paid
+  transaction: Transaction
+  transaction_id: Transaction ID
+  order_id: Order ID
+  payment_date: Date
+  paid_by: Paid by
+  paid_to: Paid to
+  business: Business
+  country: Country
+  payer_id: Payer ID
+  merchant_id: Merchant ID
+  breakdown: Breakdown
   bcc_recipients: BCC recipients
   resend_pending: Re-send pending
   always_enforce_signing_order: Always enforce the signing order
@@ -454,7 +473,7 @@ en: &en
   back_to_active: Back to Active
   submissions: Submissions
   templates: Templates
-  document_templates_html: <span class="hidden md:inline">Document</span> Templates
+  document_templates_html: <span class="hidden lg:inline">Document</span> Templates
   archived: Archived
   search: Search
   submissions_not_found: Submissions not Found
@@ -946,6 +965,7 @@ en: &en
   undo: Undo
   redo: Redo
   add_variable: Add variable
+  variable: Variable
   enter_a_url_or_variable_name: Enter a URL or variable name
   new_token: New token
   token: Token
@@ -1124,6 +1144,24 @@ es: &es
   stripe_integration: Integración con Stripe
   stripe_account_has_been_connected: La cuenta de Stripe ha sido conectada.
   re_connect_stripe: Volver a conectar Stripe
+  paypal_integration: Integración con PayPal
+  paypal_account_has_been_connected: La cuenta de PayPal ha sido conectada.
+  re_connect_paypal: Volver a conectar PayPal
+  failed_to_connect_paypal: No se pudo conectar PayPal. Por favor, inténtalo de nuevo.
+  paypal_connect_not_completed: La conexión con PayPal no se completó.
+  payment_receipt: Recibo de pago
+  amount_paid: Importe pagado
+  transaction: Transacción
+  transaction_id: ID de transacción
+  order_id: ID de pedido
+  payment_date: Fecha
+  paid_by: Pagado por
+  paid_to: Pagado a
+  business: Empresa
+  country: País
+  payer_id: ID de pagador
+  merchant_id: ID de comerciante
+  breakdown: Desglose
   private: Privado
   _variables: Variables
   your_email_address_has_been_released_immediately_you_can_now_be_added_to_your_company_team_without_waiting_for_the_deletion_period_to_end: Su dirección de correo electrónico ha sido liberada inmediatamente. Si se une a un equipo, ahora puede ser invitado al equipo de su empresa sin esperar a que finalice el período de eliminación.
@@ -1535,7 +1573,7 @@ es: &es
   back_to_active: Volver a activo
   submissions: Envíos
   templates: Plantillas
-  document_templates_html: Plantillas <span class="hidden md:inline">de documento</span>
+  document_templates_html: Plantillas <span class="hidden lg:inline">de documento</span>
   archived: Archivado
   search: Buscar
   submissions_not_found: Envíos no encontrados
@@ -2024,6 +2062,7 @@ es: &es
   undo: Deshacer
   redo: Rehacer
   add_variable: Agregar variable
+  variable: Variable
   enter_a_url_or_variable_name: Ingrese una URL o nombre de variable
   new_token: Nuevo token
   token: Token
@@ -2202,6 +2241,24 @@ it: &it
   stripe_integration: Integrazione Stripe
   stripe_account_has_been_connected: L'account Stripe è stato collegato.
   re_connect_stripe: Ricollega Stripe
+  paypal_integration: Integrazione PayPal
+  paypal_account_has_been_connected: L'account PayPal è stato collegato.
+  re_connect_paypal: Ricollega PayPal
+  failed_to_connect_paypal: Impossibile collegare PayPal. Riprova.
+  paypal_connect_not_completed: La connessione con PayPal non è stata completata.
+  payment_receipt: Ricevuta di pagamento
+  amount_paid: Importo pagato
+  transaction: Transazione
+  transaction_id: ID transazione
+  order_id: ID ordine
+  payment_date: Data
+  paid_by: Pagato da
+  paid_to: Pagato a
+  business: Azienda
+  country: Paese
+  payer_id: ID pagatore
+  merchant_id: ID esercente
+  breakdown: Dettaglio
   private: Privato
   _variables: Variabili
   your_email_address_has_been_released_immediately_you_can_now_be_added_to_your_company_team_without_waiting_for_the_deletion_period_to_end: Il tuo indirizzo email è stato rilasciato immediatamente. Se stai per unirti a un team, ora puoi essere invitato nel team della tua azienda senza aspettare la fine del periodo di eliminazione.
@@ -2613,7 +2670,7 @@ it: &it
   back_to_active: Torna attivo
   submissions: Invii
   templates: Modelli
-  document_templates_html: Modelli <span class="hidden md:inline">di documento</span>
+  document_templates_html: Modelli <span class="hidden lg:inline">di documento</span>
   archived: Archiviato
   search: Cerca
   submissions_not_found: Invii non trovati
@@ -3102,6 +3159,7 @@ it: &it
   undo: Annulla
   redo: Ripeti
   add_variable: Aggiungi variabile
+  variable: Variabile
   enter_a_url_or_variable_name: Inserisci un URL o nome variabile
   new_token: Nuovo token
   token: Token
@@ -3280,6 +3338,24 @@ fr: &fr
   stripe_integration: Intégration Stripe
   stripe_account_has_been_connected: Le compte Stripe a été connecté.
   re_connect_stripe: Reconnecter Stripe
+  paypal_integration: Intégration PayPal
+  paypal_account_has_been_connected: Le compte PayPal a été connecté.
+  re_connect_paypal: Reconnecter PayPal
+  failed_to_connect_paypal: Échec de la connexion à PayPal. Veuillez réessayer.
+  paypal_connect_not_completed: La connexion à PayPal n'a pas été complétée.
+  payment_receipt: Reçu de paiement
+  amount_paid: Montant payé
+  transaction: Transaction
+  transaction_id: ID de transaction
+  order_id: ID de commande
+  payment_date: Date
+  paid_by: Payé par
+  paid_to: Payé à
+  business: Entreprise
+  country: Pays
+  payer_id: ID payeur
+  merchant_id: ID marchand
+  breakdown: Détail
   private: Privé
   _variables: Variables
   your_email_address_has_been_released_immediately_you_can_now_be_added_to_your_company_team_without_waiting_for_the_deletion_period_to_end: Votre adresse e-mail a été libérée immédiatement. Si vous rejoignez une équipe, vous pouvez maintenant être invité dans l'équipe de votre entreprise sans attendre la fin de la période de suppression.
@@ -3691,7 +3767,7 @@ fr: &fr
   back_to_active: Retour aux actifs
   submissions: Soumissions
   templates: Modèles
-  document_templates_html: Modèles <span class="hidden md:inline">de documents</span>
+  document_templates_html: Modèles <span class="hidden lg:inline">de documents</span>
   archived: Archivé
   search: Rechercher
   submissions_not_found: Soumissions introuvables
@@ -4177,6 +4253,7 @@ fr: &fr
   undo: Annuler
   redo: Rétablir
   add_variable: Ajouter une variable
+  variable: Variable
   enter_a_url_or_variable_name: Entrez une URL ou un nom de variable
   new_token: Nouveau jeton
   token: Jeton
@@ -4355,6 +4432,24 @@ pt: &pt
   stripe_integration: Integração com Stripe
   stripe_account_has_been_connected: Conta Stripe foi conectada.
   re_connect_stripe: Reconectar Stripe
+  paypal_integration: Integração com PayPal
+  paypal_account_has_been_connected: Conta PayPal foi conectada.
+  re_connect_paypal: Reconectar PayPal
+  failed_to_connect_paypal: Falha ao conectar PayPal. Tente novamente.
+  paypal_connect_not_completed: A conexão com PayPal não foi concluída.
+  payment_receipt: Recibo de pagamento
+  amount_paid: Valor pago
+  transaction: Transação
+  transaction_id: ID da transação
+  order_id: ID do pedido
+  payment_date: Data
+  paid_by: Pago por
+  paid_to: Pago a
+  business: Empresa
+  country: País
+  payer_id: ID do pagador
+  merchant_id: ID do comerciante
+  breakdown: Detalhamento
   private: Privado
   _variables: Variáveis
   your_email_address_has_been_released_immediately_you_can_now_be_added_to_your_company_team_without_waiting_for_the_deletion_period_to_end: Seu endereço de e-mail foi liberado imediatamente. Se você estiver entrando em uma equipe, agora pode ser convidado para a equipe da sua empresa sem esperar o fim do período de exclusão.
@@ -4766,7 +4861,7 @@ pt: &pt
   back_to_active: Voltar para ativo
   submissions: Submissões
   templates: Modelos
-  document_templates_html: Modelos <span class="hidden md:inline">de documento</span>
+  document_templates_html: Modelos <span class="hidden lg:inline">de documento</span>
   archived: Arquivado
   search: Buscar
   submissions_not_found: Submissões não encontradas
@@ -5255,6 +5350,7 @@ pt: &pt
   undo: Desfazer
   redo: Refazer
   add_variable: Adicionar variável
+  variable: Variável
   enter_a_url_or_variable_name: Digite uma URL ou nome de variável
   new_token: Novo token
   token: Token
@@ -5443,6 +5539,24 @@ de: &de
   require_all_recipients: Alle Empfänger verpflichten
   stripe_account_has_been_connected: Stripe-Konto wurde verbunden.
   re_connect_stripe: Stripe erneut verbinden
+  paypal_integration: PayPal-Integration
+  paypal_account_has_been_connected: PayPal-Konto wurde verbunden.
+  re_connect_paypal: PayPal erneut verbinden
+  failed_to_connect_paypal: PayPal konnte nicht verbunden werden. Bitte erneut versuchen.
+  paypal_connect_not_completed: Die PayPal-Verbindung wurde nicht abgeschlossen.
+  payment_receipt: Zahlungsbeleg
+  amount_paid: Gezahlter Betrag
+  transaction: Transaktion
+  transaction_id: Transaktions-ID
+  order_id: Bestell-ID
+  payment_date: Datum
+  paid_by: Gezahlt von
+  paid_to: Gezahlt an
+  business: Unternehmen
+  country: Land
+  payer_id: Zahler-ID
+  merchant_id: Händler-ID
+  breakdown: Aufschlüsselung
   bcc_recipients: BCC-Empfänger
   resend_pending: Ausstehende erneut versenden
   always_enforce_signing_order: Reihenfolge der Unterschriften immer erzwingen
@@ -5844,7 +5958,7 @@ de: &de
   back_to_active: Zurück zu Aktiv
   submissions: Einreichungen
   templates: Vorlagen
-  document_templates_html: <span class="md:hidden">Vorlagen</span><span class="hidden md:inline">Dokumentvorlagen</span>
+  document_templates_html: <span class="lg:hidden">Vorlagen</span><span class="hidden lg:inline">Dokumentvorlagen</span>
   archived: Archiviert
   search: Suchen
   submissions_not_found: Einreichungen nicht gefunden
@@ -6333,6 +6447,7 @@ de: &de
   undo: Rückgängig
   redo: Wiederholen
   add_variable: Variable hinzufügen
+  variable: Variable
   enter_a_url_or_variable_name: Geben Sie eine URL oder einen Variablennamen ein
   new_token: Neues Token
   token: Token
@@ -6925,6 +7040,24 @@ nl: &nl
   require_all_recipients: Alle ontvangers verplichten
   stripe_account_has_been_connected: Stripe-account is verbonden.
   re_connect_stripe: Stripe opnieuw verbinden
+  paypal_integration: PayPal-integratie
+  paypal_account_has_been_connected: PayPal-account is verbonden.
+  re_connect_paypal: PayPal opnieuw verbinden
+  failed_to_connect_paypal: PayPal kon niet worden verbonden. Probeer het opnieuw.
+  paypal_connect_not_completed: De verbinding met PayPal is niet voltooid.
+  payment_receipt: Betalingsbewijs
+  amount_paid: Betaald bedrag
+  transaction: Transactie
+  transaction_id: Transactie-ID
+  order_id: Order-ID
+  payment_date: Datum
+  paid_by: Betaald door
+  paid_to: Betaald aan
+  business: Bedrijf
+  country: Land
+  payer_id: Betaler-ID
+  merchant_id: Verkoper-ID
+  breakdown: Specificatie
   bcc_recipients: BCC-ontvangers
   resend_pending: Opnieuw verzenden in behandeling
   always_enforce_signing_order: Ondertekenvolgorde altijd afdwingen
@@ -7327,7 +7460,7 @@ nl: &nl
   back_to_active: Terug naar Actief
   submissions: Inzendingen
   templates: Sjablonen
-  document_templates_html: <span class="md:hidden">Sjablonen</span><span class="hidden md:inline">Documentsjablonen</span>
+  document_templates_html: <span class="lg:hidden">Sjablonen</span><span class="hidden lg:inline">Documentsjablonen</span>
   archived: Gearchiveerd
   search: Zoeken
   submissions_not_found: Geen inzendingen gevonden
@@ -7812,6 +7945,7 @@ nl: &nl
   undo: Ongedaan maken
   redo: Opnieuw
   add_variable: Variabele toevoegen
+  variable: Variabele
   enter_a_url_or_variable_name: Voer een URL of variabelenaam in
   new_token: Nieuw token
   token: Token

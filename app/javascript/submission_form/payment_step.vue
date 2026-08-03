@@ -1,6 +1,6 @@
 <template>
   <label
-    v-if="!modelValue && !sessionId"
+    v-if="!modelValue && !isProcessing"
     class="label text-xl sm:text-2xl py-0 mb-2 sm:mb-3.5 field-name-label"
   >
     <MarkdownContent
@@ -25,14 +25,14 @@
       class="hidden"
     >
     <div
-      v-if="modelValue && !sessionId"
+      v-if="modelValue && !isProcessing"
       class=" text-2xl mb-2"
     >
       {{ t('already_paid') }}
     </div>
     <div v-else>
       <button
-        v-if="sessionId"
+        v-if="isProcessing"
         type="button"
         disabled
         class="base-button w-full modal-save-button"
@@ -49,8 +49,8 @@
         v-else
         :id="field.uuid"
         type="button"
-        class="btn bg-[#7B73FF] text-white hover:bg-[#0A2540] text-lg w-full"
-        :class="{ disabled: isCreatingCheckout }"
+        class="btn text-white text-lg w-full"
+        :class="[isPaypal ? 'bg-[#003087] hover:bg-[#012169]' : 'bg-[#7B73FF] hover:bg-[#0A2540]', { disabled: isCreatingCheckout }]"
         :disabled="isCreatingCheckout"
         @click.prevent="postCheckout"
       >
@@ -59,12 +59,16 @@
           width="22"
           class="animate-spin"
         />
+        <IconBrandPaypal
+          v-else-if="isPaypal"
+          width="22"
+        />
         <IconBrandStripe
           v-else
           width="22"
         />
         <span>
-          {{ t('pay_with_stripe') }}
+          {{ isPaypal ? t('pay_with_paypal') : t('pay_with_stripe') }}
         </span>
       </button>
     </div>
@@ -72,13 +76,14 @@
 </template>
 
 <script>
-import { IconBrandStripe, IconInnerShadowTop, IconLoader } from '@tabler/icons-vue'
+import { IconBrandStripe, IconBrandPaypal, IconInnerShadowTop, IconLoader } from '@tabler/icons-vue'
 import MarkdownContent from './markdown_content'
 
 export default {
   name: 'PaymentStep',
   components: {
     IconBrandStripe,
+    IconBrandPaypal,
     MarkdownContent,
     IconInnerShadowTop,
     IconLoader
@@ -111,12 +116,18 @@ export default {
     submitterSlug: {
       type: String,
       required: true
+    },
+    provider: {
+      type: String,
+      required: false,
+      default: ''
     }
   },
   emits: ['focus', 'submit', 'update:model-value', 'attached'],
   data () {
     return {
       isCreatingCheckout: false,
+      isProcessing: false,
       isMathLoaded: false
     }
   },
@@ -131,8 +142,14 @@ export default {
     queryParams () {
       return new URLSearchParams(window.location.search)
     },
+    isPaypal () {
+      return this.provider === 'paypal'
+    },
+    paymentEndpoint () {
+      return this.isPaypal ? '/api/paypal_payments' : '/api/stripe_payments'
+    },
     sessionId () {
-      return this.queryParams.get('stripe_session_id')
+      return this.queryParams.get('stripe_session_id') || this.queryParams.get('paypal_order_id') || (this.isPaypal && this.queryParams.get('token'))
     },
     defaultName () {
       if (this.field.preferences?.price_id || this.field.preferences?.payment_link_id) {
@@ -159,6 +176,8 @@ export default {
   },
   async mounted () {
     if (this.sessionId) {
+      this.isProcessing = true
+
       this.$emit('submit')
     }
 
@@ -175,6 +194,21 @@ export default {
     }
   },
   methods: {
+    normalizedPaymentUrl () {
+      const url = new URL(window.location.href)
+      const keys = ['stripe_session_id', 'paypal_order_id', 'field_uuid']
+
+      if (this.isPaypal) {
+        keys.push('token', 'PayerID')
+      }
+
+      keys.forEach((key) => url.searchParams.delete(key))
+
+      return url.toString()
+    },
+    normalizedPaymentParams () {
+      window.history.replaceState({}, document.title, this.normalizedPaymentUrl())
+    },
     calculateFormula () {
       const transformedFormula = this.normalizeFormula(this.field.preferences.formula).replace(/{{(.*?)}}/g, (match, uuid) => {
         return this.readonlyValues[uuid] || this.values[uuid] || 0.0
@@ -195,7 +229,7 @@ export default {
     },
     async submit () {
       if (this.sessionId) {
-        return fetch(this.baseUrl + '/api/stripe_payments/' + this.sessionId, {
+        return fetch(this.baseUrl + this.paymentEndpoint + '/' + this.sessionId, {
           method: 'PUT',
           body: JSON.stringify({
             submitter_slug: this.submitterSlug
@@ -203,16 +237,22 @@ export default {
           headers: { 'Content-Type': 'application/json' }
         }).then(async (resp) => {
           if (resp.status === 422 || resp.status === 500) {
+            this.isProcessing = false
+
             const data = await resp.json()
 
-            alert(data.error || 'Unexpected error')
+            if (data.error) {
+              alert(data.error)
+            }
 
             return Promise.reject(new Error(data.error))
           }
 
           const attachment = await resp.json()
 
-          window.history.replaceState({}, document.title, window.location.pathname)
+          this.isProcessing = false
+
+          this.normalizedPaymentParams()
 
           this.$emit('update:model-value', attachment.uuid)
           this.$emit('attached', attachment)
@@ -226,13 +266,13 @@ export default {
     postCheckout ({ checkStatus } = {}) {
       this.isCreatingCheckout = true
 
-      fetch(this.baseUrl + '/api/stripe_payments', {
+      fetch(this.baseUrl + this.paymentEndpoint, {
         method: 'POST',
         body: JSON.stringify({
           submitter_slug: this.submitterSlug,
           field_uuid: this.field.uuid,
           check_status: checkStatus,
-          referer: document.location.href
+          referer: this.normalizedPaymentUrl()
         }),
         headers: { 'Content-Type': 'application/json' }
       }).then(async (resp) => {

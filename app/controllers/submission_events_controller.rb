@@ -24,5 +24,7 @@ class SubmissionEventsController < ApplicationController
 
   load_and_authorize_resource :submission
 
-  def index; end
+  def index
+    render :index, layout: 'plain'
+  end
 end

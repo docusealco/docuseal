@@ -1,7 +1,7 @@
 <div class="flex flex-wrap space-y-4 md:flex-nowrap md:space-y-0">
   <%= render 'shared/settings_nav' %>
-  <div class="flex-grow max-w-xl mx-auto">
-    <h1 class="text-4xl font-bold mb-4">Email SMTP</h1>
+  <div class="flex-grow max-w-xl mx-auto min-w-0">
+    <h1 class="text-3xl md:text-4xl font-bold mb-4">Email SMTP</h1>
     <% value = @encrypted_config.value || {} %>
     <%= form_for @encrypted_config, url: settings_email_index_path, method: :post, html: { autocomplete: 'off', class: 'space-y-4' } do |f| %>
       <%= f.fields_for :value do |ff| %>
@@ -38,7 +38,7 @@
         <% if !Docuseal.multitenant? || can?(:manage, :personalization_advanced) %>
           <div class="form-control">
             <%= ff.label :security_label, 'SMTP Security', class: 'label' %>
-            <div class="flex items-center space-x-6">
+            <div class="flex flex-wrap items-center gap-x-6">
               <% [%w[STARTTLS none], %w[TLS tls], %w[SSL ssl], %w[Noverify noverify]].each do |(label, val)| %>
                 <%= ff.label :security, value: val, for: "#{val}_radio", class: 'label' do %>
                   <%= ff.radio_button :security, val, checked: (value['security'].blank? && val == 'none') || value['security'] == val, id: "#{val}_radio", class: 'base-radio mr-2' %>

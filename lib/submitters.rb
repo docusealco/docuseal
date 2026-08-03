@@ -49,7 +49,7 @@ module Submitters
   end
 
   def fulltext_search_field(current_user, submitters, keyword, field_name)
-    keyword = keyword.delete("\0")
+    keyword = keyword.delete("\0\\")
 
     return submitters.none if keyword.blank?
 

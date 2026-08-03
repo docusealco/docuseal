@@ -114,6 +114,13 @@ button[disabled] .enabled, button.btn-disabled .enabled {
   bottom: auto;
 }
 
+@media (hover: none), (pointer: coarse) {
+  .tooltip-no-touch:before,
+  .tooltip-no-touch:after {
+    display: none;
+  }
+}
+
 .autocomplete {
   background: white;
   z-index: 1000;

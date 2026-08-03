@@ -20,6 +20,8 @@ class MfaSetupController < ApplicationController
 
       redirect_to settings_profile_index_path, notice: I18n.t('2fa_has_been_configured')
     else
+      RateLimit.call("mfa-setup-otp-#{current_user.id}", limit: 5, ttl: 5.minutes, enabled: true)
+
       @provision_url = current_user.otp_provisioning_uri(current_user.email, issuer: Docuseal.product_name)
 
       @error_message = I18n.t('code_is_invalid')
@@ -34,6 +36,8 @@ class MfaSetupController < ApplicationController
 
       redirect_to settings_profile_index_path, notice: I18n.t('2fa_has_been_removed')
     else
+      RateLimit.call("mfa-setup-otp-#{current_user.id}", limit: 5, ttl: 5.minutes, enabled: true)
+
       @error_message = I18n.t('code_is_invalid')
 
       render turbo_stream: turbo_stream.replace(:modal, template: 'mfa_setup/edit'), status: :unprocessable_content

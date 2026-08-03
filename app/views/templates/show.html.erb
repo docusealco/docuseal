@@ -18,10 +18,12 @@
           <span><%= t('export') %></span>
         <% end %>
         <% if !@template.archived_at? && can?(:create, Submission) %>
-          <%= link_to new_template_submission_path(@template), id: 'add_recipients_button', class: 'white-button !border', data: { turbo_frame: 'modal' } do %>
-            <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
-            <%= t('add_recipients_html') %>
-          <% end %>
+          <open-modal-mobile class="flex">
+            <%= link_to new_template_submission_path(@template), id: 'add_recipients_button', class: 'white-button !border', data: { turbo_frame: 'modal' } do %>
+              <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
+              <%= t('add_recipients_html') %>
+            <% end %>
+          </open-modal-mobile>
         <% end %>
       </div>
     </div>
@@ -29,7 +31,7 @@
 <% end %>
 <% if is_show_tabs %>
   <div class="flex items-center flex-col md:flex-row md:flex-wrap gap-2 mb-4">
-    <div class="flex items-center md:items-end flex-col md:flex-row gap-2 w-full md:w-fit">
+    <div class="hidden md:flex md:items-end gap-2 md:w-fit">
       <a href="<%= url_for(params: request.query_parameters.except('status')) %>" class="<%= params[:status].blank? ? 'border-neutral-700' : 'border-neutral-300' %> flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-48 hover:border-neutral-700">
         <div class="flex items-center space-x-1">
           <%= svg_icon('list', class: 'w-5 h-5') %>
@@ -37,7 +39,7 @@
         </div>
         <% unless can?(:manage, :countless) %>
           <div class="badge badge-neutral badge-outline font-medium">
-            <%= params[:status].blank? && filter_params.blank? ? @pagy.count : @base_submissions.count %>
+            <%= all_count = params[:status].blank? && filter_params.blank? ? @pagy.count : @base_submissions.count %>
           </div>
         <% end %>
       </a>
@@ -48,7 +50,7 @@
         </div>
         <% unless can?(:manage, :countless) %>
           <div class="badge badge-neutral badge-outline font-medium">
-            <%= params[:status] == 'pending' && filter_params.blank? ? @pagy.count : @base_submissions.pending.count %>
+            <%= pending_count = params[:status] == 'pending' && filter_params.blank? ? @pagy.count : @base_submissions.pending.count %>
           </div>
         <% end %>
       </a>
@@ -59,13 +61,13 @@
         </div>
         <% unless can?(:manage, :countless) %>
           <div class="badge badge-neutral badge-outline font-medium">
-            <%= params[:status] == 'completed' && filter_params.blank? ? @pagy.count : @base_submissions.completed.count %>
+            <%= completed_count = params[:status] == 'completed' && filter_params.blank? ? @pagy.count : @base_submissions.completed.count %>
           </div>
         <% end %>
       </a>
     </div>
-    <div class="flex items-end flex-col md:flex-row gap-2 w-full md:w-fit">
-      <%= render 'submissions_filters/applied_filters', filter_params: %>
+    <div class="flex items-center md:items-end gap-2 w-full md:w-fit">
+      <%= render 'submissions_filters/applied_filters', filter_params:, with_status: true, all_count:, pending_count:, completed_count: %>
       <%= render 'submissions_filters/filter_button', filter_params: %>
       <% unless @template.archived_at? %>
         <%= render 'submissions_filters/actions', filter_params: filter_params.merge(template_id: @template.id) %>
@@ -89,10 +91,12 @@
             <p><%= t('send_an_invitation_to_fill_and_complete_the_form') %></p>
             <div class="space-y-2 flex flex-col">
               <% if can?(:create, Submission) %>
-                <%= link_to new_template_submission_path(@template, with_link: true), id: 'send_to_recipients_button', class: 'base-button mt-6', data: { turbo_frame: 'modal' } do %>
-                  <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
-                  <span class="mr-1"><%= t('send_to_recipients') %></span>
-                <% end %>
+                <open-modal-mobile class="flex flex-col mt-6">
+                  <%= link_to new_template_submission_path(@template, with_link: true), id: 'send_to_recipients_button', class: 'base-button', data: { turbo_frame: 'modal' } do %>
+                    <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
+                    <span class="mr-1"><%= t('send_to_recipients') %></span>
+                  <% end %>
+                </open-modal-mobile>
               <% end %>
               <% if Templates.filter_undefined_submitters(@template.submitters).size == 1 && @template.variables_schema.blank? %>
                 <%= button_to start_form_path(@template.slug), params: { selfsign: true }, method: :put, class: 'white-button w-full', form: { style: 'display: inline', target: '_blank', data: { turbo: false } } do %>
@@ -100,10 +104,12 @@
                   <span class="mr-1"><%= t('sign_it_yourself') %></span>
                 <% end %>
               <% else %>
-                <%= link_to new_template_submission_path(@template, selfsign: true), id: 'sign_yourself_button', class: 'white-button mt-6', data: { turbo_frame: 'modal' } do %>
-                  <%= svg_icon('writing', class: 'w-6 h-6') %>
-                  <span class="mr-1"><%= t('sign_it_yourself') %></span>
-                <% end %>
+                <open-modal-mobile class="flex flex-col mt-6">
+                  <%= link_to new_template_submission_path(@template, selfsign: true), id: 'sign_yourself_button', class: 'white-button', data: { turbo_frame: 'modal' } do %>
+                    <%= svg_icon('writing', class: 'w-6 h-6') %>
+                    <span class="mr-1"><%= t('sign_it_yourself') %></span>
+                  <% end %>
+                </open-modal-mobile>
               <% end %>
             </div>
           </div>
