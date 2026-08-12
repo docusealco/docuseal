@@ -39,7 +39,7 @@ module DocuSeal
       application/wasm
     ]
 
-    config.i18n.available_locales = %i[en en-US en-GB es-ES fr-FR pt-PT de-DE it-IT nl-NL
+    config.i18n.available_locales = %i[en en-US en-GB es-ES fr-FR pt-PT de-DE it-IT nl-NL zh-CN
                                        es it de fr nl pl uk cs pt he ar ko ja]
     config.i18n.fallbacks = [:en]
 
