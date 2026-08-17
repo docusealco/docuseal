@@ -82,6 +82,7 @@ Rails.application.routes.draw do
   resources :testing_api_settings, only: %i[index]
   resources :submitters_autocomplete, only: %i[index]
   resources :submitters_resubmit, only: %i[update]
+  resources :submitters_reset_signature, only: %i[update]
   resources :template_folders_autocomplete, only: %i[index]
   resources :webhook_secret, only: %i[show update]
   resources :webhook_hmac, only: %i[show]
