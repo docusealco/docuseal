@@ -33,7 +33,9 @@
                 </button>
               </modal-button>
             <% end %>
-            <span id="complete_button_container" class="peer contents"></span>
+            <% unless @submitter.viewer? %>
+              <span id="complete_button_container" class="peer contents"></span>
+            <% end %>
             <% if @form_configs[:with_delegate] && !@submitter.viewer? %>
               <modal-button data-target="<%= delegate_modal_id = SecureRandom.uuid %>" class="hidden peer-empty:flex">
                 <button id="delegate_button" type="button" class="btn btn-sm !px-5"><%= t(:delegate) %></button>
@@ -84,7 +86,9 @@
               </button>
             </modal-button>
           <% end %>
-          <span id="complete_button_container_scroll" class="peer contents"></span>
+          <% unless @submitter.viewer? %>
+            <span id="complete_button_container_scroll" class="peer contents"></span>
+          <% end %>
           <% if @form_configs[:with_delegate] && !@submitter.viewer? %>
             <modal-button data-target="<%= delegate_modal_id %>" class="hidden peer-empty:flex">
               <button id="delegate_button_mobile" type="button" class="btn btn-sm px-0" aria-label="<%= t(:delegate) %>">

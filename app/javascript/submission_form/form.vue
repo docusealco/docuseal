@@ -1114,7 +1114,8 @@ export default {
       })
     },
     showCompleteButton () {
-      return this.completeButtonContainer && !this.isCompleted && !this.isInvite && this.isFormStarted &&
+      return this.completeButtonContainer && !this.isCompleted && !this.isInvite &&
+        (this.isFormStarted || this.stepFields.length === 0) &&
         !this.stepFields.find((fields) => fields.some((f) => f.required && isEmpty(this.submittedValues[f.uuid])))
     },
     submitButtonText () {
@@ -1667,7 +1668,7 @@ export default {
 
       const submitStepIndex = this.currentStep
 
-      const stepPromise = ['signature', 'phone', 'initials', 'payment', 'verification', 'kba'].includes(this.currentField.type)
+      const stepPromise = ['signature', 'phone', 'initials', 'payment', 'verification', 'kba'].includes(this.currentField?.type)
         ? this.$refs.currentStep.submit
         : () => Promise.resolve({})
 
