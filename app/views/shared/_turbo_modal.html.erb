@@ -1,18 +1,27 @@
-<turbo-frame id="modal">
-  <turbo-modal class="modal modal-open items-start !animate-none overflow-y-auto" data-close-after-submit="<%= local_assigns.key?(:close_after_submit) ? local_assigns[:close_after_submit] : true %>">
-    <div class="absolute top-0 bottom-0 right-0 left-0" data-action="click:turbo-modal#close"></div>
-    <div class="modal-box pt-4 pb-6 px-6 mt-20 max-h-none">
-      <% if local_assigns[:title] %>
-        <div class="flex justify-between items-center border-b pb-2 mb-2 font-medium">
-          <span>
-            <%= local_assigns[:title] %>
-          </span>
-          <a href="#" class="text-xl" data-action="click:turbo-modal#close">&times;</a>
-        </div>
-      <% end %>
-      <div>
-        <%= yield %>
-      </div>
+<% if turbo_native_app? && !turbo_frame_request? %>
+  <% content_for(:html_title, local_assigns[:title]) if local_assigns[:title] %>
+  <turbo-frame id="modal">
+    <div class="max-w-lg mx-auto px-4 pb-6">
+      <%= yield %>
     </div>
-  </turbo-modal>
-</turbo-frame>
+  </turbo-frame>
+<% else %>
+  <turbo-frame id="modal">
+    <turbo-modal class="modal modal-open items-start !animate-none overflow-y-auto" data-close-after-submit="<%= local_assigns.key?(:close_after_submit) ? local_assigns[:close_after_submit] : true %>">
+      <div class="absolute top-0 bottom-0 right-0 left-0" data-action="click:turbo-modal#close"></div>
+      <div class="modal-box pt-4 pb-6 px-6 mt-20 max-h-none">
+        <% if local_assigns[:title] %>
+          <div class="flex justify-between items-center border-b pb-2 mb-2 font-medium">
+            <span>
+              <%= local_assigns[:title] %>
+            </span>
+            <a href="#" class="text-xl" data-action="click:turbo-modal#close">&times;</a>
+          </div>
+        <% end %>
+        <div>
+          <%= yield %>
+        </div>
+      </div>
+    </turbo-modal>
+  </turbo-frame>
+<% end %>

@@ -1,12 +1,14 @@
 <% filter_params = params.permit(Submissions::Filter::ALLOWED_PARAMS).compact_blank %>
 <% with_filters = @pagy.pages > 1 || params[:q].present? || filter_params.present? %>
 <%= render 'templates/title', template: @template %>
-<div>
-  <%= link_to template_path(@template), class: 'flex items-center mb-1 md:mb-0' do %>
-    <%= svg_icon('chevron_left', class: 'w-5 h-5') %>
-    <span style="margin-left: 3px"><%= t('back_to_active') %></span>
-  <% end %>
-</div>
+<% unless turbo_native_app? %>
+  <div>
+    <%= link_to template_path(@template), class: 'flex items-center mb-1 md:mb-0' do %>
+      <%= svg_icon('chevron_left', class: 'w-5 h-5') %>
+      <span style="margin-left: 3px"><%= t('back_to_active') %></span>
+    <% end %>
+  </div>
+<% end %>
 <div class="flex flex-col md:flex-row md:items-center mb-4 gap-3">
   <div class="group/header flex w-full md:flex-1 min-w-0 justify-between items-center">
     <div class="max-md:group-has-[search-input:focus-within]/header:hidden">

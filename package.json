@@ -67,7 +67,7 @@
     "webpack-merge": "6.0.1",
     "webpack-subresource-integrity": "^5.1.0"
   },
-  "packageManager": "yarn@1.0",
+  "packageManager": "yarn@1.22.22",
   "version": "0.1.0",
   "scripts": {
     "eslint": "./node_modules/eslint/bin/eslint.js \"app/javascript/**/*.{js,vue}\" --fix"

@@ -7,6 +7,7 @@
     <button type="submit"></button>
     <input id="dashboard_dropzone_input" name="files[]" type="file" multiple>
   <% end %>
+  <% unless turbo_native_app? %>
   <div class="group/header flex justify-between items-center w-full mb-4 relative">
     <% unless show_dropzone %>
       <%= render 'templates/dashboard_dropzone', style: 'height: 114px' %>
@@ -39,6 +40,7 @@
       <% end %>
     </div>
   </div>
+  <% end %>
   <% view_archived_html = capture do %>
     <% if has_archived %>
       <div>

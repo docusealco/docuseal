@@ -1,6 +1,7 @@
 <% filter_params = params.permit(Submissions::Filter::ALLOWED_PARAMS).compact_blank %>
 <% is_show_tabs = (@pagy.count.nil? || @pagy.count >= 5) || params[:status].present? || filter_params.present? %>
 <% if Docuseal.demo? %><%= render 'shared/demo_alert' %><% end %>
+<% unless turbo_native_app? %>
 <div class="group/header flex justify-between items-center w-full mb-4">
   <div class="flex items-center flex-grow min-w-0 max-md:group-has-[search-input:focus-within]/header:hidden <%= 'max-md:hidden' if params[:q].present? %>">
     <div class="mr-2">
@@ -27,6 +28,7 @@
     <% end %>
   </div>
 </div>
+<% end %>
 <% view_archived_html = capture do %>
   <% if can?(:manage, :countless) || current_account.submissions.archived.exists? || current_account.templates.where(Submission.where(Submission.arel_table[:template_id].eq(::Template.arel_table[:id])).arel.exists).archived.exists? %>
     <div>

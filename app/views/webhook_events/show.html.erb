@@ -1,5 +1,5 @@
 <%= render 'shared/turbo_drawer', title: @webhook_event.event_type, close_after_submit: false do %>
-  <div class="relative px-4 py-4">
+  <div class="relative py-4 <%= 'px-4' if turbo_native_app? %>">
     <%= render 'drawer_events', webhook_url: @webhook_url, webhook_event: @webhook_event %>
     <% if @data %>
       <div class="mockup-code overflow-hidden relative pb-0 mt-6">
