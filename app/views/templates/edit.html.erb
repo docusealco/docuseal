@@ -1,4 +1,4 @@
-<% if current_user.created_at > 2.weeks.ago || params[:tour] == 'true' %>
+<% if !turbo_native_app? && (current_user.created_at > 2.weeks.ago || params[:tour] == 'true') %>
   <% user_config = current_user.user_configs.find_or_initialize_by(key: UserConfig::SHOW_APP_TOUR) %>
   <% @show_tour_start_form = user_config.new_record? && !params.key?(:tour) %>
   <% if user_config.new_record? || user_config.value || params[:tour] == 'true' %>
