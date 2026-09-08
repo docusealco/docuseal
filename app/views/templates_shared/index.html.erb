@@ -1,3 +1,4 @@
+<% content_for(:native_title, t('shared').capitalize) if turbo_native_app? %>
 <% unless turbo_native_app? %>
   <div>
     <%= link_to(@is_archived ? templates_shared_index_path : root_path, class: 'flex items-center mb-1 md:mb-0') do %>
@@ -6,9 +7,7 @@
     <% end %>
   </div>
 <% end %>
-<% if turbo_native_app? %>
-  <% content_for(:html_title, t('shared').capitalize) %>
-<% else %>
+<% unless turbo_native_app? %>
   <div class="group/header relative flex justify-between items-center w-full mb-4">
     <h1 class="text-2xl truncate md:text-3xl font-bold flex items-center flex-grow min-w-0 space-x-2 md:flex max-md:group-has-[search-input:focus-within]/header:hidden <%= 'hidden' if params[:q].present? %>">
       <%= svg_icon('folder', class: 'w-9 h-9 flex-shrink-0') %>

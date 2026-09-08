@@ -1,3 +1,4 @@
+<% content_for(:native_title, @template_folder.name) if turbo_native_app? %>
 <% unless turbo_native_app? %>
   <div>
     <%= link_to @template_folder.parent_folder ? folder_path(@template_folder.parent_folder) : root_path, class: 'flex items-center' do %>
@@ -13,9 +14,7 @@
     <button type="submit"></button>
     <input id="dashboard_dropzone_input" name="files[]" type="file" multiple>
   <% end %>
-  <% if turbo_native_app? %>
-    <% content_for(:html_title, @template_folder.name) %>
-  <% else %>
+  <% unless turbo_native_app? %>
     <div class="group/header relative flex justify-between items-center w-full mb-4">
       <%= render 'templates/dashboard_dropzone', style: 'height: 137px' %>
       <% unless @template_folder.parent_folder %>

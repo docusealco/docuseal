@@ -1,3 +1,4 @@
+<% content_for(:native_title, t('notifications')) if turbo_native_app? %>
 <div class="flex flex-wrap space-y-4 md:flex-nowrap md:space-y-0">
   <%= render 'shared/settings_nav' %>
   <div class="flex-grow max-w-xl mx-auto">

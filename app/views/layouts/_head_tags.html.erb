@@ -1,4 +1,4 @@
 <title>
-  <%= content_for(:html_title) || (turbo_native_app? ? '' : (signed_in? ? 'DocuSeal' : 'DocuSeal | Open Source Document Signing')) %>
+  <%= content_for(:native_title) || content_for(:html_title) || (signed_in? ? 'DocuSeal' : 'DocuSeal | Open Source Document Signing') %>
 </title>
 <%= render 'shared/meta' %>

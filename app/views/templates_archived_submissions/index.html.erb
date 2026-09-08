@@ -1,3 +1,4 @@
+<% content_for(:native_title, @template.name) if turbo_native_app? %>
 <% filter_params = params.permit(Submissions::Filter::ALLOWED_PARAMS).compact_blank %>
 <% with_filters = @pagy.pages > 1 || params[:q].present? || filter_params.present? %>
 <%= render 'templates/title', template: @template %>

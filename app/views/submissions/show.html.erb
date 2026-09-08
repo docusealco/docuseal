@@ -1,3 +1,4 @@
+<% content_for(:native_title, @submission.name || @submission.template&.name) if turbo_native_app? %>
 <% if local_assigns[:is_preview] %>
   <%= render 'submissions/preview_tags' %>
 <% end %>

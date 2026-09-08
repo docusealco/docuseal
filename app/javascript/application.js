@@ -9,6 +9,8 @@ import ToggleVisible from './elements/toggle_visible'
 import ToggleCookies from './elements/toggle_cookies'
 import DisableHidden from './elements/disable_hidden'
 import TurboModal from './elements/turbo_modal'
+import NativeAction from './elements/native_action'
+import NativeHeader from './elements/native_header'
 import FileDropzone from './elements/file_dropzone'
 import MenuActive from './elements/menu_active'
 import ClipboardCopy from './elements/clipboard_copy'
@@ -106,6 +108,8 @@ const safeRegisterElement = (name, element, options = {}) => !window.customEleme
 safeRegisterElement('toggle-visible', ToggleVisible)
 safeRegisterElement('disable-hidden', DisableHidden)
 safeRegisterElement('turbo-modal', TurboModal)
+safeRegisterElement('native-action', NativeAction)
+safeRegisterElement('native-header', NativeHeader)
 safeRegisterElement('file-dropzone', FileDropzone)
 safeRegisterElement('menu-active', MenuActive)
 safeRegisterElement('clipboard-copy', ClipboardCopy)
