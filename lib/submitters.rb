@@ -238,7 +238,7 @@ module Submitters
       I18n.l(completed_at.in_time_zone(submitter.account.timezone), format: :short)
     end
 
-    "#{filename}.#{blob.filename.extension}"
+    "#{filename}.#{blob.filename.extension}".tr('/', '-')
   end
 
   def send_shared_link_email_verification_code(submitter, request:)

@@ -76,7 +76,7 @@ module Templates
 
       blob = ActiveStorage::Blob.create_and_upload!(
         io: StringIO.new(document_data),
-        filename: file.original_filename,
+        filename: file.original_filename.tr('/', '-'),
         metadata: {
           **metadata,
           identified: file.content_type == PDF_CONTENT_TYPE,

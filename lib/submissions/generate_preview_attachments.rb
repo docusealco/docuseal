@@ -71,7 +71,7 @@ module Submissions
           submission:,
           values_hash:,
           name: 'preview_merged_document',
-          filename: "#{submission.name || template&.name}.pdf"
+          filename: "#{submission.name || template&.name}.pdf".tr('/', '-')
         )
 
         ApplicationRecord.no_touching { attachment.save! }
@@ -115,7 +115,7 @@ module Submissions
             submitter:,
             uuid: GenerateResultAttachments.images_pdf_uuid(original_documents.select(&:image?)),
             values_hash:,
-            filename: "#{submission.name || template&.name}.pdf"
+            filename: "#{submission.name || template&.name}.pdf".tr('/', '-')
           )
 
         ApplicationRecord.no_touching do
