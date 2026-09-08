@@ -165,6 +165,21 @@ module Submitters
     preferences
   end
 
+  def fetch_values_without_signature(submitter)
+    fields = submitter.submission.template_fields || submitter.template.fields
+    default_values = submitter.preferences['default_values'] || {}
+
+    field_uuids = fields.filter_map do |field|
+      next if field['submitter_uuid'] != submitter.uuid
+      next unless field['type'].in?(%w[signature initials])
+      next if default_values[field['uuid']].present?
+
+      field['uuid']
+    end
+
+    submitter.values.except(*field_uuids)
+  end
+
   def send_signature_requests(submitters, delay_seconds: nil)
     submitters.each_with_index do |submitter, index|
       next if submitter.email.blank?
