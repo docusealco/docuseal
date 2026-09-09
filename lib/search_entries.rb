@@ -8,9 +8,9 @@ module SearchEntries
   module_function
 
   def reindex_all
-    Submitter.find_each { |submitter| index_submitter(submitter) }
-    Submission.find_each { |submission| index_submission(submission) }
-    Template.find_each { |template| index_template(template) }
+    Submitter.includes(:search_entry).find_each { |submitter| index_submitter(submitter) }
+    Submission.includes(:search_entry).find_each { |submission| index_submission(submission) }
+    Template.includes(:search_entry).find_each { |template| index_template(template) }
   end
 
   def enqueue_reindex(records)
@@ -155,11 +155,9 @@ module SearchEntries
     entry = submitter.search_entry || submitter.build_search_entry
 
     entry.account_id = submitter.account_id
-    entry.tsvector, ngram = SearchEntry.connection.select_rows(sql).first
+    tsvector, ngram = SearchEntry.connection.select_rows(sql).first
 
-    add_hyphens(entry, values_string)
-
-    entry.ngram = build_ngram(ngram)
+    assign_vectors(entry, tsvector, ngram, values_string)
 
     return if entry.tsvector.blank?
 
@@ -191,11 +189,9 @@ module SearchEntries
     entry = template.search_entry || template.build_search_entry
 
     entry.account_id = template.account_id
-    entry.tsvector, ngram = SearchEntry.connection.select_rows(sql).first
+    tsvector, ngram = SearchEntry.connection.select_rows(sql).first
 
-    add_hyphens(entry, text)
-
-    entry.ngram = build_ngram(ngram)
+    assign_vectors(entry, tsvector, ngram, text)
 
     return if entry.tsvector.blank?
 
@@ -218,11 +214,9 @@ module SearchEntries
     entry = submission.search_entry || submission.build_search_entry
 
     entry.account_id = submission.account_id
-    entry.tsvector, ngram = SearchEntry.connection.select_rows(sql).first
+    tsvector, ngram = SearchEntry.connection.select_rows(sql).first
 
-    add_hyphens(entry, text)
-
-    entry.ngram = build_ngram(ngram)
+    assign_vectors(entry, tsvector, ngram, text)
 
     return if entry.tsvector.blank?
 
@@ -245,6 +239,22 @@ module SearchEntries
     end
 
     entry
+  end
+
+  def assign_vectors(entry, tsvector, ngram, text)
+    entry.tsvector = tsvector
+
+    add_hyphens(entry, text)
+
+    entry.tsvector, entry.ngram = canonicalize_tsvectors(entry.tsvector, build_ngram(ngram))
+  end
+
+  def canonicalize_tsvectors(tsvector, ngram)
+    sql = SearchEntry.sanitize_sql_array(
+      ['SELECT ?::tsvector::text, ?::tsvector::text', tsvector, ngram]
+    )
+
+    SearchEntry.connection.select_rows(sql).first
   end
 
   def build_ngram(ngram)
