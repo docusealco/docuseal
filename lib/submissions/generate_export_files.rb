@@ -147,8 +147,6 @@ module Submissions
 
               ActiveStorage::Blob.proxy_url(attachment.blob, expires_at:) if attachment
             end
-          elsif submitter_value == true || submitter_value == false
-            submitter_value.to_s
           else
             submitter_value
           end
