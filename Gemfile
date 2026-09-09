@@ -36,7 +36,7 @@ gem 'rotp'
 gem 'rouge', require: false
 gem 'rqrcode', require: false
 gem 'ruby-vips'
-gem 'rubyXL', require: false
+gem 'rubyzip', require: false
 gem 'shakapacker'
 gem 'sidekiq'
 gem 'sqlite3', require: false
@@ -45,6 +45,7 @@ gem 'trilogy', require: false
 gem 'turbo-rails'
 gem 'twitter_cldr', require: false
 gem 'tzinfo-data'
+gem 'xlsxtream', require: false
 
 group :development, :test do
   gem 'better_html'

@@ -497,9 +497,6 @@ GEM
     ruby-vips (2.3.0)
       ffi (~> 1.12)
       logger
-    rubyXL (3.4.35)
-      nokogiri (>= 1.10.8)
-      rubyzip (>= 3.2.2)
     rubyzip (3.2.2)
     securerandom (0.4.1)
     semantic_range (3.1.1)
@@ -575,10 +572,13 @@ GEM
       base64
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    xlsxtream (3.1.0)
+      zip_kit (>= 6.2, < 7)
     xpath (3.2.0)
       nokogiri (~> 1.8)
     yaml (0.4.0)
     zeitwerk (2.8.2)
+    zip_kit (6.3.4)
 
 PLATFORMS
   aarch64-linux
@@ -638,7 +638,7 @@ DEPENDENCIES
   rubocop-rails
   rubocop-rspec
   ruby-vips
-  rubyXL
+  rubyzip
   shakapacker
   sidekiq
   simplecov
@@ -650,6 +650,7 @@ DEPENDENCIES
   tzinfo-data
   web-console
   webmock
+  xlsxtream
 
 RUBY VERSION
   ruby 4.0.5
