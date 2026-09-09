@@ -1,6 +1,7 @@
 export default class extends HTMLElement {
   connectedCallback () {
     if (this.dataset.disabled === 'true') return
+    if (/Hotwire Native/.test(navigator.userAgent)) return
     if (!this.isMobile()) return
     if (window.innerWidth >= 768) return
 
