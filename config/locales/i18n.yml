@@ -922,6 +922,9 @@ en: &en
   connect_google_drive: Connect Google Drive
   google_drive_has_been_connected: Google Drive has been connected
   unable_to_identify_reset_your_password_to_sign_in: Unable to identify. Reset your password to sign in.
+  use_sso_to_sign_in: Use SAML SSO app to sign in.
+  contact_your_admin_to_invite_you: Contact your administrator to invite you to the team.
+  too_many_sign_ups: Too many sign ups. Try again later.
   desktop: Desktop
   mobile: Mobile
   tablet: Tablet
@@ -2049,6 +2052,9 @@ es: &es
   connect_google_drive: Conectar Google Drive
   google_drive_has_been_connected: Google Drive se ha conectado
   unable_to_identify_reset_your_password_to_sign_in: No se pudo identificar. Restablece tu contraseña para iniciar sesión.
+  use_sso_to_sign_in: Usa la aplicación SAML SSO para iniciar sesión.
+  contact_your_admin_to_invite_you: Contacta a tu administrador para que te invite al equipo.
+  too_many_sign_ups: Demasiados registros. Inténtalo de nuevo más tarde.
   desktop: Escritorio
   mobile: Móvil
   tablet: Tableta
@@ -3183,6 +3189,9 @@ it: &it
   connect_google_drive: Connetti Google Drive
   google_drive_has_been_connected: Google Drive è stato connesso
   unable_to_identify_reset_your_password_to_sign_in: Impossibile identificare. Reimposta la password per accedere.
+  use_sso_to_sign_in: Usa l'app SAML SSO per accedere.
+  contact_your_admin_to_invite_you: Contatta il tuo amministratore per essere invitato nel team.
+  too_many_sign_ups: Troppe registrazioni. Riprova più tardi.
   desktop: Desktop
   mobile: Mobile
   tablet: Tablet
@@ -4299,6 +4308,9 @@ fr: &fr
   connect_google_drive: Connecter Google Drive
   google_drive_has_been_connected: Google Drive a été connecté
   unable_to_identify_reset_your_password_to_sign_in: Impossible d’identifier. Réinitialisez votre mot de passe pour vous connecter.
+  use_sso_to_sign_in: Utilisez l'application SAML SSO pour vous connecter.
+  contact_your_admin_to_invite_you: Contactez votre administrateur pour être invité dans l'équipe.
+  too_many_sign_ups: Trop d'inscriptions. Réessayez plus tard.
   desktop: Bureau
   mobile: Mobile
   tablet: Tablette
@@ -5433,6 +5445,9 @@ pt: &pt
   connect_google_drive: Conectar Google Drive
   google_drive_has_been_connected: O Google Drive foi conectado
   unable_to_identify_reset_your_password_to_sign_in: Não foi possível identificar. Redefina sua senha para fazer login.
+  use_sso_to_sign_in: Use o aplicativo SAML SSO para entrar.
+  contact_your_admin_to_invite_you: Entre em contato com o administrador para ser convidado para a equipe.
+  too_many_sign_ups: Muitos cadastros. Tente novamente mais tarde.
   desktop: Computador
   mobile: Celular
   tablet: Tablet
@@ -6566,6 +6581,9 @@ de: &de
   connect_google_drive: Google Drive verbinden
   google_drive_has_been_connected: Google Drive wurde verbunden
   unable_to_identify_reset_your_password_to_sign_in: Identifizierung nicht möglich. Setzen Sie Ihr Passwort zurück, um sich anzumelden.
+  use_sso_to_sign_in: Verwenden Sie die SAML-SSO-App zum Anmelden.
+  contact_your_admin_to_invite_you: Wenden Sie sich an Ihren Administrator, um ins Team eingeladen zu werden.
+  too_many_sign_ups: Zu viele Registrierungen. Versuchen Sie es später erneut.
   desktop: Desktop
   mobile: Mobil
   tablet: Tablet
@@ -8223,6 +8241,9 @@ nl: &nl
   connect_google_drive: Verbind Google Drive
   google_drive_has_been_connected: Google Drive is verbonden
   unable_to_identify_reset_your_password_to_sign_in: Kan niet worden geïdentificeerd. Stel uw wachtwoord opnieuw in om in te loggen.
+  use_sso_to_sign_in: Gebruik de SAML SSO-app om in te loggen.
+  contact_your_admin_to_invite_you: Neem contact op met je beheerder om uitgenodigd te worden voor het team.
+  too_many_sign_ups: Te veel registraties. Probeer het later opnieuw.
   desktop: Desktop
   mobile: Mobiel
   tablet: Tablet
