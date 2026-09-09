@@ -19,7 +19,7 @@
   </turbo-frame>
 <% elsif turbo_native_app? %>
   <% content_for(:html_title, local_assigns[:title]) if local_assigns[:title] %>
-  <div class="w-full">
+  <div class="w-full [&>.px-5]:px-4">
     <%= yield %>
   </div>
 <% else %>
