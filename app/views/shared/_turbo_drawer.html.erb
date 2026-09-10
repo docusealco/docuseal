@@ -1,9 +1,9 @@
 <% if turbo_native_app? && !turbo_frame_request? %>
   <% content_for(:html_title, local_assigns[:title]) if local_assigns[:title] %>
   <turbo-frame id="drawer">
-    <div class="w-full">
+    <native-modal class="block w-full" data-close-after-submit="<%= local_assigns.key?(:close_after_submit) ? local_assigns[:close_after_submit] : true %>">
       <%= yield %>
-    </div>
+    </native-modal>
   </turbo-frame>
 <% else %>
   <% offset = local_assigns[:title] ? '45px' : '0px' %>
