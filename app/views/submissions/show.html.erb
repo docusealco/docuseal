@@ -11,34 +11,42 @@
 <% with_signature_id_reason = configs.find { |e| e.key == AccountConfig::WITH_SIGNATURE_ID_REASON_KEY }&.value != false %>
 <% with_signature_id_completed_at = configs.find { |e| e.key == AccountConfig::WITH_SIGNATURE_ID_COMPLETED_AT_KEY }&.value == true %>
 <main style="max-width: 1600px" class="mx-auto pl-4">
-  <div class="flex justify-between py-1.5 items-center pr-4 sticky top-0 md:relative z-10 bg-base-100">
-    <a href="<%= signed_in? && @submission.account_id == current_account&.id && @submission.template ? template_path(@submission.template) : '/' %>" class="flex items-center space-x-3 py-1">
-      <% unless turbo_native_app? %>
+  <div class="flex justify-between items-center pr-4 sticky top-0 md:relative z-10 bg-base-100 <%= 'py-1.5' unless turbo_native_app? %>">
+    <% unless turbo_native_app? %>
+      <a href="<%= signed_in? && @submission.account_id == current_account&.id && @submission.template ? template_path(@submission.template) : '/' %>" class="flex items-center space-x-3 py-1">
         <span><%= render 'submissions/logo' %></span>
-      <% end %>
-      <h1 class="text-xl md:text-3xl font-semibold focus:text-clip" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;"><% (@submission.name || @submission.template&.name).to_s.split(/(_)/).each do |item| %><%= item %><wbr><% end %></h1>
-    </a>
+        <h1 class="text-xl md:text-3xl font-semibold focus:text-clip" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;"><% (@submission.name || @submission.template&.name).to_s.split(/(_)/).each do |item| %><%= item %><wbr><% end %></h1>
+      </a>
+    <% end %>
     <div class="space-x-3 flex items-center">
       <% if signed_in? && can?(:destroy, @submission) && @submission.archived_at? && !@submission.completed_at? %>
-        <%= button_to button_title(title: t('unarchive'), disabled_with: t('unarchive')[0..-2], icon: svg_icon('rotate', class: 'w-6 h-6')), submission_unarchive_index_path(@submission), class: 'btn btn-primary btn-ghost text-base hidden md:flex' %>
+        <native-action data-label="<%= t('unarchive') %>" data-icon="rotate">
+          <%= button_to button_title(title: t('unarchive'), disabled_with: t('unarchive')[0..-2], icon: svg_icon('rotate', class: 'w-6 h-6')), submission_unarchive_index_path(@submission), class: 'btn btn-primary btn-ghost text-base hidden md:flex' %>
+        </native-action>
       <% end %>
       <% if @submission.audit_trail.present? %>
-        <a href="<%= ActiveStorage::Blob.proxy_path(@submission.audit_trail.blob, expires_at: 4.hours.from_now) %>" class="white-button" target="_blank">
-          <%= svg_icon('external_link', class: 'w-6 h-6') %>
-          <span class="hidden md:inline"><%= t('audit_log') %></span>
-        </a>
+        <native-action data-label="<%= t('audit_log') %>" data-icon="external_link" data-placement="bar">
+          <a href="<%= ActiveStorage::Blob.proxy_path(@submission.audit_trail.blob, expires_at: 4.hours.from_now) %>" class="white-button" target="_blank">
+            <%= svg_icon('external_link', class: 'w-6 h-6') %>
+            <span class="hidden md:inline"><%= t('audit_log') %></span>
+          </a>
+        </native-action>
       <% elsif signed_in? %>
-        <open-modal-mobile class="flex">
-          <%= link_to submission_events_path(@submission), class: 'white-button', data: { turbo_frame: :modal } do %>
-            <%= svg_icon('logs', class: 'w-6 h-6') %>
-            <span class="hidden md:block"><%= t('event_log') %></span>
-          <% end %>
-        </open-modal-mobile>
+        <native-action data-label="<%= t('event_log') %>" data-icon="logs" data-placement="bar">
+          <open-modal-mobile class="flex">
+            <%= link_to submission_events_path(@submission), class: 'white-button', data: { turbo_frame: :modal } do %>
+              <%= svg_icon('logs', class: 'w-6 h-6') %>
+              <span class="hidden md:block"><%= t('event_log') %></span>
+            <% end %>
+          </open-modal-mobile>
+        </native-action>
       <% end %>
       <% if signed_in? && !@submission.completed_at? && can?(:manage, :resend_all) && @submission.submitters.to_a.size > 3 && !@submission.archived_at? && !@submission.template&.archived_at? && !@submission.expired? && can?(:update, @submission) %>
         <% pending_submitters_count = @submission.submitters.to_a.count { |s| !s.completed_at? && s.email.present? && !s.declined_at? } %>
         <% if pending_submitters_count.positive? %>
-          <%= button_to button_title(title: t('re_send_emails'), title_class: 'hidden md:inline', disabled_with: t('sending'), icon: svg_icon('mail_forward', class: 'w-6 h-6')), submission_resend_email_index_path(@submission), class: 'white-button', data: { turbo_confirm: t('are_you_sure_you_want_to_re_send_email_to_n_recipients', count: pending_submitters_count) } %>
+          <native-action data-label="<%= t('re_send_emails') %>" data-icon="mail_forward">
+            <%= button_to button_title(title: t('re_send_emails'), title_class: 'hidden md:inline', disabled_with: t('sending'), icon: svg_icon('mail_forward', class: 'w-6 h-6')), submission_resend_email_index_path(@submission), class: 'white-button', data: { turbo_confirm: t('are_you_sure_you_want_to_re_send_email_to_n_recipients', count: pending_submitters_count) } %>
+          </native-action>
         <% end %>
       <% end %>
       <% if @submission.submitters.to_a.any?(&:completed_at?) %>
@@ -47,45 +55,53 @@
         <% show_download_dropdown = show_combined_download || show_unarchive %>
         <% if @submission.completed_at? || !is_combined_enabled %>
           <div class="join relative">
-            <download-button role="button" tabindex="0" aria-label="<%= t('download') %>" data-src="<%= local_assigns[:is_preview] ? (@sig_submitter ? submit_form_documents_path(@sig_submitter.slug, { sig: params[:sig], combined: is_combined_enabled }.compact_blank) : submissions_preview_download_index_path(@submission.slug, combined: is_combined_enabled.presence)) : submission_download_index_path(@submission, combined: is_combined_enabled.presence) %>" class="base-button <%= '!rounded-r-none !pr-2' if show_download_dropdown %>">
-              <span class="flex items-center justify-center space-x-2" data-target="download-button.defaultButton">
-                <%= svg_icon('download', class: 'w-6 h-6') %>
-                <span class="hidden md:inline"><%= t('download') %></span>
-              </span>
-              <span class="flex items-center justify-center space-x-2 hidden" data-target="download-button.loadingButton">
-                <%= svg_icon('loader', class: 'w-6 h-6 animate-spin') %>
-                <span class="hidden md:inline"><%= t('downloading') %></span>
-              </span>
-            </download-button>
+            <native-action data-label="<%= t('download') %>" data-icon="download" data-placement="bar">
+              <download-button role="button" tabindex="0" aria-label="<%= t('download') %>" data-src="<%= local_assigns[:is_preview] ? (@sig_submitter ? submit_form_documents_path(@sig_submitter.slug, { sig: params[:sig], combined: is_combined_enabled }.compact_blank) : submissions_preview_download_index_path(@submission.slug, combined: is_combined_enabled.presence)) : submission_download_index_path(@submission, combined: is_combined_enabled.presence) %>" class="base-button <%= '!rounded-r-none !pr-2' if show_download_dropdown %>">
+                <span class="flex items-center justify-center space-x-2" data-target="download-button.defaultButton">
+                  <%= svg_icon('download', class: 'w-6 h-6') %>
+                  <span class="hidden md:inline"><%= t('download') %></span>
+                </span>
+                <span class="flex items-center justify-center space-x-2 hidden" data-target="download-button.loadingButton">
+                  <%= svg_icon('loader', class: 'w-6 h-6 animate-spin') %>
+                  <span class="hidden md:inline"><%= t('downloading') %></span>
+                </span>
+              </download-button>
+            </native-action>
             <% if show_download_dropdown %>
               <div class="dropdown dropdown-end has-[button:disabled]:dropdown-open">
-                <label tabindex="0" aria-label="<%= t('download') %>" class="base-button !rounded-l-none !pl-1 !pr-2 !border-l-neutral-500">
-                  <span class="text-sm align-text-top">
-                    <%= svg_icon('chevron_down', class: 'w-6 h-6 flex-shrink-0 stroke-2') %>
-                  </span>
-                </label>
+                <% unless turbo_native_app? %>
+                  <label tabindex="0" aria-label="<%= t('download') %>" class="base-button !rounded-l-none !pl-1 !pr-2 !border-l-neutral-500">
+                    <span class="text-sm align-text-top">
+                      <%= svg_icon('chevron_down', class: 'w-6 h-6 flex-shrink-0 stroke-2') %>
+                    </span>
+                  </label>
+                <% end %>
                 <ul class="z-10 dropdown-content p-2 mt-2 shadow menu text-base bg-base-100 rounded-box text-right">
                   <% if show_combined_download %>
-                    <li>
-                      <download-button role="button" tabindex="0" data-src="<%= local_assigns[:is_preview] ? (@sig_submitter ? submit_form_documents_path(@sig_submitter.slug, { sig: params[:sig], combined: true }.compact) : submissions_preview_download_index_path(@submission.slug, combined: true)) : submission_download_index_path(@submission, combined: true) %>" class="flex items-center">
-                        <span class="flex items-center justify-center space-x-2" data-target="download-button.defaultButton">
-                          <%= svg_icon('download', class: 'w-6 h-6 flex-shrink-0') %>
-                          <span class="whitespace-nowrap"><%= t('download_combined_pdf') %></span>
-                        </span>
-                        <span class="flex items-center justify-center space-x-2 hidden" data-target="download-button.loadingButton">
-                          <%= svg_icon('loader', class: 'w-6 h-6 animate-spin') %>
-                          <span><%= t('downloading') %></span>
-                        </span>
-                      </download-button>
-                    </li>
+                    <native-action data-label="<%= t('download_combined_pdf') %>" data-icon="download">
+                      <li>
+                        <download-button role="button" tabindex="0" data-src="<%= local_assigns[:is_preview] ? (@sig_submitter ? submit_form_documents_path(@sig_submitter.slug, { sig: params[:sig], combined: true }.compact) : submissions_preview_download_index_path(@submission.slug, combined: true)) : submission_download_index_path(@submission, combined: true) %>" class="flex items-center">
+                          <span class="flex items-center justify-center space-x-2" data-target="download-button.defaultButton">
+                            <%= svg_icon('download', class: 'w-6 h-6 flex-shrink-0') %>
+                            <span class="whitespace-nowrap"><%= t('download_combined_pdf') %></span>
+                          </span>
+                          <span class="flex items-center justify-center space-x-2 hidden" data-target="download-button.loadingButton">
+                            <%= svg_icon('loader', class: 'w-6 h-6 animate-spin') %>
+                            <span><%= t('downloading') %></span>
+                          </span>
+                        </download-button>
+                      </li>
+                    </native-action>
                   <% end %>
                   <% if show_unarchive %>
-                    <li>
-                      <button form="submission_unarchive_form">
-                        <%= button_title(title: t('unarchive'), disabled_with: t('unarchive'), icon: svg_icon('rotate', class: 'w-6 h-6 flex-shrink-0')) %>
-                      </button>
-                      <%= button_to '', submission_unarchive_index_path(@submission), form: { id: 'submission_unarchive_form' }, form_class: 'hidden' %>
-                    </li>
+                    <native-action data-label="<%= t('unarchive') %>" data-icon="rotate">
+                      <li>
+                        <button form="submission_unarchive_form">
+                          <%= button_title(title: t('unarchive'), disabled_with: t('unarchive'), icon: svg_icon('rotate', class: 'w-6 h-6 flex-shrink-0')) %>
+                        </button>
+                        <%= button_to '', submission_unarchive_index_path(@submission), form: { id: 'submission_unarchive_form' }, form_class: 'hidden' %>
+                      </li>
+                    </native-action>
                   <% end %>
                 </ul>
               </div>
@@ -93,7 +109,9 @@
           </div>
         <% end %>
       <% elsif @submission.submitters.to_a.size == 1 && !@submission.expired? && !@submission.submitters.to_a.first.declined_at? && !@submission.archived_at? && !@submission.template&.archived_at? %>
-        <%= render 'shared/clipboard_copy', text: submit_form_url(slug: @submission.submitters.to_a.first.slug, host: form_link_host), class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: t('copy_share_link'), copied_title: t('copied_to_clipboard') %>
+        <native-action data-label="<%= t('copy_share_link') %>" data-icon="link" data-placement="bar">
+          <%= render 'shared/clipboard_copy', text: submit_form_url(slug: @submission.submitters.to_a.first.slug, host: form_link_host), class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: t('copy_share_link'), copied_title: t('copied_to_clipboard') %>
+        </native-action>
       <% end %>
     </div>
   </div>

@@ -6,7 +6,7 @@ export default class extends HTMLElement {
 
     if (!bridge) return
 
-    const target = this.querySelector('a, button, [role="button"]')
+    const target = this.querySelector('a, button, [role="button"]') || this.firstElementChild
 
     if (!target) return
 

@@ -6,7 +6,9 @@ export default class extends HTMLElement {
       const text = this.dataset.text || this.innerText.trim()
 
       if (navigator.clipboard) {
-        navigator.clipboard.writeText(text)
+        navigator.clipboard.writeText(text).then(() => {
+          window.webkit?.messageHandlers?.flash?.postMessage({ style: 'notice', message: this.dataset.copied })
+        })
       } else {
         if (e.target.tagName !== 'INPUT') {
           alert(`Clipboard not available. Make sure you're using https://\nCopy text: ${text}`)
