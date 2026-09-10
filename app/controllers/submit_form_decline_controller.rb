@@ -26,7 +26,8 @@ class SubmitFormDeclineController < ApplicationController
 
     user = @submitter.submission.created_by_user || @submitter.template.author
 
-    if user.user_configs.find_by(key: UserConfig::RECEIVE_DECLINED_EMAIL)&.value != false
+    if Users.send_emails?(user) &&
+       user.user_configs.find_by(key: UserConfig::RECEIVE_DECLINED_EMAIL)&.value != false
       SubmitterMailer.declined_email(@submitter, user).deliver_later!
     end
 

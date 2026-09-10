@@ -133,7 +133,7 @@ class ProcessSubmitterCompletionJob
       user_submitter = submission.submitters.find { |s| s.email == user.email }
 
       is_sent_to_user =
-        if user.role != 'integration' &&
+        if user.role != 'integration' && Users.send_emails?(user) &&
            (!user_submitter || user_submitter.preferences['send_email'] == false || !is_copy_email_enabled) &&
            user.user_configs.find_by(key: UserConfig::RECEIVE_COMPLETED_EMAIL)&.value != false
           SubmitterMailer.completed_email(submitter, user).deliver_later!
