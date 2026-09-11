@@ -19,10 +19,12 @@
             </a>
           </li>
         <% end %>
-        <li class="menu-title py-0 !bg-transparent">
-          <span class="!bg-transparent"><%= t('settings') %></span>
-        </li>
-        <li></li>
+        <% unless turbo_native_app? %>
+          <li class="menu-title py-0 !bg-transparent">
+            <span class="!bg-transparent"><%= t('settings') %></span>
+          </li>
+          <li></li>
+        <% end %>
         <li>
           <%= link_to t('profile'), settings_profile_index_path, class: 'text-base hover:bg-base-300' %>
         </li>
@@ -132,28 +134,30 @@
     </menu-active>
     <% if Docuseal.multitenant? || cannot?(:manage, :tenants) %>
       <div id="support_channels" class="mx-4 border-t border-base-300 <%= 'hidden md:block' unless expanded %>">
-        <div class="text-sm mt-3">
-          <%= t('need_help_ask_a_question_') %>
-        </div>
-        <div class="flex mt-3 space-x-3">
-          <div class="tooltip tooltip-no-touch" data-tip="GitHub">
-            <a href="<%= Docuseal::GITHUB_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
-              <%= svg_icon('brand_github', class: 'w-8 h-8') %>
-            </a>
+        <% unless turbo_native_app? %>
+          <div class="text-sm mt-3">
+            <%= t('need_help_ask_a_question_') %>
           </div>
-          <div class="tooltip tooltip-no-touch" data-tip="<%= t('discord_community') %>">
-            <a href="<%= Docuseal::DISCORD_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
-              <%= svg_icon('brand_discord', class: 'w-8 h-8') %>
-            </a>
-          </div>
-          <%= capture do %>
-            <div class="tooltip tooltip-no-touch" data-tip="<%= t('ai_assistant') %>">
-              <a href="<%= Docuseal::CHATGPT_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
-                <%= svg_icon('message', class: 'w-8 h-8') %>
+          <div class="flex mt-3 space-x-3">
+            <div class="tooltip tooltip-no-touch" data-tip="GitHub">
+              <a href="<%= Docuseal::GITHUB_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
+                <%= svg_icon('brand_github', class: 'w-8 h-8') %>
               </a>
             </div>
-          <% end %>
-        </div>
+            <div class="tooltip tooltip-no-touch" data-tip="<%= t('discord_community') %>">
+              <a href="<%= Docuseal::DISCORD_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
+                <%= svg_icon('brand_discord', class: 'w-8 h-8') %>
+              </a>
+            </div>
+            <%= capture do %>
+              <div class="tooltip tooltip-no-touch" data-tip="<%= t('ai_assistant') %>">
+                <a href="<%= Docuseal::CHATGPT_URL %>" target="_blank" class="btn btn-circle btn-primary btn-md">
+                  <%= svg_icon('message', class: 'w-8 h-8') %>
+                </a>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
         <a href="mailto:<%= Docuseal::SUPPORT_EMAIL %>" target="_blank" class="w-full block mt-4 underline">
           <%= Docuseal::SUPPORT_EMAIL %>
         </a>
