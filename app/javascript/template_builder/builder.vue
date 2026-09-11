@@ -121,8 +121,8 @@
             data-icon="writing"
           >
             <form
-              target="_blank"
-              data-turbo="false"
+              :target="nativeApp ? null : '_blank'"
+              :data-turbo="nativeApp ? null : 'false'"
               class="inline"
               method="post"
               :action="`/start_form_self/${template.id}`"
