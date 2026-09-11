@@ -25,7 +25,8 @@ export default class extends HTMLElement {
       native: this.dataset.native,
       url: this.dataset.url,
       accept: this.dataset.accept,
-      destructive: this.dataset.destructive === 'true'
+      destructive: this.dataset.destructive === 'true',
+      selected: this.dataset.selected === 'true'
     })
   }
 
