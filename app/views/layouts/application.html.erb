@@ -28,7 +28,7 @@
     <% end %>
     <turbo-frame id="modal"></turbo-frame>
     <turbo-frame id="drawer"></turbo-frame>
-    <%= render 'shared/navbar' unless turbo_native_app? %>
+    <%= render turbo_native_app? ? 'shared/native_navbar' : 'shared/navbar' %>
     <% if flash.present? %><%= render 'shared/flash' %><% end %>
     <div class="max-w-6xl mx-auto px-4 md:px-2 mb-8">
       <%= yield %>

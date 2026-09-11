@@ -8,18 +8,23 @@ export default class extends HTMLElement {
 
     const target = this.querySelector('a, button, [role="button"]') || this.firstElementChild
 
-    if (!target) return
+    if (!target && !this.dataset.native) return
 
     this.nativeId ||= `native-action-${++counter}`
-    target.dataset.nativeId = this.nativeId
+
+    if (target) target.dataset.nativeId = this.nativeId
 
     bridge.postMessage({
       type: 'action',
       op: 'add',
       id: this.nativeId,
-      title: this.dataset.label || target.textContent.trim(),
+      title: this.dataset.label || target?.textContent.trim(),
       icon: this.dataset.icon,
-      placement: this.dataset.placement || 'menu'
+      placement: this.dataset.placement || 'menu',
+      native: this.dataset.native,
+      url: this.dataset.url,
+      accept: this.dataset.accept,
+      destructive: this.dataset.destructive === 'true'
     })
   }
 
