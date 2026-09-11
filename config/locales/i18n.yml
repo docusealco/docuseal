@@ -261,6 +261,7 @@ en: &en
   should_be_a_valid_url: should be a valid URL
   your_account_will_be_permanently_deleted_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Your account will be permanently deleted within 2 months. Please contact us if you want to keep your account.
   test_mode: Test mode
+  exit_test_mode: Exit test mode
   copy: Copy
   copied: Copied
   rotate: Rotate
@@ -521,8 +522,12 @@ en: &en
   export: Export
   there_are_no_submissions: There are no Submissions
   send_an_invitation_to_fill_and_complete_the_form: Send an invitation to fill and complete the form
+  send: Send
   send_to_recipients: Send to Recipients
   sign_it_yourself: Sign it Yourself
+  sign_yourself: Sign Yourself
+  revisions: Revisions
+  no_revisions_yet: No revisions yet
   api_and_embedding: API and Embedding
   template_id: Template ID
   embedding_url: Embedding URL
@@ -1387,6 +1392,7 @@ es: &es
   should_be_a_valid_url: debe ser una URL válida
   your_account_will_be_permanently_deleted_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Tu solicitud de eliminación de cuenta se procesará en un plazo de 2 meses. Por favor contáctanos si deseas mantener tu cuenta.
   test_mode: Modo de prueba
+  exit_test_mode: Salir del modo de prueba
   copy: Copiar
   copied: Copiado
   rotate: Rotar
@@ -1654,8 +1660,12 @@ es: &es
   export: Exportar
   there_are_no_submissions: No hay envíos
   send_an_invitation_to_fill_and_complete_the_form: Enviar una invitación para completar el formulario
+  send: Enviar
   send_to_recipients: Enviar a los destinatarios
   sign_it_yourself: Fírmalo tú mismo
+  sign_yourself: Firma tú mismo
+  revisions: Revisiones
+  no_revisions_yet: Aún no hay revisiones
   api_and_embedding: API e Integración
   template_id: ID de plantilla
   embedding_url: URL de integración
@@ -2524,6 +2534,7 @@ it: &it
   should_be_a_valid_url: deve essere un URL valido
   your_account_will_be_permanently_deleted_within_2_months_please_contact_us_if_you_want_to_keep_your_account: "La tua richiesta di rimozione dell'account sarà elaborata entro 2 mesi. Contattaci se desideri mantenere il tuo account."
   test_mode: Modalità di test
+  exit_test_mode: Esci dalla modalità di prova
   copy: Copia
   copied: Copiato
   rotate: Ruota
@@ -2791,8 +2802,12 @@ it: &it
   export: Esporta
   there_are_no_submissions: Non ci sono invii
   send_an_invitation_to_fill_and_complete_the_form: Invia un invito per compilare e completare il modulo
+  send: Invia
   send_to_recipients: Invia ai destinatari
   sign_it_yourself: Firmalo tu stesso
+  sign_yourself: Firma te stesso
+  revisions: Revisioni
+  no_revisions_yet: Nessuna revisione ancora
   api_and_embedding: API e Incorporazione
   template_id: ID modello
   embedding_url: URL di incorporazione
@@ -3647,6 +3662,7 @@ fr: &fr
   should_be_a_valid_url: doit être une URL valide
   your_account_will_be_permanently_deleted_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Votre demande de suppression de compte sera traitée sous 2 mois. Veuillez nous contacter si vous souhaitez conserver votre compte.
   test_mode: Mode test
+  exit_test_mode: Quitter le mode test
   copy: Copier
   copied: Copié
   rotate: Pivoter
@@ -3914,8 +3930,12 @@ fr: &fr
   export: Exporter
   there_are_no_submissions: Il n’y a aucune soumission
   send_an_invitation_to_fill_and_complete_the_form: Envoyer une invitation pour remplir et terminer le formulaire
+  send: Envoyer
   send_to_recipients: Envoyer aux destinataires
   sign_it_yourself: Signer vous‑même
+  sign_yourself: Signer vous-même
+  revisions: Révisions
+  no_revisions_yet: Aucune révision pour le moment
   api_and_embedding: API et Embedding
   template_id: ID du modèle
   embedding_url: URL d’embedding
@@ -4780,6 +4800,7 @@ pt: &pt
   should_be_a_valid_url: deve ser um URL válido
   your_account_will_be_permanently_deleted_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Seu pedido de remoção da conta será processado em até 2 meses. Entre em contato conosco se você quiser manter sua conta.
   test_mode: Modo de teste
+  exit_test_mode: Sair do modo de teste
   copy: Copiar
   copied: Copiado
   rotate: Girar
@@ -5047,8 +5068,12 @@ pt: &pt
   export: Exportar
   there_are_no_submissions: Não há submissões
   send_an_invitation_to_fill_and_complete_the_form: Enviar um convite para preencher e concluir o formulário
+  send: Enviar
   send_to_recipients: Enviar para destinatários
   sign_it_yourself: Assine você mesmo
+  sign_yourself: Assine você mesmo
+  revisions: Revisões
+  no_revisions_yet: Nenhuma revisão ainda
   api_and_embedding: API e Incorporação
   template_id: ID do modelo
   embedding_url: URL de incorporação
@@ -5916,6 +5941,7 @@ de: &de
   should_be_a_valid_url: sollte eine gültige URL sein
   your_account_will_be_permanently_deleted_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Ihre Anfrage zur Kontolöschung wird innerhalb von 2 Monaten bearbeitet. Bitte kontaktieren Sie uns, wenn Sie Ihr Konto behalten möchten.
   test_mode: Testmodus
+  exit_test_mode: Testmodus verlassen
   copy: Kopieren
   copied: Kopiert
   rotate: Drehen
@@ -6183,8 +6209,12 @@ de: &de
   export: Exportieren
   there_are_no_submissions: Es gibt keine Einreichungen
   send_an_invitation_to_fill_and_complete_the_form: Einladung zum Ausfüllen und Abschließen des Formulars senden
+  send: Senden
   send_to_recipients: An Empfänger senden
   sign_it_yourself: Selbst unterschreiben
+  sign_yourself: Selbst unterschreiben
+  revisions: Revisionen
+  no_revisions_yet: Noch keine Revisionen
   api_and_embedding: API und Einbettung
   template_id: Vorlagen-ID
   embedding_url: Einbettungs-URL
@@ -7580,6 +7610,7 @@ nl: &nl
   should_be_a_valid_url: moet een geldige URL zijn
   your_account_will_be_permanently_deleted_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Uw account wordt binnen 2 maanden permanent verwijderd. Neem contact met ons op als u uw account wilt behouden.
   test_mode: Testmodus
+  exit_test_mode: Testmodus verlaten
   copy: Kopiëren
   copied: Gekopieerd
   rotate: Draaien
@@ -7847,8 +7878,12 @@ nl: &nl
   export: Exporteren
   there_are_no_submissions: Er zijn geen inzendingen
   send_an_invitation_to_fill_and_complete_the_form: Stuur een uitnodiging om het formulier in te vullen en te voltooien
+  send: Verzenden
   send_to_recipients: Verzenden naar ontvangers
   sign_it_yourself: Zelf ondertekenen
+  sign_yourself: Zelf ondertekenen
+  revisions: Revisies
+  no_revisions_yet: Nog geen revisies
   api_and_embedding: API en insluiten
   template_id: Sjabloon-ID
   embedding_url: Insluitings-URL

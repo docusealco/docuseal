@@ -12,6 +12,8 @@ import TurboModal from './elements/turbo_modal'
 import NativeAction from './elements/native_action'
 import NativeSearch from './elements/native_search'
 import NativeModal from './elements/native_modal'
+import NativeEvent from './elements/native_event'
+import ModalButton from './elements/modal_button'
 import FileDropzone from './elements/file_dropzone'
 import MenuActive from './elements/menu_active'
 import ClipboardCopy from './elements/clipboard_copy'
@@ -89,11 +91,23 @@ document.addEventListener('turbo:submit-end', async (event) => {
     return
   }
 
+  const filename = decodeURIComponent(resp.headers.get('content-disposition').split('"')[1])
+  const download = window.webkit?.messageHandlers?.download
+
+  if (download) {
+    const reader = new FileReader()
+
+    reader.onload = () => download.postMessage({ name: filename, data: reader.result.split(',')[1] })
+    reader.readAsDataURL(await resp.blob())
+
+    return
+  }
+
   const url = URL.createObjectURL(await resp.blob())
   const link = document.createElement('a')
 
   link.href = url
-  link.setAttribute('download', decodeURIComponent(resp.headers.get('content-disposition').split('"')[1]))
+  link.setAttribute('download', filename)
 
   document.body.appendChild(link)
 
@@ -112,6 +126,8 @@ safeRegisterElement('turbo-modal', TurboModal)
 safeRegisterElement('native-action', NativeAction)
 safeRegisterElement('native-search', NativeSearch)
 safeRegisterElement('native-modal', NativeModal)
+safeRegisterElement('native-event', NativeEvent)
+safeRegisterElement('modal-button', ModalButton)
 safeRegisterElement('file-dropzone', FileDropzone)
 safeRegisterElement('menu-active', MenuActive)
 safeRegisterElement('clipboard-copy', ClipboardCopy)

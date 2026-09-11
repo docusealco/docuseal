@@ -21,6 +21,7 @@ export default class extends HTMLElement {
       title: this.dataset.label || target?.textContent.trim(),
       icon: this.dataset.icon,
       placement: this.dataset.placement || 'menu',
+      section: this.dataset.section,
       native: this.dataset.native,
       url: this.dataset.url,
       accept: this.dataset.accept,

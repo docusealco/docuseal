@@ -5,11 +5,16 @@
         <h1 class="text-3xl md:text-[2em] font-semibold" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;">
           <% template.name.split(/(_)/).each do |item| %><%= item %><wbr><% end %>
           <% if template.archived_at? %>
-            <span class="ml-1 badge badge-outline badge-lg align-middle"><%= t('archived') %></span>
+            <span class="ml-1 badge badge-outline badge-lg align-middle hidden md:inline-flex"><%= t('archived') %></span>
           <% end %>
         </h1>
         <%= render 'templates/access_icon', template: @template %>
       </div>
+      <% if template.archived_at? %>
+        <div class="absolute -bottom-1 right-0 md:hidden">
+          <span class="badge badge-outline badge-lg"><%= t('archived') %></span>
+        </div>
+      <% end %>
       <% if @template.account_id == current_account.id %>
         <div class="flex items-center justify-between">
           <div class="flex items-center">
@@ -44,17 +49,15 @@
     <% if !template.archived_at? %>
       <div class="flex items-center space-x-2">
         <% if can?(:update, template) %>
-          <native-action data-label="<%= t('preferences') %>" data-icon="adjustments_horizontal" data-placement="bar">
-            <div class="tooltip tooltip-no-touch hidden md:block" data-tip="<%= t('preferences') %>">
-              <%= link_to template_preferences_path(template), class: 'btn border border-base-200 bg-base-200 hover:bg-base-300 hover:border-base-300 btn-sm flex-1 hidden md:flex', data: { turbo_frame: :modal } do %>
-                <span class="flex items-center justify-center space-x-2">
-                  <%= svg_icon('adjustments_horizontal', class: 'w-6 h-6') %>
-                </span>
-              <% end %>
-            </div>
-          </native-action>
+          <div class="tooltip tooltip-no-touch hidden md:block" data-tip="<%= t('preferences') %>">
+            <%= link_to template_preferences_path(template), class: 'btn border border-base-200 bg-base-200 hover:bg-base-300 hover:border-base-300 btn-sm flex-1 hidden md:flex', data: { turbo_frame: :modal } do %>
+              <span class="flex items-center justify-center space-x-2">
+                <%= svg_icon('adjustments_horizontal', class: 'w-6 h-6') %>
+              </span>
+            <% end %>
+          </div>
         <% end %>
-        <open-modal-mobile class="absolute md:relative bottom-0 right-0 mt-1">
+        <open-modal-mobile class="absolute md:relative -bottom-1 md:bottom-0 right-0 mt-1">
           <%= link_to template_share_link_path(template), class: 'btn btn-xs md:btn-sm whitespace-nowrap btn-neutral text-white px-2', data: { turbo_frame: :modal } do %>
             <span class="flex items-center justify-center space-x-2">
               <%= svg_icon('link', class: 'w-4 h-4 md:w-6 md:h-6') %>
@@ -65,35 +68,92 @@
       </div>
     <% end %>
   </div>
-  <div class="flex flex-wrap gap-2 w-full md:w-fit md:justify-between md:flex-none md:pt-1">
-    <% if can?(:destroy, template) %>
-      <% if template.archived_at? %>
-        <%= button_to button_title(title: t('restore'), disabled_with: t('restoring')[..-4], icon: svg_icon('rotate', class: 'w-6 h-6')), template_restore_index_path(template), class: 'btn btn-outline btn-sm w-full', form_class: 'flex-1' %>
-      <% else %>
-        <%= button_to button_title(title: t('archive'), disabled_with: t('archiving')[..-4], title_class: 'inline', icon: svg_icon('archive', class: 'w-6 h-6')), template_path(template), class: 'btn btn-outline btn-sm w-full', form_class: 'flex-1', method: :delete %>
+  <% if turbo_native_app? %>
+    <% unless template.archived_at? %>
+      <% if can?(:create, Submission) %>
+        <native-action data-section="send" data-icon="send" data-label="<%= t('send') %>">
+          <a href="<%= new_template_submission_path(template) %>" data-turbo-frame="modal"></a>
+        </native-action>
       <% end %>
+      <native-action data-section="send" data-icon="writing" data-label="<%= t('sign_yourself') %>">
+        <a href="<%= new_template_submission_path(template, selfsign: true) %>" data-turbo-frame="modal"></a>
+      </native-action>
+    <% end %>
+    <% if !template.archived_at? && can?(:update, template) %>
+      <native-action data-placement="bar" data-icon="pencil" data-label="<%= t('edit') %>">
+        <a href="<%= edit_template_path(template) %>"></a>
+      </native-action>
+      <native-action data-section="edit" data-icon="adjustments_horizontal" data-label="<%= t('preferences') %>">
+        <a href="<%= template_preferences_path(template) %>" data-turbo-frame="modal"></a>
+      </native-action>
     <% end %>
     <% if can?(:create, current_account.templates.new(author: current_user)) %>
-      <div class="flex-1">
-        <%= link_to new_template_clone_path(template), class: 'btn btn-outline btn-sm w-full', data: { turbo_frame: :modal } do %>
-          <span class="flex items-center justify-center space-x-2">
-            <%= svg_icon('copy', class: 'w-6 h-6') %>
-            <span class="inline"><%= t('clone') %></span>
-          </span>
-        <% end %>
-      </div>
+      <native-action data-section="edit" data-icon="copy" data-label="<%= t('clone') %>">
+        <a href="<%= new_template_clone_path(template) %>" data-turbo-frame="modal"></a>
+      </native-action>
     <% end %>
-    <% if !template.archived_at? %>
-      <% if can?(:update, template) %>
+    <% if template.archived_at? || (!can?(:update, template) && can?(:read, template)) %>
+      <native-action data-section="edit" data-icon="file_text" data-label="<%= t('preview') %>">
+        <a href="<%= template_preview_path(template) %>"></a>
+      </native-action>
+    <% end %>
+    <% if local_assigns[:with_export] %>
+      <native-action data-section="edit" data-icon="download" data-label="<%= t('export') %>">
+        <a href="<%= new_template_submissions_export_path(template, params.permit(:q, *Submissions::Filter::ALLOWED_PARAMS)) %>" data-turbo-frame="modal"></a>
+      </native-action>
+    <% end %>
+    <% if can?(:destroy, template) %>
+      <% if template.archived_at? %>
+        <native-action data-section="archive" data-icon="rotate" data-label="<%= t('restore') %>">
+          <%= button_to '', template_restore_index_path(template) %>
+        </native-action>
+      <% else %>
+        <native-action data-section="archive" data-icon="archive" data-label="<%= t('archive') %>">
+          <%= button_to '', template_path(template), method: :delete %>
+        </native-action>
+      <% end %>
+    <% end %>
+  <% else %>
+    <div class="flex flex-wrap gap-2 w-full md:w-fit md:justify-between md:flex-none md:pt-1">
+      <% if can?(:destroy, template) %>
+        <% if template.archived_at? %>
+          <%= button_to button_title(title: t('restore'), disabled_with: t('restoring')[..-4], icon: svg_icon('rotate', class: 'w-6 h-6')), template_restore_index_path(template), class: 'btn btn-outline btn-sm w-full', form_class: 'flex-1' %>
+        <% else %>
+          <%= button_to button_title(title: t('archive'), disabled_with: t('archiving')[..-4], title_class: 'inline', icon: svg_icon('archive', class: 'w-6 h-6')), template_path(template), class: 'btn btn-outline btn-sm w-full', form_class: 'flex-1', method: :delete %>
+        <% end %>
+      <% end %>
+      <% if can?(:create, current_account.templates.new(author: current_user)) %>
         <div class="flex-1">
-          <%= link_to edit_template_path(template), class: 'btn btn-outline btn-sm w-full' do %>
+          <%= link_to new_template_clone_path(template), class: 'btn btn-outline btn-sm w-full', data: { turbo_frame: :modal } do %>
             <span class="flex items-center justify-center space-x-2">
-              <%= svg_icon('pencil', class: 'w-6 h-6') %>
-              <span><%= t('edit') %></span>
+              <%= svg_icon('copy', class: 'w-6 h-6') %>
+              <span class="inline"><%= t('clone') %></span>
             </span>
           <% end %>
         </div>
-      <% elsif can?(:read, template) && !template.archived_at? %>
+      <% end %>
+      <% if !template.archived_at? %>
+        <% if can?(:update, template) %>
+          <div class="flex-1">
+            <%= link_to edit_template_path(template), class: 'btn btn-outline btn-sm w-full' do %>
+              <span class="flex items-center justify-center space-x-2">
+                <%= svg_icon('pencil', class: 'w-6 h-6') %>
+                <span><%= t('edit') %></span>
+              </span>
+            <% end %>
+          </div>
+        <% elsif can?(:read, template) && !template.archived_at? %>
+          <div class="flex-1">
+            <%= link_to template_preview_path(template), class: 'btn btn-outline btn-sm w-full' do %>
+              <span class="flex items-center justify-center space-x-2">
+                <%= svg_icon('file_text', class: 'w-6 h-6') %>
+                <span><%= t('preview') %></span>
+              </span>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+      <% if template.archived_at? %>
         <div class="flex-1">
           <%= link_to template_preview_path(template), class: 'btn btn-outline btn-sm w-full' do %>
             <span class="flex items-center justify-center space-x-2">
@@ -103,16 +163,6 @@
           <% end %>
         </div>
       <% end %>
-    <% end %>
-    <% if template.archived_at? %>
-      <div class="flex-1">
-        <%= link_to template_preview_path(template), class: 'btn btn-outline btn-sm w-full' do %>
-          <span class="flex items-center justify-center space-x-2">
-            <%= svg_icon('file_text', class: 'w-6 h-6') %>
-            <span><%= t('preview') %></span>
-          </span>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 </div>

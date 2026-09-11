@@ -11,8 +11,10 @@
 <% with_signature_id_reason = configs.find { |e| e.key == AccountConfig::WITH_SIGNATURE_ID_REASON_KEY }&.value != false %>
 <% with_signature_id_completed_at = configs.find { |e| e.key == AccountConfig::WITH_SIGNATURE_ID_COMPLETED_AT_KEY }&.value == true %>
 <main style="max-width: 1600px" class="mx-auto pl-4">
-  <div class="flex justify-between items-center pr-4 sticky top-0 md:relative z-10 bg-base-100 <%= 'py-1.5' unless turbo_native_app? %>">
-    <% unless turbo_native_app? %>
+  <div class="flex justify-between items-center pr-4 <%= turbo_native_app? ? 'pb-3' : 'sticky top-0 md:relative z-10 bg-base-100 py-1.5' %>">
+    <% if turbo_native_app? %>
+      <h1 class="text-3xl font-semibold py-1" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;"><% (@submission.name || @submission.template&.name).to_s.split(/(_)/).each do |item| %><%= item %><wbr><% end %></h1>
+    <% else %>
       <a href="<%= signed_in? && @submission.account_id == current_account&.id && @submission.template ? template_path(@submission.template) : '/' %>" class="flex items-center space-x-3 py-1">
         <span><%= render 'submissions/logo' %></span>
         <h1 class="text-xl md:text-3xl font-semibold focus:text-clip" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;"><% (@submission.name || @submission.template&.name).to_s.split(/(_)/).each do |item| %><%= item %><wbr><% end %></h1>

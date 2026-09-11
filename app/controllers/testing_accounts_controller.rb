@@ -10,12 +10,22 @@ class TestingAccountsController < ApplicationController
 
     impersonate_user(Accounts.find_or_create_testing_user(true_user.account))
 
-    redirect_back(fallback_location: root_path)
+    redirect_after_toggle
   end
 
   def destroy
     stop_impersonating_user
 
-    redirect_back(fallback_location: root_path)
+    redirect_after_toggle
+  end
+
+  private
+
+  def redirect_after_toggle
+    if turbo_native_app?
+      redirect_to root_path
+    else
+      redirect_back(fallback_location: root_path)
+    end
   end
 end

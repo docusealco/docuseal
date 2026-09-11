@@ -1,0 +1,24 @@
+<%= render 'shared/turbo_modal', title: t('revisions') do %>
+  <ul class="space-y-1.5">
+    <% @versions.each do |version| %>
+      <li>
+        <native-event class="group flex justify-between items-center gap-2 w-full rounded-lg p-3 border border-dashed border-base-200 cursor-pointer" data-name="template-builder:apply-revision" data-src="<%= template_version_path(@template, version) %>">
+          <div class="flex flex-col min-w-0">
+            <span><%= l(version.created_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) %></span>
+            <span class="-ml-0.5 flex items-center space-x-1 text-xs text-base-content/60 mt-0.5">
+              <%= svg_icon('user', class: 'w-3.5 h-3.5 flex-shrink-0') %>
+              <span class="truncate"><%= version.author.full_name.presence || version.author.email %></span>
+            </span>
+          </div>
+          <span class="btn btn-sm btn-neutral text-white pointer-events-none flex-shrink-0">
+            <span class="group-data-[loading]:hidden"><%= t('view') %></span>
+            <%= svg_icon('loader', class: 'w-4 h-4 animate-spin hidden group-data-[loading]:block') %>
+          </span>
+        </native-event>
+      </li>
+    <% end %>
+    <% if @versions.empty? %>
+      <li class="py-4 text-center text-base-content/60"><%= t('no_revisions_yet') %></li>
+    <% end %>
+  </ul>
+<% end %>

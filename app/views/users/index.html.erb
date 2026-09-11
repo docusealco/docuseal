@@ -1,4 +1,4 @@
-<% content_for(:native_title, t('users')) if turbo_native_app? %>
+<% content_for(:native_title, params[:status] == 'archived' ? t('archived_users') : (params[:status] == 'integration' ? t('embedding_users') : t('users'))) if turbo_native_app? %>
 <div class="flex-wrap space-y-4 md:flex md:flex-nowrap md:space-y-0 md:space-x-10">
   <%= render 'shared/settings_nav' %>
   <div class="md:flex-grow">

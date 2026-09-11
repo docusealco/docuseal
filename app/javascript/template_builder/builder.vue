@@ -55,10 +55,10 @@
       v-if="beforeRevisionSnapshot"
       class="top-1.5 sticky h-0 z-20 max-w-2xl mx-auto"
     >
-      <div class="alert border-base-content/30 py-2 px-2.5">
+      <div class="alert border-base-content/30 py-2 px-2.5 max-sm:flex max-sm:items-center max-sm:justify-between max-sm:gap-2 max-sm:text-left max-sm:text-sm">
         <IconInfoCircle class="stroke-info shrink-0 w-6 h-6" />
         <span>{{ t('viewing_revision_from').replace('{date}', formatRevisionTime(beforeRevisionSnapshot.revision.created_at)) }}</span>
-        <div>
+        <div class="max-sm:flex max-sm:gap-1 max-sm:shrink-0">
           <button
             class="btn btn-sm"
             @click.prevent="cancelRevision"
@@ -104,6 +104,17 @@
           name="buttons"
         />
         <template v-else>
+          <native-action
+            v-if="withSendButton && nativeApp"
+            :data-label="t('send')"
+            data-icon="send"
+          >
+            <a
+              :href="`/templates/${template.id}/submissions/new?with_link=true`"
+              data-turbo-frame="modal"
+              @click="maybeShowErrorTemplateAlert"
+            />
+          </native-action>
           <native-action
             v-if="withSignYourselfButton && undefinedSubmitters.length < 2 && (!template.variables_schema || Object.keys(template.variables_schema).length === 0)"
             :data-label="t('sign_yourself')"
@@ -165,7 +176,7 @@
             </a>
           </native-action>
           <native-action
-            v-if="withSendButton"
+            v-if="withSendButton && !nativeApp"
             :data-label="t('send')"
             data-icon="users_plus"
             data-placement="bar"
@@ -193,7 +204,7 @@
           >
             <native-action
               :data-label="t('save')"
-              data-icon="device_floppy"
+              data-icon="check"
               data-placement="bar"
             >
               <button
@@ -276,7 +287,13 @@
                     :data-label="t('revisions')"
                     data-icon="history"
                   >
+                    <a
+                      v-if="nativeApp"
+                      :href="`/templates/${template.id}/versions`"
+                      data-turbo-frame="modal"
+                    />
                     <button
+                      v-else
                       class="flex space-x-2"
                       @click.prevent="openRevisionsModal"
                       @mouseenter="preloadRevisions"
@@ -1426,6 +1443,7 @@ export default {
     })
 
     document.addEventListener('keyup', this.onKeyUp)
+    document.addEventListener('template-builder:apply-revision', this.onApplyRevisionEvent)
     window.addEventListener('keydown', this.onKeyDown)
 
     window.addEventListener('resize', this.onWindowResize)
@@ -1449,6 +1467,7 @@ export default {
   },
   unmounted () {
     document.removeEventListener('keyup', this.onKeyUp)
+    document.removeEventListener('template-builder:apply-revision', this.onApplyRevisionEvent)
     window.removeEventListener('keydown', this.onKeyDown)
 
     window.removeEventListener('resize', this.onWindowResize)
@@ -1999,6 +2018,9 @@ export default {
       }).finally(() => {
         this.loadRevisionsPromise = null
       })
+    },
+    onApplyRevisionEvent (e) {
+      this.onRevisionApply(e.detail)
     },
     onRevisionApply (revision) {
       this.beforeRevisionSnapshot = {

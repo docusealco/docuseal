@@ -5,6 +5,11 @@
   <native-action data-placement="profile" data-icon="settings">
     <%= link_to t('settings'), settings_path %>
   </native-action>
+  <% if current_account.testing? && (can?(:manage, EncryptedConfig) || current_user != true_user) %>
+    <native-action data-placement="test_mode" data-icon="code" data-label="<%= t('exit_test_mode') %>">
+      <%= button_to '', testing_account_path, method: :delete, form: { data: { turbo_action: 'replace' } } %>
+    </native-action>
+  <% end %>
   <native-action data-placement="profile" data-icon="logout" data-native="sign_out" data-label="<%= t('sign_out') %>" data-destructive="true"></native-action>
   <% if can?(:create, ::Template) && controller_name.in?(%w[templates_dashboard submissions_dashboard template_folders]) %>
     <% folder_name = @template_folder&.full_name %>
