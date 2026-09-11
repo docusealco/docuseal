@@ -1,6 +1,7 @@
 export default class extends HTMLElement {
   connectedCallback () {
     document.addEventListener('turbo:submit-end', this.onSubmit)
+    this.addEventListener('click', this.onClick)
   }
 
   disconnectedCallback () {
@@ -14,5 +15,13 @@ export default class extends HTMLElement {
     if (e.detail.formSubmission?.formElement?.dataset?.closeOnSubmit === 'false') return
 
     window.webkit?.messageHandlers?.modal?.postMessage({ action: 'submitted' })
+  }
+
+  onClick = () => {
+    setTimeout(() => {
+      if (document.documentElement.scrollHeight > window.innerHeight) {
+        window.webkit?.messageHandlers?.modal?.postMessage({ action: 'expand' })
+      }
+    }, 300)
   }
 }
