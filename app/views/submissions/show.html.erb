@@ -11,10 +11,8 @@
 <% with_signature_id_reason = configs.find { |e| e.key == AccountConfig::WITH_SIGNATURE_ID_REASON_KEY }&.value != false %>
 <% with_signature_id_completed_at = configs.find { |e| e.key == AccountConfig::WITH_SIGNATURE_ID_COMPLETED_AT_KEY }&.value == true %>
 <main style="max-width: 1600px" class="mx-auto pl-4">
-  <div class="flex justify-between items-center pr-4 <%= turbo_native_app? ? 'pb-3' : 'sticky top-0 md:relative z-10 bg-base-100 py-1.5' %>">
-    <% if turbo_native_app? %>
-      <h1 class="text-3xl font-semibold py-1" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;"><% (@submission.name || @submission.template&.name).to_s.split(/(_)/).each do |item| %><%= item %><wbr><% end %></h1>
-    <% else %>
+  <div class="flex justify-between items-center pr-4 sticky top-0 md:relative z-10 bg-base-100 <%= 'py-1.5' unless turbo_native_app? %>">
+    <% unless turbo_native_app? %>
       <a href="<%= signed_in? && @submission.account_id == current_account&.id && @submission.template ? template_path(@submission.template) : '/' %>" class="flex items-center space-x-3 py-1">
         <span><%= render 'submissions/logo' %></span>
         <h1 class="text-xl md:text-3xl font-semibold focus:text-clip" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;"><% (@submission.name || @submission.template&.name).to_s.split(/(_)/).each do |item| %><%= item %><wbr><% end %></h1>
@@ -22,19 +20,19 @@
     <% end %>
     <div class="space-x-3 flex items-center">
       <% if signed_in? && can?(:destroy, @submission) && @submission.archived_at? && !@submission.completed_at? %>
-        <native-action data-label="<%= t('unarchive') %>" data-icon="rotate">
+        <native-action data-label="<%= t('unarchive') %>" data-icon="rotate" data-section="archive">
           <%= button_to button_title(title: t('unarchive'), disabled_with: t('unarchive')[0..-2], icon: svg_icon('rotate', class: 'w-6 h-6')), submission_unarchive_index_path(@submission), class: 'btn btn-primary btn-ghost text-base hidden md:flex' %>
         </native-action>
       <% end %>
       <% if @submission.audit_trail.present? %>
-        <native-action data-label="<%= t('audit_log') %>" data-icon="external_link" data-placement="bar">
+        <native-action data-label="<%= t('audit_log') %>" data-icon="external_link">
           <a href="<%= ActiveStorage::Blob.proxy_path(@submission.audit_trail.blob, expires_at: 4.hours.from_now) %>" class="white-button" target="_blank">
             <%= svg_icon('external_link', class: 'w-6 h-6') %>
             <span class="hidden md:inline"><%= t('audit_log') %></span>
           </a>
         </native-action>
       <% elsif signed_in? %>
-        <native-action data-label="<%= t('event_log') %>" data-icon="logs" data-placement="bar">
+        <native-action data-label="<%= t('event_log') %>" data-icon="logs">
           <open-modal-mobile class="flex">
             <%= link_to submission_events_path(@submission), class: 'white-button', data: { turbo_frame: :modal } do %>
               <%= svg_icon('logs', class: 'w-6 h-6') %>
@@ -57,7 +55,7 @@
         <% show_download_dropdown = show_combined_download || show_unarchive %>
         <% if @submission.completed_at? || !is_combined_enabled %>
           <div class="join relative">
-            <native-action data-label="<%= t('download') %>" data-icon="download" data-placement="bar">
+            <native-action data-label="<%= t('download') %>" data-icon="download">
               <download-button role="button" tabindex="0" aria-label="<%= t('download') %>" data-src="<%= local_assigns[:is_preview] ? (@sig_submitter ? submit_form_documents_path(@sig_submitter.slug, { sig: params[:sig], combined: is_combined_enabled }.compact_blank) : submissions_preview_download_index_path(@submission.slug, combined: is_combined_enabled.presence)) : submission_download_index_path(@submission, combined: is_combined_enabled.presence) %>" class="base-button <%= '!rounded-r-none !pr-2' if show_download_dropdown %>">
                 <span class="flex items-center justify-center space-x-2" data-target="download-button.defaultButton">
                   <%= svg_icon('download', class: 'w-6 h-6') %>
@@ -97,7 +95,7 @@
                   <% end %>
                   <% if show_unarchive %>
                     <li>
-                      <native-action data-label="<%= t('unarchive') %>" data-icon="rotate">
+                      <native-action data-label="<%= t('unarchive') %>" data-icon="rotate" data-section="archive">
                         <button form="submission_unarchive_form">
                           <%= button_title(title: t('unarchive'), disabled_with: t('unarchive'), icon: svg_icon('rotate', class: 'w-6 h-6 flex-shrink-0')) %>
                         </button>
@@ -111,7 +109,7 @@
           </div>
         <% end %>
       <% elsif @submission.submitters.to_a.size == 1 && !@submission.expired? && !@submission.submitters.to_a.first.declined_at? && !@submission.archived_at? && !@submission.template&.archived_at? %>
-        <native-action data-label="<%= t('copy_share_link') %>" data-icon="link" data-placement="bar">
+        <native-action data-label="<%= t('copy_share_link') %>" data-icon="link">
           <%= render 'shared/clipboard_copy', text: submit_form_url(slug: @submission.submitters.to_a.first.slug, host: form_link_host), class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: t('copy_share_link'), copied_title: t('copied_to_clipboard') %>
         </native-action>
       <% end %>
@@ -135,7 +133,7 @@
       <% end %>
     </div>
     <div id="document_view" class="w-full overflow-y-auto overflow-x-hidden mt-0.5 pt-0.5" tabindex="0">
-      <div class="pr-3.5 pl-0.5">
+      <div class="pr-3.5 pl-0.5 max-md:pr-4 max-md:pl-0">
         <% fields_index = Templates.build_field_areas_index(@submission.template_fields || @submission.template.fields) %>
         <% submitters_index = @submission.submitters.index_by(&:uuid) %>
         <% submitters_order_index = nil %>
@@ -189,7 +187,7 @@
         <% end %>
       </div>
     </div>
-    <div id="parties_view" class="hidden md:block relative w-full md:w-80 flex-none pt-0.5 pr-4 pl-0.5 overflow-auto space" tabindex="0">
+    <div id="parties_view" class="hidden md:block relative w-full md:w-80 flex-none pt-0.5 pr-4 pl-0.5 max-md:pl-0 overflow-auto space" tabindex="0">
       <% colors = %w[bg-red-500 bg-sky-500 bg-emerald-500 bg-yellow-300 bg-purple-600 bg-pink-500 bg-cyan-500 bg-orange-500 bg-lime-500 bg-indigo-500] %>
       <% submitter_fields_index = (@submission.template_fields || @submission.template.fields).group_by { |f| f['submitter_uuid'] } %>
       <% submitter_field_counters = Hash.new { 0 } %>
@@ -364,17 +362,26 @@
     </div>
   </div>
   <toggle-visible data-element-ids="<%= %w[document_view parties_view].to_json %>">
-    <label class="md:hidden btn btn-sm btn-neutral text-white text-base z-10 fixed bottom-2 right-2 h-16 shadow-lg">
-      <input type="checkbox" class="peer hidden" data-action="click:toggle-visible#trigger">
-      <span class="peer-checked:hidden flex items-center space-x-2">
-        <%= svg_icon('users', class: 'w-8 h-8') %>
-        <span><%= t('signers') %></span>
-      </span>
-      <span class="hidden peer-checked:flex items-center">
-        <%= svg_icon('chevron_left', class: 'w-8 h-8') %>
-        <span><%= t('back') %></span>
-      </span>
-    </label>
+    <% if turbo_native_app? %>
+      <native-action data-placement="tab" data-label="<%= t('document') %>">
+        <button type="button" class="hidden" data-action="click:toggle-visible#trigger" data-toggle-id="document_view"></button>
+      </native-action>
+      <native-action data-placement="tab" data-label="<%= t('recipients') %>">
+        <button type="button" class="hidden" data-action="click:toggle-visible#trigger" data-toggle-id="parties_view"></button>
+      </native-action>
+    <% else %>
+      <label class="md:hidden btn btn-sm btn-neutral text-white text-base z-10 fixed bottom-2 right-2 h-16 shadow-lg">
+        <input type="checkbox" class="peer hidden" data-action="click:toggle-visible#trigger">
+        <span class="peer-checked:hidden flex items-center space-x-2">
+          <%= svg_icon('users', class: 'w-8 h-8') %>
+          <span><%= t('signers') %></span>
+        </span>
+        <span class="hidden peer-checked:flex items-center">
+          <%= svg_icon('chevron_left', class: 'w-8 h-8') %>
+          <span><%= t('back') %></span>
+        </span>
+      </label>
+    <% end %>
   </toggle-visible>
 </main>
 <% unless request.headers['HTTP_X_TURBO'] %>

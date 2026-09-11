@@ -18,7 +18,7 @@
       <% if @template.account_id == current_account.id %>
         <div class="flex items-center justify-between">
           <div class="flex items-center">
-            <a href="<%= folder_path(@template.folder) %>" class="flex items-center space-x-1 mt-1 peer">
+            <a href="<%= folder_path(@template.folder) %>" class="flex items-center space-x-1 mt-1 peer" data-native-title="<%= @template.folder.name %>">
               <%= svg_icon('folder', class: 'w-5 h-5 flex-shrink-0') %>
               <span class="text-sm">
                 <%= @template.folder.full_name %>
@@ -81,7 +81,7 @@
     <% end %>
     <% if !template.archived_at? && can?(:update, template) %>
       <native-action data-placement="bar" data-icon="pencil" data-label="<%= t('edit') %>">
-        <a href="<%= edit_template_path(template) %>"></a>
+        <a href="<%= edit_template_path(template) %>" data-native-title="<%= template.name %>"></a>
       </native-action>
       <native-action data-section="edit" data-icon="adjustments_horizontal" data-label="<%= t('preferences') %>">
         <a href="<%= template_preferences_path(template) %>" data-turbo-frame="modal"></a>

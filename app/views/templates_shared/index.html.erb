@@ -26,7 +26,7 @@
 <% view_archived_html = capture do %>
   <% if @has_archived && params[:q].blank? %>
     <div>
-      <a href="<%= templates_shared_index_path(archived: true) %>" class="link text-sm"><%= t('view_archived') %></a>
+      <a href="<%= templates_shared_index_path(archived: true) %>" class="link text-sm" data-native-title="<%= t('shared').capitalize %>"><%= t('view_archived') %></a>
     </div>
   <% end %>
 <% end %>

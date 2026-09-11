@@ -33,7 +33,7 @@
   <% if can?(:manage, :countless) || current_account.submissions.archived.exists? || current_account.templates.where(Submission.where(Submission.arel_table[:template_id].eq(::Template.arel_table[:id])).arel.exists).archived.exists? %>
     <div>
       <native-action data-placement="menu" data-icon="archive">
-        <a href="<%= submissions_archived_index_path %>" class="link text-sm"><%= t('view_archived') %></a>
+        <a href="<%= submissions_archived_index_path %>" class="link text-sm" data-native-title="<%= t('archived') %>"><%= t('view_archived') %></a>
       </native-action>
     </div>
   <% end %>
