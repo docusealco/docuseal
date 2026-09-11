@@ -24,7 +24,7 @@
               <% end %>
             <% end %>
           <% else %>
-            <div class="tooltip" data-tip="<%= t('contact_your_administrator_to_add_new_users') %>">
+            <div class="md:tooltip" data-tip="<%= t('contact_your_administrator_to_add_new_users') %>">
               <%= link_to '#', class: 'btn btn-primary btn-md gap-2 w-full md:w-fit btn-disabled', data: { turbo_frame: 'modal' } do %>
                 <%= svg_icon('plus', class: 'w-6 h-6') %>
                 <span><%= t('new_user') %></span>

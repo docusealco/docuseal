@@ -12,7 +12,7 @@
         <div class="flex justify-between">
           <div class="flex items-center">
             <%= ff.label :completed_notification_email_subject, t('email_subject'), class: 'label' %>
-            <span class="tooltip tooltip-right" data-tip="<%= t('notification_email_sent_to_the_sender_user_and_bcc_addresses_once_the_submission_is_completed_by_all_parties') %>">
+            <span class="tooltip tooltip-right hidden md:flex" data-tip="<%= t('notification_email_sent_to_the_sender_user_and_bcc_addresses_once_the_submission_is_completed_by_all_parties') %>">
               <%= svg_icon('info_circle', class: 'w-4 h-4') %>
             </span>
           </div>

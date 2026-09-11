@@ -12,7 +12,7 @@
         <div class="form-control">
           <div class="flex items-center">
             <%= ff.label :subject, t('subject'), class: 'label' %>
-            <span class="tooltip tooltip-right" data-tip="<%= t('signature_request_email_sent_to_recipients_with_a_link_to_review_and_sign') %>">
+            <span class="tooltip tooltip-right hidden md:flex" data-tip="<%= t('signature_request_email_sent_to_recipients_with_a_link_to_review_and_sign') %>">
               <%= svg_icon('info_circle', class: 'w-4 h-4') %>
             </span>
           </div>
