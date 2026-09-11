@@ -10,7 +10,7 @@
       <%= render 'documents_copy_email_form' %>
       <%= render 'submitter_completed_email_form' %>
     </div>
-    <% if !turbo_native_app? || can?(:manage, :custom_logo) %>
+    <% if !turbo_native_ios? || can?(:manage, :custom_logo) %>
       <p class="text-3xl md:text-4xl font-bold mb-4 mt-8">
         <%= t('company_logo') %>
       </p>

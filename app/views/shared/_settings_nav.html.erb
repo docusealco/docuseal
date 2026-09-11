@@ -42,7 +42,7 @@
               <%= link_to t('storage'), settings_storage_index_path, class: 'text-base hover:bg-base-300' %>
             </li>
           <% end %>
-          <% if can?(:read, EncryptedConfig.new(key: 'submitter_invitation_sms', account: current_account)) && true_user == current_user && (!turbo_native_app? || can?(:manage, :sms_verification)) %>
+          <% if can?(:read, EncryptedConfig.new(key: 'submitter_invitation_sms', account: current_account)) && true_user == current_user && (!turbo_native_ios? || can?(:manage, :sms_verification)) %>
             <li>
               <%= link_to 'SMS', settings_sms_path, class: 'text-base hover:bg-base-300' %>
             </li>
@@ -83,7 +83,7 @@
             </li>
           <% end %>
         <% end %>
-        <% if !Docuseal.demo? && !turbo_native_app? && can?(:manage, EncryptedConfig) && (current_user != true_user || !current_account.linked_account_account) %>
+        <% if !Docuseal.demo? && !turbo_native_ios? && can?(:manage, EncryptedConfig) && (current_user != true_user || !current_account.linked_account_account) %>
           <li>
             <%= content_for(:pro_link) || link_to(Docuseal.multitenant? ? console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}/plans") : "#{Docuseal::CLOUD_URL}/sign_up?#{{ redir: "#{Docuseal::CONSOLE_URL}/on_premises" }.to_query}", class: 'text-base hover:bg-base-300', data: { turbo: false }) do %>
               <%= t('plans') %>
@@ -104,7 +104,7 @@
               <% end %>
             </li>
           <% end %>
-          <% if (!Docuseal.multitenant? || can?(:manage, :saml_sso)) && can?(:read, EncryptedConfig.new(key: 'saml_configs', account: current_account)) && true_user == current_user && (!turbo_native_app? || can?(:manage, :saml_sso)) %>
+          <% if (!Docuseal.multitenant? || can?(:manage, :saml_sso)) && can?(:read, EncryptedConfig.new(key: 'saml_configs', account: current_account)) && true_user == current_user && (!turbo_native_ios? || can?(:manage, :saml_sso)) %>
             <li>
               <%= link_to 'SSO', settings_sso_index_path, class: 'text-base hover:bg-base-300' %>
             </li>

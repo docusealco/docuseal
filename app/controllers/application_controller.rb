@@ -19,7 +19,8 @@ class ApplicationController < ActionController::Base
                 :current_account,
                 :true_ability,
                 :form_link_host,
-                :svg_icon
+                :svg_icon,
+                :turbo_native_ios?
 
   impersonates :user, with: ->(uuid) { User.find_by(uuid:) }
 
@@ -63,6 +64,10 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def turbo_native_ios?
+    request.user_agent.to_s.include?('Hotwire Native iOS')
+  end
 
   def with_locale(&)
     return yield unless current_account
