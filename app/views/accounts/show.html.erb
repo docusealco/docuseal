@@ -133,7 +133,7 @@
           <% end %>
         <% end %>
         <% account_config = AccountConfig.find_or_initialize_by(account: current_account, key: AccountConfig::ALLOW_TO_DECLINE_KEY) %>
-        <% if can?(:manage, account_config) %>
+        <% if can?(:manage, account_config) && (!turbo_native_app? || !Docuseal.multitenant? || can?(:manage, :disable_decline)) %>
           <%= form_for account_config, url: account_configs_path, method: :post do |f| %>
             <%= f.hidden_field :key %>
             <div class="flex items-center justify-between gap-4 py-2.5">
@@ -156,7 +156,7 @@
           <% end %>
         <% end %>
         <% account_config = AccountConfig.find_or_initialize_by(account: current_account, key: AccountConfig::ALLOW_TO_DELEGATE_KEY) %>
-        <% if can?(:manage, account_config) %>
+        <% if can?(:manage, account_config) && (!turbo_native_app? || !Docuseal.multitenant? || can?(:manage, :delegate_form)) %>
           <%= form_for account_config, url: account_configs_path, method: :post do |f| %>
             <%= f.hidden_field :key %>
             <div class="flex items-center justify-between gap-4 py-2.5">

@@ -22,7 +22,7 @@
       <% end %>
     </div>
     <%= render 'bcc_form', config: @bcc_config %>
-    <% unless can?(:manage, :personalization_restricted) %>
+    <% unless can?(:manage, :personalization_restricted) || (turbo_native_app? && !can?(:manage, :email_reminders)) %>
       <div class="flex justify-between items-end mb-4 mt-8">
         <h2 class="text-2xl md:text-3xl font-bold">
           <%= t('sign_request_email_reminders') %>

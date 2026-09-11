@@ -35,7 +35,7 @@ export default class extends HTMLElement {
       counter.innerText = `${count} / ${this.dataset.limit}`
     }
 
-    if (this.dataset.bulkEnabled !== 'true') {
+    if (this.dataset.bulkEnabled !== 'true' && !/Hotwire Native/.test(navigator.userAgent)) {
       if (!bulkMessage) {
         bulkMessage = document.createElement('span')
 
