@@ -107,7 +107,7 @@
     <% end %>
     <% if template.archived_at? || (!can?(:update, template) && can?(:read, template)) %>
       <native-action data-section="edit" data-icon="file_text" data-label="<%= t('preview') %>">
-        <a href="<%= template_preview_path(template) %>"></a>
+        <a href="<%= template_preview_path(template) %>" data-native-title="<%= template.name %>"></a>
       </native-action>
     <% end %>
     <% if local_assigns[:with_export] %>
@@ -117,11 +117,14 @@
     <% end %>
     <% if can?(:destroy, template) %>
       <% if template.archived_at? %>
-        <native-action data-section="archive" data-icon="rotate" data-label="<%= t('restore') %>">
+        <native-action data-section="edit" data-icon="rotate" data-label="<%= t('restore') %>">
           <%= button_to '', template_restore_index_path(template) %>
         </native-action>
+        <native-action data-icon="trash" data-label="<%= t('delete') %>" data-destructive="true">
+          <%= button_to '', template_path(template), method: :delete, params: { permanently: true }, data: { turbo_confirm: t('template_deletion_is_irreversible_and_will_permanently_remove_all_associated_signed_documents_with_it_are_you_sure_') } %>
+        </native-action>
       <% else %>
-        <native-action data-section="archive" data-icon="archive" data-label="<%= t('archive') %>">
+        <native-action data-section="edit" data-icon="archive" data-label="<%= t('archive') %>">
           <%= button_to '', template_path(template), method: :delete %>
         </native-action>
       <% end %>

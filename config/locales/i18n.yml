@@ -774,6 +774,7 @@ en: &en
   submitter_cannot_be_updated: Submitter cannot be updated.
   at_least_one_field_must_be_filled: At least one field must be filled.
   archived_users: Archived Users
+  archived_submissions: Archived Submissions
   embedding_users: Embedding Users
   view_embedding_users: View Embedding Users
   key: Key
@@ -1911,6 +1912,7 @@ es: &es
   submitter_cannot_be_updated: No se puede editar el destinatario.
   at_least_one_field_must_be_filled: Al menos un campo debe estar completo.
   archived_users: Usuarios Archivados
+  archived_submissions: Envíos Archivados
   embedding_users: Usuarios integrados
   view_embedding_users: Ver usuarios integrados
   key: Clave
@@ -3055,6 +3057,7 @@ it: &it
   submitter_cannot_be_updated: Non è possibile modificare il destinatario.
   at_least_one_field_must_be_filled: Almeno un campo deve essere compilato.
   archived_users: Utenti Archiviati
+  archived_submissions: Invii Archiviati
   embedding_users: Utenti integrati
   view_embedding_users: Vedi utenti integrati
   key: Chiave
@@ -4185,6 +4188,7 @@ fr: &fr
   submitter_cannot_be_updated: Impossible de modifier le destinataire.
   at_least_one_field_must_be_filled: Au moins un champ doit être rempli.
   archived_users: Utilisateurs archivés
+  archived_submissions: Soumissions archivées
   embedding_users: Utilisateurs intégrés
   view_embedding_users: Voir les utilisateurs intégrés
   key: Clé
@@ -5325,6 +5329,7 @@ pt: &pt
   submitter_cannot_be_updated: Não é possível editar o destinatário.
   at_least_one_field_must_be_filled: Pelo menos um campo deve ser preenchido.
   archived_users: Usuários Arquivados
+  archived_submissions: Submissões Arquivadas
   embedding_users: Usuários integrados
   view_embedding_users: Ver usuários integrados
   key: Chave
@@ -6468,6 +6473,7 @@ de: &de
   submitter_cannot_be_updated: Der Empfänger kann nicht bearbeitet werden.
   at_least_one_field_must_be_filled: Mindestens ein Feld muss ausgefüllt werden.
   archived_users: Archivierte Benutzer
+  archived_submissions: Archivierte Einreichungen
   embedding_users: Integrationsbenutzer
   view_embedding_users: Integrationsbenutzer anzeigen
   key: Schlüssel
@@ -8139,6 +8145,7 @@ nl: &nl
   submitter_cannot_be_updated: Ontvanger kan niet worden bewerkt.
   at_least_one_field_must_be_filled: Er moet minstens één veld worden ingevuld.
   archived_users: Gearchiveerde gebruikers
+  archived_submissions: Gearchiveerde inzendingen
   embedding_users: Integratiegebruikers
   view_embedding_users: Integratiegebruikers bekijken
   key: Sleutel

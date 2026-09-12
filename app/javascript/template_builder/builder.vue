@@ -285,6 +285,7 @@
                   >
                     <a
                       :href="`/templates/${template.id}/form`"
+                      :data-native-actions="template.submitters.length > 1 ? 'users' : null"
                       data-turbo="false"
                       class="flex items-center justify-center space-x-2"
                       @click.exact="isPreviewLoading = true"

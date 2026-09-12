@@ -133,7 +133,9 @@
 <% view_archived_html = capture do %>
   <% if (can?(:manage, :countless) || @template.submissions.where.not(archived_at: nil).exists?) && !@template.archived_at? %>
     <div>
-      <a href="<%= template_archived_index_path(@template) %>" class="link text-sm"><%= t('view_archived') %></a>
+      <native-action data-placement="menu" data-label="<%= t('archived_submissions') %>">
+        <a href="<%= template_archived_index_path(@template) %>" class="link text-sm" data-native-title="<%= t('archived') %>"><%= t('view_archived') %></a>
+      </native-action>
     </div>
   <% end %>
 <% end %>

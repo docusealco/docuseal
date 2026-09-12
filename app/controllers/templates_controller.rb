@@ -83,7 +83,11 @@ class TemplatesController < ApplicationController
         I18n.t('template_has_been_archived')
       end
 
-    redirect_back(fallback_location: root_path, notice:)
+    if @template.destroyed? && turbo_native_app?
+      redirect_to templates_archived_index_path, notice:
+    else
+      redirect_back(fallback_location: root_path, notice:)
+    end
   end
 
   private
