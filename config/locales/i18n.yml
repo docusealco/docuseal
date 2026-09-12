@@ -262,6 +262,7 @@ en: &en
   your_account_will_be_permanently_deleted_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Your account will be permanently deleted within 2 months. Please contact us if you want to keep your account.
   test_mode: Test mode
   exit_test_mode: Exit test mode
+  sort_by: Sort by
   copy: Copy
   copied: Copied
   rotate: Rotate
@@ -1394,6 +1395,7 @@ es: &es
   your_account_will_be_permanently_deleted_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Tu solicitud de eliminación de cuenta se procesará en un plazo de 2 meses. Por favor contáctanos si deseas mantener tu cuenta.
   test_mode: Modo de prueba
   exit_test_mode: Salir del modo de prueba
+  sort_by: Ordenar por
   copy: Copiar
   copied: Copiado
   rotate: Rotar
@@ -2537,6 +2539,7 @@ it: &it
   your_account_will_be_permanently_deleted_within_2_months_please_contact_us_if_you_want_to_keep_your_account: "La tua richiesta di rimozione dell'account sarà elaborata entro 2 mesi. Contattaci se desideri mantenere il tuo account."
   test_mode: Modalità di test
   exit_test_mode: Esci dalla modalità di prova
+  sort_by: Ordina per
   copy: Copia
   copied: Copiato
   rotate: Ruota
@@ -3666,6 +3669,7 @@ fr: &fr
   your_account_will_be_permanently_deleted_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Votre demande de suppression de compte sera traitée sous 2 mois. Veuillez nous contacter si vous souhaitez conserver votre compte.
   test_mode: Mode test
   exit_test_mode: Quitter le mode test
+  sort_by: Trier par
   copy: Copier
   copied: Copié
   rotate: Pivoter
@@ -4805,6 +4809,7 @@ pt: &pt
   your_account_will_be_permanently_deleted_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Seu pedido de remoção da conta será processado em até 2 meses. Entre em contato conosco se você quiser manter sua conta.
   test_mode: Modo de teste
   exit_test_mode: Sair do modo de teste
+  sort_by: Ordenar por
   copy: Copiar
   copied: Copiado
   rotate: Girar
@@ -5947,6 +5952,7 @@ de: &de
   your_account_will_be_permanently_deleted_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Ihre Anfrage zur Kontolöschung wird innerhalb von 2 Monaten bearbeitet. Bitte kontaktieren Sie uns, wenn Sie Ihr Konto behalten möchten.
   test_mode: Testmodus
   exit_test_mode: Testmodus verlassen
+  sort_by: Sortieren nach
   copy: Kopieren
   copied: Kopiert
   rotate: Drehen
@@ -7617,6 +7623,7 @@ nl: &nl
   your_account_will_be_permanently_deleted_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Uw account wordt binnen 2 maanden permanent verwijderd. Neem contact met ons op als u uw account wilt behouden.
   test_mode: Testmodus
   exit_test_mode: Testmodus verlaten
+  sort_by: Sorteren op
   copy: Kopiëren
   copied: Gekopieerd
   rotate: Draaien

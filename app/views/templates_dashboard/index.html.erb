@@ -44,7 +44,7 @@
   <% view_archived_html = capture do %>
     <% if has_archived %>
       <div>
-        <native-action data-placement="menu" data-icon="archive">
+        <native-action data-placement="menu" data-icon="archive" data-label="<%= t('archived') %>">
           <a href="<%= templates_archived_index_path %>" class="link text-sm" data-native-title="<%= t('archived') %>"><%= t('view_archived') %></a>
         </native-action>
       </div>

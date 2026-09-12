@@ -29,12 +29,12 @@
       v-if="pendingFieldAttachmentUuids.length && editable"
       class="top-1.5 sticky h-0 z-20 max-w-2xl mx-auto"
     >
-      <div class="alert border-base-content/30 py-2 px-2.5">
+      <div class="alert border-base-content/30 py-2 px-2.5 max-sm:flex max-sm:items-center max-sm:justify-between max-sm:gap-2 max-sm:text-left max-sm:text-sm">
         <IconInfoCircle
           class="stroke-info shrink-0 w-6 h-6"
         />
         <span>{{ t('uploaded_pdf_contains_form_fields_keep_or_remove_them') }}</span>
-        <div>
+        <div class="max-sm:flex max-sm:gap-1 max-sm:shrink-0">
           <button
             class="btn btn-sm"
             @click.prevent="removePendingFields"

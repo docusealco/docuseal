@@ -1,4 +1,5 @@
 <% if turbo_native_app? && local_assigns[:next_page_path].blank? %>
+  <%= local_assigns[:right_additional_html] %>
   <% if local_assigns[:left_additional_html].present? %>
     <div class="mt-2">
       <%= local_assigns[:left_additional_html] %>
