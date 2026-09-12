@@ -33,7 +33,7 @@ class SubmitFormDelegateController < ApplicationController
                                                  { old_email: @submitter.email, email: })
 
       @submitter.update!(email:, phone: nil, name: nil, slug: SecureRandom.base58(14),
-                         values: Submitters.fetch_values_without_signature(@submitter))
+                         values: Submitters.fetch_values_for_delegate(@submitter))
     end
 
     SendSubmitterInvitationEmailJob.perform_async('submitter_id' => @submitter.id)

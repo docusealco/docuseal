@@ -165,13 +165,13 @@ module Submitters
     preferences
   end
 
-  def fetch_values_without_signature(submitter)
+  def fetch_values_for_delegate(submitter)
     fields = submitter.submission.template_fields || submitter.template.fields
     default_values = submitter.preferences['default_values'] || {}
 
     field_uuids = fields.filter_map do |field|
       next if field['submitter_uuid'] != submitter.uuid
-      next unless field['type'].in?(%w[signature initials])
+      next unless field['type'].in?(%w[signature phone verification kba initials])
       next if default_values[field['uuid']].present?
 
       field['uuid']
