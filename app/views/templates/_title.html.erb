@@ -3,7 +3,7 @@
     <div>
       <div id="template_title" class="flex">
         <% name_html = capture do %><% template.name.split(/(_)/).each do |item| %><%= item %><wbr><% end %><% end %>
-        <h1 class="text-3xl md:text-[2em] font-semibold" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;">
+        <h1 class="text-3xl md:text-[2em] font-semibold" style="overflow: hidden; overflow-wrap: anywhere; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;">
           <% if turbo_native_app? && !template.archived_at? && can?(:update, template) %>
             <form-prompt>
               <native-action data-placement="title" data-label="<%= t('name') %>">
