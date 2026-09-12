@@ -1,0 +1,5 @@
+<% if pagy.next || pagy.page > 1 %>
+  <infinite-scroll id="infinite_scroll" class="col-span-full flex justify-center py-2" data-src="<%= url_for(params: request.query_parameters.merge('page' => pagy.next)) if pagy.next %>">
+    <%= svg_icon('loader', class: 'w-6 h-6 animate-spin') %>
+  </infinite-scroll>
+<% end %>

@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   before_action :maybe_redirect_to_setup, unless: :signed_in?
   before_action :authenticate_user!, unless: :devise_controller?
 
-  before_action :set_csp, if: -> { request.get? && !request.headers['HTTP_X_TURBO'] }
+  before_action :set_csp, if: -> { request.get? && !request.headers['HTTP_X_TURBO'] && !turbo_infinite_scroll? }
 
   helper_method :button_title,
                 :current_account,
@@ -64,6 +64,10 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def turbo_infinite_scroll?
+    request.headers['HTTP_X_TURBO_INFINITE_SCROLL'].present?
+  end
 
   def turbo_native_ios?
     request.user_agent.to_s.include?('Hotwire Native iOS')

@@ -13,6 +13,7 @@ import NativeAction from './elements/native_action'
 import NativeSearch from './elements/native_search'
 import NativeModal from './elements/native_modal'
 import NativeEvent from './elements/native_event'
+import InfiniteScroll from './elements/infinite_scroll'
 import ModalButton from './elements/modal_button'
 import FileDropzone from './elements/file_dropzone'
 import MenuActive from './elements/menu_active'
@@ -127,6 +128,7 @@ safeRegisterElement('native-action', NativeAction)
 safeRegisterElement('native-search', NativeSearch)
 safeRegisterElement('native-modal', NativeModal)
 safeRegisterElement('native-event', NativeEvent)
+safeRegisterElement('infinite-scroll', InfiniteScroll)
 safeRegisterElement('modal-button', ModalButton)
 safeRegisterElement('file-dropzone', FileDropzone)
 safeRegisterElement('menu-active', MenuActive)

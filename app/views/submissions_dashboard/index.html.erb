@@ -70,6 +70,7 @@
 <% if @pagy.count.nil? || @pagy.count > 0 %>
   <div class="space-y-4">
     <%= render partial: 'templates/submission', collection: @submissions, locals: { with_template: true } %>
+    <%= render 'shared/infinite_scroll', pagy: @pagy if turbo_native_app? %>
   </div>
 <% end %>
 <% if params[:q].blank? && params[:status].blank? && filter_params.blank? && @pagy.count.present? && @pagy.count < 5 %>

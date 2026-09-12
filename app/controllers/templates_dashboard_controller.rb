@@ -43,9 +43,25 @@ class TemplatesDashboardController < ApplicationController
         @related_submissions_pagy, @related_submissions = load_related_submissions
       end
     end
+
+    render_infinite_scroll(@pagy, @templates, @template_folders) if turbo_infinite_scroll?
   end
 
   private
+
+  def render_infinite_scroll(pagy, templates, template_folders)
+    rendering =
+      if templates.present?
+        { partial: 'templates/template', collection: templates }
+      else
+        { partial: 'template_folders/folder', collection: template_folders, as: :folder }
+      end
+
+    render turbo_stream: [
+      turbo_stream.before('infinite_scroll', **rendering),
+      turbo_stream.replace('infinite_scroll', partial: 'shared/infinite_scroll', locals: { pagy: })
+    ]
+  end
 
   def load_templates(templates, folders_count, show_shared_inline: false)
     templates = templates.preload(:author, :template_accesses)

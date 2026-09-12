@@ -89,6 +89,7 @@
 <% if @submissions.present? %>
   <div class="space-y-4">
     <%= render partial: 'submission', collection: @submissions, locals: { template: @template, archived: @template.archived_at? } %>
+    <%= render 'shared/infinite_scroll', pagy: @pagy if turbo_native_app? %>
   </div>
 <% else %>
   <div class="card bg-base-200">

@@ -35,6 +35,7 @@
 <% if @pagy.count.nil? || @pagy.count > 0 %>
   <div class="space-y-4">
     <%= render partial: 'templates/submission', collection: @submissions, locals: { template: @template, archived: true } %>
+    <%= render 'shared/infinite_scroll', pagy: @pagy if turbo_native_app? %>
   </div>
 <% elsif params[:q].present? || filter_params.present? %>
   <div class="text-center">

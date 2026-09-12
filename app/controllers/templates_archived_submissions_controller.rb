@@ -16,7 +16,19 @@ class TemplatesArchivedSubmissionsController < ApplicationController
                    end
 
     @pagy, @submissions = pagy_auto(@submissions.select_for_list.preload(submitters: :start_form_submission_events))
+
+    render_infinite_scroll(@pagy, @submissions, @template) if turbo_infinite_scroll?
   rescue ActiveRecord::RecordNotFound
     redirect_to root_path
+  end
+
+  private
+
+  def render_infinite_scroll(pagy, submissions, template)
+    render turbo_stream: [
+      turbo_stream.before('infinite_scroll', partial: 'templates/submission', collection: submissions,
+                                             locals: { template:, archived: true }),
+      turbo_stream.replace('infinite_scroll', partial: 'shared/infinite_scroll', locals: { pagy: })
+    ]
   end
 end

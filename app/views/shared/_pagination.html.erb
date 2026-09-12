@@ -1,4 +1,10 @@
-<% if pagy.pages > 1 %>
+<% if turbo_native_app? && local_assigns[:next_page_path].blank? %>
+  <% if local_assigns[:left_additional_html].present? %>
+    <div class="mt-2">
+      <%= local_assigns[:left_additional_html] %>
+    </div>
+  <% end %>
+<% elsif pagy.pages > 1 %>
   <% left_additional_html = local_assigns[:left_additional_html] %>
   <div class="flex flex-col md:flex-row md:items-center <%= left_additional_html.present? ? 'mt-3' : 'mt-6' %> mb-6 md:my-6 justify-center md:justify-between">
     <div class="text-sm <%= 'mb-2 md:mb-0' if left_additional_html.present? %>">
