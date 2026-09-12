@@ -2,8 +2,7 @@
   <div
     ref="dragContainer"
     style="max-width: 1600px"
-    class="mx-auto pl-3 h-full"
-    :class="isMobile ? 'pl-4' : 'md:pl-4'"
+    class="mx-auto pl-3 md:pl-4 h-full"
     @dragover="onDragover"
     @drop="isDragFile = false"
   >
