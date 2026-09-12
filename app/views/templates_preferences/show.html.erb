@@ -63,7 +63,9 @@
         <%= t('form_preferences') %>
       </div>
       <div class="collapse-content">
-        <%= render 'templates_prefillable_fields/form', template: @template %>
+        <native-event data-on="submit" data-name="template-builder:update" data-dismiss="false" class="block">
+          <%= render 'templates_prefillable_fields/form', template: @template %>
+        </native-event>
         <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mt-1' }, data: { close_on_submit: false } do |f| %>
           <toggle-on-submit data-element-id="form_saved_alert"></toggle-on-submit>
           <% configs = AccountConfigs.find_or_initialize_for_key(current_account, AccountConfig::SUBMITTER_COMPLETED_EMAIL_KEY).value %>
@@ -145,7 +147,9 @@
   </div>
   <% if show_recipients %>
     <div id="recipients" class="hidden mt-2 mb-4 px-5 pt-1 pb-2">
-      <%= render 'recipients', template: @template %>
+      <native-event data-on="submit" data-name="template-builder:update" class="block">
+        <%= render 'recipients', template: @template %>
+      </native-event>
     </div>
   <% end %>
   <% if show_api %>

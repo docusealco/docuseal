@@ -1,4 +1,5 @@
 const en = {
+  name: 'Name',
   fixed: 'Fixed',
   default: 'Default',
   save_as_custom_field: 'Save as custom field',
@@ -243,6 +244,7 @@ const en = {
 }
 
 const es = {
+  name: 'Nombre',
   fixed: 'Fijo',
   default: 'Predeterminado',
   save_as_custom_field: 'Guardar como personalizado',
@@ -487,6 +489,7 @@ const es = {
 }
 
 const it = {
+  name: 'Nome',
   fixed: 'Fisso',
   default: 'Predefinito',
   save_as_custom_field: 'Salva come personalizzato',
@@ -731,6 +734,7 @@ const it = {
 }
 
 const pt = {
+  name: 'Nome',
   fixed: 'Fixo',
   default: 'Padrão',
   save_as_custom_field: 'Salvar como personalizado',
@@ -975,6 +979,7 @@ const pt = {
 }
 
 const fr = {
+  name: 'Nom',
   fixed: 'Fixe',
   default: 'Par défaut',
   save_as_custom_field: 'Enregistrer comme personnalisé',
@@ -1219,6 +1224,7 @@ const fr = {
 }
 
 const de = {
+  name: 'Name',
   fixed: 'Fest',
   default: 'Standard',
   save_as_custom_field: 'Als benutzerdefiniert speichern',
@@ -1463,6 +1469,7 @@ const de = {
 }
 
 const nl = {
+  name: 'Naam',
   fixed: 'Vast',
   default: 'Standaard',
   save_as_custom_field: 'Opslaan als aangepast',

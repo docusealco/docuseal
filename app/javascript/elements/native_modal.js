@@ -13,6 +13,7 @@ export default class extends HTMLElement {
     if (e.detail.formSubmission?.formElement?.method === 'get') return
     if (this.dataset.closeAfterSubmit === 'false') return
     if (e.detail.formSubmission?.formElement?.dataset?.closeOnSubmit === 'false') return
+    if (e.detail.formSubmission?.formElement?.closest('native-event[data-on="submit"]')) return
 
     window.webkit?.messageHandlers?.modal?.postMessage({ action: 'submitted' })
   }

@@ -103,6 +103,42 @@
           name="buttons"
         />
         <template v-else>
+          <form-prompt
+            v-if="nativeApp && editable"
+            data-refresh="false"
+          >
+            <native-action
+              data-placement="title"
+              :data-label="t('name')"
+            >
+              <form
+                class="hidden"
+                method="post"
+                :action="`/templates/${template.id}`"
+              >
+                <input
+                  type="hidden"
+                  name="_method"
+                  value="put"
+                  autocomplete="off"
+                >
+                <input
+                  type="hidden"
+                  name="authenticity_token"
+                  :value="authenticityToken"
+                  autocomplete="off"
+                >
+                <label for="template_name_prompt">{{ t('name') }}</label>
+                <input
+                  id="template_name_prompt"
+                  type="hidden"
+                  name="template[name]"
+                  :value="template.name"
+                  autocomplete="off"
+                >
+              </form>
+            </native-action>
+          </form-prompt>
           <native-action
             v-if="withSendButton && nativeApp"
             :data-label="t('send')"

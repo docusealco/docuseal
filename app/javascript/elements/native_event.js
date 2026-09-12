@@ -1,16 +1,27 @@
 export default class extends HTMLElement {
   connectedCallback () {
-    this.addEventListener('click', this.dispatch)
+    if (this.dataset.on === 'submit') {
+      document.addEventListener('turbo:submit-end', this.onSubmitEnd)
+    } else {
+      this.addEventListener('click', this.dispatch)
+    }
   }
 
   disconnectedCallback () {
+    document.removeEventListener('turbo:submit-end', this.onSubmitEnd)
     this.removeEventListener('click', this.dispatch)
   }
 
-  dispatch = async () => {
-    const bridge = window.webkit?.messageHandlers?.modal
+  onSubmitEnd = async (e) => {
+    const form = e.detail.formSubmission?.formElement
 
-    if (!bridge || this.dataset.loading) return
+    if (!e.detail.success || !form || !this.contains(form)) return
+
+    this.post(JSON.stringify({ form: form.id, action: form.action, body: await e.detail.fetchResponse.responseText }))
+  }
+
+  dispatch = async () => {
+    if (this.dataset.loading) return
 
     let detail = this.dataset.detail || 'null'
 
@@ -30,6 +41,10 @@ export default class extends HTMLElement {
       }
     }
 
-    bridge.postMessage({ action: 'dispatch', name: this.dataset.name, detail })
+    this.post(detail)
+  }
+
+  post (detail) {
+    window.webkit?.messageHandlers?.modal?.postMessage({ action: 'dispatch', name: this.dataset.name, detail, dismiss: this.dataset.dismiss || 'true' })
   }
 }

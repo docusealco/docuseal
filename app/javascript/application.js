@@ -13,6 +13,7 @@ import NativeAction from './elements/native_action'
 import NativeSearch from './elements/native_search'
 import NativeModal from './elements/native_modal'
 import NativeEvent from './elements/native_event'
+import FormPrompt from './elements/form_prompt'
 import InfiniteScroll from './elements/infinite_scroll'
 import ModalButton from './elements/modal_button'
 import FileDropzone from './elements/file_dropzone'
@@ -128,6 +129,7 @@ safeRegisterElement('native-action', NativeAction)
 safeRegisterElement('native-search', NativeSearch)
 safeRegisterElement('native-modal', NativeModal)
 safeRegisterElement('native-event', NativeEvent)
+safeRegisterElement('form-prompt', FormPrompt)
 safeRegisterElement('infinite-scroll', InfiniteScroll)
 safeRegisterElement('modal-button', ModalButton)
 safeRegisterElement('file-dropzone', FileDropzone)
@@ -186,6 +188,7 @@ safeRegisterElement('date-placeholder', DatePlaceholder)
 safeRegisterElement('template-builder', class extends HTMLElement {
   connectedCallback () {
     document.addEventListener('turbo:submit-end', this.onSubmit)
+    document.addEventListener('template-builder:update', this.onSheetSubmit)
     document.addEventListener('turbo:before-cache', this.onBeforeCache)
 
     this.appElem = document.createElement('div')
@@ -238,36 +241,48 @@ safeRegisterElement('template-builder', class extends HTMLElement {
     this.appendChild(this.appElem)
   }
 
-  onSubmit = (e) => {
-    if (e.detail.success) {
-      if (e.detail?.formSubmission?.formElement?.id === 'submitters_form') {
-        e.detail.fetchResponse.response.json().then((data) => {
-          this.component.template.submitters = data.submitters
-        })
-      }
+  onSubmit = async (e) => {
+    const form = e.detail.formSubmission?.formElement
 
-      if (e.detail?.formSubmission?.formElement?.action?.endsWith('/prefillable_fields')) {
-        e.detail.fetchResponse.response.text().then((data) => {
-          const doc = new DOMParser().parseFromString(data, 'text/html')
-          const fragment = doc.querySelector('turbo-stream template').content
+    if (!e.detail.success || !form) return
 
-          const prefillableUuidsIndex = {}
+    const data = {}
 
-          fragment.querySelectorAll('[name="field_uuid"]').forEach((field) => {
-            prefillableUuidsIndex[field.value] = true
-          })
+    new FormData(form).forEach((value, key) => { data[key] = value })
 
-          this.component.template.fields.forEach((field) => {
-            if (prefillableUuidsIndex[field.uuid]) {
-              field.prefillable = true
-              field.readonly = true
-            } else if (field.prefillable) {
-              delete field.prefillable
-              delete field.readonly
-            }
-          })
-        })
-      }
+    this.applySubmission(form.id, form.action, await e.detail.fetchResponse.responseText, data)
+  }
+
+  onSheetSubmit = (e) => {
+    this.applySubmission(e.detail.form, e.detail.action, e.detail.body, {})
+  }
+
+  applySubmission (formId, action, body, data) {
+    if (formId === 'submitters_form') {
+      this.component.template.submitters = JSON.parse(body).submitters
+    } else if (action.endsWith('/prefillable_fields')) {
+      const doc = new DOMParser().parseFromString(body, 'text/html')
+      const fragment = doc.querySelector('turbo-stream template').content
+
+      const prefillableUuidsIndex = {}
+
+      fragment.querySelectorAll('[name="field_uuid"]').forEach((field) => {
+        prefillableUuidsIndex[field.value] = true
+      })
+
+      this.component.template.fields.forEach((field) => {
+        if (prefillableUuidsIndex[field.uuid]) {
+          field.prefillable = true
+          field.readonly = true
+        } else if (field.prefillable) {
+          delete field.prefillable
+          delete field.readonly
+        }
+      })
+    } else if (data['template[name]']) {
+      this.component.template.name = data['template[name]']
+
+      document.title = data['template[name]']
     }
   }
 
@@ -278,6 +293,7 @@ safeRegisterElement('template-builder', class extends HTMLElement {
 
   disconnectedCallback () {
     document.removeEventListener('turbo:submit-end', this.onSubmit)
+    document.removeEventListener('template-builder:update', this.onSheetSubmit)
     document.removeEventListener('turbo:before-cache', this.onBeforeCache)
 
     this.app?.unmount()
