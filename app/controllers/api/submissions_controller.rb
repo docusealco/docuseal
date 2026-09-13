@@ -173,7 +173,6 @@ module Api
     end
 
     def filter_submissions(submissions, params)
-      submissions = submissions.where(template_id: params[:template_id]) if params[:template_id].present?
       submissions = submissions.where(slug: params[:slug]) if params[:slug].present?
 
       if params[:template_folder].present?

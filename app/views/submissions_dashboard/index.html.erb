@@ -1,4 +1,7 @@
 <% filter_params = params.permit(Submissions::Filter::ALLOWED_PARAMS).compact_blank %>
+<% if turbo_native_app? %>
+  <native-action data-placement="search" data-native="search" data-label="<%= t('search') %>" data-url="<%= search_index_path(filter_params.to_h.merge('scope' => 'submissions')) %>"></native-action>
+<% end %>
 <% is_show_tabs = (@pagy.count.nil? || @pagy.count >= 5) || params[:status].present? || filter_params.present? %>
 <% if Docuseal.demo? %><%= render 'shared/demo_alert' %><% end %>
 <div class="group/header flex justify-between items-center w-full <%= 'mb-4' unless turbo_native_app? %>">

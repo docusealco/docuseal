@@ -1,0 +1,18 @@
+<% subtitle = local_assigns[:subtitle].presence %>
+<% badge = local_assigns[:badge].presence %>
+<% date = local_assigns[:date] %>
+<a href="<%= href %>" data-turbo-frame="_top" class="flex items-center gap-3 pl-4 py-3 min-h-14" style="padding-right: 20px;" data-native-title="<%= title %>" data-native-actions="<%= local_assigns[:native_actions] %>">
+  <%= svg_icon(icon, class: 'w-6 h-6 shrink-0') %>
+  <div class="min-w-0 flex-1 items-center" style="display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 8px;">
+    <div class="truncate" style="grid-column: <%= badge || !subtitle ? '1' : '1 / span 2' %>; grid-row: <%= subtitle ? '1' : '1 / span 2' %>;"><%= title %></div>
+    <% if subtitle %>
+      <div class="text-xs text-base-content/60 truncate" style="grid-column: 1; grid-row: 2;"><%= subtitle %></div>
+    <% end %>
+    <% if badge %>
+      <span class="badge badge-sm <%= badge_class %> bg-opacity-50 uppercase font-semibold justify-self-end" style="grid-column: 2; grid-row: 1; font-size: 10px;"><%= badge %></span>
+    <% end %>
+    <% if date %>
+      <span class="text-xs text-base-content/60 justify-self-end" style="grid-column: 2; grid-row: <%= badge || subtitle ? '2' : '1 / span 2' %>;"><%= l(date.in_time_zone(current_account.timezone).to_date, format: :short, locale: current_account.locale) %></span>
+    <% end %>
+  </div>
+</a>

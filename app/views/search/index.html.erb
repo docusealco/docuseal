@@ -1,0 +1,10 @@
+<% content_for(:native_title, t('search')) if turbo_native_app? %>
+<% unless turbo_native_app? %>
+  <div class="flex justify-between items-center mb-4">
+    <h1 class="text-2xl md:text-3xl sm:text-4xl font-bold"><%= t('search') %></h1>
+    <%= render 'shared/search_input', placeholder: t('search') %>
+  </div>
+<% end %>
+<native-search class="block" data-src="<%= url_for(params: request.query_parameters.except('q', 'page')) %>" data-q="<%= @query %>">
+  <%= render 'search/results' %>
+</native-search>

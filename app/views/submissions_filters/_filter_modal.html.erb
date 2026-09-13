@@ -3,6 +3,8 @@
 <%= render 'shared/turbo_modal', title: local_assigns[:title] do %>
   <%= form_for '', url: path, method: :get, data: { turbo_frame: :_top }, html: { autocomplete: :off } do |f| %>
     <%= hidden_field_tag :q, params[:q] if params[:q].present? %>
+    <%= hidden_field_tag :scope, params[:scope] if params[:scope].present? %>
+    <%= hidden_field_tag :archived, params[:archived] if params[:archived].present? %>
     <% local_assigns[:default_params].each do |key, value| %>
       <%= hidden_field_tag(key, value) if value.present? %>
     <% end %>
@@ -12,7 +14,7 @@
     </div>
     <% if params[:with_remove] %>
       <div class="text-center w-full mt-4">
-        <%= link_to t('remove_filter'), "#{path}?#{request.query_parameters.slice('q').merge(local_assigns[:default_params]).to_query}", class: 'link', data: { turbo_frame: :_top } %>
+        <%= link_to t('remove_filter'), "#{path}?#{request.query_parameters.slice('q', 'scope', 'archived').merge(local_assigns[:default_params]).to_query}", class: 'link', data: { turbo_frame: :_top } %>
       </div>
     <% end %>
   <% end %>

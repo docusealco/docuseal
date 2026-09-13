@@ -1,5 +1,5 @@
-<native-search class="contents">
-  <form action="<%= url_for %>" method="get" class="items-center flex max-md:focus-within:flex-1 <%= 'max-md:flex-1' if params[:q].present? %>" data-target="native-search.form">
+<% unless turbo_native_app? %>
+  <form action="<%= url_for %>" method="get" class="items-center flex max-md:focus-within:flex-1 <%= 'max-md:flex-1' if params[:q].present? %>">
     <% Submissions::Filter::ALLOWED_PARAMS.each do |key| %>
       <% if params[key].present? %>
         <input name="<%= key %>" value="<%= params[key] %>" class="hidden">
@@ -27,4 +27,4 @@
       </button>
     </search-input>
   </form>
-</native-search>
+<% end %>

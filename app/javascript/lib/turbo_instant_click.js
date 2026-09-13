@@ -66,7 +66,7 @@ function mouseoverListener (event) {
   } else if (linkElement.dataset.turboFrame !== '_top') {
     const turboFrame = linkElement.closest('turbo-frame')
 
-    if (turboFrame) {
+    if (turboFrame && turboFrame.getAttribute('target') !== '_top') {
       requestOptions.headers['Turbo-Frame'] = turboFrame.id
     }
   }

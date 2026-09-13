@@ -1,0 +1,9 @@
+<% if templates.present? %>
+  <div class="mb-5">
+    <div class="px-4 mb-1 text-xs font-semibold uppercase tracking-wide"><%= t('templates') %></div>
+    <div id="search_templates" class="bg-base-200 rounded-2xl divide-y divide-base-300">
+      <%= render partial: 'search/template', collection: templates %>
+    </div>
+    <%= render 'shared/infinite_scroll', pagy: pagy if pagy %>
+  </div>
+<% end %>

@@ -5,7 +5,7 @@
 <% is_show_header = submissions_count != 0 || params[:q].present? || params[:status].present? || filter_params.present? %>
 <%= render 'title', template: @template, with_export: is_show_header %>
 <% if turbo_native_app? %>
-  <%= render 'shared/search_input' %>
+  <native-action data-placement="search" data-native="search" data-label="<%= t('search') %>" data-url="<%= search_index_path(filter_params.to_h.merge({ 'scope' => 'submissions', 'template_id' => @template.id, 'archived' => ('true' if @template.archived_at?) }.compact)) %>"></native-action>
   <% if !@template.archived_at? && can?(:create, Submission) %>
     <native-action data-placement="footer" data-icon="send" data-label="<%= t('send_to_recipients') %>">
       <a href="<%= new_template_submission_path(@template) %>" data-turbo-frame="modal"></a>

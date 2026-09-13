@@ -1,0 +1,2 @@
+<% author = template.author.full_name.presence || template.author.email.to_s.sub(/\+\w+@/, '@') %>
+<%= render 'search/row', href: template_path(template), icon: 'layout_grid', title: template.name, subtitle: template.folder.default? || params[:folder].present? ? author : template.folder.full_name, date: template.created_at, native_actions: ('pencil,menu' if turbo_native_app? && !template.archived_at? && can?(:update, template)) %>

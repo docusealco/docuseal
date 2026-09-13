@@ -1,5 +1,8 @@
 <% content_for(:native_title, t('archived')) if turbo_native_app? %>
 <% filter_params = params.permit(Submissions::Filter::ALLOWED_PARAMS).compact_blank %>
+<% if turbo_native_app? %>
+  <native-action data-placement="search" data-native="search" data-label="<%= t('search') %>" data-url="<%= search_index_path(filter_params.to_h.merge('scope' => 'submissions', 'archived' => 'true')) %>"></native-action>
+<% end %>
 <% unless turbo_native_app? %>
   <div>
     <%= link_to root_path, class: 'flex items-center mb-1 md:mb-0' do %>

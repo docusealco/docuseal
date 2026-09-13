@@ -1,27 +1,33 @@
-import { target, targetable } from '@github/catalyst/lib/targetable'
-
-export default targetable(class extends HTMLElement {
-  static [target.static] = ['form']
-
+export default class extends HTMLElement {
   connectedCallback () {
-    const bridge = window.webkit?.messageHandlers?.native
-
-    if (!bridge || !this.form) return
-
-    const url = new URL(this.form.action)
-
-    new FormData(this.form).forEach((value, key) => {
-      if (key !== 'q' && value) url.searchParams.set(key, value)
-    })
-
-    this.declared = true
-
-    bridge.postMessage({ type: 'search', op: 'add', url: url.pathname + url.search })
+    document.addEventListener('native:search', this.onSearch)
   }
 
   disconnectedCallback () {
-    if (this.declared) {
-      window.webkit?.messageHandlers?.native?.postMessage({ type: 'search', op: 'remove' })
-    }
+    document.removeEventListener('native:search', this.onSearch)
   }
-})
+
+  onSearch = (event) => {
+    const query = (event.detail?.q || '').trim()
+
+    if (query === (this.dataset.q || '')) return
+
+    this.dataset.q = query
+
+    const url = new URL(this.frame.src || this.dataset.src, window.location.href)
+
+    url.searchParams.delete('page')
+
+    if (query) {
+      url.searchParams.set('q', query)
+    } else {
+      url.searchParams.delete('q')
+    }
+
+    this.frame.src = url.toString()
+  }
+
+  get frame () {
+    return this.querySelector('turbo-frame')
+  }
+}

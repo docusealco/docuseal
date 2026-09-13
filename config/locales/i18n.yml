@@ -483,6 +483,8 @@ en: &en
   document_templates_html: <span class="hidden lg:inline">Document</span> Templates
   archived: Archived
   search: Search
+  no_results: No Results
+  folders: Folders
   submissions_not_found: Submissions not Found
   create: Create
   view_archived: View Archived
@@ -1624,6 +1626,8 @@ es: &es
   document_templates_html: Plantillas <span class="hidden lg:inline">de documento</span>
   archived: Archivado
   search: Buscar
+  no_results: Sin resultados
+  folders: Carpetas
   submissions_not_found: Envíos no encontrados
   create: Crear
   view_archived: Ver Archivados
@@ -2769,6 +2773,8 @@ it: &it
   document_templates_html: Modelli <span class="hidden lg:inline">di documento</span>
   archived: Archiviato
   search: Cerca
+  no_results: Nessun risultato
+  folders: Cartelle
   submissions_not_found: Invii non trovati
   create: Crea
   view_archived: Visualizza Archiviati
@@ -3900,6 +3906,8 @@ fr: &fr
   document_templates_html: Modèles <span class="hidden lg:inline">de documents</span>
   archived: Archivé
   search: Rechercher
+  no_results: Aucun résultat
+  folders: Dossiers
   submissions_not_found: Soumissions introuvables
   create: Créer
   view_archived: Voir les archivés
@@ -5041,6 +5049,8 @@ pt: &pt
   document_templates_html: Modelos <span class="hidden lg:inline">de documento</span>
   archived: Arquivado
   search: Buscar
+  no_results: Sem resultados
+  folders: Pastas
   submissions_not_found: Submissões não encontradas
   create: Criar
   view_archived: Ver arquivados
@@ -6185,6 +6195,8 @@ de: &de
   document_templates_html: <span class="lg:hidden">Vorlagen</span><span class="hidden lg:inline">Dokumentvorlagen</span>
   archived: Archiviert
   search: Suchen
+  no_results: Keine Ergebnisse
+  folders: Ordner
   submissions_not_found: Einreichungen nicht gefunden
   create: Erstellen
   view_archived: Archivierte anzeigen
@@ -7857,6 +7869,8 @@ nl: &nl
   document_templates_html: <span class="lg:hidden">Sjablonen</span><span class="hidden lg:inline">Documentsjablonen</span>
   archived: Gearchiveerd
   search: Zoeken
+  no_results: Geen resultaten
+  folders: Mappen
   submissions_not_found: Geen inzendingen gevonden
   create: Aanmaken
   view_archived: Archief bekijken

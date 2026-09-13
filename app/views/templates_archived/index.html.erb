@@ -1,4 +1,7 @@
 <% content_for(:native_title, t('archived')) if turbo_native_app? %>
+<% if turbo_native_app? %>
+  <native-action data-placement="search" data-native="search" data-label="<%= t('search') %>" data-url="<%= search_index_path(archived: true) %>"></native-action>
+<% end %>
 <% unless turbo_native_app? %>
   <div>
     <%= link_to root_path, class: 'flex items-center mb-1 md:mb-0' do %>

@@ -1,5 +1,8 @@
 <% content_for(:native_title, t('archived')) if turbo_native_app? %>
 <% filter_params = params.permit(Submissions::Filter::ALLOWED_PARAMS).compact_blank %>
+<% if turbo_native_app? %>
+  <native-action data-placement="search" data-native="search" data-label="<%= t('search') %>" data-url="<%= search_index_path(filter_params.to_h.merge('scope' => 'submissions', 'archived' => 'true', 'template_id' => @template.id)) %>"></native-action>
+<% end %>
 <% with_filters = @pagy.pages > 1 || params[:q].present? || filter_params.present? %>
 <% unless turbo_native_app? %>
   <%= render 'templates/title', template: @template %>

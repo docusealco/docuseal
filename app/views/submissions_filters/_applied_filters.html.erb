@@ -1,5 +1,5 @@
-<% query_params = params.permit(:q).merge(filter_params) %>
-<% filter_names = %w[status folder author completed_at created_at] %>
+<% query_params = params.permit(:q, :scope, :archived).merge(filter_params) %>
+<% filter_names = %w[status archived template folder author completed_at created_at] %>
 <% ordered_filters = request.query_parameters.keys.filter_map { |key| filter_names.find { |name| key.start_with?(name) } }.uniq %>
 <% chip_order = ordered_filters.reverse.each_with_index.to_h { |name, index| [name, index + 1] } %>
 <% chip_order.default = ordered_filters.size + 1 %>
@@ -22,6 +22,28 @@
   <% end %>
 <% end %>
 <% chips_html = capture do %>
+  <% if local_assigns[:with_archived] && params[:archived] == 'true' %>
+    <div class="order-<%= chip_order['archived'] %> md:order-none flex md:flex h-10 px-2 py-1 text-base md:text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl shrink-0 max-w-[60vw] md:w-36 border-neutral-700">
+      <span class="flex items-center space-x-1 flex-1 min-w-0 pr-1">
+        <%= svg_icon('archive', class: 'w-5 h-5 shrink-0') %>
+        <span class="font-normal truncate"><%= t('archived') %></span>
+      </span>
+      <%= link_to url_for(params: request.query_parameters.except('archived')), class: 'rounded-lg ml-1 shrink-0 hover:bg-base-content hover:text-white' do %>
+        <%= svg_icon('x', class: 'w-5 h-5') %>
+      <% end %>
+    </div>
+  <% end %>
+  <% if params[:template_id].present? %>
+    <div class="order-<%= chip_order['template'] %> md:order-none flex md:flex h-10 px-2 py-1 text-base md:text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl shrink-0 max-w-[60vw] md:w-36 border-neutral-700">
+      <span class="flex items-center space-x-1 flex-1 min-w-0 pr-1">
+        <%= svg_icon('layout_grid', class: 'w-5 h-5 shrink-0') %>
+        <span class="font-normal truncate"><%= local_assigns[:filter_template]&.name || 'NA' %></span>
+      </span>
+      <%= link_to url_for(params: request.query_parameters.except('template_id')), class: 'rounded-lg ml-1 shrink-0 hover:bg-base-content hover:text-white' do %>
+        <%= svg_icon('x', class: 'w-5 h-5') %>
+      <% end %>
+    </div>
+  <% end %>
   <% if params[:folder].present? %>
     <div class="order-<%= chip_order['folder'] %> md:order-none md:tooltip tooltip-no-touch tooltip-bottom flex md:flex h-10 px-2 py-1 text-base md:text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl shrink-0 max-w-[60vw] md:w-36 border-neutral-700" data-tip="<%= t('folder') %>">
       <%= link_to submissions_filter_path('folder', query_params.merge(path: url_for, with_remove: true)), data: { turbo_frame: 'modal' }, class: 'flex items-center space-x-1 flex-1 min-w-0 pr-1' do %>

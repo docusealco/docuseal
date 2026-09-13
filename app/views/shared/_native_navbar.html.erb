@@ -11,7 +11,7 @@
     </native-action>
   <% end %>
   <native-action data-placement="profile" data-icon="logout" data-native="sign_out" data-label="<%= t('sign_out') %>" data-destructive="true"></native-action>
-  <% if can?(:create, ::Template) && controller_name.in?(%w[templates_dashboard submissions_dashboard template_folders]) %>
+  <% if can?(:create, ::Template) && controller_name.in?(%w[templates_dashboard submissions_dashboard template_folders templates_archived submissions_archived]) %>
     <% folder_name = @template_folder&.full_name %>
     <native-action data-placement="create" data-icon="upload" data-native="upload" data-label="<%= t('upload') %>" data-url="<%= templates_upload_path(folder_name: folder_name) %>" data-accept="image/*, application/pdf, application/zip, application/json<%= ", #{Templates::CreateAttachments::DOCUMENT_EXTENSIONS.join(', ')}" if Docuseal.advanced_formats? %>"></native-action>
     <native-action data-placement="create" data-icon="scan" data-native="scan" data-label="<%= t('scan') %>" data-url="<%= templates_upload_path(folder_name: folder_name) %>"></native-action>

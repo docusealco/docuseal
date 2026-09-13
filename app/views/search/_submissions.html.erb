@@ -1,0 +1,9 @@
+<% if submissions.present? %>
+  <div class="mb-5">
+    <div class="px-4 mb-1 text-xs font-semibold uppercase tracking-wide"><%= t('submissions') %></div>
+    <div id="search_submissions" class="bg-base-200 rounded-2xl divide-y divide-base-300">
+      <%= render partial: 'search/submission', collection: submissions %>
+    </div>
+    <%= render 'shared/infinite_scroll', pagy: pagy if pagy %>
+  </div>
+<% end %>

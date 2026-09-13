@@ -1,4 +1,7 @@
 <% content_for(:native_title, @template_folder.name) if turbo_native_app? %>
+<% if turbo_native_app? %>
+  <native-action data-placement="search" data-native="search" data-label="<%= t('search') %>" data-url="<%= search_index_path(folder: @template_folder.full_name) %>"></native-action>
+<% end %>
 <% if turbo_native_app? && (can?(:manage, :countless) || current_account.templates.where.not(archived_at: nil).exists?) %>
   <native-action data-placement="menu" data-icon="archive" data-label="<%= t('archived') %>">
     <a href="<%= templates_archived_index_path %>" data-native-title="<%= t('archived') %>"><%= t('view_archived') %></a>

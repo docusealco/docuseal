@@ -5,6 +5,7 @@ module Submissions
     ALLOWED_PARAMS = %w[
       author
       status
+      template_id
       folder
       completed_at_from
       completed_at_to
@@ -27,6 +28,7 @@ module Submissions
       filters = normalize_filter_params(params, current_user)
 
       submissions = filter_by_author(submissions, filters, current_user)
+      submissions = filter_by_template(submissions, filters)
       submissions = filter_by_folder(submissions, filters, current_user)
       submissions = filter_by_status(submissions, filters)
       submissions = filter_by_created_at(submissions, filters)
@@ -40,6 +42,12 @@ module Submissions
       user = current_user.account.users.find_by(email: filters[:author])
 
       submissions.where(created_by_user_id: user&.id || -1)
+    end
+
+    def filter_by_template(submissions, filters)
+      return submissions if filters[:template_id].blank?
+
+      submissions.where(template_id: filters[:template_id])
     end
 
     def filter_by_status(submissions, filters)
