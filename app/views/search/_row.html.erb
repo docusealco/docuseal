@@ -1,7 +1,7 @@
 <% subtitle = local_assigns[:subtitle].presence %>
 <% badge = local_assigns[:badge].presence %>
 <% date = local_assigns[:date] %>
-<a href="<%= href %>" data-turbo-frame="_top" class="flex items-center gap-3 pl-4 py-3 min-h-14" style="padding-right: 20px;" data-native-title="<%= title %>" data-native-actions="<%= local_assigns[:native_actions] %>">
+<a href="<%= href %>" data-turbo-frame="_top" class="flex items-center gap-3 pl-4 py-3 min-h-14" style="padding-right: 20px;" data-native-title="<%= local_assigns[:native_title] || title %>" data-native-actions="<%= local_assigns[:native_actions] %>">
   <%= svg_icon(icon, class: 'w-6 h-6 shrink-0') %>
   <div class="min-w-0 flex-1 items-center" style="display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 8px;">
     <div class="truncate" style="grid-column: <%= badge || !subtitle ? '1' : '1 / span 2' %>; grid-row: <%= subtitle ? '1' : '1 / span 2' %>;"><%= title %></div>
