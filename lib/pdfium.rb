@@ -581,6 +581,10 @@ class Pdfium
       @page_rotations[page_index] ||= Pdfium.FPDFPage_GetRotationRaw(@document_ptr, page_index)
     end
 
+    def reset_page_rotation(page_index)
+      @page_rotations.delete(page_index)
+    end
+
     def encrypted?
       Pdfium.FPDF_GetSecurityHandlerRevision(@document_ptr) >= 0
     end
@@ -1010,6 +1014,7 @@ class Pdfium
       Pdfium.FPDFPage_SetRotation(@page_ptr, value)
 
       @document.reset_page_size(@page_index)
+      @document.reset_page_rotation(@page_index)
 
       @rotation = value
     end
