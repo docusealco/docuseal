@@ -8034,7 +8034,7 @@ nl: &nl
   awaiting: Wachten
   document_id: Document-ID
   envelope_id: Envelop-ID
-  event_log: Gebeurtenissenlogboek
+  event_log: Gebeurtenislogboek
   verify: Verifiëren
   testing_log_not_for_production_use: Testlogboek - Niet voor productiegebruik
   original_sha256: Oorspronkelijke SHA256
