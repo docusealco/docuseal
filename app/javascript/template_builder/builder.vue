@@ -2371,7 +2371,6 @@ export default {
         const areaCopy = JSON.parse(JSON.stringify(area))
 
         delete fieldCopy.areas
-        delete fieldCopy.submitter_uuid
 
         areaCopy.relativeX = area.x - minX
         areaCopy.relativeY = area.y - minY
@@ -2381,6 +2380,7 @@ export default {
 
       const clipboardData = {
         items,
+        submitters: this.template.submitters.map((submitter) => ({ uuid: submitter.uuid, name: submitter.name })),
         templateId: this.template.id,
         timestamp: Date.now(),
         isGroup: true
@@ -2491,6 +2491,20 @@ export default {
 
       const fieldUuidIndex = {}
       const fieldOptionsMap = {}
+      const submitterUuidsMap = {}
+
+      const copiedSubmitterUuids = [...new Set(data.items.map((item) => item.field.submitter_uuid).filter(Boolean))]
+
+      if (copiedSubmitterUuids.length > 1) {
+        copiedSubmitterUuids.forEach((uuid) => {
+          const name = data.submitters?.find((submitter) => submitter.uuid === uuid)?.name
+
+          const submitter = this.template.submitters.find((s) => s.uuid === uuid) ||
+            (name && this.template.submitters.find((s) => s.name.toLowerCase() === name.toLowerCase()))
+
+          submitterUuidsMap[uuid] = (submitter || this.selectedSubmitter).uuid
+        })
+      }
 
       data.items.forEach((item) => {
         const field = JSON.parse(JSON.stringify(item.field))
@@ -2515,7 +2529,7 @@ export default {
         const newField = fieldUuidIndex[field.uuid] || {
           ...field,
           uuid: v4(),
-          submitter_uuid: this.selectedSubmitter.uuid,
+          submitter_uuid: submitterUuidsMap[field.submitter_uuid] || this.selectedSubmitter.uuid,
           areas: []
         }
 

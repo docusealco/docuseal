@@ -28,7 +28,7 @@
   </div>
 </div>
 <% view_archived_html = capture do %>
-  <% if can?(:manage, :countless) || current_account.submissions.where.not(archived_at: nil).exists? %>
+  <% if can?(:manage, :countless) || current_account.submissions.archived.exists? || current_account.templates.where(Submission.where(Submission.arel_table[:template_id].eq(::Template.arel_table[:id])).arel.exists).archived.exists? %>
     <div>
       <a href="<%= submissions_archived_index_path %>" class="link text-sm"><%= t('view_archived') %></a>
     </div>

@@ -90,7 +90,7 @@ class Submitter < ApplicationRecord
 
   def friendly_name
     if name.present? && email.present? && email.exclude?(',')
-      %("#{name.delete('"')}" <#{email}>)
+      %("#{name.delete('"').squish}" <#{email}>)
     else
       email
     end

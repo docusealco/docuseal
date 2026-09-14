@@ -6,7 +6,7 @@
     </div>
   </div>
   <div class="collapse-content">
-    <%= form_for AccountConfigs.find_or_initialize_for_key(current_account, AccountConfig::FORM_COMPLETED_BUTTON_KEY), url: settings_personalization_path, method: :post, html: { autocomplete: 'off', class: 'space-y-4' } do |f| %>
+    <%= form_for AccountConfigs.find_or_initialize_for_key(current_account, AccountConfig::FORM_COMPLETED_BUTTON_KEY), url: settings_personalization_path, method: :post, html: { autocomplete: 'off', class: 'flex flex-col gap-4' } do |f| %>
       <%= f.hidden_field :key %>
       <%= f.fields_for :value, Struct.new(:title, :url).new(*(f.object.value || {}).values_at('title', 'url')) do |ff| %>
         <div class="form-control">

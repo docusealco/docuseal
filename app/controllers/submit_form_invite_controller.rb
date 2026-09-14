@@ -23,7 +23,7 @@ class SubmitFormInviteController < ApplicationController
 
         @submitter.submission.submitters.create!(uuid: attrs[:uuid], email:, account_id: @submitter.account_id)
 
-        SubmissionEvents.create_with_tracking_data(@submitter, 'invite_party', request, { uuid: @submitter.uuid })
+        SubmissionEvents.create_with_tracking_data(@submitter, 'invite_party', request, { uuid: attrs[:uuid] })
       end
 
       @submitter.submission.update!(submitters_order: :preserved)

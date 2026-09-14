@@ -261,7 +261,7 @@ export default {
       }
     },
     resendCode () {
-      if (this.codeSentAt && Date.now() - this.codeSentAt < 15000) {
+      if (this.codeSentAt && Date.now() - this.codeSentAt < 30000) {
         this.startResendCodeCountdown()
       } else {
         this.isResendLoading = true
@@ -274,7 +274,7 @@ export default {
       }
     },
     startResendCodeCountdown () {
-      this.resendCodeCountdown = 15 - parseInt((Date.now() - this.codeSentAt) / 1000)
+      this.resendCodeCountdown = 30 - parseInt((Date.now() - this.codeSentAt) / 1000)
 
       this.interval = setInterval(() => {
         this.resendCodeCountdown--

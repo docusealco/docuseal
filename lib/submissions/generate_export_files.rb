@@ -19,22 +19,19 @@ module Submissions
     end
 
     def rows_to_xlsx(rows)
-      workbook = RubyXL::Workbook.new
-      worksheet = workbook[0]
-      worksheet.sheet_name = Time.current.to_date.to_s
-
       headers = build_headers(rows)
-      headers.each_with_index do |column_name, column_index|
-        worksheet.add_cell(0, column_index, column_name)
-      end
 
-      rows.each.with_index(1) do |row, row_index|
-        extract_columns(row, headers).each_with_index do |value, column_index|
-          worksheet.add_cell(row_index, column_index, value)
+      io = StringIO.new
+
+      Xlsxtream::Workbook.open(io) do |workbook|
+        workbook.write_worksheet(Time.current.to_date.to_s) do |sheet|
+          sheet << headers.to_a
+
+          rows.each { |row| sheet << extract_columns(row, headers) }
         end
       end
 
-      workbook.stream.string
+      io.string
     end
 
     def rows_to_csv(rows)
@@ -150,8 +147,6 @@ module Submissions
 
               ActiveStorage::Blob.proxy_url(attachment.blob, expires_at:) if attachment
             end
-          elsif submitter_value == true || submitter_value == false
-            submitter_value.to_s
           else
             submitter_value
           end

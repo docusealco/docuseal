@@ -165,6 +165,21 @@ module Submitters
     preferences
   end
 
+  def fetch_values_for_delegate(submitter)
+    fields = submitter.submission.template_fields || submitter.template.fields
+    default_values = submitter.preferences['default_values'] || {}
+
+    field_uuids = fields.filter_map do |field|
+      next if field['submitter_uuid'] != submitter.uuid
+      next unless field['type'].in?(%w[signature phone verification kba initials])
+      next if default_values[field['uuid']].present?
+
+      field['uuid']
+    end
+
+    submitter.values.except(*field_uuids)
+  end
+
   def send_signature_requests(submitters, delay_seconds: nil)
     submitters.each_with_index do |submitter, index|
       next if submitter.email.blank?
@@ -238,7 +253,7 @@ module Submitters
       I18n.l(completed_at.in_time_zone(submitter.account.timezone), format: :short)
     end
 
-    "#{filename}.#{blob.filename.extension}"
+    "#{filename}.#{blob.filename.extension}".tr('/', '-')
   end
 
   def send_shared_link_email_verification_code(submitter, request:)
