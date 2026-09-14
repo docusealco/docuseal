@@ -199,6 +199,7 @@
         >{{ t('learn_more') }}</a>
       </div>
       <li
+        v-if="withFormula || !nativeIos"
         class="field-settings-formula mb-1"
       >
         <label
@@ -228,7 +229,7 @@
         </label>
       </li>
       <li
-        v-if="withCondition"
+        v-if="withCondition && (withConditions || !nativeIos)"
         class="field-settings-condition mt-1"
       >
         <label
@@ -286,7 +287,7 @@ export default {
     IconBrandStripe,
     IconBrandPaypal
   },
-  inject: ['backgroundColor', 'save', 'currencies', 't', 'isStripeConnected', 'isPaypalConnected', 'withStripe', 'withPaypal'],
+  inject: ['backgroundColor', 'save', 'currencies', 't', 'isStripeConnected', 'isPaypalConnected', 'withStripe', 'withPaypal', 'withFormula', 'withConditions', 'nativeIos'],
   props: {
     field: {
       type: Object,

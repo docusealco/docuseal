@@ -7,9 +7,11 @@
 <% can_send_emails = Accounts.can_send_emails?(current_account) %>
 <% only_detailed = require_phone_2fa || require_email_2fa || prefillable_fields.present? || recipient_form_fields.present? %>
 <% with_list = @template.variables_schema.blank? && (!turbo_native_ios? || can?(:manage, :bulk_send)) %>
+<% with_phone = !turbo_native_ios? || can?(:manage, :sms_verification) %>
+<% default_tab = 'email' if default_tab == 'phone' && !with_phone %>
 <% variables_form = render 'variables_form', schema: @template.variables_schema if @template.variables_schema.present? && @template.variables_schema.any? { |_, v| !v['disabled'] } %>
 <%= render 'shared/turbo_modal_large', title: params[:selfsign] ? t('add_recipients') : t('add_new_recipients') do %>
-  <% options = [only_detailed ? nil : [t('via_email'), 'email'], only_detailed ? nil : [t('via_phone'), 'phone'], [t('detailed'), 'detailed'], with_list ? [t('upload_list'), 'list'] : nil].compact %>
+  <% options = [only_detailed ? nil : [t('via_email'), 'email'], only_detailed || !with_phone ? nil : [t('via_phone'), 'phone'], [t('detailed'), 'detailed'], with_list ? [t('upload_list'), 'list'] : nil].compact %>
   <% if options.size > 1 %>
     <toggle-visible data-element-ids="<%= options.map(&:last).to_json %>" class="relative text-center px-2 mt-4 block">
       <div class="flex justify-center">
@@ -29,9 +31,11 @@
       <div id="email" class="<%= 'hidden' if default_tab != 'email' %>">
         <%= render 'email_form', template: @template, variables_form:, can_send_emails:, viewer_submitter_uuids: %>
       </div>
-      <div id="phone" class="<%= 'hidden' if default_tab != 'phone' %>">
-        <%= render 'phone_form', template: @template, variables_form: %>
-      </div>
+      <% if with_phone %>
+        <div id="phone" class="<%= 'hidden' if default_tab != 'phone' %>">
+          <%= render 'phone_form', template: @template, variables_form: %>
+        </div>
+      <% end %>
     <% end %>
     <div id="detailed" class="<%= 'hidden' if !only_detailed && default_tab != 'detailed' %>">
       <%= render 'detailed_form', template: @template, require_phone_2fa:, require_email_2fa:, prefillable_fields:, recipient_form_fields:, variables_form:, can_send_emails:, viewer_submitter_uuids: %>

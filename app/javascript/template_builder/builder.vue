@@ -886,6 +886,7 @@ export default {
       isPaypalConnected: this.isPaypalConnected,
       withFormula: this.withFormula,
       withConditions: this.withConditions,
+      nativeIos: this.nativeIos,
       withCustomFields: this.withCustomFields,
       isInlineSize: this.isInlineSize,
       defaultDrawFieldType: this.defaultDrawFieldType,
@@ -1104,6 +1105,11 @@ export default {
       default: true
     },
     nativeApp: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    nativeIos: {
       type: Boolean,
       required: false,
       default: false
