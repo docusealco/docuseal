@@ -4,12 +4,9 @@ class TemplatesVersionsController < ApplicationController
   load_and_authorize_resource :template
 
   def index
-    @versions = @template.template_versions.order(id: :desc).preload(:author)
+    versions = @template.template_versions.order(id: :desc).preload(:author)
 
-    respond_to do |format|
-      format.json { render json: @versions.as_json(TemplateVersions::SERIALIZE_PARAMS) }
-      format.html
-    end
+    render json: versions.as_json(TemplateVersions::SERIALIZE_PARAMS)
   end
 
   def show

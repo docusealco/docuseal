@@ -20,7 +20,7 @@
             :menu-classes="'mt-1.5'"
             :menu-style="{ backgroundColor: dropdownBgColor }"
             @update:model-value="[maybeUpdateOptions(), $emit('save')]"
-            @click="scrollToFirstArea"
+            @click="scrollOnEdit && scrollToFirstArea()"
           />
           <Contenteditable
             ref="name"
@@ -29,7 +29,7 @@
             :icon-inline="true"
             :icon-width="18"
             :icon-stroke-width="1.6"
-            @focus="[onNameFocus(), scrollToFirstArea()]"
+            @focus="[onNameFocus(), scrollOnEdit && scrollToFirstArea()]"
             @blur="onNameBlur"
           />
         </div>
@@ -60,7 +60,8 @@
           <button
             v-if="field && !field.areas?.length"
             :title="t('draw')"
-            class="relative cursor-pointer text-transparent group-hover:text-base-content"
+            class="relative cursor-pointer"
+            :class="iconColorClass"
             @click="$emit('set-draw', { field })"
           >
             <IconNewSection
@@ -70,7 +71,8 @@
           </button>
           <button
             v-if="field.preferences?.formula"
-            class="relative cursor-pointer text-transparent group-hover:text-base-content"
+            class="relative cursor-pointer"
+            :class="iconColorClass"
             :title="t('formula')"
             @click="isShowFormulaModal = true"
           >
@@ -81,7 +83,8 @@
           </button>
           <button
             v-if="field.conditions?.length"
-            class="relative cursor-pointer text-transparent group-hover:text-base-content"
+            class="relative cursor-pointer"
+            :class="iconColorClass"
             :title="t('condition')"
             @click="isShowConditionsModal = true"
           >
@@ -109,9 +112,17 @@
             <label
               tabindex="0"
               :title="t('settings')"
-              class="cursor-pointer text-transparent group-hover:text-base-content"
+              class="cursor-pointer flex items-center"
+              :class="[iconColorClass, { 'pr-1': isMobile }]"
             >
+              <IconDotsVertical
+                v-if="isMobile"
+                :width="18"
+                :height="18"
+                :stroke-width="1.6"
+              />
               <IconSettings
+                v-else
                 :width="18"
                 :stroke-width="1.6"
               />
@@ -143,10 +154,28 @@
                 @save="$emit('save')"
                 @scroll-to="$emit('scroll-to', $event)"
               />
+              <li
+                v-if="isMobile"
+                class="field-settings-remove"
+              >
+                <a
+                  href="#"
+                  class="text-sm py-1 px-2 text-red-600"
+                  @click.prevent="$emit('remove', field)"
+                >
+                  <IconTrashX
+                    :width="20"
+                    :stroke-width="1.6"
+                  />
+                  {{ t('remove') }}
+                </a>
+              </li>
             </ul>
           </span>
           <button
-            class="relative text-transparent group-hover:text-base-content pr-1 field-remove-button"
+            v-if="!isMobile"
+            class="relative pr-1 field-remove-button"
+            :class="iconColorClass"
             :title="t('remove')"
             @click="$emit('remove', field)"
           >
@@ -324,7 +353,7 @@ import FormulaModal from './formula_modal'
 import FontModal from './font_modal'
 import ConditionsModal from './conditions_modal'
 import DescriptionModal from './description_modal'
-import { IconRouteAltLeft, IconMathFunction, IconNewSection, IconTrashX, IconSettings, IconChevronDown } from '@tabler/icons-vue'
+import { IconRouteAltLeft, IconMathFunction, IconNewSection, IconTrashX, IconSettings, IconDotsVertical, IconChevronDown } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
 
 export default {
@@ -332,6 +361,7 @@ export default {
   components: {
     Contenteditable,
     IconSettings,
+    IconDotsVertical,
     FieldSettings,
     PaymentSettings,
     IconChevronDown,
@@ -345,11 +375,16 @@ export default {
     IconMathFunction,
     FieldType
   },
-  inject: ['template', 'backgroundColor', 'selectedAreasRef', 't', 'locale', 'getFieldTypeIndex', 'dateFormats'],
+  inject: ['template', 'backgroundColor', 'selectedAreasRef', 't', 'locale', 'getFieldTypeIndex', 'dateFormats', 'isMobile'],
   props: {
     field: {
       type: Object,
       required: true
+    },
+    scrollOnEdit: {
+      type: Boolean,
+      required: false,
+      default: true
     },
     withSignatureId: {
       type: Boolean,
@@ -396,6 +431,9 @@ export default {
     }
   },
   computed: {
+    iconColorClass () {
+      return this.isMobile ? 'text-base-content' : 'text-transparent group-hover:text-base-content'
+    },
     fieldNames: FieldType.computed.fieldNames,
     fieldLabels: FieldType.computed.fieldLabels,
     dropdownBgColor () {

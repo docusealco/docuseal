@@ -48,6 +48,7 @@
       :key="field.uuid"
       :data-uuid="field.uuid"
       :field="field"
+      :scroll-on-edit="scrollOnEdit"
       :type-index="getFieldTypeIndex(field)"
       :editable="editable"
       :with-signature-id="withSignatureId"
@@ -478,6 +479,11 @@ export default {
       default: true
     },
     editable: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+    scrollOnEdit: {
       type: Boolean,
       required: false,
       default: true

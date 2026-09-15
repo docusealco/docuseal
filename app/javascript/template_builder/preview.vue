@@ -39,7 +39,7 @@
               :authenticity-token="authenticityToken"
               :with-google-drive="withGoogleDrive"
               :google-drive-file-id="item.google_drive_file_id"
-              class="opacity-0 group-hover:opacity-100 has-[label:focus]:opacity-100"
+              :class="{ 'opacity-0 group-hover:opacity-100 has-[label:focus]:opacity-100': !withVisibleControls }"
               @click.stop
               @success="$emit('replace', { replaceSchemaItem: item, ...$event })"
             />
@@ -49,7 +49,7 @@
           >
             <span
               class="dropdown dropdown-end group-hover:opacity-100 has-[label:focus]:opacity-100"
-              :class="{ 'dropdown-open': isMakeDynamicLoading, 'opacity-0': !isMakeDynamicLoading }"
+              :class="{ 'dropdown-open': isMakeDynamicLoading, 'opacity-0': !isMakeDynamicLoading && !withVisibleControls }"
               @mouseenter="renderDropdown = true"
               @touchstart="renderDropdown = true"
             >
@@ -137,7 +137,8 @@
             </span>
             <div
               v-if="withArrows"
-              class="flex flex-col space-y-1 opacity-0 group-hover:opacity-100"
+              class="flex flex-col space-y-1"
+              :class="{ 'opacity-0 group-hover:opacity-100': !withVisibleControls }"
             >
               <button
                 class="btn border-gray-300 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors document-control-button"
@@ -221,6 +222,11 @@ export default {
     item: {
       type: Object,
       required: true
+    },
+    withVisibleControls: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     template: {
       type: Object,

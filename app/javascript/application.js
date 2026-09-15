@@ -189,6 +189,10 @@ safeRegisterElement('template-builder', class extends HTMLElement {
   connectedCallback () {
     document.addEventListener('turbo:submit-end', this.onSubmit)
     document.addEventListener('template-builder:update', this.onSheetSubmit)
+    document.addEventListener('template-builder:sync', this.onSync)
+    document.addEventListener('template-builder:scroll-to', this.onScrollTo)
+    document.addEventListener('template-builder:select-field', this.onSelectField)
+    document.addEventListener('template-builder:draw-field', this.onDrawField)
     document.addEventListener('turbo:before-cache', this.onBeforeCache)
 
     this.appElem = document.createElement('div')
@@ -233,7 +237,8 @@ safeRegisterElement('template-builder', class extends HTMLElement {
       currencies: (this.dataset.currencies || '').split(',').filter(Boolean),
       acceptFileTypes: this.dataset.acceptFileTypes,
       showTourStartForm: this.dataset.showTourStartForm === 'true',
-      nativePlatform: this.dataset.nativePlatform
+      nativePlatform: this.dataset.nativePlatform,
+      view: this.dataset.view
     })
 
     this.component = this.app.mount(this.appElem)
@@ -255,6 +260,40 @@ safeRegisterElement('template-builder', class extends HTMLElement {
 
   onSheetSubmit = (e) => {
     this.applySubmission(e.detail.form, e.detail.action, e.detail.body, {})
+  }
+
+  onSync = (e) => {
+    const { schema, documents, fields, submitters } = e.detail
+
+    Object.assign(this.component.template, { schema, documents, fields, submitters })
+  }
+
+  onScrollTo = (e) => {
+    this.component.scrollIntoDocument(e.detail)
+  }
+
+  onSelectField = (e) => {
+    const { uuid, attachment_uuid: attachmentUuid, page, x, y } = e.detail
+    const field = this.component.template.fields.find((f) => f.uuid === uuid)
+    const areas = field?.areas || []
+    const area = areas.find((a) => a.attachment_uuid === attachmentUuid && a.page === page && a.x === x && a.y === y) || areas[0]
+
+    if (area) this.component.scrollToArea(area)
+  }
+
+  onDrawField = (e) => {
+    const { uuid, type, option } = e.detail
+
+    if (uuid) {
+      const field = this.component.template.fields.find((f) => f.uuid === uuid)
+
+      if (field) {
+        this.component.drawField = field
+        this.component.drawOption = option || null
+      }
+    } else if (type) {
+      this.component.startFieldDraw({ type })
+    }
   }
 
   applySubmission (formId, action, body, data) {
@@ -294,6 +333,10 @@ safeRegisterElement('template-builder', class extends HTMLElement {
   disconnectedCallback () {
     document.removeEventListener('turbo:submit-end', this.onSubmit)
     document.removeEventListener('template-builder:update', this.onSheetSubmit)
+    document.removeEventListener('template-builder:sync', this.onSync)
+    document.removeEventListener('template-builder:scroll-to', this.onScrollTo)
+    document.removeEventListener('template-builder:select-field', this.onSelectField)
+    document.removeEventListener('template-builder:draw-field', this.onDrawField)
     document.removeEventListener('turbo:before-cache', this.onBeforeCache)
 
     this.app?.unmount()

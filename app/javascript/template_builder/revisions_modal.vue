@@ -1,11 +1,15 @@
 <template>
-  <div class="modal modal-open items-start !animate-none overflow-y-auto">
+  <div :class="{ 'modal modal-open items-start !animate-none overflow-y-auto': !inline }">
     <div
+      v-if="!inline"
       class="absolute top-0 bottom-0 right-0 left-0"
       @click.prevent="$emit('close')"
     />
-    <div class="modal-box pt-4 pb-6 mt-20 w-full">
-      <div class="flex justify-between items-center border-b pb-2 mb-3 font-medium">
+    <div :class="{ 'modal-box pt-4 pb-6 mt-20 w-full': !inline }">
+      <div
+        v-if="!inline"
+        class="flex justify-between items-center border-b pb-2 mb-3 font-medium"
+      >
         <span>{{ t('revisions') }}</span>
         <a
           href="#"
@@ -72,6 +76,11 @@ export default {
     locale: {
       type: String,
       required: true
+    },
+    inline: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   emits: ['close', 'apply'],

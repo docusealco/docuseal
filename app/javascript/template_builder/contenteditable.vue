@@ -23,7 +23,7 @@
       {{ value }}
     </span>
     <span
-      v-if="withButton"
+      v-if="withButton && !isMobile"
       class="relative inline"
       :class="{ 'peer-focus:hidden': hideIcon, 'peer-focus:invisible': !hideIcon }"
     >
@@ -48,7 +48,7 @@ export default {
   components: {
     IconPencil
   },
-  inject: ['t'],
+  inject: ['t', 'isMobile'],
   props: {
     modelValue: {
       type: String,
