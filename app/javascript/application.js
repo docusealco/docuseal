@@ -13,6 +13,7 @@ import NativeAction from './elements/native_action'
 import NativeSearch from './elements/native_search'
 import NativeModal from './elements/native_modal'
 import NativeEvent from './elements/native_event'
+import NativeUpload from './elements/native_upload'
 import FormPrompt from './elements/form_prompt'
 import InfiniteScroll from './elements/infinite_scroll'
 import ModalButton from './elements/modal_button'
@@ -129,6 +130,7 @@ safeRegisterElement('native-action', NativeAction)
 safeRegisterElement('native-search', NativeSearch)
 safeRegisterElement('native-modal', NativeModal)
 safeRegisterElement('native-event', NativeEvent)
+safeRegisterElement('native-upload', NativeUpload)
 safeRegisterElement('form-prompt', FormPrompt)
 safeRegisterElement('infinite-scroll', InfiniteScroll)
 safeRegisterElement('modal-button', ModalButton)

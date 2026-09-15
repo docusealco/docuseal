@@ -11,6 +11,14 @@
     </native-action>
   <% end %>
   <native-action data-placement="profile" data-icon="logout" data-native="sign_out" data-label="<%= t('sign_out') %>" data-destructive="true"></native-action>
+  <% if can?(:create, ::Template) %>
+    <native-upload class="hidden">
+      <%= form_for '', url: templates_upload_path, id: form_id = SecureRandom.uuid, method: :post, html: { enctype: 'multipart/form-data' } do %>
+        <input type="hidden" name="form_id" value="<%= form_id %>">
+        <input name="files[]" type="file" multiple>
+      <% end %>
+    </native-upload>
+  <% end %>
   <% if can?(:create, ::Template) && controller_name.in?(%w[templates_dashboard submissions_dashboard template_folders templates_archived submissions_archived]) %>
     <% folder_name = @template_folder&.full_name %>
     <native-action data-placement="create" data-icon="upload" data-native="upload" data-label="<%= t('upload') %>" data-url="<%= templates_upload_path(folder_name: folder_name) %>" data-accept="image/*, application/pdf, application/zip, application/json<%= ", #{Templates::CreateAttachments::DOCUMENT_EXTENSIONS.join(', ')}" if Docuseal.advanced_formats? %>"></native-action>
