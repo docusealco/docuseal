@@ -1,5 +1,4 @@
-import '@hotwired/turbo'
-import { encodeMethodIntoRequestBody } from '@hotwired/turbo-rails/app/javascript/turbo/fetch_requests'
+import '@hotwired/turbo-rails'
 
 import { createApp, reactive } from 'vue'
 import TemplateBuilder from './template_builder/builder'
@@ -69,9 +68,7 @@ import OpenModalMobile from './elements/open_modal_mobile'
 import HistoryBack from './elements/history_back'
 import DatePlaceholder from './elements/date_placeholder'
 
-import * as TurboInstantClick from './lib/turbo_instant_click'
 
-TurboInstantClick.start()
 
 document.addEventListener('turbo:before-cache', () => {
   window.flash?.remove()
@@ -83,7 +80,6 @@ document.addEventListener('keyup', (e) => {
   }
 })
 
-document.addEventListener('turbo:before-fetch-request', encodeMethodIntoRequestBody)
 document.addEventListener('turbo:before-fetch-request', (event) => {
   event.detail.fetchOptions.headers['X-Turbo'] = 'true'
 })
