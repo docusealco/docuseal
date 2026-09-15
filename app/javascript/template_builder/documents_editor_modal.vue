@@ -10,8 +10,8 @@
       @click.prevent="$emit('close')"
     />
     <div
-      class="modal-box relative flex flex-col p-0 w-full h-full rounded-2xl"
-      style="max-width: 1240px; max-height: 92vh"
+      class="modal-box relative flex flex-col p-0 w-full h-full rounded-none md:rounded-2xl overflow-x-hidden !max-h-full md:!max-h-[92vh]"
+      style="max-width: 1240px"
     >
       <div class="flex justify-between items-center border-b py-2 px-6 font-medium">
         <span
@@ -26,7 +26,9 @@
           @click.prevent="$emit('close')"
         >&times;</a>
       </div>
-      <div class="flex flex-1 min-h-0 relative">
+      <div
+        class="flex flex-col md:flex-row flex-1 min-h-0 relative"
+      >
         <CropView
           v-if="cropPageItem"
           class="absolute inset-0 z-10 bg-base-100"
@@ -53,7 +55,9 @@
           class="contents"
           :class="{ invisible: cropPageItem || redactPageItem }"
         >
-          <div class="flex-1 overflow-y-auto px-6 py-4 space-y-4">
+          <div
+            class="flex-1 overflow-y-auto overflow-x-hidden px-4 md:px-6 py-4 space-y-4"
+          >
             <div
               v-for="(doc, docIndex) in layout"
               :key="doc.attachmentUuid"
@@ -170,7 +174,7 @@
               </div>
               <div
                 v-if="(!collapsedDocumentsIndex[doc.attachmentUuid] || layout.length === 1) && doc.pages.length"
-                class="grid grid-cols-4 gap-3"
+                class="grid grid-cols-2 md:grid-cols-4 gap-3"
                 @dragover.prevent="onGridDragover(docIndex, $event)"
                 @drop.prevent="onPageDrop"
               >
@@ -178,7 +182,7 @@
                   v-for="(page, pageIndex) in doc.pages"
                   :key="page.id"
                   :data-page-id="page.id"
-                  class="relative cursor-pointer group"
+                  class="relative min-w-0 cursor-pointer group"
                   draggable="true"
                   @click="selectedPageId = page.id"
                   @mousedown="onPageMousedown(page, $event)"
@@ -245,26 +249,30 @@
               </template>
             </div>
           </div>
-          <div class="w-56 flex-none border-l px-4 py-4 flex flex-col">
-            <div class="space-y-2">
+          <div
+            class="flex-none px-4 border-t py-3 flex flex-col gap-3 md:w-56 md:border-t-0 md:border-l md:py-4 md:gap-0"
+          >
+            <div class="grid grid-cols-4 gap-2 md:block md:space-y-2">
               <button
-                class="btn btn-sm w-full justify-start normal-case font-normal rounded disabled:bg-base-300"
+                class="btn btn-sm normal-case font-normal rounded disabled:bg-base-300 flex-col gap-1 h-auto min-h-0 py-2 px-1 text-xs leading-tight whitespace-normal md:flex-row md:gap-2 md:h-8 md:min-h-[2rem] md:py-0 md:px-3 md:text-sm md:whitespace-nowrap md:w-full md:justify-start"
                 :disabled="!selectedPageId"
                 @click.prevent="movePage(-1)"
               >
                 <IconArrowBackUp class="w-4 h-4" />
-                {{ t('move_backward') }}
+                <span class="md:hidden">{{ t('backward') }}</span>
+                <span class="hidden md:inline">{{ t('move_backward') }}</span>
               </button>
               <button
-                class="btn btn-sm w-full justify-start normal-case font-normal rounded disabled:bg-base-300"
+                class="btn btn-sm normal-case font-normal rounded disabled:bg-base-300 flex-col gap-1 h-auto min-h-0 py-2 px-1 text-xs leading-tight whitespace-normal md:flex-row md:gap-2 md:h-8 md:min-h-[2rem] md:py-0 md:px-3 md:text-sm md:whitespace-nowrap md:w-full md:justify-start"
                 :disabled="!selectedPageId"
                 @click.prevent="movePage(1)"
               >
                 <IconArrowForwardUp class="w-4 h-4" />
-                {{ t('move_forward') }}
+                <span class="md:hidden">{{ t('forward') }}</span>
+                <span class="hidden md:inline">{{ t('move_forward') }}</span>
               </button>
               <button
-                class="btn btn-sm w-full justify-start normal-case font-normal rounded disabled:bg-base-300"
+                class="btn btn-sm normal-case font-normal rounded disabled:bg-base-300 flex-col gap-1 h-auto min-h-0 py-2 px-1 text-xs leading-tight whitespace-normal md:flex-row md:gap-2 md:h-8 md:min-h-[2rem] md:py-0 md:px-3 md:text-sm md:whitespace-nowrap md:w-full md:justify-start"
                 :disabled="!selectedPageId"
                 @click.prevent="rotatePage"
               >
@@ -272,7 +280,7 @@
                 {{ t('rotate') }}
               </button>
               <button
-                class="btn btn-sm w-full justify-start normal-case font-normal rounded disabled:bg-base-300"
+                class="btn btn-sm normal-case font-normal rounded disabled:bg-base-300 flex-col gap-1 h-auto min-h-0 py-2 px-1 text-xs leading-tight whitespace-normal md:flex-row md:gap-2 md:h-8 md:min-h-[2rem] md:py-0 md:px-3 md:text-sm md:whitespace-nowrap md:w-full md:justify-start"
                 :disabled="!selectedPageId || isReplacing"
                 @click.prevent="replaceSelected"
               >
@@ -303,7 +311,7 @@
                 @change="onReplaceDocFilesPicked"
               >
               <button
-                class="btn btn-sm w-full justify-start normal-case font-normal rounded disabled:bg-base-300"
+                class="btn btn-sm normal-case font-normal rounded disabled:bg-base-300 flex-col gap-1 h-auto min-h-0 py-2 px-1 text-xs leading-tight whitespace-normal md:flex-row md:gap-2 md:h-8 md:min-h-[2rem] md:py-0 md:px-3 md:text-sm md:whitespace-nowrap md:w-full md:justify-start"
                 :disabled="!selectedPageId"
                 @click.prevent="openRedactView"
               >
@@ -312,7 +320,7 @@
               </button>
               <button
                 v-if="isSelectedPageCroppable"
-                class="btn btn-sm w-full justify-start normal-case font-normal rounded disabled:bg-base-300"
+                class="btn btn-sm normal-case font-normal rounded disabled:bg-base-300 flex-col gap-1 h-auto min-h-0 py-2 px-1 text-xs leading-tight whitespace-normal md:flex-row md:gap-2 md:h-8 md:min-h-[2rem] md:py-0 md:px-3 md:text-sm md:whitespace-nowrap md:w-full md:justify-start"
                 @click.prevent="openCropView"
               >
                 <IconCrop
@@ -326,15 +334,16 @@
                 </span>
               </button>
               <button
-                class="btn btn-sm w-full justify-start normal-case font-normal rounded disabled:bg-base-300 text-red-600"
+                class="btn btn-sm normal-case font-normal rounded disabled:bg-base-300 text-red-600 flex-col gap-1 h-auto min-h-0 py-2 px-1 text-xs leading-tight whitespace-normal md:flex-row md:gap-2 md:h-8 md:min-h-[2rem] md:py-0 md:px-3 md:text-sm md:whitespace-nowrap md:w-full md:justify-start"
                 :disabled="!selectedPageId"
                 @click.prevent="removePage"
               >
                 <IconTrashX class="w-4 h-4" />
-                {{ t('remove_page') }}
+                <span class="md:hidden">{{ t('remove') }}</span>
+                <span class="hidden md:inline">{{ t('remove_page') }}</span>
               </button>
             </div>
-            <div class="mt-auto space-y-2">
+            <div class="grid grid-cols-2 gap-2 md:block md:mt-auto md:space-y-2">
               <Upload
                 :template-id="template.id"
                 :accept-file-types="acceptFileTypes"

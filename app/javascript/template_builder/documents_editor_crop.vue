@@ -1,7 +1,7 @@
 <template>
-  <div class="flex flex-1 min-h-0">
+  <div class="flex flex-col md:flex-row flex-1 min-h-0">
     <div
-      class="flex-1 min-h-0 flex items-center justify-center px-6 py-4"
+      class="flex-1 min-h-0 flex items-center justify-center px-4 md:px-6 py-4"
       style="container-type: size"
     >
       <div
@@ -46,73 +46,75 @@
         />
       </div>
     </div>
-    <div class="w-56 flex-none border-l px-4 py-4 space-y-2 flex flex-col">
-      <button
-        class="btn btn-sm w-full justify-start normal-case font-normal rounded disabled:bg-base-300"
-        :disabled="!!isProcessing"
-        @click.prevent="submit(true)"
-      >
-        <IconInnerShadowTop
-          v-if="isProcessing === 'scan'"
-          class="w-4 h-4 animate-spin"
-        />
-        <IconScan
-          v-else
-          class="w-4 h-4"
-        />
-        {{ t('crop_and_scan') }}
-      </button>
-      <button
-        class="btn btn-sm w-full justify-start normal-case font-normal rounded disabled:bg-base-300"
-        :disabled="!!isProcessing"
-        @click.prevent="submit(false)"
-      >
-        <IconInnerShadowTop
-          v-if="isProcessing === 'crop'"
-          class="w-4 h-4 animate-spin"
-        />
-        <IconCrop
-          v-else
-          width="22"
-          height="22"
-          style="margin-left: -3px"
-          :stroke-width="1.5"
-        />
-        <span :style="{ 'margin-left': isProcessing === 'crop' ? '0px' : '-3px' }">
-          {{ t('crop') }}
-        </span>
-      </button>
-      <button
-        class="btn btn-sm w-full justify-start normal-case font-normal rounded"
-        @click.prevent="$emit('cancel')"
-      >
-        <IconX class="w-4 h-4" />
-        {{ t('cancel') }}
-      </button>
-      <div class="border-t !mt-3 !mb-1" />
-      <button
-        class="btn btn-sm w-full justify-start normal-case font-normal rounded"
-        @click.prevent="rotateCw"
-      >
-        <IconRotateClockwise class="w-4 h-4" />
-        {{ t('rotate') }}
-      </button>
-      <button
-        class="btn btn-sm w-full justify-start normal-case font-normal rounded"
-        :class="{ 'btn-active': flipH }"
-        @click.prevent="toggleFlip('flipH')"
-      >
-        <IconFlipVertical class="w-4 h-4" />
-        {{ t('flip_horizontal') }}
-      </button>
-      <button
-        class="btn btn-sm w-full justify-start normal-case font-normal rounded"
-        :class="{ 'btn-active': flipV }"
-        @click.prevent="toggleFlip('flipV')"
-      >
-        <IconFlipHorizontal class="w-4 h-4" />
-        {{ t('flip_vertical') }}
-      </button>
+    <div class="flex-none px-4 border-t py-3 md:w-56 md:border-t-0 md:border-l md:py-4 md:space-y-2 md:flex md:flex-col">
+      <div class="grid grid-cols-3 gap-2 md:block md:space-y-2">
+        <button
+          class="btn btn-sm normal-case font-normal rounded disabled:bg-base-300 flex-col gap-1 h-auto min-h-0 py-2 px-1 text-xs leading-tight whitespace-normal md:flex-row md:gap-2 md:h-8 md:min-h-[2rem] md:py-0 md:px-3 md:text-sm md:whitespace-nowrap md:w-full md:justify-start"
+          :disabled="!!isProcessing"
+          @click.prevent="submit(true)"
+        >
+          <IconInnerShadowTop
+            v-if="isProcessing === 'scan'"
+            class="w-4 h-4 animate-spin"
+          />
+          <IconScan
+            v-else
+            class="w-4 h-4"
+          />
+          {{ t('crop_and_scan') }}
+        </button>
+        <button
+          class="btn btn-sm normal-case font-normal rounded disabled:bg-base-300 flex-col gap-1 h-auto min-h-0 py-2 px-1 text-xs leading-tight whitespace-normal md:flex-row md:gap-2 md:h-8 md:min-h-[2rem] md:py-0 md:px-3 md:text-sm md:whitespace-nowrap md:w-full md:justify-start"
+          :disabled="!!isProcessing"
+          @click.prevent="submit(false)"
+        >
+          <IconInnerShadowTop
+            v-if="isProcessing === 'crop'"
+            class="w-4 h-4 animate-spin"
+          />
+          <IconCrop
+            v-else
+            width="22"
+            height="22"
+            style="margin-left: -3px"
+            :stroke-width="1.5"
+          />
+          <span :style="{ 'margin-left': isProcessing === 'crop' ? '0px' : '-3px' }">
+            {{ t('crop') }}
+          </span>
+        </button>
+        <button
+          class="btn btn-sm normal-case font-normal rounded flex-col gap-1 h-auto min-h-0 py-2 px-1 text-xs leading-tight whitespace-normal md:flex-row md:gap-2 md:h-8 md:min-h-[2rem] md:py-0 md:px-3 md:text-sm md:whitespace-nowrap md:w-full md:justify-start"
+          @click.prevent="$emit('cancel')"
+        >
+          <IconX class="w-4 h-4" />
+          {{ t('cancel') }}
+        </button>
+        <div class="hidden md:block border-t !mt-3 !mb-1" />
+        <button
+          class="btn btn-sm normal-case font-normal rounded flex-col gap-1 h-auto min-h-0 py-2 px-1 text-xs leading-tight whitespace-normal md:flex-row md:gap-2 md:h-8 md:min-h-[2rem] md:py-0 md:px-3 md:text-sm md:whitespace-nowrap md:w-full md:justify-start"
+          @click.prevent="rotateCw"
+        >
+          <IconRotateClockwise class="w-4 h-4" />
+          {{ t('rotate') }}
+        </button>
+        <button
+          class="btn btn-sm normal-case font-normal rounded flex-col gap-1 h-auto min-h-0 py-2 px-1 text-xs leading-tight whitespace-normal md:flex-row md:gap-2 md:h-8 md:min-h-[2rem] md:py-0 md:px-3 md:text-sm md:whitespace-nowrap md:w-full md:justify-start"
+          :class="{ 'btn-active': flipH }"
+          @click.prevent="toggleFlip('flipH')"
+        >
+          <IconFlipVertical class="w-4 h-4" />
+          {{ t('flip_horizontal') }}
+        </button>
+        <button
+          class="btn btn-sm normal-case font-normal rounded flex-col gap-1 h-auto min-h-0 py-2 px-1 text-xs leading-tight whitespace-normal md:flex-row md:gap-2 md:h-8 md:min-h-[2rem] md:py-0 md:px-3 md:text-sm md:whitespace-nowrap md:w-full md:justify-start"
+          :class="{ 'btn-active': flipV }"
+          @click.prevent="toggleFlip('flipV')"
+        >
+          <IconFlipHorizontal class="w-4 h-4" />
+          {{ t('flip_vertical') }}
+        </button>
+      </div>
     </div>
   </div>
 </template>

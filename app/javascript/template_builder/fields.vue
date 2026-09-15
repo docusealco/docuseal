@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="withStickySubmitters ? 'sticky top-0 z-[1]' : ''"
+    :class="{ 'sticky top-0 z-[1]': withStickySubmitters, 'bg-base-100': withStickySubmitters && ['', null, 'transparent'].includes(backgroundColor), 'pt-3': withTopPadding }"
     :style="withStickySubmitters ? { backgroundColor } : {}"
     class="flex items-center gap-1"
   >
@@ -64,6 +64,8 @@
       @remove="removeField"
       @scroll-to="$emit('scroll-to-area', $event)"
       @set-draw="$emit('set-draw', $event)"
+      @touch-drag="onTouchDrag"
+      @touch-drag-end="onTouchDragEnd"
     />
   </div>
   <div
@@ -356,24 +358,16 @@
           width="22"
           class="animate-spin"
         />
-        <span
-          v-if="analyzingProgress"
-          class="hidden md:inline"
-        >
+        <span v-if="analyzingProgress">
           {{ Math.round(analyzingProgress * 100) }}% {{ t('analyzing_') }}
         </span>
-        <span
-          v-else
-          class="hidden md:inline"
-        >
+        <span v-else>
           {{ fieldPagesLoaded }} / {{ numberOfPages }} {{ t('processing_') }}
         </span>
       </template>
       <template v-else>
         <IconSparkles width="22" />
-        <span
-          class="hidden md:inline"
-        >
+        <span>
           {{ t('autodetect_fields') }}
         </span>
       </template>
@@ -517,6 +511,11 @@ export default {
       type: Boolean,
       required: false,
       default: true
+    },
+    withTopPadding: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     fieldTypes: {
       type: Array,
@@ -829,6 +828,8 @@ export default {
 
                 this.save()
 
+                window.webkit?.messageHandlers?.flash?.postMessage({ style: 'notice', message: this.t('fields_detected').replace('{count}', (data.fields || fields).length) })
+
                 break
               } else if (data.fields) {
                 data.fields.forEach((f) => {
@@ -884,19 +885,58 @@ export default {
     },
     onFieldDragover (e) {
       if (this.fieldsDragFieldRef.value) {
-        const targetField = e.target.closest('[data-uuid]')
-        const dragField = this.$refs.fields.querySelector(`[data-uuid="${this.fieldsDragFieldRef.value.uuid}"]`)
+        this.moveFieldElement(this.fieldsDragFieldRef.value, e.target.closest('[data-uuid]'))
+      }
+    },
+    onTouchDrag ({ field, x, y }) {
+      const dragField = this.$refs.fields.querySelector(`[data-uuid="${field.uuid}"]`)
 
-        if (dragField && targetField && targetField !== dragField) {
-          const fields = Array.from(this.$refs.fields.children)
-          const currentIndex = fields.indexOf(dragField)
-          const targetIndex = fields.indexOf(targetField)
+      if (!dragField) return
 
-          if (currentIndex < targetIndex) {
-            targetField.after(dragField)
-          } else {
-            targetField.before(dragField)
-          }
+      if (!this.touchPreview) {
+        const rect = dragField.getBoundingClientRect()
+        const el = dragField.cloneNode(true)
+        const root = this.$el.getRootNode()
+
+        Object.assign(el.style, { position: 'fixed', left: `${rect.left}px`, top: `${rect.top}px`, width: `${rect.width}px`, margin: 0, zIndex: 50, pointerEvents: 'none', opacity: 0.9 })
+
+        ;(root === document ? document.body : root).appendChild(el)
+
+        dragField.style.opacity = 0.4
+
+        this.touchPreview = { el, dragField, offsetY: y - rect.top }
+      }
+
+      this.touchPreview.el.style.top = `${y - this.touchPreview.offsetY}px`
+
+      const root = this.$el.getRootNode()
+      const targetField = (root.elementFromPoint ? root : document).elementFromPoint(x, y)?.closest('[data-uuid]')
+
+      if (targetField && this.$refs.fields.contains(targetField)) {
+        this.moveFieldElement(field, targetField)
+      }
+    },
+    onTouchDragEnd () {
+      if (this.touchPreview) {
+        this.touchPreview.el.remove()
+        this.touchPreview.dragField.style.opacity = ''
+        this.touchPreview = null
+      }
+
+      this.reorderFields()
+    },
+    moveFieldElement (field, targetField) {
+      const dragField = this.$refs.fields.querySelector(`[data-uuid="${field.uuid}"]`)
+
+      if (dragField && targetField && targetField !== dragField) {
+        const fields = Array.from(this.$refs.fields.children)
+        const currentIndex = fields.indexOf(dragField)
+        const targetIndex = fields.indexOf(targetField)
+
+        if (currentIndex < targetIndex) {
+          targetField.after(dragField)
+        } else {
+          targetField.before(dragField)
         }
       }
     },

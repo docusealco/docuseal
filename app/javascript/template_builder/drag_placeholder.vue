@@ -5,7 +5,7 @@
     :style="dragPlaceholderStyle"
     :field="field"
     :with-options="false"
-    class="fixed z-20 pointer-events-none"
+    class="fixed z-50 pointer-events-none"
     :editable="false"
   />
   <CustomField
@@ -13,13 +13,13 @@
     ref="dragPlaceholder"
     :style="dragPlaceholderStyle"
     :field="field"
-    class="fixed z-20 pointer-events-none opacity-90"
+    class="fixed z-50 pointer-events-none opacity-90"
   />
   <div
     v-else-if="dragPlaceholder && (isDefault || isRequired) && !isMask && field"
     ref="dragPlaceholder"
     :style="[dragPlaceholderStyle, { backgroundColor: backgroundColor }]"
-    class="fixed z-20 border border-base-300 rounded group default-field fields-list-item pointer-events-none"
+    class="fixed z-50 border border-base-300 rounded group default-field fields-list-item pointer-events-none"
   >
     <div class="flex items-center justify-between relative cursor-grab">
       <div class="flex items-center p-1 space-x-1">
@@ -45,7 +45,7 @@
   <button
     v-else-if="dragPlaceholder && !isMask && field"
     ref="dragPlaceholder"
-    class="fixed field-type-button z-20 flex items-center justify-center border border-dashed w-full rounded border-base-content/20 opacity-90 pointer-events-none"
+    class="fixed field-type-button z-50 flex items-center justify-center border border-dashed w-full rounded border-base-content/20 opacity-90 pointer-events-none"
     :style="[dragPlaceholderStyle, { backgroundColor }]"
   >
     <div

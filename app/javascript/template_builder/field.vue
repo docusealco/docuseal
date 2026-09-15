@@ -114,6 +114,12 @@
               :title="t('settings')"
               class="cursor-pointer flex items-center"
               :class="[iconColorClass, { 'pr-1': isMobile }]"
+              @touchstart="onHandleTouchstart"
+              @touchmove="onHandleTouchmove"
+              @touchend="onHandleTouchend"
+              @touchcancel="onHandleTouchend"
+              @mousedown="dropdownWasOpen = $event.currentTarget.parentElement.contains($event.currentTarget.getRootNode().activeElement)"
+              @click="dropdownWasOpen && closeDropdown()"
             >
               <IconDotsVertical
                 v-if="isMobile"
@@ -417,9 +423,11 @@ export default {
       default: true
     }
   },
-  emits: ['set-draw', 'remove', 'scroll-to', 'save', 'add-custom-field'],
+  emits: ['set-draw', 'remove', 'scroll-to', 'save', 'add-custom-field', 'touch-drag', 'touch-drag-end'],
   data () {
     return {
+      touchDrag: null,
+      dropdownWasOpen: false,
       isExpandOptions: false,
       isNameFocus: false,
       isShowFormulaModal: false,
@@ -471,6 +479,37 @@ export default {
     }
   },
   methods: {
+    onHandleTouchstart (e) {
+      if (!this.isMobile) return
+
+      this.touchDrag = { startY: e.touches[0].clientY, moved: false }
+    },
+    onHandleTouchmove (e) {
+      if (!this.touchDrag) return
+
+      const { clientX, clientY } = e.touches[0]
+
+      if (!this.touchDrag.moved && Math.abs(clientY - this.touchDrag.startY) < 6) return
+
+      this.touchDrag.moved = true
+
+      e.preventDefault()
+
+      this.$emit('touch-drag', { field: this.field, x: clientX, y: clientY })
+    },
+    onHandleTouchend (e) {
+      if (!this.touchDrag) return
+
+      if (this.touchDrag.moved) {
+        e.preventDefault()
+
+        e.currentTarget.blur()
+
+        this.$emit('touch-drag-end')
+      }
+
+      this.touchDrag = null
+    },
     removeArea (area) {
       this.field.areas.splice(this.field.areas.indexOf(area), 1)
 

@@ -2,7 +2,7 @@
   <div
     ref="dragContainer"
     style="max-width: 1600px"
-    :class="isNativeView ? 'px-4 pt-3 pb-6' : 'mx-auto pl-3 md:pl-4 h-full'"
+    :class="isNativeView ? (isRevisionsView ? 'px-4 pt-3 pb-6' : 'px-4') : 'mx-auto pl-3 md:pl-4 h-full'"
     @dragover="onDragover"
     @drop="isDragFile = false"
   >
@@ -25,79 +25,117 @@
       :is-default="defaultFields.includes(toRaw(dragField))"
       :is-required="defaultRequiredFields.includes(toRaw(dragField))"
     />
-    <div
-      v-if="isDocumentsView"
-      class="space-y-3"
+    <MobileDrawer
+      v-if="isDocumentsView || (withMobileDrawers && withDocumentsList && isBreakpointLg)"
+      side="left"
+      :inline="isDocumentsView"
+      :open="isDocumentsDrawerOpen"
+      @close="isDocumentsDrawerOpen = false"
     >
-      <DocumentPreview
-        v-for="(item, index) in template.schema"
-        :key="item.attachment_uuid"
-        :with-arrows="template.schema.length > 1"
-        :with-visible-controls="true"
-        :item="item"
-        :document="sortedDocuments[index]"
-        :accept-file-types="acceptFileTypes"
-        :with-replace-button="withUploadButton"
-        :with-google-drive="withGoogleDrive"
-        :authenticity-token="authenticityToken"
-        :editable="editable"
-        :dynamic-documents="dynamicDocuments"
-        :with-dynamic-documents="withDynamicDocuments"
-        :template="template"
-        @scroll-to="postNativeEvent('template-builder:scroll-to', { attachment_uuid: item.attachment_uuid }, true)"
-        @remove="onDocumentRemove"
-        @replace="onDocumentReplace"
-        @up="moveDocument(item, -1)"
-        @reorder="reorderFields"
-        @edit="editModalDocumentUuid = item.attachment_uuid"
-        @down="moveDocument(item, 1)"
-        @change="save"
-      />
-      <Upload
-        v-if="editable && withUploadButton"
-        :accept-file-types="acceptFileTypes"
-        :authenticity-token="authenticityToken"
-        :with-google-drive="withGoogleDrive"
-        :template-id="template.id"
-        @success="updateFromUpload"
-      />
-    </div>
-    <div v-if="isFieldsView">
-      <Fields
-        ref="fields"
-        :fields="template.fields"
-        :submitters="template.submitters"
-        :selected-submitter="selectedSubmitter"
-        :with-help="withHelp"
-        :default-submitters="defaultSubmitters"
-        :draw-field-type="drawFieldType"
-        :custom-fields="customFields"
-        :with-custom-fields="withCustomFields"
-        :with-fields-search="withFieldsSearch"
-        :default-fields="[...defaultRequiredFields, ...defaultFields]"
-        :with-custom-fields-tab="false"
-        :template="template"
-        :default-required-fields="defaultRequiredFields"
-        :detect-custom-fields-index="detectCustomFieldsIndex"
-        :field-types="fieldTypes"
-        :with-fields-detection="withFieldsDetection"
-        :with-detect-existing-fields="withDetectExistingFields"
-        :with-signature-id="withSignatureId"
-        :with-prefillable="withPrefillable"
-        :only-defined-fields="onlyDefinedFields"
-        :editable="editable"
-        :scroll-on-edit="false"
-        @add-field="addField"
-        @set-draw="postNativeEvent('template-builder:draw-field', { uuid: $event.field.uuid, option: $event.option }, true)"
-        @remove-field="onRemoveField"
-        @remove-submitter="onRemoveSubmitter"
-        @select-submitter="selectedSubmitter = $event"
-        @set-draw-type="postNativeEvent('template-builder:draw-field', { type: $event }, true)"
-        @change-submitter="selectedSubmitter = $event"
-        @scroll-to-area="onDrawerScrollToArea"
-        @rebuild-variables-schema="rebuildVariablesSchema"
-      />
-    </div>
+      <div class="pt-3 space-y-3">
+        <DocumentPreview
+          v-for="(item, index) in template.schema"
+          :key="item.attachment_uuid"
+          :with-arrows="template.schema.length > 1"
+          :with-visible-controls="true"
+          :item="item"
+          :document="sortedDocuments[index]"
+          :accept-file-types="acceptFileTypes"
+          :with-replace-button="withUploadButton"
+          :with-google-drive="withGoogleDrive"
+          :authenticity-token="authenticityToken"
+          :editable="editable"
+          :dynamic-documents="dynamicDocuments"
+          :with-dynamic-documents="withDynamicDocuments"
+          :template="template"
+          @scroll-to="onDrawerScrollTo(item)"
+          @remove="onDocumentRemove"
+          @replace="onDocumentReplace"
+          @up="moveDocument(item, -1)"
+          @reorder="reorderFields"
+          @edit="editModalDocumentUuid = item.attachment_uuid"
+          @down="moveDocument(item, 1)"
+          @change="save"
+        />
+      </div>
+      <div
+        v-if="editable && (withUploadButton || withAddPageButton)"
+        class="pt-3 space-y-2"
+        :class="isDocumentsView ? 'pb-6' : 'sticky bottom-0 bg-base-100 pb-3'"
+      >
+        <Upload
+          v-if="withUploadButton"
+          :accept-file-types="acceptFileTypes"
+          :authenticity-token="authenticityToken"
+          :with-google-drive="withGoogleDrive"
+          :template-id="template.id"
+          @success="updateFromUpload"
+        />
+        <button
+          v-if="withAddPageButton"
+          class="btn btn-outline w-full add-blank-page-button"
+          @click.prevent="addBlankPage"
+        >
+          <IconInnerShadowTop
+            v-if="isLoadingBlankPage"
+            class="animate-spin w-5 h-5"
+          />
+          <IconPlus
+            v-else
+            class="w-5 h-5"
+          />
+          {{ t('add_blank_page') }}
+        </button>
+      </div>
+    </MobileDrawer>
+    <MobileDrawer
+      v-if="isFieldsView || (withMobileDrawers && withFieldsList && editable)"
+      side="right"
+      :inline="isFieldsView"
+      :open="isFieldsDrawerOpen"
+      :class="{ 'md:hidden': !isMobile }"
+      @close="isFieldsDrawerOpen = false"
+    >
+      <div class="pb-6">
+        <Fields
+          :with-top-padding="true"
+          :fields="template.fields"
+          :submitters="template.submitters"
+          :selected-submitter="selectedSubmitter"
+          :with-help="false"
+          :default-submitters="defaultSubmitters"
+          :draw-field-type="drawFieldType"
+          :custom-fields="customFields"
+          :with-custom-fields="withCustomFields"
+          :with-fields-search="withFieldsSearch"
+          :default-fields="[...defaultRequiredFields, ...defaultFields]"
+          :with-custom-fields-tab="false"
+          :template="template"
+          :default-required-fields="defaultRequiredFields"
+          :detect-custom-fields-index="detectCustomFieldsIndex"
+          :field-types="fieldTypes"
+          :with-fields-detection="withFieldsDetection"
+          :with-detect-existing-fields="withDetectExistingFields"
+          :with-signature-id="withSignatureId"
+          :with-prefillable="withPrefillable"
+          :only-defined-fields="onlyDefinedFields"
+          :editable="editable"
+          :scroll-on-edit="false"
+          @add-field="addField"
+          @set-draw="onDrawerSetDraw"
+          @remove-field="onRemoveField"
+          @remove-submitter="onRemoveSubmitter"
+          @select-submitter="selectedSubmitter = $event"
+          @set-draw-type="onDrawerSetDrawType"
+          @set-drag="dragField = $event"
+          @set-drag-placeholder="$refs.dragPlaceholder.dragPlaceholder = $event"
+          @drag-end="[dragField = null, $refs.dragPlaceholder.dragPlaceholder = null]"
+          @change-submitter="selectedSubmitter = $event"
+          @scroll-to-area="onDrawerScrollToArea"
+          @rebuild-variables-schema="rebuildVariablesSchema"
+        />
+      </div>
+    </MobileDrawer>
     <div
       v-if="isRevisionsView && !isRevisionsModalOpen"
       class="flex justify-center py-8"
@@ -636,53 +674,7 @@
                 @delete-selected-areas="deleteSelectedAreas"
                 @autodetect-fields="detectFieldsForPage"
               />
-              <DocumentControls
-                v-if="isBreakpointLg && editable"
-                :with-arrows="template.schema.length > 1"
-                :item="template.schema.find((item) => item.attachment_uuid === document.uuid)"
-                :with-replace-button="withUploadButton"
-                :with-google-drive="withGoogleDrive"
-                :authenticity-token="authenticityToken"
-                :accept-file-types="acceptFileTypes"
-                :document="document"
-                :template="template"
-                class="pb-2 mb-2 border-b border-base-300 border-dashed"
-                @remove="onDocumentRemove"
-                @replace="onDocumentReplace"
-                @up="moveDocument(template.schema.find((item) => item.attachment_uuid === document.uuid), -1)"
-                @down="moveDocument(template.schema.find((item) => item.attachment_uuid === document.uuid), 1)"
-                @change="save"
-              />
             </template>
-            <div
-              v-if="sortedDocuments.length && isBreakpointLg && editable"
-              class="pb-4 space-y-2"
-            >
-              <Upload
-                v-if="withUploadButton"
-                :template-id="template.id"
-                :accept-file-types="acceptFileTypes"
-                :authenticity-token="authenticityToken"
-                :with-google-drive="withGoogleDrive"
-                @success="updateFromUpload"
-              />
-              <button
-                v-if="withAddPageButton"
-                id="add_blank_page_button"
-                class="btn btn-outline w-full mt-4 add-blank-page-button"
-                @click.prevent="addBlankPage"
-              >
-                <IconInnerShadowTop
-                  v-if="isLoadingBlankPage"
-                  class="animate-spin w-5 h-5"
-                />
-                <IconPlus
-                  v-else
-                  class="w-5 h-5"
-                />
-                {{ t('add_blank_page') }}
-              </button>
-            </div>
           </template>
         </div>
       </div>
@@ -797,27 +789,52 @@
           @click="[drawField = null, drawOption = null]"
         />
       </native-action>
-      <MobileDrawField
+      <button
         v-if="drawField && (isBreakpointLg || isMobile) && !nativePlatform"
-        :draw-field="drawField"
-        :fields="template.fields"
-        :submitters="template.submitters"
-        :selected-submitter="selectedSubmitter"
+        class="btn btn-neutral text-white btn-lg rounded-full no-animation transition-none absolute bottom-4 -left-3 md:-left-4 right-0 mx-auto w-fit z-10 flex-nowrap gap-2 px-5 max-[400px]:px-4"
         :class="{ 'md:hidden': !isMobile }"
-        :editable="editable"
-        @cancel="[drawField = null, drawOption = null]"
-        @change-submitter="[selectedSubmitter = $event, drawField.submitter_uuid = $event.uuid]"
-      />
-      <MobileFields
-        v-if="sortedDocuments.length && !drawField && editable && !nativePlatform"
-        :fields="template.fields"
-        :default-fields="[...defaultRequiredFields, ...defaultFields]"
-        :default-required-fields="defaultRequiredFields"
-        :field-types="fieldTypes"
+        style="max-width: calc(100% - 11rem); --btn-focus-scale: 1"
+        @click.prevent="[drawField = null, drawOption = null]"
+      >
+        <component
+          :is="fieldIcons[drawField.type]"
+          :width="22"
+          :height="22"
+          :stroke-width="1.6"
+          class="flex-shrink-0 max-[400px]:hidden"
+        />
+        <span class="truncate normal-case font-normal text-[17px] max-[400px]:text-[15px]">{{ t('draw_field').replace('{field}', fieldNames[drawField.type]) }}</span>
+        <IconX
+          :width="18"
+          :height="18"
+          :stroke-width="2.5"
+          class="flex-shrink-0"
+        />
+      </button>
+      <button
+        v-if="withMobileDrawers && withDocumentsList && isBreakpointLg"
+        class="btn btn-neutral text-white btn-circle btn-lg absolute bottom-4 left-1 md:left-0 z-10"
+        :title="t('documents')"
+        @click.prevent="isDocumentsDrawerOpen = true"
+      >
+        <IconFiles
+          :width="26"
+          :height="26"
+          :stroke-width="1.6"
+        />
+      </button>
+      <button
+        v-if="withMobileDrawers && withFieldsList && editable"
+        class="btn btn-neutral text-white btn-circle btn-lg absolute bottom-4 right-4 z-10"
         :class="{ 'md:hidden': !isMobile }"
-        :selected-submitter="selectedSubmitter"
-        @select="startFieldDraw($event)"
-      />
+        title="Fields"
+        @click.prevent="isFieldsDrawerOpen = true"
+      >
+        <IconPlus
+          :width="28"
+          :height="28"
+        />
+      </button>
     </div>
     <Transition
       enter-active-class="transition-all duration-300 ease-out"
@@ -920,18 +937,16 @@ import Dropzone from './dropzone'
 import HoverDropzone from './hover_dropzone'
 import DragPlaceholder from './drag_placeholder'
 import Fields from './fields'
-import MobileDrawField from './mobile_draw_field'
+import MobileDrawer from './mobile_drawer'
 import FieldType from './field_type'
 import Document from './document'
 import Logo from './logo'
 import Contenteditable from './contenteditable'
 import DocumentPreview from './preview'
-import DocumentControls from './controls'
-import MobileFields from './mobile_fields'
 import FieldSubmitter from './field_submitter'
 import RevisionsModal from './revisions_modal'
 import DocumentsEditorModal from './documents_editor_modal'
-import { IconPlus, IconUsersPlus, IconDeviceFloppy, IconChevronDown, IconEye, IconWritingSign, IconInnerShadowTop, IconInfoCircle, IconAdjustments, IconDownload, IconHistory, IconX } from '@tabler/icons-vue'
+import { IconPlus, IconFiles, IconUsersPlus, IconDeviceFloppy, IconChevronDown, IconEye, IconWritingSign, IconInnerShadowTop, IconInfoCircle, IconAdjustments, IconDownload, IconHistory, IconX } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
 import { ref, computed, toRaw, defineAsyncComponent } from 'vue'
 import * as i18n from './i18n'
@@ -955,15 +970,14 @@ export default {
     Document,
     Fields,
     IconInfoCircle,
-    MobileDrawField,
+    MobileDrawer,
     IconPlus,
+    IconFiles,
     IconWritingSign,
-    MobileFields,
     Logo,
     Dropzone,
     HoverDropzone,
     DocumentPreview,
-    DocumentControls,
     IconInnerShadowTop,
     Contenteditable,
     IconUsersPlus,
@@ -1362,6 +1376,8 @@ export default {
       isDragFile: false,
       isMathLoaded: false,
       isRevisionsModalOpen: false,
+      isDocumentsDrawerOpen: false,
+      isFieldsDrawerOpen: false,
       editModalDocumentUuid: null,
       revisions: [],
       beforeRevisionSnapshot: null,
@@ -1407,11 +1423,15 @@ export default {
       return this.selectedAreasRef.value[this.selectedAreasRef.value.length - 1]
     },
     fieldNames: FieldType.computed.fieldNames,
+    fieldIcons: FieldType.computed.fieldIcons,
     isDocumentsView () {
       return this.view === 'documents'
     },
     isFieldsView () {
       return this.view === 'fields'
+    },
+    withMobileDrawers () {
+      return !this.nativePlatform && !this.isNativeView && this.sortedDocuments.length > 0
     },
     isRevisionsView () {
       return this.view === 'revisions'
@@ -2406,10 +2426,40 @@ export default {
     postNativeEvent (name, detail, dismiss = false) {
       window.webkit?.messageHandlers?.modal?.postMessage({ action: 'dispatch', name, detail: JSON.stringify(detail), dismiss: dismiss ? 'true' : 'false' })
     },
+    onDrawerScrollTo (item) {
+      if (this.isNativeView) {
+        this.postNativeEvent('template-builder:scroll-to', { attachment_uuid: item.attachment_uuid }, true)
+      } else {
+        this.isDocumentsDrawerOpen = false
+        this.scrollIntoDocument(item)
+      }
+    },
+    onDrawerSetDraw ({ field, option }) {
+      if (this.isNativeView) {
+        this.postNativeEvent('template-builder:draw-field', { uuid: field.uuid, option }, true)
+      } else {
+        this.isFieldsDrawerOpen = false
+        this.drawField = field
+        this.drawOption = option
+      }
+    },
+    onDrawerSetDrawType (type) {
+      if (this.isNativeView) {
+        this.postNativeEvent('template-builder:draw-field', { type }, true)
+      } else {
+        this.isFieldsDrawerOpen = false
+        this.startFieldDraw({ type })
+      }
+    },
     onDrawerScrollToArea (area) {
-      const field = this.template.fields.find((f) => (f.areas || []).includes(area))
+      if (this.isNativeView) {
+        const field = this.template.fields.find((f) => (f.areas || []).includes(area))
 
-      this.postNativeEvent('template-builder:select-field', { uuid: field?.uuid, attachment_uuid: area.attachment_uuid, page: area.page, x: area.x, y: area.y }, true)
+        this.postNativeEvent('template-builder:select-field', { uuid: field?.uuid, attachment_uuid: area.attachment_uuid, page: area.page, x: area.x, y: area.y }, true)
+      } else {
+        this.isFieldsDrawerOpen = false
+        this.scrollToArea(area)
+      }
     },
     syncNative () {
       const { schema, documents, fields, submitters } = this.template

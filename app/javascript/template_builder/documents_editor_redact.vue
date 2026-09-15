@@ -1,6 +1,6 @@
 <template>
-  <div class="flex flex-1 min-h-0">
-    <div class="flex-1 overflow-y-auto px-6 py-4">
+  <div class="flex flex-col md:flex-row flex-1 min-h-0">
+    <div class="flex-1 overflow-y-auto overflow-x-hidden px-4 md:px-6 py-4">
       <div
         ref="pageEl"
         class="relative mx-auto select-none cursor-crosshair"
@@ -48,8 +48,8 @@
         </div>
       </div>
     </div>
-    <div class="w-56 flex-none border-l px-4 py-4 space-y-2">
-      <div class="flex items-center justify-between mb-1">
+    <div class="flex-none px-4 border-t py-3 md:w-56 md:border-t-0 md:border-l md:py-4 md:space-y-2">
+      <div class="flex items-center justify-between mb-3 md:mb-1">
         <span class="text-sm pl-1">{{ t('color') }}</span>
         <div
           class="join rounded"
@@ -69,30 +69,32 @@
           </button>
         </div>
       </div>
-      <button
-        class="btn btn-sm w-full justify-start normal-case font-normal rounded disabled:bg-base-300"
-        :disabled="!hasRedactions && !wasReset"
-        @click.prevent="apply"
-      >
-        <IconCheck class="w-4 h-4" />
-        {{ t('apply') }}
-      </button>
-      <div class="border-t !mt-3 !mb-1" />
-      <button
-        class="btn btn-sm w-full justify-start normal-case font-normal rounded disabled:bg-base-300"
-        :disabled="!hasRedactions"
-        @click.prevent="reset"
-      >
-        <IconRotate class="w-4 h-4" />
-        {{ t('reset') }}
-      </button>
-      <button
-        class="btn btn-sm w-full justify-start normal-case font-normal rounded"
-        @click.prevent="$emit('cancel')"
-      >
-        <IconX class="w-4 h-4" />
-        {{ t('cancel') }}
-      </button>
+      <div class="grid grid-cols-3 gap-2 md:block md:space-y-2">
+        <button
+          class="btn btn-sm normal-case font-normal rounded disabled:bg-base-300 flex-col gap-1 h-auto min-h-0 py-2 px-1 text-xs leading-tight whitespace-normal md:flex-row md:gap-2 md:h-8 md:min-h-[2rem] md:py-0 md:px-3 md:text-sm md:whitespace-nowrap md:w-full md:justify-start"
+          :disabled="!hasRedactions && !wasReset"
+          @click.prevent="apply"
+        >
+          <IconCheck class="w-4 h-4" />
+          {{ t('apply') }}
+        </button>
+        <div class="hidden md:block border-t !mt-3 !mb-1" />
+        <button
+          class="btn btn-sm normal-case font-normal rounded disabled:bg-base-300 flex-col gap-1 h-auto min-h-0 py-2 px-1 text-xs leading-tight whitespace-normal md:flex-row md:gap-2 md:h-8 md:min-h-[2rem] md:py-0 md:px-3 md:text-sm md:whitespace-nowrap md:w-full md:justify-start"
+          :disabled="!hasRedactions"
+          @click.prevent="reset"
+        >
+          <IconRotate class="w-4 h-4" />
+          {{ t('reset') }}
+        </button>
+        <button
+          class="btn btn-sm normal-case font-normal rounded flex-col gap-1 h-auto min-h-0 py-2 px-1 text-xs leading-tight whitespace-normal md:flex-row md:gap-2 md:h-8 md:min-h-[2rem] md:py-0 md:px-3 md:text-sm md:whitespace-nowrap md:w-full md:justify-start"
+          @click.prevent="$emit('cancel')"
+        >
+          <IconX class="w-4 h-4" />
+          {{ t('cancel') }}
+        </button>
+      </div>
     </div>
   </div>
 </template>
