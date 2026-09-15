@@ -20,7 +20,8 @@ class ApplicationController < ActionController::Base
                 :true_ability,
                 :form_link_host,
                 :svg_icon,
-                :turbo_native_ios?
+                :turbo_native_ios?,
+                :turbo_native_android?
 
   impersonates :user, with: ->(uuid) { User.find_by(uuid:) }
 
@@ -71,6 +72,10 @@ class ApplicationController < ActionController::Base
 
   def turbo_native_ios?
     request.user_agent.to_s.include?('Hotwire Native iOS')
+  end
+
+  def turbo_native_android?
+    request.user_agent.to_s.include?('Hotwire Native Android')
   end
 
   def with_locale(&)

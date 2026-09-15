@@ -233,8 +233,7 @@ safeRegisterElement('template-builder', class extends HTMLElement {
       currencies: (this.dataset.currencies || '').split(',').filter(Boolean),
       acceptFileTypes: this.dataset.acceptFileTypes,
       showTourStartForm: this.dataset.showTourStartForm === 'true',
-      nativeApp: this.dataset.nativeApp === 'true',
-      nativeIos: this.dataset.nativeIos === 'true'
+      nativePlatform: this.dataset.nativePlatform
     })
 
     this.component = this.app.mount(this.appElem)

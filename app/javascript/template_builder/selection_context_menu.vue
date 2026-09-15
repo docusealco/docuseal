@@ -192,7 +192,7 @@ export default {
     ConditionsModal,
     ContextSubmenu
   },
-  inject: ['t', 'save', 'selectedAreasRef', 'getFieldTypeIndex', 'withConditions', 'nativeIos'],
+  inject: ['t', 'save', 'selectedAreasRef', 'getFieldTypeIndex', 'withConditions', 'nativePlatform'],
   props: {
     contextMenu: {
       type: Object,
@@ -259,7 +259,7 @@ export default {
       return true
     },
     showCondition () {
-      return this.withCondition && (this.withConditions || !this.nativeIos)
+      return this.withCondition && (this.withConditions || this.nativePlatform !== 'ios')
     },
     fieldNames: FieldType.computed.fieldNames,
     fieldLabels: FieldType.computed.fieldLabels

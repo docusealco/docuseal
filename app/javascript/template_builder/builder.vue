@@ -78,7 +78,7 @@
       v-if="$slots.buttons || withTitle"
       id="title_container"
       class="flex justify-between py-1.5 items-center pr-4 top-0 z-10 title-container"
-      :class="{ sticky: withStickySubmitters || isBreakpointLg, hidden: nativeApp }"
+      :class="{ sticky: withStickySubmitters || isBreakpointLg, hidden: !!nativePlatform }"
       :style="{ backgroundColor }"
     >
       <div class="flex items-center space-x-3">
@@ -104,7 +104,7 @@
         />
         <template v-else>
           <form-prompt
-            v-if="nativeApp && editable"
+            v-if="!!nativePlatform && editable"
             data-refresh="false"
           >
             <native-action
@@ -140,7 +140,7 @@
             </native-action>
           </form-prompt>
           <native-action
-            v-if="withSendButton && nativeApp"
+            v-if="withSendButton && !!nativePlatform"
             :data-label="t('send')"
             data-icon="send"
           >
@@ -156,8 +156,8 @@
             data-icon="writing"
           >
             <form
-              :target="nativeApp ? null : '_blank'"
-              :data-turbo="nativeApp ? null : 'false'"
+              :target="!!nativePlatform ? null : '_blank'"
+              :data-turbo="!!nativePlatform ? null : 'false'"
               class="inline"
               method="post"
               :action="`/start_form_self/${template.id}`"
@@ -211,7 +211,7 @@
             </a>
           </native-action>
           <native-action
-            v-if="withSendButton && !nativeApp"
+            v-if="withSendButton && !nativePlatform"
             :data-label="t('send')"
             data-icon="users_plus"
             data-placement="bar"
@@ -219,7 +219,7 @@
             <a
               id="send_button"
               :href="`/templates/${template.id}/submissions/new?with_link=true`"
-              :data-turbo-frame="!nativeApp && isMobile && isBreakpointLg ? '_top' : 'modal'"
+              :data-turbo-frame="!nativePlatform && isMobile && isBreakpointLg ? '_top' : 'modal'"
               class="white-button md:!px-6"
               @click="maybeShowErrorTemplateAlert"
             >
@@ -309,7 +309,7 @@
                   >
                     <a
                       :href="`/templates/${template.id}/preferences`"
-                      :data-turbo-frame="!nativeApp && isMobile && isBreakpointLg ? '_top' : 'modal'"
+                      :data-turbo-frame="!nativePlatform && isMobile && isBreakpointLg ? '_top' : 'modal'"
                       class="flex space-x-2"
                       @click="closeDropdown"
                     >
@@ -324,7 +324,7 @@
                     data-icon="history"
                   >
                     <a
-                      v-if="nativeApp"
+                      v-if="!!nativePlatform"
                       :href="`/templates/${template.id}/versions`"
                       data-turbo-frame="modal"
                     />
@@ -392,7 +392,7 @@
     <div
       id="main_container"
       class="flex main-container"
-      :class="($slots.buttons || withTitle) && !nativeApp ? (isMobile ? 'max-h-[calc(100%_-_60px)]' : 'md:max-h-[calc(100%_-_60px)]') : (isMobile ? 'max-h-[100%]' : 'md:max-h-[100%]')"
+      :class="($slots.buttons || withTitle) && !nativePlatform ? (isMobile ? 'max-h-[calc(100%_-_60px)]' : 'md:max-h-[calc(100%_-_60px)]') : (isMobile ? 'max-h-[100%]' : 'md:max-h-[100%]')"
     >
       <div
         v-if="withDocumentsList"
@@ -886,7 +886,7 @@ export default {
       isPaypalConnected: this.isPaypalConnected,
       withFormula: this.withFormula,
       withConditions: this.withConditions,
-      nativeIos: this.nativeIos,
+      nativePlatform: this.nativePlatform,
       withCustomFields: this.withCustomFields,
       isInlineSize: this.isInlineSize,
       defaultDrawFieldType: this.defaultDrawFieldType,
@@ -1104,15 +1104,10 @@ export default {
       required: false,
       default: true
     },
-    nativeApp: {
-      type: Boolean,
+    nativePlatform: {
+      type: String,
       required: false,
-      default: false
-    },
-    nativeIos: {
-      type: Boolean,
-      required: false,
-      default: false
+      default: ''
     },
     withFieldsSearch: {
       type: Boolean,
