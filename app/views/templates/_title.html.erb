@@ -106,7 +106,7 @@
       </native-action>
     <% end %>
     <% if template.archived_at? || (!can?(:update, template) && can?(:read, template)) %>
-      <native-action data-section="edit" data-icon="file_text" data-label="<%= t('preview') %>">
+      <native-action data-placement="bar" data-icon="file_text" data-label="<%= t('preview') %>">
         <a href="<%= template_preview_path(template) %>" data-native-title="<%= template.name %>"></a>
       </native-action>
     <% end %>

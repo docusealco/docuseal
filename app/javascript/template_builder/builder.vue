@@ -763,7 +763,7 @@
       class="sticky bottom-0 z-10"
     >
       <native-action
-        v-if="nativePlatform && withDocumentsList && isBreakpointLg && sortedDocuments.length"
+        v-if="nativePlatform && withDocumentsList && isBreakpointLg && sortedDocuments.length && editable"
         data-placement="drawer"
         data-side="leading"
         data-icon="files"
