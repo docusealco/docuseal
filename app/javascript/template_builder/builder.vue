@@ -26,7 +26,7 @@
       :is-required="defaultRequiredFields.includes(toRaw(dragField))"
     />
     <MobileDrawer
-      v-if="isDocumentsView || (withMobileDrawers && withDocumentsList && isBreakpointLg)"
+      v-if="isDocumentsView || (withMobileDrawers && withDocumentsList && (isBreakpointLg || isMobile))"
       side="left"
       :inline="isDocumentsView"
       :open="isDocumentsDrawerOpen"
@@ -93,7 +93,7 @@
       side="right"
       :inline="isFieldsView"
       :open="isFieldsDrawerOpen"
-      :class="{ 'md:hidden': !isMobile }"
+      class="md:hidden"
       @close="isFieldsDrawerOpen = false"
     >
       <div class="pb-6">
@@ -516,7 +516,7 @@
         v-if="withDocumentsList"
         id="documents_container"
         ref="previews"
-        :style="{ 'display': isBreakpointLg ? 'none' : 'initial' }"
+        :style="{ 'display': isBreakpointLg || isMobile ? 'none' : 'initial' }"
         class="overflow-y-auto overflow-x-hidden w-52 flex-none pr-3 mt-0.5 pt-0.5 hidden lg:block"
       >
         <DocumentPreview
@@ -679,7 +679,7 @@
         </div>
       </div>
       <div
-        v-if="withFieldsList && !isMobile"
+        v-if="withFieldsList"
         id="fields_list_container"
         class="relative w-80 flex-none mt-1 pr-4 pl-0.5 hidden md:block fields-list-container"
         :class="drawField || drawCustomField ? 'overflow-hidden' : 'overflow-y-auto overflow-x-hidden'"
@@ -733,6 +733,7 @@
             :detect-custom-fields-index="detectCustomFieldsIndex"
             :field-types="fieldTypes"
             :with-sticky-submitters="withStickySubmitters"
+            :with-add-fields-pill="!showDrawField && !drawField && !drawCustomField"
             :with-fields-detection="withFieldsDetection"
             :with-detect-existing-fields="withDetectExistingFields"
             :with-signature-id="withSignatureId"
@@ -745,7 +746,7 @@
             @remove-field="onRemoveField"
             @remove-submitter="onRemoveSubmitter"
             @select-submitter="selectedSubmitter = $event"
-            @set-draw-type="[drawFieldType = $event, showDrawField = true]"
+            @set-draw-type="isMobile ? startFieldDraw({ type: $event }) : [drawFieldType = $event, showDrawField = true]"
             @set-draw-custom-field="[drawCustomField = $event, showDrawField = true]"
             @set-drag="dragField = $event"
             @set-drag-placeholder="$refs.dragPlaceholder.dragPlaceholder = $event"
@@ -791,8 +792,7 @@
       </native-action>
       <button
         v-if="drawField && (isBreakpointLg || isMobile) && !nativePlatform"
-        class="btn btn-neutral text-white rounded-full no-animation transition-none absolute bottom-6 -left-3 md:-left-4 right-0 mx-auto w-fit z-10 flex-nowrap gap-2 px-5 max-[400px]:px-4"
-        :class="{ 'md:hidden': !isMobile }"
+        class="btn btn-neutral text-white rounded-full no-animation transition-none absolute bottom-6 -left-3 md:-left-4 right-0 mx-auto w-fit z-10 flex-nowrap gap-2 px-5 max-[400px]:px-4 md:hidden"
         style="max-width: calc(100% - 11rem); --btn-focus-scale: 1"
         @click.prevent="[drawField = null, drawOption = null]"
       >
@@ -815,7 +815,7 @@
         />
       </button>
       <button
-        v-if="withMobileDrawers && withDocumentsList && isBreakpointLg"
+        v-if="withMobileDrawers && withDocumentsList && (isBreakpointLg || isMobile)"
         class="btn btn-neutral text-white btn-circle btn-lg absolute bottom-4 left-1 md:left-0 z-10"
         :title="t('documents')"
         @click.prevent="isDocumentsDrawerOpen = true"
@@ -828,8 +828,7 @@
       </button>
       <button
         v-if="withMobileDrawers && withFieldsList && editable"
-        class="btn btn-neutral text-white btn-circle btn-lg absolute bottom-4 right-4 z-10"
-        :class="{ 'md:hidden': !isMobile }"
+        class="btn btn-neutral text-white btn-circle btn-lg absolute bottom-4 right-4 z-10 md:hidden"
         title="Fields"
         @click.prevent="isFieldsDrawerOpen = true"
       >

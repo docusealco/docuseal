@@ -392,7 +392,7 @@
     </div>
   </div>
   <div
-    v-if="isMobile"
+    v-if="isMobile && withAddFieldsPill"
     class="sticky bottom-4 h-0 z-[5]"
   >
     <Transition
@@ -500,6 +500,11 @@ export default {
       default: true
     },
     scrollOnEdit: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+    withAddFieldsPill: {
       type: Boolean,
       required: false,
       default: true
