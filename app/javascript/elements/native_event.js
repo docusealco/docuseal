@@ -2,6 +2,7 @@ export default class extends HTMLElement {
   connectedCallback () {
     if (this.dataset.on === 'submit') {
       document.addEventListener('turbo:submit-end', this.onSubmitEnd)
+      this.addEventListener('turbo:before-fetch-response', this.onBeforeFetchResponse)
     } else {
       this.addEventListener('click', this.dispatch)
     }
@@ -9,7 +10,16 @@ export default class extends HTMLElement {
 
   disconnectedCallback () {
     document.removeEventListener('turbo:submit-end', this.onSubmitEnd)
+    this.removeEventListener('turbo:before-fetch-response', this.onBeforeFetchResponse)
     this.removeEventListener('click', this.dispatch)
+  }
+
+  onBeforeFetchResponse = (e) => {
+    const response = e.detail.fetchResponse
+
+    if (window.webkit?.messageHandlers?.modal && response.succeeded && !response.redirected && !response.isHTML) {
+      e.preventDefault()
+    }
   }
 
   onSubmitEnd = async (e) => {

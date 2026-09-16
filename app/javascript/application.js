@@ -268,6 +268,7 @@ safeRegisterElement('template-builder', class extends HTMLElement {
 
   onSheetSubmit = (e) => {
     this.applySubmission(e.detail.form, e.detail.action, e.detail.body, {})
+    this.component.syncNative()
   }
 
   onSync = (e) => {

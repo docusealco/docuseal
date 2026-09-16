@@ -119,7 +119,6 @@
           :with-signature-id="withSignatureId"
           :with-prefillable="withPrefillable"
           :only-defined-fields="onlyDefinedFields"
-          :with-sticky-submitters="!!nativeView"
           :editable="editable"
           :scroll-on-edit="false"
           @add-field="addField"
@@ -792,7 +791,7 @@
       </native-action>
       <button
         v-if="drawField && (isBreakpointLg || isMobile) && !nativePlatform"
-        class="btn btn-neutral text-white btn-lg rounded-full no-animation transition-none absolute bottom-4 -left-3 md:-left-4 right-0 mx-auto w-fit z-10 flex-nowrap gap-2 px-5 max-[400px]:px-4"
+        class="btn btn-neutral text-white rounded-full no-animation transition-none absolute bottom-6 -left-3 md:-left-4 right-0 mx-auto w-fit z-10 flex-nowrap gap-2 px-5 max-[400px]:px-4"
         :class="{ 'md:hidden': !isMobile }"
         style="max-width: calc(100% - 11rem); --btn-focus-scale: 1"
         @click.prevent="[drawField = null, drawOption = null]"
@@ -804,7 +803,10 @@
           :stroke-width="1.6"
           class="flex-shrink-0 max-[400px]:hidden"
         />
-        <span class="truncate normal-case font-normal text-[17px] max-[400px]:text-[15px]">{{ t('draw_field').replace('{field}', fieldNames[drawField.type]) }}</span>
+        <span
+          class="truncate normal-case font-normal leading-normal"
+          style="font-size: 15px"
+        >{{ t('draw_field').replace('{field}', fieldNames[drawField.type]) }}</span>
         <IconX
           :width="18"
           :height="18"

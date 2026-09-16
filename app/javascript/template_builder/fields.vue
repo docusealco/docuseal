@@ -653,8 +653,8 @@ export default {
 
     if (this.isMobile) {
       this.fieldTypesObserver = new IntersectionObserver(([entry]) => {
-        this.isShowAddFieldsPill = !entry.isIntersecting
-      })
+        this.isShowAddFieldsPill = !entry.isIntersecting && entry.boundingClientRect.top > 0
+      }, { rootMargin: '0px 100%' })
 
       this.fieldTypesObserver.observe(this.$refs.addFieldsMarker)
     }
