@@ -146,6 +146,41 @@
         </li>
       </ul>
     </span>
+    <PaymentSettings
+      v-else-if="isMobile && editable && field.type === 'payment'"
+      class="-ml-1"
+      :field="field"
+      :with-force-open="false"
+      :background-color="'white'"
+      :menu-classes="'rounded-t-none pt-1'"
+      @click-condition="openConditionsModal"
+      @click-description="openDescriptionModal"
+      @click-formula="openFormulaModal"
+    >
+      <label
+        tabindex="0"
+        :title="t('settings')"
+        class="cursor-pointer flex items-center pr-0.5"
+        style="height: 25px"
+      >
+        <IconDotsVertical class="w-5 h-5" />
+      </label>
+      <template #menu>
+        <li class="field-settings-remove">
+          <a
+            href="#"
+            class="text-sm py-1 px-2 text-red-600"
+            @click.prevent="$emit('remove')"
+          >
+            <IconTrashX
+              :width="20"
+              :stroke-width="1.6"
+            />
+            {{ t('remove') }}
+          </a>
+        </li>
+      </template>
+    </PaymentSettings>
     <button
       v-else-if="editable && !isShowControls"
       class="pr-1"
@@ -213,6 +248,7 @@ import FieldSubmitter from './field_submitter'
 import FieldType from './field_type'
 import Field from './field'
 import FieldSettings from './field_settings'
+import PaymentSettings from './payment_settings'
 import FormulaModal from './formula_modal'
 import FontModal from './font_modal'
 import ConditionsModal from './conditions_modal'
@@ -226,6 +262,7 @@ export default {
     IconTrashX,
     FieldType,
     FieldSettings,
+    PaymentSettings,
     FormulaModal,
     FontModal,
     IconDotsVertical,

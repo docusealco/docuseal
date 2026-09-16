@@ -96,13 +96,56 @@
           <PaymentSettings
             v-if="field.type === 'payment'"
             :field="field"
+            :background-color="dropdownBgColor"
             :with-custom-fields="withCustomFields"
             @click-condition="openConditionsModal"
             @click-description="openDescriptionModal"
             @add-custom-field="$emit('add-custom-field', $event)"
             @click-formula="openFormulaModal"
             @save="$emit('save')"
-          />
+          >
+            <template
+              v-if="isMobile"
+              #default
+            >
+              <label
+                tabindex="0"
+                :title="t('settings')"
+                class="cursor-pointer flex items-center pr-1"
+                :class="iconColorClass"
+                @touchstart="onHandleTouchstart"
+                @touchmove="onHandleTouchmove"
+                @touchend="onHandleTouchend"
+                @touchcancel="onHandleTouchend"
+                @mousedown="dropdownWasOpen = $event.currentTarget.parentElement.contains($event.currentTarget.getRootNode().activeElement)"
+                @click="dropdownWasOpen && closeDropdown()"
+              >
+                <IconDotsVertical
+                  :width="18"
+                  :height="18"
+                  :stroke-width="1.6"
+                />
+              </label>
+            </template>
+            <template #menu>
+              <li
+                v-if="isMobile"
+                class="field-settings-remove"
+              >
+                <a
+                  href="#"
+                  class="text-sm py-1 px-2 text-red-600"
+                  @click.prevent="$emit('remove', field)"
+                >
+                  <IconTrashX
+                    :width="20"
+                    :stroke-width="1.6"
+                  />
+                  {{ t('remove') }}
+                </a>
+              </li>
+            </template>
+          </PaymentSettings>
           <span
             v-else
             class="dropdown dropdown-end field-settings-dropdown"

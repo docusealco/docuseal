@@ -47,6 +47,7 @@
           <PaymentSettings
             v-if="field.type === 'payment' && !isNew"
             :field="field"
+            :background-color="dropdownBgColor"
             :with-condition="false"
             :with-force-open="false"
             @click-description="openDescriptionModal"
