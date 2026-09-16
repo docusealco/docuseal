@@ -164,7 +164,10 @@
             v-if="!compact && submitters.length > 1 && editable"
             class="flex"
           >
-            <div class="flex-col pr-1 flex invisible group-hover:visible -mt-1 h-0">
+            <div
+              class="flex-col pr-1 flex -mt-1 h-0"
+              :class="{ 'invisible group-hover:visible': !isMobile }"
+            >
               <button
                 :title="t('up')"
                 class="relative w-2"
@@ -184,7 +187,8 @@
             </div>
             <button
               v-if="!compact && submitters.length > 1 && editable"
-              class="invisible group-hover:visible px-2"
+              class="px-2"
+              :class="{ 'invisible group-hover:visible': !isMobile }"
               @click.prevent.stop="remove(submitter)"
             >
               <IconTrashX :width="18" />
@@ -237,7 +241,7 @@ export default {
     IconTrashX,
     IconChevronUp
   },
-  inject: ['t', 'save'],
+  inject: ['t', 'save', 'isMobile'],
   props: {
     submitters: {
       type: Array,

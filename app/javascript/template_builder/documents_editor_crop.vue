@@ -49,7 +49,7 @@
     <div class="flex-none px-4 border-t py-3 md:w-56 md:border-t-0 md:border-l md:py-4 md:space-y-2 md:flex md:flex-col">
       <div class="grid grid-cols-3 gap-2 md:block md:space-y-2">
         <button
-          class="btn btn-sm normal-case font-normal rounded disabled:bg-base-300 flex-col gap-1 h-auto min-h-0 py-2 px-1 text-xs leading-tight whitespace-normal md:flex-row md:gap-2 md:h-8 md:min-h-[2rem] md:py-0 md:px-3 md:text-sm md:whitespace-nowrap md:w-full md:justify-start"
+          class="btn btn-sm normal-case font-normal rounded order-last disabled:bg-base-300 flex-col gap-1 h-auto min-h-0 py-2 px-1 text-xs leading-tight whitespace-normal md:flex-row md:gap-2 md:h-8 md:min-h-[2rem] md:py-0 md:px-3 md:text-sm md:whitespace-nowrap md:w-full md:justify-start"
           :disabled="!!isProcessing"
           @click.prevent="submit(true)"
         >
@@ -64,7 +64,7 @@
           {{ t('crop_and_scan') }}
         </button>
         <button
-          class="btn btn-sm normal-case font-normal rounded disabled:bg-base-300 flex-col gap-1 h-auto min-h-0 py-2 px-1 text-xs leading-tight whitespace-normal md:flex-row md:gap-2 md:h-8 md:min-h-[2rem] md:py-0 md:px-3 md:text-sm md:whitespace-nowrap md:w-full md:justify-start"
+          class="btn btn-sm normal-case font-normal rounded order-last disabled:bg-base-300 flex-col gap-1 h-auto min-h-0 py-2 px-1 text-xs leading-tight whitespace-normal md:flex-row md:gap-2 md:h-8 md:min-h-[2rem] md:py-0 md:px-3 md:text-sm md:whitespace-nowrap md:w-full md:justify-start"
           :disabled="!!isProcessing"
           @click.prevent="submit(false)"
         >
@@ -74,17 +74,15 @@
           />
           <IconCrop
             v-else
-            width="22"
-            height="22"
-            style="margin-left: -3px"
+            class="w-4 h-4 md:w-[22px] md:h-[22px] md:-ml-[3px]"
             :stroke-width="1.5"
           />
-          <span :style="{ 'margin-left': isProcessing === 'crop' ? '0px' : '-3px' }">
+          <span :class="{ 'md:-ml-[3px]': isProcessing !== 'crop' }">
             {{ t('crop') }}
           </span>
         </button>
         <button
-          class="btn btn-sm normal-case font-normal rounded flex-col gap-1 h-auto min-h-0 py-2 px-1 text-xs leading-tight whitespace-normal md:flex-row md:gap-2 md:h-8 md:min-h-[2rem] md:py-0 md:px-3 md:text-sm md:whitespace-nowrap md:w-full md:justify-start"
+          class="btn btn-sm normal-case font-normal rounded order-last flex-col gap-1 h-auto min-h-0 py-2 px-1 text-xs leading-tight whitespace-normal md:flex-row md:gap-2 md:h-8 md:min-h-[2rem] md:py-0 md:px-3 md:text-sm md:whitespace-nowrap md:w-full md:justify-start"
           @click.prevent="$emit('cancel')"
         >
           <IconX class="w-4 h-4" />

@@ -2,7 +2,7 @@
   <div
     ref="dragContainer"
     style="max-width: 1600px"
-    :class="isNativeView ? (isRevisionsView ? 'px-4 pt-3 pb-6' : 'px-4') : 'mx-auto pl-3 md:pl-4 h-full'"
+    :class="nativeView ? (isSheetView ? 'bg-base-100' : 'px-4') : 'mx-auto pl-3 md:pl-4 h-full'"
     @dragover="onDragover"
     @drop="isDragFile = false"
   >
@@ -53,7 +53,7 @@
           @replace="onDocumentReplace"
           @up="moveDocument(item, -1)"
           @reorder="reorderFields"
-          @edit="editModalDocumentUuid = item.attachment_uuid"
+          @edit="openDocumentsEditor(item)"
           @down="moveDocument(item, 1)"
           @change="save"
         />
@@ -119,29 +119,36 @@
           :with-signature-id="withSignatureId"
           :with-prefillable="withPrefillable"
           :only-defined-fields="onlyDefinedFields"
+          :with-sticky-submitters="!!nativeView"
           :editable="editable"
           :scroll-on-edit="false"
           @add-field="addField"
           @set-draw="onDrawerSetDraw"
           @remove-field="onRemoveField"
           @remove-submitter="onRemoveSubmitter"
-          @select-submitter="selectedSubmitter = $event"
+          @select-submitter="onDrawerSelectSubmitter"
           @set-draw-type="onDrawerSetDrawType"
+          @set-draw-custom-field="onDrawerSetDrawCustomField"
           @set-drag="dragField = $event"
           @set-drag-placeholder="$refs.dragPlaceholder.dragPlaceholder = $event"
           @drag-end="[dragField = null, $refs.dragPlaceholder.dragPlaceholder = null]"
-          @change-submitter="selectedSubmitter = $event"
+          @change-submitter="onDrawerSelectSubmitter"
           @scroll-to-area="onDrawerScrollToArea"
           @rebuild-variables-schema="rebuildVariablesSchema"
         />
       </div>
     </MobileDrawer>
-    <div
-      v-if="isRevisionsView && !isRevisionsModalOpen"
-      class="flex justify-center py-8"
-    >
-      <IconInnerShadowTop class="w-6 h-6 animate-spin" />
-    </div>
+    <NativeModals
+      v-if="isSheetView"
+      :default-fields="[...defaultRequiredFields, ...defaultFields]"
+      :custom-fields="customFields"
+      :editable="editable"
+      :authenticity-token="authenticityToken"
+      :accept-file-types="acceptFileTypes"
+      :base-url="baseUrl"
+      :page-preview-format="pagePreviewFormat"
+      @documents-modified="onDocumentsModified"
+    />
     <div
       v-if="pendingFieldAttachmentUuids.length && editable"
       class="top-1.5 sticky h-0 z-20 max-w-2xl mx-auto"
@@ -192,7 +199,7 @@
       </div>
     </div>
     <div
-      v-if="($slots.buttons || withTitle) && !isNativeView"
+      v-if="($slots.buttons || withTitle) && !nativeView"
       id="title_container"
       class="flex justify-between py-1.5 items-center pr-4 top-0 z-10 title-container"
       :class="{ sticky: withStickySubmitters || isBreakpointLg, hidden: !!nativePlatform }"
@@ -440,13 +447,7 @@
                     :data-label="t('revisions')"
                     data-icon="history"
                   >
-                    <a
-                      v-if="!!nativePlatform"
-                      :href="`/templates/${template.id}/edit?view=revisions`"
-                      data-turbo-frame="modal"
-                    />
                     <button
-                      v-else
                       class="flex space-x-2"
                       @click.prevent="openRevisionsModal"
                       @mouseenter="preloadRevisions"
@@ -507,7 +508,7 @@
       </div>
     </div>
     <div
-      v-if="!isNativeView"
+      v-if="!nativeView"
       id="main_container"
       class="flex main-container"
       :class="($slots.buttons || withTitle) && !nativePlatform ? (isMobile ? 'max-h-[calc(100%_-_60px)]' : 'md:max-h-[calc(100%_-_60px)]') : (isMobile ? 'max-h-[100%]' : 'md:max-h-[100%]')"
@@ -539,7 +540,7 @@
           @replace="onDocumentReplace"
           @up="moveDocument(item, -1)"
           @reorder="reorderFields"
-          @edit="editModalDocumentUuid = item.attachment_uuid"
+          @edit="openDocumentsEditor(item)"
           @down="moveDocument(item, 1)"
           @change="save"
         />
@@ -758,7 +759,7 @@
       </div>
     </div>
     <div
-      v-if="!isNativeView"
+      v-if="!nativeView"
       class="sticky bottom-0 z-10"
     >
       <native-action
@@ -780,13 +781,13 @@
         data-view="fields"
       />
       <native-action
-        v-if="nativePlatform && drawField && (isBreakpointLg || isMobile)"
+        v-if="nativePlatform && (drawField || drawCustomField) && (isBreakpointLg || isMobile)"
         data-placement="draw"
-        :data-label="t('draw_field').replace('{field}', fieldNames[drawField.type])"
+        :data-label="t('draw_field').replace('{field}', drawCustomField ? drawCustomField.name : fieldNames[drawField.type])"
       >
         <button
           class="hidden"
-          @click="[drawField = null, drawOption = null]"
+          @click="[drawField = null, drawOption = null, drawCustomField = null, showDrawField = false]"
         />
       </native-action>
       <button
@@ -912,9 +913,8 @@
         :template="template"
         :revisions="revisions"
         :locale="locale"
-        :inline="isRevisionsView"
         @close="isRevisionsModalOpen = false"
-        @apply="isRevisionsView ? postNativeEvent('template-builder:apply-revision', $event, true) : onRevisionApply($event)"
+        @apply="onRevisionApply($event)"
       />
       <DocumentsEditorModal
         v-if="editModalDocumentUuid"
@@ -946,6 +946,7 @@ import DocumentPreview from './preview'
 import FieldSubmitter from './field_submitter'
 import RevisionsModal from './revisions_modal'
 import DocumentsEditorModal from './documents_editor_modal'
+import NativeModals from './native_modals'
 import { IconPlus, IconFiles, IconUsersPlus, IconDeviceFloppy, IconChevronDown, IconEye, IconWritingSign, IconInnerShadowTop, IconInfoCircle, IconAdjustments, IconDownload, IconHistory, IconX } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
 import { ref, computed, toRaw, defineAsyncComponent } from 'vue'
@@ -989,7 +990,8 @@ export default {
     IconDeviceFloppy,
     IconX,
     RevisionsModal,
-    DocumentsEditorModal
+    DocumentsEditorModal,
+    NativeModals
   },
   provide () {
     return {
@@ -1237,7 +1239,7 @@ export default {
       required: false,
       default: ''
     },
-    view: {
+    nativeView: {
       type: String,
       required: false,
       default: ''
@@ -1425,19 +1427,16 @@ export default {
     fieldNames: FieldType.computed.fieldNames,
     fieldIcons: FieldType.computed.fieldIcons,
     isDocumentsView () {
-      return this.view === 'documents'
+      return this.nativeView === 'documents'
     },
     isFieldsView () {
-      return this.view === 'fields'
+      return this.nativeView === 'fields'
+    },
+    isSheetView () {
+      return this.nativeView === 'sheet'
     },
     withMobileDrawers () {
-      return !this.nativePlatform && !this.isNativeView && this.sortedDocuments.length > 0
-    },
-    isRevisionsView () {
-      return this.view === 'revisions'
-    },
-    isNativeView () {
-      return this.isDocumentsView || this.isFieldsView || this.isRevisionsView
+      return !this.nativePlatform && !this.nativeView && this.sortedDocuments.length > 0
     },
     isMobile () {
       const isMobileSafariIos = 'ontouchstart' in window && navigator.maxTouchPoints > 0 && /AppleWebKit/i.test(navigator.userAgent)
@@ -1624,10 +1623,6 @@ export default {
     this.selectedSubmitter = this.template.submitters[0]
   },
   mounted () {
-    if (this.isRevisionsView) {
-      this.openRevisionsModal()
-    }
-
     this.undoStack = [JSON.stringify(this.template)]
     this.redoStack = []
 
@@ -2200,6 +2195,10 @@ export default {
       this.loadRevisionsPromise ||= this.baseFetch(`/templates/${this.template.id}/versions`)
     },
     openRevisionsModal () {
+      if (window.webkit?.messageHandlers?.modal) {
+        return window.webkit.messageHandlers.modal.postMessage({ action: 'sheet', name: 'revisions', detent: 'medium' })
+      }
+
       this.closeDropdown()
 
       this.loadRevisionsPromise ||= this.baseFetch(`/templates/${this.template.id}/versions`)
@@ -2211,6 +2210,13 @@ export default {
       }).finally(() => {
         this.loadRevisionsPromise = null
       })
+    },
+    openDocumentsEditor (item) {
+      if (window.webkit?.messageHandlers?.modal) {
+        window.webkit.messageHandlers.modal.postMessage({ action: 'sheet', name: 'documents', viewport: 'fixed', uuid: item.attachment_uuid })
+      } else {
+        this.editModalDocumentUuid = item.attachment_uuid
+      }
     },
     onApplyRevisionEvent (e) {
       this.onRevisionApply(e.detail)
@@ -2427,7 +2433,7 @@ export default {
       window.webkit?.messageHandlers?.modal?.postMessage({ action: 'dispatch', name, detail: JSON.stringify(detail), dismiss: dismiss ? 'true' : 'false' })
     },
     onDrawerScrollTo (item) {
-      if (this.isNativeView) {
+      if (this.nativeView) {
         this.postNativeEvent('template-builder:scroll-to', { attachment_uuid: item.attachment_uuid }, true)
       } else {
         this.isDocumentsDrawerOpen = false
@@ -2435,7 +2441,7 @@ export default {
       }
     },
     onDrawerSetDraw ({ field, option }) {
-      if (this.isNativeView) {
+      if (this.nativeView) {
         this.postNativeEvent('template-builder:draw-field', { uuid: field.uuid, option }, true)
       } else {
         this.isFieldsDrawerOpen = false
@@ -2444,15 +2450,31 @@ export default {
       }
     },
     onDrawerSetDrawType (type) {
-      if (this.isNativeView) {
+      if (this.nativeView) {
         this.postNativeEvent('template-builder:draw-field', { type }, true)
       } else {
         this.isFieldsDrawerOpen = false
         this.startFieldDraw({ type })
       }
     },
+    onDrawerSelectSubmitter (submitter) {
+      this.selectedSubmitter = submitter
+
+      if (this.nativeView) {
+        this.$nextTick(() => this.postNativeEvent('template-builder:select-submitter', { uuid: submitter.uuid }))
+      }
+    },
+    onDrawerSetDrawCustomField (field) {
+      if (this.nativeView) {
+        this.postNativeEvent('template-builder:draw-field', { custom_field_uuid: field.uuid }, true)
+      } else {
+        this.isFieldsDrawerOpen = false
+        this.drawCustomField = field
+        this.showDrawField = true
+      }
+    },
     onDrawerScrollToArea (area) {
-      if (this.isNativeView) {
+      if (this.nativeView) {
         const field = this.template.fields.find((f) => (f.areas || []).includes(area))
 
         this.postNativeEvent('template-builder:select-field', { uuid: field?.uuid, attachment_uuid: area.attachment_uuid, page: area.page, x: area.x, y: area.y }, true)
@@ -2465,7 +2487,7 @@ export default {
       const { schema, documents, fields, submitters } = this.template
       const detail = JSON.stringify({ schema, documents, fields, submitters })
 
-      if (this.isNativeView) {
+      if (this.nativeView) {
         window.webkit?.messageHandlers?.modal?.postMessage({ action: 'dispatch', name: 'template-builder:sync', detail, dismiss: 'false' })
       } else {
         window.webkit?.messageHandlers?.native?.postMessage({ type: 'drawer', op: 'sync', detail })

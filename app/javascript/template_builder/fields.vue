@@ -172,6 +172,7 @@
       @click="setFieldsTab('custom')"
     >{{ t('custom') }}</a>
   </div>
+  <div ref="addFieldsMarker" />
   <div
     v-if="!isShowVariables && showCustomTab && editable && (customFields.length || newCustomField)"
     ref="customFields"
@@ -390,6 +391,26 @@
       </label>
     </div>
   </div>
+  <div
+    v-if="isMobile"
+    class="sticky bottom-4 h-0 z-[5]"
+  >
+    <Transition
+      enter-active-class="transition duration-100 ease-out"
+      enter-from-class="translate-y-6 opacity-0"
+      leave-active-class="transition duration-100 ease-in"
+      leave-to-class="translate-y-6 opacity-0"
+    >
+      <button
+        v-if="isShowAddFieldsPill"
+        class="absolute bottom-0 left-0 right-0 mx-auto w-fit btn btn-neutral btn-sm rounded-full normal-case font-normal text-white gap-1 px-4 shadow"
+        @click.prevent="scrollToFieldTypes"
+      >
+        <IconPlus class="w-4 h-4" />
+        {{ t('add_fields') }}
+      </button>
+    </Transition>
+  </div>
 </template>
 
 <script>
@@ -398,13 +419,14 @@ import CustomField from './custom_field'
 import FieldType from './field_type'
 import FieldSubmitter from './field_submitter'
 import { defineAsyncComponent } from 'vue'
-import { IconLock, IconCirclePlus, IconInnerShadowTop, IconSparkles, IconBracketsContain } from '@tabler/icons-vue'
+import { IconLock, IconCirclePlus, IconPlus, IconInnerShadowTop, IconSparkles, IconBracketsContain } from '@tabler/icons-vue'
 import IconDrag from './icon_drag'
 import { v4 } from 'uuid'
 
 export default {
   name: 'TemplateFields',
   components: {
+    IconPlus,
     Field,
     CustomField,
     FieldType,
@@ -417,7 +439,7 @@ export default {
     IconBracketsContain,
     DynamicVariables: defineAsyncComponent(() => import(/* webpackChunkName: "dynamic-editor" */ './dynamic_variables'))
   },
-  inject: ['save', 'backgroundColor', 'withPhone', 'withVerification', 'withKba', 'withPayment', 'nativePlatform', 't', 'fieldsDragFieldRef', 'customDragFieldRef', 'baseFetch', 'selectedAreasRef', 'getFieldTypeIndex'],
+  inject: ['save', 'backgroundColor', 'withPhone', 'withVerification', 'withKba', 'withPayment', 'nativePlatform', 't', 'isMobile', 'fieldsDragFieldRef', 'customDragFieldRef', 'baseFetch', 'selectedAreasRef', 'getFieldTypeIndex'],
   props: {
     fields: {
       type: Array,
@@ -544,6 +566,7 @@ export default {
   emits: ['add-field', 'set-draw', 'set-draw-type', 'set-draw-custom-field', 'set-drag', 'drag-end', 'scroll-to-area', 'change-submitter', 'set-drag-placeholder', 'select-submitter', 'rebuild-variables-schema', 'remove-field', 'remove-submitter'],
   data () {
     return {
+      isShowAddFieldsPill: false,
       fieldPagesLoaded: null,
       analyzingProgress: 0,
       newCustomField: null,
@@ -627,8 +650,22 @@ export default {
     } catch (e) {
       console.error(e)
     }
+
+    if (this.isMobile) {
+      this.fieldTypesObserver = new IntersectionObserver(([entry]) => {
+        this.isShowAddFieldsPill = !entry.isIntersecting
+      })
+
+      this.fieldTypesObserver.observe(this.$refs.addFieldsMarker)
+    }
+  },
+  unmounted () {
+    this.fieldTypesObserver?.disconnect()
   },
   methods: {
+    scrollToFieldTypes () {
+      this.$refs.addFieldsMarker.scrollIntoView({ block: 'start', behavior: 'smooth' })
+    },
     toggleVariables () {
       this.$emit('rebuild-variables-schema')
       this.isShowVariables = !this.isShowVariables
@@ -697,6 +734,10 @@ export default {
         const fields = await resp.json()
 
         this.customFields.splice(0, this.customFields.length, ...fields)
+
+        if (this.nativePlatform) {
+          window.webkit?.messageHandlers?.modal?.postMessage({ action: 'dispatch', name: 'template-builder:sync-custom-fields', detail: JSON.stringify(fields), dismiss: 'false' })
+        }
       })
     },
     buildExistingFields () {

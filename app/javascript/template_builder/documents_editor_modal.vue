@@ -1,19 +1,23 @@
 <template>
   <div
-    class="modal modal-open items-center !animate-none"
+    :class="inline ? 'flex flex-col h-full' : 'modal modal-open items-center !animate-none'"
     @dragover.prevent="onModalDragover"
     @dragleave="onModalDragleave"
     @drop.prevent="onModalDrop"
   >
     <div
+      v-if="!inline"
       class="absolute top-0 bottom-0 right-0 left-0"
       @click.prevent="$emit('close')"
     />
     <div
-      class="modal-box relative flex flex-col p-0 w-full h-full rounded-none md:rounded-2xl overflow-x-hidden !max-h-full md:!max-h-[92vh]"
-      style="max-width: 1240px"
+      :class="inline ? 'relative flex flex-col flex-1 min-h-0' : 'modal-box relative flex flex-col p-0 w-full h-full rounded-none md:rounded-2xl overflow-x-hidden !max-h-full md:!max-h-[92vh]'"
+      :style="inline ? null : { maxWidth: '1240px' }"
     >
-      <div class="flex justify-between items-center border-b py-2 px-6 font-medium">
+      <div
+        v-if="!inline"
+        class="flex justify-between items-center border-b py-2 px-6 font-medium"
+      >
         <span
           class="modal-title"
           style="padding-top: 2px"
@@ -32,6 +36,7 @@
         <CropView
           v-if="cropPageItem"
           class="absolute inset-0 z-10 bg-base-100"
+          :style="inline ? { paddingTop: '70px' } : null"
           :template-id="template.id"
           :page="cropPageItem"
           :image-url="thumbUrl(cropPageItem)"
@@ -42,6 +47,7 @@
         <RedactView
           v-else-if="redactPageItem"
           class="absolute inset-0 z-10 bg-base-100"
+          :style="inline ? { paddingTop: '70px' } : null"
           :template-id="template.id"
           :page="redactPageItem"
           :image-url="thumbUrl(redactPageItem)"
@@ -57,12 +63,14 @@
         >
           <div
             class="flex-1 overflow-y-auto overflow-x-hidden px-4 md:px-6 py-4 space-y-4"
+            :style="inline ? { paddingTop: '86px' } : null"
           >
             <div
               v-for="(doc, docIndex) in layout"
               :key="doc.attachmentUuid"
               :data-uuid="doc.attachmentUuid"
               class="relative"
+              :style="inline ? { scrollMarginTop: '86px' } : null"
             >
               <div
                 class="flex items-center pb-2"
@@ -80,7 +88,7 @@
                     :class="{ 'rotate-90': !collapsedDocumentsIndex[doc.attachmentUuid] }"
                   />
                   <span
-                    class="truncate"
+                    class="truncate min-w-0"
                     :class="{ 'line-through': !doc.pages.length }"
                   >{{ doc.name }}</span>
                 </button>
@@ -174,7 +182,7 @@
               </div>
               <div
                 v-if="(!collapsedDocumentsIndex[doc.attachmentUuid] || layout.length === 1) && doc.pages.length"
-                class="grid grid-cols-2 md:grid-cols-4 gap-3"
+                class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3"
                 @dragover.prevent="onGridDragover(docIndex, $event)"
                 @drop.prevent="onPageDrop"
               >
@@ -183,6 +191,7 @@
                   :key="page.id"
                   :data-page-id="page.id"
                   class="relative min-w-0 cursor-pointer group"
+                  :style="inline ? { scrollMarginTop: '86px' } : null"
                   draggable="true"
                   @click="selectedPageId = page.id"
                   @mousedown="onPageMousedown(page, $event)"
@@ -250,7 +259,8 @@
             </div>
           </div>
           <div
-            class="flex-none px-4 border-t py-3 flex flex-col gap-3 md:w-56 md:border-t-0 md:border-l md:py-4 md:gap-0"
+            class="flex-none px-4 border-t pt-3 flex flex-col gap-3 md:w-56 md:border-t-0 md:border-l md:py-4 md:gap-0"
+            :class="{ 'pb-3': !inline }"
           >
             <div class="grid grid-cols-4 gap-2 md:block md:space-y-2">
               <button
@@ -324,12 +334,10 @@
                 @click.prevent="openCropView"
               >
                 <IconCrop
-                  width="22"
-                  height="22"
-                  style="margin-left: -3px"
+                  class="w-4 h-4 md:w-[22px] md:h-[22px] md:-ml-[3px]"
                   :stroke-width="1.5"
                 />
-                <span style="margin-left: -3px">
+                <span class="md:-ml-[3px]">
                   {{ t('crop') }}
                 </span>
               </button>
@@ -441,6 +449,11 @@ export default {
       type: String,
       required: false,
       default: 'image/*, application/pdf'
+    },
+    inline: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   emits: ['close', 'saved'],
@@ -698,12 +711,14 @@ export default {
       if (targetIndex < 0) {
         if (docIndex > 0) {
           this.layout[docIndex - 1].pages.push(page)
+          this.collapsedDocumentsIndex[this.layout[docIndex - 1].attachmentUuid] = false
         } else {
           this.layout[docIndex].pages.unshift(page)
         }
       } else if (targetIndex > this.layout[docIndex].pages.length) {
         if (docIndex < this.layout.length - 1) {
           this.layout[docIndex + 1].pages.unshift(page)
+          this.collapsedDocumentsIndex[this.layout[docIndex + 1].attachmentUuid] = false
         } else {
           this.layout[docIndex].pages.push(page)
         }
@@ -712,6 +727,12 @@ export default {
       }
 
       this.pushUndo()
+      this.scrollIntoList(`[data-page-id="${page.id}"]`)
+    },
+    scrollIntoList (selector) {
+      this.$nextTick(() => {
+        this.$el.querySelector(selector)?.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
+      })
     },
     removePage () {
       const position = this.selectedPosition
@@ -737,6 +758,7 @@ export default {
       this.layout.splice(docIndex + direction, 0, doc)
 
       this.pushUndo()
+      this.scrollIntoList(`[data-uuid="${doc.attachmentUuid}"]`)
     },
     mergeDocument (docIndex, direction) {
       const doc = this.layout[docIndex]

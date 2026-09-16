@@ -194,12 +194,18 @@ safeRegisterElement('template-builder', class extends HTMLElement {
     document.addEventListener('template-builder:sync', this.onSync)
     document.addEventListener('template-builder:scroll-to', this.onScrollTo)
     document.addEventListener('template-builder:select-field', this.onSelectField)
+    document.addEventListener('template-builder:select-submitter', this.onSelectSubmitter)
+    document.addEventListener('template-builder:sync-custom-fields', this.onSyncCustomFields)
     document.addEventListener('template-builder:draw-field', this.onDrawField)
     document.addEventListener('turbo:before-cache', this.onBeforeCache)
 
     this.appElem = document.createElement('div')
 
     this.appElem.classList.add('md:h-screen')
+
+    if (this.dataset.nativeView) {
+      this.appElem.classList.add('min-w-0')
+    }
 
     const template = reactive(JSON.parse(this.dataset.template))
 
@@ -240,7 +246,7 @@ safeRegisterElement('template-builder', class extends HTMLElement {
       acceptFileTypes: this.dataset.acceptFileTypes,
       showTourStartForm: this.dataset.showTourStartForm === 'true',
       nativePlatform: this.dataset.nativePlatform,
-      view: this.dataset.view
+      nativeView: this.dataset.nativeView
     })
 
     this.component = this.app.mount(this.appElem)
@@ -266,12 +272,31 @@ safeRegisterElement('template-builder', class extends HTMLElement {
 
   onSync = (e) => {
     const { schema, documents, fields, submitters } = e.detail
+    const selectedAreas = this.component.selectedAreasRef.value.map((area) => {
+      const field = this.component.template.fields.find((f) => f.areas?.includes(area))
+
+      return field && { uuid: field.uuid, index: field.areas.indexOf(area) }
+    })
+    const selectedSubmitterUuid = this.component.selectedSubmitter?.uuid
 
     Object.assign(this.component.template, { schema, documents, fields, submitters })
+
+    this.component.selectedAreasRef.value = selectedAreas.map((item) => item && fields.find((f) => f.uuid === item.uuid)?.areas?.[item.index]).filter(Boolean)
+    this.component.selectedSubmitter = submitters.find((s) => s.uuid === selectedSubmitterUuid) || submitters[0]
   }
 
   onScrollTo = (e) => {
     this.component.scrollIntoDocument(e.detail)
+  }
+
+  onSyncCustomFields = (e) => {
+    this.component.customFields.splice(0, this.component.customFields.length, ...e.detail)
+  }
+
+  onSelectSubmitter = (e) => {
+    const submitter = this.component.template.submitters.find((s) => s.uuid === e.detail.uuid)
+
+    if (submitter) this.component.selectedSubmitter = submitter
   }
 
   onSelectField = (e) => {
@@ -284,9 +309,16 @@ safeRegisterElement('template-builder', class extends HTMLElement {
   }
 
   onDrawField = (e) => {
-    const { uuid, type, option } = e.detail
+    const { uuid, type, option, custom_field_uuid: customFieldUuid } = e.detail
 
-    if (uuid) {
+    if (customFieldUuid) {
+      const field = this.component.customFields.find((f) => f.uuid === customFieldUuid)
+
+      if (field) {
+        this.component.drawCustomField = field
+        this.component.showDrawField = true
+      }
+    } else if (uuid) {
       const field = this.component.template.fields.find((f) => f.uuid === uuid)
 
       if (field) {
@@ -338,6 +370,8 @@ safeRegisterElement('template-builder', class extends HTMLElement {
     document.removeEventListener('template-builder:sync', this.onSync)
     document.removeEventListener('template-builder:scroll-to', this.onScrollTo)
     document.removeEventListener('template-builder:select-field', this.onSelectField)
+    document.removeEventListener('template-builder:select-submitter', this.onSelectSubmitter)
+    document.removeEventListener('template-builder:sync-custom-fields', this.onSyncCustomFields)
     document.removeEventListener('template-builder:draw-field', this.onDrawField)
     document.removeEventListener('turbo:before-cache', this.onBeforeCache)
 

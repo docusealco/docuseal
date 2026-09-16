@@ -23,7 +23,7 @@
             <button
               v-if="item.conditions?.length"
               class="btn border-gray-300 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors p-0 document-control-button"
-              @click.stop="isShowConditionsModal = true"
+              @click.stop="openConditionsModal"
             >
               <IconRouteAltLeft
                 :width="14"
@@ -84,7 +84,7 @@
                 <li>
                   <button
                     class="w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center justify-between text-sm"
-                    @click.stop="isShowConditionsModal = true; closeDropdown()"
+                    @click.stop="openConditionsModal(); closeDropdown()"
                   >
                     <span class="flex items-center space-x-2">
                       <IconRouteAltLeft class="w-4 h-4" />
@@ -295,6 +295,13 @@ export default {
     }
   },
   methods: {
+    openConditionsModal () {
+      if (window.webkit?.messageHandlers?.modal) {
+        window.webkit.messageHandlers.modal.postMessage({ action: 'sheet', name: 'conditions', detent: 'medium', attachment_uuid: this.item.attachment_uuid })
+      } else {
+        this.isShowConditionsModal = true
+      }
+    },
     upload: Upload.methods.upload,
     buildDefaultName: Field.methods.buildDefaultName,
     closeDropdown () {

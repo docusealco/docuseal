@@ -74,7 +74,7 @@
             class="relative cursor-pointer"
             :class="iconColorClass"
             :title="t('formula')"
-            @click="isShowFormulaModal = true"
+            @click="openFormulaModal"
           >
             <IconMathFunction
               :width="18"
@@ -86,7 +86,7 @@
             class="relative cursor-pointer"
             :class="iconColorClass"
             :title="t('condition')"
-            @click="isShowConditionsModal = true"
+            @click="openConditionsModal"
           >
             <IconRouteAltLeft
               :width="18"
@@ -97,10 +97,10 @@
             v-if="field.type === 'payment'"
             :field="field"
             :with-custom-fields="withCustomFields"
-            @click-condition="isShowConditionsModal = true"
-            @click-description="isShowDescriptionModal = true"
+            @click-condition="openConditionsModal"
+            @click-description="openDescriptionModal"
             @add-custom-field="$emit('add-custom-field', $event)"
-            @click-formula="isShowFormulaModal = true"
+            @click-formula="openFormulaModal"
             @save="$emit('save')"
           />
           <span
@@ -150,10 +150,10 @@
                 :with-prefillable="withPrefillable"
                 :background-color="dropdownBgColor"
                 :with-custom-fields="withCustomFields"
-                @click-formula="isShowFormulaModal = true"
-                @click-font="isShowFontModal = true"
-                @click-description="isShowDescriptionModal = true"
-                @click-condition="isShowConditionsModal = true"
+                @click-formula="openFormulaModal"
+                @click-font="openFontModal"
+                @click-description="openDescriptionModal"
+                @click-condition="openConditionsModal"
                 @set-draw="$emit('set-draw', $event)"
                 @add-custom-field="$emit('add-custom-field', $event)"
                 @remove-area="removeArea"
@@ -514,6 +514,34 @@ export default {
       this.field.areas.splice(this.field.areas.indexOf(area), 1)
 
       this.$emit('save')
+    },
+    openFormulaModal () {
+      if (window.webkit?.messageHandlers?.modal) {
+        window.webkit.messageHandlers.modal.postMessage({ action: 'sheet', name: 'formula', uuid: this.field.uuid })
+      } else {
+        this.isShowFormulaModal = true
+      }
+    },
+    openFontModal () {
+      if (window.webkit?.messageHandlers?.modal) {
+        window.webkit.messageHandlers.modal.postMessage({ action: 'sheet', name: 'font', detent: 'medium', uuid: this.field.uuid })
+      } else {
+        this.isShowFontModal = true
+      }
+    },
+    openConditionsModal () {
+      if (window.webkit?.messageHandlers?.modal) {
+        window.webkit.messageHandlers.modal.postMessage({ action: 'sheet', name: 'conditions', detent: 'medium', uuid: this.field.uuid })
+      } else {
+        this.isShowConditionsModal = true
+      }
+    },
+    openDescriptionModal () {
+      if (window.webkit?.messageHandlers?.modal) {
+        window.webkit.messageHandlers.modal.postMessage({ action: 'sheet', name: 'description', uuid: this.field.uuid })
+      } else {
+        this.isShowDescriptionModal = true
+      }
     },
     buildDefaultName (field) {
       if (field.type === 'payment' && field.preferences?.price && !field.preferences?.formula) {

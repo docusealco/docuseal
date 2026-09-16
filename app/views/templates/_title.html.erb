@@ -115,6 +115,11 @@
         <a href="<%= new_template_submissions_export_path(template, params.permit(:q, *Submissions::Filter::ALLOWED_PARAMS)) %>" data-turbo-frame="modal"></a>
       </native-action>
     <% end %>
+    <% if !template.archived_at? && can?(:update, template) && @template.account_id == current_account.id %>
+      <native-action data-section="edit" data-icon="folder" data-label="<%= t('move') %>">
+        <a href="<%= edit_template_folder_path(template.id, subfolder: @template.folder.parent_folder.present?) %>" data-turbo-frame="modal"></a>
+      </native-action>
+    <% end %>
     <% if can?(:destroy, template) %>
       <% if template.archived_at? %>
         <native-action data-section="edit" data-icon="rotate" data-label="<%= t('restore') %>">
