@@ -760,7 +760,7 @@
     </div>
     <div
       v-if="!nativeView"
-      class="sticky bottom-0 z-10"
+      class="sticky bottom-0 z-20"
     >
       <native-action
         v-if="nativePlatform && withDocumentsList && isBreakpointLg && sortedDocuments.length && editable"
@@ -885,9 +885,9 @@
     >
       <div
         v-if="zoomLevel > 1"
-        class="sticky bottom-0 z-40 pointer-events-none"
+        class="sticky bottom-0 z-10 pointer-events-none"
       >
-        <div class="absolute left-0 right-0 bottom-4 flex justify-center">
+        <div class="absolute left-0 right-0 bottom-6 md:bottom-4 flex justify-center">
           <div class="join shadow pointer-events-auto">
             <span class="join-item bg-base-content text-white pl-2 pr-2.5 h-9 items-center text-sm font-medium cursor-default w-16 flex justify-end">
               <span>

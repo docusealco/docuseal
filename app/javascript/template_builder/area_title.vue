@@ -1,8 +1,9 @@
 <template>
   <div
     v-if="field?.type && (isSelected || isNameFocus) && !isInMultiSelection"
-    class="absolute bg-white rounded-t border overflow-visible whitespace-nowrap flex z-10 field-area-controls"
+    class="absolute bg-white rounded-t border overflow-visible whitespace-nowrap flex field-area-controls"
     style="top: -25px; height: 25px"
+    :style="{ zIndex: isMobile ? 5 : 10 }"
     @mousedown.stop="$emit('click-title')"
     @pointerdown.stop
   >
@@ -88,7 +89,7 @@
         :title="t('settings')"
         class="cursor-pointer flex items-center"
         :class="{ 'pr-0.5': isMobile }"
-        style="height: 25px"
+        style="height: 24px"
         @focus="isSettingsFocus = true"
         @blur="maybeBlurSettings"
       >
@@ -161,7 +162,7 @@
         tabindex="0"
         :title="t('settings')"
         class="cursor-pointer flex items-center pr-0.5"
-        style="height: 25px"
+        style="height: 24px"
       >
         <IconDotsVertical class="w-5 h-5" />
       </label>

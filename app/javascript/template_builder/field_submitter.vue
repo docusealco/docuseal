@@ -125,7 +125,10 @@
           @update:model-value="$emit('name-change', selectedSubmitter)"
         />
       </div>
-      <span class="flex items-center transition-all duration-75 group-hover:border border-base-content/20 border-dashed w-6 h-6 justify-center rounded flex-shrink-0">
+      <span
+        class="flex items-center transition-all duration-75 group-hover:border border-base-content/20 border-dashed w-6 h-6 justify-center rounded flex-shrink-0"
+        :class="{ border: isMobile }"
+      >
         <component
           :is="editable ? 'IconPlus' : 'IconChevronDown'"
           width="18"
