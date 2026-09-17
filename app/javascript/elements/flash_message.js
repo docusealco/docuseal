@@ -1,6 +1,4 @@
-import { actionable } from '@github/catalyst/lib/actionable'
-
-export default actionable(class extends HTMLElement {
+export default class extends HTMLElement {
   connectedCallback () {
     this.addEventListener('turbo:morph-element', this.onMorph)
 
@@ -32,9 +30,7 @@ export default actionable(class extends HTMLElement {
     this.closeTimeout = setTimeout(this.close, 2000)
   }
 
-  close = (event) => {
-    event?.preventDefault()
-
+  close = () => {
     clearTimeout(this.closeTimeout)
 
     this.hideAnimation = this.animate([
@@ -44,4 +40,4 @@ export default actionable(class extends HTMLElement {
 
     this.hideAnimation.onfinish = () => this.remove()
   }
-})
+}
