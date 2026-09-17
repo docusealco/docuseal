@@ -1,4 +1,5 @@
 <% content_for(:native_title, @submission.name || @submission.template&.name) if turbo_native_app? %>
+<% native_tab = (params[:tab] == 'recipients' ? 'recipients' : 'document') if turbo_native_app? %>
 <% if local_assigns[:is_preview] %>
   <%= render 'submissions/preview_tags' %>
 <% end %>
@@ -11,6 +12,7 @@
 <% with_signature_id_reason = configs.find { |e| e.key == AccountConfig::WITH_SIGNATURE_ID_REASON_KEY }&.value != false %>
 <% with_signature_id_completed_at = configs.find { |e| e.key == AccountConfig::WITH_SIGNATURE_ID_COMPLETED_AT_KEY }&.value == true %>
 <main style="max-width: 1600px" class="mx-auto pl-4">
+  <% unless native_tab == 'recipients' %>
   <div class="flex justify-between items-center pr-4 sticky top-0 md:relative z-10 bg-base-100 <%= 'py-1.5' unless turbo_native_app? %>">
     <% unless turbo_native_app? %>
       <a href="<%= signed_in? && @submission.account_id == current_account&.id && @submission.template ? template_path(@submission.template) : '/' %>" class="flex items-center space-x-3 py-1">
@@ -115,11 +117,14 @@
       <% end %>
     </div>
   </div>
+  <% end %>
   <div class="flex md:max-h-[calc(100vh-60px)]">
+    <% values = @submission.submitters.reduce({}) { |acc, sub| acc.merge(sub.values) } %>
+    <% service_url_time = ActiveStorage::Attachment.service_url_time %>
+    <% attachments_index = ActiveStorage::Attachment.where(record: @submission.submitters, name: :attachments).preload(:blob).index_by(&:uuid) %>
+    <% unless native_tab == 'recipients' %>
     <div class="overflow-y-auto overflow-x-hidden hidden lg:block w-52 flex-none pr-3 mt-0.5 pt-0.5" tabindex="0">
-      <% values = @submission.submitters.reduce({}) { |acc, sub| acc.merge(sub.values) } %>
       <% schema = Submissions.filtered_conditions_schema(@submission, values:) %>
-      <% service_url_time = ActiveStorage::Attachment.service_url_time %>
       <% schema.each do |item| %>
         <% document = @submission.schema_documents.find { |a| item['attachment_uuid'] == a.uuid } %>
         <% if document.preview_images.first %>
@@ -137,7 +142,6 @@
         <% fields_index = Templates.build_field_areas_index(@submission.template_fields || @submission.template.fields) %>
         <% submitters_index = @submission.submitters.index_by(&:uuid) %>
         <% submitters_order_index = nil %>
-        <% attachments_index = ActiveStorage::Attachment.where(record: @submission.submitters, name: :attachments).preload(:blob).index_by(&:uuid) %>
         <% page_blob_struct = Struct.new(:url, :metadata) %>
         <% bg_classes = %w[bg-red-100 bg-sky-100 bg-emerald-100 bg-yellow-100 bg-purple-100 bg-pink-100 bg-cyan-100 bg-orange-100 bg-lime-100 bg-indigo-100] %>
         <% schema.each do |item| %>
@@ -187,7 +191,9 @@
         <% end %>
       </div>
     </div>
-    <div id="parties_view" class="hidden md:block relative w-full md:w-80 flex-none pt-0.5 pr-4 pl-0.5 max-md:pl-0 overflow-auto space" tabindex="0">
+    <% end %>
+    <% unless native_tab == 'document' %>
+    <div id="parties_view" class="<%= 'hidden md:block' unless native_tab %> relative w-full md:w-80 flex-none pt-0.5 pr-4 pl-0.5 max-md:pl-0 overflow-auto space" tabindex="0">
       <% colors = %w[bg-red-500 bg-sky-500 bg-emerald-500 bg-yellow-300 bg-purple-600 bg-pink-500 bg-cyan-500 bg-orange-500 bg-lime-500 bg-indigo-500] %>
       <% submitter_fields_index = (@submission.template_fields || @submission.template.fields).group_by { |f| f['submitter_uuid'] } %>
       <% submitter_field_counters = Hash.new { 0 } %>
@@ -360,16 +366,13 @@
         </div>
       <% end %>
     </div>
+    <% end %>
   </div>
-  <toggle-visible data-element-ids="<%= %w[document_view parties_view].to_json %>">
-    <% if turbo_native_app? %>
-      <native-action data-placement="tab" data-label="<%= t('document') %>">
-        <button type="button" class="hidden" data-action="click:toggle-visible#trigger" data-toggle-id="document_view"></button>
-      </native-action>
-      <native-action data-placement="tab" data-label="<%= t('recipients') %>">
-        <button type="button" class="hidden" data-action="click:toggle-visible#trigger" data-toggle-id="parties_view"></button>
-      </native-action>
-    <% else %>
+  <% if native_tab == 'document' %>
+    <native-action data-placement="tab" data-native="tab" data-label="<%= t('document') %>" data-selected="true"></native-action>
+    <native-action data-placement="tab" data-native="tab" data-label="<%= t('recipients') %>" data-url="<%= tab_submission_path(@submission, tab: 'recipients') %>"></native-action>
+  <% elsif !native_tab %>
+    <toggle-visible data-element-ids="<%= %w[document_view parties_view].to_json %>">
       <label class="md:hidden btn btn-sm btn-neutral text-white text-base z-10 fixed bottom-2 right-2 h-16 shadow-lg">
         <input type="checkbox" class="peer hidden" data-action="click:toggle-visible#trigger">
         <span class="peer-checked:hidden flex items-center space-x-2">
@@ -381,8 +384,8 @@
           <span><%= t('back') %></span>
         </span>
       </label>
-    <% end %>
-  </toggle-visible>
+    </toggle-visible>
+  <% end %>
 </main>
 <% unless request.headers['HTTP_X_TURBO'] %>
   <%= render 'scripts/autosize_field' %>

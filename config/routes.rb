@@ -74,6 +74,7 @@ Rails.application.routes.draw do
     resources :events, only: %i[index], controller: 'submission_events'
     resources :download, only: %i[index], controller: 'submissions_download'
     resources :resend_email, only: %i[create], controller: 'submissions_resend_email'
+    get ':tab', action: :show, on: :member, as: :tab, constraints: { tab: /recipients/ }
   end
   resources :submitters, only: %i[edit update]
   resources :console_redirect, only: %i[index]
