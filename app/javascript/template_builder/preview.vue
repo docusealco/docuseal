@@ -161,7 +161,7 @@
     </div>
     <div class="flex items-center gap-1 pb-2 pt-1.5 document-preview-name">
       <GoogleDriveDocumentSettings
-        v-if="item.google_drive_file_id"
+        v-if="item.google_drive_file_id && withGoogleDrive"
         :template-id="template.id"
         :google-drive-file-id="item.google_drive_file_id"
         @success="$emit('replace', { replaceSchemaItem: item, ...$event })"
