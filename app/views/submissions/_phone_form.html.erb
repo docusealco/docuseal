@@ -2,16 +2,16 @@
   <% submitters = template.submitters.reject { |e| e['invite_by_uuid'].present? || e['optional_invite_by_uuid'].present? || e['invite_via_field_uuid'].present? } %>
   <dynamic-list class="space-y-4">
     <div class="space-y-4">
-      <div class="relative <%= 'p-4 rounded-xl bg-base-300/40' unless local_assigns[:variables_form] %>" data-targets="dynamic-list.items">
+      <div class="relative <%= 'p-4 rounded-xl bg-base-300/40 max-sm:p-0 max-sm:bg-transparent' unless local_assigns[:variables_form] %>" data-targets="dynamic-list.items">
         <div>
           <div class="absolute right-4 top-5">
             <a href="#" data-action="click:dynamic-list#removeItem" class="<%= submitters.size == 1 ? 'right-2 top-1' : '-top-3' %> relative block w-6 h-6 rounded-lg text-neutral-700 text-center bg-base-300 p-1 hidden hover:bg-neutral hover:text-white">
               <%= svg_icon('trash', class: 'w-4 h-4') %>
             </a>
           </div>
-          <div class="grid <%= submitters.size > 1 ? 'md:grid-cols-2 gap-4' : 'gap-1' %>">
+          <div class="grid <%= submitters.size > 1 ? 'md:grid-cols-2 gap-4' : 'gap-1.5' %>">
             <% submitters.each_with_index do |item, index| %>
-              <submitter-item class="grid <%= submitters.size > 1 ? 'gap-4' : 'md:grid-cols-2 gap-1' %>">
+              <submitter-item class="grid <%= submitters.size > 1 ? 'gap-4' : 'md:grid-cols-2 gap-1.5' %>">
                 <div class="form-control">
                   <% if submitters.size > 1 %>
                     <label class="label pt-0 pb-1">
@@ -48,7 +48,7 @@
       </div>
     </div>
     <% if params[:selfsign].blank? && local_assigns[:variables_form].blank? %>
-      <a href="#" class="btn btn-primary btn-sm w-full flex items-center justify-center" data-action="click:dynamic-list#addItem">
+      <a href="#" class="btn btn-primary btn-sm w-full flex items-center justify-center max-sm:hidden" data-action="click:dynamic-list#addItem">
         <%= svg_icon('user_plus', class: 'w-4 h-4 stroke-2') %>
         <span><%= t('add_new') %></span>
       </a>

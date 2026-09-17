@@ -32,7 +32,7 @@
     <div class="space-y-1">
       <% if can?(:update, template) && !template.archived_at? && template.account_id == current_account.id %>
         <span class="tooltip tooltip-left tooltip-no-touch" data-tip="<%= t('move') %>">
-          <a href="<%= edit_template_folder_path(template.id) %>" data-turbo-frame="modal" class="btn btn-xs hover:btn-outline bg-base-200 btn-circle">
+          <a href="<%= edit_template_folder_path(template.id) %>" data-turbo-frame="modal" data-native-modal="medium" class="btn btn-xs hover:btn-outline bg-base-200 btn-circle">
             <%= svg_icon('folder_share', class: 'w-4 h-4') %>
           </a>
         </span>
@@ -53,7 +53,7 @@
       <% end %>
       <% if can?(:create, template) %>
         <span class="tooltip tooltip-left tooltip-no-touch" data-tip="<%= t('clone') %>">
-          <a href="<%= new_template_clone_path(template) %>" data-turbo-frame="modal" class="btn btn-xs hover:btn-outline bg-base-200 btn-circle">
+          <a href="<%= new_template_clone_path(template) %>" data-turbo-frame="modal" data-native-modal="medium" class="btn btn-xs hover:btn-outline bg-base-200 btn-circle">
             <%= svg_icon('copy', class: 'w-4 h-4') %>
           </a>
         </span>

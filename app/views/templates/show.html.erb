@@ -8,7 +8,7 @@
   <native-action data-placement="search" data-native="search" data-label="<%= t('search') %>" data-url="<%= search_index_path(filter_params.to_h.merge({ 'scope' => 'submissions', 'template_id' => @template.id, 'archived' => ('true' if @template.archived_at?) }.compact)) %>"></native-action>
   <% if !@template.archived_at? && can?(:create, Submission) %>
     <native-action data-placement="footer" data-icon="send" data-label="<%= t('send_to_recipients') %>">
-      <a href="<%= new_template_submission_path(@template) %>" data-turbo-frame="modal"></a>
+      <a href="<%= new_template_submission_path(@template) %>" data-turbo-frame="modal" data-native-modal="<%= 'medium' if @template.submitters.size < 3 %>"></a>
     </native-action>
   <% end %>
 <% end %>
@@ -24,13 +24,13 @@
         <% if !turbo_native_app? && (params[:q].present? || params[:status].present? || filter_params.present? || @pagy.pages > 1) %>
           <%= render 'shared/search_input' %>
         <% end %>
-        <%= link_to new_template_submissions_export_path(@template, params.permit(:q, *Submissions::Filter::ALLOWED_PARAMS)), class: 'hidden md:flex btn btn-ghost text-base', data: { turbo_frame: 'modal' } do %>
+        <%= link_to new_template_submissions_export_path(@template, params.permit(:q, *Submissions::Filter::ALLOWED_PARAMS)), class: 'hidden md:flex btn btn-ghost text-base', data: { turbo_frame: 'modal', native_modal: 'medium' } do %>
           <%= svg_icon('download', class: 'w-6 h-6 stroke-2') %>
           <span><%= t('export') %></span>
         <% end %>
         <% if !@template.archived_at? && can?(:create, Submission) %>
           <open-modal-mobile class="flex">
-            <%= link_to new_template_submission_path(@template), id: 'add_recipients_button', class: 'white-button !border', data: { turbo_frame: 'modal' } do %>
+            <%= link_to new_template_submission_path(@template), id: 'add_recipients_button', class: 'white-button !border', data: { turbo_frame: 'modal', native_modal: ('medium' if @template.submitters.size < 3) } do %>
               <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
               <%= t('add_recipients_html') %>
             <% end %>
@@ -104,7 +104,7 @@
             <div class="space-y-2 flex flex-col">
               <% if can?(:create, Submission) %>
                 <open-modal-mobile class="flex flex-col mt-6">
-                  <%= link_to new_template_submission_path(@template, with_link: true), id: 'send_to_recipients_button', class: 'base-button', data: { turbo_frame: 'modal' } do %>
+                  <%= link_to new_template_submission_path(@template, with_link: true), id: 'send_to_recipients_button', class: 'base-button', data: { turbo_frame: 'modal', native_modal: ('medium' if @template.submitters.size < 3) } do %>
                     <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
                     <span class="mr-1"><%= t('send_to_recipients') %></span>
                   <% end %>
@@ -117,7 +117,7 @@
                 <% end %>
               <% else %>
                 <open-modal-mobile class="flex flex-col mt-6">
-                  <%= link_to new_template_submission_path(@template, selfsign: true), id: 'sign_yourself_button', class: 'white-button', data: { turbo_frame: 'modal' } do %>
+                  <%= link_to new_template_submission_path(@template, selfsign: true), id: 'sign_yourself_button', class: 'white-button', data: { turbo_frame: 'modal', native_modal: ('medium' if @template.submitters.size < 3) } do %>
                     <%= svg_icon('writing', class: 'w-6 h-6') %>
                     <span class="mr-1"><%= t('sign_it_yourself') %></span>
                   <% end %>

@@ -9,31 +9,31 @@
   </label>
   <ul tabindex="0" class="z-10 dropdown-content p-2 mt-2 shadow menu text-base bg-base-100 rounded-box text-right" style="min-width: 180px;">
     <li class="flex">
-      <%= link_to submissions_filter_path('completed_at', query_params.merge(path: url_for)), data: { turbo_frame: 'modal' } do %>
+      <%= link_to submissions_filter_path('completed_at', query_params.merge(path: url_for)), data: { turbo_frame: 'modal', native_modal: 'medium' } do %>
         <%= svg_icon('calendar_check', class: 'w-5 h-5 flex-shrink-0 stroke-2') %>
         <span><%= t('completed_at') %></span>
       <% end %>
     </li>
     <li class="flex">
-      <%= link_to submissions_filter_path('created_at', query_params.merge(path: url_for)), data: { turbo_frame: 'modal' } do %>
+      <%= link_to submissions_filter_path('created_at', query_params.merge(path: url_for)), data: { turbo_frame: 'modal', native_modal: 'medium' } do %>
         <%= svg_icon('calendar', class: 'w-5 h-5 flex-shrink-0 stroke-2') %>
         <span><%= t('created_at') %></span>
       <% end %>
     </li>
     <li class="flex">
-      <%= link_to submissions_filter_path('status', query_params.merge(path: url_for)), data: { turbo_frame: 'modal' } do %>
+      <%= link_to submissions_filter_path('status', query_params.merge(path: url_for)), data: { turbo_frame: 'modal', native_modal: 'medium' } do %>
         <%= svg_icon('info_circle', class: 'w-5 h-5 flex-shrink-0 stroke-2') %>
         <span><%= t('status') %></span>
       <% end %>
     </li>
     <li class="flex">
-      <%= link_to submissions_filter_path('folder', query_params.merge(path: url_for)), data: { turbo_frame: 'modal' } do %>
+      <%= link_to submissions_filter_path('folder', query_params.merge(path: url_for)), data: { turbo_frame: 'modal', native_modal: 'medium' } do %>
         <%= svg_icon('folder', class: 'w-5 h-5 flex-shrink-0 stroke-2') %>
         <span><%= t('folder') %></span>
       <% end %>
     </li>
     <li class="flex">
-      <%= link_to submissions_filter_path('author', query_params.merge(path: url_for)), data: { turbo_frame: 'modal' } do %>
+      <%= link_to submissions_filter_path('author', query_params.merge(path: url_for)), data: { turbo_frame: 'modal', native_modal: 'medium' } do %>
         <%= svg_icon('user', class: 'w-5 h-5 flex-shrink-0 stroke-2') %>
         <span><%= t('author') %></span>
       <% end %>

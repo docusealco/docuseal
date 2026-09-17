@@ -560,7 +560,7 @@ export default {
     },
     openFormulaModal () {
       if (window.webkit?.messageHandlers?.modal) {
-        window.webkit.messageHandlers.modal.postMessage({ action: 'sheet', name: 'formula', uuid: this.field.uuid })
+        window.webkit.messageHandlers.modal.postMessage({ action: 'sheet', name: 'formula', detent: 'medium', uuid: this.field.uuid })
       } else {
         this.isShowFormulaModal = true
       }
@@ -581,7 +581,7 @@ export default {
     },
     openDescriptionModal () {
       if (window.webkit?.messageHandlers?.modal) {
-        window.webkit.messageHandlers.modal.postMessage({ action: 'sheet', name: 'description', uuid: this.field.uuid })
+        window.webkit.messageHandlers.modal.postMessage({ action: 'sheet', name: 'description', detent: 'medium', uuid: this.field.uuid })
       } else {
         this.isShowDescriptionModal = true
       }

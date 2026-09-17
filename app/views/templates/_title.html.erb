@@ -39,7 +39,7 @@
             </a>
             <% if can?(:update, template) %>
               <span class="pl-1 tooltip tooltip-right tooltip-no-touch md:opacity-0 hover:opacity-100 peer-hover:opacity-100" data-tip="<%= t('move') %>">
-                <a href="<%= edit_template_folder_path(template.id, subfolder: @template.folder.parent_folder.present?) %>" data-turbo-frame="modal">
+                <a href="<%= edit_template_folder_path(template.id, subfolder: @template.folder.parent_folder.present?) %>" data-turbo-frame="modal" data-native-modal="medium">
                   <%= svg_icon('pencil_share', class: 'w-5 h-5') %>
                 </a>
               </span>
@@ -71,7 +71,7 @@
           </div>
         <% end %>
         <open-modal-mobile class="absolute md:relative -bottom-1 md:bottom-0 right-0 mt-1">
-          <%= link_to template_share_link_path(template), class: 'btn btn-xs md:btn-sm whitespace-nowrap btn-neutral text-white px-2', data: { turbo_frame: :modal } do %>
+          <%= link_to template_share_link_path(template), class: 'btn btn-xs md:btn-sm whitespace-nowrap btn-neutral text-white px-2', data: { turbo_frame: :modal, native_modal: :medium } do %>
             <span class="flex items-center justify-center space-x-2">
               <%= svg_icon('link', class: 'w-4 h-4 md:w-6 md:h-6') %>
               <span><%= t('link') %></span>
@@ -85,11 +85,11 @@
     <% unless template.archived_at? %>
       <% if can?(:create, Submission) %>
         <native-action data-section="send" data-icon="send" data-label="<%= t('send') %>">
-          <a href="<%= new_template_submission_path(template) %>" data-turbo-frame="modal"></a>
+          <a href="<%= new_template_submission_path(template) %>" data-turbo-frame="modal" data-native-modal="<%= 'medium' if template.submitters.size < 3 %>"></a>
         </native-action>
       <% end %>
       <native-action data-section="send" data-icon="writing" data-label="<%= t('sign_yourself') %>">
-        <a href="<%= new_template_submission_path(template, selfsign: true) %>" data-turbo-frame="modal"></a>
+        <a href="<%= new_template_submission_path(template, selfsign: true) %>" data-turbo-frame="modal" data-native-modal="<%= 'medium' if template.submitters.size < 3 %>"></a>
       </native-action>
     <% end %>
     <% if !template.archived_at? && can?(:update, template) %>
@@ -102,7 +102,7 @@
     <% end %>
     <% if can?(:create, current_account.templates.new(author: current_user)) %>
       <native-action data-section="edit" data-icon="copy" data-label="<%= t('clone') %>">
-        <a href="<%= new_template_clone_path(template) %>" data-turbo-frame="modal"></a>
+        <a href="<%= new_template_clone_path(template) %>" data-turbo-frame="modal" data-native-modal="medium"></a>
       </native-action>
     <% end %>
     <% if template.archived_at? || (!can?(:update, template) && can?(:read, template)) %>
@@ -112,12 +112,12 @@
     <% end %>
     <% if local_assigns[:with_export] %>
       <native-action data-section="edit" data-icon="download" data-label="<%= t('export') %>">
-        <a href="<%= new_template_submissions_export_path(template, params.permit(:q, *Submissions::Filter::ALLOWED_PARAMS)) %>" data-turbo-frame="modal"></a>
+        <a href="<%= new_template_submissions_export_path(template, params.permit(:q, *Submissions::Filter::ALLOWED_PARAMS)) %>" data-turbo-frame="modal" data-native-modal="medium"></a>
       </native-action>
     <% end %>
     <% if !template.archived_at? && can?(:update, template) && @template.account_id == current_account.id %>
       <native-action data-section="edit" data-icon="folder" data-label="<%= t('move') %>">
-        <a href="<%= edit_template_folder_path(template.id, subfolder: @template.folder.parent_folder.present?) %>" data-turbo-frame="modal"></a>
+        <a href="<%= edit_template_folder_path(template.id, subfolder: @template.folder.parent_folder.present?) %>" data-turbo-frame="modal" data-native-modal="medium"></a>
       </native-action>
     <% end %>
     <% if can?(:destroy, template) %>
@@ -145,7 +145,7 @@
       <% end %>
       <% if can?(:create, current_account.templates.new(author: current_user)) %>
         <div class="flex-1">
-          <%= link_to new_template_clone_path(template), class: 'btn btn-outline btn-sm w-full', data: { turbo_frame: :modal } do %>
+          <%= link_to new_template_clone_path(template), class: 'btn btn-outline btn-sm w-full', data: { turbo_frame: :modal, native_modal: :medium } do %>
             <span class="flex items-center justify-center space-x-2">
               <%= svg_icon('copy', class: 'w-6 h-6') %>
               <span class="inline"><%= t('clone') %></span>

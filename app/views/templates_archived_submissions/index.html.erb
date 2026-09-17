@@ -30,7 +30,7 @@
     <%= render 'submissions_filters/applied_filters', filter_params:, with_status: true, with_default_status: true %>
     <% unless turbo_native_app? %>
       <div class="hidden md:block shrink-0 md:order-first">
-        <%= link_to new_template_submissions_export_path(@template, archived: true), class: 'btn btn-ghost text-base h-10 min-h-10', data: { turbo_frame: 'modal' } do %>
+        <%= link_to new_template_submissions_export_path(@template, archived: true), class: 'btn btn-ghost text-base h-10 min-h-10', data: { turbo_frame: 'modal', native_modal: 'medium' } do %>
           <%= svg_icon('download', class: 'w-6 h-6 stroke-2') %>
           <span class="hidden md:inline"><%= t('export') %></span>
         <% end %>

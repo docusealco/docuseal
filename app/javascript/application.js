@@ -112,7 +112,7 @@ if (window.webkit?.messageHandlers?.native) {
   })
 
   document.addEventListener('turbo:load', () => {
-    if (staleSnapshots.delete(window.location.href.split('#')[0]) && isRestoring) {
+    if (staleSnapshots.delete(window.location.href.split('#')[0]) && isRestoring && window.location.pathname !== '/search') {
       setTimeout(() => window.Turbo.session.refresh(document.baseURI))
     }
   })

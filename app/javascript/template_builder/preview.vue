@@ -106,7 +106,7 @@
                     <span>{{ t('reorder_fields') }}</span>
                   </button>
                 </li>
-                <li v-if="withDynamicDocuments && !item.dynamic && document.metadata?.original_uuid">
+                <li v-if="withDynamicDocuments && !isMobile && !item.dynamic && document.metadata?.original_uuid">
                   <button
                     class="w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center space-x-2 text-sm whitespace-nowrap"
                     :disabled="isMakeDynamicLoading"
@@ -217,7 +217,7 @@ export default {
     IconBolt,
     IconPencil
   },
-  inject: ['t', 'getFieldTypeIndex', 'baseFetch'],
+  inject: ['t', 'getFieldTypeIndex', 'baseFetch', 'isMobile'],
   props: {
     item: {
       type: Object,
