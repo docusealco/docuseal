@@ -83,7 +83,14 @@ class SubmissionsController < ApplicationController
         I18n.t('submission_has_been_archived')
       end
 
-    redirect_back(fallback_location: @submission.template_id ? template_path(@submission.template) : root_path, notice:)
+    if turbo_native_app? && request.format.turbo_stream?
+      flash.now[:notice] = notice
+
+      render turbo_stream: [turbo_stream.remove(@submission), turbo_stream.append_all('body', partial: 'shared/flash')]
+    else
+      redirect_back(fallback_location: @submission.template_id ? template_path(@submission.template) : root_path,
+                    notice:)
+    end
   end
 
   private
