@@ -18,6 +18,16 @@ class SubmissionsController < ApplicationController
     'payment' => 'credit_card', 'verification' => 'id', 'kba' => 'user_scan'
   }.freeze
 
+  STATUS_BADGES = {
+    'awaiting' => 'badge-info', 'sent' => 'badge-info', 'completed' => 'badge-success',
+    'opened' => 'badge-warning', 'declined' => 'badge-error'
+  }.freeze
+
+  STATUS_ICONS = {
+    'awaiting' => 'clock', 'sent' => 'send', 'completed' => 'circle_check',
+    'opened' => 'mail_opened', 'declined' => 'x_circle'
+  }.freeze
+
   def show
     @submission = Submissions.preload_with_pages(@submission)
 
