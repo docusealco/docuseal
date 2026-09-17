@@ -23,7 +23,13 @@ export default targetable(class extends HTMLElement {
 
     const download = window.webkit?.messageHandlers?.download
 
-    if (download) return download.postMessage({ src: this.dataset.src })
+    if (download) {
+      this.toggleState()
+
+      document.addEventListener('native:download-end', () => this.toggleState(), { once: true })
+
+      return download.postMessage({ src: this.dataset.src })
+    }
 
     this.toggleState()
 
