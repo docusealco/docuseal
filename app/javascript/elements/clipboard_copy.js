@@ -4,6 +4,13 @@ export default class extends HTMLElement {
 
     this.addEventListener('click', (e) => {
       const text = this.dataset.text || this.innerText.trim()
+      const download = window.webkit?.messageHandlers?.download
+
+      if (download && /^https?:\/\//.test(text)) {
+        e.preventDefault()
+
+        return download.postMessage({ url: text })
+      }
 
       if (navigator.clipboard) {
         navigator.clipboard.writeText(text).then(() => {
