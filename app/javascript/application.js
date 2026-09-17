@@ -69,8 +69,6 @@ import HistoryBack from './elements/history_back'
 import DatePlaceholder from './elements/date_placeholder'
 import FlashMessage from './elements/flash_message'
 
-
-
 document.addEventListener('turbo:before-cache', () => {
   window.flash?.remove()
 })
@@ -96,6 +94,16 @@ if (window.webkit?.messageHandlers?.native) {
   document.addEventListener('turbo:submit-end', (e) => {
     if (e.detail.success && !e.detail.formSubmission.isSafe) {
       window.webkit.messageHandlers.native.postMessage({ type: 'stale' })
+    }
+  })
+
+  document.addEventListener('turbo:before-fetch-request', (event) => {
+    const { session } = window.Turbo
+    const visit = session.navigator.currentVisit
+    const limit = document.getElementById('infinite_scroll')?.dataset.limit
+
+    if (limit && window.scrollY > 0 && event.target === document.documentElement && visit?.location.href === session.view.lastRenderedLocation.href && session.view.isPageRefresh(visit)) {
+      event.detail.url.searchParams.set('limit', limit)
     }
   })
 

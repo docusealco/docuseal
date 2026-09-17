@@ -2,11 +2,7 @@ import { renderStreamMessage } from '@hotwired/turbo'
 
 export default class extends HTMLElement {
   connectedCallback () {
-    if (!this.dataset.src) {
-      this.remove()
-
-      return
-    }
+    if (!this.dataset.src) return
 
     this.observer = new IntersectionObserver((entries) => {
       if (entries.some((entry) => entry.isIntersecting)) {
