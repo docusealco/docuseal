@@ -2,3 +2,6 @@
   <%= content_for(:native_title) || content_for(:html_title) || (signed_in? ? 'DocuSeal' : 'DocuSeal | Open Source Document Signing') %>
 </title>
 <%= render 'shared/meta' %>
+<% if turbo_native_app? %>
+  <meta name="turbo-cache-control" content="no-preview">
+<% end %>
