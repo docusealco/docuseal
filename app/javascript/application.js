@@ -85,6 +85,31 @@ document.addEventListener('turbo:morph', () => {
   document.activeElement?.blur()
 })
 
+if (window.webkit?.messageHandlers?.native) {
+  const staleSnapshots = new Set()
+  let isRestoring = false
+
+  window.Turbo.session.view.clearSnapshotCache = function () {
+    this.snapshotCache.keys.forEach((key) => staleSnapshots.add(key))
+  }
+
+  document.addEventListener('turbo:submit-end', (e) => {
+    if (e.detail.success && !e.detail.formSubmission.isSafe) {
+      window.webkit.messageHandlers.native.postMessage({ type: 'stale' })
+    }
+  })
+
+  document.addEventListener('turbo:visit', (e) => {
+    isRestoring = e.detail.action === 'restore'
+  })
+
+  document.addEventListener('turbo:load', () => {
+    if (staleSnapshots.delete(window.location.href.split('#')[0]) && isRestoring) {
+      setTimeout(() => window.Turbo.session.refresh(document.baseURI))
+    }
+  })
+}
+
 document.addEventListener('turbo:before-fetch-request', (event) => {
   event.detail.fetchOptions.headers['X-Turbo'] = 'true'
 })
