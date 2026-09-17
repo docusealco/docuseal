@@ -1,6 +1,6 @@
 <%= render 'shared/turbo_modal', title: t('update_initials') do %>
   <% options = [[t('draw'), 'draw'], [t('upload'), 'upload']] %>
-  <toggle-visible data-element-ids="<%= options.map(&:last).to_json %>" class="relative text-center mt-4 block">
+  <toggle-visible data-element-ids="<%= options.map(&:last).to_json %>" class="relative text-center block <%= 'mt-4' unless turbo_native_app? %>">
     <div class="join">
       <% options.each_with_index do |(label, value), index| %>
         <span>

@@ -40,7 +40,7 @@
         <img src="<%= signature.url(time: ActiveStorage::Attachment.service_url_time) %>" style="height: 130px; width: 100%; object-fit: contain;">
       </div>
     <% end %>
-    <a href="<%= edit_user_signature_path %>" data-turbo-frame="modal" class="base-button w-full">
+    <a href="<%= edit_user_signature_path %>" data-turbo-frame="modal" data-native-modal="medium" class="base-button w-full">
       <%= t('update_signature') %>
     </a>
     <p class="text-2xl font-bold mt-8 mb-4">
@@ -53,7 +53,7 @@
         <img src="<%= initials.url(time: ActiveStorage::Attachment.service_url_time) %>" style="height: 130px; width: 100%; object-fit: contain;">
       </div>
     <% end %>
-    <a href="<%= edit_user_initials_path %>" data-turbo-frame="modal" class="base-button w-full">
+    <a href="<%= edit_user_initials_path %>" data-turbo-frame="modal" data-native-modal="medium" class="base-button w-full">
       <%= t('update_initials') %>
     </a>
     <% if true_user == current_user && !current_account.testing? %>
