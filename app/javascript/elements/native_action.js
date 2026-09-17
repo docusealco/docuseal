@@ -11,6 +11,7 @@ export default class extends HTMLElement {
     if (!target && !this.dataset.native) return
 
     this.nativeId ||= `native-action-${++counter}`
+    this.id = this.nativeId
 
     if (target) target.dataset.nativeId = this.nativeId
 

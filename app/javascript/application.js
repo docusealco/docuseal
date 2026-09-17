@@ -67,6 +67,7 @@ import ScrollFade from './elements/scroll_fade'
 import OpenModalMobile from './elements/open_modal_mobile'
 import HistoryBack from './elements/history_back'
 import DatePlaceholder from './elements/date_placeholder'
+import FlashMessage from './elements/flash_message'
 
 
 
@@ -78,6 +79,10 @@ document.addEventListener('keyup', (e) => {
   if (e.code === 'Escape') {
     document.activeElement?.blur()
   }
+})
+
+document.addEventListener('turbo:morph', () => {
+  document.activeElement?.blur()
 })
 
 document.addEventListener('turbo:before-fetch-request', (event) => {
@@ -182,6 +187,7 @@ safeRegisterElement('scroll-fade', ScrollFade)
 safeRegisterElement('open-modal-mobile', OpenModalMobile)
 safeRegisterElement('history-back', HistoryBack)
 safeRegisterElement('date-placeholder', DatePlaceholder)
+safeRegisterElement('flash-message', FlashMessage)
 
 safeRegisterElement('template-builder', class extends HTMLElement {
   connectedCallback () {

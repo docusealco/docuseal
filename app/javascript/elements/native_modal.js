@@ -9,7 +9,8 @@ export default class extends HTMLElement {
   }
 
   onSubmit = (e) => {
-    if (!e.detail.success || e.detail.fetchResponse?.redirected) return
+    if (!e.detail.success) return
+    if (e.detail.fetchResponse?.redirected && e.detail.fetchResponse.location.href !== window.location.href) return
     if (e.detail.formSubmission?.formElement?.method === 'get') return
     if (this.dataset.closeAfterSubmit === 'false') return
     if (e.detail.formSubmission?.formElement?.dataset?.closeOnSubmit === 'false') return
