@@ -205,6 +205,9 @@
         :aria-label="t('signature_drawing_area')"
         style="padding: 1px; 0"
         class="bg-white border border-base-300 rounded-2xl w-full draw-canvas"
+        @touchstart.passive="lockSwipe"
+        @touchend.passive="unlockSwipe"
+        @touchcancel.passive="unlockSwipe"
       />
       <div
         v-if="isShowQr"
@@ -576,6 +579,12 @@ export default {
     this.stopCheckSignature()
   },
   methods: {
+    lockSwipe () {
+      window.webkit?.messageHandlers?.native?.postMessage({ type: 'swipe', op: 'lock' })
+    },
+    unlockSwipe () {
+      window.webkit?.messageHandlers?.native?.postMessage({ type: 'swipe', op: 'unlock' })
+    },
     setCanvasSize () {
       const canvas = this.$refs.canvas
 

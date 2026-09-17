@@ -1767,6 +1767,8 @@ export default {
       this.isCompleted = true
       this.isFormVisible = true
 
+      window.webkit?.messageHandlers?.native?.postMessage({ type: 'stale' })
+
       if (resp?.text) {
         const respData = await resp.text()
 

@@ -160,6 +160,9 @@
         role="img"
         :aria-label="t('initials_drawing_area')"
         class="bg-white border border-base-300 rounded-2xl w-full draw-canvas"
+        @touchstart.passive="lockSwipe"
+        @touchend.passive="unlockSwipe"
+        @touchcancel.passive="unlockSwipe"
       />
     </div>
     <input
@@ -311,6 +314,8 @@ export default {
     this.intersectionObserver?.disconnect()
   },
   methods: {
+    lockSwipe: SignatureStep.methods.lockSwipe,
+    unlockSwipe: SignatureStep.methods.unlockSwipe,
     drawOnCanvas: SignatureStep.methods.drawOnCanvas,
     drawImage (event) {
       this.remove()
