@@ -70,7 +70,7 @@
                 <%= mcp_token.name %>
               </td>
               <td data-label="<%= t('token') %>">
-                <span class="font-mono truncate inline-block max-w-[220px] align-middle">
+                <span class="font-mono truncate inline-block align-middle" style="max-width: 220px;">
                   <% if @mcp_token.present? && mcp_token.id == @mcp_token.id %>
                     <%= @mcp_token.token %>
                   <% else %>

@@ -2,7 +2,7 @@
 <div class="flex-wrap space-y-4 md:flex md:flex-nowrap md:space-y-0 md:space-x-10">
   <%= render 'shared/settings_nav' %>
   <div class="md:flex-grow">
-    <div class="flex flex-wrap items-center md:items-end gap-x-4 gap-y-2 mb-4 min-h-12">
+    <div class="flex flex-wrap items-center md:items-end gap-x-4 md:gap-y-2 md:mb-4 min-h-12">
       <h1 class="text-3xl md:text-4xl font-bold truncate min-w-0 mr-auto md:order-1">
         <% if params[:status] == 'archived' %>
           <%= t('archived_users') %>
@@ -14,10 +14,15 @@
       </h1>
       <% if params[:status].blank? %>
         <% if can?(:create, User.new(account: current_account)) %>
-          <%= link_to new_user_path, class: 'shrink-0 md:order-3 btn btn-primary btn-md gap-2', title: t('new_user'), data: { turbo_frame: 'modal' } do %>
-            <%= svg_icon('plus', class: 'w-6 h-6') %>
-            <span class="md:hidden"><%= t('new') %></span>
-            <span class="hidden md:inline"><%= t('new_user') %></span>
+          <% extra_buttons_html = render('users/extra_buttons') %>
+          <% if content_for(:add_user_button) %>
+            <%= content_for(:add_user_button) %>
+          <% else %>
+            <%= link_to new_user_path, class: 'shrink-0 md:order-3 btn btn-primary btn-md gap-2', title: t('new_user'), data: { turbo_frame: 'modal' } do %>
+              <%= svg_icon('plus', class: 'w-6 h-6') %>
+              <span class="md:hidden"><%= t('new') %></span>
+              <span class="hidden md:inline"><%= t('new_user') %></span>
+            <% end %>
           <% end %>
         <% else %>
           <div class="shrink-0 md:order-3 md:tooltip" data-tip="<%= t('contact_your_administrator_to_add_new_users') %>">
@@ -29,9 +34,9 @@
           </div>
         <% end %>
       <% end %>
-      <% if params[:status].blank? && can?(:create, User.new(account: current_account)) %>
+      <% if extra_buttons_html.present? %>
         <div class="basis-full md:basis-auto md:order-2 flex flex-col md:flex-row gap-y-2 gap-x-4 md:items-center">
-          <%= render 'users/extra_buttons' %>
+          <%= extra_buttons_html %>
         </div>
       <% end %>
     </div>
@@ -63,8 +68,8 @@
               <ul tabindex="0" class="<%= turbo_native_app? ? 'hidden' : 'z-10 dropdown-content p-2 mt-2 shadow menu bg-base-100 rounded-box min-w-[160px]' %>">
                 <% if can_edit %>
                   <li>
-                    <native-menu-action data-icon="pencil" data-label="<%= t('edit') %>">
-                      <%= link_to edit_user_path(user), class: 'flex items-center gap-2', data: { turbo_frame: 'modal' } do %>
+                    <native-menu-action data-icon="pencil" data-label="<%= t('edit') %>" class="grid-cols-1 p-0">
+                      <%= link_to edit_user_path(user), class: 'flex items-center gap-2 px-4 py-2', data: { turbo_frame: 'modal' } do %>
                         <%= svg_icon('pencil', class: 'w-5 h-5 flex-shrink-0') %>
                         <span><%= t('edit') %></span>
                       <% end %>
@@ -73,8 +78,8 @@
                 <% end %>
                 <% if can_remove %>
                   <li>
-                    <native-menu-action data-icon="trash" data-label="<%= t('remove') %>" data-destructive="true">
-                      <button form="<%= dom_id(user, :remove) %>" class="flex items-center gap-2 w-full text-error" data-turbo-confirm="<%= t('are_you_sure_') %>">
+                    <native-menu-action data-icon="trash" data-label="<%= t('remove') %>" data-destructive="true" class="grid-cols-1 p-0">
+                      <button form="<%= dom_id(user, :remove) %>" class="flex items-center gap-2 px-4 py-2 w-full text-error" data-turbo-confirm="<%= t('are_you_sure_') %>">
                         <%= svg_icon('trash', class: 'w-5 h-5 flex-shrink-0') %>
                         <span><%= t('remove') %></span>
                       </button>
@@ -84,8 +89,8 @@
                 <% end %>
                 <% if can_unarchive %>
                   <li>
-                    <native-menu-action data-icon="rotate" data-label="<%= t('unarchive') %>">
-                      <button form="<%= dom_id(user, :unarchive) %>" class="flex items-center gap-2 w-full" data-turbo-confirm="<%= t('are_you_sure_') %>">
+                    <native-menu-action data-icon="rotate" data-label="<%= t('unarchive') %>" class="grid-cols-1 p-0">
+                      <button form="<%= dom_id(user, :unarchive) %>" class="flex items-center gap-2 px-4 py-2 w-full" data-turbo-confirm="<%= t('are_you_sure_') %>">
                         <%= svg_icon('rotate', class: 'w-5 h-5 flex-shrink-0') %>
                         <span><%= t('unarchive') %></span>
                       </button>
