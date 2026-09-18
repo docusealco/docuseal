@@ -122,7 +122,7 @@ export default targetable(class extends HTMLElement {
           }
         }).finally(() => {
           window.Turbo.cache.clear()
-          window.Turbo.visit(location.href)
+          window.Turbo.visit(location.href, { action: 'replace' })
         })
       }
     }
