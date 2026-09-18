@@ -17,7 +17,7 @@
     <div
       class="absolute bottom-3 flex items-center justify-center w-10 h-10 rounded-full bg-base-100 shadow-lg pointer-events-none transition-opacity duration-300"
       :class="open ? 'opacity-100' : 'opacity-0'"
-      :style="side === 'left' ? 'left: calc(min(82%, 340px) + 0.75rem)' : 'right: calc(min(82%, 340px) + 0.75rem)'"
+      :style="[side === 'left' ? 'left: calc(min(82%, 340px) + 0.75rem)' : 'right: calc(min(82%, 340px) + 0.75rem)', backgroundStyle]"
     >
       <IconX class="w-5 h-5" />
     </div>
@@ -25,6 +25,7 @@
       ref="panel"
       class="absolute top-0 bottom-0 bg-base-100 shadow-xl overflow-y-auto overflow-x-hidden overscroll-contain px-4 transition-transform duration-300 ease-out"
       style="width: 82%; max-width: 340px"
+      :style="backgroundStyle"
       :class="[side === 'left' ? 'left-0' : 'right-0', open ? 'translate-x-0' : (side === 'left' ? '-translate-x-full' : 'translate-x-full')]"
       @touchmove="onPanelTouchmove"
     >
@@ -56,9 +57,19 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    backgroundColor: {
+      type: String,
+      required: false,
+      default: ''
     }
   },
   emits: ['close'],
+  computed: {
+    backgroundStyle () {
+      return ['', null, 'transparent'].includes(this.backgroundColor) ? {} : { backgroundColor: this.backgroundColor }
+    }
+  },
   watch: {
     open (value) {
       document.body.style.overflow = value ? 'hidden' : ''

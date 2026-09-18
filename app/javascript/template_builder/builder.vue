@@ -30,6 +30,7 @@
       side="left"
       :inline="isDocumentsView"
       :open="isDocumentsDrawerOpen"
+      :background-color="backgroundColor"
       @close="isDocumentsDrawerOpen = false"
     >
       <div class="pt-3 space-y-3">
@@ -62,6 +63,7 @@
         v-if="editable && (withUploadButton || withAddPageButton)"
         class="pt-3 space-y-2"
         :class="isDocumentsView ? 'pb-6' : 'sticky bottom-0 bg-base-100 pb-3'"
+        :style="['', null, 'transparent'].includes(backgroundColor) ? {} : { backgroundColor }"
       >
         <Upload
           v-if="withUploadButton"
@@ -93,6 +95,7 @@
       side="right"
       :inline="isFieldsView"
       :open="isFieldsDrawerOpen"
+      :background-color="backgroundColor"
       class="md:hidden"
       @close="isFieldsDrawerOpen = false"
     >
@@ -114,6 +117,7 @@
           :default-required-fields="defaultRequiredFields"
           :detect-custom-fields-index="detectCustomFieldsIndex"
           :field-types="fieldTypes"
+          :with-sticky-submitters="withStickySubmitters"
           :with-fields-detection="withFieldsDetection"
           :with-detect-existing-fields="withDetectExistingFields"
           :with-signature-id="withSignatureId"
