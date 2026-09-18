@@ -353,7 +353,7 @@ function buildExtensions ({ Node, Mark, Extension, Plugin, Decoration, Decoratio
 
   const buildDecorations = (doc) => {
     const decorations = []
-    const regex = /\{\{?[a-zA-Z0-9_.-]+\}\}?/g
+    const regex = /\{\{?[^{}\n]+\}\}?/g
 
     doc.descendants((node, pos) => {
       if (!node.isText) return
