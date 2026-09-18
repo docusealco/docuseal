@@ -68,12 +68,22 @@
       <% end %>
     </div>
   </div>
-  <% if !template.archived_at? && (can?(:update, template) || can?(:create, template) || can?(:destroy, template)) %>
+  <% if !template.archived_at? && (can?(:create, Submission) || can?(:update, template) || can?(:create, template) || can?(:destroy, template)) %>
     <native-menu class="<%= 'dropdown dropdown-top dropdown-end has-[:disabled]:dropdown-open' unless turbo_native_app? %> absolute bottom-4 right-4 md:hidden">
       <label tabindex="0" aria-label="<%= t('more') %>" class="block cursor-pointer py-2 pl-4 pr-2 -ml-4 -mr-2 -mt-2 -mb-3 text-base-content/70">
         <%= svg_icon('dots', class: 'w-6 h-6') %>
       </label>
       <ul tabindex="0" class="<%= turbo_native_app? ? 'hidden' : 'z-10 dropdown-content p-2 mb-1 shadow menu text-base bg-base-100 rounded-box min-w-[160px]' %>">
+        <% if can?(:create, Submission) %>
+          <li>
+            <native-menu-action data-icon="send" data-label="<%= t('send') %>" class="grid-cols-1 p-0">
+              <%= link_to new_template_submission_path(template), class: 'flex items-center gap-2 px-4 py-2', data: { turbo_frame: :modal, native_modal: ('medium' if template.submitters.size < 3) } do %>
+                <%= svg_icon('send', class: 'w-5 h-5 flex-shrink-0') %>
+                <span><%= t('send') %></span>
+              <% end %>
+            </native-menu-action>
+          </li>
+        <% end %>
         <% if can?(:update, template) %>
           <li>
             <native-menu-action data-icon="pencil" data-label="<%= t('edit') %>" class="grid-cols-1 p-0">
