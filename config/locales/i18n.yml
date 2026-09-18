@@ -1013,6 +1013,14 @@ en: &en
   phone_2fa_verification_text_message: Phone 2FA verification text message.
   notification_email_sent_to_the_sender_user_and_bcc_addresses_once_the_submission_is_completed_by_all_parties: Notification email sent to the sender user and BCC addresses once the submission is completed by all parties.
   completed_documents_copy_email_sent_to_recipients_upon_completion_containing_their_documents: Completed documents copy email sent to recipients upon completion containing their documents.
+  fields: Fields
+  more: More
+  ok: OK
+  failed_to_download_files: Failed to download files
+  failed_to_upload_files: Failed to upload files
+  failed_to_save_the_scan: Failed to save the scan
+  failed_to_scan_the_document: Failed to scan the document
+  document_scanning_is_not_available_on_this_device: Document scanning is not available on this device
   devise:
     confirmations:
       confirmed: Your email address has been successfully confirmed.
@@ -2146,6 +2154,14 @@ es: &es
   open_file_from: 'Abrir archivo desde'
   cancel: Cancelar
   open: Abrir
+  fields: Campos
+  more: Más
+  ok: Aceptar
+  failed_to_download_files: No se pudieron descargar los archivos
+  failed_to_upload_files: No se pudieron subir los archivos
+  failed_to_save_the_scan: No se pudo guardar el escaneo
+  failed_to_scan_the_document: No se pudo escanear el documento
+  document_scanning_is_not_available_on_this_device: El escaneo de documentos no está disponible en este dispositivo
   devise:
     confirmations:
       confirmed: Tu dirección de correo electrónico ha sido confirmada correctamente.
@@ -3293,6 +3309,14 @@ it: &it
   open_file_from: 'Aprire file da'
   cancel: Annulla
   open: Apri
+  fields: Campi
+  more: Altro
+  ok: OK
+  failed_to_download_files: Impossibile scaricare i file
+  failed_to_upload_files: Impossibile caricare i file
+  failed_to_save_the_scan: Impossibile salvare la scansione
+  failed_to_scan_the_document: Impossibile scansionare il documento
+  document_scanning_is_not_available_on_this_device: La scansione dei documenti non è disponibile su questo dispositivo
   devise:
     confirmations:
       confirmed: Il tuo indirizzo email è stato confermato con successo.
@@ -4423,6 +4447,14 @@ fr: &fr
   open_file_from: 'Ouvrir le fichier depuis'
   cancel: Annuler
   open: Ouvrir
+  fields: Champs
+  more: Plus
+  ok: OK
+  failed_to_download_files: Impossible de télécharger les fichiers
+  failed_to_upload_files: Impossible de téléverser les fichiers
+  failed_to_save_the_scan: Impossible d’enregistrer la numérisation
+  failed_to_scan_the_document: Impossible de numériser le document
+  document_scanning_is_not_available_on_this_device: La numérisation de documents n’est pas disponible sur cet appareil
   devise:
     confirmations:
       confirmed: Votre adresse e-mail a été confirmée avec succès.
@@ -5569,6 +5601,14 @@ pt: &pt
   open_file_from: 'Abrir arquivo de'
   cancel: Cancelar
   open: Abrir
+  fields: Campos
+  more: Mais
+  ok: OK
+  failed_to_download_files: Não foi possível baixar os arquivos
+  failed_to_upload_files: Não foi possível enviar os arquivos
+  failed_to_save_the_scan: Não foi possível salvar a digitalização
+  failed_to_scan_the_document: Não foi possível digitalizar o documento
+  document_scanning_is_not_available_on_this_device: A digitalização de documentos não está disponível neste dispositivo
   devise:
     confirmations:
       confirmed: Seu endereço de e-mail foi confirmado com sucesso.
@@ -6715,6 +6755,14 @@ de: &de
   open_file_from: 'Datei öffnen von'
   cancel: Abbrechen
   open: Öffnen
+  fields: Felder
+  more: Mehr
+  ok: OK
+  failed_to_download_files: Dateien konnten nicht heruntergeladen werden
+  failed_to_upload_files: Dateien konnten nicht hochgeladen werden
+  failed_to_save_the_scan: Scan konnte nicht gespeichert werden
+  failed_to_scan_the_document: Dokument konnte nicht gescannt werden
+  document_scanning_is_not_available_on_this_device: Das Scannen von Dokumenten ist auf diesem Gerät nicht verfügbar
   devise:
     confirmations:
       confirmed: Ihre E-Mail-Adresse wurde erfolgreich bestätigt.
@@ -8385,6 +8433,14 @@ nl: &nl
   open_file_from: 'Bestand openen van'
   cancel: Annuleren
   open: Openen
+  fields: Velden
+  more: Meer
+  ok: OK
+  failed_to_download_files: Bestanden konden niet worden gedownload
+  failed_to_upload_files: Bestanden konden niet worden geüpload
+  failed_to_save_the_scan: Scan kon niet worden opgeslagen
+  failed_to_scan_the_document: Document kon niet worden gescand
+  document_scanning_is_not_available_on_this_device: Documenten scannen is niet beschikbaar op dit apparaat
   devise:
     confirmations:
       confirmed: Uw e-mailadres is succesvol bevestigd.

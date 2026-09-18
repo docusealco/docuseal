@@ -1,3 +1,5 @@
+import './elements/native_bridge'
+
 import { createApp, reactive } from 'vue'
 
 import Form from './submission_form/form'

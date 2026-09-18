@@ -1,10 +1,36 @@
 export default class extends HTMLElement {
   connectedCallback () {
     document.addEventListener('native:search', this.onSearch)
+    document.addEventListener('turbo:before-cache', this.onBeforeCache)
+    this.addEventListener('touchstart', this.onTouchStart, { passive: true })
+    this.addEventListener('scroll', this.onScroll, { capture: true, passive: true })
+
+    const scroller = this.querySelector('[data-scroll-top]')
+
+    if (scroller) scroller.scrollTop = scroller.dataset.scrollTop
   }
 
   disconnectedCallback () {
     document.removeEventListener('native:search', this.onSearch)
+    document.removeEventListener('turbo:before-cache', this.onBeforeCache)
+  }
+
+  onBeforeCache = () => {
+    if (this.scroller) this.scroller.dataset.scrollTop = this.scroller.scrollTop
+  }
+
+  onTouchStart = () => {
+    this.isTouching = true
+  }
+
+  onScroll = (event) => {
+    this.scroller = event.target
+
+    if (!this.isTouching) return
+
+    this.isTouching = false
+
+    window.webkit?.messageHandlers?.native?.postMessage({ type: 'dismiss-keyboard' })
   }
 
   onSearch = (event) => {

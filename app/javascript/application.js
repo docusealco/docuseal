@@ -1,4 +1,5 @@
 import '@hotwired/turbo-rails'
+import './elements/native_bridge'
 
 import { createApp, reactive } from 'vue'
 import TemplateBuilder from './template_builder/builder'
@@ -97,14 +98,31 @@ if (window.webkit?.messageHandlers?.native) {
     }
   })
 
-  document.addEventListener('turbo:before-fetch-request', (event) => {
+  document.addEventListener('native:pull-to-refresh', (event) => {
     const { session } = window.Turbo
-    const visit = session.navigator.currentVisit
-    const limit = document.getElementById('infinite_scroll')?.dataset.limit
+    const url = new URL(document.baseURI)
 
-    if (limit && window.scrollY > 0 && event.target === document.documentElement && visit?.location.href === session.view.lastRenderedLocation.href && session.view.isPageRefresh(visit)) {
-      event.detail.url.searchParams.set('limit', limit)
-    }
+    url.searchParams.delete('limit')
+
+    session.history.replace(url, session.history.restorationIdentifier)
+    session.view.lastRenderedLocation = url
+
+    event.detail.result = new Promise((resolve) => {
+      document.addEventListener('turbo:render', () => resolve(true), { once: true })
+      document.addEventListener('turbo:fetch-request-error', () => resolve(true), { once: true })
+
+      session.refresh(document.baseURI)
+    })
+  })
+
+  document.addEventListener('native:refresh', () => {
+    window.Turbo.session.refresh(document.baseURI)
+  })
+
+  document.addEventListener('native:turbo-stream', (e) => {
+    if (!e.detail.body?.trimStart().startsWith('<turbo-stream')) return
+
+    window.Turbo.renderStreamMessage(e.detail.body)
   })
 
   document.addEventListener('turbo:visit', (e) => {
@@ -118,8 +136,10 @@ if (window.webkit?.messageHandlers?.native) {
   })
 }
 
-document.addEventListener('turbo:before-fetch-request', (event) => {
-  event.detail.fetchOptions.headers['X-Turbo'] = 'true'
+document.addEventListener('turbo:before-fetch-response', (event) => {
+  if (event.detail.fetchResponse.header('content-disposition')?.includes('attachment')) {
+    event.preventDefault()
+  }
 })
 document.addEventListener('turbo:submit-end', async (event) => {
   const resp = event.detail?.formSubmission?.result?.fetchResponse?.response
@@ -232,6 +252,7 @@ safeRegisterElement('template-builder', class extends HTMLElement {
     document.addEventListener('template-builder:select-submitter', this.onSelectSubmitter)
     document.addEventListener('template-builder:sync-custom-fields', this.onSyncCustomFields)
     document.addEventListener('template-builder:draw-field', this.onDrawField)
+    document.addEventListener('native:builder-view', this.onBuilderView)
     document.addEventListener('turbo:before-cache', this.onBeforeCache)
 
     this.appElem = document.createElement('div')
@@ -395,6 +416,23 @@ safeRegisterElement('template-builder', class extends HTMLElement {
     }
   }
 
+  onBuilderView = (event) => {
+    const root = document.documentElement.cloneNode(true)
+    const builder = root.querySelector('template-builder')
+    const style = document.createElement('style')
+
+    builder.innerHTML = ''
+    builder.setAttribute('data-native-view', event.detail.view)
+
+    root.querySelector('meta[name="viewport"]')?.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
+
+    style.textContent = 'html { overflow-x: hidden; overscroll-behavior-x: none; } html, body { max-width: 100%; }'
+
+    root.querySelector('head').appendChild(style)
+
+    event.detail.result = '<!DOCTYPE html>' + root.outerHTML
+  }
+
   onBeforeCache = () => {
     this.app?.unmount()
     this.appElem?.remove()
@@ -409,6 +447,7 @@ safeRegisterElement('template-builder', class extends HTMLElement {
     document.removeEventListener('template-builder:select-submitter', this.onSelectSubmitter)
     document.removeEventListener('template-builder:sync-custom-fields', this.onSyncCustomFields)
     document.removeEventListener('template-builder:draw-field', this.onDrawField)
+    document.removeEventListener('native:builder-view', this.onBuilderView)
     document.removeEventListener('turbo:before-cache', this.onBeforeCache)
 
     this.app?.unmount()

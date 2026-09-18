@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   before_action :maybe_redirect_to_setup, unless: :signed_in?
   before_action :authenticate_user!, unless: :devise_controller?
 
-  before_action :set_csp, if: -> { request.get? && !request.headers['HTTP_X_TURBO'] && !turbo_infinite_scroll? }
+  before_action :set_csp, if: -> { request.get? && !request.headers['HTTP_X_TURBO_REQUEST_ID'] && !turbo_infinite_scroll? }
 
   helper_method :button_title,
                 :current_account,

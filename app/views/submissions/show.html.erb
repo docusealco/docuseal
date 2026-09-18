@@ -387,6 +387,6 @@
     </toggle-visible>
   <% end %>
 </main>
-<% unless request.headers['HTTP_X_TURBO'] %>
+<% unless request.headers['HTTP_X_TURBO_REQUEST_ID'] %>
   <%= render 'scripts/autosize_field' %>
 <% end %>

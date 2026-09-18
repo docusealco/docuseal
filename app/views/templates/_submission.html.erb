@@ -93,7 +93,7 @@
             </div>
           <% else %>
             <div class="flex-1 min-w-0 md:flex-none">
-              <%= render 'shared/clipboard_copy', text: submit_form_url(slug: submitter.slug, host: form_link_host), class: 'btn btn-sm max-sm:normal-case btn-neutral text-white md:w-36 flex z-[1]', icon_class: 'w-6 h-6 max-sm:w-5 max-sm:h-5 text-white', copy_title: t('copy_link').length < 10 ? t('copy_link') : t('copy'), copy_title_md: t('link'), copied_title_md: t('copied') %>
+              <%= render 'shared/clipboard_copy', text: submit_form_url(slug: submitter.slug, host: form_link_host), class: 'btn btn-sm max-sm:normal-case btn-neutral text-white md:w-36 flex z-[1]', icon_class: 'w-6 h-6 max-sm:w-[18px] max-sm:h-[18px] text-white', copy_title: t('copy_link').length < 10 ? t('copy_link') : t('copy'), copy_title_md: t('link'), copied_title_md: t('copied') %>
             </div>
           <% end %>
         <% end %>

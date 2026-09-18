@@ -28,7 +28,9 @@
         <open-modal src="<%= url_for(**url_params, params: modal_uri.query_values) %>"></open-modal>
       <% end %>
     <% end %>
-    <turbo-frame id="modal"></turbo-frame>
+    <% unless content_for?(:native_modal) %>
+      <turbo-frame id="modal"></turbo-frame>
+    <% end %>
     <turbo-frame id="drawer"></turbo-frame>
     <%= render turbo_native_app? ? 'shared/native_navbar' : 'shared/navbar' %>
     <% if flash.present? %><%= render 'shared/flash' %><% end %>

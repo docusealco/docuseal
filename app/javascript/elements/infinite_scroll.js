@@ -1,8 +1,14 @@
-import { renderStreamMessage } from '@hotwired/turbo'
+import { renderStreamMessage, session } from '@hotwired/turbo'
 
 export default class extends HTMLElement {
   connectedCallback () {
-    if (!this.dataset.src) return
+    if (this.dataset.limit) this.replaceLimitParam()
+
+    if (!this.dataset.src) {
+      this.remove()
+
+      return
+    }
 
     this.observer = new IntersectionObserver((entries) => {
       if (entries.some((entry) => entry.isIntersecting)) {
@@ -15,6 +21,15 @@ export default class extends HTMLElement {
 
   disconnectedCallback () {
     this.observer?.disconnect()
+  }
+
+  replaceLimitParam () {
+    const url = new URL(window.location.href)
+
+    url.searchParams.set('limit', this.dataset.limit)
+
+    session.history.replace(url, session.history.restorationIdentifier)
+    session.view.lastRenderedLocation = url
   }
 
   load () {
