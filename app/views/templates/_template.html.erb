@@ -76,8 +76,8 @@
       <ul tabindex="0" class="<%= turbo_native_app? ? 'hidden' : 'z-10 dropdown-content p-2 mb-1 shadow menu text-base bg-base-100 rounded-box min-w-[160px]' %>">
         <% if can?(:update, template) %>
           <li>
-            <native-menu-action data-icon="pencil" data-label="<%= t('edit') %>">
-              <%= link_to edit_template_path(template), class: 'flex items-center gap-2', data: { native_title: template.name } do %>
+            <native-menu-action data-icon="pencil" data-label="<%= t('edit') %>" class="grid-cols-1 p-0">
+              <%= link_to edit_template_path(template), class: 'flex items-center gap-2 px-4 py-2', data: { native_title: template.name } do %>
                 <%= svg_icon('pencil', class: 'w-5 h-5 flex-shrink-0') %>
                 <span><%= t('edit') %></span>
               <% end %>
@@ -86,8 +86,8 @@
         <% end %>
         <% if can?(:update, template) && template.account_id == current_account.id %>
           <li>
-            <native-menu-action data-icon="folder" data-label="<%= t('move') %>">
-              <%= link_to edit_template_folder_path(template.id), class: 'flex items-center gap-2', data: { turbo_frame: :modal, native_modal: :medium } do %>
+            <native-menu-action data-icon="folder" data-label="<%= t('move') %>" class="grid-cols-1 p-0">
+              <%= link_to edit_template_folder_path(template.id), class: 'flex items-center gap-2 px-4 py-2', data: { turbo_frame: :modal, native_modal: :medium } do %>
                 <%= svg_icon('folder_share', class: 'w-5 h-5 flex-shrink-0') %>
                 <span><%= t('move') %></span>
               <% end %>
@@ -96,8 +96,8 @@
         <% end %>
         <% if can?(:create, template) %>
           <li>
-            <native-menu-action data-icon="copy" data-label="<%= t('clone') %>">
-              <%= link_to new_template_clone_path(template), class: 'flex items-center gap-2', data: { turbo_frame: :modal, native_modal: :medium } do %>
+            <native-menu-action data-icon="copy" data-label="<%= t('clone') %>" class="grid-cols-1 p-0">
+              <%= link_to new_template_clone_path(template), class: 'flex items-center gap-2 px-4 py-2', data: { turbo_frame: :modal, native_modal: :medium } do %>
                 <%= svg_icon('copy', class: 'w-5 h-5 flex-shrink-0') %>
                 <span><%= t('clone') %></span>
               <% end %>
@@ -106,8 +106,8 @@
         <% end %>
         <% if can?(:destroy, template) %>
           <li>
-            <native-menu-action data-icon="archive" data-label="<%= t('archive') %>">
-              <button form="<%= form_uuid = SecureRandom.uuid %>" class="flex items-center">
+            <native-menu-action data-icon="archive" data-label="<%= t('archive') %>" class="grid-cols-1 p-0">
+              <button form="<%= form_uuid = SecureRandom.uuid %>" class="flex items-center px-4 py-2">
                 <%= button_title(title: t('archive'), disabled_with: t('archiving'), icon: svg_icon('archive', class: 'w-5 h-5 flex-shrink-0')) %>
               </button>
               <%= button_to '', template_path(template), method: :delete, form: { id: form_uuid, class: 'hidden' } %>

@@ -113,8 +113,8 @@
     </label>
     <ul tabindex="0" class="<%= turbo_native_app? ? 'hidden' : 'z-10 dropdown-content p-2 mt-2 shadow menu text-base bg-base-100 rounded-box' %>" style="min-width: 180px;">
       <li>
-        <native-menu-action data-icon="list" data-label="<%= t('all') %>" data-selected="<%= current_status == 'all' %>" class="grid-cols-1 <%= 'bg-base-200' if current_status == 'all' %>">
-          <%= link_to url_for(params: request.query_parameters.except('status')), class: 'flex items-center gap-2', aria: { label: t('all') } do %>
+        <native-menu-action data-icon="list" data-label="<%= t('all') %>" data-selected="<%= current_status == 'all' %>" class="grid-cols-1 p-0 <%= 'bg-base-200' if current_status == 'all' %>">
+          <%= link_to url_for(params: request.query_parameters.except('status')), class: 'flex items-center gap-2 px-4 py-2', aria: { label: t('all') } do %>
             <%= svg_icon('list', class: 'w-5 h-5 shrink-0') %>
             <span><%= t('all') %></span>
             <% if local_assigns[:all_count] %>
@@ -126,8 +126,8 @@
         </native-menu-action>
       </li>
       <li>
-        <native-menu-action data-icon="clock" data-label="<%= t('pending') %>" data-selected="<%= current_status == 'pending' %>" class="grid-cols-1 <%= 'bg-base-200' if current_status == 'pending' %>">
-          <%= link_to url_for(params: request.query_parameters.merge('status' => 'pending')), class: 'flex items-center gap-2', aria: { label: t('pending') } do %>
+        <native-menu-action data-icon="clock" data-label="<%= t('pending') %>" data-selected="<%= current_status == 'pending' %>" class="grid-cols-1 p-0 <%= 'bg-base-200' if current_status == 'pending' %>">
+          <%= link_to url_for(params: request.query_parameters.merge('status' => 'pending')), class: 'flex items-center gap-2 px-4 py-2', aria: { label: t('pending') } do %>
             <%= svg_icon('clock', class: 'w-5 h-5 shrink-0') %>
             <span><%= t('pending') %></span>
             <% if local_assigns[:pending_count] %>
@@ -139,8 +139,8 @@
         </native-menu-action>
       </li>
       <li>
-        <native-menu-action data-icon="circle_check" data-label="<%= t('completed') %>" data-selected="<%= current_status == 'completed' %>" class="grid-cols-1 <%= 'bg-base-200' if current_status == 'completed' %>">
-          <%= link_to url_for(params: request.query_parameters.merge('status' => 'completed')), class: 'flex items-center gap-2', aria: { label: t('completed') } do %>
+        <native-menu-action data-icon="circle_check" data-label="<%= t('completed') %>" data-selected="<%= current_status == 'completed' %>" class="grid-cols-1 p-0 <%= 'bg-base-200' if current_status == 'completed' %>">
+          <%= link_to url_for(params: request.query_parameters.merge('status' => 'completed')), class: 'flex items-center gap-2 px-4 py-2', aria: { label: t('completed') } do %>
             <%= svg_icon('circle_check', class: 'w-5 h-5 shrink-0') %>
             <span><%= t('completed') %></span>
             <% if local_assigns[:completed_count] %>

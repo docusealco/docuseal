@@ -9,40 +9,40 @@
   </label>
   <ul tabindex="0" class="<%= turbo_native_app? ? 'hidden' : 'z-10 dropdown-content p-2 mt-2 shadow menu text-base bg-base-100 rounded-box text-right' %>" style="min-width: 180px;">
     <li class="flex">
-      <native-menu-action data-icon="calendar_check" data-label="<%= t('completed_at') %>">
-        <%= link_to submissions_filter_path('completed_at', query_params.merge(path: url_for)), class: 'flex items-center gap-2', data: { turbo_frame: 'modal', native_modal: 'medium' } do %>
+      <native-menu-action data-icon="calendar_check" data-label="<%= t('completed_at') %>" class="grid-cols-1 p-0">
+        <%= link_to submissions_filter_path('completed_at', query_params.merge(path: url_for)), class: 'flex items-center gap-2 px-4 py-2', data: { turbo_frame: 'modal', native_modal: 'medium' } do %>
           <%= svg_icon('calendar_check', class: 'w-5 h-5 flex-shrink-0 stroke-2') %>
           <span><%= t('completed_at') %></span>
         <% end %>
       </native-menu-action>
     </li>
     <li class="flex">
-      <native-menu-action data-icon="calendar" data-label="<%= t('created_at') %>">
-        <%= link_to submissions_filter_path('created_at', query_params.merge(path: url_for)), class: 'flex items-center gap-2', data: { turbo_frame: 'modal', native_modal: 'medium' } do %>
+      <native-menu-action data-icon="calendar" data-label="<%= t('created_at') %>" class="grid-cols-1 p-0">
+        <%= link_to submissions_filter_path('created_at', query_params.merge(path: url_for)), class: 'flex items-center gap-2 px-4 py-2', data: { turbo_frame: 'modal', native_modal: 'medium' } do %>
           <%= svg_icon('calendar', class: 'w-5 h-5 flex-shrink-0 stroke-2') %>
           <span><%= t('created_at') %></span>
         <% end %>
       </native-menu-action>
     </li>
     <li class="flex">
-      <native-menu-action data-icon="info_circle" data-label="<%= t('status') %>">
-        <%= link_to submissions_filter_path('status', query_params.merge(path: url_for)), class: 'flex items-center gap-2', data: { turbo_frame: 'modal', native_modal: 'medium' } do %>
+      <native-menu-action data-icon="info_circle" data-label="<%= t('status') %>" class="grid-cols-1 p-0">
+        <%= link_to submissions_filter_path('status', query_params.merge(path: url_for)), class: 'flex items-center gap-2 px-4 py-2', data: { turbo_frame: 'modal', native_modal: 'medium' } do %>
           <%= svg_icon('info_circle', class: 'w-5 h-5 flex-shrink-0 stroke-2') %>
           <span><%= t('status') %></span>
         <% end %>
       </native-menu-action>
     </li>
     <li class="flex">
-      <native-menu-action data-icon="folder" data-label="<%= t('folder') %>">
-        <%= link_to submissions_filter_path('folder', query_params.merge(path: url_for)), class: 'flex items-center gap-2', data: { turbo_frame: 'modal', native_modal: 'medium' } do %>
+      <native-menu-action data-icon="folder" data-label="<%= t('folder') %>" class="grid-cols-1 p-0">
+        <%= link_to submissions_filter_path('folder', query_params.merge(path: url_for)), class: 'flex items-center gap-2 px-4 py-2', data: { turbo_frame: 'modal', native_modal: 'medium' } do %>
           <%= svg_icon('folder', class: 'w-5 h-5 flex-shrink-0 stroke-2') %>
           <span><%= t('folder') %></span>
         <% end %>
       </native-menu-action>
     </li>
     <li class="flex">
-      <native-menu-action data-icon="user" data-label="<%= t('author') %>">
-        <%= link_to submissions_filter_path('author', query_params.merge(path: url_for)), class: 'flex items-center gap-2', data: { turbo_frame: 'modal', native_modal: 'medium' } do %>
+      <native-menu-action data-icon="user" data-label="<%= t('author') %>" class="grid-cols-1 p-0">
+        <%= link_to submissions_filter_path('author', query_params.merge(path: url_for)), class: 'flex items-center gap-2 px-4 py-2', data: { turbo_frame: 'modal', native_modal: 'medium' } do %>
           <%= svg_icon('user', class: 'w-5 h-5 flex-shrink-0 stroke-2') %>
           <span><%= t('author') %></span>
         <% end %>
