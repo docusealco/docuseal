@@ -39,6 +39,8 @@ export default targetable(class extends HTMLElement {
   ]
 
   connectedCallback () {
+    this.id = `email-editor-${Math.random().toString(32).split('.')[1]}`
+
     this.mount()
 
     if (this.input.value) {

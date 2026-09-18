@@ -8,9 +8,9 @@
       </a>
     </div>
   <% end %>
-  <div class="<%= 'hidden md:block' unless expanded %>">
+  <div id="account_settings_menu" class="<%= 'hidden md:block' unless expanded %>">
     <menu-active>
-      <ul id="account_settings_menu" class="menu px-0">
+      <ul class="menu px-0">
         <% unless expanded || turbo_native_app? %>
           <li class="menu-title py-0 !bg-transparent mb-3 -mt-5">
             <a href="<%= root_path %>" class="!bg-transparent !text-neutral font-medium flex items-center space-x-0.5">
@@ -120,12 +120,12 @@
           <% if (can?(:manage, EncryptedConfig) && current_user == true_user) || (current_user != true_user && current_account.testing?) %>
             <%= form_for '', url: testing_account_path, method: current_account.testing? ? :delete : :post, html: { class: 'w-full' } do |f| %>
               <li>
-                <label class="flex items-center text-base hover:bg-base-300 w-full justify-between" for="testing_toggle">
+                <label class="flex items-center text-base hover:bg-base-300 w-full justify-between">
                   <span class="mr-2 w-full">
                     <%= t('test_mode') %>
                   </span>
                   <submit-form data-on="change" class="flex">
-                    <%= f.check_box :testing_toggle, class: 'toggle toggle-sm', checked: current_account.testing? %>
+                    <%= f.check_box :testing_toggle, id: nil, class: 'toggle toggle-sm', checked: current_account.testing? %>
                   </submit-form>
                 </label>
               </li>
