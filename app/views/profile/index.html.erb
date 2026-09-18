@@ -40,7 +40,7 @@
         <img src="<%= signature.url(time: ActiveStorage::Attachment.service_url_time) %>" style="height: 130px; width: 100%; object-fit: contain;">
       </div>
     <% end %>
-    <a href="<%= edit_user_signature_path %>" data-turbo-frame="modal" data-native-modal="medium" class="base-button w-full">
+    <a href="<%= edit_user_signature_path %>" data-turbo-frame="modal" data-native-modal="medium" aria-label="<%= t('update_signature') %>" class="base-button w-full">
       <%= t('update_signature') %>
     </a>
     <p class="text-2xl font-bold mt-8 mb-4">
@@ -53,7 +53,7 @@
         <img src="<%= initials.url(time: ActiveStorage::Attachment.service_url_time) %>" style="height: 130px; width: 100%; object-fit: contain;">
       </div>
     <% end %>
-    <a href="<%= edit_user_initials_path %>" data-turbo-frame="modal" data-native-modal="medium" class="base-button w-full">
+    <a href="<%= edit_user_initials_path %>" data-turbo-frame="modal" data-native-modal="medium" aria-label="<%= t('update_initials') %>" class="base-button w-full">
       <%= t('update_initials') %>
     </a>
     <% if true_user == current_user && !current_account.testing? %>
@@ -94,7 +94,7 @@
               <%= t('2fa_has_been_configured') %>
             </span>
           </p>
-          <a href="<%= edit_mfa_setup_path %>" data-turbo-frame="modal" class="white-button w-full !px-8">🔓 <%= t('remove_2fa') %></a>
+          <a href="<%= edit_mfa_setup_path %>" data-turbo-frame="modal" aria-label="<%= t('remove_2fa') %>" class="white-button w-full !px-8">🔓 <%= t('remove_2fa') %></a>
         <% else %>
           <p class="flex items-center space-x-1">
             <%= svg_icon('info_circle', class: 'stroke-warning inline flex-none w-5 h-5') %>
@@ -102,7 +102,7 @@
               <%= t('2fa_is_not_configured') %>
             </span>
           </p>
-          <a href="<%= new_mfa_setup_path %>" data-turbo-frame="modal" class="base-button w-full !px-8">🔒 <%= t('set_up_2fa') %></a>
+          <a href="<%= new_mfa_setup_path %>" data-turbo-frame="modal" aria-label="<%= t('setup_2fa') %>" class="base-button w-full !px-8">🔒 <%= t('set_up_2fa') %></a>
         <% end %>
       </div>
     <% end %>

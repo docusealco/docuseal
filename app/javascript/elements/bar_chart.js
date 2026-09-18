@@ -1,8 +1,7 @@
 export default class extends HTMLElement {
-  connectedCallback () {
-    this.chartLabels = JSON.parse(this.dataset.labels || '[]')
-    this.chartDatasets = JSON.parse(this.dataset.datasets || '[]')
+  static observedAttributes = ['data-labels', 'data-datasets']
 
+  connectedCallback () {
     this.initChart()
   }
 
@@ -11,6 +10,15 @@ export default class extends HTMLElement {
       this.chartInstance.destroy()
       this.chartInstance = null
     }
+  }
+
+  attributeChangedCallback (_, oldValue, newValue) {
+    if (!this.chartInstance || oldValue === newValue) return
+
+    this.chartInstance.data.labels = JSON.parse(this.dataset.labels || '[]')
+    this.chartInstance.data.datasets = JSON.parse(this.dataset.datasets || '[]')
+
+    this.chartInstance.update()
   }
 
   async initChart () {
@@ -23,8 +31,8 @@ export default class extends HTMLElement {
     this.chartInstance = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: this.chartLabels,
-        datasets: this.chartDatasets
+        labels: JSON.parse(this.dataset.labels || '[]'),
+        datasets: JSON.parse(this.dataset.datasets || '[]')
       },
       options: {
         responsive: true,

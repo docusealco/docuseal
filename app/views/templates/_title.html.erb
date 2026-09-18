@@ -39,7 +39,7 @@
             </a>
             <% if can?(:update, template) %>
               <span class="pl-1 tooltip tooltip-right tooltip-no-touch md:opacity-0 hover:opacity-100 peer-hover:opacity-100" data-tip="<%= t('move') %>">
-                <a href="<%= edit_template_folder_path(template.id, subfolder: @template.folder.parent_folder.present?) %>" data-turbo-frame="modal" data-native-modal="medium">
+                <a href="<%= edit_template_folder_path(template.id, subfolder: @template.folder.parent_folder.present?) %>" data-turbo-frame="modal" data-native-modal="medium" aria-label="<%= t('move_into_folder') %>">
                   <%= svg_icon('pencil_share', class: 'w-5 h-5') %>
                 </a>
               </span>
@@ -71,7 +71,7 @@
           </div>
         <% end %>
         <open-modal-mobile class="absolute md:relative -bottom-1 md:bottom-0 right-0 mt-1">
-          <%= link_to template_share_link_path(template), class: 'btn btn-xs md:btn-sm whitespace-nowrap btn-neutral text-white px-2', data: { turbo_frame: :modal, native_modal: :medium } do %>
+          <%= link_to template_share_link_path(template), class: 'btn btn-xs md:btn-sm whitespace-nowrap btn-neutral text-white px-2', aria: { label: t('share_link') }, data: { turbo_frame: :modal, native_modal: :medium } do %>
             <span class="flex items-center justify-center space-x-2">
               <%= svg_icon('link', class: 'w-4 h-4 md:w-6 md:h-6') %>
               <span><%= t('link') %></span>
@@ -117,7 +117,7 @@
     <% end %>
     <% if !template.archived_at? && can?(:update, template) && @template.account_id == current_account.id %>
       <native-action data-section="edit" data-icon="folder" data-label="<%= t('move') %>">
-        <a href="<%= edit_template_folder_path(template.id, subfolder: @template.folder.parent_folder.present?) %>" data-turbo-frame="modal" data-native-modal="medium"></a>
+        <a href="<%= edit_template_folder_path(template.id, subfolder: @template.folder.parent_folder.present?) %>" data-turbo-frame="modal" data-native-modal="medium" aria-label="<%= t('move_into_folder') %>"></a>
       </native-action>
     <% end %>
     <% if can?(:destroy, template) %>

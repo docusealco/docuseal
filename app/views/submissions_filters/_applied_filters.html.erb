@@ -33,11 +33,11 @@
       <% end %>
     </div>
   <% end %>
-  <% if params[:template_id].present? %>
+  <% if local_assigns[:filter_template] %>
     <div class="order-<%= chip_order['template'] %> md:order-none flex md:flex h-10 px-2 py-1 text-base md:text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl shrink-0 max-w-[60vw] md:w-36 border-neutral-700">
       <span class="flex items-center space-x-1 flex-1 min-w-0 pr-1">
         <%= svg_icon('layout_grid', class: 'w-5 h-5 shrink-0') %>
-        <span class="font-normal truncate"><%= local_assigns[:filter_template]&.name || 'NA' %></span>
+        <span class="font-normal truncate"><%= local_assigns[:filter_template].name %></span>
       </span>
       <%= link_to url_for(params: request.query_parameters.except('template_id')), class: 'rounded-lg ml-1 shrink-0 hover:bg-base-content hover:text-white' do %>
         <%= svg_icon('x', class: 'w-5 h-5') %>

@@ -39,7 +39,8 @@ if (handlers?.native && window === window.top) {
 
     if (!link) return
 
-    const title = link.dataset.nativeTitle || link.getAttribute('aria-label') || link.closest('[data-native-title]')?.dataset.nativeTitle || link.innerText.trim()
+    const action = link.closest('native-action, native-menu-action')
+    const title = link.dataset.nativeTitle || link.getAttribute('aria-label') || link.closest('[data-native-title]')?.dataset.nativeTitle || action?.dataset.label || action?.textContent.replace(/\s+/g, ' ').trim()
 
     if (!title) return
 

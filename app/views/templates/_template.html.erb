@@ -1,5 +1,5 @@
 <div class="h-36 relative group min-w-0">
-  <a href="<%= template_path(template) %>" class="flex h-full flex-col justify-between rounded-2xl pt-6 px-7 w-full bg-base-200 before:border-2 before:border-base-300 before:border-dashed before:absolute before:left-0 before:right-0 before:top-0 before:bottom-0 before:hidden before:rounded-2xl" data-targets="dashboard-dropzone.templateCards" data-native-actions="<%= (!template.archived_at? && can?(:update, template) ? 'pencil,menu' : 'file_text,menu') if turbo_native_app? %>">
+  <a href="<%= template_path(template) %>" class="flex h-full flex-col justify-between rounded-2xl pt-6 px-7 w-full bg-base-200 before:border-2 before:border-base-300 before:border-dashed before:absolute before:left-0 before:right-0 before:top-0 before:bottom-0 before:hidden before:rounded-2xl" data-targets="dashboard-dropzone.templateCards" data-native-title="<%= template.name %>" data-native-actions="<%= (!template.archived_at? && can?(:update, template) ? 'pencil,menu' : 'file_text,menu') if turbo_native_app? %>">
     <div class="text-xl font-semibold" style="line-height: 1.6rem; overflow: hidden; overflow-wrap: anywhere; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;">
       <% if template.template_accesses.present? %>
         <%= svg_icon('lock', class: 'w-6 h-6 inline -translate-y-[4px]') %>
@@ -97,7 +97,7 @@
         <% if can?(:update, template) && template.account_id == current_account.id %>
           <li>
             <native-menu-action data-icon="folder" data-label="<%= t('move') %>" class="grid-cols-1 p-0">
-              <%= link_to edit_template_folder_path(template.id), class: 'flex items-center gap-2 px-4 py-2', data: { turbo_frame: :modal, native_modal: :medium } do %>
+              <%= link_to edit_template_folder_path(template.id), class: 'flex items-center gap-2 px-4 py-2', data: { turbo_frame: :modal, native_title: t('move_into_folder'), native_modal: :medium } do %>
                 <%= svg_icon('folder_share', class: 'w-5 h-5 flex-shrink-0') %>
                 <span><%= t('move') %></span>
               <% end %>
@@ -107,7 +107,7 @@
         <% if can?(:create, template) %>
           <li>
             <native-menu-action data-icon="copy" data-label="<%= t('clone') %>" class="grid-cols-1 p-0">
-              <%= link_to new_template_clone_path(template), class: 'flex items-center gap-2 px-4 py-2', data: { turbo_frame: :modal, native_modal: :medium } do %>
+              <%= link_to new_template_clone_path(template), class: 'flex items-center gap-2 px-4 py-2', data: { turbo_frame: :modal, native_title: t('clone_template'), native_modal: :medium } do %>
                 <%= svg_icon('copy', class: 'w-5 h-5 flex-shrink-0') %>
                 <span><%= t('clone') %></span>
               <% end %>
