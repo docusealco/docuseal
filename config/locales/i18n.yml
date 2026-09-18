@@ -832,6 +832,7 @@ en: &en
   submission_created_by_email_via_source_html: '<b>Submission created</b> by %{email} via %{source}'
   submission_created_via_source_html: '<b>Submission created</b> via %{source}'
   pro_user_seats_used: Pro user seats used
+  manage: Manage
   manage_plan: Manage plan
   this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: This submission has multiple signers, which prevents the use of a sharing link as it's unclear which signer is responsible for specific fields. To resolve this, follow this <a href="https://www.docuseal.com/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">guide</a> to define the default signer details.
   welcome_to_docuseal: Welcome to DocuSeal
@@ -1021,6 +1022,7 @@ en: &en
   failed_to_save_the_scan: Failed to save the scan
   failed_to_scan_the_document: Failed to scan the document
   document_scanning_is_not_available_on_this_device: Document scanning is not available on this device
+  click_to_upload: Click to upload
   devise:
     confirmations:
       confirmed: Your email address has been successfully confirmed.
@@ -1162,6 +1164,7 @@ en: &en
       detailed: "%B %-d, %Y at %-I:%M:%S %p"
 
 es: &es
+  click_to_upload: Haz clic para cargar
   knowledge_based_authentication: Autenticación basada en el conocimiento
   kba_field: KBA
   passed: Aprobado
@@ -1980,6 +1983,7 @@ es: &es
   submission_created_by_email_via_source_html: '<b>Envío creado</b> por %{email} a través de %{source}'
   submission_created_via_source_html: '<b>Envío creado</b> a través de %{source}'
   pro_user_seats_used: Plazas de usuario Pro en uso
+  manage: Gestionar
   manage_plan: Gestionar plan
   this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: 'Este envío tiene múltiples firmantes, lo que impide el uso de un enlace para compartir, ya que no está claro qué firmante es responsable de los campos específicos. Para resolver esto, sigue esta <a href="https://www.docuseal.com/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">guía</a> para definir los detalles predeterminados del firmante.'
   welcome_to_docuseal: Bienvenido a DocuSeal
@@ -2317,6 +2321,7 @@ es: &es
       detailed: "%-d de %B de %Y a las %-H:%M:%S"
 
 it: &it
+  click_to_upload: Clicca per caricare
   knowledge_based_authentication: Autenticazione basata sulla conoscenza
   kba_field: KBA
   passed: Superato
@@ -3135,6 +3140,7 @@ it: &it
   submission_created_by_email_via_source_html: '<b>Invio creato</b> da %{email} tramite %{source}'
   submission_created_via_source_html: '<b>Invio creato</b> tramite %{source}'
   pro_user_seats_used: Posti utente Pro in uso
+  manage: Gestisci
   manage_plan: Gestisci piano
   this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: "Questa sottomissione ha più firmatari, il che impedisce l'uso di un link di condivisione poiché non è chiaro quale firmatario sia responsabile di specifici campi. Per risolvere questo problema, segui questa <a href=\"https://www.docuseal.com/resources/pre-filling-recipients\" class=\"link font-bold\" rel=\"noopener noreferrer nofollow\" target=\"_blank\">guida</a> per definire i dettagli predefiniti del firmatario."
   welcome_to_docuseal: Benvenuto in DocuSeal
@@ -3458,6 +3464,7 @@ it: &it
       detailed: "%-d %B %Y alle ore %H:%M:%S"
 
 fr: &fr
+  click_to_upload: Cliquez pour téléverser
   knowledge_based_authentication: Authentification basée sur la connaissance
   kba_field: KBA
   passed: Réussi
@@ -4276,6 +4283,7 @@ fr: &fr
   submission_created_by_email_via_source_html: "<b>Soumission créée</b> par %{email} via %{source}"
   submission_created_via_source_html: "<b>Soumission créée</b> via %{source}"
   pro_user_seats_used: Places d’utilisateurs Pro utilisées
+  manage: Gérer
   manage_plan: Gérer la formule
   this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: Cette soumission comporte plusieurs signataires, ce qui empêche l’utilisation d’un lien de partage car il n’est pas clair quel signataire est responsable de quels champs. Pour résoudre cela, suivez ce <a href="https://www.docuseal.com/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">guide</a> pour définir les détails du signataire par défaut.
   welcome_to_docuseal: Bienvenue sur DocuSeal
@@ -4609,6 +4617,7 @@ fr: &fr
       detailed: "%-d %B %Y à %H:%M:%S"
 
 pt: &pt
+  click_to_upload: Clique para fazer o upload
   knowledge_based_authentication: Autenticação baseada em conhecimento
   kba_field: KBA
   passed: Aprovado
@@ -5427,6 +5436,7 @@ pt: &pt
   submission_created_by_email_via_source_html: '<b>Envio criado</b> por %{email} via %{source}'
   submission_created_via_source_html: '<b>Envio criado</b> via %{source}'
   pro_user_seats_used: Lugares de usuário Pro em uso
+  manage: Gerenciar
   manage_plan: Gerenciar plano
   this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: 'Este envio tem vários signatários, o que impede o uso de um link de compartilhamento, pois não está claro qual signatário é responsável por quais campos. Para resolver isso, siga este <a href="https://www.docuseal.com/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">guia</a> para definir os detalhes padrão do signatário.'
   welcome_to_docuseal: Bem-vindo ao DocuSeal
@@ -5763,6 +5773,7 @@ pt: &pt
       detailed: "%-d de %B de %Y às %H:%M:%S"
 
 de: &de
+  click_to_upload: Zum Hochladen klicken
   knowledge_based_authentication: Wissensbasierte Authentifizierung
   kba_field: KBA
   passed: Bestanden
@@ -6581,6 +6592,7 @@ de: &de
   submission_created_by_email_via_source_html: '<b>Einreichung erstellt</b> von %{email} über %{source}'
   submission_created_via_source_html: '<b>Einreichung erstellt</b> über %{source}'
   pro_user_seats_used: Verwendete Pro-Benutzerplätze
+  manage: Verwalten
   manage_plan: Plan verwalten
   this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: 'Diese Einreichung hat mehrere Unterzeichner, was die Nutzung eines Freigabelinks verhindert, da unklar ist, welcher Unterzeichner für welche Felder verantwortlich ist. Um dies zu lösen, folgen Sie dieser <a href="https://www.docuseal.com/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">Anleitung</a>, um die Standarddetails des Unterzeichners festzulegen.'
   welcome_to_docuseal: Willkommen bei DocuSeal
@@ -7444,6 +7456,7 @@ he:
   too_many_requests_try_again_later: יותר מדי בקשות. נסה שוב מאוחר יותר.
 
 nl: &nl
+  click_to_upload: Klik om te uploaden
   knowledge_based_authentication: Kennisgebaseerde authenticatie
   kba_field: KBA
   passed: Geslaagd
@@ -8263,6 +8276,7 @@ nl: &nl
   submission_created_by_email_via_source_html: "<b>Inzending aangemaakt</b> door %{email} via %{source}"
   submission_created_via_source_html: "<b>Inzending aangemaakt</b> via %{source}"
   pro_user_seats_used: Gebruikersplaatsen Pro gebruikt
+  manage: Beheren
   manage_plan: Abonnement beheren
   this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: Deze inzending heeft meerdere ondertekenaars, waardoor het gebruik van een deellink niet mogelijk is omdat onduidelijk is welke ondertekenaar verantwoordelijk is voor specifieke velden. Volg deze <a href="https://www.docuseal.com/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">handleiding</a> om de standaardgegevens van de ondertekenaar te definiëren.
   welcome_to_docuseal: Welkom bij DocuSeal

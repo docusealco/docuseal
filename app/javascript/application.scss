@@ -170,3 +170,67 @@ markdown-editor [contenteditable] p {
 native-action {
   display: contents;
 }
+
+@media (max-width: 767px) {
+  .table-stack,
+  .table-stack tbody,
+  .table-stack tr,
+  .table-stack td {
+    display: block;
+  }
+
+  .table-stack,
+  div:has(> .table-stack) {
+    overflow: visible;
+  }
+
+  .table-stack thead {
+    display: none;
+  }
+
+  .table-stack tr {
+    @apply bg-base-200 rounded-2xl py-3 mb-3 border-0;
+  }
+
+  .table-stack td {
+    @apply px-4 py-1;
+  }
+
+  .table-stack td[data-label] {
+    @apply flow-root text-right;
+    overflow-wrap: anywhere;
+  }
+
+  .table-stack td[data-label]::before {
+    content: attr(data-label);
+    @apply float-left mr-4 text-sm leading-6 text-base-content/60;
+  }
+
+  .table-stack td:first-child {
+    @apply font-semibold;
+  }
+
+  .table-stack td:last-child {
+    @apply grid grid-cols-2 gap-2 pt-3;
+  }
+
+  .table-stack td:last-child:has(> .dropdown) {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) auto;
+  }
+
+  .table-stack td:last-child:not(:has(*)) {
+    display: none;
+  }
+
+  .table-stack td:last-child > * {
+    margin-left: 0 !important;
+  }
+
+  .table-stack td:last-child > :last-child:nth-child(odd):not(.dropdown) {
+    @apply col-span-2;
+  }
+
+  .table-stack td:last-child .btn {
+    @apply btn-sm w-full;
+  }
+}

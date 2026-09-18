@@ -13,7 +13,8 @@
               <%= t('upload_a_new_document') %>
             </div>
             <div class="text-sm">
-              <%= t('click_to_upload_or_drag_and_drop_html') %>
+              <span class="md:hidden"><%= t('click_to_upload') %></span>
+              <span class="hidden md:inline"><%= t('click_to_upload_or_drag_and_drop_html') %></span>
             </div>
             <% if Docuseal.multitenant? && !turbo_native_app? %>
               <a class="flex absolute bottom-4 items-center text-sm mt-2 pointer-events-auto" href="<%= new_template_path(modal_tab: 'google_drive') %>" data-turbo-frame="modal" data-native-modal="medium">
