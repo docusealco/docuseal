@@ -35,6 +35,20 @@ if (handlers?.native && window === window.top) {
   reportPageFlash()
 
   document.addEventListener('click', (event) => {
+    const link = event.target.closest?.('a[href]')
+
+    if (!link) return
+
+    const title = link.dataset.nativeTitle || link.getAttribute('aria-label') || link.closest('[data-native-title]')?.dataset.nativeTitle || link.innerText.trim()
+
+    if (!title) return
+
+    const actions = link.closest('[data-native-actions]')?.dataset.nativeActions
+
+    handlers.native.postMessage({ type: 'title', url: link.href, title, actions: actions ? actions.split(',') : null })
+  }, true)
+
+  document.addEventListener('click', (event) => {
     if (document.querySelector('native-modal')) return
 
     const link = event.target.closest?.('a[data-turbo-frame="modal"], a[data-turbo-frame="drawer"]')
@@ -45,20 +59,6 @@ if (handlers?.native && window === window.top) {
     event.stopPropagation()
 
     handlers.modal.postMessage({ action: 'open', url: link.href, modal: link.closest('[data-native-modal]')?.dataset.nativeModal || '' })
-  }, true)
-
-  document.addEventListener('click', (event) => {
-    const link = event.target.closest?.('a[href]')
-
-    if (!link) return
-
-    const title = link.dataset.nativeTitle || link.closest('[data-native-title]')?.dataset.nativeTitle || link.innerText.trim()
-
-    if (!title) return
-
-    const actions = link.closest('[data-native-actions]')?.dataset.nativeActions
-
-    handlers.native.postMessage({ type: 'title', url: link.href, title, actions: actions ? actions.split(',') : null })
   }, true)
 
   document.addEventListener('native:action', (event) => {
