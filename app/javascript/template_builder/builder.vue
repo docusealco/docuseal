@@ -768,6 +768,7 @@
         data-side="leading"
         data-icon="files"
         data-native="drawer"
+        data-haptic="true"
         :data-label="t('documents')"
         data-view="documents"
       />
@@ -777,11 +778,13 @@
         data-side="trailing"
         data-icon="plus"
         data-native="drawer"
+        data-haptic="true"
         :data-label="'Fields'"
         data-view="fields"
       />
       <native-action
         v-if="nativePlatform && (drawField || drawCustomField) && (isBreakpointLg || isMobile)"
+        :key="drawCustomField?.uuid || drawField?.uuid"
         data-placement="draw"
         :data-label="t('draw_field').replace('{field}', drawCustomField ? drawCustomField.name : fieldNames[drawField.type])"
       >

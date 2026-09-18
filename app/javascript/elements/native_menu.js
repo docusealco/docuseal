@@ -35,7 +35,8 @@ export default class extends HTMLElement {
         title: action.dataset.label || target.textContent.trim(),
         icon: action.dataset.icon,
         destructive: action.dataset.destructive === 'true',
-        selected: action.dataset.selected === 'true'
+        selected: action.dataset.selected === 'true',
+        haptic: action.dataset.haptic === 'true'
       }
     })
 

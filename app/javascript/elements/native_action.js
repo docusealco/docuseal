@@ -31,7 +31,8 @@ export default class extends HTMLElement {
       url: this.dataset.url,
       accept: this.dataset.accept,
       destructive: this.dataset.destructive === 'true',
-      selected: this.dataset.selected === 'true'
+      selected: this.dataset.selected === 'true',
+      haptic: this.dataset.haptic === 'true'
     })
   }
 

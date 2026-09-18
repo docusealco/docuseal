@@ -369,8 +369,8 @@
     <% end %>
   </div>
   <% if native_tab == 'document' %>
-    <native-action data-placement="tab" data-native="tab" data-label="<%= t('document') %>" data-selected="true"></native-action>
-    <native-action data-placement="tab" data-native="tab" data-label="<%= t('recipients') %>" data-url="<%= tab_submission_path(@submission, tab: 'recipients') %>"></native-action>
+    <native-action data-placement="tab" data-native="tab" data-label="<%= t('document') %>" data-haptic="true" data-selected="true"></native-action>
+    <native-action data-placement="tab" data-native="tab" data-label="<%= t('recipients') %>" data-haptic="true" data-url="<%= tab_submission_path(@submission, tab: 'recipients') %>"></native-action>
   <% elsif !native_tab %>
     <toggle-visible data-element-ids="<%= %w[document_view parties_view].to_json %>">
       <label class="md:hidden btn btn-sm btn-neutral text-white text-base z-10 fixed bottom-2 right-2 h-16 shadow-lg">
