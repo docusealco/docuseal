@@ -10,6 +10,7 @@ import ToggleCookies from './elements/toggle_cookies'
 import DisableHidden from './elements/disable_hidden'
 import TurboModal from './elements/turbo_modal'
 import NativeAction from './elements/native_action'
+import NativeMenu from './elements/native_menu'
 import NativeSearch from './elements/native_search'
 import NativeModal from './elements/native_modal'
 import NativeEvent from './elements/native_event'
@@ -181,6 +182,7 @@ safeRegisterElement('toggle-visible', ToggleVisible)
 safeRegisterElement('disable-hidden', DisableHidden)
 safeRegisterElement('turbo-modal', TurboModal)
 safeRegisterElement('native-action', NativeAction)
+safeRegisterElement('native-menu', NativeMenu)
 safeRegisterElement('native-search', NativeSearch)
 safeRegisterElement('native-modal', NativeModal)
 safeRegisterElement('native-event', NativeEvent)
