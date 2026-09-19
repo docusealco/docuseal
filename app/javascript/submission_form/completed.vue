@@ -126,7 +126,7 @@ export default {
     IconLogin,
     IconDownload
   },
-  inject: ['baseUrl', 't', 'nativePlatform'],
+  inject: ['baseUrl', 't'],
   props: {
     submitterSlug: {
       type: String,
@@ -186,6 +186,11 @@ export default {
       type: Object,
       required: false,
       default: () => ({})
+    },
+    nativePlatform: {
+      type: String,
+      required: false,
+      default: ''
     }
   },
   data () {

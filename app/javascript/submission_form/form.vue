@@ -503,6 +503,7 @@
             :with-qr-button="withQrButton"
             :submitter="submitter"
             :show-field-names="showFieldNames"
+            :native-platform="nativePlatform"
             @update:reason="values[currentField.preferences?.reason_field_uuid] = $event"
             @touch-attachment="attachmentsIndex[previousSignatureValue] ? attachmentsIndex[previousSignatureValue].created_at = new Date() : null"
             @attached="attachments.push($event)"
@@ -521,6 +522,7 @@
             :attachments-index="attachmentsIndex"
             :show-field-names="showFieldNames"
             :submitter-slug="submitterSlug"
+            :native-platform="nativePlatform"
             @attached="attachments.push($event)"
             @start="scrollIntoField(currentField)"
             @focus="scrollIntoField(currentField)"
@@ -652,6 +654,7 @@
         :with-confetti="withConfetti"
         :can-send-email="canSendEmail && !!submitter.email"
         :submitter-slug="submitterSlug"
+        :native-platform="nativePlatform"
       />
       <nav
         v-if="stepFields.length < 80"
@@ -774,7 +777,6 @@ export default {
       baseUrl: this.baseUrl,
       scrollIntoArea: this.scrollIntoArea,
       scrollIntoField: this.scrollIntoField,
-      nativePlatform: this.nativePlatform,
       t: this.t
     }
   },

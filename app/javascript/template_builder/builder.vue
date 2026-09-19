@@ -224,7 +224,7 @@
           @update:model-value="updateName"
         />
       </div>
-      <div class="space-x-3 flex items-center flex-shrink-0">
+      <div class="flex items-center gap-3 flex-shrink-0">
         <slot
           v-if="$slots.buttons"
           name="buttons"
@@ -405,11 +405,11 @@
                 tabindex="0"
                 class="dropdown-content p-2 mt-2 shadow menu text-base bg-base-100 rounded-box text-right"
               >
-                <li>
-                  <native-action
-                    :data-label="t('save_and_preview')"
-                    data-icon="eye"
-                  >
+                <native-action
+                  :data-label="t('save_and_preview')"
+                  data-icon="eye"
+                >
+                  <li>
                     <a
                       :href="`/templates/${template.id}/form`"
                       :data-native-actions="template.submitters.length > 1 ? 'users' : null"
@@ -427,13 +427,13 @@
                       />
                       <span class="whitespace-nowrap">{{ t('save_and_preview') }}</span>
                     </a>
-                  </native-action>
-                </li>
-                <li>
-                  <native-action
-                    :data-label="t('preferences')"
-                    data-icon="adjustments_horizontal"
-                  >
+                  </li>
+                </native-action>
+                <native-action
+                  :data-label="t('preferences')"
+                  data-icon="adjustments_horizontal"
+                >
+                  <li>
                     <a
                       :href="`/templates/${template.id}/preferences`"
                       :data-turbo-frame="!nativePlatform && isMobile && isBreakpointLg ? '_top' : 'modal'"
@@ -443,13 +443,14 @@
                       <IconAdjustments class="w-6 h-6 flex-shrink-0" />
                       <span class="whitespace-nowrap">{{ t('preferences') }}</span>
                     </a>
-                  </native-action>
-                </li>
-                <li v-if="withRevisionsMenu">
-                  <native-action
-                    :data-label="t('revisions')"
-                    data-icon="history"
-                  >
+                  </li>
+                </native-action>
+                <native-action
+                  v-if="withRevisionsMenu"
+                  :data-label="t('revisions')"
+                  data-icon="history"
+                >
+                  <li>
                     <button
                       class="flex space-x-2"
                       @click.prevent="openRevisionsModal"
@@ -460,13 +461,14 @@
                       </span>
                       <span class="whitespace-nowrap">{{ t('revisions') }}</span>
                     </button>
-                  </native-action>
-                </li>
-                <li v-if="withDownload">
-                  <native-action
-                    :data-label="t('download')"
-                    data-icon="download"
-                  >
+                  </li>
+                </native-action>
+                <native-action
+                  v-if="withDownload"
+                  :data-label="t('download')"
+                  data-icon="download"
+                >
+                  <li>
                     <button
                       class="flex space-x-2"
                       :disabled="isDownloading"
@@ -489,8 +491,8 @@
                         class="whitespace-nowrap"
                       >{{ t('download') }}</span>
                     </button>
-                  </native-action>
-                </li>
+                  </li>
+                </native-action>
               </ul>
             </div>
           </span>

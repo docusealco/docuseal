@@ -65,7 +65,7 @@
               <label tabindex="0" aria-label="<%= t('more') %>" class="btn btn-ghost btn-circle btn-sm">
                 <%= svg_icon('dots_vertical', class: 'w-5 h-5') %>
               </label>
-              <ul tabindex="0" class="<%= turbo_native_app? ? 'hidden' : 'z-10 dropdown-content p-2 mt-2 shadow menu bg-base-100 rounded-box min-w-[160px]' %>">
+              <ul tabindex="0" class="<%= turbo_native_app? ? 'hidden' : 'z-10 dropdown-content p-2 mt-2 shadow menu bg-base-100 rounded-box' %>" style="min-width: 160px;">
                 <% if can_edit %>
                   <li>
                     <native-menu-action data-icon="pencil" data-label="<%= t('edit') %>" class="grid-cols-1 p-0">

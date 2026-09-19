@@ -236,6 +236,11 @@ export default {
       required: false,
       default: ''
     },
+    nativePlatform: {
+      type: String,
+      required: false,
+      default: ''
+    },
     modelValue: {
       type: String,
       required: false,

@@ -376,7 +376,7 @@ export default {
     IconSignature,
     IconArrowsDiagonalMinimize2
   },
-  inject: ['baseUrl', 't', 'nativePlatform'],
+  inject: ['baseUrl', 't'],
   props: {
     field: {
       type: Object,
@@ -456,6 +456,11 @@ export default {
       default: ''
     },
     signatureSrc: {
+      type: String,
+      required: false,
+      default: ''
+    },
+    nativePlatform: {
       type: String,
       required: false,
       default: ''

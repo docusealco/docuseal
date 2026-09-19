@@ -73,7 +73,7 @@
       <label tabindex="0" aria-label="<%= t('more') %>" class="block cursor-pointer py-2 pl-4 pr-2 -ml-4 -mr-2 -mt-2 -mb-3 text-base-content/70">
         <%= svg_icon('dots', class: 'w-5 h-5') %>
       </label>
-      <ul tabindex="0" class="<%= turbo_native_app? ? 'hidden' : 'z-10 dropdown-content p-2 mb-1 shadow menu text-base bg-base-100 rounded-box min-w-[160px]' %>">
+      <ul tabindex="0" class="<%= turbo_native_app? ? 'hidden' : 'z-10 dropdown-content p-2 mb-1 shadow menu text-base bg-base-100 rounded-box' %>" style="min-width: 160px;">
         <% if can?(:create, Submission) %>
           <li>
             <native-menu-action data-icon="send" data-label="<%= t('send') %>" class="grid-cols-1 p-0">
