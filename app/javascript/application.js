@@ -81,10 +81,6 @@ document.addEventListener('keyup', (e) => {
   }
 })
 
-document.addEventListener('turbo:morph', () => {
-  document.activeElement?.blur()
-})
-
 if (window.webkit?.messageHandlers?.native) {
   const staleSnapshots = new Set()
   let isRestoring = false
