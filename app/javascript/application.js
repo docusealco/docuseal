@@ -1,5 +1,5 @@
 import '@hotwired/turbo-rails'
-import './elements/native_bridge'
+import './native'
 
 import { createApp, reactive } from 'vue'
 import TemplateBuilder from './template_builder/builder'
@@ -81,63 +81,12 @@ document.addEventListener('keyup', (e) => {
   }
 })
 
-if (window.webkit?.messageHandlers?.native) {
-  const staleSnapshots = new Set()
-  let isRestoring = false
-
-  window.Turbo.session.view.clearSnapshotCache = function () {
-    this.snapshotCache.keys.forEach((key) => staleSnapshots.add(key))
-  }
-
-  document.addEventListener('turbo:submit-end', (e) => {
-    if (e.detail.success && !e.detail.formSubmission.isSafe) {
-      window.webkit.messageHandlers.native.postMessage({ type: 'stale' })
-    }
-  })
-
-  document.addEventListener('native:pull-to-refresh', (event) => {
-    const { session } = window.Turbo
-    const url = new URL(document.baseURI)
-
-    url.searchParams.delete('limit')
-
-    session.history.replace(url, session.history.restorationIdentifier)
-    session.view.lastRenderedLocation = url
-
-    event.detail.result = new Promise((resolve) => {
-      document.addEventListener('turbo:render', () => resolve(true), { once: true })
-      document.addEventListener('turbo:fetch-request-error', () => resolve(true), { once: true })
-
-      session.refresh(document.baseURI)
-    })
-  })
-
-  document.addEventListener('native:refresh', () => {
-    window.Turbo.session.refresh(document.baseURI)
-  })
-
-  document.addEventListener('native:turbo-stream', (e) => {
-    if (!e.detail.body?.trimStart().startsWith('<turbo-stream')) return
-
-    window.Turbo.renderStreamMessage(e.detail.body)
-  })
-
-  document.addEventListener('turbo:visit', (e) => {
-    isRestoring = e.detail.action === 'restore'
-  })
-
-  document.addEventListener('turbo:load', () => {
-    if (staleSnapshots.delete(window.location.href.split('#')[0]) && isRestoring && window.location.pathname !== '/search') {
-      setTimeout(() => window.Turbo.session.refresh(document.baseURI))
-    }
-  })
-}
-
 document.addEventListener('turbo:before-fetch-response', (event) => {
   if (event.detail.fetchResponse.header('content-disposition')?.includes('attachment')) {
     event.preventDefault()
   }
 })
+
 document.addEventListener('turbo:submit-end', async (event) => {
   const resp = event.detail?.formSubmission?.result?.fetchResponse?.response
 

@@ -1,5 +1,3 @@
-let counter = 0
-
 export default class extends HTMLElement {
   connectedCallback () {
     if (window.webkit?.messageHandlers?.native) {
@@ -28,7 +26,7 @@ export default class extends HTMLElement {
     const items = [...this.querySelectorAll('native-menu-action')].map((action) => {
       const target = action.querySelector('a, button, [role="button"]') || action.firstElementChild
 
-      target.dataset.nativeId ||= `native-menu-${++counter}`
+      target.dataset.nativeId ||= `native-menu-${Math.random().toString(32).split('.')[1]}`
 
       return {
         id: target.dataset.nativeId,

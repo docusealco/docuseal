@@ -774,6 +774,7 @@ export default {
       baseUrl: this.baseUrl,
       scrollIntoArea: this.scrollIntoArea,
       scrollIntoField: this.scrollIntoField,
+      nativePlatform: this.nativePlatform,
       t: this.t
     }
   },
@@ -908,6 +909,11 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    nativePlatform: {
+      type: String,
+      required: false,
+      default: ''
     },
     autoscrollFields: {
       type: Boolean,
@@ -1767,7 +1773,9 @@ export default {
       this.isCompleted = true
       this.isFormVisible = true
 
-      window.webkit?.messageHandlers?.native?.postMessage({ type: 'stale' })
+      if (this.nativePlatform) {
+        window.webkit?.messageHandlers?.native?.postMessage({ type: 'stale' })
+      }
 
       if (resp?.text) {
         const respData = await resp.text()

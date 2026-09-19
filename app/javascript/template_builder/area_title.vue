@@ -272,7 +272,7 @@ export default {
     FieldSubmitter,
     IconX
   },
-  inject: ['t', 'isMobile'],
+  inject: ['t', 'isMobile', 'nativePlatform'],
   props: {
     template: {
       type: Object,
@@ -387,28 +387,28 @@ export default {
   },
   methods: {
     openFormulaModal () {
-      if (window.webkit?.messageHandlers?.modal) {
+      if (this.nativePlatform && window.webkit?.messageHandlers?.modal) {
         window.webkit.messageHandlers.modal.postMessage({ action: 'sheet', name: 'formula', detent: 'medium', uuid: this.field.uuid })
       } else {
         this.isShowFormulaModal = true
       }
     },
     openFontModal () {
-      if (window.webkit?.messageHandlers?.modal) {
+      if (this.nativePlatform && window.webkit?.messageHandlers?.modal) {
         window.webkit.messageHandlers.modal.postMessage({ action: 'sheet', name: 'font', detent: 'medium', uuid: this.field.uuid })
       } else {
         this.isShowFontModal = true
       }
     },
     openConditionsModal () {
-      if (window.webkit?.messageHandlers?.modal) {
+      if (this.nativePlatform && window.webkit?.messageHandlers?.modal) {
         window.webkit.messageHandlers.modal.postMessage({ action: 'sheet', name: 'conditions', detent: 'medium', uuid: this.field.uuid })
       } else {
         this.isShowConditionsModal = true
       }
     },
     openDescriptionModal () {
-      if (window.webkit?.messageHandlers?.modal) {
+      if (this.nativePlatform && window.webkit?.messageHandlers?.modal) {
         window.webkit.messageHandlers.modal.postMessage({ action: 'sheet', name: 'description', detent: 'medium', uuid: this.field.uuid })
       } else {
         this.isShowDescriptionModal = true

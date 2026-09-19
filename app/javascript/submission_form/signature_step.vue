@@ -376,7 +376,7 @@ export default {
     IconSignature,
     IconArrowsDiagonalMinimize2
   },
-  inject: ['baseUrl', 't'],
+  inject: ['baseUrl', 't', 'nativePlatform'],
   props: {
     field: {
       type: Object,
@@ -580,10 +580,14 @@ export default {
   },
   methods: {
     lockSwipe () {
-      window.webkit?.messageHandlers?.native?.postMessage({ type: 'swipe', op: 'lock' })
+      if (this.nativePlatform) {
+        window.webkit?.messageHandlers?.native?.postMessage({ type: 'swipe', op: 'lock' })
+      }
     },
     unlockSwipe () {
-      window.webkit?.messageHandlers?.native?.postMessage({ type: 'swipe', op: 'unlock' })
+      if (this.nativePlatform) {
+        window.webkit?.messageHandlers?.native?.postMessage({ type: 'swipe', op: 'unlock' })
+      }
     },
     setCanvasSize () {
       const canvas = this.$refs.canvas

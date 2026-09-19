@@ -211,7 +211,7 @@ export default {
     IconBolt,
     IconPencil
   },
-  inject: ['t', 'getFieldTypeIndex', 'baseFetch', 'isMobile'],
+  inject: ['t', 'getFieldTypeIndex', 'baseFetch', 'isMobile', 'nativePlatform'],
   props: {
     item: {
       type: Object,
@@ -290,7 +290,7 @@ export default {
   },
   methods: {
     openConditionsModal () {
-      if (window.webkit?.messageHandlers?.modal) {
+      if (this.nativePlatform && window.webkit?.messageHandlers?.modal) {
         window.webkit.messageHandlers.modal.postMessage({ action: 'sheet', name: 'conditions', detent: 'medium', attachment_uuid: this.item.attachment_uuid })
       } else {
         this.isShowConditionsModal = true

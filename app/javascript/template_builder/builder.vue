@@ -1929,7 +1929,7 @@ export default {
     download () {
       const download = window.webkit?.messageHandlers?.download
 
-      if (download) return download.postMessage({ src: `/templates/${this.template.id}/documents` })
+      if (this.nativePlatform && download) return download.postMessage({ src: `/templates/${this.template.id}/documents` })
 
       this.isDownloading = true
 
@@ -2203,7 +2203,7 @@ export default {
       this.loadRevisionsPromise ||= this.baseFetch(`/templates/${this.template.id}/versions`)
     },
     openRevisionsModal () {
-      if (window.webkit?.messageHandlers?.modal) {
+      if (this.nativePlatform && window.webkit?.messageHandlers?.modal) {
         return window.webkit.messageHandlers.modal.postMessage({ action: 'sheet', name: 'revisions', detent: 'medium' })
       }
 
@@ -2220,7 +2220,7 @@ export default {
       })
     },
     openDocumentsEditor (item) {
-      if (window.webkit?.messageHandlers?.modal) {
+      if (this.nativePlatform && window.webkit?.messageHandlers?.modal) {
         window.webkit.messageHandlers.modal.postMessage({ action: 'sheet', name: 'documents', viewport: 'fixed', uuid: item.attachment_uuid })
       } else {
         this.editModalDocumentUuid = item.attachment_uuid
@@ -2438,7 +2438,9 @@ export default {
       ref?.$el.scrollIntoView({ behavior: 'smooth', block: 'start' })
     },
     postNativeEvent (name, detail, dismiss = false) {
-      window.webkit?.messageHandlers?.modal?.postMessage({ action: 'dispatch', name, detail: JSON.stringify(detail), dismiss: dismiss ? 'true' : 'false' })
+      if (this.nativePlatform) {
+        window.webkit?.messageHandlers?.modal?.postMessage({ action: 'dispatch', name, detail: JSON.stringify(detail), dismiss: dismiss ? 'true' : 'false' })
+      }
     },
     onDrawerScrollTo (item) {
       if (this.nativeView) {

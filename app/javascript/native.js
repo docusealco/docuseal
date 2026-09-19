@@ -35,7 +35,7 @@ if (handlers?.native && window === window.top) {
   reportPageFlash()
 
   document.addEventListener('click', (event) => {
-    const link = event.target.closest?.('a[href]')
+    const link = event.target.closest('a[href]')
 
     if (!link) return
 
@@ -52,7 +52,7 @@ if (handlers?.native && window === window.top) {
   document.addEventListener('click', (event) => {
     if (document.querySelector('native-modal')) return
 
-    const link = event.target.closest?.('a[data-turbo-frame="modal"], a[data-turbo-frame="drawer"]')
+    const link = event.target.closest('a[data-turbo-frame="modal"], a[data-turbo-frame="drawer"]')
 
     if (!link?.href) return
 
@@ -70,5 +70,57 @@ if (handlers?.native && window === window.top) {
     const rect = document.querySelector('h1, h2')?.getBoundingClientRect()
 
     event.detail.result = rect?.height ? rect.bottom - document.documentElement.getBoundingClientRect().top : null
+  })
+}
+
+if (handlers?.native && window.Turbo) {
+  const staleSnapshots = new Set()
+  let isRestoring = false
+
+  window.Turbo.session.view.clearSnapshotCache = function () {
+    this.snapshotCache.keys.forEach((key) => staleSnapshots.add(key))
+  }
+
+  document.addEventListener('turbo:submit-end', (e) => {
+    if (e.detail.success && !e.detail.formSubmission.isSafe) {
+      handlers.native.postMessage({ type: 'stale' })
+    }
+  })
+
+  document.addEventListener('native:pull-to-refresh', (event) => {
+    const { session } = window.Turbo
+    const url = new URL(document.baseURI)
+
+    url.searchParams.delete('limit')
+
+    session.history.replace(url, session.history.restorationIdentifier)
+    session.view.lastRenderedLocation = url
+
+    event.detail.result = new Promise((resolve) => {
+      document.addEventListener('turbo:render', () => resolve(true), { once: true })
+      document.addEventListener('turbo:fetch-request-error', () => resolve(true), { once: true })
+
+      session.refresh(document.baseURI)
+    })
+  })
+
+  document.addEventListener('native:refresh', () => {
+    window.Turbo.session.refresh(document.baseURI)
+  })
+
+  document.addEventListener('native:turbo-stream', (e) => {
+    if (!e.detail.body?.trimStart().startsWith('<turbo-stream')) return
+
+    window.Turbo.renderStreamMessage(e.detail.body)
+  })
+
+  document.addEventListener('turbo:visit', (e) => {
+    isRestoring = e.detail.action === 'restore'
+  })
+
+  document.addEventListener('turbo:load', () => {
+    if (staleSnapshots.delete(window.location.href.split('#')[0]) && isRestoring && window.location.pathname !== '/search') {
+      setTimeout(() => window.Turbo.session.refresh(document.baseURI))
+    }
   })
 }

@@ -126,7 +126,7 @@ export default {
     IconLogin,
     IconDownload
   },
-  inject: ['baseUrl', 't'],
+  inject: ['baseUrl', 't', 'nativePlatform'],
   props: {
     submitterSlug: {
       type: String,
@@ -196,7 +196,7 @@ export default {
   },
   computed: {
     isNativeApp () {
-      return !!window.webkit?.messageHandlers?.download
+      return !!this.nativePlatform && !!window.webkit?.messageHandlers?.download
     },
     isWebView () {
       return /webview|wv|ip((?!.*Safari)|(?=.*like Safari))/i.test(window.navigator.userAgent)

@@ -1,5 +1,3 @@
-let counter = 0
-
 export default class extends HTMLElement {
   connectedCallback () {
     const bridge = window.webkit?.messageHandlers?.native
@@ -10,7 +8,7 @@ export default class extends HTMLElement {
 
     if (!target && !this.dataset.native) return
 
-    this.nativeId ||= `native-action-${++counter}`
+    this.nativeId ||= `native-action-${Math.random().toString(32).split('.')[1]}`
     this.id = this.nativeId
 
     if (target) target.dataset.nativeId = this.nativeId

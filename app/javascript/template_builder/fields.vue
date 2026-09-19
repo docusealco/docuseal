@@ -874,7 +874,9 @@ export default {
 
                 this.save()
 
-                window.webkit?.messageHandlers?.flash?.postMessage({ style: 'notice', message: this.t('fields_detected').replace('{count}', (data.fields || fields).length) })
+                if (this.nativePlatform) {
+                  window.webkit?.messageHandlers?.flash?.postMessage({ style: 'notice', message: this.t('fields_detected').replace('{count}', (data.fields || fields).length) })
+                }
 
                 break
               } else if (data.fields) {

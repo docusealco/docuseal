@@ -93,7 +93,7 @@ export default {
     RevisionsModal,
     IconInnerShadowTop
   },
-  inject: ['t', 'template', 'locale', 'baseFetch', 'getFieldTypeIndex', 'save'],
+  inject: ['t', 'template', 'locale', 'baseFetch', 'getFieldTypeIndex', 'save', 'nativePlatform'],
   props: {
     defaultFields: {
       type: Array,
@@ -203,7 +203,9 @@ export default {
       document.body.style.overflow = ''
     },
     close () {
-      window.webkit?.messageHandlers?.modal?.postMessage({ action: 'closeSheet' })
+      if (this.nativePlatform) {
+        window.webkit?.messageHandlers?.modal?.postMessage({ action: 'closeSheet' })
+      }
     },
     onSave () {
       if (this.modal?.custom_field_uuid) {
@@ -222,7 +224,9 @@ export default {
 
         this.customFields.splice(0, this.customFields.length, ...fields)
 
-        window.webkit?.messageHandlers?.modal?.postMessage({ action: 'dispatch', name: 'template-builder:sync-custom-fields', detail: JSON.stringify(fields), dismiss: 'false' })
+        if (this.nativePlatform) {
+          window.webkit?.messageHandlers?.modal?.postMessage({ action: 'dispatch', name: 'template-builder:sync-custom-fields', detail: JSON.stringify(fields), dismiss: 'false' })
+        }
       })
     },
     loadRevisions () {
@@ -233,7 +237,9 @@ export default {
       })
     },
     applyRevision (revision) {
-      window.webkit?.messageHandlers?.modal?.postMessage({ action: 'dispatch', name: 'template-builder:apply-revision', detail: JSON.stringify(revision), dismiss: 'true' })
+      if (this.nativePlatform) {
+        window.webkit?.messageHandlers?.modal?.postMessage({ action: 'dispatch', name: 'template-builder:apply-revision', detail: JSON.stringify(revision), dismiss: 'true' })
+      }
     },
     onDocumentsSaved (data) {
       this.$emit('documents-modified', data)

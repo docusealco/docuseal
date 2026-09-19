@@ -1,4 +1,4 @@
-import './elements/native_bridge'
+import './native'
 
 import { createApp, reactive } from 'vue'
 
@@ -45,6 +45,7 @@ safeRegisterElement('submission-form', class extends HTMLElement {
       withSignatureId: this.dataset.withSignatureId === 'true',
       requireSigningReason: this.dataset.requireSigningReason === 'true',
       withConfetti: this.dataset.withConfetti === 'true',
+      nativePlatform: this.dataset.nativePlatform,
       withFieldLabels: this.dataset.withFieldLabels !== 'false',
       withDisclosure: this.dataset.withDisclosure === 'true',
       reuseSignature: this.dataset.reuseSignature !== 'false',

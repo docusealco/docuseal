@@ -209,7 +209,7 @@ export default {
     IconTrashX,
     FieldType
   },
-  inject: ['backgroundColor', 't', 'isMobile'],
+  inject: ['backgroundColor', 't', 'isMobile', 'nativePlatform'],
   props: {
     field: {
       type: Object,
@@ -261,21 +261,21 @@ export default {
   },
   methods: {
     openFormulaModal () {
-      if (window.webkit?.messageHandlers?.modal) {
+      if (this.nativePlatform && window.webkit?.messageHandlers?.modal) {
         window.webkit.messageHandlers.modal.postMessage({ action: 'sheet', name: 'formula', detent: 'medium', custom_field_uuid: this.field.uuid })
       } else {
         this.isShowFormulaModal = true
       }
     },
     openFontModal () {
-      if (window.webkit?.messageHandlers?.modal) {
+      if (this.nativePlatform && window.webkit?.messageHandlers?.modal) {
         window.webkit.messageHandlers.modal.postMessage({ action: 'sheet', name: 'font', detent: 'medium', custom_field_uuid: this.field.uuid })
       } else {
         this.isShowFontModal = true
       }
     },
     openDescriptionModal () {
-      if (window.webkit?.messageHandlers?.modal) {
+      if (this.nativePlatform && window.webkit?.messageHandlers?.modal) {
         window.webkit.messageHandlers.modal.postMessage({ action: 'sheet', name: 'description', detent: 'medium', custom_field_uuid: this.field.uuid })
       } else {
         this.isShowDescriptionModal = true
