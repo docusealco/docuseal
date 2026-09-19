@@ -1,3 +1,5 @@
+import { nativeIcon } from '../native'
+
 export default class extends HTMLElement {
   connectedCallback () {
     if (window.webkit?.messageHandlers?.native) {
@@ -31,7 +33,7 @@ export default class extends HTMLElement {
       return {
         id: target.dataset.nativeId,
         title: action.dataset.label || target.textContent.trim(),
-        icon: action.dataset.icon,
+        icon: nativeIcon(action.dataset.icon),
         destructive: action.dataset.destructive === 'true',
         selected: action.dataset.selected === 'true',
         haptic: action.dataset.haptic === 'true'

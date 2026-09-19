@@ -1,3 +1,5 @@
+import { nativeIcon } from '../native'
+
 export default class extends HTMLElement {
   connectedCallback () {
     const bridge = window.webkit?.messageHandlers?.native
@@ -18,13 +20,13 @@ export default class extends HTMLElement {
       op: 'add',
       id: this.nativeId,
       title: this.dataset.label || target?.textContent.trim(),
-      icon: this.dataset.icon,
+      icon: nativeIcon(this.dataset.icon),
       placement: this.dataset.placement || 'menu',
       side: this.dataset.side,
       view: this.dataset.view,
       section: this.dataset.section,
       menu: this.dataset.menu,
-      menuIcon: this.dataset.menuIcon,
+      menuIcon: nativeIcon(this.dataset.menuIcon),
       native: this.dataset.native,
       url: this.dataset.url,
       accept: this.dataset.accept,

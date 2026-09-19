@@ -90,7 +90,7 @@
         class="cursor-pointer flex items-center"
         :class="{ 'pr-0.5': isMobile }"
         style="height: 24px"
-        @focus="isSettingsFocus = true"
+        @focus="onSettingsFocus"
         @blur="maybeBlurSettings"
       >
         <IconDotsVertical class="w-5 h-5" />
@@ -421,6 +421,19 @@ export default {
     maybeBlurSettings (e) {
       if (!e.relatedTarget || !this.$refs.settingsDropdown.contains(e.relatedTarget)) {
         this.isSettingsFocus = false
+      }
+    },
+    onSettingsFocus () {
+      this.isSettingsFocus = true
+
+      if (this.isMobile) {
+        this.$nextTick(() => {
+          const dropdown = this.$refs.settingsDropdown
+          const padding = parseFloat(getComputedStyle(dropdown).paddingLeft) + 6
+          const left = dropdown.parentElement.getBoundingClientRect().right - dropdown.offsetWidth - padding
+
+          dropdown.style.right = left < 0 ? `${left}px` : ''
+        })
       }
     },
     onNameFocus (e) {

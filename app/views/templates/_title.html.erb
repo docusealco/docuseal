@@ -94,7 +94,7 @@
     <% end %>
     <% if !template.archived_at? && can?(:update, template) %>
       <native-action data-placement="bar" data-icon="pencil" data-label="<%= t('edit') %>">
-        <a href="<%= edit_template_path(template) %>" data-native-title="<%= template.name %>"></a>
+        <a href="<%= edit_template_path(template) %>" data-native-title="<%= template.name %>" data-native-actions="check,menu"></a>
       </native-action>
       <native-action data-section="edit" data-icon="adjustments_horizontal" data-label="<%= t('preferences') %>">
         <a href="<%= template_preferences_path(template) %>" data-turbo-frame="modal"></a>

@@ -81,6 +81,12 @@ document.addEventListener('keyup', (e) => {
   }
 })
 
+document.addEventListener('turbo:morph', () => {
+  if (document.activeElement?.closest('.dropdown')) {
+    document.activeElement.blur()
+  }
+})
+
 document.addEventListener('turbo:before-fetch-response', (event) => {
   if (event.detail.fetchResponse.header('content-disposition')?.includes('attachment')) {
     event.preventDefault()
@@ -373,7 +379,7 @@ safeRegisterElement('template-builder', class extends HTMLElement {
 
     root.querySelector('meta[name="viewport"]')?.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
 
-    style.textContent = 'html { overflow-x: hidden; overscroll-behavior-x: none; } html, body { max-width: 100%; }'
+    style.textContent = 'html { overflow-x: hidden; overscroll-behavior-x: none; } html, body { max-width: 100%; } body { -webkit-user-select: none; user-select: none; } input, textarea, [contenteditable] { -webkit-user-select: text; user-select: text; }'
 
     root.querySelector('head').appendChild(style)
 

@@ -1,3 +1,54 @@
+const ICONS = {
+  ios: {
+    link: 'link',
+    archive: 'archivebox',
+    folder: 'folder',
+    trash: 'trash',
+    rotate: 'arrow.counterclockwise',
+    copy: 'doc.on.doc',
+    pencil: 'pencil',
+    logs: 'list.bullet.rectangle',
+    external_link: 'arrow.up.right.square',
+    download: 'arrow.down.circle',
+    mail_forward: 'paperplane',
+    send: 'paperplane',
+    writing: 'signature',
+    adjustments_horizontal: 'slider.horizontal.3',
+    file_text: 'doc.text',
+    files: 'doc.on.doc',
+    plus: 'plus',
+    eye: 'eye',
+    check: 'checkmark',
+    code: 'chevron.left.forwardslash.chevron.right',
+    history: 'clock.arrow.circlepath',
+    user: 'person',
+    users: 'person.2',
+    users_plus: 'person.badge.plus',
+    photo: 'photo',
+    settings: 'gearshape',
+    logout: 'rectangle.portrait.and.arrow.right',
+    upload: 'arrow.up.doc',
+    scan: 'doc.viewfinder',
+    pencil_plus: 'square.and.pencil',
+    arrow_sort: 'arrow.up.arrow.down',
+    sort_descending_numbers: 'calendar',
+    sort_descending_small_big: 'clock.arrow.circlepath',
+    sort_ascending_letters: 'textformat.abc',
+    calendar: 'calendar',
+    calendar_check: 'calendar.badge.checkmark',
+    info_circle: 'info.circle',
+    list: 'list.bullet',
+    clock: 'clock',
+    circle_check: 'checkmark.circle'
+  }
+}
+
+const platform = navigator.userAgent.includes('Hotwire Native Android') ? 'android' : 'ios'
+
+export function nativeIcon (name) {
+  return ICONS[platform]?.[name] || name
+}
+
 const handlers = window.webkit?.messageHandlers
 
 if (handlers?.native && window === window.top) {
@@ -46,7 +97,7 @@ if (handlers?.native && window === window.top) {
 
     const actions = link.closest('[data-native-actions]')?.dataset.nativeActions
 
-    handlers.native.postMessage({ type: 'title', url: link.href, title, actions: actions ? actions.split(',') : null })
+    handlers.native.postMessage({ type: 'title', url: link.href, title, actions: actions ? actions.split(',').map(nativeIcon) : null })
   }, true)
 
   document.addEventListener('click', (event) => {

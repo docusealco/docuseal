@@ -4,5 +4,5 @@
 <%= render 'shared/meta' %>
 <% if turbo_native_app? %>
   <meta name="turbo-cache-control" content="no-preview">
-  <style>native-action { display: none !important; }</style>
+  <%= render 'layouts/native_styles' %>
 <% end %>

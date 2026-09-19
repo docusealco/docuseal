@@ -35,13 +35,13 @@
           <span class="flex flex-col md:flex-row md:items-center gap-3 min-w-0">
             <% if submission.expired? && !submitter.completed_at? && !submitter.declined_at? %>
               <div class="md:tooltip flex" data-tip="<%= l(submission.expire_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) %>">
-                <span class="badge badge-error md:w-32 bg-opacity-50 badge-lg uppercase text-sm font-semibold">
+                <span class="badge badge-error md:w-32 bg-opacity-50 badge-lg uppercase text-sm max-sm:text-[13px] font-semibold">
                   <%= t('expired') %>
                 </span>
               </div>
             <% else %>
               <a href="<%= submission_path(submission) %>" class="flex z-[1]">
-                <span class="badge <%= SubmissionsController::STATUS_BADGES[submitter.status] %> md:w-32 badge-lg bg-opacity-50 uppercase text-sm font-semibold md:tooltip" data-tip="<%= l(submitter.status_event_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) %>">
+                <span class="badge <%= SubmissionsController::STATUS_BADGES[submitter.status] %> md:w-32 badge-lg bg-opacity-50 uppercase text-sm max-sm:text-[13px] font-semibold md:tooltip" data-tip="<%= l(submitter.status_event_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) %>">
                   <%= t(submitter.status) %>
                 </span>
               </a>
@@ -67,7 +67,7 @@
         <% if submitter.completed_at? %>
           <div class="flex-1 min-w-0 md:flex-none">
             <div class="w-full md:w-fit">
-              <download-button data-src="<%= submission_download_index_path(submission) %>" class="btn btn-sm max-sm:normal-case btn-neutral text-white w-full md:w-36">
+              <download-button data-src="<%= submission_download_index_path(submission) %>" class="btn btn-sm max-sm:text-[13px] btn-neutral text-white w-full md:w-36">
                 <span class="flex items-center justify-center space-x-1 <%= 'md:space-x-2' if t('download').length < 11 %>" data-target="download-button.defaultButton">
                   <%= svg_icon('download', class: 'w-5 h-5 max-sm:w-4 max-sm:h-4 stroke-2') %>
                   <span class="inline"><%= t('download') %></span>
@@ -82,7 +82,7 @@
         <% elsif !submission.archived_at? && !template&.archived_at? && !submission.expired? && !submitter.declined_at? %>
           <% if current_user.email == submitter.email %>
             <div class="flex-1 min-w-0 md:flex-none md:w-36 flex">
-              <a href="<%= submit_form_path(slug: submitter.slug) %>" data-turbo="false" target="_blank" id="sign_yourself_button" class="btn btn-sm max-sm:normal-case btn-neutral btn-outline bg-white w-full md:w-36 flex z-[1]">
+              <a href="<%= submit_form_path(slug: submitter.slug) %>" data-turbo="false" target="_blank" id="sign_yourself_button" class="btn btn-sm max-sm:text-[13px] btn-neutral btn-outline bg-white w-full md:w-36 flex z-[1]">
                 <span class="flex items-center justify-center space-x-1 md:space-x-2">
                   <% if t('sign_now').length < 12 %>
                     <%= svg_icon('writing_sign', class: 'w-4 h-4 stroke-2') %>
@@ -93,12 +93,12 @@
             </div>
           <% else %>
             <div class="flex-1 min-w-0 md:flex-none">
-              <%= render 'shared/clipboard_copy', text: submit_form_url(slug: submitter.slug, host: form_link_host), class: 'btn btn-sm max-sm:normal-case btn-neutral text-white md:w-36 flex z-[1]', icon_class: 'w-6 h-6 max-sm:w-[18px] max-sm:h-[18px] text-white', copy_title: t('copy_link').length < 10 ? t('copy_link') : t('copy'), copy_title_md: t('link'), copied_title_md: t('copied') %>
+              <%= render 'shared/clipboard_copy', text: submit_form_url(slug: submitter.slug, host: form_link_host), class: 'btn btn-sm max-sm:text-[13px] btn-neutral text-white md:w-36 flex z-[1]', icon_class: 'w-6 h-6 max-sm:w-[18px] max-sm:h-[18px] text-white', copy_title: t('copy_link').length < 10 ? t('copy_link') : t('copy'), copy_title_md: t('link'), copied_title_md: t('copied') %>
             </div>
           <% end %>
         <% end %>
         <div class="flex-1 min-w-0 md:flex-none z-[1]">
-          <a href="<%= submission_path(submission) %>" class="btn btn-outline btn-sm max-sm:normal-case w-full md:w-24">
+          <a href="<%= submission_path(submission) %>" class="btn btn-outline btn-sm max-sm:text-[13px] w-full md:w-24">
             <%= t('view') %>
           </a>
         </div>
@@ -119,13 +119,13 @@
           <% if is_submission_completed %>
             <% latest_submitter = submitters.select(&:completed_at?).max_by(&:completed_at) %>
             <a href="<%= submission_path(submission) %>" class="z-[1] tooltip tooltip-no-touch flex" data-tip="<%= l(latest_submitter.status_event_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) %>">
-              <span class="badge <%= SubmissionsController::STATUS_BADGES[latest_submitter.status] %> md:w-32 bg-opacity-50 badge-lg uppercase text-sm font-semibold">
+              <span class="badge <%= SubmissionsController::STATUS_BADGES[latest_submitter.status] %> md:w-32 bg-opacity-50 badge-lg uppercase text-sm max-sm:text-[13px] font-semibold">
                 <%= t(latest_submitter.status) %>
               </span>
             </a>
           <% elsif submission.expired? %>
             <div class="md:tooltip flex" data-tip="<%= l(submission.expire_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) %>">
-              <span class="badge badge-error md:w-32 bg-opacity-50 badge-lg uppercase text-sm font-semibold">
+              <span class="badge badge-error md:w-32 bg-opacity-50 badge-lg uppercase text-sm max-sm:text-[13px] font-semibold">
                 <%= t('expired') %>
               </span>
             </div>
@@ -158,7 +158,7 @@
                   </span>
                 </span>
                 <% if submitter.completed_at? && !is_submission_completed %>
-                  <download-button data-src="<%= submitter_download_index_path(submitter) %>" class="btn btn-xs max-sm:normal-case btn-neutral text-white w-12 md:w-36 shrink-0 z-[1]">
+                  <download-button data-src="<%= submitter_download_index_path(submitter) %>" class="btn btn-xs btn-neutral text-white w-12 md:w-36 shrink-0 z-[1]">
                     <span class="flex items-center justify-center space-x-1 md:space-x-2" data-target="download-button.defaultButton">
                       <%= svg_icon('download', class: 'w-4 h-4 stroke-2') %>
                       <span class="hidden md:inline"><%= t('download') %></span>
@@ -171,14 +171,14 @@
                 <% elsif !template&.archived_at? && !submission.archived_at? && !is_submission_completed && !submission.expired? && !submitter.declined_at? %>
                   <div class="relative flex items-center space-x-3 shrink-0">
                     <% if current_user.email == submitter.email %>
-                      <a href="<%= submit_form_path(slug: submitter.slug) %>" data-turbo="false" target="_blank" id="sign_yourself_button" class="btn btn-xs max-sm:normal-case btn-outline btn-neutral bg-white w-12 md:w-36 z-[1]">
+                      <a href="<%= submit_form_path(slug: submitter.slug) %>" data-turbo="false" target="_blank" id="sign_yourself_button" class="btn btn-xs btn-outline btn-neutral bg-white w-12 md:w-36 z-[1]">
                         <span class="flex items-center justify-center space-x-1 md:space-x-2">
                           <%= svg_icon('writing_sign', class: "w-4 h-4 stroke-2 #{'md:hidden' if t('sign_now').length >= 12}") %>
                           <span class="hidden md:inline shrink-0"><%= t('sign_now') %></span>
                         </span>
                       </a>
                     <% else %>
-                      <%= render 'shared/clipboard_copy', text: submit_form_url(slug: submitter.slug, host: form_link_host), class: 'relative btn btn-xs max-sm:normal-case text-xs btn-neutral text-white w-12 md:w-36 flex z-[1]', icon_class: 'w-4 h-4 text-white', copy_title: t('copy_link') %>
+                      <%= render 'shared/clipboard_copy', text: submit_form_url(slug: submitter.slug, host: form_link_host), class: 'relative btn btn-xs text-xs btn-neutral text-white w-12 md:w-36 flex z-[1]', icon_class: 'w-4 h-4 text-white', copy_title: t('copy_link') %>
                     <% end %>
                   </div>
                 <% end %>
@@ -192,7 +192,7 @@
           <% latest_submitter = submitters.select(&:completed_at?).max_by(&:completed_at) %>
           <div class="flex-1 min-w-0 md:flex-none">
             <div class="w-full md:w-fit">
-              <download-button data-src="<%= submission_download_index_path(submission) %>" class="btn btn-sm max-sm:normal-case btn-neutral text-white w-full md:w-36 z-[1]">
+              <download-button data-src="<%= submission_download_index_path(submission) %>" class="btn btn-sm max-sm:text-[13px] btn-neutral text-white w-full md:w-36 z-[1]">
                 <span class="flex items-center justify-center space-x-1 md:space-x-2" data-target="download-button.defaultButton">
                   <%= svg_icon('download', class: 'w-5 h-5 max-sm:w-4 max-sm:h-4 stroke-2') %>
                   <span class="inline"><%= t('download') %></span>
@@ -206,7 +206,7 @@
           </div>
         <% elsif !template&.archived_at? && !submission.archived_at? && !submission.expired? && (sign_now_submitter = submitters.find { |item| !item.completed_at? && !item.declined_at? && current_user.email == item.email }) %>
           <div class="flex-1 min-w-0 flex md:hidden">
-            <a href="<%= submit_form_path(slug: sign_now_submitter.slug) %>" data-turbo="false" target="_blank" class="btn btn-sm max-sm:normal-case btn-neutral btn-outline bg-white w-full flex z-[1]">
+            <a href="<%= submit_form_path(slug: sign_now_submitter.slug) %>" data-turbo="false" target="_blank" class="btn btn-sm max-sm:text-[13px] btn-neutral btn-outline bg-white w-full flex z-[1]">
               <span class="flex items-center justify-center space-x-1">
                 <% if t('sign_now').length < 12 %>
                   <%= svg_icon('writing_sign', class: 'w-4 h-4 stroke-2') %>
@@ -217,7 +217,7 @@
           </div>
         <% end %>
         <div class="flex-1 min-w-0 md:flex-none z-[1]">
-          <a href="<%= submission_path(submission) %>" class="btn btn-outline btn-sm max-sm:normal-case w-full md:w-24">
+          <a href="<%= submission_path(submission) %>" class="btn btn-outline btn-sm max-sm:text-[13px] w-full md:w-24">
             <%= t('view') %>
           </a>
         </div>
