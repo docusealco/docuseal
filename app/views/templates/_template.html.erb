@@ -89,7 +89,7 @@
         <% if can?(:update, template) %>
           <li>
             <native-menu-action data-icon="pencil" data-label="<%= t('edit') %>" class="grid-cols-1 p-0">
-              <a href="<%= edit_template_path(template) %>" class="flex items-center gap-2 px-4 py-2" data-native-title="<%= template.name %>" data-native-actions="<%= 'check,menu' if turbo_native_app? %>">
+              <a href="<%= edit_template_path(template) %>" class="flex items-center gap-2 px-4 py-2" data-native-title="<%= template.name %>">
                 <%= svg_icon('pencil', class: 'w-5 h-5 flex-shrink-0') %>
                 <span><%= t('edit') %></span>
               </a>

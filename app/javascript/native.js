@@ -57,10 +57,22 @@ if (handlers?.native && window === window.top) {
   const reportPathConfiguration = () => {
     const element = document.getElementById('native_path_configuration')
 
-    if (element) handlers.native.postMessage({ type: 'path-configuration', json: element.textContent })
+    if (!element) return
+
+    const config = JSON.parse(element.textContent)
+
+    config.rules.forEach(({ properties }) => {
+      if (properties.native_actions) properties.native_actions = properties.native_actions.map(nativeIcon)
+    })
+
+    handlers.native.postMessage({ type: 'path-configuration', json: JSON.stringify(config) })
   }
 
   document.addEventListener('turbo:load', reportPathConfiguration)
+
+  document.addEventListener('turbo:before-cache', () => {
+    document.getElementById('native_path_configuration')?.remove()
+  })
 
   reportPathConfiguration()
 

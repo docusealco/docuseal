@@ -10,7 +10,7 @@
   <% end %>
   <div id="account_settings_menu" class="<%= 'hidden md:block' unless expanded %>">
     <menu-active>
-      <ul class="menu px-0">
+      <ul class="menu px-0" style="<%= '--n: var(--b3); --nc: var(--bc);' if expanded %>">
         <% unless expanded || turbo_native_app? %>
           <li class="menu-title py-0 !bg-transparent mb-3 -mt-5">
             <a href="<%= root_path %>" class="!bg-transparent !text-neutral font-medium flex items-center space-x-0.5">
