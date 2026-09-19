@@ -81,7 +81,7 @@ class Template < ApplicationRecord
   scope :active, -> { where(archived_at: nil) }
   scope :archived, -> { where.not(archived_at: nil) }
 
-  scope :select_for_list, -> { select(:id, :name, :author_id, :account_id, :created_at, :archived_at, :folder_id, :submitters) }
+  scope :select_for_list, -> { select(:id, :name, :author_id, :account_id, :created_at, :archived_at, :folder_id) }
 
   def application_key
     external_id
