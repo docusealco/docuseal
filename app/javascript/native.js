@@ -113,6 +113,20 @@ if (handlers?.native && window === window.top) {
     handlers.modal.postMessage({ action: 'open', url: link.href, modal: link.closest('[data-native-modal]')?.dataset.nativeModal || '' })
   }, true)
 
+  let isTouchPrefetch = false
+
+  document.addEventListener('touchstart', (event) => {
+    isTouchPrefetch = true
+    event.target.closest('a[href]')?.dispatchEvent(new MouseEvent('mouseenter'))
+    isTouchPrefetch = false
+  }, { passive: true })
+
+  document.addEventListener('turbo:before-prefetch', (event) => {
+    if (!isTouchPrefetch || event.target.closest('a[data-turbo-frame="modal"], a[data-turbo-frame="drawer"]')) {
+      event.preventDefault()
+    }
+  })
+
   document.addEventListener('native:action', (event) => {
     document.querySelector(`[data-native-id="${event.detail.id}"]`)?.click()
   })
@@ -131,6 +145,8 @@ if (handlers?.native && window.Turbo) {
   window.Turbo.session.view.clearSnapshotCache = function () {
     this.snapshotCache.keys.forEach((key) => staleSnapshots.add(key))
   }
+
+  window.Turbo.session.navigator.linkPrefetchingIsEnabledForLocation = () => !document.querySelector('native-modal')
 
   document.addEventListener('turbo:submit-end', (e) => {
     if (e.detail.success && !e.detail.formSubmission.isSafe) {
