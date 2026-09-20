@@ -19,7 +19,7 @@ module Api
 
       return head :not_found unless blob
 
-      if Submitters::DANGEROUS_EXTENSIONS.include?(blob.filename.extension.to_s.downcase)
+      if FilenameUtils.dangerous_extension(blob.filename)
         Rollbar.error('Dangerous extension') if defined?(Rollbar)
 
         return head :unprocessable_content
