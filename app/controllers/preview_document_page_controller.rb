@@ -26,8 +26,9 @@ class PreviewDocumentPageController < ActionController::API
 
     @template = attachment.record
 
-    preview_image = attachment.preview_images.joins(:blob)
-                              .find_by(blob: { filename: ["#{params[:id]}.png", "#{params[:id]}.jpg"] })
+    preview_image =
+      attachment.preview_images.joins(:blob)
+                .find_by(blob: { filename: ["#{params[:id].to_i}.png", "#{params[:id].to_i}.jpg"] })
 
     if preview_image
       return redirect_to preview_image.url(time: ActiveStorage::Attachment.service_url_time),
