@@ -109,6 +109,7 @@ class Pdfium
   attach_function :FPDF_GetLastError, [], :ulong
   attach_function :FPDF_GetTrailerEnds, %i[FPDF_DOCUMENT pointer ulong], :ulong
   attach_function :FPDF_DocumentHasValidCrossReferenceTable, [:FPDF_DOCUMENT], :int
+  attach_function :FPDF_HasOnlyDSSChanges, %i[FPDF_DOCUMENT FPDF_DOCUMENT], :int
   attach_function :FPDF_GetSecurityHandlerRevision, [:FPDF_DOCUMENT], :int
   attach_function :FPDF_GetFormType, [:FPDF_DOCUMENT], :int
 
@@ -773,6 +774,10 @@ class Pdfium
 
     def valid_cross_reference_table?
       Pdfium.FPDF_DocumentHasValidCrossReferenceTable(@document_ptr) == 1
+    end
+
+    def only_dss_changes?(signed_document)
+      Pdfium.FPDF_HasOnlyDSSChanges(@document_ptr, signed_document.document_ptr) == 1
     end
 
     def annot_count(page_index)

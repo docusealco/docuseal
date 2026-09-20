@@ -10,20 +10,22 @@ module VerifyPdfSignature
   module_function
 
   def call(io, trusted_certs)
-    Pdfium::Document.open_io(io) do |document|
-      signatures = document.signatures.select { |e| e.byte_range.any?(&:positive?) && e.contents.present? }
+    Pdfium.with_instance do
+      Pdfium::Document.open_io(io) do |document|
+        signatures = document.signatures.select { |e| e.byte_range.any?(&:positive?) && e.contents.present? }
 
-      next [] if signatures.blank?
+        next [] if signatures.blank?
 
-      verified_signatures = signatures.select { |e| verified_signature?(e, io, trusted_certs) }
-      trusted_signatures = verified_signatures.select { |e| trusted_signature?(e, trusted_certs) }
-      last_signature = (trusted_signatures.presence || verified_signatures).max_by(&:signed_end)
-      has_unsigned_changes = last_signature && unsigned_changes?(document, io, last_signature.signed_end)
+        verified_signatures = signatures.select { |e| verified_signature?(e, io, trusted_certs) }
+        trusted_signatures = verified_signatures.select { |e| trusted_signature?(e, trusted_certs) }
+        last_signature = (trusted_signatures.presence || verified_signatures).max_by(&:signed_end)
+        has_unsigned_changes = last_signature && unsigned_changes?(document, io, last_signature.signed_end)
 
-      signatures.map do |signature|
-        build_signature(signature, trusted_certs,
-                        verified: verified_signatures.include?(signature),
-                        has_unsigned_changes: has_unsigned_changes && signature == last_signature)
+        signatures.map do |signature|
+          build_signature(signature, trusted_certs,
+                          verified: verified_signatures.include?(signature),
+                          has_unsigned_changes: has_unsigned_changes && signature == last_signature)
+        end
       end
     end
   end
@@ -31,9 +33,24 @@ module VerifyPdfSignature
   def verified_signature?(signature, io, trusted_certs)
     return false unless covers_signed_revision?(signature, io)
 
-    verify_contents(OpenSSL::PKCS7.new(signature.contents), signed_data(io, signature.byte_range), trusted_certs)
-  rescue OpenSSL::PKCS7::PKCS7Error
+    pkcs7 = OpenSSL::PKCS7.new(signature.contents)
+
+    if signature.sub_filter == 'ETSI.RFC3161'
+      verify_timestamp(pkcs7, signed_data(io, signature.byte_range))
+    else
+      verify_contents(pkcs7, signed_data(io, signature.byte_range), trusted_certs)
+    end
+  rescue OpenSSL::PKCS7::PKCS7Error, OpenSSL::Timestamp::TimestampError
     false
+  end
+
+  def verify_timestamp(pkcs7, signed_data)
+    return false unless pkcs7.verify(pkcs7.certificates, OpenSSL::X509::Store.new, nil,
+                                     OpenSSL::PKCS7::NOVERIFY | OpenSSL::PKCS7::BINARY)
+
+    token_info = OpenSSL::Timestamp::TokenInfo.new(pkcs7.data)
+
+    token_info.message_imprint == OpenSSL::Digest.digest(token_info.algorithm, signed_data)
   end
 
   def build_signature(signature, trusted_certs, verified:, has_unsigned_changes:)
@@ -173,27 +190,8 @@ module VerifyPdfSignature
     io.seek(0)
 
     Pdfium::Document.open_bytes(io.read(signed_end)) do |signed_document|
-      next true unless signed_document.valid_cross_reference_table?
-
-      serialized_document(signed_document) != serialized_document(document)
+      !document.only_dss_changes?(signed_document)
     end
-  end
-
-  def serialized_document(document)
-    pages = (0...document.page_count).map do |index|
-      page = document.get_page(index)
-      objects = page.objects.map { |object| [*object.to_a, image_digest(page, object)] }
-
-      [page.rotation, objects, page.annotations, page.text]
-    end
-
-    [pages, document.bookmarks]
-  end
-
-  def image_digest(page, object)
-    return unless object.image?
-
-    Digest::SHA256.hexdigest(page.extract_image_bitmap(object.object_ptr)[:data])
   end
 
   def signed_data(io, byte_range)
