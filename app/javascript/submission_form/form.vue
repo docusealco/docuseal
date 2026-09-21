@@ -141,11 +141,23 @@
   <form
     v-if="!isCompleted && !isInvite"
     id="complete_form"
+    ref="completeForm"
     class="hidden"
     :action="submitPath"
     method="post"
     @submit.prevent="submitStep"
-  />
+  >
+    <input
+      type="hidden"
+      name="authenticity_token"
+      :value="authenticityToken"
+    >
+    <input
+      value="put"
+      name="_method"
+      type="hidden"
+    >
+  </form>
   <button
     v-if="!isFormVisible && currentField"
     id="expand_form_button"
@@ -1114,7 +1126,8 @@ export default {
       })
     },
     showCompleteButton () {
-      return this.completeButtonContainer && !this.isCompleted && !this.isInvite && this.isFormStarted &&
+      return this.completeButtonContainer && !this.isCompleted && !this.isInvite &&
+        (this.isFormStarted || this.stepFields.length === 0) &&
         !this.stepFields.find((fields) => fields.some((f) => f.required && isEmpty(this.submittedValues[f.uuid])))
     },
     submitButtonText () {
@@ -1614,7 +1627,7 @@ export default {
       }
 
       const currentFieldUuids = this.currentStepFields.map((f) => f.uuid)
-      const currentFieldType = this.currentField.type
+      const currentFieldType = this.currentField?.type
 
       if (!formData && !this.$refs.form.checkValidity() && currentFieldUuids.every((fieldUuid) => isEmpty(this.submittedValues[fieldUuid]) || !isEmpty(this.values[fieldUuid]))) {
         return
@@ -1667,7 +1680,7 @@ export default {
 
       const submitStepIndex = this.currentStep
 
-      const stepPromise = ['signature', 'phone', 'initials', 'payment', 'verification', 'kba'].includes(this.currentField.type)
+      const stepPromise = ['signature', 'phone', 'initials', 'payment', 'verification', 'kba'].includes(this.currentField?.type)
         ? this.$refs.currentStep.submit
         : () => Promise.resolve({})
 
@@ -1682,7 +1695,7 @@ export default {
           })
         })
 
-        const formData = new FormData(this.$refs.form)
+        const formData = new FormData(this.$refs.form || this.$refs.completeForm)
         const isLastStep = (this.onlyRequiredFields ? !this.findNextStep(submitStepIndex) : (submitStepIndex === this.stepFields.length - 1)) || forceComplete
 
         if (isLastStep && !emptyRequiredField && !this.inviteSubmitters.length && !this.optionalInviteSubmitters.length) {
