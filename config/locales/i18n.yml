@@ -195,6 +195,10 @@ en: &en
   send_copy_to_email: Send copy to Email
   sending: Sending
   resubmit: Resubmit
+  correct_signature: Correct Signature
+  correction_request_has_been_sent: A request to correct the signature has been emailed to the signer.
+  signature_has_not_been_completed_yet: This signature has not been completed yet.
+  are_you_sure_you_want_to_reset_this_signature: This will delete the signer's current signature and email them to sign again. Continue?
   form_has_been_deleted_by_html: 'Form has been deleted by <span class="font-semibold">%{name}</span>.'
   or: or
   download_documents: Download documents
@@ -1528,6 +1532,10 @@ es: &es
   microsoft_account_has_been_connected: La cuenta de Microsoft ha sido conectada.
   but_not_activated: pero no activado
   email_has_been_sent: El correo ha sido enviado.
+  correct_signature: Corregir firma
+  correction_request_has_been_sent: Se envió al firmante un correo para corregir su firma.
+  signature_has_not_been_completed_yet: Esta firma aún no ha sido completada.
+  are_you_sure_you_want_to_reset_this_signature: Esto eliminará la firma actual del firmante y le enviará un correo para firmar de nuevo. ¿Continuar?
   email_has_been_sent_already: El correo ya ha sido enviado.
   initial_setup: Configuración inicial
   demo_environment: Entorno de demostración

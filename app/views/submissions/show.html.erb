@@ -283,6 +283,11 @@
                 <%= button_to t('resubmit'), submitters_resubmit_path(submitter), method: :put, class: 'btn btn-sm btn-primary w-full', form: { target: '_blank' }, data: { turbo: false } %>
               </div>
             <% end %>
+            <% if signed_in? && submitter && submitter.completed_at? && !@submission.archived_at? && !@submission.template&.archived_at? && can?(:update, @submission) && (Docuseal.multitenant? || Accounts.can_send_emails?(current_account)) && !@submission.expired? %>
+              <div class="mt-2 mb-1">
+                <%= button_to t('correct_signature'), submitters_reset_signature_path(submitter), method: :put, class: 'btn btn-sm btn-outline w-full', data: { turbo_confirm: t('are_you_sure_you_want_to_reset_this_signature') } %>
+              </div>
+            <% end %>
           </div>
         </div>
         <div class="px-1.5 mb-4">
