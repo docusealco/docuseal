@@ -11,11 +11,9 @@ class UserSignaturesController < ApplicationController
 
     return redirect_to settings_profile_index_path, notice: I18n.t('unable_to_save_signature') if file.blank?
 
-    extension = File.extname(file.original_filename).delete_prefix('.').downcase
+    extension = FilenameUtils.dangerous_extension(file.original_filename)
 
-    if Submitters::DANGEROUS_EXTENSIONS.include?(extension)
-      raise Submitters::MaliciousFileExtension, "File type '.#{extension}' is not allowed."
-    end
+    raise Submitters::MaliciousFileExtension, "File type '.#{extension}' is not allowed." if extension
 
     blob = ActiveStorage::Blob.create_and_upload!(io: file.open,
                                                   filename: file.original_filename,

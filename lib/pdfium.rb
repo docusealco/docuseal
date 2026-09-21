@@ -109,6 +109,7 @@ class Pdfium
   attach_function :FPDF_GetLastError, [], :ulong
   attach_function :FPDF_GetTrailerEnds, %i[FPDF_DOCUMENT pointer ulong], :ulong
   attach_function :FPDF_DocumentHasValidCrossReferenceTable, [:FPDF_DOCUMENT], :int
+  attach_function :FPDF_HasOnlyDSSChanges, %i[FPDF_DOCUMENT FPDF_DOCUMENT], :int
   attach_function :FPDF_GetSecurityHandlerRevision, [:FPDF_DOCUMENT], :int
   attach_function :FPDF_GetFormType, [:FPDF_DOCUMENT], :int
 
@@ -581,6 +582,10 @@ class Pdfium
       @page_rotations[page_index] ||= Pdfium.FPDFPage_GetRotationRaw(@document_ptr, page_index)
     end
 
+    def reset_page_rotation(page_index)
+      @page_rotations.delete(page_index)
+    end
+
     def encrypted?
       Pdfium.FPDF_GetSecurityHandlerRevision(@document_ptr) >= 0
     end
@@ -769,6 +774,10 @@ class Pdfium
 
     def valid_cross_reference_table?
       Pdfium.FPDF_DocumentHasValidCrossReferenceTable(@document_ptr) == 1
+    end
+
+    def only_dss_changes?(signed_document)
+      Pdfium.FPDF_HasOnlyDSSChanges(@document_ptr, signed_document.document_ptr) == 1
     end
 
     def annot_count(page_index)
@@ -1010,6 +1019,7 @@ class Pdfium
       Pdfium.FPDFPage_SetRotation(@page_ptr, value)
 
       @document.reset_page_size(@page_index)
+      @document.reset_page_rotation(@page_index)
 
       @rotation = value
     end

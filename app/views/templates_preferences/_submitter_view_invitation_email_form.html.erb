@@ -12,7 +12,7 @@
         <div class="flex justify-between">
           <div class="flex items-center">
             <%= ff.label :invitation_view_email_subject, t('email_subject'), class: 'label' %>
-            <span class="tooltip tooltip-right" data-tip="<%= t('view_only_email_sent_to_recipients_that_need_to_only_review_the_documents') %>">
+            <span class="tooltip tooltip-right hidden md:flex" data-tip="<%= t('view_only_email_sent_to_recipients_that_need_to_only_review_the_documents') %>">
               <%= svg_icon('info_circle', class: 'w-4 h-4') %>
             </span>
           </div>

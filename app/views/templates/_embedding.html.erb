@@ -56,7 +56,7 @@
     <div class="mockup-code overflow-hidden pb-0 mt-4">
       <span class="top-0 right-0 absolute flex">
         <%= link_to t('learn_more'), console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}/embedding/form"), target: '_blank', data: { turbo: false }, class: 'btn btn-ghost text-gray-100 flex', rel: 'noopener' %>
-        <clipboard-copy data-text="<script src=&quot;<%= Docuseal::CDN_URL %>/js/form.js&quot;></script>
+        <clipboard-copy data-text="<script src=&quot;<%= Docuseal.multitenant? ? "#{Docuseal::CDN_URL}/js/form.js" : embed_script_url(filename: 'form.js') %>&quot;></script>
 
 <docuseal-form data-src=&quot;<%= start_form_url(slug: template.slug) %>&quot;></docuseal-form>
 ">
@@ -78,7 +78,7 @@
 </clipboard-copy>
 
       </span>
-      <pre class="before:!m-0 pl-6 pb-4 overflow-auto"><code class="overflow-hidden w-full"><span style="color: #f4bf75">&lt;script </span><span style="color: #6a9fb5">src=</span><span style="color: #90a959">"<%= Docuseal::CDN_URL %>/js/form.js"</span><span style="color: #f4bf75">&gt;&lt;/script&gt;</span>
+      <pre class="before:!m-0 pl-6 pb-4 overflow-auto"><code class="overflow-hidden w-full"><span style="color: #f4bf75">&lt;script </span><span style="color: #6a9fb5">src=</span><span style="color: #90a959">"<%= Docuseal.multitenant? ? "#{Docuseal::CDN_URL}/js/form.js" : embed_script_url(filename: 'form.js') %>"</span><span style="color: #f4bf75">&gt;&lt;/script&gt;</span>
 
 <span style="color: #f4bf75">&lt;docuseal-form</span> <span style="color: #6a9fb5">data-src=</span><span style="color: #90a959">"<%= start_form_url(slug: template.slug) %>"</span><span style="color: #f4bf75">&gt;</span><span style="color: #f4bf75">&lt;/docuseal-form&gt;</span>
 </code></pre>

@@ -247,7 +247,7 @@ module Submitters
 
       detected_extensions = Marcel::TYPE_EXTS[mime_type].to_a.map(&:downcase)
 
-      if detected_extensions.any? { |e| Submitters::DANGEROUS_EXTENSIONS.include?(e) }
+      if detected_extensions.any? { |e| FilenameUtils::DANGEROUS_EXTENSIONS.include?(e) }
         raise InvalidDefaultValue, "File type '.#{detected_extensions.first}' is not allowed."
       end
 
@@ -276,11 +276,9 @@ module Submitters
 
     def find_or_create_blob_from_url(account, url)
       filename = Addressable::URI.parse(url).path.split('/').last.to_s
-      extension = File.extname(filename).delete_prefix('.').downcase
+      extension = FilenameUtils.dangerous_extension(filename)
 
-      if Submitters::DANGEROUS_EXTENSIONS.include?(extension)
-        raise InvalidDefaultValue, "File type '.#{extension}' is not allowed."
-      end
+      raise InvalidDefaultValue, "File type '.#{extension}' is not allowed." if extension
 
       cache_key = [account.id, url].join(':')
       checksum = CHECKSUM_CACHE_STORE.fetch(cache_key)

@@ -46,6 +46,8 @@ module Mcp
 
       authorize!(:create, @template)
 
+      Templates.maybe_assign_access(@template)
+
       if mcp_params['url'].present?
         tempfile = Tempfile.new
         tempfile.binmode
