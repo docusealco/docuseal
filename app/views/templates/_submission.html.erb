@@ -1,7 +1,7 @@
-<div id="<%= dom_id(submission) %>" class="bg-base-200 rounded-2xl flex flex-col sm:flex-row" data-native-title="<%= submission.name.presence || (local_assigns[:template] || submission.template)&.name if turbo_native_app? %>">
+<div id="<%= dom_id(submission) %>" class="bg-base-200 rounded-2xl flex flex-col lg:flex-row" data-native-title="<%= submission.name.presence || (local_assigns[:template] || submission.template)&.name if turbo_native_app? %>">
   <% if local_assigns[:with_template] %>
     <% template = submission.template %>
-    <a href="<%= template ? template_path(template) : submission_path(submission) %>" data-native-title="<%= template&.name %>" data-native-actions="<%= (!template.archived_at? && can?(:update, template) ? 'pencil,menu' : 'file_text,menu') if template && turbo_native_app? %>" class="px-5 sm:pr-3 py-3 sm:pb-4 group sm:rounded-l-2xl sm:rounded-tr-none rounded-t-2xl flex sm:flex-col justify-between sm:w-52 w-full flex-shrink-0 bg-base-300/60 space-x-2 sm:space-x-0">
+    <a href="<%= template ? template_path(template) : submission_path(submission) %>" data-native-title="<%= template&.name %>" data-native-actions="<%= (!template.archived_at? && can?(:update, template) ? 'pencil,menu' : 'file_text,menu') if template && turbo_native_app? %>" class="px-5 lg:pr-3 py-3 lg:pb-4 group lg:rounded-l-2xl lg:rounded-tr-none rounded-t-2xl flex lg:flex-col justify-between lg:w-52 w-full flex-shrink-0 bg-base-300/60 space-x-2 lg:space-x-0">
       <div>
         <div class="font-medium items-start w-full group-hover:link text-sm flex space-x-1">
           <%= svg_icon('file_text', class: 'w-4 h-4 mt-0.5 flex-shrink-0') %>
@@ -11,7 +11,7 @@
           </span>
         </div>
       </div>
-      <div class="flex-shrink-0 sm:mt-2 max-w-[50%] sm:max-w-full">
+      <div class="flex-shrink-0 lg:mt-2 max-w-[50%] lg:max-w-full">
         <div class="flex text-xs flex-col text-base-content/60  space-y-0.5">
           <span class="flex items-center space-x-1">
             <%= svg_icon('user', class: 'w-4 h-4 flex-shrink-0') %>

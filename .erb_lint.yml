@@ -1,6 +1,11 @@
 ---
 EnableDefaultLinters: true
 linters:
+  AllowedScriptType:
+    enabled: true
+    allowed_types:
+      - text/javascript
+      - application/json
   ErbSafety:
     enabled: false
   HardCodedString:

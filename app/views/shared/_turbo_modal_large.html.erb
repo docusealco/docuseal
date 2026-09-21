@@ -18,7 +18,7 @@
     </turbo-modal>
   </turbo-frame>
 <% elsif turbo_native_app? %>
-  <% content_for(:html_title, local_assigns[:title]) if local_assigns[:title] %>
+  <% content_for(:native_title, local_assigns[:title]) if local_assigns[:title] %>
   <native-modal class="block w-full [&>.px-5]:px-4" data-close-after-submit="<%= local_assigns.key?(:close_after_submit) ? local_assigns[:close_after_submit] : true %>">
     <%= yield %>
   </native-modal>

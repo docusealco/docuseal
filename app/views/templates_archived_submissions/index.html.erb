@@ -1,5 +1,5 @@
 <% content_for(:native_title, t('archived')) if turbo_native_app? %>
-<% filter_params = params.permit(Submissions::Filter::ALLOWED_PARAMS).compact_blank %>
+<% filter_params = params.permit(Submissions::Filter::ALLOWED_PARAMS - %w[template_id]).compact_blank %>
 <% if turbo_native_app? %>
   <native-action data-placement="search" data-native="search" data-label="<%= t('search') %>" data-url="<%= search_index_path(filter_params.to_h.merge('scope' => 'submissions', 'archived' => 'true', 'template_id' => @template.id)) %>"></native-action>
 <% end %>
@@ -13,7 +13,7 @@
     <% end %>
   </div>
 <% end %>
-<div class="flex flex-col md:flex-row md:items-center mb-4 <%= 'gap-3' unless turbo_native_app? %>">
+<div class="flex flex-col mb-4 <%= 'md:flex-row md:items-center gap-3' unless turbo_native_app? %>">
   <div class="group/header flex w-full md:flex-1 min-w-0 justify-between items-center">
     <% unless turbo_native_app? %>
       <div class="max-md:group-has-[search-input:focus-within]/header:hidden">
@@ -26,7 +26,7 @@
       <% end %>
     </div>
   </div>
-  <div class="flex flex-nowrap md:flex-wrap md:justify-end items-center gap-2">
+  <div class="flex flex-nowrap <%= 'md:flex-wrap md:justify-end' unless turbo_native_app? %> items-center gap-2">
     <%= render 'submissions_filters/applied_filters', filter_params:, with_status: true, with_default_status: true %>
     <% unless turbo_native_app? %>
       <div class="hidden md:block shrink-0 md:order-first">

@@ -40,7 +40,7 @@
         </div>
       <% end %>
     </div>
-    <div class="md:hidden divide-y divide-base-300">
+    <div class="<%= 'md:hidden' unless turbo_native_app? %> divide-y divide-base-300">
       <% @users.each do |user| %>
         <% can_edit = params[:status].blank? && can?(:update, user) && user.archived_at.blank? %>
         <% can_remove = params[:status] != 'archived' && can?(:destroy, user) && user != current_user %>
@@ -104,71 +104,73 @@
         </div>
       <% end %>
     </div>
-    <div class="hidden md:block overflow-x-auto">
-      <table class="table w-full table-lg rounded-b-none overflow-hidden">
-        <thead class="bg-base-200">
-          <tr class="text-neutral uppercase">
-            <th>
-              <%= t('name') %>
-            </th>
-            <th>
-              <%= t('email') %>
-            </th>
-            <th>
-              <%= t('role') %>
-            </th>
-            <th>
-              <%= t('last_session') %>
-            </th>
-            <th class="text-right" width="1px">
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @users.each do |user| %>
-            <tr>
-              <td>
-                <%= user.full_name %>
-              </td>
-              <td>
-                <% if user.try(:pending_reconfirmation?) %>
-                  <%= user.unconfirmed_email %>
-                  <br>
-                  <span class="label-text-alt">(<%= t('unconfirmed') %>)</span>
-                <% else %>
-                  <%= user.email %>
-                <% end %>
-              </td>
-              <td>
-                <span class="badge badge-info badge-outline whitespace-nowrap">
-                  <%= t(user.role) %>
-                </span>
-              </td>
-              <td>
-                <%= user.current_sign_in_at ? l(user.current_sign_in_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) : '-' %>
-              </td>
-              <td class="flex items-center space-x-2 justify-end">
-                <% if params[:status].blank? && can?(:update, user) && user.archived_at.blank? %>
-                  <%= link_to edit_user_path(user), class: 'btn btn-outline btn-xs', title: t('edit'), data: { turbo_frame: 'modal' } do %>
-                    <%= t('edit') %>
-                  <% end %>
-                <% end %>
-                <% if params[:status] != 'archived' && can?(:destroy, user) && user != current_user %>
-                  <%= button_to user_path(user), method: :delete, class: 'btn btn-outline btn-error btn-xs', title: t('remove'), data: { turbo_confirm: t('are_you_sure_') } do %>
-                    <%= t('remove') %>
-                  <% end %>
-                <% end %>
-                <% if params[:status] == 'archived' && can?(:create, user) && user != current_user && user.archived_at? %>
-                  <%= button_to user_path(user), method: :put, params: { user: { archived_at: nil } }, class: 'btn btn-outline btn-xs', title: t('unarchive'), data: { turbo_confirm: t('are_you_sure_') } do %>
-                    <%= t('unarchive') %>
-                  <% end %>
-                <% end %>
-              </td>
+    <% unless turbo_native_app? %>
+      <div class="hidden md:block overflow-x-auto">
+        <table class="table w-full table-lg rounded-b-none overflow-hidden">
+          <thead class="bg-base-200">
+            <tr class="text-neutral uppercase">
+              <th>
+                <%= t('name') %>
+              </th>
+              <th>
+                <%= t('email') %>
+              </th>
+              <th>
+                <%= t('role') %>
+              </th>
+              <th>
+                <%= t('last_session') %>
+              </th>
+              <th class="text-right" width="1px">
+              </th>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <td>
+                  <%= user.full_name %>
+                </td>
+                <td>
+                  <% if user.try(:pending_reconfirmation?) %>
+                    <%= user.unconfirmed_email %>
+                    <br>
+                    <span class="label-text-alt">(<%= t('unconfirmed') %>)</span>
+                  <% else %>
+                    <%= user.email %>
+                  <% end %>
+                </td>
+                <td>
+                  <span class="badge badge-info badge-outline whitespace-nowrap">
+                    <%= t(user.role) %>
+                  </span>
+                </td>
+                <td>
+                  <%= user.current_sign_in_at ? l(user.current_sign_in_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) : '-' %>
+                </td>
+                <td class="flex items-center space-x-2 justify-end">
+                  <% if params[:status].blank? && can?(:update, user) && user.archived_at.blank? %>
+                    <%= link_to edit_user_path(user), class: 'btn btn-outline btn-xs', title: t('edit'), data: { turbo_frame: 'modal' } do %>
+                      <%= t('edit') %>
+                    <% end %>
+                  <% end %>
+                  <% if params[:status] != 'archived' && can?(:destroy, user) && user != current_user %>
+                    <%= button_to user_path(user), method: :delete, class: 'btn btn-outline btn-error btn-xs', title: t('remove'), data: { turbo_confirm: t('are_you_sure_') } do %>
+                      <%= t('remove') %>
+                    <% end %>
+                  <% end %>
+                  <% if params[:status] == 'archived' && can?(:create, user) && user != current_user && user.archived_at? %>
+                    <%= button_to user_path(user), method: :put, params: { user: { archived_at: nil } }, class: 'btn btn-outline btn-xs', title: t('unarchive'), data: { turbo_confirm: t('are_you_sure_') } do %>
+                      <%= t('unarchive') %>
+                    <% end %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
     <% if @pagy.pages > 1 %>
       <%= render 'shared/pagination', pagy: @pagy, items_name: 'users', left_additional_html: render('bottom_links') %>
     <% else %>

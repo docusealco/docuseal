@@ -281,7 +281,7 @@ safeRegisterElement('template-builder', class extends HTMLElement {
   }
 
   onSync = (e) => {
-    const { schema, documents, fields, submitters } = e.detail
+    const { schema, documents, fields, submitters, pendingFieldAttachmentUuids } = e.detail
     const selectedAreas = this.component.selectedAreasRef.value.map((area) => {
       const field = this.component.template.fields.find((f) => f.areas?.includes(area))
 
@@ -293,6 +293,7 @@ safeRegisterElement('template-builder', class extends HTMLElement {
 
     this.component.selectedAreasRef.value = selectedAreas.map((item) => item && fields.find((f) => f.uuid === item.uuid)?.areas?.[item.index]).filter(Boolean)
     this.component.selectedSubmitter = submitters.find((s) => s.uuid === selectedSubmitterUuid) || submitters[0]
+    this.component.pendingFieldAttachmentUuids = pendingFieldAttachmentUuids
   }
 
   onScrollTo = (e) => {

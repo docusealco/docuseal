@@ -111,20 +111,21 @@
           </div>
         <% end %>
       <% elsif @submission.submitters.to_a.size == 1 && !@submission.expired? && !@submission.submitters.to_a.first.declined_at? && !@submission.archived_at? && !@submission.template&.archived_at? %>
-        <native-action data-label="<%= t('copy_share_link') %>" data-icon="link">
+        <native-action data-label="<%= t('share_link') %>" data-icon="link">
           <%= render 'shared/clipboard_copy', text: submit_form_url(slug: @submission.submitters.to_a.first.slug, host: form_link_host), class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: t('copy_share_link'), copied_title: t('copied_to_clipboard') %>
         </native-action>
       <% end %>
     </div>
   </div>
   <% end %>
-  <div class="flex md:max-h-[calc(100vh-60px)]">
+  <div class="flex <%= 'md:max-h-[calc(100vh-60px)]' unless turbo_native_app? %>">
     <% values = @submission.submitters.reduce({}) { |acc, sub| acc.merge(sub.values) } %>
     <% service_url_time = ActiveStorage::Attachment.service_url_time %>
     <% attachments_index = ActiveStorage::Attachment.where(record: @submission.submitters, name: :attachments).preload(:blob).index_by(&:uuid) %>
     <% unless native_tab == 'recipients' %>
+    <% schema = Submissions.filtered_conditions_schema(@submission, values:) %>
+    <% unless turbo_native_app? %>
     <div class="overflow-y-auto overflow-x-hidden hidden lg:block w-52 flex-none pr-3 mt-0.5 pt-0.5" tabindex="0">
-      <% schema = Submissions.filtered_conditions_schema(@submission, values:) %>
       <% schema.each do |item| %>
         <% document = @submission.schema_documents.find { |a| item['attachment_uuid'] == a.uuid } %>
         <% if document.preview_images.first %>
@@ -137,6 +138,7 @@
         <% end %>
       <% end %>
     </div>
+    <% end %>
     <div id="document_view" class="w-full overflow-y-auto overflow-x-hidden mt-0.5 pt-0.5" tabindex="0">
       <div class="pr-3.5 pl-0.5 max-md:pr-4 max-md:pl-0">
         <% fields_index = Templates.build_field_areas_index(@submission.template_fields || @submission.template.fields) %>
@@ -193,7 +195,7 @@
     </div>
     <% end %>
     <% unless native_tab == 'document' %>
-    <div id="parties_view" class="<%= 'hidden md:block' unless native_tab %> relative w-full md:w-80 flex-none pt-0.5 pr-4 pl-0.5 max-md:pl-0 overflow-auto space" tabindex="0">
+    <div id="parties_view" class="<%= 'hidden md:block md:w-80' unless native_tab %> relative w-full flex-none pt-0.5 pr-4 pl-0.5 max-md:pl-0 overflow-auto space" tabindex="0">
       <% colors = %w[bg-red-500 bg-sky-500 bg-emerald-500 bg-yellow-300 bg-purple-600 bg-pink-500 bg-cyan-500 bg-orange-500 bg-lime-500 bg-indigo-500] %>
       <% submitter_fields_index = (@submission.template_fields || @submission.template.fields).group_by { |f| f['submitter_uuid'] } %>
       <% submitter_field_counters = Hash.new { 0 } %>

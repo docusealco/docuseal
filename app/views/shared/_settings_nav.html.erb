@@ -1,5 +1,6 @@
 <% expanded = local_assigns[:expanded] %>
-<div class="<%= expanded ? 'block -mx-3 md:mx-0' : 'w-full md:w-52 flex-none' %>">
+<% nav_link_data = turbo_native_app? && !expanded ? { turbo_action: 'replace' } : {} %>
+<div class="<%= expanded ? 'block -mx-3 md:mx-0' : 'w-full md:w-52 flex-none' %> <%= 'md:sticky md:top-0 md:self-start' if turbo_native_app? && !expanded %>">
   <% unless expanded || turbo_native_app? %>
     <div class="md:hidden w-full">
       <a href="<%= local_assigns[:back_path] || settings_path %>" class="flex items-center space-x-0.5 font-medium">
@@ -26,60 +27,60 @@
           <li></li>
         <% end %>
         <li>
-          <%= link_to t('profile'), settings_profile_index_path, class: 'text-base hover:bg-base-300' %>
+          <%= link_to t('profile'), settings_profile_index_path, class: 'text-base hover:bg-base-300', data: nav_link_data %>
         </li>
         <li>
-          <%= link_to t('account'), settings_account_path, class: 'text-base hover:bg-base-300' %>
+          <%= link_to t('account'), settings_account_path, class: 'text-base hover:bg-base-300', data: nav_link_data %>
         </li>
         <% if (!Docuseal.multitenant? || EncryptedConfig.exists?(key: EncryptedConfig::EMAIL_SMTP_KEY, account: current_account)) && can?(:read, EncryptedConfig.new(key: EncryptedConfig::EMAIL_SMTP_KEY, account: current_account)) && ENV['SMTP_ADDRESS'].blank? && true_user == current_user %>
           <li>
-            <%= link_to t('email'), settings_email_index_path, class: 'text-base hover:bg-base-300' %>
+            <%= link_to t('email'), settings_email_index_path, class: 'text-base hover:bg-base-300', data: nav_link_data %>
           </li>
         <% end %>
         <% unless Docuseal.multitenant? %>
           <% if can?(:read, EncryptedConfig.new(key: EncryptedConfig::FILES_STORAGE_KEY, account: current_account)) && true_user == current_user && ENV['S3_ATTACHMENTS_BUCKET'].blank? && ENV['GCS_BUCKET'].blank? && ENV['AZURE_CONTAINER'].blank? %>
             <li>
-              <%= link_to t('storage'), settings_storage_index_path, class: 'text-base hover:bg-base-300' %>
+              <%= link_to t('storage'), settings_storage_index_path, class: 'text-base hover:bg-base-300', data: nav_link_data %>
             </li>
           <% end %>
           <% if can?(:read, EncryptedConfig.new(key: 'submitter_invitation_sms', account: current_account)) && true_user == current_user && (!turbo_native_ios? || can?(:manage, :sms_verification)) %>
             <li>
-              <%= link_to 'SMS', settings_sms_path, class: 'text-base hover:bg-base-300' %>
+              <%= link_to 'SMS', settings_sms_path, class: 'text-base hover:bg-base-300', data: nav_link_data %>
             </li>
           <% end %>
         <% end %>
         <% if can?(:read, AccountConfig) %>
           <li>
-            <%= link_to t('notifications'), settings_notifications_path, class: 'text-base hover:bg-base-300' %>
+            <%= link_to t('notifications'), settings_notifications_path, class: 'text-base hover:bg-base-300', data: nav_link_data %>
           </li>
         <% end %>
         <% if can?(:read, EncryptedConfig.new(key: EncryptedConfig::ESIGN_CERTS_KEY, account: current_account)) %>
           <li>
-            <%= link_to t('e_signature'), settings_esign_path, class: 'text-base hover:bg-base-300' %>
+            <%= link_to t('e_signature'), settings_esign_path, class: 'text-base hover:bg-base-300', data: nav_link_data %>
           </li>
         <% end %>
         <% if can?(:read, AccountConfig) %>
           <li>
-            <%= link_to t('personalization'), settings_personalization_path, class: 'text-base hover:bg-base-300' %>
+            <%= link_to t('personalization'), settings_personalization_path, class: 'text-base hover:bg-base-300', data: nav_link_data %>
           </li>
         <% end %>
         <% if can?(:read, User) %>
           <li>
-            <%= link_to t('users'), settings_users_path, class: 'text-base hover:bg-base-300' %>
+            <%= link_to t('users'), settings_users_path, class: 'text-base hover:bg-base-300', data: nav_link_data %>
           </li>
         <% end %>
-        <%= render 'shared/settings_nav_extra' %>
+        <%= render 'shared/settings_nav_extra', nav_link_data: %>
         <% if Docuseal.demo? || !Docuseal.multitenant? %>
           <% if can?(:read, AccessToken) %>
             <li>
-              <%= link_to 'API', settings_api_index_path, class: 'text-base hover:bg-base-300' %>
+              <%= link_to 'API', settings_api_index_path, class: 'text-base hover:bg-base-300', data: nav_link_data %>
             </li>
           <% end %>
         <% end %>
         <% if Docuseal.demo? || !Docuseal.multitenant? || (current_user != true_user && !current_account.testing?) %>
           <% if can?(:read, WebhookUrl) %>
             <li>
-              <%= link_to 'Webhooks', settings_webhooks_path, class: 'text-base hover:bg-base-300' %>
+              <%= link_to 'Webhooks', settings_webhooks_path, class: 'text-base hover:bg-base-300', data: nav_link_data %>
             </li>
           <% end %>
         <% end %>
@@ -108,15 +109,15 @@
           <% end %>
           <% if (!Docuseal.multitenant? || can?(:manage, :saml_sso)) && can?(:read, EncryptedConfig.new(key: 'saml_configs', account: current_account)) && true_user == current_user && (!turbo_native_ios? || can?(:manage, :saml_sso)) %>
             <li>
-              <%= link_to 'SSO', settings_sso_index_path, class: 'text-base hover:bg-base-300' %>
+              <%= link_to 'SSO', settings_sso_index_path, class: 'text-base hover:bg-base-300', data: nav_link_data %>
             </li>
           <% end %>
           <% if !Docuseal.multitenant? && can?(:read, McpToken) && can?(:manage, :mcp) %>
             <li>
-              <%= link_to 'MCP', settings_mcp_index_path, class: 'text-base hover:bg-base-300' %>
+              <%= link_to 'MCP', settings_mcp_index_path, class: 'text-base hover:bg-base-300', data: nav_link_data %>
             </li>
           <% end %>
-          <%= render 'shared/settings_nav_extra2' %>
+          <%= render 'shared/settings_nav_extra2', nav_link_data: %>
           <% if (can?(:manage, EncryptedConfig) && current_user == true_user) || (current_user != true_user && current_account.testing?) %>
             <%= form_for '', url: testing_account_path, method: current_account.testing? ? :delete : :post, html: { class: 'w-full' } do |f| %>
               <li>

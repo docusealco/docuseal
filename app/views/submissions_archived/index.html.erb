@@ -11,7 +11,7 @@
     <% end %>
   </div>
 <% end %>
-<div class="flex flex-col md:flex-row md:items-center mb-4 <%= 'gap-3' unless turbo_native_app? %>">
+<div class="flex flex-col mb-4 <%= 'md:flex-row md:items-center gap-3' unless turbo_native_app? %>">
   <div class="group/header flex w-full justify-between items-center">
     <% unless turbo_native_app? %>
       <div class="max-md:group-has-[search-input:focus-within]/header:hidden">

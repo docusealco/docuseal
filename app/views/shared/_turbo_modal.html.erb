@@ -1,6 +1,6 @@
 <% if turbo_native_ios? || (turbo_native_app? && !turbo_frame_request?) %>
   <% content_for(:native_modal, 'true') %>
-  <% content_for(:html_title, local_assigns[:title]) if local_assigns[:title] %>
+  <% content_for(:native_title, local_assigns[:title]) if local_assigns[:title] %>
   <turbo-frame id="modal">
     <native-modal class="block max-w-lg mx-auto pb-6" data-close-after-submit="<%= local_assigns.key?(:close_after_submit) ? local_assigns[:close_after_submit] : true %>">
       <%= yield %>

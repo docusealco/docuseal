@@ -7,7 +7,7 @@
     @drop="isDragFile = false"
   >
     <HoverDropzone
-      v-if="sortedDocuments.length && withUploadButton && editable"
+      v-if="sortedDocuments.length && withUploadButton && editable && !isSheetView"
       :is-dragging="isDragFile"
       :template-id="template.id"
       :accept-file-types="acceptFileTypes"
@@ -26,7 +26,7 @@
       :is-required="defaultRequiredFields.includes(toRaw(dragField))"
     />
     <MobileDrawer
-      v-if="isDocumentsView || (withMobileDrawers && withDocumentsList && (isBreakpointLg || isMobile))"
+      v-if="isDocumentsView || withDocumentsDrawer"
       side="left"
       :inline="isDocumentsView"
       :open="isDocumentsDrawerOpen"
@@ -91,16 +91,16 @@
       </div>
     </MobileDrawer>
     <MobileDrawer
-      v-if="isFieldsView || (withMobileDrawers && withFieldsList && editable)"
+      v-if="isFieldsView || withFieldsDrawer"
       side="right"
       :inline="isFieldsView"
       :open="isFieldsDrawerOpen"
       :background-color="backgroundColor"
-      class="md:hidden"
       @close="isFieldsDrawerOpen = false"
     >
       <div class="pb-6">
         <Fields
+          ref="fields"
           :with-top-padding="true"
           :fields="template.fields"
           :submitters="template.submitters"
@@ -153,7 +153,7 @@
       @documents-modified="onDocumentsModified"
     />
     <div
-      v-if="pendingFieldAttachmentUuids.length && editable"
+      v-if="pendingFieldAttachmentUuids.length && editable && !nativeView"
       class="top-1.5 sticky h-0 z-20 max-w-2xl mx-auto"
     >
       <div class="alert border-base-content/30 py-2 px-2.5 max-sm:flex max-sm:items-center max-sm:justify-between max-sm:gap-2 max-sm:text-left max-sm:text-sm">
@@ -519,11 +519,11 @@
       :class="($slots.buttons || withTitle) && !nativePlatform ? (isMobile ? 'max-h-[calc(100%_-_60px)]' : 'md:max-h-[calc(100%_-_60px)]') : (isMobile ? 'max-h-[100%]' : 'md:max-h-[100%]')"
     >
       <div
-        v-if="withDocumentsList"
+        v-if="withDocumentsList && !withDocumentsDrawer"
         id="documents_container"
         ref="previews"
         :style="{ 'display': isBreakpointLg || isMobile ? 'none' : 'initial' }"
-        class="overflow-y-auto overflow-x-hidden w-52 flex-none pr-3 mt-0.5 pt-0.5 hidden lg:block"
+        class="overflow-y-auto overflow-x-hidden w-52 flex-none pr-3 mt-0.5 pt-0.5"
       >
         <DocumentPreview
           v-for="(item, index) in template.schema"
@@ -685,9 +685,9 @@
         </div>
       </div>
       <div
-        v-if="withFieldsList"
+        v-if="withFieldsList && !(nativePlatform ? isBreakpointLg : isBreakpointMd)"
         id="fields_list_container"
-        class="relative w-80 flex-none mt-1 pr-4 pl-0.5 hidden md:block fields-list-container"
+        class="relative w-80 flex-none mt-1 pr-4 pl-0.5 fields-list-container"
         :class="drawField || drawCustomField ? 'overflow-hidden' : 'overflow-y-auto overflow-x-hidden'"
       >
         <div
@@ -739,7 +739,7 @@
             :detect-custom-fields-index="detectCustomFieldsIndex"
             :field-types="fieldTypes"
             :with-sticky-submitters="withStickySubmitters"
-            :with-add-fields-pill="!showDrawField && !drawField && !drawCustomField"
+            :with-add-fields-pill="!nativePlatform && !showDrawField && !drawField && !drawCustomField"
             :with-fields-detection="withFieldsDetection"
             :with-detect-existing-fields="withDetectExistingFields"
             :with-signature-id="withSignatureId"
@@ -769,7 +769,7 @@
       class="sticky bottom-0 z-20"
     >
       <native-action
-        v-if="nativePlatform && withDocumentsList && isBreakpointLg && sortedDocuments.length && editable"
+        v-if="nativePlatform && withDocumentsList && (isBreakpointLg || isMobile) && sortedDocuments.length && editable"
         data-placement="drawer"
         data-side="leading"
         data-icon="files"
@@ -785,7 +785,7 @@
         data-icon="plus"
         data-native="drawer"
         data-haptic="true"
-        :data-label="'Fields'"
+        :data-label="t('fields')"
         data-view="fields"
       />
       <native-action
@@ -800,8 +800,8 @@
         />
       </native-action>
       <button
-        v-if="drawField && (isBreakpointLg || isMobile) && !nativePlatform"
-        class="btn btn-neutral text-white rounded-full no-animation transition-none absolute bottom-6 -left-3 md:-left-4 right-0 mx-auto w-fit z-10 flex-nowrap gap-2 px-5 max-[400px]:px-4 md:hidden"
+        v-if="drawField && isBreakpointMd && !nativePlatform"
+        class="btn btn-neutral text-white rounded-full no-animation transition-none absolute bottom-6 -left-3 md:-left-4 right-0 mx-auto w-fit z-10 flex-nowrap gap-2 px-5 max-[400px]:px-4"
         style="max-width: calc(100% - 11rem); --btn-focus-scale: 1"
         @click.prevent="[drawField = null, drawOption = null]"
       >
@@ -824,7 +824,7 @@
         />
       </button>
       <button
-        v-if="withMobileDrawers && withDocumentsList && (isBreakpointLg || isMobile)"
+        v-if="withDocumentsDrawer"
         class="btn btn-neutral text-white btn-circle btn-lg absolute bottom-4 left-1 md:left-0 z-10"
         :title="t('documents')"
         @click.prevent="isDocumentsDrawerOpen = true"
@@ -836,9 +836,9 @@
         />
       </button>
       <button
-        v-if="withMobileDrawers && withFieldsList && editable"
-        class="btn btn-neutral text-white btn-circle btn-lg absolute bottom-4 right-4 z-10 md:hidden"
-        title="Fields"
+        v-if="withFieldsDrawer"
+        class="btn btn-neutral text-white btn-circle btn-lg absolute bottom-4 right-4 z-10"
+        :title="t('fields')"
         @click.prevent="isFieldsDrawerOpen = true"
       >
         <IconPlus
@@ -1369,6 +1369,7 @@ export default {
     return {
       documentRefs: [],
       isBreakpointLg: false,
+      isBreakpointMd: false,
       isDownloading: false,
       isPreviewLoading: false,
       isLoadingBlankPage: false,
@@ -1447,6 +1448,12 @@ export default {
     },
     withMobileDrawers () {
       return !this.nativePlatform && !this.nativeView && this.sortedDocuments.length > 0
+    },
+    withDocumentsDrawer () {
+      return this.withMobileDrawers && this.withDocumentsList && (this.isBreakpointLg || this.isMobile)
+    },
+    withFieldsDrawer () {
+      return this.withMobileDrawers && this.withFieldsList && this.editable && this.isBreakpointMd
     },
     isMobile () {
       const isMobileSafariIos = 'ontouchstart' in window && navigator.maxTouchPoints > 0 && /AppleWebKit/i.test(navigator.userAgent)
@@ -2402,8 +2409,11 @@ export default {
     },
     onWindowResize (e) {
       const breakpointLg = 1024
+      const breakpointMd = 768
+      const width = this.$el.getRootNode().querySelector('div[data-v-app]').offsetWidth
 
-      this.isBreakpointLg = this.$el.getRootNode().querySelector('div[data-v-app]').offsetWidth < breakpointLg
+      this.isBreakpointLg = width < breakpointLg
+      this.isBreakpointMd = width < breakpointMd
     },
     onPagesWheel (event) {
       if (!event.ctrlKey && !event.metaKey) return
@@ -2497,7 +2507,7 @@ export default {
     },
     syncNative () {
       const { schema, documents, fields, submitters } = this.template
-      const detail = JSON.stringify({ schema, documents, fields, submitters })
+      const detail = JSON.stringify({ schema, documents, fields, submitters, pendingFieldAttachmentUuids: this.pendingFieldAttachmentUuids })
 
       if (this.nativeView) {
         window.webkit?.messageHandlers?.modal?.postMessage({ action: 'dispatch', name: 'template-builder:sync', detail, dismiss: 'false' })
@@ -3439,6 +3449,10 @@ export default {
           })
         }
       })
+
+      if (this.nativeView && this.pendingFieldAttachmentUuids.length) {
+        this.syncNative()
+      }
     },
     updateName (value) {
       this.template.name = value

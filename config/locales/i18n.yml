@@ -2840,7 +2840,7 @@ it: &it
   send: Invia
   send_to_recipients: Invia ai destinatari
   sign_it_yourself: Firmalo tu stesso
-  sign_yourself: Firma te stesso
+  sign_yourself: Firma tu stesso
   revisions: Revisioni
   no_revisions_yet: Nessuna revisione ancora
   api_and_embedding: API e Incorporazione

@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html do
-        @pagy, @users = pagy(@users)
+        @pagy, @users = pagy(@users, limit: turbo_native_app? ? 1_000 : Pagy::OPTIONS[:limit])
       end
 
       if current_ability.can?(:manage, current_account)

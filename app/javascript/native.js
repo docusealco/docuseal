@@ -50,8 +50,11 @@ export function nativeIcon (name) {
 }
 
 const handlers = window.webkit?.messageHandlers
+const isNativeLoaded = window.isNativeLoaded
 
-if (handlers?.native && window === window.top) {
+if (handlers?.native && window === window.top && !isNativeLoaded) {
+  window.isNativeLoaded = true
+
   handlers.native.postMessage({ type: 'reset' })
 
   const reportPathConfiguration = () => {
@@ -150,7 +153,7 @@ if (handlers?.native && window === window.top) {
   })
 }
 
-if (handlers?.native && window.Turbo) {
+if (handlers?.native && window.Turbo && !isNativeLoaded) {
   const staleSnapshots = new Set()
   let isRestoring = false
 

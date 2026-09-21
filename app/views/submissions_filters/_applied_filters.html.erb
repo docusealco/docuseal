@@ -6,7 +6,7 @@
 <% status_icons = { 'all' => 'list', 'pending' => 'clock', 'completed' => 'circle_check' } %>
 <% current_status = status_icons.key?(params[:status].to_s) ? params[:status].to_s : 'all' %>
 <% status_icon = { 'declined' => 'x_circle', 'expired' => 'clock_cancel', 'partially_completed' => 'clock_edit', 'sent' => 'send', 'opened' => 'mail_opened' }[params[:status]] %>
-<% default_status_icon = status_icons[params[:status]] if status_icon.blank? && local_assigns[:with_default_status] && current_status != 'all' %>
+<% default_status_icon = status_icons[params[:status]] if status_icon.blank? && local_assigns[:with_default_status] && current_status != 'all' && !turbo_native_app? %>
 <% with_status_button = local_assigns[:with_status] && status_icon.blank? %>
 <% status_chip_html = capture do %>
   <% if status_icon || default_status_icon %>
@@ -105,7 +105,7 @@
 <% end %>
 <% with_status_dropdown = with_status_button && chips_html.blank? %>
 <% if with_status_dropdown %>
-  <native-menu class="<%= turbo_native_app? ? 'block' : 'dropdown' %> md:hidden shrink-0">
+  <native-menu class="<%= turbo_native_app? ? 'block' : 'dropdown md:hidden' %> shrink-0">
     <label tabindex="0" class="cursor-pointer flex h-10 px-2 py-1 space-x-1 text-base items-center border text-neutral rounded-xl <%= current_status == 'all' ? 'border-neutral-300' : 'border-neutral-700' %>">
       <%= svg_icon(status_icons[current_status], class: 'w-5 h-5 shrink-0') %>
       <span><%= t(current_status) %></span>
@@ -157,7 +157,7 @@
 <% if chips_html.present? || status_chip_html.present? %>
   <scroll-fade class="flex items-center gap-2 overflow-x-auto flex-1 min-w-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [&::-webkit-scrollbar]:h-0 [&::-webkit-scrollbar]:w-0 md:contents <%= 'max-md:hidden' if with_status_dropdown %>">
     <% if with_status_button && !with_status_dropdown %>
-      <a href="<%= submissions_filter_path('status', query_params.merge(path: url_for)) %>" data-turbo-frame="modal" data-native-modal="medium" aria-label="<%= t('status') %>" class="order-none md:hidden flex h-10 px-2 py-1 space-x-1 text-base items-center border text-neutral rounded-xl shrink-0 <%= current_status == 'all' ? 'border-neutral-300' : 'border-neutral-700' %>">
+      <a href="<%= submissions_filter_path('status', query_params.merge(path: url_for)) %>" data-turbo-frame="modal" data-native-modal="medium" aria-label="<%= t('status') %>" class="order-none <%= 'md:hidden' unless turbo_native_app? %> flex h-10 px-2 py-1 space-x-1 text-base items-center border text-neutral rounded-xl shrink-0 <%= current_status == 'all' ? 'border-neutral-300' : 'border-neutral-700' %>">
         <%= svg_icon(status_icons[current_status], class: 'w-5 h-5 shrink-0') %>
         <span><%= t(current_status) %></span>
         <%= svg_icon('chevron_down', class: 'w-4 h-4 shrink-0') %>
