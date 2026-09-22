@@ -5,7 +5,6 @@ class SessionsController < Devise::SessionsController
 
   skip_before_action :verify_authenticity_token, if: -> { request.xhr? && request.format.json? }
 
-  respond_to :html
   respond_to :json, only: :create
 
   around_action :with_browser_locale
