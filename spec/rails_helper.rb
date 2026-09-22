@@ -20,12 +20,14 @@ require 'simplecov' if ENV['COVERAGE']
 Capybara.server = :puma, { Silent: true }
 Capybara.disable_animation = true
 
+blink_settings = 'primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4'
+
 Capybara.register_driver(:headless_cuprite) do |app|
   Capybara::Cuprite::Driver.new(app, window_size: [1200, 800],
                                      process_timeout: 20,
                                      timeout: 20,
                                      js_errors: true,
-                                     browser_options: { 'no-sandbox' => nil })
+                                     browser_options: { 'no-sandbox' => nil, 'blink-settings' => blink_settings })
 end
 
 Capybara.register_driver(:headful_cuprite) do |app|
@@ -34,7 +36,7 @@ Capybara.register_driver(:headful_cuprite) do |app|
                                      process_timeout: 20,
                                      timeout: 20,
                                      js_errors: true,
-                                     browser_options: { 'no-sandbox' => nil })
+                                     browser_options: { 'no-sandbox' => nil, 'blink-settings' => blink_settings })
 end
 
 Rails.root.glob('spec/support/**/*.rb').each { |f| require f }
