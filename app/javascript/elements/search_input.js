@@ -9,6 +9,11 @@ export default class extends HTMLElement {
     })
 
     document.addEventListener('turbo:before-cache', this.onBeforeCache)
+
+    if (this.input.value) {
+      this.input.focus()
+      this.input.setSelectionRange(this.input.value.length, this.input.value.length)
+    }
   }
 
   disconnectedCallback () {

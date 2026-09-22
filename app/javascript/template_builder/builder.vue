@@ -105,7 +105,7 @@
           :fields="template.fields"
           :submitters="template.submitters"
           :selected-submitter="selectedSubmitter"
-          :with-help="false"
+          :with-help="withHelp"
           :default-submitters="defaultSubmitters"
           :draw-field-type="drawFieldType"
           :custom-fields="customFields"

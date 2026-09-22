@@ -111,7 +111,7 @@
               <label
                 tabindex="0"
                 :title="t('settings')"
-                class="cursor-pointer flex items-center pr-1"
+                class="cursor-pointer flex items-center pr-0.5 py-2 -my-2 pl-2 -ml-2"
                 :class="iconColorClass"
                 @touchstart="onHandleTouchstart"
                 @touchmove="onHandleTouchmove"
@@ -156,7 +156,7 @@
               tabindex="0"
               :title="t('settings')"
               class="cursor-pointer flex items-center"
-              :class="[iconColorClass, { 'pr-1': isMobile }]"
+              :class="[iconColorClass, { 'pr-0.5 py-2 -my-2 pl-2 -ml-2': isMobile }]"
               @touchstart="onHandleTouchstart"
               @touchmove="onHandleTouchmove"
               @touchend="onHandleTouchend"

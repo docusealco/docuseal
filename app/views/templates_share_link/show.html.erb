@@ -24,8 +24,10 @@
       <% end %>
       <div class="flex gap-2 mt-3">
         <div class="relative flex-grow">
-          <%= content_tag(turbo_native_app? ? 'clipboard-copy' : 'div', class: 'block', data: { text: start_form_url(slug: @template.slug, host: form_link_host) }) do %>
-            <input id="embedding_url" type="text" value="<%= start_form_url(slug: @template.slug, host: form_link_host) %>" class="base-input w-full pr-10" autocomplete="off" readonly>
+          <%= content_tag(turbo_native_app? ? 'check-on-click' : 'div', class: 'block', data: { element_id: 'template_shared_link' }) do %>
+            <%= content_tag(turbo_native_app? ? 'clipboard-copy' : 'div', class: 'block', data: { text: start_form_url(slug: @template.slug, host: form_link_host) }) do %>
+              <input id="embedding_url" type="text" value="<%= start_form_url(slug: @template.slug, host: form_link_host) %>" class="base-input w-full pr-10" autocomplete="off" readonly>
+            <% end %>
           <% end %>
           <% if @template.variables_schema.blank? && !@template.preferences&.dig('require_email_2fa') && !@template.preferences&.dig('require_phone_2fa') %>
             <a href="<%= template_share_link_qr_path(@template) %>" target="_blank" rel="noopener" class="absolute top-1/2 -translate-y-1/2 right-2 flex items-center justify-center tooltip tooltip-no-touch text-base-content/70 hover:text-base-content bg-white rounded px-1 py-0.5" data-tip="<%= t('qr_code') %>" aria-label="<%= t('qr_code') %>">

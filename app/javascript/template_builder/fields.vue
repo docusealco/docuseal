@@ -330,10 +330,17 @@
     </template>
   </div>
   <div
-    v-if="!isShowVariables && fields.length < 4 && editable && withHelp && !showTourStartForm"
+    v-if="!isShowVariables && (isMobile ? !fields.length : fields.length < 4) && editable && withHelp && !showTourStartForm"
     class="text-xs p-2 border border-base-200 rounded"
+    :class="{ 'text-center': isMobile }"
   >
-    <ul class="list-disc list-outside ml-3">
+    <template v-if="isMobile">
+      {{ t('tap_on_the_field_type_above_to_start_drawing_the_field') }}
+    </template>
+    <ul
+      v-else
+      class="list-disc list-outside ml-3"
+    >
       <li>
         {{ t('draw_a_text_field_on_the_page_with_a_mouse') }}
       </li>
