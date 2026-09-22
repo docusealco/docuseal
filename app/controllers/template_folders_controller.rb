@@ -62,7 +62,7 @@ class TemplateFoldersController < ApplicationController
   end
 
   def render_infinite_scroll(pagy, templates, template_folders)
-    rendering =
+    render_params =
       if templates.present?
         { partial: 'templates/template', collection: templates }
       else
@@ -70,7 +70,7 @@ class TemplateFoldersController < ApplicationController
       end
 
     render turbo_stream: [
-      turbo_stream.before('infinite_scroll', **rendering),
+      turbo_stream.before('infinite_scroll', **render_params),
       turbo_stream.replace('infinite_scroll', partial: 'shared/infinite_scroll', locals: { pagy: })
     ]
   end

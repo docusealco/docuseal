@@ -29,6 +29,7 @@
             :icon-inline="true"
             :icon-width="18"
             :icon-stroke-width="1.6"
+            :contenteditable-classes="isMobile ? 'py-2 -my-2' : ''"
             @focus="[onNameFocus(), scrollOnEdit && scrollToFirstArea()]"
             @blur="onNameBlur"
           />
