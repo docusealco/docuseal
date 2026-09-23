@@ -102,7 +102,7 @@
             class="hover:underline"
             style="font-size: 11px"
             :class="{'underline': !('payment_link_id' in field.preferences)}"
-            @click="[delete field.preferences.price_id, delete field.preferences.payment_link_id]"
+            @click.prevent="[delete field.preferences.price_id, delete field.preferences.payment_link_id]"
           >{{ t('one_off') }}</a>
           <span class="h-2.5 border-l border-base-content mx-1" />
           <template
@@ -113,7 +113,7 @@
               class="hover:underline"
               style="font-size: 11px"
               :class="{'underline': ('price_id' in field.preferences)}"
-              @click="field.preferences.payment_link_id ??= ''"
+              @click.prevent="field.preferences.payment_link_id ??= ''"
             >{{ t('recurrent') }}</a>
             <span class="h-2.5 border-l border-base-content mx-1" />
           </template>
@@ -122,7 +122,7 @@
             class="hover:underline"
             style="font-size: 11px"
             :class="{'underline': ('payment_link_id' in field.preferences)}"
-            @click="[delete field.preferences.price_id, field.preferences.payment_link_id ??= '']"
+            @click.prevent="[delete field.preferences.price_id, field.preferences.payment_link_id ??= '']"
           >{{ t('payment_link') }}</a>
         </div>
       </div>
