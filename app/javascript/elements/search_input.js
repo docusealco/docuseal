@@ -1,16 +1,10 @@
 export default class extends HTMLElement {
   connectedCallback () {
-    this.button.addEventListener('click', (event) => {
-      if (!this.input.value && document.activeElement !== this.input) {
-        event.preventDefault()
-
-        this.input.focus()
-      }
-    })
+    this.addEventListener('click', this.onClick)
 
     document.addEventListener('turbo:before-cache', this.onBeforeCache)
 
-    if (this.input.value) {
+    if (this.input?.value) {
       this.input.focus()
       this.input.setSelectionRange(this.input.value.length, this.input.value.length)
     }
@@ -18,6 +12,16 @@ export default class extends HTMLElement {
 
   disconnectedCallback () {
     document.removeEventListener('turbo:before-cache', this.onBeforeCache)
+  }
+
+  onClick = (event) => {
+    if (!event.target.closest('button')) return
+
+    if (!this.input.value && document.activeElement !== this.input) {
+      event.preventDefault()
+
+      this.input.focus()
+    }
   }
 
   onBeforeCache = () => {
