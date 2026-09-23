@@ -34,14 +34,14 @@
         <div class="flex items-center space-x-4">
           <span class="flex flex-col md:flex-row md:items-center gap-3 min-w-0">
             <% if submission.expired? && !submitter.completed_at? && !submitter.declined_at? %>
-              <div class="md:tooltip flex" data-tip="<%= l(submission.expire_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) %>">
+              <div class="tooltip tooltip-no-touch flex" data-tip="<%= l(submission.expire_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) %>">
                 <span class="badge badge-error md:w-32 bg-opacity-50 badge-lg uppercase text-sm max-sm:text-[13px] font-semibold">
                   <%= t('expired') %>
                 </span>
               </div>
             <% else %>
               <a href="<%= submission_path(submission) %>" class="flex z-[1]">
-                <span class="badge <%= SubmissionsController::STATUS_BADGES[submitter.status] %> md:w-32 badge-lg bg-opacity-50 uppercase text-sm max-sm:text-[13px] font-semibold md:tooltip" data-tip="<%= l(submitter.status_event_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) %>">
+                <span class="badge <%= SubmissionsController::STATUS_BADGES[submitter.status] %> md:w-32 badge-lg bg-opacity-50 uppercase text-sm max-sm:text-[13px] font-semibold tooltip tooltip-no-touch" data-tip="<%= l(submitter.status_event_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) %>">
                   <%= t(submitter.status) %>
                 </span>
               </a>
@@ -124,7 +124,7 @@
               </span>
             </a>
           <% elsif submission.expired? %>
-            <div class="md:tooltip flex" data-tip="<%= l(submission.expire_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) %>">
+            <div class="tooltip tooltip-no-touch flex" data-tip="<%= l(submission.expire_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) %>">
               <span class="badge badge-error md:w-32 bg-opacity-50 badge-lg uppercase text-sm max-sm:text-[13px] font-semibold">
                 <%= t('expired') %>
               </span>
