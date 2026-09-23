@@ -79,10 +79,12 @@
         <% if can?(:create, Submission) %>
           <li>
             <native-menu-action data-icon="send" data-label="<%= t('send') %>" class="grid-cols-1 p-0">
-              <a href="<%= new_template_submission_path(template) %>" class="flex items-center gap-2 px-4 py-2" data-turbo-frame="modal" data-native-modal="medium">
-                <%= svg_icon('send', class: 'w-5 h-5 flex-shrink-0') %>
-                <span><%= t('send') %></span>
-              </a>
+              <open-modal-mobile>
+                <a href="<%= new_template_submission_path(template) %>" class="flex items-center gap-2 px-4 py-2" data-turbo-frame="modal" data-native-modal="medium">
+                  <%= svg_icon('send', class: 'w-5 h-5 flex-shrink-0') %>
+                  <span><%= t('send') %></span>
+                </a>
+              </open-modal-mobile>
             </native-menu-action>
           </li>
         <% end %>
