@@ -59,6 +59,7 @@ import ConfirmUpload from './elements/confirm_upload'
 import ScrollFade from './elements/scroll_fade'
 import OpenModalMobile from './elements/open_modal_mobile'
 import HistoryBack from './elements/history_back'
+import DatePlaceholder from './elements/date_placeholder'
 
 import * as TurboInstantClick from './lib/turbo_instant_click'
 
@@ -156,6 +157,7 @@ safeRegisterElement('confirm-upload', ConfirmUpload)
 safeRegisterElement('scroll-fade', ScrollFade)
 safeRegisterElement('open-modal-mobile', OpenModalMobile)
 safeRegisterElement('history-back', HistoryBack)
+safeRegisterElement('date-placeholder', DatePlaceholder)
 
 safeRegisterElement('template-builder', class extends HTMLElement {
   connectedCallback () {

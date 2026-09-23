@@ -65,7 +65,10 @@
                     <% elsif field['type'] == 'select' || field['type'] == 'radio' %>
                       <%= select_tag "submission[1][submitters][][values][#{field['uuid'] || field['name']}]", options_for_select(field['options'].pluck('value'), field['default_value']), prompt: t(:select), id: field_id, class: 'select select-sm base-input !h-10 mt-1.5 ', required: field['required'] %>
                     <% elsif field['type'] == 'date' %>
-                      <%= tag.input type: field['type'], name: "submission[1][submitters][][values][#{field['uuid'] || field['name']}]", autocomplete: 'off', class: 'base-input !h-10 mt-1.5 w-full border rounded p-3', placeholder: (field['required'] ? field['title'].presence || field['name'] : "#{field['title'].presence || field['name']} (#{t('optional')})"), value: field['default_value'], id: field_id, required: field['required'] %>
+                      <date-placeholder class="relative block mt-1.5">
+                        <%= tag.input type: field['type'], name: "submission[1][submitters][][values][#{field['uuid'] || field['name']}]", autocomplete: 'off', class: 'peer base-input !h-10 w-full border rounded p-3', value: field['default_value'], id: field_id, required: field['required'] %>
+                        <span class="<%= 'hidden' if field['default_value'].present? %> absolute pl-3 rounded-l-full bg-white text-gray-400 truncate pointer-events-none select-none peer-focus-within:hidden peer-disabled:hidden" style="inset: 1px 2.75rem 1px 1px; line-height: 38px" dir="auto"><%= field['required'] ? field['title'].presence || field['name'] : "#{field['title'].presence || field['name']} (#{t('optional')})" %></span>
+                      </date-placeholder>
                     <% elsif field['type'] != 'phone' %>
                       <%= tag.input type: field['type'], name: "submission[1][submitters][][values][#{field['uuid'] || field['name']}]", autocomplete: 'off', class: 'base-input !h-10 mt-1.5 w-full border rounded p-3', placeholder: (field['required'] ? field['title'].presence || field['name'] : "#{field['title'].presence || field['name']} (#{t('optional')})"), value: field['default_value'], id: field_id, required: field['required'] %>
                     <% end %>
