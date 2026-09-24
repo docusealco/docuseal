@@ -2300,6 +2300,10 @@ export default {
       this.save()
     },
     addField (type, area = null) {
+      if (this.isVerificationFieldAdded(type)) {
+        return
+      }
+
       const field = {
         name: '',
         uuid: v4(),
@@ -2343,12 +2347,26 @@ export default {
 
       this.save()
     },
+    isVerificationFieldAdded (type) {
+      const addedField = ['kba', 'verification'].includes(type) &&
+        this.template.fields.find((f) => ['kba', 'verification'].includes(f.type) && f.submitter_uuid === this.selectedSubmitter.uuid)
+
+      if (addedField) {
+        alert(this.t('field_has_already_been_added_for_party').replace('{field}', this.fieldNames[addedField.type]).replace('{party}', this.selectedSubmitter.name))
+      }
+
+      return !!addedField
+    },
     startFieldDraw ({ name, type }) {
       const existingField = this.template.fields?.find((f) => f.submitter_uuid === this.selectedSubmitter.uuid && name && name === f.name)
 
       if (existingField) {
         this.drawField = existingField
       } else {
+        if (this.isVerificationFieldAdded(type)) {
+          return
+        }
+
         const field = {
           name: name || '',
           uuid: v4(),
@@ -3087,6 +3105,10 @@ export default {
 
       if (this.customDragFieldRef.value) {
         return this.dropCustomField(area)
+      }
+
+      if (!this.fieldsDragFieldRef.value && this.isVerificationFieldAdded(this.dragField.type)) {
+        return
       }
 
       const field = this.fieldsDragFieldRef.value || {
