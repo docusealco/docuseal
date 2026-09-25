@@ -2240,8 +2240,8 @@ export default {
     },
     onRevisionApply (revision) {
       this.beforeRevisionSnapshot = {
-        template: JSON.parse(JSON.stringify(this.template)),
-        dynamicDocuments: JSON.parse(JSON.stringify(this.dynamicDocuments)),
+        template: this.beforeRevisionSnapshot?.template || JSON.parse(JSON.stringify(this.template)),
+        dynamicDocuments: this.beforeRevisionSnapshot?.dynamicDocuments || JSON.parse(JSON.stringify(this.dynamicDocuments)),
         revision
       }
 
