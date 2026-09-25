@@ -48,6 +48,11 @@ export default {
       type: Object,
       required: false,
       default: () => ({})
+    },
+    fieldsUuidIndex: {
+      type: Object,
+      required: false,
+      default: () => ({})
     }
   },
   data () {
@@ -59,7 +64,7 @@ export default {
     isInlineSize () {
       return CSS.supports('container-type: size')
     },
-    fieldsUuidIndex () {
+    formulaFieldsUuidIndex () {
       return this.fields.reduce((acc, field) => {
         acc[field.uuid] = field
 
@@ -82,8 +87,8 @@ export default {
       if (depth > 10) return formula
 
       return formula.replace(/{{(.*?)}}/g, (match, uuid) => {
-        if (this.fieldsUuidIndex[uuid]) {
-          return `(${this.normalizeFormula(this.fieldsUuidIndex[uuid].preferences.formula, depth + 1)})`
+        if (this.formulaFieldsUuidIndex[uuid]) {
+          return `(${this.normalizeFormula(this.formulaFieldsUuidIndex[uuid].preferences.formula, depth + 1)})`
         } else {
           return match
         }
@@ -91,16 +96,36 @@ export default {
     },
     calculateFormula (field) {
       const transformedFormula = this.normalizeFormula(field.preferences.formula).replace(/{{(.*?)}}/g, (match, uuid) => {
-        return this.readonlyValues[uuid] || this.values[uuid] || 0.0
+        const value = this.readonlyValues[uuid] || this.values[uuid]
+
+        if (this.fieldsUuidIndex[uuid]?.type === 'date') {
+          return this.dateFormulaValue(value)
+        }
+
+        return value || 0.0
       })
 
-      return this.math.evaluate(transformedFormula.toLowerCase())
+      const value = this.math.evaluate(transformedFormula.toLowerCase())
+
+      if (field.type === 'date') {
+        return Number.isFinite(value) ? new Date(Math.floor(value) * 86400000).toISOString().slice(0, 10) : ''
+      }
+
+      return value
+    },
+    dateFormulaValue (value) {
+      if (!value) return 'null'
+      if (value === '{{date}}') return 'today()'
+
+      const [year, month, day = 1] = value.slice(0, 10).split('-').map(Number)
+
+      return Date.UTC(year, month - 1, day) / 86400000
     },
     evalTextFormula (field, depth = 0) {
       if (depth > 10) return ''
 
       return field.preferences.formula.replace(/{{(.*?)}}/g, (match, uuid) => {
-        const formulaField = this.fieldsUuidIndex[uuid]
+        const formulaField = this.formulaFieldsUuidIndex[uuid]
 
         if (formulaField?.preferences?.formula) {
           if (formulaField.type === 'text') {

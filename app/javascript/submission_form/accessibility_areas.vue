@@ -125,6 +125,11 @@ export default {
       required: false,
       default: () => []
     },
+    fieldsUuidIndex: {
+      type: Object,
+      required: false,
+      default: () => ({})
+    },
     values: {
       type: Object,
       required: false,
@@ -195,7 +200,7 @@ export default {
     },
     isMobileContainer: FieldAreas.computed.isMobileContainer,
     isInlineSize: FieldAreas.computed.isInlineSize,
-    fieldsUuidIndex () {
+    formulaFieldsUuidIndex () {
       return this.formulaFields.reduce((acc, field) => {
         acc[field.uuid] = field
 
@@ -289,6 +294,7 @@ export default {
   methods: {
     normalizeFormula: FormulaAreas.methods.normalizeFormula,
     calculateFormula: FormulaAreas.methods.calculateFormula,
+    dateFormulaValue: FormulaAreas.methods.dateFormulaValue,
     evalTextFormula: FormulaAreas.methods.evalTextFormula,
     scrollInContainer: FieldAreas.methods.scrollInContainer,
     scrollIntoArea: FieldAreas.methods.scrollIntoArea,

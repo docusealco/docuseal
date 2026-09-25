@@ -71,8 +71,22 @@
           >
             <div
               target="blank"
-              class="text-sm mb-2 inline space-x-2 font-mono"
+              class="text-sm mb-2 flex flex-wrap gap-x-2 gap-y-1 font-mono"
             >
+              <template v-if="withDateFunctions">
+                <button
+                  class="bg-base-200 px-2 rounded-xl"
+                  @click="insertTextUnderCursor('today()')"
+                >
+                  today()
+                </button>
+                <button
+                  class="bg-base-200 px-2 rounded-xl"
+                  @click="insertTextUnderCursor('datedif(, , &quot;y&quot;)', 8)"
+                >
+                  datedif(start, end, "y")
+                </button>
+              </template>
               <button
                 class="bg-base-200 px-2 rounded-xl"
                 @click="insertTextUnderCursor(' + ')"
@@ -105,13 +119,13 @@
               </button>
               <button
                 class="bg-base-200 px-2 rounded-xl"
-                @click="insertTextUnderCursor('round()')"
+                @click="insertTextUnderCursor('round()', 6)"
               >
                 round(n, d)
               </button>
               <button
                 class="bg-base-200 px-2 rounded-xl"
-                @click="insertTextUnderCursor('abs()')"
+                @click="insertTextUnderCursor('abs()', 4)"
               >
                 abs(n)
               </button>
@@ -171,6 +185,11 @@ export default {
     }
   },
   computed: {
+    withDateFunctions () {
+      return this.field.type === 'date' || [...this.formula.matchAll(/{{(.*?)}}/g)].some(([, name]) => {
+        return this.template.fields.some((f) => f.type === 'date' && (f.name || this.buildDefaultName(f)).trim() === name.trim())
+      })
+    },
     fields () {
       return this.template.fields.reduce((acc, f) => {
         const isAllowed = this.field.type === 'text' ? this.isTextField(f) : this.isNumberField(f)
@@ -191,7 +210,7 @@ export default {
   },
   methods: {
     isNumberField (field) {
-      return field.type === 'number' || (['radio', 'select'].includes(field.type) && field.options?.every((o) => String(o.value).match(/^[\d.-]+$/)))
+      return ['number', 'date'].includes(field.type) || (['radio', 'select'].includes(field.type) && field.options?.every((o) => String(o.value).match(/^[\d.-]+$/)))
     },
     isTextField (field) {
       return ['text', 'number', 'select', 'radio', 'cells', 'phone'].includes(field.type)
@@ -244,18 +263,19 @@ export default {
         this.$emit('close')
       }
     },
-    insertTextUnderCursor (textToInsert) {
+    insertTextUnderCursor (textToInsert, cursorOffset = textToInsert.length) {
       const textarea = this.$refs.textarea
 
-      const selectionEnd = textarea.selectionEnd
-      const cursorPos = selectionEnd
+      const { selectionStart, selectionEnd } = textarea
+      const selectedText = cursorOffset < textToInsert.length ? textarea.value.substring(selectionStart, selectionEnd) : ''
+      const cursorPos = selectedText ? selectionStart : selectionEnd
 
-      const newText = textarea.value.substring(0, cursorPos) + textToInsert + textarea.value.substring(cursorPos)
+      const newText = textarea.value.substring(0, cursorPos) + textToInsert.slice(0, cursorOffset) + selectedText + textToInsert.slice(cursorOffset) + textarea.value.substring(selectionEnd)
 
       this.formula = newText
 
       this.$nextTick(() => {
-        textarea.setSelectionRange(cursorPos + textToInsert.length, cursorPos + textToInsert.length)
+        textarea.setSelectionRange(cursorPos + cursorOffset + selectedText.length, cursorPos + cursorOffset + selectedText.length)
 
         textarea.focus()
       })

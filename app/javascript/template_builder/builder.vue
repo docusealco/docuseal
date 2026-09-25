@@ -1799,10 +1799,28 @@ export default {
     },
     calculateFormula (field) {
       const transformedFormula = this.normalizeFormula(field.preferences.formula).replace(/{{(.*?)}}/g, (match, uuid) => {
+        if (this.fieldsUuidIndex[uuid]?.type === 'date') {
+          return this.dateFormulaValue(this.fieldsUuidIndex[uuid].default_value)
+        }
+
         return this.fieldsUuidIndex[uuid]?.default_value || 0.0
       })
 
-      return this.math.evaluate(transformedFormula.toLowerCase())
+      const value = this.math.evaluate(transformedFormula.toLowerCase())
+
+      if (field.type === 'date') {
+        return Number.isFinite(value) ? new Date(Math.floor(value) * 86400000).toISOString().slice(0, 10) : ''
+      }
+
+      return value
+    },
+    dateFormulaValue (value) {
+      if (!value) return 'null'
+      if (value === '{{date}}') return 'today()'
+
+      const [year, month, day = 1] = value.slice(0, 10).split('-').map(Number)
+
+      return Date.UTC(year, month - 1, day) / 86400000
     },
     evalTextFormula (field, depth = 0) {
       if (depth > 10) return ''

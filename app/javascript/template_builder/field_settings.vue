@@ -500,7 +500,7 @@
     </label>
   </li>
   <li
-    v-if="(field.type == 'number' || field.preferences?.formula) && (withFormula || nativePlatform !== 'ios')"
+    v-if="(field.type == 'number' || field.type == 'date' || field.preferences?.formula) && (withFormula || nativePlatform !== 'ios')"
     class="field-settings-formula"
   >
     <label

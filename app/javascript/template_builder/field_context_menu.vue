@@ -611,7 +611,7 @@ export default {
       return this.withCondition && (this.withConditions || this.nativePlatform !== 'ios') && !['stamp', 'heading'].includes(this.field.type)
     },
     showFormula () {
-      return (this.field.type === 'number' || this.field.type === 'payment' || !!this.field.preferences?.formula) && (this.withFormula || this.nativePlatform !== 'ios')
+      return (this.field.type === 'number' || this.field.type === 'date' || this.field.type === 'payment' || !!this.field.preferences?.formula) && (this.withFormula || this.nativePlatform !== 'ios')
     },
     showRequired () {
       return this.withRequired && !['phone', 'stamp', 'verification', 'strikethrough', 'heading'].includes(this.field.type)

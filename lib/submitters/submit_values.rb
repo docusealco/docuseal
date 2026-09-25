@@ -231,7 +231,11 @@ module Submitters
           else
             normalized_formula = normalize_formula(formula, submitter.submission, submission_values:)
 
-            calculate_formula_value(normalized_formula, values)
+            if field['type'] == 'date'
+              calculate_date_formula_value(normalized_formula, values, submitter.submission)
+            else
+              calculate_formula_value(normalized_formula, values, submitter.submission)
+            end
           end
       end
 
@@ -256,8 +260,12 @@ module Submitters
       end
     end
 
-    def calculate_formula_value(_formula, _values)
+    def calculate_formula_value(_formula, _values, _submission)
       0
+    end
+
+    def calculate_date_formula_value(_formula, _values, _submission)
+      nil
     end
 
     def eval_text_formula_value(_formula, _values, _submission)

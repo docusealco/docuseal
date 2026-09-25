@@ -633,6 +633,32 @@ defineFunction('contains', {
     return String(v[0]).indexOf(String(v[1])) !== -1
   }
 })
+defineFunction('today', {
+  min: 0,
+  max: 0,
+  call: () => {
+    const now = new Date()
+    return Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) / 86400000
+  }
+})
+defineFunction('datedif', {
+  min: 3,
+  max: 3,
+  call: (v) => {
+    if (v[0] == null || v[1] == null) return null
+    const start = toNumber(v[0])
+    const end = toNumber(v[1])
+    const unit = String(v[2]).toLowerCase()
+    if (unit === 'd') return end - start
+    const from = new Date(Math.min(start, end) * 86400000)
+    const to = new Date(Math.max(start, end) * 86400000)
+    const months = (to.getUTCFullYear() - from.getUTCFullYear()) * 12 + to.getUTCMonth() - from.getUTCMonth() - (to.getUTCDate() < from.getUTCDate() ? 1 : 0)
+    const sign = end < start ? -1 : 1
+    if (unit === 'm') return sign * months
+    if (unit === 'y') return sign * Math.floor(months / 12)
+    return null
+  }
+})
 
 const OP_CLASSES = {
   add: Addition,

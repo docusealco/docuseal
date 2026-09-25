@@ -31,6 +31,7 @@
     :readonly-conditional-fields="readonlyConditionalFields"
     :readonly-conditional-field-values="readonlyConditionalFieldValues"
     :formula-fields="formulaFields"
+    :fields-uuid-index="fieldsUuidIndex"
     :values="values"
     :readonly-values="readonlyFieldValues"
     :submitter="submitter"
@@ -71,6 +72,7 @@
   <FormulaFieldAreas
     v-if="!withAccessibilityAreas && !isAccessibilityMode && formulaFields.length"
     :fields="formulaFields"
+    :fields-uuid-index="fieldsUuidIndex"
     :readonly-values="readonlyFieldValues"
     :values="values"
   />
@@ -560,6 +562,7 @@
             :field="currentField"
             :submitter-slug="submitterSlug"
             :fields="formulaFields"
+            :fields-uuid-index="fieldsUuidIndex"
             :values="values"
             :readonly-values="readonlyFieldValues"
             :fetch-options="fetchOptions"
