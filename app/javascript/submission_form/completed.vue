@@ -39,7 +39,7 @@
       <button
         v-if="canSendEmail && !isDemo && withSendCopyButton"
         class="white-button !h-auto flex items-center space-x-1 w-full completed-form-send-copy-button"
-        :disabled="isSendingCopy"
+        :disabled="isSendingCopy || copySent"
         @click.prevent="sendCopyToEmail"
       >
         <IconInnerShadowTop
@@ -47,12 +47,17 @@
           class="animate-spin"
           aria-hidden="true"
         />
+        <IconCircleCheck
+          v-else-if="copySent"
+          class="text-green-600"
+          aria-hidden="true"
+        />
         <IconMail
           v-else
           aria-hidden="true"
         />
         <span>
-          {{ t('send_copy_via_email') }}
+          {{ copySent ? t('email_has_been_sent') : t('send_copy_via_email') }}
         </span>
       </button>
       <button
@@ -191,7 +196,8 @@ export default {
   data () {
     return {
       isSendingCopy: false,
-      isDownloading: false
+      isDownloading: false,
+      copySent: false
     }
   },
   computed: {
@@ -221,8 +227,14 @@ export default {
 
       fetch(this.baseUrl + `/send_submission_email.json?submitter_slug=${this.submitterSlug}`, {
         method: 'POST'
-      }).then(() => {
-        alert(this.t('email_has_been_sent'))
+      }).then((response) => {
+        if (response.ok) {
+          this.copySent = true
+        } else {
+          alert(this.t('unable_to_send_email'))
+        }
+      }).catch(() => {
+        alert(this.t('unable_to_send_email'))
       }).finally(() => {
         this.isSendingCopy = false
       })
