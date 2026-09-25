@@ -498,7 +498,7 @@ const LayoutSpanMark = SpanMark.extend({
       tag: 'span',
       priority: 55,
       getAttrs (dom) {
-        if (['left', 'right'].includes(dom.style.float) || dom.style.display === 'inline-block') {
+        if (['left', 'right'].includes(dom.style.float) || ['inline-block', 'block'].includes(dom.style.display)) {
           return collectSpanDomAttrs(dom)
         }
 
