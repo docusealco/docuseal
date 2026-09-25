@@ -87,7 +87,7 @@ export default {
     IconCloudUpload,
     IconInnerShadowTop
   },
-  inject: ['baseUrl', 't'],
+  inject: ['baseUrl', 'fetchOptions', 't'],
   props: {
     message: {
       type: String,
@@ -199,6 +199,7 @@ export default {
 
             return fetch(this.baseUrl + '/api/attachments', {
               method: 'POST',
+              headers: { ...this.fetchOptions.headers },
               body: formData
             }).then(async (resp) => {
               const data = await resp.json()

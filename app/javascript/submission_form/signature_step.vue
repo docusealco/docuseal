@@ -376,7 +376,7 @@ export default {
     IconSignature,
     IconArrowsDiagonalMinimize2
   },
-  inject: ['baseUrl', 't'],
+  inject: ['baseUrl', 'fetchOptions', 't'],
   props: {
     field: {
       type: Object,
@@ -952,6 +952,7 @@ export default {
 
             return fetch(this.baseUrl + '/api/attachments', {
               method: 'POST',
+              headers: { ...this.fetchOptions.headers },
               body: formData
             }).then(async (resp) => {
               if (resp.status === 422 || resp.status === 500) {

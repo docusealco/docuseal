@@ -775,6 +775,7 @@ export default {
   provide () {
     return {
       baseUrl: this.baseUrl,
+      fetchOptions: this.fetchOptions,
       scrollIntoArea: this.scrollIntoArea,
       scrollIntoField: this.scrollIntoField,
       t: this.t
@@ -1001,6 +1002,11 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    viewToken: {
+      type: String,
+      required: false,
+      default: ''
     },
     attribution: {
       type: Boolean,
@@ -1531,15 +1537,10 @@ export default {
         const newUrl = [window.location.pathname, queryParams.toString()].filter(Boolean).join('?')
         window.history.replaceState({}, document.title, newUrl)
 
-        return fetch(this.baseUrl + '/api/submitter_email_clicks', {
+        return fetch(this.baseUrl + `/s/${this.submitterSlug}/click_email`, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            t,
-            submitter_slug: this.submitterSlug
-          })
+          headers: { 'Content-Type': 'application/json', ...this.fetchOptions.headers },
+          body: JSON.stringify({ t })
         })
       } else {
         return Promise.resolve({})
@@ -1555,29 +1556,20 @@ export default {
         const newUrl = [window.location.pathname, queryParams.toString()].filter(Boolean).join('?')
         window.history.replaceState({}, document.title, newUrl)
 
-        return fetch(this.baseUrl + '/api/submitter_sms_clicks', {
+        return fetch(this.baseUrl + `/s/${this.submitterSlug}/click_sms`, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            c,
-            submitter_slug: this.submitterSlug
-          })
+          headers: { 'Content-Type': 'application/json', ...this.fetchOptions.headers },
+          body: JSON.stringify({ c })
         })
       } else {
         return Promise.resolve({})
       }
     },
     trackViewForm () {
-      fetch(this.baseUrl + '/api/submitter_form_views', {
+      fetch(this.baseUrl + `/s/${this.submitterSlug}/view`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          submitter_slug: this.submitterSlug
-        })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ v: this.viewToken })
       })
     },
     previousSignatureValueFor (field) {

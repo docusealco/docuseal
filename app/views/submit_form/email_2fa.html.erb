@@ -59,7 +59,7 @@
       <% else %>
         <% if params[:t] %>
           <fetch-form data-onload="true">
-            <%= button_to '', api_submitter_email_clicks_path, params: { submitter_slug: @submitter.slug, t: params[:t] }, method: :post, class: 'hidden' %>
+            <%= button_to '', submit_form_click_email_path(@submitter.slug), params: { t: params[:t] }, method: :post, class: 'hidden' %>
           </fetch-form>
         <% end %>
         <toggle-submit dir="auto" class="form-control">

@@ -41,6 +41,7 @@ safeRegisterElement('submission-form', class extends HTMLElement {
       language: this.dataset.language,
       paymentProvider: this.dataset.paymentProvider,
       dryRun: this.dataset.dryRun === 'true',
+      viewToken: this.dataset.viewToken,
       expand: ['true', 'false'].includes(this.dataset.expand) ? this.dataset.expand === 'true' : null,
       withSignatureId: this.dataset.withSignatureId === 'true',
       requireSigningReason: this.dataset.requireSigningReason === 'true',

@@ -160,6 +160,9 @@ Rails.application.routes.draw do
     resources :delegate, only: %i[create], controller: 'submit_form_delegate'
     resources :invite, only: %i[create], controller: 'submit_form_invite'
     resources :metadata, only: %i[index], controller: 'submit_form_metadata'
+    resource :click_email, only: %i[create], controller: 'submit_form_click_email'
+    resources :view, only: %i[create], controller: 'submit_form_view'
+    resources :upload, only: %i[create], controller: 'submit_form_upload'
     resources :debug, only: %i[index], controller: 'submissions_debug' if Rails.env.development?
     get :completed
     get :delegated
