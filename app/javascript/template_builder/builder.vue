@@ -2434,7 +2434,13 @@ export default {
       this.isBreakpointMd = width < breakpointMd
     },
     onPagesWheel (event) {
-      if (!event.ctrlKey && !event.metaKey) return
+      const isFastScroll = Math.abs(event.deltaY) > 1
+
+      if ((!event.ctrlKey && !event.metaKey) || (isFastScroll && event.timeStamp - this.lastFastScrollAt < 150)) {
+        if (isFastScroll) this.lastFastScrollAt = event.timeStamp
+
+        return
+      }
 
       event.preventDefault()
 
