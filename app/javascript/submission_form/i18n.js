@@ -105,6 +105,7 @@ const en = {
   type: 'Type',
   type_text: 'Type text',
   email_has_been_sent: 'Email has been sent',
+  unable_to_send_email: 'Unable to send email. Please try again.',
   processing: 'Processing',
   pay_with_stripe: 'Pay with Stripe',
   pay_with_paypal: 'Pay with PayPal',
