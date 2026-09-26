@@ -54,10 +54,6 @@ module Submitters
         reason_field = maybe_set_signature_reason!(values, submitter, params)
         validate_values!(reason_field ? values.except(reason_field['uuid']) : values, submitter, params, request)
 
-        if (touch_attachment_uuid = params[:touch_attachment_uuid].presence)
-          ActiveStorage::Attachment.where(uuid: touch_attachment_uuid, record: submitter).touch_all(:created_at)
-        end
-
         if params[:completed] == 'true'
           maybe_invite_via_field(submitter, request)
 

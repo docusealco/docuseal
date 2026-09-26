@@ -129,6 +129,13 @@ module Submitters
     ActiveStorage::Attachment.create!(blob:, name: 'attachments', record: submitter)
   end
 
+  def build_prefill_attachment_data(submitter, attachment)
+    token = ApplicationRecord.signed_id_verifier.generate([attachment.uuid, submitter.slug],
+                                                          purpose: :prefill_attachment)
+
+    { token:, url: attachment.url }
+  end
+
   def normalize_preferences(account, user, params)
     preferences = {}
 

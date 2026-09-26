@@ -45,7 +45,7 @@
         <span
           v-else-if="withTypedSignature && format !== 'drawn_or_upload' && format !== 'typed_or_upload' && format !== 'typed' && format !== 'drawn' && format !== 'upload'"
           class="md:tooltip ml-2"
-          :class="{ 'hidden sm:inline': modelValue || computedPreviousValue }"
+          :class="{ 'hidden sm:inline': modelValue || computedPreviousValue || computedPrefillData }"
           :data-tip="t('type_text')"
         >
           <button
@@ -68,7 +68,7 @@
         <span
           v-if="format !== 'typed' && format !== 'drawn' && format !== 'upload' && format !== 'drawn_or_typed'"
           class="md:tooltip"
-          :class="{ 'hidden sm:inline': modelValue || computedPreviousValue }"
+          :class="{ 'hidden sm:inline': modelValue || computedPreviousValue || computedPrefillData }"
           :data-tip="t('take_photo')"
         >
           <button
@@ -95,7 +95,7 @@
           </button>
         </span>
         <button
-          v-if="modelValue || computedPreviousValue"
+          v-if="modelValue || computedPreviousValue || computedPrefillData"
           type="button"
           class="btn btn-outline btn-sm font-medium reupload-button"
           @click="remove"
@@ -107,7 +107,7 @@
           {{ t(format === 'upload' ? 'reupload' : 'redraw') }}
         </button>
         <span
-          v-if="withQrButton && !modelValue && !computedPreviousValue && format !== 'typed_or_upload' && format !== 'typed' && format !== 'upload'"
+          v-if="withQrButton && !modelValue && !computedPreviousValue && !computedPrefillData && format !== 'typed_or_upload' && format !== 'typed' && format !== 'upload'"
           class="md:tooltip before:translate-x-[-90%]"
           :data-tip="t('sign_on_the_touchscreen')"
         >
@@ -154,20 +154,14 @@
       type="hidden"
       :name="`values[${field.uuid}]`"
     >
-    <input
-      v-if="isTouchAttachment"
-      :value="touchAttachmentUuid"
-      type="hidden"
-      name="touch_attachment_uuid"
-    >
     <img
-      v-if="modelValue || computedPreviousValue"
-      :src="attachmentsIndex[modelValue || computedPreviousValue].url"
+      v-if="modelValue || computedPreviousValue || computedPrefillData"
+      :src="previousValueUrl"
       :alt="field.name || t('signature')"
       class="mx-auto bg-white border border-base-300 rounded max-h-44"
     >
     <FileDropzone
-      v-if="format === 'upload' && !modelValue && !computedPreviousValue"
+      v-if="format === 'upload' && !modelValue && !computedPreviousValue && !computedPrefillData"
       :message="`${t('upload')} ${field.name || t('signature')}`"
       :submitter-slug="submitterSlug"
       :dry-run="dryRun"
@@ -179,7 +173,7 @@
       class="relative select-none"
     >
       <div
-        v-if="!modelValue && !computedPreviousValue && !isShowQr && !isTextSignature && isSignatureStarted"
+        v-if="!modelValue && !computedPreviousValue && !computedPrefillData && !isShowQr && !isTextSignature && isSignatureStarted"
         class="absolute top-0.5 right-0.5"
       >
         <button
@@ -199,7 +193,7 @@
         class="absolute top-0 right-0 left-0 bottom-0"
       />
       <canvas
-        v-show="!modelValue && !computedPreviousValue"
+        v-show="!modelValue && !computedPreviousValue && !computedPrefillData"
         ref="canvas"
         role="img"
         :aria-label="t('signature_drawing_area')"
@@ -244,7 +238,7 @@
       </div>
     </div>
     <input
-      v-if="isTextSignature && !modelValue && !computedPreviousValue"
+      v-if="isTextSignature && !modelValue && !computedPreviousValue && !computedPrefillData"
       id="signature_text_input"
       ref="textInput"
       class="base-input !text-2xl w-full mt-6"
@@ -440,10 +434,10 @@ export default {
       required: false,
       default: ''
     },
-    touchAttachmentUuid: {
-      type: String,
+    prefillData: {
+      type: Object,
       required: false,
-      default: ''
+      default: null
     },
     reason: {
       type: String,
@@ -471,14 +465,13 @@ export default {
       default: ''
     }
   },
-  emits: ['attached', 'update:model-value', 'start', 'minimize', 'update:reason', 'touch-attachment'],
+  emits: ['attached', 'update:model-value', 'start', 'minimize', 'update:reason'],
   data () {
     return {
       isSignatureStarted: false,
       isShowQr: false,
       isOtherReason: false,
       isUsePreviousValue: true,
-      isTouchAttachment: false,
       isTextSignature: !this.signatureSrc && (!!this.signatureText || this.field.preferences?.format === 'typed' || this.field.preferences?.format === 'typed_or_upload'),
       uploadImageInputKey: Math.random().toString()
     }
@@ -506,10 +499,24 @@ export default {
       } else {
         return null
       }
+    },
+    computedPrefillData () {
+      if (this.isUsePreviousValue && this.field.required === true && !this.previousValue && !this.modelValue) {
+        return this.prefillData
+      } else {
+        return null
+      }
+    },
+    previousValueUrl () {
+      if (this.computedPrefillData) {
+        return this.computedPrefillData.url
+      } else {
+        return this.attachmentsIndex[this.modelValue || this.computedPreviousValue].url
+      }
     }
   },
   created () {
-    this.isSignatureStarted = !!this.computedPreviousValue
+    this.isSignatureStarted = !!(this.computedPreviousValue || this.computedPrefillData)
 
     if (this.withSigningReason) {
       this.field.preferences ||= {}
@@ -890,15 +897,49 @@ export default {
         console.error(e)
       }
     },
-    async submit () {
-      if (this.modelValue || this.computedPreviousValue) {
-        if (this.touchAttachmentUuid && this.computedPreviousValue === this.touchAttachmentUuid && !Object.values(this.values).includes(this.touchAttachmentUuid)) {
-          this.isTouchAttachment = true
-          this.$emit('touch-attachment', this.touchAttachmentUuid)
-        } else {
-          this.isTouchAttachment = false
+    submitPrefillAttachment () {
+      if (this.dryRun) {
+        const attachment = { uuid: Math.random().toString(), url: this.prefillData.url }
+
+        this.$emit('attached', attachment)
+        this.$emit('update:model-value', attachment.uuid)
+
+        return Promise.resolve(attachment)
+      }
+
+      const formData = new FormData()
+
+      formData.append('prefill_token', this.prefillData.token)
+
+      return fetch(this.baseUrl + `/s/${this.submitterSlug}/prefill_attachments`, {
+        method: 'POST',
+        headers: { ...this.fetchOptions.headers },
+        body: formData
+      }).then(async (resp) => {
+        if (!resp.ok) {
+          const data = await resp.json()
+
+          return Promise.reject(new Error(data.error))
         }
 
+        const attachment = await resp.json()
+
+        this.$emit('attached', attachment)
+        this.$emit('update:model-value', attachment.uuid)
+
+        return attachment
+      }).catch((error) => {
+        this.remove()
+
+        return Promise.reject(error)
+      })
+    },
+    async submit () {
+      if (this.computedPrefillData) {
+        return this.submitPrefillAttachment()
+      }
+
+      if (this.modelValue || this.computedPreviousValue) {
         if (this.computedPreviousValue) {
           this.$emit('update:model-value', this.computedPreviousValue)
         }

@@ -163,6 +163,7 @@ Rails.application.routes.draw do
     resource :click_email, only: %i[create], controller: 'submit_form_click_email'
     resources :view, only: %i[create], controller: 'submit_form_view'
     resources :upload, only: %i[create], controller: 'submit_form_upload'
+    resources :prefill_attachments, only: %i[create], controller: 'submit_form_prefill_attachments'
     resources :debug, only: %i[index], controller: 'submissions_debug' if Rails.env.development?
     get :completed
     get :delegated
