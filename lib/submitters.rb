@@ -252,6 +252,8 @@ module Submitters
   end
 
   def send_shared_link_email_verification_code(submitter, request:)
+    raise UnableToSendCode, I18n.t(:provide_your_email) if submitter.email.to_s.count('@') > 1
+
     RateLimit.call("send-otp-code-#{request.remote_ip}", limit: 2, ttl: 45.seconds, enabled: true)
 
     if Docuseal.multitenant? && email_bounced_recently?(submitter.email)
