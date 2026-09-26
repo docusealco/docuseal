@@ -275,7 +275,7 @@ module Submitters
   def verify_link_otp!(otp, submitter)
     return false if otp.blank?
 
-    RateLimit.call("verify-2fa-code-#{Digest::MD5.base64digest(submitter.email)}",
+    RateLimit.call("verify-2fa-code-#{Digest::MD5.base64digest(submitter.email.downcase.squish)}",
                    limit: 2, ttl: 45.seconds, enabled: true)
 
     link_2fa_key = [submitter.email.downcase.squish, submitter.submission.template.slug].join(':')
