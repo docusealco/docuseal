@@ -197,10 +197,20 @@ export default {
             formData.append('submitter_slug', this.submitterSlug)
             formData.append('name', 'attachments')
 
-            return fetch(this.baseUrl + '/api/attachments', {
+            return fetch(this.baseUrl + `/s/${this.submitterSlug}/upload`, {
               method: 'POST',
               headers: { ...this.fetchOptions.headers },
               body: formData
+            }).then((resp) => {
+              if (resp.status === 404) {
+                return fetch(this.baseUrl + '/api/attachments', {
+                  method: 'POST',
+                  headers: { ...this.fetchOptions.headers },
+                  body: formData
+                })
+              } else {
+                return resp
+              }
             }).then(async (resp) => {
               const data = await resp.json()
 

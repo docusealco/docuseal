@@ -991,10 +991,20 @@ export default {
             formData.append('remember_signature', this.rememberSignature)
             formData.append('type', 'signature')
 
-            return fetch(this.baseUrl + '/api/attachments', {
+            return fetch(this.baseUrl + `/s/${this.submitterSlug}/upload`, {
               method: 'POST',
               headers: { ...this.fetchOptions.headers },
               body: formData
+            }).then((resp) => {
+              if (resp.status === 404) {
+                return fetch(this.baseUrl + '/api/attachments', {
+                  method: 'POST',
+                  headers: { ...this.fetchOptions.headers },
+                  body: formData
+                })
+              } else {
+                return resp
+              }
             }).then(async (resp) => {
               if (resp.status === 422 || resp.status === 500) {
                 const data = await resp.json()

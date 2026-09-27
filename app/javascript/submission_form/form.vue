@@ -1607,6 +1607,14 @@ export default {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ v: this.viewToken })
+      }).then((resp) => {
+        if (resp.status === 404) {
+          return fetch(this.baseUrl + '/api/submitter_form_views', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ submitter_slug: this.submitterSlug })
+          })
+        }
       })
     },
     previousSignatureValueFor (field) {
