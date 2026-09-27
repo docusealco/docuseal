@@ -829,6 +829,8 @@ en: &en
   overdue_payment: Overdue Payment
   your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Your Pro Plan has been suspended due to unpaid invoices. You can update your payment details to settle the invoice and continue using DocuSeal or cancel your subscription.
   manage_subscription: Manage Subscription
+  docuseal_version_security_release_is_available: "DocuSeal v%{version} security release is available."
+  click_here_to_view_the_instructions_and_update_your_app_html: '<a href="%{url}" class="link" target="_blank" rel="noopener noreferrer nofollow">Click here</a> to view the instructions and update your app.'
   submission_created_by_email_html: '<b>Submission created</b> by %{email}'
   submission_created_by_email_via_source_html: '<b>Submission created</b> by %{email} via %{source}'
   submission_created_via_source_html: '<b>Submission created</b> via %{source}'
@@ -1981,6 +1983,8 @@ es: &es
   overdue_payment: Pago Atrasado
   your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Tu plan Pro ha sido suspendido debido a facturas impagas. Puedes actualizar tus datos de pago para liquidar la factura y seguir usando DocuSeal o cancelar tu suscripción.
   manage_subscription: Gestionar Suscripción
+  docuseal_version_security_release_is_available: "La versión de seguridad DocuSeal v%{version} está disponible."
+  click_here_to_view_the_instructions_and_update_your_app_html: '<a href="%{url}" class="link" target="_blank" rel="noopener noreferrer nofollow">Haz clic aquí</a> para ver las instrucciones y actualizar tu aplicación.'
   submission_created_by_email_html: '<b>Envío creado</b> por %{email}'
   submission_created_by_email_via_source_html: '<b>Envío creado</b> por %{email} a través de %{source}'
   submission_created_via_source_html: '<b>Envío creado</b> a través de %{source}'
@@ -3139,6 +3143,8 @@ it: &it
   overdue_payment: Pagamento Scaduto
   your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Il tuo piano Pro è stato sospeso a causa di fatture non pagate. Puoi aggiornare i tuoi dati di pagamento per saldare la fattura e continuare a utilizzare DocuSeal o annullare l'abbonamento.
   manage_subscription: Gestisci Abbonamento
+  docuseal_version_security_release_is_available: "È disponibile il rilascio di sicurezza DocuSeal v%{version}."
+  click_here_to_view_the_instructions_and_update_your_app_html: '<a href="%{url}" class="link" target="_blank" rel="noopener noreferrer nofollow">Fai clic qui</a> per vedere le istruzioni e aggiornare la tua app.'
   submission_created_by_email_html: '<b>Invio creato</b> da %{email}'
   submission_created_by_email_via_source_html: '<b>Invio creato</b> da %{email} tramite %{source}'
   submission_created_via_source_html: '<b>Invio creato</b> tramite %{source}'
@@ -4283,6 +4289,8 @@ fr: &fr
   overdue_payment: Paiement en retard
   your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: "Votre offre Pro a été suspendue en raison de factures impayées.\nVous pouvez mettre à jour vos informations de paiement pour régler la facture et continuer à utiliser DocuSeal, ou annuler votre abonnement."
   manage_subscription: Gérer l’abonnement
+  docuseal_version_security_release_is_available: "La mise à jour de sécurité DocuSeal v%{version} est disponible."
+  click_here_to_view_the_instructions_and_update_your_app_html: '<a href="%{url}" class="link" target="_blank" rel="noopener noreferrer nofollow">Cliquez ici</a> pour voir les instructions et mettre à jour votre application.'
   submission_created_by_email_html: "<b>Soumission créée</b> par %{email}"
   submission_created_by_email_via_source_html: "<b>Soumission créée</b> par %{email} via %{source}"
   submission_created_via_source_html: "<b>Soumission créée</b> via %{source}"
@@ -5437,6 +5445,8 @@ pt: &pt
   overdue_payment: Pagamento Atrasado
   your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Seu plano Pro foi suspenso devido a faturas não pagas. Você pode atualizar seus dados de pagamento para quitar a fatura e continuar usando o DocuSeal ou cancelar sua assinatura.
   manage_subscription: Gerenciar Assinatura
+  docuseal_version_security_release_is_available: "A versão de segurança DocuSeal v%{version} está disponível."
+  click_here_to_view_the_instructions_and_update_your_app_html: '<a href="%{url}" class="link" target="_blank" rel="noopener noreferrer nofollow">Clique aqui</a> para ver as instruções e atualizar seu aplicativo.'
   submission_created_by_email_html: '<b>Envio criado</b> por %{email}'
   submission_created_by_email_via_source_html: '<b>Envio criado</b> por %{email} via %{source}'
   submission_created_via_source_html: '<b>Envio criado</b> via %{source}'
@@ -6594,6 +6604,8 @@ de: &de
   overdue_payment: Überfällige Zahlung
   your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Ihr Pro-Plan wurde aufgrund unbezahlter Rechnungen ausgesetzt. Sie können Ihre Zahlungsdaten aktualisieren, um die Rechnung zu begleichen und DocuSeal weiterhin zu nutzen, oder Ihr Abonnement kündigen.
   manage_subscription: Abonnement verwalten
+  docuseal_version_security_release_is_available: "Das Sicherheitsupdate DocuSeal v%{version} ist verfügbar."
+  click_here_to_view_the_instructions_and_update_your_app_html: '<a href="%{url}" class="link" target="_blank" rel="noopener noreferrer nofollow">Klicken Sie hier</a>, um die Anleitung anzuzeigen und Ihre App zu aktualisieren.'
   submission_created_by_email_html: '<b>Einreichung erstellt</b> von %{email}'
   submission_created_by_email_via_source_html: '<b>Einreichung erstellt</b> von %{email} über %{source}'
   submission_created_via_source_html: '<b>Einreichung erstellt</b> über %{source}'
@@ -8279,6 +8291,8 @@ nl: &nl
   overdue_payment: Achterstallige betaling
   your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Uw Pro-abonnement is opgeschort vanwege onbetaalde facturen. U kunt uw betaalgegevens bijwerken om de factuur te voldoen en DocuSeal te blijven gebruiken of uw abonnement opzeggen.
   manage_subscription: Abonnement beheren
+  docuseal_version_security_release_is_available: "Beveiligingsupdate DocuSeal v%{version} is beschikbaar."
+  click_here_to_view_the_instructions_and_update_your_app_html: '<a href="%{url}" class="link" target="_blank" rel="noopener noreferrer nofollow">Klik hier</a> om de instructies te bekijken en uw app bij te werken.'
   submission_created_by_email_html: "<b>Inzending aangemaakt</b> door %{email}"
   submission_created_by_email_via_source_html: "<b>Inzending aangemaakt</b> door %{email} via %{source}"
   submission_created_via_source_html: "<b>Inzending aangemaakt</b> via %{source}"
