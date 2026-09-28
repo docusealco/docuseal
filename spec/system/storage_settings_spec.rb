@@ -8,6 +8,17 @@ RSpec.describe 'Storage Settings' do
     sign_in(user)
   end
 
+  def with_env(overrides)
+    previous_values = {}
+    overrides.each_key { |key| previous_values[key] = ENV[key] }
+    overrides.each { |key, value| ENV[key] = value }
+    yield
+  ensure
+    previous_values.each do |key, value|
+      value.nil? ? ENV.delete(key) : ENV[key] = value
+    end
+  end
+
   context 'when storage settings are not set' do
     before do
       visit settings_storage_index_path
@@ -89,6 +100,19 @@ RSpec.describe 'Storage Settings' do
         expect(configs['storage_account_name']).to eq('storage_account_name')
         expect(configs['container']).to eq('container')
         expect(configs['storage_access_key']).to eq('storage_access_key')
+      end
+    end
+  end
+
+  context 'when storage is configured via environment variables' do
+    it 'shows the env-managed provider and disables updates' do
+      with_env('S3_ATTACHMENTS_BUCKET' => 'env-bucket') do
+        visit settings_storage_index_path
+
+        expect(page).to have_content('Storage settings are managed by environment variables.')
+        expect(page).to have_content('Current provider: AWS S3 via S3_ATTACHMENTS_BUCKET.')
+        expect(page).to have_checked_field('AWS')
+        expect(page).to have_button('Save', disabled: true)
       end
     end
   end
