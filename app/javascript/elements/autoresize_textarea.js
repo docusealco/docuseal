@@ -1,5 +1,7 @@
 export default class extends HTMLElement {
   connectedCallback () {
+    this.id = `autoresize-textarea-${Math.random().toString(32).split('.')[1]}`
+
     this.resize()
 
     this.textarea.addEventListener('input', () => this.resize())

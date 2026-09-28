@@ -18,6 +18,16 @@ class SubmissionsController < ApplicationController
     'payment' => 'credit_card', 'verification' => 'id', 'kba' => 'user_scan'
   }.freeze
 
+  STATUS_BADGES = {
+    'awaiting' => 'badge-info', 'sent' => 'badge-info', 'completed' => 'badge-success',
+    'opened' => 'badge-warning', 'declined' => 'badge-error'
+  }.freeze
+
+  STATUS_ICONS = {
+    'awaiting' => 'clock', 'sent' => 'send', 'completed' => 'circle_check',
+    'opened' => 'mail_opened', 'declined' => 'x_circle'
+  }.freeze
+
   def show
     @submission = Submissions.preload_with_pages(@submission)
 
@@ -83,7 +93,14 @@ class SubmissionsController < ApplicationController
         I18n.t('submission_has_been_archived')
       end
 
-    redirect_back(fallback_location: @submission.template_id ? template_path(@submission.template) : root_path, notice:)
+    if turbo_native_app? && request.format.turbo_stream?
+      flash.now[:notice] = notice
+
+      render turbo_stream: [turbo_stream.remove(@submission), turbo_stream.append_all('body', partial: 'shared/flash')]
+    else
+      redirect_back(fallback_location: @submission.template_id ? template_path(@submission.template) : root_path,
+                    notice:)
+    end
   end
 
   private

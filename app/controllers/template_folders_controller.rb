@@ -13,10 +13,7 @@ class TemplateFoldersController < ApplicationController
                          .where(folder: [@template_folder, *(params[:q].present? ? @template_folder.subfolders : [])])
                          .preload(:author, :template_accesses)
 
-    @template_folders =
-      @template_folder.subfolders.where(id: Template.accessible_by(current_ability).active.select(:folder_id))
-
-    @template_folders = TemplateFolders.search(@template_folders, params[:q])
+    @template_folders = filter_folders(@template_folder)
     @template_folders = TemplateFolders.sort(@template_folders, current_user, selected_order)
 
     if @templates.exists?
@@ -40,6 +37,8 @@ class TemplateFoldersController < ApplicationController
 
       @templates = @templates.none
     end
+
+    render_infinite_scroll(@pagy, @templates, @template_folders) if turbo_infinite_scroll?
   end
 
   def edit; end
@@ -54,6 +53,27 @@ class TemplateFoldersController < ApplicationController
   end
 
   private
+
+  def filter_folders(template_folder)
+    template_folders =
+      template_folder.subfolders.where(id: Template.accessible_by(current_ability).active.select(:folder_id))
+
+    TemplateFolders.search(template_folders, params[:q])
+  end
+
+  def render_infinite_scroll(pagy, templates, template_folders)
+    render_params =
+      if templates.present?
+        { partial: 'templates/template', collection: templates }
+      else
+        { partial: 'template_folders/folder', collection: template_folders, as: :folder }
+      end
+
+    render turbo_stream: [
+      turbo_stream.before('infinite_scroll', **render_params),
+      turbo_stream.replace('infinite_scroll', partial: 'shared/infinite_scroll', locals: { pagy: })
+    ]
+  end
 
   def selected_order
     @selected_order ||=

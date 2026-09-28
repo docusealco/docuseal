@@ -16,14 +16,11 @@
           v-if="editable"
           class="flex justify-between w-full"
         >
-          <div
-            style="width: 26px"
-            class="flex flex-col"
-          >
+          <div class="flex flex-col w-[26px] max-md:w-7">
             <button
               v-if="item.conditions?.length"
-              class="btn border-gray-300 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors p-0 document-control-button"
-              @click.stop="isShowConditionsModal = true"
+              class="btn border-gray-300 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors p-0 document-control-button max-md:h-7 max-md:min-h-7"
+              @click.stop="openConditionsModal"
             >
               <IconRouteAltLeft
                 :width="14"
@@ -31,7 +28,7 @@
               />
             </button>
           </div>
-          <div class="">
+          <div class="max-md:[&_.btn]:h-7 max-md:[&_.btn]:min-h-7 max-md:[&_.btn]:text-sm">
             <ReplaceButton
               v-if="withReplaceButton"
               :template-id="template.id"
@@ -39,7 +36,7 @@
               :authenticity-token="authenticityToken"
               :with-google-drive="withGoogleDrive"
               :google-drive-file-id="item.google_drive_file_id"
-              class="opacity-0 group-hover:opacity-100 has-[label:focus]:opacity-100"
+              :class="{ 'opacity-0 group-hover:opacity-100 has-[label:focus]:opacity-100': !withVisibleControls }"
               @click.stop
               @success="$emit('replace', { replaceSchemaItem: item, ...$event })"
             />
@@ -49,14 +46,13 @@
           >
             <span
               class="dropdown dropdown-end group-hover:opacity-100 has-[label:focus]:opacity-100"
-              :class="{ 'dropdown-open': isMakeDynamicLoading, 'opacity-0': !isMakeDynamicLoading }"
+              :class="{ 'dropdown-open': isMakeDynamicLoading, 'opacity-0': !isMakeDynamicLoading && !withVisibleControls }"
               @mouseenter="renderDropdown = true"
               @touchstart="renderDropdown = true"
             >
               <label
                 tabindex="0"
-                class="btn border-gray-300 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors document-control-button px-0"
-                style="width: 24px; height: 24px"
+                class="btn border-gray-300 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content transition-colors document-control-button px-0 w-6 h-6 max-md:w-7 max-md:h-7 max-md:min-h-7"
                 @click.stop
               >
                 <IconDotsVertical
@@ -84,7 +80,7 @@
                 <li>
                   <button
                     class="w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center justify-between text-sm"
-                    @click.stop="isShowConditionsModal = true; closeDropdown()"
+                    @click.stop="openConditionsModal(); closeDropdown()"
                   >
                     <span class="flex items-center space-x-2">
                       <IconRouteAltLeft class="w-4 h-4" />
@@ -106,7 +102,7 @@
                     <span>{{ t('reorder_fields') }}</span>
                   </button>
                 </li>
-                <li v-if="withDynamicDocuments && !item.dynamic && document.metadata?.original_uuid">
+                <li v-if="withDynamicDocuments && !isMobile && !item.dynamic && document.metadata?.original_uuid">
                   <button
                     class="w-full px-2 py-1 rounded-md hover:bg-neutral-100 flex items-center space-x-2 text-sm whitespace-nowrap"
                     :disabled="isMakeDynamicLoading"
@@ -137,18 +133,17 @@
             </span>
             <div
               v-if="withArrows"
-              class="flex flex-col space-y-1 opacity-0 group-hover:opacity-100"
+              class="flex flex-col space-y-1"
+              :class="{ 'opacity-0 group-hover:opacity-100': !withVisibleControls }"
             >
               <button
-                class="btn border-gray-300 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors document-control-button"
-                style="width: 24px; height: 24px"
+                class="btn border-gray-300 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content transition-colors document-control-button w-6 h-6 max-md:w-7 max-md:h-7 max-md:min-h-7 max-md:text-sm"
                 @click.stop="$emit('up', item)"
               >
                 &uarr;
               </button>
               <button
-                class="btn border-gray-300 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content w-full transition-colors document-control-button"
-                style="width: 24px; height: 24px"
+                class="btn border-gray-300 bg-white text-base-content btn-xs rounded hover:text-base-100 hover:bg-base-content hover:border-base-content transition-colors document-control-button w-6 h-6 max-md:w-7 max-md:h-7 max-md:min-h-7 max-md:text-sm"
                 @click.stop="$emit('down', item)"
               >
                 &darr;
@@ -160,7 +155,7 @@
     </div>
     <div class="flex items-center gap-1 pb-2 pt-1.5 document-preview-name">
       <GoogleDriveDocumentSettings
-        v-if="item.google_drive_file_id"
+        v-if="item.google_drive_file_id && withGoogleDrive"
         :template-id="template.id"
         :google-drive-file-id="item.google_drive_file_id"
         @success="$emit('replace', { replaceSchemaItem: item, ...$event })"
@@ -216,11 +211,16 @@ export default {
     IconBolt,
     IconPencil
   },
-  inject: ['t', 'getFieldTypeIndex', 'baseFetch'],
+  inject: ['t', 'getFieldTypeIndex', 'baseFetch', 'isMobile', 'nativePlatform'],
   props: {
     item: {
       type: Object,
       required: true
+    },
+    withVisibleControls: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     template: {
       type: Object,
@@ -289,6 +289,13 @@ export default {
     }
   },
   methods: {
+    openConditionsModal () {
+      if (this.nativePlatform && window.webkit?.messageHandlers?.modal) {
+        window.webkit.messageHandlers.modal.postMessage({ action: 'sheet', name: 'conditions', detent: 'medium', attachment_uuid: this.item.attachment_uuid })
+      } else {
+        this.isShowConditionsModal = true
+      }
+    },
     upload: Upload.methods.upload,
     buildDefaultName: Field.methods.buildDefaultName,
     closeDropdown () {

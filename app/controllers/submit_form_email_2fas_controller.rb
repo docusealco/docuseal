@@ -10,6 +10,8 @@ class SubmitFormEmail2fasController < ApplicationController
 
   def create
     RateLimit.call("verify-2fa-code-#{@submitter.id}", limit: 2, ttl: 45.seconds, enabled: true)
+    RateLimit.call("verify-2fa-code-1h-#{@submitter.id}", limit: 10, ttl: 1.hour, enabled: true)
+    RateLimit.call("verify-2fa-code-1d-#{@submitter.id}", limit: 20, ttl: 1.day, enabled: true)
 
     value = [@submitter.email.downcase.strip, @submitter.slug].join(':')
 

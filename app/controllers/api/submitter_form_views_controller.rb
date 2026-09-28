@@ -1,10 +1,7 @@
 # frozen_string_literal: true
 
 module Api
-  class SubmitterFormViewsController < ApiBaseController
-    skip_before_action :authenticate_user!
-    skip_authorization_check
-
+  class SubmitterFormViewsController < ActionController::API
     def create
       @submitter = Submitter.find_by!(slug: params[:submitter_slug])
 

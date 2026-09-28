@@ -1,3 +1,4 @@
+<% content_for(:native_title, t('account')) if turbo_native_app? %>
 <div class="flex flex-wrap space-y-4 md:flex-nowrap md:space-y-0">
   <%= render 'shared/settings_nav' %>
   <div class="flex-grow max-w-xl mx-auto">
@@ -132,7 +133,7 @@
           <% end %>
         <% end %>
         <% account_config = AccountConfig.find_or_initialize_by(account: current_account, key: AccountConfig::ALLOW_TO_DECLINE_KEY) %>
-        <% if can?(:manage, account_config) %>
+        <% if can?(:manage, account_config) && (!turbo_native_ios? || !Docuseal.multitenant? || can?(:manage, :disable_decline)) %>
           <%= form_for account_config, url: account_configs_path, method: :post do |f| %>
             <%= f.hidden_field :key %>
             <div class="flex items-center justify-between gap-4 py-2.5">
@@ -155,7 +156,7 @@
           <% end %>
         <% end %>
         <% account_config = AccountConfig.find_or_initialize_by(account: current_account, key: AccountConfig::ALLOW_TO_DELEGATE_KEY) %>
-        <% if can?(:manage, account_config) %>
+        <% if can?(:manage, account_config) && (!turbo_native_ios? || !Docuseal.multitenant? || can?(:manage, :delegate_form)) %>
           <%= form_for account_config, url: account_configs_path, method: :post do |f| %>
             <%= f.hidden_field :key %>
             <div class="flex items-center justify-between gap-4 py-2.5">
@@ -302,6 +303,6 @@
       </div>
     <% end %>
   </div>
-  <div class="w-0 md:w-52"></div>
+  <div class="w-0 lg:w-52"></div>
 </div>
 <%= render 'shared/app_tour', type: 'account' %>

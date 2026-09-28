@@ -1,3 +1,4 @@
+<% content_for(:native_title, t('e_signature')) if turbo_native_app? %>
 <div class="flex-wrap space-y-4 md:flex md:flex-nowrap md:space-y-0 md:space-x-10">
   <%= render 'shared/settings_nav' %>
   <div class="md:flex-grow">
@@ -31,7 +32,8 @@
                   <%= t('verify_signed_pdf') %>
                 </div>
                 <div class="text-xs">
-                  <%= t('click_to_upload_or_drag_and_drop_files_html') %>
+                  <span class="md:hidden"><%= t('click_to_upload') %></span>
+                  <span class="hidden md:inline"><%= t('click_to_upload_or_drag_and_drop_files_html') %></span>
                 </div>
               </div>
               <input id="file" name="files[]" class="hidden" data-action="change:file-dropzone#onSelectFiles" data-target="file-dropzone.input" type="file" accept="application/pdf" multiple>
@@ -45,7 +47,7 @@
         <%= t('signing_certificates') %>
       </h2>
       <% if can?(:create, @encrypted_config) %>
-        <%= link_to new_settings_esign_path, class: 'btn btn-primary btn-md', data: { turbo_frame: 'modal' } do %>
+        <%= link_to new_settings_esign_path, class: 'btn btn-primary btn-md', aria: { label: t('upload_certificate') }, data: { turbo_frame: 'modal' } do %>
           <%= svg_icon('plus', class: 'w-6 h-6') %>
           <span><%= t('upload_cert') %></span>
         <% end %>
@@ -53,7 +55,7 @@
     </div>
     <%= render 'alert' %>
     <div class="overflow-x-auto">
-      <table class="table w-full table-lg rounded-b-none overflow-hidden">
+      <table class="table table-stack w-full table-lg rounded-b-none overflow-hidden">
         <thead class="bg-base-200">
           <tr class="text-neutral uppercase">
             <th>
@@ -76,10 +78,10 @@
               <td>
                 <%= item['name'] %>
               </td>
-              <td>
+              <td data-label="<%= t('valid_to') %>">
                 <%= l(item['pkcs'].certificate.not_after.to_date, format: :long, locale: current_account.locale) %>
               </td>
-              <td>
+              <td data-label="<%= t('status') %>">
                 <% if item['status'] == 'default' %>
                   <span class="badge badge-lg badge-info badge-outline">
                     <%= t('default') %>

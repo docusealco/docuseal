@@ -1,0 +1,86 @@
+# frozen_string_literal: true
+
+class SubmitFormUploadController < ActionController::API
+  include ActionController::Cookies
+  include ActiveStorage::SetCurrent
+
+  before_action :load_submitter
+  before_action :authorize_upload!
+
+  COOKIE_STORE_LIMIT = 10
+
+  def create
+    file = params[:file]
+
+    if params[:type].in?(%w[initials signature])
+      image = ImageUtils.load_vips(file.read, content_type: file.content_type)
+
+      if ImageUtils.blank?(image)
+        Rollbar.error("Empty signature: #{@submitter.id}") if defined?(Rollbar)
+
+        return render json: { error: "#{params[:type]} is empty" }, status: :unprocessable_content
+      end
+
+      if ImageUtils.error?(image)
+        Rollbar.error("Error signature: #{@submitter.id}") if defined?(Rollbar)
+
+        return render json: { error: "#{params[:type]} error, try to sign on another device" },
+                      status: :unprocessable_content
+      end
+
+      metadata = { analyzed: true, identified: true, width: image.width, height: image.height }
+    end
+
+    attachment = Submitters.create_attachment!(@submitter, file, metadata:)
+
+    if params[:remember_signature] == 'true' && @submitter.email.present?
+      cookies.encrypted[:signature_uuids] = build_new_cookie_signatures_json(@submitter, attachment)
+    end
+
+    render json: attachment.as_json(only: %i[uuid created_at], methods: %i[url filename content_type])
+  rescue Submitters::MaliciousFileExtension => e
+    Rollbar.error(e) if defined?(Rollbar)
+
+    render json: { error: e.message }, status: :unprocessable_content
+  end
+
+  private
+
+  def load_submitter
+    @submitter = Submitter.find_by!(slug: params[:submit_form_slug])
+  end
+
+  def authorize_upload!
+    unless can_upload?(@submitter)
+      return render json: { error: I18n.t('form_has_been_archived') }, status: :unprocessable_content
+    end
+
+    return if Submitters::AuthorizedForForm.call(@submitter, current_user, request)
+
+    render json: { error: I18n.t('verification_required_refresh_the_page_and_pass_2fa') },
+           status: :unprocessable_content
+  end
+
+  def can_upload?(submitter)
+    !submitter.declined_at? &&
+      !submitter.completed_at? &&
+      !submitter.submission.archived_at? &&
+      !submitter.submission.expired? &&
+      !submitter.submission.template&.archived_at?
+  end
+
+  def build_new_cookie_signatures_json(submitter, attachment)
+    values =
+      begin
+        JSON.parse(cookies.encrypted[:signature_uuids].presence || '{}')
+      rescue JSON::ParserError
+        {}
+      end
+
+    values[submitter.email] = attachment.uuid
+
+    values = values.to_a.last(COOKIE_STORE_LIMIT).to_h if values.size > COOKIE_STORE_LIMIT
+
+    values.to_json
+  end
+end

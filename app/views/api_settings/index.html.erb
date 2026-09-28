@@ -1,3 +1,4 @@
+<% content_for(:native_title, 'API') if turbo_native_app? %>
 <div class="flex flex-wrap space-y-4 md:flex-nowrap md:space-y-0 md:space-x-10">
   <%= render 'shared/settings_nav' %>
   <div class="flex-grow">
@@ -18,7 +19,7 @@
               </masked-input>
               <%= render 'shared/clipboard_copy', icon: 'copy', text: token, class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: t('copy'), copied_title: t('copied') %>
             <% else %>
-              <a id="access_token_container" href="<%= settings_reveal_access_token_path %>" data-turbo-frame="modal" class="flex w-full space-x-4">
+              <a id="access_token_container" href="<%= settings_reveal_access_token_path %>" data-turbo-frame="modal" data-native-modal="medium" aria-label="<%= t('reveal_api_key') %>" class="flex w-full space-x-4">
                 <input id="api_key" type="text" value="<%= obscured_token %>" class="input font-mono input-bordered w-full" autocomplete="off" readonly>
                 <div class="base-button">
                   <%= svg_icon('copy', class: 'w-6 h-6 text-white') %>

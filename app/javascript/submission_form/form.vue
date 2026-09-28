@@ -31,6 +31,7 @@
     :readonly-conditional-fields="readonlyConditionalFields"
     :readonly-conditional-field-values="readonlyConditionalFieldValues"
     :formula-fields="formulaFields"
+    :fields-uuid-index="fieldsUuidIndex"
     :values="values"
     :readonly-values="readonlyFieldValues"
     :submitter="submitter"
@@ -71,6 +72,7 @@
   <FormulaFieldAreas
     v-if="!withAccessibilityAreas && !isAccessibilityMode && formulaFields.length"
     :fields="formulaFields"
+    :fields-uuid-index="fieldsUuidIndex"
     :readonly-values="readonlyFieldValues"
     :values="values"
   />
@@ -489,8 +491,8 @@
             :reason="values[currentField.preferences?.reason_field_uuid]"
             :field="currentField"
             :values="values"
-            :previous-value="previousSignatureValueFor(currentField) || previousSignatureValue"
-            :touch-attachment-uuid="previousSignatureValue"
+            :previous-value="previousSignatureValueFor(currentField)"
+            :prefill-data="prefillSignature"
             :with-typed-signature="withTypedSignature"
             :remember-signature="rememberSignature"
             :attachments-index="attachmentsIndex"
@@ -503,8 +505,8 @@
             :with-qr-button="withQrButton"
             :submitter="submitter"
             :show-field-names="showFieldNames"
+            :native-platform="nativePlatform"
             @update:reason="values[currentField.preferences?.reason_field_uuid] = $event"
-            @touch-attachment="attachmentsIndex[previousSignatureValue] ? attachmentsIndex[previousSignatureValue].created_at = new Date() : null"
             @attached="attachments.push($event)"
             @start="scrollIntoField(currentField)"
             @minimize="minimizeForm"
@@ -518,9 +520,11 @@
             :dry-run="dryRun"
             :submitter="submitter"
             :previous-value="previousInitialsValue"
+            :prefill-data="prefillInitials"
             :attachments-index="attachmentsIndex"
             :show-field-names="showFieldNames"
             :submitter-slug="submitterSlug"
+            :native-platform="nativePlatform"
             @attached="attachments.push($event)"
             @start="scrollIntoField(currentField)"
             @focus="scrollIntoField(currentField)"
@@ -558,6 +562,7 @@
             :field="currentField"
             :submitter-slug="submitterSlug"
             :fields="formulaFields"
+            :fields-uuid-index="fieldsUuidIndex"
             :values="values"
             :readonly-values="readonlyFieldValues"
             :fetch-options="fetchOptions"
@@ -652,6 +657,7 @@
         :with-confetti="withConfetti"
         :can-send-email="canSendEmail && !!submitter.email"
         :submitter-slug="submitterSlug"
+        :native-platform="nativePlatform"
       />
       <nav
         v-if="stepFields.length < 80"
@@ -772,6 +778,7 @@ export default {
   provide () {
     return {
       baseUrl: this.baseUrl,
+      fetchOptions: this.fetchOptions,
       scrollIntoArea: this.scrollIntoArea,
       scrollIntoField: this.scrollIntoField,
       t: this.t
@@ -909,6 +916,11 @@ export default {
       required: false,
       default: false
     },
+    nativePlatform: {
+      type: String,
+      required: false,
+      default: ''
+    },
     autoscrollFields: {
       type: Boolean,
       required: false,
@@ -969,10 +981,20 @@ export default {
       required: false,
       default: ''
     },
-    previousSignatureValue: {
-      type: String,
+    prefillSignature: {
+      type: Object,
       required: false,
-      default: ''
+      default: null
+    },
+    prefillInitials: {
+      type: Object,
+      required: false,
+      default: null
+    },
+    currentUser: {
+      type: Object,
+      required: false,
+      default: null
     },
     allowToSkip: {
       type: Boolean,
@@ -993,6 +1015,11 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    viewToken: {
+      type: String,
+      required: false,
+      default: ''
     },
     attribution: {
       type: Boolean,
@@ -1329,6 +1356,30 @@ export default {
 
     screen?.orientation?.addEventListener('change', this.onOrientationChange)
 
+    if (this.currentUser) {
+      this.fields.forEach((field) => {
+        if (field.readonly || field.type !== 'text') {
+          return
+        }
+
+        const fieldName = (field.name || '').toLowerCase()
+
+        let value
+
+        if (fieldName === 'full name' || fieldName === 'legal name') {
+          value = this.currentUser.full_name
+        } else if (fieldName === 'first name') {
+          value = this.currentUser.first_name
+        } else if (fieldName === 'last name') {
+          value = this.currentUser.last_name
+        }
+
+        if (value) {
+          this.values[field.uuid] ??= value
+        }
+      })
+    }
+
     this.fields.forEach((field) => {
       if (field.default_value && !field.readonly) {
         this.values[field.uuid] ||= field.default_value
@@ -1523,15 +1574,10 @@ export default {
         const newUrl = [window.location.pathname, queryParams.toString()].filter(Boolean).join('?')
         window.history.replaceState({}, document.title, newUrl)
 
-        return fetch(this.baseUrl + '/api/submitter_email_clicks', {
+        return fetch(this.baseUrl + `/s/${this.submitterSlug}/click_email`, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            t,
-            submitter_slug: this.submitterSlug
-          })
+          headers: { 'Content-Type': 'application/json', ...this.fetchOptions.headers },
+          body: JSON.stringify({ t })
         })
       } else {
         return Promise.resolve({})
@@ -1547,29 +1593,28 @@ export default {
         const newUrl = [window.location.pathname, queryParams.toString()].filter(Boolean).join('?')
         window.history.replaceState({}, document.title, newUrl)
 
-        return fetch(this.baseUrl + '/api/submitter_sms_clicks', {
+        return fetch(this.baseUrl + `/s/${this.submitterSlug}/click_sms`, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            c,
-            submitter_slug: this.submitterSlug
-          })
+          headers: { 'Content-Type': 'application/json', ...this.fetchOptions.headers },
+          body: JSON.stringify({ c })
         })
       } else {
         return Promise.resolve({})
       }
     },
     trackViewForm () {
-      fetch(this.baseUrl + '/api/submitter_form_views', {
+      fetch(this.baseUrl + `/s/${this.submitterSlug}/view`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          submitter_slug: this.submitterSlug
-        })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ v: this.viewToken })
+      }).then((resp) => {
+        if (resp.status === 404) {
+          return fetch(this.baseUrl + '/api/submitter_form_views', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ submitter_slug: this.submitterSlug })
+          })
+        }
       })
     },
     previousSignatureValueFor (field) {
@@ -1766,6 +1811,10 @@ export default {
     async performComplete (resp) {
       this.isCompleted = true
       this.isFormVisible = true
+
+      if (this.nativePlatform) {
+        window.webkit?.messageHandlers?.native?.postMessage({ type: 'stale' })
+      }
 
       if (resp?.text) {
         const respData = await resp.text()

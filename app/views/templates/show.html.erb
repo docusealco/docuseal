@@ -1,25 +1,36 @@
-<%= render 'title', template: @template %>
+<% content_for(:native_title, @template.name) if turbo_native_app? %>
 <% filter_params = params.permit(Submissions::Filter::ALLOWED_PARAMS).compact_blank %>
 <% is_show_tabs = @pagy.pages > 1 || params[:q].present? || params[:status].present? || filter_params.present? %>
-<% if @pagy.count.nil? || !@pagy.count.zero? || params[:q].present? || params[:status].present? || filter_params.present? %>
-  <div class="<%= is_show_tabs ? 'mb-4' : 'mb-6' %>">
-    <div class="group/header flex justify-between items-center md:items-end">
+<% submissions_count = @pagy.count %>
+<% is_show_header = submissions_count != 0 || params[:q].present? || params[:status].present? || filter_params.present? %>
+<%= render 'title', template: @template, with_export: is_show_header %>
+<% if turbo_native_app? %>
+  <native-action data-placement="search" data-native="search" data-label="<%= t('search') %>" data-url="<%= search_index_path(filter_params.to_h.merge({ 'scope' => 'submissions', 'template_id' => @template.id, 'archived' => ('true' if @template.archived_at?) }.compact)) %>"></native-action>
+  <% if !@template.archived_at? && can?(:create, Submission) %>
+    <native-action data-placement="footer" data-icon="send" data-haptic="true" data-label="<%= t('send_to_recipients') %>">
+      <a href="<%= new_template_submission_path(@template) %>" data-turbo-frame="modal" data-native-modal="<%= 'medium' if @template.submitters.size < 3 %>"></a>
+    </native-action>
+  <% end %>
+<% end %>
+<% if is_show_header %>
+  <div class="<%= is_show_tabs ? 'mb-2 md:mb-4' : 'mb-4 md:mb-6' %>">
+    <div class="group/header flex justify-between items-end">
       <div class="max-md:group-has-[search-input:focus-within]/header:hidden">
         <h2 class="text-3xl font-bold md:block <%= 'hidden' if params[:q].present? %>">
           <%= t('submissions') %>
         </h2>
       </div>
       <div class="flex justify-end space-x-2 max-md:has-[search-input:focus-within]:grow <%= 'max-md:grow' if params[:q].present? %>">
-        <% if params[:q].present? || params[:status].present? || filter_params.present? || @pagy.pages > 1 %>
+        <% if !turbo_native_app? && (params[:q].present? || params[:status].present? || filter_params.present? || @pagy.pages > 1) %>
           <%= render 'shared/search_input' %>
         <% end %>
-        <%= link_to new_template_submissions_export_path(@template, params.permit(:q, *Submissions::Filter::ALLOWED_PARAMS)), class: 'hidden md:flex btn btn-ghost text-base', data: { turbo_frame: 'modal' } do %>
+        <%= link_to new_template_submissions_export_path(@template, params.permit(:q, *Submissions::Filter::ALLOWED_PARAMS)), class: 'hidden md:flex btn btn-ghost text-base', data: { turbo_frame: 'modal', native_modal: 'medium' } do %>
           <%= svg_icon('download', class: 'w-6 h-6 stroke-2') %>
           <span><%= t('export') %></span>
         <% end %>
         <% if !@template.archived_at? && can?(:create, Submission) %>
           <open-modal-mobile class="flex">
-            <%= link_to new_template_submission_path(@template), id: 'add_recipients_button', class: 'white-button !border', data: { turbo_frame: 'modal' } do %>
+            <%= link_to new_template_submission_path(@template), id: 'add_recipients_button', class: 'white-button !border', aria: { label: t('add_new_recipients') }, data: { turbo_frame: 'modal', native_modal: ('medium' if @template.submitters.size < 3) } do %>
               <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
               <%= t('add_recipients_html') %>
             <% end %>
@@ -31,7 +42,7 @@
 <% end %>
 <% if is_show_tabs %>
   <div class="flex items-center flex-col md:flex-row md:flex-wrap gap-2 mb-4">
-    <div class="hidden md:flex md:items-end gap-2 md:w-fit">
+    <div class="hidden <%= 'md:flex' unless turbo_native_app? %> md:items-end gap-2 md:w-fit">
       <a href="<%= url_for(params: request.query_parameters.except('status')) %>" class="<%= params[:status].blank? ? 'border-neutral-700' : 'border-neutral-300' %> flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-48 hover:border-neutral-700">
         <div class="flex items-center space-x-1">
           <%= svg_icon('list', class: 'w-5 h-5') %>
@@ -78,6 +89,7 @@
 <% if @submissions.present? %>
   <div class="space-y-4">
     <%= render partial: 'submission', collection: @submissions, locals: { template: @template, archived: @template.archived_at? } %>
+    <%= render 'shared/infinite_scroll', pagy: @pagy if turbo_native_app? %>
   </div>
 <% else %>
   <div class="card bg-base-200">
@@ -92,20 +104,20 @@
             <div class="space-y-2 flex flex-col">
               <% if can?(:create, Submission) %>
                 <open-modal-mobile class="flex flex-col mt-6">
-                  <%= link_to new_template_submission_path(@template, with_link: true), id: 'send_to_recipients_button', class: 'base-button', data: { turbo_frame: 'modal' } do %>
+                  <%= link_to new_template_submission_path(@template, with_link: true), id: 'send_to_recipients_button', class: 'base-button', data: { turbo_frame: 'modal', native_title: t('add_new_recipients'), native_modal: ('medium' if @template.submitters.size < 3) } do %>
                     <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
                     <span class="mr-1"><%= t('send_to_recipients') %></span>
                   <% end %>
                 </open-modal-mobile>
               <% end %>
               <% if Templates.filter_undefined_submitters(@template.submitters).size == 1 && @template.variables_schema.blank? %>
-                <%= button_to start_form_self_path(@template), method: :put, class: 'white-button w-full', form: { style: 'display: inline', target: '_blank', data: { turbo: false } } do %>
+                <%= button_to start_form_self_path(@template), method: :put, class: 'white-button w-full', form: { style: 'display: inline', target: turbo_native_app? ? nil : '_blank', data: { turbo: turbo_native_app? ? nil : false } } do %>
                   <%= svg_icon('writing', class: 'w-6 h-6') %>
                   <span class="mr-1"><%= t('sign_it_yourself') %></span>
                 <% end %>
               <% else %>
                 <open-modal-mobile class="flex flex-col mt-6">
-                  <%= link_to new_template_submission_path(@template, selfsign: true), id: 'sign_yourself_button', class: 'white-button', data: { turbo_frame: 'modal' } do %>
+                  <%= link_to new_template_submission_path(@template, selfsign: true), id: 'sign_yourself_button', class: 'white-button', data: { turbo_frame: 'modal', native_title: t('add_recipients'), native_modal: ('medium' if @template.submitters.size < 3) } do %>
                     <%= svg_icon('writing', class: 'w-6 h-6') %>
                     <span class="mr-1"><%= t('sign_it_yourself') %></span>
                   <% end %>
@@ -121,7 +133,9 @@
 <% view_archived_html = capture do %>
   <% if (can?(:manage, :countless) || @template.submissions.where.not(archived_at: nil).exists?) && !@template.archived_at? %>
     <div>
-      <a href="<%= template_archived_index_path(@template) %>" class="link text-sm"><%= t('view_archived') %></a>
+      <native-action data-placement="menu" data-label="<%= t('archived_submissions') %>">
+        <a href="<%= template_archived_index_path(@template) %>" class="link text-sm" data-native-title="<%= t('archived') %>"><%= t('view_archived') %></a>
+      </native-action>
     </div>
   <% end %>
 <% end %>

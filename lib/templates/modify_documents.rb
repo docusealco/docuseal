@@ -259,20 +259,20 @@ module Templates
       image = draw_image_redaction(image, ref['redact']) if ref['redact'].present?
       image = rotate_vips_image(image, ref['rotate'].to_i % 360)
 
-      extension, format_args =
+      extension, content_type, format_args =
         if attachment.content_type == 'image/jpeg'
-          ['.jpg', { Q: 90 }]
+          ['.jpg', 'image/jpeg', { Q: 90 }]
         else
-          ['.png', {}]
+          ['.png', 'image/png', {}]
         end
 
       data = image.write_to_buffer(extension, **format_args)
 
       blob = ActiveStorage::Blob.create_and_upload!(
         io: StringIO.new(data),
-        filename: attachment.filename.to_s,
+        filename: "#{attachment.filename.base}#{extension}",
         metadata: { identified: true, analyzed: true },
-        content_type: attachment.content_type
+        content_type:
       )
 
       document = template.documents.create!(blob:)

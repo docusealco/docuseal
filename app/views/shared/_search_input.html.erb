@@ -1,28 +1,30 @@
-<form action="<%= url_for %>" method="get" class="items-center flex max-md:focus-within:flex-1 <%= 'max-md:flex-1' if params[:q].present? %>">
-  <% Submissions::Filter::ALLOWED_PARAMS.each do |key| %>
-    <% if params[key].present? %>
-      <input name="<%= key %>" value="<%= params[key] %>" class="hidden">
+<% unless turbo_native_app? %>
+  <form action="<%= url_for %>" method="get" class="items-center flex max-md:focus-within:flex-1 <%= 'max-md:flex-1' if params[:q].present? %>">
+    <% Submissions::Filter::ALLOWED_PARAMS.each do |key| %>
+      <% if params[key].present? %>
+        <input name="<%= key %>" value="<%= params[key] %>" class="hidden">
+      <% end %>
     <% end %>
-  <% end %>
-  <% if params[:archived].present? %>
-    <input name="archived" value="<%= params[:archived] %>" class="hidden">
-  <% end %>
-  <% if params[:q].present? %>
-    <div class="relative">
-      <a href="<%= url_for(params: request.query_parameters.except('q')) %>" title="<%= t('clear') %>" class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-auto text-neutral text-2xl font-extralight">
-        &times;
-      </a>
-    </div>
-  <% end %>
-  <search-input class="group flex items-center max-md:focus-within:flex-1 <%= 'max-md:flex-1' if params[:q].present? %>">
-    <input id="search" name="q" value="<%= params[:q] %>" enterkeyhint="search" class="input text-lg pr-10 -mr-12 w-0 md:w-60 max-md:group-focus-within:w-full <%= 'pl-8 input-outlined w-full' if params[:q].present? %>" placeholder="<%= local_assigns[:placeholder] %>">
-    <button type="submit" title="<%= t('search') %>" class="btn btn-ghost btn-circle">
-      <span class="enabled">
-        <%= svg_icon('search', class: 'w-6 h-6 stroke-2') %>
-      </span>
-      <span class="disabled">
-        <%= svg_icon('loader', class: 'w-5 h-5 animate-spin') %>
-      </span>
-    </button>
-  </search-input>
-</form>
+    <% if params[:archived].present? %>
+      <input name="archived" value="<%= params[:archived] %>" class="hidden">
+    <% end %>
+    <% if params[:q].present? %>
+      <div class="relative">
+        <a href="<%= url_for(params: request.query_parameters.except('q')) %>" title="<%= t('clear') %>" class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-auto text-neutral text-2xl font-extralight">
+          &times;
+        </a>
+      </div>
+    <% end %>
+    <search-input class="group flex items-center max-md:focus-within:flex-1 <%= 'max-md:flex-1' if params[:q].present? %>">
+      <input id="search" name="q" value="<%= params[:q] %>" enterkeyhint="search" class="input text-lg pr-10 -mr-12 w-0 md:w-60 max-md:group-focus-within:w-full <%= 'pl-8 input-outlined w-full' if params[:q].present? %>" placeholder="<%= local_assigns[:placeholder] %>">
+      <button type="submit" title="<%= t('search') %>" class="btn btn-ghost btn-circle">
+        <span class="enabled">
+          <%= svg_icon('search', class: 'w-6 h-6 stroke-2') %>
+        </span>
+        <span class="disabled">
+          <%= svg_icon('loader', class: 'w-5 h-5 animate-spin') %>
+        </span>
+      </button>
+    </search-input>
+  </form>
+<% end %>

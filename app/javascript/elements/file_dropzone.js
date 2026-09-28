@@ -14,6 +14,15 @@ export default actionable(targetable(class extends HTMLElement {
     this.addEventListener('dragover', (e) => e.preventDefault())
     this.addEventListener('drop', this.onDrop)
     document.addEventListener('turbo:submit-end', this.toggleLoading)
+
+    if (this.area) {
+      this.initArea()
+    } else {
+      queueMicrotask(() => this.initArea())
+    }
+  }
+
+  initArea () {
     this.area?.addEventListener('dragover', this.onDragover)
     this.area?.addEventListener('dragleave', this.onDragleave)
   }

@@ -38,7 +38,12 @@
             v-if="withDescription"
             class="text-sm"
           >
-            <span class="font-medium">{{ t('click_to_upload') }}</span> {{ t('or_drag_and_drop_files') }}
+            <template v-if="isMobile">
+              {{ t('click_to_upload') }}
+            </template>
+            <template v-else>
+              <span class="font-medium">{{ t('click_to_upload') }}</span> {{ t('or_drag_and_drop_files') }}
+            </template>
           </div>
           <button
             v-if="withGoogleDrive"
@@ -83,7 +88,7 @@ export default {
     IconFiles,
     IconBrandGoogleDrive
   },
-  inject: ['baseFetch', 't'],
+  inject: ['baseFetch', 't', 'isMobile'],
   props: {
     templateId: {
       type: [Number, String],

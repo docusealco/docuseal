@@ -1,25 +1,30 @@
 <% filter_params = params.permit(Submissions::Filter::ALLOWED_PARAMS).compact_blank %>
+<% if turbo_native_app? %>
+  <native-action data-placement="search" data-native="search" data-label="<%= t('search') %>" data-url="<%= search_index_path(filter_params.to_h.merge('scope' => 'submissions')) %>"></native-action>
+<% end %>
 <% is_show_tabs = (@pagy.count.nil? || @pagy.count >= 5) || params[:status].present? || filter_params.present? %>
 <% if Docuseal.demo? %><%= render 'shared/demo_alert' %><% end %>
-<div class="group/header flex justify-between items-center w-full mb-4">
-  <div class="flex items-center flex-grow min-w-0 max-md:group-has-[search-input:focus-within]/header:hidden <%= 'max-md:hidden' if params[:q].present? %>">
-    <div class="mr-2">
-      <%= render 'dashboard/toggle_view', selected: 'submissions' %>
+<div class="group/header flex justify-between items-center w-full <%= 'mb-4' unless turbo_native_app? %>">
+  <% unless turbo_native_app? %>
+    <div class="flex items-center flex-grow min-w-0 max-md:group-has-[search-input:focus-within]/header:hidden <%= 'max-md:hidden' if params[:q].present? %>">
+      <div class="mr-2">
+        <%= render 'dashboard/toggle_view', selected: 'submissions' %>
+      </div>
+      <h1 class="text-2xl truncate md:text-3xl sm:text-4xl font-bold md:block <%= 'hidden' if params[:q].present? %>">
+        <%= t('submissions') %>
+      </h1>
     </div>
-    <h1 class="text-2xl truncate md:text-3xl sm:text-4xl font-bold md:block <%= 'hidden' if params[:q].present? %>">
-      <%= t('submissions') %>
-    </h1>
-  </div>
+  <% end %>
   <div class="flex space-x-2 max-md:has-[search-input:focus-within]:grow <%= 'max-md:grow' if params[:q].present? %>">
     <% if params[:q].present? || @pagy.pages > 1 || filter_params.present? %>
       <%= render 'shared/search_input' %>
     <% end %>
-    <% if can?(:create, ::Template) %>
+    <% if can?(:create, ::Template) && !turbo_native_app? %>
       <span class="hidden sm:block">
         <%= render 'templates/upload_button' %>
       </span>
       <open-modal-mobile data-disabled="<%= !Docuseal.multitenant? %>" class="flex">
-        <%= link_to new_template_path, class: 'white-button !border gap-2', data: { turbo_frame: :modal } do %>
+        <%= link_to new_template_path, class: 'white-button !border gap-2', data: { turbo_frame: :modal, native_modal: :medium } do %>
           <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
           <span class="hidden md:block"><%= t('create') %></span>
         <% end %>
@@ -30,13 +35,15 @@
 <% view_archived_html = capture do %>
   <% if can?(:manage, :countless) || current_account.submissions.archived.exists? || current_account.templates.where(Submission.where(Submission.arel_table[:template_id].eq(::Template.arel_table[:id])).arel.exists).archived.exists? %>
     <div>
-      <a href="<%= submissions_archived_index_path %>" class="link text-sm"><%= t('view_archived') %></a>
+      <native-action data-placement="menu" data-icon="archive" data-label="<%= t('archived') %>">
+        <a href="<%= submissions_archived_index_path %>" class="link text-sm" data-native-title="<%= t('archived') %>"><%= t('view_archived') %></a>
+      </native-action>
     </div>
   <% end %>
 <% end %>
 <% if is_show_tabs %>
   <div class="flex items-center flex-col md:flex-row md:flex-wrap gap-2 mb-4">
-    <div class="hidden md:flex md:items-end gap-2 md:w-fit">
+    <div class="hidden <%= 'md:flex' unless turbo_native_app? %> md:items-end gap-2 md:w-fit">
       <a href="<%= url_for(params: request.query_parameters.except('status')) %>" class="<%= params[:status].blank? ? 'border-neutral-700' : 'border-neutral-300' %> flex h-10 px-2 py-1 text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl w-full md:w-48 hover:border-neutral-600">
         <div class="flex items-center space-x-1">
           <%= svg_icon('list', class: 'w-5 h-5') %>
@@ -66,6 +73,7 @@
 <% if @pagy.count.nil? || @pagy.count > 0 %>
   <div class="space-y-4">
     <%= render partial: 'templates/submission', collection: @submissions, locals: { with_template: true } %>
+    <%= render 'shared/infinite_scroll', pagy: @pagy if turbo_native_app? %>
   </div>
 <% end %>
 <% if params[:q].blank? && params[:status].blank? && filter_params.blank? && @pagy.count.present? && @pagy.count < 5 %>

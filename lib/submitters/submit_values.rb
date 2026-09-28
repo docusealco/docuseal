@@ -54,10 +54,6 @@ module Submitters
         reason_field = maybe_set_signature_reason!(values, submitter, params)
         validate_values!(reason_field ? values.except(reason_field['uuid']) : values, submitter, params, request)
 
-        if (touch_attachment_uuid = params[:touch_attachment_uuid].presence)
-          ActiveStorage::Attachment.where(uuid: touch_attachment_uuid, record: submitter).touch_all(:created_at)
-        end
-
         if params[:completed] == 'true'
           maybe_invite_via_field(submitter, request)
 
@@ -231,7 +227,11 @@ module Submitters
           else
             normalized_formula = normalize_formula(formula, submitter.submission, submission_values:)
 
-            calculate_formula_value(normalized_formula, values)
+            if field['type'] == 'date'
+              calculate_date_formula_value(normalized_formula, values, submitter.submission)
+            else
+              calculate_formula_value(normalized_formula, values, submitter.submission)
+            end
           end
       end
 
@@ -256,8 +256,12 @@ module Submitters
       end
     end
 
-    def calculate_formula_value(_formula, _values)
+    def calculate_formula_value(_formula, _values, _submission)
       0
+    end
+
+    def calculate_date_formula_value(_formula, _values, _submission)
+      nil
     end
 
     def eval_text_formula_value(_formula, _values, _submission)

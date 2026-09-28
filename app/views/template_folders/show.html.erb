@@ -1,44 +1,67 @@
-<div>
-  <%= link_to @template_folder.parent_folder ? folder_path(@template_folder.parent_folder) : root_path, class: 'flex items-center' do %>
-    <%= svg_icon('chevron_left', class: 'w-5 h-5') %>
-    <span style="margin-left: 3px"><%= @template_folder.parent_folder&.name || t('home') %></span>
-  <% end %>
-</div>
-<dashboard-dropzone>
-  <div class="group/header relative flex justify-between items-center w-full mb-4">
-    <%= form_for '', url: '', id: form_id = SecureRandom.uuid, method: :post, class: 'hidden', data: { target: 'dashboard-dropzone.form' }, html: { enctype: 'multipart/form-data' } do %>
-      <input name="form_id" value="<%= form_id %>">
-      <input name="folder_name" value="<%= @template_folder.full_name %>">
-      <button type="submit"></button>
-      <input id="dashboard_dropzone_input" name="files[]" type="file" multiple>
-    <% end %>
-    <%= render 'templates/dashboard_dropzone', style: 'height: 137px' %>
-    <% unless @template_folder.parent_folder %>
-      <%= render 'templates/dashboard_folder_dropzone', style: 'height: 137px' %>
-    <% end %>
-    <h1 class="text-2xl truncate md:text-3xl font-bold flex items-center flex-grow min-w-0 space-x-2 md:flex max-md:group-has-[search-input:focus-within]/header:hidden <%= 'hidden' if params[:q].present? %>">
-      <%= svg_icon('folder', class: 'w-9 h-9 flex-shrink-0') %>
-      <span class="peer truncate">
-        <%= @template_folder.name %>
-      </span>
-      <% if can?(:update, @template_folder) && @template_folder.full_name != TemplateFolder::DEFAULT_NAME %>
-        <span class="opacity-0 hover:opacity-100 peer-hover:opacity-100">
-          <a href="<%= edit_folder_path(@template_folder) %>" data-turbo-frame="modal">
-            <%= svg_icon('pencil', class: 'w-7 h-7') %>
-          </a>
-        </span>
+<% content_for(:native_title, @template_folder.name) if turbo_native_app? %>
+<% if turbo_native_app? %>
+  <native-action data-placement="search" data-native="search" data-label="<%= t('search') %>" data-url="<%= search_index_path(folder: @template_folder.full_name) %>"></native-action>
+<% end %>
+<% if turbo_native_app? && can?(:update, @template_folder) && @template_folder.full_name != TemplateFolder::DEFAULT_NAME %>
+  <form-prompt data-refresh="false">
+    <native-action data-placement="title" data-label="<%= t('folder_name') %>">
+      <%= form_for @template_folder, url: folder_path(@template_folder), html: { class: 'hidden', id: nil } do |f| %>
+        <%= f.label :name, t('folder_name'), for: name_input_id = SecureRandom.uuid %>
+        <%= f.hidden_field :name, id: name_input_id %>
       <% end %>
-    </h1>
+    </native-action>
+  </form-prompt>
+<% end %>
+<% if turbo_native_app? && (can?(:manage, :countless) || current_account.templates.where.not(archived_at: nil).exists?) %>
+  <native-action data-placement="menu" data-icon="archive" data-label="<%= t('archived') %>">
+    <a href="<%= templates_archived_index_path %>" data-native-title="<%= t('archived') %>"><%= t('view_archived') %></a>
+  </native-action>
+<% end %>
+<% unless turbo_native_app? %>
+  <div>
+    <%= link_to @template_folder.parent_folder ? folder_path(@template_folder.parent_folder) : root_path, class: 'flex items-center' do %>
+      <%= svg_icon('chevron_left', class: 'w-5 h-5') %>
+      <span style="margin-left: 3px"><%= @template_folder.parent_folder&.name || t('home') %></span>
+    <% end %>
+  </div>
+<% end %>
+<dashboard-dropzone>
+  <%= form_for '', url: '', id: form_id = SecureRandom.uuid, method: :post, class: 'hidden', data: { target: 'dashboard-dropzone.form' }, html: { enctype: 'multipart/form-data' } do %>
+    <input name="form_id" value="<%= form_id %>">
+    <input name="folder_name" value="<%= @template_folder.full_name %>">
+    <button type="submit"></button>
+    <input id="dashboard_dropzone_input" name="files[]" type="file" multiple>
+  <% end %>
+  <div class="group/header relative flex justify-between items-center w-full <%= 'mb-4' unless turbo_native_app? %>">
+    <% unless turbo_native_app? %>
+      <%= render 'templates/dashboard_dropzone', style: 'height: 137px' %>
+      <% unless @template_folder.parent_folder %>
+        <%= render 'templates/dashboard_folder_dropzone', style: 'height: 137px' %>
+      <% end %>
+      <h1 class="text-2xl truncate md:text-3xl font-bold flex items-center flex-grow min-w-0 space-x-2 md:flex max-md:group-has-[search-input:focus-within]/header:hidden <%= 'hidden' if params[:q].present? %>">
+        <%= svg_icon('folder', class: 'w-9 h-9 flex-shrink-0') %>
+        <span class="peer truncate">
+          <%= @template_folder.name %>
+        </span>
+        <% if can?(:update, @template_folder) && @template_folder.full_name != TemplateFolder::DEFAULT_NAME %>
+          <span class="opacity-0 hover:opacity-100 peer-hover:opacity-100">
+            <a href="<%= edit_folder_path(@template_folder) %>" data-turbo-frame="modal">
+              <%= svg_icon('pencil', class: 'w-7 h-7') %>
+            </a>
+          </span>
+        <% end %>
+      </h1>
+    <% end %>
     <div class="flex space-x-2 max-md:has-[search-input:focus-within]:grow <%= 'max-md:grow' if params[:q].present? %>">
       <% if params[:q].present? || @pagy.count.nil? || @pagy.count > 0 || @template_folders.present? %>
         <%= render 'shared/search_input' %>
       <% end %>
-      <% if can?(:create, ::Template) %>
+      <% if can?(:create, ::Template) && !turbo_native_app? %>
         <span class="hidden sm:block">
           <%= render 'templates/upload_button', folder_name: @template_folder.full_name %>
         </span>
         <open-modal-mobile data-disabled="<%= !Docuseal.multitenant? %>" class="flex">
-          <%= link_to new_template_path(folder_name: @template_folder.full_name), class: 'white-button !border gap-2', data: { turbo_frame: :modal } do %>
+          <%= link_to new_template_path(folder_name: @template_folder.full_name), class: 'white-button !border gap-2', data: { turbo_frame: :modal, native_modal: :medium } do %>
             <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
             <span class="hidden md:block"><%= t('create') %></span>
           <% end %>
@@ -49,11 +72,13 @@
   <% if @template_folders.present? %>
     <div class="grid gap-4 md:grid-cols-3 <%= 'mb-6' if @templates.present? %>">
       <%= render partial: 'template_folders/folder', collection: @template_folders, as: :folder %>
+      <%= render 'shared/infinite_scroll', pagy: @pagy if turbo_native_app? && @templates.blank? %>
     </div>
   <% end %>
   <% if @pagy.count.nil? || @pagy.count > 0 %>
     <div class="grid gap-4 md:grid-cols-3">
       <%= render partial: 'templates/template', collection: @templates %>
+      <%= render 'shared/infinite_scroll', pagy: @pagy if turbo_native_app? && @templates.present? %>
     </div>
     <% templates_order_select_html = capture do %>
       <% if params[:q].blank? && @pagy.pages > 1 && !can?(:manage, :countless) %>

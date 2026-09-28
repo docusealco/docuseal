@@ -458,6 +458,8 @@ export default actionable(targetable(class extends HTMLElement {
   async connectedCallback () {
     if (!this.textarea || !this.editorElement) return
 
+    this.id = `html-editor-${Math.random().toString(32).split('.')[1]}`
+
     this.textarea.style.display = 'none'
     this.adjustShortcutsForPlatform()
 

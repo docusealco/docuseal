@@ -58,9 +58,9 @@ Rails.application.routes.draw do
   resources :encrypted_user_configs, only: %i[destroy]
   resources :timestamp_server, only: %i[create] unless Docuseal.multitenant?
   resources :dashboard, only: %i[index]
+  resources :search, only: %i[index]
   resources :setup, only: %i[index create]
   resource :newsletter, only: %i[show update]
-  resources :enquiries, only: %i[create]
   resources :users, only: %i[new create edit update destroy] do
     resource :send_reset_password, only: %i[update], controller: 'users_send_reset_password'
   end
@@ -73,6 +73,7 @@ Rails.application.routes.draw do
     resources :events, only: %i[index], controller: 'submission_events'
     resources :download, only: %i[index], controller: 'submissions_download'
     resources :resend_email, only: %i[create], controller: 'submissions_resend_email'
+    get ':tab', action: :show, on: :member, as: :tab, constraints: { tab: /recipients/ }
   end
   resources :submitters, only: %i[edit update]
   resources :console_redirect, only: %i[index]
@@ -159,6 +160,10 @@ Rails.application.routes.draw do
     resources :delegate, only: %i[create], controller: 'submit_form_delegate'
     resources :invite, only: %i[create], controller: 'submit_form_invite'
     resources :metadata, only: %i[index], controller: 'submit_form_metadata'
+    resource :click_email, only: %i[create], controller: 'submit_form_click_email'
+    resources :view, only: %i[create], controller: 'submit_form_view'
+    resources :upload, only: %i[create], controller: 'submit_form_upload'
+    resources :prefill_attachments, only: %i[create], controller: 'submit_form_prefill_attachments'
     resources :debug, only: %i[index], controller: 'submissions_debug' if Rails.env.development?
     get :completed
     get :delegated

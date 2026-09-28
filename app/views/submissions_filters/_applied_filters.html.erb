@@ -1,17 +1,17 @@
-<% query_params = params.permit(:q).merge(filter_params) %>
-<% filter_names = %w[status folder author completed_at created_at] %>
+<% query_params = params.permit(:q, :scope, :archived).merge(filter_params) %>
+<% filter_names = %w[status archived template folder author completed_at created_at] %>
 <% ordered_filters = request.query_parameters.keys.filter_map { |key| filter_names.find { |name| key.start_with?(name) } }.uniq %>
 <% chip_order = ordered_filters.reverse.each_with_index.to_h { |name, index| [name, index + 1] } %>
 <% chip_order.default = ordered_filters.size + 1 %>
 <% status_icons = { 'all' => 'list', 'pending' => 'clock', 'completed' => 'circle_check' } %>
 <% current_status = status_icons.key?(params[:status].to_s) ? params[:status].to_s : 'all' %>
 <% status_icon = { 'declined' => 'x_circle', 'expired' => 'clock_cancel', 'partially_completed' => 'clock_edit', 'sent' => 'send', 'opened' => 'mail_opened' }[params[:status]] %>
-<% default_status_icon = status_icons[params[:status]] if status_icon.blank? && local_assigns[:with_default_status] && current_status != 'all' %>
+<% default_status_icon = status_icons[params[:status]] if status_icon.blank? && local_assigns[:with_default_status] && current_status != 'all' && !turbo_native_app? %>
 <% with_status_button = local_assigns[:with_status] && status_icon.blank? %>
 <% status_chip_html = capture do %>
   <% if status_icon || default_status_icon %>
     <div class="order-none flex h-10 px-2 py-1 text-base md:text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl shrink-0 max-w-[60vw] md:w-36 border-neutral-700 <%= 'max-md:hidden' if default_status_icon %>">
-      <%= link_to submissions_filter_path('status', query_params.merge(path: url_for, with_remove: true)), data: { turbo_frame: 'modal' }, class: 'flex items-center space-x-1 flex-1 min-w-0 pr-1' do %>
+      <%= link_to submissions_filter_path('status', query_params.merge(path: url_for, with_remove: true)), data: { turbo_frame: 'modal', native_modal: 'medium' }, aria: { label: t('status') }, class: 'flex items-center space-x-1 flex-1 min-w-0 pr-1' do %>
         <%= svg_icon(status_icon || default_status_icon, class: 'w-5 h-5 shrink-0') %>
         <span class="font-normal truncate"><%= t(params[:status]) %></span>
       <% end %>
@@ -22,9 +22,31 @@
   <% end %>
 <% end %>
 <% chips_html = capture do %>
+  <% if local_assigns[:with_archived] && params[:archived] == 'true' %>
+    <div class="order-<%= chip_order['archived'] %> md:order-none flex md:flex h-10 px-2 py-1 text-base md:text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl shrink-0 max-w-[60vw] md:w-36 border-neutral-700">
+      <span class="flex items-center space-x-1 flex-1 min-w-0 pr-1">
+        <%= svg_icon('archive', class: 'w-5 h-5 shrink-0') %>
+        <span class="font-normal truncate"><%= t('archived') %></span>
+      </span>
+      <%= link_to url_for(params: request.query_parameters.except('archived')), class: 'rounded-lg ml-1 shrink-0 hover:bg-base-content hover:text-white' do %>
+        <%= svg_icon('x', class: 'w-5 h-5') %>
+      <% end %>
+    </div>
+  <% end %>
+  <% if local_assigns[:filter_template] %>
+    <div class="order-<%= chip_order['template'] %> md:order-none flex md:flex h-10 px-2 py-1 text-base md:text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl shrink-0 max-w-[60vw] md:w-36 border-neutral-700">
+      <span class="flex items-center space-x-1 flex-1 min-w-0 pr-1">
+        <%= svg_icon('layout_grid', class: 'w-5 h-5 shrink-0') %>
+        <span class="font-normal truncate"><%= local_assigns[:filter_template].name %></span>
+      </span>
+      <%= link_to url_for(params: request.query_parameters.except('template_id')), class: 'rounded-lg ml-1 shrink-0 hover:bg-base-content hover:text-white' do %>
+        <%= svg_icon('x', class: 'w-5 h-5') %>
+      <% end %>
+    </div>
+  <% end %>
   <% if params[:folder].present? %>
     <div class="order-<%= chip_order['folder'] %> md:order-none md:tooltip tooltip-no-touch tooltip-bottom flex md:flex h-10 px-2 py-1 text-base md:text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl shrink-0 max-w-[60vw] md:w-36 border-neutral-700" data-tip="<%= t('folder') %>">
-      <%= link_to submissions_filter_path('folder', query_params.merge(path: url_for, with_remove: true)), data: { turbo_frame: 'modal' }, class: 'flex items-center space-x-1 flex-1 min-w-0 pr-1' do %>
+      <%= link_to submissions_filter_path('folder', query_params.merge(path: url_for, with_remove: true)), data: { turbo_frame: 'modal', native_modal: 'medium' }, aria: { label: t('folder') }, class: 'flex items-center space-x-1 flex-1 min-w-0 pr-1' do %>
         <%= svg_icon('folder', class: 'w-5 h-5 shrink-0') %>
         <span class="font-normal truncate"><%= params[:folder] %></span>
       <% end %>
@@ -35,7 +57,7 @@
   <% end %>
   <% if params[:author].present? %>
     <div class="order-<%= chip_order['author'] %> md:order-none md:tooltip tooltip-no-touch tooltip-bottom flex md:flex h-10 px-2 py-1 text-base md:text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl shrink-0 max-w-[60vw] md:w-36 border-neutral-700" data-tip="<%= t('author') %>">
-      <%= link_to submissions_filter_path('author', query_params.merge(path: url_for, with_remove: true)), data: { turbo_frame: 'modal' }, class: 'flex items-center space-x-1 flex-1 min-w-0 pr-1' do %>
+      <%= link_to submissions_filter_path('author', query_params.merge(path: url_for, with_remove: true)), data: { turbo_frame: 'modal', native_modal: 'medium' }, aria: { label: t('author') }, class: 'flex items-center space-x-1 flex-1 min-w-0 pr-1' do %>
         <%= svg_icon('user', class: 'w-5 h-5 shrink-0') %>
         <span class="font-normal truncate"><%= current_account.users.accessible_by(current_ability).where(account: current_account).find_by(email: params[:author])&.full_name || 'NA' %></span>
       <% end %>
@@ -46,7 +68,7 @@
   <% end %>
   <% if query_params[:completed_at_from].present? || query_params[:completed_at_to].present? %>
     <div class="order-<%= chip_order['completed_at'] %> md:order-none md:tooltip tooltip-no-touch tooltip-bottom flex md:flex h-10 px-2 py-1 text-base md:text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl shrink-0 max-w-[60vw] md:w-36 border-neutral-700" data-tip="<%= t('completed_at') %>">
-      <%= link_to submissions_filter_path('completed_at', query_params.merge(path: url_for, with_remove: true)), data: { turbo_frame: 'modal' }, class: 'flex items-center space-x-1 flex-1 min-w-0 pr-1' do %>
+      <%= link_to submissions_filter_path('completed_at', query_params.merge(path: url_for, with_remove: true)), data: { turbo_frame: 'modal', native_modal: 'medium' }, aria: { label: t('completed_at') }, class: 'flex items-center space-x-1 flex-1 min-w-0 pr-1' do %>
         <%= svg_icon('calendar_check', class: 'w-5 h-5 shrink-0') %>
         <span class="flex flex-col font-normal text-left md:text-center text-xs">
           <% if query_params[:completed_at_from] == query_params[:completed_at_to] %>
@@ -64,7 +86,7 @@
   <% end %>
   <% if query_params[:created_at_from].present? || query_params[:created_at_to].present? %>
     <div class="order-<%= chip_order['created_at'] %> md:order-none md:tooltip tooltip-no-touch tooltip-bottom flex md:flex h-10 px-2 py-1 text-base md:text-lg items-center justify-between border text-center text-neutral font-semibold rounded-xl shrink-0 max-w-[60vw] md:w-36 border-neutral-700" data-tip="<%= t('created_at') %>">
-      <%= link_to submissions_filter_path('created_at', query_params.merge(path: url_for, with_remove: true)), data: { turbo_frame: 'modal' }, class: 'flex items-center space-x-1 flex-1 min-w-0 pr-1' do %>
+      <%= link_to submissions_filter_path('created_at', query_params.merge(path: url_for, with_remove: true)), data: { turbo_frame: 'modal', native_modal: 'medium' }, aria: { label: t('created_at') }, class: 'flex items-center space-x-1 flex-1 min-w-0 pr-1' do %>
         <%= svg_icon('calendar', class: 'w-5 h-5 shrink-0') %>
         <span class="flex flex-col font-normal text-left md:text-center text-xs">
           <% if query_params[:created_at_from] == query_params[:created_at_to] %>
@@ -83,53 +105,59 @@
 <% end %>
 <% with_status_dropdown = with_status_button && chips_html.blank? %>
 <% if with_status_dropdown %>
-  <div class="dropdown md:hidden shrink-0">
+  <native-menu class="<%= turbo_native_app? ? 'block' : 'dropdown md:hidden' %> shrink-0">
     <label tabindex="0" class="cursor-pointer flex h-10 px-2 py-1 space-x-1 text-base items-center border text-neutral rounded-xl <%= current_status == 'all' ? 'border-neutral-300' : 'border-neutral-700' %>">
       <%= svg_icon(status_icons[current_status], class: 'w-5 h-5 shrink-0') %>
       <span><%= t(current_status) %></span>
       <%= svg_icon('chevron_down', class: 'w-4 h-4 shrink-0') %>
     </label>
-    <ul tabindex="0" class="z-10 dropdown-content p-2 mt-2 shadow menu text-base bg-base-100 rounded-box" style="min-width: 180px;">
+    <ul tabindex="0" class="<%= turbo_native_app? ? 'hidden' : 'z-10 dropdown-content p-2 mt-2 shadow menu text-base bg-base-100 rounded-box' %>" style="min-width: 180px;">
       <li>
-        <%= link_to url_for(params: request.query_parameters.except('status')), class: ('bg-base-200' if current_status == 'all') do %>
-          <%= svg_icon('list', class: 'w-5 h-5 shrink-0') %>
-          <span><%= t('all') %></span>
-          <% if local_assigns[:all_count] %>
-            <span class="badge badge-sm badge-ghost font-medium px-2 ml-auto">
-              <%= local_assigns[:all_count] %>
-            </span>
+        <native-menu-action data-icon="list" data-label="<%= t('all') %>" data-selected="<%= current_status == 'all' %>" class="grid-cols-1 p-0 <%= 'bg-base-200' if current_status == 'all' %>">
+          <%= link_to url_for(params: request.query_parameters.except('status')), class: 'flex items-center gap-2 px-4 py-2', aria: { label: t('all') } do %>
+            <%= svg_icon('list', class: 'w-5 h-5 shrink-0') %>
+            <span><%= t('all') %></span>
+            <% if local_assigns[:all_count] %>
+              <span class="badge badge-sm badge-ghost font-medium px-2 ml-auto">
+                <%= local_assigns[:all_count] %>
+              </span>
+            <% end %>
           <% end %>
-        <% end %>
+        </native-menu-action>
       </li>
       <li>
-        <%= link_to url_for(params: request.query_parameters.merge('status' => 'pending')), class: ('bg-base-200' if current_status == 'pending') do %>
-          <%= svg_icon('clock', class: 'w-5 h-5 shrink-0') %>
-          <span><%= t('pending') %></span>
-          <% if local_assigns[:pending_count] %>
-            <span class="badge badge-sm badge-ghost font-medium px-2 ml-auto">
-              <%= local_assigns[:pending_count] %>
-            </span>
+        <native-menu-action data-icon="clock" data-label="<%= t('pending') %>" data-selected="<%= current_status == 'pending' %>" class="grid-cols-1 p-0 <%= 'bg-base-200' if current_status == 'pending' %>">
+          <%= link_to url_for(params: request.query_parameters.merge('status' => 'pending')), class: 'flex items-center gap-2 px-4 py-2', aria: { label: t('pending') } do %>
+            <%= svg_icon('clock', class: 'w-5 h-5 shrink-0') %>
+            <span><%= t('pending') %></span>
+            <% if local_assigns[:pending_count] %>
+              <span class="badge badge-sm badge-ghost font-medium px-2 ml-auto">
+                <%= local_assigns[:pending_count] %>
+              </span>
+            <% end %>
           <% end %>
-        <% end %>
+        </native-menu-action>
       </li>
       <li>
-        <%= link_to url_for(params: request.query_parameters.merge('status' => 'completed')), class: ('bg-base-200' if current_status == 'completed') do %>
-          <%= svg_icon('circle_check', class: 'w-5 h-5 shrink-0') %>
-          <span><%= t('completed') %></span>
-          <% if local_assigns[:completed_count] %>
-            <span class="badge badge-sm badge-ghost font-medium px-2 ml-auto">
-              <%= local_assigns[:completed_count] %>
-            </span>
+        <native-menu-action data-icon="circle_check" data-label="<%= t('completed') %>" data-selected="<%= current_status == 'completed' %>" class="grid-cols-1 p-0 <%= 'bg-base-200' if current_status == 'completed' %>">
+          <%= link_to url_for(params: request.query_parameters.merge('status' => 'completed')), class: 'flex items-center gap-2 px-4 py-2', aria: { label: t('completed') } do %>
+            <%= svg_icon('circle_check', class: 'w-5 h-5 shrink-0') %>
+            <span><%= t('completed') %></span>
+            <% if local_assigns[:completed_count] %>
+              <span class="badge badge-sm badge-ghost font-medium px-2 ml-auto">
+                <%= local_assigns[:completed_count] %>
+              </span>
+            <% end %>
           <% end %>
-        <% end %>
+        </native-menu-action>
       </li>
     </ul>
-  </div>
+  </native-menu>
 <% end %>
 <% if chips_html.present? || status_chip_html.present? %>
   <scroll-fade class="flex items-center gap-2 overflow-x-auto flex-1 min-w-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [&::-webkit-scrollbar]:h-0 [&::-webkit-scrollbar]:w-0 md:contents <%= 'max-md:hidden' if with_status_dropdown %>">
     <% if with_status_button && !with_status_dropdown %>
-      <a href="<%= submissions_filter_path('status', query_params.merge(path: url_for)) %>" data-turbo-frame="modal" class="order-none md:hidden flex h-10 px-2 py-1 space-x-1 text-base items-center border text-neutral rounded-xl shrink-0 <%= current_status == 'all' ? 'border-neutral-300' : 'border-neutral-700' %>">
+      <a href="<%= submissions_filter_path('status', query_params.merge(path: url_for)) %>" data-turbo-frame="modal" data-native-modal="medium" aria-label="<%= t('status') %>" class="order-none <%= 'md:hidden' unless turbo_native_app? %> flex h-10 px-2 py-1 space-x-1 text-base items-center border text-neutral rounded-xl shrink-0 <%= current_status == 'all' ? 'border-neutral-300' : 'border-neutral-700' %>">
         <%= svg_icon(status_icons[current_status], class: 'w-5 h-5 shrink-0') %>
         <span><%= t(current_status) %></span>
         <%= svg_icon('chevron_down', class: 'w-4 h-4 shrink-0') %>

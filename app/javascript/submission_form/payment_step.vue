@@ -104,6 +104,11 @@ export default {
       required: false,
       default: () => ({})
     },
+    fieldsUuidIndex: {
+      type: Object,
+      required: false,
+      default: () => ({})
+    },
     values: {
       type: Object,
       required: true
@@ -137,7 +142,7 @@ export default {
     }
   },
   computed: {
-    fieldsUuidIndex () {
+    formulaFieldsUuidIndex () {
       return this.fields.reduce((acc, field) => {
         acc[field.uuid] = field
 
@@ -216,17 +221,31 @@ export default {
     },
     calculateFormula () {
       const transformedFormula = this.normalizeFormula(this.field.preferences.formula).replace(/{{(.*?)}}/g, (match, uuid) => {
-        return this.readonlyValues[uuid] || this.values[uuid] || 0.0
+        const value = this.readonlyValues[uuid] || this.values[uuid]
+
+        if (this.fieldsUuidIndex[uuid]?.type === 'date') {
+          return this.dateFormulaValue(value)
+        }
+
+        return value || 0.0
       })
 
       return this.math.evaluate(transformedFormula.toLowerCase())
+    },
+    dateFormulaValue (value) {
+      if (!value) return 'null'
+      if (value === '{{date}}') return 'today()'
+
+      const [year, month, day = 1] = value.slice(0, 10).split('-').map(Number)
+
+      return Date.UTC(year, month - 1, day) / 86400000
     },
     normalizeFormula (formula, depth = 0) {
       if (depth > 10) return formula
 
       return formula.replace(/{{(.*?)}}/g, (match, uuid) => {
-        if (this.fieldsUuidIndex[uuid]) {
-          return `(${this.normalizeFormula(this.fieldsUuidIndex[uuid].preferences.formula, depth + 1)})`
+        if (this.formulaFieldsUuidIndex[uuid]) {
+          return `(${this.normalizeFormula(this.formulaFieldsUuidIndex[uuid].preferences.formula, depth + 1)})`
         } else {
           return match
         }

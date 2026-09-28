@@ -484,7 +484,7 @@
     </label>
   </li>
   <li
-    v-if="withCondition && field.type != 'stamp' && field.type != 'heading'"
+    v-if="withCondition && (withConditions || nativePlatform !== 'ios') && field.type != 'stamp' && field.type != 'heading'"
     class="field-settings-condition"
   >
     <label
@@ -500,7 +500,7 @@
     </label>
   </li>
   <li
-    v-if="field.type == 'number' || field.preferences?.formula"
+    v-if="(field.type == 'number' || field.type == 'date' || field.preferences?.formula) && (withFormula || nativePlatform !== 'ios')"
     class="field-settings-formula"
   >
     <label
@@ -610,7 +610,7 @@ export default {
     IconTypography,
     IconX
   },
-  inject: ['template', 't', 'dateFormats', 'locale'],
+  inject: ['template', 't', 'dateFormats', 'locale', 'withFormula', 'withConditions', 'nativePlatform'],
   props: {
     field: {
       type: Object,

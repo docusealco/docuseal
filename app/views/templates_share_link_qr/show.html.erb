@@ -275,14 +275,16 @@
         </div>
       </div>
     </div>
-    <button type="button" id="qr-print-button" class="print-button">
-      <%= svg_icon('printer') %>
-      <span><%= t('print') %></span>
-    </button>
-    <script nonce="<%= content_security_policy_nonce %>">
-      document.getElementById('qr-print-button').addEventListener('click', function () {
-        window.print();
-      });
-    </script>
+    <% unless turbo_native_app? %>
+      <button type="button" id="qr-print-button" class="print-button">
+        <%= svg_icon('printer') %>
+        <span><%= t('print') %></span>
+      </button>
+      <script nonce="<%= content_security_policy_nonce %>">
+        document.getElementById('qr-print-button').addEventListener('click', function () {
+          window.print();
+        });
+      </script>
+    <% end %>
   </body>
 </html>

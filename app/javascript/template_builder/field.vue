@@ -20,7 +20,7 @@
             :menu-classes="'mt-1.5'"
             :menu-style="{ backgroundColor: dropdownBgColor }"
             @update:model-value="[maybeUpdateOptions(), $emit('save')]"
-            @click="scrollToFirstArea"
+            @click="scrollOnEdit && scrollToFirstArea()"
           />
           <Contenteditable
             ref="name"
@@ -29,7 +29,8 @@
             :icon-inline="true"
             :icon-width="18"
             :icon-stroke-width="1.6"
-            @focus="[onNameFocus(), scrollToFirstArea()]"
+            :contenteditable-classes="isMobile ? 'py-2 -my-2' : ''"
+            @focus="[onNameFocus(), scrollOnEdit && scrollToFirstArea()]"
             @blur="onNameBlur"
           />
         </div>
@@ -60,7 +61,8 @@
           <button
             v-if="field && !field.areas?.length"
             :title="t('draw')"
-            class="relative cursor-pointer text-transparent group-hover:text-base-content"
+            class="relative cursor-pointer"
+            :class="iconColorClass"
             @click="$emit('set-draw', { field })"
           >
             <IconNewSection
@@ -70,9 +72,10 @@
           </button>
           <button
             v-if="field.preferences?.formula"
-            class="relative cursor-pointer text-transparent group-hover:text-base-content"
+            class="relative cursor-pointer"
+            :class="iconColorClass"
             :title="t('formula')"
-            @click="isShowFormulaModal = true"
+            @click="openFormulaModal"
           >
             <IconMathFunction
               :width="18"
@@ -81,9 +84,10 @@
           </button>
           <button
             v-if="field.conditions?.length"
-            class="relative cursor-pointer text-transparent group-hover:text-base-content"
+            class="relative cursor-pointer"
+            :class="iconColorClass"
             :title="t('condition')"
-            @click="isShowConditionsModal = true"
+            @click="openConditionsModal"
           >
             <IconRouteAltLeft
               :width="18"
@@ -93,13 +97,56 @@
           <PaymentSettings
             v-if="field.type === 'payment'"
             :field="field"
+            :background-color="dropdownBgColor"
             :with-custom-fields="withCustomFields"
-            @click-condition="isShowConditionsModal = true"
-            @click-description="isShowDescriptionModal = true"
+            @click-condition="openConditionsModal"
+            @click-description="openDescriptionModal"
             @add-custom-field="$emit('add-custom-field', $event)"
-            @click-formula="isShowFormulaModal = true"
+            @click-formula="openFormulaModal"
             @save="$emit('save')"
-          />
+          >
+            <template
+              v-if="isMobile"
+              #default
+            >
+              <label
+                tabindex="0"
+                :title="t('settings')"
+                class="cursor-pointer flex items-center pr-0.5 py-2 -my-2 pl-2 -ml-2"
+                :class="iconColorClass"
+                @touchstart="onHandleTouchstart"
+                @touchmove="onHandleTouchmove"
+                @touchend="onHandleTouchend"
+                @touchcancel="onHandleTouchend"
+                @mousedown="dropdownWasOpen = $event.currentTarget.parentElement.contains($event.currentTarget.getRootNode().activeElement)"
+                @click="dropdownWasOpen && closeDropdown()"
+              >
+                <IconDotsVertical
+                  :width="18"
+                  :height="18"
+                  :stroke-width="1.6"
+                />
+              </label>
+            </template>
+            <template #menu>
+              <li
+                v-if="isMobile"
+                class="field-settings-remove"
+              >
+                <a
+                  href="#"
+                  class="text-sm py-1 px-2 text-red-600"
+                  @click.prevent="$emit('remove', field)"
+                >
+                  <IconTrashX
+                    :width="20"
+                    :stroke-width="1.6"
+                  />
+                  {{ t('remove') }}
+                </a>
+              </li>
+            </template>
+          </PaymentSettings>
           <span
             v-else
             class="dropdown dropdown-end field-settings-dropdown"
@@ -109,9 +156,23 @@
             <label
               tabindex="0"
               :title="t('settings')"
-              class="cursor-pointer text-transparent group-hover:text-base-content"
+              class="cursor-pointer flex items-center"
+              :class="[iconColorClass, { 'pr-0.5 py-2 -my-2 pl-2 -ml-2': isMobile }]"
+              @touchstart="onHandleTouchstart"
+              @touchmove="onHandleTouchmove"
+              @touchend="onHandleTouchend"
+              @touchcancel="onHandleTouchend"
+              @mousedown="dropdownWasOpen = $event.currentTarget.parentElement.contains($event.currentTarget.getRootNode().activeElement)"
+              @click="dropdownWasOpen && closeDropdown()"
             >
+              <IconDotsVertical
+                v-if="isMobile"
+                :width="18"
+                :height="18"
+                :stroke-width="1.6"
+              />
               <IconSettings
+                v-else
                 :width="18"
                 :stroke-width="1.6"
               />
@@ -133,20 +194,38 @@
                 :with-prefillable="withPrefillable"
                 :background-color="dropdownBgColor"
                 :with-custom-fields="withCustomFields"
-                @click-formula="isShowFormulaModal = true"
-                @click-font="isShowFontModal = true"
-                @click-description="isShowDescriptionModal = true"
-                @click-condition="isShowConditionsModal = true"
+                @click-formula="openFormulaModal"
+                @click-font="openFontModal"
+                @click-description="openDescriptionModal"
+                @click-condition="openConditionsModal"
                 @set-draw="$emit('set-draw', $event)"
                 @add-custom-field="$emit('add-custom-field', $event)"
                 @remove-area="removeArea"
                 @save="$emit('save')"
                 @scroll-to="$emit('scroll-to', $event)"
               />
+              <li
+                v-if="isMobile"
+                class="field-settings-remove"
+              >
+                <a
+                  href="#"
+                  class="text-sm py-1 px-2 text-red-600"
+                  @click.prevent="$emit('remove', field)"
+                >
+                  <IconTrashX
+                    :width="20"
+                    :stroke-width="1.6"
+                  />
+                  {{ t('remove') }}
+                </a>
+              </li>
             </ul>
           </span>
           <button
-            class="relative text-transparent group-hover:text-base-content pr-1 field-remove-button"
+            v-if="!isMobile"
+            class="relative pr-1 field-remove-button"
+            :class="iconColorClass"
             :title="t('remove')"
             @click="$emit('remove', field)"
           >
@@ -324,7 +403,7 @@ import FormulaModal from './formula_modal'
 import FontModal from './font_modal'
 import ConditionsModal from './conditions_modal'
 import DescriptionModal from './description_modal'
-import { IconRouteAltLeft, IconMathFunction, IconNewSection, IconTrashX, IconSettings, IconChevronDown } from '@tabler/icons-vue'
+import { IconRouteAltLeft, IconMathFunction, IconNewSection, IconTrashX, IconSettings, IconDotsVertical, IconChevronDown } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
 
 export default {
@@ -332,6 +411,7 @@ export default {
   components: {
     Contenteditable,
     IconSettings,
+    IconDotsVertical,
     FieldSettings,
     PaymentSettings,
     IconChevronDown,
@@ -345,11 +425,16 @@ export default {
     IconMathFunction,
     FieldType
   },
-  inject: ['template', 'backgroundColor', 'selectedAreasRef', 't', 'locale', 'getFieldTypeIndex', 'dateFormats'],
+  inject: ['template', 'backgroundColor', 'selectedAreasRef', 't', 'locale', 'getFieldTypeIndex', 'dateFormats', 'isMobile', 'nativePlatform'],
   props: {
     field: {
       type: Object,
       required: true
+    },
+    scrollOnEdit: {
+      type: Boolean,
+      required: false,
+      default: true
     },
     withSignatureId: {
       type: Boolean,
@@ -382,9 +467,11 @@ export default {
       default: true
     }
   },
-  emits: ['set-draw', 'remove', 'scroll-to', 'save', 'add-custom-field'],
+  emits: ['set-draw', 'remove', 'scroll-to', 'save', 'add-custom-field', 'touch-drag', 'touch-drag-end'],
   data () {
     return {
+      touchDrag: null,
+      dropdownWasOpen: false,
       isExpandOptions: false,
       isNameFocus: false,
       isShowFormulaModal: false,
@@ -396,6 +483,9 @@ export default {
     }
   },
   computed: {
+    iconColorClass () {
+      return this.isMobile ? 'text-base-content' : 'text-transparent group-hover:text-base-content'
+    },
     fieldNames: FieldType.computed.fieldNames,
     fieldLabels: FieldType.computed.fieldLabels,
     dropdownBgColor () {
@@ -433,10 +523,69 @@ export default {
     }
   },
   methods: {
+    onHandleTouchstart (e) {
+      if (!this.isMobile) return
+
+      this.touchDrag = { startY: e.touches[0].clientY, moved: false }
+    },
+    onHandleTouchmove (e) {
+      if (!this.touchDrag) return
+
+      const { clientX, clientY } = e.touches[0]
+
+      if (!this.touchDrag.moved && Math.abs(clientY - this.touchDrag.startY) < 6) return
+
+      this.touchDrag.moved = true
+
+      e.preventDefault()
+
+      this.$emit('touch-drag', { field: this.field, x: clientX, y: clientY })
+    },
+    onHandleTouchend (e) {
+      if (!this.touchDrag) return
+
+      if (this.touchDrag.moved) {
+        e.preventDefault()
+
+        e.currentTarget.blur()
+
+        this.$emit('touch-drag-end')
+      }
+
+      this.touchDrag = null
+    },
     removeArea (area) {
       this.field.areas.splice(this.field.areas.indexOf(area), 1)
 
       this.$emit('save')
+    },
+    openFormulaModal () {
+      if (this.nativePlatform && window.webkit?.messageHandlers?.modal) {
+        window.webkit.messageHandlers.modal.postMessage({ action: 'sheet', name: 'formula', detent: 'medium', uuid: this.field.uuid })
+      } else {
+        this.isShowFormulaModal = true
+      }
+    },
+    openFontModal () {
+      if (this.nativePlatform && window.webkit?.messageHandlers?.modal) {
+        window.webkit.messageHandlers.modal.postMessage({ action: 'sheet', name: 'font', detent: 'medium', uuid: this.field.uuid })
+      } else {
+        this.isShowFontModal = true
+      }
+    },
+    openConditionsModal () {
+      if (this.nativePlatform && window.webkit?.messageHandlers?.modal) {
+        window.webkit.messageHandlers.modal.postMessage({ action: 'sheet', name: 'conditions', detent: 'medium', uuid: this.field.uuid })
+      } else {
+        this.isShowConditionsModal = true
+      }
+    },
+    openDescriptionModal () {
+      if (this.nativePlatform && window.webkit?.messageHandlers?.modal) {
+        window.webkit.messageHandlers.modal.postMessage({ action: 'sheet', name: 'description', detent: 'medium', uuid: this.field.uuid })
+      } else {
+        this.isShowDescriptionModal = true
+      }
     },
     buildDefaultName (field) {
       if (field.type === 'payment' && field.preferences?.price && !field.preferences?.formula) {

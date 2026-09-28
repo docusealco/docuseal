@@ -1,0 +1,96 @@
+{
+  "settings": {
+    "strings": {
+      "search": <%== t('search').to_json %>,
+      "create": <%== t('create').to_json %>,
+      "new": <%== t('new').to_json %>,
+      "documents": <%== t('documents').to_json %>,
+      "fields": <%== t('fields').to_json %>,
+      "more": <%== t('more').to_json %>,
+      "close": <%== t('close').to_json %>,
+      "settings": <%== t('settings').to_json %>,
+      "sign_out": <%== t('sign_out').to_json %>,
+      "cancel": <%== t('cancel').to_json %>,
+      "ok": <%== t('ok').to_json %>,
+      "failed_to_download_files": <%== t('failed_to_download_files').to_json %>,
+      "failed_to_upload_files": <%== t('failed_to_upload_files').to_json %>,
+      "failed_to_save_the_scan": <%== t('failed_to_save_the_scan').to_json %>,
+      "failed_to_scan_the_document": <%== t('failed_to_scan_the_document').to_json %>,
+      "document_scanning_is_not_available_on_this_device": <%== t('document_scanning_is_not_available_on_this_device').to_json %>
+    }
+  },
+  "rules": [
+    {
+      "patterns": [".*"],
+      "properties": {
+        "query_string_presentation": "replace"
+      }
+    },
+    {
+      "patterns": ["^/search($|\\?)"],
+      "properties": {
+        "pull_to_refresh_enabled": false
+      }
+    },
+    {
+      "patterns": ["^/settings", "^/reports"],
+      "properties": {
+        "large_title": true
+      }
+    },
+    {
+      "patterns": ["^/settings$", "^/settings/personalization$"],
+      "properties": {
+        "large_title": false
+      }
+    },
+    {
+      "patterns": ["^/templates($|\\?)"],
+      "properties": {
+        "native_tab_bar": true,
+        "tab_title": <%== t('templates').to_json %>
+      }
+    },
+    {
+      "patterns": ["^/submissions($|\\?)"],
+      "properties": {
+        "native_tab_bar": true,
+        "tab_title": <%== t('submissions').to_json %>
+      }
+    },
+    {
+      "patterns": ["^/folders/\\d+"],
+      "properties": {
+        "native_actions": ["menu"],
+        "native_tab_bar": true
+      }
+    },
+    {
+      "patterns": ["^/templates/archived($|\\?)", "^/templates/shared($|\\?)", "^/submissions/archived($|\\?)"],
+      "properties": {
+        "native_tab_bar": true
+      }
+    },
+    {
+      "patterns": ["^/templates/\\d+(/archived)?($|\\?)"],
+      "properties": {
+        "native_actions": ["menu"],
+        "large_title": true,
+        "native_tab_bar": true
+      }
+    },
+    {
+      "patterns": ["^/templates/\\d+/edit"],
+      "properties": {
+        "native_actions": ["check", "menu"]
+      }
+    },
+    {
+      "patterns": ["^/submissions/\\d+($|\\?)"],
+      "properties": {
+        "native_actions": ["menu"],
+        "native_tabs": <%== [t('document'), t('recipients')].to_json %>
+      }
+    }
+  ]
+}

@@ -129,6 +129,13 @@ module Submitters
     ActiveStorage::Attachment.create!(blob:, name: 'attachments', record: submitter)
   end
 
+  def build_prefill_attachment_data(submitter, attachment)
+    token = ApplicationRecord.signed_id_verifier.generate([attachment.uuid, submitter.slug],
+                                                          purpose: :prefill_attachment)
+
+    { token:, url: attachment.url }
+  end
+
   def normalize_preferences(account, user, params)
     preferences = {}
 
@@ -245,6 +252,8 @@ module Submitters
   end
 
   def send_shared_link_email_verification_code(submitter, request:)
+    raise UnableToSendCode, I18n.t(:provide_your_email) if submitter.email.to_s.count('@') > 1
+
     RateLimit.call("send-otp-code-#{request.remote_ip}", limit: 2, ttl: 45.seconds, enabled: true)
 
     if Docuseal.multitenant? && email_bounced_recently?(submitter.email)
@@ -268,8 +277,11 @@ module Submitters
   def verify_link_otp!(otp, submitter)
     return false if otp.blank?
 
-    RateLimit.call("verify-2fa-code-#{Digest::MD5.base64digest(submitter.email)}",
-                   limit: 2, ttl: 45.seconds, enabled: true)
+    email_digest = Digest::MD5.base64digest(submitter.email.downcase.squish)
+
+    RateLimit.call("verify-2fa-code-#{email_digest}", limit: 2, ttl: 45.seconds, enabled: true)
+    RateLimit.call("verify-2fa-code-1h-#{email_digest}", limit: 10, ttl: 1.hour, enabled: true)
+    RateLimit.call("verify-2fa-code-1d-#{email_digest}", limit: 20, ttl: 1.day, enabled: true)
 
     link_2fa_key = [submitter.email.downcase.squish, submitter.submission.template.slug].join(':')
 

@@ -7,6 +7,8 @@
     <% end %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <%= csrf_meta_tags %>
+    <meta name="turbo-refresh-method" content="morph">
+    <meta name="turbo-refresh-scroll" content="preserve">
     <% if ENV['ROLLBAR_CLIENT_TOKEN'] %>
       <meta name="rollbar-token" content="<%= ENV.fetch('ROLLBAR_CLIENT_TOKEN', nil) %>">
       <%= javascript_pack_tag 'rollbar', 'application', defer: true %>
@@ -16,7 +18,7 @@
     <% if canonical_url = content_for(:canonical_url) %>
       <link href="<%= canonical_url %>" rel="canonical">
     <% end %>
-    <%= stylesheet_pack_tag 'application', media: 'all' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', data: { turbo_track: 'dynamic' } %>
   </head>
   <body>
     <% if params[:modal].present? %>
@@ -26,9 +28,11 @@
         <open-modal src="<%= url_for(**url_params, params: modal_uri.query_values) %>"></open-modal>
       <% end %>
     <% end %>
-    <turbo-frame id="modal"></turbo-frame>
+    <% unless content_for?(:native_modal) %>
+      <turbo-frame id="modal"></turbo-frame>
+    <% end %>
     <turbo-frame id="drawer"></turbo-frame>
-    <%= render 'shared/navbar' %>
+    <%= render turbo_native_app? ? 'shared/native_navbar' : 'shared/navbar' %>
     <% if flash.present? %><%= render 'shared/flash' %><% end %>
     <div class="max-w-6xl mx-auto px-4 md:px-2 mb-8">
       <%= yield %>

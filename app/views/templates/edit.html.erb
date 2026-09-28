@@ -1,4 +1,5 @@
-<% if current_user.created_at > 2.weeks.ago || params[:tour] == 'true' %>
+<% content_for(:native_title, @template.name) if turbo_native_app? %>
+<% if !turbo_native_app? && (current_user.created_at > 2.weeks.ago || params[:tour] == 'true') %>
   <% user_config = current_user.user_configs.find_or_initialize_by(key: UserConfig::SHOW_APP_TOUR) %>
   <% @show_tour_start_form = user_config.new_record? && !params.key?(:tour) %>
   <% if user_config.new_record? || user_config.value || params[:tour] == 'true' %>
@@ -9,4 +10,4 @@
 <% account_configs = current_account.account_configs.where(key: [AccountConfig::TEMPLATE_CUSTOM_FIELDS_KEY, AccountConfig::TEMPLATE_DATE_FORMATS_KEY]).to_a %>
 <% custom_fields = account_configs.find { |e| e.key == AccountConfig::TEMPLATE_CUSTOM_FIELDS_KEY }&.value || [] %>
 <% date_formats = account_configs.find { |e| e.key == AccountConfig::TEMPLATE_DATE_FORMATS_KEY }&.value || [] %>
-<template-builder class="grid" data-template="<%= @template_data.to_json %>" data-custom-fields="<%= custom_fields.to_json %>" data-date-formats="<%= date_formats.to_json %>" data-with-sign-yourself-button="<%= !@template.archived_at? %>" data-with-fields-detection="true" data-with-send-button="<%= !@template.archived_at? && can?(:create, @template.submissions.new(account: current_account)) %>" data-with-revisions-menu="<%= @template.template_versions.exists? %>" data-locale="<%= I18n.locale %>" data-show-tour-start-form="<%= @show_tour_start_form %>"></template-builder>
+<template-builder data-native-platform="<%= turbo_native_ios? ? 'ios' : (turbo_native_android? ? 'android' : '') %>" class="grid" data-template="<%= @template_data.to_json %>" data-custom-fields="<%= custom_fields.to_json %>" data-date-formats="<%= date_formats.to_json %>" data-with-sign-yourself-button="<%= !@template.archived_at? %>" data-with-fields-detection="true" data-with-send-button="<%= !@template.archived_at? && can?(:create, @template.submissions.new(account: current_account)) %>" data-with-revisions-menu="<%= @template.template_versions.exists? %>" data-locale="<%= I18n.locale %>" data-show-tour-start-form="<%= @show_tour_start_form %>"></template-builder>

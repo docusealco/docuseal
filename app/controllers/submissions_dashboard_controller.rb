@@ -30,5 +30,17 @@ class SubmissionsDashboardController < ApplicationController
 
     ActiveRecord::Associations::Preloader.new(records: @submissions.filter_map(&:template),
                                               associations: :author).call
+
+    render_infinite_scroll(@pagy, @submissions) if turbo_infinite_scroll?
+  end
+
+  private
+
+  def render_infinite_scroll(pagy, submissions)
+    render turbo_stream: [
+      turbo_stream.before('infinite_scroll', partial: 'templates/submission', collection: submissions,
+                                             locals: { with_template: true }),
+      turbo_stream.replace('infinite_scroll', partial: 'shared/infinite_scroll', locals: { pagy: })
+    ]
   end
 end

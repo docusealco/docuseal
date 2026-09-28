@@ -3,19 +3,19 @@
 <%= render 'shared/turbo_modal_large', title: t('share_link') do %>
   <div class="mt-2 mb-4 px-5">
     <% if @template.variables_schema.present? %>
-      <div class="alert items-start bg-base-100 border-base-300 mt-4">
+      <div class="flex items-start gap-4 p-4 border border-base-300 rounded-2xl bg-base-100 mt-4">
         <%= svg_icon('info_circle', class: 'stroke-current shrink-0 h-6 w-6') %>
         <div><%= t('dynamic_template_with_variables_cannot_be_used_via_shared_link') %></div>
       </div>
     <% end %>
     <%= form_for @template, url: template_share_link_path(@template), method: :post, html: { id: 'shared_link_form', autocomplete: 'off', class: 'mt-3' }, data: { close_on_submit: false } do |f| %>
       <% if @template.preferences&.dig('require_email_2fa') || @template.preferences&.dig('require_phone_2fa') %>
-        <label for="template_shared_link" class="md:tooltip tooltip-bottom flex items-center my-4 justify-between gap-1 alert bg-base-100 border-base-300" data-tip="<%= t(:templates_that_require_email_or_phone_2fa_cannot_be_used_via_a_shared_link) %>">
+        <label for="template_shared_link" class="tooltip tooltip-bottom tooltip-no-touch flex items-center my-4 justify-between gap-4 p-4 border border-base-300 rounded-2xl bg-base-100" data-tip="<%= t(:templates_that_require_email_or_phone_2fa_cannot_be_used_via_a_shared_link) %>">
           <span><%= t('enable_shared_link') %></span>
           <%= check_box_tag 'shared_link', 'true', false, disabled: true, class: 'toggle' %>
         </label>
       <% else %>
-        <label for="template_shared_link" class="flex items-center my-4 justify-between gap-1 alert bg-base-100 border-base-300">
+        <label for="template_shared_link" class="flex items-center my-4 justify-between gap-4 p-4 border border-base-300 rounded-2xl bg-base-100">
           <span><%= t('enable_shared_link') %></span>
           <submit-form data-on="change" class="flex">
             <%= f.check_box :shared_link, { disabled: !can?(:update, @template) || @template.variables_schema.present?, class: 'toggle' }, 'true', 'false' %>
@@ -24,7 +24,11 @@
       <% end %>
       <div class="flex gap-2 mt-3">
         <div class="relative flex-grow">
-          <input id="embedding_url" type="text" value="<%= start_form_url(slug: @template.slug, host: form_link_host) %>" class="base-input w-full pr-10" autocomplete="off" readonly>
+          <%= content_tag(turbo_native_app? ? 'check-on-click' : 'div', class: 'block', data: { element_id: 'template_shared_link' }) do %>
+            <%= content_tag(turbo_native_app? ? 'clipboard-copy' : 'div', class: 'block', data: { text: start_form_url(slug: @template.slug, host: form_link_host) }) do %>
+              <input id="embedding_url" type="text" value="<%= start_form_url(slug: @template.slug, host: form_link_host) %>" class="base-input w-full pr-10" autocomplete="off" readonly>
+            <% end %>
+          <% end %>
           <% if @template.variables_schema.blank? && !@template.preferences&.dig('require_email_2fa') && !@template.preferences&.dig('require_phone_2fa') %>
             <a href="<%= template_share_link_qr_path(@template) %>" target="_blank" rel="noopener" class="absolute top-1/2 -translate-y-1/2 right-2 flex items-center justify-center tooltip tooltip-no-touch text-base-content/70 hover:text-base-content bg-white rounded px-1 py-0.5" data-tip="<%= t('qr_code') %>" aria-label="<%= t('qr_code') %>">
               <%= svg_icon('qrcode', class: 'w-6 h-6') %>
@@ -37,7 +41,7 @@
       </div>
     <% end %>
     <% if multiple_submitters && !enough_defined_submitters && @template.variables_schema.blank? %>
-      <div class="alert items-start bg-base-100 border-base-300 mt-4">
+      <div class="flex items-start gap-4 p-4 border border-base-300 rounded-2xl bg-base-100 mt-4">
         <%= svg_icon('info_circle', class: 'stroke-current shrink-0 h-6 w-6 mt-1') %>
         <div><%= t('this_template_has_multiple_parties_which_prevents_the_use_of_a_sharing_link') %></div>
       </div>
@@ -84,7 +88,7 @@
           <% if Docuseal.multitenant? || Accounts.can_send_emails?(current_account) %>
             <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mt-4' }, data: { close_on_submit: false } do |f| %>
               <%= f.fields_for :preferences, Struct.new(:shared_link_2fa).new(@template.preferences['shared_link_2fa'] == true) do |ff| %>
-                <label for="template_preferences_shared_link_2fa" class="flex items-center mt-4 h-14 justify-between gap-1 alert bg-base-100 border-base-300">
+                <label for="template_preferences_shared_link_2fa" class="flex items-center mt-4 h-14 justify-between gap-4 p-4 border border-base-300 rounded-2xl bg-base-100">
                   <span><%= t('request_email_otp_verification_with_shared_link') %></span>
                   <submit-form data-on="change" class="flex">
                     <%= ff.check_box :shared_link_2fa, { checked: ff.object.shared_link_2fa == true, disabled: !can?(:update, @template), class: 'toggle' }, 'true', 'false' %>

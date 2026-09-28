@@ -1,5 +1,7 @@
 export default class extends HTMLElement {
   connectedCallback () {
+    this.id = `scroll-fade-${Math.random().toString(32).split('.')[1]}`
+
     this.addEventListener('scroll', this.updateFade, { passive: true })
     window.addEventListener('resize', this.updateFade)
 

@@ -2,13 +2,12 @@
   <div
     ref="dragContainer"
     style="max-width: 1600px"
-    class="mx-auto pl-3 h-full"
-    :class="isMobile ? 'pl-4' : 'md:pl-4'"
+    :class="nativeView ? (isSheetView ? 'bg-base-100' : 'px-4') : 'mx-auto pl-3 md:pl-4 h-full'"
     @dragover="onDragover"
     @drop="isDragFile = false"
   >
     <HoverDropzone
-      v-if="sortedDocuments.length && withUploadButton && editable"
+      v-if="sortedDocuments.length && withUploadButton && editable && !isSheetView"
       :is-dragging="isDragFile"
       :template-id="template.id"
       :accept-file-types="acceptFileTypes"
@@ -26,16 +25,143 @@
       :is-default="defaultFields.includes(toRaw(dragField))"
       :is-required="defaultRequiredFields.includes(toRaw(dragField))"
     />
+    <MobileDrawer
+      v-if="isDocumentsView || withDocumentsDrawer"
+      side="left"
+      :inline="isDocumentsView"
+      :open="isDocumentsDrawerOpen"
+      :background-color="backgroundColor"
+      @close="isDocumentsDrawerOpen = false"
+    >
+      <div class="pt-3 space-y-3">
+        <DocumentPreview
+          v-for="(item, index) in template.schema"
+          :key="item.attachment_uuid"
+          :with-arrows="template.schema.length > 1"
+          :with-visible-controls="true"
+          :item="item"
+          :document="sortedDocuments[index]"
+          :accept-file-types="acceptFileTypes"
+          :with-replace-button="withUploadButton"
+          :with-google-drive="withGoogleDrive"
+          :authenticity-token="authenticityToken"
+          :editable="editable"
+          :dynamic-documents="dynamicDocuments"
+          :with-dynamic-documents="withDynamicDocuments"
+          :template="template"
+          @scroll-to="onDrawerScrollTo(item)"
+          @remove="onDocumentRemove"
+          @replace="onDocumentReplace"
+          @up="moveDocument(item, -1)"
+          @reorder="reorderFields"
+          @edit="openDocumentsEditor(item)"
+          @down="moveDocument(item, 1)"
+          @change="save"
+        />
+      </div>
+      <div
+        v-if="editable && (withUploadButton || withAddPageButton)"
+        class="pt-3 space-y-2"
+        :class="isDocumentsView ? 'pb-6' : 'sticky bottom-0 bg-base-100 pb-3'"
+        :style="['', null, 'transparent'].includes(backgroundColor) ? {} : { backgroundColor }"
+      >
+        <Upload
+          v-if="withUploadButton"
+          :accept-file-types="acceptFileTypes"
+          :authenticity-token="authenticityToken"
+          :with-google-drive="withGoogleDrive"
+          :template-id="template.id"
+          @success="updateFromUpload"
+        />
+        <button
+          v-if="withAddPageButton"
+          class="btn btn-outline w-full add-blank-page-button"
+          @click.prevent="addBlankPage"
+        >
+          <IconInnerShadowTop
+            v-if="isLoadingBlankPage"
+            class="animate-spin w-5 h-5"
+          />
+          <IconPlus
+            v-else
+            class="w-5 h-5"
+          />
+          {{ t('add_blank_page') }}
+        </button>
+      </div>
+    </MobileDrawer>
+    <MobileDrawer
+      v-if="isFieldsView || withFieldsDrawer"
+      side="right"
+      :inline="isFieldsView"
+      :open="isFieldsDrawerOpen"
+      :background-color="backgroundColor"
+      @close="isFieldsDrawerOpen = false"
+    >
+      <div class="pb-6">
+        <Fields
+          ref="fields"
+          :with-top-padding="true"
+          :fields="template.fields"
+          :submitters="template.submitters"
+          :selected-submitter="selectedSubmitter"
+          :with-help="withHelp"
+          :default-submitters="defaultSubmitters"
+          :draw-field-type="drawFieldType"
+          :custom-fields="customFields"
+          :with-custom-fields="withCustomFields"
+          :with-fields-search="withFieldsSearch"
+          :default-fields="[...defaultRequiredFields, ...defaultFields]"
+          :with-custom-fields-tab="false"
+          :template="template"
+          :default-required-fields="defaultRequiredFields"
+          :detect-custom-fields-index="detectCustomFieldsIndex"
+          :field-types="fieldTypes"
+          :with-sticky-submitters="withStickySubmitters"
+          :with-fields-detection="withFieldsDetection"
+          :with-detect-existing-fields="withDetectExistingFields"
+          :with-signature-id="withSignatureId"
+          :with-prefillable="withPrefillable"
+          :only-defined-fields="onlyDefinedFields"
+          :editable="editable"
+          :scroll-on-edit="false"
+          @add-field="addField"
+          @set-draw="onDrawerSetDraw"
+          @remove-field="onRemoveField"
+          @remove-submitter="onRemoveSubmitter"
+          @select-submitter="onDrawerSelectSubmitter"
+          @set-draw-type="onDrawerSetDrawType"
+          @set-draw-custom-field="onDrawerSetDrawCustomField"
+          @set-drag="dragField = $event"
+          @set-drag-placeholder="$refs.dragPlaceholder.dragPlaceholder = $event"
+          @drag-end="[dragField = null, $refs.dragPlaceholder.dragPlaceholder = null]"
+          @change-submitter="onDrawerSelectSubmitter"
+          @scroll-to-area="onDrawerScrollToArea"
+          @rebuild-variables-schema="rebuildVariablesSchema"
+        />
+      </div>
+    </MobileDrawer>
+    <NativeModals
+      v-if="isSheetView"
+      :default-fields="[...defaultRequiredFields, ...defaultFields]"
+      :custom-fields="customFields"
+      :editable="editable"
+      :authenticity-token="authenticityToken"
+      :accept-file-types="acceptFileTypes"
+      :base-url="baseUrl"
+      :page-preview-format="pagePreviewFormat"
+      @documents-modified="onDocumentsModified"
+    />
     <div
-      v-if="pendingFieldAttachmentUuids.length && editable"
+      v-if="pendingFieldAttachmentUuids.length && editable && !nativeView"
       class="top-1.5 sticky h-0 z-20 max-w-2xl mx-auto"
     >
-      <div class="alert border-base-content/30 py-2 px-2.5">
+      <div class="alert border-base-content/30 py-2 px-2.5 max-sm:flex max-sm:items-center max-sm:justify-between max-sm:gap-2 max-sm:text-left max-sm:text-sm">
         <IconInfoCircle
           class="stroke-info shrink-0 w-6 h-6"
         />
         <span>{{ t('uploaded_pdf_contains_form_fields_keep_or_remove_them') }}</span>
-        <div>
+        <div class="max-sm:flex max-sm:gap-1 max-sm:shrink-0">
           <button
             class="btn btn-sm"
             @click.prevent="removePendingFields"
@@ -55,10 +181,10 @@
       v-if="beforeRevisionSnapshot"
       class="top-1.5 sticky h-0 z-20 max-w-2xl mx-auto"
     >
-      <div class="alert border-base-content/30 py-2 px-2.5">
+      <div class="alert border-base-content/30 py-2 px-2.5 max-sm:flex max-sm:items-center max-sm:justify-between max-sm:gap-2 max-sm:text-left max-sm:text-sm">
         <IconInfoCircle class="stroke-info shrink-0 w-6 h-6" />
         <span>{{ t('viewing_revision_from').replace('{date}', formatRevisionTime(beforeRevisionSnapshot.revision.created_at)) }}</span>
-        <div>
+        <div class="max-sm:flex max-sm:gap-1 max-sm:shrink-0">
           <button
             class="btn btn-sm"
             @click.prevent="cancelRevision"
@@ -76,10 +202,10 @@
       </div>
     </div>
     <div
-      v-if="$slots.buttons || withTitle"
+      v-if="($slots.buttons || withTitle) && !nativeView"
       id="title_container"
       class="flex justify-between py-1.5 items-center pr-4 top-0 z-10 title-container"
-      :class="{ sticky: withStickySubmitters || isBreakpointLg }"
+      :class="{ sticky: withStickySubmitters || isBreakpointLg, hidden: !!nativePlatform }"
       :style="{ backgroundColor }"
     >
       <div class="flex items-center space-x-3">
@@ -98,36 +224,109 @@
           @update:model-value="updateName"
         />
       </div>
-      <div class="space-x-3 flex items-center flex-shrink-0">
+      <div class="flex items-center gap-3 flex-shrink-0">
         <slot
           v-if="$slots.buttons"
           name="buttons"
         />
         <template v-else>
-          <form
-            v-if="withSignYourselfButton && undefinedSubmitters.length < 2 && (!template.variables_schema || Object.keys(template.variables_schema).length === 0)"
-            target="_blank"
-            data-turbo="false"
-            class="inline"
-            method="post"
-            :action="`/start_form_self/${template.id}`"
-            @submit="maybeShowErrorTemplateAlert"
+          <form-prompt
+            v-if="!!nativePlatform && editable"
+            data-refresh="false"
           >
-            <input
-              type="hidden"
-              name="_method"
-              value="put"
-              autocomplete="off"
+            <native-action
+              data-placement="title"
+              :data-label="t('name')"
             >
-            <input
-              type="hidden"
-              name="authenticity_token"
-              :value="authenticityToken"
-              autocomplete="off"
+              <form
+                class="hidden"
+                method="post"
+                :action="`/templates/${template.id}`"
+              >
+                <input
+                  type="hidden"
+                  name="_method"
+                  value="put"
+                  autocomplete="off"
+                >
+                <input
+                  type="hidden"
+                  name="authenticity_token"
+                  :value="authenticityToken"
+                  autocomplete="off"
+                >
+                <label for="template_name_prompt">{{ t('name') }}</label>
+                <input
+                  id="template_name_prompt"
+                  type="hidden"
+                  name="template[name]"
+                  :value="template.name"
+                  autocomplete="off"
+                >
+              </form>
+            </native-action>
+          </form-prompt>
+          <native-action
+            v-if="withSendButton && !!nativePlatform"
+            :data-label="t('send')"
+            data-icon="send"
+          >
+            <a
+              :href="`/templates/${template.id}/submissions/new?with_link=true`"
+              data-turbo-frame="modal"
+              @click="maybeShowErrorTemplateAlert"
+            />
+          </native-action>
+          <native-action
+            v-if="withSignYourselfButton && undefinedSubmitters.length < 2 && (!template.variables_schema || Object.keys(template.variables_schema).length === 0)"
+            :data-label="t('sign_yourself')"
+            data-icon="writing"
+          >
+            <form
+              :target="!!nativePlatform ? null : '_blank'"
+              :data-turbo="!!nativePlatform ? null : 'false'"
+              class="inline"
+              method="post"
+              :action="`/start_form_self/${template.id}`"
+              @submit="maybeShowErrorTemplateAlert"
             >
-            <button
+              <input
+                type="hidden"
+                name="_method"
+                value="put"
+                autocomplete="off"
+              >
+              <input
+                type="hidden"
+                name="authenticity_token"
+                :value="authenticityToken"
+                autocomplete="off"
+              >
+              <button
+                class="btn btn-primary btn-ghost text-base hidden md:flex"
+                type="submit"
+              >
+                <IconWritingSign
+                  width="22"
+                  class="inline"
+                />
+                <span class="hidden md:inline">
+                  {{ t('sign_yourself') }}
+                </span>
+              </button>
+            </form>
+          </native-action>
+          <native-action
+            v-else-if="withSignYourselfButton"
+            :data-label="t('sign_yourself')"
+            data-icon="writing"
+          >
+            <a
+              id="sign_yourself_button"
+              :href="`/templates/${template.id}/submissions/new?selfsign=true`"
               class="btn btn-primary btn-ghost text-base hidden md:flex"
-              type="submit"
+              data-turbo-frame="modal"
+              @click="maybeShowErrorTemplateAlert"
             >
               <IconWritingSign
                 width="22"
@@ -136,64 +335,60 @@
               <span class="hidden md:inline">
                 {{ t('sign_yourself') }}
               </span>
-            </button>
-          </form>
-          <a
-            v-else-if="withSignYourselfButton"
-            id="sign_yourself_button"
-            :href="`/templates/${template.id}/submissions/new?selfsign=true`"
-            class="btn btn-primary btn-ghost text-base hidden md:flex"
-            data-turbo-frame="modal"
-            @click="maybeShowErrorTemplateAlert"
+            </a>
+          </native-action>
+          <native-action
+            v-if="withSendButton && !nativePlatform"
+            :data-label="t('send')"
+            data-icon="users_plus"
+            data-placement="bar"
           >
-            <IconWritingSign
-              width="22"
-              class="inline"
-            />
-            <span class="hidden md:inline">
-              {{ t('sign_yourself') }}
-            </span>
-          </a>
-          <a
-            v-if="withSendButton"
-            id="send_button"
-            :href="`/templates/${template.id}/submissions/new?with_link=true`"
-            :data-turbo-frame="isMobile && isBreakpointLg ? '_top' : 'modal'"
-            class="white-button md:!px-6"
-            @click="maybeShowErrorTemplateAlert"
-          >
-            <IconUsersPlus
-              width="20"
-              class="inline"
-            />
-            <span class="hidden md:inline">
-              {{ t('send') }}
-            </span>
-          </a>
+            <a
+              id="send_button"
+              :href="`/templates/${template.id}/submissions/new?with_link=true`"
+              :data-turbo-frame="!nativePlatform && isMobile && isBreakpointLg ? '_top' : 'modal'"
+              class="white-button md:!px-6"
+              @click="maybeShowErrorTemplateAlert"
+            >
+              <IconUsersPlus
+                width="20"
+                class="inline"
+              />
+              <span class="hidden md:inline">
+                {{ t('send') }}
+              </span>
+            </a>
+          </native-action>
           <span
             v-if="editable"
             id="save_button_container"
             class="flex"
           >
-            <button
-              class="base-button !rounded-r-none !pr-2"
-              :class="{ disabled: isSaving }"
-              v-bind="isSaving ? { disabled: true } : {}"
-              @click.prevent="onSaveClick"
+            <native-action
+              :data-label="t('save')"
+              data-icon="check"
+              data-placement="bar"
             >
-              <IconInnerShadowTop
-                v-if="isSaving"
-                width="22"
-                class="animate-spin"
-              />
-              <IconDeviceFloppy
-                v-else
-                width="22"
-              />
-              <span class="hidden md:inline">
-                {{ t('save') }}
-              </span>
-            </button>
+              <button
+                class="base-button !rounded-r-none !pr-2"
+                :class="{ disabled: isSaving }"
+                v-bind="isSaving ? { disabled: true } : {}"
+                @click.prevent="onSaveClick"
+              >
+                <IconInnerShadowTop
+                  v-if="isSaving"
+                  width="22"
+                  class="animate-spin"
+                />
+                <IconDeviceFloppy
+                  v-else
+                  width="22"
+                />
+                <span class="hidden md:inline">
+                  {{ t('save') }}
+                </span>
+              </button>
+            </native-action>
             <div
               class="dropdown dropdown-end"
               :class="{ 'dropdown-open': isDownloading || isPreviewLoading }"
@@ -210,71 +405,94 @@
                 tabindex="0"
                 class="dropdown-content p-2 mt-2 shadow menu text-base bg-base-100 rounded-box text-right"
               >
-                <li>
-                  <a
-                    :href="`/templates/${template.id}/form`"
-                    data-turbo="false"
-                    class="flex items-center justify-center space-x-2"
-                    @click.exact="isPreviewLoading = true"
-                  >
-                    <IconInnerShadowTop
-                      v-if="isPreviewLoading"
-                      class="animate-spin w-6 h-6 flex-shrink-0"
-                    />
-                    <IconEye
-                      v-else
-                      class="w-6 h-6 flex-shrink-0"
-                    />
-                    <span class="whitespace-nowrap">{{ t('save_and_preview') }}</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    :href="`/templates/${template.id}/preferences`"
-                    :data-turbo-frame="isMobile && isBreakpointLg ? '_top' : 'modal'"
-                    class="flex space-x-2"
-                    @click="closeDropdown"
-                  >
-                    <IconAdjustments class="w-6 h-6 flex-shrink-0" />
-                    <span class="whitespace-nowrap">{{ t('preferences') }}</span>
-                  </a>
-                </li>
-                <li v-if="withRevisionsMenu">
-                  <button
-                    class="flex space-x-2"
-                    @click.prevent="openRevisionsModal"
-                    @mouseenter="preloadRevisions"
-                  >
-                    <span class="w-6 h-6 flex-shrink-0 flex items-center justify-center">
-                      <IconHistory class="w-5 h-5" />
-                    </span>
-                    <span class="whitespace-nowrap">{{ t('revisions') }}</span>
-                  </button>
-                </li>
-                <li v-if="withDownload">
-                  <button
-                    class="flex space-x-2"
-                    :disabled="isDownloading"
-                    @click.stop.prevent="download"
-                  >
-                    <IconInnerShadowTop
-                      v-if="isDownloading"
-                      class="animate-spin w-6 h-6 flex-shrink-0"
-                    />
-                    <IconDownload
-                      v-else
-                      class="w-6 h-6 flex-shrink-0"
-                    />
-                    <span
-                      v-if="isDownloading"
-                      class="whitespace-nowrap"
-                    >{{ t('downloading_') }}</span>
-                    <span
-                      v-else
-                      class="whitespace-nowrap"
-                    >{{ t('download') }}</span>
-                  </button>
-                </li>
+                <native-action
+                  :data-label="t('save_and_preview')"
+                  data-icon="eye"
+                >
+                  <li>
+                    <a
+                      :href="`/templates/${template.id}/form`"
+                      :data-native-actions="template.submitters.length > 1 ? 'users' : null"
+                      data-turbo="false"
+                      class="flex items-center justify-center space-x-2"
+                      @click.exact="isPreviewLoading = true"
+                    >
+                      <IconInnerShadowTop
+                        v-if="isPreviewLoading"
+                        class="animate-spin w-6 h-6 flex-shrink-0"
+                      />
+                      <IconEye
+                        v-else
+                        class="w-6 h-6 flex-shrink-0"
+                      />
+                      <span class="whitespace-nowrap">{{ t('save_and_preview') }}</span>
+                    </a>
+                  </li>
+                </native-action>
+                <native-action
+                  :data-label="t('preferences')"
+                  data-icon="adjustments_horizontal"
+                >
+                  <li>
+                    <a
+                      :href="`/templates/${template.id}/preferences`"
+                      :data-turbo-frame="!nativePlatform && isMobile && isBreakpointLg ? '_top' : 'modal'"
+                      class="flex space-x-2"
+                      @click="closeDropdown"
+                    >
+                      <IconAdjustments class="w-6 h-6 flex-shrink-0" />
+                      <span class="whitespace-nowrap">{{ t('preferences') }}</span>
+                    </a>
+                  </li>
+                </native-action>
+                <native-action
+                  v-if="withRevisionsMenu"
+                  :data-label="t('revisions')"
+                  data-icon="history"
+                >
+                  <li>
+                    <button
+                      class="flex space-x-2"
+                      @click.prevent="openRevisionsModal"
+                      @mouseenter="preloadRevisions"
+                    >
+                      <span class="w-6 h-6 flex-shrink-0 flex items-center justify-center">
+                        <IconHistory class="w-5 h-5" />
+                      </span>
+                      <span class="whitespace-nowrap">{{ t('revisions') }}</span>
+                    </button>
+                  </li>
+                </native-action>
+                <native-action
+                  v-if="withDownload"
+                  :data-label="t('download')"
+                  data-icon="download"
+                >
+                  <li>
+                    <button
+                      class="flex space-x-2"
+                      :disabled="isDownloading"
+                      @click.stop.prevent="download"
+                    >
+                      <IconInnerShadowTop
+                        v-if="isDownloading"
+                        class="animate-spin w-6 h-6 flex-shrink-0"
+                      />
+                      <IconDownload
+                        v-else
+                        class="w-6 h-6 flex-shrink-0"
+                      />
+                      <span
+                        v-if="isDownloading"
+                        class="whitespace-nowrap"
+                      >{{ t('downloading_') }}</span>
+                      <span
+                        v-else
+                        class="whitespace-nowrap"
+                      >{{ t('download') }}</span>
+                    </button>
+                  </li>
+                </native-action>
               </ul>
             </div>
           </span>
@@ -295,16 +513,17 @@
       </div>
     </div>
     <div
+      v-if="!nativeView"
       id="main_container"
       class="flex main-container"
-      :class="$slots.buttons || withTitle ? (isMobile ? 'max-h-[calc(100%_-_60px)]' : 'md:max-h-[calc(100%_-_60px)]') : (isMobile ? 'max-h-[100%]' : 'md:max-h-[100%]')"
+      :class="($slots.buttons || withTitle) && !nativePlatform ? (isMobile ? 'max-h-[calc(100%_-_60px)]' : 'md:max-h-[calc(100%_-_60px)]') : (isMobile ? 'max-h-[100%]' : 'md:max-h-[100%]')"
     >
       <div
-        v-if="withDocumentsList"
+        v-if="withDocumentsList && !withDocumentsDrawer"
         id="documents_container"
         ref="previews"
-        :style="{ 'display': isBreakpointLg ? 'none' : 'initial' }"
-        class="overflow-y-auto overflow-x-hidden w-52 flex-none pr-3 mt-0.5 pt-0.5 hidden lg:block"
+        :style="{ 'display': isBreakpointLg || isMobile ? 'none' : 'initial' }"
+        class="overflow-y-auto overflow-x-hidden w-52 flex-none pr-3 mt-0.5 pt-0.5"
       >
         <DocumentPreview
           v-for="(item, index) in template.schema"
@@ -326,7 +545,7 @@
           @replace="onDocumentReplace"
           @up="moveDocument(item, -1)"
           @reorder="reorderFields"
-          @edit="editModalDocumentUuid = item.attachment_uuid"
+          @edit="openDocumentsEditor(item)"
           @down="moveDocument(item, 1)"
           @change="save"
         />
@@ -461,60 +680,14 @@
                 @delete-selected-areas="deleteSelectedAreas"
                 @autodetect-fields="detectFieldsForPage"
               />
-              <DocumentControls
-                v-if="isBreakpointLg && editable"
-                :with-arrows="template.schema.length > 1"
-                :item="template.schema.find((item) => item.attachment_uuid === document.uuid)"
-                :with-replace-button="withUploadButton"
-                :with-google-drive="withGoogleDrive"
-                :authenticity-token="authenticityToken"
-                :accept-file-types="acceptFileTypes"
-                :document="document"
-                :template="template"
-                class="pb-2 mb-2 border-b border-base-300 border-dashed"
-                @remove="onDocumentRemove"
-                @replace="onDocumentReplace"
-                @up="moveDocument(template.schema.find((item) => item.attachment_uuid === document.uuid), -1)"
-                @down="moveDocument(template.schema.find((item) => item.attachment_uuid === document.uuid), 1)"
-                @change="save"
-              />
             </template>
-            <div
-              v-if="sortedDocuments.length && isBreakpointLg && editable"
-              class="pb-4 space-y-2"
-            >
-              <Upload
-                v-if="withUploadButton"
-                :template-id="template.id"
-                :accept-file-types="acceptFileTypes"
-                :authenticity-token="authenticityToken"
-                :with-google-drive="withGoogleDrive"
-                @success="updateFromUpload"
-              />
-              <button
-                v-if="withAddPageButton"
-                id="add_blank_page_button"
-                class="btn btn-outline w-full mt-4 add-blank-page-button"
-                @click.prevent="addBlankPage"
-              >
-                <IconInnerShadowTop
-                  v-if="isLoadingBlankPage"
-                  class="animate-spin w-5 h-5"
-                />
-                <IconPlus
-                  v-else
-                  class="w-5 h-5"
-                />
-                {{ t('add_blank_page') }}
-              </button>
-            </div>
           </template>
         </div>
       </div>
       <div
-        v-if="withFieldsList && !isMobile"
+        v-if="withFieldsList && !(nativePlatform ? isBreakpointLg : isBreakpointMd)"
         id="fields_list_container"
-        class="relative w-80 flex-none mt-1 pr-4 pl-0.5 hidden md:block fields-list-container"
+        class="relative w-80 flex-none mt-1 pr-4 pl-0.5 fields-list-container"
         :class="drawField || drawCustomField ? 'overflow-hidden' : 'overflow-y-auto overflow-x-hidden'"
       >
         <div
@@ -566,6 +739,7 @@
             :detect-custom-fields-index="detectCustomFieldsIndex"
             :field-types="fieldTypes"
             :with-sticky-submitters="withStickySubmitters"
+            :with-add-fields-pill="!nativePlatform && !showDrawField && !drawField && !drawCustomField"
             :with-fields-detection="withFieldsDetection"
             :with-detect-existing-fields="withDetectExistingFields"
             :with-signature-id="withSignatureId"
@@ -578,7 +752,7 @@
             @remove-field="onRemoveField"
             @remove-submitter="onRemoveSubmitter"
             @select-submitter="selectedSubmitter = $event"
-            @set-draw-type="[drawFieldType = $event, showDrawField = true]"
+            @set-draw-type="isMobile ? startFieldDraw({ type: $event }) : [drawFieldType = $event, showDrawField = true]"
             @set-draw-custom-field="[drawCustomField = $event, showDrawField = true]"
             @set-drag="dragField = $event"
             @set-drag-placeholder="$refs.dragPlaceholder.dragPlaceholder = $event"
@@ -590,28 +764,88 @@
         </div>
       </div>
     </div>
-    <div class="sticky bottom-0 z-10">
-      <MobileDrawField
-        v-if="drawField && (isBreakpointLg || isMobile)"
-        :draw-field="drawField"
-        :fields="template.fields"
-        :submitters="template.submitters"
-        :selected-submitter="selectedSubmitter"
-        :class="{ 'md:hidden': !isMobile }"
-        :editable="editable"
-        @cancel="[drawField = null, drawOption = null]"
-        @change-submitter="[selectedSubmitter = $event, drawField.submitter_uuid = $event.uuid]"
+    <div
+      v-if="!nativeView"
+      class="sticky bottom-0 z-20"
+    >
+      <native-action
+        v-if="nativePlatform && withDocumentsList && (isBreakpointLg || isMobile) && sortedDocuments.length && editable"
+        data-placement="drawer"
+        data-side="leading"
+        data-icon="files"
+        data-native="drawer"
+        data-haptic="true"
+        :data-label="t('documents')"
+        data-view="documents"
       />
-      <MobileFields
-        v-if="sortedDocuments.length && !drawField && editable"
-        :fields="template.fields"
-        :default-fields="[...defaultRequiredFields, ...defaultFields]"
-        :default-required-fields="defaultRequiredFields"
-        :field-types="fieldTypes"
-        :class="{ 'md:hidden': !isMobile }"
-        :selected-submitter="selectedSubmitter"
-        @select="startFieldDraw($event)"
+      <native-action
+        v-if="nativePlatform && withFieldsList && isBreakpointLg && sortedDocuments.length && editable"
+        data-placement="drawer"
+        data-side="trailing"
+        data-icon="plus"
+        data-native="drawer"
+        data-haptic="true"
+        :data-label="t('fields')"
+        data-view="fields"
       />
+      <native-action
+        v-if="nativePlatform && (drawField || drawCustomField) && (isBreakpointLg || isMobile)"
+        :key="drawCustomField?.uuid || drawField?.uuid"
+        data-placement="draw"
+        :data-label="t('draw_field').replace('{field}', drawCustomField ? drawCustomField.name : fieldNames[drawField.type])"
+      >
+        <button
+          class="hidden"
+          @click="[drawField = null, drawOption = null, drawCustomField = null, showDrawField = false]"
+        />
+      </native-action>
+      <button
+        v-if="drawField && isBreakpointMd && !nativePlatform"
+        class="btn btn-neutral text-white rounded-full no-animation transition-none absolute bottom-6 -left-3 md:-left-4 right-0 mx-auto w-fit z-10 flex-nowrap gap-2 px-5 max-[400px]:px-4"
+        style="max-width: calc(100% - 11rem); --btn-focus-scale: 1"
+        @click.prevent="[drawField = null, drawOption = null]"
+      >
+        <component
+          :is="fieldIcons[drawField.type]"
+          :width="22"
+          :height="22"
+          :stroke-width="1.6"
+          class="flex-shrink-0 max-[400px]:hidden"
+        />
+        <span
+          class="truncate normal-case font-normal leading-normal"
+          style="font-size: 15px"
+        >{{ t('draw_field').replace('{field}', fieldNames[drawField.type]) }}</span>
+        <IconX
+          :width="18"
+          :height="18"
+          :stroke-width="2.5"
+          class="flex-shrink-0"
+        />
+      </button>
+      <button
+        v-if="withDocumentsDrawer"
+        class="btn btn-neutral text-white btn-circle btn-lg absolute bottom-4 left-1 md:left-0 z-10"
+        :title="t('documents')"
+        @click.prevent="isDocumentsDrawerOpen = true"
+      >
+        <IconFiles
+          :width="26"
+          :height="26"
+          :stroke-width="1.6"
+        />
+      </button>
+      <button
+        v-if="withFieldsDrawer"
+        class="btn btn-neutral text-white btn-circle btn-lg absolute bottom-4 right-4 z-10"
+        :title="t('fields')"
+        @click.prevent="isFieldsDrawerOpen = true"
+      >
+        <IconPlus
+          :width="28"
+          :height="28"
+        />
+      </button>
     </div>
     <Transition
       enter-active-class="transition-all duration-300 ease-out"
@@ -660,9 +894,9 @@
     >
       <div
         v-if="zoomLevel > 1"
-        class="sticky bottom-0 z-40 pointer-events-none"
+        class="sticky bottom-0 z-10 pointer-events-none"
       >
-        <div class="absolute left-0 right-0 bottom-4 flex justify-center">
+        <div class="absolute left-0 right-0 bottom-6 md:bottom-4 flex justify-center">
           <div class="join shadow pointer-events-auto">
             <span class="join-item bg-base-content text-white pl-2 pr-2.5 h-9 items-center text-sm font-medium cursor-default w-16 flex justify-end">
               <span>
@@ -690,7 +924,7 @@
         :revisions="revisions"
         :locale="locale"
         @close="isRevisionsModalOpen = false"
-        @apply="onRevisionApply"
+        @apply="onRevisionApply($event)"
       />
       <DocumentsEditorModal
         v-if="editModalDocumentUuid"
@@ -713,17 +947,17 @@ import Dropzone from './dropzone'
 import HoverDropzone from './hover_dropzone'
 import DragPlaceholder from './drag_placeholder'
 import Fields from './fields'
-import MobileDrawField from './mobile_draw_field'
+import MobileDrawer from './mobile_drawer'
+import FieldType from './field_type'
 import Document from './document'
 import Logo from './logo'
 import Contenteditable from './contenteditable'
 import DocumentPreview from './preview'
-import DocumentControls from './controls'
-import MobileFields from './mobile_fields'
 import FieldSubmitter from './field_submitter'
 import RevisionsModal from './revisions_modal'
 import DocumentsEditorModal from './documents_editor_modal'
-import { IconPlus, IconUsersPlus, IconDeviceFloppy, IconChevronDown, IconEye, IconWritingSign, IconInnerShadowTop, IconInfoCircle, IconAdjustments, IconDownload, IconHistory, IconX } from '@tabler/icons-vue'
+import NativeModals from './native_modals'
+import { IconPlus, IconFiles, IconUsersPlus, IconDeviceFloppy, IconChevronDown, IconEye, IconWritingSign, IconInnerShadowTop, IconInfoCircle, IconAdjustments, IconDownload, IconHistory, IconX } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
 import { ref, computed, toRaw, defineAsyncComponent } from 'vue'
 import * as i18n from './i18n'
@@ -747,15 +981,14 @@ export default {
     Document,
     Fields,
     IconInfoCircle,
-    MobileDrawField,
+    MobileDrawer,
     IconPlus,
+    IconFiles,
     IconWritingSign,
-    MobileFields,
     Logo,
     Dropzone,
     HoverDropzone,
     DocumentPreview,
-    DocumentControls,
     IconInnerShadowTop,
     Contenteditable,
     IconUsersPlus,
@@ -767,7 +1000,8 @@ export default {
     IconDeviceFloppy,
     IconX,
     RevisionsModal,
-    DocumentsEditorModal
+    DocumentsEditorModal,
+    NativeModals
   },
   provide () {
     return {
@@ -791,6 +1025,8 @@ export default {
       isPaypalConnected: this.isPaypalConnected,
       withFormula: this.withFormula,
       withConditions: this.withConditions,
+      nativePlatform: this.nativePlatform,
+      isMobile: this.isMobile,
       withCustomFields: this.withCustomFields,
       isInlineSize: this.isInlineSize,
       defaultDrawFieldType: this.defaultDrawFieldType,
@@ -1008,6 +1244,16 @@ export default {
       required: false,
       default: true
     },
+    nativePlatform: {
+      type: String,
+      required: false,
+      default: ''
+    },
+    nativeView: {
+      type: String,
+      required: false,
+      default: ''
+    },
     withFieldsSearch: {
       type: Boolean,
       required: false,
@@ -1123,6 +1369,7 @@ export default {
     return {
       documentRefs: [],
       isBreakpointLg: false,
+      isBreakpointMd: false,
       isDownloading: false,
       isPreviewLoading: false,
       isLoadingBlankPage: false,
@@ -1142,6 +1389,8 @@ export default {
       isDragFile: false,
       isMathLoaded: false,
       isRevisionsModalOpen: false,
+      isDocumentsDrawerOpen: false,
+      isFieldsDrawerOpen: false,
       editModalDocumentUuid: null,
       revisions: [],
       beforeRevisionSnapshot: null,
@@ -1185,6 +1434,26 @@ export default {
     },
     lastSelectedArea () {
       return this.selectedAreasRef.value[this.selectedAreasRef.value.length - 1]
+    },
+    fieldNames: FieldType.computed.fieldNames,
+    fieldIcons: FieldType.computed.fieldIcons,
+    isDocumentsView () {
+      return this.nativeView === 'documents'
+    },
+    isFieldsView () {
+      return this.nativeView === 'fields'
+    },
+    isSheetView () {
+      return this.nativeView === 'sheet'
+    },
+    withMobileDrawers () {
+      return !this.nativePlatform && !this.nativeView && this.sortedDocuments.length > 0
+    },
+    withDocumentsDrawer () {
+      return this.withMobileDrawers && this.withDocumentsList && (this.isBreakpointLg || this.isMobile)
+    },
+    withFieldsDrawer () {
+      return this.withMobileDrawers && this.withFieldsList && this.editable && this.isBreakpointMd
     },
     isMobile () {
       const isMobileSafariIos = 'ontouchstart' in window && navigator.maxTouchPoints > 0 && /AppleWebKit/i.test(navigator.userAgent)
@@ -1379,6 +1648,7 @@ export default {
     })
 
     document.addEventListener('keyup', this.onKeyUp)
+    document.addEventListener('template-builder:apply-revision', this.onApplyRevisionEvent)
     window.addEventListener('keydown', this.onKeyDown)
 
     window.addEventListener('resize', this.onWindowResize)
@@ -1402,6 +1672,7 @@ export default {
   },
   unmounted () {
     document.removeEventListener('keyup', this.onKeyUp)
+    document.removeEventListener('template-builder:apply-revision', this.onApplyRevisionEvent)
     window.removeEventListener('keydown', this.onKeyDown)
 
     window.removeEventListener('resize', this.onWindowResize)
@@ -1528,10 +1799,28 @@ export default {
     },
     calculateFormula (field) {
       const transformedFormula = this.normalizeFormula(field.preferences.formula).replace(/{{(.*?)}}/g, (match, uuid) => {
+        if (this.fieldsUuidIndex[uuid]?.type === 'date') {
+          return this.dateFormulaValue(this.fieldsUuidIndex[uuid].default_value)
+        }
+
         return this.fieldsUuidIndex[uuid]?.default_value || 0.0
       })
 
-      return this.math.evaluate(transformedFormula.toLowerCase())
+      const value = this.math.evaluate(transformedFormula.toLowerCase())
+
+      if (field.type === 'date') {
+        return Number.isFinite(value) ? new Date(Math.floor(value) * 86400000).toISOString().slice(0, 10) : ''
+      }
+
+      return value
+    },
+    dateFormulaValue (value) {
+      if (!value) return 'null'
+      if (value === '{{date}}') return 'today()'
+
+      const [year, month, day = 1] = value.slice(0, 10).split('-').map(Number)
+
+      return Date.UTC(year, month - 1, day) / 86400000
     },
     evalTextFormula (field, depth = 0) {
       if (depth > 10) return ''
@@ -1665,6 +1954,10 @@ export default {
       this.debouncedSave()
     },
     download () {
+      const download = window.webkit?.messageHandlers?.download
+
+      if (this.nativePlatform && download) return download.postMessage({ src: `/templates/${this.template.id}/documents` })
+
       this.isDownloading = true
 
       this.baseFetch(`/templates/${this.template.id}/documents`).then(async (response) => {
@@ -1937,6 +2230,10 @@ export default {
       this.loadRevisionsPromise ||= this.baseFetch(`/templates/${this.template.id}/versions`)
     },
     openRevisionsModal () {
+      if (this.nativePlatform && window.webkit?.messageHandlers?.modal) {
+        return window.webkit.messageHandlers.modal.postMessage({ action: 'sheet', name: 'revisions', detent: 'medium' })
+      }
+
       this.closeDropdown()
 
       this.loadRevisionsPromise ||= this.baseFetch(`/templates/${this.template.id}/versions`)
@@ -1949,10 +2246,20 @@ export default {
         this.loadRevisionsPromise = null
       })
     },
+    openDocumentsEditor (item) {
+      if (this.nativePlatform && window.webkit?.messageHandlers?.modal) {
+        window.webkit.messageHandlers.modal.postMessage({ action: 'sheet', name: 'documents', viewport: 'fixed', uuid: item.attachment_uuid })
+      } else {
+        this.editModalDocumentUuid = item.attachment_uuid
+      }
+    },
+    onApplyRevisionEvent (e) {
+      this.onRevisionApply(e.detail)
+    },
     onRevisionApply (revision) {
       this.beforeRevisionSnapshot = {
-        template: JSON.parse(JSON.stringify(this.template)),
-        dynamicDocuments: JSON.parse(JSON.stringify(this.dynamicDocuments)),
+        template: this.beforeRevisionSnapshot?.template || JSON.parse(JSON.stringify(this.template)),
+        dynamicDocuments: this.beforeRevisionSnapshot?.dynamicDocuments || JSON.parse(JSON.stringify(this.dynamicDocuments)),
         revision
       }
 
@@ -2011,6 +2318,10 @@ export default {
       this.save()
     },
     addField (type, area = null) {
+      if (this.isVerificationFieldAdded(type)) {
+        return
+      }
+
       const field = {
         name: '',
         uuid: v4(),
@@ -2054,12 +2365,26 @@ export default {
 
       this.save()
     },
+    isVerificationFieldAdded (type) {
+      const addedField = ['kba', 'verification'].includes(type) &&
+        this.template.fields.find((f) => ['kba', 'verification'].includes(f.type) && f.submitter_uuid === this.selectedSubmitter.uuid)
+
+      if (addedField) {
+        alert(this.t('field_has_already_been_added_for_party').replace('{field}', this.fieldNames[addedField.type]).replace('{party}', this.selectedSubmitter.name))
+      }
+
+      return !!addedField
+    },
     startFieldDraw ({ name, type }) {
       const existingField = this.template.fields?.find((f) => f.submitter_uuid === this.selectedSubmitter.uuid && name && name === f.name)
 
       if (existingField) {
         this.drawField = existingField
       } else {
+        if (this.isVerificationFieldAdded(type)) {
+          return
+        }
+
         const field = {
           name: name || '',
           uuid: v4(),
@@ -2120,11 +2445,20 @@ export default {
     },
     onWindowResize (e) {
       const breakpointLg = 1024
+      const breakpointMd = 768
+      const width = this.$el.getRootNode().querySelector('div[data-v-app]').offsetWidth
 
-      this.isBreakpointLg = this.$el.getRootNode().querySelector('div[data-v-app]').offsetWidth < breakpointLg
+      this.isBreakpointLg = width < breakpointLg
+      this.isBreakpointMd = width < breakpointMd
     },
     onPagesWheel (event) {
-      if (!event.ctrlKey && !event.metaKey) return
+      const isFastScroll = Math.abs(event.deltaY) > 1
+
+      if ((!event.ctrlKey && !event.metaKey) || (isFastScroll && event.timeStamp - this.lastFastScrollAt < 150)) {
+        if (isFastScroll) this.lastFastScrollAt = event.timeStamp
+
+        return
+      }
 
       event.preventDefault()
 
@@ -2155,7 +2489,73 @@ export default {
     scrollIntoDocument (item) {
       const ref = this.documentRefs.find((e) => e.document.uuid === item.attachment_uuid)
 
-      ref.$el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      ref?.$el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    },
+    postNativeEvent (name, detail, dismiss = false) {
+      if (this.nativePlatform) {
+        window.webkit?.messageHandlers?.modal?.postMessage({ action: 'dispatch', name, detail: JSON.stringify(detail), dismiss: dismiss ? 'true' : 'false' })
+      }
+    },
+    onDrawerScrollTo (item) {
+      if (this.nativeView) {
+        this.postNativeEvent('template-builder:scroll-to', { attachment_uuid: item.attachment_uuid }, true)
+      } else {
+        this.isDocumentsDrawerOpen = false
+        this.scrollIntoDocument(item)
+      }
+    },
+    onDrawerSetDraw ({ field, option }) {
+      if (this.nativeView) {
+        this.postNativeEvent('template-builder:draw-field', { uuid: field.uuid, option }, true)
+      } else {
+        this.isFieldsDrawerOpen = false
+        this.drawField = field
+        this.drawOption = option
+      }
+    },
+    onDrawerSetDrawType (type) {
+      if (this.nativeView) {
+        this.postNativeEvent('template-builder:draw-field', { type }, true)
+      } else {
+        this.isFieldsDrawerOpen = false
+        this.startFieldDraw({ type })
+      }
+    },
+    onDrawerSelectSubmitter (submitter) {
+      this.selectedSubmitter = submitter
+
+      if (this.nativeView) {
+        this.$nextTick(() => this.postNativeEvent('template-builder:select-submitter', { uuid: submitter.uuid }))
+      }
+    },
+    onDrawerSetDrawCustomField (field) {
+      if (this.nativeView) {
+        this.postNativeEvent('template-builder:draw-field', { custom_field_uuid: field.uuid }, true)
+      } else {
+        this.isFieldsDrawerOpen = false
+        this.drawCustomField = field
+        this.showDrawField = true
+      }
+    },
+    onDrawerScrollToArea (area) {
+      if (this.nativeView) {
+        const field = this.template.fields.find((f) => (f.areas || []).includes(area))
+
+        this.postNativeEvent('template-builder:select-field', { uuid: field?.uuid, attachment_uuid: area.attachment_uuid, page: area.page, x: area.x, y: area.y }, true)
+      } else {
+        this.isFieldsDrawerOpen = false
+        this.scrollToArea(area)
+      }
+    },
+    syncNative () {
+      const { schema, documents, fields, submitters } = this.template
+      const detail = JSON.stringify({ schema, documents, fields, submitters, pendingFieldAttachmentUuids: this.pendingFieldAttachmentUuids })
+
+      if (this.nativeView) {
+        window.webkit?.messageHandlers?.modal?.postMessage({ action: 'dispatch', name: 'template-builder:sync', detail, dismiss: 'false' })
+      } else {
+        window.webkit?.messageHandlers?.native?.postMessage({ type: 'drawer', op: 'sync', detail })
+      }
     },
     clearDrawField () {
       this.drawField = null
@@ -2731,6 +3131,10 @@ export default {
         return this.dropCustomField(area)
       }
 
+      if (!this.fieldsDragFieldRef.value && this.isVerificationFieldAdded(this.dragField.type)) {
+        return
+      }
+
       const field = this.fieldsDragFieldRef.value || {
         name: '',
         uuid: v4(),
@@ -3091,6 +3495,10 @@ export default {
           })
         }
       })
+
+      if (this.nativeView && this.pendingFieldAttachmentUuids.length) {
+        this.syncNative()
+      }
     },
     updateName (value) {
       this.template.name = value
@@ -3540,6 +3948,10 @@ export default {
       }
 
       this.pushUndo()
+
+      if (this.nativePlatform) {
+        this.syncNative()
+      }
 
       if (!this.autosave && !force) {
         return Promise.resolve({})

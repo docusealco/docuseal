@@ -1,7 +1,7 @@
 <template>
   <div
     class="relative select-none mb-4 before:border before:rounded before:top-0 before:bottom-0 before:left-0 before:right-0 before:absolute"
-    :class="{ 'cursor-crosshair': allowDraw && editable && !isSelectMode, 'touch-none': !!drawField }"
+    :class="{ 'cursor-crosshair': allowDraw && editable && !isSelectMode, 'touch-none': !!(drawField || drawCustomField) }"
     style="container-type: size"
     :style="{ aspectRatio: `${width} / ${height}`}"
   >
@@ -115,11 +115,11 @@
       />
     </div>
     <div
-      v-show="resizeDirection || isDrag || showMask || (drawField && isMobile) || fieldsDragFieldRef.value || customDragFieldRef?.value || selectionRect"
+      v-show="resizeDirection || isDrag || showMask || ((drawField || drawCustomField) && isMobile) || fieldsDragFieldRef.value || customDragFieldRef?.value || selectionRect"
       id="mask"
       ref="mask"
       class="top-0 bottom-0 left-0 right-0 absolute"
-      :class="{ 'z-10': !isMobile, 'cursor-grab': isDrag, 'cursor-nwse-resize': drawField && !isSelectMode, [resizeDirectionClasses[resizeDirection]]: !!resizeDirectionClasses }"
+      :class="{ 'z-10': !isMobile, 'cursor-grab': isDrag, 'cursor-nwse-resize': (drawField || drawCustomField) && !isSelectMode, [resizeDirectionClasses[resizeDirection]]: !!resizeDirectionClasses }"
       @pointermove="onPointermove"
       @pointerdown="onStartDraw"
       @contextmenu="openContextMenu"

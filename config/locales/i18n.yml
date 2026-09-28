@@ -261,6 +261,9 @@ en: &en
   should_be_a_valid_url: should be a valid URL
   your_account_will_be_permanently_deleted_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Your account will be permanently deleted within 2 months. Please contact us if you want to keep your account.
   test_mode: Test mode
+  exit_test_mode: Exit test mode
+  enter_test_mode: Enter test mode
+  sort_by: Sort by
   copy: Copy
   copied: Copied
   rotate: Rotate
@@ -411,6 +414,7 @@ en: &en
   powered_by: Powered by
   qr_code: QR Code
   print: Print
+  scan: Scan
   scan_the_qr_code_above_with_your_phone_camera_to_open_and_sign_this_document: Scan the QR code above with your phone camera to open and sign this document.
   count_documents_signed_with_html: '<b>%{count}</b> documents signed with'
   storage: Storage
@@ -480,6 +484,8 @@ en: &en
   document_templates_html: <span class="hidden lg:inline">Document</span> Templates
   archived: Archived
   search: Search
+  no_results: No Results
+  folders: Folders
   submissions_not_found: Submissions not Found
   create: Create
   view_archived: View Archived
@@ -502,7 +508,7 @@ en: &en
   upload_new_document: Upload New Document
   uploading: Uploading
   expired: Expired
-  sign_now: Sign now
+  sign_now: Sign Now
   archive: Archive
   archiving: Archiving
   restore: Restore
@@ -521,8 +527,12 @@ en: &en
   export: Export
   there_are_no_submissions: There are no Submissions
   send_an_invitation_to_fill_and_complete_the_form: Send an invitation to fill and complete the form
+  send: Send
   send_to_recipients: Send to Recipients
   sign_it_yourself: Sign it Yourself
+  sign_yourself: Sign Yourself
+  revisions: Revisions
+  no_revisions_yet: No revisions yet
   api_and_embedding: API and Embedding
   template_id: Template ID
   embedding_url: Embedding URL
@@ -767,6 +777,7 @@ en: &en
   submitter_cannot_be_updated: Submitter cannot be updated.
   at_least_one_field_must_be_filled: At least one field must be filled.
   archived_users: Archived Users
+  archived_submissions: Archived Submissions
   embedding_users: Embedding Users
   view_embedding_users: View Embedding Users
   key: Key
@@ -818,10 +829,13 @@ en: &en
   overdue_payment: Overdue Payment
   your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Your Pro Plan has been suspended due to unpaid invoices. You can update your payment details to settle the invoice and continue using DocuSeal or cancel your subscription.
   manage_subscription: Manage Subscription
+  docuseal_version_security_release_is_available: "DocuSeal v%{version} security release is available."
+  click_here_to_view_the_instructions_and_update_your_app_html: '<a href="%{url}" class="link" target="_blank" rel="noopener noreferrer nofollow">Click here</a> to view the instructions and update your app.'
   submission_created_by_email_html: '<b>Submission created</b> by %{email}'
   submission_created_by_email_via_source_html: '<b>Submission created</b> by %{email} via %{source}'
   submission_created_via_source_html: '<b>Submission created</b> via %{source}'
   pro_user_seats_used: Pro user seats used
+  manage: Manage
   manage_plan: Manage plan
   this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: This submission has multiple signers, which prevents the use of a sharing link as it's unclear which signer is responsible for specific fields. To resolve this, follow this <a href="https://www.docuseal.com/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">guide</a> to define the default signer details.
   welcome_to_docuseal: Welcome to DocuSeal
@@ -922,6 +936,9 @@ en: &en
   connect_google_drive: Connect Google Drive
   google_drive_has_been_connected: Google Drive has been connected
   unable_to_identify_reset_your_password_to_sign_in: Unable to identify. Reset your password to sign in.
+  use_sso_to_sign_in: Use SAML SSO app to sign in.
+  contact_your_admin_to_invite_you: Contact your administrator to invite you to the team.
+  too_many_sign_ups: Too many sign ups. Try again later.
   desktop: Desktop
   mobile: Mobile
   tablet: Tablet
@@ -1000,6 +1017,15 @@ en: &en
   phone_2fa_verification_text_message: Phone 2FA verification text message.
   notification_email_sent_to_the_sender_user_and_bcc_addresses_once_the_submission_is_completed_by_all_parties: Notification email sent to the sender user and BCC addresses once the submission is completed by all parties.
   completed_documents_copy_email_sent_to_recipients_upon_completion_containing_their_documents: Completed documents copy email sent to recipients upon completion containing their documents.
+  fields: Fields
+  more: More
+  ok: OK
+  failed_to_download_files: Failed to download files
+  failed_to_upload_files: Failed to upload files
+  failed_to_save_the_scan: Failed to save the scan
+  failed_to_scan_the_document: Failed to scan the document
+  document_scanning_is_not_available_on_this_device: Document scanning is not available on this device
+  click_to_upload: Click to upload
   devise:
     confirmations:
       confirmed: Your email address has been successfully confirmed.
@@ -1141,6 +1167,7 @@ en: &en
       detailed: "%B %-d, %Y at %-I:%M:%S %p"
 
 es: &es
+  click_to_upload: Haz clic para cargar
   knowledge_based_authentication: Autenticación basada en el conocimiento
   kba_field: KBA
   passed: Aprobado
@@ -1384,6 +1411,9 @@ es: &es
   should_be_a_valid_url: debe ser una URL válida
   your_account_will_be_permanently_deleted_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Tu solicitud de eliminación de cuenta se procesará en un plazo de 2 meses. Por favor contáctanos si deseas mantener tu cuenta.
   test_mode: Modo de prueba
+  exit_test_mode: Salir del modo de prueba
+  enter_test_mode: Entrar en modo de prueba
+  sort_by: Ordenar por
   copy: Copiar
   copied: Copiado
   rotate: Rotar
@@ -1541,6 +1571,7 @@ es: &es
   powered_by: Desarrollado por
   qr_code: Código QR
   print: Imprimir
+  scan: Escanear
   scan_the_qr_code_above_with_your_phone_camera_to_open_and_sign_this_document: Escanea el código QR de arriba con la cámara de tu teléfono para abrir y firmar este documento.
   count_documents_signed_with_html: '<b>%{count}</b> documentos firmados con'
   storage: Almacenamiento
@@ -1610,6 +1641,8 @@ es: &es
   document_templates_html: Plantillas <span class="hidden lg:inline">de documento</span>
   archived: Archivado
   search: Buscar
+  no_results: Sin resultados
+  folders: Carpetas
   submissions_not_found: Envíos no encontrados
   create: Crear
   view_archived: Ver Archivados
@@ -1651,8 +1684,12 @@ es: &es
   export: Exportar
   there_are_no_submissions: No hay envíos
   send_an_invitation_to_fill_and_complete_the_form: Enviar una invitación para completar el formulario
+  send: Enviar
   send_to_recipients: Enviar a los destinatarios
   sign_it_yourself: Fírmalo tú mismo
+  sign_yourself: Firma tú mismo
+  revisions: Revisiones
+  no_revisions_yet: Aún no hay revisiones
   api_and_embedding: API e Integración
   template_id: ID de plantilla
   embedding_url: URL de integración
@@ -1894,6 +1931,7 @@ es: &es
   submitter_cannot_be_updated: No se puede editar el destinatario.
   at_least_one_field_must_be_filled: Al menos un campo debe estar completo.
   archived_users: Usuarios Archivados
+  archived_submissions: Envíos Archivados
   embedding_users: Usuarios integrados
   view_embedding_users: Ver usuarios integrados
   key: Clave
@@ -1945,10 +1983,13 @@ es: &es
   overdue_payment: Pago Atrasado
   your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Tu plan Pro ha sido suspendido debido a facturas impagas. Puedes actualizar tus datos de pago para liquidar la factura y seguir usando DocuSeal o cancelar tu suscripción.
   manage_subscription: Gestionar Suscripción
+  docuseal_version_security_release_is_available: "La versión de seguridad DocuSeal v%{version} está disponible."
+  click_here_to_view_the_instructions_and_update_your_app_html: '<a href="%{url}" class="link" target="_blank" rel="noopener noreferrer nofollow">Haz clic aquí</a> para ver las instrucciones y actualizar tu aplicación.'
   submission_created_by_email_html: '<b>Envío creado</b> por %{email}'
   submission_created_by_email_via_source_html: '<b>Envío creado</b> por %{email} a través de %{source}'
   submission_created_via_source_html: '<b>Envío creado</b> a través de %{source}'
   pro_user_seats_used: Plazas de usuario Pro en uso
+  manage: Gestionar
   manage_plan: Gestionar plan
   this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: 'Este envío tiene múltiples firmantes, lo que impide el uso de un enlace para compartir, ya que no está claro qué firmante es responsable de los campos específicos. Para resolver esto, sigue esta <a href="https://www.docuseal.com/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">guía</a> para definir los detalles predeterminados del firmante.'
   welcome_to_docuseal: Bienvenido a DocuSeal
@@ -2049,6 +2090,9 @@ es: &es
   connect_google_drive: Conectar Google Drive
   google_drive_has_been_connected: Google Drive se ha conectado
   unable_to_identify_reset_your_password_to_sign_in: No se pudo identificar. Restablece tu contraseña para iniciar sesión.
+  use_sso_to_sign_in: Usa la aplicación SAML SSO para iniciar sesión.
+  contact_your_admin_to_invite_you: Contacta a tu administrador para que te invite al equipo.
+  too_many_sign_ups: Demasiados registros. Inténtalo de nuevo más tarde.
   desktop: Escritorio
   mobile: Móvil
   tablet: Tableta
@@ -2120,6 +2164,14 @@ es: &es
   open_file_from: 'Abrir archivo desde'
   cancel: Cancelar
   open: Abrir
+  fields: Campos
+  more: Más
+  ok: Aceptar
+  failed_to_download_files: No se pudieron descargar los archivos
+  failed_to_upload_files: No se pudieron subir los archivos
+  failed_to_save_the_scan: No se pudo guardar el escaneo
+  failed_to_scan_the_document: No se pudo escanear el documento
+  document_scanning_is_not_available_on_this_device: El escaneo de documentos no está disponible en este dispositivo
   devise:
     confirmations:
       confirmed: Tu dirección de correo electrónico ha sido confirmada correctamente.
@@ -2275,6 +2327,7 @@ es: &es
       detailed: "%-d de %B de %Y a las %-H:%M:%S"
 
 it: &it
+  click_to_upload: Clicca per caricare
   knowledge_based_authentication: Autenticazione basata sulla conoscenza
   kba_field: KBA
   passed: Superato
@@ -2518,6 +2571,9 @@ it: &it
   should_be_a_valid_url: deve essere un URL valido
   your_account_will_be_permanently_deleted_within_2_months_please_contact_us_if_you_want_to_keep_your_account: "La tua richiesta di rimozione dell'account sarà elaborata entro 2 mesi. Contattaci se desideri mantenere il tuo account."
   test_mode: Modalità di test
+  exit_test_mode: Esci dalla modalità di prova
+  enter_test_mode: Entra in modalità di prova
+  sort_by: Ordina per
   copy: Copia
   copied: Copiato
   rotate: Ruota
@@ -2675,6 +2731,7 @@ it: &it
   powered_by: Fornito da
   qr_code: Codice QR
   print: Stampa
+  scan: Scansiona
   scan_the_qr_code_above_with_your_phone_camera_to_open_and_sign_this_document: Scansiona il codice QR qui sopra con la fotocamera del tuo telefono per aprire e firmare questo documento.
   count_documents_signed_with_html: '<b>%{count}</b> documenti firmati con'
   storage: Archiviazione
@@ -2744,6 +2801,8 @@ it: &it
   document_templates_html: Modelli <span class="hidden lg:inline">di documento</span>
   archived: Archiviato
   search: Cerca
+  no_results: Nessun risultato
+  folders: Cartelle
   submissions_not_found: Invii non trovati
   create: Crea
   view_archived: Visualizza Archiviati
@@ -2785,8 +2844,12 @@ it: &it
   export: Esporta
   there_are_no_submissions: Non ci sono invii
   send_an_invitation_to_fill_and_complete_the_form: Invia un invito per compilare e completare il modulo
+  send: Invia
   send_to_recipients: Invia ai destinatari
   sign_it_yourself: Firmalo tu stesso
+  sign_yourself: Firma tu stesso
+  revisions: Revisioni
+  no_revisions_yet: Nessuna revisione ancora
   api_and_embedding: API e Incorporazione
   template_id: ID modello
   embedding_url: URL di incorporazione
@@ -3028,6 +3091,7 @@ it: &it
   submitter_cannot_be_updated: Non è possibile modificare il destinatario.
   at_least_one_field_must_be_filled: Almeno un campo deve essere compilato.
   archived_users: Utenti Archiviati
+  archived_submissions: Invii Archiviati
   embedding_users: Utenti integrati
   view_embedding_users: Vedi utenti integrati
   key: Chiave
@@ -3079,10 +3143,13 @@ it: &it
   overdue_payment: Pagamento Scaduto
   your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Il tuo piano Pro è stato sospeso a causa di fatture non pagate. Puoi aggiornare i tuoi dati di pagamento per saldare la fattura e continuare a utilizzare DocuSeal o annullare l'abbonamento.
   manage_subscription: Gestisci Abbonamento
+  docuseal_version_security_release_is_available: "È disponibile il rilascio di sicurezza DocuSeal v%{version}."
+  click_here_to_view_the_instructions_and_update_your_app_html: '<a href="%{url}" class="link" target="_blank" rel="noopener noreferrer nofollow">Fai clic qui</a> per vedere le istruzioni e aggiornare la tua app.'
   submission_created_by_email_html: '<b>Invio creato</b> da %{email}'
   submission_created_by_email_via_source_html: '<b>Invio creato</b> da %{email} tramite %{source}'
   submission_created_via_source_html: '<b>Invio creato</b> tramite %{source}'
   pro_user_seats_used: Posti utente Pro in uso
+  manage: Gestisci
   manage_plan: Gestisci piano
   this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: "Questa sottomissione ha più firmatari, il che impedisce l'uso di un link di condivisione poiché non è chiaro quale firmatario sia responsabile di specifici campi. Per risolvere questo problema, segui questa <a href=\"https://www.docuseal.com/resources/pre-filling-recipients\" class=\"link font-bold\" rel=\"noopener noreferrer nofollow\" target=\"_blank\">guida</a> per definire i dettagli predefiniti del firmatario."
   welcome_to_docuseal: Benvenuto in DocuSeal
@@ -3183,6 +3250,9 @@ it: &it
   connect_google_drive: Connetti Google Drive
   google_drive_has_been_connected: Google Drive è stato connesso
   unable_to_identify_reset_your_password_to_sign_in: Impossibile identificare. Reimposta la password per accedere.
+  use_sso_to_sign_in: Usa l'app SAML SSO per accedere.
+  contact_your_admin_to_invite_you: Contatta il tuo amministratore per essere invitato nel team.
+  too_many_sign_ups: Troppe registrazioni. Riprova più tardi.
   desktop: Desktop
   mobile: Mobile
   tablet: Tablet
@@ -3254,6 +3324,14 @@ it: &it
   open_file_from: 'Aprire file da'
   cancel: Annulla
   open: Apri
+  fields: Campi
+  more: Altro
+  ok: OK
+  failed_to_download_files: Impossibile scaricare i file
+  failed_to_upload_files: Impossibile caricare i file
+  failed_to_save_the_scan: Impossibile salvare la scansione
+  failed_to_scan_the_document: Impossibile scansionare il documento
+  document_scanning_is_not_available_on_this_device: La scansione dei documenti non è disponibile su questo dispositivo
   devise:
     confirmations:
       confirmed: Il tuo indirizzo email è stato confermato con successo.
@@ -3395,6 +3473,7 @@ it: &it
       detailed: "%-d %B %Y alle ore %H:%M:%S"
 
 fr: &fr
+  click_to_upload: Cliquez pour téléverser
   knowledge_based_authentication: Authentification basée sur la connaissance
   kba_field: KBA
   passed: Réussi
@@ -3638,6 +3717,9 @@ fr: &fr
   should_be_a_valid_url: doit être une URL valide
   your_account_will_be_permanently_deleted_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Votre demande de suppression de compte sera traitée sous 2 mois. Veuillez nous contacter si vous souhaitez conserver votre compte.
   test_mode: Mode test
+  exit_test_mode: Quitter le mode test
+  enter_test_mode: Passer en mode test
+  sort_by: Trier par
   copy: Copier
   copied: Copié
   rotate: Pivoter
@@ -3795,6 +3877,7 @@ fr: &fr
   powered_by: Propulsé par
   qr_code: Code QR
   print: Imprimer
+  scan: Scanner
   scan_the_qr_code_above_with_your_phone_camera_to_open_and_sign_this_document: Scannez le code QR ci-dessus avec l'appareil photo de votre téléphone pour ouvrir et signer ce document.
   count_documents_signed_with_html: "<b>%{count}</b> documents signés avec"
   storage: Stockage
@@ -3864,6 +3947,8 @@ fr: &fr
   document_templates_html: Modèles <span class="hidden lg:inline">de documents</span>
   archived: Archivé
   search: Rechercher
+  no_results: Aucun résultat
+  folders: Dossiers
   submissions_not_found: Soumissions introuvables
   create: Créer
   view_archived: Voir les archivés
@@ -3905,8 +3990,12 @@ fr: &fr
   export: Exporter
   there_are_no_submissions: Il n’y a aucune soumission
   send_an_invitation_to_fill_and_complete_the_form: Envoyer une invitation pour remplir et terminer le formulaire
+  send: Envoyer
   send_to_recipients: Envoyer aux destinataires
   sign_it_yourself: Signer vous‑même
+  sign_yourself: Signer vous-même
+  revisions: Révisions
+  no_revisions_yet: Aucune révision pour le moment
   api_and_embedding: API et Embedding
   template_id: ID du modèle
   embedding_url: URL d’embedding
@@ -4148,6 +4237,7 @@ fr: &fr
   submitter_cannot_be_updated: Impossible de modifier le destinataire.
   at_least_one_field_must_be_filled: Au moins un champ doit être rempli.
   archived_users: Utilisateurs archivés
+  archived_submissions: Soumissions archivées
   embedding_users: Utilisateurs intégrés
   view_embedding_users: Voir les utilisateurs intégrés
   key: Clé
@@ -4199,10 +4289,13 @@ fr: &fr
   overdue_payment: Paiement en retard
   your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: "Votre offre Pro a été suspendue en raison de factures impayées.\nVous pouvez mettre à jour vos informations de paiement pour régler la facture et continuer à utiliser DocuSeal, ou annuler votre abonnement."
   manage_subscription: Gérer l’abonnement
+  docuseal_version_security_release_is_available: "La mise à jour de sécurité DocuSeal v%{version} est disponible."
+  click_here_to_view_the_instructions_and_update_your_app_html: '<a href="%{url}" class="link" target="_blank" rel="noopener noreferrer nofollow">Cliquez ici</a> pour voir les instructions et mettre à jour votre application.'
   submission_created_by_email_html: "<b>Soumission créée</b> par %{email}"
   submission_created_by_email_via_source_html: "<b>Soumission créée</b> par %{email} via %{source}"
   submission_created_via_source_html: "<b>Soumission créée</b> via %{source}"
   pro_user_seats_used: Places d’utilisateurs Pro utilisées
+  manage: Gérer
   manage_plan: Gérer la formule
   this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: Cette soumission comporte plusieurs signataires, ce qui empêche l’utilisation d’un lien de partage car il n’est pas clair quel signataire est responsable de quels champs. Pour résoudre cela, suivez ce <a href="https://www.docuseal.com/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">guide</a> pour définir les détails du signataire par défaut.
   welcome_to_docuseal: Bienvenue sur DocuSeal
@@ -4299,6 +4392,9 @@ fr: &fr
   connect_google_drive: Connecter Google Drive
   google_drive_has_been_connected: Google Drive a été connecté
   unable_to_identify_reset_your_password_to_sign_in: Impossible d’identifier. Réinitialisez votre mot de passe pour vous connecter.
+  use_sso_to_sign_in: Utilisez l'application SAML SSO pour vous connecter.
+  contact_your_admin_to_invite_you: Contactez votre administrateur pour être invité dans l'équipe.
+  too_many_sign_ups: Trop d'inscriptions. Réessayez plus tard.
   desktop: Bureau
   mobile: Mobile
   tablet: Tablette
@@ -4371,6 +4467,14 @@ fr: &fr
   open_file_from: 'Ouvrir le fichier depuis'
   cancel: Annuler
   open: Ouvrir
+  fields: Champs
+  more: Plus
+  ok: OK
+  failed_to_download_files: Impossible de télécharger les fichiers
+  failed_to_upload_files: Impossible de téléverser les fichiers
+  failed_to_save_the_scan: Impossible d’enregistrer la numérisation
+  failed_to_scan_the_document: Impossible de numériser le document
+  document_scanning_is_not_available_on_this_device: La numérisation de documents n’est pas disponible sur cet appareil
   devise:
     confirmations:
       confirmed: Votre adresse e-mail a été confirmée avec succès.
@@ -4525,6 +4629,7 @@ fr: &fr
       detailed: "%-d %B %Y à %H:%M:%S"
 
 pt: &pt
+  click_to_upload: Clique para fazer o upload
   knowledge_based_authentication: Autenticação baseada em conhecimento
   kba_field: KBA
   passed: Aprovado
@@ -4768,6 +4873,9 @@ pt: &pt
   should_be_a_valid_url: deve ser um URL válido
   your_account_will_be_permanently_deleted_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Seu pedido de remoção da conta será processado em até 2 meses. Entre em contato conosco se você quiser manter sua conta.
   test_mode: Modo de teste
+  exit_test_mode: Sair do modo de teste
+  enter_test_mode: Entrar no modo de teste
+  sort_by: Ordenar por
   copy: Copiar
   copied: Copiado
   rotate: Girar
@@ -4925,6 +5033,7 @@ pt: &pt
   powered_by: Desenvolvido por
   qr_code: Código QR
   print: Imprimir
+  scan: Digitalizar
   scan_the_qr_code_above_with_your_phone_camera_to_open_and_sign_this_document: Escaneie o código QR acima com a câmera do seu telefone para abrir e assinar este documento.
   count_documents_signed_with_html: '<b>%{count}</b> documentos assinados com'
   storage: Armazenamento
@@ -4994,6 +5103,8 @@ pt: &pt
   document_templates_html: Modelos <span class="hidden lg:inline">de documento</span>
   archived: Arquivado
   search: Buscar
+  no_results: Sem resultados
+  folders: Pastas
   submissions_not_found: Submissões não encontradas
   create: Criar
   view_archived: Ver arquivados
@@ -5035,8 +5146,12 @@ pt: &pt
   export: Exportar
   there_are_no_submissions: Não há submissões
   send_an_invitation_to_fill_and_complete_the_form: Enviar um convite para preencher e concluir o formulário
+  send: Enviar
   send_to_recipients: Enviar para destinatários
   sign_it_yourself: Assine você mesmo
+  sign_yourself: Assine você mesmo
+  revisions: Revisões
+  no_revisions_yet: Nenhuma revisão ainda
   api_and_embedding: API e Incorporação
   template_id: ID do modelo
   embedding_url: URL de incorporação
@@ -5278,6 +5393,7 @@ pt: &pt
   submitter_cannot_be_updated: Não é possível editar o destinatário.
   at_least_one_field_must_be_filled: Pelo menos um campo deve ser preenchido.
   archived_users: Usuários Arquivados
+  archived_submissions: Submissões Arquivadas
   embedding_users: Usuários integrados
   view_embedding_users: Ver usuários integrados
   key: Chave
@@ -5329,10 +5445,13 @@ pt: &pt
   overdue_payment: Pagamento Atrasado
   your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Seu plano Pro foi suspenso devido a faturas não pagas. Você pode atualizar seus dados de pagamento para quitar a fatura e continuar usando o DocuSeal ou cancelar sua assinatura.
   manage_subscription: Gerenciar Assinatura
+  docuseal_version_security_release_is_available: "A versão de segurança DocuSeal v%{version} está disponível."
+  click_here_to_view_the_instructions_and_update_your_app_html: '<a href="%{url}" class="link" target="_blank" rel="noopener noreferrer nofollow">Clique aqui</a> para ver as instruções e atualizar seu aplicativo.'
   submission_created_by_email_html: '<b>Envio criado</b> por %{email}'
   submission_created_by_email_via_source_html: '<b>Envio criado</b> por %{email} via %{source}'
   submission_created_via_source_html: '<b>Envio criado</b> via %{source}'
   pro_user_seats_used: Lugares de usuário Pro em uso
+  manage: Gerenciar
   manage_plan: Gerenciar plano
   this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: 'Este envio tem vários signatários, o que impede o uso de um link de compartilhamento, pois não está claro qual signatário é responsável por quais campos. Para resolver isso, siga este <a href="https://www.docuseal.com/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">guia</a> para definir os detalhes padrão do signatário.'
   welcome_to_docuseal: Bem-vindo ao DocuSeal
@@ -5433,6 +5552,9 @@ pt: &pt
   connect_google_drive: Conectar Google Drive
   google_drive_has_been_connected: O Google Drive foi conectado
   unable_to_identify_reset_your_password_to_sign_in: Não foi possível identificar. Redefina sua senha para fazer login.
+  use_sso_to_sign_in: Use o aplicativo SAML SSO para entrar.
+  contact_your_admin_to_invite_you: Entre em contato com o administrador para ser convidado para a equipe.
+  too_many_sign_ups: Muitos cadastros. Tente novamente mais tarde.
   desktop: Computador
   mobile: Celular
   tablet: Tablet
@@ -5504,6 +5626,14 @@ pt: &pt
   open_file_from: 'Abrir arquivo de'
   cancel: Cancelar
   open: Abrir
+  fields: Campos
+  more: Mais
+  ok: OK
+  failed_to_download_files: Não foi possível baixar os arquivos
+  failed_to_upload_files: Não foi possível enviar os arquivos
+  failed_to_save_the_scan: Não foi possível salvar a digitalização
+  failed_to_scan_the_document: Não foi possível digitalizar o documento
+  document_scanning_is_not_available_on_this_device: A digitalização de documentos não está disponível neste dispositivo
   devise:
     confirmations:
       confirmed: Seu endereço de e-mail foi confirmado com sucesso.
@@ -5658,6 +5788,7 @@ pt: &pt
       detailed: "%-d de %B de %Y às %H:%M:%S"
 
 de: &de
+  click_to_upload: Zum Hochladen klicken
   knowledge_based_authentication: Wissensbasierte Authentifizierung
   kba_field: KBA
   passed: Bestanden
@@ -5901,6 +6032,9 @@ de: &de
   should_be_a_valid_url: sollte eine gültige URL sein
   your_account_will_be_permanently_deleted_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Ihre Anfrage zur Kontolöschung wird innerhalb von 2 Monaten bearbeitet. Bitte kontaktieren Sie uns, wenn Sie Ihr Konto behalten möchten.
   test_mode: Testmodus
+  exit_test_mode: Testmodus verlassen
+  enter_test_mode: Testmodus starten
+  sort_by: Sortieren nach
   copy: Kopieren
   copied: Kopiert
   rotate: Drehen
@@ -6058,6 +6192,7 @@ de: &de
   powered_by: Bereitgestellt von
   qr_code: QR-Code
   print: Drucken
+  scan: Scannen
   scan_the_qr_code_above_with_your_phone_camera_to_open_and_sign_this_document: Scannen Sie den QR-Code oben mit Ihrer Handykamera, um dieses Dokument zu öffnen und zu unterzeichnen.
   count_documents_signed_with_html: '<b>%{count}</b> Dokumente signiert mit'
   storage: Speicher
@@ -6127,6 +6262,8 @@ de: &de
   document_templates_html: <span class="lg:hidden">Vorlagen</span><span class="hidden lg:inline">Dokumentvorlagen</span>
   archived: Archiviert
   search: Suchen
+  no_results: Keine Ergebnisse
+  folders: Ordner
   submissions_not_found: Einreichungen nicht gefunden
   create: Erstellen
   view_archived: Archivierte anzeigen
@@ -6168,8 +6305,12 @@ de: &de
   export: Exportieren
   there_are_no_submissions: Es gibt keine Einreichungen
   send_an_invitation_to_fill_and_complete_the_form: Einladung zum Ausfüllen und Abschließen des Formulars senden
+  send: Senden
   send_to_recipients: An Empfänger senden
   sign_it_yourself: Selbst unterschreiben
+  sign_yourself: Selbst unterschreiben
+  revisions: Revisionen
+  no_revisions_yet: Noch keine Revisionen
   api_and_embedding: API und Einbettung
   template_id: Vorlagen-ID
   embedding_url: Einbettungs-URL
@@ -6411,6 +6552,7 @@ de: &de
   submitter_cannot_be_updated: Der Empfänger kann nicht bearbeitet werden.
   at_least_one_field_must_be_filled: Mindestens ein Feld muss ausgefüllt werden.
   archived_users: Archivierte Benutzer
+  archived_submissions: Archivierte Einreichungen
   embedding_users: Integrationsbenutzer
   view_embedding_users: Integrationsbenutzer anzeigen
   key: Schlüssel
@@ -6462,10 +6604,13 @@ de: &de
   overdue_payment: Überfällige Zahlung
   your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Ihr Pro-Plan wurde aufgrund unbezahlter Rechnungen ausgesetzt. Sie können Ihre Zahlungsdaten aktualisieren, um die Rechnung zu begleichen und DocuSeal weiterhin zu nutzen, oder Ihr Abonnement kündigen.
   manage_subscription: Abonnement verwalten
+  docuseal_version_security_release_is_available: "Das Sicherheitsupdate DocuSeal v%{version} ist verfügbar."
+  click_here_to_view_the_instructions_and_update_your_app_html: '<a href="%{url}" class="link" target="_blank" rel="noopener noreferrer nofollow">Klicken Sie hier</a>, um die Anleitung anzuzeigen und Ihre App zu aktualisieren.'
   submission_created_by_email_html: '<b>Einreichung erstellt</b> von %{email}'
   submission_created_by_email_via_source_html: '<b>Einreichung erstellt</b> von %{email} über %{source}'
   submission_created_via_source_html: '<b>Einreichung erstellt</b> über %{source}'
   pro_user_seats_used: Verwendete Pro-Benutzerplätze
+  manage: Verwalten
   manage_plan: Plan verwalten
   this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: 'Diese Einreichung hat mehrere Unterzeichner, was die Nutzung eines Freigabelinks verhindert, da unklar ist, welcher Unterzeichner für welche Felder verantwortlich ist. Um dies zu lösen, folgen Sie dieser <a href="https://www.docuseal.com/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">Anleitung</a>, um die Standarddetails des Unterzeichners festzulegen.'
   welcome_to_docuseal: Willkommen bei DocuSeal
@@ -6566,6 +6711,9 @@ de: &de
   connect_google_drive: Google Drive verbinden
   google_drive_has_been_connected: Google Drive wurde verbunden
   unable_to_identify_reset_your_password_to_sign_in: Identifizierung nicht möglich. Setzen Sie Ihr Passwort zurück, um sich anzumelden.
+  use_sso_to_sign_in: Verwenden Sie die SAML-SSO-App zum Anmelden.
+  contact_your_admin_to_invite_you: Wenden Sie sich an Ihren Administrator, um ins Team eingeladen zu werden.
+  too_many_sign_ups: Zu viele Registrierungen. Versuchen Sie es später erneut.
   desktop: Desktop
   mobile: Mobil
   tablet: Tablet
@@ -6637,6 +6785,14 @@ de: &de
   open_file_from: 'Datei öffnen von'
   cancel: Abbrechen
   open: Öffnen
+  fields: Felder
+  more: Mehr
+  ok: OK
+  failed_to_download_files: Dateien konnten nicht heruntergeladen werden
+  failed_to_upload_files: Dateien konnten nicht hochgeladen werden
+  failed_to_save_the_scan: Scan konnte nicht gespeichert werden
+  failed_to_scan_the_document: Dokument konnte nicht gescannt werden
+  document_scanning_is_not_available_on_this_device: Das Scannen von Dokumenten ist auf diesem Gerät nicht verfügbar
   devise:
     confirmations:
       confirmed: Ihre E-Mail-Adresse wurde erfolgreich bestätigt.
@@ -7318,6 +7474,7 @@ he:
   too_many_requests_try_again_later: יותר מדי בקשות. נסה שוב מאוחר יותר.
 
 nl: &nl
+  click_to_upload: Klik om te uploaden
   knowledge_based_authentication: Kennisgebaseerde authenticatie
   kba_field: KBA
   passed: Geslaagd
@@ -7562,6 +7719,9 @@ nl: &nl
   should_be_a_valid_url: moet een geldige URL zijn
   your_account_will_be_permanently_deleted_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Uw account wordt binnen 2 maanden permanent verwijderd. Neem contact met ons op als u uw account wilt behouden.
   test_mode: Testmodus
+  exit_test_mode: Testmodus verlaten
+  enter_test_mode: Testmodus openen
+  sort_by: Sorteren op
   copy: Kopiëren
   copied: Gekopieerd
   rotate: Draaien
@@ -7719,6 +7879,7 @@ nl: &nl
   powered_by: Aangedreven door
   qr_code: QR-code
   print: Afdrukken
+  scan: Scannen
   scan_the_qr_code_above_with_your_phone_camera_to_open_and_sign_this_document: Scan de bovenstaande QR-code met je telefooncamera om dit document te openen en te ondertekenen.
   count_documents_signed_with_html: "<b>%{count}</b> documenten ondertekend met"
   storage: Opslag
@@ -7788,6 +7949,8 @@ nl: &nl
   document_templates_html: <span class="lg:hidden">Sjablonen</span><span class="hidden lg:inline">Documentsjablonen</span>
   archived: Gearchiveerd
   search: Zoeken
+  no_results: Geen resultaten
+  folders: Mappen
   submissions_not_found: Geen inzendingen gevonden
   create: Aanmaken
   view_archived: Archief bekijken
@@ -7829,8 +7992,12 @@ nl: &nl
   export: Exporteren
   there_are_no_submissions: Er zijn geen inzendingen
   send_an_invitation_to_fill_and_complete_the_form: Stuur een uitnodiging om het formulier in te vullen en te voltooien
+  send: Verzenden
   send_to_recipients: Verzenden naar ontvangers
   sign_it_yourself: Zelf ondertekenen
+  sign_yourself: Zelf ondertekenen
+  revisions: Revisies
+  no_revisions_yet: Nog geen revisies
   api_and_embedding: API en insluiten
   template_id: Sjabloon-ID
   embedding_url: Insluitings-URL
@@ -8072,6 +8239,7 @@ nl: &nl
   submitter_cannot_be_updated: Ontvanger kan niet worden bewerkt.
   at_least_one_field_must_be_filled: Er moet minstens één veld worden ingevuld.
   archived_users: Gearchiveerde gebruikers
+  archived_submissions: Gearchiveerde inzendingen
   embedding_users: Integratiegebruikers
   view_embedding_users: Integratiegebruikers bekijken
   key: Sleutel
@@ -8123,10 +8291,13 @@ nl: &nl
   overdue_payment: Achterstallige betaling
   your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Uw Pro-abonnement is opgeschort vanwege onbetaalde facturen. U kunt uw betaalgegevens bijwerken om de factuur te voldoen en DocuSeal te blijven gebruiken of uw abonnement opzeggen.
   manage_subscription: Abonnement beheren
+  docuseal_version_security_release_is_available: "Beveiligingsupdate DocuSeal v%{version} is beschikbaar."
+  click_here_to_view_the_instructions_and_update_your_app_html: '<a href="%{url}" class="link" target="_blank" rel="noopener noreferrer nofollow">Klik hier</a> om de instructies te bekijken en uw app bij te werken.'
   submission_created_by_email_html: "<b>Inzending aangemaakt</b> door %{email}"
   submission_created_by_email_via_source_html: "<b>Inzending aangemaakt</b> door %{email} via %{source}"
   submission_created_via_source_html: "<b>Inzending aangemaakt</b> via %{source}"
   pro_user_seats_used: Gebruikersplaatsen Pro gebruikt
+  manage: Beheren
   manage_plan: Abonnement beheren
   this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: Deze inzending heeft meerdere ondertekenaars, waardoor het gebruik van een deellink niet mogelijk is omdat onduidelijk is welke ondertekenaar verantwoordelijk is voor specifieke velden. Volg deze <a href="https://www.docuseal.com/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">handleiding</a> om de standaardgegevens van de ondertekenaar te definiëren.
   welcome_to_docuseal: Welkom bij DocuSeal
@@ -8223,6 +8394,9 @@ nl: &nl
   connect_google_drive: Verbind Google Drive
   google_drive_has_been_connected: Google Drive is verbonden
   unable_to_identify_reset_your_password_to_sign_in: Kan niet worden geïdentificeerd. Stel uw wachtwoord opnieuw in om in te loggen.
+  use_sso_to_sign_in: Gebruik de SAML SSO-app om in te loggen.
+  contact_your_admin_to_invite_you: Neem contact op met je beheerder om uitgenodigd te worden voor het team.
+  too_many_sign_ups: Te veel registraties. Probeer het later opnieuw.
   desktop: Desktop
   mobile: Mobiel
   tablet: Tablet
@@ -8294,6 +8468,14 @@ nl: &nl
   open_file_from: 'Bestand openen van'
   cancel: Annuleren
   open: Openen
+  fields: Velden
+  more: Meer
+  ok: OK
+  failed_to_download_files: Bestanden konden niet worden gedownload
+  failed_to_upload_files: Bestanden konden niet worden geüpload
+  failed_to_save_the_scan: Scan kon niet worden opgeslagen
+  failed_to_scan_the_document: Document kon niet worden gescand
+  document_scanning_is_not_available_on_this_device: Documenten scannen is niet beschikbaar op dit apparaat
   devise:
     confirmations:
       confirmed: Uw e-mailadres is succesvol bevestigd.

@@ -185,7 +185,11 @@ module VerifyPdfSignature
   end
 
   def unsigned_changes?(document, io, signed_end)
-    return false if document.trailer_ends.none? { |offset| offset > signed_end }
+    io.seek(signed_end)
+    unsigned_data = io.read.b.strip
+
+    return false if unsigned_data.empty?
+    return true unless unsigned_data.end_with?('%%EOF')
 
     io.seek(0)
 

@@ -1,3 +1,4 @@
+<% content_for(:native_title, t('notifications')) if turbo_native_app? %>
 <div class="flex flex-wrap space-y-4 md:flex-nowrap md:space-y-0">
   <%= render 'shared/settings_nav' %>
   <div class="flex-grow max-w-xl mx-auto">
@@ -21,7 +22,7 @@
       <% end %>
     </div>
     <%= render 'bcc_form', config: @bcc_config %>
-    <% unless can?(:manage, :personalization_restricted) %>
+    <% unless can?(:manage, :personalization_restricted) || (turbo_native_ios? && !can?(:manage, :email_reminders)) %>
       <div class="flex justify-between items-end mb-4 mt-8">
         <h2 class="text-2xl md:text-3xl font-bold">
           <%= t('sign_request_email_reminders') %>
@@ -31,5 +32,5 @@
       <%= render 'reminder_form', config: @reminder_config %>
     <% end %>
   </div>
-  <div class="w-0 md:w-52"></div>
+  <div class="w-0 lg:w-52"></div>
 </div>

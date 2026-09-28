@@ -6,8 +6,24 @@ module Submitters
 
     module_function
 
-    def call(submitter, current_user, request)
-      pass_email_2fa?(submitter, request) && pass_link_2fa?(submitter, current_user, request)
+    def call(submitter, current_user, request, with_order: false)
+      pass_email_2fa?(submitter, request) &&
+        pass_link_2fa?(submitter, current_user, request) &&
+        (!with_order || pass_submitters_order?(submitter))
+    end
+
+    def pass_submitters_order?(submitter)
+      return false unless submitter
+
+      submission = submitter.submission
+
+      return true if submission.submitters_order_random?
+      return true if (submission.template_submitters || submission.template.submitters).size < 2
+      return true if submission.template&.preferences&.dig('submitters_order') != 'preserved' &&
+                     !AccountConfig.exists?(account_id: submitter.account_id,
+                                            key: AccountConfig::ENFORCE_SIGNING_ORDER_KEY, value: true)
+
+      Submitters.current_submitter_order?(submitter)
     end
 
     def pass_email_2fa?(submitter, request)

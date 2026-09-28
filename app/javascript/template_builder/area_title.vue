@@ -1,8 +1,9 @@
 <template>
   <div
     v-if="field?.type && (isSelected || isNameFocus) && !isInMultiSelection"
-    class="absolute bg-white rounded-t border overflow-visible whitespace-nowrap flex z-10 field-area-controls"
+    class="absolute bg-white rounded-t border overflow-visible whitespace-nowrap flex field-area-controls"
     style="top: -25px; height: 25px"
+    :style="{ zIndex: isMobile ? 5 : 10 }"
     @mousedown.stop="$emit('click-title')"
     @pointerdown.stop
   >
@@ -40,7 +41,7 @@
       @blur="onNameBlur"
     >{{ optionIndexText }} {{ (defaultField ? (defaultField.title || field.title || field.name) : field.name) || defaultName }}</span>
     <div
-      v-if="isSettingsFocus || isSelectInput || (isValueInput && field.type !== 'heading') || (isNameFocus && !['checkbox', 'phone'].includes(field.type))"
+      v-if="isShowControls"
       class="flex items-center ml-1.5"
     >
       <input
@@ -74,62 +75,115 @@
         @click.prevent="field.readonly = !(field.readonly ?? true)"
         @mousedown.prevent
       >{{ t('editable') }}</label>
-      <span
-        v-if="field.type !== 'payment' && !isValueInput"
-        class="dropdown dropdown-end field-area-settings-dropdown"
-        @mouseenter="renderDropdown = true"
-        @touchstart="renderDropdown = true"
-      >
-        <label
-          ref="settingsButton"
-          tabindex="0"
-          :title="t('settings')"
-          class="cursor-pointer flex items-center"
-          style="height: 25px"
-          @focus="isSettingsFocus = true"
-          @blur="maybeBlurSettings"
-        >
-          <IconDotsVertical class="w-5 h-5" />
-        </label>
-        <ul
-          v-if="renderDropdown"
-          ref="settingsDropdown"
-          tabindex="0"
-          class="dropdown-content menu menu-xs px-2 pb-2 pt-1 shadow rounded-box w-52 z-10 rounded-t-none"
-          :style="{ backgroundColor: 'white' }"
-          @dragstart.prevent.stop
-          @click="closeDropdown"
-          @focusout="maybeBlurSettings"
-        >
-          <FieldSettings
-            v-if="isMobile"
-            :field="field"
-            :default-field="defaultField"
-            :editable="editable"
-            :background-color="'white'"
-            :with-required="false"
-            :with-areas="false"
-            :with-signature-id="withSignatureId"
-            :with-prefillable="withPrefillable"
-            @click-formula="isShowFormulaModal = true"
-            @click-font="isShowFontModal = true"
-            @click-description="isShowDescriptionModal = true"
-            @add-custom-field="$emit('add-custom-field')"
-            @click-condition="isShowConditionsModal = true"
-            @save="$emit('change')"
-            @scroll-to="[selectedAreasRef.value = [$event], $emit('scroll-to', $event)]"
-          />
-          <div
-            v-else
-            class="whitespace-normal"
-          >
-            The dots menu is retired in favor of the field context menu. Right-click the field to access field settings. Double-click the field to set a default value.
-          </div>
-        </ul>
-      </span>
     </div>
+    <span
+      v-if="isShowSettingsMenu"
+      class="dropdown dropdown-end field-area-settings-dropdown"
+      :class="isMobile ? '-ml-1' : { 'ml-1.5': !isShowControls }"
+      @mouseenter="renderDropdown = true"
+      @touchstart="renderDropdown = true"
+    >
+      <label
+        ref="settingsButton"
+        tabindex="0"
+        :title="t('settings')"
+        class="cursor-pointer flex items-center"
+        :class="{ 'pr-0.5': isMobile }"
+        style="height: 24px"
+        @focus="onSettingsFocus"
+        @blur="maybeBlurSettings"
+      >
+        <IconDotsVertical class="w-5 h-5" />
+      </label>
+      <ul
+        v-if="renderDropdown"
+        ref="settingsDropdown"
+        tabindex="0"
+        class="dropdown-content menu menu-xs px-2 pb-2 pt-1 shadow rounded-box w-52 z-10 rounded-t-none"
+        :style="{ backgroundColor: 'white' }"
+        @dragstart.prevent.stop
+        @click="closeDropdown"
+        @focusout="maybeBlurSettings"
+      >
+        <FieldSettings
+          v-if="isMobile"
+          :field="field"
+          :default-field="defaultField"
+          :editable="editable"
+          :background-color="'white'"
+          :with-required="false"
+          :with-areas="false"
+          :with-signature-id="withSignatureId"
+          :with-prefillable="withPrefillable"
+          @click-formula="openFormulaModal"
+          @click-font="openFontModal"
+          @click-description="openDescriptionModal"
+          @add-custom-field="$emit('add-custom-field')"
+          @click-condition="openConditionsModal"
+          @save="$emit('change')"
+          @scroll-to="[selectedAreasRef.value = [$event], $emit('scroll-to', $event)]"
+        />
+        <div
+          v-else
+          class="whitespace-normal"
+        >
+          The dots menu is retired in favor of the field context menu. Right-click the field to access field settings. Double-click the field to set a default value.
+        </div>
+        <li
+          v-if="isMobile && editable"
+          class="field-settings-remove"
+        >
+          <a
+            href="#"
+            class="text-sm py-1 px-2 text-red-600"
+            @click.prevent="$emit('remove')"
+          >
+            <IconTrashX
+              :width="20"
+              :stroke-width="1.6"
+            />
+            {{ t('remove') }}
+          </a>
+        </li>
+      </ul>
+    </span>
+    <PaymentSettings
+      v-else-if="isMobile && editable && field.type === 'payment'"
+      class="-ml-1"
+      :field="field"
+      :with-force-open="false"
+      :background-color="'white'"
+      :menu-classes="'rounded-t-none pt-1'"
+      @click-condition="openConditionsModal"
+      @click-description="openDescriptionModal"
+      @click-formula="openFormulaModal"
+    >
+      <label
+        tabindex="0"
+        :title="t('settings')"
+        class="cursor-pointer flex items-center pr-0.5"
+        style="height: 24px"
+      >
+        <IconDotsVertical class="w-5 h-5" />
+      </label>
+      <template #menu>
+        <li class="field-settings-remove">
+          <a
+            href="#"
+            class="text-sm py-1 px-2 text-red-600"
+            @click.prevent="$emit('remove')"
+          >
+            <IconTrashX
+              :width="20"
+              :stroke-width="1.6"
+            />
+            {{ t('remove') }}
+          </a>
+        </li>
+      </template>
+    </PaymentSettings>
     <button
-      v-else-if="editable"
+      v-else-if="editable && !isShowControls"
       class="pr-1"
       :title="t('remove')"
       @click.prevent="$emit('remove')"
@@ -195,18 +249,21 @@ import FieldSubmitter from './field_submitter'
 import FieldType from './field_type'
 import Field from './field'
 import FieldSettings from './field_settings'
+import PaymentSettings from './payment_settings'
 import FormulaModal from './formula_modal'
 import FontModal from './font_modal'
 import ConditionsModal from './conditions_modal'
 import DescriptionModal from './description_modal'
-import { IconX, IconDotsVertical } from '@tabler/icons-vue'
+import { IconX, IconDotsVertical, IconTrashX } from '@tabler/icons-vue'
 import { v4 } from 'uuid'
 
 export default {
   name: 'AreaTitle',
   components: {
+    IconTrashX,
     FieldType,
     FieldSettings,
+    PaymentSettings,
     FormulaModal,
     FontModal,
     IconDotsVertical,
@@ -215,7 +272,7 @@ export default {
     FieldSubmitter,
     IconX
   },
-  inject: ['t'],
+  inject: ['t', 'isMobile', 'nativePlatform'],
   props: {
     template: {
       type: Object,
@@ -292,6 +349,17 @@ export default {
     }
   },
   computed: {
+    isShowControls () {
+      if (this.isMobile) return false
+
+      return this.isSettingsFocus || this.isSelectInput || (this.isValueInput && this.field.type !== 'heading') || (this.isNameFocus && !['checkbox', 'phone'].includes(this.field.type))
+    },
+    isShowSettingsMenu () {
+      if (this.field.type === 'payment' || this.isValueInput) return false
+      if (this.isMobile) return this.editable
+
+      return this.isShowControls
+    },
     fieldNames: FieldType.computed.fieldNames,
     fieldLabels: FieldType.computed.fieldLabels,
     submitter () {
@@ -318,6 +386,34 @@ export default {
     }
   },
   methods: {
+    openFormulaModal () {
+      if (this.nativePlatform && window.webkit?.messageHandlers?.modal) {
+        window.webkit.messageHandlers.modal.postMessage({ action: 'sheet', name: 'formula', detent: 'medium', uuid: this.field.uuid })
+      } else {
+        this.isShowFormulaModal = true
+      }
+    },
+    openFontModal () {
+      if (this.nativePlatform && window.webkit?.messageHandlers?.modal) {
+        window.webkit.messageHandlers.modal.postMessage({ action: 'sheet', name: 'font', detent: 'medium', uuid: this.field.uuid })
+      } else {
+        this.isShowFontModal = true
+      }
+    },
+    openConditionsModal () {
+      if (this.nativePlatform && window.webkit?.messageHandlers?.modal) {
+        window.webkit.messageHandlers.modal.postMessage({ action: 'sheet', name: 'conditions', detent: 'medium', uuid: this.field.uuid })
+      } else {
+        this.isShowConditionsModal = true
+      }
+    },
+    openDescriptionModal () {
+      if (this.nativePlatform && window.webkit?.messageHandlers?.modal) {
+        window.webkit.messageHandlers.modal.postMessage({ action: 'sheet', name: 'description', detent: 'medium', uuid: this.field.uuid })
+      } else {
+        this.isShowDescriptionModal = true
+      }
+    },
     buildDefaultName: Field.methods.buildDefaultName,
     closeDropdown () {
       this.$el.getRootNode().activeElement.blur()
@@ -325,6 +421,19 @@ export default {
     maybeBlurSettings (e) {
       if (!e.relatedTarget || !this.$refs.settingsDropdown.contains(e.relatedTarget)) {
         this.isSettingsFocus = false
+      }
+    },
+    onSettingsFocus () {
+      this.isSettingsFocus = true
+
+      if (this.isMobile) {
+        this.$nextTick(() => {
+          const dropdown = this.$refs.settingsDropdown
+          const padding = parseFloat(getComputedStyle(dropdown).paddingLeft) + 6
+          const left = dropdown.parentElement.getBoundingClientRect().right - dropdown.offsetWidth - padding
+
+          dropdown.style.right = left < 0 ? `${left}px` : ''
+        })
       }
     },
     onNameFocus (e) {

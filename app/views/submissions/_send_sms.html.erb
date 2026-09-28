@@ -1,3 +1,5 @@
-<div class="form-control">
-  <%= render 'sms_settings/placeholder' %>
-</div>
+<% unless turbo_native_ios? %>
+  <div class="form-control">
+    <%= render 'sms_settings/placeholder' %>
+  </div>
+<% end %>

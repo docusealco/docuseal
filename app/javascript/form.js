@@ -1,3 +1,5 @@
+import './native'
+
 import { createApp, reactive } from 'vue'
 
 import Form from './submission_form/form'
@@ -8,6 +10,7 @@ import ScrollButtons from './elements/scroll_buttons'
 import PageContainer from './elements/page_container'
 import SubmitForm from './elements/submit_form'
 import ModalButton from './elements/modal_button'
+import NativeAction from './elements/native_action'
 
 const safeRegisterElement = (name, element, options = {}) => !window.customElements.get(name) && window.customElements.define(name, element, options)
 
@@ -18,6 +21,7 @@ safeRegisterElement('scroll-buttons', ScrollButtons)
 safeRegisterElement('page-container', PageContainer)
 safeRegisterElement('submit-form', SubmitForm)
 safeRegisterElement('modal-button', ModalButton)
+safeRegisterElement('native-action', NativeAction)
 safeRegisterElement('submission-form', class extends HTMLElement {
   connectedCallback () {
     this.appElem = document.createElement('div')
@@ -28,7 +32,9 @@ safeRegisterElement('submission-form', class extends HTMLElement {
       optionalInviteSubmitters: JSON.parse(this.dataset.optionalInviteSubmitters),
       schema: JSON.parse(this.dataset.schema),
       canSendEmail: this.dataset.canSendEmail === 'true',
-      previousSignatureValue: this.dataset.previousSignatureValue,
+      prefillSignature: this.dataset.prefillSignature ? JSON.parse(this.dataset.prefillSignature) : null,
+      prefillInitials: this.dataset.prefillInitials ? JSON.parse(this.dataset.prefillInitials) : null,
+      currentUser: this.dataset.currentUser ? JSON.parse(this.dataset.currentUser) : null,
       goToLast: this.dataset.goToLast === 'true',
       isDemo: this.dataset.isDemo === 'true',
       attribution: this.dataset.attribution !== 'false',
@@ -37,10 +43,12 @@ safeRegisterElement('submission-form', class extends HTMLElement {
       language: this.dataset.language,
       paymentProvider: this.dataset.paymentProvider,
       dryRun: this.dataset.dryRun === 'true',
+      viewToken: this.dataset.viewToken,
       expand: ['true', 'false'].includes(this.dataset.expand) ? this.dataset.expand === 'true' : null,
       withSignatureId: this.dataset.withSignatureId === 'true',
       requireSigningReason: this.dataset.requireSigningReason === 'true',
       withConfetti: this.dataset.withConfetti === 'true',
+      nativePlatform: this.dataset.nativePlatform,
       withFieldLabels: this.dataset.withFieldLabels !== 'false',
       withDisclosure: this.dataset.withDisclosure === 'true',
       reuseSignature: this.dataset.reuseSignature !== 'false',

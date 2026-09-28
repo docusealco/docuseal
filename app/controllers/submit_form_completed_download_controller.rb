@@ -29,7 +29,9 @@ class SubmitFormCompletedDownloadController < ApplicationController
     Submissions::EnsureResultGenerated.call(last_submitter)
 
     if !signature_valid && !current_user_submitter?(last_submitter)
-      return head :not_found unless Submitters::AuthorizedForForm.call(@submitter, current_user, request)
+      unless Submitters::AuthorizedForForm.call(@submitter, current_user, request, with_order: true)
+        return head :not_found
+      end
 
       if last_submitter.completed_at < TTL.ago
         Rollbar.info("TTL: #{last_submitter.id}") if defined?(Rollbar)

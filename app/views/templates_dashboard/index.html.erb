@@ -7,31 +7,33 @@
     <button type="submit"></button>
     <input id="dashboard_dropzone_input" name="files[]" type="file" multiple>
   <% end %>
-  <div class="group/header flex justify-between items-center w-full mb-4 relative">
-    <% unless show_dropzone %>
-      <%= render 'templates/dashboard_dropzone', style: 'height: 114px' %>
-    <% end %>
-    <%= render 'templates/dashboard_folder_dropzone', style: 'height: 114px' %>
-    <div class="flex items-center flex-grow min-w-0 max-md:group-has-[search-input:focus-within]/header:hidden <%= 'max-md:hidden' if params[:q].present? %>">
-      <% if has_archived || @pagy.count.nil? || @pagy.count > 0 || @template_folders.present? %>
-        <div class="mr-2">
-          <%= render 'dashboard/toggle_view', selected: 'templates' %>
-        </div>
+  <div class="group/header flex justify-between items-center w-full relative <%= 'mb-4' unless turbo_native_app? %>">
+    <% unless turbo_native_app? %>
+      <% unless show_dropzone %>
+        <%= render 'templates/dashboard_dropzone', style: 'height: 114px' %>
       <% end %>
-      <h1 class="text-2xl truncate md:text-3xl sm:text-4xl font-bold md:block <%= 'hidden' if params[:q].present? %>">
-        <%= t('document_templates_html') %>
-      </h1>
-    </div>
+      <%= render 'templates/dashboard_folder_dropzone', style: 'height: 114px' %>
+      <div class="flex items-center flex-grow min-w-0 max-md:group-has-[search-input:focus-within]/header:hidden <%= 'max-md:hidden' if params[:q].present? %>">
+        <% if has_archived || @pagy.count.nil? || @pagy.count > 0 || @template_folders.present? %>
+          <div class="mr-2">
+            <%= render 'dashboard/toggle_view', selected: 'templates' %>
+          </div>
+        <% end %>
+        <h1 class="text-2xl truncate md:text-3xl sm:text-4xl font-bold md:block <%= 'hidden' if params[:q].present? %>">
+          <%= t('document_templates_html') %>
+        </h1>
+      </div>
+    <% end %>
     <div class="flex space-x-2 max-md:has-[search-input:focus-within]:grow <%= 'max-md:grow' if params[:q].present? %>">
       <% if params[:q].present? || @pagy.count.nil? || @pagy.count > 1 || @template_folders.present? %>
         <%= render 'shared/search_input' %>
       <% end %>
-      <% if can?(:create, ::Template) %>
+      <% if can?(:create, ::Template) && !turbo_native_app? %>
         <span class="hidden sm:block">
           <%= render 'templates/upload_button' %>
         </span>
         <open-modal-mobile data-disabled="<%= !Docuseal.multitenant? %>" class="flex">
-          <%= link_to new_template_path, class: 'white-button !border gap-2', data: { turbo_frame: :modal } do %>
+          <%= link_to new_template_path, class: 'white-button !border gap-2', data: { turbo_frame: :modal, native_modal: :medium } do %>
             <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
             <span class="hidden md:block"><%= t('create') %></span>
           <% end %>
@@ -42,7 +44,9 @@
   <% view_archived_html = capture do %>
     <% if has_archived %>
       <div>
-        <a href="<%= templates_archived_index_path %>" class="link text-sm"><%= t('view_archived') %></a>
+        <native-action data-placement="menu" data-icon="archive" data-label="<%= t('archived') %>">
+          <a href="<%= templates_archived_index_path %>" class="link text-sm" data-native-title="<%= t('archived') %>"><%= t('view_archived') %></a>
+        </native-action>
       </div>
     <% end %>
   <% end %>
@@ -60,11 +64,13 @@
         <%= render 'template_folders/shared_folder' %>
       <% end %>
       <%= render partial: 'template_folders/folder', collection: @template_folders, as: :folder %>
+      <%= render 'shared/infinite_scroll', pagy: @pagy if turbo_native_app? && @templates.blank? %>
     </div>
   <% end %>
   <% if @templates.present? %>
     <div class="grid gap-4 md:grid-cols-3">
       <%= render partial: 'templates/template', collection: @templates %>
+      <%= render 'shared/infinite_scroll', pagy: @pagy if turbo_native_app? %>
       <% if (show_dropzone && current_user.created_at > 2.weeks.ago && current_user == true_user) || params[:tour] == 'true' %>
         <% user_config = current_user.user_configs.find_or_initialize_by(key: UserConfig::SHOW_APP_TOUR) %>
         <% if user_config.new_record? || user_config.value || params[:tour] == 'true' %>

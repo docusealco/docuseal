@@ -43,9 +43,25 @@ class TemplatesDashboardController < ApplicationController
         @related_submissions_pagy, @related_submissions = load_related_submissions
       end
     end
+
+    render_infinite_scroll(@pagy, @templates, @template_folders) if turbo_infinite_scroll?
   end
 
   private
+
+  def render_infinite_scroll(pagy, templates, template_folders)
+    render_params =
+      if templates.present?
+        { partial: 'templates/template', collection: templates }
+      else
+        { partial: 'template_folders/folder', collection: template_folders, as: :folder }
+      end
+
+    render turbo_stream: [
+      turbo_stream.before('infinite_scroll', **render_params),
+      turbo_stream.replace('infinite_scroll', partial: 'shared/infinite_scroll', locals: { pagy: })
+    ]
+  end
 
   def load_templates(templates, folders_count, show_shared_inline: false)
     templates = templates.preload(:author, :template_accesses)
@@ -94,16 +110,16 @@ class TemplatesDashboardController < ApplicationController
 
     pinned_count = (show_default_in_grid ? 1 : 0) + (show_shared_in_grid ? 1 : 0)
 
-    pagy = Pagy::Offset.new(count: folders_count + pinned_count,
-                            page: show_inline_folders ? 1 : [params[:page].to_s.to_i, 1].max,
-                            limit: FOLDERS_PER_PAGE,
-                            raise_range_error: true)
+    pagy, = pagy(template_folders, count: folders_count + pinned_count,
+                                   page: show_inline_folders ? 1 : [params[:page].to_s.to_i, 1].max,
+                                   limit: FOLDERS_PER_PAGE,
+                                   raise_range_error: true)
 
     show_default_folder = show_default_in_grid && pagy.page == 1
     show_shared_folder = show_shared_in_grid && pagy.page == 1
 
     folder_offset = pagy.page == 1 ? 0 : pagy.offset - pinned_count
-    folder_limit = pagy.page == 1 ? FOLDERS_PER_PAGE - pinned_count : FOLDERS_PER_PAGE
+    folder_limit = pagy.page == 1 ? pagy.limit - pinned_count : pagy.limit
 
     template_folders = template_folders.offset(folder_offset).limit(folder_limit)
 

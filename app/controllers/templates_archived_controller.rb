@@ -12,12 +12,22 @@ class TemplatesArchivedController < ApplicationController
 
     @pagy, @templates = pagy_auto(@templates.select_for_list, limit: 12)
 
-    return unless params[:q].present? && @templates.blank?
+    if params[:q].present? && @templates.blank?
+      @related_submissions_pagy, @related_submissions = load_related_submissions
+    end
 
-    @related_submissions_pagy, @related_submissions = load_related_submissions
+    render_infinite_scroll(@pagy, @templates) if turbo_infinite_scroll?
   end
 
   private
+
+  def render_infinite_scroll(pagy, templates)
+    render turbo_stream: [
+      turbo_stream.before('infinite_scroll', partial: 'templates/template', collection: templates,
+                                             locals: { with_folder: true }),
+      turbo_stream.replace('infinite_scroll', partial: 'shared/infinite_scroll', locals: { pagy: })
+    ]
+  end
 
   def load_related_submissions
     related_submissions =

@@ -59,10 +59,10 @@ export async function convertImagesInInput (input) {
 
 export default class extends HTMLElement {
   connectedCallback () {
-    const input = this.querySelector('input[type="file"]')
-    const form = input.form
+    this.addEventListener('change', async (e) => {
+      const input = e.target
+      const form = input.form
 
-    input.addEventListener('change', async () => {
       await convertImagesInInput(input)
 
       form.querySelector('[type="submit"]')?.setAttribute('disabled', true)

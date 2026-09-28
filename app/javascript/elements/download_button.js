@@ -21,6 +21,16 @@ export default targetable(class extends HTMLElement {
   downloadFiles () {
     if (!this.dataset.src) return
 
+    const download = window.webkit?.messageHandlers?.download
+
+    if (download) {
+      this.toggleState()
+
+      document.addEventListener('native:download-end', () => this.toggleState(), { once: true })
+
+      return download.postMessage({ src: this.dataset.src })
+    }
+
     this.toggleState()
 
     fetch(this.dataset.src).then(async (response) => {

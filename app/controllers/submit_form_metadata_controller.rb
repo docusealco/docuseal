@@ -39,6 +39,6 @@ class SubmitFormMetadataController < ApplicationController
       !submitter.submission.expired? &&
       !submitter.submission.template&.archived_at? &&
       !submitter.account.archived_at? &&
-      Submitters::AuthorizedForForm.call(submitter, current_user, request)
+      Submitters::AuthorizedForForm.call(submitter, current_user, request, with_order: true)
   end
 end

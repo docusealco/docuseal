@@ -491,6 +491,23 @@ const SpanMark = Mark.create({
   }
 })
 
+const LayoutSpanMark = SpanMark.extend({
+  name: 'layoutSpan',
+  parseHTML () {
+    return [{
+      tag: 'span',
+      priority: 55,
+      getAttrs (dom) {
+        if (['left', 'right'].includes(dom.style.float) || ['inline-block', 'block'].includes(dom.style.display)) {
+          return collectSpanDomAttrs(dom)
+        }
+
+        return false
+      }
+    }]
+  }
+})
+
 const LinkMark = Mark.create({
   name: 'link',
   excludes: '',
@@ -790,6 +807,7 @@ export function buildEditor ({ dynamicAreaProps, attachmentsIndex, renderHtmlFor
       ColNode,
       DynamicImageNode,
       EmptySpanNode,
+      LayoutSpanMark,
       LinkMark,
       SpanMark,
       CustomBold,

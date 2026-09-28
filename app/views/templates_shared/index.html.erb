@@ -1,17 +1,22 @@
-<div>
-  <%= link_to(@is_archived ? templates_shared_index_path : root_path, class: 'flex items-center mb-1 md:mb-0') do %>
-    <%= svg_icon('chevron_left', class: 'w-5 h-5') %>
-    <span style="margin-left: 3px"><%= @is_archived ? t('back_to_active') : t('home') %></span>
-  <% end %>
-</div>
-<div class="group/header relative flex justify-between items-center w-full mb-4">
-  <h1 class="text-2xl truncate md:text-3xl font-bold flex items-center flex-grow min-w-0 space-x-2 md:flex max-md:group-has-[search-input:focus-within]/header:hidden <%= 'hidden' if params[:q].present? %>">
-    <%= svg_icon('folder', class: 'w-9 h-9 flex-shrink-0') %>
-    <span class="truncate capitalize"><%= t('shared') %></span>
-    <% if @is_archived %>
-      <span class="badge badge-outline badge-lg align-middle"><%= t('archived') %></span>
+<% content_for(:native_title, t('shared').capitalize) if turbo_native_app? %>
+<% unless turbo_native_app? %>
+  <div>
+    <%= link_to(@is_archived ? templates_shared_index_path : root_path, class: 'flex items-center mb-1 md:mb-0') do %>
+      <%= svg_icon('chevron_left', class: 'w-5 h-5') %>
+      <span style="margin-left: 3px"><%= @is_archived ? t('back_to_active') : t('home') %></span>
     <% end %>
-  </h1>
+  </div>
+<% end %>
+<div class="group/header relative flex justify-between items-center w-full <%= 'mb-4' unless turbo_native_app? %>">
+  <% unless turbo_native_app? %>
+    <h1 class="text-2xl truncate md:text-3xl font-bold flex items-center flex-grow min-w-0 space-x-2 md:flex max-md:group-has-[search-input:focus-within]/header:hidden <%= 'hidden' if params[:q].present? %>">
+      <%= svg_icon('folder', class: 'w-9 h-9 flex-shrink-0') %>
+      <span class="truncate capitalize"><%= t('shared') %></span>
+      <% if @is_archived %>
+        <span class="badge badge-outline badge-lg align-middle"><%= t('archived') %></span>
+      <% end %>
+    </h1>
+  <% end %>
   <div class="flex space-x-2 max-md:has-[search-input:focus-within]:grow <%= 'max-md:grow' if params[:q].present? %>">
     <% if params[:q].present? || @pagy.count.nil? || @pagy.count > 1 %>
       <%= render 'shared/search_input' %>
@@ -21,13 +26,14 @@
 <% view_archived_html = capture do %>
   <% if @has_archived && params[:q].blank? %>
     <div>
-      <a href="<%= templates_shared_index_path(archived: true) %>" class="link text-sm"><%= t('view_archived') %></a>
+      <a href="<%= templates_shared_index_path(archived: true) %>" class="link text-sm" data-native-title="<%= t('shared').capitalize %>"><%= t('view_archived') %></a>
     </div>
   <% end %>
 <% end %>
 <% if @pagy.count.nil? || @pagy.count > 0 %>
   <div class="grid gap-4 md:grid-cols-3">
     <%= render partial: 'templates/template', collection: @templates %>
+    <%= render 'shared/infinite_scroll', pagy: @pagy if turbo_native_app? %>
   </div>
 <% elsif params[:q].present? %>
   <div class="text-center">

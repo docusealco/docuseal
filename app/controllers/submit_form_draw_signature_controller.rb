@@ -15,7 +15,7 @@ class SubmitFormDrawSignatureController < ApplicationController
     return redirect_to submit_form_path(@submitter.slug) if @submitter.viewer?
 
     if @submitter.submission.template&.archived_at? || @submitter.submission.archived_at? ||
-       !Submitters::AuthorizedForForm.call(@submitter, current_user, request)
+       !Submitters::AuthorizedForForm.call(@submitter, current_user, request, with_order: true)
       return redirect_to submit_form_path(@submitter.slug)
     end
 
