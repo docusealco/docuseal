@@ -163,6 +163,7 @@
                     <% value = values[field['uuid']].presence || (field['default_value'] != '{{date}}' && field['readonly'] == true && field['conditions'].blank? && field['default_value'].present? ? Submitters::SubmitValues.template_default_value_for_submitter(field['default_value'], @submission.submitters.find { |e| e.uuid == field['submitter_uuid'] }, with_time: false) : nil) %>
                     <% value ||= field['default_value'] if field['type'] == 'heading' %>
                     <% submitter = submitters_index[field['submitter_uuid']] %>
+                    <% value = nil if field['type'] == 'signature' && submitter && !submitter.completed_at? %>
                     <% if value.present? %>
                       <% if (mask = field.dig('preferences', 'mask').presence) && signed_in? && can?(:read, @submission) %>
                         <span class="group">
@@ -320,6 +321,7 @@
               <% value = values[field['uuid']].presence || (field['default_value'] != '{{date}}' && field['readonly'] == true && field['default_value'].present? ? Submitters::SubmitValues.template_default_value_for_submitter(field['default_value'], @submission.submitters.find { |e| e.uuid == field['submitter_uuid'] }, with_time: false) : nil) %>
               <% next if value.blank? %>
               <% next if field['type'] == 'heading' || field['type'] == 'strikethrough' %>
+              <% next if field['type'] == 'signature' && submitter && !submitter.completed_at? %>
               <div class="pt-2.5 border-b border-base-300">
                 <div class="text-xs font-medium uppercase mb-0.5" dir="auto">
                   <%= field['name'].presence || "#{t("#{field['type']}_field")} #{submitter_field_counters[field['type']]}" %>
