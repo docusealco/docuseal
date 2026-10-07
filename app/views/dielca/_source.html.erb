@@ -1,3 +1,3 @@
-<% source_file = Rails.root.join('public/dielca/source.tar.gz') %>
+<% source_file = Rails.public_path.join('dielca/source.tar.gz') %>
 <% source_version = source_file.file? ? source_file.mtime.to_i : 'local' %>
 <a href="/dielca/source.tar.gz?v=<%= source_version %>" class="dielca-source">Código fuente de esta versión · AGPLv3</a>

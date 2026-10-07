@@ -1,8 +1,8 @@
 <aside class="dielca-identity" aria-label="Portal corporativo DIELCA">
   <div class="dielca-identity-inner">
     <div class="dielca-brand">
-      <% if Rails.root.join('public/dielca/logo.png').file? %>
-        <img src="/dielca/logo.png?v=<%= Rails.root.join('public/dielca/logo.png').mtime.to_i %>" alt="DIELCA" class="dielca-logo" width="160" height="48">
+      <% if Rails.public_path.join('dielca/logo.png').file? %>
+        <img src="/dielca/logo.png?v=<%= Rails.public_path.join('dielca/logo.png').mtime.to_i %>" alt="DIELCA" class="dielca-logo" width="160" height="48">
       <% else %>
         <span class="dielca-wordmark">DIELCA</span>
       <% end %>

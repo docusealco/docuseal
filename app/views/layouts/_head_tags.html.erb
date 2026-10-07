@@ -7,4 +7,4 @@
   <%= render 'layouts/native_styles' %>
 <% end %>
 
-<link rel="stylesheet" href="/dielca/theme.css?v=<%= Rails.root.join('public/dielca/theme.css').mtime.to_i %>" data-turbo-track="reload">
+<link rel="stylesheet" href="/dielca/theme.css?v=<%= Rails.public_path.join('dielca/theme.css').mtime.to_i %>" data-turbo-track="reload">
