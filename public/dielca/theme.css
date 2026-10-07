@@ -50,6 +50,7 @@
 .dielca-source:focus-visible { outline: 2px solid var(--dielca-accent); outline-offset: 4px; }
 
 /* Solo el portal administrativo: el formulario y la firma conservan el tema upstream. */
+body:has(.dielca-identity) .base-button,
 body:has(.dielca-identity) .btn-neutral:not(.btn-outline) {
   background-color: var(--dielca-primary);
   border-color: var(--dielca-primary);
