@@ -161,9 +161,11 @@ jobs:
           RAILS_ENV: test
           NODE_ENV: test
           COVERAGE: true
+          DIELCA_LOCALE: en-US
           DATABASE_URL: postgres://postgres:postgres@postgres:5432/docuseal_test
         run: |
           bundle exec rake db:create
           bundle exec rake db:migrate
           bundle exec rake assets:precompile
-          bundle exec rspec
+          bundle exec rspec --exclude-pattern spec/requests/dielca_setup_spec.rb
+          DIELCA_LOCALE=es-ES bundle exec rspec spec/requests/dielca_setup_spec.rb

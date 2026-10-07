@@ -17,7 +17,10 @@ no implementa nuevos roles ni habilita funcionalidades Pro.
 4. Reconstruir la imagen para aplicar archivos nuevos. No se requieren nuevas
    dependencias ni cambios en la base de datos.
 
-Las cuentas nuevas se configuran en español. Las cuentas existentes conservan su
+Las cuentas nuevas se configuran en español (`DIELCA_LOCALE=es-ES` por defecto).
+Puede definirse `DIELCA_LOCALE=en-US` para conservar el idioma original.
+La suite upstream usa este último valor porque sus pruebas visuales esperan
+etiquetas inglesas; la regresión DIELCA se ejecuta aparte en español. Las cuentas existentes conservan su
 idioma; puede cambiarse desde los ajustes de cuenta. El primer administrador se
 crea mediante el asistente de configuración de DocuSeal; no hay credenciales
 predeterminadas del proyecto.
