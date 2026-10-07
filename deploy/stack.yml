@@ -1,6 +1,6 @@
 services:
   app:
-    image: ${DOCUSEAL_IMAGE:-docuseal-dielca:mvp}
+    image: ${DOCUSEAL_IMAGE:?Set an immutable image tag or digest}
     entrypoint: ["/bin/sh", "/app/scripts/secret-entrypoint.sh"]
     environment:
       FORCE_SSL: "true"
