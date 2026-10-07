@@ -20,7 +20,9 @@ no implementa nuevos roles ni habilita funcionalidades Pro.
 Las cuentas nuevas se configuran en español (`DIELCA_LOCALE=es-ES` por defecto).
 Puede definirse `DIELCA_LOCALE=en-US` para conservar el idioma original.
 La suite upstream usa este último valor porque sus pruebas visuales esperan
-etiquetas inglesas; la regresión DIELCA se ejecuta aparte en español. Las cuentas existentes conservan su
+etiquetas inglesas; la regresión DIELCA se ejecuta aparte en español.
+`CAPYBARA_MAX_WAIT_TIME` permite ampliar la espera de pruebas en contenedores
+con CPU limitada; no cambia el comportamiento de la aplicación. Las cuentas existentes conservan su
 idioma; puede cambiarse desde los ajustes de cuenta. El primer administrador se
 crea mediante el asistente de configuración de DocuSeal; no hay credenciales
 predeterminadas del proyecto.
