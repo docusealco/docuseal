@@ -4,6 +4,8 @@ module SigningFormHelper
   module_function
 
   def draw_canvas
+    page.find('canvas', match: :first)
+
     page.execute_script <<~JS
       const canvas = document.getElementsByTagName('canvas')[0];
       const rect = canvas.getBoundingClientRect();
