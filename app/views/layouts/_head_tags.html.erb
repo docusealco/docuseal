@@ -1,8 +1,10 @@
 <title>
-  <%= turbo_native_app? ? content_for(:native_title) : (content_for(:html_title) || (signed_in? ? 'DocuSeal' : 'DocuSeal | Open Source Document Signing')) %>
+  <%= turbo_native_app? ? content_for(:native_title) : (content_for(:html_title) || 'DIELCA · Portal de firmas | DocuSeal') %>
 </title>
 <%= render 'shared/meta' %>
 <% if turbo_native_app? %>
   <meta name="turbo-cache-control" content="no-preview">
   <%= render 'layouts/native_styles' %>
 <% end %>
+
+<link rel="stylesheet" href="/dielca/theme.css?v=<%= Rails.root.join('public/dielca/theme.css').mtime.to_i %>" data-turbo-track="reload">

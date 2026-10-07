@@ -1,0 +1,60 @@
+/* Paleta provisional: sustituir estos valores por los colores corporativos. */
+:root {
+  --dielca-primary: #173b57;
+  --dielca-accent: #067a75;
+  --dielca-surface: #edf4f7;
+  --dielca-text: #173b57;
+  --dielca-on-primary: #ffffff;
+}
+
+.dielca-identity {
+  background: var(--dielca-surface);
+  color: var(--dielca-text);
+  border-top: 4px solid var(--dielca-accent);
+  border-bottom: 1px solid #d4e0e7;
+}
+
+.dielca-identity-inner {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.dielca-brand {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.dielca-wordmark {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.dielca-logo {
+  width: auto;
+  max-width: 10rem;
+  height: 3rem;
+  object-fit: contain;
+}
+
+.dielca-portal-name { font-weight: 600; }
+.dielca-source { font-size: 0.875rem; text-decoration: underline; }
+.dielca-source:focus-visible { outline: 2px solid var(--dielca-accent); outline-offset: 4px; }
+
+/* Solo el portal administrativo: el formulario y la firma conservan el tema upstream. */
+body:has(.dielca-identity) .btn-neutral:not(.btn-outline) {
+  background-color: var(--dielca-primary);
+  border-color: var(--dielca-primary);
+  color: var(--dielca-on-primary);
+}
+
+.dielca-source-footer { padding: 1rem; text-align: center; font-size: 0.875rem; }
+.dielca-source-footer a { text-decoration: underline; }
