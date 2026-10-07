@@ -44,6 +44,11 @@ COPY ./app/views ./app/views
 
 RUN echo "gem 'shakapacker'" > Gemfile && ./bin/shakapacker
 
+FROM alpine:3.22 AS corresponding_source
+WORKDIR /source
+COPY . .
+RUN tar -czf /source.tar.gz .
+
 FROM ruby:4.0.5-alpine AS app
 
 ENV RAILS_ENV=production
@@ -73,6 +78,7 @@ COPY --chown=docuseal:docuseal ./Gemfile ./Gemfile.lock ./
 
 RUN apk add --no-cache build-base git libpq-dev yaml-dev && bundle install && apk del --no-cache build-base git libpq-dev yaml-dev && rm -rf ~/.bundle /usr/local/bundle/cache && ruby -e "puts Dir['/usr/local/bundle/**/{spec,rdoc,resources/shared,resources/collation,resources/locales,resources/unicode_data/properties}'] + Dir['/usr/local/bundle/gems/*/{test,tests,examples,sample,misc,doc,docs}'] + Dir['/usr/local/bundle/gems/*/ext/**/*.{c,h,o,S}']" | xargs rm -rf && ln -sf /usr/lib/libonnxruntime.so.1 $(ruby -e "print Dir[Gem::Specification.find_by_name('onnxruntime').gem_dir + '/vendor/*.so'].first")
 
+COPY --chown=docuseal:docuseal ./scripts ./scripts
 COPY --chown=docuseal:docuseal ./bin ./bin
 COPY --chown=docuseal:docuseal ./app ./app
 COPY --chown=docuseal:docuseal ./config ./config
@@ -80,6 +86,7 @@ COPY --chown=docuseal:docuseal ./db/migrate ./db/migrate
 COPY --chown=docuseal:docuseal ./log ./log
 COPY --chown=docuseal:docuseal ./lib ./lib
 COPY --chown=docuseal:docuseal ./public ./public
+COPY --chown=docuseal:docuseal --from=corresponding_source /source.tar.gz ./public/dielca/source.tar.gz
 COPY --chown=docuseal:docuseal ./tmp ./tmp
 COPY --chown=docuseal:docuseal LICENSE LICENSE_ADDITIONAL_TERMS README.md Rakefile config.ru .version ./
 COPY --chown=docuseal:docuseal .version ./public/version

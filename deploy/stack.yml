@@ -1,0 +1,57 @@
+services:
+  app:
+    image: ${DOCUSEAL_IMAGE:-docuseal-dielca:mvp}
+    entrypoint: ["/bin/sh", "/app/scripts/secret-entrypoint.sh"]
+    environment:
+      FORCE_SSL: "true"
+      RAILS_MAX_THREADS: "4"
+      SIDEKIQ_THREADS: "2"
+      WEB_CONCURRENCY: "0"
+    secrets:
+      - source: app_secret
+        target: docuseal_secret_key_base
+    volumes:
+      - data:/data
+    networks:
+      proxy:
+        aliases: [dielca-docuseal]
+    healthcheck:
+      test: ["CMD", "ruby", "-rnet/http", "-e", "r = Net::HTTP.get_response(URI('http://127.0.0.1:3000/up')); exit(r.code.to_i == 200 ? 0 : 1)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 120s
+    stop_grace_period: 60s
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.hostname == ${DOCUSEAL_DATA_NODE:?Set the node holding persistent data}
+      update_config:
+        order: stop-first
+        failure_action: rollback
+      rollback_config:
+        order: stop-first
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 1G
+        reservations:
+          memory: 256M
+
+volumes:
+  data:
+    driver: local
+
+secrets:
+  app_secret:
+    external: true
+    name: ${DOCUSEAL_SECRET_NAME:-docuseal_secret_key_base}
+
+networks:
+  proxy:
+    external: true
+    name: ${DOCUSEAL_PROXY_NETWORK:?Set the existing proxy overlay network}
