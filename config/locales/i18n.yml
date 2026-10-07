@@ -715,7 +715,7 @@ en: &en
   declined_on_time: 'Declined on %{time}'
   expire_on_time: 'Expire on %{time}'
   sign_in_person: Sign In-person
-  create_a_new_template_document_form_or_submit_the_existing_one_html: <a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Create a new template</a> document form or <a href="%{start_form_link}" target="_blank" class="inline underline font-medium">submit the existing one</a>
+  create_a_new_template_document_form_html: <a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Create a new template</a> document form
   send_email_copy_with_completed_documents_to_a_specified_bcc_address: Send email copy with completed documents to a specified BCC address.
   re_send_email: Re-send Email
   re_send_emails: Re-send Emails
@@ -1873,7 +1873,7 @@ es: &es
   declined_on_time: 'Rechazado el %{time}'
   expire_on_time: 'Expira el %{time}'
   sign_in_person: Firma en persona
-  create_a_new_template_document_form_or_submit_the_existing_one_html: <a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Crear una nueva plantilla</a> de documento o <a href="%{start_form_link}" target="_blank" class="inline underline font-medium">enviar el existente</a>
+  create_a_new_template_document_form_html: <a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Crear una nueva plantilla</a> de documento
   send_email_copy_with_completed_documents_to_a_specified_bcc_address: Enviar una copia del correo electrónico con los documentos completados a una dirección BCC especificada.
   re_send_email: Reenviar email
   re_send_emails: Reenviar emails
@@ -3034,7 +3034,7 @@ it: &it
   declined_on_time: 'Rifiutato il %{time}'
   expire_on_time: 'Scade il %{time}'
   sign_in_person: Firma di persona
-  create_a_new_template_document_form_or_submit_the_existing_one_html: <a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Crea un nuovo modello</a> di documento o <a href="%{start_form_link}" target="_blank" class="inline underline font-medium">invia quello esistente</a>
+  create_a_new_template_document_form_html: <a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Crea un nuovo modello</a> di documento
   send_email_copy_with_completed_documents_to_a_specified_bcc_address: Invia una copia dell'email con i documenti completati a un indirizzo BCC specificato.
   re_send_email: Reinvia email
   re_send_emails: Reinvia le email
@@ -4181,7 +4181,7 @@ fr: &fr
   declined_on_time: Refusé le %{time}
   expire_on_time: Expire le %{time}
   sign_in_person: Signer en personne
-  create_a_new_template_document_form_or_submit_the_existing_one_html: <a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Créez un nouveau modèle</a> de document ou <a href="%{start_form_link}" target="_blank" class="inline underline font-medium">soumettez l’existant</a>
+  create_a_new_template_document_form_html: <a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Créez un nouveau modèle</a> de document
   send_email_copy_with_completed_documents_to_a_specified_bcc_address: Envoyer une copie e‑mail avec les documents complétés à une adresse Cci spécifiée.
   re_send_email: Renvoyer l’e‑mail
   re_send_emails: Renvoyer e‑mails
@@ -5338,7 +5338,7 @@ pt: &pt
   declined_on_time: 'Recusado em %{time}'
   expire_on_time: 'Expira em %{time}'
   sign_in_person: Assinar pessoalmente
-  create_a_new_template_document_form_or_submit_the_existing_one_html: '<a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Criar um novo modelo</a> de documento ou <a href="%{start_form_link}" target="_blank" class="inline underline font-medium">submeter o existente</a>'
+  create_a_new_template_document_form_html: '<a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Criar um novo modelo</a> de documento'
   send_email_copy_with_completed_documents_to_a_specified_bcc_address: Envie uma cópia do e-mail com documentos concluídos para um endereço BCC especificado.
   re_send_email: Reenviar e-mail
   re_send_emails: Reenviar e-mails
@@ -6498,7 +6498,7 @@ de: &de
   declined_on_time: 'Abgelehnt am %{time}'
   expire_on_time: 'Läuft ab am %{time}'
   sign_in_person: Vor Ort unterschreiben
-  create_a_new_template_document_form_or_submit_the_existing_one_html: <a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Neue Vorlage erstellen</a> oder <a href="%{start_form_link}" target="_blank" class="inline underline font-medium">bestehende einreichen</a>
+  create_a_new_template_document_form_html: <a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Neue Vorlage erstellen</a>
   send_email_copy_with_completed_documents_to_a_specified_bcc_address: Senden Sie eine E-Mail-Kopie mit abgeschlossenen Dokumenten an eine angegebene BCC-Adresse.
   re_send_email: E-Mail erneut senden
   re_send_emails: E-Mails senden
@@ -8186,7 +8186,7 @@ nl: &nl
   declined_on_time: Geweigerd op %{time}
   expire_on_time: Verloopt op %{time}
   sign_in_person: In persoon ondertekenen
-  create_a_new_template_document_form_or_submit_the_existing_one_html: <a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Maak een nieuw sjabloon</a> voor een documentformulier of <a href="%{start_form_link}" target="_blank" class="inline underline font-medium">dien het bestaande in</a>
+  create_a_new_template_document_form_html: <a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Maak een nieuw sjabloon</a> voor een documentformulier
   send_email_copy_with_completed_documents_to_a_specified_bcc_address: Stuur een e-mailkopie met voltooide documenten naar een opgegeven BCC-adres.
   re_send_email: E-mail opnieuw verzenden
   re_send_emails: E-mails verzenden
