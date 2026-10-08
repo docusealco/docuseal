@@ -1,9 +1,9 @@
-/* Paleta provisional: sustituir estos valores por los colores corporativos. */
+/* Colores de la interfaz; el logo corporativo conserva sus colores originales. */
 :root {
-  --dielca-primary: #173b57;
-  --dielca-accent: #067a75;
-  --dielca-surface: #edf4f7;
-  --dielca-text: #173b57;
+  --dielca-primary: #2b2f88;
+  --dielca-accent: #b45309;
+  --dielca-surface: #ffffff;
+  --dielca-text: #2b2f88;
   --dielca-on-primary: #ffffff;
 }
 
@@ -11,7 +11,7 @@
   background: var(--dielca-surface);
   color: var(--dielca-text);
   border-top: 4px solid var(--dielca-accent);
-  border-bottom: 1px solid #d4e0e7;
+  border-bottom: 1px solid #e3e4f1;
 }
 
 .dielca-identity-inner {
@@ -39,17 +39,16 @@
 }
 
 .dielca-logo {
-  width: auto;
-  max-width: 10rem;
-  height: 3rem;
+  width: 32rem;
+  max-width: 100%;
+  height: auto;
   object-fit: contain;
 }
 
-.dielca-portal-name { font-weight: 600; }
 .dielca-source { font-size: 0.875rem; text-decoration: underline; }
 .dielca-source:focus-visible { outline: 2px solid var(--dielca-accent); outline-offset: 4px; }
 
-/* Solo el portal administrativo: el formulario y la firma conservan el tema upstream. */
+/* Botones del portal administrativo. */
 body:has(.dielca-identity) .base-button,
 body:has(.dielca-identity) .btn-neutral:not(.btn-outline) {
   background-color: var(--dielca-primary);
@@ -59,3 +58,6 @@ body:has(.dielca-identity) .btn-neutral:not(.btn-outline) {
 
 .dielca-source-footer { padding: 1rem; text-align: center; font-size: 0.875rem; }
 .dielca-source-footer a { text-decoration: underline; }
+.dielca-attribution { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0.5rem 1rem; }
+.dielca-attribution-mark { display: inline-flex; align-items: center; gap: 0.25rem; }
+.dielca-attribution-mark svg { width: 1.25rem; height: 1.25rem; }

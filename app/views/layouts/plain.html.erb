@@ -13,11 +13,10 @@
     <%= stylesheet_pack_tag 'application', media: 'all', data: { turbo_track: 'dynamic' } %>
   </head>
   <body>
+    <%= render 'dielca/identity' %>
     <% if flash.present? %><%= render 'shared/flash' %><% end %>
     <%= yield %>
-    <footer class="dielca-source-footer">
-      <%= render 'dielca/source' %>
-    </footer>
+    <%= render 'dielca/attribution' %>
     <turbo-frame id="modal"></turbo-frame>
   </body>
 </html>

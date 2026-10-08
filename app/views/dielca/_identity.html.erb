@@ -2,12 +2,10 @@
   <div class="dielca-identity-inner">
     <div class="dielca-brand">
       <% if Rails.public_path.join('dielca/logo.png').file? %>
-        <img src="/dielca/logo.png?v=<%= Rails.public_path.join('dielca/logo.png').mtime.to_i %>" alt="DIELCA" class="dielca-logo" width="160" height="48">
+        <img src="/dielca/logo.png?v=<%= Rails.public_path.join('dielca/logo.png').mtime.to_i %>" alt="DIELCA" class="dielca-logo" width="1617" height="355">
       <% else %>
         <span class="dielca-wordmark">DIELCA</span>
       <% end %>
-      <span class="dielca-portal-name">Portal de firmas</span>
     </div>
-    <%= render 'dielca/source' %>
   </div>
 </aside>

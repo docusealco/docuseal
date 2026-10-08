@@ -2,11 +2,8 @@
 <div class="max-w-6xl mb-4 mx-auto px-4 md:px-2 py-3 flex items-center justify-between">
   <div class="flex items-center space-x-4">
     <a href="<%= root_path %>" class="text-2xl font-bold items-center flex space-x-2">
-      <%= render 'shared/title' %>
+      <span>Portal de firmas</span>
     </a>
-    <span class="hidden sm:inline">
-      <%= render 'shared/github' if request.path.starts_with?('/settings') %>
-    </span>
   </div>
   <% if signed_in? %>
     <div class="space-x-4 flex items-center">
@@ -24,7 +21,7 @@
         </div>
       <% end %>
       <div class="dropdown dropdown-end">
-        <label tabindex="0" class="cursor-pointer bg-base-content text-purple-300 rounded-full p-2 w-9 justify-center flex">
+        <label tabindex="0" class="cursor-pointer bg-neutral text-neutral-content rounded-full p-2 w-9 justify-center flex">
           <span class="text-sm align-text-top"><%= current_user.initials %></span>
         </label>
         <ul tabindex="0" class="z-10 dropdown-content p-2 mt-2 shadow menu text-base bg-base-100 rounded-box text-right" style="min-width: 160px;">

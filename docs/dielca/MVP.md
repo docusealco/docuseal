@@ -1,7 +1,7 @@
 # DIELCA · Portal de firmas
 
 MVP visual basado exclusivamente en DocuSeal Open Source. Se mantienen el login
-Devise, la firma, las autorizaciones y las referencias originales de DocuSeal.
+Devise, la firma, las autorizaciones y la atribución original de DocuSeal.
 Admins, Responsables, Trabajadores y Gerencia son perfiles previstos; este MVP
 no implementa nuevos roles ni habilita funcionalidades Pro.
 
@@ -10,10 +10,12 @@ no implementa nuevos roles ni habilita funcionalidades Pro.
 1. Colocar el logo PNG en `public/dielca/logo.png`, preferiblemente transparente.
    Sin archivo, se muestra el nombre DIELCA como texto. No usar documentos reales
    como material de ejemplo ni incluir imágenes con información confidencial.
-2. Enviar los colores en HEX o editar las cinco variables de
-   `public/dielca/theme.css`. La paleta actual es provisional. Comprobar contraste
-   del texto y botones al sustituirla.
-3. El nombre visible se encuentra en `app/views/dielca/_identity.html.erb`.
+2. La paleta corporativa usa azul `#2B2F88`, blanco y ámbar `#B45309`
+   para el contraste. Está definida en `tailwind.config.js` y
+   `public/dielca/theme.css`. El logo conserva el verde de Renovables.
+   El archivo incluido procede de `https://www.dielca.com/images/logo/logo_dielca.png`
+   y se conserva sin modificaciones. Comprobar contraste al cambiar la paleta.
+3. La cabecera corporativa se encuentra en `app/views/dielca/_identity.html.erb`.
 4. Reconstruir la imagen para aplicar archivos nuevos. No se requieren nuevas
    dependencias ni cambios en la base de datos.
 
@@ -29,8 +31,9 @@ predeterminadas del proyecto.
 
 ## Arquitectura y actualizaciones
 
-La extensión se limita al partial `app/views/dielca/`, CSS estático en
-`public/dielca/` y un initializer de idioma. Hay puntos de integración pequeños en
+La identidad usa partials de `app/views/dielca/`, archivos estáticos en
+`public/dielca/`, el tema DaisyUI y un initializer de idioma. La cabecera,
+los títulos y metadatos presentan DIELCA. Hay puntos de integración pequeños en
 layouts upstream y una etapa adicional de Docker para publicar el código fuente.
 No se cambia la arquitectura Rails ni el dominio de firma. Vue 3, Turbo,
 Shakapacker/Webpack y Tailwind/DaisyUI siguen intactos.
@@ -42,8 +45,10 @@ el merge manual. CI existente: RSpec, RuboCop, ERB lint, ESLint y Brakeman.
 ## Licencia y código correspondiente
 
 Conservar `LICENSE`, `LICENSE_ADDITIONAL_TERMS`, la marca y atribución originales
-en las interfaces. La cabecera DIELCA es adicional y no sustituye marcas,
-logotipos ni opciones Pro. No se reutiliza código de la edición comercial.
+en las interfaces. El portal conserva el nombre y símbolo originales de DocuSeal
+en un pie visible junto a la descarga del código. Los avisos y atribuciones de
+la firma, los documentos y los correos no se eliminan ni se ocultan.
+No se habilitan opciones Pro ni se reutiliza código de la edición comercial.
 
 Construir con `bash scripts/build-image.sh` desde un commit limpio; este script
 exporta solo archivos versionados. El Dockerfile crea `/dielca/source.tar.gz` con el contexto de compilación filtrado

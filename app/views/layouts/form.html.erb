@@ -13,9 +13,8 @@
     <%= stylesheet_pack_tag 'form', media: 'all', data: { turbo_track: 'dynamic' } %>
   </head>
   <body>
+    <%= render 'dielca/identity' %>
     <%= yield %>
-    <footer class="dielca-source-footer">
-      <%= render 'dielca/source' %>
-    </footer>
+    <%= render 'dielca/attribution' %>
   </body>
 </html>
