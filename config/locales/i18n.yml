@@ -6987,14 +6987,14 @@ pl:
   decline_reason: Powód odrzucenia
   provide_a_reason: Podaj powód
   notify_the_sender_with_the_reason_you_declined: Powiadom nadawcę o powodzie, dla którego odrzuciłeś
-  form_has_been_declined_on_html: 'Formularz został odrzucony o <span class="font-semibold">%{time}</span>'
-  document_has_been_delegated_on_html: 'Dokument został oddelegowany o <span class="font-semibold">%{time}</span>'
+  form_has_been_declined_on_html: 'Formularz został odrzucony <span class="font-semibold">%{time}</span>'
+  document_has_been_delegated_on_html: 'Dokument został oddelegowany <span class="font-semibold">%{time}</span>'
   name_declined_by_submitter: '"%{name}" odrzucono przez %{submitter}'
   name_declined_by_submitter_with_the_following_reason: '"%{name}" został odrzucony przez %{submitter} z następującym powodem:'
   email: E-mail
   verification_code_code: 'Kod weryfikacyjny: %{code}'
   digitally_signed_by: Podpis cyfrowy przez
-  form_expired_at_html: 'Formularz wygasł o <span class="font-semibold">%{time}</span>'
+  form_expired_at_html: 'Formularz wygasł <span class="font-semibold">%{time}</span>'
   role: Rola
   provide_your_email_to_start: Podaj swój e-mail, aby rozpocząć
   provide_your_email: Podaj swój e-mail
@@ -7129,8 +7129,8 @@ uk:
   decline_reason: Причина відхилення
   provide_a_reason: Надайте причину
   notify_the_sender_with_the_reason_you_declined: Повідомте відправника про причину свого відхилення
-  form_has_been_declined_on_html: 'Форму було відхилено о <span class="font-semibold">%{time}</span>'
-  document_has_been_delegated_on_html: 'Документ було делеговано о <span class="font-semibold">%{time}</span>'
+  form_has_been_declined_on_html: 'Форму було відхилено <span class="font-semibold">%{time}</span>'
+  document_has_been_delegated_on_html: 'Документ було делеговано <span class="font-semibold">%{time}</span>'
   name_declined_by_submitter: '"%{name}" відхилено %{submitter}'
   name_declined_by_submitter_with_the_following_reason: '"%{name}" було відхилено %{submitter} з такою причиною:'
   email: E-mail
