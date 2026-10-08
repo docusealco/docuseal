@@ -81,7 +81,24 @@ class SubmittersController < ApplicationController
 
     submitter.name = attrs[:name] if attrs.key?(:name)
 
+    if submitter_changed?(submitter)
+      submitter.submitter_versions.new(slug: submitter.slug, email: submitter.email_was,
+                                       name: submitter.name_was, phone: submitter.phone_was)
+
+      submitter.slug = SecureRandom.base58(14)
+      submitter.values = Submitters.fetch_values_for_delegate(submitter)
+    end
+
     submitter
+  end
+
+  def submitter_changed?(submitter)
+    if submitter.email_was.blank? && submitter.phone_was.blank?
+      submitter.name_was.present? && submitter.name_changed?
+    else
+      (submitter.email_was.present? && submitter.email_changed?) ||
+        (submitter.phone_was.present? && submitter.phone_changed?)
+    end
   end
 
   def submitter_params
