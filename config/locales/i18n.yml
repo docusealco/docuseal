@@ -704,6 +704,7 @@ en: &en
   developer_sandbox: Developer Sandbox.
   upgrade_to_start_using_in_production_html: '<a href="%{url}" target="_blank" class="link font-semibold">Upgrade</a> to start using in Production.'
   download_combined_pdf: Download combined PDF
+  download_event_log: Download Event Log
   audit_log: Audit Log
   signers: Signers
   not_invited_yet:  Not invited yet
@@ -1862,6 +1863,7 @@ es: &es
   developer_sandbox: Sandbox para desarrolladores.
   upgrade_to_start_using_in_production_html: '<a href="%{url}" target="_blank" class="link font-semibold">Actualiza</a> para empezar a usar en Producción.'
   download_combined_pdf: Descargar PDF combinado
+  download_event_log: Descargar registro de eventos
   audit_log: Registro de Auditoría
   signers: Firmantes
   not_invited_yet: Aún no invitado
@@ -3023,6 +3025,7 @@ it: &it
   developer_sandbox: Sandbox per sviluppatori
   upgrade_to_start_using_in_production_html: '<a href="%{url}" target="_blank" class="link font-semibold">Aggiorna</a> per iniziare a usare in produzione.'
   download_combined_pdf: Scarica PDF combinato
+  download_event_log: Scarica registro degli eventi
   audit_log: Registro di audit
   signers: Firmatari
   not_invited_yet: Non ancora invitato
@@ -4170,6 +4173,7 @@ fr: &fr
   developer_sandbox: Bac à sable développeur.
   upgrade_to_start_using_in_production_html: <a href="%{url}" target="_blank" class="link font-semibold">Mettez à niveau</a> pour commencer à utiliser en production.
   download_combined_pdf: Télécharger le PDF combiné
+  download_event_log: Télécharger le journal des événements
   audit_log: Journal d’audit
   signers: Signataires
   not_invited_yet: Pas encore invité
@@ -5327,6 +5331,7 @@ pt: &pt
   developer_sandbox: Sandbox para desenvolvedores
   upgrade_to_start_using_in_production_html: '<a href="%{url}" target="_blank" class="link font-semibold">Atualizar</a> para começar a usar em produção.'
   download_combined_pdf: Baixar PDF combinado
+  download_event_log: Baixar log de eventos
   audit_log: Log de auditoria
   signers: Signatários
   not_invited_yet: Ainda não convidado
@@ -6487,6 +6492,7 @@ de: &de
   developer_sandbox: Entwickler-Sandbox.
   upgrade_to_start_using_in_production_html: '<a href="%{url}" target="_blank" class="link font-semibold">Upgrade</a> durchführen, um die Produktionsnutzung zu starten.'
   download_combined_pdf: Kombiniertes PDF herunterladen
+  download_event_log: Ereignisprotokoll herunterladen
   audit_log: Prüfprotokoll
   signers: Unterzeichner
   not_invited_yet: Noch nicht eingeladen
@@ -8175,6 +8181,7 @@ nl: &nl
   developer_sandbox: Ontwikkelaars-sandbox.
   upgrade_to_start_using_in_production_html: <a href="%{url}" target="_blank" class="link font-semibold">Upgrade</a> om in productie te gaan gebruiken.
   download_combined_pdf: Gecombineerde PDF downloaden
+  download_event_log: Gebeurtenislogboek downloaden
   audit_log: Auditlogboek
   signers: Ondertekenaars
   not_invited_yet: Nog niet uitgenodigd

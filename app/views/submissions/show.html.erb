@@ -54,7 +54,8 @@
         <% if @submission.submitters.to_a.any?(&:completed_at?) %>
           <% show_combined_download = @submission.completed_at? && !is_combined_enabled %>
           <% show_unarchive = signed_in? && can?(:destroy, @submission) && @submission.archived_at? && @submission.completed_at? %>
-          <% show_download_dropdown = show_combined_download || show_unarchive %>
+          <% show_event_log_download = signed_in? && can?(:manage, :event_log_download) && can?(:read, @submission) %>
+          <% show_download_dropdown = show_combined_download || show_event_log_download || show_unarchive %>
           <% if @submission.completed_at? || !is_combined_enabled %>
             <div class="join relative">
               <native-action data-label="<%= t('download') %>" data-icon="download">
@@ -94,6 +95,9 @@
                           </download-button>
                         </li>
                       </native-action>
+                    <% end %>
+                    <% if show_event_log_download %>
+                      <%= render 'submissions/download_event_log' %>
                     <% end %>
                     <% if show_unarchive %>
                       <native-action data-label="<%= t('unarchive') %>" data-icon="rotate" data-section="archive">
