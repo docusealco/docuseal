@@ -26,7 +26,7 @@
       </div>
     </toggle-visible>
   <% end %>
-  <div class="px-5 mb-5 mt-4">
+  <div class="px-5 mb-5 mt-5">
     <% unless only_detailed %>
       <div id="email" class="<%= 'hidden' if default_tab != 'email' %>">
         <%= render 'email_form', template: @template, variables_form:, can_send_emails:, viewer_submitter_uuids: %>

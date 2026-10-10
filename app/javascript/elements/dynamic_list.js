@@ -2,7 +2,7 @@ import { actionable } from '@github/catalyst/lib/actionable'
 import { targets, targetable } from '@github/catalyst/lib/targetable'
 
 export default actionable(targetable(class extends HTMLElement {
-  static [targets.static] = ['items']
+  static [targets.static] = ['items', 'groups']
 
   addItem (e) {
     e.preventDefault()
@@ -24,11 +24,28 @@ export default actionable(targetable(class extends HTMLElement {
     duplicateItem.querySelectorAll('a.hidden').forEach((button) => button.classList.toggle('hidden'))
 
     originalItem.parentNode.append(duplicateItem)
+
+    this.toggleMultipleClasses()
+
+    duplicateItem.querySelector("input:not([type='hidden'])")?.focus()
   }
 
   removeItem (e) {
     e.preventDefault()
 
     this.items.find((item) => item.contains(e.target))?.remove()
+
+    this.toggleMultipleClasses()
+  }
+
+  toggleMultipleClasses () {
+    const isMultiple = this.items.length > 1
+    const elements = [...this.items, ...this.groups]
+
+    elements.forEach((element) => {
+      const classes = element.dataset.multipleClasses || this.dataset.multipleClasses
+
+      classes?.split(' ').forEach((cls) => element.classList.toggle(cls, isMultiple))
+    })
   }
 }))

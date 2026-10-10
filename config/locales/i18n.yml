@@ -1028,6 +1028,8 @@ en: &en
   failed_to_scan_the_document: Failed to scan the document
   document_scanning_is_not_available_on_this_device: Document scanning is not available on this device
   click_to_upload: Click to upload
+  cc_view_only: CC View-only
+  bcc_completed: BCC Completed
   devise:
     confirmations:
       confirmed: Your email address has been successfully confirmed.
@@ -2176,6 +2178,8 @@ es: &es
   failed_to_save_the_scan: No se pudo guardar el escaneo
   failed_to_scan_the_document: No se pudo escanear el documento
   document_scanning_is_not_available_on_this_device: El escaneo de documentos no está disponible en este dispositivo
+  cc_view_only: CC Solo lectura
+  bcc_completed: CCO Completado
   devise:
     confirmations:
       confirmed: Tu dirección de correo electrónico ha sido confirmada correctamente.
@@ -3338,6 +3342,8 @@ it: &it
   failed_to_save_the_scan: Impossibile salvare la scansione
   failed_to_scan_the_document: Impossibile scansionare il documento
   document_scanning_is_not_available_on_this_device: La scansione dei documenti non è disponibile su questo dispositivo
+  cc_view_only: CC Sola lettura
+  bcc_completed: BCC Completato
   devise:
     confirmations:
       confirmed: Il tuo indirizzo email è stato confermato con successo.
@@ -4483,6 +4489,8 @@ fr: &fr
   failed_to_save_the_scan: Impossible d’enregistrer la numérisation
   failed_to_scan_the_document: Impossible de numériser le document
   document_scanning_is_not_available_on_this_device: La numérisation de documents n’est pas disponible sur cet appareil
+  cc_view_only: Cc Lecture seule
+  bcc_completed: Cci Terminé
   devise:
     confirmations:
       confirmed: Votre adresse e-mail a été confirmée avec succès.
@@ -5644,6 +5652,8 @@ pt: &pt
   failed_to_save_the_scan: Não foi possível salvar a digitalização
   failed_to_scan_the_document: Não foi possível digitalizar o documento
   document_scanning_is_not_available_on_this_device: A digitalização de documentos não está disponível neste dispositivo
+  cc_view_only: CC Somente leitura
+  bcc_completed: BCC Concluído
   devise:
     confirmations:
       confirmed: Seu endereço de e-mail foi confirmado com sucesso.
@@ -6805,6 +6815,8 @@ de: &de
   failed_to_save_the_scan: Scan konnte nicht gespeichert werden
   failed_to_scan_the_document: Dokument konnte nicht gescannt werden
   document_scanning_is_not_available_on_this_device: Das Scannen von Dokumenten ist auf diesem Gerät nicht verfügbar
+  cc_view_only: CC Nur Ansicht
+  bcc_completed: BCC Abgeschlossen
   devise:
     confirmations:
       confirmed: Ihre E-Mail-Adresse wurde erfolgreich bestätigt.
@@ -8490,6 +8502,8 @@ nl: &nl
   failed_to_save_the_scan: Scan kon niet worden opgeslagen
   failed_to_scan_the_document: Document kon niet worden gescand
   document_scanning_is_not_available_on_this_device: Documenten scannen is niet beschikbaar op dit apparaat
+  cc_view_only: CC Alleen bekijken
+  bcc_completed: BCC Voltooid
   devise:
     confirmations:
       confirmed: Uw e-mailadres is succesvol bevestigd.

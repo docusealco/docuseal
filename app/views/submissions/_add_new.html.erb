@@ -1,0 +1,70 @@
+<% fields_id = "add_new_fields_#{SecureRandom.hex(3)}" %>
+<div id="<%= fields_id %>" class="space-y-3 mt-4 hidden" data-targets="dynamic-list.groups" data-multiple-classes="px-3 pt-3 pb-4 rounded-xl border border-dashed border-base-300"></div>
+<native-menu class="<%= turbo_native_app? ? 'block' : 'dropdown block max-sm:hidden' %> mt-4 -mb-2">
+  <label tabindex="0" class="btn btn-ghost btn-sm normal-case font-normal w-full flex items-center justify-center border-dashed border-base-300 hover:border-base-content/20 !bg-transparent">
+    <%= svg_icon('users_plus', class: 'w-4 h-4 stroke-2') %>
+    <span><%= t('add_new') %></span>
+  </label>
+  <ul tabindex="0" class="<%= turbo_native_app? ? 'hidden' : 'z-10 dropdown-content p-2 mt-1 shadow menu bg-base-100 rounded-box' %>" style="left: 50%; --tw-translate-x: -50%">
+    <li>
+      <native-menu-action data-icon="user_plus" data-label="<%= t('recipients') %>" class="grid-cols-1 p-0">
+        <a href="#" class="flex items-center gap-2 px-4 py-2" data-action="click:dynamic-list#addItem">
+          <%= svg_icon('user_plus', class: 'w-4 h-4 stroke-2') %>
+          <span class="whitespace-nowrap"><%= t('recipients') %></span>
+        </a>
+      </native-menu-action>
+    </li>
+    <append-template class="contents" data-target-id="<%= fields_id %>">
+      <li>
+        <native-menu-action data-icon="eye_plus" data-label="<%= t('cc_view_only') %>" class="grid-cols-1 p-0">
+          <a href="#" class="flex items-center gap-2 px-4 py-2">
+            <%= svg_icon('eye_plus', class: 'w-4 h-4 stroke-2') %>
+            <span class="whitespace-nowrap"><%= t('cc_view_only') %></span>
+          </a>
+        </native-menu-action>
+      </li>
+      <template>
+        <submitter-item class="form-control">
+          <label class="label pt-0 pb-1">
+            <span class="label-text"><%= t('cc_view_only') %></span>
+          </label>
+          <div class="relative">
+            <submitters-autocomplete data-field="email">
+              <input type="email" name="cc_recipients[]" autocomplete="off" class="base-input !h-10 w-full pr-10" placeholder="<%= t('email') %>">
+            </submitters-autocomplete>
+            <a href="#" class="absolute right-2 top-2 block w-6 h-6 text-neutral-700 p-1 hover:text-base-content">
+              <%= svg_icon('trash', class: 'w-4 h-4') %>
+            </a>
+          </div>
+        </submitter-item>
+      </template>
+    </append-template>
+    <append-template class="contents" data-target-id="<%= fields_id %>">
+      <li>
+        <native-menu-action data-icon="mail_plus" data-label="<%= t('bcc_completed') %>" class="grid-cols-1 p-0">
+          <a href="#" class="flex items-center gap-2 px-4 py-2">
+            <%= svg_icon('mail_plus', class: 'w-4 h-4 stroke-2') %>
+            <span class="whitespace-nowrap"><%= t('bcc_completed') %></span>
+          </a>
+        </native-menu-action>
+      </li>
+      <template>
+        <div class="form-control">
+          <label class="label pt-0 pb-1">
+            <span class="label-text"><%= t('bcc_completed') %></span>
+          </label>
+          <div class="relative">
+            <input type="email" name="bcc_completed[]" autocomplete="off" class="base-input !h-10 w-full pr-10" placeholder="<%= t('email') %>">
+            <a href="#" class="absolute right-2 top-2 block w-6 h-6 text-neutral-700 p-1 hover:text-base-content">
+              <%= svg_icon('trash', class: 'w-4 h-4') %>
+            </a>
+          </div>
+          <% default_bcc_completed = template.preferences['bcc_completed'].presence || current_account.account_configs.find_by(key: AccountConfig::BCC_EMAILS)&.value %>
+          <% if default_bcc_completed.present? %>
+            <input type="hidden" name="bcc_completed[]" value="<%= default_bcc_completed %>">
+          <% end %>
+        </div>
+      </template>
+    </append-template>
+  </ul>
+</native-menu>
