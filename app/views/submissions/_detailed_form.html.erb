@@ -100,10 +100,10 @@
   </div>
   <div class="form-control mt-4">
     <%= f.button class: 'base-button' do %>
-      <toggle-on-checked data-names="send_email send_sms">
+      <toggle-send-title>
         <span><%= button_title(title: t('send'), disabled_with: t('sending')) %></span>
         <span class="hidden"><%= button_title(title: t('add_recipients')) %></span>
-      </toggle-on-checked>
+      </toggle-send-title>
     <% end %>
   </div>
 <% end %>
