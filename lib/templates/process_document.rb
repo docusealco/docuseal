@@ -94,21 +94,12 @@ module Templates
         range.each_slice(concurrency).flat_map do |page_numbers|
           promises =
             page_numbers.map do |page_number|
-              doc_page = doc.get_page(page_number)
-
-              hide_placeholder_widgets(doc_page, hide_empty: !flatten_pages)
-              doc_page.flatten if flatten_pages
-
-              bytes, width, height = doc_page.render_to_bitmap(width: MAX_WIDTH)
-
-              image = Vips::Image.new_from_memory_copy(bytes, width, height, 4, :uchar)
+              image = render_page_image(doc, page_number, flatten_pages:)
 
               Concurrent::Promise.execute(executor: pool) { build_and_upload_blob(image, page_number) }
-            ensure
-              doc_page&.close
             end
 
-          Concurrent::Promise.zip(*promises).value!
+          Concurrent::Promise.zip(*promises).value!.tap { GC.start }
         end
 
       blobs.each do |blob|
@@ -124,6 +115,23 @@ module Templates
       end
     ensure
       pool&.kill
+    end
+
+    def render_page_image(doc, page_number, flatten_pages:)
+      doc_page = doc.get_page(page_number)
+
+      hide_placeholder_widgets(doc_page, hide_empty: !flatten_pages)
+      doc_page.flatten if flatten_pages
+
+      bytes, width, height = doc_page.render_to_bitmap(width: MAX_WIDTH)
+
+      image = Vips::Image.new_from_memory_copy(bytes, width, height, 4, :uchar)
+
+      bytes.clear
+
+      image
+    ensure
+      doc_page&.close
     end
 
     def hide_placeholder_widgets(page, hide_empty: true)
