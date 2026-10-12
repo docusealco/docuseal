@@ -92,14 +92,12 @@ module Templates
 
       blobs =
         range.each_slice(concurrency).flat_map do |page_numbers|
-          promises =
-            page_numbers.map do |page_number|
-              image = render_page_image(doc, page_number, flatten_pages:)
+          slice_blobs = generate_slice_blobs(doc, page_numbers, pool:, flatten_pages:)
 
-              Concurrent::Promise.execute(executor: pool) { build_and_upload_blob(image, page_number) }
-            end
+          # Free the slice's vips copies now: an idle process never collects them, and the next slice adds its own.
+          GC.start
 
-          Concurrent::Promise.zip(*promises).value!.tap { GC.start }
+          slice_blobs
         end
 
       blobs.each do |blob|
@@ -117,6 +115,17 @@ module Templates
       pool&.kill
     end
 
+    def generate_slice_blobs(doc, page_numbers, pool:, flatten_pages:)
+      promises =
+        page_numbers.map do |page_number|
+          image = render_page_image(doc, page_number, flatten_pages:)
+
+          Concurrent::Promise.execute(executor: pool) { build_and_upload_blob(image, page_number) }
+        end
+
+      Concurrent::Promise.zip(*promises).value!
+    end
+
     def render_page_image(doc, page_number, flatten_pages:)
       doc_page = doc.get_page(page_number)
 
@@ -127,6 +136,7 @@ module Templates
 
       image = Vips::Image.new_from_memory_copy(bytes, width, height, 4, :uchar)
 
+      # Vips holds its own copy: drop the 11 MB bitmap String now instead of at the next GC.
       bytes.clear
 
       image
