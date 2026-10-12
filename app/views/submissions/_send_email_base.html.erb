@@ -14,7 +14,7 @@
           <toggle-visible data-element-ids="<%= [message_field_id].to_json %>" class="flex">
             <label>
               <%= f.check_box :is_custom_message, checked: false, class: 'hidden peer', data: { action: 'change:toggle-visible#trigger', type: 'checkbox' } %>
-              <span class="link peer-checked:hidden"><%= t('edit_message') %></span>
+              <span class="link link-hover peer-checked:hidden"><%= t('edit_message') %></span>
             </label>
           </toggle-visible>
         <% end %>

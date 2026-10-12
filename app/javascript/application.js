@@ -35,6 +35,9 @@ import PromptPassword from './elements/prompt_password'
 import EmailsTextarea from './elements/emails_textarea'
 import ToggleSubmit from './elements/toggle_submit'
 import ToggleOnSubmit from './elements/toggle_on_submit'
+import ToggleOnChecked from './elements/toggle_on_checked'
+import ToggleSendTitle from './elements/toggle_send_title'
+import AppendTemplate from './elements/append_template'
 import CheckOnClick from './elements/check_on_click'
 import PasswordInput from './elements/password_input'
 import SearchInput from './elements/search_input'
@@ -159,6 +162,9 @@ safeRegisterElement('emails-textarea', EmailsTextarea)
 safeRegisterElement('toggle-cookies', ToggleCookies)
 safeRegisterElement('toggle-submit', ToggleSubmit)
 safeRegisterElement('toggle-on-submit', ToggleOnSubmit)
+safeRegisterElement('toggle-on-checked', ToggleOnChecked)
+safeRegisterElement('toggle-send-title', ToggleSendTitle)
+safeRegisterElement('append-template', AppendTemplate)
 safeRegisterElement('password-input', PasswordInput)
 safeRegisterElement('search-input', SearchInput)
 safeRegisterElement('toggle-attribute', ToggleAttribute)

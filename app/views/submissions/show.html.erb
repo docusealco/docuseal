@@ -54,7 +54,8 @@
         <% if @submission.submitters.to_a.any?(&:completed_at?) %>
           <% show_combined_download = @submission.completed_at? && !is_combined_enabled %>
           <% show_unarchive = signed_in? && can?(:destroy, @submission) && @submission.archived_at? && @submission.completed_at? %>
-          <% show_download_dropdown = show_combined_download || show_unarchive %>
+          <% show_event_log_download = signed_in? && can?(:manage, :event_log_download) && can?(:read, @submission) %>
+          <% show_download_dropdown = show_combined_download || show_event_log_download || show_unarchive %>
           <% if @submission.completed_at? || !is_combined_enabled %>
             <div class="join relative">
               <native-action data-label="<%= t('download') %>" data-icon="download">
@@ -94,6 +95,9 @@
                           </download-button>
                         </li>
                       </native-action>
+                    <% end %>
+                    <% if show_event_log_download %>
+                      <%= render 'submissions/download_event_log' %>
                     <% end %>
                     <% if show_unarchive %>
                       <native-action data-label="<%= t('unarchive') %>" data-icon="rotate" data-section="archive">
@@ -163,6 +167,7 @@
                     <% value = values[field['uuid']].presence || (field['default_value'] != '{{date}}' && field['readonly'] == true && field['conditions'].blank? && field['default_value'].present? ? Submitters::SubmitValues.template_default_value_for_submitter(field['default_value'], @submission.submitters.find { |e| e.uuid == field['submitter_uuid'] }, with_time: false) : nil) %>
                     <% value ||= field['default_value'] if field['type'] == 'heading' %>
                     <% submitter = submitters_index[field['submitter_uuid']] %>
+                    <% value = nil if field['type'] == 'signature' && submitter && !submitter.completed_at? %>
                     <% if value.present? %>
                       <% if (mask = field.dig('preferences', 'mask').presence) && signed_in? && can?(:read, @submission) %>
                         <span class="group">
@@ -320,6 +325,7 @@
               <% value = values[field['uuid']].presence || (field['default_value'] != '{{date}}' && field['readonly'] == true && field['default_value'].present? ? Submitters::SubmitValues.template_default_value_for_submitter(field['default_value'], @submission.submitters.find { |e| e.uuid == field['submitter_uuid'] }, with_time: false) : nil) %>
               <% next if value.blank? %>
               <% next if field['type'] == 'heading' || field['type'] == 'strikethrough' %>
+              <% next if field['type'] == 'signature' && submitter && !submitter.completed_at? %>
               <div class="pt-2.5 border-b border-base-300">
                 <div class="text-xs font-medium uppercase mb-0.5" dir="auto">
                   <%= field['name'].presence || "#{t("#{field['type']}_field")} #{submitter_field_counters[field['type']]}" %>

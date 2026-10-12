@@ -66,6 +66,8 @@ class SubmissionsController < ApplicationController
         create_submissions(@template, submissions_params, params)
       end
 
+    raise Submissions::CreateFromSubmitters::BaseError, 'Invalid email address' if submissions.blank?
+
     WebhookUrls.enqueue_events(submissions, 'submission.created')
 
     Submissions.send_signature_requests(submissions)

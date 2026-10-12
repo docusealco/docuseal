@@ -704,6 +704,7 @@ en: &en
   developer_sandbox: Developer Sandbox.
   upgrade_to_start_using_in_production_html: '<a href="%{url}" target="_blank" class="link font-semibold">Upgrade</a> to start using in Production.'
   download_combined_pdf: Download combined PDF
+  download_event_log: Download Event Log
   audit_log: Audit Log
   signers: Signers
   not_invited_yet:  Not invited yet
@@ -715,7 +716,7 @@ en: &en
   declined_on_time: 'Declined on %{time}'
   expire_on_time: 'Expire on %{time}'
   sign_in_person: Sign In-person
-  create_a_new_template_document_form_or_submit_the_existing_one_html: <a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Create a new template</a> document form or <a href="%{start_form_link}" target="_blank" class="inline underline font-medium">submit the existing one</a>
+  create_a_new_template_document_form_html: <a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Create a new template</a> document form
   send_email_copy_with_completed_documents_to_a_specified_bcc_address: Send email copy with completed documents to a specified BCC address.
   re_send_email: Re-send Email
   re_send_emails: Re-send Emails
@@ -1027,6 +1028,8 @@ en: &en
   failed_to_scan_the_document: Failed to scan the document
   document_scanning_is_not_available_on_this_device: Document scanning is not available on this device
   click_to_upload: Click to upload
+  cc_view_only: CC View-only
+  bcc_completed: BCC Completed
   devise:
     confirmations:
       confirmed: Your email address has been successfully confirmed.
@@ -1862,6 +1865,7 @@ es: &es
   developer_sandbox: Sandbox para desarrolladores.
   upgrade_to_start_using_in_production_html: '<a href="%{url}" target="_blank" class="link font-semibold">Actualiza</a> para empezar a usar en Producción.'
   download_combined_pdf: Descargar PDF combinado
+  download_event_log: Descargar registro de eventos
   audit_log: Registro de Auditoría
   signers: Firmantes
   not_invited_yet: Aún no invitado
@@ -1873,7 +1877,7 @@ es: &es
   declined_on_time: 'Rechazado el %{time}'
   expire_on_time: 'Expira el %{time}'
   sign_in_person: Firma en persona
-  create_a_new_template_document_form_or_submit_the_existing_one_html: <a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Crear una nueva plantilla</a> de documento o <a href="%{start_form_link}" target="_blank" class="inline underline font-medium">enviar el existente</a>
+  create_a_new_template_document_form_html: <a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Crear una nueva plantilla</a> de documento
   send_email_copy_with_completed_documents_to_a_specified_bcc_address: Enviar una copia del correo electrónico con los documentos completados a una dirección BCC especificada.
   re_send_email: Reenviar email
   re_send_emails: Reenviar emails
@@ -2174,6 +2178,8 @@ es: &es
   failed_to_save_the_scan: No se pudo guardar el escaneo
   failed_to_scan_the_document: No se pudo escanear el documento
   document_scanning_is_not_available_on_this_device: El escaneo de documentos no está disponible en este dispositivo
+  cc_view_only: CC Solo lectura
+  bcc_completed: CCO Completado
   devise:
     confirmations:
       confirmed: Tu dirección de correo electrónico ha sido confirmada correctamente.
@@ -3023,6 +3029,7 @@ it: &it
   developer_sandbox: Sandbox per sviluppatori
   upgrade_to_start_using_in_production_html: '<a href="%{url}" target="_blank" class="link font-semibold">Aggiorna</a> per iniziare a usare in produzione.'
   download_combined_pdf: Scarica PDF combinato
+  download_event_log: Scarica registro degli eventi
   audit_log: Registro di audit
   signers: Firmatari
   not_invited_yet: Non ancora invitato
@@ -3034,7 +3041,7 @@ it: &it
   declined_on_time: 'Rifiutato il %{time}'
   expire_on_time: 'Scade il %{time}'
   sign_in_person: Firma di persona
-  create_a_new_template_document_form_or_submit_the_existing_one_html: <a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Crea un nuovo modello</a> di documento o <a href="%{start_form_link}" target="_blank" class="inline underline font-medium">invia quello esistente</a>
+  create_a_new_template_document_form_html: <a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Crea un nuovo modello</a> di documento
   send_email_copy_with_completed_documents_to_a_specified_bcc_address: Invia una copia dell'email con i documenti completati a un indirizzo BCC specificato.
   re_send_email: Reinvia email
   re_send_emails: Reinvia le email
@@ -3335,6 +3342,8 @@ it: &it
   failed_to_save_the_scan: Impossibile salvare la scansione
   failed_to_scan_the_document: Impossibile scansionare il documento
   document_scanning_is_not_available_on_this_device: La scansione dei documenti non è disponibile su questo dispositivo
+  cc_view_only: CC Sola lettura
+  bcc_completed: BCC Completato
   devise:
     confirmations:
       confirmed: Il tuo indirizzo email è stato confermato con successo.
@@ -4170,6 +4179,7 @@ fr: &fr
   developer_sandbox: Bac à sable développeur.
   upgrade_to_start_using_in_production_html: <a href="%{url}" target="_blank" class="link font-semibold">Mettez à niveau</a> pour commencer à utiliser en production.
   download_combined_pdf: Télécharger le PDF combiné
+  download_event_log: Télécharger le journal des événements
   audit_log: Journal d’audit
   signers: Signataires
   not_invited_yet: Pas encore invité
@@ -4181,7 +4191,7 @@ fr: &fr
   declined_on_time: Refusé le %{time}
   expire_on_time: Expire le %{time}
   sign_in_person: Signer en personne
-  create_a_new_template_document_form_or_submit_the_existing_one_html: <a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Créez un nouveau modèle</a> de document ou <a href="%{start_form_link}" target="_blank" class="inline underline font-medium">soumettez l’existant</a>
+  create_a_new_template_document_form_html: <a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Créez un nouveau modèle</a> de document
   send_email_copy_with_completed_documents_to_a_specified_bcc_address: Envoyer une copie e‑mail avec les documents complétés à une adresse Cci spécifiée.
   re_send_email: Renvoyer l’e‑mail
   re_send_emails: Renvoyer e‑mails
@@ -4479,6 +4489,8 @@ fr: &fr
   failed_to_save_the_scan: Impossible d’enregistrer la numérisation
   failed_to_scan_the_document: Impossible de numériser le document
   document_scanning_is_not_available_on_this_device: La numérisation de documents n’est pas disponible sur cet appareil
+  cc_view_only: Cc Lecture seule
+  bcc_completed: Cci Terminé
   devise:
     confirmations:
       confirmed: Votre adresse e-mail a été confirmée avec succès.
@@ -5327,6 +5339,7 @@ pt: &pt
   developer_sandbox: Sandbox para desenvolvedores
   upgrade_to_start_using_in_production_html: '<a href="%{url}" target="_blank" class="link font-semibold">Atualizar</a> para começar a usar em produção.'
   download_combined_pdf: Baixar PDF combinado
+  download_event_log: Baixar log de eventos
   audit_log: Log de auditoria
   signers: Signatários
   not_invited_yet: Ainda não convidado
@@ -5338,7 +5351,7 @@ pt: &pt
   declined_on_time: 'Recusado em %{time}'
   expire_on_time: 'Expira em %{time}'
   sign_in_person: Assinar pessoalmente
-  create_a_new_template_document_form_or_submit_the_existing_one_html: '<a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Criar um novo modelo</a> de documento ou <a href="%{start_form_link}" target="_blank" class="inline underline font-medium">submeter o existente</a>'
+  create_a_new_template_document_form_html: '<a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Criar um novo modelo</a> de documento'
   send_email_copy_with_completed_documents_to_a_specified_bcc_address: Envie uma cópia do e-mail com documentos concluídos para um endereço BCC especificado.
   re_send_email: Reenviar e-mail
   re_send_emails: Reenviar e-mails
@@ -5639,6 +5652,8 @@ pt: &pt
   failed_to_save_the_scan: Não foi possível salvar a digitalização
   failed_to_scan_the_document: Não foi possível digitalizar o documento
   document_scanning_is_not_available_on_this_device: A digitalização de documentos não está disponível neste dispositivo
+  cc_view_only: CC Somente leitura
+  bcc_completed: BCC Concluído
   devise:
     confirmations:
       confirmed: Seu endereço de e-mail foi confirmado com sucesso.
@@ -6487,6 +6502,7 @@ de: &de
   developer_sandbox: Entwickler-Sandbox.
   upgrade_to_start_using_in_production_html: '<a href="%{url}" target="_blank" class="link font-semibold">Upgrade</a> durchführen, um die Produktionsnutzung zu starten.'
   download_combined_pdf: Kombiniertes PDF herunterladen
+  download_event_log: Ereignisprotokoll herunterladen
   audit_log: Prüfprotokoll
   signers: Unterzeichner
   not_invited_yet: Noch nicht eingeladen
@@ -6498,7 +6514,7 @@ de: &de
   declined_on_time: 'Abgelehnt am %{time}'
   expire_on_time: 'Läuft ab am %{time}'
   sign_in_person: Vor Ort unterschreiben
-  create_a_new_template_document_form_or_submit_the_existing_one_html: <a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Neue Vorlage erstellen</a> oder <a href="%{start_form_link}" target="_blank" class="inline underline font-medium">bestehende einreichen</a>
+  create_a_new_template_document_form_html: <a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Neue Vorlage erstellen</a>
   send_email_copy_with_completed_documents_to_a_specified_bcc_address: Senden Sie eine E-Mail-Kopie mit abgeschlossenen Dokumenten an eine angegebene BCC-Adresse.
   re_send_email: E-Mail erneut senden
   re_send_emails: E-Mails senden
@@ -6799,6 +6815,8 @@ de: &de
   failed_to_save_the_scan: Scan konnte nicht gespeichert werden
   failed_to_scan_the_document: Dokument konnte nicht gescannt werden
   document_scanning_is_not_available_on_this_device: Das Scannen von Dokumenten ist auf diesem Gerät nicht verfügbar
+  cc_view_only: CC Nur Ansicht
+  bcc_completed: BCC Abgeschlossen
   devise:
     confirmations:
       confirmed: Ihre E-Mail-Adresse wurde erfolgreich bestätigt.
@@ -6981,14 +6999,14 @@ pl:
   decline_reason: Powód odrzucenia
   provide_a_reason: Podaj powód
   notify_the_sender_with_the_reason_you_declined: Powiadom nadawcę o powodzie, dla którego odrzuciłeś
-  form_has_been_declined_on_html: 'Formularz został odrzucony o <span class="font-semibold">%{time}</span>'
-  document_has_been_delegated_on_html: 'Dokument został oddelegowany o <span class="font-semibold">%{time}</span>'
+  form_has_been_declined_on_html: 'Formularz został odrzucony <span class="font-semibold">%{time}</span>'
+  document_has_been_delegated_on_html: 'Dokument został oddelegowany <span class="font-semibold">%{time}</span>'
   name_declined_by_submitter: '"%{name}" odrzucono przez %{submitter}'
   name_declined_by_submitter_with_the_following_reason: '"%{name}" został odrzucony przez %{submitter} z następującym powodem:'
   email: E-mail
   verification_code_code: 'Kod weryfikacyjny: %{code}'
   digitally_signed_by: Podpis cyfrowy przez
-  form_expired_at_html: 'Formularz wygasł o <span class="font-semibold">%{time}</span>'
+  form_expired_at_html: 'Formularz wygasł <span class="font-semibold">%{time}</span>'
   role: Rola
   provide_your_email_to_start: Podaj swój e-mail, aby rozpocząć
   provide_your_email: Podaj swój e-mail
@@ -7123,8 +7141,8 @@ uk:
   decline_reason: Причина відхилення
   provide_a_reason: Надайте причину
   notify_the_sender_with_the_reason_you_declined: Повідомте відправника про причину свого відхилення
-  form_has_been_declined_on_html: 'Форму було відхилено о <span class="font-semibold">%{time}</span>'
-  document_has_been_delegated_on_html: 'Документ було делеговано о <span class="font-semibold">%{time}</span>'
+  form_has_been_declined_on_html: 'Форму було відхилено <span class="font-semibold">%{time}</span>'
+  document_has_been_delegated_on_html: 'Документ було делеговано <span class="font-semibold">%{time}</span>'
   name_declined_by_submitter: '"%{name}" відхилено %{submitter}'
   name_declined_by_submitter_with_the_following_reason: '"%{name}" було відхилено %{submitter} з такою причиною:'
   email: E-mail
@@ -8175,6 +8193,7 @@ nl: &nl
   developer_sandbox: Ontwikkelaars-sandbox.
   upgrade_to_start_using_in_production_html: <a href="%{url}" target="_blank" class="link font-semibold">Upgrade</a> om in productie te gaan gebruiken.
   download_combined_pdf: Gecombineerde PDF downloaden
+  download_event_log: Gebeurtenislogboek downloaden
   audit_log: Auditlogboek
   signers: Ondertekenaars
   not_invited_yet: Nog niet uitgenodigd
@@ -8186,7 +8205,7 @@ nl: &nl
   declined_on_time: Geweigerd op %{time}
   expire_on_time: Verloopt op %{time}
   sign_in_person: In persoon ondertekenen
-  create_a_new_template_document_form_or_submit_the_existing_one_html: <a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Maak een nieuw sjabloon</a> voor een documentformulier of <a href="%{start_form_link}" target="_blank" class="inline underline font-medium">dien het bestaande in</a>
+  create_a_new_template_document_form_html: <a href="%{new_template_link}" data-turbo-frame="modal" class="inline underline font-medium">Maak een nieuw sjabloon</a> voor een documentformulier
   send_email_copy_with_completed_documents_to_a_specified_bcc_address: Stuur een e-mailkopie met voltooide documenten naar een opgegeven BCC-adres.
   re_send_email: E-mail opnieuw verzenden
   re_send_emails: E-mails verzenden
@@ -8483,6 +8502,8 @@ nl: &nl
   failed_to_save_the_scan: Scan kon niet worden opgeslagen
   failed_to_scan_the_document: Document kon niet worden gescand
   document_scanning_is_not_available_on_this_device: Documenten scannen is niet beschikbaar op dit apparaat
+  cc_view_only: CC Alleen bekijken
+  bcc_completed: BCC Voltooid
   devise:
     confirmations:
       confirmed: Uw e-mailadres is succesvol bevestigd.

@@ -3,8 +3,10 @@
     ref="dragContainer"
     style="max-width: 1600px"
     :class="nativeView ? (isSheetView ? 'bg-base-100' : 'px-4') : 'mx-auto pl-3 md:pl-4 h-full'"
+    @dragstart="isInternalDrag = true"
+    @dragend="isInternalDrag = false"
     @dragover="onDragover"
-    @drop="isDragFile = false"
+    @drop="[isDragFile = false, isInternalDrag = false]"
   >
     <HoverDropzone
       v-if="sortedDocuments.length && withUploadButton && editable && !isSheetView"
@@ -1390,6 +1392,7 @@ export default {
       drawOption: null,
       dragField: null,
       isDragFile: false,
+      isInternalDrag: false,
       isMathLoaded: false,
       isRevisionsModalOpen: false,
       isDocumentsDrawerOpen: false,
@@ -2039,8 +2042,18 @@ export default {
 
         ref.x = e.clientX - ref.offsetX
         ref.y = e.clientY - ref.offsetY
-      } else if (e.dataTransfer?.types?.includes('Files') && !this.editModalDocumentUuid) {
-        this.isDragFile = true
+      } else if (e.dataTransfer?.types?.includes('Files') && !this.editModalDocumentUuid && !this.isInternalDrag) {
+        const items = Array.from(e.dataTransfer.items)
+
+        if (this.dynamicDocuments.length && items.length && items.every((item) => item.type.startsWith('image/'))) {
+          if (!e.defaultPrevented) {
+            e.preventDefault()
+
+            e.dataTransfer.dropEffect = 'none'
+          }
+        } else {
+          this.isDragFile = true
+        }
       }
     },
     onWindowDragLeave (event) {

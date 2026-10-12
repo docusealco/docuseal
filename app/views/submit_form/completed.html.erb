@@ -13,7 +13,7 @@
           <div>
             <p dir="auto" class="text-lg font-bold mb-1"><%= @submitter.submission.name || @submitter.submission.template&.name %></p>
             <p dir="auto" class="text-sm">
-              <%= t(@submitter.with_signature_fields? ? 'signed_on_time' : 'completed_on_time', time: l(completed_at.to_date, format: :long)) %>
+              <%= t(@submitter.with_signature_fields? ? 'signed_on_time' : 'completed_on_time', time: l(completed_at.in_time_zone(@submitter.account.timezone).to_date, format: :long)) %>
             </p>
           </div>
         </div>

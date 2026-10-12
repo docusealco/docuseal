@@ -118,7 +118,12 @@ class ApplicationController < ActionController::Base
   end
 
   def sign_in_for_demo
-    sign_in(User.active.order('random()').take) unless signed_in?
+    return if signed_in?
+
+    account = Account.create!(name: "Demo #{SecureRandom.hex(3)}")
+
+    sign_in(account.users.create!(first_name: 'Demo', last_name: 'User',
+                                  email: "#{SecureRandom.hex}@docuseal.com", password: SecureRandom.hex))
   end
 
   def current_account

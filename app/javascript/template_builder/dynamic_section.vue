@@ -639,6 +639,20 @@ export default {
 
       if (!file) return
 
+      const image = await this.uploadImage(file)
+
+      if (image) {
+        this.editor.chain().focus().insertContent(image).run()
+      }
+    },
+    async insertImageFiles (files, pos) {
+      const images = (await Promise.all(files.map(this.uploadImage))).filter(Boolean)
+
+      if (images.length) {
+        this.editor.chain().focus().insertContentAt(pos, images).run()
+      }
+    },
+    async uploadImage (file) {
       const formData = new FormData()
 
       formData.append('file', file)
@@ -656,9 +670,7 @@ export default {
 
       await this.$nextTick()
 
-      this.editor.chain().focus()
-        .insertContent({ type: 'image', attrs: { htmlAttrs: { src: `blob:${data.uuid}`, style: 'max-width: 100%' } } })
-        .run()
+      return { type: 'image', attrs: { htmlAttrs: { src: `blob:${data.uuid}`, style: 'max-width: 100%' } } }
     },
     setDynamicMenuCoords (editor) {
       const { from, to } = editor.state.selection
@@ -975,7 +987,7 @@ export default {
     onSelectedAreaChange () {
       this.save()
     },
-    onFieldDrop (view, event, _slice, moved) {
+    onFieldDrop (view, event, slice, moved) {
       this.isAreaDrag = false
 
       if (moved) {
@@ -983,8 +995,9 @@ export default {
       }
 
       const draggedField = this.fieldsDragFieldRef?.value || this.customDragFieldRef?.value || this.dragField
+      const imageFiles = slice.size ? [] : Array.from(event.dataTransfer.files).filter((file) => file.type.startsWith('image/'))
 
-      if (!draggedField) return false
+      if (!draggedField && !imageFiles.length) return false
 
       event.preventDefault()
 
@@ -992,14 +1005,18 @@ export default {
 
       if (!pos) return false
 
-      this.insertFieldAtRange({
-        sourceField: draggedField,
-        existingField: this.fieldsDragFieldRef?.value,
-        from: pos.pos
-      })
+      if (draggedField) {
+        this.insertFieldAtRange({
+          sourceField: draggedField,
+          existingField: this.fieldsDragFieldRef?.value,
+          from: pos.pos
+        })
 
-      this.fieldsDragFieldRef.value = null
-      this.customDragFieldRef.value = null
+        this.fieldsDragFieldRef.value = null
+        this.customDragFieldRef.value = null
+      } else {
+        this.insertImageFiles(imageFiles, pos.pos)
+      }
 
       return true
     },
