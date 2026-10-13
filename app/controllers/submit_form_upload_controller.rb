@@ -34,7 +34,7 @@ class SubmitFormUploadController < ActionController::API
     attachment = Submitters.create_attachment!(@submitter, file, metadata:)
 
     if params[:remember_signature] == 'true' && @submitter.email.present?
-      cookies.encrypted[:signature_uuids] = build_new_cookie_signatures_json(@submitter, attachment)
+      cookies.permanent.encrypted[:signature_uuids] = build_new_cookie_signatures_json(@submitter, attachment)
     end
 
     render json: attachment.as_json(only: %i[uuid created_at], methods: %i[url filename content_type])
