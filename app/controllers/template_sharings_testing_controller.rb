@@ -8,7 +8,9 @@ class TemplateSharingsTestingController < ApplicationController
   end
 
   def create
-    testing_account = Accounts.find_or_create_testing_user(true_user.account).account
+    account = can?(:manage, :tenants_test) ? current_account : true_user.account
+
+    testing_account = Accounts.find_or_create_testing_user(account).account
 
     if params[:value] == '1'
       TemplateSharing.create!(ability: :manage, account: testing_account, template: @template)
