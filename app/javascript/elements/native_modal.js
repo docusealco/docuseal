@@ -22,7 +22,7 @@ export default class extends HTMLElement {
   }
 
   async flashFrom (fetchResponse) {
-    const html = await fetchResponse?.responseHTML
+    const html = await fetchResponse?.responseHTML.catch(() => null)
     const flash = html && new DOMParser().parseFromString(html, 'text/html').getElementById('native_flash')
 
     if (flash?.dataset.alert) return { alert: flash.dataset.alert }
