@@ -52,7 +52,7 @@ ENV OPENSSL_CONF=/etc/openssl_legacy.cnf
 
 WORKDIR /app
 
-RUN apk add --no-cache libpq vips redis onnxruntime leptonica jemalloc && \
+RUN apk add --no-cache libpq vips redis onnxruntime leptonica jemalloc font-liberation font-carlito && \
     rm -f /usr/bin/onnx_test_runner /usr/bin/onnxruntime_test
 
 RUN addgroup -g 2000 docuseal && adduser -u 2000 -G docuseal -s /bin/sh -D -h /home/docuseal docuseal
@@ -91,7 +91,7 @@ COPY --chown=docuseal:docuseal --from=download /model.onnx /app/tmp/model.onnx
 COPY --chown=docuseal:docuseal --from=webpack /app/public/packs ./public/packs
 
 RUN mkdir -p /app/public/fonts && ln -s /fonts/DancingScript-Regular.otf /app/public/fonts/ && \
-    mkdir -p /usr/share/fonts/noto && ln -s /fonts/GoNotoKurrent-Regular.ttf /usr/share/fonts/noto/ && ln -s /fonts/GoNotoKurrent-Bold.ttf /usr/share/fonts/noto/ && fc-cache -f && \
+    mkdir -p /usr/share/fonts/noto/bold && ln -s /fonts/GoNotoKurrent-Regular.ttf /usr/share/fonts/noto/ && ln -s /fonts/GoNotoKurrent-Bold.ttf /usr/share/fonts/noto/bold/ && fc-cache -f && \
     bundle exec bootsnap precompile -j 1 --gemfile app/ lib/ && \
     chown -R docuseal:docuseal /app/tmp/cache
 

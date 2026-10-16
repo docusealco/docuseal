@@ -6,6 +6,7 @@ module Templates
     ZIP_CONTENT_TYPE = 'application/zip'
     X_ZIP_CONTENT_TYPE = 'application/x-zip-compressed'
     JSON_CONTENT_TYPE = 'application/json'
+    WORD_EXTENSIONS = %w[.docx .doc .rtf].freeze
     DOCUMENT_EXTENSIONS = %w[.docx .doc .xlsx .xls .odt .rtf].freeze
 
     DOCUMENT_CONTENT_TYPES = %w[
@@ -134,7 +135,27 @@ module Templates
         return [handle_pdf_or_image(template, file, file.read, params, extract_fields:), []]
       end
 
+      if File.extname(file.original_filename.to_s).downcase.in?(WORD_EXTENSIONS)
+        return [handle_word_document(template, file, params), []]
+      end
+
       raise InvalidFileType, "#{file.content_type}/#{dynamic}"
+    end
+
+    def handle_word_document(template, file, params)
+      pdf = WordCraft.convert(file.read)
+
+      pdf_file = ActionDispatch::Http::UploadedFile.new(
+        tempfile: StringIO.new(pdf),
+        filename: "#{File.basename(file.original_filename, '.*')}.pdf",
+        type: PDF_CONTENT_TYPE
+      )
+
+      handle_pdf_or_image(template, pdf_file, pdf, params)
+    end
+
+    def document_extensions
+      Docuseal.advanced_formats? ? DOCUMENT_EXTENSIONS : WORD_EXTENSIONS
     end
   end
 end
