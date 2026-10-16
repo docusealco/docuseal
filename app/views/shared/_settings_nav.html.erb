@@ -93,14 +93,14 @@
           </li>
         <% end %>
         <% if !Docuseal.demo? && can?(:manage, EncryptedConfig) && (current_user == true_user || current_account.testing?) %>
-          <% if Docuseal.multitenant? || !turbo_native_ios? %>
+          <% unless turbo_native_app? %>
             <li>
               <%= link_to Docuseal.multitenant? ? console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}#{'/test' if current_account.testing?}/api") : "#{Docuseal::CONSOLE_URL}/on_premises", class: 'text-base hover:bg-base-300', data: { turbo: false } do %>
                 <% if Docuseal.multitenant? %> API <% else %> <%= t('console') %> <% end %>
               <% end %>
             </li>
           <% end %>
-          <% if Docuseal.multitenant? %>
+          <% if Docuseal.multitenant? && !turbo_native_app? %>
             <li>
               <%= link_to console_redirect_index_path(redir: "#{Docuseal::CONSOLE_URL}#{'/test' if current_account.testing?}/embedding/form"), class: 'text-base hover:bg-base-300', data: { turbo: false } do %>
                 <%= t('embedding') %>
