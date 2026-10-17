@@ -100,7 +100,7 @@ ENV HOME=/home/docuseal
 ENV WORKDIR=/data/docuseal
 ENV VIPS_MAX_COORD=17000
 ENV VIPS_BLOCK_UNTRUSTED=1
-ENV LD_PRELOAD=/usr/lib/libjemalloc.so.2
+# ENV LD_PRELOAD=/usr/lib/libjemalloc.so.2
 ENV MALLOC_CONF=dirty_decay_ms:1000,narenas:2,background_thread:true
 
 EXPOSE 3000
