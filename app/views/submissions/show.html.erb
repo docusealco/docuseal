@@ -227,39 +227,39 @@
               </div>
               <% if submitter&.name.present? %>
                 <div class="flex items-center space-x-1 mt-1">
-                  <%= svg_icon('user', class: 'w-5 h-5') %>
-                  <span>
+                  <%= svg_icon('user', class: 'w-5 h-5 shrink-0') %>
+                  <span class="truncate">
                     <%= submitter&.name %>
                   </span>
                 </div>
               <% end %>
               <% if submitter&.email.present? %>
                 <div class="flex items-center space-x-1 mt-1">
-                  <%= svg_icon('mail', class: 'w-5 h-5') %>
-                  <span>
+                  <%= svg_icon('mail', class: 'w-5 h-5 shrink-0') %>
+                  <span class="truncate">
                     <%= submitter.email || 'N/A' %>
                   </span>
                 </div>
               <% end %>
               <% if submitter&.phone.present? %>
                 <div class="flex items-center space-x-1 mt-1">
-                  <%= svg_icon('phone', class: 'w-5 h-5') %>
-                  <span>
+                  <%= svg_icon('phone', class: 'w-5 h-5 shrink-0') %>
+                  <span class="truncate">
                     <%= submitter.phone %>
                   </span>
                 </div>
               <% end %>
               <div class="flex items-center space-x-1 mt-1">
                 <% if submitter&.viewer? %>
-                  <%= svg_icon(submitter.opened_at? ? 'file_check' : 'file_unknown', class: 'w-5 h-5') %>
+                  <%= svg_icon(submitter.opened_at? ? 'file_check' : 'file_unknown', class: 'w-5 h-5 shrink-0') %>
                 <% elsif submitter && !submitter.completed_at? && @submission.completed_at? %>
-                  <%= svg_icon('writing_off', class: 'w-5 h-5') %>
+                  <%= svg_icon('writing_off', class: 'w-5 h-5 shrink-0') %>
                 <% elsif @submission.expire_at? && submitter && !submitter.completed_at? %>
-                  <%= svg_icon('clock_exclamation', class: 'w-5 h-5') %>
+                  <%= svg_icon('clock_exclamation', class: 'w-5 h-5 shrink-0') %>
                 <% else %>
-                  <%= svg_icon('writing', class: 'w-5 h-5') %>
+                  <%= svg_icon('writing', class: 'w-5 h-5 shrink-0') %>
                 <% end %>
-                <span>
+                <span class="truncate">
                   <% if submitter&.declined_at? %>
                     <%= t('declined_on_time', time: l(submitter.declined_at.in_time_zone(@submission.account.timezone), format: :short, locale: @submission.account.locale)) %>
                   <% elsif submitter&.viewer? %>

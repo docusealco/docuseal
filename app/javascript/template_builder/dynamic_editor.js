@@ -27,11 +27,15 @@ tiptapStylesheet.replaceSync(
   font-feature-settings: "liga" 0;
   display: flex;
   flex-flow: column nowrap;
-  min-height: inherit;
+  flex-grow: 1;
 }
 
-.ProseMirror > article {
+.ProseMirror > article:last-of-type {
   margin-bottom: auto;
+}
+
+.ProseMirror p.doc-trailing-break::after {
+  content: none;
 }
 
 .ProseMirror [contenteditable="false"] {

@@ -127,4 +127,4 @@
     <%= render 'shared/pagination', pagy: @related_submissions_pagy, items_name: 'submissions', next_page_path: submissions_path(q: params[:q]) %>
   <% end %>
 <% end %>
-<%= render 'shared/review_form' %>
+<%= render 'shared/review_form' unless turbo_native_app? %>

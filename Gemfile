@@ -45,6 +45,7 @@ gem 'trilogy', require: false
 gem 'turbo-rails'
 gem 'twitter_cldr', require: false
 gem 'tzinfo-data'
+gem 'wordcraft', require: false, group: :ce
 gem 'xlsxtream', require: false
 
 group :development, :test do

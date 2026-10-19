@@ -267,7 +267,10 @@ module Submissions
 
         is_id_verified = submission_events.any?(&:complete_verification?)
 
-        is_kba_passed = submission_events.any?(&:complete_kba?)
+        complete_kba_event = submission_events.find(&:complete_kba?) || SubmissionEvent.new
+
+        kba_answers = complete_kba_event.data['answers']
+        kba_score = " (#{kba_answers['correct']}/#{kba_answers['asked']})" if kba_answers
 
         info_rows = [
           [
@@ -297,8 +300,8 @@ module Submissions
                 is_id_verified && {
                   text: "#{I18n.t('identity_verification')}: #{I18n.t('verified')}\n"
                 },
-                is_kba_passed && {
-                  text: "#{I18n.t('knowledge_based_authentication')}: #{I18n.t('passed')}\n"
+                complete_kba_event.persisted? && {
+                  text: "#{I18n.t('knowledge_based_authentication')}: #{I18n.t('passed')}#{kba_score}\n"
                 },
                 completed_event.data['ip'] && { text: "IP: #{completed_event.data['ip']}\n" },
                 completed_event.data['sid'] && { text: "#{I18n.t('session_id')}: #{completed_event.data['sid']}\n" },

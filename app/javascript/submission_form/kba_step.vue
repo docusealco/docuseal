@@ -3,11 +3,19 @@
     v-if="!error"
     class="label text-xl sm:text-2xl py-0 mb-2 sm:mb-3.5 field-name-label"
   >
-    <MarkdownContent
-      v-if="field.title"
-      :string="field.title"
-    />
-    <template v-else>{{ field.name || 'Knowledge Based Authentication' }}</template>
+    <span class="flex items-end">
+      <MarkdownContent
+        v-if="field.title"
+        :string="field.title"
+      />
+      <template v-else>{{ field.name || 'Knowledge Based Authentication' }}</template>
+      <span
+        class="tooltip tooltip-bottom ml-2 mb-1"
+        data-tip="To verify your identity, the details you enter are checked against third-party records, which may include credit bureau data, and used to generate questions based on those records. Only these identity details are shared with the identity verification provider; this document and your tax return information are not shared with it or with any credit reporting company. If the check is recorded on your credit report, it appears as a soft inquiry, which does not affect your credit score and is not shown to lenders. This check does not give the sender of this document or the IRS access to your credit report."
+      >
+        <IconInfoCircle class="w-4 h-4 text-neutral-500" />
+      </span>
+    </span>
     <span
       v-if="questions"
       class="float-right font-normal text-neutral-500 mt-1 whitespace-nowrap text-right text-sm"
@@ -282,13 +290,14 @@
 
 <script>
 import MarkdownContent from './markdown_content'
-import { IconInnerShadowTop } from '@tabler/icons-vue'
+import { IconInnerShadowTop, IconInfoCircle } from '@tabler/icons-vue'
 
 export default {
   name: 'KbaStep',
   components: {
     MarkdownContent,
-    IconInnerShadowTop
+    IconInnerShadowTop,
+    IconInfoCircle
   },
   inject: ['baseUrl', 't'],
   props: {
