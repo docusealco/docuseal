@@ -143,7 +143,7 @@ module Templates
     end
 
     def handle_word_document(template, file, params)
-      pdf = WordCraft.convert(file.read)
+      pdf = WordCraft.open_buffer(file, &:to_pdf)
 
       pdf_file = ActionDispatch::Http::UploadedFile.new(
         tempfile: StringIO.new(pdf),
