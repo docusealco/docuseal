@@ -180,8 +180,11 @@ module VerifyPdfSignature
 
     return false if byte_range.size != 4 || byte_range.any?(&:negative?) || byte_range[0].positive?
     return false if signature.signed_end > io.size
+    return false if byte_range[2] != byte_range[1] + (signature.contents.bytesize * 2) + 2
 
-    byte_range[2] == byte_range[1] + (signature.contents.bytesize * 2) + 2
+    io.seek(byte_range[1])
+
+    io.read(byte_range[2] - byte_range[1]).casecmp?("<#{signature.contents.unpack1('H*')}>")
   end
 
   def unsigned_changes?(document, io, signed_end)
