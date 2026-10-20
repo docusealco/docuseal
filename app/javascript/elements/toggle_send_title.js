@@ -12,7 +12,14 @@ export default class extends HTMLElement {
   toggle = (event) => {
     if (event?.type === 'input' && event.target.matches(this.fieldSelector('name'))) return
 
-    const isNameOnly = (field) => this.isFilled('name') && !this.isFilled(field)
+    if (event?.type === 'focusin' && !this.isKeepSendUsed && this.isFocusFromName(event)) {
+      this.isKeepSendUsed = true
+      this.keepSendInput = event.target
+    } else if (event?.type === 'focusout' && event.target === this.keepSendInput) {
+      this.keepSendInput = null
+    }
+
+    const isNameOnly = (field) => this.isFilled('name') && !this.isFilled(field) && !this.keepSendInput?.matches(this.fieldSelector(field))
 
     const isSend = (this.isChecked('send_email') && !isNameOnly('email')) ||
       (this.isChecked('send_sms') && !isNameOnly('phone'))
@@ -29,12 +36,17 @@ export default class extends HTMLElement {
     return [...this.form.querySelectorAll(this.fieldSelector(field))].some((input) => input.value.trim())
   }
 
+  isFocusFromName ({ target, relatedTarget }) {
+    return !!relatedTarget?.matches(this.fieldSelector('name')) && !!relatedTarget.value.trim() &&
+      ['email', 'phone'].some((field) => target.matches(this.fieldSelector(field)))
+  }
+
   fieldSelector (field) {
     return `[name$="[][${field}]"]`
   }
 
   get events () {
-    return ['change', 'input', 'linked-input.update']
+    return ['change', 'input', 'linked-input.update', 'focusin', 'focusout']
   }
 
   get form () {
