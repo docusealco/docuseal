@@ -124,6 +124,8 @@ module ReplaceEmailVariables
 
             ActiveStorage::Blob.proxy_url(attachment.blob, expires_at:)
           end
+        elsif (mask = field.dig('preferences', 'mask').presence)
+          TextUtils.mask_value(value[field['uuid']].to_s, mask)
         else
           value[field&.dig('uuid')]
         end
