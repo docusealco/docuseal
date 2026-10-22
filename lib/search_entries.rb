@@ -3,6 +3,8 @@
 module SearchEntries
   MAX_VALUE_LENGTH = 100
 
+  MUTEX = Mutex.new
+
   UUID_REGEXP = /\A[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}\z/i
 
   module_function
@@ -70,10 +72,10 @@ module SearchEntries
 
           arel
         else
-          "tsvector @@ (quote_literal(coalesce((ts_lexize('english_stem', :keyword))[1], :keyword)) || ':*')::tsquery"
+          "tsvector @@ (quote_literal(coalesce((ts_lexize(:dictionary, :keyword))[1], :keyword)) || ':*')::tsquery"
         end
 
-      [sql, { keyword: }]
+      [sql, { keyword:, dictionary: default_dictionary }]
     end
   end
 
@@ -83,7 +85,7 @@ module SearchEntries
         Arel.sql("ngram @@ (quote_literal(:term#{terms.size - 1}) ||  ':' || :weight)::tsquery")
       else
         Arel.sql(<<~SQL.squish)
-          (quote_literal(coalesce((ts_lexize('english_stem', :term#{terms.size - 1}))[1], :term#{terms.size - 1})) ||  ':*' || :weight)::tsquery
+          (quote_literal(coalesce((ts_lexize(:dictionary, :term#{terms.size - 1}))[1], :term#{terms.size - 1})) ||  ':*' || :weight)::tsquery
         SQL
       end
 
@@ -91,7 +93,7 @@ module SearchEntries
       index = terms.index(term)
 
       arel = Arel.sql(<<~SQL.squish)
-        (quote_literal(coalesce((ts_lexize('english_stem', :term#{index}))[1], :term#{index})) ||  ':' || :weight)::tsquery
+        (quote_literal(coalesce((ts_lexize(:dictionary, :term#{index}))[1], :term#{index})) ||  ':' || :weight)::tsquery
       SQL
 
       acc ? Arel::Nodes::InfixOperation.new('&&', arel, acc) : arel
@@ -109,7 +111,8 @@ module SearchEntries
         )
       end
 
-    [query.to_sql, terms.index_by.with_index { |_, index| :"term#{index}" }.merge(weight:)]
+    [query.to_sql,
+     terms.index_by.with_index { |_, index| :"term#{index}" }.merge(weight:, dictionary: default_dictionary)]
   end
 
   def build_weights_wildcard_tsquery(keyword, weight)
@@ -122,11 +125,11 @@ module SearchEntries
         SQL
       else
         <<~SQL.squish
-          tsvector @@ (quote_literal(coalesce((ts_lexize('english_stem', :keyword))[1], :keyword)) || ':*' || :weight)::tsquery
+          tsvector @@ (quote_literal(coalesce((ts_lexize(:dictionary, :keyword))[1], :keyword)) || ':*' || :weight)::tsquery
         SQL
       end
 
-    [sql, { keyword:, weight: }]
+    [sql, { keyword:, weight:, dictionary: default_dictionary }]
   end
 
   def index_submitter(submitter)
@@ -255,5 +258,15 @@ module SearchEntries
       end
 
     ngrams.uniq { |e| e.sub(/':[\d,]/, "':1") }.join(' ')
+  end
+
+  def default_dictionary
+    @default_dictionary || MUTEX.synchronize do
+      @default_dictionary ||= SearchEntry.connection.select_value(<<~SQL.squish)
+        SELECT mapdict::regdictionary::text FROM pg_ts_config_map
+        WHERE mapcfg = get_current_ts_config() AND maptokentype = 1
+        ORDER BY mapseqno LIMIT 1
+      SQL
+    end
   end
 end
