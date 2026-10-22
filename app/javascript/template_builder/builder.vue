@@ -640,6 +640,7 @@
                 :draw-field-type="drawFieldType"
                 :draw-custom-field="drawCustomField"
                 :draw-option="drawOption"
+                :autosave="autosave"
                 @update="onDynamicDocumentUpdate"
                 @draw="clearDrawField"
                 @add-custom-field="addCustomField"
@@ -1379,6 +1380,7 @@ export default {
       isPreviewLoading: false,
       isLoadingBlankPage: false,
       isSaving: false,
+      hasUnsavedChanges: false,
       isDetectingPageFields: false,
       detectFieldsQueue: [],
       detectingAnalyzingProgress: null,
@@ -1662,6 +1664,11 @@ export default {
 
     window.addEventListener('dragleave', this.onWindowDragLeave)
 
+    if (!this.autosave) {
+      window.addEventListener('beforeunload', this.onBeforeUnload)
+      document.addEventListener('turbo:before-visit', this.onBeforeVisit)
+    }
+
     this.$nextTick(() => {
       if (document.location.search?.includes('stripe_connect_success')) {
         document.querySelector('form[action="/auth/stripe_connect"]')?.closest('.dropdown')?.querySelector('label')?.focus()
@@ -1685,6 +1692,11 @@ export default {
 
     this.resizeObserver.disconnect()
     window.removeEventListener('dragleave', this.onWindowDragLeave)
+
+    if (!this.autosave) {
+      window.removeEventListener('beforeunload', this.onBeforeUnload)
+      document.removeEventListener('turbo:before-visit', this.onBeforeVisit)
+    }
   },
   beforeUpdate () {
     this.documentRefs = []
@@ -2239,6 +2251,20 @@ export default {
         if (customField) this.applyCustomFieldAttributes(field, customField)
 
         this.insertField(field)
+      }
+    },
+    onBeforeUnload (event) {
+      if (this.hasUnsavedChanges) {
+        event.preventDefault()
+
+        event.returnValue = ''
+
+        return ''
+      }
+    },
+    onBeforeVisit (event) {
+      if (this.hasUnsavedChanges && !window.confirm(this.t('close_without_saving_changes'))) {
+        event.preventDefault()
       }
     },
     closeDropdown () {
@@ -4036,6 +4062,8 @@ export default {
       }
 
       if (!this.autosave && !force) {
+        this.hasUnsavedChanges = true
+
         return Promise.resolve({})
       }
 
@@ -4058,6 +4086,8 @@ export default {
         }),
         headers: { 'Content-Type': 'application/json' }
       }).then(() => {
+        this.hasUnsavedChanges = false
+
         if (this.onSave) {
           this.onSave(this.template)
         }

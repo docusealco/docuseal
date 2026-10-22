@@ -84,6 +84,11 @@ export default {
       required: false,
       default: true
     },
+    autosave: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
     selectedSubmitter: {
       type: Object,
       required: false,
@@ -279,7 +284,7 @@ export default {
 
       this.updatedSectionEditors.set(section.id, editor)
 
-      this.saveTimer = setTimeout(() => this.updateSectionsAndSave(), 1000)
+      this.saveTimer = setTimeout(() => this.autosave ? this.updateSectionsAndSave() : this.updateSections(), 1000)
     },
     loadListsStyle () {
       this.listsStyle = this.bodyDom.querySelector('body > style[data-lists]')?.textContent || null
@@ -299,7 +304,9 @@ export default {
     updateVariablesSchema () {
       this.document.variables_schema = buildVariablesSchema(this.bodyDom.body)
     },
-    updateSectionsAndSave () {
+    updateSections () {
+      delete this.saveTimer
+
       this.updatedSectionEditors.forEach((editor, sectionId) => {
         const target = this.bodyDom.getElementById(sectionId)
 
@@ -315,6 +322,9 @@ export default {
       this.updateVariablesSchema()
 
       this.$emit('update', this.document)
+    },
+    updateSectionsAndSave () {
+      this.updateSections()
 
       return this.saveBody()
     },
