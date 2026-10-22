@@ -1,5 +1,5 @@
 <% completed_at = @submitter.completed_at || @submitter.submission.completed_at %>
-<main class="max-w-md mx-auto px-2 mt-12 mb-4">
+<div class="max-w-md mx-auto px-2 mt-12 mb-4">
   <div class="space-y-6 mx-auto">
     <div class="space-y-6">
       <div class="flex items-center justify-center">
@@ -51,5 +51,5 @@
       </toggle-submit>
     <% end %>
   </div>
-</main>
+</div>
 <%= render 'shared/attribution', link_path: '/start', account: @submitter.account %>
