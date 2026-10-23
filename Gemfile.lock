@@ -664,7 +664,7 @@ DEPENDENCIES
   xlsxtream
 
 RUBY VERSION
-  ruby 4.0.5
+  ruby 4.0.9
 
 BUNDLED WITH
   4.0.3
