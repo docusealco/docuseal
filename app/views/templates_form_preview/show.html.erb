@@ -28,7 +28,7 @@
             </submit-form>
           </form>
         <% end %>
-        <a href="<%= edit_template_path(@template) %>" class="base-button" data-turbo="false" style="flex-shrink: 0; padding: 0px 24px;">
+        <a href="<%= edit_template_path(@template) %>" class="base-button" data-turbo-prefetch="false" style="flex-shrink: 0; padding: 0px 24px;">
           <%= t('exit_preview') %>
         </a>
       </div>

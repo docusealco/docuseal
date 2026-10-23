@@ -415,9 +415,9 @@
                     <a
                       :href="`/templates/${template.id}/form`"
                       :data-native-actions="template.submitters.length > 1 ? 'users' : null"
-                      data-turbo="false"
+                      data-turbo-prefetch="false"
                       class="flex items-center justify-center space-x-2"
-                      @click.exact="isPreviewLoading = true"
+                      @click.exact="onSaveAndPreviewClick"
                     >
                       <IconInnerShadowTop
                         v-if="isPreviewLoading"
@@ -2251,6 +2251,23 @@ export default {
         if (customField) this.applyCustomFieldAttributes(field, customField)
 
         this.insertField(field)
+      }
+    },
+    onSaveAndPreviewClick (event) {
+      this.isPreviewLoading = true
+
+      if (!this.autosave) {
+        event.preventDefault()
+
+        const dynamicDocumentRefs = this.documentRefs.filter((ref) => ref.isDynamic)
+
+        dynamicDocumentRefs.forEach((ref) => ref.update())
+
+        this.rebuildVariablesSchema({ disable: false })
+
+        Promise.all([this.save({ force: true }), ...dynamicDocumentRefs.map((ref) => ref.saveBody())]).then(() => {
+          window.Turbo.visit(`/templates/${this.template.id}/form`)
+        })
       }
     },
     onBeforeUnload (event) {
