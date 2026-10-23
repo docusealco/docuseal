@@ -884,6 +884,8 @@ module Submissions
     end
 
     def maybe_flatten_pdf(pdf)
+      pdf.catalog.delete(:AcroForm) if pdf.catalog[:AcroForm].is_a?(Integer)
+
       pdf.acro_form.create_appearances(force: true) if pdf.acro_form && pdf.acro_form[:NeedAppearances]
       pdf.acro_form&.flatten
     rescue HexaPDF::MissingGlyphError
