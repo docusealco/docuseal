@@ -259,7 +259,7 @@ export default {
       return true
     },
     showCondition () {
-      return this.withCondition && (this.withConditions || this.nativePlatform !== 'ios')
+      return this.withCondition && (this.withConditions || !this.nativePlatform)
     },
     fieldNames: FieldType.computed.fieldNames,
     fieldLabels: FieldType.computed.fieldLabels
