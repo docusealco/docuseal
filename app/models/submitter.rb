@@ -25,15 +25,17 @@
 #  account_id    :bigint           not null
 #  external_id   :string
 #  submission_id :bigint           not null
+#  template_id   :bigint
 #
 # Indexes
 #
 #  index_submitters_on_account_id_and_completed_at  (account_id,completed_at) WHERE (completed_at IS NOT NULL)
 #  index_submitters_on_account_id_and_id            (account_id,id)
-#  index_submitters_on_email                        (email)
+#  index_submitters_on_email_and_template_id        (email,template_id) WHERE (email IS NOT NULL)
 #  index_submitters_on_external_id                  (external_id)
 #  index_submitters_on_slug                         (slug) UNIQUE
 #  index_submitters_on_submission_id                (submission_id)
+#  index_submitters_on_template_id_and_id           (template_id,id)
 #
 # Foreign Keys
 #
@@ -67,6 +69,8 @@ class Submitter < ApplicationRecord
            class_name: 'SubmissionEvent', dependent: :destroy, inverse_of: :submitter
 
   scope :completed, -> { where.not(completed_at: nil) }
+
+  before_validation :set_template_id, on: :create
 
   after_destroy :anonymize_email_events, if: -> { Docuseal.multitenant? }
 
@@ -123,6 +127,10 @@ class Submitter < ApplicationRecord
   end
 
   private
+
+  def set_template_id
+    self.template_id = submission&.template_id
+  end
 
   def anonymize_email_events
     email_events.each do |event|
