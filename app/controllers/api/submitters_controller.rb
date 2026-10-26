@@ -179,9 +179,26 @@ module Api
       submitters = submitters.where(external_id: params[:external_id]) if params[:external_id].present?
       submitters = submitters.where(slug: params[:slug]) if params[:slug].present?
       submitters = submitters.where(submission_id: params[:submission_id]) if params[:submission_id].present?
-      submitters = submitters.where(template_id: params[:template_id]) if params[:template_id].present?
+      submitters = filter_submitters_by_template_id(submitters, params[:template_id]) if params[:template_id].present?
 
       maybe_filter_by_completed_at(submitters, params)
+    end
+
+    def filter_submitters_by_template_id(submitters, template_id)
+      return submitters.where(template_id:) if template_id.is_a?(Array)
+
+      template = Template.find_by(id: template_id)
+
+      return submitters.none if template.nil? || !can?(:read, template)
+
+      if template.account_id == current_user.account_id
+        account_id_bind = Submitter.predicate_builder.build_bind_attribute('account_id', current_user.account_id)
+
+        submitters = submitters.unscope(where: :account_id)
+                               .where((Submitter.arel_table[:account_id] + 0).eq(account_id_bind))
+      end
+
+      submitters.where(template_id: template.id)
     end
 
     def assign_external_id(submitter, attrs)
