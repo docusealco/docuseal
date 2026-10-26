@@ -1,34 +1,35 @@
 export default class extends HTMLElement {
   connectedCallback () {
-    this.input.addEventListener('focus', () => {
-      if (this.title) {
-        this.title.classList.add('hidden', 'md:block')
-        this.input.classList.add('w-60')
-      }
-    })
+    this.addEventListener('click', this.onClick)
 
-    this.input.addEventListener('blur', (e) => {
-      if (this.title && !e.target.value) {
-        this.title.classList.remove('hidden')
-        this.input.classList.remove('w-60')
-      }
-    })
+    document.addEventListener('turbo:before-cache', this.onBeforeCache)
 
-    this.button.addEventListener('click', (event) => {
-      if (!this.input.value && document.activeElement !== this.input) {
-        event.preventDefault()
+    if (this.input?.value) {
+      this.input.focus()
+      this.input.setSelectionRange(this.input.value.length, this.input.value.length)
+    }
+  }
 
-        this.input.focus()
-      }
-    })
+  disconnectedCallback () {
+    document.removeEventListener('turbo:before-cache', this.onBeforeCache)
+  }
+
+  onClick = (event) => {
+    if (!event.target.closest('button')) return
+
+    if (!this.input.value && document.activeElement !== this.input) {
+      event.preventDefault()
+
+      this.input.focus()
+    }
+  }
+
+  onBeforeCache = () => {
+    this.input.value = this.input.getAttribute('value') || ''
   }
 
   get input () {
     return this.querySelector('input')
-  }
-
-  get title () {
-    return document.querySelector(this.dataset.title)
   }
 
   get button () {

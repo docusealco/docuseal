@@ -3,10 +3,13 @@
     id="form_completed"
     class="mx-auto max-w-md flex flex-col completed-form"
     dir="auto"
+    role="status"
+    tabindex="-1"
   >
     <div class="font-medium text-2xl flex items-center space-x-1.5 mx-auto">
       <IconCircleCheck
         class="inline text-green-600"
+        aria-hidden="true"
         :width="30"
         :height="30"
       />
@@ -42,14 +45,18 @@
         <IconInnerShadowTop
           v-if="isSendingCopy"
           class="animate-spin"
+          aria-hidden="true"
         />
-        <IconMail v-else />
+        <IconMail
+          v-else
+          aria-hidden="true"
+        />
         <span>
           {{ t('send_copy_via_email') }}
         </span>
       </button>
       <button
-        v-if="!isWebView && withDownloadButton"
+        v-if="(!isWebView || isNativeApp) && withDownloadButton"
         class="base-button flex items-center space-x-1 w-full completed-form-download-button"
         :disabled="isDownloading"
         @click.prevent="download"
@@ -57,8 +64,12 @@
         <IconInnerShadowTop
           v-if="isDownloading"
           class="animate-spin"
+          aria-hidden="true"
         />
-        <IconDownload v-else />
+        <IconDownload
+          v-else
+          aria-hidden="true"
+        />
         <span>
           {{ t('download') }}
         </span>
@@ -175,6 +186,11 @@ export default {
       type: Object,
       required: false,
       default: () => ({})
+    },
+    nativePlatform: {
+      type: String,
+      required: false,
+      default: ''
     }
   },
   data () {
@@ -184,6 +200,9 @@ export default {
     }
   },
   computed: {
+    isNativeApp () {
+      return !!this.nativePlatform && !!window.webkit?.messageHandlers?.download
+    },
     isWebView () {
       return /webview|wv|ip((?!.*Safari)|(?=.*like Safari))/i.test(window.navigator.userAgent)
     }
@@ -199,7 +218,7 @@ export default {
       })
     }
 
-    document.querySelectorAll('#decline_button').forEach((button) => {
+    document.querySelectorAll('#decline_button, #decline_button_mobile, #delegate_button, #delegate_button_mobile').forEach((button) => {
       button.setAttribute('disabled', 'true')
     })
   },
@@ -219,7 +238,13 @@ export default {
     download () {
       this.isDownloading = true
 
-      fetch(this.baseUrl + `/submitters/${this.submitterSlug}/download`, {
+      if (this.isNativeApp) {
+        document.addEventListener('native:download-end', () => { this.isDownloading = false }, { once: true })
+
+        return window.webkit.messageHandlers.download.postMessage({ src: this.baseUrl + `/s/${this.submitterSlug}/documents` })
+      }
+
+      fetch(this.baseUrl + `/s/${this.submitterSlug}/documents`, {
         method: 'GET',
         ...this.fetchOptions
       }).then(async (response) => {

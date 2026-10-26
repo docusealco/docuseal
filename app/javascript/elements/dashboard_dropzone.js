@@ -1,4 +1,5 @@
 import { target, targets, targetable } from '@github/catalyst/lib/targetable'
+import { convertImagesInInput } from './convert_upload'
 
 const loadingIconHtml = `<svg xmlns="http://www.w3.org/2000/svg" class="animate-spin" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -25,17 +26,41 @@ export default targetable(class extends HTMLElement {
 
     window.addEventListener('dragleave', this.onWindowDragleave)
 
-    this.fileDropzone?.addEventListener('drop', this.onDropFile)
-    this.folderDropzone?.addEventListener('drop', this.onDropNewFolder)
+    this.addEventListener('drop', this.onDrop)
+    this.addEventListener('dragstart', this.onDragstart)
+    this.addEventListener('dragover', this.onDragover)
+    this.addEventListener('dragleave', this.onDragleave)
+  }
 
-    this.folderCards.forEach((el) => el.addEventListener('drop', (e) => this.onDropFolder(e, el)))
-    this.templateCards.forEach((el) => el.addEventListener('drop', this.onDropTemplate))
-    this.templateCards.forEach((el) => el.addEventListener('dragstart', this.onTemplateDragStart))
+  dropTarget (e) {
+    return e.target.closest([
+      '[data-target="dashboard-dropzone.fileDropzone"]',
+      '[data-target="dashboard-dropzone.folderDropzone"]',
+      '[data-targets="dashboard-dropzone.folderCards"]',
+      '[data-targets="dashboard-dropzone.templateCards"]'
+    ].join(', '))
+  }
 
-    return [this.fileDropzone, this.folderDropzone, ...this.folderCards, ...this.templateCards].forEach((el) => {
-      el?.addEventListener('dragover', this.onDragover)
-      el?.addEventListener('dragleave', this.onDragleave)
-    })
+  onDrop = (e) => {
+    const el = this.dropTarget(e)
+
+    if (!el) return
+
+    if (el === this.fileDropzone) {
+      this.onDropFile(e)
+    } else if (el === this.folderDropzone) {
+      this.onDropNewFolder(e)
+    } else if (el.dataset.targets === 'dashboard-dropzone.folderCards') {
+      this.onDropFolder(e, el)
+    } else {
+      this.onDropTemplate(e, el)
+    }
+  }
+
+  onDragstart = (e) => {
+    if (e.target.closest('[data-targets="dashboard-dropzone.templateCards"]')) {
+      this.onTemplateDragStart(e)
+    }
   }
 
   disconnectedCallback () {
@@ -121,13 +146,13 @@ export default targetable(class extends HTMLElement {
           }
         }).finally(() => {
           window.Turbo.cache.clear()
-          window.Turbo.visit(location.href)
+          window.Turbo.visit(location.href, { action: 'replace' })
         })
       }
     }
   }
 
-  onDropTemplate = (e) => {
+  onDropTemplate = (e, el) => {
     e.preventDefault()
 
     if (e.dataTransfer.files.length) {
@@ -135,10 +160,10 @@ export default targetable(class extends HTMLElement {
       loading.classList.add('bottom-5', 'left-0', 'flex', 'justify-center', 'w-full', 'absolute')
       loading.innerHTML = loadingIconHtml
 
-      e.target.appendChild(loading)
-      e.target.classList.add('opacity-50')
+      el.appendChild(loading)
+      el.classList.add('opacity-50')
 
-      const id = e.target.href.split('/').pop()
+      const id = el.href.split('/').pop()
 
       this.uploadFiles(e.dataTransfer.files, `/templates/${id}/clone_and_replace`)
     }
@@ -150,12 +175,16 @@ export default targetable(class extends HTMLElement {
     if (!this.isLoading) this.hideDraghover()
   }
 
-  uploadFiles (files, url) {
+  async uploadFiles (files, url) {
     this.isLoading = true
 
     this.form.action = url
 
-    this.form.querySelector('[type="file"]').files = files
+    const input = this.form.querySelector('[type="file"]')
+
+    input.files = files
+
+    await convertImagesInInput(input)
 
     this.form.querySelector('[type="submit"]').click()
   }
@@ -168,16 +197,20 @@ export default targetable(class extends HTMLElement {
     }
   }
 
-  onDragover (e) {
-    if (e.dataTransfer?.types?.includes('Files') || this.dataset.targets !== 'dashboard-dropzone.templateCards') {
-      this.style.backgroundColor = '#F7F3F0'
+  onDragover = (e) => {
+    const el = this.dropTarget(e)
 
-      if (this.classList.contains('before:border-base-300')) {
-        this.classList.remove('before:border-base-300')
-        this.classList.add('before:border-base-content/30')
-      } else if (this.classList.contains('border-base-300')) {
-        this.classList.remove('border-base-300')
-        this.classList.add('border-base-content/30')
+    if (!el) return
+
+    if (e.dataTransfer?.types?.includes('Files') || el.dataset.targets !== 'dashboard-dropzone.templateCards') {
+      el.style.backgroundColor = '#F7F3F0'
+
+      if (el.classList.contains('before:border-base-300')) {
+        el.classList.remove('before:border-base-300')
+        el.classList.add('before:border-base-content/30')
+      } else if (el.classList.contains('border-base-300')) {
+        el.classList.remove('border-base-300')
+        el.classList.add('border-base-content/30')
       }
     }
   }
@@ -200,15 +233,19 @@ export default targetable(class extends HTMLElement {
     a.remove()
   }
 
-  onDragleave () {
-    this.style.backgroundColor = null
+  onDragleave = (e) => {
+    const el = this.dropTarget(e)
 
-    if (this.classList.contains('before:border-base-content/30')) {
-      this.classList.remove('before:border-base-content/30')
-      this.classList.add('before:border-base-300')
-    } else if (this.classList.contains('border-base-content/30')) {
-      this.classList.remove('border-base-content/30')
-      this.classList.add('border-base-300')
+    if (!el) return
+
+    el.style.backgroundColor = null
+
+    if (el.classList.contains('before:border-base-content/30')) {
+      el.classList.remove('before:border-base-content/30')
+      el.classList.add('before:border-base-300')
+    } else if (el.classList.contains('border-base-content/30')) {
+      el.classList.remove('border-base-content/30')
+      el.classList.add('border-base-300')
     }
   }
 

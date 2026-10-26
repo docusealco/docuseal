@@ -16,7 +16,7 @@ class SubmitterMailer < ApplicationMailer
 
     template_submitters_index = @email_message.blank? ? build_submitter_preferences_index(@submitter) : {}
 
-    @body = @email_message&.body.presence ||
+    @body = @email_message&.normalized_body.presence ||
             template_submitters_index.dig(@submitter.uuid, 'request_email_body').presence ||
             @submitter.template&.preferences&.dig('request_email_body').presence
 
@@ -45,6 +45,45 @@ class SubmitterMailer < ApplicationMailer
     end
   end
 
+  def invitation_view_email(submitter)
+    @current_account = submitter.submission.account
+    @submitter = submitter
+
+    if submitter.preferences['email_message_uuid']
+      @email_message = submitter.account.email_messages.find_by(uuid: submitter.preferences['email_message_uuid'])
+    end
+
+    template_submitters_index = @email_message.blank? ? build_submitter_preferences_index(@submitter) : {}
+
+    @body = @email_message&.normalized_body.presence ||
+            @submitter.template&.preferences&.dig('invitation_view_email_body').presence ||
+            template_submitters_index.dig(@submitter.uuid, 'request_email_body').presence
+
+    @subject = @email_message&.subject.presence ||
+               @submitter.template&.preferences&.dig('invitation_view_email_subject').presence ||
+               template_submitters_index.dig(@submitter.uuid, 'request_email_subject').presence
+
+    @email_config = AccountConfigs.find_for_account(@current_account, AccountConfig::SUBMITTER_VIEW_INVITATION_EMAIL_KEY)
+    @body ||= fetch_config_email_body(@email_config, @submitter)
+
+    assign_message_metadata('submitter_view_invitation', @submitter)
+
+    reply_to = build_submitter_reply_to(@submitter, email_config: @email_config)
+
+    maybe_set_custom_domain(@submitter)
+
+    I18n.with_locale(@current_account.locale) do
+      subject = build_invite_subject(@subject, @email_config, submitter)
+
+      mail(
+        to: @submitter.friendly_name,
+        from: from_address_for_submitter(submitter),
+        subject:,
+        reply_to:
+      )
+    end
+  end
+
   def completed_email(submitter, user, to: nil)
     @current_account = submitter.submission.account
     @submitter = submitter
@@ -52,8 +91,6 @@ class SubmitterMailer < ApplicationMailer
     @user = user
 
     template_preferences = @submission.template&.preferences || {}
-
-    Submissions::EnsureResultGenerated.call(submitter)
 
     @email_config = AccountConfigs.find_for_account(@current_account, AccountConfig::SUBMITTER_COMPLETED_EMAIL_KEY)
 
@@ -97,7 +134,7 @@ class SubmitterMailer < ApplicationMailer
            to: user.role == 'integration' ? user.friendly_name.sub(/\+\w+@/, '@') : user.friendly_name,
            reply_to: @submitter.friendly_name,
            subject: I18n.t(:name_declined_by_submitter,
-                           name: (@submission.name || @submission.template.name).truncate(20),
+                           name: (@submission.name || @submission.template&.name).to_s.truncate(20),
                            submitter: @submitter.name || @submitter.email || @submitter.phone))
     end
   end
@@ -108,8 +145,6 @@ class SubmitterMailer < ApplicationMailer
     @sig = submitter.signed_id(expires_in: SIGN_TTL, purpose: :download_completed) if sig
 
     template_preferences = @submitter.template&.preferences || {}
-
-    Submissions::EnsureResultGenerated.call(@submitter)
 
     @email_config = AccountConfigs.find_for_account(@current_account, AccountConfig::SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY)
 
@@ -144,13 +179,23 @@ class SubmitterMailer < ApplicationMailer
   end
 
   def otp_verification_email(submitter, locale: nil)
+    @current_account = submitter.account
     @submitter = submitter
-    @otp_code = EmailVerificationCodes.generate([submitter.email.downcase.strip, submitter.slug].join(':'))
+    @otp_code = OtpChallenges.generate([submitter.email.downcase.squish, submitter.slug].join(':'),
+                                       purpose: 'form_email_2fa')
 
     assign_message_metadata('otp_verification_email', submitter)
 
+    from =
+      if Docuseal.multitenant? &&
+         AccountConfig.exists?(account_id: submitter.account_id, key: 'custom_otp_email', value: true)
+        from_address_for_submitter(submitter)
+      else
+        default_params[:from]
+      end
+
     I18n.with_locale(locale || submitter.account.locale) do
-      mail(to: submitter.email, subject: I18n.t('email_verification'))
+      mail(to: submitter.email, from:, subject: I18n.t('email_verification'))
     end
   end
 
@@ -171,7 +216,7 @@ class SubmitterMailer < ApplicationMailer
   end
 
   def add_completed_email_attachments!(submitter, with_audit_log: true, with_documents: true)
-    documents = with_documents ? Submitters.select_attachments_for_download(submitter) : []
+    documents = with_documents ? select_completed_documents(submitter) : []
 
     filename_format = AccountConfig.find_or_initialize_by(account_id: submitter.account_id,
                                                           key: AccountConfig::DOCUMENT_FILENAME_FORMAT_KEY)&.value
@@ -215,6 +260,8 @@ class SubmitterMailer < ApplicationMailer
   def build_invite_subject(subject, email_config, submitter)
     if email_config || subject
       ReplaceEmailVariables.call(subject || email_config.value['subject'], submitter:)
+    elsif submitter.viewer?
+      I18n.t(:you_are_invited_to_view_a_document)
     elsif submitter.with_signature_fields?
       I18n.t(:you_are_invited_to_sign_a_document)
     else
@@ -224,6 +271,14 @@ class SubmitterMailer < ApplicationMailer
 
   def build_submitter_preferences_index(submitter)
     submitter.template&.preferences&.dig('submitters').to_a.index_by { |e| e['uuid'] }
+  end
+
+  def select_completed_documents(submitter)
+    last_submitter = Submitter.where(submission_id: submitter.submission_id).completed.order(:completed_at).last
+
+    Submissions::EnsureResultGenerated.call(last_submitter)
+
+    Submitters.select_attachments_for_download(last_submitter)
   end
 
   def add_attachments_with_size_limit(submitter, storage_attachments, current_size, filename_format = nil)

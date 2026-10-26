@@ -8,6 +8,7 @@ class NotificationsSettingsController < ApplicationController
 
   before_action :build_account_config, only: :create
   authorize_resource :account_config, only: :create
+  before_action :authorize_email_reminders!, only: :create
 
   def index; end
 
@@ -20,6 +21,14 @@ class NotificationsSettingsController < ApplicationController
   end
 
   private
+
+  def authorize_email_reminders!
+    return unless Docuseal.multitenant?
+    return if @account_config.key != AccountConfig::SUBMITTER_REMINDERS
+    return if can?(:manage, :email_reminders)
+
+    redirect_back fallback_location: settings_notifications_path, alert: I18n.t('unlock_with_docuseal_pro')
+  end
 
   def build_account_config
     @account_config =

@@ -6,6 +6,8 @@ class TemplatesFoldersController < ApplicationController
   def edit; end
 
   def update
+    authorize!(:update, @template)
+
     name = [params[:parent_name], params[:name]].compact_blank.join(' / ')
 
     @template.folder = TemplateFolders.find_or_create_by_name(current_user, name)

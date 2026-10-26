@@ -1,34 +1,38 @@
 <template>
   <span
     class="dropdown dropdown-end field-settings-dropdown"
-    :class="{ 'dropdown-open': withForceOpen && ((!field.preferences?.price && !field.preferences?.formula && !field.preferences?.price_id && !field.preferences?.payment_link_id) || !isConnected) && !isLoading }"
+    :class="{ 'dropdown-open': withForceOpen && !field.preferences?.price && !field.preferences?.formula && !field.preferences?.price_id && !field.preferences?.payment_link_id && !isLoading }"
   >
-    <label
-      tabindex="0"
-      :title="t('settings')"
-      class="cursor-pointer text-transparent group-hover:text-base-content"
-    >
-      <IconSettings
-        :width="18"
-        :stroke-width="1.6"
-      />
-    </label>
+    <slot>
+      <label
+        tabindex="0"
+        :title="t('settings')"
+        class="cursor-pointer text-transparent group-hover:text-base-content"
+      >
+        <IconSettings
+          :width="18"
+          :stroke-width="1.6"
+        />
+      </label>
+    </slot>
     <ul
       tabindex="0"
-      class="mt-1.5 dropdown-content menu menu-xs p-2 shadow bg-base-100 rounded-box w-52 z-10"
+      class="dropdown-content menu menu-xs p-2 shadow rounded-box w-52 z-10"
+      :class="menuClasses"
+      :style="{ backgroundColor }"
       draggable="true"
       @dragstart.prevent.stop
       @click="closeDropdown"
     >
       <div
-        v-if="!('price_id' in field.preferences) && !('payment_link_id' in field.preferences)"
+        v-if="isPaypal || (!('price_id' in field.preferences) && !('payment_link_id' in field.preferences))"
         class="field-settings-currency py-1.5 px-1 relative"
         @click.stop
       >
         <select
           v-model="field.preferences.currency"
           :placeholder="t('price')"
-          class="select select-bordered select-xs font-normal w-full max-w-xs !h-7 !outline-0"
+          class="select select-bordered select-xs font-normal w-full max-w-xs !h-7 !outline-0 bg-transparent"
           @change="save"
         >
           <option
@@ -40,7 +44,7 @@
           </option>
         </select>
         <label
-          :style="{ backgroundColor: backgroundColor }"
+          :style="{ backgroundColor }"
           class="absolute -top-1 left-2.5 px-1 h-4"
           style="font-size: 8px"
         >
@@ -52,17 +56,17 @@
         @click.stop
       >
         <input
-          v-if="'payment_link_id' in field.preferences"
+          v-if="isStripe && 'payment_link_id' in field.preferences"
           v-model="field.preferences.payment_link_id"
           placeholder="plink_XXXXX"
-          class="input input-bordered input-xs w-full max-w-xs h-7 !outline-0"
+          class="input input-bordered input-xs w-full max-w-xs h-7 !outline-0 bg-transparent"
           @blur="save"
         >
         <input
-          v-else-if="'price_id' in field.preferences"
+          v-else-if="isStripe && 'price_id' in field.preferences"
           v-model="field.preferences.price_id"
           placeholder="Price ID: price_XXXXX"
-          class="input input-bordered input-xs w-full max-w-xs h-7 !outline-0"
+          class="input input-bordered input-xs w-full max-w-xs h-7 !outline-0 bg-transparent"
           @blur="save"
         >
         <input
@@ -70,7 +74,7 @@
           type="number"
           :placeholder="t('price')"
           disabled="true"
-          class="input input-bordered input-xs w-full max-w-xs h-7 !outline-0"
+          class="input input-bordered input-xs w-full max-w-xs h-7 !outline-0 bg-transparent"
           @blur="save"
         >
         <input
@@ -78,24 +82,27 @@
           v-model="field.preferences.price"
           type="number"
           :placeholder="t('price')"
-          class="input input-bordered input-xs w-full max-w-xs h-7 !outline-0"
+          class="input input-bordered input-xs w-full max-w-xs h-7 !outline-0 bg-transparent"
           @blur="save"
         >
         <label
           v-if="(field.preferences.price || field.preferences.price_id || field.preferences.payment_link_id) && (!field.preferences.formula || ('price_id' in field.preferences) || ('payment_link_id' in field.preferences))"
-          :style="{ backgroundColor: backgroundColor }"
+          :style="{ backgroundColor }"
           class="absolute -top-1 left-2.5 px-1 h-4"
           style="font-size: 8px"
         >
           {{ 'payment_link_id' in field.preferences ? t('payment_link') : t('price') }}
         </label>
-        <div class="flex items-center justify-center">
+        <div
+          v-if="isStripe && stripeConnected"
+          class="flex items-center justify-center"
+        >
           <a
             href="#"
             class="hover:underline"
             style="font-size: 11px"
             :class="{'underline': !('payment_link_id' in field.preferences)}"
-            @click="[delete field.preferences.price_id, delete field.preferences.payment_link_id]"
+            @click.prevent="[delete field.preferences.price_id, delete field.preferences.payment_link_id]"
           >{{ t('one_off') }}</a>
           <span class="h-2.5 border-l border-base-content mx-1" />
           <template
@@ -106,7 +113,7 @@
               class="hover:underline"
               style="font-size: 11px"
               :class="{'underline': ('price_id' in field.preferences)}"
-              @click="field.preferences.payment_link_id ??= ''"
+              @click.prevent="field.preferences.payment_link_id ??= ''"
             >{{ t('recurrent') }}</a>
             <span class="h-2.5 border-l border-base-content mx-1" />
           </template>
@@ -115,26 +122,27 @@
             class="hover:underline"
             style="font-size: 11px"
             :class="{'underline': ('payment_link_id' in field.preferences)}"
-            @click="[delete field.preferences.price_id, field.preferences.payment_link_id ??= '']"
+            @click.prevent="[delete field.preferences.price_id, field.preferences.payment_link_id ??= '']"
           >{{ t('payment_link') }}</a>
         </div>
       </div>
       <div
-        v-if="!isConnected || isOauthSuccess"
-        class="field-settings-stripe-connect py-1.5 px-1 relative"
+        v-if="!stripeConnected && !paypalConnected"
+        class="flex flex-col gap-1 py-1.5 px-1"
         @click.stop
       >
-        <div
-          v-if="isConnected && isOauthSuccess"
-          class="text-sm text-center"
+        <a
+          v-if="withPaypal"
+          :href="paypalConnectUrl"
+          target="_blank"
+          data-turbo="false"
+          class="btn bg-[#003087] hover:bg-[#012169] btn-sm text-white w-full"
         >
-          <IconCircleCheck
-            class="inline text-green-600 w-4 h-4"
-          />
-          Stripe Connected
-        </div>
+          <IconBrandPaypal class="w-4 h-4 inline" />
+          <span>Connect PayPal</span>
+        </a>
         <form
-          v-if="!isConnected"
+          v-if="withStripe"
           data-turbo="false"
           action="/auth/stripe_connect"
           accept-charset="UTF-8"
@@ -143,8 +151,8 @@
         >
           <input
             type="hidden"
-            name="state"
-            :value="oauthState"
+            name="oauth_data"
+            :value="oauthData"
             autocomplete="off"
           >
           <input
@@ -170,39 +178,32 @@
             :disabled="isLoading"
             class="btn bg-[#7B73FF] hover:bg-[#0A2540] btn-sm text-white w-full"
           >
-            <span
+            <IconInnerShadowTop
               v-if="isLoading"
-              class="flex items-center space-x-1"
-            >
-              <IconInnerShadowTop
-                class="w-4 h-4 animate-spin inline"
-              />
-              <span>
-                Connect Stripe
-              </span>
-            </span>
-            <span
+              class="w-4 h-4 animate-spin inline"
+            />
+            <IconBrandStripe
               v-else
-              class="flex items-center space-x-1"
-            >
-              <IconBrandStripe
-                class="w-4 h-4 inline"
-              />
-              <span>
-                Connect Stripe
-              </span>
-            </span>
+              class="w-4 h-4 inline"
+            />
+            <span>Connect Stripe</span>
           </button>
         </form>
+      </div>
+      <div
+        v-if="isStripe && !stripeConnected"
+        class="px-1 pb-1.5"
+        @click.stop
+      >
         <a
-          v-if="!isConnected"
-          class="block link text-center mt-1"
+          class="block link text-center text-xs"
           href="https://www.docuseal.com/blog/accept-payments-and-request-signatures-with-ease"
           target="_blank"
           data-turbo="false"
         >{{ t('learn_more') }}</a>
       </div>
       <li
+        v-if="withFormula || nativePlatform !== 'ios'"
         class="field-settings-formula mb-1"
       >
         <label
@@ -232,7 +233,7 @@
         </label>
       </li>
       <li
-        v-if="withCondition"
+        v-if="withCondition && (withConditions || nativePlatform !== 'ios')"
         class="field-settings-condition mt-1"
       >
         <label
@@ -267,29 +268,31 @@
           {{ t('save_as_custom_field') }}
         </a>
       </li>
+      <slot name="menu" />
     </ul>
   </span>
 </template>
 
 <script>
-import { IconMathFunction, IconSettings, IconCircleCheck, IconInfoCircle, IconBrandStripe, IconInnerShadowTop, IconRouteAltLeft, IconForms } from '@tabler/icons-vue'
+import { IconMathFunction, IconSettings, IconInfoCircle, IconBrandStripe, IconBrandPaypal, IconInnerShadowTop, IconRouteAltLeft, IconForms } from '@tabler/icons-vue'
 import { ref } from 'vue'
 
-const isConnected = ref(false)
+export const stripeConnectedRef = ref(false)
+export const paypalConnectedRef = ref(false)
 
 export default {
   name: 'PaymentSettings',
   components: {
     IconSettings,
-    IconCircleCheck,
     IconRouteAltLeft,
     IconInfoCircle,
     IconForms,
     IconMathFunction,
     IconInnerShadowTop,
-    IconBrandStripe
+    IconBrandStripe,
+    IconBrandPaypal
   },
-  inject: ['backgroundColor', 'save', 'currencies', 't', 'isPaymentConnected'],
+  inject: ['save', 'currencies', 't', 'isStripeConnected', 'isPaypalConnected', 'withStripe', 'withPaypal', 'withFormula', 'withConditions', 'nativePlatform'],
   props: {
     field: {
       type: Object,
@@ -309,6 +312,16 @@ export default {
       type: Boolean,
       required: false,
       default: true
+    },
+    backgroundColor: {
+      type: String,
+      required: false,
+      default: null
+    },
+    menuClasses: {
+      type: String,
+      required: false,
+      default: 'mt-1.5'
     }
   },
   emits: ['click-condition', 'click-description', 'click-formula', 'add-custom-field'],
@@ -318,12 +331,26 @@ export default {
     }
   },
   computed: {
-    isConnected: () => isConnected.value,
-    isOauthSuccess () {
-      return document.location.search?.includes('stripe_connect_success')
+    stripeConnected: () => stripeConnectedRef.value,
+    paypalConnected: () => paypalConnectedRef.value,
+    provider () {
+      if (this.paypalConnected && !this.stripeConnected) return 'paypal'
+      if (this.stripeConnected && !this.paypalConnected) return 'stripe'
+      if (this.withPaypal && !this.withStripe) return 'paypal'
+
+      return 'stripe'
+    },
+    isStripe () {
+      return this.provider === 'stripe'
+    },
+    isPaypal () {
+      return this.provider === 'paypal'
     },
     redirectUri () {
       return document.location.origin + '/auth/stripe_connect/callback'
+    },
+    paypalConnectUrl () {
+      return `/auth/paypal_connect?redir=${encodeURIComponent(document.location.href)}`
     },
     defaultCurrencies () {
       return ['USD', 'EUR', 'GBP', 'CAD', 'AUD']
@@ -334,7 +361,7 @@ export default {
     authenticityToken () {
       return document.querySelector('meta[name="csrf-token"]')?.content
     },
-    oauthState () {
+    oauthData () {
       const params = new URLSearchParams('')
 
       params.set('redir', document.location.href)
@@ -363,24 +390,51 @@ export default {
   mounted () {
     this.field.preferences.currency ||= this.defaultCurrency
 
-    isConnected.value ||= this.isPaymentConnected
+    stripeConnectedRef.value ||= this.isStripeConnected
+    paypalConnectedRef.value ||= this.isPaypalConnected
 
-    if (!this.isConnected) {
-      this.checkStatus()
+    if (this.withStripe && !this.stripeConnected && !this.paypalConnected) {
+      this.checkStripeStatus()
+    }
+
+    if (this.withPaypal && !this.paypalConnected && !this.stripeConnected) {
+      this.checkPaypalStatus()
+      window.addEventListener('focus', this.onWindowFocus)
     }
   },
+  beforeUnmount () {
+    window.removeEventListener('focus', this.onWindowFocus)
+  },
   methods: {
-    checkStatus () {
+    onWindowFocus () {
+      if (this.withPaypal && !this.paypalConnected) {
+        this.checkPaypalStatus()
+      }
+    },
+    checkStripeStatus () {
       this.isLoading = true
 
-      fetch('/api/stripe_connect').then(async (resp) => {
+      fetch('/stripe_connect').then(async (resp) => {
         const { status } = await resp.json()
 
         if (status === 'connected') {
-          isConnected.value = true
+          stripeConnectedRef.value = true
+
+          window.removeEventListener('focus', this.onWindowFocus)
         }
       }).finally(() => {
         this.isLoading = false
+      })
+    },
+    checkPaypalStatus () {
+      fetch('/paypal_connect').then(async (resp) => {
+        const { status } = await resp.json()
+
+        if (status === 'connected') {
+          paypalConnectedRef.value = true
+
+          window.removeEventListener('focus', this.onWindowFocus)
+        }
       })
     },
     closeDropdown () {

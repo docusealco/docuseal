@@ -42,10 +42,25 @@ export default {
       const areas = {}
 
       this.field.areas?.forEach((area) => {
-        areas[area.attachment_uuid + area.page] ||= area
+        areas[area.attachment_uuid] ||= []
+        areas[area.attachment_uuid].push(area)
       })
 
-      return Object.values(areas).slice(0, 6)
+      const sortedAreas = Object.values(areas).reduce((acc, group) => {
+        const seen = {}
+        const sortedGroup = [...group].sort((a, b) => a.page - b.page)
+
+        sortedGroup.forEach((area) => {
+          if (!seen[area.page]) {
+            seen[area.page] = true
+            acc.push(area)
+          }
+        })
+
+        return acc
+      }, [])
+
+      return sortedAreas.slice(0, 6)
     }
   }
 }

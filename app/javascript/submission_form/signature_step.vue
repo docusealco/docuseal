@@ -25,46 +25,65 @@
           class="md:tooltip"
           :data-tip="t('draw_signature')"
         >
-          <a
+          <button
             id="type_text_button"
-            href="#"
+            ref="typeTextButton"
+            type="button"
+            :aria-label="t('draw_signature')"
             class="btn btn-outline btn-sm font-medium type-text-button"
-            @click.prevent="[toggleTextInput(), hideQr()]"
+            @click="[toggleTextInput(), hideQr()]"
           >
-            <IconSignature :width="16" />
+            <IconSignature
+              :width="16"
+              aria-hidden="true"
+            />
             <span class="hidden sm:inline">
               {{ t('draw') }}
             </span>
-          </a>
+          </button>
         </span>
         <span
           v-else-if="withTypedSignature && format !== 'drawn_or_upload' && format !== 'typed_or_upload' && format !== 'typed' && format !== 'drawn' && format !== 'upload'"
           class="md:tooltip ml-2"
-          :class="{ 'hidden sm:inline': modelValue || computedPreviousValue }"
+          :class="{ 'hidden sm:inline': modelValue || computedPreviousValue || computedPrefillData }"
           :data-tip="t('type_text')"
         >
-          <a
+          <button
             id="type_text_button"
-            href="#"
+            ref="typeTextButton"
+            type="button"
+            :aria-label="t('type_text')"
             class="btn btn-outline btn-sm font-medium inline-flex flex-nowrap type-text-button"
-            @click.prevent="[toggleTextInput(), hideQr()]"
+            @click="[toggleTextInput(), hideQr()]"
           >
-            <IconTextSize :width="16" />
+            <IconTextSize
+              :width="16"
+              aria-hidden="true"
+            />
             <span class="hidden sm:inline">
               {{ t('type') }}
             </span>
-          </a>
+          </button>
         </span>
         <span
           v-if="format !== 'typed' && format !== 'drawn' && format !== 'upload' && format !== 'drawn_or_typed'"
           class="md:tooltip"
-          :class="{ 'hidden sm:inline': modelValue || computedPreviousValue }"
+          :class="{ 'hidden sm:inline': modelValue || computedPreviousValue || computedPrefillData }"
           :data-tip="t('take_photo')"
         >
-          <label class="btn btn-outline btn-sm font-medium inline-flex flex-nowrap upload-image-button">
-            <IconCamera :width="16" />
+          <button
+            type="button"
+            :aria-label="t('upload')"
+            class="btn btn-outline btn-sm font-medium inline-flex flex-nowrap upload-image-button"
+            @click="$refs.takePhotoInput.click()"
+          >
+            <IconCamera
+              :width="16"
+              aria-hidden="true"
+            />
             <input
               :key="uploadImageInputKey"
+              ref="takePhotoInput"
               type="file"
               hidden
               accept="image/*"
@@ -73,49 +92,57 @@
             <span class="hidden sm:inline">
               {{ t('upload') }}
             </span>
-          </label>
+          </button>
         </span>
-        <a
-          v-if="modelValue || computedPreviousValue"
-          href="#"
+        <button
+          v-if="modelValue || computedPreviousValue || computedPrefillData"
+          type="button"
           class="btn btn-outline btn-sm font-medium reupload-button"
-          @click.prevent="remove"
+          @click="remove"
         >
-          <IconReload :width="16" />
+          <IconReload
+            :width="16"
+            aria-hidden="true"
+          />
           {{ t(format === 'upload' ? 'reupload' : 'redraw') }}
-        </a>
+        </button>
         <span
-          v-if="withQrButton && !modelValue && !computedPreviousValue && format !== 'typed_or_upload' && format !== 'typed' && format !== 'upload'"
+          v-if="withQrButton && !modelValue && !computedPreviousValue && !computedPrefillData && format !== 'typed_or_upload' && format !== 'typed' && format !== 'upload'"
           class="md:tooltip before:translate-x-[-90%]"
           :data-tip="t('sign_on_the_touchscreen')"
         >
-          <a
-            href="#"
+          <button
+            type="button"
+            :aria-label="t('sign_on_the_touchscreen')"
             class="btn btn-sm btn-neutral font-medium hidden md:flex"
             :class="{ 'btn-outline': !isShowQr, 'text-white': isShowQr }"
-            @click.prevent="isShowQr ? hideQr() : [isTextSignature = false, showQr()]"
+            @click="isShowQr ? hideQr() : [isTextSignature = false, showQr()]"
           >
             <IconQrcode
               :width="19"
               :height="19"
+              aria-hidden="true"
             />
-          </a>
+          </button>
         </span>
-        <a
-          href="#"
+        <button
+          type="button"
           :title="t('minimize')"
+          :aria-label="t('minimize')"
           class="py-1.5 inline md:hidden"
-          @click.prevent="$emit('minimize')"
+          @click="$emit('minimize')"
         >
           <IconArrowsDiagonalMinimize2
             :width="20"
             :height="20"
+            aria-hidden="true"
           />
-        </a>
+        </button>
       </div>
     </div>
     <div
       v-if="field.description"
+      :id="field.uuid + '-desc'"
       dir="auto"
       class="mb-3 px-1 field-description-text"
     >
@@ -127,19 +154,14 @@
       type="hidden"
       :name="`values[${field.uuid}]`"
     >
-    <input
-      v-if="isTouchAttachment"
-      :value="touchAttachmentUuid"
-      type="hidden"
-      name="touch_attachment_uuid"
-    >
     <img
-      v-if="modelValue || computedPreviousValue"
-      :src="attachmentsIndex[modelValue || computedPreviousValue].url"
+      v-if="modelValue || computedPreviousValue || computedPrefillData"
+      :src="previousValueUrl"
+      :alt="field.name || t('signature')"
       class="mx-auto bg-white border border-base-300 rounded max-h-44"
     >
     <FileDropzone
-      v-if="format === 'upload' && !modelValue && !computedPreviousValue"
+      v-if="format === 'upload' && !modelValue && !computedPreviousValue && !computedPrefillData"
       :message="`${t('upload')} ${field.name || t('signature')}`"
       :submitter-slug="submitterSlug"
       :dry-run="dryRun"
@@ -151,27 +173,35 @@
       class="relative select-none"
     >
       <div
-        v-if="!modelValue && !computedPreviousValue && !isShowQr && !isTextSignature && isSignatureStarted"
+        v-if="!modelValue && !computedPreviousValue && !computedPrefillData && !isShowQr && !isTextSignature && isSignatureStarted"
         class="absolute top-0.5 right-0.5"
       >
-        <a
-          href="#"
+        <button
+          type="button"
           class="btn btn-ghost font-medium btn-xs md:btn-sm"
-          @click.prevent="[clear(), hideQr()]"
+          @click="[clear(), hideQr()]"
         >
-          <IconReload :width="16" />
+          <IconReload
+            :width="16"
+            aria-hidden="true"
+          />
           {{ t('clear') }}
-        </a>
+        </button>
       </div>
       <div
         v-if="isTextSignature"
         class="absolute top-0 right-0 left-0 bottom-0"
       />
       <canvas
-        v-show="!modelValue && !computedPreviousValue"
+        v-show="!modelValue && !computedPreviousValue && !computedPrefillData"
         ref="canvas"
+        role="img"
+        :aria-label="t('signature_drawing_area')"
         style="padding: 1px; 0"
         class="bg-white border border-base-300 rounded-2xl w-full draw-canvas"
+        @touchstart.passive="lockSwipe"
+        @touchend.passive="unlockSwipe"
+        @touchcancel.passive="unlockSwipe"
       />
       <div
         v-if="isShowQr"
@@ -182,13 +212,14 @@
         class="top-0 bottom-0 right-0 left-0 absolute bg-base-content/10 rounded-2xl"
       >
         <div class="absolute top-1.5 right-1.5">
-          <a
-            href="#"
+          <button
+            type="button"
             class="btn btn-sm btn-circle btn-normal btn-outline"
-            @click.prevent="hideQr"
+            :aria-label="t('close')"
+            @click="hideQr"
           >
-            <IconX />
-          </a>
+            <IconX aria-hidden="true" />
+          </button>
         </div>
         <div class="flex items-center justify-center w-full h-full p-4">
           <div
@@ -196,6 +227,8 @@
           >
             <canvas
               ref="qrCanvas"
+              role="img"
+              :aria-label="t('scan_the_qr_code_with_the_camera_app_to_open_the_form_on_mobile_and_draw_your_signature')"
               class="h-full"
               width="132"
               height="132"
@@ -205,12 +238,13 @@
       </div>
     </div>
     <input
-      v-if="isTextSignature && !modelValue && !computedPreviousValue"
+      v-if="isTextSignature && !modelValue && !computedPreviousValue && !computedPrefillData"
       id="signature_text_input"
       ref="textInput"
       class="base-input !text-2xl w-full mt-6"
       :required="field.required && !isSignatureStarted"
-      :placeholder="`${t('type_signature_here')}...`"
+      :aria-label="field.name || t('signature')"
+      :placeholder="`${t('type_signature_here')}${field.required ? '...' : ' (' + t('optional') + ')'}`"
       type="text"
       @input="updateWrittenSignature"
     >
@@ -219,6 +253,7 @@
       class="select base-input !text-2xl w-full mt-6 text-center"
       :class="{ 'text-gray-300': !reason }"
       required
+      :aria-label="t('select_a_reason')"
       :name="`values[${field.preferences.reason_field_uuid}]`"
       @change="$event.target.value === 'other' ? [reason = '', isOtherReason = true] : $emit('update:reason', $event.target.value)"
     >
@@ -264,6 +299,7 @@
       class="base-input !text-2xl w-full mt-6"
       required
       :name="`values[${field.preferences.reason_field_uuid}]`"
+      :aria-label="t('select_a_reason')"
       :placeholder="t('type_here_')"
       :value="reason"
       type="text"
@@ -334,7 +370,7 @@ export default {
     IconSignature,
     IconArrowsDiagonalMinimize2
   },
-  inject: ['baseUrl', 't'],
+  inject: ['baseUrl', 'fetchOptions', 't'],
   props: {
     field: {
       type: Object,
@@ -398,10 +434,10 @@ export default {
       required: false,
       default: ''
     },
-    touchAttachmentUuid: {
-      type: String,
+    prefillData: {
+      type: Object,
       required: false,
-      default: ''
+      default: null
     },
     reason: {
       type: String,
@@ -418,20 +454,24 @@ export default {
       required: false,
       default: ''
     },
+    nativePlatform: {
+      type: String,
+      required: false,
+      default: ''
+    },
     modelValue: {
       type: String,
       required: false,
       default: ''
     }
   },
-  emits: ['attached', 'update:model-value', 'start', 'minimize', 'update:reason', 'touch-attachment'],
+  emits: ['attached', 'update:model-value', 'start', 'minimize', 'update:reason'],
   data () {
     return {
       isSignatureStarted: false,
       isShowQr: false,
       isOtherReason: false,
       isUsePreviousValue: true,
-      isTouchAttachment: false,
       isTextSignature: !this.signatureSrc && (!!this.signatureText || this.field.preferences?.format === 'typed' || this.field.preferences?.format === 'typed_or_upload'),
       uploadImageInputKey: Math.random().toString()
     }
@@ -459,10 +499,24 @@ export default {
       } else {
         return null
       }
+    },
+    computedPrefillData () {
+      if (this.isUsePreviousValue && this.field.required === true && !this.previousValue && !this.modelValue) {
+        return this.prefillData
+      } else {
+        return null
+      }
+    },
+    previousValueUrl () {
+      if (this.computedPrefillData) {
+        return this.computedPrefillData.url
+      } else {
+        return this.attachmentsIndex[this.modelValue || this.computedPreviousValue].url
+      }
     }
   },
   created () {
-    this.isSignatureStarted = !!this.computedPreviousValue
+    this.isSignatureStarted = !!(this.computedPreviousValue || this.computedPrefillData)
 
     if (this.withSigningReason) {
       this.field.preferences ||= {}
@@ -496,7 +550,7 @@ export default {
               this.$nextTick(() => this.drawSignatureSrc())
             } else if (this.isTextSignature) {
               this.$nextTick(() => {
-                if (this.$refs.textInput) {
+                if (this.$refs.textInput && this.field.required === true) {
                   this.initTypedSignature()
                 }
               })
@@ -512,6 +566,7 @@ export default {
       this.resizeObserver = new ResizeObserver(() => {
         requestAnimationFrame(() => {
           if (!this.$refs.canvas) return
+          if (!this.$refs.canvas.parentNode?.clientWidth) return
 
           const { width, height } = this.$refs.canvas
 
@@ -536,6 +591,16 @@ export default {
     this.stopCheckSignature()
   },
   methods: {
+    lockSwipe () {
+      if (this.nativePlatform) {
+        window.webkit?.messageHandlers?.native?.postMessage({ type: 'swipe', op: 'lock' })
+      }
+    },
+    unlockSwipe () {
+      if (this.nativePlatform) {
+        window.webkit?.messageHandlers?.native?.postMessage({ type: 'swipe', op: 'unlock' })
+      }
+    },
     setCanvasSize () {
       const canvas = this.$refs.canvas
 
@@ -554,7 +619,7 @@ export default {
     redrawCanvas (oldWidth, oldHeight) {
       const canvas = this.$refs.canvas
 
-      if (this.pad && !this.isTextSignature && !this.pad.isEmpty() && oldWidth > 0 && oldHeight > 0) {
+      if (this.pad && !this.isTextSignature && !this.pad.isEmpty() && oldWidth > 0 && oldHeight > 0 && canvas.width > 0 && canvas.height > 0) {
         const sx = canvas.width / oldWidth
         const sy = canvas.height / oldHeight
 
@@ -683,10 +748,12 @@ export default {
       this.clear()
       this.isTextSignature = !this.isTextSignature
 
-      if (this.isTextSignature) {
-        this.$nextTick(() => {
+      this.$nextTick(() => {
+        if (this.isTextSignature) {
           if (this.$refs.textInput) {
-            if (!this.submitter.name) {
+            if (this.submitter.name) {
+              this.$refs.typeTextButton?.focus()
+            } else {
               this.$refs.textInput.focus()
             }
 
@@ -694,8 +761,10 @@ export default {
 
             this.$emit('start')
           }
-        })
-      }
+        } else {
+          this.$refs.typeTextButton?.focus()
+        }
+      })
     },
     async initTypedSignature () {
       if (this.signatureText) {
@@ -828,15 +897,49 @@ export default {
         console.error(e)
       }
     },
-    async submit () {
-      if (this.modelValue || this.computedPreviousValue) {
-        if (this.touchAttachmentUuid && this.computedPreviousValue === this.touchAttachmentUuid && !Object.values(this.values).includes(this.touchAttachmentUuid)) {
-          this.isTouchAttachment = true
-          this.$emit('touch-attachment', this.touchAttachmentUuid)
-        } else {
-          this.isTouchAttachment = false
+    submitPrefillAttachment () {
+      if (this.dryRun) {
+        const attachment = { uuid: Math.random().toString(), url: this.prefillData.url }
+
+        this.$emit('attached', attachment)
+        this.$emit('update:model-value', attachment.uuid)
+
+        return Promise.resolve(attachment)
+      }
+
+      const formData = new FormData()
+
+      formData.append('prefill_token', this.prefillData.token)
+
+      return fetch(this.baseUrl + `/s/${this.submitterSlug}/prefill_attachments`, {
+        method: 'POST',
+        headers: { ...this.fetchOptions.headers },
+        body: formData
+      }).then(async (resp) => {
+        if (!resp.ok) {
+          const data = await resp.json()
+
+          return Promise.reject(new Error(data.error))
         }
 
+        const attachment = await resp.json()
+
+        this.$emit('attached', attachment)
+        this.$emit('update:model-value', attachment.uuid)
+
+        return attachment
+      }).catch((error) => {
+        this.remove()
+
+        return Promise.reject(error)
+      })
+    },
+    async submit () {
+      if (this.computedPrefillData) {
+        return this.submitPrefillAttachment()
+      }
+
+      if (this.modelValue || this.computedPreviousValue) {
         if (this.computedPreviousValue) {
           this.$emit('update:model-value', this.computedPreviousValue)
         }
@@ -888,9 +991,20 @@ export default {
             formData.append('remember_signature', this.rememberSignature)
             formData.append('type', 'signature')
 
-            return fetch(this.baseUrl + '/api/attachments', {
+            return fetch(this.baseUrl + `/s/${this.submitterSlug}/upload`, {
               method: 'POST',
+              headers: { ...this.fetchOptions.headers },
               body: formData
+            }).then((resp) => {
+              if (resp.status === 404) {
+                return fetch(this.baseUrl + '/api/attachments', {
+                  method: 'POST',
+                  headers: { ...this.fetchOptions.headers },
+                  body: formData
+                })
+              } else {
+                return resp
+              }
             }).then(async (resp) => {
               if (resp.status === 422 || resp.status === 500) {
                 const data = await resp.json()

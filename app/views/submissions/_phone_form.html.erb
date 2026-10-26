@@ -1,17 +1,17 @@
-<%= form_for '', url: template_submissions_path(template), html: { class: 'space-y-4', autocomplete: 'off' }, data: { turbo_frame: :_top } do |f| %>
+<%= form_for '', url: template_submissions_path(template), html: { autocomplete: 'off' }, data: { turbo_frame: :_top } do |f| %>
   <% submitters = template.submitters.reject { |e| e['invite_by_uuid'].present? || e['optional_invite_by_uuid'].present? || e['invite_via_field_uuid'].present? } %>
-  <dynamic-list class="space-y-4">
+  <dynamic-list class="block" data-multiple-classes="px-3 <%= submitters.size > 1 ? 'pt-3 pb-4' : 'py-4' %> rounded-xl border border-dashed border-base-300">
     <div class="space-y-4">
-      <div class="relative <%= 'p-4 rounded-xl bg-base-300/40' unless local_assigns[:variables_form] %>" data-targets="dynamic-list.items">
+      <div class="relative" data-targets="dynamic-list.items">
         <div>
-          <div class="absolute right-4 top-5">
-            <a href="#" data-action="click:dynamic-list#removeItem" class="<%= submitters.size == 1 ? 'right-2 top-1' : '-top-3' %> relative block w-6 h-6 rounded-lg text-neutral-700 text-center bg-base-300 p-1 hidden hover:bg-neutral hover:text-white">
+          <div class="absolute top-5" style="right: 12px">
+            <a href="#" data-action="click:dynamic-list#removeItem" class="<%= submitters.size == 1 ? 'right-2 top-1' : '-top-3' %> relative block w-6 h-6 text-neutral-700 p-1 hidden hover:text-base-content">
               <%= svg_icon('trash', class: 'w-4 h-4') %>
             </a>
           </div>
-          <div class="grid <%= submitters.size > 1 ? 'md:grid-cols-2 gap-4' : 'gap-1' %>">
+          <div class="grid <%= submitters.size > 1 ? 'md:grid-cols-2 gap-4' : 'gap-1.5' %>">
             <% submitters.each_with_index do |item, index| %>
-              <submitter-item class="grid <%= submitters.size > 1 ? 'gap-4' : 'md:grid-cols-2 gap-1' %>">
+              <submitter-item class="grid <%= submitters.size > 1 ? 'gap-4' : 'md:grid-cols-2 gap-1.5' %>">
                 <div class="form-control">
                   <% if submitters.size > 1 %>
                     <label class="label pt-0 pb-1">
@@ -19,13 +19,11 @@
                     </label>
                   <% end %>
                   <input type="hidden" name="submission[1][submitters][][uuid]" value="<%= item['uuid'] %>">
-                  <custom-validation data-invalid-message="<%= t('use_international_format_1xxx_') %>">
-                    <submitters-autocomplete data-field="phone">
-                      <linked-input data-target-id="<%= "phone_phone_#{item['linked_to_uuid']}" if item['linked_to_uuid'].present? %>">
-                        <%= tag.input type: 'tel', pattern: '^\+[0-9\s\-]+$', name: 'submission[1][submitters][][phone]', autocomplete: 'off', class: 'base-input !h-10 w-full', placeholder: t('phone'), required: index.zero? || template.preferences['require_all_submitters'], id: "phone_phone_#{item['uuid']}" %>
-                      </linked-input>
-                    </submitters-autocomplete>
-                  </custom-validation>
+                  <submitters-autocomplete data-field="phone">
+                    <linked-input data-target-id="<%= "phone_phone_#{item['linked_to_uuid']}" if item['linked_to_uuid'].present? %>">
+                      <%= tag.input type: 'tel', pattern: '^\+[0-9\s\-]+$', name: 'submission[1][submitters][][phone]', autocomplete: 'off', title: t('use_international_format_1xxx_'), class: 'base-input !h-10 w-full', placeholder: t('phone'), required: index.zero? || template.preferences['require_all_submitters'], id: "phone_phone_#{item['uuid']}" %>
+                    </linked-input>
+                  </submitters-autocomplete>
                   <% if submitters.size > 1 %>
                     <submitters-autocomplete data-field="name">
                       <linked-input data-target-id="<%= "phone_name_#{item['linked_to_uuid']}" if item['linked_to_uuid'].present? %>">
@@ -50,19 +48,21 @@
       </div>
     </div>
     <% if params[:selfsign].blank? && local_assigns[:variables_form].blank? %>
-      <a href="#" class="btn btn-primary btn-sm w-full flex items-center justify-center" data-action="click:dynamic-list#addItem">
-        <%= svg_icon('user_plus', class: 'w-4 h-4 stroke-2') %>
-        <span><%= t('add_new') %></span>
-      </a>
+      <%= render 'add_new', template: %>
     <% end %>
   </dynamic-list>
   <%= local_assigns[:variables_form] %>
-  <div>
-    <%= render('submitters_order', f:, template:) if Accounts.can_send_emails?(current_account) %>
+  <div class="mt-4">
+    <%= render 'submitters_order', f:, template: %>
     <%= render 'send_sms', f:, checked: true %>
     <%= render 'extra_phone_fields', f: %>
   </div>
-  <div class="form-control">
-    <%= f.button button_title(title: t('add_recipients')), class: 'base-button' %>
+  <div class="form-control mt-4">
+    <%= f.button class: 'base-button' do %>
+      <toggle-on-checked data-names="send_email send_sms">
+        <span><%= button_title(title: t('send'), disabled_with: t('sending')) %></span>
+        <span class="hidden"><%= button_title(title: t('add_recipients')) %></span>
+      </toggle-on-checked>
+    <% end %>
   </div>
 <% end %>

@@ -1,5 +1,7 @@
 export default class extends HTMLElement {
   connectedCallback () {
+    this.id = `bar-chart-${Math.random().toString(32).split('.')[1]}`
+
     this.chartLabels = JSON.parse(this.dataset.labels || '[]')
     this.chartDatasets = JSON.parse(this.dataset.datasets || '[]')
 

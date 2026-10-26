@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 class SubmissionsController < ApplicationController
-  before_action :load_template, only: %i[new create]
-  authorize_resource :template, only: %i[new create]
-
+  load_and_authorize_resource :template, only: %i[new create]
   load_and_authorize_resource :submission, only: %i[show destroy]
 
   prepend_before_action :maybe_redirect_com, only: %i[show]
@@ -20,10 +18,20 @@ class SubmissionsController < ApplicationController
     'payment' => 'credit_card', 'verification' => 'id', 'kba' => 'user_scan'
   }.freeze
 
+  STATUS_BADGES = {
+    'awaiting' => 'badge-info', 'sent' => 'badge-info', 'completed' => 'badge-success',
+    'opened' => 'badge-warning', 'declined' => 'badge-error'
+  }.freeze
+
+  STATUS_ICONS = {
+    'awaiting' => 'clock', 'sent' => 'send', 'completed' => 'circle_check',
+    'opened' => 'mail_opened', 'declined' => 'x_circle'
+  }.freeze
+
   def show
     @submission = Submissions.preload_with_pages(@submission)
 
-    unless @submission.submitters.all?(&:completed_at?)
+    unless @submission.completed_at?
       ActiveRecord::Associations::Preloader.new(
         records: [@submission],
         associations: [{ submitters: :start_form_submission_events }]
@@ -35,10 +43,14 @@ class SubmissionsController < ApplicationController
 
   def new
     authorize!(:new, Submission)
+
+    render :new, layout: 'plain'
   end
 
   def create
-    save_template_message(@template, params) if params[:save_message] == '1'
+    return redirect_to template_path(@template), alert: I18n.t('template_has_been_archived') if @template.archived_at?
+
+    save_template_message(@template, params) if params[:save_message] == '1' && can?(:update, @template)
 
     [params.delete(:subject), params.delete(:body)] if params[:is_custom_message] != '1'
 
@@ -53,6 +65,8 @@ class SubmissionsController < ApplicationController
       else
         create_submissions(@template, submissions_params, params)
       end
+
+    raise Submissions::CreateFromSubmitters::BaseError, 'Invalid email address' if submissions.blank?
 
     WebhookUrls.enqueue_events(submissions, 'submission.created')
 
@@ -81,12 +95,21 @@ class SubmissionsController < ApplicationController
         I18n.t('submission_has_been_archived')
       end
 
-    redirect_back(fallback_location: @submission.template_id ? template_path(@submission.template) : root_path, notice:)
+    if turbo_native_app? && request.format.turbo_stream?
+      flash.now[:notice] = notice
+
+      render turbo_stream: [turbo_stream.remove(@submission), turbo_stream.append_all('body', partial: 'shared/flash')]
+    else
+      redirect_back(fallback_location: @submission.template_id ? template_path(@submission.template) : root_path,
+                    notice:)
+    end
   end
 
   private
 
   def create_submissions(template, submissions_params, params)
+    normalize_message_submitter_uuids!(params)
+
     submissions_attrs = submissions_params[:submission].to_h.values
 
     submissions_attrs, _, new_fields =
@@ -112,7 +135,22 @@ class SubmissionsController < ApplicationController
     params.permit(submission: { submitters: [:uuid, :email, :phone, :name, { values: {} }] })
   end
 
-  def load_template
-    @template = Template.accessible_by(current_ability).find(params[:template_id])
+  def normalize_message_submitter_uuids!(params)
+    return if params[:request_email_per_submitter] == '1'
+
+    uuids = params[:email_message_submitter_uuids]
+
+    return if uuids.blank?
+    return if params[:subject].blank? && params[:body].blank?
+
+    params[:submitter_preferences] =
+      Array.wrap(uuids).index_with { { 'subject' => params[:subject], 'body' => params[:body] } }
+
+    params[:request_email_per_submitter] = '1'
+
+    params.delete(:subject)
+    params.delete(:body)
+
+    params
   end
 end

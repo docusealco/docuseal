@@ -32,9 +32,13 @@ class WebhookSettingsController < ApplicationController
   def new; end
 
   def create
-    @webhook_url.save!
+    if @webhook_url.url.present?
+      @webhook_url.save!
 
-    redirect_to settings_webhooks_path, notice: I18n.t('webhook_url_has_been_saved')
+      redirect_to settings_webhooks_path, notice: I18n.t('webhook_url_has_been_saved')
+    else
+      redirect_back fallback_location: settings_webhooks_path
+    end
   end
 
   def update

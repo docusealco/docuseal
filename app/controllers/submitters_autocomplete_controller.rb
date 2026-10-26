@@ -36,7 +36,7 @@ class SubmittersAutocompleteController < ApplicationController
       else
         column = Submitter.arel_table[field.to_sym]
 
-        term = "#{params[:q].downcase}%"
+        term = "#{ActiveRecord::Base.sanitize_sql_like(params[:q].downcase)}%"
 
         submitters.where(column.matches(term))
       end

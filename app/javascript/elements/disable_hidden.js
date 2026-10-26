@@ -2,6 +2,18 @@ export default class extends HTMLElement {
   static observedAttributes = ['class']
 
   connectedCallback () {
+    this.addEventListener('turbo:morph-element', this.onMorph)
+
+    this.trigger()
+  }
+
+  disconnectedCallback () {
+    this.removeEventListener('turbo:morph-element', this.onMorph)
+  }
+
+  onMorph = (event) => {
+    if (event.target !== this) return
+
     this.trigger()
   }
 

@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="withStickySubmitters ? 'sticky top-0 z-[1]' : ''"
+    :class="{ 'sticky top-0 z-[1]': withStickySubmitters, 'bg-base-100': withStickySubmitters && ['', null, 'transparent'].includes(backgroundColor), 'pt-3': withTopPadding }"
     :style="withStickySubmitters ? { backgroundColor } : {}"
     class="flex items-center gap-1"
   >
@@ -48,6 +48,7 @@
       :key="field.uuid"
       :data-uuid="field.uuid"
       :field="field"
+      :scroll-on-edit="scrollOnEdit"
       :type-index="getFieldTypeIndex(field)"
       :editable="editable"
       :with-signature-id="withSignatureId"
@@ -63,15 +64,37 @@
       @remove="removeField"
       @scroll-to="$emit('scroll-to-area', $event)"
       @set-draw="$emit('set-draw', $event)"
+      @touch-drag="onTouchDrag"
+      @touch-drag-end="onTouchDragEnd"
     />
   </div>
-  <div v-if="!isShowVariables && submitterDefaultFields.length && editable">
-    <hr class="mb-2">
+  <div
+    v-if="editable && withCustomFieldsTab"
+    class="tabs w-full mb-1.5 custom-fields-tabs"
+  >
+    <a
+      class="tab tab-bordered w-1/2 border-base-300 custom-fields-tab"
+      :class="{ 'tab-active': !showCustomTab }"
+      :style="{ '--tab-border': showCustomTab ? '0px' : '0.5px' }"
+      @click="setFieldsTab('default')"
+    >{{ t('default') }}</a>
+    <a
+      class="tab tab-bordered w-1/2 border-base-300 custom-fields-tab"
+      :class="{ 'tab-active': showCustomTab }"
+      :style="{ '--tab-border': showCustomTab ? '0.5px' : '0px' }"
+      @click="setFieldsTab('custom')"
+    >{{ t('custom') }}</a>
+  </div>
+  <div v-if="!isShowVariables && submitterDefaultFields.length && editable && (!withCustomFieldsTab || showCustomTab)">
+    <hr
+      v-if="!withCustomFieldsTab"
+      class="mb-1.5"
+    >
     <template v-if="isShowFieldSearch">
       <input
         v-model="defaultFieldsSearch"
         :placeholder="t('search_field')"
-        class="input input-ghost input-xs px-0 text-base mb-2 !outline-0 !rounded bg-transparent w-full"
+        class="input input-ghost input-xs px-0 text-base mb-1.5 !outline-0 !rounded bg-transparent w-full"
       >
       <hr class="mb-2">
     </template>
@@ -149,6 +172,7 @@
       @click="setFieldsTab('custom')"
     >{{ t('custom') }}</a>
   </div>
+  <div ref="addFieldsMarker" />
   <div
     v-if="!isShowVariables && showCustomTab && editable && (customFields.length || newCustomField)"
     ref="customFields"
@@ -218,7 +242,7 @@
     </div>
   </div>
   <div
-    v-if="!isShowVariables && editable && !onlyDefinedFields && (!showCustomTab || (!customFields.length && !newCustomField))"
+    v-if="!isShowVariables && editable && !onlyDefinedFields && (!showCustomTab || (!customFields.length && !newCustomField)) && (!withCustomFieldsTab || !showCustomTab)"
     id="field-types-grid"
     class="grid grid-cols-3 gap-1 pb-2 fields-grid"
   >
@@ -251,7 +275,7 @@
         </div>
       </button>
       <div
-        v-else-if="type == 'phone' && (fieldTypes.length === 0 || fieldTypes.includes(type))"
+        v-else-if="type == 'phone' && nativePlatform !== 'ios' && (fieldTypes.length === 0 || fieldTypes.includes(type))"
         class="tooltip tooltip-bottom flex"
         :class="{'tooltip-bottom-end': withPayment, 'tooltip-bottom': !withPayment }"
         :data-tip="t('unlock_sms_verified_phone_number_field_with_paid_plan_use_text_field_for_phone_numbers_without_verification')"
@@ -306,10 +330,17 @@
     </template>
   </div>
   <div
-    v-if="!isShowVariables && fields.length < 4 && editable && withHelp && !showTourStartForm"
+    v-if="!isShowVariables && (isMobile ? !fields.length : fields.length < 4) && editable && withHelp && !showTourStartForm"
     class="text-xs p-2 border border-base-200 rounded"
+    :class="{ 'text-center': isMobile }"
   >
-    <ul class="list-disc list-outside ml-3">
+    <template v-if="isMobile">
+      {{ t('tap_on_the_field_type_above_to_start_drawing_the_field') }}
+    </template>
+    <ul
+      v-else
+      class="list-disc list-outside ml-3"
+    >
       <li>
         {{ t('draw_a_text_field_on_the_page_with_a_mouse') }}
       </li>
@@ -335,24 +366,16 @@
           width="22"
           class="animate-spin"
         />
-        <span
-          v-if="analyzingProgress"
-          class="hidden md:inline"
-        >
+        <span v-if="analyzingProgress">
           {{ Math.round(analyzingProgress * 100) }}% {{ t('analyzing_') }}
         </span>
-        <span
-          v-else
-          class="hidden md:inline"
-        >
+        <span v-else>
           {{ fieldPagesLoaded }} / {{ numberOfPages }} {{ t('processing_') }}
         </span>
       </template>
       <template v-else>
         <IconSparkles width="22" />
-        <span
-          class="hidden md:inline"
-        >
+        <span>
           {{ t('autodetect_fields') }}
         </span>
       </template>
@@ -363,7 +386,7 @@
     class="rounded py-2 px-4 w-full border border-dashed border-base-300"
   >
     <div class="text-center text-sm">
-      {{ t('start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document') }}
+      {{ t('start_a_quick_tour_to_learn_how_to_create_and_send_your_first_document') }}
     </div>
     <div class="flex justify-center">
       <label
@@ -375,6 +398,26 @@
       </label>
     </div>
   </div>
+  <div
+    v-if="isMobile && withAddFieldsPill"
+    class="sticky bottom-4 h-0 z-[5]"
+  >
+    <Transition
+      enter-active-class="transition duration-100 ease-out"
+      enter-from-class="translate-y-6 opacity-0"
+      leave-active-class="transition duration-100 ease-in"
+      leave-to-class="translate-y-6 opacity-0"
+    >
+      <button
+        v-if="isShowAddFieldsPill"
+        class="absolute bottom-0 left-0 right-0 mx-auto w-fit btn btn-neutral btn-sm rounded-full normal-case font-normal text-white gap-1 px-4 shadow"
+        @click.prevent="scrollToFieldTypes"
+      >
+        <IconPlus class="w-4 h-4" />
+        {{ t('add_fields') }}
+      </button>
+    </Transition>
+  </div>
 </template>
 
 <script>
@@ -383,13 +426,14 @@ import CustomField from './custom_field'
 import FieldType from './field_type'
 import FieldSubmitter from './field_submitter'
 import { defineAsyncComponent } from 'vue'
-import { IconLock, IconCirclePlus, IconInnerShadowTop, IconSparkles, IconBracketsContain } from '@tabler/icons-vue'
+import { IconLock, IconCirclePlus, IconPlus, IconInnerShadowTop, IconSparkles, IconBracketsContain } from '@tabler/icons-vue'
 import IconDrag from './icon_drag'
 import { v4 } from 'uuid'
 
 export default {
   name: 'TemplateFields',
   components: {
+    IconPlus,
     Field,
     CustomField,
     FieldType,
@@ -402,7 +446,7 @@ export default {
     IconBracketsContain,
     DynamicVariables: defineAsyncComponent(() => import(/* webpackChunkName: "dynamic-editor" */ './dynamic_variables'))
   },
-  inject: ['save', 'backgroundColor', 'withPhone', 'withVerification', 'withKba', 'withPayment', 't', 'fieldsDragFieldRef', 'customDragFieldRef', 'baseFetch', 'selectedAreasRef', 'getFieldTypeIndex'],
+  inject: ['save', 'backgroundColor', 'withPhone', 'withVerification', 'withKba', 'withPayment', 'nativePlatform', 't', 'isMobile', 'fieldsDragFieldRef', 'customDragFieldRef', 'baseFetch', 'selectedAreasRef', 'getFieldTypeIndex'],
   props: {
     fields: {
       type: Array,
@@ -418,12 +462,22 @@ export default {
       required: false,
       default: false
     },
+    withCustomFieldsTab: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     withFieldsSearch: {
       type: Boolean,
       required: false,
       default: null
     },
     withFieldsDetection: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    withDetectExistingFields: {
       type: Boolean,
       required: false,
       default: false
@@ -448,6 +502,16 @@ export default {
       default: true
     },
     editable: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+    scrollOnEdit: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+    withAddFieldsPill: {
       type: Boolean,
       required: false,
       default: true
@@ -482,6 +546,11 @@ export default {
       required: false,
       default: true
     },
+    withTopPadding: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     fieldTypes: {
       type: Array,
       required: false,
@@ -495,6 +564,11 @@ export default {
       type: Object,
       required: true
     },
+    detectCustomFieldsIndex: {
+      type: Object,
+      required: false,
+      default: () => ({})
+    },
     showTourStartForm: {
       type: Boolean,
       required: false,
@@ -504,6 +578,7 @@ export default {
   emits: ['add-field', 'set-draw', 'set-draw-type', 'set-draw-custom-field', 'set-drag', 'drag-end', 'scroll-to-area', 'change-submitter', 'set-drag-placeholder', 'select-submitter', 'rebuild-variables-schema', 'remove-field', 'remove-submitter'],
   data () {
     return {
+      isShowAddFieldsPill: false,
       fieldPagesLoaded: null,
       analyzingProgress: 0,
       newCustomField: null,
@@ -520,8 +595,10 @@ export default {
       return this.template.schema.some((item) => item.dynamic)
     },
     numberOfPages () {
-      return this.template.documents.reduce((acc, doc) => {
-        return acc + doc.metadata?.pdf?.number_of_pages || doc.preview_images.length
+      return this.template.schema.reduce((acc, item) => {
+        const doc = this.template.documents.find((d) => d.uuid === item.attachment_uuid)
+
+        return acc + (doc?.metadata?.pdf?.number_of_pages || doc?.preview_images?.length || 0)
       }, 0)
     },
     isShowFieldSearch () {
@@ -557,7 +634,8 @@ export default {
     },
     submitterDefaultFields () {
       return this.defaultFields.filter((f) => {
-        return !this.submitterFields.find((field) => field.name === f.name) && (!f.role || f.role === this.selectedSubmitter.name)
+        return (this.withCustomFieldsTab ? true : !this.submitterFields.find((field) => field.name === f.name)) &&
+          (!f.role || f.role === this.selectedSubmitter.name)
       })
     },
     filteredSubmitterDefaultFields () {
@@ -584,8 +662,22 @@ export default {
     } catch (e) {
       console.error(e)
     }
+
+    if (this.isMobile) {
+      this.fieldTypesObserver = new IntersectionObserver(([entry]) => {
+        this.isShowAddFieldsPill = !entry.isIntersecting && entry.boundingClientRect.top > 0
+      }, { rootMargin: '0px 100%' })
+
+      this.fieldTypesObserver.observe(this.$refs.addFieldsMarker)
+    }
+  },
+  unmounted () {
+    this.fieldTypesObserver?.disconnect()
   },
   methods: {
+    scrollToFieldTypes () {
+      this.$refs.addFieldsMarker.scrollIntoView({ block: 'start', behavior: 'smooth' })
+    },
     toggleVariables () {
       this.$emit('rebuild-variables-schema')
       this.isShowVariables = !this.isShowVariables
@@ -654,6 +746,82 @@ export default {
         const fields = await resp.json()
 
         this.customFields.splice(0, this.customFields.length, ...fields)
+
+        if (this.nativePlatform) {
+          window.webkit?.messageHandlers?.modal?.postMessage({ action: 'dispatch', name: 'template-builder:sync-custom-fields', detail: JSON.stringify(fields), dismiss: 'false' })
+        }
+      })
+    },
+    buildExistingFields () {
+      const existing = []
+      const seen = new Set()
+
+      const submittersByUuid = this.template.submitters.reduce((acc, s) => {
+        acc[s.uuid] = s
+
+        return acc
+      }, {})
+
+      const add = (field, role) => {
+        if (!field?.name) return
+
+        const key = field.name.toLowerCase() + ':' + (role || '').toLowerCase()
+
+        if (seen.has(key)) return
+
+        seen.add(key)
+
+        const item = { name: field.name, type: field.type || 'text' }
+
+        if (role) item.role = role
+
+        const optionValues = Array.isArray(field.options)
+          ? field.options.map((o) => (typeof o === 'string' ? o : o?.value)).filter(Boolean)
+          : []
+
+        if (optionValues.length) item.options = optionValues
+
+        existing.push(item)
+      }
+
+      this.template.fields.forEach((f) => add(f, submittersByUuid[f.submitter_uuid]?.name))
+      this.defaultRequiredFields.forEach((f) => add(f, f.role))
+      this.defaultFields.forEach((f) => add(f, f.role))
+      this.customFields.forEach((f) => add(f, f.role))
+
+      return existing
+    },
+    enrichDetectedField (field) {
+      if (!this.withDetectExistingFields || !field.name) return field
+
+      const role = this.template.submitters.find((s) => s.uuid === field.submitter_uuid)?.name
+      const nameKey = field.name.toLowerCase()
+      const indexKey = [field.name, role].filter(Boolean).join(':').toLowerCase()
+
+      const customField = this.detectCustomFieldsIndex[indexKey] || this.detectCustomFieldsIndex[nameKey]
+
+      if (customField) this.applyCustomFieldAttributes(field, customField)
+
+      return field
+    },
+    applyCustomFieldAttributes (field, customField) {
+      const skipKeys = new Set(['uuid', 'areas', 'submitter_uuid', 'conditions', 'prefillable', 'role'])
+
+      Object.entries(customField).forEach(([key, value]) => {
+        if (skipKeys.has(key)) return
+        if (value === null || value === undefined) return
+
+        if (key === 'options') {
+          if (Array.isArray(value) && !Array.isArray(field.options)) {
+            field.options = value.map((o) => (
+              typeof o === 'string' ? { value: o, uuid: v4() } : { ...o, uuid: v4() }
+            ))
+          }
+        } else if (value && typeof value === 'object' && !Array.isArray(value)) {
+          field[key] = JSON.parse(JSON.stringify(value))
+        } else {
+          field[key] = value
+        }
       })
     },
     detectFields () {
@@ -665,7 +833,11 @@ export default {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
-        }
+        },
+        body: JSON.stringify({
+          attachment_uuid: this.template.schema.map((item) => item.attachment_uuid),
+          ...(this.withDetectExistingFields ? { fields: this.buildExistingFields() } : {})
+        })
       }).then(async (response) => {
         const reader = response.body.getReader()
         const decoder = new TextDecoder('utf-8')
@@ -687,7 +859,7 @@ export default {
 
               if (data.error) {
                 if ((data.fields || fields).length) {
-                  this.template.fields = data.fields || fields
+                  this.template.fields = (data.fields || fields).map((f) => this.enrichDetectedField(f))
 
                   this.save()
                 } else {
@@ -705,9 +877,13 @@ export default {
                   this.$emit('select-submitter', this.template.submitters[0])
                 }
 
-                this.template.fields = data.fields || fields
+                this.template.fields = (data.fields || fields).map((f) => this.enrichDetectedField(f))
 
                 this.save()
+
+                if (this.nativePlatform) {
+                  window.webkit?.messageHandlers?.flash?.postMessage({ style: 'notice', message: this.t('fields_detected').replace('{count}', (data.fields || fields).length) })
+                }
 
                 break
               } else if (data.fields) {
@@ -764,19 +940,58 @@ export default {
     },
     onFieldDragover (e) {
       if (this.fieldsDragFieldRef.value) {
-        const targetField = e.target.closest('[data-uuid]')
-        const dragField = this.$refs.fields.querySelector(`[data-uuid="${this.fieldsDragFieldRef.value.uuid}"]`)
+        this.moveFieldElement(this.fieldsDragFieldRef.value, e.target.closest('[data-uuid]'))
+      }
+    },
+    onTouchDrag ({ field, x, y }) {
+      const dragField = this.$refs.fields.querySelector(`[data-uuid="${field.uuid}"]`)
 
-        if (dragField && targetField && targetField !== dragField) {
-          const fields = Array.from(this.$refs.fields.children)
-          const currentIndex = fields.indexOf(dragField)
-          const targetIndex = fields.indexOf(targetField)
+      if (!dragField) return
 
-          if (currentIndex < targetIndex) {
-            targetField.after(dragField)
-          } else {
-            targetField.before(dragField)
-          }
+      if (!this.touchPreview) {
+        const rect = dragField.getBoundingClientRect()
+        const el = dragField.cloneNode(true)
+        const root = this.$el.getRootNode()
+
+        Object.assign(el.style, { position: 'fixed', left: `${rect.left}px`, top: `${rect.top}px`, width: `${rect.width}px`, margin: 0, zIndex: 50, pointerEvents: 'none', opacity: 0.9 })
+
+        ;(root === document ? document.body : root).appendChild(el)
+
+        dragField.style.opacity = 0.4
+
+        this.touchPreview = { el, dragField, offsetY: y - rect.top }
+      }
+
+      this.touchPreview.el.style.top = `${y - this.touchPreview.offsetY}px`
+
+      const root = this.$el.getRootNode()
+      const targetField = (root.elementFromPoint ? root : document).elementFromPoint(x, y)?.closest('[data-uuid]')
+
+      if (targetField && this.$refs.fields.contains(targetField)) {
+        this.moveFieldElement(field, targetField)
+      }
+    },
+    onTouchDragEnd () {
+      if (this.touchPreview) {
+        this.touchPreview.el.remove()
+        this.touchPreview.dragField.style.opacity = ''
+        this.touchPreview = null
+      }
+
+      this.reorderFields()
+    },
+    moveFieldElement (field, targetField) {
+      const dragField = this.$refs.fields.querySelector(`[data-uuid="${field.uuid}"]`)
+
+      if (dragField && targetField && targetField !== dragField) {
+        const fields = Array.from(this.$refs.fields.children)
+        const currentIndex = fields.indexOf(dragField)
+        const targetIndex = fields.indexOf(targetField)
+
+        if (currentIndex < targetIndex) {
+          targetField.after(dragField)
+        } else {
+          targetField.before(dragField)
         }
       }
     },

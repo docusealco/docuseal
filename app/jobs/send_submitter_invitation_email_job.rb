@@ -7,7 +7,9 @@ class SendSubmitterInvitationEmailJob
     submitter = Submitter.find(params['submitter_id'])
 
     return if submitter.completed_at?
+    return if submitter.declined_at?
     return if submitter.submission.archived_at?
+    return if submitter.submission.expired?
     return if submitter.template&.archived_at?
     return if submitter.submission.source == 'invite' && !Accounts.can_send_emails?(submitter.account, on_events: true)
 
@@ -17,7 +19,12 @@ class SendSubmitterInvitationEmailJob
       return
     end
 
-    mail = SubmitterMailer.invitation_email(submitter)
+    mail =
+      if submitter.viewer?
+        SubmitterMailer.invitation_view_email(submitter)
+      else
+        SubmitterMailer.invitation_email(submitter)
+      end
 
     Submitters::ValidateSending.call(submitter, mail)
 

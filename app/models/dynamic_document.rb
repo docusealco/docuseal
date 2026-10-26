@@ -28,6 +28,12 @@ class DynamicDocument < ApplicationRecord
 
   has_many :versions, class_name: 'DynamicDocumentVersion', dependent: :destroy
 
+  has_one :current_version, class_name: 'DynamicDocumentVersion',
+                            primary_key: %i[id sha1],
+                            foreign_key: %i[dynamic_document_id sha1],
+                            dependent: :destroy,
+                            inverse_of: :dynamic_document
+
   attribute :fields, :json
 
   before_validation :set_sha1

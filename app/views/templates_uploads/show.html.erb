@@ -1,18 +1,50 @@
-<div class="h-screen">
-  <div
-    class="text-center p-8 h-full flex items-center justify-center">
-    <div>
-      <%= render 'shared/logo', width: 50, height: 50, class: 'mx-auto animate-bounce' %>
-      <span>
-        <%= t('processing') %>...
-      </span>
+<% if Addressable::URI.parse(params[:url]).host == 'docuseal-website.s3.amazonaws.com' %>
+  <div class="h-screen">
+    <div class="text-center p-8 h-full flex items-center justify-center">
+      <div>
+        <%= render 'shared/logo', width: 50, height: 50, class: 'mx-auto animate-bounce' %>
+        <span>
+          <%= t('processing') %>...
+        </span>
+      </div>
     </div>
   </div>
-</div>
-<submit-form>
-  <%= form_for '', url: templates_upload_path, method: :post, class: 'hidden' do %>
-    <button type="submit"></button>
-    <input name="url" value="<%= params[:url] %>">
-    <input name="filename" value="<%= params[:filename] %>">
-  <% end %>
-</submit-form>
+  <submit-form>
+    <%= form_for '', url: templates_upload_path, method: :post, class: 'hidden' do %>
+      <button type="submit"></button>
+      <input name="url" value="<%= params[:url] %>">
+      <input name="filename" value="<%= params[:filename] %>">
+    <% end %>
+  </submit-form>
+<% else %>
+  <confirm-upload>
+    <div class="h-screen">
+      <div class="text-center p-8 h-full flex items-center justify-center">
+        <div class="space-y-4">
+          <div data-target="confirm-upload.logo" class="mx-auto">
+            <%= render 'shared/logo', width: 50, height: 50, class: 'mx-auto' %>
+          </div>
+          <div data-target="confirm-upload.processing" class="hidden">
+            <span><%= t('processing') %>...</span>
+          </div>
+          <div data-target="confirm-upload.prompt">
+            <p class="text-lg">
+              <%= t('open_file_from') %>
+              <a href="<%= params[:url] %>" target="_blank" class="link" rel="noopener noreferrer nofollow">
+                <%= params[:filename].presence || params[:url] %>
+              </a>
+            </p>
+            <div class="flex items-center justify-center gap-2 mt-4">
+              <%= link_to t('cancel'), root_path, class: 'white-button w-44' %>
+              <%= form_for '', url: templates_upload_path, method: :post do |f| %>
+                <input type="hidden" name="url" value="<%= params[:url] %>">
+                <input type="hidden" name="filename" value="<%= params[:filename] %>">
+                <%= f.button button_title(title: t('open')), class: 'base-button w-44' %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </confirm-upload>
+<% end %>

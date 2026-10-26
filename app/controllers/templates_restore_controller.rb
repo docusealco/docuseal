@@ -4,6 +4,8 @@ class TemplatesRestoreController < ApplicationController
   load_and_authorize_resource :template
 
   def create
+    authorize!(:destroy, @template)
+
     @template.update!(archived_at: nil)
 
     WebhookUrls.enqueue_events(@template, 'template.updated')

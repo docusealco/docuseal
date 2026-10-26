@@ -48,6 +48,14 @@ configs.module = merge({
       use: ['css-loader', 'postcss-loader', 'sass-loader']
     },
     {
+      test: /@hotwired\/turbo\/dist/,
+      loader: 'string-replace-loader',
+      options: {
+        search: 'const PREFETCH_DELAY = 100;',
+        replace: 'const PREFETCH_DELAY = 0;'
+      }
+    },
+    {
       test: /\.vue$/,
       use: [{
         loader: 'vue-loader',

@@ -43,7 +43,9 @@ module LoadIco
 
     raise ArgumentError, 'Unable to load' unless image_data_bytes && image_data_bytes.bytesize == best_entry[:size]
 
-    return Vips::Image.new_from_buffer(image_data_bytes, '') if image_data_bytes.start_with?(PNG_SIGNATURE)
+    if image_data_bytes.start_with?(PNG_SIGNATURE)
+      return ImageUtils.load_vips(image_data_bytes, content_type: 'image/png')
+    end
 
     image = load_image_entry(image_data_bytes, best_entry[:width], best_entry[:height])
 
@@ -92,7 +94,7 @@ module LoadIco
 
     palette = []
     if dib_bpp <= 8
-      num_palette_entries = dib_clr_used.zero? ? (1 << dib_bpp) : dib_clr_used
+      num_palette_entries = [dib_clr_used.zero? ? (1 << dib_bpp) : dib_clr_used, 1 << dib_bpp].min
       num_palette_entries.times do
         palette_color_bytes = dib_io.read(4)
         return nil unless palette_color_bytes && palette_color_bytes.bytesize == 4
@@ -200,13 +202,13 @@ module LoadIco
 
     return nil unless pixel_data_string.bytesize == expected_bytes && expected_bytes.positive?
 
-    Vips::Image.new_from_memory(
+    Vips::Image.new_from_memory_copy(
       pixel_data_string,
       dib_width,
       image_pixel_height,
       4,
       :uchar
-    )
+    ).copy(interpretation: :srgb)
   end
   # rubocop:enable Metrics
 end

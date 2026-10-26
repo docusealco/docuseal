@@ -3,6 +3,10 @@
 module Users
   module_function
 
+  def send_emails?(user)
+    !user.archived_at?
+  end
+
   def generate_csv(users)
     headers = %w[email first_name last_name role current_sign_in_at last_sign_in_at updated_at created_at]
 

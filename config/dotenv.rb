@@ -105,6 +105,6 @@ if ENV['REDIS_URL'].to_s.empty?
 
   redis_password = Digest::SHA1.hexdigest("redis#{ENV.fetch('SECRET_KEY_BASE', '')}")
 
-  ENV['REDIS_URL'] = "redis://default:#{redis_password}@0.0.0.0:6379/0"
+  ENV['REDIS_URL'] = "redis://default:#{redis_password}@127.0.0.1:16379/0"
   ENV['LOCAL_REDIS_URL'] = ENV.fetch('REDIS_URL', nil)
 end

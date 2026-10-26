@@ -1,4 +1,4 @@
-<clipboard-copy data-text="<%= text %>">
+<clipboard-copy data-text="<%= text %>" data-copied="<%= local_assigns[:copied_title] || t('copied') %>">
   <label id="<%= local_assigns[:id] %>" class="<%= local_assigns[:class] %>">
     <input type="radio" class="peer hidden">
     <span class="peer-checked:hidden flex items-center space-x-2">

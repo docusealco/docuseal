@@ -1,5 +1,7 @@
 export default class extends HTMLElement {
   connectedCallback () {
+    this.id = `set-timezone-${Math.random().toString(32).split('.')[1]}`
+
     if (this.dataset.inputId) {
       const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
 

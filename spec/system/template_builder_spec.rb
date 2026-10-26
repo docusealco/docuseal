@@ -20,7 +20,7 @@ RSpec.describe 'Template Builder' do
 
       expect do
         doc.find('.replace-document-button').click
-        doc.find('.replace-document-button input[type="file"]', visible: false)
+        doc.find('.replace-document-control input[type="file"]', visible: false)
            .attach_file(Rails.root.join('spec/fixtures/sample-image.png'))
 
         page.driver.wait_for_network_idle

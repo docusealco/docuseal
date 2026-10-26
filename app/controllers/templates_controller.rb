@@ -14,31 +14,25 @@ class TemplatesController < ApplicationController
     submissions = Submissions::Filter.filter_by_status(submissions, params)
 
     submissions = if params[:completed_at_from].present? || params[:completed_at_to].present?
-                    submissions.order(Submitter.arel_table[:completed_at].maximum.desc)
+                    submissions.order(completed_at: :desc)
                   else
                     submissions.order(id: :desc)
                   end
 
-    @pagy, @submissions = pagy_auto(submissions.preload(:template_accesses, submitters: :start_form_submission_events))
+    @pagy, @submissions =
+      pagy_auto(submissions.select_for_list.preload(:template_accesses, submitters: :start_form_submission_events))
+
+    render_infinite_scroll(@pagy, @submissions, @template) if turbo_infinite_scroll?
   rescue ActiveRecord::RecordNotFound
     redirect_to root_path
   end
 
-  def new; end
+  def new
+    render :new, layout: 'plain'
+  end
 
   def edit
-    ActiveRecord::Associations::Preloader.new(
-      records: [@template],
-      associations: [{ schema_documents: [:blob, { preview_images_attachments: :blob }] }]
-    ).call
-
-    @template_data =
-      @template.as_json.merge(
-        documents: @template.schema_documents.as_json(
-          methods: %i[metadata signed_key],
-          include: { preview_images: { methods: %i[url metadata filename] } }
-        )
-      ).to_json
+    @template_data = Templates.serialize_for_builder(@template)
 
     render :edit, layout: 'plain'
   end
@@ -89,10 +83,22 @@ class TemplatesController < ApplicationController
         I18n.t('template_has_been_archived')
       end
 
-    redirect_back(fallback_location: root_path, notice:)
+    if @template.destroyed? && turbo_native_app?
+      redirect_to templates_archived_index_path, notice:
+    else
+      redirect_back(fallback_location: root_path, notice:)
+    end
   end
 
   private
+
+  def render_infinite_scroll(pagy, submissions, template)
+    render turbo_stream: [
+      turbo_stream.before('infinite_scroll', partial: 'templates/submission', collection: submissions,
+                                             locals: { template:, archived: template.archived_at? }),
+      turbo_stream.replace('infinite_scroll', partial: 'shared/infinite_scroll', locals: { pagy: })
+    ]
+  end
 
   def template_params
     params.require(:template).permit(

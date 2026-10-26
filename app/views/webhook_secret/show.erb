@@ -1,4 +1,10 @@
-<%= render 'shared/turbo_modal', title: t('webhook_secret') do %>
+<%= render 'shared/turbo_modal', title: t('webhook_security') do %>
+  <div class="text-center mb-4">
+    <div class="inline-flex justify-center">
+      <%= link_to t('secret'), webhook_secret_path(@webhook_url), class: 'block bg-base-300 md:min-w-[112px] text-sm font-semibold whitespace-nowrap py-1.5 px-4 rounded-l-3xl', data: { turbo_frame: 'modal' } %>
+      <%= link_to t('hmac'), webhook_hmac_path(@webhook_url), class: 'block bg-base-200 md:min-w-[112px] text-sm font-semibold whitespace-nowrap py-1.5 px-4 rounded-r-3xl', data: { turbo_frame: 'modal' } %>
+    </div>
+  </div>
   <%= form_for @webhook_url, url: webhook_secret_path, method: :patch, html: { class: 'space-y-4' }, data: { turbo_frame: :_top } do |f| %>
     <div class="space-y-2">
       <%= f.fields_for :secret, Struct.new(:key, :value).new(*@webhook_url.secret.to_a.first) do |ff| %>

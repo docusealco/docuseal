@@ -5,7 +5,7 @@ FactoryBot.define do
     account
 
     author factory: %i[user]
-    name { Faker::Book.title }
+    name { Faker::Book.unique.title }
 
     transient do
       submitter_count { 1 }
@@ -42,7 +42,11 @@ FactoryBot.define do
           record: template
         )
 
-        Templates::ProcessDocument.call(attachment, attachment.download)
+        data = attachment.download
+
+        Pdfium::Document.open_io(StringIO.new(data)) do |doc|
+          Templates::ProcessDocument.call(attachment, data, doc:)
+        end
 
         template.schema << {
           attachment_uuid: attachment.uuid,

@@ -1,74 +1,44 @@
 # frozen_string_literal: true
 
-class McpController < ActionController::API
-  before_action :authenticate_user!
-  before_action :verify_mcp_enabled!
+class McpController < ActionController::Metal
+  TOOL_CONTROLLERS = {
+    'search_templates' => Mcp::SearchTemplatesController,
+    'load_template' => Mcp::LoadTemplateController,
+    'create_template' => Mcp::CreateTemplateController,
+    'send_documents' => Mcp::SendDocumentsController,
+    'search_documents' => Mcp::SearchDocumentsController
+  }.freeze
 
-  before_action do
-    authorize!(:manage, :mcp)
-  end
+  TOOLS = TOOL_CONTROLLERS.map { |_, controller| controller::SCHEMA }.freeze
 
   def call
-    return head :ok if request.raw_post.blank?
+    return Mcp::ProtocolController.dispatch(:ok, request, response) if request.raw_post.blank?
 
     body = JSON.parse(request.raw_post)
+    body = nil unless body.is_a?(Hash)
 
-    result = Mcp::HandleRequest.call(body, current_user, current_ability)
+    request.request_parameters = body || {}
 
-    if result
-      render json: result
-    else
-      head :accepted
-    end
-  rescue CanCan::AccessDenied
-    render json: { jsonrpc: '2.0', id: nil, error: { code: -32_603, message: 'Forbidden' } }, status: :forbidden
+    action =
+      case body&.dig('method')
+      when 'initialize' then :initialize_request
+      when 'notifications/initialized' then :initialized_notification
+      when 'ping' then :ping
+      when 'tools/list' then :tools_list
+      when 'tools/call'
+        tool = TOOL_CONTROLLERS[body.dig('params', 'name')]
+
+        return tool.dispatch(:call, request, response) if tool
+
+        :tool_not_found
+      else
+        :method_not_found
+      end
+
+    Mcp::ProtocolController.dispatch(action, request, response)
   rescue JSON::ParserError
-    render json: { jsonrpc: '2.0', id: nil, error: { code: -32_700, message: 'Parse error' } }, status: :bad_request
-  end
+    request.request_parameters = {}
 
-  private
-
-  def authenticate_user!
-    return if current_user
-
-    response.headers['WWW-Authenticate'] =
-      %(Bearer resource_metadata="#{request.base_url}/.well-known/oauth-protected-resource", error="invalid_token")
-    render json: { error: 'Not authenticated' }, status: :unauthorized
-  end
-
-  def verify_mcp_enabled!
-    return if Docuseal.multitenant?
-
-    return if AccountConfig.exists?(account_id: current_user.account_id,
-                                    key: AccountConfig::ENABLE_MCP_KEY,
-                                    value: true)
-
-    render json: { error: 'MCP is disabled' }, status: :forbidden
-  end
-
-  def current_user
-    @current_user ||= user_from_oauth_token || user_from_mcp_token
-  end
-
-  def user_from_oauth_token
-    return if bearer_token.blank?
-
-    access_token = Doorkeeper::AccessToken.by_token(bearer_token)
-    return if access_token.nil? || access_token.revoked? || access_token.expired?
-    return unless access_token.scopes.exists?('mcp')
-
-    User.active.find_by(id: access_token.resource_owner_id)
-  end
-
-  def user_from_mcp_token
-    return if bearer_token.blank?
-
-    sha256 = Digest::SHA256.hexdigest(bearer_token)
-
-    User.joins(:mcp_tokens).active.find_by(mcp_tokens: { sha256:, archived_at: nil })
-  end
-
-  def bearer_token
-    @bearer_token ||= request.headers['Authorization'].to_s[/\ABearer\s+(.+)\z/, 1]
+    Mcp::ProtocolController.dispatch(:parse_error, request, response)
   end
 end

@@ -1,27 +1,21 @@
 export default class extends HTMLElement {
   connectedCallback () {
-    document.addEventListener('turbo:submit-end', this.onSubmitEnd)
-
     this.form.addEventListener('submit', this.onSubmit)
+    this.form.addEventListener('turbo:before-fetch-response', this.onFetchResponse)
   }
 
   disconnectedCallback () {
-    document.removeEventListener('turbo:submit-end', this.onSubmitEnd)
-
     this.form.removeEventListener('submit', this.onSubmit)
+    this.form.removeEventListener('turbo:before-fetch-response', this.onFetchResponse)
   }
 
   onSubmit = () => {
     this.element.classList.add('invisible')
   }
 
-  onSubmitEnd = (event) => {
-    if (event.target === this.form) {
-      const resp = event.detail?.formSubmission?.result?.fetchResponse?.response
-
-      if (resp?.status / 100 === 2) {
-        this.element.classList.remove('invisible')
-      }
+  onFetchResponse = (event) => {
+    if (event.detail.fetchResponse.succeeded) {
+      this.element.classList.remove('invisible')
     }
   }
 

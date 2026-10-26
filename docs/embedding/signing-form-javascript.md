@@ -47,7 +47,7 @@
   "data-token": {
     "type": "string",
     "doc_type": "object",
-    "description": "JSON Web Token (JWT HS256) with a payload signed using the API key. <b>JWT can be generated only on the backend.</b>.",
+    "description": "JSON Web Token (JWT HS256) with a payload signed using the API key. <b>JWT can be generated only on the backend</b>.",
     "required": false,
     "properties": {
       "slug": {
@@ -105,7 +105,7 @@
   "data-language": {
     "type": "string",
     "required": false,
-    "description": "UI language: en, es, it, de, fr, nl, pl, uk, cs, pt, he, ar, kr, ja languages are available. Be default the form is displayed in the user browser language automatically."
+    "description": "UI language: en, es, it, de, fr, nl, pl, uk, cs, pt, he, ar, kr, ja languages are available. By default the form is displayed in the user browser language automatically."
   },
   "data-i18n": {
     "type": "string",
@@ -153,7 +153,7 @@
     "type": "boolean",
     "required": false,
     "default": true,
-    "description": "Set `false` to hide field name. Hidding field names can be useful for when they are not in the human readable format. Field names are displayed by default."
+    "description": "Set `false` to hide field name. Hiding field names can be useful for when they are not in the human readable format. Field names are displayed by default."
   },
   "data-with-field-placeholder": {
     "type": "boolean",
@@ -179,6 +179,12 @@
     "default": false,
     "description": "Set `true` to display the complete button in the form header."
   },
+  "data-only-required-fields": {
+    "type": "boolean",
+    "required": false,
+    "default": false,
+    "description": "Set to `true` to display only required fields in the step-by-step form, hiding all optional fields."
+  },
   "data-allow-to-resubmit": {
     "type": "boolean",
     "required": false,
@@ -194,7 +200,7 @@
   "data-signature": {
     "type": "string",
     "required": false,
-    "description": "Allows pre-filling signature fields. The value can be a base64 encoded image string, a public URL to an image, or plain text that will be rendered as a typed signature using a standard font."
+    "description": "Allows pre-filling signature fields. The value can be a base64 encoded data:image/ string, a public URL to an image, or plain text that will be rendered as a typed signature using a standard font."
   },
   "data-remember-signature": {
     "type": "boolean",

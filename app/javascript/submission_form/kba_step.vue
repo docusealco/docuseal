@@ -3,11 +3,19 @@
     v-if="!error"
     class="label text-xl sm:text-2xl py-0 mb-2 sm:mb-3.5 field-name-label"
   >
-    <MarkdownContent
-      v-if="field.title"
-      :string="field.title"
-    />
-    <template v-else>{{ field.name || 'Knowledge Based Authentication' }}</template>
+    <span class="flex items-end">
+      <MarkdownContent
+        v-if="field.title"
+        :string="field.title"
+      />
+      <template v-else>{{ field.name || 'Knowledge Based Authentication' }}</template>
+      <span
+        class="tooltip tooltip-bottom ml-2 mb-1"
+        data-tip="To verify your identity, the details you enter are checked against third-party records, which may include credit bureau data, and used to generate questions based on those records. Only these identity details are shared with the identity verification provider; this document and your tax return information are not shared with it or with any credit reporting company. If the check is recorded on your credit report, it appears as a soft inquiry, which does not affect your credit score and is not shown to lenders. This check does not give the sender of this document or the IRS access to your credit report."
+      >
+        <IconInfoCircle class="w-4 h-4 text-neutral-500" />
+      </span>
+    </span>
     <span
       v-if="questions"
       class="float-right font-normal text-neutral-500 mt-1 whitespace-nowrap text-right text-sm"
@@ -42,6 +50,7 @@
       {{ error }}
     </div>
     <button
+      type="button"
       class="base-button w-full flex justify-center submit-form-button"
       @click="restartKba"
     >
@@ -281,13 +290,14 @@
 
 <script>
 import MarkdownContent from './markdown_content'
-import { IconInnerShadowTop } from '@tabler/icons-vue'
+import { IconInnerShadowTop, IconInfoCircle } from '@tabler/icons-vue'
 
 export default {
   name: 'KbaStep',
   components: {
     MarkdownContent,
-    IconInnerShadowTop
+    IconInnerShadowTop,
+    IconInfoCircle
   },
   inject: ['baseUrl', 't'],
   props: {
@@ -311,6 +321,11 @@ export default {
     values: {
       type: Object,
       required: true
+    },
+    fetchOptions: {
+      type: Object,
+      required: false,
+      default: () => ({})
     }
   },
   emits: ['submit'],
@@ -477,7 +492,7 @@ export default {
       this.clearCountdown()
 
       try {
-        const payload = { ...this.form, submitter_slug: this.submitterSlug }
+        const payload = { ...this.form }
 
         if (payload.dob) {
           payload.dob = payload.dob.replace(/-/g, '')
@@ -491,10 +506,11 @@ export default {
           payload.phone = payload.phone.replace(/^\+1/, '')
         }
 
-        const resp = await fetch(this.baseUrl + '/api/kba', {
+        const resp = await fetch(this.baseUrl + `/s/${this.submitterSlug}/kba`, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
+          body: JSON.stringify(payload),
+          ...this.fetchOptions,
+          headers: { 'Content-Type': 'application/json', ...this.fetchOptions.headers }
         })
 
         const data = await resp.json()
@@ -541,15 +557,15 @@ export default {
       }, {})
 
       try {
-        const resp = await fetch(this.baseUrl + `/api/kba/${this.field.uuid}`, {
+        const resp = await fetch(this.baseUrl + `/s/${this.submitterSlug}/kba/${this.field.uuid}`, {
           method: 'PUT',
           body: JSON.stringify({
             token: this.token,
             answers: formattedAnswers,
-            reference: this.reference,
-            submitter_slug: this.submitterSlug
+            reference: this.reference
           }),
-          headers: { 'Content-Type': 'application/json' }
+          ...this.fetchOptions,
+          headers: { 'Content-Type': 'application/json', ...this.fetchOptions.headers }
         })
 
         const data = await resp.json()

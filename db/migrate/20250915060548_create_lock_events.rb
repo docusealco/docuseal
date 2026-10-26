@@ -6,7 +6,8 @@ class CreateLockEvents < ActiveRecord::Migration[8.0]
       t.string :key, index: true, null: false
       t.string :event_name, null: false
 
-      t.index %i[event_name key], unique: adapter_name != 'Mysql2', where: "event_name IN ('start', 'complete')"
+      t.index %i[event_name key], unique: connection.supports_partial_index?,
+                                  where: "event_name IN ('start', 'complete')"
 
       t.timestamps
     end

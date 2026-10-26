@@ -1,13 +1,17 @@
 <template>
   <div
-    class="modal modal-open items-start !animate-none overflow-y-auto"
+    :class="{ 'modal modal-open items-start !animate-none overflow-y-auto': !inline }"
   >
     <div
+      v-if="!inline"
       class="absolute top-0 bottom-0 right-0 left-0"
       @click.prevent="$emit('close')"
     />
-    <div class="modal-box pt-4 pb-6 px-6 mt-20 max-h-none w-full max-w-xl">
-      <div class="flex justify-between items-center border-b pb-2 mb-2 font-medium">
+    <div :class="inline ? 'px-4 pt-3 pb-6' : 'modal-box pt-4 pb-6 px-6 mt-20 max-h-none w-full max-w-xl'">
+      <div
+        v-if="!inline"
+        class="flex justify-between items-center border-b pb-2 mb-2 font-medium"
+      >
         <span class="modal-title">
           {{ t('formula') }} - {{ (defaultField ? (defaultField.title || field.title || field.name) : field.name) || buildDefaultName(field) }}
         </span>
@@ -61,11 +65,28 @@
               @input="resizeTextarea"
             />
           </div>
-          <div class="mb-3 mt-1">
+          <div
+            v-if="field.type !== 'text'"
+            class="mb-3 mt-1"
+          >
             <div
               target="blank"
-              class="text-sm mb-2 inline space-x-2 font-mono"
+              class="text-sm mb-2 flex flex-wrap gap-x-2 gap-y-1 font-mono"
             >
+              <template v-if="withDateFunctions">
+                <button
+                  class="bg-base-200 px-2 rounded-xl"
+                  @click="insertTextUnderCursor('today()')"
+                >
+                  today()
+                </button>
+                <button
+                  class="bg-base-200 px-2 rounded-xl"
+                  @click="insertTextUnderCursor('datedif(, , &quot;y&quot;)', 8)"
+                >
+                  datedif(start, end, "y")
+                </button>
+              </template>
               <button
                 class="bg-base-200 px-2 rounded-xl"
                 @click="insertTextUnderCursor(' + ')"
@@ -98,13 +119,13 @@
               </button>
               <button
                 class="bg-base-200 px-2 rounded-xl"
-                @click="insertTextUnderCursor('round()')"
+                @click="insertTextUnderCursor('round()', 6)"
               >
                 round(n, d)
               </button>
               <button
                 class="bg-base-200 px-2 rounded-xl"
-                @click="insertTextUnderCursor('abs()')"
+                @click="insertTextUnderCursor('abs()', 4)"
               >
                 abs(n)
               </button>
@@ -150,6 +171,11 @@ export default {
     buildDefaultName: {
       type: Function,
       required: true
+    },
+    inline: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   emits: ['close', 'save'],
@@ -159,9 +185,16 @@ export default {
     }
   },
   computed: {
+    withDateFunctions () {
+      return this.field.type === 'date' || [...this.formula.matchAll(/{{(.*?)}}/g)].some(([, name]) => {
+        return this.template.fields.some((f) => f.type === 'date' && (f.name || this.buildDefaultName(f)).trim() === name.trim())
+      })
+    },
     fields () {
       return this.template.fields.reduce((acc, f) => {
-        if (f !== this.field && this.isNumberField(f) && (!f.preferences?.formula || !f.preferences.formula.includes(this.field.uuid))) {
+        const isAllowed = this.field.type === 'text' ? this.isTextField(f) : this.isNumberField(f)
+
+        if (f !== this.field && isAllowed && (!f.preferences?.formula || !f.preferences.formula.includes(this.field.uuid))) {
           acc.push(f)
         }
 
@@ -177,7 +210,10 @@ export default {
   },
   methods: {
     isNumberField (field) {
-      return field.type === 'number' || (['radio', 'select'].includes(field.type) && field.options?.every((o) => String(o.value).match(/^[\d.-]+$/)))
+      return ['number', 'date'].includes(field.type) || (['radio', 'select'].includes(field.type) && field.options?.every((o) => String(o.value).match(/^[\d.-]+$/)))
+    },
+    isTextField (field) {
+      return ['text', 'number', 'select', 'radio', 'cells', 'phone'].includes(field.type)
     },
     humanizeFormula (text) {
       return text.replace(/{{(.*?)}}/g, (match, uuid) => {
@@ -227,18 +263,19 @@ export default {
         this.$emit('close')
       }
     },
-    insertTextUnderCursor (textToInsert) {
+    insertTextUnderCursor (textToInsert, cursorOffset = textToInsert.length) {
       const textarea = this.$refs.textarea
 
-      const selectionEnd = textarea.selectionEnd
-      const cursorPos = selectionEnd
+      const { selectionStart, selectionEnd } = textarea
+      const selectedText = cursorOffset < textToInsert.length ? textarea.value.substring(selectionStart, selectionEnd) : ''
+      const cursorPos = selectedText ? selectionStart : selectionEnd
 
-      const newText = textarea.value.substring(0, cursorPos) + textToInsert + textarea.value.substring(cursorPos)
+      const newText = textarea.value.substring(0, cursorPos) + textToInsert.slice(0, cursorOffset) + selectedText + textToInsert.slice(cursorOffset) + textarea.value.substring(selectionEnd)
 
       this.formula = newText
 
       this.$nextTick(() => {
-        textarea.setSelectionRange(cursorPos + textToInsert.length, cursorPos + textToInsert.length)
+        textarea.setSelectionRange(cursorPos + cursorOffset + selectedText.length, cursorPos + cursorOffset + selectedText.length)
 
         textarea.focus()
       })

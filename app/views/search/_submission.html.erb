@@ -1,0 +1,4 @@
+<% status = submission.completed_at? ? 'completed' : (submission.expired? ? 'expired' : 'pending') %>
+<% name = submission.name.presence || submission.template&.name %>
+<% submitters = submission.submitters.filter_map { |s| s.name.presence || s.email.presence || s.phone.presence }.join(', ') %>
+<%= render 'search/row', href: submission_path(submission), icon: 'file_text', title: submitters, native_title: name, subtitle: (name if params[:template_id].blank?), date: (params[:status] == 'completed' && submission.completed_at) || submission.created_at, badge: t(status), badge_class: { 'completed' => 'badge-success', 'expired' => 'badge-error', 'pending' => 'badge-info' }[status] %>

@@ -19,11 +19,27 @@ module DocuSeal
   class Application < Rails::Application
     config.load_defaults 8.1
 
+    config.active_support.message_serializer = :json
+
     config.autoload_lib(ignore: %w[assets tasks puma])
 
     config.active_storage.routes_prefix = ''
 
     config.active_storage.draw_routes = ENV['MULTITENANT'] != 'true'
+
+    config.active_storage.analyzers = []
+
+    config.active_storage.previewers = []
+
+    config.active_storage.variant_processor = :disabled
+
+    config.active_storage.content_types_to_serve_as_binary += %w[
+      application/javascript
+      text/javascript
+      application/ecmascript
+      text/ecmascript
+      application/wasm
+    ]
 
     config.i18n.available_locales = %i[en en-US en-GB es-ES fr-FR pt-PT de-DE it-IT nl-NL
                                        es it de fr nl pl uk cs pt he ar ko ja]

@@ -13,13 +13,17 @@ class ApplicationController < ActionController::Base
   before_action :maybe_redirect_to_setup, unless: :signed_in?
   before_action :authenticate_user!, unless: :devise_controller?
 
-  before_action :set_csp, if: -> { request.get? && !request.headers['HTTP_X_TURBO'] }
+  before_action :set_csp, if: lambda {
+    request.get? && !request.headers['HTTP_X_TURBO_REQUEST_ID'] && !turbo_infinite_scroll?
+  }
 
   helper_method :button_title,
                 :current_account,
                 :true_ability,
                 :form_link_host,
-                :svg_icon
+                :svg_icon,
+                :turbo_native_ios?,
+                :turbo_native_android?
 
   impersonates :user, with: ->(uuid) { User.find_by(uuid:) }
 
@@ -30,7 +34,7 @@ class ApplicationController < ActionController::Base
   rescue_from RateLimit::LimitApproached do |e|
     Rollbar.error(e) if defined?(Rollbar)
 
-    redirect_to request.referer, alert: 'Too many requests', status: :too_many_requests
+    redirect_back_or_to root_path, alert: 'Too many requests'
   end
 
   if Rails.env.production? || Rails.env.test?
@@ -64,6 +68,28 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def turbo_infinite_scroll?
+    request.headers['HTTP_X_TURBO_INFINITE_SCROLL'].present?
+  end
+
+  def turbo_native_app?
+    return @turbo_native_app if defined?(@turbo_native_app)
+
+    @turbo_native_app = request.user_agent.to_s.include?('Hotwire Native')
+  end
+
+  def turbo_native_ios?
+    return @turbo_native_ios if defined?(@turbo_native_ios)
+
+    @turbo_native_ios = request.user_agent.to_s.include?('Hotwire Native iOS')
+  end
+
+  def turbo_native_android?
+    return @turbo_native_android if defined?(@turbo_native_android)
+
+    @turbo_native_android = request.user_agent.to_s.include?('Hotwire Native Android')
+  end
+
   def with_locale(&)
     return yield unless current_account
 
@@ -92,7 +118,12 @@ class ApplicationController < ActionController::Base
   end
 
   def sign_in_for_demo
-    sign_in(User.active.order('random()').take) unless signed_in?
+    return if signed_in?
+
+    account = Account.create!(name: "Demo #{SecureRandom.hex(3)}")
+
+    sign_in(account.users.create!(first_name: 'Demo', last_name: 'User',
+                                  email: "#{SecureRandom.hex}@docuseal.com", password: SecureRandom.hex))
   end
 
   def current_account

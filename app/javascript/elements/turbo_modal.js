@@ -6,7 +6,7 @@ export default actionable(class extends HTMLElement {
 
     document.addEventListener('keyup', this.onEscKey)
 
-    document.addEventListener('turbo:before-cache', this.close)
+    document.addEventListener('turbo:before-cache', this.onBeforeCache)
 
     if (this.dataset.closeAfterSubmit !== 'false') {
       document.addEventListener('turbo:submit-end', this.onSubmit)
@@ -18,7 +18,7 @@ export default actionable(class extends HTMLElement {
 
     document.removeEventListener('keyup', this.onEscKey)
     document.removeEventListener('turbo:submit-end', this.onSubmit)
-    document.removeEventListener('turbo:before-cache', this.close)
+    document.removeEventListener('turbo:before-cache', this.onBeforeCache)
   }
 
   onSubmit = (e) => {
@@ -30,6 +30,12 @@ export default actionable(class extends HTMLElement {
   onEscKey = (e) => {
     if (e.code === 'Escape') {
       this.close()
+    }
+  }
+
+  onBeforeCache = () => {
+    if (this.closest('turbo-frame')?.src) {
+      this.remove()
     }
   }
 

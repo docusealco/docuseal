@@ -22,6 +22,12 @@
       v-if="shadow"
       :to="shadow"
     >
+      <component
+        :is="'style'"
+        v-if="listsStyle"
+      >
+        {{ listsStyle }}
+      </component>
       <DynamicSection
         v-for="section in sections"
         :ref="setSectionRefs"
@@ -44,15 +50,17 @@
         @draw="$emit('draw', $event)"
         @add-custom-field="$emit('add-custom-field', $event)"
         @set-draw="$emit('set-draw', $event)"
+        @add-attachment="document.attachments.push($event)"
+        @add-list="ensureListsStyle"
       />
     </Teleport>
   </div>
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import DynamicSection from './dynamic_section.vue'
-import { dynamicStylesheet, tiptapStylesheet } from './dynamic_editor.js'
+import { dynamicStylesheet, tiptapStylesheet, listsCss } from './dynamic_editor.js'
 import { buildVariablesSchema, mergeSchemaProperties } from './dynamic_variables_schema.js'
 
 export default {
@@ -61,12 +69,22 @@ export default {
     DynamicSection
   },
   inject: ['baseFetch', 'template'],
+  provide () {
+    return {
+      documentFonts: computed(() => this.documentFonts)
+    }
+  },
   props: {
     document: {
       type: Object,
       required: true
     },
     editable: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+    autosave: {
       type: Boolean,
       required: false,
       default: true
@@ -107,6 +125,7 @@ export default {
     return {
       containerWidth: 1040,
       isMounted: false,
+      listsStyle: null,
       sectionRefs: []
     }
   },
@@ -134,6 +153,40 @@ export default {
     styles () {
       return this.headDom.querySelectorAll('style')
     },
+    documentFonts () {
+      const fonts = []
+      const firstFamily = (value) => value.split(',')[0].trim().replace(/^["']|["']$/g, '')
+      const add = (label, value) => {
+        if (label && !fonts.some((font) => font.label === label)) fonts.push({ label, value })
+      }
+
+      this.styles.forEach((style) => {
+        const css = style.textContent
+
+        for (const type of ['minor', 'major']) {
+          for (const [, name, value] of css.matchAll(new RegExp(`(--[\\w-]+-${type}HAnsi-font):\\s*([^;}]+)`, 'g'))) {
+            add(firstFamily(value), `var(${name})`)
+          }
+        }
+
+        for (const [, value] of css.matchAll(/@font-face\s*\{[^}]*?font-family:\s*([^;}]+)/g)) {
+          add(firstFamily(value), value.trim())
+        }
+      })
+
+      const skipFamilies = ['symbol', 'wingdings', 'wingdings 2', 'wingdings 3', 'webdings', 'serif', 'sans-serif', 'monospace', 'inherit', 'initial']
+      const addUsed = (value) => {
+        if (value && !value.startsWith('var(') && !skipFamilies.includes(firstFamily(value).toLowerCase())) add(firstFamily(value), value.trim())
+      }
+
+      this.styles.forEach((style) => {
+        for (const [, value] of style.textContent.replace(/@font-face\s*\{[^}]*\}/g, '').matchAll(/font-family:\s*([^;}]+)/g)) addUsed(value)
+      })
+
+      this.bodyDom.querySelectorAll('[style*="font-family"]').forEach((el) => addUsed(el.style.fontFamily))
+
+      return fonts
+    },
     shadow () {
       if (this.isMounted) {
         return this.$refs.shadow.attachShadow({ mode: 'open' })
@@ -142,16 +195,21 @@ export default {
       }
     }
   },
+  created () {
+    this.updatedSectionEditors = new Map()
+
+    this.loadListsStyle()
+  },
   mounted () {
     this.isMounted = true
 
     this.shadow.adoptedStyleSheets.push(dynamicStylesheet, tiptapStylesheet)
 
-    this.containerWidth = this.$refs.container.clientWidth
+    this.updateContainerWidth()
 
     this.resizeObserver = new ResizeObserver(() => {
       if (this.$refs.container) {
-        this.containerWidth = this.$refs.container.clientWidth
+        this.updateContainerWidth()
       }
     })
 
@@ -169,6 +227,9 @@ export default {
   },
   methods: {
     mergeSchemaProperties,
+    updateContainerWidth () {
+      this.containerWidth = this.$refs.container.clientWidth
+    },
     removeArea (area) {
       this.sectionRefs.forEach((sectionRef) => {
         const pos = sectionRef.findAreaNodePos(area.uuid)
@@ -182,6 +243,19 @@ export default {
       if (ref) {
         this.sectionRefs.push(ref)
       }
+    },
+    reloadContent () {
+      this.loadListsStyle()
+
+      this.sectionRefs.forEach((ref) => ref.reloadContent())
+    },
+    getSectionDocs () {
+      return this.sectionRefs.map((ref) => [ref.sectionKey, ref.editor.state.doc])
+    },
+    restoreSectionDocs (sectionDocs) {
+      this.sectionRefs.forEach((ref) => {
+        if (sectionDocs.has(ref.sectionKey)) ref.restoreDoc(sectionDocs.get(ref.sectionKey))
+      })
     },
     onBeforeUnload (event) {
       if (this.saveTimer) {
@@ -208,27 +282,49 @@ export default {
     onSectionUpdate (section, { editor }) {
       clearTimeout(this.saveTimer)
 
-      this.saveTimer = setTimeout(async () => {
-        await this.updateSectionAndSave(section, editor)
+      this.updatedSectionEditors.set(section.id, editor)
 
-        delete this.saveTimer
-      }, 1000)
+      this.saveTimer = setTimeout(() => this.autosave ? this.updateSectionsAndSave() : this.updateSections(), 1000)
+    },
+    loadListsStyle () {
+      this.listsStyle = this.bodyDom.querySelector('body > style[data-lists]')?.textContent || null
+    },
+    ensureListsStyle () {
+      if (this.listsStyle) return
+
+      const style = this.bodyDom.createElement('style')
+
+      style.dataset.lists = ''
+      style.textContent = listsCss
+
+      this.bodyDom.body.append(style)
+
+      this.listsStyle = listsCss
     },
     updateVariablesSchema () {
       this.document.variables_schema = buildVariablesSchema(this.bodyDom.body)
     },
-    updateSectionAndSave (section, editor) {
-      const target = this.bodyDom.getElementById(section.id)
+    updateSections () {
+      delete this.saveTimer
 
-      if (target) {
-        target.innerHTML = this.getHtmlForSave(editor)
-      }
+      this.updatedSectionEditors.forEach((editor, sectionId) => {
+        const target = this.bodyDom.getElementById(sectionId)
+
+        if (target) {
+          target.innerHTML = this.getHtmlForSave(editor)
+        }
+      })
+
+      this.updatedSectionEditors.clear()
 
       this.document.body = this.bodyDom.body.innerHTML
 
       this.updateVariablesSchema()
 
       this.$emit('update', this.document)
+    },
+    updateSectionsAndSave () {
+      this.updateSections()
 
       return this.saveBody()
     },
@@ -241,6 +337,8 @@ export default {
       clearTimeout(this.saveTimer)
 
       delete this.saveTimer
+
+      this.updatedSectionEditors.clear()
 
       this.sectionRefs.forEach(({ section, editor }) => {
         const target = this.bodyDom.getElementById(section.id)

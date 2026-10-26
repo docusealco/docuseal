@@ -29,8 +29,6 @@ module Params
       in_path(params, :message) do |message_params|
         type(message_params, :subject, String)
         type(message_params, :body, String)
-
-        required(message_params, :body)
       end
     end
 
@@ -53,8 +51,6 @@ module Params
       in_path(params, :message, skip_blank: true) do |message_params|
         type(message_params, :subject, String)
         type(message_params, :body, String)
-
-        required(message_params, :body)
       end
 
       value_in(params, :order, %w[preserved random], allow_nil: true)
@@ -119,8 +115,6 @@ module Params
       in_path(params, :message) do |message_params|
         type(message_params, :subject, String)
         type(message_params, :body, String)
-
-        required(message_params, :body)
       end
 
       value_in(params, :order, %w[preserved random], allow_nil: true)

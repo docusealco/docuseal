@@ -10,7 +10,7 @@ class AddIsFirstToCompletedSubmitters < ActiveRecord::Migration[8.0]
               where: 'is_first = TRUE',
               name: 'index_completed_submitters_account_id_completed_at_is_first'
 
-    add_index :completed_submitters, :submission_id, unique: adapter_name != 'Mysql2',
+    add_index :completed_submitters, :submission_id, unique: connection.supports_partial_index?,
                                                      where: 'is_first = TRUE'
   end
 end

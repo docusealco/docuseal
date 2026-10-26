@@ -15,6 +15,8 @@ module Submitters
     TRUE_VALUES = ['1', 'true', true, 'TRUE', 'True', 'yes', 'YES', 'Yes'].freeze
     FALSE_VALUES = ['0', 'false', false, 'FALSE', 'False', 'no', 'NO', 'No'].freeze
 
+    NON_PREFILLABLE_FIELD_TYPES = %w[payment kba verification].freeze
+
     module_function
 
     # rubocop:disable Metrics
@@ -66,6 +68,8 @@ module Submitters
         next if value_fields.blank?
 
         value_fields.each do |field|
+          next if NON_PREFILLABLE_FIELD_TYPES.include?(field['type'])
+
           if field['type'].in?(%w[initials signature image file stamp]) && value.present?
             new_value, new_attachments =
               normalize_attachment_value(value, field, template.account, attachments, for_submitter:, purpose:)
@@ -103,15 +107,41 @@ module Submitters
     end
 
     def normalize_date(field, value)
-      if value.is_a?(Integer)
+      format = field.dig('preferences', 'format')
+
+      if TimeUtils.format_with_time?(format)
+        normalize_date_time(value, format)
+      elsif TimeUtils.month_only_format?(format)
+        normalize_date_month(value, format)
+      elsif value.is_a?(Integer)
         Time.zone.at(value.to_s.first(10).to_i).to_date.to_s
-      elsif value.gsub(/\w/, '0') == field.dig('preferences', 'format').to_s.gsub(/\w/, '0')
-        TimeUtils.parse_date_string(value, field.dig('preferences', 'format')).to_s
+      elsif value.gsub(/\w/, '0') == format.to_s.gsub(/\w/, '0')
+        TimeUtils.parse_date_string(value, format).to_s
       else
         Date.parse(value).to_s
       end
-    rescue Date::Error
+    rescue ArgumentError
       value
+    end
+
+    def normalize_date_time(value, format)
+      if value.is_a?(Integer)
+        Time.zone.at(value.to_s.first(10).to_i).utc.iso8601
+      elsif value.to_s.match?(/T\d{2}:\d{2}/)
+        Time.iso8601(value).utc.iso8601
+      else
+        TimeUtils.parse_date_string(value, format).utc.iso8601
+      end
+    end
+
+    def normalize_date_month(value, format)
+      if value.is_a?(Integer)
+        Time.zone.at(value.to_s.first(10).to_i).strftime('%Y-%m')
+      elsif value.to_s.match?(/\A\d{4}-\d{2}\z/)
+        value
+      else
+        TimeUtils.parse_date_string(value, format).strftime('%Y-%m')
+      end
     end
 
     def fetch_fields(template, submitter_name: nil, for_submitter: nil)
@@ -186,8 +216,8 @@ module Submitters
         elsif type.in?(%w[signature initials]) && value.length < 60
           find_or_create_blob_from_text(account, value, type)
         elsif (data = Base64.decode64(value.sub(BASE64_PREFIX_REGEXP, ''))) &&
-              Marcel::MimeType.for(data).exclude?('octet-stream')
-          find_or_create_blob_from_base64(account, data, type)
+              (mime_type = Marcel::MimeType.for(data)).exclude?('octet-stream')
+          find_or_create_blob_from_base64(account, data, type, mime_type:)
         elsif type == 'image' && (value.starts_with?('<html>') || value.starts_with?('<!DOCTYPE'))
           raise InvalidDefaultValue, "Invalid #{type} value" unless purpose == :api
 
@@ -210,19 +240,31 @@ module Submitters
       raise InvalidDefaultValue, "HTML content is not allowed: #{value.first(200)}..."
     end
 
-    def find_or_create_blob_from_base64(account, data, type)
+    def find_or_create_blob_from_base64(account, data, type, mime_type: nil)
       checksum = Digest::MD5.base64digest(data)
 
       blob = find_blob_by_checksum(checksum, account)
 
-      blob || ActiveStorage::Blob.create_and_upload!(
-        io: StringIO.new(data),
-        filename: "#{type}.png"
-      )
+      return blob if blob
+
+      mime_type ||= Marcel::MimeType.for(data)
+
+      detected_extensions = Marcel::TYPE_EXTS[mime_type].to_a.map(&:downcase)
+
+      if detected_extensions.any? { |e| FilenameUtils::DANGEROUS_EXTENSIONS.include?(e) }
+        raise InvalidDefaultValue, "File type '.#{detected_extensions.first}' is not allowed."
+      end
+
+      extension = detected_extensions.first
+      extension = 'png' if extension.blank? && type.in?(%w[signature initials stamp image])
+
+      filename = extension.present? ? "#{type}.#{extension}" : type
+
+      ActiveStorage::Blob.create_and_upload!(io: StringIO.new(data), filename:)
     end
 
     def find_or_create_blob_from_text(account, text, type)
-      data = Submitters::GenerateFontImage.call(text, font: type)
+      data, width, height = Submitters::GenerateFontImage.call(text, font: type)
 
       checksum = Digest::MD5.base64digest(data)
 
@@ -230,11 +272,18 @@ module Submitters
 
       blob || ActiveStorage::Blob.create_and_upload!(
         io: StringIO.new(data),
-        filename: "#{type}.png"
+        filename: "#{type}.png",
+        content_type: 'image/png',
+        metadata: { analyzed: true, identified: true, width:, height: }
       )
     end
 
     def find_or_create_blob_from_url(account, url)
+      filename = Addressable::URI.parse(url).path.split('/').last.to_s
+      extension = FilenameUtils.dangerous_extension(filename)
+
+      raise InvalidDefaultValue, "File type '.#{extension}' is not allowed." if extension
+
       cache_key = [account.id, url].join(':')
       checksum = CHECKSUM_CACHE_STORE.fetch(cache_key)
 
@@ -250,10 +299,7 @@ module Submitters
 
       blob = find_blob_by_checksum(checksum, account)
 
-      blob || ActiveStorage::Blob.create_and_upload!(
-        io: StringIO.new(data),
-        filename: Addressable::URI.parse(url).path.split('/').last
-      )
+      blob || ActiveStorage::Blob.create_and_upload!(io: StringIO.new(data), filename:)
     end
 
     def find_blob_by_checksum(checksum, account)
@@ -261,9 +307,13 @@ module Submitters
 
       return unless blob
 
-      return blob unless blob.attachments.exists?
+      attachment = blob.attachments.take
 
-      return blob if account.submitters.exists?(id: blob.attachments.where(record_type: 'Submitter').select(:record_id))
+      return if attachment.nil? ||
+                attachment.record_type != 'Submitter' ||
+                attachment.name != 'attachments'
+
+      return blob if attachment.record&.account_id == account.id
 
       nil
     end

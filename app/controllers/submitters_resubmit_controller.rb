@@ -5,6 +5,8 @@ class SubmittersResubmitController < ApplicationController
 
   def update
     return redirect_to submit_form_path(slug: @submitter.slug) if @submitter.email != current_user.email
+    return redirect_to submit_form_path(slug: @submitter.slug) if @submitter.completed_at.blank? ||
+                                                                  @submitter.completed_at < 1.month.ago
 
     submission = @submitter.account.submissions.new(created_by_user: current_user,
                                                     submitters_order: :preserved,

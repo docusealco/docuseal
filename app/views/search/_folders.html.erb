@@ -1,0 +1,9 @@
+<% if folders.present? %>
+  <div class="mb-5">
+    <div class="px-4 mb-1 text-xs font-semibold uppercase tracking-wide"><%= t('folders') %></div>
+    <div id="search_folders" class="bg-base-200 rounded-2xl divide-y divide-base-300">
+      <%= render partial: 'search/folder', collection: folders %>
+    </div>
+    <%= render 'shared/infinite_scroll', pagy:, query_params: { 'scope' => 'folders' } if pagy %>
+  </div>
+<% end %>

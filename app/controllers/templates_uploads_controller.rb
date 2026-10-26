@@ -5,7 +5,11 @@ class TemplatesUploadsController < ApplicationController
 
   layout 'plain'
 
-  def show; end
+  def show
+    url_uri = Addressable::URI.parse(params[:url].to_s)
+
+    redirect_to root_path if url_uri.normalized_scheme != 'https' || url_uri.host.blank?
+  end
 
   def create
     url_params = create_file_params_from_url if params[:url].present?
@@ -59,7 +63,7 @@ class TemplatesUploadsController < ApplicationController
     tempfile.write(DownloadUtils.call(params[:url], validate: true).body)
     tempfile.rewind
 
-    filename = URI.decode_www_form_component(params[:filename]) if params[:filename].present?
+    filename = URI.decode_www_form_component(params[:filename]).tr('/', '-') if params[:filename].present?
     filename ||= File.basename(URI.decode_www_form_component(params[:url]))
 
     file = ActionDispatch::Http::UploadedFile.new(

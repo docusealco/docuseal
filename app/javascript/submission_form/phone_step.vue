@@ -16,6 +16,7 @@
     </label>
     <div
       v-if="field.description"
+      :id="field.uuid + '-desc'"
       dir="auto"
       class="mb-3 px-1 field-description-text"
     >
@@ -38,32 +39,32 @@
           required
           maxlength="6"
           autofocus
-          inputmode="decimal"
+          inputmode="numeric"
           @input="onInputCode"
         >
         <div class="flex justify-between mt-2 -mb-2 md:-mb-4">
-          <a
+          <button
             v-if="!defaultValue"
-            href="#"
+            type="button"
             class="link change-phone-number-link"
-            @click.prevent="isCodeSent = false"
+            @click="isCodeSent = false"
           >
             {{ t('change_phone_number') }}
-          </a>
+          </button>
           <span
             v-if="resendCodeCountdown > 0"
             class="link"
           >
             {{ t('wait_countdown_seconds').replace('{countdown}', resendCodeCountdown) }}
           </span>
-          <a
+          <button
             v-else
-            href="#"
+            type="button"
             class="link resend-code-link"
-            @click.prevent="resendCode"
+            @click="resendCode"
           >
             {{ isResendLoading ? t('sending') : t('resend_code') }}
-          </a>
+          </button>
         </div>
       </div>
       <div
@@ -80,6 +81,7 @@
           <select
             id="country_code_select"
             class="absolute top-0 bottom-0 right-0 left-0 opacity-0 w-full h-full cursor-pointer"
+            :aria-label="t('country_code')"
             :disabled="!!defaultValue"
             @change="onCountrySelect(countries.find((country) => country.flag === $event.target.value))"
           >
@@ -107,6 +109,7 @@
           type="tel"
           inputmode="tel"
           :required="field.required"
+          :aria-describedby="field.description ? field.uuid + '-desc' : undefined"
           placeholder="234 567-8900"
           @input="onPhoneInput"
           @focus="$emit('focus')"
@@ -258,7 +261,7 @@ export default {
       }
     },
     resendCode () {
-      if (this.codeSentAt && Date.now() - this.codeSentAt < 15000) {
+      if (this.codeSentAt && Date.now() - this.codeSentAt < 30000) {
         this.startResendCodeCountdown()
       } else {
         this.isResendLoading = true
@@ -271,7 +274,7 @@ export default {
       }
     },
     startResendCodeCountdown () {
-      this.resendCodeCountdown = 15 - parseInt((Date.now() - this.codeSentAt) / 1000)
+      this.resendCodeCountdown = 30 - parseInt((Date.now() - this.codeSentAt) / 1000)
 
       this.interval = setInterval(() => {
         this.resendCodeCountdown--
@@ -282,7 +285,7 @@ export default {
       }, 1000)
     },
     sendVerificationCode () {
-      return fetch(this.baseUrl + '/api/send_phone_verification_code', {
+      const options = {
         method: 'POST',
         body: JSON.stringify({
           submitter_slug: this.submitterSlug,
@@ -290,6 +293,14 @@ export default {
           phone: this.fullInternationalPhoneValue
         }),
         headers: { 'Content-Type': 'application/json' }
+      }
+
+      return fetch(this.baseUrl + `/s/${this.submitterSlug}/send_phone_verification_code`, options).then((resp) => {
+        if (resp.status === 404) {
+          return fetch(this.baseUrl + '/api/send_phone_verification_code', options)
+        } else {
+          return resp
+        }
       }).then(async (resp) => {
         if ([422, 429].includes(resp.status)) {
           const data = await resp.json()

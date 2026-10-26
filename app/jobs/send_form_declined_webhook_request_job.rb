@@ -28,13 +28,12 @@ class SendFormDeclinedWebhookRequestJob
                                                 attempt:,
                                                 data: Submitters::SerializeForWebhook.call(submitter))
 
-    if (resp.nil? || resp.status.to_i >= 400) && attempt <= MAX_ATTEMPTS &&
-       (!Docuseal.multitenant? || submitter.account.account_configs.exists?(key: :plan))
-      SendFormDeclinedWebhookRequestJob.perform_in((2**attempt).minutes, {
-                                                     **params,
-                                                     'attempt' => attempt + 1,
-                                                     'last_status' => resp&.status.to_i
-                                                   })
-    end
+    return if attempt > MAX_ATTEMPTS || (resp && resp.status.to_i < 400)
+
+    SendFormDeclinedWebhookRequestJob.perform_in((2**attempt).minutes, {
+                                                   **params,
+                                                   'attempt' => attempt + 1,
+                                                   'last_status' => resp&.status.to_i
+                                                 })
   end
 end

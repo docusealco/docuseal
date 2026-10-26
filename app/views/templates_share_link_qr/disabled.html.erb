@@ -1,0 +1,10 @@
+<div class="max-w-md space-y-6 mx-auto px-2 mt-12 mb-4">
+  <p class="text-xl font-semibold text-center">
+    <%= t('share_link_is_currently_disabled') %>
+  </p>
+  <% if can?(:update, @template) %>
+    <toggle-submit class="block">
+      <%= button_to button_title(title: t('enable_shared_link'), icon: svg_icon('lock_open', class: 'w-6 h-6')), template_share_link_path(@template), params: { template: { shared_link: true }, redir: template_share_link_qr_path(@template) }, method: :post, data: { turbo: false }, class: 'base-button w-full' %>
+    </toggle-submit>
+  <% end %>
+</div>

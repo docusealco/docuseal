@@ -10,6 +10,8 @@ module Submissions
       assign_defined_submitters(submission)
       assign_linked_submitters(submission)
 
+      Submissions::CreateFromSubmitters.assign_submitters_is_viewer(submission)
+
       submission
     end
 

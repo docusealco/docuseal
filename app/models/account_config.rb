@@ -22,6 +22,7 @@
 #
 class AccountConfig < ApplicationRecord
   SUBMITTER_INVITATION_EMAIL_KEY = 'submitter_invitation_email'
+  SUBMITTER_VIEW_INVITATION_EMAIL_KEY = 'submitter_view_invitation_email'
   SUBMITTER_INVITATION_REMINDER_EMAIL_KEY = 'submitter_invitation_reminder_email'
   SUBMITTER_COMPLETED_EMAIL_KEY = 'submitter_completed_email'
   SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY = 'submitter_documents_copy_email'
@@ -43,9 +44,11 @@ class AccountConfig < ApplicationRecord
   DOWNLOAD_LINKS_EXPIRE_KEY = 'download_links_expire'
   FORCE_SSO_AUTH_KEY = 'force_sso_auth'
   FLATTEN_RESULT_PDF_KEY = 'flatten_result_pdf'
+  ROTATE_INCREMENTAL_PDF_KEY = 'rotate_incremental_pdf'
   WITH_SIGNATURE_ID = 'with_signature_id'
   WITH_FILE_LINKS_KEY = 'with_file_links'
   WITH_SIGNATURE_ID_REASON_KEY = 'with_signature_id_reason'
+  WITH_SIGNATURE_ID_COMPLETED_AT_KEY = 'with_signature_id_completed_at'
   RECIPIENT_FORM_FIELDS_KEY = 'recipient_form_fields'
   WITH_AUDIT_VALUES_KEY = 'with_audit_values'
   WITH_AUDIT_SENDER_KEY = 'with_audit_sender'
@@ -57,11 +60,14 @@ class AccountConfig < ApplicationRecord
   COMBINE_PDF_RESULT_KEY = 'combine_pdf_result_key'
   DOCUMENT_FILENAME_FORMAT_KEY = 'document_filename_format'
   TEMPLATE_CUSTOM_FIELDS_KEY = 'template_custom_fields'
+  TEMPLATE_DATE_FORMATS_KEY = 'template_date_formats'
+  TEMPLATE_BUILDER_AUTOSAVE_KEY = 'template_builder_autosave'
   POLICY_LINKS_KEY = 'policy_links'
   ENABLE_MCP_KEY = 'enable_mcp'
 
   EMAIL_VARIABLES = {
     SUBMITTER_INVITATION_EMAIL_KEY => %w[template.name submitter.link account.name].freeze,
+    SUBMITTER_VIEW_INVITATION_EMAIL_KEY => %w[template.name submitter.link account.name].freeze,
     SUBMITTER_COMPLETED_EMAIL_KEY => %w[template.name submission.submitters submission.link].freeze,
     SUBMITTER_INVITATION_REMINDER_EMAIL_KEY => %w[template.name submitter.link account.name].freeze,
     SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY => %w[template.name documents.link account.name].freeze
@@ -72,6 +78,12 @@ class AccountConfig < ApplicationRecord
       {
         'subject' => I18n.t(:you_are_invited_to_sign_a_document),
         'body' => I18n.t(:submitter_invitation_email_sign_body)
+      }
+    },
+    SUBMITTER_VIEW_INVITATION_EMAIL_KEY => lambda {
+      {
+        'subject' => I18n.t(:you_are_invited_to_view_a_document),
+        'body' => I18n.t(:submitter_invitation_email_view_body)
       }
     },
     SUBMITTER_INVITATION_REMINDER_EMAIL_KEY => lambda {

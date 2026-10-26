@@ -56,6 +56,8 @@ module Submissions
             template_submitter = template_submitters.find { |e| e['uuid'] == uuid }
           end
 
+          raise BaseError, 'Invalid submitter params' unless template_submitter
+
           template_submitter = template_submitter.except('optional_invite_by_uuid', 'invite_by_uuid',
                                                          'invite_via_field_uuid')
 
@@ -88,6 +90,12 @@ module Submissions
 
         maybe_add_invite_submitters(submission, template, attrs[:submitters])
 
+        maybe_add_cc_submitters(submission, params[:cc_recipients],
+                                submitters_order:, user:, params:,
+                                preferences: preferences.merge(submission_preferences))
+
+        assign_submitters_is_viewer(submission)
+
         submission.template = nil unless with_template
 
         submission.tap(&:save!)
@@ -98,13 +106,41 @@ module Submissions
       submissions
     end
 
-    def maybe_set_dynamic_documents(submission)
+    def assign_submitters_is_viewer(submission)
+      template_fields = submission.template_fields || submission.template.fields
+      field_submitter_uuids = Set.new(template_fields.pluck('submitter_uuid'))
+
+      viewer_template_submitters =
+        submission.template_submitters.select { |s| field_submitter_uuids.exclude?(s['uuid']) }
+
+      return submission if viewer_template_submitters.blank?
+
+      viewer_template_submitters.each { |s| s['is_viewer'] = true }
+
+      return submission if submission.template_submitters.any? { |s| s['order'] }
+
+      first_submitter = submission.submitters.find(&:sent_at)
+
+      return submission unless first_submitter
+
+      submitters_index = submission.submitters.reject(&:completed_at?).index_by(&:uuid)
+
+      Submissions.find_first_viewers(first_submitter, submitters_index).each do |viewer|
+        next if viewer.preferences['send_email'] == false || viewer.email.blank?
+
+        viewer.sent_at ||= first_submitter.sent_at
+      end
+
+      submission
+    end
+
+    def maybe_set_dynamic_documents(submission, preview: false)
       return submission unless submission.template_id?
 
       template = submission.template
 
-      return submission if template.variables_schema.present? ||
-                           submission.variables_schema.present?
+      return submission if !preview && (template.variables_schema.present? ||
+                                        submission.variables_schema.present?)
 
       return submission if template.schema.none? { |e| e['dynamic'] }
 
@@ -125,14 +161,18 @@ module Submissions
         end
       end
 
-      submission.template_fields = template.fields.deep_dup
+      submission.template_fields = template.fields.deep_dup.filter_map do |field|
+        next field if field['areas'].blank?
 
-      submission.template_fields.each do |field|
-        field['areas'].to_a.each do |area|
+        field['areas'] = field['areas'].filter_map do |area|
           dynamic_area = areas_index[area['uuid']]
 
-          area.merge!(dynamic_area) if dynamic_area
+          next area.merge(dynamic_area) if dynamic_area
+
+          area if area.key?('page')
         end
+
+        field if field['areas'].present?
       end
 
       submission
@@ -142,7 +182,8 @@ module Submissions
       submissions.each do |submission|
         next unless submission.expire_at?
 
-        ProcessSubmissionExpiredJob.perform_at(submission.expire_at, 'submission_id' => submission.id)
+        ProcessSubmissionExpiredJob.perform_at(submission.expire_at, 'submission_id' => submission.id,
+                                                                     'expire_at' => submission.expire_at.to_i)
       end
     end
 
@@ -171,6 +212,25 @@ module Submissions
         else
           submission.template_submitters << item
         end
+      end
+    end
+
+    def maybe_add_cc_submitters(submission, recipients, submitters_order:, user:, params:, preferences:)
+      order = submission.template_submitters.filter_map { |s| s['order'] }.max
+
+      Array.wrap(recipients).each do |recipient|
+        attrs = recipient.is_a?(String) ? { email: recipient } : recipient.slice(:name, :email, :phone)
+
+        next if attrs.compact_blank.blank?
+
+        uuid = SecureRandom.uuid
+
+        submission.template_submitters <<
+          { 'name' => 'CC', 'uuid' => uuid, 'is_viewer' => true, 'order' => order }.compact
+
+        build_submitter(submission:, attrs:, uuid:, user:, params:,
+                        is_order_sent: submitters_order == 'random',
+                        preferences: preferences.except('email_message_uuid'))
       end
     end
 
@@ -408,9 +468,7 @@ module Submissions
         submitter.values = Submitters::SubmitValues.maybe_remove_condition_values(submitter)
       end
 
-      submitter.values = submitter.values.transform_values do |v|
-        v == '{{date}}' ? Time.current.in_time_zone(submitter.submission.account.timezone).to_date.to_s : v
-      end
+      submitter.values = Submitters::SubmitValues.replace_current_date_placeholders(submitter)
 
       submitter
     end

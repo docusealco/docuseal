@@ -39,8 +39,9 @@
         ref="input"
         :multiple="multiple"
         :accept="accept"
+        :aria-label="message"
         type="file"
-        class="hidden"
+        class="sr-only"
         @change="onSelectFiles"
       >
     </label>
@@ -50,13 +51,43 @@
 <script>
 import { IconCloudUpload, IconInnerShadowTop } from '@tabler/icons-vue'
 
+function convertImage (sourceFile, targetType, quality) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader()
+
+    reader.onload = function (event) {
+      const img = new Image()
+
+      img.onload = function () {
+        const canvas = document.createElement('canvas')
+        const ctx = canvas.getContext('2d')
+
+        canvas.width = img.width
+        canvas.height = img.height
+        ctx.drawImage(img, 0, 0)
+        canvas.toBlob(function (blob) {
+          const ext = targetType === 'image/jpeg' ? '.jpg' : '.png'
+          const newFile = new File([blob], sourceFile.name.replace(/\.\w+$/, ext), { type: targetType })
+          resolve(newFile)
+        }, targetType, quality)
+      }
+
+      img.onerror = () => reject(new Error(`browser cannot decode ${sourceFile.type || sourceFile.name}`))
+
+      img.src = event.target.result
+    }
+    reader.onerror = reject
+    reader.readAsDataURL(sourceFile)
+  })
+}
+
 export default {
   name: 'FileDropzone',
   components: {
     IconCloudUpload,
     IconInnerShadowTop
   },
-  inject: ['baseUrl', 't'],
+  inject: ['baseUrl', 'fetchOptions', 't'],
   props: {
     message: {
       type: String,
@@ -152,17 +183,34 @@ export default {
               }
             })
           } else {
-            if (file.type === 'image/bmp' || file.type === 'image/vnd.microsoft.icon') {
-              file = await this.convertBmpToPng(file)
+            try {
+              if (['image/bmp', 'image/vnd.microsoft.icon', 'image/svg+xml', 'image/gif'].includes(file.type)) {
+                file = await convertImage(file, 'image/png')
+              } else if (['image/heic', 'image/heif', 'image/heic-sequence', 'image/heif-sequence', 'image/avif', 'image/avif-sequence', 'image/webp'].includes(file.type)) {
+                file = await convertImage(file, 'image/jpeg', 0.9)
+              }
+            } catch (e) {
+              alert(e.message)
             }
 
             formData.append('file', file)
             formData.append('submitter_slug', this.submitterSlug)
             formData.append('name', 'attachments')
 
-            return fetch(this.baseUrl + '/api/attachments', {
+            return fetch(this.baseUrl + `/s/${this.submitterSlug}/upload`, {
               method: 'POST',
+              headers: { ...this.fetchOptions.headers },
               body: formData
+            }).then((resp) => {
+              if (resp.status === 404) {
+                return fetch(this.baseUrl + '/api/attachments', {
+                  method: 'POST',
+                  headers: { ...this.fetchOptions.headers },
+                  body: formData
+                })
+              } else {
+                return resp
+              }
             }).then(async (resp) => {
               const data = await resp.json()
 
@@ -179,32 +227,6 @@ export default {
         }
       }).finally(() => {
         this.isLoading = false
-      })
-    },
-    convertBmpToPng (bmpFile) {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader()
-
-        reader.onload = function (event) {
-          const img = new Image()
-
-          img.onload = function () {
-            const canvas = document.createElement('canvas')
-            const ctx = canvas.getContext('2d')
-
-            canvas.width = img.width
-            canvas.height = img.height
-            ctx.drawImage(img, 0, 0)
-            canvas.toBlob(function (blob) {
-              const newFile = new File([blob], bmpFile.name.replace(/\.\w+$/, '.png'), { type: 'image/png' })
-              resolve(newFile)
-            }, 'image/png')
-          }
-
-          img.src = event.target.result
-        }
-        reader.onerror = reject
-        reader.readAsDataURL(bmpFile)
       })
     }
   }

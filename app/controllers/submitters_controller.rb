@@ -8,12 +8,14 @@ class SubmittersController < ApplicationController
       if @submitter.preferences['email_message_uuid'].present?
         @submitter.account.email_messages.find_by(uuid: @submitter.preferences['email_message_uuid'])
       end
+
+    render :edit, layout: 'plain'
   end
 
   def update
     submission = @submitter.submission
 
-    if @submitter.submission_events.exists?(event_type: 'start_form') || submission.archived_at? || submission.expired?
+    unless submitter_editable?(submission)
       return redirect_back fallback_location: submission_path(submission), alert: I18n.t('submitter_cannot_be_updated')
     end
 
@@ -48,11 +50,17 @@ class SubmittersController < ApplicationController
 
   private
 
+  def submitter_editable?(submission)
+    !@submitter.submission_events.exists?(event_type: 'start_form') &&
+      !@submitter.completed_at? && !@submitter.declined_at? && !submission.completed_at? &&
+      !submission.archived_at? && !submission.expired? && !submission.template&.archived_at?
+  end
+
   def maybe_resend_email_sms(submitter, params)
     if params[:send_email] == '1' && submitter.email.present?
       is_sent_recently = Docuseal.multitenant? &&
                          EmailEvent.exists?(email: submitter.email,
-                                            tag: 'submitter_invitation',
+                                            tag: %w[submitter_invitation submitter_view_invitation],
                                             emailable: submitter,
                                             event_type: 'send',
                                             created_at: 4.hours.ago..Time.current)
@@ -73,7 +81,24 @@ class SubmittersController < ApplicationController
 
     submitter.name = attrs[:name] if attrs.key?(:name)
 
+    if submitter_changed?(submitter)
+      submitter.submitter_versions.new(slug: submitter.slug, email: submitter.email_was,
+                                       name: submitter.name_was, phone: submitter.phone_was)
+
+      submitter.slug = SecureRandom.base58(14)
+      submitter.values = Submitters.fetch_values_for_delegate(submitter)
+    end
+
     submitter
+  end
+
+  def submitter_changed?(submitter)
+    if submitter.email_was.blank? && submitter.phone_was.blank?
+      submitter.name_was.present? && submitter.name_changed?
+    else
+      (submitter.email_was.present? && submitter.email_changed?) ||
+        (submitter.phone_was.present? && submitter.phone_changed?)
+    end
   end
 
   def submitter_params

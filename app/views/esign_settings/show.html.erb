@@ -1,8 +1,9 @@
+<% content_for(:native_title, t('e_signature')) if turbo_native_app? %>
 <div class="flex-wrap space-y-4 md:flex md:flex-nowrap md:space-y-0 md:space-x-10">
   <%= render 'shared/settings_nav' %>
   <div class="md:flex-grow">
     <div class="max-w-xl">
-      <h1 class="text-4xl font-bold mb-4">
+      <h1 class="text-3xl md:text-4xl font-bold mb-4">
         <%= t('pdf_signature') %>
       </h1>
       <div id="result">
@@ -31,7 +32,8 @@
                   <%= t('verify_signed_pdf') %>
                 </div>
                 <div class="text-xs">
-                  <%= t('click_to_upload_or_drag_and_drop_files_html') %>
+                  <span class="md:hidden"><%= t('click_to_upload') %></span>
+                  <span class="hidden md:inline"><%= t('click_to_upload_or_drag_and_drop_files_html') %></span>
                 </div>
               </div>
               <input id="file" name="files[]" class="hidden" data-action="change:file-dropzone#onSelectFiles" data-target="file-dropzone.input" type="file" accept="application/pdf" multiple>
@@ -41,11 +43,11 @@
       <% end %>
     </div>
     <div class="flex flex-col md:flex-row gap-2 md:justify-between md:items-end mb-4 mt-8">
-      <h2 class="text-3xl font-bold">
+      <h2 class="text-2xl md:text-3xl font-bold">
         <%= t('signing_certificates') %>
       </h2>
       <% if can?(:create, @encrypted_config) %>
-        <%= link_to new_settings_esign_path, class: 'btn btn-primary btn-md', data: { turbo_frame: 'modal' } do %>
+        <%= link_to new_settings_esign_path, class: 'btn btn-primary btn-md', aria: { label: t('upload_certificate') }, data: { turbo_frame: 'modal' } do %>
           <%= svg_icon('plus', class: 'w-6 h-6') %>
           <span><%= t('upload_cert') %></span>
         <% end %>
@@ -53,7 +55,7 @@
     </div>
     <%= render 'alert' %>
     <div class="overflow-x-auto">
-      <table class="table w-full table-lg rounded-b-none overflow-hidden">
+      <table class="table table-stack w-full table-lg rounded-b-none overflow-hidden">
         <thead class="bg-base-200">
           <tr class="text-neutral uppercase">
             <th>
@@ -72,14 +74,14 @@
         <tbody>
           <% @pkcs_list.each do |item| %>
             <% next if item['pkcs'].blank? %>
-            <tr scope="row" class="group">
+            <tr class="group">
               <td>
                 <%= item['name'] %>
               </td>
-              <td>
+              <td data-label="<%= t('valid_to') %>">
                 <%= l(item['pkcs'].certificate.not_after.to_date, format: :long, locale: current_account.locale) %>
               </td>
-              <td>
+              <td data-label="<%= t('status') %>">
                 <% if item['status'] == 'default' %>
                   <span class="badge badge-lg badge-info badge-outline">
                     <%= t('default') %>
@@ -109,7 +111,7 @@
     <% if !Docuseal.multitenant? && can?(:manage, encrypted_config) %>
       <div class="flex-grow max-w-xl">
         <div class="flex justify-between items-end mb-4 mt-8">
-          <h2 class="text-3xl font-bold">
+          <h2 class="text-2xl md:text-3xl font-bold">
             <%= t('timestamp_server') %>
           </h2>
         </div>
@@ -120,7 +122,7 @@
                 <span>
                   <%= t('timeserver_url') %>
                 </span>
-                <span class="tooltip" data-tip="<%= t('url_of_the_trusted_rfc_3161_timeserver_to_be_used_to_generate_timestamp_signatures') %>">
+                <span class="tooltip hidden md:flex" data-tip="<%= t('url_of_the_trusted_rfc_3161_timeserver_to_be_used_to_generate_timestamp_signatures') %>">
                   <%= svg_icon('info_circle', class: 'w-4 h-4') %>
                 </span>
               </span>
@@ -137,7 +139,7 @@
     <% if can?(:manage, account_config) %>
       <div class="px-1 mt-8 max-w-xl">
         <div class="flex justify-between items-end mb-4 mt-8">
-          <h2 class="text-3xl font-bold">
+          <h2 class="text-2xl md:text-3xl font-bold">
             <%= t('preferences') %>
           </h2>
         </div>

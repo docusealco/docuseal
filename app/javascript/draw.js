@@ -11,6 +11,7 @@ window.customElements.define('draw-signature', class extends HTMLElement {
     this.resizeObserver = new ResizeObserver(() => {
       requestAnimationFrame(() => {
         if (!this.canvas) return
+        if (!this.canvas.parentNode?.clientWidth) return
 
         const { width, height } = this.canvas
 
@@ -89,7 +90,7 @@ window.customElements.define('draw-signature', class extends HTMLElement {
   }
 
   redrawCanvas (oldWidth, oldHeight) {
-    if (this.pad && !this.pad.isEmpty() && oldWidth > 0 && oldHeight > 0) {
+    if (this.pad && !this.pad.isEmpty() && oldWidth > 0 && oldHeight > 0 && this.canvas.width > 0 && this.canvas.height > 0) {
       const sx = this.canvas.width / oldWidth
       const sy = this.canvas.height / oldHeight
 
@@ -125,11 +126,10 @@ window.customElements.define('draw-signature', class extends HTMLElement {
       const formData = new FormData()
 
       formData.append('file', file)
-      formData.append('submitter_slug', this.dataset.slug)
       formData.append('name', 'attachments')
       formData.append('remember_signature', 'true')
 
-      return fetch('/api/attachments', {
+      return fetch(`/s/${this.dataset.slug}/upload`, {
         method: 'POST',
         body: formData
       }).then(resp => resp.json())

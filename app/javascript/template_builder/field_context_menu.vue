@@ -494,6 +494,7 @@ import FieldType from './field_type.vue'
 import FieldSettings from './field_settings.vue'
 import ContextSubmenu from './field_context_submenu.vue'
 import ContextModal from './field_context_modal.vue'
+import { stripeConnectedRef } from './payment_settings'
 
 export default {
   name: 'FieldContextMenu',
@@ -514,7 +515,7 @@ export default {
     ContextSubmenu,
     ContextModal
   },
-  inject: ['t', 'getFieldTypeIndex', 'template', 'withCustomFields', 'currencies'],
+  inject: ['t', 'getFieldTypeIndex', 'template', 'withCustomFields', 'currencies', 'dateFormats', 'locale', 'withFormula', 'withConditions', 'nativePlatform'],
   props: {
     contextMenu: {
       type: Object,
@@ -580,7 +581,7 @@ export default {
     fieldNames: FieldType.computed.fieldNames,
     fieldLabels: FieldType.computed.fieldLabels,
     validationOptions: FieldSettings.computed.validations,
-    dateFormats: FieldSettings.computed.dateFormats,
+    availableDateFormats: FieldSettings.computed.availableDateFormats,
     numberFormats: FieldSettings.computed.numberFormats,
     prefillableFieldTypes: FieldSettings.computed.prefillableFieldTypes,
     verificationMethods: FieldSettings.computed.verificationMethods,
@@ -600,16 +601,17 @@ export default {
       }
     },
     showFont () {
-      return ['text', 'number', 'date', 'select', 'heading', 'cells'].includes(this.field.type)
+      return ['text', 'number', 'date', 'select', 'heading', 'cells'].includes(this.field.type) ||
+        (['radio', 'multiple'].includes(this.field.type) && this.field.areas?.every((a) => !a.option_uuid))
     },
     showDescription () {
       return !['stamp', 'heading', 'strikethrough'].includes(this.field.type)
     },
     showCondition () {
-      return this.withCondition && !['stamp', 'heading'].includes(this.field.type)
+      return this.withCondition && (this.withConditions || this.nativePlatform !== 'ios') && !['stamp', 'heading'].includes(this.field.type)
     },
     showFormula () {
-      return this.field.type === 'number' || this.field.type === 'payment'
+      return (this.field.type === 'number' || this.field.type === 'date' || this.field.type === 'payment' || !!this.field.preferences?.formula) && (this.withFormula || this.nativePlatform !== 'ios')
     },
     showRequired () {
       return this.withRequired && !['phone', 'stamp', 'verification', 'strikethrough', 'heading'].includes(this.field.type)
@@ -686,7 +688,7 @@ export default {
     },
     formatOptions () {
       switch (this.field.type) {
-        case 'date': return this.dateFormats.map(f => ({ value: f, label: this.formatDate(new Date(), f) }))
+        case 'date': return this.availableDateFormats.map(f => ({ value: f, label: this.formatDate(new Date(), f) }))
         case 'number': return this.numberFormats.map(f => ({ value: f, label: this.formatNumber(123456789.567, f) }))
         case 'signature': return this.signatureFormats.map(f => ({ value: f, label: this.t(f) }))
         default: return []
@@ -715,12 +717,18 @@ export default {
     currentCurrency () {
       return this.field.preferences?.currency || 'USD'
     },
+    isStripeConnected: () => stripeConnectedRef.value,
     priceTypeOptions () {
-      return [
+      const options = [
         { value: 'one_off', label: this.t('fixed') },
-        { value: 'formula', label: this.t('formula') },
-        { value: 'payment_link', label: this.t('payment_link') }
+        { value: 'formula', label: this.t('formula') }
       ]
+
+      if (this.isStripeConnected) {
+        options.push({ value: 'payment_link', label: this.t('payment_link') })
+      }
+
+      return options
     },
     currentPriceType () {
       if (this.field.preferences?.formula) {

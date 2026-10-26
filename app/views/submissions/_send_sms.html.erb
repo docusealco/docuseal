@@ -1,3 +1,7 @@
-<div class="form-control">
-  <%= render 'sms_settings/placeholder' %>
-</div>
+<% unless turbo_native_ios? %>
+  <toggle-on-checked data-names="is_custom_message" class="block">
+    <div class="form-control">
+      <%= render 'sms_settings/placeholder' %>
+    </div>
+  </toggle-on-checked>
+<% end %>

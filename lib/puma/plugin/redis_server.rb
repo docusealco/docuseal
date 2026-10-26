@@ -54,7 +54,8 @@ Puma::Plugin.create do
       Dir.chdir(ENV.fetch('WORKDIR', nil)) unless ENV['WORKDIR'].to_s.empty?
 
       exec('redis-server', '--requirepass', Digest::SHA1.hexdigest("redis#{ENV.fetch('SECRET_KEY_BASE', '')}"),
-           out: '/dev/null')
+           '--bind', '127.0.0.1', '--port', '16379',
+           '--loglevel', 'warning')
     end
   end
 

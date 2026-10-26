@@ -24,6 +24,7 @@ class Account < ApplicationRecord
   has_many :encrypted_configs, dependent: :destroy
   has_many :account_configs, dependent: :destroy
   has_many :email_messages, dependent: :destroy
+  has_many :email_message_assets, dependent: :destroy
   has_many :templates, dependent: :destroy
   has_many :template_folders, dependent: :destroy
   has_one :default_template_folder, -> { where(name: TemplateFolder::DEFAULT_NAME) },
@@ -32,6 +33,7 @@ class Account < ApplicationRecord
   has_many :submitters, dependent: :destroy
   has_many :account_linked_accounts, dependent: :destroy
   has_many :email_events, dependent: :destroy
+  has_many :document_metadata, class_name: 'DocumentMetadata', dependent: :destroy
   has_many :webhook_urls, dependent: :destroy
   has_many :webhook_events, dependent: nil
   has_many :account_accesses, dependent: :destroy

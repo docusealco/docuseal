@@ -3,14 +3,14 @@
   <% show_recipients = @template.submitters.to_a.length > 1 %>
   <% options = [[t('general'), 'general']] %>
   <% options << [t('recipients'), 'recipients'] if show_recipients %>
-  <% options << [t('api_and_embedding'), 'api'] if show_api %>
+  <% options << [safe_join([tag.span('API', class: 'md:hidden'), tag.span(t('api_and_embedding'), class: 'hidden md:inline')]), 'api'] if show_api %>
   <% if options.size > 1 %>
-    <toggle-visible data-element-ids="<%= options.map(&:last).to_json %>" class="relative text-center mt-3 block">
+    <toggle-visible data-element-ids="<%= options.map(&:last).to_json %>" class="relative text-center block <%= 'mt-3' unless turbo_native_app? %>">
       <div class="join">
         <% options.each_with_index do |(label, value), index| %>
           <span>
             <%= radio_button_tag 'option', value, value == 'general', class: 'peer hidden', data: { action: 'change:toggle-visible#trigger' } %>
-            <label for="option_<%= value %>" class="<%= '!rounded-s-full' if index.zero? %> btn btn-focus btn-sm join-item peer-checked:btn-active normal-case <%= 'px-8 md:px-0' if value.in?(%w[general recipients]) %> <%= options.size > 2 ? 'md:w-44' : 'md:w-48' %>">
+            <label for="option_<%= value %>" class="<%= '!rounded-s-full' if index.zero? %> btn btn-sm join-item peer-checked:btn-active normal-case px-5 md:px-0 <%= 'min-w-24 md:min-w-0' if value == 'api' %> <%= options.size > 2 ? 'md:w-44' : 'md:w-48' %>">
               <%= label %>
             </label>
           </span>
@@ -63,7 +63,9 @@
         <%= t('form_preferences') %>
       </div>
       <div class="collapse-content">
-        <%= render 'templates_prefillable_fields/form', template: @template %>
+        <native-event data-on="submit" data-name="template-builder:update" data-dismiss="false" class="block">
+          <%= render 'templates_prefillable_fields/form', template: @template %>
+        </native-event>
         <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mt-1' }, data: { close_on_submit: false } do |f| %>
           <toggle-on-submit data-element-id="form_saved_alert"></toggle-on-submit>
           <% configs = AccountConfigs.find_or_initialize_for_key(current_account, AccountConfig::SUBMITTER_COMPLETED_EMAIL_KEY).value %>
@@ -105,10 +107,22 @@
         <div class="collapse-title text-xl font-medium">
           <%= t('signature_request_email') %>
         </div>
-        <div class="collapse-content">
+        <div class="collapse-content min-w-0">
           <%= render 'templates_preferences/submitter_invitation_email_form' %>
         </div>
       </div>
+      <% field_submitter_uuids = Set.new(@template.fields.pluck('submitter_uuid')) %>
+      <% unless @template.submitters.all? { |s| field_submitter_uuids.include?(s['uuid']) } %>
+        <div class="collapse collapse-arrow join-item border border-base-300">
+          <input type="checkbox" name="accordion">
+          <div class="collapse-title text-xl font-medium">
+            <%= t('view_documents_email') %>
+          </div>
+          <div class="collapse-content">
+            <%= render 'templates_preferences/submitter_view_invitation_email_form' %>
+          </div>
+        </div>
+      <% end %>
       <%= render 'templates_preferences/submitter_invitation_reminder_email_collapse' %>
       <div class="collapse collapse-arrow join-item border border-base-300">
         <input type="checkbox" name="accordion">
@@ -133,7 +147,9 @@
   </div>
   <% if show_recipients %>
     <div id="recipients" class="hidden mt-2 mb-4 px-5 pt-1 pb-2">
-      <%= render 'recipients', template: @template %>
+      <native-event data-on="submit" data-name="template-builder:update" class="block">
+        <%= render 'recipients', template: @template %>
+      </native-event>
     </div>
   <% end %>
   <% if show_api %>
@@ -178,7 +194,7 @@
               <%= t('share_template_with_test_mode') %>
             </span>
             <submit-form data-on="change" class="flex">
-              <%= f.check_box :value, class: 'toggle', checked: @template.template_sharings.exists?(account_id: current_account.testing_accounts) %>
+              <%= f.check_box :value, class: 'toggle', checked: @template.template_sharings.exists?(account_id: (can?(:manage, :tenants_test) ? current_account : true_user.account).testing_accounts) %>
             </submit-form>
           </div>
         <% end %>

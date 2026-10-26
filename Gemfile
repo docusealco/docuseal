@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-ruby '4.0.2'
+ruby '4.0.9'
 
 gem 'addressable'
 gem 'arabic-letter-connector', require: false
@@ -22,11 +22,9 @@ gem 'faraday'
 gem 'faraday-follow_redirects'
 gem 'google-cloud-storage', require: false
 gem 'hexapdf'
-gem 'image_processing'
 gem 'jwt', require: false
 gem 'lograge'
 gem 'numo-narray-alt', require: false
-gem 'oj'
 gem 'onnxruntime', require: false
 gem 'pagy'
 gem 'pg', require: false
@@ -39,7 +37,7 @@ gem 'rotp'
 gem 'rouge', require: false
 gem 'rqrcode', require: false
 gem 'ruby-vips'
-gem 'rubyXL', require: false
+gem 'rubyzip', require: false
 gem 'shakapacker'
 gem 'sidekiq'
 gem 'sqlite3', require: false
@@ -48,6 +46,8 @@ gem 'trilogy', require: false
 gem 'turbo-rails'
 gem 'twitter_cldr', require: false
 gem 'tzinfo-data'
+gem 'wordcraft', require: false, group: :ce
+gem 'xlsxtream', require: false
 
 group :development, :test do
   gem 'better_html'

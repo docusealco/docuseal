@@ -15,7 +15,8 @@ module Submissions
     def call(submitter)
       return nil unless submitter
 
-      raise NotCompletedYet unless submitter.completed_at?
+      raise NotCompletedYet if !submitter.completed_at? ||
+                               !submitter.submission.completed_at?
 
       total_wait_time ||= 0
       key = [KEY_PREFIX, submitter.id].join(':')

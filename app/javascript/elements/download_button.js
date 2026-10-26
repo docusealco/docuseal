@@ -5,6 +5,12 @@ export default targetable(class extends HTMLElement {
 
   connectedCallback () {
     this.addEventListener('click', () => this.downloadFiles())
+    this.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault()
+        this.downloadFiles()
+      }
+    })
   }
 
   toggleState () {
@@ -14,6 +20,16 @@ export default targetable(class extends HTMLElement {
 
   downloadFiles () {
     if (!this.dataset.src) return
+
+    const download = window.webkit?.messageHandlers?.download
+
+    if (download) {
+      this.toggleState()
+
+      document.addEventListener('native:download-end', () => this.toggleState(), { once: true })
+
+      return download.postMessage({ src: this.dataset.src })
+    }
 
     this.toggleState()
 

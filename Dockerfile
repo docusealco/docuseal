@@ -1,19 +1,23 @@
-FROM ruby:4.0.1-alpine AS download
+FROM ruby:4.0.9-alpine AS download
 
 WORKDIR /fonts
 
-RUN apk --no-cache add wget && \
+RUN apk --no-cache add wget unzip && \
     wget https://github.com/satbyy/go-noto-universal/releases/download/v7.0/GoNotoKurrent-Regular.ttf && \
     wget https://github.com/satbyy/go-noto-universal/releases/download/v7.0/GoNotoKurrent-Bold.ttf && \
     wget https://github.com/impallari/DancingScript/raw/master/fonts/DancingScript-Regular.otf && \
     wget https://raw.githubusercontent.com/impallari/DancingScript/master/OFL.txt && \
     wget https://raw.githubusercontent.com/notofonts/noto-fonts/refs/heads/main/LICENSE && \
     wget -O /model.onnx "https://github.com/docusealco/fields-detection/releases/download/2.0.0/model_704_int8.onnx" && \
-    wget -O pdfium-linux.tgz "https://github.com/bblanchon/pdfium-binaries/releases/latest/download/pdfium-linux-musl-$(uname -m | sed 's/x86_64/x64/;s/aarch64/arm64/').tgz" && \
+    wget -O pdfium-linux.zip "https://github.com/docusealco/pdfium-binaries/releases/download/20260920/pdfium-musl-$(uname -m).zip" && \
+    case "$(uname -m)" in \
+      x86_64)  echo "bbca8a648dbd1ba81f9c6c223f21dc394cf1ad381c6c17d60c6dcc4a7d3a2ae0  pdfium-linux.zip" ;; \
+      aarch64) echo "73b72ed79b9bfdd494dee7e863482c24971a8d4b11f6cd1289aa170d31304a1f  pdfium-linux.zip" ;; \
+    esac | sha256sum -c - && \
     mkdir -p /pdfium-linux && \
-    tar -xzf pdfium-linux.tgz -C /pdfium-linux
+    unzip -q pdfium-linux.zip -d /pdfium-linux
 
-FROM ruby:4.0.1-alpine AS webpack
+FROM ruby:4.0.9-alpine AS webpack
 
 ENV RAILS_ENV=production
 ENV NODE_ENV=production
@@ -40,7 +44,7 @@ COPY ./app/views ./app/views
 
 RUN echo "gem 'shakapacker'" > Gemfile && ./bin/shakapacker
 
-FROM ruby:4.0.1-alpine AS app
+FROM ruby:4.0.9-alpine AS app
 
 ENV RAILS_ENV=production
 ENV BUNDLE_WITHOUT="development:test"
@@ -48,7 +52,9 @@ ENV OPENSSL_CONF=/etc/openssl_legacy.cnf
 
 WORKDIR /app
 
-RUN apk add --no-cache libpq vips redis vips-heif fontconfig onnxruntime
+RUN apk upgrade --no-cache ca-certificates-bundle && \
+    apk add --no-cache libpq vips redis onnxruntime leptonica jemalloc font-liberation font-carlito && \
+    rm -f /usr/bin/onnx_test_runner /usr/bin/onnxruntime_test
 
 RUN addgroup -g 2000 docuseal && adduser -u 2000 -G docuseal -s /bin/sh -D -h /home/docuseal docuseal
 
@@ -81,12 +87,12 @@ COPY --chown=docuseal:docuseal .version ./public/version
 
 COPY --chown=docuseal:docuseal --from=download /fonts/GoNotoKurrent-Regular.ttf /fonts/GoNotoKurrent-Bold.ttf /fonts/DancingScript-Regular.otf /fonts/OFL.txt /fonts/LICENSE /fonts/
 COPY --from=download /pdfium-linux/lib/libpdfium.so /usr/lib/libpdfium.so
-COPY --from=download /pdfium-linux/licenses/pdfium.txt /usr/lib/libpdfium-LICENSE.txt
+COPY --from=download /pdfium-linux/licenses/ /usr/lib/libpdfium-licenses/
 COPY --chown=docuseal:docuseal --from=download /model.onnx /app/tmp/model.onnx
 COPY --chown=docuseal:docuseal --from=webpack /app/public/packs ./public/packs
 
 RUN mkdir -p /app/public/fonts && ln -s /fonts/DancingScript-Regular.otf /app/public/fonts/ && \
-    mkdir -p /usr/share/fonts/noto && ln -s /fonts/GoNotoKurrent-Regular.ttf /usr/share/fonts/noto/ && ln -s /fonts/GoNotoKurrent-Bold.ttf /usr/share/fonts/noto/ && fc-cache -f && \
+    mkdir -p /usr/share/fonts/noto/bold && ln -s /fonts/GoNotoKurrent-Regular.ttf /usr/share/fonts/noto/ && ln -s /fonts/GoNotoKurrent-Bold.ttf /usr/share/fonts/noto/bold/ && fc-cache -f && \
     bundle exec bootsnap precompile -j 1 --gemfile app/ lib/ && \
     chown -R docuseal:docuseal /app/tmp/cache
 
@@ -94,6 +100,9 @@ WORKDIR /data/docuseal
 ENV HOME=/home/docuseal
 ENV WORKDIR=/data/docuseal
 ENV VIPS_MAX_COORD=17000
+ENV VIPS_BLOCK_UNTRUSTED=1
+# ENV LD_PRELOAD=/usr/lib/libjemalloc.so.2
+ENV MALLOC_CONF=dirty_decay_ms:1000,narenas:2,background_thread:true
 
 EXPOSE 3000
 CMD ["/app/bin/bundle", "exec", "puma", "-C", "/app/config/puma.rb", "--dir", "/app"]

@@ -6,43 +6,19 @@ module PdfUtils
 
   module_function
 
-  def encrypted?(data, password: nil)
-    HexaPDF::Document.new(io: StringIO.new(data), decryption_opts: { password: })
-
-    false
-  rescue HexaPDF::EncryptionError
-    true
-  end
-
-  def decrypt(data, password)
-    encrypted_doc = HexaPDF::Document.new(io: StringIO.new(data), decryption_opts: { password: })
-
-    decrypted_doc = HexaPDF::Document.new
-
-    encrypted_doc.pages.each do |page|
-      decrypted_doc.pages << decrypted_doc.import(page)
-    end
-
-    decrypted_io = StringIO.new
-
-    decrypted_doc.write(decrypted_io, validate: false)
-
-    decrypted_io.tap(&:rewind).read
-  end
-
-  def merge(files)
-    merged_pdf = HexaPDF::Document.new
-
-    files.each do |file|
-      pdf = HexaPDF::Document.new(io: file)
-      pdf.pages.each { |page| merged_pdf.pages << merged_pdf.import(page) }
-    end
-
+  def merge(io_files)
     merged_content = StringIO.new
-    merged_pdf.validate(auto_correct: true)
-    merged_pdf.write(merged_content, validate: false)
-    merged_content.rewind
 
-    merged_content
+    Pdfium.with_instance do
+      Pdfium::Document.create do |merged_pdf|
+        io_files.each do |io|
+          Pdfium::Document.open_io(io) { |pdf| merged_pdf.import_pages(pdf) }
+        end
+
+        merged_pdf.save(merged_content)
+      end
+    end
+
+    merged_content.tap(&:rewind)
   end
 end

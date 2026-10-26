@@ -6,11 +6,16 @@
     </div>
   </div>
   <div class="collapse-content">
-    <%= form_for AccountConfigs.find_or_initialize_for_key(current_account, AccountConfig::SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY), url: settings_personalization_path, method: :post, html: { autocomplete: 'off', class: 'space-y-4' } do |f| %>
+    <%= form_for AccountConfigs.find_or_initialize_for_key(current_account, AccountConfig::SUBMITTER_DOCUMENTS_COPY_EMAIL_KEY), url: settings_personalization_path, method: :post, html: { autocomplete: 'off', class: 'flex flex-col gap-4' } do |f| %>
       <%= f.hidden_field :key %>
       <%= f.fields_for :value, Struct.new(:subject, :body, :reply_to, :attach_audit_log, :attach_documents, :bcc_recipients, :enabled).new(*f.object.value.values_at('subject', 'body', 'reply_to', 'attach_audit_log', 'attach_documents', 'bcc_recipients', 'enabled')) do |ff| %>
         <div class="form-control">
-          <%= ff.label :subject, t('subject'), class: 'label' %>
+          <div class="flex items-center">
+            <%= ff.label :subject, t('subject'), class: 'label' %>
+            <span class="tooltip tooltip-right hidden md:flex" data-tip="<%= t('completed_documents_copy_email_sent_to_recipients_upon_completion_containing_their_documents') %>">
+              <%= svg_icon('info_circle', class: 'w-4 h-4') %>
+            </span>
+          </div>
           <%= ff.text_field :subject, required: true, class: 'base-input', dir: 'auto' %>
         </div>
         <%= render 'personalization_settings/email_body_field', ff:, config: f.object %>

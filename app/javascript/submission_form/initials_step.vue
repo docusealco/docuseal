@@ -22,43 +22,60 @@
           class="md:tooltip"
           :data-tip="t('type_initial')"
         >
-          <a
+          <button
             id="type_text_button"
-            href="#"
+            type="button"
+            :aria-label="t('type_initial')"
             class="btn btn-outline font-medium btn-sm type-text-button"
-            @click.prevent="toggleTextInput"
+            @click="toggleTextInput"
           >
-            <IconTextSize :width="16" />
+            <IconTextSize
+              :width="16"
+              aria-hidden="true"
+            />
             <span class="hidden sm:inline">
               {{ t('type') }}
             </span>
-          </a>
+          </button>
         </span>
         <span
           v-else
           class="md:tooltip ml-2"
           :data-tip="t('draw_initials')"
         >
-          <a
+          <button
             id="type_text_button"
-            href="#"
+            type="button"
+            :aria-label="t('draw_initials')"
             class="btn btn-outline font-medium btn-sm type-text-button"
-            @click.prevent="toggleTextInput"
+            @click="toggleTextInput"
           >
-            <IconSignature :width="16" />
+            <IconSignature
+              :width="16"
+              aria-hidden="true"
+            />
             <span class="hidden sm:inline">
               {{ t('draw') }}
             </span>
-          </a>
+          </button>
         </span>
         <span
           class="md:tooltip"
           :data-tip="t('click_to_upload')"
         >
-          <label class="btn btn-outline btn-sm font-medium inline-flex flex-nowrap upload-image-button">
-            <IconUpload :width="16" />
+          <button
+            type="button"
+            :aria-label="t('click_to_upload')"
+            class="btn btn-outline btn-sm font-medium inline-flex flex-nowrap upload-image-button"
+            @click="$refs.uploadInput.click()"
+          >
+            <IconUpload
+              :width="16"
+              aria-hidden="true"
+            />
             <input
               :key="uploadImageInputKey"
+              ref="uploadInput"
               type="file"
               hidden
               accept="image/*"
@@ -67,37 +84,45 @@
             <span class="hidden sm:inline">
               {{ t('upload') }}
             </span>
-          </label>
+          </button>
         </span>
-        <a
-          v-if="modelValue || computedPreviousValue"
-          href="#"
+        <button
+          v-if="modelValue || computedPreviousValue || computedPrefillData"
+          type="button"
           class="btn font-medium btn-outline btn-sm clear-canvas-button"
-          @click.prevent="remove"
+          @click="remove"
         >
-          <IconReload :width="16" />
+          <IconReload
+            :width="16"
+            aria-hidden="true"
+          />
           {{ t('clear') }}
-        </a>
-        <a
+        </button>
+        <button
           v-else
-          href="#"
+          type="button"
           class="btn font-medium btn-outline btn-sm clear-canvas-button"
-          @click.prevent="clear"
+          @click="clear"
         >
-          <IconReload :width="16" />
+          <IconReload
+            :width="16"
+            aria-hidden="true"
+          />
           {{ t('clear') }}
-        </a>
-        <a
+        </button>
+        <button
+          type="button"
           :title="t('minimize')"
-          href="#"
+          :aria-label="t('minimize')"
           class="py-1.5 inline md:hidden"
-          @click.prevent="$emit('minimize')"
+          @click="$emit('minimize')"
         >
           <IconArrowsDiagonalMinimize2
             :width="20"
             :height="20"
+            aria-hidden="true"
           />
-        </a>
+        </button>
       </div>
     </div>
     <div
@@ -114,8 +139,9 @@
       :name="`values[${field.uuid}]`"
     >
     <img
-      v-if="modelValue || computedPreviousValue"
-      :src="attachmentsIndex[modelValue || computedPreviousValue].url"
+      v-if="modelValue || computedPreviousValue || computedPrefillData"
+      :src="previousValueUrl"
+      :alt="field.name || t('initials')"
       class="mx-auto bg-white border border-base-300 rounded max-h-44"
     >
     <div class="relative">
@@ -124,23 +150,29 @@
         class="absolute top-0 right-0 left-0 bottom-0"
       />
       <label
-        v-if="!isDrawInitials && !modelValue && !computedPreviousValue"
+        v-if="!isDrawInitials && !modelValue && !computedPreviousValue && !computedPrefillData"
         for="initials_text_input"
         class="absolute top-0 right-0 left-0 bottom-0"
       />
       <canvas
-        v-show="!modelValue && !computedPreviousValue"
+        v-show="!modelValue && !computedPreviousValue && !computedPrefillData"
         ref="canvas"
+        role="img"
+        :aria-label="t('initials_drawing_area')"
         class="bg-white border border-base-300 rounded-2xl w-full draw-canvas"
+        @touchstart.passive="lockSwipe"
+        @touchend.passive="unlockSwipe"
+        @touchcancel.passive="unlockSwipe"
       />
     </div>
     <input
-      v-if="!isDrawInitials && !modelValue && !computedPreviousValue"
+      v-if="!isDrawInitials && !modelValue && !computedPreviousValue && !computedPrefillData"
       id="initials_text_input"
       ref="textInput"
       class="base-input !text-2xl w-full mt-6 text-center"
       :required="field.required && !isInitialsStarted"
-      :placeholder="`${t('type_initial_here')}...`"
+      :aria-label="field.name || t('initials')"
+      :placeholder="`${t('type_initial_here')}${field.required ? '...' : ' (' + t('optional') + ')'}`"
       type="text"
       @focus="$emit('focus')"
       @input="updateWrittenInitials"
@@ -170,7 +202,7 @@ export default {
     MarkdownContent,
     IconArrowsDiagonalMinimize2
   },
-  inject: ['baseUrl', 't'],
+  inject: ['baseUrl', 'fetchOptions', 't'],
   props: {
     field: {
       type: Object,
@@ -204,6 +236,16 @@ export default {
       required: false,
       default: ''
     },
+    prefillData: {
+      type: Object,
+      required: false,
+      default: null
+    },
+    nativePlatform: {
+      type: String,
+      required: false,
+      default: ''
+    },
     modelValue: {
       type: String,
       required: false,
@@ -226,10 +268,24 @@ export default {
       } else {
         return null
       }
+    },
+    computedPrefillData () {
+      if (this.isUsePreviousValue && this.field.required === true && !this.previousValue && !this.modelValue) {
+        return this.prefillData
+      } else {
+        return null
+      }
+    },
+    previousValueUrl () {
+      if (this.computedPrefillData) {
+        return this.computedPrefillData.url
+      } else {
+        return this.attachmentsIndex[this.modelValue || this.computedPreviousValue].url
+      }
     }
   },
   created () {
-    this.isInitialsStarted = !!this.computedPreviousValue
+    this.isInitialsStarted = !!(this.computedPreviousValue || this.computedPrefillData)
   },
   async mounted () {
     this.$nextTick(() => {
@@ -264,7 +320,7 @@ export default {
 
             if (!this.isDrawInitials) {
               this.$nextTick(() => {
-                if (this.$refs.textInput) {
+                if (this.$refs.textInput && this.field.required === true) {
                   this.initTextInitial()
                 }
               })
@@ -282,6 +338,8 @@ export default {
     this.intersectionObserver?.disconnect()
   },
   methods: {
+    lockSwipe: SignatureStep.methods.lockSwipe,
+    unlockSwipe: SignatureStep.methods.unlockSwipe,
     drawOnCanvas: SignatureStep.methods.drawOnCanvas,
     drawImage (event) {
       this.remove()
@@ -368,7 +426,48 @@ export default {
         this.updateWrittenInitials({ target: this.$refs.textInput })
       }
     },
+    submitPrefillAttachment () {
+      if (this.dryRun) {
+        const attachment = { uuid: Math.random().toString(), url: this.prefillData.url }
+
+        this.$emit('attached', attachment)
+        this.$emit('update:model-value', attachment.uuid)
+
+        return Promise.resolve(attachment)
+      }
+
+      const formData = new FormData()
+
+      formData.append('prefill_token', this.prefillData.token)
+
+      return fetch(this.baseUrl + `/s/${this.submitterSlug}/prefill_attachments`, {
+        method: 'POST',
+        headers: { ...this.fetchOptions.headers },
+        body: formData
+      }).then(async (resp) => {
+        if (!resp.ok) {
+          const data = await resp.json()
+
+          return Promise.reject(new Error(data.error))
+        }
+
+        const attachment = await resp.json()
+
+        this.$emit('attached', attachment)
+        this.$emit('update:model-value', attachment.uuid)
+
+        return attachment
+      }).catch((error) => {
+        this.remove()
+
+        return Promise.reject(error)
+      })
+    },
     async submit () {
+      if (this.computedPrefillData) {
+        return this.submitPrefillAttachment()
+      }
+
       if (this.modelValue || this.computedPreviousValue) {
         if (this.computedPreviousValue) {
           this.$emit('update:model-value', this.computedPreviousValue)
@@ -402,9 +501,20 @@ export default {
             formData.append('name', 'attachments')
             formData.append('type', 'initials')
 
-            return fetch(this.baseUrl + '/api/attachments', {
+            return fetch(this.baseUrl + `/s/${this.submitterSlug}/upload`, {
               method: 'POST',
+              headers: { ...this.fetchOptions.headers },
               body: formData
+            }).then((resp) => {
+              if (resp.status === 404) {
+                return fetch(this.baseUrl + '/api/attachments', {
+                  method: 'POST',
+                  headers: { ...this.fetchOptions.headers },
+                  body: formData
+                })
+              } else {
+                return resp
+              }
             }).then(async (resp) => {
               if (resp.status === 422 || resp.status === 500) {
                 const data = await resp.json()

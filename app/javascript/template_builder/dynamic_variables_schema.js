@@ -417,10 +417,8 @@ function buildOperators (tags) {
         break
       }
       case 'end': {
-        const popped = stack.pop()
-
-        if (popped.operator) {
-          popped.operator.endTag = tag
+        if (stack.length > 1) {
+          stack.pop().operator.endTag = tag
         }
 
         break
@@ -434,7 +432,13 @@ function buildOperators (tags) {
   return operators
 }
 
+function hasBlankKey (keyString) {
+  return !keyString || keyString.split('.').some((key) => !key.trim())
+}
+
 function assignNestedSchema (propertiesHash, parentProperties, keyString, value) {
+  if (hasBlankKey(keyString)) return
+
   const keys = keyString.split('.')
   const lastKey = keys.pop()
 
@@ -460,6 +464,8 @@ function assignNestedSchema (propertiesHash, parentProperties, keyString, value)
 }
 
 function assignNestedSchemaWithPriority (propertiesHash, parentProperties, keyString, newType) {
+  if (hasBlankKey(keyString)) return
+
   const keys = keyString.split('.')
   const lastKey = keys.pop()
 
@@ -523,6 +529,8 @@ function processOperators (operators, propertiesHash = {}, parentProperties = {}
         processOperators(op.elseChildren, propertiesHash, parentProperties)
         break
       case 'for': {
+        if (hasBlankKey(op.variableName)) break
+
         const parts = op.variableName.split('.')
         const singularKey = singularize(parts[parts.length - 1])
 

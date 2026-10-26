@@ -30,6 +30,7 @@
       <IconInnerShadowTop
         width="40"
         class="animate-spin h-10"
+        aria-hidden="true"
       />
     </div>
     <div v-else-if="redirectUrl">
@@ -90,6 +91,11 @@ export default {
     submitterSlug: {
       type: String,
       required: true
+    },
+    fetchOptions: {
+      type: Object,
+      required: false,
+      default: () => ({})
     }
   },
   emits: ['focus', 'submit', 'update:model-value', 'attached'],
@@ -156,13 +162,13 @@ export default {
   },
   methods: {
     start () {
-      return fetch(this.baseUrl + `/api/identity_verification/${this.field.uuid}`, {
+      return fetch(this.baseUrl + `/s/${this.submitterSlug}/identity_verification/${this.field.uuid}`, {
         method: 'PUT',
         body: JSON.stringify({
-          submitter_slug: this.submitterSlug,
           redirect_url: document.location.href
         }),
-        headers: { 'Content-Type': 'application/json' }
+        ...this.fetchOptions,
+        headers: { 'Content-Type': 'application/json', ...this.fetchOptions.headers }
       }).then(async (resp) => {
         this.eidEasyData = await resp.json()
 
@@ -199,12 +205,10 @@ export default {
       })
     },
     async submit () {
-      const resp = await fetch(this.baseUrl + '/api/identity_verification', {
+      const resp = await fetch(this.baseUrl + `/s/${this.submitterSlug}/identity_verification`, {
         method: 'POST',
-        body: JSON.stringify({
-          submitter_slug: this.submitterSlug
-        }),
-        headers: { 'Content-Type': 'application/json' }
+        ...this.fetchOptions,
+        headers: { 'Content-Type': 'application/json', ...this.fetchOptions.headers }
       })
 
       if (resp.status === 404) {

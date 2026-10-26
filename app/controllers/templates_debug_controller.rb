@@ -13,9 +13,10 @@ class TemplatesDebugController < ApplicationController
       data = attachment.download
 
       unless attachment.image?
-        pdf = HexaPDF::Document.new(io: StringIO.new(data))
-
-        fields = Templates::FindAcroFields.call(pdf, attachment, data)
+        fields =
+          Pdfium::Document.open_io(StringIO.new(data)) do |doc|
+            Templates::FindPdfiumAcroFields.call(attachment, doc, data)
+          end
       end
 
       # fields, = Templates::DetectFields.call(StringIO.new(data), attachment:) if fields.blank?

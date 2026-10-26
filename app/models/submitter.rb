@@ -25,15 +25,17 @@
 #  account_id    :bigint           not null
 #  external_id   :string
 #  submission_id :bigint           not null
+#  template_id   :bigint
 #
 # Indexes
 #
+#  index_submitters_on_account_id_and_completed_at  (account_id,completed_at) WHERE (completed_at IS NOT NULL)
 #  index_submitters_on_account_id_and_id            (account_id,id)
-#  index_submitters_on_completed_at_and_account_id  (completed_at,account_id)
-#  index_submitters_on_email                        (email)
+#  index_submitters_on_email_and_template_id        (email,template_id) WHERE (email IS NOT NULL)
 #  index_submitters_on_external_id                  (external_id)
 #  index_submitters_on_slug                         (slug) UNIQUE
 #  index_submitters_on_submission_id                (submission_id)
+#  index_submitters_on_template_id_and_id           (template_id,id)
 #
 # Foreign Keys
 #
@@ -68,6 +70,8 @@ class Submitter < ApplicationRecord
 
   scope :completed, -> { where.not(completed_at: nil) }
 
+  before_validation :set_template_id, on: :create
+
   after_destroy :anonymize_email_events, if: -> { Docuseal.multitenant? }
 
   def status
@@ -90,7 +94,7 @@ class Submitter < ApplicationRecord
 
   def friendly_name
     if name.present? && email.present? && email.exclude?(',')
-      %("#{name.delete('"')}" <#{email}>)
+      %("#{name.delete('"').squish}" <#{email}>)
     else
       email
     end
@@ -116,7 +120,17 @@ class Submitter < ApplicationRecord
     end
   end
 
+  def viewer?
+    return false if submission.template_submitters.blank?
+
+    submission.template_submitters.any? { |s| s['uuid'] == uuid && s['is_viewer'] }
+  end
+
   private
+
+  def set_template_id
+    self.template_id = submission&.template_id
+  end
 
   def anonymize_email_events
     email_events.each do |event|

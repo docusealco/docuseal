@@ -47,10 +47,11 @@
           <PaymentSettings
             v-if="field.type === 'payment' && !isNew"
             :field="field"
+            :background-color="dropdownBgColor"
             :with-condition="false"
             :with-force-open="false"
-            @click-description="isShowDescriptionModal = true"
-            @click-formula="isShowFormulaModal = true"
+            @click-description="openDescriptionModal"
+            @click-formula="openFormulaModal"
           />
           <span
             v-else-if="!isNew"
@@ -61,9 +62,17 @@
             <label
               tabindex="0"
               :title="t('settings')"
-              class="cursor-pointer text-transparent group-hover:text-base-content"
+              class="cursor-pointer flex items-center"
+              :class="[iconColorClass, { 'pr-1': isMobile }]"
             >
+              <IconDotsVertical
+                v-if="isMobile"
+                :width="18"
+                :height="18"
+                :stroke-width="1.6"
+              />
               <IconSettings
+                v-else
                 :width="18"
                 :stroke-width="1.6"
               />
@@ -85,11 +94,27 @@
                 :with-areas="false"
                 :with-copy-to-all-pages="false"
                 :with-condition="false"
-                @click-formula="isShowFormulaModal = true"
-                @click-font="isShowFontModal = true"
-                @click-description="isShowDescriptionModal = true"
+                @click-formula="openFormulaModal"
+                @click-font="openFontModal"
+                @click-description="openDescriptionModal"
                 @save="$emit('save')"
               />
+              <li
+                v-if="isMobile"
+                class="field-settings-remove"
+              >
+                <a
+                  href="#"
+                  class="text-sm py-1 px-2 text-red-600"
+                  @click.prevent="$emit('remove', field)"
+                >
+                  <IconTrashX
+                    :width="20"
+                    :stroke-width="1.6"
+                  />
+                  {{ t('remove') }}
+                </a>
+              </li>
             </ul>
           </span>
           <button
@@ -104,8 +129,9 @@
             />
           </button>
           <button
+            v-if="isNew || !isMobile || field.type === 'payment'"
             class="relative group-hover:text-base-content pr-1 field-remove-button"
-            :class="isNew ? 'text-base-content' : 'text-transparent group-hover:text-base-content'"
+            :class="isNew ? 'text-base-content' : iconColorClass"
             :title="t('remove')"
             @click="onRemoveClick"
           >
@@ -164,7 +190,7 @@ import FieldSettings from './field_settings'
 import FormulaModal from './formula_modal'
 import FontModal from './font_modal'
 import DescriptionModal from './description_modal'
-import { IconTrashX, IconSettings, IconCheck } from '@tabler/icons-vue'
+import { IconTrashX, IconSettings, IconCheck, IconDotsVertical } from '@tabler/icons-vue'
 import IconDrag from './icon_drag'
 
 export default {
@@ -172,6 +198,7 @@ export default {
   components: {
     Contenteditable,
     IconSettings,
+    IconDotsVertical,
     IconCheck,
     FieldSettings,
     PaymentSettings,
@@ -182,7 +209,7 @@ export default {
     IconTrashX,
     FieldType
   },
-  inject: ['backgroundColor', 't'],
+  inject: ['backgroundColor', 't', 'isMobile', 'nativePlatform'],
   props: {
     field: {
       type: Object,
@@ -217,6 +244,9 @@ export default {
     dropdownBgColor () {
       return ['', null, 'transparent'].includes(this.backgroundColor) ? 'white' : this.backgroundColor
     },
+    iconColorClass () {
+      return this.isMobile ? 'text-base-content' : 'text-transparent group-hover:text-base-content'
+    },
     modalContainerEl () {
       return this.$el.getRootNode().querySelector('#docuseal_modal_container')
     }
@@ -230,6 +260,27 @@ export default {
     }
   },
   methods: {
+    openFormulaModal () {
+      if (this.nativePlatform && window.webkit?.messageHandlers?.modal) {
+        window.webkit.messageHandlers.modal.postMessage({ action: 'sheet', name: 'formula', detent: 'medium', custom_field_uuid: this.field.uuid })
+      } else {
+        this.isShowFormulaModal = true
+      }
+    },
+    openFontModal () {
+      if (this.nativePlatform && window.webkit?.messageHandlers?.modal) {
+        window.webkit.messageHandlers.modal.postMessage({ action: 'sheet', name: 'font', detent: 'medium', custom_field_uuid: this.field.uuid })
+      } else {
+        this.isShowFontModal = true
+      }
+    },
+    openDescriptionModal () {
+      if (this.nativePlatform && window.webkit?.messageHandlers?.modal) {
+        window.webkit.messageHandlers.modal.postMessage({ action: 'sheet', name: 'description', detent: 'medium', custom_field_uuid: this.field.uuid })
+      } else {
+        this.isShowDescriptionModal = true
+      }
+    },
     buildDefaultName () {
       return this.t('custom')
     },

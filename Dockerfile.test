@@ -4,7 +4,7 @@
 # Source code is mounted at runtime via docker-compose.test.yml — only the
 # Gemfile is baked in so `bundle install` caches between runs.
 
-FROM ruby:4.0.2-alpine AS pdfium
+FROM ruby:4.0.9-alpine AS pdfium
 
 WORKDIR /download
 
@@ -13,7 +13,7 @@ RUN apk --no-cache add wget && \
     mkdir -p /pdfium-linux && \
     tar -xzf pdfium-linux.tgz -C /pdfium-linux
 
-FROM ruby:4.0.2-alpine
+FROM ruby:4.0.9-alpine
 
 ENV RAILS_ENV=test \
     BUNDLE_WITHOUT="" \

@@ -14,11 +14,13 @@ class SubmitFormDownloadController < ApplicationController
     return head :unprocessable_content if @submitter.declined_at? ||
                                           @submitter.submission.archived_at? ||
                                           @submitter.submission.expired? ||
+                                          @submitter.submission.completed_at? ||
                                           @submitter.submission.template&.archived_at? ||
                                           AccountConfig.exists?(account_id: @submitter.account_id,
                                                                 key: AccountConfig::ALLOW_TO_PARTIAL_DOWNLOAD_KEY,
                                                                 value: false) ||
-                                          !Submitters::AuthorizedForForm.call(@submitter, current_user, request)
+                                          !Submitters::AuthorizedForForm.call(@submitter, current_user, request,
+                                                                              with_order: true)
 
     last_completed_submitter = @submitter.submission.submitters
                                          .where.not(id: @submitter.id)

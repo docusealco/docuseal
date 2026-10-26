@@ -18,24 +18,7 @@
       <%= f.button button_title(title: t(:sign_in), disabled_with: t(:signing_in)), class: 'base-button' %>
     </div>
   <% end %>
-  <% if devise_mapping.omniauthable? %>
-    <div class="space-y-4">
-      <% if User.omniauth_providers.include?(:google_oauth2) %>
-        <%= form_for '', url: omniauth_authorize_path(resource_name, :google_oauth2), data: { turbo: false }, method: :post do |f| %>
-          <set-timezone data-input-id="state" data-params="true"></set-timezone>
-          <%= hidden_field_tag :state, { redir: params[:redir].to_s }.compact_blank.to_query %>
-          <%= f.button button_title(title: t('sign_in_with_google'), icon: svg_icon('brand_google', class: 'w-6 h-6')), class: 'white-button w-full mt-4' %>
-        <% end %>
-      <% end %>
-      <% if User.omniauth_providers.include?(:microsoft_office365) %>
-        <%= form_for '', url: omniauth_authorize_path(resource_name, :microsoft_office365), data: { turbo: false }, method: :post do |f| %>
-          <set-timezone data-input-id="state_microsoft" data-params="true"></set-timezone>
-          <%= hidden_field_tag :state, { redir: params[:redir].to_s }.compact_blank.to_query, id: 'state_microsoft' %>
-          <%= f.button button_title(title: t('sign_in_with_microsoft'), icon: svg_icon('brand_microsoft', class: 'w-6 h-6')), class: 'white-button w-full' %>
-        <% end %>
-      <% end %>
-    </div>
-  <% end %>
+  <%= render 'omniauthable' %>
   <%= render 'extra_links' %>
   <%= render 'devise/shared/links' %>
 </div>

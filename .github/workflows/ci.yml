@@ -12,7 +12,7 @@ jobs:
       - name: Install Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 4.0.1
+          ruby-version: 4.0.9
       - name: Cache gems
         uses: actions/cache@v4
         with:
@@ -37,7 +37,7 @@ jobs:
       - name: Install Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 4.0.1
+          ruby-version: 4.0.9
       - name: Cache gems
         uses: actions/cache@v4
         with:
@@ -89,7 +89,7 @@ jobs:
       - name: Install Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 4.0.1
+          ruby-version: 4.0.9
       - name: Cache gems
         uses: actions/cache@v4
         with:
@@ -104,55 +104,46 @@ jobs:
           bundle install --jobs 4 --retry 4
           yarn install
           sudo apt-get update
-          sudo apt-get install libvips
+          sudo apt-get install libvips liblept5
       - name: Run Brakeman
         run: bundle exec brakeman -q --exit-on-warn
 
   rspec:
     name: RSpec
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
+    container:
+      image: ruby:4.0.9-alpine
 
     services:
       postgres:
-        image: postgres:14
+        image: postgres:18
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
           POSTGRES_DB: docuseal_test
-        ports: ["5432:5432"]
         options: >-
-          --health-cmd pg_isready
+          --health-cmd "pg_isready -U postgres -d docuseal_test"
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
 
     steps:
+      - name: Install packages
+        run: apk add --no-cache build-base git libpq-dev yaml-dev nodejs yarn tar zstd gzip wget unzip vips leptonica chromium
       - uses: actions/checkout@v4
-      - name: Install Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 4.0.1
-      - name: Set up Node
-        uses: actions/setup-node@v1
-        with:
-          node-version: 20.19.0
-      - name: Install Chrome
-        uses: browser-actions/setup-chrome@latest
-        with:
-          chrome-version: 125
       - name: Cache node_modules
         uses: actions/cache@v4
         with:
           path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-musl-node-${{ hashFiles('**/yarn.lock') }}
       - name: Cache gems
         uses: actions/cache@v4
         with:
           path: vendor/bundle
-          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          key: ${{ runner.os }}-musl-gem-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
-            ${{ runner.os }}-gem-
+            ${{ runner.os }}-musl-gem-
       - name: Install dependencies
         env:
           RAILS_ENV: test
@@ -161,17 +152,16 @@ jobs:
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 4
           yarn install
-          sudo apt-get update
-          sudo apt-get install -y libvips
-          wget -O pdfium-linux.tgz "https://github.com/docusealco/pdfium-binaries/releases/latest/download/pdfium-linux-$(uname -m | sed 's/x86_64/x64/;s/aarch64/arm64/').tgz"
-          sudo tar -xzf pdfium-linux.tgz --strip-components=1 -C /usr/lib lib/libpdfium.so
-          rm -f pdfium-linux.tgz
+          wget -O pdfium-linux.zip "https://github.com/docusealco/pdfium-binaries/releases/latest/download/pdfium-musl-$(uname -m).zip"
+          unzip -q pdfium-linux.zip -d /tmp/pdfium-linux
+          cp /tmp/pdfium-linux/lib/libpdfium.so /usr/lib/libpdfium.so
+          rm -rf pdfium-linux.zip /tmp/pdfium-linux
       - name: Run
         env:
           RAILS_ENV: test
           NODE_ENV: test
           COVERAGE: true
-          DATABASE_URL: postgres://postgres:postgres@localhost:5432/docuseal_test
+          DATABASE_URL: postgres://postgres:postgres@postgres:5432/docuseal_test
         run: |
           bundle exec rake db:create
           bundle exec rake db:migrate

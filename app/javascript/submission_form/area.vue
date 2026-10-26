@@ -1,9 +1,14 @@
 <template>
   <div
-    class="flex absolute lg:text-base -outline-offset-1 field-area"
+    class="flex absolute lg:text-base -outline-offset-1 focus-visible:outline-blue-500 focus-visible:outline-2 focus-visible:outline field-area"
     dir="auto"
     :style="[computedStyle, fontStyle]"
     :class="{ 'cursor-default': !submittable, 'border border-red-100 bg-red-100 cursor-pointer': submittable, 'border border-red-100': !isActive && submittable, 'bg-opacity-80': !isActive && !isValueSet && submittable, 'outline-red-500 outline-dashed outline-2 z-10 field-area-active': isActive && submittable, 'bg-opacity-40': (isActive || isValueSet) && submittable }"
+    :role="submittable && !isNativeInputField ? 'button' : undefined"
+    :tabindex="submittable && !isNativeInputField ? 0 : undefined"
+    :aria-label="submittable && !isNativeInputField ? fieldAreaLabel : undefined"
+    @keydown.enter.prevent="submittable && !isNativeInputField ? $el.click() : undefined"
+    @keydown.space.prevent="submittable && !isNativeInputField ? $el.click() : undefined"
   >
     <div
       v-if="(!withFieldPlaceholder || !field.name || field.type === 'cells') && !isActive && !isValueSet && field.type !== 'checkbox' && submittable && !area.option_uuid"
@@ -18,6 +23,7 @@
           width="100%"
           height="100%"
           class="max-h-10 text-base-content"
+          aria-hidden="true"
         />
       </span>
     </div>
@@ -95,7 +101,7 @@
           </template>
         </div>
         <div>
-          {{ new Date(signature.created_at).toLocaleString(undefined, { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', timeZoneName: 'short' }) }}
+          {{ new Date(signature.created_at).toLocaleString(undefined, { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', timeZoneName: 'short' }) }}
         </div>
       </div>
     </div>
@@ -129,6 +135,7 @@
         v-if="submittable"
         type="checkbox"
         :value="false"
+        :aria-label="field.name || fieldNames[field.type]"
         class="aspect-square base-checkbox"
         :class="{ '!w-auto !h-full': area.w > area.h, '!w-full !h-auto': area.w <= area.h }"
         :checked="!!modelValue"
@@ -149,6 +156,8 @@
         v-if="submittable"
         type="radio"
         :value="false"
+        :name="`radio-area-${field.uuid}`"
+        :aria-label="optionValue(option)"
         class="aspect-square checked:checkbox checked:checkbox-xs"
         :class="{ 'base-radio': !modelValue || modelValue !== optionValue(option), '!w-auto !h-full': area.w > area.h, '!w-full !h-auto': area.w <= area.h }"
         :checked="!!modelValue && modelValue === optionValue(option)"
@@ -169,6 +178,7 @@
         v-if="submittable"
         type="checkbox"
         :value="false"
+        :aria-label="optionValue(option)"
         class="aspect-square base-checkbox"
         :class="{ '!w-auto !h-full': area.w > area.h, '!w-full !h-auto': area.w <= area.h }"
         :checked="!!modelValue && modelValue.includes(optionValue(option))"
@@ -400,6 +410,16 @@ export default {
         kba: this.t('kba')
       }
     },
+    isNativeInputField () {
+      return ['checkbox', 'radio', 'multiple'].includes(this.field.type)
+    },
+    fieldAreaLabel () {
+      const name = this.field.name || this.fieldNames[this.field.type] || this.field.type
+      if (this.area.option_uuid && this.option) {
+        return `${name} - ${this.optionValue(this.option)}`
+      }
+      return name
+    },
     strikethroughWidth () {
       if (this.isInlineSize) {
         return '0.6cqmin'
@@ -507,7 +527,8 @@ export default {
         try {
           return this.formatDate(
             this.modelValue === '{{date}}' ? new Date() : new Date(this.modelValue),
-            this.field.preferences?.format || (this.locale.endsWith('-US') ? 'MM/DD/YYYY' : 'DD/MM/YYYY')
+            this.field.preferences?.format || (this.locale.endsWith('-US') ? 'MM/DD/YYYY' : 'DD/MM/YYYY'),
+            { withTimePlaceholders: this.modelValue === '{{date}}', utc: this.modelValue !== '{{date}}' }
           )
         } catch {
           return this.modelValue
@@ -622,40 +643,63 @@ export default {
         return new Intl.NumberFormat('de-DE').format(number)
       } else if (format === 'space') {
         return new Intl.NumberFormat('fr-FR').format(number)
+      } else if (format === 'percent') {
+        return `${number}%`
+      } else if (format === 'percent_space') {
+        return `${String(number).replace('.', ',')} %`
       } else {
         return number
       }
     },
-    formatDate (date, format) {
-      const monthFormats = {
-        M: 'numeric',
-        MM: '2-digit',
-        MMM: 'short',
-        MMMM: 'long'
-      }
+    formatDate (date, format, { withTimePlaceholders = false, utc = true } = {}) {
+      const monthFormats = { M: 'numeric', MM: '2-digit', MMM: 'short', MMMM: 'long' }
+      const dayFormats = { D: 'numeric', DD: '2-digit' }
+      const yearFormats = { YYYY: 'numeric', YYY: 'numeric', YY: '2-digit' }
+      const hourFormats = { H: 'numeric', HH: '2-digit', h: 'numeric', hh: '2-digit' }
+      const minuteFormats = { m: 'numeric', mm: '2-digit' }
+      const secondFormats = { s: 'numeric', ss: '2-digit' }
 
-      const dayFormats = {
-        D: 'numeric',
-        DD: '2-digit'
-      }
+      const hasTime = /[HhAasz]/.test(format)
 
-      const yearFormats = {
-        YYYY: 'numeric',
-        YYY: 'numeric',
-        YY: '2-digit'
-      }
-
-      const parts = new Intl.DateTimeFormat([], {
+      const opts = {
         day: dayFormats[format.match(/D+/)],
         month: monthFormats[format.match(/M+/)],
-        year: yearFormats[format.match(/Y+/)],
-        timeZone: 'UTC'
-      }).formatToParts(date)
+        year: yearFormats[format.match(/Y+/)]
+      }
 
-      return format
-        .replace(/D+/, parts.find((p) => p.type === 'day').value)
-        .replace(/M+/, parts.find((p) => p.type === 'month').value)
-        .replace(/Y+/, parts.find((p) => p.type === 'year').value)
+      if (format.match(/H+/)) { opts.hour = hourFormats[format.match(/H+/)[0]]; opts.hour12 = false }
+      if (format.match(/h+/)) { opts.hour = hourFormats[format.match(/h+/)[0]]; opts.hour12 = true }
+      if (/[Aa]/.test(format) && opts.hour12 === undefined) opts.hour12 = true
+      if (format.match(/m+/)) opts.minute = minuteFormats[format.match(/m+/)[0]]
+      if (format.match(/s+/)) opts.second = secondFormats[format.match(/s+/)[0]]
+      if (/z/.test(format)) opts.timeZoneName = 'short'
+      if (!hasTime && utc) opts.timeZone = 'UTC'
+
+      const partTypes = {
+        M: 'month',
+        D: 'day',
+        Y: 'year',
+        H: 'hour',
+        h: 'hour',
+        m: 'minute',
+        s: 'second',
+        z: 'timeZoneName',
+        A: 'dayPeriod',
+        a: 'dayPeriod'
+      }
+
+      const parts = new Intl.DateTimeFormat([], opts).formatToParts(date)
+
+      return format.replace(/MMMM|MMM|MM|M|DD|D|YYYY|YYY|YY|HH|hh|H|h|mm|m|ss|s|A|a|z/g, (token) => {
+        if (withTimePlaceholders && /^(HH|hh|H|h|mm|m|ss|s|A|a)$/.test(token)) return '--'
+
+        const value = parts.find((p) => p.type === partTypes[token[0]])?.value
+
+        if (token === 'A') return (value || '').toUpperCase()
+        if (token === 'a') return (value || '').toLowerCase()
+
+        return value
+      })
     },
     updateMultipleSelectValue (value) {
       if (this.modelValue?.includes(value)) {

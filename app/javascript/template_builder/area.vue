@@ -50,6 +50,7 @@
       @remove="$emit('remove')"
       @scroll-to="$emit('scroll-to', $event)"
       @add-custom-field="$emit('add-custom-field')"
+      @click-title="$emit('click-title')"
     />
     <div
       ref="touchValueTarget"
@@ -113,7 +114,7 @@
           <div
             ref="textContainer"
             class="flex items-center px-0.5"
-            :style="{ color: field.preferences?.color }"
+            :style="{ color: isConditionMatch ? field.preferences?.color : '#9ca3af' }"
             :class="{ 'w-full h-full': isWFullType }"
           >
             <IconCheck
@@ -131,13 +132,13 @@
               />
             </template>
             <span
-              v-else-if="field.type === 'number' && !isValueInput && (field.default_value || field.default_value == 0)"
+              v-else-if="field.type === 'number' && !isContenteditable && (displayValue || displayValue == 0)"
               class="whitespace-pre-wrap"
-            >{{ formatNumber(field.default_value, field.preferences?.format) }}</span>
+            >{{ formatNumber(displayValue, field.preferences?.format) }}</span>
             <span
               v-else-if="field.default_value === '{{date}}'"
             >
-              {{ t('signing_date') }}
+              {{ /[HhAasz]/.test(field.preferences?.format || '') ? t('signing_date_and_time') : t('signing_date') }}
             </span>
             <div
               v-else-if="field.type === 'cells' && field.default_value"
@@ -183,12 +184,12 @@
               :contenteditable="isValueInput"
               class="whitespace-pre-wrap outline-none empty:before:content-[attr(placeholder)] before:text-base-content/30"
               :class="{ 'cursor-text': isValueInput }"
-              :placeholder="withFieldPlaceholder && !isValueInput ? defaultField?.title || field.title || field.name || defaultName : (field.type === 'date' ? field.preferences?.format || t('type_value') : t('type_value'))"
+              :placeholder="withFieldPlaceholder && !isValueInput ? defaultField?.title || field.title || field.name || defaultName : (isConditionMatch ? (field.type === 'date' ? field.preferences?.format || t('type_value') : t('type_value')) : '')"
               @blur="onDefaultValueBlur"
               @focus="selectedAreasRef.value = [area]"
               @paste.prevent="onPaste"
               @keydown.enter="onDefaultValueEnter"
-            >{{ field.default_value }}</span>
+            >{{ displayValue }}</span>
           </div>
         </div>
         <component
@@ -196,7 +197,8 @@
           v-else-if="!isCheckboxInput"
           width="100%"
           height="100%"
-          class="max-h-10 opacity-50"
+          class="opacity-50"
+          :style="{ maxHeight: isInlineSize ? '4.4cqmin' : '40px' }"
         />
       </span>
     </div>
@@ -240,6 +242,16 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    conditionalFieldIndex: {
+      type: Object,
+      required: false,
+      default: () => ({})
+    },
+    formulaValuesIndex: {
+      type: Object,
+      required: false,
+      default: () => ({})
     },
     isDraw: {
       type: Boolean,
@@ -307,7 +319,7 @@ export default {
       default: false
     }
   },
-  emits: ['start-resize', 'stop-resize', 'start-drag', 'stop-drag', 'remove', 'scroll-to', 'add-custom-field'],
+  emits: ['start-resize', 'stop-resize', 'start-drag', 'stop-drag', 'remove', 'scroll-to', 'add-custom-field', 'click-title'],
   data () {
     return {
       isContenteditable: false,
@@ -323,11 +335,27 @@ export default {
     fieldNames: FieldType.computed.fieldNames,
     fieldLabels: FieldType.computed.fieldLabels,
     fieldIcons: FieldType.computed.fieldIcons,
+    isConditionMatch () {
+      return !this.inputMode || this.conditionalFieldIndex[this.field.uuid] !== false
+    },
+    displayValue () {
+      if (this.field.preferences?.formula && this.field.type !== 'payment') {
+        const computed = this.formulaValuesIndex[this.field.uuid]
+
+        if (computed != null) {
+          return computed
+        }
+      }
+
+      return this.field.default_value
+    },
     bgClasses () {
       if (this.field.type === 'heading') {
         return 'bg-gray-50'
       } else if (this.field.type === 'strikethrough') {
         return 'bg-transparent'
+      } else if (!this.isConditionMatch) {
+        return 'bg-gray-100'
       } else {
         return this.bgColors[this.submitterIndex % this.bgColors.length]
       }
@@ -337,6 +365,8 @@ export default {
         return ''
       } else if (this.field.type === 'strikethrough') {
         return 'border-dashed border-gray-300'
+      } else if (!this.isConditionMatch) {
+        return 'border-gray-300'
       } else {
         return this.borderColors[this.submitterIndex % this.borderColors.length]
       }
@@ -390,7 +420,7 @@ export default {
       return this.basePageWidth / 612.0
     },
     isDefaultValuePresent () {
-      return this.field?.default_value || this.field?.default_value === 0
+      return this.field?.default_value || this.field?.default_value === 0 || this.displayValue || this.displayValue === 0
     },
     isSelectInput () {
       return this.inputMode && (this.field.type === 'select' || (this.field.type === 'radio' && this.field.areas?.length < 2))
@@ -399,6 +429,8 @@ export default {
       return this.inputMode && (this.field.type === 'checkbox' || (['radio', 'multiple'].includes(this.field.type) && this.area.option_uuid))
     },
     isValueInput () {
+      if (this.inputMode && this.field.preferences?.formula) return false
+
       return (this.field.type === 'heading' && this.isHeadingSelected) || this.isContenteditable ||
         (this.inputMode && (['text', 'number'].includes(this.field.type) || (this.field.type === 'date' && this.field.default_value !== '{{date}}')))
     },
@@ -511,7 +543,7 @@ export default {
       return option?.value || `${this.t('option')} ${this.field.options.indexOf(option) + 1}`
     },
     maybeToggleDefaultValue () {
-      if (!this.editable || this.isCmdKeyRef.value) {
+      if (!this.editable || this.isCmdKeyRef.value || this.field.preferences?.formula) {
         return
       }
 
@@ -559,6 +591,10 @@ export default {
       }
     },
     focusValueInput (e) {
+      if (this.inputMode && this.field.type === 'number' && !this.isContenteditable && !this.field.preferences?.formula) {
+        this.isContenteditable = true
+      }
+
       this.$nextTick(() => {
         if (this.$refs.defaultValue && this.$refs.defaultValue !== document.activeElement) {
           this.$refs.defaultValue.focus()
@@ -585,6 +621,10 @@ export default {
         return new Intl.NumberFormat('de-DE').format(number)
       } else if (format === 'space') {
         return new Intl.NumberFormat('fr-FR').format(number)
+      } else if (format === 'percent') {
+        return `${number}%`
+      } else if (format === 'percent_space') {
+        return `${String(number).replace('.', ',')} %`
       } else {
         return number
       }
@@ -624,6 +664,12 @@ export default {
       }
     },
     onDefaultValueBlur (e) {
+      if (this.field.preferences?.formula) {
+        this.isContenteditable = false
+
+        return
+      }
+
       const text = this.$refs.defaultValue.innerText.trim()
 
       this.isContenteditable = false
@@ -675,16 +721,12 @@ export default {
         }
       }
     },
-    drag (e) {
-      if (e.target.id === 'mask' && this.editable) {
-        this.isDragged = true
-
-        this.area.x = (e.offsetX - this.dragFrom.x) / e.target.clientWidth
-        this.area.y = (e.offsetY - this.dragFrom.y) / e.target.clientHeight
-      }
-    },
     startTouchDrag (e) {
       if (e.target !== this.$refs.touchTarget && e.target !== this.$refs.touchValueTarget) {
+        return
+      }
+
+      if (this.inputMode && (this.isValueInput || this.isCheckboxInput || this.isSelectInput)) {
         return
       }
 
@@ -727,6 +769,8 @@ export default {
       this.$el.getRootNode().removeEventListener('touchend', this.stopTouchDrag)
 
       this.maybeChangeAreaPage(this.area)
+
+      this.clampAreaBounds(this.area)
 
       if (this.isDragged) {
         this.save()
@@ -795,6 +839,8 @@ export default {
 
       this.maybeChangeAreaPage(this.area)
 
+      this.clampAreaBounds(this.area)
+
       if (this.isMoved) {
         this.save()
       }
@@ -819,18 +865,6 @@ export default {
         area.y = area.y - 1 - (16.0 / this.$parent.$refs.mask.previousSibling.offsetHeight)
       }
     },
-    stopDrag () {
-      this.$el.getRootNode().removeEventListener('mousemove', this.drag)
-      this.$el.getRootNode().removeEventListener('mouseup', this.stopDrag)
-
-      if (this.isDragged) {
-        this.save()
-      }
-
-      this.isDragged = false
-
-      this.$emit('stop-drag')
-    },
     startResize () {
       if (!this.selectedAreasRef.value.includes(this.area)) {
         this.selectedAreasRef.value = [this.area]
@@ -844,6 +878,8 @@ export default {
     stopResize () {
       this.$el.getRootNode().removeEventListener('mousemove', this.resize)
       this.$el.getRootNode().removeEventListener('mouseup', this.stopResize)
+
+      this.clampAreaBounds(this.area)
 
       this.$emit('stop-resize')
 
@@ -883,9 +919,17 @@ export default {
       this.$el.getRootNode().removeEventListener('touchmove', this.touchResize)
       this.$el.getRootNode().removeEventListener('touchend', this.stopTouchResize)
 
+      this.clampAreaBounds(this.area)
+
       this.$emit('stop-resize')
 
       this.save()
+    },
+    clampAreaBounds (area) {
+      area.x = Math.min(Math.max(area.x, 0), 1)
+      area.y = Math.min(Math.max(area.y, 0), 1)
+      area.w = Math.min(Math.max(area.w, 0), 1)
+      area.h = Math.min(Math.max(area.h, 0), 1)
     }
   }
 }

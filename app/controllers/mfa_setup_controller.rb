@@ -14,6 +14,8 @@ class MfaSetupController < ApplicationController
   def edit; end
 
   def create
+    RateLimit.call("mfa-setup-otp-#{current_user.id}", limit: 5, ttl: 5.minutes, enabled: true)
+
     if current_user.validate_and_consume_otp!(params[:otp_attempt])
       current_user.otp_required_for_login = true
       current_user.save!
@@ -29,7 +31,9 @@ class MfaSetupController < ApplicationController
   end
 
   def destroy
-    if current_user.validate_and_consume_otp!(params[:otp_attempt])
+    RateLimit.call("mfa-setup-otp-#{current_user.id}", limit: 5, ttl: 5.minutes, enabled: true)
+
+    if current_user.valid_for_authentication? { current_user.validate_and_consume_otp!(params[:otp_attempt]) }
       current_user.update!(otp_required_for_login: false, otp_secret: nil)
 
       redirect_to settings_profile_index_path, notice: I18n.t('2fa_has_been_removed')

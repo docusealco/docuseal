@@ -1,17 +1,18 @@
-<div id="flash" class="absolute top-0 w-full h-0 z-20">
-  <div class="max-w-xl mx-auto mt-1.5">
-    <div class="px-4 py-3 rounded-2xl bg-base-200 flex items-center justify-between mx-4 md:mx-0">
-      <div class="flex items-center space-x-3">
+<% if turbo_native_app? %>
+  <div id="native_flash" hidden data-notice="<%= flash[:notice] %>" data-alert="<%= flash[:alert] %>"></div>
+<% else %>
+  <flash-message id="flash" class="fixed top-0 inset-x-0 z-50 block pointer-events-none">
+    <div class="w-fit max-w-xl mx-auto mt-1.5 pointer-events-auto">
+      <div class="px-4 py-3 rounded-2xl bg-base-200 shadow flex items-center gap-3 mx-4 md:mx-0">
         <% if flash[:notice] %>
           <%= svg_icon('info_circle', class: 'stroke-info flex-none w-6 h-6') %>
         <% else %>
           <%= svg_icon('exclamation_circle', class: 'stroke-error flex-none w-6 h-6') %>
         <% end %>
-        <div>
+        <div class="mr-1">
           <span><%= flash[:notice] || flash[:alert] %></span>
         </div>
       </div>
-      <remove-on-event data-event-type="click" data-selector-id="flash" class="mr-1 cursor-pointer">&times;</remove-on-event>
     </div>
-  </div>
-</div>
+  </flash-message>
+<% end %>

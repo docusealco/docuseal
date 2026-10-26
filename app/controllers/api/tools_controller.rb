@@ -17,24 +17,23 @@ module Api
 
     def verify
       file = Base64.decode64(params[:file])
-      pdf = HexaPDF::Document.new(io: StringIO.new(file))
 
       trusted_certs = Accounts.load_trusted_certs(current_account)
       is_checksum_found = CompletedDocument.exists?(sha256: Base64.urlsafe_encode64(Digest::SHA256.digest(file)))
 
       render json: {
         checksum_status: is_checksum_found ? 'verified' : 'not_found',
-        signatures: pdf.signatures.map do |sig|
+        signatures: VerifyPdfSignature.call(StringIO.new(file), trusted_certs).map do |sig|
           {
-            verification_result: sig.verify(trusted_certs:).messages,
-            signer_name: sig.signer_name,
-            signing_reason: sig.signing_reason,
+            verification_result: sig.messages.map { |m| { type: m.status || :info, content: m.text } },
+            signer_name: sig.common_name,
+            signing_reason: sig.reason,
             signing_time: sig.signing_time,
-            signature_type: sig.signature_type
+            signature_type: sig.type
           }
         end
       }
-    rescue HexaPDF::MalformedPDFError
+    rescue Pdfium::PdfiumError
       render json: { error: 'Malformed PDF' }, status: :unprocessable_content
     end
   end

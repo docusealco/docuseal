@@ -146,6 +146,8 @@ Rails.application.configure do
 
     current_user = controller.instance_variable_get(:@current_user)
 
+    os = DetectBrowserDevice.os(controller.request.user_agent) if ENV['MULTITENANT'] == 'true'
+
     {
       host: controller.request.host,
       fwd: controller.request.remote_ip,
@@ -161,6 +163,7 @@ Rails.application.configure do
                params[:submit_form_slug] ||
                params[:template_slug]).to_s.first(5)
       }.compact_blank,
+      **(os ? { os: } : {}),
       uid: current_user.try(:id),
       aid: current_user.try(:account_id),
       rid: resource.try(:id),

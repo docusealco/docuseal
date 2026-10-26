@@ -13,6 +13,9 @@ class TemplatesCloneAndReplaceController < ApplicationController
 
     cloned_template = Templates::Clone.call(@template, author: current_user)
     cloned_template.name = File.basename(params[:files].first.original_filename, '.*')
+
+    authorize!(:create, cloned_template)
+
     cloned_template.save!
 
     documents = Templates::ReplaceAttachments.call(cloned_template, params, extract_fields: true)

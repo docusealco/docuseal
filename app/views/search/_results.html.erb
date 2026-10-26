@@ -1,0 +1,28 @@
+<% with_filters = params[:scope] == 'submissions' || params[:archived] == 'true' || Submissions::Filter::ALLOWED_PARAMS.any? { |key| params[key].present? } %>
+<turbo-frame id="search_results" class="block">
+  <% if with_filters %>
+    <% filter_params = params.permit(Submissions::Filter::ALLOWED_PARAMS).compact_blank %>
+    <style>html, body { overflow: hidden; }</style>
+    <div class="flex items-center gap-2 w-full">
+      <%= render 'submissions_filters/applied_filters', filter_params:, with_status: true, with_archived: true, filter_template: @filter_template %>
+      <%= render 'submissions_filters/filter_button', filter_params: %>
+    </div>
+  <% end %>
+  <div class="<%= 'overflow-y-auto -mx-4 px-4 md:-mx-2 md:px-2' if with_filters %>" style="<%= 'height: calc(100vh - 40px); padding-top: 16px; padding-bottom: 140px; -webkit-mask-image: linear-gradient(to bottom, transparent, black 16px); mask-image: linear-gradient(to bottom, transparent, black 16px);' if with_filters %>">
+    <% if @query.present? %>
+      <% if @template_folders.blank? && @templates.blank? && @submissions.blank? %>
+        <div class="text-center mt-16 text-xl">
+          <%= t('no_results') %>
+        </div>
+      <% end %>
+      <% if params[:scope] == 'submissions' %>
+        <%= render 'search/submissions', submissions: @submissions, pagy: @pagy %>
+      <% end %>
+      <%= render 'search/folders', folders: @template_folders, pagy: @folders_pagy %>
+      <%= render 'search/templates', templates: @templates, pagy: (@pagy unless params[:scope] == 'submissions') %>
+      <% unless params[:scope] == 'submissions' %>
+        <%= render 'search/submissions', submissions: @submissions, pagy: nil %>
+      <% end %>
+    <% end %>
+  </div>
+</turbo-frame>

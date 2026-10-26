@@ -8,19 +8,17 @@ class SubmitFormEmail2fasController < ApplicationController
 
   before_action :load_submitter
 
-  COOKIES_TTL = 12.hours
-  COOKIES_DEFAULTS = { httponly: true, secure: Rails.env.production? }.freeze
-
   def create
     RateLimit.call("verify-2fa-code-#{@submitter.id}", limit: 2, ttl: 45.seconds, enabled: true)
 
-    value = [@submitter.email.downcase.strip, @submitter.slug].join(':')
+    value = [@submitter.email.downcase.squish, @submitter.slug].join(':')
 
-    if EmailVerificationCodes.verify(params[:one_time_code].to_s.gsub(/\D/, ''), value)
+    if OtpChallenges.verify(params[:one_time_code].to_s.gsub(/\D/, ''), value, purpose: 'form_email_2fa')
       SubmissionEvents.create_with_tracking_data(@submitter, 'email_verified', request, { email: @submitter.email })
 
       cookies.encrypted[:email_2fa_slug] =
-        { value: @submitter.slug, expires: COOKIES_TTL.from_now, **COOKIES_DEFAULTS }
+        { value: @submitter.slug, expires: Submitters::StartForm::COOKIES_TTL.from_now,
+          **Submitters::StartForm::COOKIES_DEFAULTS }
 
       redirect_to submit_form_path(@submitter.slug)
     else
@@ -36,6 +34,12 @@ class SubmitFormEmail2fasController < ApplicationController
     end
 
     RateLimit.call("send-email-code-#{@submitter.id}", limit: 2, ttl: 45.seconds, enabled: true)
+
+    if Docuseal.multitenant? && Submitters.email_bounced_recently?(@submitter.email)
+      Rollbar.warning("Bounced OTP email for submitter: #{@submitter.id}") if defined?(Rollbar)
+
+      return redirect_to submit_form_path(@submitter.slug, status: :error), alert: I18n.t(:verification_email_bounced)
+    end
 
     SendSubmitterVerificationEmailJob.perform_async('submitter_id' => @submitter.id, 'locale' => I18n.locale.to_s)
 

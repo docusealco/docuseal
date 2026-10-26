@@ -36,7 +36,7 @@
               <%= l(event.event_timestamp.in_time_zone(current_account.timezone), format: :long, locale: current_account.locale) %>
             </span>
             <% if (device = DetectBrowserDevice.call(event.data['ua'])) %>
-              <span class="tooltip tooltip-top" data-tip="<%= t(device) %>">
+              <span class="md:tooltip tooltip-top" data-tip="<%= t(device) %>">
                 <%= svg_icon("device_#{device}", class: 'w-4 h-4') %>
               </span>
             <% end %>

@@ -366,6 +366,9 @@ export default {
       }
     }
   },
+  beforeUnmount () {
+    document.getElementById('list_form_buttons')?.classList?.add('hidden')
+  },
   methods: {
     t (key) {
       return this.i18n[key] || key

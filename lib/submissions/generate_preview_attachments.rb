@@ -16,18 +16,26 @@ module Submissions
                                                                AccountConfig::WITH_SIGNATURE_ID,
                                                                AccountConfig::WITH_SUBMITTER_TIMEZONE_KEY,
                                                                AccountConfig::WITH_TIMESTAMP_SECONDS_KEY,
+                                                               AccountConfig::ROTATE_INCREMENTAL_PDF_KEY,
                                                                AccountConfig::WITH_FILE_LINKS_KEY,
-                                                               AccountConfig::WITH_SIGNATURE_ID_REASON_KEY])
+                                                               AccountConfig::WITH_SIGNATURE_ID_REASON_KEY,
+                                                               AccountConfig::WITH_SIGNATURE_ID_COMPLETED_AT_KEY])
 
       with_signature_id = configs.find { |c| c.key == AccountConfig::WITH_SIGNATURE_ID }&.value == true
       with_file_links = configs.find { |c| c.key == AccountConfig::WITH_FILE_LINKS_KEY }&.value == true
       is_flatten = configs.find { |c| c.key == AccountConfig::FLATTEN_RESULT_PDF_KEY }&.value != false
+      is_rotate_incremental = configs.find { |c| c.key == AccountConfig::ROTATE_INCREMENTAL_PDF_KEY }&.value == true
       with_submitter_timezone = configs.find { |c| c.key == AccountConfig::WITH_SUBMITTER_TIMEZONE_KEY }&.value == true
       with_timestamp_seconds = configs.find { |c| c.key == AccountConfig::WITH_TIMESTAMP_SECONDS_KEY }&.value == true
       with_signature_id_reason =
         configs.find { |c| c.key == AccountConfig::WITH_SIGNATURE_ID_REASON_KEY }&.value != false
+      with_signature_id_completed_at =
+        configs.find { |c| c.key == AccountConfig::WITH_SIGNATURE_ID_COMPLETED_AT_KEY }&.value == true
 
-      pdfs_index = GenerateResultAttachments.build_pdfs_index(submission, flatten: is_flatten)
+      file_links_expire_at = Accounts.link_expires_at(submission.account) if with_file_links
+
+      pdfs_index = GenerateResultAttachments.build_pdfs_index(submission, flatten: is_flatten,
+                                                                          incremental: is_rotate_incremental)
 
       submitters = if submitter
                      submission.submitters.where(id: submitter.id)
@@ -39,7 +47,8 @@ module Submissions
         GenerateResultAttachments.fill_submitter_fields(s, submission.account, pdfs_index,
                                                         with_signature_id:, is_flatten:, with_headings: index.zero?,
                                                         with_submitter_timezone:, with_file_links:,
-                                                        with_signature_id_reason:, with_timestamp_seconds:)
+                                                        file_links_expire_at:, with_signature_id_reason:,
+                                                        with_timestamp_seconds:, with_signature_id_completed_at:)
       end
 
       template = submission.template
@@ -62,7 +71,7 @@ module Submissions
           submission:,
           values_hash:,
           name: 'preview_merged_document',
-          filename: "#{submission.name || template.name}.pdf"
+          filename: "#{submission.name || template&.name}.pdf".tr('/', '-')
         )
 
         ApplicationRecord.no_touching { attachment.save! }
@@ -106,7 +115,7 @@ module Submissions
             submitter:,
             uuid: GenerateResultAttachments.images_pdf_uuid(original_documents.select(&:image?)),
             values_hash:,
-            filename: "#{submission.name || template.name}.pdf"
+            filename: "#{submission.name || template&.name}.pdf".tr('/', '-')
           )
 
         ApplicationRecord.no_touching do

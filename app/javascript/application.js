@@ -1,5 +1,5 @@
-import '@hotwired/turbo'
-import { encodeMethodIntoRequestBody } from '@hotwired/turbo-rails/app/javascript/turbo/fetch_requests'
+import '@hotwired/turbo-rails'
+import './native'
 
 import { createApp, reactive } from 'vue'
 import TemplateBuilder from './template_builder/builder'
@@ -9,6 +9,15 @@ import ToggleVisible from './elements/toggle_visible'
 import ToggleCookies from './elements/toggle_cookies'
 import DisableHidden from './elements/disable_hidden'
 import TurboModal from './elements/turbo_modal'
+import NativeAction from './elements/native_action'
+import NativeMenu from './elements/native_menu'
+import NativeSearch from './elements/native_search'
+import NativeModal from './elements/native_modal'
+import NativeEvent from './elements/native_event'
+import NativeUpload from './elements/native_upload'
+import FormPrompt from './elements/form_prompt'
+import InfiniteScroll from './elements/infinite_scroll'
+import ModalButton from './elements/modal_button'
 import FileDropzone from './elements/file_dropzone'
 import MenuActive from './elements/menu_active'
 import ClipboardCopy from './elements/clipboard_copy'
@@ -21,10 +30,14 @@ import SubmittersAutocomplete from './elements/submitter_autocomplete'
 import FolderAutocomplete from './elements/folder_autocomplete'
 import SignatureForm from './elements/signature_form'
 import SubmitForm from './elements/submit_form'
+import ConvertUpload from './elements/convert_upload'
 import PromptPassword from './elements/prompt_password'
 import EmailsTextarea from './elements/emails_textarea'
 import ToggleSubmit from './elements/toggle_submit'
 import ToggleOnSubmit from './elements/toggle_on_submit'
+import ToggleOnChecked from './elements/toggle_on_checked'
+import ToggleSendTitle from './elements/toggle_send_title'
+import AppendTemplate from './elements/append_template'
 import CheckOnClick from './elements/check_on_click'
 import PasswordInput from './elements/password_input'
 import SearchInput from './elements/search_input'
@@ -41,23 +54,25 @@ import RequiredCheckboxGroup from './elements/required_checkbox_group'
 import PageContainer from './elements/page_container'
 import EmailEditor from './elements/email_editor'
 import MarkdownEditor from './elements/markdown_editor'
+import HtmlEditor from './elements/html_editor'
 import MountOnClick from './elements/mount_on_click'
 import RemoveOnEvent from './elements/remove_on_event'
 import ScrollTo from './elements/scroll_to'
 import SetValue from './elements/set_value'
 import ReviewForm from './elements/review_form'
 import ShowOnValue from './elements/show_on_value'
-import CustomValidation from './elements/custom_validation'
 import ToggleClasses from './elements/toggle_classes'
 import AutosizeField from './elements/autosize_field'
 import GoogleDriveFilePicker from './elements/google_drive_file_picker'
 import OpenModal from './elements/open_modal'
 import BarChart from './elements/bar_chart'
 import FieldCondition from './elements/field_condition'
-
-import * as TurboInstantClick from './lib/turbo_instant_click'
-
-TurboInstantClick.start()
+import ConfirmUpload from './elements/confirm_upload'
+import ScrollFade from './elements/scroll_fade'
+import OpenModalMobile from './elements/open_modal_mobile'
+import HistoryBack from './elements/history_back'
+import DatePlaceholder from './elements/date_placeholder'
+import FlashMessage from './elements/flash_message'
 
 document.addEventListener('turbo:before-cache', () => {
   window.flash?.remove()
@@ -69,10 +84,18 @@ document.addEventListener('keyup', (e) => {
   }
 })
 
-document.addEventListener('turbo:before-fetch-request', encodeMethodIntoRequestBody)
-document.addEventListener('turbo:before-fetch-request', (event) => {
-  event.detail.fetchOptions.headers['X-Turbo'] = 'true'
+document.addEventListener('turbo:morph', () => {
+  if (document.activeElement?.closest('.dropdown')) {
+    document.activeElement.blur()
+  }
 })
+
+document.addEventListener('turbo:before-fetch-response', (event) => {
+  if (event.detail.fetchResponse.header('content-disposition')?.includes('attachment')) {
+    event.preventDefault()
+  }
+})
+
 document.addEventListener('turbo:submit-end', async (event) => {
   const resp = event.detail?.formSubmission?.result?.fetchResponse?.response
 
@@ -80,11 +103,23 @@ document.addEventListener('turbo:submit-end', async (event) => {
     return
   }
 
+  const filename = decodeURIComponent(resp.headers.get('content-disposition').split('"')[1])
+  const download = window.webkit?.messageHandlers?.download
+
+  if (download) {
+    const reader = new FileReader()
+
+    reader.onload = () => download.postMessage({ name: filename, data: reader.result.split(',')[1] })
+    reader.readAsDataURL(await resp.blob())
+
+    return
+  }
+
   const url = URL.createObjectURL(await resp.blob())
   const link = document.createElement('a')
 
   link.href = url
-  link.setAttribute('download', decodeURIComponent(resp.headers.get('content-disposition').split('"')[1]))
+  link.setAttribute('download', filename)
 
   document.body.appendChild(link)
 
@@ -100,6 +135,15 @@ const safeRegisterElement = (name, element, options = {}) => !window.customEleme
 safeRegisterElement('toggle-visible', ToggleVisible)
 safeRegisterElement('disable-hidden', DisableHidden)
 safeRegisterElement('turbo-modal', TurboModal)
+safeRegisterElement('native-action', NativeAction)
+safeRegisterElement('native-menu', NativeMenu)
+safeRegisterElement('native-search', NativeSearch)
+safeRegisterElement('native-modal', NativeModal)
+safeRegisterElement('native-event', NativeEvent)
+safeRegisterElement('native-upload', NativeUpload)
+safeRegisterElement('form-prompt', FormPrompt)
+safeRegisterElement('infinite-scroll', InfiniteScroll)
+safeRegisterElement('modal-button', ModalButton)
 safeRegisterElement('file-dropzone', FileDropzone)
 safeRegisterElement('menu-active', MenuActive)
 safeRegisterElement('clipboard-copy', ClipboardCopy)
@@ -112,11 +156,15 @@ safeRegisterElement('submitters-autocomplete', SubmittersAutocomplete)
 safeRegisterElement('folder-autocomplete', FolderAutocomplete)
 safeRegisterElement('signature-form', SignatureForm)
 safeRegisterElement('submit-form', SubmitForm)
+safeRegisterElement('convert-upload', ConvertUpload)
 safeRegisterElement('prompt-password', PromptPassword)
 safeRegisterElement('emails-textarea', EmailsTextarea)
 safeRegisterElement('toggle-cookies', ToggleCookies)
 safeRegisterElement('toggle-submit', ToggleSubmit)
 safeRegisterElement('toggle-on-submit', ToggleOnSubmit)
+safeRegisterElement('toggle-on-checked', ToggleOnChecked)
+safeRegisterElement('toggle-send-title', ToggleSendTitle)
+safeRegisterElement('append-template', AppendTemplate)
 safeRegisterElement('password-input', PasswordInput)
 safeRegisterElement('search-input', SearchInput)
 safeRegisterElement('toggle-attribute', ToggleAttribute)
@@ -133,33 +181,54 @@ safeRegisterElement('required-checkbox-group', RequiredCheckboxGroup)
 safeRegisterElement('page-container', PageContainer)
 safeRegisterElement('email-editor', EmailEditor)
 safeRegisterElement('markdown-editor', MarkdownEditor)
+safeRegisterElement('html-editor', HtmlEditor)
 safeRegisterElement('mount-on-click', MountOnClick)
 safeRegisterElement('remove-on-event', RemoveOnEvent)
 safeRegisterElement('scroll-to', ScrollTo)
 safeRegisterElement('set-value', SetValue)
 safeRegisterElement('review-form', ReviewForm)
 safeRegisterElement('show-on-value', ShowOnValue)
-safeRegisterElement('custom-validation', CustomValidation)
 safeRegisterElement('toggle-classes', ToggleClasses)
 safeRegisterElement('autosize-field', AutosizeField)
 safeRegisterElement('google-drive-file-picker', GoogleDriveFilePicker)
 safeRegisterElement('open-modal', OpenModal)
 safeRegisterElement('bar-chart', BarChart)
 safeRegisterElement('field-condition', FieldCondition)
+safeRegisterElement('confirm-upload', ConfirmUpload)
+safeRegisterElement('scroll-fade', ScrollFade)
+safeRegisterElement('open-modal-mobile', OpenModalMobile)
+safeRegisterElement('history-back', HistoryBack)
+safeRegisterElement('date-placeholder', DatePlaceholder)
+safeRegisterElement('flash-message', FlashMessage)
 
 safeRegisterElement('template-builder', class extends HTMLElement {
   connectedCallback () {
     document.addEventListener('turbo:submit-end', this.onSubmit)
+    document.addEventListener('template-builder:update', this.onSheetSubmit)
+    document.addEventListener('template-builder:sync', this.onSync)
+    document.addEventListener('template-builder:scroll-to', this.onScrollTo)
+    document.addEventListener('template-builder:select-field', this.onSelectField)
+    document.addEventListener('template-builder:select-submitter', this.onSelectSubmitter)
+    document.addEventListener('template-builder:sync-custom-fields', this.onSyncCustomFields)
+    document.addEventListener('template-builder:draw-field', this.onDrawField)
+    document.addEventListener('native:builder-view', this.onBuilderView)
+    document.addEventListener('turbo:before-cache', this.onBeforeCache)
 
     this.appElem = document.createElement('div')
 
     this.appElem.classList.add('md:h-screen')
+
+    if (this.dataset.nativeView) {
+      this.appElem.classList.add('min-w-0')
+    }
 
     const template = reactive(JSON.parse(this.dataset.template))
 
     this.app = createApp(TemplateBuilder, {
       template,
       customFields: reactive(JSON.parse(this.dataset.customFields || '[]')),
+      dateFormats: JSON.parse(this.dataset.dateFormats || '[]'),
+      autosave: this.dataset.autosave !== 'false',
       dynamicDocuments: reactive(JSON.parse(this.dataset.dynamicDocuments || '[]')),
       backgroundColor: '#faf7f5',
       locale: this.dataset.locale,
@@ -169,22 +238,31 @@ safeRegisterElement('template-builder', class extends HTMLElement {
       withKba: ['true', 'false'].includes(this.dataset.withKba) ? this.dataset.withKba === 'true' : null,
       withLogo: this.dataset.withLogo !== 'false',
       withFieldsDetection: this.dataset.withFieldsDetection === 'true',
+      withDetectExistingFields: this.dataset.withDetectExistingFields === 'true',
+      withRevisions: true,
+      withRevisionsMenu: this.dataset.withRevisionsMenu === 'true',
       editable: this.dataset.editable !== 'false',
       authenticityToken: document.querySelector('meta[name="csrf-token"]')?.content,
       withCustomFields: true,
       withPayment: this.dataset.withPayment === 'true',
-      isPaymentConnected: this.dataset.isPaymentConnected === 'true',
+      isStripeConnected: this.dataset.isPaymentConnected === 'true' || this.dataset.isStripeConnected === 'true',
+      withStripe: this.dataset.withStripe !== 'false',
+      withPaypal: this.dataset.withPaypal === 'true',
+      isPaypalConnected: this.dataset.isPaypalConnected === 'true',
       withFormula: this.dataset.withFormula === 'true',
       withSendButton: this.dataset.withSendButton !== 'false',
       withSignYourselfButton: this.dataset.withSignYourselfButton !== 'false',
       withConditions: this.dataset.withConditions === 'true',
       withDynamicDocuments: this.dataset.withDynamicDocuments === 'true',
       withGoogleDrive: this.dataset.withGoogleDrive === 'true',
+      pagePreviewFormat: this.dataset.pagePreviewFormat || '.jpg',
       withReplaceAndCloneUpload: true,
       withDownload: true,
       currencies: (this.dataset.currencies || '').split(',').filter(Boolean),
       acceptFileTypes: this.dataset.acceptFileTypes,
-      showTourStartForm: this.dataset.showTourStartForm === 'true'
+      showTourStartForm: this.dataset.showTourStartForm === 'true',
+      nativePlatform: this.dataset.nativePlatform,
+      nativeView: this.dataset.nativeView
     })
 
     this.component = this.app.mount(this.appElem)
@@ -192,16 +270,146 @@ safeRegisterElement('template-builder', class extends HTMLElement {
     this.appendChild(this.appElem)
   }
 
-  onSubmit = (e) => {
-    if (e.detail.success && e.detail?.formSubmission?.formElement?.id === 'submitters_form') {
-      e.detail.fetchResponse.response.json().then((data) => {
-        this.component.template.submitters = data.submitters
-      })
+  onSubmit = async (e) => {
+    const form = e.detail.formSubmission?.formElement
+
+    if (!e.detail.success || !form) return
+
+    const data = {}
+
+    new FormData(form).forEach((value, key) => { data[key] = value })
+
+    this.applySubmission(form.id, form.action, await e.detail.fetchResponse.responseText, data)
+  }
+
+  onSheetSubmit = (e) => {
+    this.applySubmission(e.detail.form, e.detail.action, e.detail.body, {})
+    this.component.syncNative()
+  }
+
+  onSync = (e) => {
+    const { schema, documents, fields, submitters, pendingFieldAttachmentUuids } = e.detail
+    const selectedAreas = this.component.selectedAreasRef.value.map((area) => {
+      const field = this.component.template.fields.find((f) => f.areas?.includes(area))
+
+      return field && { uuid: field.uuid, index: field.areas.indexOf(area) }
+    })
+    const selectedSubmitterUuid = this.component.selectedSubmitter?.uuid
+
+    Object.assign(this.component.template, { schema, documents, fields, submitters })
+
+    this.component.selectedAreasRef.value = selectedAreas.map((item) => item && fields.find((f) => f.uuid === item.uuid)?.areas?.[item.index]).filter(Boolean)
+    this.component.selectedSubmitter = submitters.find((s) => s.uuid === selectedSubmitterUuid) || submitters[0]
+    this.component.pendingFieldAttachmentUuids = pendingFieldAttachmentUuids
+  }
+
+  onScrollTo = (e) => {
+    this.component.scrollIntoDocument(e.detail)
+  }
+
+  onSyncCustomFields = (e) => {
+    this.component.customFields.splice(0, this.component.customFields.length, ...e.detail)
+  }
+
+  onSelectSubmitter = (e) => {
+    const submitter = this.component.template.submitters.find((s) => s.uuid === e.detail.uuid)
+
+    if (submitter) this.component.selectedSubmitter = submitter
+  }
+
+  onSelectField = (e) => {
+    const { uuid, attachment_uuid: attachmentUuid, page, x, y } = e.detail
+    const field = this.component.template.fields.find((f) => f.uuid === uuid)
+    const areas = field?.areas || []
+    const area = areas.find((a) => a.attachment_uuid === attachmentUuid && a.page === page && a.x === x && a.y === y) || areas[0]
+
+    if (area) this.component.scrollToArea(area)
+  }
+
+  onDrawField = (e) => {
+    const { uuid, type, option, custom_field_uuid: customFieldUuid } = e.detail
+
+    if (customFieldUuid) {
+      const field = this.component.customFields.find((f) => f.uuid === customFieldUuid)
+
+      if (field) {
+        this.component.drawCustomField = field
+        this.component.showDrawField = true
+      }
+    } else if (uuid) {
+      const field = this.component.template.fields.find((f) => f.uuid === uuid)
+
+      if (field) {
+        this.component.drawField = field
+        this.component.drawOption = option || null
+      }
+    } else if (type) {
+      this.component.startFieldDraw({ type })
     }
+  }
+
+  applySubmission (formId, action, body, data) {
+    if (formId === 'submitters_form') {
+      this.component.template.submitters = JSON.parse(body).submitters
+    } else if (action.endsWith('/prefillable_fields')) {
+      const doc = new DOMParser().parseFromString(body, 'text/html')
+      const fragment = doc.querySelector('turbo-stream template').content
+
+      const prefillableUuidsIndex = {}
+
+      fragment.querySelectorAll('[name="field_uuid"]').forEach((field) => {
+        prefillableUuidsIndex[field.value] = true
+      })
+
+      this.component.template.fields.forEach((field) => {
+        if (prefillableUuidsIndex[field.uuid]) {
+          field.prefillable = true
+          field.readonly = true
+        } else if (field.prefillable) {
+          delete field.prefillable
+          delete field.readonly
+        }
+      })
+    } else if (data['template[name]']) {
+      this.component.template.name = data['template[name]']
+
+      document.title = data['template[name]']
+    }
+  }
+
+  onBuilderView = (event) => {
+    const root = document.documentElement.cloneNode(true)
+    const builder = root.querySelector('template-builder')
+    const style = document.createElement('style')
+
+    builder.innerHTML = ''
+    builder.setAttribute('data-native-view', event.detail.view)
+
+    root.querySelector('meta[name="viewport"]')?.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
+
+    style.textContent = 'html { overflow-x: hidden; overscroll-behavior-x: none; } html, body { max-width: 100%; } body { -webkit-user-select: none; user-select: none; } input, textarea, [contenteditable] { -webkit-user-select: text; user-select: text; }'
+
+    root.querySelector('head').appendChild(style)
+
+    event.detail.result = '<!DOCTYPE html>' + root.outerHTML
+  }
+
+  onBeforeCache = () => {
+    this.app?.unmount()
+    this.appElem?.remove()
   }
 
   disconnectedCallback () {
     document.removeEventListener('turbo:submit-end', this.onSubmit)
+    document.removeEventListener('template-builder:update', this.onSheetSubmit)
+    document.removeEventListener('template-builder:sync', this.onSync)
+    document.removeEventListener('template-builder:scroll-to', this.onScrollTo)
+    document.removeEventListener('template-builder:select-field', this.onSelectField)
+    document.removeEventListener('template-builder:select-submitter', this.onSelectSubmitter)
+    document.removeEventListener('template-builder:sync-custom-fields', this.onSyncCustomFields)
+    document.removeEventListener('template-builder:draw-field', this.onDrawField)
+    document.removeEventListener('native:builder-view', this.onBuilderView)
+    document.removeEventListener('turbo:before-cache', this.onBeforeCache)
 
     this.app?.unmount()
     this.appElem?.remove()
@@ -210,6 +418,8 @@ safeRegisterElement('template-builder', class extends HTMLElement {
 
 safeRegisterElement('import-list', class extends HTMLElement {
   connectedCallback () {
+    document.addEventListener('turbo:before-cache', this.onBeforeCache)
+
     this.appElem = document.createElement('div')
 
     this.app = createApp(ImportList, {
@@ -224,7 +434,14 @@ safeRegisterElement('import-list', class extends HTMLElement {
     this.appendChild(this.appElem)
   }
 
+  onBeforeCache = () => {
+    this.app?.unmount()
+    this.appElem?.remove()
+  }
+
   disconnectedCallback () {
+    document.removeEventListener('turbo:before-cache', this.onBeforeCache)
+
     this.app?.unmount()
     this.appElem?.remove()
   }

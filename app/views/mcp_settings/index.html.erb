@@ -1,20 +1,18 @@
+<% content_for(:native_title, 'MCP') if turbo_native_app? %>
 <div class="flex-wrap space-y-4 md:flex md:flex-nowrap md:space-y-0 md:space-x-10">
   <%= render 'shared/settings_nav' %>
   <div class="md:flex-grow">
-    <div class="flex flex-col md:flex-row md:flex-wrap gap-2 md:justify-between md:items-end mb-4 min-h-12">
-      <h1 class="text-4xl font-bold">
+    <div class="flex flex-row items-center justify-between gap-2 md:items-end mb-4 min-h-12">
+      <h1 class="text-3xl md:text-4xl font-bold truncate min-w-0">
         <%= t('mcp_server') %>
       </h1>
-      <div class="flex flex-col md:flex-row gap-y-2 gap-x-4 md:items-center">
-        <%= link_to t('connected_apps', default: 'Connected apps'),
-                    oauth_authorized_applications_path,
-                    class: 'btn btn-ghost btn-md w-full md:w-fit' %>
-        <div class="tooltip">
-          <%= link_to new_settings_mcp_path, class: 'btn btn-primary btn-md gap-2 w-full md:w-fit', data: { turbo_frame: 'modal' } do %>
-            <%= svg_icon('plus', class: 'w-6 h-6') %>
-            <span><%= t('new_token') %></span>
-          <% end %>
-        </div>
+      <div class="flex flex-row items-center gap-2 shrink-0">
+        <%= link_to t('connected_apps', default: 'Connected apps'), oauth_authorized_applications_path, class: 'btn btn-ghost btn-md' %>
+        <%= link_to new_settings_mcp_path, class: 'shrink-0 btn btn-primary btn-md gap-2', aria: { label: t('new_token') }, data: { turbo_frame: :modal, native_modal: :medium } do %>
+          <%= svg_icon('plus', class: 'w-6 h-6') %>
+          <span class="md:hidden"><%= t('new') %></span>
+          <span class="hidden md:inline"><%= t('new_token') %></span>
+        <% end %>
       </div>
     </div>
     <% if @mcp_token.present? %>
@@ -52,7 +50,7 @@
       </div>
     <% end %>
     <div class="overflow-x-auto">
-      <table class="table w-full table-lg rounded-b-none overflow-hidden">
+      <table class="table table-stack w-full table-lg rounded-b-none overflow-hidden">
         <thead class="bg-base-200">
           <tr class="text-neutral uppercase">
             <th>
@@ -70,18 +68,20 @@
         </thead>
         <tbody>
           <% @mcp_tokens.each do |mcp_token| %>
-            <tr scope="row">
+            <tr>
               <td>
                 <%= mcp_token.name %>
               </td>
-              <td>
-                <% if @mcp_token.present? && mcp_token.id == @mcp_token.id %>
-                  <%= @mcp_token.token %>
-                <% else %>
-                  <%= "#{mcp_token.token_prefix}#{'*' * 38}" %>
-                <% end %>
+              <td data-label="<%= t('token') %>">
+                <span class="font-mono truncate inline-block align-middle" style="max-width: 220px;">
+                  <% if @mcp_token.present? && mcp_token.id == @mcp_token.id %>
+                    <%= @mcp_token.token %>
+                  <% else %>
+                    <%= "#{mcp_token.token_prefix}#{'*' * 38}" %>
+                  <% end %>
+                </span>
               </td>
-              <td>
+              <td data-label="<%= t('created_at') %>">
                 <%= l(mcp_token.created_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) %>
               </td>
               <td class="flex items-center space-x-2 justify-end">
@@ -101,8 +101,8 @@
         <div class="flex items-center gap-4 py-2.5">
           <div class="flex items-center space-x-1">
             <span class="text-left"><%= t('enable_mcp_server') %></span>
-            <span class="tooltip tooltip-top flex cursor-pointer" data-tip="<%= t('all_existing_mcp_connections_will_be_stopped_immediately_when_this_setting_is_disabled') %>">
-              <%= svg_icon('info_circle', class: 'hidden md:inline-block w-4 h-4 shrink-0') %>
+            <span class="tooltip tooltip-top hidden md:flex cursor-pointer" data-tip="<%= t('all_existing_mcp_connections_will_be_stopped_immediately_when_this_setting_is_disabled') %>">
+              <%= svg_icon('info_circle', class: 'w-4 h-4 shrink-0') %>
             </span>
           </div>
           <submit-form data-on="change" class="flex">

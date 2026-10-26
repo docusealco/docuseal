@@ -3,7 +3,8 @@
 Get template creation and update notifications using these events:
 
 - **'template.created'** is triggered when the template is created.
-- **'tempate.updated'** is triggered when the template is updated.
+- **'template.updated'** is triggered when the template is updated.
+- **'template.archived'** is triggered when the template is archived.
 
 
 
@@ -14,13 +15,16 @@ Get template creation and update notifications using these events:
     "description": "The event type.",
     "enum": [
       "template.created",
-      "template.updated"
+      "template.updated",
+      "template.archived"
     ]
   },
   "timestamp": {
     "type": "string",
     "description": "The event timestamp.",
-    "example": "2023-09-24T11:20:42Z",
+    "examples": [
+      "2023-09-24T11:20:42Z"
+    ],
     "format": "date-time"
   },
   "data": {
@@ -74,6 +78,31 @@ Get template creation and update notifications using these events:
               "type": "string",
               "description": "The field name."
             },
+            "type": {
+              "type": "string",
+              "description": "The field type.",
+              "enum": [
+                "heading",
+                "text",
+                "signature",
+                "initials",
+                "date",
+                "number",
+                "image",
+                "checkbox",
+                "multiple",
+                "file",
+                "radio",
+                "select",
+                "cells",
+                "stamp",
+                "payment",
+                "phone",
+                "verification",
+                "kba",
+                "strikethrough"
+              ]
+            },
             "required": {
               "type": "boolean",
               "description": "The flag indicating whether the field is required."
@@ -120,6 +149,7 @@ Get template creation and update notifications using these events:
       },
       "submitters": {
         "type": "array",
+        "description": "List of submitter roles defined in the template.",
         "items": {
           "type": "object",
           "properties": {
@@ -138,12 +168,11 @@ Get template creation and update notifications using these events:
         "type": "integer",
         "description": "Unique identifier of the author of the template."
       },
-      "account_id": {
-        "type": "integer",
-        "description": "Unique identifier of the account of the template."
-      },
       "archived_at": {
-        "type": "string",
+        "type": [
+          "string",
+          "null"
+        ],
         "description": "Date and time when the template was archived."
       },
       "created_at": {
@@ -164,7 +193,10 @@ Get template creation and update notifications using these events:
         ]
       },
       "external_id": {
-        "type": "string",
+        "type": [
+          "string",
+          "null"
+        ],
         "description": "Identifier of the template in the external system."
       },
       "folder_id": {
@@ -175,12 +207,17 @@ Get template creation and update notifications using these events:
         "type": "string",
         "description": "Folder name where the template is placed."
       },
-      "application_key": {
-        "type": "string",
-        "description": "Your application-specific unique string key to identify tempate_id within your app."
+      "preferences": {
+        "type": "object",
+        "description": "Template preferences object."
+      },
+      "shared_link": {
+        "type": "boolean",
+        "description": "Flag indicating whether the shared link is enabled for the template."
       },
       "author": {
         "type": "object",
+        "description": "Author of the template.",
         "properties": {
           "id": {
             "type": "integer",

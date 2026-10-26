@@ -3,7 +3,9 @@
 class TemplatesShareLinkController < ApplicationController
   load_and_authorize_resource :template
 
-  def show; end
+  def show
+    render :show, layout: 'plain'
+  end
 
   def create
     authorize!(:update, @template)

@@ -2,21 +2,39 @@
 
 module Api
   class SubmissionsController < ApiBaseController
+    SUBMISSION_COLUMNS = %i[id name slug source submitters_order expire_at completed_at created_at updated_at
+                            archived_at variables template_id template_submitters created_by_user_id].freeze
+    TEMPLATE_COLUMNS = %i[id name external_id created_at updated_at folder_id submitters].freeze
+
     load_and_authorize_resource :template, only: :create
-    load_and_authorize_resource :submission, only: %i[show index destroy]
+    load_and_authorize_resource :submission, only: %i[show index update destroy]
 
     before_action only: :create do
       authorize!(:create, Submission)
     end
 
+    before_action :maybe_return_template_error, only: :create
+
     def index
       submissions = Submissions.search(current_user, @submissions, params[:q])
       submissions = filter_submissions(submissions, params)
 
-      submissions = paginate(submissions.preload(:created_by_user, :submitters,
-                                                 template: { folder: :parent_folder },
-                                                 combined_document_attachment: :blob,
-                                                 audit_trail_attachment: :blob))
+      with_fields = params[:include].to_s.include?('fields') || params[:include].to_s.include?('combined_document_url')
+
+      submissions = paginate(
+        submissions.select(with_fields ? nil : SUBMISSION_COLUMNS)
+                   .preload(:created_by_user, :submitters, combined_document_attachment: :blob,
+                                                           audit_trail_attachment: :blob)
+      )
+
+      ActiveRecord::Associations::Preloader.new(
+        records: submissions,
+        associations: :template,
+        scope: with_fields ? nil : Template.select(TEMPLATE_COLUMNS)
+      ).call
+
+      ActiveRecord::Associations::Preloader.new(records: submissions.filter_map(&:template),
+                                                associations: { folder: :parent_folder }).call
 
       expires_at = Accounts.link_expires_at(current_account)
 
@@ -42,7 +60,7 @@ module Api
         end
       end
 
-      if @submission.audit_trail_attachment.blank? && submitters.all?(&:completed_at?)
+      if @submission.audit_trail_attachment.blank? && @submission.completed_at?
         @submission.audit_trail_attachment = Submissions::EnsureAuditGenerated.call(@submission)
       end
 
@@ -51,14 +69,6 @@ module Api
 
     def create
       Params::SubmissionCreateValidator.call(params)
-
-      return render json: { error: 'Template not found' }, status: :unprocessable_content if @template.nil?
-
-      if @template.fields.blank?
-        Rollbar.warning("Template does not contain fields: #{@template.id}") if defined?(Rollbar)
-
-        return render json: { error: 'Template does not contain fields' }, status: :unprocessable_content
-      end
 
       params[:send_email] = true unless params.key?(:send_email)
       params[:send_sms] = false unless params.key?(:send_sms)
@@ -70,10 +80,17 @@ module Api
       Submissions.send_signature_requests(submissions)
 
       submissions.each do |submission|
+        if submission.submitters.all? { |s| s.viewer? || s.completed_at? } &&
+           Submissions.maybe_update_completed_at(submission)
+          last_submitter = submission.submitters.reject(&:viewer?).max_by(&:completed_at)
+        end
+
         submission.submitters.each do |submitter|
           next unless submitter.completed_at?
 
-          ProcessSubmitterCompletionJob.perform_async('submitter_id' => submitter.id, 'send_invitation_email' => false)
+          ProcessSubmitterCompletionJob.perform_async('submitter_id' => submitter.id,
+                                                      'is_last' => submitter == last_submitter,
+                                                      'send_invitation_email' => false)
         end
       end
 
@@ -81,10 +98,29 @@ module Api
 
       render json: build_create_json(submissions)
     rescue Submitters::NormalizeValues::BaseError, Submissions::CreateFromSubmitters::BaseError,
-           DownloadUtils::UnableToDownload => e
+           Submitters::SubmitValues::ValidationError, DownloadUtils::UnableToDownload => e
       Rollbar.warning(e) if defined?(Rollbar)
 
       render json: { error: e.message }, status: :unprocessable_content
+    end
+
+    def update
+      @submission = assign_submission_attrs(@submission, submission_params)
+
+      @submission.save!
+
+      if @submission.saved_change_to_archived_at? && @submission.archived_at?
+        WebhookUrls.enqueue_events(@submission, 'submission.archived')
+      end
+
+      if @submission.saved_change_to_expire_at? && @submission.expire_at?
+        ProcessSubmissionExpiredJob.perform_at(@submission.expire_at, 'submission_id' => @submission.id,
+                                                                      'expire_at' => @submission.expire_at.to_i)
+      end
+
+      SearchEntries.enqueue_reindex(@submission) if @submission.saved_change_to_name?
+
+      render json: Submissions::SerializeForApi.call(@submission, nil, params, with_events: false)
     end
 
     def destroy
@@ -101,8 +137,42 @@ module Api
 
     private
 
+    def assign_submission_attrs(submission, attrs)
+      archived = attrs.key?(:archived) ? attrs[:archived] : attrs[:archived_at]
+
+      if archived.in?([true, false, 'true', 'false']) && current_ability.can?(:destroy, submission)
+        submission.archived_at = archived.in?(Submitters::TRUE_VALUES) ? Time.current : nil
+      end
+
+      submission.name = attrs[:name] if attrs.key?(:name)
+      submission.expire_at = attrs[:expire_at].presence if attrs.key?(:expire_at)
+
+      submission
+    end
+
+    def submission_params
+      submission_params = params.key?(:submission) ? params.require(:submission) : params
+
+      submission_params.permit(:name, :expire_at, :archived, :archived_at)
+    end
+
+    def maybe_return_template_error
+      return render json: { error: 'Template not found' }, status: :unprocessable_content if @template.nil?
+
+      if @template.archived_at?
+        Rollbar.warning("Archived template submission: #{@template.id}") if defined?(Rollbar)
+
+        return render json: { error: 'Template has been archived' }, status: :unprocessable_content
+      end
+
+      return if @template.fields.present?
+
+      Rollbar.warning("Template does not contain fields: #{@template.id}") if defined?(Rollbar)
+
+      render json: { error: 'Template does not contain fields' }, status: :unprocessable_content
+    end
+
     def filter_submissions(submissions, params)
-      submissions = submissions.where(template_id: params[:template_id]) if params[:template_id].present?
       submissions = submissions.where(slug: params[:slug]) if params[:slug].present?
 
       if params[:template_folder].present?

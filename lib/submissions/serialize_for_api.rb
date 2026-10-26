@@ -37,8 +37,8 @@ module Submissions
         json['fields'] = submission.template_fields || submission.template&.fields
       end
 
-      if submitters.all?(&:completed_at?)
-        last_submitter = submitters.max_by(&:completed_at)
+      if submission.completed_at?
+        last_submitter = submitters.select(&:completed_at?).max_by(&:completed_at)
 
         if with_documents
           json['documents'] = serialized_submitters.find { |e| e['id'] == last_submitter.id }['documents']
@@ -49,7 +49,7 @@ module Submissions
         json['combined_document_url'] ||= maybe_build_combined_url(submitters, submission, params, expires_at:)
 
         json['status'] = 'completed'
-        json['completed_at'] = last_submitter.completed_at.as_json
+        json['completed_at'] = submission.completed_at.as_json
       else
         json['documents'] = [] if with_documents
         json['audit_log_url'] = nil
@@ -73,12 +73,12 @@ module Submissions
     end
 
     def maybe_build_combined_url(submitters, submission, params, expires_at: nil)
-      return unless submitters.all?(&:completed_at?)
+      return unless submission.completed_at?
 
       attachment = submission.combined_document_attachment
 
       if !attachment && params[:include].to_s.include?('combined_document_url')
-        submitter = submitters.max_by(&:completed_at)
+        submitter = submitters.select(&:completed_at?).max_by(&:completed_at)
 
         attachment = Submissions::EnsureCombinedGenerated.call(submitter)
       end

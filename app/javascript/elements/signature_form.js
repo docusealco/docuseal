@@ -5,6 +5,8 @@ export default targetable(class extends HTMLElement {
   static [target.static] = ['canvas', 'input', 'clear', 'button']
 
   async connectedCallback () {
+    this.lockSwipe(true)
+
     const { default: SignaturePad } = await import('signature_pad')
 
     this.setCanvasSize()
@@ -14,6 +16,7 @@ export default targetable(class extends HTMLElement {
     this.resizeObserver = new ResizeObserver(() => {
       requestAnimationFrame(() => {
         if (!this.canvas) return
+        if (!this.canvas.parentNode?.clientWidth) return
 
         const { width, height } = this.canvas
 
@@ -60,9 +63,15 @@ export default targetable(class extends HTMLElement {
   }
 
   disconnectedCallback () {
+    this.lockSwipe(false)
+
     if (this.resizeObserver) {
       this.resizeObserver.disconnect()
     }
+  }
+
+  lockSwipe (locked) {
+    window.webkit?.messageHandlers?.native?.postMessage({ type: 'swipe', op: locked ? 'lock' : 'unlock' })
   }
 
   setCanvasSize () {
@@ -80,7 +89,7 @@ export default targetable(class extends HTMLElement {
   }
 
   redrawCanvas (oldWidth, oldHeight) {
-    if (this.pad && !this.pad.isEmpty() && oldWidth > 0 && oldHeight > 0) {
+    if (this.pad && !this.pad.isEmpty() && oldWidth > 0 && oldHeight > 0 && this.canvas.width > 0 && this.canvas.height > 0) {
       const sx = this.canvas.width / oldWidth
       const sy = this.canvas.height / oldHeight
 

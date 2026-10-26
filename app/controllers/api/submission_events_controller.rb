@@ -5,7 +5,7 @@ module Api
     load_and_authorize_resource :submission, parent: false
 
     def index
-      submissions = build_completed_query(@submissions)
+      submissions = @submissions.active.where.not(completed_at: nil)
 
       params[:after] = Time.zone.at(params[:after].to_i) if params[:after].present?
       params[:before] = Time.zone.at(params[:before].to_i) if params[:before].present?
@@ -35,21 +35,6 @@ module Api
           prev: submissions.first&.completed_at&.to_i
         }
       }
-    end
-
-    private
-
-    def build_completed_query(submissions)
-      submissions = submissions.where(
-        Submitter.where(completed_at: nil).where(
-          Submitter.arel_table[:submission_id].eq(Submission.arel_table[:id])
-        ).select(1).arel.exists.not
-      )
-
-      submissions.joins(:submitters)
-                 .group(:id)
-                 .select(Submission.arel_table[Arel.star],
-                         Submitter.arel_table[:completed_at].maximum.as('completed_at'))
     end
   end
 end

@@ -10,7 +10,7 @@ module HtmlToPlainText
 
     doc = Nokogiri::HTML.fragment(cleaned)
 
-    doc.css('script').each(&:remove)
+    doc.xpath('.//script').each(&:remove)
 
     result = process_nodes(doc, line_length)
 
@@ -33,12 +33,9 @@ module HtmlToPlainText
     result = +''
 
     node.children.each do |child|
-      case child
-      when Nokogiri::XML::Text
+      if child.text? || child.cdata?
         result << child.text
-      when Nokogiri::XML::Comment
-        next
-      when Nokogiri::XML::Element
+      elsif child.element?
         result << process_element(child, line_length)
       end
     end

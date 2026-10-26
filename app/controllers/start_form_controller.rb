@@ -8,12 +8,8 @@ class StartFormController < ApplicationController
 
   around_action :with_browser_locale, only: %i[show update completed]
   before_action :maybe_redirect_com, only: %i[show completed]
-  before_action :load_resubmit_submitter, only: :update
   before_action :load_template
   before_action :authorize_start!, only: :update
-
-  COOKIES_TTL = 12.hours
-  COOKIES_DEFAULTS = { httponly: true, secure: Rails.env.production? }.freeze
 
   def show
     if @template.preferences['require_phone_2fa'] || @template.preferences['require_email_2fa']
@@ -23,8 +19,7 @@ class StartFormController < ApplicationController
     if @template.shared_link?
       @submitter = @template.submissions.new(account_id: @template.account_id)
                             .submitters.new(account_id: @template.account_id,
-                                            uuid: (filter_undefined_submitters(@template).first ||
-                                                  @template.submitters.first)['uuid'])
+                                            uuid: Submitters::StartForm.first_submitter_uuid(@template))
       render :email_verification if params[:email_verification]
     else
       Rollbar.warning("Not shared template: #{@template.id}") if defined?(Rollbar)
@@ -41,24 +36,28 @@ class StartFormController < ApplicationController
     if @submitter.completed_at?
       redirect_to start_form_completed_path(@template.slug, submitter_params.compact_blank)
     else
-      if filter_undefined_submitters(@template).size > 1 && @submitter.new_record?
+      if Templates.filter_undefined_submitters(@template.submitters).size > 1 && @submitter.new_record?
         @error_message = multiple_submitters_error_message
 
         return render :show, status: :unprocessable_content
       end
 
       if (is_new_record = @submitter.new_record?)
-        assign_submission_attributes(@submitter, @template)
+        Submitters::StartForm.assign_submission_attributes(
+          @submitter, @template, ip: request.remote_ip, user_agent: request.user_agent
+        )
 
         Submissions::AssignDefinedSubmitters.call(@submitter.submission)
       else
         @submitter.assign_attributes(ip: request.remote_ip, ua: request.user_agent)
       end
 
-      if @template.preferences['shared_link_2fa'] == true
-        handle_require_2fa(@submitter, is_new_record:)
+      if require_link_2fa?(@template, @submitter)
+        handle_require_2fa(@template, @submitter)
       elsif @submitter.errors.blank? && @submitter.save
-        enqueue_new_submitter_jobs(@submitter) if is_new_record
+        Submitters::StartForm.enqueue_new_submitter_jobs(@submitter) if is_new_record
+
+        Submitters::StartForm.assign_start_form_cookie(@submitter, request)
 
         redirect_to submit_form_path(@submitter.slug)
       else
@@ -88,27 +87,40 @@ class StartFormController < ApplicationController
 
   private
 
-  def enqueue_new_submitter_jobs(submitter)
-    WebhookUrls.enqueue_events(submitter.submission, 'submission.created')
+  def find_or_initialize_submitter(template, submitter_params)
+    required_fields = template.preferences.fetch('link_form_fields', ['email'])
 
-    SearchEntries.enqueue_reindex(submitter)
+    blank_fields = required_fields.select { |key| submitter_params[key].blank? }
 
-    return unless submitter.submission.expire_at?
+    submitter =
+      if blank_fields.present?
+        Submitter.new(submitter_params)
+      else
+        Submitters::StartForm.find_or_initialize_submitter(
+          template, submitter_params, exclude_completed: params[:resubmit].present?,
+                                      request:, current_user:
+        )
+      end
 
-    ProcessSubmissionExpiredJob.perform_at(submitter.submission.expire_at, 'submission_id' => submitter.submission_id)
+    blank_fields.each { |key| submitter.errors.add(key.to_sym, :blank) }
+
+    submitter
   end
 
-  def load_resubmit_submitter
-    @resubmit_submitter =
-      if params[:resubmit].present? && !params[:resubmit].in?([true, 'true'])
-        Submitter.find_by(slug: params[:resubmit])
-      end
+  def require_link_2fa?(template, submitter)
+    return true if template.preferences['shared_link_2fa'] == true
+    return false if cookies.encrypted[:start_form_slug] == submitter.slug
+    return false if current_user && submitter.email == current_user.email &&
+                    current_user.account_id == submitter.account_id
+
+    !submitter.new_record?
   end
 
   def authorize_start!
-    return redirect_to start_form_path(@template.slug) if @template.archived_at?
+    is_archived = @template.archived_at? || @template.account.archived_at?
 
-    return if @resubmit_submitter
+    return redirect_to start_form_path(@template.slug) if is_archived
+
     return if @template.shared_link? || (current_user && current_ability.can?(:read, @template))
 
     Rollbar.warning("Not shared template: #{@template.id}") if defined?(Rollbar)
@@ -116,89 +128,14 @@ class StartFormController < ApplicationController
     redirect_to start_form_path(@template.slug)
   end
 
-  def find_or_initialize_submitter(template, submitter_params)
-    required_fields = template.preferences.fetch('link_form_fields', ['email'])
-
-    required_params = required_fields.index_with { |key| submitter_params[key] }
-
-    find_params = required_params.except('name')
-
-    submitter = Submitter.new if find_params.compact_blank.blank?
-
-    submitter ||=
-      Submitter
-      .where(submission: template.submissions.where(expire_at: Time.current..)
-                                 .or(template.submissions.where(expire_at: nil)).where(archived_at: nil))
-      .order(id: :desc)
-      .where(declined_at: nil)
-      .where(external_id: nil)
-      .where(template.preferences['shared_link_2fa'] == true ? {} : { ip: [nil, request.remote_ip] })
-      .then { |rel| params[:resubmit].present? || params[:selfsign].present? ? rel.where(completed_at: nil) : rel }
-      .find_or_initialize_by(find_params)
-
-    submitter.name = required_params['name'] if submitter.new_record?
-
-    unless @resubmit_submitter
-      required_params.each do |key, value|
-        submitter.errors.add(key.to_sym, :blank) if value.blank?
-      end
-    end
-
-    submitter
-  end
-
-  def assign_submission_attributes(submitter, template)
-    submitter.assign_attributes(
-      uuid: (filter_undefined_submitters(template).first || @template.submitters.first)['uuid'],
-      ip: request.remote_ip,
-      ua: request.user_agent,
-      values: @resubmit_submitter&.preferences&.fetch('default_values', nil) || {},
-      preferences: @resubmit_submitter&.preferences.presence || { 'send_email' => true },
-      metadata: @resubmit_submitter&.metadata.presence || {}
-    )
-
-    submitter.assign_attributes(@resubmit_submitter.slice(:name, :email, :phone)) if @resubmit_submitter
-
-    if submitter.values.present?
-      @resubmit_submitter.attachments.each do |attachment|
-        submitter.attachments << attachment.dup if submitter.values.value?(attachment.uuid)
-      end
-    end
-
-    submitter.submission ||= Submission.new(template:,
-                                            account_id: template.account_id,
-                                            template_submitters: template.submitters,
-                                            expire_at: Templates.build_default_expire_at(template),
-                                            submitters: [submitter],
-                                            source: :link)
-
-    Submissions::CreateFromSubmitters.maybe_set_dynamic_documents(submitter.submission)
-
-    submitter.account_id = submitter.submission.account_id
-
-    submitter
-  end
-
-  def filter_undefined_submitters(template)
-    Templates.filter_undefined_submitters(template.submitters)
-  end
-
   def submitter_params
-    return { 'email' => current_user.email, 'name' => current_user.full_name } if params[:selfsign]
-    return @resubmit_submitter.slice(:name, :phone, :email) if @resubmit_submitter.present?
-
     params.require(:submitter).permit(:email, :phone, :name).tap do |attrs|
       attrs[:email] = Submissions.normalize_email(attrs[:email])
     end
   end
 
   def load_template
-    @template =
-      if @resubmit_submitter
-        @resubmit_submitter.template
-      else
-        Template.find_by!(slug: params[:slug] || params[:start_form_slug])
-      end
+    @template = Template.find_by!(slug: params[:slug] || params[:start_form_slug])
   end
 
   def multiple_submitters_error_message
@@ -209,38 +146,31 @@ class StartFormController < ApplicationController
     end
   end
 
-  def handle_require_2fa(submitter, is_new_record:)
+  def handle_require_2fa(template, submitter)
     return render :show, status: :unprocessable_content if submitter.errors.present?
 
-    is_otp_verified = Submitters.verify_link_otp!(params[:one_time_code], submitter)
-
-    if cookies.encrypted[:email_2fa_slug] == submitter.slug || is_otp_verified
-      if submitter.save
-        enqueue_new_submitter_jobs(submitter) if is_new_record
-
-        if is_otp_verified
-          SubmissionEvents.create_with_tracking_data(submitter, 'email_verified', request)
-
-          cookies.encrypted[:email_2fa_slug] =
-            { value: submitter.slug, expires: COOKIES_TTL.from_now, **COOKIES_DEFAULTS }
-        end
-
-        redirect_to submit_form_path(submitter.slug)
-      else
-        render :show, status: :unprocessable_content
-      end
+    if Submitters::StartForm.verify_2fa_and_save_submitter(submitter, request, is_new_record: submitter.new_record?)
+      redirect_to submit_form_path(submitter.slug)
     else
+      if defined?(Rollbar) && template.preferences['shared_link_2fa'] != true
+        Rollbar.info("2FA link requested: #{submitter.id}")
+      end
+
       Submitters.send_shared_link_email_verification_code(submitter, request:)
 
       render :email_verification
     end
+  rescue Submitters::StartForm::NotSaved
+    render :show, status: :unprocessable_content
+  rescue Submitters::BouncedEmail => e
+    @error_message = e.message
+
+    render :error, status: :unprocessable_content
   rescue Submitters::UnableToSendCode, Submitters::InvalidOtp => e
-    redirect_to start_form_path(submitter.submission.template.slug,
-                                params: submitter_params.merge(email_verification: true)),
+    redirect_to start_form_path(template.slug, params: submitter_params.merge(email_verification: true)),
                 alert: e.message
   rescue RateLimit::LimitApproached
-    redirect_to start_form_path(submitter.submission.template.slug,
-                                params: submitter_params.merge(email_verification: true)),
+    redirect_to start_form_path(template.slug, params: submitter_params.merge(email_verification: true)),
                 alert: I18n.t(:too_many_attempts)
   end
 end

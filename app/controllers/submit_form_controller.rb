@@ -18,7 +18,10 @@ class SubmitFormController < ApplicationController
     submission = @submitter.submission
 
     return render :email_2fa unless Submitters::AuthorizedForForm.pass_email_2fa?(@submitter, request)
-    return redirect_to submit_form_completed_path(@submitter.slug) if @submitter.completed_at?
+
+    if @submitter.completed_at? || submission.completed_at?
+      return redirect_to submit_form_completed_path(@submitter.slug)
+    end
 
     @form_configs = Submitters::FormConfigs.call(@submitter, CONFIG_KEYS)
 
@@ -28,24 +31,22 @@ class SubmitFormController < ApplicationController
 
     Submissions.preload_with_pages(submission)
 
-    Submitters::MaybeUpdateDefaultValues.call(@submitter, current_user)
-
     @attachments_index = build_attachments_index(submission)
+
+    if current_user && current_user.email == @submitter.email
+      @current_user_data = current_user.as_json(only: %i[first_name last_name], methods: %i[full_name])
+
+      initials = UserConfigs.load_initials(current_user)
+
+      @prefill_initials = Submitters.build_prefill_attachment_data(@submitter, initials) if initials
+    end
 
     return unless @form_configs[:prefill_signature]
 
-    if (user_signature = UserConfigs.load_signature(current_user))
-      @signature_attachment = ActiveStorage::Attachment.find_or_create_by!(
-        blob_id: user_signature.blob_id,
-        name: 'attachments',
-        record: @submitter
-      )
-    end
+    signature = UserConfigs.load_signature(current_user) ||
+                Submitters::FindRememberedSignature.call(@submitter, params, cookies)
 
-    @signature_attachment ||=
-      Submitters::MaybeAssignDefaultBrowserSignature.call(@submitter, params, cookies, @attachments_index.values)
-
-    @attachments_index[@signature_attachment.uuid] = @signature_attachment if @signature_attachment
+    @prefill_signature = Submitters.build_prefill_attachment_data(@submitter, signature) if signature
   end
 
   def update
@@ -71,6 +72,12 @@ class SubmitFormController < ApplicationController
                     status: :unprocessable_content
     end
 
+    if @submitter.viewer?
+      Rollbar.warning("Submit viewer: #{@submitter.id}") if defined?(Rollbar)
+
+      return render json: { error: I18n.t('form_is_view_only') }, status: :unprocessable_content
+    end
+
     Submitters::SubmitValues.call(@submitter, params, request)
 
     head :ok
@@ -79,6 +86,8 @@ class SubmitFormController < ApplicationController
 
     render json: { field_uuid: e.message }, status: :unprocessable_content
   rescue Submitters::SubmitValues::ValidationError => e
+    Rollbar.warning("Validation error #{@submitter.id}: #{e.message}") if defined?(Rollbar)
+
     render json: { error: e.message }, status: :unprocessable_content
   end
 
@@ -96,6 +105,8 @@ class SubmitFormController < ApplicationController
     submitter_version = SubmitterVersion.find_by!(slug: params[:slug] || params[:submit_form_slug])
 
     @submitter = submitter_version.submitter
+
+    maybe_render_locked_page
   end
 
   private

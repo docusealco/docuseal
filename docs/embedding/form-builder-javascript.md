@@ -119,6 +119,7 @@
             "payment",
             "phone",
             "verification",
+            "kba",
             "strikethrough"
           ]
         },
@@ -251,6 +252,7 @@
             "payment",
             "phone",
             "verification",
+            "kba",
             "strikethrough"
           ]
         },
@@ -339,8 +341,15 @@
       "payment",
       "phone",
       "verification",
+      "kba",
       "strikethrough"
     ]
+  },
+  "data-date-formats": {
+    "type": "string",
+    "required": false,
+    "description": "Comma separated list of formats to be used for the date field. Formats may include date ('YYYY', 'MM', 'DD'), time ('HH', 'hh', 'mm', 'ss', 'A') and timezone ('z') parts. The first format in the list is used as the default.",
+    "example": "MM/DD/YYYY,YYYY-MM-DD HH:mm:ss z"
   },
   "data-draw-field-type": {
     "type": "string",
@@ -403,19 +412,31 @@
     "type": "boolean",
     "required": false,
     "default": true,
-    "description": "Set `false` to now show the documents list on the left. Documents list is displayed by default."
+    "description": "Set `false` to not show the documents list on the left. Documents list is displayed by default."
+  },
+  "data-with-dynamic-documents": {
+    "type": "boolean",
+    "required": false,
+    "default": false,
+    "description": "Set `true` to allow converting DOCX files to editable dynamic documents."
   },
   "data-with-fields-list": {
     "type": "boolean",
     "required": false,
     "default": true,
-    "description": "Set `false` to now show the fields list on the right. Fields list is displayed by default."
+    "description": "Set `false` to not show the fields list on the right. Fields list is displayed by default."
   },
   "data-with-fields-detection": {
     "type": "boolean",
     "required": false,
     "default": false,
     "description": "Display a button to automatically detect and add fields to the document with AI."
+  },
+  "data-with-custom-fields-tab": {
+    "type": "boolean",
+    "required": false,
+    "default": false,
+    "description": "Set `true` to display a separate \"Custom\" fields tab in the fields list. Custom fields can be configured using the `data-fields` or `data-required-fields` attribute."
   },
   "data-with-field-placeholder": {
     "type": "boolean",
@@ -427,6 +448,12 @@
     "type": "boolean",
     "required": false,
     "description": "Set to `true` to enable Signature ID by default for newly added fields. If set to `false`, the Signature ID toggle will be displayed under field settings, with the Signature ID turned off by default."
+  },
+  "data-with-revisions": {
+    "type": "boolean",
+    "required": false,
+    "default": false,
+    "description": "Set `true` to save revisions and display a dropdown next to the Save button that provides access to the template revisions history."
   },
   "data-preview": {
     "type": "boolean",

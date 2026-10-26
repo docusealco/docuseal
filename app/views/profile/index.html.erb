@@ -1,7 +1,8 @@
+<% content_for(:native_title, t('profile')) if turbo_native_app? %>
 <div class="flex flex-wrap space-y-4 md:flex-nowrap md:space-y-0">
   <%= render 'shared/settings_nav' %>
   <div class="flex-grow max-w-xl mx-auto">
-    <h1 class="text-4xl font-bold mb-4">
+    <h1 class="text-3xl md:text-4xl font-bold mb-4">
       <%= t('profile') %>
     </h1>
     <%= form_for current_user, url: update_contact_settings_profile_index_path, method: :patch, html: { autocomplete: 'off', class: 'space-y-4' } do |f| %>
@@ -36,10 +37,10 @@
     <% if signature %>
       <div class="flex justify-center mb-4 relative">
         <%= button_to button_title(title: t('remove'), disabled_with: t('removing')), user_signature_path, method: :delete, class: 'right-0 top-0 absolute link' %>
-        <img src="<%= signature.url %>" style="max-height: 200px; width: auto" width="<%= signature.metadata['width'] %>" height="<%= signature.metadata['height'] %>">
+        <img src="<%= signature.url(time: ActiveStorage::Attachment.service_url_time) %>" style="height: 130px; width: 100%; object-fit: contain;">
       </div>
     <% end %>
-    <a href="<%= edit_user_signature_path %>" data-turbo-frame="modal" class="base-button w-full">
+    <a href="<%= edit_user_signature_path %>" data-turbo-frame="modal" data-native-modal="medium" aria-label="<%= t('update_signature') %>" class="base-button w-full">
       <%= t('update_signature') %>
     </a>
     <p class="text-2xl font-bold mt-8 mb-4">
@@ -49,10 +50,10 @@
     <% if initials %>
       <div class="flex justify-center mb-4 relative">
         <%= button_to button_title(title: t('remove'), disabled_with: t('removing')), user_initials_path, method: :delete, class: 'right-0 top-0 absolute link' %>
-        <img src="<%= initials.url %>" style="max-height: 200px; width: auto" width="<%= initials.metadata['width'] %>" height="<%= initials.metadata['height'] %>">
+        <img src="<%= initials.url(time: ActiveStorage::Attachment.service_url_time) %>" style="height: 130px; width: 100%; object-fit: contain;">
       </div>
     <% end %>
-    <a href="<%= edit_user_initials_path %>" data-turbo-frame="modal" class="base-button w-full">
+    <a href="<%= edit_user_initials_path %>" data-turbo-frame="modal" data-native-modal="medium" aria-label="<%= t('update_initials') %>" class="base-button w-full">
       <%= t('update_initials') %>
     </a>
     <% if true_user == current_user && !current_account.testing? %>
@@ -70,7 +71,7 @@
           <div class="form-control">
             <%= f.label :current_password, t('current_password'), class: 'label' %>
             <%= f.password_field :current_password, autocomplete: 'current-password', class: 'base-input' %>
-            <% if Accounts.can_send_emails?(current_account) %>
+            <% if Docuseal.multitenant? || Accounts.can_send_emails?(current_account) %>
               <span class="label-text-alt mt-1">
                 <%= t('dont_remember_your_current_password_click_here_to_reset_it_html') %>
               </span>
@@ -93,7 +94,7 @@
               <%= t('2fa_has_been_configured') %>
             </span>
           </p>
-          <a href="<%= edit_mfa_setup_path %>" data-turbo-frame="modal" class="white-button w-full !px-8">🔓 <%= t('remove_2fa') %></a>
+          <a href="<%= edit_mfa_setup_path %>" data-turbo-frame="modal" aria-label="<%= t('remove_2fa') %>" class="white-button w-full !px-8">🔓 <%= t('remove_2fa') %></a>
         <% else %>
           <p class="flex items-center space-x-1">
             <%= svg_icon('info_circle', class: 'stroke-warning inline flex-none w-5 h-5') %>
@@ -101,10 +102,10 @@
               <%= t('2fa_is_not_configured') %>
             </span>
           </p>
-          <a href="<%= new_mfa_setup_path %>" data-turbo-frame="modal" class="base-button w-full !px-8">🔒 <%= t('set_up_2fa') %></a>
+          <a href="<%= new_mfa_setup_path %>" data-turbo-frame="modal" aria-label="<%= t('setup_2fa') %>" class="base-button w-full !px-8">🔒 <%= t('set_up_2fa') %></a>
         <% end %>
       </div>
     <% end %>
   </div>
-  <div class="w-0 md:w-52"></div>
+  <div class="w-0 lg:w-52"></div>
 </div>

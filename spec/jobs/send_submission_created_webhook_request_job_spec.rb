@@ -57,6 +57,23 @@ RSpec.describe SendSubmissionCreatedWebhookRequestJob do
       ).once
     end
 
+    it 'signs the request with the HMAC secret' do
+      captured_body = nil
+      captured_signature = nil
+      stub_request(:post, webhook_url.url).with do |req|
+        captured_body = req.body
+        captured_signature = req.headers['X-Docuseal-Signature']
+      end.to_return(status: 200)
+
+      described_class.new.perform('submission_id' => submission.id, 'webhook_url_id' => webhook_url.id,
+                                  'event_uuid' => SecureRandom.uuid)
+
+      expect(captured_signature).to be_present
+      expect(WebhookUrls::Signatures.verify(webhook_url.hmac_secret,
+                                            body: captured_body,
+                                            header: captured_signature)).to be(true)
+    end
+
     it "doesn't send a webhook request if the event is not in the webhook's events" do
       webhook_url.update!(events: ['submission.completed'])
 

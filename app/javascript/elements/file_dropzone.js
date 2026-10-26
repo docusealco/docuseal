@@ -1,5 +1,6 @@
 import { actionable } from '@github/catalyst/lib/actionable'
 import { target, targetable } from '@github/catalyst/lib/targetable'
+import { convertImagesInInput } from './convert_upload'
 
 export default actionable(targetable(class extends HTMLElement {
   static [target.static] = [
@@ -13,6 +14,15 @@ export default actionable(targetable(class extends HTMLElement {
     this.addEventListener('dragover', (e) => e.preventDefault())
     this.addEventListener('drop', this.onDrop)
     document.addEventListener('turbo:submit-end', this.toggleLoading)
+
+    if (this.area) {
+      this.initArea()
+    } else {
+      queueMicrotask(() => this.initArea())
+    }
+  }
+
+  initArea () {
     this.area?.addEventListener('dragover', this.onDragover)
     this.area?.addEventListener('dragleave', this.onDragleave)
   }
@@ -38,16 +48,20 @@ export default actionable(targetable(class extends HTMLElement {
     this.classList.add('border-base-300', 'hover:bg-base-200/30')
   }
 
-  onDrop (e) {
+  async onDrop (e) {
     e.preventDefault()
 
     this.input.files = e.dataTransfer.files
 
-    this.uploadFiles(e.dataTransfer.files)
+    await convertImagesInInput(this.input)
+
+    this.uploadFiles(this.input.files)
   }
 
-  onSelectFiles (e) {
+  async onSelectFiles (e) {
     e.preventDefault()
+
+    await convertImagesInInput(this.input)
 
     this.uploadFiles(this.input.files)
   }

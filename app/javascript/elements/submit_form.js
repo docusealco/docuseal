@@ -1,5 +1,19 @@
 export default class extends HTMLElement {
   connectedCallback () {
+    if (this.lastElementChild) {
+      this.init()
+    } else {
+      queueMicrotask(() => this.init())
+    }
+  }
+
+  disconnectedCallback () {
+    if (this.interval) {
+      clearInterval(this.interval)
+    }
+  }
+
+  init () {
     const form = this.querySelector('form') || (this.querySelector('input, button, select') || this.lastElementChild).form
 
     if (this.dataset.interval) {
@@ -22,12 +36,6 @@ export default class extends HTMLElement {
       })
     } else {
       form.requestSubmit()
-    }
-  }
-
-  disconnectedCallback () {
-    if (this.interval) {
-      clearInterval(this.interval)
     }
   }
 }

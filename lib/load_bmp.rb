@@ -3,6 +3,9 @@
 module LoadBmp
   BPPS = [1, 4, 8, 24, 32].freeze
 
+  MAX_COORD = ENV.fetch('VIPS_MAX_COORD', '17000').to_i
+  MAX_PIXELS = 145_000_000
+
   module_function
 
   # rubocop:disable Metrics
@@ -18,39 +21,27 @@ module LoadBmp
       header_data[:height]
     )
 
-    if header_data[:bpp] <= 8
-      final_pixel_data = decode_indexed_pixel_data(
-        raw_pixel_data_from_file,
-        header_data[:bpp],
-        header_data[:width],
-        header_data[:height],
-        header_data[:bmp_stride],
-        header_data[:color_table]
-      )
-      bands = 3
-    else
-      final_pixel_data = prepare_unpadded_pixel_data_string(
-        raw_pixel_data_from_file,
-        header_data[:bpp],
-        header_data[:width],
-        header_data[:height],
-        header_data[:bmp_stride]
-      )
-      bands = header_data[:bpp] / 8
-    end
-
-    image = Vips::Image.new_from_memory(final_pixel_data, header_data[:width], header_data[:height], bands, :uchar)
-
-    image = image.flip(:vertical) if header_data[:orientation] == -1
+    padded_rows = Vips::Image.new_from_memory_copy(
+      raw_pixel_data_from_file,
+      header_data[:bmp_stride],
+      header_data[:height],
+      1,
+      :uchar
+    )
 
     image_rgb =
       if header_data[:bpp] <= 8
-        image
-      elsif bands == 3
-        image.recomb(band3_recomb)
-      elsif bands == 4
-        image.recomb(band4_recomb)
+        decode_indexed_pixel_data(padded_rows, header_data[:bpp], header_data[:width], header_data[:color_table])
+      else
+        bands = header_data[:bpp] / 8
+
+        image = padded_rows.extract_area(0, 0, header_data[:width] * bands, header_data[:height])
+                           .bandfold(factor: bands)
+
+        bands == 3 ? image.recomb(band3_recomb) : image.recomb(band4_recomb)
       end
+
+    image_rgb = image_rgb.flip(:vertical) if header_data[:orientation] == -1
 
     image_rgb = image_rgb.copy(interpretation: :srgb) if image_rgb.interpretation != :srgb
 
@@ -98,6 +89,9 @@ module LoadBmp
 
     raise ArgumentError, 'BMP width must be positive.' if width <= 0
     raise ArgumentError, 'BMP height must be positive.' if height <= 0
+    if width > MAX_COORD || height > MAX_COORD || width * height > MAX_PIXELS
+      raise ArgumentError, "BMP dimensions are too large: #{width}x#{height}."
+    end
 
     if compression != 0
       raise ArgumentError,
@@ -164,62 +158,24 @@ module LoadBmp
     raw_pixel_data_from_file
   end
 
-  def prepare_unpadded_pixel_data_string(raw_pixel_data_from_file, bpp, width, height, bmp_stride)
-    bytes_per_pixel = bpp / 8
-    actual_row_width_bytes = width * bytes_per_pixel
+  def decode_indexed_pixel_data(padded_rows, bpp, width, color_table)
+    pixels_per_byte = 8 / bpp
 
-    unpadded_rows = Array.new(height)
-    current_offset_in_blob = 0
+    image = padded_rows.maplut(build_palette_lut(bpp, color_table))
+    image = image.bandunfold.bandfold(factor: 3) if pixels_per_byte > 1
 
-    height.times do |i|
-      if current_offset_in_blob + actual_row_width_bytes > raw_pixel_data_from_file.bytesize
-        raise ArgumentError,
-              "Not enough data in pixel blob for row #{i}. Offset #{current_offset_in_blob}, " \
-              "row width #{actual_row_width_bytes}, blob size #{raw_pixel_data_from_file.bytesize}"
-      end
-
-      unpadded_row_slice = raw_pixel_data_from_file.byteslice(current_offset_in_blob, actual_row_width_bytes)
-
-      if unpadded_row_slice.nil? || unpadded_row_slice.bytesize < actual_row_width_bytes
-        raise ArgumentError, "Failed to slice a full unpadded row from pixel data blob for row #{i}."
-      end
-
-      unpadded_rows[i] = unpadded_row_slice
-      current_offset_in_blob += bmp_stride
-    end
-
-    unpadded_rows.join
+    image.extract_area(0, 0, width, padded_rows.height)
   end
 
-  def decode_indexed_pixel_data(raw_data, bpp, width, height, bmp_stride, color_table)
-    palette = color_table.map { |r, g, b| [r, g, b].pack('CCC') }
+  def build_palette_lut(bpp, color_table)
+    pixels_per_byte = 8 / bpp
+    mask = (1 << bpp) - 1
 
-    output = String.new(capacity: width * height * 3)
-
-    height.times do |y|
-      row_offset = y * bmp_stride
-
-      case bpp
-      when 1
-        width.times do |x|
-          byte_val = raw_data.getbyte(row_offset + (x >> 3))
-          index = (byte_val >> (7 - (x & 7))) & 0x01
-          output << palette[index]
-        end
-      when 4
-        width.times do |x|
-          byte_val = raw_data.getbyte(row_offset + (x >> 1))
-          index = x.even? ? (byte_val >> 4) & 0x0F : byte_val & 0x0F
-          output << palette[index]
-        end
-      when 8
-        width.times do |x|
-          output << palette[raw_data.getbyte(row_offset + x)]
-        end
-      end
+    entries = Array.new(256) do |byte_val|
+      (0...pixels_per_byte).flat_map { |i| color_table[(byte_val >> ((pixels_per_byte - 1 - i) * bpp)) & mask] }
     end
 
-    output
+    Vips::Image.new_from_memory_copy(entries.flatten.pack('C*'), 256, 1, pixels_per_byte * 3, :uchar)
   end
 
   def band3_recomb

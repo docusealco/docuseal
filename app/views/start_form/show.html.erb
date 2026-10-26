@@ -1,4 +1,4 @@
-<% content_for(:html_title, "#{@template.name} | DocuSeal") %>
+<%= render 'shared/html_title', title: @template.name %>
 <% I18n.with_locale(@template.account.locale) do %>
   <% content_for(:html_description, t('account_name_has_invited_you_to_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution', account_name: @template.account.name)) %>
 <% end %>
@@ -6,7 +6,7 @@
   <div class="space-y-6 mx-auto">
     <div class="space-y-6">
       <div class="text-center w-full space-y-6">
-        <%= render 'banner' %>
+        <%= render 'start_form/banner' %>
         <% unless @template.archived_at? %>
           <p class="text-xl font-semibold text-center"><%= t('you_have_been_invited_to_submit_a_form') %></p>
         <% end %>
@@ -28,7 +28,8 @@
       </div>
     </div>
     <% if !@template.archived_at? && !@template.account.archived_at? %>
-      <%= form_for @submitter, url: start_form_path(@template.slug), data: { turbo_frame: :_top }, method: :put, html: { class: 'space-y-4' } do |f| %>
+      <%= form_for @submitter, url: @resubmit_submitter ? resubmit_form_path : start_form_path(@template.slug), data: { turbo_frame: :_top }, method: :put, html: { class: 'space-y-4' } do |f| %>
+        <%= hidden_field_tag :resubmit, @resubmit_submitter.slug if @resubmit_submitter %>
         <% if @error_message %>
           <div class="alert items-start bg-base-100 border border-red-400 text-red-400">
             <%= svg_icon('info_circle', class: 'stroke-current shrink-0 h-6 w-6 mt-1') %>
@@ -52,9 +53,7 @@
         <% if link_form_fields.include?('phone') %>
           <div dir="auto" class="form-control !mt-0">
             <%= f.label :phone, t('phone'), class: 'label' %>
-            <custom-validation data-invalid-message="<%= t('use_international_format_1xxx_') %>">
-              <%= f.telephone_field :phone, value: params[:phone] || @submitter.phone, pattern: '^\+[0-9\s\-]+$', required: true, class: 'base-input w-full', placeholder: t(multiple_fields ? 'provide_your_phone_in_international_format' : 'provide_your_phone_in_international_format_to_start') %>
-            </custom-validation>
+            <%= f.telephone_field :phone, value: params[:phone] || @submitter.phone, pattern: '^\+[0-9\s\-]+$', required: true, title: t('use_international_format_1xxx_'), class: 'base-input w-full', placeholder: t(multiple_fields ? 'provide_your_phone_in_international_format' : 'provide_your_phone_in_international_format_to_start') %>
           </div>
         <% end %>
         <toggle-submit dir="auto" class="form-control">
@@ -63,6 +62,8 @@
       <% end %>
     <% end %>
   </div>
+  <div class="mt-4">
+    <%= render 'shared/attribution', link_path: '/start', account: @template.account %>
+    <%= render 'start_form/policy', account: @template.account %>
+  </div>
 </div>
-<%= render 'shared/attribution', link_path: '/start', account: @template.account %>
-<%= render 'start_form/policy', account: @template.account %>

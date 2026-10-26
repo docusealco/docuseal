@@ -2,13 +2,17 @@
   <div
     class="relative bg-white select-none mb-4 before:border before:rounded before:top-0 before:bottom-0 before:left-0 before:right-0 before:absolute"
     :class="{ 'cursor-crosshair': isDrawMode && editable }"
+    @mousedown="onMarginMouseDown"
   >
     <div
       v-if="isDrawMode && editable && cursorHighlightCoords"
       class="absolute pointer-events-none z-10 bg-black"
       :style="{ width: '1px', height: cursorHighlightCoords.height + 'px', left: cursorHighlightCoords.x + 'px', top: cursorHighlightCoords.y + 'px' }"
     />
-    <div :style="{ zoom: containerWidth / sectionWidthPx }">
+    <div
+      :style="{ zoom, '--zoom': zoom }"
+      :data-zoomed-out="zoom < 0.75 || null"
+    >
       <section
         :id="section.id"
         ref="editorElement"
@@ -17,6 +21,13 @@
         :style="section.style.cssText"
       />
     </div>
+    <input
+      ref="imageInput"
+      type="file"
+      accept="image/*"
+      class="hidden"
+      @change="onImageSelected"
+    >
     <Teleport
       v-if="editor"
       :to="container"
@@ -30,6 +41,7 @@
           :area="selectedArea"
           :field="selectedField"
           :editable="editable"
+          :is-mobile="isMobile"
           :template="template"
           :selected-areas-ref="selectedAreasRef"
           :get-field-type-index="getFieldTypeIndex"
@@ -41,9 +53,50 @@
         v-if="editable"
         v-show="!selectedAreasRef.value.length"
         :editor="editor"
-        :coords="dynamicMenuCoords"
+        :coords="isInsertMenuOpen ? null : dynamicMenuCoords"
         @add-variable="dynamicMenuCoords = null"
         @add-condition="dynamicMenuCoords = null"
+        @add-list="$emit('add-list')"
+      />
+      <div
+        v-if="editable && insertMenuCoords && !isDrawMode"
+        class="absolute z-10 select-none text-sm"
+        :style="{ top: insertMenuCoords.top - 12 + 'px', left: insertMenuCoords.left - 12 + 'px' }"
+        @mousedown.prevent
+      >
+        <button
+          class="flex items-center justify-center w-6 h-6 rounded-md border border-neutral-200"
+          :class="isInsertMenuOpen ? 'bg-neutral-100 text-base-content' : 'bg-white text-base-content/40 hover:bg-neutral-100 hover:text-base-content'"
+          :title="t('insert')"
+          @click="isInsertMenuOpen = !isInsertMenuOpen"
+        >
+          <IconX
+            v-if="isInsertMenuOpen"
+            :width="14"
+            :height="14"
+          />
+          <IconPlus
+            v-else
+            :width="14"
+            :height="14"
+          />
+        </button>
+        <DynamicInsertMenu
+          v-if="isInsertMenuOpen"
+          :key="insertMenuCoords.top"
+          @close="isInsertMenuOpen = false"
+          @insert-field="onInsertField"
+          @insert-table="onInsertTable"
+          @insert-variable="editor.chain().focus().insertContent('[[variable]]').run()"
+          @insert-image="$refs.imageInput.click()"
+        />
+      </div>
+      <DynamicBlockMenu
+        v-if="editable && blockMenuCoords && !isDrawMode"
+        :coords="blockMenuCoords"
+        :get-resize-limits="getBlockResizeLimits"
+        @command="onBlockCommand"
+        @resize="onBlockResize"
       />
       <FieldContextMenu
         v-if="contextMenu && contextMenuField"
@@ -64,20 +117,29 @@
 <script>
 import { shallowRef } from 'vue'
 import { DOMSerializer, Fragment } from '@tiptap/pm/model'
+import { Selection, TextSelection } from '@tiptap/pm/state'
+import { findTable, CellSelection } from '@tiptap/pm/tables'
 import { v4 } from 'uuid'
+import { IconPlus, IconX } from '@tabler/icons-vue'
 import FieldContextMenu from './field_context_menu.vue'
 import AreaTitle from './area_title.vue'
 import DynamicMenu from './dynamic_menu.vue'
-import { buildEditor } from './dynamic_editor.js'
+import DynamicInsertMenu from './dynamic_insert_menu.vue'
+import DynamicBlockMenu from './dynamic_block_menu.vue'
+import { buildEditor, isRegularTable, resizeTable, tableRowMinHeights } from './dynamic_editor.js'
 
 export default {
   name: 'DynamicSection',
   components: {
     DynamicMenu,
+    DynamicInsertMenu,
+    DynamicBlockMenu,
     FieldContextMenu,
-    AreaTitle
+    AreaTitle,
+    IconPlus,
+    IconX
   },
-  inject: ['template', 'save', 't', 'fieldsDragFieldRef', 'customDragFieldRef', 'selectedAreasRef', 'getFieldTypeIndex', 'fieldTypes', 'withPhone', 'withPayment', 'withVerification', 'withKba', 'backgroundColor'],
+  inject: ['template', 'save', 'pushUndo', 'undo', 'redo', 'baseFetch', 't', 'fieldsDragFieldRef', 'customDragFieldRef', 'selectedAreasRef', 'getFieldTypeIndex', 'fieldTypes', 'withPhone', 'withPayment', 'withVerification', 'withKba', 'backgroundColor', 'isMobile'],
   props: {
     section: {
       type: Object,
@@ -147,12 +209,15 @@ export default {
       default: null
     }
   },
-  emits: ['update', 'draw', 'set-draw', 'add-custom-field'],
+  emits: ['update', 'draw', 'set-draw', 'add-custom-field', 'add-attachment', 'add-list'],
   data () {
     return {
       isAreaDrag: false,
       areaToolbarCoords: null,
       dynamicMenuCoords: null,
+      insertMenuCoords: null,
+      isInsertMenuOpen: false,
+      blockMenuCoords: null,
       contextMenu: null,
       cursorHighlightCoords: null
     }
@@ -196,6 +261,9 @@ export default {
     editor () {
       return this.editorRef.value
     },
+    sectionKey () {
+      return `${this.attachmentUuid}:${this.section.id}`
+    },
     sectionWidthPx () {
       const pt = parseFloat(this.section.style.width)
 
@@ -235,9 +303,19 @@ export default {
       if (this.dynamicMenuCoords && this.editor && !this.editor.state.selection.empty) {
         this.$nextTick(() => this.setDynamicMenuCoords(this.editor))
       }
+
+      if (this.insertMenuCoords && this.editor) {
+        this.$nextTick(() => this.setInsertMenuCoords(this.editor))
+      }
+
+      if (this.blockMenuCoords && this.editor) {
+        this.$nextTick(() => this.setBlockMenuCoords(this.editor))
+      }
     }
   },
   mounted () {
+    this.lastUpdateTime = 0
+
     this.editorRef.value = buildEditor({
       dynamicAreaProps: {
         template: this.template,
@@ -250,17 +328,36 @@ export default {
         onAreaResize: this.onAreaResize,
         onAreaDragStart: this.onAreaDragStart
       },
-      attachmentsIndex: this.attachmentsIndex,
+      getAttachmentsIndex: () => this.attachmentsIndex,
       onFieldDrop: this.onFieldDrop,
       onFieldDestroy: this.onFieldDestroy,
+      onUndo: this.undo,
+      onRedo: this.redo,
       renderHtmlForSaveRef: this.renderHtmlForSaveRef,
       editorOptions: {
         element: this.$refs.editorElement,
         editable: this.editable,
         content: this.section.innerHTML,
-        onUpdate: (event) => this.$emit('update', event),
+        onUpdate: (event) => {
+          this.$emit('update', event)
+
+          if (event.transaction.getMeta('addToHistory') !== false) {
+            this.pushUndo({ amend: event.transaction.time - this.lastUpdateTime < 500 })
+
+            this.lastUpdateTime = event.transaction.time
+          }
+
+          if (this.blockMenuCoords) {
+            this.$nextTick(() => this.setBlockMenuCoords(this.editor))
+          }
+        },
         onSelectionUpdate: this.onSelectionUpdate,
-        onBlur: () => { this.dynamicMenuCoords = null }
+        onFocus: this.onSelectionUpdate,
+        onBlur: () => {
+          this.dynamicMenuCoords = null
+          this.insertMenuCoords = null
+          this.blockMenuCoords = null
+        }
       }
     })
 
@@ -269,6 +366,8 @@ export default {
     this.editor.view.dom.addEventListener('mousemove', this.onEditorMouseMove)
     this.editor.view.dom.addEventListener('mouseleave', this.onEditorMouseLeave)
     this.editor.view.dom.addEventListener('keydown', this.onEditorKeyDown)
+
+    this.$nextTick(() => this.pushUndo({ amend: true }))
   },
   beforeUnmount () {
     if (this.editor) {
@@ -281,6 +380,22 @@ export default {
     }
   },
   methods: {
+    reloadContent () {
+      this.editor.commands.setContent(this.section.innerHTML, { emitUpdate: false, parseOptions: this.editor.options.parseOptions })
+    },
+    restoreDoc (doc) {
+      const { state, view } = this.editor
+      const { content } = doc.type.schema === state.schema ? doc : state.schema.nodeFromJSON(doc.toJSON())
+      const diffEnd = content.findDiffEnd(state.doc.content)
+
+      if (diffEnd) {
+        const tr = state.tr.replaceWith(0, state.doc.content.size, content).setMeta('addToHistory', false)
+
+        view.dispatch(tr.setSelection(Selection.near(tr.doc.resolve(diffEnd.a))).scrollIntoView())
+
+        this.lastUpdateTime = 0
+      }
+    },
     findAreaNodePos (areaUuid) {
       const el = this.editor.view.dom.querySelector(`[data-area-uuid="${areaUuid}"]`)
 
@@ -399,16 +514,163 @@ export default {
             this.selectedAreasRef.value = [area]
           }
         }
+
+        this.blockMenuCoords = null
       } else {
         this.areaToolbarCoords = null
         this.selectedAreasRef.value = []
 
-        if (editor.state.selection.empty) {
+        this.setBlockMenuCoords(editor)
+
+        if (selection.node || selection.empty || !editor.isFocused) {
           this.dynamicMenuCoords = null
         } else {
           this.setDynamicMenuCoords(editor)
         }
       }
+
+      if (selection instanceof CellSelection) {
+        this.insertMenuCoords = null
+      } else if (editor.isFocused) {
+        this.setInsertMenuCoords(editor)
+      }
+    },
+    setInsertMenuCoords (editor) {
+      const coords = editor.view.coordsAtPos(editor.state.selection.head)
+      const containerRect = this.container.getBoundingClientRect()
+      const sectionEl = this.$refs.editorElement
+      const sectionRect = sectionEl.getBoundingClientRect()
+      const paddingLeft = parseFloat(getComputedStyle(sectionEl).paddingLeft) * this.zoom
+
+      this.insertMenuCoords = {
+        top: (coords.top + coords.bottom) / 2 - containerRect.top,
+        left: sectionRect.left - containerRect.left + Math.max(paddingLeft / 2, 14)
+      }
+    },
+    setBlockMenuCoords (editor) {
+      const { selection } = editor.state
+      const isImage = selection.node?.type.name === 'image'
+      const table = isImage ? null : findTable(selection.$from)
+
+      if (!isImage && !table) {
+        this.blockMenuCoords = null
+
+        return
+      }
+
+      const pos = isImage ? selection.from : table.pos
+      const dom = editor.view.nodeDOM(pos)
+      const rect = dom.getBoundingClientRect()
+      const containerRect = this.container.getBoundingClientRect()
+      const coords = {
+        type: isImage ? 'image' : 'table',
+        pos,
+        align: 'left',
+        top: rect.top - containerRect.top,
+        left: rect.left - containerRect.left,
+        width: rect.width,
+        height: rect.height
+      }
+
+      if (isImage) {
+        coords.align = getComputedStyle(dom.parentElement).textAlign.replace('start', 'left').replace('end', 'right')
+      } else {
+        const { marginLeft, marginRight, float } = dom.style
+
+        if (float === 'left' || float === 'right') {
+          coords.align = float
+        } else if (marginLeft === 'auto') {
+          coords.align = marginRight === 'auto' ? 'center' : 'right'
+        } else if (dom.getAttribute('align')) {
+          coords.align = dom.getAttribute('align')
+        }
+
+        coords.isRegular = isRegularTable(table.node)
+        coords.canMerge = editor.can().mergeTableCells()
+        coords.canSplit = editor.can().splitTableCell()
+      }
+
+      this.blockMenuCoords = coords
+    },
+    getBlockResizeLimits () {
+      const dom = this.editor.view.nodeDOM(this.blockMenuCoords.pos)
+      const rect = dom.getBoundingClientRect()
+
+      return {
+        minHeight: tableRowMinHeights(dom, this.zoom, false).reduce((acc, value) => acc + value, 0),
+        maxWidth: Math.max(this.$refs.editorElement.getBoundingClientRect().right - rect.left, rect.width)
+      }
+    },
+    onBlockResize ({ width, height }) {
+      resizeTable(this.editor.view, this.blockMenuCoords.pos, { width: width / this.zoom, height: height / this.zoom }, this.zoom)
+
+      this.editor.commands.focus()
+
+      this.$nextTick(() => this.setBlockMenuCoords(this.editor))
+    },
+    onBlockCommand (command, arg) {
+      this.editor.chain().focus()[command](arg).run()
+
+      this.$nextTick(() => this.setBlockMenuCoords(this.editor))
+    },
+    onInsertField (type) {
+      const { from, to } = this.editor.state.selection
+
+      this.insertFieldAtRange({ sourceField: { type }, from, to })
+    },
+    onInsertTable ({ rows, cols }) {
+      const $pos = this.editor.state.tr.deleteSelection().selection.$head
+      const cell = '<td style="border: 1px solid #000000; padding: 4pt; vertical-align: top"><p style="margin: 0"></p></td>'
+      const html = `<table style="width: 100%; border-collapse: collapse"><tbody>${`<tr>${cell.repeat(cols)}</tr>`.repeat(rows)}</tbody></table>`
+      const isEmpty = $pos.parent.isTextblock && !$pos.parent.content.size
+      const from = !$pos.parent.isTextblock ? $pos.pos : isEmpty ? $pos.before() : $pos.after()
+      const to = isEmpty ? $pos.after() : from
+
+      this.editor.chain().focus()
+        .deleteSelection()
+        .insertContentAt({ from, to }, html)
+        .setTextSelection(from + 4)
+        .run()
+    },
+    async onImageSelected (event) {
+      const file = event.target.files[0]
+
+      event.target.value = ''
+
+      if (!file) return
+
+      const image = await this.uploadImage(file)
+
+      if (image) {
+        this.editor.chain().focus().insertContent(image).run()
+      }
+    },
+    async insertImageFiles (files, pos) {
+      const images = (await Promise.all(files.map(this.uploadImage))).filter(Boolean)
+
+      if (images.length) {
+        this.editor.chain().focus().insertContentAt(pos, images).run()
+      }
+    },
+    async uploadImage (file) {
+      const formData = new FormData()
+
+      formData.append('file', file)
+
+      const response = await this.baseFetch(`/templates/${this.template.id}/dynamic_documents/${this.attachmentUuid}/attachments`, {
+        method: 'POST',
+        body: formData
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) return alert(data.error)
+
+      this.$emit('add-attachment', data)
+
+      await this.$nextTick()
+
+      return { type: 'image', attrs: { htmlAttrs: { src: `blob:${data.uuid}`, style: 'max-width: 100%' } } }
     },
     setDynamicMenuCoords (editor) {
       const { from, to } = editor.state.selection
@@ -416,11 +678,11 @@ export default {
       const start = view.coordsAtPos(from)
       const end = view.coordsAtPos(to)
       const containerRect = this.container.getBoundingClientRect()
-      const left = (start.left + end.right) / 2 - containerRect.left
 
       this.dynamicMenuCoords = {
-        top: Math.min(start.top, end.top) - containerRect.top,
-        left: Math.max(80, Math.min(left, containerRect.width - 80))
+        top: Math.max(start.bottom, end.bottom) - containerRect.top + 8,
+        left: (start.left + end.right) / 2 - containerRect.left,
+        width: containerRect.width
       }
     },
     onFieldDestroy (node) {
@@ -490,6 +752,8 @@ export default {
       if (event.key === 'Escape') {
         this.editor.chain().setNodeSelection(0).blur().run()
         this.deselectArea()
+      } else if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'z') {
+        event.stopPropagation()
       }
     },
     onEditorMouseMove (event) {
@@ -605,25 +869,23 @@ export default {
         }
       }
 
-      const newField = {
+      const newField = payload.parentField || {
         ...field,
         uuid: v4(),
         submitter_uuid: this.selectedSubmitter.uuid,
-        areas: [area]
+        areas: []
       }
 
+      newField.areas.push(area)
+
       if (['radio', 'multiple'].includes(field.type) && field.options?.length) {
-        const oldOptionUuid = area.option_uuid
-        const optionsMap = {}
+        const oldOptionIndex = field.options.findIndex((opt) => opt.uuid === area.option_uuid)
 
-        newField.options = field.options.map((opt) => {
-          const newUuid = v4()
-          optionsMap[opt.uuid] = newUuid
+        if (!payload.parentField) {
+          newField.options = field.options.map((opt) => ({ ...opt, uuid: v4() }))
+        }
 
-          return { ...opt, uuid: newUuid }
-        })
-
-        area.option_uuid = optionsMap[oldOptionUuid] || newField.options[0]?.uuid
+        area.option_uuid = (newField.options[oldOptionIndex] || newField.options[0]).uuid
       }
 
       return { field: newField, area }
@@ -639,13 +901,13 @@ export default {
       const text = clipboardData.getData('text/plain')
       const clipboardHtml = html || (text.includes('<dynamic-field') ? text : '')
 
+      if (/class="[^"]*doc-list-/.test(html)) this.$emit('add-list')
+
       if (!clipboardHtml || !clipboardHtml.includes('data-field=')) {
         return
       }
 
-      const container = document.createElement('div')
-
-      container.innerHTML = clipboardHtml
+      const container = new DOMParser().parseFromString(clipboardHtml, 'text/html').body
 
       const fieldNodes = [...container.querySelectorAll('dynamic-field[data-field][data-area]')]
 
@@ -661,10 +923,13 @@ export default {
 
       let lastArea = null
 
+      const parentFieldsIndex = {}
+
       fieldNodes.forEach((fieldNode) => {
         const fieldValue = fieldNode.dataset.field
         const areaValue = fieldNode.dataset.area
         const templateId = fieldNode.dataset.templateId
+        const sourceFieldUuid = fieldNode.getAttribute('uuid')
 
         if (!fieldValue || !areaValue) {
           return
@@ -673,11 +938,16 @@ export default {
         const { field, area } = this.buildCopiedField({
           field: JSON.parse(fieldValue),
           area: JSON.parse(areaValue),
-          templateId: Number(templateId)
+          templateId: Number(templateId),
+          parentField: parentFieldsIndex[sourceFieldUuid]
         })
 
-        this.insertFieldInTemplate(field, insertIndex)
-        insertIndex += 1
+        if (!parentFieldsIndex[sourceFieldUuid]) {
+          parentFieldsIndex[sourceFieldUuid] = field
+
+          this.insertFieldInTemplate(field, insertIndex)
+          insertIndex += 1
+        }
 
         fieldNode.setAttribute('uuid', field.uuid)
         fieldNode.setAttribute('area-uuid', area.uuid)
@@ -717,7 +987,7 @@ export default {
     onSelectedAreaChange () {
       this.save()
     },
-    onFieldDrop (view, event, _slice, moved) {
+    onFieldDrop (view, event, slice, moved) {
       this.isAreaDrag = false
 
       if (moved) {
@@ -725,8 +995,9 @@ export default {
       }
 
       const draggedField = this.fieldsDragFieldRef?.value || this.customDragFieldRef?.value || this.dragField
+      const imageFiles = slice.size ? [] : Array.from(event.dataTransfer.files).filter((file) => file.type.startsWith('image/'))
 
-      if (!draggedField) return false
+      if (!draggedField && !imageFiles.length) return false
 
       event.preventDefault()
 
@@ -734,16 +1005,62 @@ export default {
 
       if (!pos) return false
 
-      this.insertFieldAtRange({
-        sourceField: draggedField,
-        existingField: this.fieldsDragFieldRef?.value,
-        from: pos.pos
-      })
+      if (draggedField) {
+        this.insertFieldAtRange({
+          sourceField: draggedField,
+          existingField: this.fieldsDragFieldRef?.value,
+          from: pos.pos
+        })
 
-      this.fieldsDragFieldRef.value = null
-      this.customDragFieldRef.value = null
+        this.fieldsDragFieldRef.value = null
+        this.customDragFieldRef.value = null
+      } else {
+        this.insertImageFiles(imageFiles, pos.pos)
+      }
 
       return true
+    },
+    closestPosAtCoords ({ clientX, clientY }) {
+      const view = this.editor.view
+      const rect = view.dom.getBoundingClientRect()
+      const left = Math.min(Math.max(clientX, rect.left + 1), rect.right - 1)
+      const top = Math.min(Math.max(clientY, rect.top + 1), rect.bottom - 1)
+      const caret = document.caretPositionFromPoint?.(left, top, { shadowRoots: [view.root] })
+
+      if (caret && view.dom.contains(caret.offsetNode)) {
+        return view.posAtDOM(caret.offsetNode, caret.offset)
+      } else {
+        return view.posAtCoords({ left, top }).pos
+      }
+    },
+    onMarginMouseDown (event) {
+      const view = this.editor.view
+
+      if (event.button !== 0 || !this.editable || this.isDrawMode || view.dom.contains(event.target)) {
+        return
+      }
+
+      event.preventDefault()
+
+      const anchor = this.closestPosAtCoords(event)
+
+      const selectTo = (e) => {
+        const { doc, tr } = view.state
+
+        view.dispatch(tr.setSelection(TextSelection.between(doc.resolve(anchor), doc.resolve(this.closestPosAtCoords(e)))))
+      }
+
+      const onMouseUp = () => {
+        window.removeEventListener('mousemove', selectTo)
+        window.removeEventListener('mouseup', onMouseUp)
+      }
+
+      selectTo(event)
+
+      view.focus()
+
+      window.addEventListener('mousemove', selectTo)
+      window.addEventListener('mouseup', onMouseUp)
     },
     onEditorPointerDown (event) {
       if (!this.isDrawMode || !this.editable || this.isDraggingField) {

@@ -1,7 +1,7 @@
 <%= render 'shared/turbo_modal', title: t('remove_2fa') do %>
   <%= form_for '', url: mfa_setup_path, method: :delete, data: { turbo_frame: :_top } do |f| %>
     <div class="form-control my-6 space-y-2">
-      <%= f.text_field :otp_attempt, required: true, placeholder: 'XXX-XXX', class: 'base-input text-center' %>
+      <%= f.text_field :otp_attempt, required: true, inputmode: 'numeric', placeholder: 'XXXXXX', class: 'base-input text-center' %>
       <span>
         <%= @error_message %>
       </span>

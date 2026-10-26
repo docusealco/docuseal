@@ -5,7 +5,7 @@ FactoryBot.define do
     account
 
     author factory: %i[user]
-    name { Faker::Book.title }
+    name { Faker::Book.unique.title }
 
     trait :with_templates do
       after(:create) do |template_folder|

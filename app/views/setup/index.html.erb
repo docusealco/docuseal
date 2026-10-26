@@ -24,8 +24,8 @@
         </div>
       <% end %>
       <%= fields_for @account do |ff| %>
-        <set-timezone data-input-id="account_timezone"></set-timezone>
         <%= ff.hidden_field :timezone %>
+        <set-timezone data-input-id="account_timezone"></set-timezone>
         <div class="form-control">
           <%= ff.label :name, t('company_name'), class: 'label' %>
           <%= ff.text_field :name, required: true, class: 'base-input' %>

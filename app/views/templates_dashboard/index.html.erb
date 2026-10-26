@@ -1,4 +1,4 @@
-<% has_archived = can?(:manage, :countless) || current_account.templates.where.not(archived_at: nil).exists? %>
+<% has_archived = can?(:manage, :countless) || current_account.templates.archived.exists? %>
 <% show_dropzone = params[:q].blank? && @pagy.pages == 1 && ((@template_folders.size < 10 && @templates.size.zero?) || (@template_folders.size < 7 && @templates.size < 4) || (@template_folders.size < 4 && @templates.size < 7)) %>
 <% if Docuseal.demo? %><%= render 'shared/demo_alert' %><% end %>
 <dashboard-dropzone>
@@ -7,56 +7,70 @@
     <button type="submit"></button>
     <input id="dashboard_dropzone_input" name="files[]" type="file" multiple>
   <% end %>
-  <div class="flex justify-between items-center w-full mb-4 relative">
-    <% unless show_dropzone %>
-      <%= render 'templates/dashboard_dropzone', style: 'height: 114px' %>
-    <% end %>
-    <%= render 'templates/dashboard_folder_dropzone', style: 'height: 114px' %>
-    <div class="flex items-center flex-grow min-w-0">
-      <% if has_archived || @pagy.count.nil? || @pagy.count > 0 || @template_folders.present? %>
-        <div class="mr-2">
-          <%= render 'dashboard/toggle_view', selected: 'templates' %>
-        </div>
+  <div class="group/header flex justify-between items-center w-full relative <%= 'mb-4' unless turbo_native_app? %>">
+    <% unless turbo_native_app? %>
+      <% unless show_dropzone %>
+        <%= render 'templates/dashboard_dropzone', style: 'height: 114px' %>
       <% end %>
-      <h1 class="text-2xl truncate md:text-3xl sm:text-4xl font-bold md:block <%= 'hidden' if params[:q].present? %>">
-        <%= t('document_templates_html') %>
-      </h1>
-    </div>
-    <div class="flex space-x-2">
-      <% if params[:q].present? || @pagy.pages > 1 || @template_folders.present? %>
+      <%= render 'templates/dashboard_folder_dropzone', style: 'height: 114px' %>
+      <div class="flex items-center flex-grow min-w-0 max-md:group-has-[search-input:focus-within]/header:hidden <%= 'max-md:hidden' if params[:q].present? %>">
+        <% if has_archived || @pagy.count.nil? || @pagy.count > 0 || @template_folders.present? %>
+          <div class="mr-2">
+            <%= render 'dashboard/toggle_view', selected: 'templates' %>
+          </div>
+        <% end %>
+        <h1 class="text-2xl truncate md:text-3xl sm:text-4xl font-bold md:block <%= 'hidden' if params[:q].present? %>">
+          <%= t('document_templates_html') %>
+        </h1>
+      </div>
+    <% end %>
+    <div class="flex space-x-2 max-md:has-[search-input:focus-within]:grow <%= 'max-md:grow' if params[:q].present? %>">
+      <% if params[:q].present? || @pagy.count.nil? || @pagy.count > 1 || @template_folders.present? %>
         <%= render 'shared/search_input' %>
       <% end %>
-      <% if can?(:create, ::Template) %>
+      <% if can?(:create, ::Template) && !turbo_native_app? %>
         <span class="hidden sm:block">
           <%= render 'templates/upload_button' %>
         </span>
-        <%= link_to new_template_path, class: 'white-button !border gap-2', data: { turbo_frame: :modal } do %>
-          <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
-          <span class="hidden md:block"><%= t('create') %></span>
-        <% end %>
+        <open-modal-mobile data-disabled="<%= !Docuseal.multitenant? %>" class="flex">
+          <%= link_to new_template_path, class: 'white-button !border gap-2', data: { turbo_frame: :modal, native_modal: :medium } do %>
+            <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
+            <span class="hidden md:block"><%= t('create') %></span>
+          <% end %>
+        </open-modal-mobile>
       <% end %>
     </div>
   </div>
   <% view_archived_html = capture do %>
     <% if has_archived %>
       <div>
-        <a href="<%= templates_archived_index_path %>" class="link text-sm"><%= t('view_archived') %></a>
+        <native-action data-placement="menu" data-icon="archive" data-label="<%= t('archived') %>">
+          <a href="<%= templates_archived_index_path %>" class="link text-sm" data-native-title="<%= t('archived') %>"><%= t('view_archived') %></a>
+        </native-action>
       </div>
     <% end %>
   <% end %>
   <% templates_order_select_html = capture do %>
-    <% if params[:q].blank? && @pagy.pages > 1 %>
-      <%= render 'shared/templates_order_select', with_recently_used: @pagy.count.present? && @pagy.count < 10_000 && !can?(:manage, :countless), selected_order: %>
+    <% if params[:q].blank? && @pagy.pages > 1 && !can?(:manage, :countless) %>
+      <%= render 'shared/templates_order_select', with_recently_used: @pagy.count.present? && @pagy.count < 1_000, selected_order: %>
     <% end %>
   <% end %>
-  <% if @template_folders.present? %>
+  <% if @template_folders.present? || @show_default_folder || @show_shared_folder %>
     <div class="grid gap-4 md:grid-cols-3 <%= 'mb-6' if @templates.present? %>">
+      <% if @show_default_folder %>
+        <%= render 'template_folders/folder', folder: @default_folder %>
+      <% end %>
+      <% if @show_shared_folder %>
+        <%= render 'template_folders/shared_folder' %>
+      <% end %>
       <%= render partial: 'template_folders/folder', collection: @template_folders, as: :folder %>
+      <%= render 'shared/infinite_scroll', pagy: @pagy if turbo_native_app? && @templates.blank? %>
     </div>
   <% end %>
   <% if @templates.present? %>
     <div class="grid gap-4 md:grid-cols-3">
       <%= render partial: 'templates/template', collection: @templates %>
+      <%= render 'shared/infinite_scroll', pagy: @pagy if turbo_native_app? %>
       <% if (show_dropzone && current_user.created_at > 2.weeks.ago && current_user == true_user) || params[:tour] == 'true' %>
         <% user_config = current_user.user_configs.find_or_initialize_by(key: UserConfig::SHOW_APP_TOUR) %>
         <% if user_config.new_record? || user_config.value || params[:tour] == 'true' %>
@@ -68,7 +82,7 @@
                   <%= t('welcome_to_docuseal') %>
                 </div>
                 <div class="my-2 text-center text-xs text-base-content/70">
-                  <%= t('start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document') %>
+                  <%= t('start_a_quick_tour_to_learn_how_to_create_and_send_your_first_document') %>
                 </div>
                 <div class="flex gap-2 mt-3 w-full">
                   <remove-on-event data-on="submit" data-selector-id="app_tour_manager" class="block w-full">
@@ -113,4 +127,4 @@
     <%= render 'shared/pagination', pagy: @related_submissions_pagy, items_name: 'submissions', next_page_path: submissions_path(q: params[:q]) %>
   <% end %>
 <% end %>
-<%= render 'shared/review_form' %>
+<%= render 'shared/review_form' unless turbo_native_app? %>

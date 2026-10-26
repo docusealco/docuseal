@@ -3,7 +3,7 @@
 class EmailSmtpSettingsController < ApplicationController
   before_action :load_encrypted_config
   authorize_resource :encrypted_config, only: :index
-  authorize_resource :encrypted_config, parent: false, only: :create
+  authorize_resource :encrypted_config, parent: false, only: %i[create destroy]
 
   def index; end
 
@@ -21,6 +21,12 @@ class EmailSmtpSettingsController < ApplicationController
     flash[:alert] = e.message
 
     render :index, status: :unprocessable_content
+  end
+
+  def destroy
+    @encrypted_config.destroy!
+
+    redirect_to settings_email_index_path, notice: I18n.t('smtp_settings_have_been_reset')
   end
 
   private

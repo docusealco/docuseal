@@ -4,16 +4,16 @@ class VerifyPdfSignatureController < ApplicationController
   skip_authorization_check
 
   def create
-    pdfs =
-      params[:files].map do |file|
-        HexaPDF::Document.new(io: file.open)
-      end
-
     trusted_certs = Accounts.load_trusted_certs(current_account)
 
+    signatures =
+      params[:files].map do |file|
+        VerifyPdfSignature.call(file.open, trusted_certs)
+      end
+
     render turbo_stream: turbo_stream.replace('result', partial: 'result',
-                                                        locals: { pdfs:, files: params[:files], trusted_certs: })
-  rescue HexaPDF::MalformedPDFError
+                                                        locals: { signatures:, files: params[:files] })
+  rescue Pdfium::PdfiumError
     render turbo_stream: turbo_stream.replace('result', html: helpers.tag.div(I18n.t('invalid_pdf'), id: 'result'))
   end
 end
