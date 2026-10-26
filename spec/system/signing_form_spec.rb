@@ -1317,6 +1317,29 @@ RSpec.describe 'Signing Form' do
       expect(submitter.completed_at).to be_present
       expect(field_value(submitter, 'First Name')).to eq 'John Doe'
     end
+
+    it 'completes a form containing only readonly fields' do
+      template.fields.each do |field|
+        field['readonly'] = true
+        field['default_value'] = "Default #{field['name']}"
+      end
+      template.save!
+      submission.update!(template_fields: template.fields)
+
+      visit submit_form_path(slug: submitter.slug)
+
+      expect(page).to have_css('#complete_button_container button')
+
+      find('#complete_button_container button').click
+
+      expect(page).to have_content('Form has been completed!')
+
+      submitter.reload
+
+      expect(submitter.completed_at).to be_present
+      expect(field_value(submitter, 'First Name')).to eq 'Default First Name'
+      expect(field_value(submitter, 'Birthday')).to eq 'Default Birthday'
+    end
   end
 
   context 'when a view-only party opens the form' do
@@ -1339,6 +1362,7 @@ RSpec.describe 'Signing Form' do
 
       expect(page).to have_content(template.name)
       expect(page).to have_no_css('#form_container')
+      expect(page).to have_no_css('#complete_button_container')
     end
   end
 end
