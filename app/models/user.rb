@@ -107,7 +107,12 @@ class User < ApplicationRecord
   end
 
   def initials
-    [first_name&.first, last_name&.first].compact_blank.join.upcase
+    value = [first_name&.first, last_name&.first].compact_blank.join.upcase
+
+    # CJK names produce two full-width characters which do not fit the avatar circle
+    return value[0] if value.match?(/\p{Han}/)
+
+    value
   end
 
   def full_name
