@@ -14,7 +14,7 @@
 <% delegate_modal_id = nil %>
 <% banner_html = turbo_native_app? ? '' : local_assigns[:banner_html] %>
 <div style="max-height: -webkit-fill-available;">
-  <main id="scrollbox">
+  <div id="scrollbox">
     <div id="sr_only_content"></div>
     <div class="mx-auto block pb-72" style="max-width: 1000px">
       <%# flex block w-full sticky top-0 z-50 space-x-2 items-center bg-yellow-100 p-2 border-y border-yellow-200 transition-transform duration-300 %>
@@ -172,7 +172,7 @@
         <% end %>
       <% end %>
     </div>
-  </main>
+  </div>
 </div>
 <div class="fixed bottom-0 w-full h-0 z-50">
   <div class="mx-auto" style="max-width: 1000px">

@@ -65,6 +65,7 @@ module Submitters
       submissions = submissions.where(source:) if source
 
       Submitter
+        .where(template_id: template.id)
         .where(submission: submissions)
         .order(id: :desc)
         .where(declined_at: nil)

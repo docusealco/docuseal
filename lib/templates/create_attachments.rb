@@ -6,7 +6,7 @@ module Templates
     ZIP_CONTENT_TYPE = 'application/zip'
     X_ZIP_CONTENT_TYPE = 'application/x-zip-compressed'
     JSON_CONTENT_TYPE = 'application/json'
-    WORD_EXTENSIONS = %w[.docx .doc .rtf].freeze
+    WORD_EXTENSIONS = %w[.docx .doc .odt .rtf].freeze
     DOCUMENT_EXTENSIONS = %w[.docx .doc .xlsx .xls .odt .rtf].freeze
 
     DOCUMENT_CONTENT_TYPES = %w[

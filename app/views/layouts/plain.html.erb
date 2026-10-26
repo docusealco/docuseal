@@ -13,8 +13,10 @@
     <%= stylesheet_pack_tag 'application', media: 'all', data: { turbo_track: 'dynamic' } %>
   </head>
   <body>
-    <% if flash.present? %><%= render 'shared/flash' %><% end %>
-    <%= yield %>
+    <main>
+      <%= yield %>
+    </main>
     <turbo-frame id="modal"></turbo-frame>
+    <% if flash.present? %><%= render 'shared/flash' %><% end %>
   </body>
 </html>

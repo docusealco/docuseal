@@ -572,15 +572,15 @@ GEM
       base64
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    wordcraft (0.8.0-aarch64-linux-gnu)
+    wordcraft (0.11.0-aarch64-linux-gnu)
       ffi (>= 1.15)
-    wordcraft (0.8.0-aarch64-linux-musl)
+    wordcraft (0.11.0-aarch64-linux-musl)
       ffi (>= 1.15)
-    wordcraft (0.8.0-arm64-darwin)
+    wordcraft (0.11.0-arm64-darwin)
       ffi (>= 1.15)
-    wordcraft (0.8.0-x86_64-linux-gnu)
+    wordcraft (0.11.0-x86_64-linux-gnu)
       ffi (>= 1.15)
-    wordcraft (0.8.0-x86_64-linux-musl)
+    wordcraft (0.11.0-x86_64-linux-musl)
       ffi (>= 1.15)
     xlsxtream (3.1.0)
       zip_kit (>= 6.2, < 7)
@@ -664,7 +664,7 @@ DEPENDENCIES
   xlsxtream
 
 RUBY VERSION
-  ruby 4.0.5
+  ruby 4.0.9
 
 BUNDLED WITH
   4.0.3

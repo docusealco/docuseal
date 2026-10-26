@@ -11,7 +11,7 @@
 <% with_timestamp_seconds = configs.find { |e| e.key == AccountConfig::WITH_TIMESTAMP_SECONDS_KEY }&.value == true %>
 <% with_signature_id_reason = configs.find { |e| e.key == AccountConfig::WITH_SIGNATURE_ID_REASON_KEY }&.value != false %>
 <% with_signature_id_completed_at = configs.find { |e| e.key == AccountConfig::WITH_SIGNATURE_ID_COMPLETED_AT_KEY }&.value == true %>
-<main style="max-width: 1600px" class="mx-auto pl-4">
+<div style="max-width: 1600px" class="mx-auto pl-4">
   <% unless native_tab == 'recipients' %>
     <div class="flex justify-between items-center pr-4 sticky top-0 md:relative z-10 bg-base-100 <%= 'py-1.5' unless turbo_native_app? %>">
       <% unless turbo_native_app? %>
@@ -394,7 +394,7 @@
       </label>
     </toggle-visible>
   <% end %>
-</main>
+</div>
 <% unless request.headers['HTTP_X_TURBO_REQUEST_ID'] %>
   <%= render 'scripts/autosize_field' %>
 <% end %>

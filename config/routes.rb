@@ -25,8 +25,6 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     resource :user, only: %i[show]
-    resources :attachments, only: %i[create]
-    resources :submitter_email_clicks, only: %i[create]
     resources :submitter_form_views, only: %i[create]
     resources :submitters, only: %i[index show update]
     resources :submissions, only: %i[index show create update destroy] do
@@ -128,13 +126,7 @@ Rails.application.routes.draw do
                          controller: 'api/active_storage_blobs_proxy'
 
   if Docuseal.multitenant?
-    resource :blobs_proxy_legacy, only: %i[show],
-                                  path: '/blobs/proxy/:signed_id/*filename',
-                                  controller: 'api/active_storage_blobs_proxy_legacy',
-                                  as: :rails_blob
-    get '/disk/:encoded_key/*filename' => 'active_storage/disk#show', as: :rails_disk_service
-    put '/disk/:encoded_token' => 'active_storage/disk#update', as: :update_rails_disk_service
-    post '/direct_uploads' => 'active_storage/direct_uploads#create', as: :rails_direct_uploads
+    get '/disk/:encoded_key/*filename' => 'active_storage/disk#show', as: :rails_disk_service if Rails.env.local?
 
     ActiveSupport.run_load_hooks(:multitenant_routes, self)
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_30_061927) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_25_120002) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
   enable_extension "pg_catalog.plpgsql"
@@ -424,6 +424,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_30_061927) do
     t.datetime "sent_at"
     t.string "slug", null: false
     t.bigint "submission_id", null: false
+    t.bigint "template_id"
     t.string "timezone"
     t.string "ua"
     t.datetime "updated_at", null: false
@@ -431,10 +432,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_30_061927) do
     t.text "values", null: false
     t.index ["account_id", "completed_at"], name: "index_submitters_on_account_id_and_completed_at", where: "(completed_at IS NOT NULL)"
     t.index ["account_id", "id"], name: "index_submitters_on_account_id_and_id"
-    t.index ["email"], name: "index_submitters_on_email"
+    t.index ["email", "template_id"], name: "index_submitters_on_email_and_template_id", where: "(email IS NOT NULL)"
     t.index ["external_id"], name: "index_submitters_on_external_id"
     t.index ["slug"], name: "index_submitters_on_slug", unique: true
     t.index ["submission_id"], name: "index_submitters_on_submission_id"
+    t.index ["template_id", "id"], name: "index_submitters_on_template_id_and_id"
   end
 
   create_table "template_accesses", force: :cascade do |t|

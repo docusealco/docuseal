@@ -61,6 +61,7 @@ class AccountConfig < ApplicationRecord
   DOCUMENT_FILENAME_FORMAT_KEY = 'document_filename_format'
   TEMPLATE_CUSTOM_FIELDS_KEY = 'template_custom_fields'
   TEMPLATE_DATE_FORMATS_KEY = 'template_date_formats'
+  TEMPLATE_BUILDER_AUTOSAVE_KEY = 'template_builder_autosave'
   POLICY_LINKS_KEY = 'policy_links'
   ENABLE_MCP_KEY = 'enable_mcp'
 
