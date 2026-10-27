@@ -66,7 +66,7 @@ class WebhookSettingsController < ApplicationController
 
     SendTestWebhookRequestJob.perform_async(
       'submitter_id' => submitter.id,
-      'event_uuid' => SecureRandom.uuid,
+      'event_uuid' => SecureRandom.uuid_v7,
       'webhook_url_id' => @webhook_url.id
     )
 
