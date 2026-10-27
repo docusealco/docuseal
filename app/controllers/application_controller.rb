@@ -99,10 +99,6 @@ class ApplicationController < ActionController::Base
     I18n.with_locale(locale, &)
   end
 
-  def lang
-    params[:lang].presence
-  end
-
   def with_browser_locale(&)
     return yield if I18n.locale != :'en-US' && I18n.locale != :en
 

@@ -173,4 +173,8 @@ class StartFormController < ApplicationController
     redirect_to start_form_path(template.slug, lang:, params: submitter_params.merge(email_verification: true)),
                 alert: I18n.t(:too_many_attempts)
   end
+
+  def lang
+    params[:lang].presence
+  end
 end

@@ -54,4 +54,8 @@ class SubmitFormEmail2fasController < ApplicationController
   def load_submitter
     @submitter = Submitter.find_by!(slug: params[:submitter_slug])
   end
+
+  def lang
+    params[:lang].presence
+  end
 end

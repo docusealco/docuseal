@@ -144,4 +144,8 @@ class SubmitFormController < ApplicationController
     ActiveStorage::Attachment.where(record: submission.submitters, name: :attachments)
                              .preload(:blob).index_by(&:uuid)
   end
+
+  def lang
+    params[:lang].presence
+  end
 end

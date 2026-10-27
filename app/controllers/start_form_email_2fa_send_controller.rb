@@ -66,4 +66,8 @@ class StartFormEmail2faSendController < ApplicationController
       attrs[:email] = Submissions.normalize_email(attrs[:email])
     end
   end
+
+  def lang
+    params[:lang].presence
+  end
 end
