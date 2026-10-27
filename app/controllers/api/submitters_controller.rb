@@ -179,19 +179,20 @@ module Api
       submitters = submitters.where(external_id: params[:external_id]) if params[:external_id].present?
       submitters = submitters.where(slug: params[:slug]) if params[:slug].present?
       submitters = submitters.where(submission_id: params[:submission_id]) if params[:submission_id].present?
-      submitters = filter_submitters_by_template_id(submitters, params[:template_id]) if params[:template_id].present?
+      submitters = filter_submitters_by_template_id(submitters, params) if params[:template_id].present?
 
       maybe_filter_by_completed_at(submitters, params)
     end
 
-    def filter_submitters_by_template_id(submitters, template_id)
-      return submitters.where(template_id:) if template_id.is_a?(Array)
+    def filter_submitters_by_template_id(submitters, params)
+      return submitters.where(template_id: params[:template_id]) if params[:template_id].is_a?(Array)
 
-      template = Template.find_by(id: template_id)
+      template = Template.find_by(id: params[:template_id])
 
       return submitters.none if template.nil? || !can?(:read, template)
 
-      if template.account_id == current_user.account_id
+      if template.account_id == current_user.account_id &&
+         params[:completed_after].blank? && params[:completed_before].blank?
         account_id_bind = Submitter.predicate_builder.build_bind_attribute('account_id', current_user.account_id)
 
         submitters = submitters.unscope(where: :account_id)
