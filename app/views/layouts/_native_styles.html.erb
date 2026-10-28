@@ -7,4 +7,21 @@
     -webkit-user-drag: none;
     -webkit-touch-callout: none;
   }
+
+  <% if turbo_native_android? %>
+  input[type="date"] {
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+  }
+
+  @media (max-width: 767px) {
+    div:has(> #account_settings_menu) + * {
+      margin-top: 0 !important;
+    }
+  }
+  <% end %>
 </style>

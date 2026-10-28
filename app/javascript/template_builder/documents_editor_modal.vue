@@ -260,7 +260,7 @@
           </div>
           <div
             class="flex-none px-4 border-t pt-3 flex flex-col gap-3 md:w-56 md:border-t-0 md:border-l md:py-4 md:gap-0"
-            :class="{ 'pb-3': !inline }"
+            :class="{ 'pb-3': !inline || nativePlatform === 'android' }"
           >
             <div class="grid grid-cols-4 gap-2 md:block md:space-y-2">
               <button

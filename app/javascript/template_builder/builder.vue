@@ -772,7 +772,7 @@
       class="sticky bottom-0 z-20"
     >
       <native-action
-        v-if="nativePlatform && withDocumentsList && (isBreakpointLg || isMobile) && sortedDocuments.length && editable"
+        v-if="nativePlatform && withDocumentsList && (isBreakpointLg || isMobile) && editable"
         data-placement="drawer"
         data-side="leading"
         data-icon="files"
@@ -782,7 +782,7 @@
         data-view="documents"
       />
       <native-action
-        v-if="nativePlatform && withFieldsList && isBreakpointLg && sortedDocuments.length && editable"
+        v-if="nativePlatform && withFieldsList && isBreakpointLg && editable"
         data-placement="drawer"
         data-side="trailing"
         data-icon="plus"
