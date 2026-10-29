@@ -92,6 +92,7 @@ module Submissions
 
       pkcs = Accounts.load_signing_pkcs(account)
       tsa_url = Accounts.load_timeserver_url(account)
+      tsa_headers = Accounts.load_timeserver_headers(account)
 
       image_pdfs = []
       original_documents = submission.schema_documents.preload(:blob)
@@ -108,7 +109,7 @@ module Submissions
             image_pdfs << pdf
           end
 
-          build_pdf_attachment(pdf:, submitter:, pkcs:, tsa_url:,
+          build_pdf_attachment(pdf:, submitter:, pkcs:, tsa_url:, tsa_headers:,
                                uuid: item['attachment_uuid'],
                                name: item['name'])
         end
@@ -764,7 +765,7 @@ module Submissions
       pdfs_index
     end
 
-    def build_pdf_attachment(pdf:, submitter:, pkcs:, tsa_url:, uuid:, name:)
+    def build_pdf_attachment(pdf:, submitter:, pkcs:, tsa_url:, uuid:, name:, tsa_headers: {})
       io = StringIO.new
 
       pdf.trailer.info[:Creator] = info_creator
@@ -779,7 +780,7 @@ module Submissions
       if sign_reason && pkcs
         sign_params = {
           reason: sign_reason,
-          **build_signing_params(submitter, pkcs, tsa_url)
+          **build_signing_params(submitter, pkcs, tsa_url, tsa_headers)
         }
 
         pdf.pages.first[:Annots] = [] unless pdf.pages.first[:Annots].respond_to?(:<<)
@@ -830,7 +831,7 @@ module Submissions
       io
     end
 
-    def build_signing_params(_submitter, pkcs, tsa_url)
+    def build_signing_params(_submitter, pkcs, tsa_url, tsa_headers = {})
       params = {
         certificate: pkcs.certificate,
         key: pkcs.key,
@@ -838,7 +839,7 @@ module Submissions
       }
 
       if tsa_url
-        params[:timestamp_handler] = Submissions::TimestampHandler.new(tsa_url:)
+        params[:timestamp_handler] = Submissions::TimestampHandler.new(tsa_url:, headers: tsa_headers)
         params[:signature_size] = 20_000
       end
 
