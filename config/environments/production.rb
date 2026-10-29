@@ -103,7 +103,22 @@ Rails.application.configure do
   config.active_support.report_deprecations = false
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
-  config.log_formatter = Logger::Formatter.new
+  json_formatter = Logger::Formatter.new
+  json_formatter.define_singleton_method(:call) do |severity, time, _progname, msg|
+    data = { ts: time.utc.iso8601(3), pid: Process.pid, lvl: severity }
+    data[:tags] = current_tags.join(',') if current_tags.any?
+
+    if msg.is_a?(Hash)
+      data.merge!(msg)
+    else
+      data[:msg] = msg2str(msg)
+    end
+
+    "#{data.to_json}\n"
+  end
+  json_formatter.define_singleton_method(:tags_text) { '' }
+
+  config.log_formatter = ENV['LOG_FORMATTER'] == 'json' ? json_formatter : Logger::Formatter.new
 
   # Use a different logger for distributed setups.
   # require "syslog/logger"
@@ -129,7 +144,12 @@ Rails.application.configure do
   config.lograge.enabled = true
   config.lograge.base_controller_class = ['ActionController::API', 'ActionController::Base']
 
-  config.lograge.formatter = ->(data) { data.except(:path, :location).to_json }
+  config.lograge.formatter =
+    if ENV['LOG_FORMATTER'] == 'json'
+      ->(data) { data.except(:path, :location) }
+    else
+      ->(data) { data.except(:path, :location).to_json }
+    end
 
   config.lograge.custom_payload do |controller|
     params =

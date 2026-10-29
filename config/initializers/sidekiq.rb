@@ -12,3 +12,7 @@ if !ENV['SIDEKIQ_BASIC_AUTH_PASSWORD'].to_s.empty? && defined?(Sidekiq::Web)
 end
 
 Sidekiq.strict_args!
+
+Sidekiq.configure_server do |config|
+  config.logger.formatter = Sidekiq::Logger::Formatters::JSON.new if ENV['LOG_FORMATTER'] == 'json'
+end
