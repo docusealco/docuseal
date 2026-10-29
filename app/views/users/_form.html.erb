@@ -1,4 +1,4 @@
-<%= form_for user, html: { class: 'space-y-4' }, data: { turbo_frame: :_top } do |f| %>
+<%= form_for user, html: { class: "space-y-4 #{'px-4' if turbo_native_android?}" }, data: { turbo_frame: :_top } do |f| %>
   <div class="space-y-2">
     <div class="flex space-x-4">
       <div class="w-full">

@@ -4,7 +4,9 @@ class UserSignaturesController < ApplicationController
   before_action :load_user_config
   authorize_resource :user_config
 
-  def edit; end
+  def edit
+    render layout: turbo_native_android? ? 'plain' : true
+  end
 
   def update
     file = params[:file]

@@ -1,6 +1,6 @@
 <%= render 'shared/turbo_modal', title: t('update_initials') do %>
   <% options = [[t('draw'), 'draw'], [t('upload'), 'upload']] %>
-  <toggle-visible data-element-ids="<%= options.map(&:last).to_json %>" class="relative text-center block <%= 'mt-4' unless turbo_native_app? %>">
+  <toggle-visible data-element-ids="<%= options.map(&:last).to_json %>" class="relative text-center block <%= turbo_native_app? ? ('mt-1.5' if turbo_native_android?) : 'mt-4' %>">
     <div class="join">
       <% options.each_with_index do |(label, value), index| %>
         <span>
@@ -12,7 +12,7 @@
       <% end %>
     </div>
   </toggle-visible>
-  <div id="draw" class="mt-3">
+  <div id="draw" class="mt-3 <%= 'px-4' if turbo_native_android? %>">
     <%= form_for @user_config, url: user_initials_path, method: :put, data: { turbo_frame: :_top }, html: { autocomplete: :off, enctype: 'multipart/form-data' } do |f| %>
       <signature-form class="relative block">
         <a class="absolute top-1 right-1 link text-sm" data-target="signature-form.clear" href="#"><%= t('clear') %></a>
@@ -24,7 +24,7 @@
       </signature-form>
     <% end %>
   </div>
-  <div id="upload" class="hidden mt-3">
+  <div id="upload" class="hidden mt-3 <%= 'px-4' if turbo_native_android? %>">
     <%= form_for @user_config, url: user_initials_path, method: :put, data: { turbo_frame: :_top }, html: { autocomplete: :off, enctype: 'multipart/form-data' } do |f| %>
       <file-dropzone data-submit-on-upload="true" class="w-full">
         <label for="file" class="w-full block h-32 relative bg-base-200 hover:bg-base-200/70 rounded-md border border-base-content border-dashed">

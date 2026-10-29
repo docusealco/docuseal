@@ -5,7 +5,7 @@
       class="absolute top-0 bottom-0 right-0 left-0"
       @click.prevent="$emit('close')"
     />
-    <div :class="inline ? 'px-4 pt-3 pb-6' : 'modal-box pt-4 pb-6 mt-20 w-full'">
+    <div :class="inline ? (nativePlatform === 'android' ? 'px-4 pt-1.5 pb-6' : 'px-4 pt-3 pb-6') : 'modal-box pt-4 pb-6 mt-20 w-full'">
       <div
         v-if="!inline"
         class="flex justify-between items-center border-b pb-2 mb-3 font-medium"
@@ -63,7 +63,7 @@ import { IconUser, IconInnerShadowTop } from '@tabler/icons-vue'
 export default {
   name: 'RevisionsModal',
   components: { IconUser, IconInnerShadowTop },
-  inject: ['t', 'baseFetch'],
+  inject: ['t', 'baseFetch', 'nativePlatform'],
   props: {
     template: {
       type: Object,

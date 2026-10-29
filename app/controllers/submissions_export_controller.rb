@@ -25,5 +25,7 @@ class SubmissionsExportController < ApplicationController
     end
   end
 
-  def new; end
+  def new
+    render layout: turbo_native_android? ? 'plain' : true
+  end
 end

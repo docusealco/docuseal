@@ -7,7 +7,7 @@
       class="absolute top-0 bottom-0 right-0 left-0"
       @click.prevent="$emit('close')"
     />
-    <div :class="inline ? 'px-4 pt-3 pb-6' : 'modal-box pt-4 pb-6 px-6 mt-20 w-full max-w-xl'">
+    <div :class="inline ? (nativePlatform === 'android' ? 'px-4 pt-1.5 pb-6' : 'px-4 pt-3 pb-6') : 'modal-box pt-4 pb-6 px-6 mt-20 w-full max-w-xl'">
       <div
         v-if="!inline"
         class="flex justify-between items-center border-b pb-2 mb-2 font-medium"
@@ -33,7 +33,7 @@
           >{{ t('available_in_pro') }}</a>
         </div>
         <form @submit.prevent="validateSaveAndClose">
-          <div class="my-4">
+          <div :class="inline && nativePlatform === 'android' ? 'mt-1 mb-4' : 'my-4'">
             <div
               v-for="(condition, cindex) in conditions"
               :key="cindex"
@@ -168,7 +168,7 @@
 <script>
 export default {
   name: 'ConditionModal',
-  inject: ['t', 'template', 'withConditions'],
+  inject: ['t', 'template', 'withConditions', 'nativePlatform'],
   props: {
     item: {
       type: Object,

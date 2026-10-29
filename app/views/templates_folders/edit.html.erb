@@ -1,7 +1,7 @@
 <% with_subfolder = @template.folder.name != TemplateFolder::DEFAULT_NAME && params[:subfolder] != 'false' %>
 <%= render 'shared/turbo_modal', title: t('move_into_folder') do %>
   <% if with_subfolder %>
-    <%= form_for '', url: template_folder_path(@template), method: :put, data: { turbo_frame: :_top }, html: { id: 'subfolder_form', autocomplete: :off } do |f| %>
+    <%= form_for '', url: template_folder_path(@template), method: :put, data: { turbo_frame: :_top }, html: { id: 'subfolder_form', autocomplete: :off, class: ('px-4' if turbo_native_android?) } do |f| %>
       <%= f.hidden_field :parent_name, value: @template.folder.parent_folder&.name || @template.folder.name %>
       <toggle-visible data-element-ids="<%= %w[folder_form subfolder_form].to_json %>" class="block relative" data-focus-id="name">
         <div class="flex items-center justify-between mb-2.5">
@@ -25,7 +25,7 @@
       </div>
     <% end %>
   <% end %>
-  <%= form_for '', url: template_folder_path(@template), method: :put, data: { turbo_frame: :_top }, html: { id: 'folder_form', autocomplete: :off, class: "mt-6 #{'hidden' if with_subfolder}" } do |f| %>
+  <%= form_for '', url: template_folder_path(@template), method: :put, data: { turbo_frame: :_top }, html: { id: 'folder_form', autocomplete: :off, class: "#{turbo_native_android? ? 'mt-1.5 px-4' : 'mt-6'} #{'hidden' if with_subfolder}" } do |f| %>
     <div class="form-control mb-6">
       <folder-autocomplete class="block" data-submit-on-select="true" data-enabled="<%= params[:autocomplete] != 'false' %>">
         <%= f.text_field :name, required: true, placeholder: "#{t('new_folder_name')}...", class: 'base-input w-full', autofocus: true %>

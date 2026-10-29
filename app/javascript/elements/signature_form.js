@@ -55,7 +55,7 @@ export default targetable(class extends HTMLElement {
 
     this.input.files = dataTransfer.files
 
-    if (this.input.webkitEntries.length) {
+    if (this.input.webkitEntries?.length) {
       this.input.dataset.file = `${dataTransfer.files[0].name}`
     }
 
