@@ -160,7 +160,7 @@ module Accounts
   def normalize_timezone(timezone)
     tzinfo = TZInfo::Timezone.get(ActiveSupport::TimeZone::MAPPING[timezone] || timezone)
 
-    ::ActiveSupport::TimeZone.all.find { |e| e.tzinfo == tzinfo }&.name || timezone
+    ::ActiveSupport::TimeZone.all.find { |e| e.tzinfo.canonical_zone == tzinfo.canonical_zone }&.name || timezone
   rescue TZInfo::InvalidTimezoneIdentifier
     'UTC'
   end
