@@ -22,7 +22,7 @@ ActiveSupport.on_load(:active_storage_attachment) do
   end
 end
 
-# rubocop:disable Metrics/BlockLength
+# rubocop:disable-next Metrics/BlockLength
 ActiveSupport.on_load(:active_storage_blob) do
   attribute :uuid, :string, default: -> { SecureRandom.uuid }
   attribute :io_data, :string, default: ''
@@ -59,7 +59,6 @@ ActiveSupport.on_load(:active_storage_blob) do
     service.delete(key)
   end
 end
-# rubocop:enable Metrics/BlockLength
 
 ActiveStorage::LogSubscriber.detach_from(:active_storage) if Rails.env.production?
 

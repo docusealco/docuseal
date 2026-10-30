@@ -30,7 +30,7 @@ module Mcp
       }
     }.freeze
 
-    # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+    # rubocop:disable-next Metrics/AbcSize, Metrics/MethodLength
     def call
       account = current_user.account
 
@@ -87,6 +87,5 @@ module Mcp
         edit_url: edit_template_url(@template)
       )
     end
-    # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
   end
 end

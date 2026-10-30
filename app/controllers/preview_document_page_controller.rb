@@ -53,7 +53,7 @@ class PreviewDocumentPageController < ActionController::API
     File.open(file_path, File::RDWR | File::CREAT, 0o644) do |file|
       file.flock(File::LOCK_EX)
 
-      # rubocop:disable Style/ZeroLengthPredicate
+      # rubocop:disable-next Style/ZeroLengthPredicate
       if file.size.zero?
         cleanup_stale_tempfiles
 
@@ -63,7 +63,6 @@ class PreviewDocumentPageController < ActionController::API
       else
         FileUtils.touch(file_path)
       end
-      # rubocop:enable Style/ZeroLengthPredicate
 
       file.flock(File::LOCK_UN)
 

@@ -32,7 +32,7 @@ module ReplaceEmailVariables
 
   module_function
 
-  # rubocop:disable Metrics
+  # rubocop:disable-next Metrics
   def call(text, submitter:, tracking_event_type: 'click_email', html_escape: false, sig: nil)
     text = replace(text, TEMPLATE_NAME, html_escape:) do
       (submitter.template || submitter.submission.template || submitter.submission).name
@@ -94,7 +94,6 @@ module ReplaceEmailVariables
 
     text.tr(ESCAPED_BRACES, '{}')
   end
-  # rubocop:enable Metrics
 
   def build_documents_links_text(submitter, sig = nil)
     url_options = build_url_options_for(submitter)

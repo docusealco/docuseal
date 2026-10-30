@@ -36,7 +36,7 @@ module Api
       render json: Submitters::SerializeForApi.call(@submitter, with_template: true, with_events: true, params:)
     end
 
-    # rubocop:disable Metrics/MethodLength
+    # rubocop:disable-next Metrics/MethodLength
     def update
       submission = @submitter.submission
       role = submission.template_submitters.find { |e| e['uuid'] == @submitter.uuid }['name']
@@ -84,7 +84,6 @@ module Api
 
       render json: { error: e.message }, status: :unprocessable_content
     end
-    # rubocop:enable Metrics/MethodLength
 
     def submitter_params
       submitter_params = params.key?(:submitter) ? params.require(:submitter) : params

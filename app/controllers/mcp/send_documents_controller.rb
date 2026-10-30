@@ -66,7 +66,7 @@ module Mcp
       }
     }.freeze
 
-    # rubocop:disable Metrics
+    # rubocop:disable-next Metrics
     def call
       @template = Template.accessible_by(current_ability).find(mcp_params['template_id'])
 
@@ -115,6 +115,5 @@ module Mcp
     rescue Submissions::CreateFromSubmitters::BaseError => e
       render_tool_error(e.message)
     end
-    # rubocop:enable Metrics
   end
 end
