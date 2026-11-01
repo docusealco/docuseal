@@ -9,6 +9,7 @@ Out of scope vulnerabilities:
 - CSRF
 - DNSSEC, CAA, CSP headers
 - DNS or email security related
+- SSRF
 - Rate Limiting
 
 Note: We reserve the right to classify any reported vulnerability as out of scope for the bug bounty program.
