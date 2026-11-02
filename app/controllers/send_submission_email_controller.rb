@@ -14,7 +14,7 @@ class SendSubmissionEmailController < ApplicationController
       template = Template.find_by!(slug: params[:template_slug])
 
       @submitter =
-        Submitter.completed.where(submission: template.submissions).find_by(email: params[:email].to_s.downcase)
+        Submitter.completed.where(template_id: template.id).find_by(email: params[:email].to_s.downcase)
     elsif params[:submission_slug]
       submission = Submission.find_by!(slug: params[:submission_slug])
 

@@ -80,7 +80,7 @@ class StartFormController < ApplicationController
     raise ActionController::RoutingError, I18n.t('not_found') if required_params.any? { |_, v| v.blank? } ||
                                                                  required_params.except('name').compact_blank.blank?
 
-    @submitter = Submitter.where(submission: @template.submissions)
+    @submitter = Submitter.where(template_id: @template.id)
                           .where.not(completed_at: nil)
                           .find_by!(required_params.except('name'))
   end
