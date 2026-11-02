@@ -487,8 +487,11 @@ module Submissions
 
         text =
           if event.event_type == 'complete_verification'
-            I18n.t('submission_event_names.complete_verification_by_html', provider: event.data['method'],
-                                                                           submitter_name:)
+            identity_name = [event.data['firstname'], event.data['lastname']].compact_blank.join(' ')
+            identity_name = TextUtils.maybe_rtl_reverse(identity_name) if identity_name.present?
+
+            I18n.t('submission_event_names.complete_verification_by_html',
+                   provider: event.data['method'], submitter_name: identity_name.presence || submitter_name)
           elsif event.event_type == 'invite_party' &&
                 (invited_submitter = submission.submitters.find { |e| e.uuid == event.data['uuid'] }) &&
                 (name = submission.template_submitters.find { |e| e['uuid'] == event.data['uuid'] }&.dig('name'))
