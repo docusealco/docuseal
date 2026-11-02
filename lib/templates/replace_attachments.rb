@@ -4,7 +4,7 @@ module Templates
   module ReplaceAttachments
     module_function
 
-    # rubocop:disable Metrics
+    # rubocop:disable-next Metrics
     def call(template, params = {}, extract_fields: false)
       documents, = Templates::CreateAttachments.call(template, params, extract_fields:)
       submitter = template.submitters.first
@@ -60,6 +60,5 @@ module Templates
 
       documents
     end
-    # rubocop:enable Metrics
   end
 end

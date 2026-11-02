@@ -19,7 +19,7 @@ module Submitters
 
     module_function
 
-    # rubocop:disable Metrics
+    # rubocop:disable-next Metrics
     def call(template, values, submitter_name: nil, role_names: nil, for_submitter: nil, throw_errors: false,
              add_fields: false, purpose: nil)
       fields =
@@ -85,7 +85,6 @@ module Submitters
 
       [normalized_values, attachments, new_fields]
     end
-    # rubocop:enable Metrics
 
     def normalize_value(field, value)
       if field['type'] == 'checkbox'

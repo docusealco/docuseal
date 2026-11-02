@@ -75,7 +75,7 @@ module MarkdownToHtml
     html.presence || '<p></p>'
   end
 
-  # rubocop:disable Metrics
+  # rubocop:disable-next Metrics
   def parse_inline(text)
     context = []
     out = ''
@@ -128,5 +128,4 @@ module MarkdownToHtml
 
     (out + text[last..].to_s + flush.call).gsub('<a>', '[')
   end
-  # rubocop:enable Metrics
 end

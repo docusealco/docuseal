@@ -54,7 +54,7 @@ module WebhookUrls
       webhook_urls = for_account_id(account_id, event_type)
 
       account_records.each do |record|
-        event_uuid = SecureRandom.uuid
+        event_uuid = SecureRandom.uuid_v7
 
         webhook_urls.each do |webhook_url|
           next unless webhook_url.events.include?(event_type)

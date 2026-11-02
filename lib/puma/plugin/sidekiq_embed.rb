@@ -3,7 +3,7 @@
 require 'puma/plugin'
 require 'redis_client'
 
-# rubocop:disable Metrics
+# rubocop:disable-next Metrics
 Puma::Plugin.create do
   def config(cfg)
     return if cfg.instance_variable_get(:@options)[:workers] <= 0
@@ -73,4 +73,3 @@ Puma::Plugin.create do
     end
   end
 end
-# rubocop:enable Metrics

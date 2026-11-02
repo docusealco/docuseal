@@ -1,6 +1,6 @@
 <% filter_params = params.permit(:q, :archived, *Submissions::Filter::ALLOWED_PARAMS) %>
 <%= render 'shared/turbo_modal', title: t('export'), close_after_submit: false do %>
-  <div class="space-y-2">
+  <div class="space-y-2 <%= 'mt-1.5 px-4' if turbo_native_android? %>">
     <%= button_to template_submissions_export_index_path(@template), params: { format: :xlsx, **filter_params }, method: :get, data: { turbo_frame: :_top } do %>
       <div class="flex items-center p-4 text-left rounded-2xl border border-neutral-300 hover:cursor-pointer hover:bg-neutral hover:text-gray-300">
         <div class="enabled">

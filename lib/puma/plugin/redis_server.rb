@@ -2,7 +2,7 @@
 
 require 'puma/plugin'
 
-# rubocop:disable Metrics
+# rubocop:disable-next Metrics
 Puma::Plugin.create do
   def start(launcher)
     return if ENV['LOCAL_REDIS_URL'].to_s.empty?
@@ -68,4 +68,3 @@ Puma::Plugin.create do
     nil
   end
 end
-# rubocop:enable Metrics

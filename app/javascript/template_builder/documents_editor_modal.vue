@@ -36,7 +36,7 @@
         <CropView
           v-if="cropPageItem"
           class="absolute inset-0 z-10 bg-base-100"
-          :style="inline ? { paddingTop: '70px' } : null"
+          :style="inline && nativePlatform === 'ios' ? { paddingTop: '70px' } : null"
           :template-id="template.id"
           :page="cropPageItem"
           :image-url="thumbUrl(cropPageItem)"
@@ -47,7 +47,7 @@
         <RedactView
           v-else-if="redactPageItem"
           class="absolute inset-0 z-10 bg-base-100"
-          :style="inline ? { paddingTop: '70px' } : null"
+          :style="inline && nativePlatform === 'ios' ? { paddingTop: '70px' } : null"
           :template-id="template.id"
           :page="redactPageItem"
           :image-url="thumbUrl(redactPageItem)"
@@ -63,14 +63,14 @@
         >
           <div
             class="flex-1 overflow-y-auto overflow-x-hidden px-4 md:px-6 py-4 space-y-4"
-            :style="inline ? { paddingTop: '86px' } : null"
+            :style="inline && nativePlatform === 'ios' ? { paddingTop: '86px' } : null"
           >
             <div
               v-for="(doc, docIndex) in layout"
               :key="doc.attachmentUuid"
               :data-uuid="doc.attachmentUuid"
               class="relative"
-              :style="inline ? { scrollMarginTop: '86px' } : null"
+              :style="inline && nativePlatform === 'ios' ? { scrollMarginTop: '86px' } : null"
             >
               <div
                 class="flex items-center pb-2"
@@ -191,7 +191,7 @@
                   :key="page.id"
                   :data-page-id="page.id"
                   class="relative min-w-0 cursor-pointer group"
-                  :style="inline ? { scrollMarginTop: '86px' } : null"
+                  :style="inline && nativePlatform === 'ios' ? { scrollMarginTop: '86px' } : null"
                   draggable="true"
                   @click="selectedPageId = page.id"
                   @mousedown="onPageMousedown(page, $event)"
@@ -260,7 +260,7 @@
           </div>
           <div
             class="flex-none px-4 border-t pt-3 flex flex-col gap-3 md:w-56 md:border-t-0 md:border-l md:py-4 md:gap-0"
-            :class="{ 'pb-3': !inline }"
+            :class="{ 'pb-3': !inline || nativePlatform === 'android' }"
           >
             <div class="grid grid-cols-4 gap-2 md:block md:space-y-2">
               <button
@@ -419,7 +419,7 @@ export default {
     IconEraser,
     IconCrop
   },
-  inject: ['t', 'baseFetch'],
+  inject: ['t', 'baseFetch', 'nativePlatform'],
   props: {
     template: {
       type: Object,

@@ -14,6 +14,6 @@ class SubmissionsFiltersController < ApplicationController
   def show
     return head :not_found unless ALLOWED_NAMES.include?(params[:name])
 
-    render params[:name]
+    render params[:name], layout: turbo_native_android? ? 'plain' : true
   end
 end

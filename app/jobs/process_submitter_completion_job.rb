@@ -100,7 +100,7 @@ class ProcessSubmitterCompletionJob
 
     WebhookUrls.for_account_id(submitter.account_id, %w[form.completed submission.completed]).each do |webhook|
       if webhook.events.include?('form.completed')
-        event_uuids['form.completed'] ||= SecureRandom.uuid
+        event_uuids['form.completed'] ||= SecureRandom.uuid_v7
 
         SendFormCompletedWebhookRequestJob.perform_async('submitter_id' => submitter.id,
                                                          'event_uuid' => event_uuids['form.completed'],
@@ -109,7 +109,7 @@ class ProcessSubmitterCompletionJob
 
       next unless webhook.events.include?('submission.completed') && is_last
 
-      event_uuids['submission.completed'] ||= SecureRandom.uuid
+      event_uuids['submission.completed'] ||= SecureRandom.uuid_v7
 
       SendSubmissionCompletedWebhookRequestJob.perform_async('submission_id' => submitter.submission_id,
                                                              'event_uuid' => event_uuids['submission.completed'],

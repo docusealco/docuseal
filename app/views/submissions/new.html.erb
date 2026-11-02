@@ -6,14 +6,14 @@
 <% recipient_form_fields = Accounts.load_recipient_form_fields(current_account) if prefillable_fields.blank? %>
 <% can_send_emails = Accounts.can_send_emails?(current_account) %>
 <% only_detailed = require_phone_2fa || require_email_2fa || prefillable_fields.present? || recipient_form_fields.present? %>
-<% with_list = @template.variables_schema.blank? && (!turbo_native_ios? || can?(:manage, :bulk_send)) %>
-<% with_phone = !turbo_native_ios? || can?(:manage, :sms_verification) %>
+<% with_list = @template.variables_schema.blank? && (!turbo_native_app? || can?(:manage, :bulk_send)) %>
+<% with_phone = !turbo_native_app? || can?(:manage, :sms_verification) %>
 <% default_tab = 'email' if default_tab == 'phone' && !with_phone %>
 <% variables_form = render 'variables_form', schema: @template.variables_schema if @template.variables_schema.present? && @template.variables_schema.any? { |_, v| !v['disabled'] } %>
 <%= render 'shared/turbo_modal_large', title: params[:selfsign] ? t('add_recipients') : t('add_new_recipients') do %>
   <% options = [only_detailed ? nil : [t('via_email'), 'email'], only_detailed || !with_phone ? nil : [t('via_phone'), 'phone'], [t('detailed'), 'detailed'], with_list ? [t('upload_list'), 'list'] : nil].compact %>
   <% if options.size > 1 %>
-    <toggle-visible data-element-ids="<%= options.map(&:last).to_json %>" class="relative text-center px-2 block <%= 'mt-4' unless turbo_native_app? %>">
+    <toggle-visible data-element-ids="<%= options.map(&:last).to_json %>" class="relative text-center px-2 block <%= turbo_native_app? ? ('mt-1.5' if turbo_native_android?) : 'mt-4' %> <%= 'max-sm:hidden' if options.one? { |_, value| value != 'list' } %>">
       <div class="flex justify-center">
         <% options.each_with_index do |(label, value), index| %>
           <%= content_tag(value == 'list' ? 'span' : 'toggle-cookies', data: { value:, key: 'add_recipients_tab' }) do %>

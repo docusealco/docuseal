@@ -384,7 +384,7 @@ module Submitters
       end.exclude?(false)
     end
 
-    # rubocop:disable Metrics
+    # rubocop:disable-next Metrics
     def check_field_condition(condition, submitter_values, fields_uuid_index)
       value = submitter_values[condition['field_uuid']]
       field = fields_uuid_index[condition['field_uuid']]
@@ -437,7 +437,6 @@ module Submitters
         true
       end
     end
-    # rubocop:enable Metrics
 
     def replace_default_variables(value, attrs, submission, with_time: false, field: nil)
       return value if value.in?([true, false]) || value.is_a?(Numeric) || value.is_a?(Array)

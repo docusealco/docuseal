@@ -1,7 +1,7 @@
 <% path_uri = Addressable::URI.parse(params[:path].to_s) %>
 <% path = url_for(**Rails.application.routes.recognize_path(path_uri.path, method: :get)) %>
 <%= render 'shared/turbo_modal', title: local_assigns[:title] do %>
-  <%= form_for '', url: path, method: :get, data: { turbo_frame: :_top }, html: { autocomplete: :off } do |f| %>
+  <%= form_for '', url: path, method: :get, data: { turbo_frame: :_top }, html: { autocomplete: :off, class: ('px-4' if turbo_native_android?) } do |f| %>
     <%= hidden_field_tag :q, params[:q] if params[:q].present? %>
     <%= hidden_field_tag :scope, params[:scope] if params[:scope].present? %>
     <%= hidden_field_tag :archived, params[:archived] if params[:archived].present? %>

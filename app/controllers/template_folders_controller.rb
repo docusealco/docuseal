@@ -41,7 +41,9 @@ class TemplateFoldersController < ApplicationController
     render_infinite_scroll(@pagy, @templates, @template_folders) if turbo_infinite_scroll?
   end
 
-  def edit; end
+  def edit
+    render layout: turbo_native_android? ? 'plain' : true
+  end
 
   def update
     if @template_folder != current_account.default_template_folder &&

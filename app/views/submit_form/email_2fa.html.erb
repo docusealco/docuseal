@@ -34,6 +34,7 @@
         <%= form_for '', url: submit_form_email_2fa_path, method: :post, html: { class: 'space-y-4', id: 'code_form' } do |f| %>
           <div dir="auto" class="form-control !mt-0">
             <%= f.hidden_field :submitter_slug, value: @submitter.slug %>
+            <%= f.hidden_field :lang, value: params[:lang] if params[:lang].present? %>
             <%= f.text_field :one_time_code, required: true, inputmode: 'numeric', class: 'base-input text-center', placeholder: 'XXXXXX' %>
             <div class="flex justify-between items-center mt-1">
               <span>
@@ -55,7 +56,7 @@
             <%= f.button button_title(title: t('submit')), class: 'base-button' %>
           </toggle-submit>
         <% end %>
-        <%= button_to t(:re_send_email), submit_form_email_2fa_path, params: { submitter_slug: @submitter.slug, resend: true }, method: :put, form: { id: 'resend_code_form', class: 'hidden' } %>
+        <%= button_to t(:re_send_email), submit_form_email_2fa_path, params: { submitter_slug: @submitter.slug, resend: true, lang: params[:lang] }.compact_blank, method: :put, form: { id: 'resend_code_form', class: 'hidden' } %>
       <% else %>
         <% if params[:t] %>
           <fetch-form data-onload="true">
@@ -63,7 +64,7 @@
           </fetch-form>
         <% end %>
         <toggle-submit dir="auto" class="form-control">
-          <%= button_to button_title(title: t('send_verification_code')), submit_form_email_2fa_path, params: { submitter_slug: @submitter.slug }, method: :put, class: 'base-button w-full' %>
+          <%= button_to button_title(title: t('send_verification_code')), submit_form_email_2fa_path, params: { submitter_slug: @submitter.slug, lang: params[:lang] }.compact_blank, method: :put, class: 'base-button w-full' %>
         </toggle-submit>
       <% end %>
     <% else %>

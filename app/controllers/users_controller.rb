@@ -31,9 +31,13 @@ class UsersController < ApplicationController
     end
   end
 
-  def new; end
+  def new
+    render layout: turbo_native_android? ? 'plain' : true
+  end
 
-  def edit; end
+  def edit
+    render layout: turbo_native_android? ? 'plain' : true
+  end
 
   def create
     existing_user = User.accessible_by(current_ability).find_by(email: @user.email)

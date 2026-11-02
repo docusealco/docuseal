@@ -22,7 +22,7 @@
 #  index_webhook_events_on_webhook_url_id_and_id    (webhook_url_id,id)
 #
 class WebhookEvent < ApplicationRecord
-  attribute :uuid, :string, default: -> { SecureRandom.uuid }
+  attribute :uuid, :string, default: -> { SecureRandom.uuid_v7 }
 
   belongs_to :webhook_url, optional: true
   belongs_to :account, optional: true

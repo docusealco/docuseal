@@ -43,7 +43,8 @@
           </div>
           <p class="text-base-content/80 mt-1">
             <% if event.event_type == 'complete_verification' %>
-              <%= t('submission_event_names.complete_verification_by_html', provider: event.data['method'], submitter_name:) %>
+              <% identity_name = [event.data['firstname'], event.data['lastname']].compact_blank.join(' ') %>
+              <%= t('submission_event_names.complete_verification_by_html', provider: event.data['method'], submitter_name: identity_name.presence || submitter_name) %>
             <% elsif event.event_type == 'invite_party' && (invited_submitter = @submission.submitters.find { |e| e.uuid == event.data['uuid'] }) && (name = @submission.template_submitters.find { |e| e['uuid'] == event.data['uuid'] }&.dig('name')) %>
               <%= t('submission_event_names.invite_party_by_html', invited_submitter_name: [invited_submitter.name || invited_submitter.email || invited_submitter.phone, name].join(' '), submitter_name:) %>
             <% elsif event.event_type == 'delegate_form' %>

@@ -15,7 +15,8 @@
 #
 # Indexes
 #
-#  index_accounts_on_uuid  (uuid) UNIQUE
+#  index_accounts_on_created_at  (created_at)
+#  index_accounts_on_uuid        (uuid) UNIQUE
 #
 class Account < ApplicationRecord
   attribute :uuid, :string, default: -> { SecureRandom.uuid }

@@ -16,21 +16,21 @@ class StartFormEmail2faSendController < ApplicationController
                           .submitters.new(**submitter_params, account_id: @template.account_id)
 
     if @submitter.email.blank?
-      return redirect_to start_form_path(@template.slug), alert: I18n.t(:provide_your_email_to_start)
+      return redirect_to start_form_path(@template.slug, lang:), alert: I18n.t(:provide_your_email_to_start)
     end
 
     Submitters.send_shared_link_email_verification_code(@submitter, request:)
 
     redir_params = { notice: I18n.t(:code_has_been_resent) } if params[:resend]
 
-    redirect_to start_form_path(@template.slug, params: submitter_params.merge(email_verification: true)),
+    redirect_to start_form_path(@template.slug, lang:, params: submitter_params.merge(email_verification: true)),
                 **redir_params
   rescue Submitters::BouncedEmail => e
     @error_message = e.message
 
     render 'start_form/error', status: :unprocessable_content
   rescue Submitters::UnableToSendCode => e
-    redirect_to start_form_path(@template.slug, params: submitter_params.merge(email_verification: true)),
+    redirect_to start_form_path(@template.slug, lang:, params: submitter_params.merge(email_verification: true)),
                 alert: e.message
   end
 
@@ -65,5 +65,9 @@ class StartFormEmail2faSendController < ApplicationController
     params.require(:submitter).permit(:name, :email, :phone).tap do |attrs|
       attrs[:email] = Submissions.normalize_email(attrs[:email])
     end
+  end
+
+  def lang
+    params[:lang].presence
   end
 end

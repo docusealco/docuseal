@@ -1,11 +1,13 @@
 <script type="application/json" id="native_path_configuration"><%= render partial: 'layouts/native_path_configuration', formats: :json %></script>
 <% if signed_in? %>
-  <native-action data-placement="profile" data-icon="user">
-    <%= link_to t('profile'), settings_profile_index_path %>
-  </native-action>
-  <native-action data-placement="profile" data-icon="settings">
-    <%= link_to t('settings'), settings_path %>
-  </native-action>
+  <% unless turbo_native_android? %>
+    <native-action data-placement="profile" data-icon="user">
+      <%= link_to t('profile'), settings_profile_index_path %>
+    </native-action>
+    <native-action data-placement="profile" data-icon="settings">
+      <%= link_to t('settings'), settings_path %>
+    </native-action>
+  <% end %>
   <% if current_account.testing? && (can?(:manage, EncryptedConfig) || current_user != true_user) %>
     <native-action data-placement="test_mode" data-icon="code" data-label="<%= t('exit_test_mode') %>">
       <%= button_to '', testing_account_path, method: :delete, form: { data: { turbo_action: 'replace' } } %>

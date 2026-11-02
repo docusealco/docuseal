@@ -86,7 +86,7 @@ class Pdfium
     end
   end
 
-  # rubocop:disable Naming/ClassAndModuleCamelCase
+  # rubocop:disable-next Naming/ClassAndModuleCamelCase
   class FPDF_LIBRARY_CONFIG < FFI::Struct
     layout :version, :int,
            :m_pUserFontPaths, :pointer,
@@ -95,7 +95,6 @@ class Pdfium
            :m_pPlatform, :pointer,
            :m_RendererType, :int
   end
-  # rubocop:enable Naming/ClassAndModuleCamelCase
 
   attach_function :FPDF_InitLibraryWithConfig, [:pointer], :void
   attach_function :FPDF_DestroyLibrary, [], :void
@@ -234,7 +233,7 @@ class Pdfium
   typedef :int, :FPDF_BOOL
   typedef :pointer, :IPDF_JSPLATFORM
 
-  # rubocop:disable Naming/ClassAndModuleCamelCase
+  # rubocop:disable-next Naming/ClassAndModuleCamelCase
   class FPDF_FORMFILLINFO_V2 < FFI::Struct
     layout :version, :int,
            :Release, :pointer,
@@ -272,7 +271,6 @@ class Pdfium
            :FFI_OnFocusChange, :pointer,
            :FFI_DoURIActionWithKeyboardModifier, :pointer
   end
-  # rubocop:enable Naming/ClassAndModuleCamelCase
 
   attach_function :FPDFDOC_InitFormFillEnvironment, %i[FPDF_DOCUMENT pointer], :FPDF_FORMHANDLE
   attach_function :FPDFDOC_ExitFormFillEnvironment, [:FPDF_FORMHANDLE], :void

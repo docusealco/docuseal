@@ -21,7 +21,7 @@ module Submissions
       signature[:SubFilter] = :'ETSI.RFC3161'
     end
 
-    # rubocop:disable Metrics
+    # rubocop:disable-next Metrics
     def sign(io, byte_range)
       digest = OpenSSL::Digest.new(HASH_ALGORITHM)
 
@@ -59,7 +59,6 @@ module Submissions
 
       OpenSSL::ASN1::GeneralizedTime.new(Time.now.utc).to_der
     end
-    # rubocop:enable Metrics
 
     def build_payload(digest)
       req = OpenSSL::Timestamp::Request.new

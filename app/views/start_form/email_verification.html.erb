@@ -23,7 +23,7 @@
     <div>
       <%= t('we_sent_a_one_time_verification_code_to_your_email_address_please_enter_the_code_below_to_continue') %>
     </div>
-    <%= form_for '', url: @resubmit_submitter ? resubmit_form_path : start_form_path(@template.slug), method: :put, html: { class: 'space-y-4', id: 'code_form' } do |f| %>
+    <%= form_for '', url: @resubmit_submitter ? resubmit_form_path : start_form_path(@template.slug, lang: params[:lang].presence), method: :put, html: { class: 'space-y-4', id: 'code_form' } do |f| %>
       <div dir="auto" class="form-control !mt-0">
         <%= f.hidden_field 'resubmit', value: params[:resubmit] %>
         <%= f.hidden_field 'submitter[name]', value: params[:name] || params.dig(:submitter, :name) %>
@@ -52,7 +52,7 @@
     <% if @resubmit_submitter %>
       <%= button_to t(:re_send_email), resubmit_form_path, params: { resubmit: @resubmit_submitter.slug }, method: :put, id: 'resend_code', class: 'hidden' %>
     <% else %>
-      <%= button_to t(:re_send_email), start_form_email_2fa_send_index_path, params: { slug: @template.slug, resend: true, submitter: { name: params[:name] || params.dig(:submitter, :name), email: params[:email] || params.dig(:submitter, :email), phone: params[:phone] || params.dig(:submitter, :phone) } }.compact, method: :post, id: 'resend_code', class: 'hidden' %>
+      <%= button_to t(:re_send_email), start_form_email_2fa_send_index_path, params: { slug: @template.slug, resend: true, submitter: { name: params[:name] || params.dig(:submitter, :name), email: params[:email] || params.dig(:submitter, :email), phone: params[:phone] || params.dig(:submitter, :phone) }, lang: params[:lang] }.compact, method: :post, id: 'resend_code', class: 'hidden' %>
     <% end %>
   </div>
 </div>

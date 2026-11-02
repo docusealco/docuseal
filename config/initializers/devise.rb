@@ -34,7 +34,7 @@ end
 #
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
-# rubocop:disable Metrics/BlockLength
+# rubocop:disable-next Metrics/BlockLength
 Devise.setup do |config|
   config.warden do |manager|
     manager.default_strategies(scope: :user).unshift(:two_factor_authenticatable)
@@ -336,4 +336,3 @@ Devise.setup do |config|
 
   ActiveSupport.run_load_hooks(:devise_config, config)
 end
-# rubocop:enable Metrics/BlockLength

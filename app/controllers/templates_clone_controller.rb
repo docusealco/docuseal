@@ -7,6 +7,8 @@ class TemplatesCloneController < ApplicationController
     authorize!(:create, Template)
 
     @template = Template.new(name: "#{@base_template.name} (#{I18n.t('clone')})")
+
+    render layout: turbo_native_android? ? 'plain' : true
   end
 
   def create

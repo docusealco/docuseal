@@ -3,7 +3,9 @@
 class TemplatesFoldersController < ApplicationController
   load_and_authorize_resource :template
 
-  def edit; end
+  def edit
+    render layout: turbo_native_android? ? 'plain' : true
+  end
 
   def update
     authorize!(:update, @template)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_25_120002) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_02_120000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
   enable_extension "pg_catalog.plpgsql"
@@ -62,6 +62,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_25_120002) do
     t.string "timezone", null: false
     t.datetime "updated_at", null: false
     t.string "uuid", null: false
+    t.index ["created_at"], name: "index_accounts_on_created_at"
     t.index ["uuid"], name: "index_accounts_on_uuid", unique: true
   end
 
@@ -361,6 +362,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_25_120002) do
     t.datetime "updated_at", null: false
     t.index ["account_id", "created_at"], name: "index_submissions_events_on_sms_event_types", where: "((event_type)::text = ANY (ARRAY[('send_sms'::character varying)::text, ('send_2fa_sms'::character varying)::text]))"
     t.index ["account_id"], name: "index_submission_events_on_account_id"
+    t.index ["account_id", "created_at"], name: "index_submission_events_on_account_created_at_start_kba", where: "((event_type)::text = 'start_kba'::text)"
     t.index ["created_at"], name: "index_submission_events_on_created_at"
     t.index ["submission_id"], name: "index_submission_events_on_submission_id"
     t.index ["submitter_id"], name: "index_submission_events_on_submitter_id"

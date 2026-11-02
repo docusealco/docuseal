@@ -34,7 +34,7 @@ class StartFormController < ApplicationController
     @submitter = find_or_initialize_submitter(@template, submitter_params)
 
     if @submitter.completed_at?
-      redirect_to start_form_completed_path(@template.slug, submitter_params.compact_blank)
+      redirect_to start_form_completed_path(@template.slug, submitter_params.compact_blank.merge(lang:))
     else
       if Templates.filter_undefined_submitters(@template.submitters).size > 1 && @submitter.new_record?
         @error_message = multiple_submitters_error_message
@@ -59,7 +59,7 @@ class StartFormController < ApplicationController
 
         Submitters::StartForm.assign_start_form_cookie(@submitter, request)
 
-        redirect_to submit_form_path(@submitter.slug)
+        redirect_to submit_form_path(@submitter.slug, lang:)
       else
         render :show, status: :unprocessable_content
       end
@@ -80,7 +80,7 @@ class StartFormController < ApplicationController
     raise ActionController::RoutingError, I18n.t('not_found') if required_params.any? { |_, v| v.blank? } ||
                                                                  required_params.except('name').compact_blank.blank?
 
-    @submitter = Submitter.where(submission: @template.submissions)
+    @submitter = Submitter.where(template_id: @template.id)
                           .where.not(completed_at: nil)
                           .find_by!(required_params.except('name'))
   end
@@ -150,7 +150,7 @@ class StartFormController < ApplicationController
     return render :show, status: :unprocessable_content if submitter.errors.present?
 
     if Submitters::StartForm.verify_2fa_and_save_submitter(submitter, request, is_new_record: submitter.new_record?)
-      redirect_to submit_form_path(submitter.slug)
+      redirect_to submit_form_path(submitter.slug, lang:)
     else
       if defined?(Rollbar) && template.preferences['shared_link_2fa'] != true
         Rollbar.info("2FA link requested: #{submitter.id}")
@@ -167,10 +167,14 @@ class StartFormController < ApplicationController
 
     render :error, status: :unprocessable_content
   rescue Submitters::UnableToSendCode, Submitters::InvalidOtp => e
-    redirect_to start_form_path(template.slug, params: submitter_params.merge(email_verification: true)),
+    redirect_to start_form_path(template.slug, lang:, params: submitter_params.merge(email_verification: true)),
                 alert: e.message
   rescue RateLimit::LimitApproached
-    redirect_to start_form_path(template.slug, params: submitter_params.merge(email_verification: true)),
+    redirect_to start_form_path(template.slug, lang:, params: submitter_params.merge(email_verification: true)),
                 alert: I18n.t(:too_many_attempts)
+  end
+
+  def lang
+    params[:lang].presence
   end
 end

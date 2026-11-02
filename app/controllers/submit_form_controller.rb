@@ -20,7 +20,7 @@ class SubmitFormController < ApplicationController
     return render :email_2fa unless Submitters::AuthorizedForForm.pass_email_2fa?(@submitter, request)
 
     if @submitter.completed_at? || submission.completed_at?
-      return redirect_to submit_form_completed_path(@submitter.slug)
+      return redirect_to submit_form_completed_path(@submitter.slug, lang:)
     end
 
     @form_configs = Submitters::FormConfigs.call(@submitter, CONFIG_KEYS)
@@ -96,7 +96,7 @@ class SubmitFormController < ApplicationController
 
     return if Submitters::AuthorizedForForm.call(@submitter, current_user, request)
 
-    redirect_to submit_form_path(params[:submit_form_slug])
+    redirect_to submit_form_path(params[:submit_form_slug], lang:)
   end
 
   def success; end
@@ -114,7 +114,7 @@ class SubmitFormController < ApplicationController
   def maybe_require_link_2fa
     return if Submitters::AuthorizedForForm.pass_link_2fa?(@submitter, current_user, request)
 
-    redirect_to start_form_path(@submitter.submission.template.slug)
+    redirect_to start_form_path(@submitter.submission.template.slug, lang:)
   end
 
   def maybe_render_locked_page
@@ -143,5 +143,9 @@ class SubmitFormController < ApplicationController
   def build_attachments_index(submission)
     ActiveStorage::Attachment.where(record: submission.submitters, name: :attachments)
                              .preload(:blob).index_by(&:uuid)
+  end
+
+  def lang
+    params[:lang].presence
   end
 end

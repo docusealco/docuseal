@@ -72,9 +72,8 @@ module HexaPDF
         def terminal_field?
           kids = self[:Kids]
 
-          # rubocop:disable Rails/Blank
+          # rubocop:disable-next Rails/Blank
           kids.nil? || kids.empty? || kids.none? { |kid| kid&.key?(:T) }
-          # rubocop:enable Rails/Blank
         end
       end
 

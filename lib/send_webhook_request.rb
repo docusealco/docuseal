@@ -13,7 +13,7 @@ module SendWebhookRequest
 
   module_function
 
-  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable-next Metrics/AbcSize
   def call(webhook_url, event_uuid:, event_type:, record:, data:, attempt: 0)
     uri = parse_uri(webhook_url.url)
 
@@ -53,7 +53,6 @@ module SendWebhookRequest
   rescue Faraday::Error => e
     handle_error(webhook_event, attempt:, error_message: e.message&.truncate(100))
   end
-  # rubocop:enable Metrics/AbcSize
 
   def parse_uri(url)
     URI(url)

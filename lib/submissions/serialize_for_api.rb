@@ -14,7 +14,7 @@ module Submissions
 
     module_function
 
-    # rubocop:disable Metrics
+    # rubocop:disable-next Metrics
     def call(submission, submitters = nil, params = {}, with_events: true, with_documents: true, with_values: true,
              expires_at: Accounts.link_expires_at(Account.new(id: submission.account_id)))
       submitters ||= submission.submitters.preload(documents_attachments: :blob, attachments_attachments: :blob)
@@ -62,7 +62,6 @@ module Submissions
 
       json
     end
-    # rubocop:enable Metrics
 
     def build_status(submission, submitters)
       if submitters.any?(&:declined_at?)

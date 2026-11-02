@@ -20,17 +20,17 @@ class SubmitFormEmail2fasController < ApplicationController
         { value: @submitter.slug, expires: Submitters::StartForm::COOKIES_TTL.from_now,
           **Submitters::StartForm::COOKIES_DEFAULTS }
 
-      redirect_to submit_form_path(@submitter.slug)
+      redirect_to submit_form_path(@submitter.slug, lang:)
     else
-      redirect_to submit_form_path(@submitter.slug, status: :error), alert: I18n.t(:invalid_code)
+      redirect_to submit_form_path(@submitter.slug, status: :error, lang:), alert: I18n.t(:invalid_code)
     end
   rescue RateLimit::LimitApproached
-    redirect_to submit_form_path(@submitter.slug, status: :error), alert: I18n.t(:too_many_attempts)
+    redirect_to submit_form_path(@submitter.slug, status: :error, lang:), alert: I18n.t(:too_many_attempts)
   end
 
   def update
     if @submitter.submission_events.where(event_type: 'send_2fa_email').exists?(created_at: 15.seconds.ago..)
-      return redirect_to submit_form_path(@submitter.slug, status: :error), alert: I18n.t(:rate_limit_exceeded)
+      return redirect_to submit_form_path(@submitter.slug, status: :error, lang:), alert: I18n.t(:rate_limit_exceeded)
     end
 
     RateLimit.call("send-email-code-#{@submitter.id}", limit: 2, ttl: 45.seconds, enabled: true)
@@ -38,19 +38,24 @@ class SubmitFormEmail2fasController < ApplicationController
     if Docuseal.multitenant? && Submitters.email_bounced_recently?(@submitter.email)
       Rollbar.warning("Bounced OTP email for submitter: #{@submitter.id}") if defined?(Rollbar)
 
-      return redirect_to submit_form_path(@submitter.slug, status: :error), alert: I18n.t(:verification_email_bounced)
+      return redirect_to submit_form_path(@submitter.slug, status: :error, lang:),
+                         alert: I18n.t(:verification_email_bounced)
     end
 
     SendSubmitterVerificationEmailJob.perform_async('submitter_id' => @submitter.id, 'locale' => I18n.locale.to_s)
 
     redir_params = params[:resend] ? { alert: I18n.t(:code_has_been_resent) } : {}
 
-    redirect_to submit_form_path(@submitter.slug, status: :sent), **redir_params
+    redirect_to submit_form_path(@submitter.slug, status: :sent, lang:), **redir_params
   rescue RateLimit::LimitApproached
-    redirect_to submit_form_path(@submitter.slug, status: :error), alert: I18n.t(:too_many_attempts)
+    redirect_to submit_form_path(@submitter.slug, status: :error, lang:), alert: I18n.t(:too_many_attempts)
   end
 
   def load_submitter
     @submitter = Submitter.find_by!(slug: params[:submitter_slug])
+  end
+
+  def lang
+    params[:lang].presence
   end
 end

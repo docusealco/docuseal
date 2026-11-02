@@ -28,7 +28,7 @@
       </div>
     </div>
     <% if !@template.archived_at? && !@template.account.archived_at? %>
-      <%= form_for @submitter, url: @resubmit_submitter ? resubmit_form_path : start_form_path(@template.slug), data: { turbo_frame: :_top }, method: :put, html: { class: 'space-y-4' } do |f| %>
+      <%= form_for @submitter, url: @resubmit_submitter ? resubmit_form_path : start_form_path(@template.slug, lang: params[:lang].presence), data: { turbo_frame: :_top }, method: :put, html: { class: 'space-y-4' } do |f| %>
         <%= hidden_field_tag :resubmit, @resubmit_submitter.slug if @resubmit_submitter %>
         <% if @error_message %>
           <div class="alert items-start bg-base-100 border border-red-400 text-red-400">
