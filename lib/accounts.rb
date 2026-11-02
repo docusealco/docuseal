@@ -107,15 +107,25 @@ module Accounts
     if Docuseal.multitenant?
       Docuseal::TIMESERVER_URL
     else
-      url = EncryptedConfig.find_by(account:, key: EncryptedConfig::TIMESTAMP_SERVER_URL_KEY)&.value
+      value = load_timeserver_config(account)
 
-      unless Docuseal.multitenant?
-        url ||=
-          Account.order(:id).first.encrypted_configs.find_by(key: EncryptedConfig::TIMESTAMP_SERVER_URL_KEY)&.value
-      end
-
-      url
+      value.is_a?(Hash) ? value['url'] : value
     end.presence
+  end
+
+  def load_timeserver_headers(account)
+    return {} if Docuseal.multitenant?
+
+    value = load_timeserver_config(account)
+
+    return {} unless value.is_a?(Hash)
+
+    value['headers'].to_h.select { |name, _| name.present? }
+  end
+
+  def load_timeserver_config(account)
+    EncryptedConfig.find_by(account:, key: EncryptedConfig::TIMESTAMP_SERVER_URL_KEY)&.value ||
+      Account.order(:id).first.encrypted_configs.find_by(key: EncryptedConfig::TIMESTAMP_SERVER_URL_KEY)&.value
   end
 
   def load_trusted_certs(account)
