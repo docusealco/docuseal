@@ -30,7 +30,7 @@ DocuSeal is an open source platform that provides secure and efficient digital d
   <a href="https://docuseal.com/sign_up">☁️ Try in Cloud</a>
 </h2>
 
-[![Demo](https://github.com/docusealco/docuseal/assets/5418788/d8703ea3-361a-423f-8bfe-eff1bd9dbe14)](https://demo.docuseal.tech)
+[![Demo](https://github.com/user-attachments/assets/8344a341-96cf-4df3-aaae-5458a21a65b3)](https://demo.docuseal.tech)
 
 ## Features
 - PDF form fields builder (WYSIWYG)
