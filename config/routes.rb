@@ -125,11 +125,11 @@ Rails.application.routes.draw do
   resource :blobs_proxy, only: %i[show], path: '/blobs_proxy/:signed_uuid/*filename',
                          controller: 'api/active_storage_blobs_proxy'
 
-  if Docuseal.multitenant?
-    get '/disk/:encoded_key/*filename' => 'active_storage/disk#show', as: :rails_disk_service if Rails.env.local?
-
-    ActiveSupport.run_load_hooks(:multitenant_routes, self)
+  if !Docuseal.multitenant? || Rails.env.local?
+    get '/disk/:encoded_key/*filename' => 'active_storage/disk#show', as: :rails_disk_service
   end
+
+  ActiveSupport.run_load_hooks(:multitenant_routes, self) if Docuseal.multitenant?
 
   resources :start_form, only: %i[show update], path: 'd', param: 'slug' do
     get :completed
