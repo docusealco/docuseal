@@ -62,9 +62,30 @@ end
 
 ActiveStorage::LogSubscriber.detach_from(:active_storage) if Rails.env.production?
 
+# rubocop:disable-next Metrics/BlockLength
 Rails.configuration.to_prepare do
   ActiveStorage::DiskController.after_action do
     response.set_header('cache-control', 'public, max-age=31536000') if action_name == 'show'
+  end
+
+  ActiveStorage::DiskController.prepend_before_action(only: :update) do
+    head :forbidden
+  end
+
+  ActiveStorage::Blobs::RedirectController.prepend_before_action do
+    head :forbidden
+  end
+
+  ActiveStorage::Representations::RedirectController.prepend_before_action do
+    head :forbidden
+  end
+
+  ActiveStorage::Representations::ProxyController.prepend_before_action do
+    head :forbidden
+  end
+
+  ActiveStorage::Blobs::ProxyController.prepend_before_action do
+    head :forbidden
   end
 
   ActiveStorage::Blobs::ProxyController.before_action do
