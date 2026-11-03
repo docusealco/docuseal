@@ -32,11 +32,11 @@ class UsersController < ApplicationController
   end
 
   def new
-    render layout: turbo_native_android? ? 'plain' : true
+    render layout: turbo_native_app? ? 'plain' : true
   end
 
   def edit
-    render layout: turbo_native_android? ? 'plain' : true
+    render layout: turbo_native_app? ? 'plain' : true
   end
 
   def create

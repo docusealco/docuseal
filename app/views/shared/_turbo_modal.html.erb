@@ -1,4 +1,4 @@
-<% if turbo_native_ios? || (turbo_native_app? && !turbo_frame_request?) %>
+<% if turbo_native_app? %>
   <% content_for(:native_modal, 'true') %>
   <% content_for(:native_title, local_assigns[:title]) if local_assigns[:title] %>
   <turbo-frame id="modal">

@@ -1,4 +1,10 @@
-<% if turbo_frame_request? %>
+<% if turbo_native_app? && turbo_frame_request? %>
+  <turbo-frame id="modal">
+    <native-modal class="block w-full [&>.px-5]:px-4" data-close-after-submit="<%= local_assigns.key?(:close_after_submit) ? local_assigns[:close_after_submit] : true %>">
+      <%= yield %>
+    </native-modal>
+  </turbo-frame>
+<% elsif turbo_frame_request? %>
   <turbo-frame id="modal">
     <turbo-modal class="modal modal-open items-start !animate-none overflow-y-auto !justify-normal md:!justify-center" data-close-after-submit="<%= local_assigns.key?(:close_after_submit) ? local_assigns[:close_after_submit] : true %>">
       <div class="absolute top-0 bottom-0 right-0 left-0" data-action="click:turbo-modal#close"></div>
