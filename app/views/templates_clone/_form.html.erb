@@ -1,4 +1,4 @@
-<%= form_for @template, url: template_clone_index_path(@base_template), data: { turbo_frame: :_top }, html: { autocomplete: :off, class: ('px-4' if turbo_native_android?) } do |f| %>
+<%= form_for @template, url: template_clone_index_path(@base_template), data: { turbo_frame: :_top }, html: { autocomplete: :off, style: ('padding-inline: 18px' if turbo_native_app?) } do |f| %>
   <% accounts = Account.accessible_by(true_ability).where.not(id: true_user.account.testing_accounts).where(User.where(User.arel_table[:account_id].eq(Account.arel_table[:id])).arel.exists).active %>
   <% with_accounts = (can?(:manage, :tenants) || true_user != current_user) && accounts.where.not(id: current_account.id).exists? %>
   <% if with_accounts %>

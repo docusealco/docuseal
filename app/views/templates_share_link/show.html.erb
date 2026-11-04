@@ -1,7 +1,7 @@
 <% multiple_submitters = @template.submitters.to_a.length > 1 %>
 <% enough_defined_submitters = Templates.filter_undefined_submitters(@template.submitters).size < 2 %>
 <%= render 'shared/turbo_modal_large', title: t('share_link') do %>
-  <div class="<%= 'mt-2' unless turbo_native_android? %> mb-4 px-5">
+  <div class="<%= 'mt-2' unless turbo_native_android? %> <%= 'mb-4' unless turbo_native_app? %> px-5" style="<%= 'padding-inline: 18px' if turbo_native_app? %>">
     <% if @template.variables_schema.present? %>
       <div class="flex items-start gap-4 p-4 border border-base-300 rounded-2xl bg-base-100 mt-4">
         <%= svg_icon('info_circle', class: 'stroke-current shrink-0 h-6 w-6') %>

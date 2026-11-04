@@ -1,5 +1,5 @@
 <%= render 'shared/turbo_modal_large', title: t('edit_recipient') do %>
-  <div class="px-5 mb-5 mt-4">
+  <div class="px-5 mt-4 <%= 'mb-5' unless turbo_native_app? %>" style="<%= 'padding-inline: 18px' if turbo_native_app? %>">
     <%= form_for '', url: submitter_path(@submitter), method: :patch, html: { autocomplete: 'off' }, data: { turbo_frame: :_top } do |f| %>
       <div class="mb-2">
         <submitter-item class="form-control">

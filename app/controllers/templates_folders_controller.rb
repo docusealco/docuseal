@@ -4,7 +4,7 @@ class TemplatesFoldersController < ApplicationController
   load_and_authorize_resource :template
 
   def edit
-    render layout: turbo_native_android? ? 'plain' : true
+    render layout: 'plain'
   end
 
   def update

@@ -12,7 +12,7 @@
       <% end %>
     </div>
   </toggle-visible>
-  <div id="draw" class="mt-3 <%= 'px-4' if turbo_native_android? %>">
+  <div id="draw" class="mt-3" style="<%= 'padding-inline: 18px' if turbo_native_app? %>">
     <%= form_for @user_config, url: user_initials_path, method: :put, data: { turbo_frame: :_top }, html: { autocomplete: :off, enctype: 'multipart/form-data' } do |f| %>
       <signature-form class="relative block">
         <a class="absolute top-1 right-1 link text-sm" data-target="signature-form.clear" href="#"><%= t('clear') %></a>
@@ -24,7 +24,7 @@
       </signature-form>
     <% end %>
   </div>
-  <div id="upload" class="hidden mt-3 <%= 'px-4' if turbo_native_android? %>">
+  <div id="upload" class="hidden mt-3" style="<%= 'padding-inline: 18px' if turbo_native_app? %>">
     <%= form_for @user_config, url: user_initials_path, method: :put, data: { turbo_frame: :_top }, html: { autocomplete: :off, enctype: 'multipart/form-data' } do |f| %>
       <file-dropzone data-submit-on-upload="true" class="w-full">
         <label for="file" class="w-full block h-32 relative bg-base-200 hover:bg-base-200/70 rounded-md border border-base-content border-dashed">

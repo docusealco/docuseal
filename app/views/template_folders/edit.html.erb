@@ -1,5 +1,5 @@
 <%= render 'shared/turbo_modal', title: t('rename_folder') do %>
-  <%= form_for @template_folder, url: folder_path(@template_folder), data: { turbo_frame: :_top }, html: { autocomplete: :off, class: ('px-4' if turbo_native_android?) } do |f| %>
+  <%= form_for @template_folder, url: folder_path(@template_folder), data: { turbo_frame: :_top }, html: { autocomplete: :off, style: ('padding-inline: 18px' if turbo_native_app?) } do |f| %>
     <div class="form-control <%= turbo_native_android? ? 'mt-1.5 mb-6' : 'my-6' %>">
       <%= f.text_field :name, required: true, placeholder: "#{t('folder_name')}...", class: 'base-input w-full', autofocus: true, dir: 'auto' %>
     </div>
