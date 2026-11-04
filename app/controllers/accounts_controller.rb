@@ -2,6 +2,8 @@
 
 class AccountsController < ApplicationController
   LOCALE_OPTIONS = {
+    'zh' => '中文',
+    'zh-CN' => '简体中文',
     'en-US' => 'English (United States)',
     'en-GB' => 'English (United Kingdom)',
     'fr-FR' => 'Français',
