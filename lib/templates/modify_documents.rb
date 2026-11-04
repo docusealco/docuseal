@@ -52,7 +52,7 @@ module Templates
           schema_item =
             template.schema.find { |item| item['attachment_uuid'] == entry['attachment_uuid'] } ||
             { 'attachment_uuid' => entry['attachment_uuid'],
-              'name' => attachments_index[entry['attachment_uuid']].filename.base }
+              'name' => FilenameUtils.basename(attachments_index[entry['attachment_uuid']].blob[:filename]) }
 
           next if entry['pages'].blank?
 
@@ -270,7 +270,7 @@ module Templates
 
       blob = ActiveStorage::Blob.create_and_upload!(
         io: StringIO.new(data),
-        filename: "#{attachment.filename.base}#{extension}",
+        filename: "#{FilenameUtils.basename(attachment.blob[:filename])}#{extension}",
         metadata: { identified: true, analyzed: true },
         content_type:
       )
@@ -439,7 +439,7 @@ module Templates
 
       blob = ActiveStorage::Blob.create_and_upload!(
         io: StringIO.new(data),
-        filename: "#{old_attachment.filename.base}.pdf",
+        filename: "#{FilenameUtils.basename(old_attachment.blob[:filename])}.pdf",
         metadata: { identified: true, analyzed: true,
                     pdf: { annotations: }.compact_blank, sha256: }.compact_blank,
         content_type: Templates::ProcessDocument::PDF_CONTENT_TYPE

@@ -67,7 +67,7 @@ class TemplatesDebugController < ApplicationController
     schema = documents.map do |doc|
       {
         attachment_uuid: doc.uuid,
-        name: doc.filename.base,
+        name: FilenameUtils.basename(doc.blob[:filename]),
         dynamic: dynamic_documents.find { |e| e.uuid == doc.uuid }.present?
       }
     end

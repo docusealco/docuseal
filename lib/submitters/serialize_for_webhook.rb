@@ -104,7 +104,10 @@ module Submitters
 
     def build_documents_array(submitter, expires_at: nil)
       submitter.documents.map do |attachment|
-        { 'name' => attachment.filename.base, 'url' => rails_storage_proxy_url(attachment, expires_at:) }
+        {
+          'name' => FilenameUtils.basename(attachment.blob[:filename]),
+          'url' => rails_storage_proxy_url(attachment, expires_at:)
+        }
       end
     end
 

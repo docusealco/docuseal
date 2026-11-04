@@ -26,7 +26,7 @@ module Templates
     def create_document!(template, attachment, data, scan)
       blob = ActiveStorage::Blob.create_and_upload!(
         io: StringIO.new(data),
-        filename: "#{attachment.filename.base}.#{scan ? 'png' : 'jpg'}",
+        filename: "#{FilenameUtils.basename(attachment.blob[:filename])}.#{scan ? 'png' : 'jpg'}",
         metadata: { identified: true, analyzed: true },
         content_type: scan ? 'image/png' : 'image/jpeg'
       )

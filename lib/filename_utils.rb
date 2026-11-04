@@ -18,4 +18,8 @@ module FilenameUtils
   def dangerous_extension(filename)
     ActiveStorage::Filename.wrap(filename).sanitized[DANGEROUS_EXTENSIONS_REGEXP, 1]&.downcase
   end
+
+  def basename(filename)
+    File.basename(filename, File.extname(filename))
+  end
 end

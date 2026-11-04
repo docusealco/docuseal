@@ -17,7 +17,7 @@ class TemplatesUploadsController < ApplicationController
     save_template!(@template, url_params)
 
     documents, = Templates::CreateAttachments.call(@template, url_params || params, extract_fields: true)
-    schema = documents.map { |doc| { attachment_uuid: doc.uuid, name: doc.filename.base } }
+    schema = documents.map { |doc| { attachment_uuid: doc.uuid, name: FilenameUtils.basename(doc.blob[:filename]) } }
 
     if @template.fields.blank?
       @template.fields = Templates::ProcessDocument.normalize_attachment_fields(@template, documents)
