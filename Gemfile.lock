@@ -535,7 +535,7 @@ GEM
     thor (1.5.0)
     timeout (0.6.1)
     trailblazer-option (0.1.2)
-    trilogy (2.12.2)
+    trilogy (2.13.3)
       bigdecimal
     tsort (0.2.0)
     turbo-rails (2.0.23)
