@@ -26,6 +26,9 @@ module DetectBrowserDevice
     Silk
   /ix
 
+  IOS_APP_USER_AGENT_REGEXP = /Hotwire Native iOS/
+  ANDROID_APP_USER_AGENT_REGEXP = /Hotwire Native Android/
+
   WINDOWS_USER_AGENT_REGEXP = /
     Windows|
     Win64  |
@@ -122,6 +125,8 @@ module DetectBrowserDevice
     return sdk.downcase if sdk
 
     case user_agent
+    when IOS_APP_USER_AGENT_REGEXP then 'iosapp'
+    when ANDROID_APP_USER_AGENT_REGEXP then 'andapp'
     when WINDOWS_USER_AGENT_REGEXP then 'windows'
     when ANDROID_USER_AGENT_REGEXP then 'android'
     when IOS_USER_AGENT_REGEXP then 'ios'
