@@ -469,7 +469,7 @@ module Submissions
       end
 
       events_data = submission.submission_events.sort_by(&:event_timestamp).filter_map do |event|
-        next if event.event_type.in?(%w[bounce_email complaint_email])
+        next if event.event_type.in?(%w[bounce_email complaint_email fail_sms])
 
         submitter = submission.submitters.find { |e| e.id == event.submitter_id }
         versions = submitter_versions_index[submitter.id] || []

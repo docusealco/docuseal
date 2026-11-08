@@ -1046,10 +1046,12 @@ en: &en
     link: Link
     mcp: MCP
     self: Sign Yourself
+  error: Error
   submission_event_names:
     send_email_to_html: '<b>Email sent</b> to %{submitter_name}'
     bounce_email_html: '<b>Email bounced</b> %{submitter_name}'
     complaint_email_html: '<b>Spam complaint</b> %{submitter_name}'
+    fail_sms_to_html: '<b>SMS failed</b> to %{submitter_name}'
     send_reminder_email_to_html: '<b>Reminder email sent</b> to %{submitter_name}'
     send_sms_to_html: '<b>SMS sent</b> to %{submitter_name}'
     send_2fa_sms_to_html: '<b>Verification SMS sent</b> to %{submitter_name}'
@@ -2196,10 +2198,12 @@ es: &es
     link: Enlace
     mcp: MCP
     self: Firma tú mismo
+  error: Error
   submission_event_names:
     send_email_to_html: '<b>Correo electrónico enviado</b> a %{submitter_name}'
     bounce_email_html: '<b>Correo electrónico rebotado</b> %{submitter_name}'
     complaint_email_html: '<b>Queja de spam</b> %{submitter_name}'
+    fail_sms_to_html: '<b>SMS fallido</b> a %{submitter_name}'
     send_reminder_email_to_html: '<b>Correo de recordatorio enviado</b> a %{submitter_name}'
     send_sms_to_html: '<b>SMS enviado</b> a %{submitter_name}'
     send_2fa_sms_to_html: '<b>SMS de verificación enviado</b> a %{submitter_name}'
@@ -3360,10 +3364,12 @@ it: &it
     link: Link
     mcp: MCP
     self: Firma te stesso
+  error: Errore
   submission_event_names:
     send_email_to_html: '<b>Email inviata</b> a %{submitter_name}'
     bounce_email_html: '<b>Email respinta</b> %{submitter_name}'
     complaint_email_html: '<b>Segnalazione spam</b> %{submitter_name}'
+    fail_sms_to_html: '<b>SMS non consegnato</b> a %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail di promemoria inviata</b> a %{submitter_name}'
     send_sms_to_html: '<b>SMS inviato</b> a %{submitter_name}'
     send_2fa_sms_to_html: '<b>SMS di verifica inviato</b> a %{submitter_name}'
@@ -4507,10 +4513,12 @@ fr: &fr
     link: Lien
     mcp: MCP
     self: Signer vous-même
+  error: Erreur
   submission_event_names:
     send_email_to_html: "<b>E‑mail envoyé</b> à %{submitter_name}"
     bounce_email_html: "<b>E‑mail rejeté</b> %{submitter_name}"
     complaint_email_html: "<b>Plainte spam</b> %{submitter_name}"
+    fail_sms_to_html: "<b>SMS non distribué</b> à %{submitter_name}"
     send_reminder_email_to_html: "<b>E‑mail de rappel envoyé</b> à %{submitter_name}"
     send_sms_to_html: "<b>SMS envoyé</b> à %{submitter_name}"
     send_2fa_sms_to_html: "<b>SMS de vérification envoyé</b> à %{submitter_name}"
@@ -5670,10 +5678,12 @@ pt: &pt
     link: Link
     mcp: MCP
     self: Assine você mesmo
+  error: Erro
   submission_event_names:
     send_email_to_html: '<b>Email enviado</b> para %{submitter_name}'
     bounce_email_html: '<b>Email não entregue</b> %{submitter_name}'
     complaint_email_html: '<b>Reclamação de spam</b> %{submitter_name}'
+    fail_sms_to_html: '<b>SMS não entregue</b> para %{submitter_name}'
     send_reminder_email_to_html: '<b>Email de lembrete enviado</b> para %{submitter_name}'
     send_sms_to_html: '<b>SMS enviado</b> para %{submitter_name}'
     send_2fa_sms_to_html: '<b>SMS de verificação enviado</b> para %{submitter_name}'
@@ -6833,10 +6843,12 @@ de: &de
     link: Link
     mcp: MCP
     self: Selbst unterschreiben
+  error: Fehler
   submission_event_names:
     send_email_to_html: '<b>E-Mail gesendet</b> an %{submitter_name}'
     bounce_email_html: '<b>E-Mail unzustellbar</b> %{submitter_name}'
     complaint_email_html: '<b>Spam-Beschwerde</b> %{submitter_name}'
+    fail_sms_to_html: '<b>SMS unzustellbar</b> an %{submitter_name}'
     send_reminder_email_to_html: '<b>Erinnerungs-E-Mail gesendet</b> an %{submitter_name}'
     send_sms_to_html: '<b>SMS gesendet</b> an %{submitter_name}'
     send_2fa_sms_to_html: '<b>Verifizierungs-SMS gesendet</b> an %{submitter_name}'
@@ -8520,10 +8532,12 @@ nl: &nl
     link: Link
     mcp: MCP
     self: Zelf ondertekenen
+  error: Fout
   submission_event_names:
     send_email_to_html: "<b>E-mail verzonden</b> naar %{submitter_name}"
     bounce_email_html: "<b>E-mail geretourneerd</b> %{submitter_name}"
     complaint_email_html: "<b>Spamklacht</b> %{submitter_name}"
+    fail_sms_to_html: "<b>SMS niet afgeleverd</b> naar %{submitter_name}"
     send_reminder_email_to_html: "<b>Herinneringsmail verzonden</b> naar %{submitter_name}"
     send_sms_to_html: "<b>SMS verzonden</b> naar %{submitter_name}"
     send_2fa_sms_to_html: "<b>Verificatie-SMS verzonden</b> naar %{submitter_name}"

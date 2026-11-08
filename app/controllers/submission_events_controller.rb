@@ -12,6 +12,7 @@ class SubmissionEventsController < ApplicationController
     'send_2fa_sms' => '2fa',
     'send_2fa_email' => '2fa',
     'send_sms' => 'send',
+    'fail_sms' => 'alert_circle',
     'phone_verified' => 'phone_check',
     'email_verified' => 'email_check',
     'click_sms' => 'hand_click',

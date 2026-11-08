@@ -8,6 +8,13 @@ module Submitters
       methods: %i[status application_key]
     }.freeze
 
+    EVENT_DATA_KEYS = {
+      'decline_form' => %w[reason],
+      'complete_verification' => %w[firstname lastname method country idcode],
+      'fail_kba' => %w[issues],
+      'fail_sms' => %w[status error_code]
+    }.freeze
+
     module_function
 
     def call(submitter, with_template: false, with_events: false, with_documents: true, with_urls: false,
@@ -55,7 +62,7 @@ module Submitters
     def serialize_events(events)
       events.map do |event|
         event.as_json(only: %i[id submitter_id event_type event_timestamp])
-             .merge('data' => event.data.slice('reason', 'firstname', 'lastname', 'method', 'country', 'idcode'))
+             .merge('data' => event.data.slice(*EVENT_DATA_KEYS[event.event_type]))
       end
     end
   end

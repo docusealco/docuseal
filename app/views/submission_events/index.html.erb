@@ -50,8 +50,11 @@
             <% elsif event.event_type == 'delegate_form' %>
               <% delegate_from = event.data['old_email'].presence || versions.rfind { |v| v.created_at <= event.event_timestamp }&.then { |v| v.name || v.phone } %>
               <%= t('submission_event_names.delegate_form_by_html', from: delegate_from, to: event.data['email']) %>
-            <% elsif event.event_type.include?('send_') %>
+            <% elsif event.event_type.include?('send_') || event.event_type == 'fail_sms' %>
               <%= t("submission_event_names.#{event.event_type}_to_html", submitter_name:) %>
+              <% if event.data['error_code'].present? %>
+                <span class="text-base-content/60">(<%= t('error') %>: <%= event.data['error_code'] %>)</span>
+              <% end %>
             <% elsif event.event_type.start_with?('bounce_') ||  event.event_type.start_with?('complaint_') %>
               <%= t("submission_event_names.#{event.event_type}_html", submitter_name:) %>
             <% else %>
