@@ -41,10 +41,11 @@ DocuSeal is an open source platform that provides secure and efficient digital d
 - Automatic PDF eSignature
 - PDF signature verification
 - User management
-- Mobile-optimized
+- Mobile-optimized signing
 - 7 UI languages with signing available in 14 languages
 - API and Webhooks for integrations
 - Easy to deploy in minutes
+- Mobile apps for [iOS](https://apps.apple.com/us/app/docuseal-e-signature/id6823564236) and [Android](https://play.google.com/store/apps/details?id=com.docuseal.app)
 
 ## Pro Features
 - Company logo and white-label
