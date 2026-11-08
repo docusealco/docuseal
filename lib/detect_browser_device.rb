@@ -63,6 +63,42 @@ module DetectBrowserDevice
     NetBSD
   /ix
 
+  SEARCH_BOT_USER_AGENT_REGEXP = /
+    Googlebot            |
+    Google-InspectionTool|
+    Storebot-Google      |
+    AdsBot-Google        |
+    Mediapartners-Google |
+    bingbot              |
+    BingPreview          |
+    adidxbot             |
+    msnbot               |
+    Slurp                |
+    DuckDuckBot          |
+    Baiduspider          |
+    YandexBot            |
+    YandexImages         |
+    Applebot             |
+    PetalBot             |
+    SeznamBot            |
+    Sogou                |
+    Exabot               |
+    Qwantify             |
+    YisouSpider          |
+    Bytespider           |
+    AhrefsBot            |
+    SemrushBot           |
+    MJ12bot              |
+    DotBot               |
+    GPTBot               |
+    OAI-SearchBot        |
+    ClaudeBot            |
+    Claude-SearchBot     |
+    PerplexityBot        |
+    CCBot                |
+    Amazonbot
+  /ix
+
   SDK_USER_AGENT_REGEXP = /\ADocuSeal (?<sdk>Ruby|Python|PHP|Java|C#|JS|Go|CLI) v/i
 
   def call(user_agent)
@@ -72,6 +108,10 @@ module DetectBrowserDevice
     return 'tablet' if TABLET_USER_AGENT_REGEXP.match?(user_agent)
 
     'desktop'
+  end
+
+  def search_bot?(user_agent)
+    SEARCH_BOT_USER_AGENT_REGEXP.match?(user_agent.to_s)
   end
 
   def os(user_agent)

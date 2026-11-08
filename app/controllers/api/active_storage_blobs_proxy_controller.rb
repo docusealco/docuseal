@@ -34,6 +34,12 @@ module Api
       @record = attachment.record
       @record = @record.record if @record.is_a?(ActiveStorage::Attachment)
 
+      if DetectBrowserDevice.search_bot?(request.user_agent)
+        Rollbar.warning("Search bot: #{@record.class.name} #{@record.id}") if defined?(Rollbar)
+
+        raise ActionController::RoutingError, 'Not Found'
+      end
+
       authorization_check!(attachment, @record, exp)
 
       if request.headers['Range'].present?
