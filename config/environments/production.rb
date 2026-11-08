@@ -166,7 +166,14 @@ Rails.application.configure do
 
     current_user = controller.instance_variable_get(:@current_user)
 
-    os = DetectBrowserDevice.os(controller.request.user_agent) if ENV['MULTITENANT'] == 'true'
+    if ENV['MULTITENANT'] == 'true'
+      os =
+        if defined?(controller.browser_os)
+          controller.browser_os
+        else
+          DetectBrowserDevice.os(controller.request.user_agent)
+        end
+    end
 
     {
       host: controller.request.host,
