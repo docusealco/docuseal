@@ -14,7 +14,7 @@
       <% end %>
       <%= render 'templates/dashboard_folder_dropzone', style: 'height: 114px' %>
       <div class="flex items-center flex-grow min-w-0 max-md:group-has-[search-input:focus-within]/header:hidden <%= 'max-md:hidden' if params[:q].present? %>">
-        <% if has_archived || @pagy.count.nil? || @pagy.count > 0 || @template_folders.present? %>
+        <% if current_account.created_at < 1.day.ago || has_archived || @pagy.count.nil? || @pagy.count > 0 || @template_folders.present? %>
           <div class="mr-2">
             <%= render 'dashboard/toggle_view', selected: 'templates' %>
           </div>
