@@ -13,7 +13,9 @@ class WebhookSettingsController < ApplicationController
     else
       @webhook_events = @webhook_url.webhook_events
 
-      @webhook_events = @webhook_events.where(status: params[:status]) if %w[success error].include?(params[:status])
+      if %w[success error].include?(params[:status])
+        @webhook_events = @webhook_events.where(WebhookEvent.arel_table[:status].eq(params[:status]))
+      end
 
       @pagy, @webhook_events = pagy(:countless, @webhook_events.order(id: :desc))
 
@@ -24,7 +26,9 @@ class WebhookSettingsController < ApplicationController
   def show
     @webhook_events = @webhook_url.webhook_events
 
-    @webhook_events = @webhook_events.where(status: params[:status]) if %w[success error].include?(params[:status])
+    if %w[success error].include?(params[:status])
+      @webhook_events = @webhook_events.where(WebhookEvent.arel_table[:status].eq(params[:status]))
+    end
 
     @pagy, @webhook_events = pagy(:countless, @webhook_events.order(id: :desc))
   end
