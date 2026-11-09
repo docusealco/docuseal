@@ -11,6 +11,8 @@ module Docuseal
   TWITTER_URL = 'https://twitter.com/docusealco'
   TWITTER_HANDLE = '@docusealco'
   CHATGPT_URL = "#{PRODUCT_URL}/chat".freeze
+  APP_STORE_URL = 'https://apps.apple.com/us/app/docuseal-e-signature/id6823564236'
+  GOOGLE_PLAY_URL = 'https://play.google.com/store/apps/details?id=com.docuseal.app'
   SUPPORT_EMAIL = 'support@docuseal.com'
   HOST = ENV.fetch('HOST', 'localhost')
   AATL_CERT_NAME = 'docuseal_aatl'

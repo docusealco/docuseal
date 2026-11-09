@@ -30,7 +30,7 @@ DocuSeal is an open source platform that provides secure and efficient digital d
   <a href="https://docuseal.com/sign_up">☁️ Try in Cloud</a>
 </h2>
 
-[![Demo](https://github.com/docusealco/docuseal/assets/5418788/d8703ea3-361a-423f-8bfe-eff1bd9dbe14)](https://demo.docuseal.tech)
+[![Demo](https://github.com/user-attachments/assets/8344a341-96cf-4df3-aaae-5458a21a65b3)](https://demo.docuseal.tech)
 
 ## Features
 - PDF form fields builder (WYSIWYG)
@@ -41,10 +41,11 @@ DocuSeal is an open source platform that provides secure and efficient digital d
 - Automatic PDF eSignature
 - PDF signature verification
 - User management
-- Mobile-optimized
+- Mobile-optimized signing
 - 7 UI languages with signing available in 14 languages
 - API and Webhooks for integrations
 - Easy to deploy in minutes
+- Mobile apps for [iOS](https://apps.apple.com/us/app/docuseal-e-signature/id6823564236) and [Android](https://play.google.com/store/apps/details?id=com.docuseal.app)
 
 ## Pro Features
 - Company logo and white-label

@@ -232,7 +232,7 @@ module Submitters
   def build_document_filename(submitter, blob, filename_format)
     return blob.filename.to_s if filename_format.blank?
 
-    filename = filename_format.gsub('{document.name}', blob.filename.base)
+    filename = filename_format.gsub('{document.name}', FilenameUtils.basename(blob[:filename]))
     filename = ReplaceEmailVariables.call(filename, submitter:)
 
     filename = filename.gsub(' - {submission.status}') do

@@ -830,6 +830,8 @@ en: &en
   click_here_to_update_your_payment_details_and_clear_the_invoice_to_ensure_uninterrupted_service_html: <a href="%{url}" class="link">Click here</a> to update your payment details and clear the invoice to ensure uninterrupted service.
   overdue_payment: Overdue Payment
   your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Your Pro Plan has been suspended due to unpaid invoices. You can update your payment details to settle the invoice and continue using DocuSeal or cancel your subscription.
+  get_the_docuseal_app_for_a_better_mobile_experience: Get the DocuSeal app for a better mobile experience.
+  install_app: Install app
   manage_subscription: Manage Subscription
   docuseal_version_security_release_is_available: "DocuSeal v%{version} security release is available."
   click_here_to_view_the_instructions_and_update_your_app_html: '<a href="%{url}" class="link" target="_blank" rel="noopener noreferrer nofollow">Click here</a> to view the instructions and update your app.'
@@ -1046,10 +1048,12 @@ en: &en
     link: Link
     mcp: MCP
     self: Sign Yourself
+  error: Error
   submission_event_names:
     send_email_to_html: '<b>Email sent</b> to %{submitter_name}'
     bounce_email_html: '<b>Email bounced</b> %{submitter_name}'
     complaint_email_html: '<b>Spam complaint</b> %{submitter_name}'
+    fail_sms_to_html: '<b>SMS failed</b> to %{submitter_name}'
     send_reminder_email_to_html: '<b>Reminder email sent</b> to %{submitter_name}'
     send_sms_to_html: '<b>SMS sent</b> to %{submitter_name}'
     send_2fa_sms_to_html: '<b>Verification SMS sent</b> to %{submitter_name}'
@@ -1988,6 +1992,8 @@ es: &es
   click_here_to_update_your_payment_details_and_clear_the_invoice_to_ensure_uninterrupted_service_html: '<a href="%{url}" class="link">Haz clic aquí</a> para actualizar tus datos de pago y liquidar la factura para garantizar un servicio ininterrumpido.'
   overdue_payment: Pago Atrasado
   your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Tu plan Pro ha sido suspendido debido a facturas impagas. Puedes actualizar tus datos de pago para liquidar la factura y seguir usando DocuSeal o cancelar tu suscripción.
+  get_the_docuseal_app_for_a_better_mobile_experience: Descarga la app de DocuSeal para una mejor experiencia móvil.
+  install_app: Instalar app
   manage_subscription: Gestionar Suscripción
   docuseal_version_security_release_is_available: "La versión de seguridad DocuSeal v%{version} está disponible."
   click_here_to_view_the_instructions_and_update_your_app_html: '<a href="%{url}" class="link" target="_blank" rel="noopener noreferrer nofollow">Haz clic aquí</a> para ver las instrucciones y actualizar tu aplicación.'
@@ -2196,10 +2202,12 @@ es: &es
     link: Enlace
     mcp: MCP
     self: Firma tú mismo
+  error: Error
   submission_event_names:
     send_email_to_html: '<b>Correo electrónico enviado</b> a %{submitter_name}'
     bounce_email_html: '<b>Correo electrónico rebotado</b> %{submitter_name}'
     complaint_email_html: '<b>Queja de spam</b> %{submitter_name}'
+    fail_sms_to_html: '<b>SMS fallido</b> a %{submitter_name}'
     send_reminder_email_to_html: '<b>Correo de recordatorio enviado</b> a %{submitter_name}'
     send_sms_to_html: '<b>SMS enviado</b> a %{submitter_name}'
     send_2fa_sms_to_html: '<b>SMS de verificación enviado</b> a %{submitter_name}'
@@ -3152,6 +3160,8 @@ it: &it
   click_here_to_update_your_payment_details_and_clear_the_invoice_to_ensure_uninterrupted_service_html: '<a href="%{url}" class="link">Fai clic qui</a> per aggiornare i tuoi dati di pagamento e saldare la fattura per garantire un servizio ininterrotto.'
   overdue_payment: Pagamento Scaduto
   your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Il tuo piano Pro è stato sospeso a causa di fatture non pagate. Puoi aggiornare i tuoi dati di pagamento per saldare la fattura e continuare a utilizzare DocuSeal o annullare l'abbonamento.
+  get_the_docuseal_app_for_a_better_mobile_experience: Scarica l'app DocuSeal per un'esperienza mobile migliore.
+  install_app: Installa app
   manage_subscription: Gestisci Abbonamento
   docuseal_version_security_release_is_available: "È disponibile il rilascio di sicurezza DocuSeal v%{version}."
   click_here_to_view_the_instructions_and_update_your_app_html: '<a href="%{url}" class="link" target="_blank" rel="noopener noreferrer nofollow">Fai clic qui</a> per vedere le istruzioni e aggiornare la tua app.'
@@ -3360,10 +3370,12 @@ it: &it
     link: Link
     mcp: MCP
     self: Firma te stesso
+  error: Errore
   submission_event_names:
     send_email_to_html: '<b>Email inviata</b> a %{submitter_name}'
     bounce_email_html: '<b>Email respinta</b> %{submitter_name}'
     complaint_email_html: '<b>Segnalazione spam</b> %{submitter_name}'
+    fail_sms_to_html: '<b>SMS non consegnato</b> a %{submitter_name}'
     send_reminder_email_to_html: '<b>E-mail di promemoria inviata</b> a %{submitter_name}'
     send_sms_to_html: '<b>SMS inviato</b> a %{submitter_name}'
     send_2fa_sms_to_html: '<b>SMS di verifica inviato</b> a %{submitter_name}'
@@ -4302,6 +4314,8 @@ fr: &fr
   click_here_to_update_your_payment_details_and_clear_the_invoice_to_ensure_uninterrupted_service_html: <a href="%{url}" class="link">Cliquez ici</a> pour mettre à jour vos informations de paiement et régler la facture afin de garantir la continuité du service.
   overdue_payment: Paiement en retard
   your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: "Votre offre Pro a été suspendue en raison de factures impayées.\nVous pouvez mettre à jour vos informations de paiement pour régler la facture et continuer à utiliser DocuSeal, ou annuler votre abonnement."
+  get_the_docuseal_app_for_a_better_mobile_experience: Téléchargez l’application DocuSeal pour une meilleure expérience mobile.
+  install_app: Installer l’application
   manage_subscription: Gérer l’abonnement
   docuseal_version_security_release_is_available: "La mise à jour de sécurité DocuSeal v%{version} est disponible."
   click_here_to_view_the_instructions_and_update_your_app_html: '<a href="%{url}" class="link" target="_blank" rel="noopener noreferrer nofollow">Cliquez ici</a> pour voir les instructions et mettre à jour votre application.'
@@ -4507,10 +4521,12 @@ fr: &fr
     link: Lien
     mcp: MCP
     self: Signer vous-même
+  error: Erreur
   submission_event_names:
     send_email_to_html: "<b>E‑mail envoyé</b> à %{submitter_name}"
     bounce_email_html: "<b>E‑mail rejeté</b> %{submitter_name}"
     complaint_email_html: "<b>Plainte spam</b> %{submitter_name}"
+    fail_sms_to_html: "<b>SMS non distribué</b> à %{submitter_name}"
     send_reminder_email_to_html: "<b>E‑mail de rappel envoyé</b> à %{submitter_name}"
     send_sms_to_html: "<b>SMS envoyé</b> à %{submitter_name}"
     send_2fa_sms_to_html: "<b>SMS de vérification envoyé</b> à %{submitter_name}"
@@ -5462,6 +5478,8 @@ pt: &pt
   click_here_to_update_your_payment_details_and_clear_the_invoice_to_ensure_uninterrupted_service_html: '<a href="%{url}" class="link">Clique aqui</a> para atualizar seus dados de pagamento e quitar a fatura para garantir um serviço ininterrupto.'
   overdue_payment: Pagamento Atrasado
   your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Seu plano Pro foi suspenso devido a faturas não pagas. Você pode atualizar seus dados de pagamento para quitar a fatura e continuar usando o DocuSeal ou cancelar sua assinatura.
+  get_the_docuseal_app_for_a_better_mobile_experience: Baixe o app DocuSeal para uma melhor experiência no celular.
+  install_app: Instalar app
   manage_subscription: Gerenciar Assinatura
   docuseal_version_security_release_is_available: "A versão de segurança DocuSeal v%{version} está disponível."
   click_here_to_view_the_instructions_and_update_your_app_html: '<a href="%{url}" class="link" target="_blank" rel="noopener noreferrer nofollow">Clique aqui</a> para ver as instruções e atualizar seu aplicativo.'
@@ -5670,10 +5688,12 @@ pt: &pt
     link: Link
     mcp: MCP
     self: Assine você mesmo
+  error: Erro
   submission_event_names:
     send_email_to_html: '<b>Email enviado</b> para %{submitter_name}'
     bounce_email_html: '<b>Email não entregue</b> %{submitter_name}'
     complaint_email_html: '<b>Reclamação de spam</b> %{submitter_name}'
+    fail_sms_to_html: '<b>SMS não entregue</b> para %{submitter_name}'
     send_reminder_email_to_html: '<b>Email de lembrete enviado</b> para %{submitter_name}'
     send_sms_to_html: '<b>SMS enviado</b> para %{submitter_name}'
     send_2fa_sms_to_html: '<b>SMS de verificação enviado</b> para %{submitter_name}'
@@ -6625,6 +6645,8 @@ de: &de
   click_here_to_update_your_payment_details_and_clear_the_invoice_to_ensure_uninterrupted_service_html: '<a href="%{url}" class="link">Klicken Sie hier</a>, um Ihre Zahlungsdaten zu aktualisieren und die Rechnung zu begleichen, um einen unterbrechungsfreien Service sicherzustellen.'
   overdue_payment: Überfällige Zahlung
   your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Ihr Pro-Plan wurde aufgrund unbezahlter Rechnungen ausgesetzt. Sie können Ihre Zahlungsdaten aktualisieren, um die Rechnung zu begleichen und DocuSeal weiterhin zu nutzen, oder Ihr Abonnement kündigen.
+  get_the_docuseal_app_for_a_better_mobile_experience: Holen Sie sich die DocuSeal-App für ein besseres mobiles Erlebnis.
+  install_app: App installieren
   manage_subscription: Abonnement verwalten
   docuseal_version_security_release_is_available: "Das Sicherheitsupdate DocuSeal v%{version} ist verfügbar."
   click_here_to_view_the_instructions_and_update_your_app_html: '<a href="%{url}" class="link" target="_blank" rel="noopener noreferrer nofollow">Klicken Sie hier</a>, um die Anleitung anzuzeigen und Ihre App zu aktualisieren.'
@@ -6833,10 +6855,12 @@ de: &de
     link: Link
     mcp: MCP
     self: Selbst unterschreiben
+  error: Fehler
   submission_event_names:
     send_email_to_html: '<b>E-Mail gesendet</b> an %{submitter_name}'
     bounce_email_html: '<b>E-Mail unzustellbar</b> %{submitter_name}'
     complaint_email_html: '<b>Spam-Beschwerde</b> %{submitter_name}'
+    fail_sms_to_html: '<b>SMS unzustellbar</b> an %{submitter_name}'
     send_reminder_email_to_html: '<b>Erinnerungs-E-Mail gesendet</b> an %{submitter_name}'
     send_sms_to_html: '<b>SMS gesendet</b> an %{submitter_name}'
     send_2fa_sms_to_html: '<b>Verifizierungs-SMS gesendet</b> an %{submitter_name}'
@@ -8316,6 +8340,8 @@ nl: &nl
   click_here_to_update_your_payment_details_and_clear_the_invoice_to_ensure_uninterrupted_service_html: <a href="%{url}" class="link">Klik hier</a> om uw betaalgegevens bij te werken en de factuur te voldoen om ononderbroken service te garanderen.
   overdue_payment: Achterstallige betaling
   your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Uw Pro-abonnement is opgeschort vanwege onbetaalde facturen. U kunt uw betaalgegevens bijwerken om de factuur te voldoen en DocuSeal te blijven gebruiken of uw abonnement opzeggen.
+  get_the_docuseal_app_for_a_better_mobile_experience: Download de DocuSeal-app voor een betere mobiele ervaring.
+  install_app: App installeren
   manage_subscription: Abonnement beheren
   docuseal_version_security_release_is_available: "Beveiligingsupdate DocuSeal v%{version} is beschikbaar."
   click_here_to_view_the_instructions_and_update_your_app_html: '<a href="%{url}" class="link" target="_blank" rel="noopener noreferrer nofollow">Klik hier</a> om de instructies te bekijken en uw app bij te werken.'
@@ -8520,10 +8546,12 @@ nl: &nl
     link: Link
     mcp: MCP
     self: Zelf ondertekenen
+  error: Fout
   submission_event_names:
     send_email_to_html: "<b>E-mail verzonden</b> naar %{submitter_name}"
     bounce_email_html: "<b>E-mail geretourneerd</b> %{submitter_name}"
     complaint_email_html: "<b>Spamklacht</b> %{submitter_name}"
+    fail_sms_to_html: "<b>SMS niet afgeleverd</b> naar %{submitter_name}"
     send_reminder_email_to_html: "<b>Herinneringsmail verzonden</b> naar %{submitter_name}"
     send_sms_to_html: "<b>SMS verzonden</b> naar %{submitter_name}"
     send_2fa_sms_to_html: "<b>Verificatie-SMS verzonden</b> naar %{submitter_name}"

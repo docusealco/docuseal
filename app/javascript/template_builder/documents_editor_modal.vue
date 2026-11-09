@@ -63,7 +63,7 @@
         >
           <div
             class="flex-1 overflow-y-auto overflow-x-hidden px-4 md:px-6 py-4 space-y-4"
-            :style="inline && nativePlatform === 'ios' ? { paddingTop: '86px' } : null"
+            :style="inline ? { paddingInline: '18px', ...(nativePlatform === 'ios' ? { paddingTop: '86px' } : {}) } : null"
           >
             <div
               v-for="(doc, docIndex) in layout"

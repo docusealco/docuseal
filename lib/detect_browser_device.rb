@@ -26,6 +26,9 @@ module DetectBrowserDevice
     Silk
   /ix
 
+  IOS_APP_USER_AGENT_REGEXP = /Hotwire Native iOS/
+  ANDROID_APP_USER_AGENT_REGEXP = /Hotwire Native Android/
+
   WINDOWS_USER_AGENT_REGEXP = /
     Windows|
     Win64  |
@@ -63,6 +66,42 @@ module DetectBrowserDevice
     NetBSD
   /ix
 
+  SEARCH_BOT_USER_AGENT_REGEXP = /
+    Googlebot            |
+    Google-InspectionTool|
+    Storebot-Google      |
+    AdsBot-Google        |
+    Mediapartners-Google |
+    bingbot              |
+    BingPreview          |
+    adidxbot             |
+    msnbot               |
+    Slurp                |
+    DuckDuckBot          |
+    Baiduspider          |
+    YandexBot            |
+    YandexImages         |
+    Applebot             |
+    PetalBot             |
+    SeznamBot            |
+    Sogou                |
+    Exabot               |
+    Qwantify             |
+    YisouSpider          |
+    Bytespider           |
+    AhrefsBot            |
+    SemrushBot           |
+    MJ12bot              |
+    DotBot               |
+    GPTBot               |
+    OAI-SearchBot        |
+    ClaudeBot            |
+    Claude-SearchBot     |
+    PerplexityBot        |
+    CCBot                |
+    Amazonbot
+  /ix
+
   SDK_USER_AGENT_REGEXP = /\ADocuSeal (?<sdk>Ruby|Python|PHP|Java|C#|JS|Go|CLI) v/i
 
   def call(user_agent)
@@ -74,6 +113,10 @@ module DetectBrowserDevice
     'desktop'
   end
 
+  def search_bot?(user_agent)
+    SEARCH_BOT_USER_AGENT_REGEXP.match?(user_agent.to_s)
+  end
+
   def os(user_agent)
     return if user_agent.blank?
 
@@ -82,6 +125,8 @@ module DetectBrowserDevice
     return sdk.downcase if sdk
 
     case user_agent
+    when IOS_APP_USER_AGENT_REGEXP then 'iosapp'
+    when ANDROID_APP_USER_AGENT_REGEXP then 'andapp'
     when WINDOWS_USER_AGENT_REGEXP then 'windows'
     when ANDROID_USER_AGENT_REGEXP then 'android'
     when IOS_USER_AGENT_REGEXP then 'ios'

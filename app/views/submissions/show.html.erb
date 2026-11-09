@@ -134,9 +134,9 @@
             <% document = @submission.schema_documents.find { |a| item['attachment_uuid'] == a.uuid } %>
             <% if document.preview_images.first %>
               <scroll-to data-selector-id="page-<%= document.uuid %>-0" class="block cursor-pointer">
-                <img src="<%= (document.preview_images.find { |e| e.filename.base.to_i.zero? } || document.preview_images.first).url(time: service_url_time) %>" width="<%= document.preview_images.first.metadata['width'] %>" height="<%= document.preview_images.first.metadata['height'] %>" class="rounded border" loading="lazy" alt="<%= item['name'].presence || document.filename.base %>">
+                <img src="<%= (document.preview_images.find { |e| e.filename.base.to_i.zero? } || document.preview_images.first).url(time: service_url_time) %>" width="<%= document.preview_images.first.metadata['width'] %>" height="<%= document.preview_images.first.metadata['height'] %>" class="rounded border" loading="lazy" alt="<%= item['name'].presence || FilenameUtils.basename(document.blob[:filename]) %>">
                 <div class="pb-2 pt-1.5 text-center" dir="auto">
-                  <%= item['name'].presence || document.filename.base %>
+                  <%= item['name'].presence || FilenameUtils.basename(document.blob[:filename]) %>
                 </div>
               </scroll-to>
             <% end %>

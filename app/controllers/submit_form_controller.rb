@@ -8,6 +8,7 @@ class SubmitFormController < ApplicationController
   skip_authorization_check
 
   before_action :load_submitter, only: %i[show update completed]
+  before_action :maybe_render_not_found_for_search_bot, only: %i[show completed]
   before_action :maybe_redirect_delegated, only: %i[show completed]
   before_action :maybe_render_locked_page, only: :show
   before_action :maybe_require_link_2fa, only: %i[show]
@@ -110,6 +111,14 @@ class SubmitFormController < ApplicationController
   end
 
   private
+
+  def maybe_render_not_found_for_search_bot
+    return unless DetectBrowserDevice.search_bot?(request.user_agent)
+
+    Rollbar.warning("Search bot: submitter #{@submitter&.id}") if defined?(Rollbar)
+
+    raise ActionController::RoutingError, I18n.t('not_found')
+  end
 
   def maybe_require_link_2fa
     return if Submitters::AuthorizedForForm.pass_link_2fa?(@submitter, current_user, request)

@@ -66,7 +66,9 @@ module Mcp
         @template.save!
 
         documents, = Templates::CreateAttachments.call(@template, { files: [file] }, extract_fields: true)
-        schema = documents.map { |doc| { attachment_uuid: doc.uuid, name: doc.filename.base } }
+        schema = documents.map do |doc|
+          { attachment_uuid: doc.uuid, name: FilenameUtils.basename(doc.blob[:filename]) }
+        end
 
         if @template.fields.blank?
           @template.fields = Templates::ProcessDocument.normalize_attachment_fields(@template, documents)

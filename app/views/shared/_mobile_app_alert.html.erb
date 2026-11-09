@@ -1,0 +1,13 @@
+<div id="mobile_app_alert" class="px-4 md:px-2 py-2 text-center bg-yellow-300 text-base-content w-full flex items-center justify-center gap-2">
+  <span>
+    <%= t('get_the_docuseal_app_for_a_better_mobile_experience') %>
+    <%= link_to t('install_app'), browser_os == 'ios' ? Docuseal::APP_STORE_URL : Docuseal::GOOGLE_PLAY_URL, class: 'link font-medium', target: '_blank', rel: 'noopener noreferrer nofollow' %>
+  </span>
+  <toggle-cookies data-key="mobile_app_alert" data-value="hidden" class="flex">
+    <remove-on-event data-selector-id="mobile_app_alert" class="flex">
+      <button type="button" class="btn btn-ghost btn-circle btn-sm" aria-label="<%= t('close') %>">
+        <%= svg_icon('x', class: 'w-5 h-5') %>
+      </button>
+    </remove-on-event>
+  </toggle-cookies>
+</div>

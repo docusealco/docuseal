@@ -1,4 +1,11 @@
-<% if turbo_frame_request? %>
+<% if turbo_native_app? %>
+  <% content_for(:native_title, local_assigns[:title]) if local_assigns[:title] %>
+  <turbo-frame id="modal">
+    <native-modal class="block max-w-lg mx-auto <%= turbo_native_android? ? 'pb-4' : 'pb-6' %>" data-close-after-submit="<%= local_assigns.key?(:close_after_submit) ? local_assigns[:close_after_submit] : true %>">
+      <%= yield %>
+    </native-modal>
+  </turbo-frame>
+<% elsif turbo_frame_request? %>
   <turbo-frame id="modal">
     <turbo-modal class="modal modal-open items-start !animate-none overflow-y-auto !justify-normal md:!justify-center" data-close-after-submit="<%= local_assigns.key?(:close_after_submit) ? local_assigns[:close_after_submit] : true %>">
       <div class="absolute top-0 bottom-0 right-0 left-0" data-action="click:turbo-modal#close"></div>
@@ -17,11 +24,6 @@
       </div>
     </turbo-modal>
   </turbo-frame>
-<% elsif turbo_native_app? %>
-  <% content_for(:native_title, local_assigns[:title]) if local_assigns[:title] %>
-  <native-modal class="block w-full [&>.px-5]:px-4" data-close-after-submit="<%= local_assigns.key?(:close_after_submit) ? local_assigns[:close_after_submit] : true %>">
-    <%= yield %>
-  </native-modal>
 <% else %>
   <% if local_assigns[:title] %>
     <div class="sticky top-0 z-10 flex justify-between bg-base-100 py-2 px-5 items-center border-b pb-2 font-medium">

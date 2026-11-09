@@ -42,7 +42,7 @@ class TemplateFoldersController < ApplicationController
   end
 
   def edit
-    render layout: turbo_native_android? ? 'plain' : true
+    render layout: 'plain'
   end
 
   def update

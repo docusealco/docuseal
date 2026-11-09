@@ -22,6 +22,7 @@ class ApplicationController < ActionController::Base
                 :true_ability,
                 :form_link_host,
                 :svg_icon,
+                :browser_os,
                 :turbo_native_ios?,
                 :turbo_native_android?
 
@@ -56,6 +57,10 @@ class ApplicationController < ActionController::Base
     @impersonated_user = user
 
     request.session[:impersonated_user_id] = user.uuid
+  end
+
+  def browser_os
+    @browser_os ||= DetectBrowserDevice.os(request.user_agent)
   end
 
   def pagy_auto(collection, **keyword_args)

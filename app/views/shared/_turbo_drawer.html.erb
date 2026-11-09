@@ -1,7 +1,7 @@
-<% if turbo_native_app? && !turbo_frame_request? %>
+<% if turbo_native_app? %>
   <% content_for(:native_title, local_assigns[:title]) if local_assigns[:title] %>
   <turbo-frame id="drawer">
-    <native-modal class="block w-full" data-close-after-submit="<%= local_assigns.key?(:close_after_submit) ? local_assigns[:close_after_submit] : true %>">
+    <native-modal class="block max-w-lg mx-auto <%= turbo_native_android? ? 'pb-4' : 'pb-6' %>" data-close-after-submit="<%= local_assigns.key?(:close_after_submit) ? local_assigns[:close_after_submit] : true %>">
       <%= yield %>
     </native-modal>
   </turbo-frame>

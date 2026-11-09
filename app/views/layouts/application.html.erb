@@ -28,9 +28,7 @@
         <open-modal src="<%= url_for(**url_params, params: modal_uri.query_values) %>"></open-modal>
       <% end %>
     <% end %>
-    <% unless content_for?(:native_modal) %>
-      <turbo-frame id="modal"></turbo-frame>
-    <% end %>
+    <turbo-frame id="modal"></turbo-frame>
     <turbo-frame id="drawer"></turbo-frame>
     <%= render turbo_native_app? ? 'shared/native_navbar' : 'shared/navbar' %>
     <main class="max-w-6xl mx-auto px-4 md:px-2 mb-8">

@@ -5,7 +5,7 @@ class UserSignaturesController < ApplicationController
   authorize_resource :user_config
 
   def edit
-    render layout: turbo_native_android? ? 'plain' : true
+    render layout: 'plain'
   end
 
   def update

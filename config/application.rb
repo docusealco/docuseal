@@ -25,7 +25,7 @@ module DocuSeal
 
     config.active_storage.routes_prefix = ''
 
-    config.active_storage.draw_routes = ENV['MULTITENANT'] != 'true'
+    config.active_storage.draw_routes = false
 
     config.active_storage.analyzers = []
 

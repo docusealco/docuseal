@@ -31,7 +31,7 @@ class TemplateDocumentsController < ApplicationController
     documents, = Templates::CreateAttachments.call(@template, params, extract_fields: true)
 
     schema = documents.map do |doc|
-      { attachment_uuid: doc.uuid, name: doc.filename.base }
+      { attachment_uuid: doc.uuid, name: FilenameUtils.basename(doc.blob[:filename]) }
     end
 
     render json: {

@@ -12,7 +12,10 @@ module Templates
       documents.each_with_index do |document, index|
         replaced_document_schema = template.schema[index]
 
-        template.schema[index] = { attachment_uuid: document.uuid, name: document.filename.base }
+        template.schema[index] = {
+          attachment_uuid: document.uuid,
+          name: FilenameUtils.basename(document.blob[:filename])
+        }
 
         if replaced_document_schema
           template.fields.each do |field|

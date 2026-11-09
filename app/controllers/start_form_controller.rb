@@ -92,8 +92,11 @@ class StartFormController < ApplicationController
 
     blank_fields = required_fields.select { |key| submitter_params[key].blank? }
 
+    is_invalid_email = required_fields.include?('email') && submitter_params[:email].present? &&
+                       !submitter_params[:email].match?(User::VALIDATE_EMAIL_REGEXP)
+
     submitter =
-      if blank_fields.present?
+      if blank_fields.present? || is_invalid_email
         Submitter.new(submitter_params)
       else
         Submitters::StartForm.find_or_initialize_submitter(
@@ -103,6 +106,12 @@ class StartFormController < ApplicationController
       end
 
     blank_fields.each { |key| submitter.errors.add(key.to_sym, :blank) }
+
+    if is_invalid_email
+      Rollbar.warning("Invalid start form email: #{submitter_params[:email]}") if defined?(Rollbar)
+
+      submitter.errors.add(:email, :invalid)
+    end
 
     submitter
   end

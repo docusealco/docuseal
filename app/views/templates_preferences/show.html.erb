@@ -18,7 +18,7 @@
       </div>
     </toggle-visible>
   <% end %>
-  <div id="general" class="px-5 mb-4">
+  <div id="general" class="px-5 mb-4" style="<%= 'padding-inline: 18px' if turbo_native_app? %>">
     <%= render 'access' %>
     <%= form_for @template, url: template_preferences_path(@template), method: :post, html: { autocomplete: 'off', class: 'mt-2' }, data: { close_on_submit: false } do |f| %>
       <toggle-on-submit data-element-id="bcc_saved_alert"></toggle-on-submit>
@@ -146,14 +146,14 @@
     <%= render 'templates_code_modal/preferences', class: 'pt-2' %>
   </div>
   <% if show_recipients %>
-    <div id="recipients" class="hidden mt-2 mb-4 px-5 pt-1 pb-2">
+    <div id="recipients" class="hidden mt-2 mb-4 px-5 pt-1 pb-2" style="<%= 'padding-inline: 18px' if turbo_native_app? %>">
       <native-event data-on="submit" data-name="template-builder:update" class="block">
         <%= render 'recipients', template: @template %>
       </native-event>
     </div>
   <% end %>
   <% if show_api %>
-    <div id="api" class="hidden mt-2 mb-4 px-5">
+    <div id="api" class="hidden mt-2 mb-4 px-5" style="<%= 'padding-inline: 18px' if turbo_native_app? %>">
       <div>
         <label class="text-sm font-semibold" for="template_id">
           <%= t('template_id') %>
