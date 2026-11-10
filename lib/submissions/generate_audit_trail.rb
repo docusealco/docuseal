@@ -231,7 +231,7 @@ module Submissions
               document.metadata['sha256'] || document.checksum,
               "\n",
               { text: "#{I18n.t('generated_at')}: ", font: [FONT_NAME, { variant: :bold }] },
-              "#{I18n.l(document.created_at.in_time_zone(timezone), format: :long, locale: account.locale)} " \
+              "#{I18n.l(document.created_at.in_time_zone(timezone), format: :long)} " \
               "#{TimeUtils.timezone_abbr(timezone, document.created_at)}"
             ], line_spacing: 1.3
           )
@@ -440,7 +440,7 @@ module Submissions
               composer.formatted_text_box([{ text: value.to_s.titleize }], padding: [0, 0, 10, 0])
             else
               if field['type'] == 'date'
-                value = TimeUtils.format_date_string(value, field.dig('preferences', 'format'), account.locale,
+                value = TimeUtils.format_date_string(value, field.dig('preferences', 'format'), I18n.locale,
                                                      timezone:)
               end
 
@@ -533,7 +533,7 @@ module Submissions
         time_format = with_timestamp_seconds ? :detailed : :long
 
         [
-          "#{I18n.l(event.event_timestamp.in_time_zone(timezone), format: time_format, locale: account.locale)} " \
+          "#{I18n.l(event.event_timestamp.in_time_zone(timezone), format: time_format)} " \
           "#{TimeUtils.timezone_abbr(timezone, event.event_timestamp)}",
           composer.document.layout.formatted_text_box(text_box)
         ]
