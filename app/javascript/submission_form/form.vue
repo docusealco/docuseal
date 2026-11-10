@@ -684,7 +684,7 @@
       </nav>
       <div
         v-else
-        class="mt-5"
+        class="mt-3"
       />
     </div>
   </div>
