@@ -660,7 +660,7 @@
         :native-platform="nativePlatform"
       />
       <nav
-        v-if="stepFields.length < 80"
+        v-if="stepFields.length > 2 && stepFields.length < 80"
         :aria-label="t('form_progress')"
         :aria-hidden="isCompleted"
         class="flex justify-center mt-3 sm:mt-4 mb-0 sm:mb-1 select-none"
