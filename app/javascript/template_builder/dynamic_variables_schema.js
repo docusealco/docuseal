@@ -436,29 +436,28 @@ function hasBlankKey (keyString) {
   return !keyString || keyString.split('.').some((key) => !key.trim())
 }
 
+function digProperties (properties, keys) {
+  return keys.reduce((current, key) => {
+    if (!current[key]) current[key] = { type: 'object', properties: {} }
+
+    const item = current[key].type === 'array' ? current[key].items : current[key]
+
+    if (!item.properties) {
+      item.type = 'object'
+      item.properties = {}
+    }
+
+    return item.properties
+  }, properties)
+}
+
 function assignNestedSchema (propertiesHash, parentProperties, keyString, value) {
   if (hasBlankKey(keyString)) return
 
   const keys = keyString.split('.')
   const lastKey = keys.pop()
 
-  let currentLevel = null
-
-  if (keys.length > 0 && parentProperties[keys[0]]) {
-    currentLevel = keys.reduce((current, key) => {
-      if (!current[key]) current[key] = { type: 'object', properties: {} }
-
-      return current[key].properties
-    }, parentProperties)
-  }
-
-  if (!currentLevel) {
-    currentLevel = keys.reduce((current, key) => {
-      if (!current[key]) current[key] = { type: 'object', properties: {} }
-
-      return current[key].properties
-    }, propertiesHash)
-  }
+  const currentLevel = digProperties(keys.length > 0 && parentProperties[keys[0]] ? parentProperties : propertiesHash, keys)
 
   currentLevel[lastKey] = value
 }
@@ -469,23 +468,7 @@ function assignNestedSchemaWithPriority (propertiesHash, parentProperties, keySt
   const keys = keyString.split('.')
   const lastKey = keys.pop()
 
-  let currentLevel = null
-
-  if (keys.length > 0 && parentProperties[keys[0]]) {
-    currentLevel = keys.reduce((current, key) => {
-      if (!current[key]) current[key] = { type: 'object', properties: {} }
-
-      return current[key].properties
-    }, parentProperties)
-  }
-
-  if (!currentLevel) {
-    currentLevel = keys.reduce((current, key) => {
-      if (!current[key]) current[key] = { type: 'object', properties: {} }
-
-      return current[key].properties
-    }, propertiesHash)
-  }
+  const currentLevel = digProperties(keys.length > 0 && parentProperties[keys[0]] ? parentProperties : propertiesHash, keys)
 
   const existing = currentLevel[lastKey]
 
