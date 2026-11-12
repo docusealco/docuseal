@@ -51,7 +51,7 @@ class SubmitFormController < ApplicationController
   end
 
   def update
-    unless Submitters::AuthorizedForForm.call(@submitter, current_user, request)
+    unless Submitters::AuthorizedForForm.call(@submitter, current_user, request, with_order: with_order(@submitter))
       return render json: { error: I18n.t('verification_required_refresh_the_page_and_pass_2fa') },
                     status: :unprocessable_content
     end
@@ -152,6 +152,11 @@ class SubmitFormController < ApplicationController
   def build_attachments_index(submission)
     ActiveStorage::Attachment.where(record: submission.submitters, name: :attachments)
                              .preload(:blob).index_by(&:uuid)
+  end
+
+  def with_order(submitter)
+    params[:completed] == 'true' && submitter.present? &&
+      submitter.submission.template&.preferences&.dig('submitters_order') == 'preserved'
   end
 
   def lang
