@@ -1093,7 +1093,8 @@ export default {
       submittedValues: {},
       isFormStarted: false,
       recalculateButtonDisabledKey: '',
-      isAccessibilityMode: false
+      isAccessibilityMode: false,
+      isMathLoaded: false
     }
   },
   computed: {
@@ -1193,6 +1194,24 @@ export default {
     fieldsUuidIndex () {
       return this.fields.reduce((acc, f) => {
         acc[f.uuid] = f
+
+        return acc
+      }, {})
+    },
+    formulaFieldsUuidIndex () {
+      return this.fields.reduce((acc, f) => {
+        if (f.preferences?.formula && f.type !== 'payment') {
+          acc[f.uuid] = f
+        }
+
+        return acc
+      }, {})
+    },
+    readonlyValues () {
+      return this.fields.reduce((acc, f) => {
+        if (f.readonly) {
+          acc[f.uuid] = isEmpty(this.values[f.uuid]) ? f.default_value : this.values[f.uuid]
+        }
 
         return acc
       }, {})
@@ -1449,6 +1468,16 @@ export default {
     })
   },
   methods: {
+    normalizeFormula: FormulaFieldAreas.methods.normalizeFormula,
+    calculateFormula: FormulaFieldAreas.methods.calculateFormula,
+    dateFormulaValue: FormulaFieldAreas.methods.dateFormulaValue,
+    evalTextFormula: FormulaFieldAreas.methods.evalTextFormula,
+    loadCalculator () {
+      this.calculatorPromise ||= import('./calculator').then(({ Calculator }) => {
+        this.math = new Calculator()
+        this.isMathLoaded = true
+      })
+    },
     t (key) {
       return this.i18n[key] || i18n[this.language?.toLowerCase()]?.[key] || i18n[this.browserLanguage]?.[key] || i18n.en[key] || key
     },
@@ -1497,17 +1526,25 @@ export default {
       }
 
       const defaultValue = !field || isEmpty(field.default_value) ? null : field.default_value
+      const isFormulaField = !!field?.preferences?.formula && field.type !== 'payment'
+
+      if (isFormulaField && !this.isMathLoaded) {
+        this.loadCalculator()
+      }
+
+      const formulaValue = isFormulaField && this.isMathLoaded
+        ? (field.type === 'text' ? this.evalTextFormula(field) : this.calculateFormula(field))
+        : null
+      const fieldValue = formulaValue ?? this.values[condition.field_uuid] ?? defaultValue
 
       if (['empty', 'unchecked'].includes(condition.action)) {
-        return isEmpty(this.values[condition.field_uuid] ?? defaultValue)
+        return isEmpty(fieldValue)
       } else if (['not_empty', 'checked'].includes(condition.action)) {
-        return !isEmpty(this.values[condition.field_uuid] ?? defaultValue)
+        return !isEmpty(fieldValue)
       } else if (field?.type === 'number' && ['equal', 'not_equal', 'greater_than', 'less_than'].includes(condition.action)) {
-        const value = this.values[condition.field_uuid] ?? defaultValue
+        if (isEmpty(fieldValue) || isEmpty(condition.value)) return false
 
-        if (isEmpty(value) || isEmpty(condition.value)) return false
-
-        const actual = parseFloat(value)
+        const actual = parseFloat(fieldValue)
         const expected = parseFloat(condition.value)
 
         if (Number.isNaN(actual) || Number.isNaN(expected)) return false
@@ -1523,21 +1560,21 @@ export default {
           const option = field.options.find((o) => o.uuid === condition.value)
 
           if (option) {
-            const values = [this.values[condition.field_uuid] ?? defaultValue].flat()
+            const values = [fieldValue].flat()
 
             return values.includes(this.optionValue(option, field.options.indexOf(option)))
           } else {
             return false
           }
         } else {
-          return [this.values[condition.field_uuid] ?? defaultValue].flat().includes(condition.value)
+          return [fieldValue].flat().includes(condition.value)
         }
       } else if (['not_equal', 'does_not_contain'].includes(condition.action) && field) {
         if (field.options) {
           const option = field.options.find((o) => o.uuid === condition.value)
 
           if (option) {
-            const values = [this.values[condition.field_uuid] ?? defaultValue].flat()
+            const values = [fieldValue].flat()
 
             return !values.includes(this.optionValue(option, field.options.indexOf(option)))
           } else {

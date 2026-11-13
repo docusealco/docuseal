@@ -81,7 +81,8 @@ module Submitters
 
       required_field_uuids_acc = Set.new
 
-      submitter.values = maybe_remove_condition_values(submitter, required_field_uuids_acc:)
+      submitter.values = maybe_remove_condition_values(submitter, formula_values: build_formula_values(submitter),
+                                                                  required_field_uuids_acc:)
 
       formula_values = build_formula_values(submitter)
 
@@ -204,10 +205,10 @@ module Submitters
       default_values.compact_blank.merge(submitter.values)
     end
 
-    def build_formula_values(submitter)
-      submission_values = nil
+    def build_formula_values(submitter, submission_values: nil)
+      submission = submitter.submission
 
-      computed_values = submitter.submission.template_fields.each_with_object({}) do |field, acc|
+      computed_values = (submission.template_fields || submission.template.fields).each_with_object({}) do |field, acc|
         next if field['submitter_uuid'] != submitter.uuid
         next if field['type'] == 'payment'
 
@@ -297,17 +298,17 @@ module Submitters
                                 field:)
     end
 
-    def maybe_remove_condition_values(submitter, required_field_uuids_acc: nil)
+    def maybe_remove_condition_values(submitter, formula_values: {}, required_field_uuids_acc: nil)
       submission = submitter.submission
 
-      submitters_values = nil
+      submitters_values = formula_values.merge(merge_submitters_values(submitter)) if formula_values.present?
       has_other_submitters = submission.template_submitters.size > 1
 
       has_document_conditions = submission_has_document_conditions?(submission)
 
       attachments_index =
         if has_document_conditions
-          submitters_values = merge_submitters_values(submitter)
+          submitters_values ||= merge_submitters_values(submitter)
 
           Submissions.filtered_conditions_schema(submission, values: submitters_values)
                      .index_by { |i| i['attachment_uuid'] }
