@@ -49,7 +49,7 @@ class SubmitFormInviteController < ApplicationController
       !submitter.submission.expired? &&
       !submitter.submission.template&.archived_at? &&
       !submitter.viewer? &&
-      Submitters::AuthorizedForForm.call(submitter, current_user, request)
+      Submitters::AuthorizedForForm.call(submitter, current_user, request, with_order: true)
   end
 
   def filter_invite_submitters(submitter, key = 'invite_by_uuid')
