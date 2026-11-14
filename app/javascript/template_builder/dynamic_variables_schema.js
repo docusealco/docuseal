@@ -432,8 +432,10 @@ function buildOperators (tags) {
   return operators
 }
 
+const UNSAFE_KEYS = ['__proto__', 'constructor', 'prototype']
+
 function hasBlankKey (keyString) {
-  return !keyString || keyString.split('.').some((key) => !key.trim())
+  return !keyString || keyString.split('.').some((key) => !key.trim() || UNSAFE_KEYS.includes(key.trim()))
 }
 
 function digProperties (properties, keys) {
