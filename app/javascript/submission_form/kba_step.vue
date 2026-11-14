@@ -557,7 +557,7 @@ export default {
       }, {})
 
       try {
-        const resp = await fetch(this.baseUrl + `/s/${this.submitterSlug}/kba/${this.field.uuid}`, {
+        const resp = await fetch(this.baseUrl + `/s/${this.submitterSlug}/kba/${encodeURIComponent(this.field.uuid)}`, {
           method: 'PUT',
           body: JSON.stringify({
             token: this.token,

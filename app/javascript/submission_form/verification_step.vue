@@ -162,7 +162,7 @@ export default {
   },
   methods: {
     start () {
-      return fetch(this.baseUrl + `/s/${this.submitterSlug}/identity_verification/${this.field.uuid}`, {
+      return fetch(this.baseUrl + `/s/${this.submitterSlug}/identity_verification/${encodeURIComponent(this.field.uuid)}`, {
         method: 'PUT',
         body: JSON.stringify({
           redirect_url: document.location.href

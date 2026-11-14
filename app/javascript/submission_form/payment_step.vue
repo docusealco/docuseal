@@ -253,7 +253,7 @@ export default {
     },
     async submit () {
       if (this.sessionId) {
-        return fetch(this.baseUrl + this.paymentEndpoint + '/' + this.sessionId, {
+        return fetch(this.baseUrl + this.paymentEndpoint + '/' + encodeURIComponent(this.sessionId), {
           method: 'PUT',
           ...this.fetchOptions,
           headers: { 'Content-Type': 'application/json', ...this.fetchOptions.headers }
