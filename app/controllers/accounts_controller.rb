@@ -49,9 +49,11 @@ class AccountsController < ApplicationController
   def destroy
     authorize!(:manage, current_account)
 
+    removed_email = true_user.email.sub('@', '+removed@')
+    removed_email = true_user.email.sub('@', "+removed#{Time.current.to_i}@") if User.exists?(email: removed_email)
+
     true_user.skip_reconfirmation!
-    true_user.update!(locked_at: Time.current, archived_at: Time.current,
-                      email: true_user.email.sub('@', '+removed@'))
+    true_user.update!(locked_at: Time.current, archived_at: Time.current, email: removed_email)
     true_user.account.update!(archived_at: Time.current)
 
     # rubocop:disable-next Layout/LineLength
