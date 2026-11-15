@@ -75,7 +75,7 @@ module Submitters
       submitter.completed_at = Time.current
       submitter.ip = request.remote_ip
       submitter.ua = request.user_agent
-      submitter.timezone = request.params[:timezone]
+      submitter.timezone = request.params[:timezone] if ActiveSupport::TimeZone[request.params[:timezone].to_s]
 
       submitter.values = merge_default_values(submitter)
 
