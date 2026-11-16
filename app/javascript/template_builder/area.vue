@@ -700,11 +700,12 @@ export default {
       this.save()
     },
     onDefaultValueEnter (e) {
-      if (this.field.type !== 'heading') {
-        e.preventDefault()
+      if (this.field.type === 'heading') return
+      if (e.shiftKey && this.field.type === 'text') return
 
-        this.$refs.defaultValue.blur()
-      }
+      e.preventDefault()
+
+      this.$refs.defaultValue.blur()
     },
     resize (e) {
       if (e.target.id === 'mask') {

@@ -78,6 +78,12 @@ module Mcp
 
       return render_tool_error('Template has no fields') if @template.fields.blank?
 
+      if @template.variables_schema.present?
+        Rollbar.warning("MCP send variables template: #{@template.id}") if defined?(Rollbar)
+
+        return render_tool_error('Templates with variables are not supported')
+      end
+
       submitters = (mcp_params['submitters'] || []).map do |s|
         attrs = s.slice('email', 'name', 'role', 'phone').compact_blank
 

@@ -42,21 +42,21 @@ module Api
 
       authorization_check!(attachment, @record, exp)
 
+      no_store
+
       if request.headers['Range'].present?
         send_blob_byte_range_data blob, request.headers['Range']
       else
-        http_cache_forever public: true do
-          response.headers['Accept-Ranges'] = 'bytes'
+        response.headers['Accept-Ranges'] = 'bytes'
 
-          if request.head?
-            response.headers['Content-Type'] = blob.content_type_for_serving
-            head :ok
-          else
-            send_blob_stream blob, disposition: params[:disposition]
-          end
-
-          response.headers['Content-Length'] = blob.byte_size.to_s
+        if request.head?
+          response.headers['Content-Type'] = blob.content_type_for_serving
+          head :ok
+        else
+          send_blob_stream blob, disposition: params[:disposition]
         end
+
+        response.headers['Content-Length'] = blob.byte_size.to_s
       end
     end
 

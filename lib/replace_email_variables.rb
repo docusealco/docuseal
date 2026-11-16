@@ -18,6 +18,7 @@ module ReplaceEmailVariables
   SUBMISSION_LINK = /\{+submission\.link\}+/i
   SUBMISSION_ID = /\{+submission\.id\}+/i
   SUBMISSION_EXPIRE_AT = /\{+submission\.expire_at\}+/i
+  SUBMISSION_VARIABLE = /\{+submission\.(?<variable_name>[^}]+)\}+/i
   SUBMITTERS = /\{+(?:submission\.)?submitters\}+/i
   SUBMITTERS_N_EMAIL = /\{+submitters\[(?<index>\d+)\]\.email\}+/i
   SUBMITTERS_N_NAME = /\{+submitters\[(?<index>\d+)\]\.name\}+/i
@@ -65,6 +66,10 @@ module ReplaceEmailVariables
       end
     end
 
+    text = replace(text, SUBMISSION_VARIABLE, html_escape:) do |match|
+      build_submission_variable(submitter.submission, match[:variable_name].to_s.strip)
+    end
+
     text = replace(text, SUBMITTERS_N_NAME, html_escape:) do |match|
       build_submitters_n_field(submitter.submission, match[:index].to_i - 1, :name)
     end
@@ -101,6 +106,12 @@ module ReplaceEmailVariables
     Rails.application.routes.url_helpers.submissions_preview_url(
       submitter.submission.slug, { sig:, **url_options }.compact
     )
+  end
+
+  def build_submission_variable(submission, variable_name)
+    variable_name.split('.').reduce(submission.variables) do |value, key|
+      value[key] if value.is_a?(Hash)
+    end
   end
 
   def build_submitters_n_field(submission, index, field_name, value_name = nil)

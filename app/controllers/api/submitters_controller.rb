@@ -158,7 +158,9 @@ module Api
 
       if attrs[:completed]
         submitter.values = Submitters::SubmitValues.merge_default_values(submitter)
-        submitter.values = Submitters::SubmitValues.maybe_remove_condition_values(submitter)
+        submitter.values = Submitters::SubmitValues.maybe_remove_condition_values(
+          submitter, formula_values: Submitters::SubmitValues.build_formula_values(submitter)
+        )
 
         formula_values = Submitters::SubmitValues.build_formula_values(submitter)
 

@@ -104,7 +104,7 @@ jobs:
           bundle install --jobs 4 --retry 4
           yarn install
           sudo apt-get update
-          sudo apt-get install libvips liblept5
+          sudo apt-get install libvips libleptonica6
       - name: Run Brakeman
         run: bundle exec brakeman -q --exit-on-warn
 
