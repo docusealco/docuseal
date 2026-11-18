@@ -3,8 +3,8 @@
 class UsersController < ApplicationController
   load_and_authorize_resource :user, only: %i[index edit update destroy]
 
-  before_action :build_user, only: %i[new create]
-  authorize_resource :user, only: %i[new create]
+  before_action :build_user, only: :create
+  authorize_resource :user, only: :create
 
   def index
     @users =
@@ -32,6 +32,10 @@ class UsersController < ApplicationController
   end
 
   def new
+    @user = current_account.users.new
+
+    authorize!(:create, @user)
+
     render layout: turbo_native_app? ? 'plain' : true
   end
 
