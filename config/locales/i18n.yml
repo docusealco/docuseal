@@ -656,6 +656,7 @@ en: &en
   hmac_signing_secret: HMAC Signing Secret
   hmac_signature_header_hint_html: 'Each request is signed with the %{header} header: &lt;timestamp&gt;.&lt;sha256&gt;.'
   count_submissions_have_been_created: '%{count} submissions have been created.'
+  this_document_is_being_processed_refresh_the_page_to_view_the_final_version: "This document is being processed. Refresh the page to view the final version."
   sms_length_cant_be_longer_than_120_bytes: SMS length can't be longer than 120 bytes
   connected_successfully: Connected successfully.
   user_nameid_not_found: 'User %{nameid} not found.'
@@ -1087,6 +1088,8 @@ en: &en
     select_field: Select Field
     select_column: Select Column
     new_field_mapping: New Field Mapping
+    add_mapping: Add Mapping
+    variables: Variables
     total_entries: Total entries
     upload_csv_or_xlsx_spreadsheet: Upload CSV or XLSX Spreadsheet
     click_to_upload: Click to Upload
@@ -1824,6 +1827,7 @@ es: &es
   hmac_signing_secret: Secreto de firma HMAC
   hmac_signature_header_hint_html: 'Cada solicitud se firma con el encabezado %{header}: &lt;timestamp&gt;.&lt;sha256&gt;.'
   count_submissions_have_been_created: '%{count} envíos han sido creados.'
+  this_document_is_being_processed_refresh_the_page_to_view_the_final_version: "Este documento se está procesando. Actualiza la página para ver la versión final."
   sms_length_cant_be_longer_than_120_bytes: La longitud del SMS no puede ser mayor a 120 bytes.
   connected_successfully: Conectado con éxito.
   user_nameid_not_found: 'Usuario %{nameid} no encontrado.'
@@ -2244,6 +2248,8 @@ es: &es
     select_field: Seleccionar campo
     select_column: Seleccionar columna
     new_field_mapping: Nuevo mapeo de campo
+    add_mapping: Agregar mapeo
+    variables: Variables
     total_entries: Entradas totales
     upload_csv_or_xlsx_spreadsheet: Subir hoja de cálculo CSV o XLSX
     click_to_upload: Haz clic para subir
@@ -2995,6 +3001,7 @@ it: &it
   hmac_signing_secret: Segreto di firma HMAC
   hmac_signature_header_hint_html: 'Ogni richiesta viene firmata con l''intestazione %{header}: &lt;timestamp&gt;.&lt;sha256&gt;.'
   count_submissions_have_been_created: '%{count} invii sono stati creati.'
+  this_document_is_being_processed_refresh_the_page_to_view_the_final_version: "Questo documento è in fase di elaborazione. Aggiorna la pagina per visualizzare la versione finale."
   sms_length_cant_be_longer_than_120_bytes: "La lunghezza dell'SMS non può superare i 120 byte."
   connected_successfully: Collegamento avvenuto con successo.
   user_nameid_not_found: 'Utente %{nameid} non trovato.'
@@ -3415,6 +3422,8 @@ it: &it
     select_field: Seleziona campo
     select_column: Seleziona colonna
     new_field_mapping: Nuova mappatura del campo
+    add_mapping: Aggiungi mappatura
+    variables: Variabili
     total_entries: Voci totali
     upload_csv_or_xlsx_spreadsheet: Carica un foglio di calcolo CSV o XLSX
     click_to_upload: Clicca per caricare
@@ -4152,6 +4161,7 @@ fr: &fr
   hmac_signing_secret: Secret de signature HMAC
   hmac_signature_header_hint_html: 'Chaque requête est signée avec l''en-tête %{header} : &lt;timestamp&gt;.&lt;sha256&gt;.'
   count_submissions_have_been_created: "%{count} soumissions ont été créées."
+  this_document_is_being_processed_refresh_the_page_to_view_the_final_version: "Ce document est en cours de traitement. Actualisez la page pour afficher la version finale."
   sms_length_cant_be_longer_than_120_bytes: La longueur du SMS ne peut pas dépasser 120 octets
   connected_successfully: Connecté avec succès.
   user_nameid_not_found: Utilisateur %{nameid} introuvable.
@@ -4569,6 +4579,8 @@ fr: &fr
     select_field: Sélectionner un champ
     select_column: Sélectionner une colonne
     new_field_mapping: Nouveau mappage de champ
+    add_mapping: Ajouter un mappage
+    variables: Variables
     total_entries: Entrées totales
     upload_csv_or_xlsx_spreadsheet: Téléverser un tableur CSV ou XLSX
     click_to_upload: Cliquer pour téléverser
@@ -5319,6 +5331,7 @@ pt: &pt
   hmac_signing_secret: Segredo de assinatura HMAC
   hmac_signature_header_hint_html: 'Cada requisição é assinada com o cabeçalho %{header}: &lt;timestamp&gt;.&lt;sha256&gt;.'
   count_submissions_have_been_created: '%{count} submissões foram criadas.'
+  this_document_is_being_processed_refresh_the_page_to_view_the_final_version: "Este documento está sendo processado. Atualize a página para ver a versão final."
   sms_length_cant_be_longer_than_120_bytes: O comprimento do SMS não pode ultrapassar 120 bytes
   connected_successfully: Conectado com sucesso.
   user_nameid_not_found: 'Usuário %{nameid} não encontrado.'
@@ -5739,6 +5752,8 @@ pt: &pt
     select_field: Selecionar campo
     select_column: Selecionar coluna
     new_field_mapping: Novo mapeamento de campo
+    add_mapping: Adicionar mapeamento
+    variables: Variáveis
     total_entries: Entradas totais
     upload_csv_or_xlsx_spreadsheet: Enviar planilha CSV ou XLSX
     click_to_upload: Clique para enviar
@@ -6489,6 +6504,7 @@ de: &de
   hmac_signing_secret: HMAC-Signaturgeheimnis
   hmac_signature_header_hint_html: 'Jede Anfrage wird mit dem %{header}-Header signiert: &lt;timestamp&gt;.&lt;sha256&gt;.'
   count_submissions_have_been_created: '%{count} Einreichungen wurden erstellt.'
+  this_document_is_being_processed_refresh_the_page_to_view_the_final_version: "Dieses Dokument wird verarbeitet. Aktualisieren Sie die Seite, um die endgültige Version anzuzeigen."
   sms_length_cant_be_longer_than_120_bytes: Die SMS-Länge darf 120 Bytes nicht überschreiten.
   connected_successfully: Erfolgreich verbunden.
   user_nameid_not_found: 'Benutzer %{nameid} nicht gefunden.'
@@ -6909,6 +6925,8 @@ de: &de
     select_field: Feld auswählen
     select_column: Spalte auswählen
     new_field_mapping: Neue Feldzuordnung
+    add_mapping: Zuordnung hinzufügen
+    variables: Variablen
     total_entries: Gesamteinträge
     upload_csv_or_xlsx_spreadsheet: CSV- oder XLSX-Tabelle hochladen
     click_to_upload: Klicken Sie, um hochzuladen
@@ -8187,6 +8205,7 @@ nl: &nl
   hmac_signing_secret: HMAC-ondertekeningsgeheim
   hmac_signature_header_hint_html: 'Elk verzoek wordt ondertekend met de %{header}-header: &lt;timestamp&gt;.&lt;sha256&gt;.'
   count_submissions_have_been_created: "%{count} inzendingen zijn aangemaakt."
+  this_document_is_being_processed_refresh_the_page_to_view_the_final_version: "Dit document wordt verwerkt. Vernieuw de pagina om de definitieve versie te bekijken."
   sms_length_cant_be_longer_than_120_bytes: SMS-lengte mag niet langer zijn dan 120 bytes
   connected_successfully: Succesvol verbonden.
   user_nameid_not_found: Gebruiker %{nameid} niet gevonden.
@@ -8603,6 +8622,8 @@ nl: &nl
     select_field: Veld selecteren
     select_column: Kolom selecteren
     new_field_mapping: Nieuwe veldkoppeling
+    add_mapping: Koppeling toevoegen
+    variables: Variabelen
     total_entries: Totaal aantal items
     upload_csv_or_xlsx_spreadsheet: CSV- of XLSX-spreadsheet uploaden
     click_to_upload: Klik om te uploaden

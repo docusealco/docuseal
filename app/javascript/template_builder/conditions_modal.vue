@@ -105,7 +105,7 @@
                 </option>
               </select>
               <select
-                v-if="['radio', 'select', 'multiple'].includes(conditionField(condition)?.type) && conditionField(condition)?.options"
+                v-if="['radio', 'select', 'multiple'].includes(conditionField(condition)?.type) && conditionField(condition)?.options && !['greater_than', 'less_than'].includes(condition.action)"
                 class="select select-bordered select-sm w-full bg-white h-11 pl-4 text-base font-normal"
                 :class="{ 'text-gray-300': !condition.value }"
                 required
@@ -129,7 +129,7 @@
                 </option>
               </select>
               <input
-                v-else-if="conditionField(condition)?.type === 'number' && ['equal', 'not_equal', 'greater_than', 'less_than'].includes(condition.action)"
+                v-else-if="(conditionField(condition)?.type === 'number' && ['equal', 'not_equal', 'greater_than', 'less_than'].includes(condition.action)) || (['radio', 'select'].includes(conditionField(condition)?.type) && ['greater_than', 'less_than'].includes(condition.action))"
                 v-model="condition.value"
                 type="number"
                 step="any"
@@ -239,6 +239,10 @@ export default {
         actions.push('checked', 'unchecked')
       } else if (['radio', 'select'].includes(field.type)) {
         actions.push('equal', 'not_equal')
+
+        if (this.isNumericOptions(field)) {
+          actions.push('greater_than', 'less_than')
+        }
       } else if (['multiple'].includes(field.type)) {
         actions.push('contains', 'does_not_contain')
       } else if (field.type === 'number') {
@@ -248,6 +252,11 @@ export default {
       }
 
       return actions
+    },
+    isNumericOptions (field) {
+      return !!field.options?.length && field.options.every((option) => {
+        return typeof option.value === 'string' && option.value.trim() !== '' && !Number.isNaN(Number(option.value))
+      })
     },
     validateSaveAndClose () {
       if (!this.withConditions) {

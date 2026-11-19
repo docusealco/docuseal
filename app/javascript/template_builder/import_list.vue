@@ -52,7 +52,7 @@
               class="base-select !select-sm !h-10"
               :class="{ '!text-gray-300': !mapping.field_name }"
               required
-              @change="mapping.field_name = $event.target.value"
+              @change="selectMappingField(mapping, $event.target.selectedOptions[0])"
             >
               <option
                 disabled
@@ -65,11 +65,23 @@
                 v-for="(field, index) in selectFieldsForSubmitter(submitter)"
                 :key="index"
                 :value="field.name"
-                :selected="mapping.field_name === field.name"
+                :selected="!mapping.is_variable && mapping.field_name === field.name"
                 class="text-base-content"
               >
                 {{ field.name }}
               </option>
+              <template v-if="submitters.length === 1">
+                <option
+                  v-for="variablePath in variablePaths"
+                  :key="variablePath"
+                  :value="variablePath"
+                  :selected="mapping.is_variable && mapping.field_name === variablePath"
+                  data-variable="true"
+                  class="text-base-content"
+                >
+                  {{ variablePath }}
+                </option>
+              </template>
             </select>
             <div class="flex items-center px-1">
               <IconArrowsHorizontal style="width: 19px; height: 19px" />
@@ -142,8 +154,92 @@
             @click.prevent="addMapping(submitter)"
           >
             <IconPlus class="w-4 h-4" />
-            {{ t('new_field_mapping') }}
+            {{ submitters.length === 1 && variablePaths.length ? t('add_mapping') : t('new_field_mapping') }}
           </button>
+        </div>
+      </div>
+      <div
+        v-if="submitters.length > 1 && mappings.some((m) => m.is_variable)"
+        class="mb-4"
+      >
+        <div class="px-3 border-y py-2 border-base-300 text-center w-full">
+          {{ t('variables') }}
+        </div>
+        <div class="mt-2">
+          <div
+            v-for="mapping in mappings.filter((m) => m.is_variable)"
+            :key="mapping.uuid"
+            class="mb-2"
+          >
+            <div class="flex">
+              <input
+                class="base-input !h-10 w-full text-sm"
+                :value="mapping.field_name"
+                readonly
+              >
+              <div class="flex items-center px-1">
+                <IconArrowsHorizontal style="width: 19px; height: 19px" />
+              </div>
+              <div class="w-full relative">
+                <select
+                  class="base-select !select-sm !h-10"
+                  :class="{ '!text-gray-300': !mapping.column_index && mapping.column_index != 0 }"
+                  @change="mapping.column_index = parseInt($event.target.value)"
+                >
+                  <option
+                    disabled
+                    value=""
+                    :selected="mapping.column_index == null"
+                  >
+                    {{ t('select_column') }}
+                  </option>
+                  <template
+                    v-for="(column, index) in columns"
+                    :key="index"
+                  >
+                    <option
+                      v-if="column"
+                      :value="index"
+                      :selected="index === mapping.column_index"
+                      class="text-base-content"
+                    >
+                      {{ column }}
+                    </option>
+                  </template>
+                </select>
+                <div
+                  v-if="mapping.column_index != null"
+                  class="absolute top-0 bottom-0 right-1 flex items-center"
+                >
+                  <span
+                    class="tooltip tooltip-bottom-end pr-1 tooltip-pre"
+                    style="padding-top: 2px"
+                    :data-tip="[0, 1, 2].map((i) => rows[i]?.[mapping.column_index] ?? '---').join('\n')"
+                  >
+                    <button
+                      class="btn btn-xs btn-circle bg-white border-0 border-gray-300"
+                      @click.prevent
+                    >
+                      <IconInfoCircle class="h-4 w-4" />
+                    </button>
+                  </span>
+                </div>
+              </div>
+              <div class="flex items-center pl-1">
+                <span
+                  class="tooltip tooltip-left"
+                  :data-tip="t('remove')"
+                >
+                  <button
+                    class="btn btn-xs btn-circle"
+                    @click.prevent="mappings.splice(mappings.indexOf(mapping), 1)"
+                  >
+                    <IconX class="h-3.5 w-3.5" />
+                  </button>
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div>
@@ -276,9 +372,14 @@ export default {
 
       this.rows.forEach((row) => {
         const submittersIndex = {}
+        const variables = {}
 
         this.mappings.forEach((mapping) => {
-          if (mapping.field_name && mapping.column_index != null) {
+          if (mapping.is_variable) {
+            if (mapping.column_index != null) {
+              this.assignVariable(variables, mapping.field_name.split('.'), row[mapping.column_index])
+            }
+          } else if (mapping.field_name && mapping.column_index != null) {
             submittersIndex[mapping.submitter_uuid] ||= {
               uuid: mapping.submitter_uuid,
               role: this.submitters.find((s) => s.uuid === mapping.submitter_uuid).name,
@@ -300,7 +401,13 @@ export default {
         })
 
         if (Object.keys(submittersIndex).length !== 0) {
-          submissions.push({ submitters: this.submitters.map((s) => submittersIndex[s.uuid]).filter(Boolean) })
+          const submission = { submitters: this.submitters.map((s) => submittersIndex[s.uuid]).filter(Boolean) }
+
+          if (Object.keys(variables).length !== 0) {
+            submission.variables = variables
+          }
+
+          submissions.push(submission)
         }
       })
 
@@ -314,6 +421,8 @@ export default {
           rows.push(this.submitters.length > 1 ? `${submitter.name} - ${field.name}` : field.name)
         })
       })
+
+      rows.push(...this.variablePaths)
 
       const csv = rows.map(item => {
         if (/[",\n]/.test(item)) {
@@ -338,6 +447,9 @@ export default {
 
         return acc
       }, {})
+    },
+    variablePaths () {
+      return this.buildVariablePaths(this.template.variables_schema || {}, []).map((path) => path.join('.'))
     },
     columns () {
       return this.table[0]
@@ -398,6 +510,30 @@ export default {
 
       return fields
     },
+    buildVariablePaths (schema, prefix) {
+      return Object.entries(schema).flatMap(([key, node]) => {
+        if (node.disabled || node.type === 'array') {
+          return []
+        } else if (node.type === 'object' && node.properties) {
+          return this.buildVariablePaths(node.properties, [...prefix, key])
+        } else {
+          return [[...prefix, key]]
+        }
+      })
+    },
+    assignVariable (variables, path, value) {
+      const parent = path.slice(0, -1).reduce((acc, key) => {
+        acc[key] ||= {}
+
+        return acc[key]
+      }, variables)
+
+      parent[path[path.length - 1]] = value
+    },
+    selectMappingField (mapping, option) {
+      mapping.field_name = option.value
+      mapping.is_variable = option.dataset.variable === 'true'
+    },
     buildDefaultMappings () {
       this.submitters.forEach((submitter) => {
         const fields = this.selectFieldsForSubmitter(submitter)
@@ -420,6 +556,22 @@ export default {
 
         if (!this.mappings.some((m) => m.field_name.toLowerCase() === 'email' && m.submitter_uuid === submitter.uuid)) {
           this.mappings.unshift({ uuid: v4(), field_name: 'Email', submitter_uuid: submitter.uuid })
+        }
+      })
+
+      this.variablePaths.forEach((variablePath) => {
+        const columnIndex = this.columns.findIndex((column, index) => {
+          return column &&
+            column.toString().toLowerCase() === variablePath.toLowerCase() &&
+            this.mappings.every((m) => m.column_index !== index)
+        })
+
+        const isMatched = columnIndex !== -1 && this.rows.some((row) => row[columnIndex])
+
+        if (this.submitters.length > 1) {
+          this.mappings.push({ uuid: v4(), field_name: variablePath, is_variable: true, column_index: isMatched ? columnIndex : null, submitter_uuid: null })
+        } else if (isMatched) {
+          this.mappings.push({ uuid: v4(), field_name: variablePath, is_variable: true, column_index: columnIndex, submitter_uuid: this.submitters[0].uuid })
         }
       })
     },

@@ -1541,7 +1541,7 @@ export default {
         return isEmpty(fieldValue)
       } else if (['not_empty', 'checked'].includes(condition.action)) {
         return !isEmpty(fieldValue)
-      } else if (field?.type === 'number' && ['equal', 'not_equal', 'greater_than', 'less_than'].includes(condition.action)) {
+      } else if ((field?.type === 'number' && ['equal', 'not_equal', 'greater_than', 'less_than'].includes(condition.action)) || (['radio', 'select'].includes(field?.type) && ['greater_than', 'less_than'].includes(condition.action))) {
         if (isEmpty(fieldValue) || isEmpty(condition.value)) return false
 
         const actual = parseFloat(fieldValue)

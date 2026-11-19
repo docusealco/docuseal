@@ -11,6 +11,7 @@
 <% with_timestamp_seconds = configs.find { |e| e.key == AccountConfig::WITH_TIMESTAMP_SECONDS_KEY }&.value == true %>
 <% with_signature_id_reason = configs.find { |e| e.key == AccountConfig::WITH_SIGNATURE_ID_REASON_KEY }&.value != false %>
 <% with_signature_id_completed_at = configs.find { |e| e.key == AccountConfig::WITH_SIGNATURE_ID_COMPLETED_AT_KEY }&.value == true %>
+<% is_generating = @submission.variables_schema.present? && @submission.template_schema.to_a.any? { |item| item['dynamic'] && @submission.schema_documents.none? { |e| e.uuid == item['attachment_uuid'] } } %>
 <div style="max-width: 1600px" class="mx-auto pl-4">
   <% unless native_tab == 'recipients' %>
     <div class="flex justify-between items-center pr-4 sticky top-0 md:relative z-10 bg-base-100 <%= 'py-1.5' unless turbo_native_app? %>">
@@ -19,6 +20,12 @@
           <span><%= render 'submissions/logo' %></span>
           <h1 class="text-xl md:text-3xl font-semibold focus:text-clip" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;"><% (@submission.name || @submission.template&.name).to_s.split(/(_)/).each do |item| %><%= item %><wbr><% end %></h1>
         </a>
+      <% end %>
+      <% if is_generating %>
+        <div class="alert py-2" style="width: fit-content; position: absolute; left: 50%; transform: translateX(-50%)">
+          <%= svg_icon('info_circle', class: 'w-6 h-6') %>
+          <span><%= t('this_document_is_being_processed_refresh_the_page_to_view_the_final_version') %></span>
+        </div>
       <% end %>
       <div class="flex items-center gap-3">
         <% if signed_in? && can?(:destroy, @submission) && @submission.archived_at? && !@submission.completed_at? %>
@@ -33,7 +40,7 @@
               <span class="hidden md:inline"><%= t('audit_log') %></span>
             </a>
           </native-action>
-        <% elsif signed_in? %>
+        <% elsif signed_in? && !is_generating %>
           <native-action data-label="<%= t('event_log') %>" data-icon="logs">
             <open-modal-mobile class="flex">
               <%= link_to submission_events_path(@submission), class: 'white-button', data: { turbo_frame: :modal } do %>
@@ -114,7 +121,7 @@
               <% end %>
             </div>
           <% end %>
-        <% elsif @submission.submitters.to_a.size == 1 && !@submission.expired? && !@submission.submitters.to_a.first.declined_at? && !@submission.archived_at? && !@submission.template&.archived_at? %>
+        <% elsif !is_generating && @submission.submitters.to_a.size == 1 && !@submission.expired? && !@submission.submitters.to_a.first.declined_at? && !@submission.archived_at? && !@submission.template&.archived_at? %>
           <native-action data-label="<%= t('share_link') %>" data-icon="link">
             <%= render 'shared/clipboard_copy', text: submit_form_url(slug: @submission.submitters.to_a.first.slug, host: form_link_host), class: 'base-button', icon_class: 'w-6 h-6 text-white', copy_title: t('copy_share_link'), copied_title: t('copied_to_clipboard') %>
           </native-action>
@@ -128,10 +135,12 @@
     <% attachments_index = ActiveStorage::Attachment.where(record: @submission.submitters, name: :attachments).preload(:blob).index_by(&:uuid) %>
     <% unless native_tab == 'recipients' %>
       <% schema = Submissions.filtered_conditions_schema(@submission, values:) %>
+      <% template_documents_index = is_generating ? @submission.template.dynamic_documents.preload(current_version: { document_attachment: [:blob, { preview_images_attachments: :blob }] }).filter_map { |e| e.current_version&.document_attachment }.index_by(&:uuid) : {} %>
+      <% schema = schema.select { |item| !item['dynamic'] || template_documents_index[item['attachment_uuid']] || @submission.schema_documents.any? { |e| e.uuid == item['attachment_uuid'] } } if is_generating %>
       <% unless turbo_native_app? %>
         <div class="overflow-y-auto overflow-x-hidden hidden lg:block w-52 flex-none pr-3 mt-0.5 pt-0.5" tabindex="0">
           <% schema.each do |item| %>
-            <% document = @submission.schema_documents.find { |a| item['attachment_uuid'] == a.uuid } %>
+            <% document = @submission.schema_documents.find { |a| item['attachment_uuid'] == a.uuid } || template_documents_index[item['attachment_uuid']] %>
             <% if document.preview_images.first %>
               <scroll-to data-selector-id="page-<%= document.uuid %>-0" class="block cursor-pointer">
                 <img src="<%= (document.preview_images.find { |e| e.filename.base.to_i.zero? } || document.preview_images.first).url(time: service_url_time) %>" width="<%= document.preview_images.first.metadata['width'] %>" height="<%= document.preview_images.first.metadata['height'] %>" class="rounded border" loading="lazy" alt="<%= item['name'].presence || FilenameUtils.basename(document.blob[:filename]) %>">
@@ -151,7 +160,7 @@
           <% page_blob_struct = Struct.new(:url, :metadata) %>
           <% bg_classes = %w[bg-red-100 bg-sky-100 bg-emerald-100 bg-yellow-100 bg-purple-100 bg-pink-100 bg-cyan-100 bg-orange-100 bg-lime-100 bg-indigo-100] %>
           <% schema.each do |item| %>
-            <% document = @submission.schema_documents.find { |e| e.uuid == item['attachment_uuid'] } %>
+            <% document = @submission.schema_documents.find { |e| e.uuid == item['attachment_uuid'] } || template_documents_index[item['attachment_uuid']] %>
             <% document_annots_index = document.metadata.dig('pdf', 'annotations')&.group_by { |e| e['page'] } || {} %>
             <% preview_images_index = document.preview_images.loaded? ? document.preview_images.index_by { |e| e.filename.base.to_i } : {} %>
             <% lazyload_metadata = document.preview_images.first&.metadata || Templates::ProcessDocument::US_LETTER_SIZE %>

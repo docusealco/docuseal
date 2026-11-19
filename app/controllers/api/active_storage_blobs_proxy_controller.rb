@@ -42,7 +42,11 @@ module Api
 
       authorization_check!(attachment, @record, exp)
 
-      no_store
+      if attachment.name == 'logo'
+        expires_in 100.years, public: true, immutable: true
+      else
+        no_store
+      end
 
       if request.headers['Range'].present?
         send_blob_byte_range_data blob, request.headers['Range']
