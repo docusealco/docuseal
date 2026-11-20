@@ -45,22 +45,14 @@ module TemplateFolders
   def sort(template_folders, current_user, order)
     case order
     when 'used_at'
-      last_submission_created_at = Arel::Nodes::Grouping.new(
-        Submission.where(account_id: current_user.account_id, archived_at: nil)
-                  .where(Submission.arel_table[:template_id].eq(Template.arel_table[:id]))
-                  .order(id: :desc)
-                  .limit(1)
-                  .select(:created_at)
-                  .arel
-      )
-
       subquery =
         Template.group(:folder_id)
                 .where(account_id: current_user.account_id)
                 .select(
                   :folder_id,
                   Template.arel_table[:updated_at].maximum.as('updated_at_max'),
-                  Arel::Nodes::Max.new([last_submission_created_at]).as('submission_created_at_max')
+                  Arel::Nodes::Max.new([Templates::Order.last_submission_created_at(current_user)])
+                                  .as('submission_created_at_max')
                 )
 
       template_folders = template_folders.joins(
