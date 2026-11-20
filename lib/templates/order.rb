@@ -7,21 +7,19 @@ module Templates
     def call(templates, current_user, order)
       case order
       when 'used_at'
-        subquery = Submission.select(:template_id, Submission.arel_table[:created_at].maximum.as('created_at'))
-                             .where(account_id: current_user.account_id)
-                             .group(:template_id)
-
-        templates = templates.joins(
-          Template.arel_table
-                  .join(subquery.arel.as('submissions'), Arel::Nodes::OuterJoin)
-                  .on(Template.arel_table[:id].eq(Submission.arel_table[:template_id]))
-                  .join_sources
+        last_submission_created_at = Arel::Nodes::Grouping.new(
+          Submission.where(account_id: current_user.account_id, archived_at: nil)
+                    .where(Submission.arel_table[:template_id].eq(Template.arel_table[:id]))
+                    .order(id: :desc)
+                    .limit(1)
+                    .select(:created_at)
+                    .arel
         )
 
         templates.order(
           Arel::Nodes::Case.new
-                           .when(Submission.arel_table[:created_at].gt(Template.arel_table[:updated_at]))
-                           .then(Submission.arel_table[:created_at])
+                           .when(last_submission_created_at.gt(Template.arel_table[:updated_at]))
+                           .then(last_submission_created_at)
                            .else(Template.arel_table[:updated_at])
                            .desc
         )
