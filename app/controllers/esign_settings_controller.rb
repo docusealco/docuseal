@@ -6,6 +6,8 @@ class EsignSettingsController < ApplicationController
   CertFormRecord = Struct.new(:name, :file, :password) do
     include ActiveModel::Validations
 
+    validates :password, length: { maximum: 128 }, format: { with: /\A[[:ascii:]]*\z/ }
+
     def to_key
       []
     end
@@ -45,6 +47,11 @@ class EsignSettingsController < ApplicationController
 
   def create
     @cert_record = CertFormRecord.new(**cert_params)
+
+    if @cert_record.invalid?
+      return render turbo_stream: turbo_stream.replace(:modal, template: 'esign_settings/new'),
+                    status: :unprocessable_content
+    end
 
     if (@encrypted_config.value && @encrypted_config.value['custom']&.any? { |e| e['name'] == @cert_record.name }) ||
        @cert_record.name == DEFAULT_CERT_NAME

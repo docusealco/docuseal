@@ -16,7 +16,7 @@
       </div>
       <div class="form-control">
         <%= f.label :password, "#{t('password')} (#{t('optional')})", class: 'label' %>
-        <%= f.password_field :password, class: 'base-input' %>
+        <%= f.password_field :password, maxlength: 128, class: 'base-input' %>
       </div>
     </div>
     <div class="form-control pt-2">
