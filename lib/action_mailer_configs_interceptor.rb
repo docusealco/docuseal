@@ -19,7 +19,10 @@ module ActionMailerConfigsInterceptor
       from = ENV.fetch('SMTP_FROM').to_s.split(',').sample
 
       if from.match?(User::FULL_EMAIL_REGEXP)
-        message[:from] = message[:from].to_s.sub(User::EMAIL_REGEXP, from)
+        address = Mail::Address.new(from)
+        address.display_name = message[:from].try(:display_names)&.first
+
+        message.from = address.format
       else
         message.from = from
       end
