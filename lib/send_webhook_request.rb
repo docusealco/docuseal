@@ -13,7 +13,6 @@ module SendWebhookRequest
 
   module_function
 
-  # rubocop:disable-next Metrics/AbcSize
   def call(webhook_url, event_uuid:, event_type:, record:, data:, attempt: 0)
     uri = parse_uri(webhook_url.url)
 

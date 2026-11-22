@@ -36,7 +36,6 @@ module Api
       render json: Submitters::SerializeForApi.call(@submitter, with_template: true, with_events: true, params:)
     end
 
-    # rubocop:disable-next Metrics/MethodLength
     def update
       submission = @submitter.submission
       role = submission.template_submitters.find { |e| e['uuid'] == @submitter.uuid }['name']

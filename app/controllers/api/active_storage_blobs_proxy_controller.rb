@@ -11,7 +11,6 @@ module Api
     before_action :set_noindex_headers
     before_action :set_security_headers
 
-    # rubocop:disable-next Metrics
     def show
       blob_uuid, purp, exp = ApplicationRecord.signed_id_verifier.verified(params[:signed_uuid])
 

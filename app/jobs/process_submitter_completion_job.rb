@@ -187,7 +187,7 @@ class ProcessSubmitterCompletionJob
     bcc.to_s.scan(User::EMAIL_REGEXP)
   end
 
-  def enqueue_next_submitter_request_notification(submitter) # rubocop:disable Metrics/PerceivedComplexity
+  def enqueue_next_submitter_request_notification(submitter)
     submission = submitter.submission
     submitters_index = submission.submitters.reject(&:viewer?).index_by(&:uuid)
 
