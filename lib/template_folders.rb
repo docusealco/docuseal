@@ -46,13 +46,13 @@ module TemplateFolders
     case order
     when 'used_at'
       subquery =
-        Template.left_joins(:submissions)
-                .group(:folder_id)
+        Template.group(:folder_id)
                 .where(account_id: current_user.account_id)
                 .select(
                   :folder_id,
                   Template.arel_table[:updated_at].maximum.as('updated_at_max'),
-                  Submission.arel_table[:created_at].maximum.as('submission_created_at_max')
+                  Arel::Nodes::Max.new([Templates::Order.last_submission_created_at(current_user)])
+                                  .as('submission_created_at_max')
                 )
 
       template_folders = template_folders.joins(

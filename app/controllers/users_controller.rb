@@ -76,8 +76,9 @@ class UsersController < ApplicationController
 
     attrs = user_params.compact_blank
     attrs = attrs.merge(user_params.slice(:archived_at)) if current_ability.can?(:create, @user)
+    attrs = attrs.slice(:archived_at) if @user.role == 'integration'
 
-    if params.dig(:user, :account_id).present?
+    if params.dig(:user, :account_id).present? && @user.role != 'integration'
       account = Account.accessible_by(current_ability).find(params.dig(:user, :account_id))
 
       authorize!(:manage, account)

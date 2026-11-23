@@ -8,10 +8,10 @@ Puma::Plugin.create do
   def config(cfg)
     return if cfg.instance_variable_get(:@options)[:workers] <= 0
 
-    cfg.on_worker_boot { start_sidekiq! }
+    cfg.before_worker_boot { start_sidekiq! }
 
-    cfg.on_worker_shutdown { @sidekiq&.stop }
-    cfg.on_refork { @sidekiq&.stop }
+    cfg.before_worker_shutdown { @sidekiq&.stop }
+    cfg.before_refork { @sidekiq&.stop }
   end
 
   def start(launcher)

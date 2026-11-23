@@ -66,7 +66,6 @@ module Mcp
       }
     }.freeze
 
-    # rubocop:disable-next Metrics
     def call
       @template = Template.accessible_by(current_ability).find(mcp_params['template_id'])
 

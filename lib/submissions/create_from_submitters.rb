@@ -4,6 +4,8 @@ module Submissions
   module CreateFromSubmitters
     BaseError = Class.new(StandardError)
 
+    NO_DEFAULT_VALUE_FIELD_TYPES = %w[signature image initials file payment kba verification].freeze
+
     module_function
 
     # rubocop:disable Metrics
@@ -391,7 +393,7 @@ module Submissions
       field['readonly'] = attrs['readonly'] if attrs.key?('readonly')
       field['required'] = attrs['required'] if attrs.key?('required')
 
-      if attrs.key?('default_value') && !field['type'].in?(%w[signature image initials file])
+      if attrs.key?('default_value') && !field['type'].in?(NO_DEFAULT_VALUE_FIELD_TYPES)
         if attrs['default_value'].present?
           field['default_value'] = Submitters::NormalizeValues.normalize_value(field, attrs['default_value'])
         else

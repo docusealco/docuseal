@@ -279,9 +279,9 @@ module Submissions
                 submission.template_submitters.size > 1 && {
                   text: "#{TextUtils.maybe_rtl_reverse(item['name'].to_s)}\n"
                 },
-                submitter.email && { text: "#{submitter.email}\n", font: [FONT_NAME, { variant: :bold }] },
-                submitter.name && { text: "#{TextUtils.maybe_rtl_reverse(submitter.name)}\n" },
-                submitter.phone && { text: "#{submitter.phone}\n" }
+                submitter.email && { text: "#{submitter.email.squish}\n", font: [FONT_NAME, { variant: :bold }] },
+                submitter.name && { text: "#{TextUtils.maybe_rtl_reverse(submitter.name.squish)}\n" },
+                submitter.phone && { text: "#{submitter.phone.squish}\n" }
               ].compact_blank, line_spacing: 1.3, padding: [0, 20, 0, 0]
             )
           ],
@@ -511,7 +511,7 @@ module Submissions
             from = event.data['old_email'].presence ||
                    versions.rfind { |v| v.created_at <= event.event_timestamp }&.then { |v| v.name || v.phone }
             from = TextUtils.maybe_rtl_reverse(from.to_s.squish)
-            I18n.t('submission_event_names.delegate_form_by_html', from:, to: event.data['email'])
+            I18n.t('submission_event_names.delegate_form_by_html', from:, to: event.data['email'].to_s.squish)
           elsif event.event_type.include?('send_')
             I18n.t("submission_event_names.#{event.event_type}_to_html", submitter_name:)
           else

@@ -2,7 +2,11 @@
 
 module Api
   class TemplatesController < ApiBaseController
+    MAX_FIELDS_SIZE = 5.megabytes
+
     load_and_authorize_resource :template
+
+    before_action :validate_fields_size, only: :update
 
     def index
       @templates = Templates.shared(current_user) if params[:shared].in?(['true', true])
@@ -80,6 +84,14 @@ module Api
     end
 
     private
+
+    def validate_fields_size
+      return if !Docuseal.multitenant? || request.content_length.to_i <= MAX_FIELDS_SIZE
+
+      Rollbar.warning("Template fields size: #{@template.id}") if defined?(Rollbar)
+
+      raise Params::BaseValidator::InvalidParameterError, 'Too many fields'
+    end
 
     def preload_relations(templates)
       schema_documents =

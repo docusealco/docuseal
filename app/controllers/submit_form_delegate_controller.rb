@@ -22,7 +22,8 @@ class SubmitFormDelegateController < ApplicationController
 
     email = Submissions.normalize_email(params[:email])
 
-    return redirect_to submit_form_path(@submitter.slug) if email.blank?
+    return redirect_to submit_form_path(@submitter.slug) if email.blank? ||
+                                                            !email.match?(User::VALIDATE_EMAIL_REGEXP)
 
     old_slug = @submitter.slug
 

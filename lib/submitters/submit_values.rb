@@ -11,6 +11,7 @@ module Submitters
     REQUIRED_FIELD_TYPES = %w[payment kba verification].freeze
     CHOICE_FIELD_TYPES = %w[radio multiple select].freeze
     BOOLEAN_VALUES = [true, false].freeze
+    MAX_FORMULA_SIZE = 100_000
 
     STRFTIME_MAP = {
       'hour' => '%-k',
@@ -245,19 +246,25 @@ module Submitters
     def normalize_formula(formula, submission, depth: 0, submission_values: nil)
       raise ValidationError, 'Formula infinite loop' if depth > 10
 
-      formula.gsub(/{{(.*?)}}/) do |match|
-        uuid = Regexp.last_match(1)
+      normalized_formula =
+        formula.gsub(/{{(.*?)}}/) do |match|
+          uuid = Regexp.last_match(1)
 
-        if (nested_formula = submission.fields_uuid_index.dig(uuid, 'preferences', 'formula').presence)
-          if check_field_conditions(submission_values, submission.fields_uuid_index[uuid], submission.fields_uuid_index)
-            "(#{normalize_formula(nested_formula, submission, depth: depth + 1, submission_values:)})"
+          if (nested_formula = submission.fields_uuid_index.dig(uuid, 'preferences', 'formula').presence)
+            if check_field_conditions(submission_values, submission.fields_uuid_index[uuid],
+                                      submission.fields_uuid_index)
+              "(#{normalize_formula(nested_formula, submission, depth: depth + 1, submission_values:)})"
+            else
+              '0'
+            end
           else
-            '0'
+            match
           end
-        else
-          match
         end
-      end
+
+      raise ValidationError, 'Formula is too long' if normalized_formula.size > MAX_FORMULA_SIZE
+
+      normalized_formula
     end
 
     def calculate_formula_value(_formula, _values, _submission)
