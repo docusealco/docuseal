@@ -316,6 +316,8 @@ en: &en
   timestamp_server: Timestamp Server
   timeserver_url: Timeserver URL
   url_of_the_trusted_rfc_3161_timeserver_to_be_used_to_generate_timestamp_signatures: URL of the trusted RFC 3161 timeserver to be used to generate timestamp signatures.
+  custom_headers: Custom Headers
+  custom_http_headers_sent_with_every_request_to_the_timestamp_server_one_name_value_per_line: 'Custom HTTP headers sent with every request to the timestamp server, one "Name: value" pair per line.'
   apply_multiple_pdf_digital_signatures_in_the_document_per_each_signer: Apply multiple PDF digital signatures in the document per each signer
   remove_pdf_form_fillable_fields_from_the_signed_pdf_flatten_form: Remove PDF form fillable fields from the signed PDF (flatten form)
   certificate_has_been_successfully_added: Certificate has been successfully added.

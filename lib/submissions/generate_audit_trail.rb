@@ -41,6 +41,7 @@ module Submissions
 
         pkcs = Accounts.load_signing_pkcs(account)
         tsa_url = Accounts.load_timeserver_url(account)
+        tsa_headers = Accounts.load_timeserver_headers(account)
 
         io = StringIO.new
 
@@ -49,7 +50,7 @@ module Submissions
         if pkcs
           sign_params = {
             reason: sign_reason,
-            **Submissions::GenerateResultAttachments.build_signing_params(last_submitter, pkcs, tsa_url)
+            **Submissions::GenerateResultAttachments.build_signing_params(last_submitter, pkcs, tsa_url, tsa_headers)
           }
 
           document.sign(io, **sign_params)

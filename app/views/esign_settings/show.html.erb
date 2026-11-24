@@ -115,9 +115,10 @@
             <%= t('timestamp_server') %>
           </h2>
         </div>
+        <% timeserver_config = encrypted_config.value.is_a?(Hash) ? encrypted_config.value : { 'url' => encrypted_config.value } %>
         <%= form_for encrypted_config, url: timestamp_server_index_path, method: :post, html: { autocomplete: 'off', class: 'space-y-4' } do |f| %>
           <div class="form-control">
-            <%= f.label :value, class: 'label' do %>
+            <%= label_tag 'encrypted_config_url', class: 'label' do %>
               <span class="flex items-center space-x-1">
                 <span>
                   <%= t('timeserver_url') %>
@@ -127,7 +128,23 @@
                 </span>
               </span>
             <% end %>
-            <%= f.url_field :value, autocomplete: 'off', class: 'base-input', placeholder: "URL (#{t('optional')})" %>
+            <%= url_field_tag 'encrypted_config[url]', timeserver_config['url'], autocomplete: 'off', class: 'base-input', placeholder: "URL (#{t('optional')})" %>
+          </div>
+          <div class="form-control">
+            <%= label_tag 'encrypted_config_headers', class: 'label' do %>
+              <span class="flex items-center space-x-1">
+                <span>
+                  <%= t('custom_headers') %>
+                </span>
+                <span class="tooltip hidden md:flex" data-tip="<%= t('custom_http_headers_sent_with_every_request_to_the_timestamp_server_one_name_value_per_line') %>">
+                  <%= svg_icon('info_circle', class: 'w-4 h-4') %>
+                </span>
+              </span>
+            <% end %>
+            <%= text_area_tag 'encrypted_config[headers]',
+                              timeserver_config['headers'].to_a.map { |name, value| "#{name}: #{value}" }.join("\n"),
+                              autocomplete: 'off', rows: 3, class: 'base-input h-auto min-h-[3rem] py-3 font-mono',
+                              placeholder: "X-Api-Key: secret\nAuthorization: Bearer token" %>
           </div>
           <div class="form-control pt-2">
             <%= f.button button_title(title: t('save'), disabled_with: t('updating')), class: 'base-button' %>
