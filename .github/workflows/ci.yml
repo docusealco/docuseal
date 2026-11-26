@@ -60,7 +60,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v7
         with:
           node-version: 20.19.0
       - name: Cache directory path
